@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>ইন্টারেক্টিভ প্রণালি এক্সপ্লোরার</title>
+
+    <!-- Local only — put maplibre-gl.css here yourself, see SETUP.md -->
+    <link rel="stylesheet" href="./vendor/maplibre-gl.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <section class="strait-explorer">
+      <header class="explorer-header">
+        <div>
+          <h1 class="explorer-title">গুরুত্বপূর্ণ প্রণালি</h1>
+
+          <p class="explorer-subtitle">
+            বিশ্বের কৌশলগতভাবে গুরুত্বপূর্ণ প্রণালিগুলো ড্র্যাগ, জুম করে ঘুরে দেখুন।
+          </p>
+        </div>
+
+        <select
+          id="straitSelector"
+          class="strait-selector"
+          aria-label="একটি প্রণালি নির্বাচন করুন"></select>
+      </header>
+
+      <div class="map-shell">
+        <div id="map"></div>
+
+        <div id="setupNotice" class="setup-notice">
+          <strong>স্থানীয় মানচিত্র ফাইল পাওয়া যায়নি</strong>
+          <span>
+            <code>/data/land.geojson</code>, <code>/data/borders.geojson</code>,
+            <code>/data/disputed.geojson</code> ও <code>/data/countries.geojson</code>
+            — এই ফাইলগুলো এই ফোল্ডারে সম্পূর্ণভাবে রাখা হয়নি, তাই সঠিক উপকূলরেখা,
+            সীমান্ত ও দেশের নাম দেখানো যাচ্ছে না। শিপিং রুট, মার্কার ও বিখ্যাত
+            সীমান্ত রেখার নাম তবু কাজ করছে। বিস্তারিত নির্দেশনার জন্য SETUP.md দেখুন।
+          </span>
+        </div>
+
+        <aside class="info-card">
+          <span class="info-kicker"> Strategic Strait </span>
+
+          <h2 id="infoTitle" class="info-title" lang="en"></h2>
+
+          <div id="infoBn" class="info-bn"></div>
+
+          <div class="info-row">
+            <span class="info-label"> Between </span>
+            <span id="infoCountries" class="info-value"></span>
+          </div>
+
+          <div class="info-row">
+            <span class="info-label"> Connects </span>
+            <span id="infoConnects" class="info-value"></span>
+          </div>
+
+          <div class="info-row">
+            <span class="info-label"> সীমানা </span>
+            <span id="infoBoundary" class="info-value"></span>
+          </div>
+        </aside>
+
+        <div class="layers-control">
+          <button id="layersToggleBtn" type="button" class="layers-toggle-btn">
+            লেয়ার ▾
+          </button>
+          <div id="layersMenu" class="layers-menu">
+            <label class="layers-menu-item">
+              <input type="checkbox" data-layer-group="borders" checked />
+              <span class="legend-swatch" style="background:#8a8a96"></span>
+              আন্তর্জাতিক সীমান্ত
+            </label>
+            <label class="layers-menu-item">
+              <input type="checkbox" data-layer-group="disputed" checked />
+              <span class="legend-swatch" style="background:#e34ec9"></span>
+              বিতর্কিত / প্রসিদ্ধ সীমান্ত
+            </label>
+            <label class="layers-menu-item">
+              <input type="checkbox" data-layer-group="famousLines" checked />
+              <span class="legend-swatch" style="background:#5ad1ff"></span>
+              বিখ্যাত সীমান্ত রেখার নাম
+            </label>
+            <label class="layers-menu-item">
+              <input type="checkbox" data-layer-group="countryLabels" checked />
+              <span class="legend-swatch" style="background:#9a9aa5"></span>
+              দেশের নাম
+            </label>
+            <label class="layers-menu-item">
+              <input type="checkbox" data-layer-group="straits" checked />
+              <span class="legend-swatch" style="background:#ffd65a"></span>
+              প্রণালি ও শিপিং রুট
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div id="straitButtons" class="strait-buttons"></div>
+    </section>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
