@@ -120,13 +120,17 @@ export const INITIAL_STRAIT_KEY = 'hormuz';
 | FAMOUS NAMED BORDER / DEMARCATION LINES
 |--------------------------------------------------------------------------
 |
-| These are label points only — the actual line geometry drawn on the
-| map comes from the real Natural Earth border/disputed-area datasets
-| (./data/borders.geojson, ./data/disputed.geojson). This list just
-| attaches the well-known historical *name* to the right spot along
-| those real lines. Coordinates are approximate reference points
-| (roughly the line's midpoint or best-known section), not survey
-| endpoints.
+| No line geometry is drawn by hand. tools/build-straits-overlay.mjs
+| traces each line from Natural Earth 1:10m boundary lines and writes
+| straits/famous-lines.geojson — re-run it after editing this list.
+|
+| match  — which real boundary lines carry the name: the two countries
+|          either side (Natural Earth ADM0_LEFT/ADM0_RIGHT) and, where
+|          needed, the line class (e.g. 'Line of control').
+| region — [minLon, minLat, maxLon, maxLat]; only the part of the matched
+|          lines inside this box is traced (e.g. just the Punjab stretch
+|          of the India–Pakistan boundary).
+| coords — label position used when nothing is traced (historical lines).
 |
 | status: 'active'     — still a functioning international boundary today
 |         'historical' — no longer in force / no longer a live border
@@ -140,9 +144,8 @@ export const FAMOUS_LINES = [
     coords: [91.8, 27.6],
     status: 'active',
     note: 'ভারত–চীন (তিব্বত) সীমান্ত রেখা, ১৯১৪ সিমলা কনভেনশন — চীন স্বীকৃতি দেয় না',
-    // bbox = [minLon, minLat, maxLon, maxLat] the real line is traced
-    // within, clipped straight out of borders.geojson/disputed.geojson.
     region: [91.0, 27.0, 97.6, 29.6],
+    match: { between: ['China', 'India'] },
   },
   {
     nameEn: 'Radcliffe Line (Punjab)',
@@ -151,6 +154,7 @@ export const FAMOUS_LINES = [
     status: 'active',
     note: 'ভারত–পাকিস্তান বিভাজন রেখা, ১৯৪৭',
     region: [73.3, 29.5, 75.6, 32.8],
+    match: { between: ['India', 'Pakistan'], featurecla: 'International boundary' },
   },
   {
     nameEn: 'Radcliffe Line (Bengal)',
@@ -159,6 +163,7 @@ export const FAMOUS_LINES = [
     status: 'active',
     note: 'ভারত–পাকিস্তান (পূর্ব বঙ্গ) বিভাজন রেখা, ১৯৪৭ — সম্পূর্ণ ভারত–বাংলাদেশ সীমান্তের ভিত্তি',
     region: [88.0, 20.5, 92.3, 26.8],
+    match: { between: ['Bangladesh', 'India'] },
   },
   {
     nameEn: 'Durand Line',
@@ -167,6 +172,7 @@ export const FAMOUS_LINES = [
     status: 'active',
     note: 'আফগানিস্তান–পাকিস্তান সীমান্ত, ১৮৯৩ চুক্তি',
     region: [60.4, 29.0, 74.6, 37.6],
+    match: { between: ['Afghanistan', 'Pakistan'] },
   },
   {
     nameEn: 'Line of Control (LoC)',
@@ -175,6 +181,7 @@ export const FAMOUS_LINES = [
     status: 'active',
     note: 'ভারত–পাকিস্তান, কাশ্মীর — জাতিসংঘ-স্বীকৃত সীমান্ত নয়, বাস্তব নিয়ন্ত্রণ রেখা',
     region: [73.0, 32.0, 75.8, 35.1],
+    match: { between: ['India', 'Pakistan'], featurecla: 'Line of control' },
   },
   {
     nameEn: 'Korean DMZ (38th Parallel)',
@@ -183,6 +190,7 @@ export const FAMOUS_LINES = [
     status: 'active',
     note: 'উত্তর–দক্ষিণ কোরিয়া, ১৯৫৩ যুদ্ধবিরতি রেখা',
     region: [125.9, 37.7, 128.6, 38.7],
+    match: { between: ['North Korea', 'South Korea'] },
   },
   {
     nameEn: 'Green Line',
@@ -191,6 +199,7 @@ export const FAMOUS_LINES = [
     status: 'active',
     note: 'ইসরায়েল–ওয়েস্ট ব্যাংক, ১৯৪৯ যুদ্ধবিরতি রেখা',
     region: [34.15, 31.1, 35.65, 32.7],
+    match: { between: ['Israel', 'Palestine'] },
   },
   {
     nameEn: 'Berlin Wall',

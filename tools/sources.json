@@ -1,0 +1,58 @@
+{
+  "_comment": "Every external input to the build, pinned. Natural Earth files are fetched from one fixed commit (the v5.1.2 tag) and checked against the git blob hash recorded in that commit's tree, so a changed file can never slip in. The font zip is checked against the SHA-256 digest GitHub publishes for the release asset.",
+  "naturalEarth": {
+    "release": "v5.1.2",
+    "commit": "f1890d9f152c896d250a77557a5751a93d494776",
+    "baseUrl": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/",
+    "licence": "Public domain (Natural Earth terms of use: https://www.naturalearthdata.com/about/terms-of-use/)",
+    "files": {
+      "ne_50m_land.geojson": {
+        "size": 1636166,
+        "gitBlobSha1": "c412c52b5286ba727dcb7047ecd6080bcbeb8298"
+      },
+      "ne_50m_admin_0_boundary_lines_land.geojson": {
+        "size": 760189,
+        "gitBlobSha1": "f2da10de881015c7182951b59a75b1e4e27356c6"
+      },
+      "ne_50m_admin_0_boundary_lines_disputed_areas.geojson": {
+        "size": 51158,
+        "gitBlobSha1": "6dadc77e401efeba7513e90a3cbd0d2f7b524be6"
+      },
+      "ne_10m_land.geojson": {
+        "size": 10157965,
+        "gitBlobSha1": "2d76878175b8054acd9c5a52917ee9ea59a36fc5"
+      },
+      "ne_10m_admin_0_boundary_lines_land.geojson": {
+        "size": 2284669,
+        "gitBlobSha1": "a4e4090820e0d95c23d55aefa6b5f1721552cc71"
+      },
+      "ne_10m_admin_0_boundary_lines_disputed_areas.geojson": {
+        "size": 183831,
+        "gitBlobSha1": "5ceb37949bab9b2be8745caf7c67c8111bb679b5"
+      },
+      "ne_10m_admin_0_countries_bdg.geojson": {
+        "size": 13219102,
+        "gitBlobSha1": "193a2ad5007eff8365a9fca5a08f39e353b9f079"
+      },
+      "ne_10m_admin_0_countries.geojson": {
+        "size": 13287234,
+        "gitBlobSha1": "5ebc66e25fc1af01edaebe9375c546655e04cf1e"
+      }
+    }
+  },
+  "notoSansBengali": {
+    "release": "NotoSansBengali-v3.011",
+    "url": "https://github.com/notofonts/bengali/releases/download/NotoSansBengali-v3.011/NotoSansBengali-v3.011.zip",
+    "file": "NotoSansBengali-v3.011.zip",
+    "size": 14185062,
+    "sha256": "2aca24bf71665e66c32e14862ee58857dd8b8b07b6321ec7c96f3121ad6683b1",
+    "licence": "SIL Open Font License 1.1"
+  },
+  "pmtilesLicence": {
+    "_comment": "The pmtiles npm package ships no LICENSE file; BSD-3 requires the notice to travel with the code, so it is taken from the upstream repo.",
+    "url": "https://raw.githubusercontent.com/protomaps/PMTiles/5897a82a16b233abac7b8f339c019b931c2bbf54/LICENSE",
+    "file": "pmtiles-LICENSE",
+    "size": 1713,
+    "gitBlobSha1": "ec3d69a55220793cb4b2074ebe202df25f9cb417"
+  }
+}

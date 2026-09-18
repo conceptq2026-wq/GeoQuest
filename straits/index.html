@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Interactive map of strategic straits and famous boundary lines, with Bengali place names." />
+
+    <title>Strategic Straits · GeoQuest</title>
+
+    <!-- Everything is served from this repo: no CDN, no tile server, no API key. -->
+    <link rel="stylesheet" href="../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preload" href="../shared/fonts/noto-sans-bengali/NotoSansBengali-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+
+  <body>
+    <section class="strait-explorer">
+      <header class="explorer-header">
+        <div>
+          <h1 class="explorer-title">Strategic Straits</h1>
+          <p class="explorer-title-bn" lang="bn">গুরুত্বপূর্ণ প্রণালি</p>
+          <p class="explorer-subtitle">Drag and zoom to explore. Tap a strait below to fly to it.</p>
+        </div>
+
+        <select id="straitSelector" class="strait-selector" aria-label="Choose a strait"></select>
+      </header>
+
+      <div class="map-shell">
+        <div id="map"></div>
+
+        <div id="loadNotice" class="load-notice" role="alert">
+          <strong>Map data could not be loaded</strong>
+          <span>Check the connection and reload the page. Straits, routes and labels still work.</span>
+        </div>
+
+        <aside class="info-card" aria-live="polite">
+          <span class="info-kicker">Strait</span>
+          <h2 id="infoTitle" class="info-title" lang="bn"></h2>
+          <div id="infoEn" class="info-en"></div>
+
+          <div class="info-row">
+            <span class="info-label">Between</span>
+            <span id="infoCountries" class="info-value"></span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Connects</span>
+            <span id="infoConnects" class="info-value"></span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Boundary</span>
+            <span id="infoBoundary" class="info-value" lang="bn"></span>
+          </div>
+        </aside>
+
+        <div class="layers-control">
+          <button id="layersToggleBtn" type="button" class="layers-toggle-btn" aria-expanded="false" aria-controls="layersMenu">
+            Layers ▾
+          </button>
+          <div id="layersMenu" class="layers-menu">
+            <label class="layers-menu-item">
+              <input type="checkbox" data-layer-group="borders" checked />
+              <span class="legend-swatch" style="background: #8a8a96"></span>
+              International borders
+            </label>
+            <label class="layers-menu-item">
+              <input type="checkbox" data-layer-group="disputed" checked />
+              <span class="legend-swatch" style="background: #e34ec9"></span>
+              Disputed boundaries
+            </label>
+            <label class="layers-menu-item">
+              <input type="checkbox" data-layer-group="famousLines" checked />
+              <span class="legend-swatch" style="background: #5ad1ff"></span>
+              Famous boundary lines
+            </label>
+            <label class="layers-menu-item">
+              <input type="checkbox" data-layer-group="countryLabels" checked />
+              <span class="legend-swatch" style="background: #9a9aa5"></span>
+              Country names
+            </label>
+            <label class="layers-menu-item">
+              <input type="checkbox" data-layer-group="straits" checked />
+              <span class="legend-swatch" style="background: #ffd65a"></span>
+              Straits and shipping routes
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div id="straitButtons" class="strait-buttons"></div>
+    </section>
+
+    <!-- pmtiles reads the map data with HTTP range requests; loaded first so app.js can use it. -->
+    <script src="../shared/vendor/pmtiles-4.5.0/pmtiles.js"></script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

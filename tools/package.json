@@ -1,0 +1,23 @@
+{
+  "name": "geoquest-tools",
+  "private": true,
+  "description": "Build pipeline for the GeoQuest map repo: fetches pinned sources, builds shared tiles/fonts, copies pinned vendor libraries.",
+  "type": "module",
+  "scripts": {
+    "fetch": "node fetch-sources.mjs",
+    "vendor": "node vendor.mjs",
+    "font": "node build-font.mjs",
+    "world": "node build-world.mjs",
+    "straits": "node build-straits-overlay.mjs",
+    "verify": "node verify.mjs",
+    "build": "npm run fetch && npm run vendor && npm run font && npm run world && npm run straits && npm run verify"
+  },
+  "devDependencies": {
+    "geojson-vt": "4.0.3",
+    "maplibre-gl": "6.9.0",
+    "mapshaper": "0.7.61",
+    "pmtiles": "4.5.0",
+    "subset-font": "2.7.0",
+    "vt-pbf": "3.1.3"
+  }
+}

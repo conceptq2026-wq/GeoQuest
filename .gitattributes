@@ -1,0 +1,4 @@
+* text=auto eol=lf
+*.pmtiles binary
+*.woff2 binary
+*.png binary

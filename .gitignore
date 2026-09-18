@@ -1,0 +1,4 @@
+# Build inputs and dependencies — reproducible from tools/sources.json and
+# tools/package-lock.json, so never committed.
+tools/node_modules/
+tools/.cache/
