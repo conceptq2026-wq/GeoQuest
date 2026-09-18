@@ -37,6 +37,14 @@
       "ne_10m_admin_0_countries.geojson": {
         "size": 13287234,
         "gitBlobSha1": "5ebc66e25fc1af01edaebe9375c546655e04cf1e"
+      },
+      "ne_50m_lakes.geojson": {
+        "size": 876018,
+        "gitBlobSha1": "5ddced58279ea13ae5023929f135bb7ecfd12d95"
+      },
+      "ne_10m_lakes.geojson": {
+        "size": 5043554,
+        "gitBlobSha1": "e48ec603e0943b62f8c81960fb990bb6bab4a4a8"
       }
     }
   },
@@ -54,5 +62,12 @@
     "file": "pmtiles-LICENSE",
     "size": 1713,
     "gitBlobSha1": "ec3d69a55220793cb4b2074ebe202df25f9cb417"
+  },
+  "osmTss": {
+    "_comment": "Snapshot of OpenStreetMap traffic-separation schemes around each strait, made by extract-osm-tss.mjs and committed. The build refuses a file whose checksum differs, so the drawn lanes only change on purpose.",
+    "file": "tools/sources/osm-tss.geojson",
+    "fetched": "2026-09-18",
+    "licence": "ODbL 1.0 — © OpenStreetMap contributors",
+    "sha256": "c4b9baf4c335e6f495538ce532e99a3a004dc76bf5121f83b879382c7118c482"
   }
 }

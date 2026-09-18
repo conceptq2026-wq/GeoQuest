@@ -6,6 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { createRequire } from 'node:module';
+import { pathToFileURL } from 'node:url';
 import { PMTiles } from 'pmtiles';
 import { DETAIL_AREAS } from './world.config.mjs';
 
@@ -74,6 +75,25 @@ const vendored = [
   ['shared/vendor/pmtiles-4.5.0/pmtiles.js', 'node_modules/pmtiles/dist/pmtiles.js'],
 ];
 for (const [copy, original] of vendored) check(sha(path.join(ROOT, copy)) === sha(original), `${copy} matches the pinned npm package`);
+
+// ---- straits: each passage's first view must show what it sits between ----
+const { STRAITS, SEAS } = await import(pathToFileURL(path.join(ROOT, 'straits/data.js')).href);
+const inFrame = ([w, s, e, n], [x, y]) => x >= w && x <= e && y >= s && y <= n;
+for (const [key, p] of Object.entries(STRAITS)) {
+  const missing = [['the passage', p.center], ...p.seas.map((k) => [`sea "${k}"`, SEAS[k]?.at])]
+    .filter(([, pt]) => !pt || !inFrame(p.frame, pt))
+    .map(([what]) => what);
+  check(missing.length === 0, `straits/${key}: frame contains the passage and both sea labels${missing.length ? ` — outside: ${missing.join(', ')}` : ''}`);
+}
+
+// ---- straits: shipping lanes come only from the pinned OSM snapshot ----
+const osm = JSON.parse(fs.readFileSync('sources.json', 'utf8')).osmTss;
+check(sha(path.join(ROOT, osm.file)) === osm.sha256, `${osm.file} matches its pinned checksum`);
+const routes = JSON.parse(fs.readFileSync(path.join(ROOT, 'straits/routes.geojson'), 'utf8'));
+check(/ODbL/.test(routes.properties?.licence || ''), 'straits/routes.geojson carries its ODbL licence');
+for (const [key, p] of Object.entries(STRAITS)) {
+  check(['mapped', 'partial', 'none'].includes(p.routeStatus) && !('route' in p), `straits/${key}: routeStatus "${p.routeStatus}", no hand-drawn route`);
+}
 
 // ---- per-map files ----
 const famous = JSON.parse(fs.readFileSync(path.join(ROOT, 'straits/famous-lines.geojson'), 'utf8'));

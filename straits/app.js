@@ -16,6 +16,7 @@ const infoTitle = document.getElementById('infoTitle');
 const infoCountries = document.getElementById('infoCountries');
 const infoConnects = document.getElementById('infoConnects');
 const infoBoundary = document.getElementById('infoBoundary');
+const infoRoute = document.getElementById('infoRoute');
 const loadNotice = document.getElementById('loadNotice');
 const layersToggleBtn = document.getElementById('layersToggleBtn');
 const layersMenu = document.getElementById('layersMenu');
@@ -95,6 +96,13 @@ const tileSource = (minzoom, maxzoom) => ({
 
 const landLayers = (source) => [
   { id: `${source}-land`, type: 'fill', source, 'source-layer': 'land', paint: { 'fill-color': COLORS.land } },
+  // Lakes are water on a teaching map: the Great Lakes are what Soo and
+  // Welland connect, and Panama runs through Gatun Lake.
+  { id: `${source}-lakes`, type: 'fill', source, 'source-layer': 'lakes', paint: { 'fill-color': COLORS.sea } },
+  // (Detail lakes are clipped to their box, so only world lakes get a shore line.)
+  ...(source === 'world'
+    ? [{ id: 'world-lake-shore', type: 'line', source, 'source-layer': 'lakes', paint: { 'line-color': COLORS.coast, 'line-width': 0.7 } }]
+    : []),
   // Detail land is clipped to its box, so an outline would also trace the
   // box edge as a fake coast. Only the world tiles get the coast stroke.
   ...(source === 'world'
@@ -109,8 +117,6 @@ const landLayers = (source) => [
     paint: { 'line-color': COLORS.border, 'line-width': 1, 'line-dasharray': [3, 1.5] },
   },
 ];
-
-const EMPTY = { type: 'FeatureCollection', features: [] };
 
 /** One label per connected sea; the chosen passage's seas are "active". */
 function seasGeoJSON() {
@@ -147,26 +153,58 @@ const map = new maplibregl.Map({
       detail: tileSource(7, 10),
       passages: { type: 'geojson', data: passagesGeoJSON() },
       seas: { type: 'geojson', data: seasGeoJSON() },
-      'strait-route': { type: 'geojson', data: EMPTY },
+      // OpenStreetMap traffic-separation schemes (ODbL), built from a pinned
+      // snapshot by tools/build-straits-routes.mjs. Only mapped lanes are
+      // drawn — nothing is guessed or hand-joined.
+      routes: { type: 'geojson', data: './routes.geojson', attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors' },
     },
     layers: [
       { id: 'bg', type: 'background', paint: { 'background-color': COLORS.sea } },
       ...landLayers('world'),
       { id: 'detail-mask', type: 'fill', source: 'detail', 'source-layer': 'detail_extent', paint: { 'fill-color': COLORS.sea } },
       ...landLayers('detail'),
+      // A traffic-separation scheme as charted: the separation zone between
+      // the two lanes (outlined — a tinted fill read as a strip of land), the
+      // scheme's outer boundaries (dashed), and the one-way lanes themselves
+      // with arrows in the direction of travel.
       {
-        id: 'strait-route-casing',
+        id: 'tss-zones',
         type: 'line',
-        source: 'strait-route',
-        layout: { 'line-cap': 'round', 'line-join': 'round' },
-        paint: { 'line-color': '#ffffff', 'line-width': 7, 'line-opacity': 0.95 },
+        source: 'routes',
+        filter: ['in', ['get', 'seamark'], ['literal', ['separation_zone', 'separation_line', 'separation_roundabout']]],
+        paint: { 'line-color': COLORS.route, 'line-width': 1.2, 'line-opacity': 0.9 },
       },
       {
-        id: 'strait-route-line',
+        id: 'tss-edges',
         type: 'line',
-        source: 'strait-route',
+        source: 'routes',
+        filter: ['==', ['get', 'seamark'], 'separation_boundary'],
+        paint: { 'line-color': COLORS.route, 'line-width': 1, 'line-opacity': 0.8, 'line-dasharray': [3, 2] },
+      },
+      {
+        id: 'tss-lanes',
+        type: 'line',
+        source: 'routes',
+        filter: ['==', ['get', 'seamark'], 'separation_lane'],
         layout: { 'line-cap': 'round', 'line-join': 'round' },
-        paint: { 'line-color': COLORS.route, 'line-width': 3.5, 'line-dasharray': [2, 1.2] },
+        paint: { 'line-color': COLORS.route, 'line-width': 2.5 },
+      },
+      {
+        id: 'tss-arrows',
+        type: 'symbol',
+        source: 'routes',
+        filter: ['==', ['get', 'seamark'], 'separation_lane'],
+        minzoom: 6,
+        layout: {
+          'symbol-placement': 'line',
+          'symbol-spacing': 90,
+          'text-field': '→',
+          'text-font': LABEL_FONT,
+          'text-size': 16,
+          'text-keep-upright': false,
+          'text-allow-overlap': true,
+        },
+        paint: { 'text-color': COLORS.route, 'text-halo-color': COLORS.halo, 'text-halo-width': 1.5 },
       },
       {
         id: 'country-labels',
@@ -184,27 +222,21 @@ const map = new maplibregl.Map({
         },
         paint: { 'text-color': COLORS.label, 'text-halo-color': COLORS.halo, 'text-halo-width': 1.4 },
       },
-      // Water-body names in blue, as atlases do; the two seas the chosen
-      // passage joins are larger and darker, and win label collisions.
+      // Water-body names in blue, as atlases do. Other passages' seas only
+      // from zoom 3 (at world zoom they would crowd the passage points).
       {
         id: 'sea-labels',
         type: 'symbol',
         source: 'seas',
-        // At world zoom the other seas' names would crowd the passage points.
-        filter: ['any', ['get', 'active'], ['>=', ['zoom'], 3]],
+        filter: ['all', ['!', ['get', 'active']], ['>=', ['zoom'], 3]],
         layout: {
           'text-field': ['get', 'nameBn'],
           'text-font': LABEL_FONT,
-          'text-size': ['case', ['get', 'active'], 15, 12],
+          'text-size': 12,
           'text-max-width': 7,
-          'symbol-sort-key': ['case', ['get', 'active'], 0, 1],
           'text-optional': true,
         },
-        paint: {
-          'text-color': ['case', ['get', 'active'], COLORS.seaLabelActive, COLORS.seaLabel],
-          'text-halo-color': COLORS.halo,
-          'text-halo-width': 1.6,
-        },
+        paint: { 'text-color': COLORS.seaLabel, 'text-halo-color': COLORS.halo, 'text-halo-width': 1.6 },
       },
       // The selected passage is drawn by the pulsing DOM marker instead.
       {
@@ -229,13 +261,32 @@ const map = new maplibregl.Map({
           'text-field': ['get', 'nameBn'],
           'text-font': LABEL_FONT,
           'text-size': ['case', ['get', 'selected'], 16, 12],
-          'text-offset': [0, 1.2],
-          'text-anchor': 'top',
+          // Below the point if there is room, otherwise whichever side is
+          // free — so a passage name never sits on top of a sea's name.
+          'text-variable-anchor': ['top', 'bottom', 'right', 'left'],
+          'text-radial-offset': 1,
           // The selected passage's name is placed first, so it wins collisions.
           'symbol-sort-key': ['case', ['get', 'selected'], 0, 1],
           'text-optional': true,
         },
         paint: { 'text-color': COLORS.navy, 'text-halo-color': COLORS.halo, 'text-halo-width': 2 },
+      },
+      // The two seas the chosen passage joins: always shown — they are half of
+      // what the student came to learn. Placed first (topmost layer) and kept
+      // in the collision index, so the passage name moves out of their way.
+      {
+        id: 'sea-labels-active',
+        type: 'symbol',
+        source: 'seas',
+        filter: ['get', 'active'],
+        layout: {
+          'text-field': ['get', 'nameBn'],
+          'text-font': LABEL_FONT,
+          'text-size': 15,
+          'text-max-width': 7,
+          'text-allow-overlap': true,
+        },
+        paint: { 'text-color': COLORS.seaLabelActive, 'text-halo-color': COLORS.halo, 'text-halo-width': 1.8 },
       },
     ],
   },
@@ -348,30 +399,32 @@ function selectStrait(key) {
   setSheetOpen(true);
   showStrait(strait);
 
-  map.getSource('strait-route')?.setData({
-    type: 'FeatureCollection',
-    features: [{ type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: strait.route } }],
-  });
   map.getSource('passages')?.setData(passagesGeoJSON());
   map.getSource('seas')?.setData(seasGeoJSON());
   marker.setLngLat(strait.center).addTo(map);
 }
 
 /**
- * Centres the passage in the part of the map the sheet leaves visible:
- * MapLibre's padding shifts the centre point up by the sheet's height, so a
- * strait the student just picked never sits underneath it.
+ * Fits the passage's hand-set frame (data.js) — both neighbouring countries
+ * and both connected seas — into the part of the map the sheet leaves
+ * visible. A student first needs to see WHERE the passage is and what it
+ * joins; pinching in shows how narrow it is.
  */
 function showStrait(strait) {
-  map.flyTo({
-    center: strait.center,
-    zoom: strait.zoom,
-    bearing: 0,
-    pitch: 0,
-    padding: { top: 0, right: 0, left: 0, bottom: sheetHeight() },
-    duration: 1800,
-    essential: true,
-  });
+  const [w, s, e, n] = strait.frame;
+  map.fitBounds(
+    [
+      [w, s],
+      [e, n],
+    ],
+    {
+      padding: { top: 16, right: 16, left: 16, bottom: sheetHeight() + 16 },
+      bearing: 0,
+      pitch: 0,
+      duration: 1800,
+      essential: true,
+    },
+  );
 }
 
 function updateInfo(key) {
@@ -381,7 +434,18 @@ function updateInfo(key) {
   infoCountries.textContent = strait.countriesBn;
   infoConnects.textContent = strait.connectsBn;
   infoBoundary.textContent = strait.boundaryNote || '—';
+  infoRoute.textContent = ROUTE_STATUS_BN[strait.routeStatus];
 }
+
+/*
+ * What the card says about the shipping lane. Where OpenStreetMap has no
+ * scheme, the card says so plainly and nothing is drawn.
+ */
+const ROUTE_STATUS_BN = {
+  mapped: 'নির্ধারিত নৌপথ (IMO ট্রাফিক বিভাজন ব্যবস্থা) মানচিত্রে দেখানো হয়েছে',
+  partial: 'আংশিক — নির্ধারিত নৌপথের কেবল কিছু অংশ মানচিত্রে আছে',
+  none: 'এখানে কোনো নির্ধারিত নৌপথের মানচিত্রায়িত তথ্য নেই',
+};
 
 selector.addEventListener('change', (event) => {
   selectStrait(event.target.value);
@@ -492,8 +556,8 @@ new ResizeObserver(() => applySheetOffset(sheetOpen ? 0 : closedOffset())).obser
 
 const LAYER_GROUPS = {
   countryLabels: ['country-labels'],
-  seas: ['sea-labels'],
-  routes: ['strait-route-casing', 'strait-route-line'],
+  seas: ['sea-labels', 'sea-labels-active'],
+  routes: ['tss-zones', 'tss-edges', 'tss-lanes', 'tss-arrows'],
 };
 
 function setGroupVisibility(groupKey, visible) {

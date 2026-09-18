@@ -17,6 +17,9 @@ const isBdLine = (p) => bangladeshLineClass(p) !== null;
 // ---- World layers (1:50m) ----
 const world = {
   land: prepare(readSource('ne_50m_land.geojson'), () => ({})),
+  // Natural Earth's land polygons fill lakes in as land; without this layer
+  // the Great Lakes (Soo, Welland) and Gatun Lake (Panama) would be solid.
+  lakes: prepare(readSource('ne_50m_lakes.geojson'), () => ({})),
   borders: prepare(readSource('ne_50m_admin_0_boundary_lines_land.geojson'), lineProps, isBdLine),
   disputed: prepare(readSource('ne_50m_admin_0_boundary_lines_disputed_areas.geojson'), lineProps, isBdLine),
   // Label points come from the Bangladesh-POV countries file: one point per
@@ -40,12 +43,14 @@ async function clip(fc, bbox) {
   return JSON.parse(out["out.json"].toString()).features;
 }
 const land10 = prepare(readSource('ne_10m_land.geojson'), () => ({}));
+const lakes10 = prepare(readSource('ne_10m_lakes.geojson'), () => ({}));
 const borders10 = prepare(readSource('ne_10m_admin_0_boundary_lines_land.geojson'), lineProps, isBdLine);
 const disputed10 = prepare(readSource('ne_10m_admin_0_boundary_lines_disputed_areas.geojson'), lineProps, isBdLine);
-const detail = { detail_extent: [], land: [], borders: [], disputed: [] };
+const detail = { detail_extent: [], land: [], lakes: [], borders: [], disputed: [] };
 for (const [name, bbox] of Object.entries(DETAIL_AREAS)) {
   detail.detail_extent.push({ ...bboxPolygon(bbox), properties: { area: name } });
   detail.land.push(...(await clip(land10, bbox)));
+  detail.lakes.push(...(await clip(lakes10, bbox)));
   detail.borders.push(...(await clip(borders10, bbox)));
   detail.disputed.push(...(await clip(disputed10, bbox)));
 }
