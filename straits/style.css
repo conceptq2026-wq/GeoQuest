@@ -28,15 +28,22 @@ body {
 
 .explorer-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 20px;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
-.explorer-title {
-  margin: 0;
-  font-size: clamp(26px, 4vw, 42px);
+/* Present for screen readers, takes no space (the app's viewer shows the title). */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* Bengali text uses the same bundled Noto Sans Bengali as the map labels. */
@@ -48,18 +55,6 @@ body {
 
 [lang='bn'] {
   font-family: 'Noto Sans Bengali', Inter, system-ui, sans-serif;
-}
-
-.explorer-title-bn {
-  margin: 2px 0 0;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 17px;
-}
-
-.explorer-subtitle {
-  margin: 6px 0 0;
-  color: rgba(255, 255, 255, 0.65);
-  font-size: 14px;
 }
 
 .strait-selector {
@@ -386,14 +381,25 @@ body {
   flex-shrink: 0;
 }
 
+/*
+ * Phones (and the app's WebView): the page is exactly one screen tall and
+ * the map takes whatever the dropdown and the strait row leave. The page
+ * itself never scrolls, so a drag always pans the map instead of scrolling
+ * the page underneath it.
+ */
 @media (max-width: 700px) {
   .strait-explorer {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    height: 100dvh;
     padding: 10px;
   }
 
   .explorer-header {
     align-items: stretch;
     flex-direction: column;
+    margin-bottom: 8px;
   }
 
   .strait-selector {
@@ -401,9 +407,28 @@ body {
   }
 
   .map-shell {
-    min-height: 550px;
-    height: 72vh;
+    flex: 1 1 auto;
+    height: auto;
+    /* A floor for very short screens — there the page scrolls instead. */
+    min-height: 320px;
     border-radius: 18px;
+  }
+
+  /* One swipeable row instead of three wrapped ones: ~40px instead of ~126px. */
+  .strait-buttons {
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    margin-top: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .strait-buttons::-webkit-scrollbar {
+    display: none;
+  }
+
+  .strait-button {
+    flex-shrink: 0;
   }
 
   .info-card {

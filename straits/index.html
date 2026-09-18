@@ -2,7 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- No page-level zoom: this page is embedded in the app's WebView, and a
+         pinch must zoom the map (MapLibre), never the whole page. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
     <meta name="description" content="Interactive map of strategic straits and famous boundary lines, with Bengali place names." />
 
     <title>Strategic Straits · GeoQuest</title>
@@ -15,13 +17,11 @@
 
   <body>
     <section class="strait-explorer">
+      <!-- No visible heading: the map is only ever opened from a card that
+           already names it, and the app's viewer shows that title right above
+           this page. The heading stays for screen readers. -->
       <header class="explorer-header">
-        <div>
-          <h1 class="explorer-title">Strategic Straits</h1>
-          <p class="explorer-title-bn" lang="bn">গুরুত্বপূর্ণ প্রণালি</p>
-          <p class="explorer-subtitle">Drag and zoom to explore. Tap a strait below to fly to it.</p>
-        </div>
-
+        <h1 class="visually-hidden" lang="bn">গুরুত্বপূর্ণ প্রণালি</h1>
         <select id="straitSelector" class="strait-selector" aria-label="Choose a strait"></select>
       </header>
 

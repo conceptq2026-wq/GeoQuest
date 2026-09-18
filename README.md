@@ -52,6 +52,20 @@ tools/                build pipeline (Node only, no GDAL/tippecanoe needed)
   educational content are Bengali wherever the source has them.
 - **Attribution.** Every map shows its data credits in the always-visible
   line at the bottom of the map.
+- **Built to be embedded.** The app opens a map in a full-screen viewer that
+  already shows the map's title, so a map page has no visible heading (the
+  `<h1>` is screen-reader only). The viewport tag disables page zoom
+  (`maximum-scale=1, user-scalable=no`), so a pinch zooms the map, not the
+  page. On phones the page is exactly one screen tall and the map fills what
+  is left, so a drag always pans the map rather than scrolling the page.
+
+## Verified on a real phone
+
+2026-09-18, the straits map inside the Preli Quest app's Android WebView:
+WebGL renders, Bengali labels render including conjuncts, PMTiles range reads
+work over GitHub Pages, and the page's own strait panel draws correctly. This
+closes the "not yet tested on a real phone / in the app WebView" items. Still
+untested: iOS, and a genuinely low-end Android device.
 
 ## Serving from GitHub Pages
 
