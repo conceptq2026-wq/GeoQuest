@@ -33,22 +33,29 @@
           <span>Check the connection and reload the page. Straits, routes and labels still work.</span>
         </div>
 
-        <aside class="info-card" aria-live="polite">
-          <span class="info-kicker">Strait</span>
-          <h2 id="infoTitle" class="info-title" lang="bn"></h2>
-          <div id="infoEn" class="info-en"></div>
+        <!-- Bottom sheet over the map. Drag it down (or tap the handle) to leave
+             only the handle; drag or tap the handle to bring it back. -->
+        <aside id="infoSheet" class="info-sheet" aria-labelledby="infoTitle">
+          <button id="sheetHandle" type="button" class="sheet-handle" aria-controls="infoSheetBody" aria-expanded="true" aria-label="Hide details">
+            <span class="sheet-grip"></span>
+          </button>
+          <div id="infoSheetBody" class="info-sheet-body" aria-live="polite">
+            <span class="info-kicker">Strait</span>
+            <h2 id="infoTitle" class="info-title" lang="bn"></h2>
+            <div id="infoEn" class="info-en"></div>
 
-          <div class="info-row">
-            <span class="info-label">Between</span>
-            <span id="infoCountries" class="info-value"></span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Connects</span>
-            <span id="infoConnects" class="info-value"></span>
-          </div>
-          <div class="info-row">
-            <span class="info-label">Boundary</span>
-            <span id="infoBoundary" class="info-value" lang="bn"></span>
+            <div class="info-row">
+              <span class="info-label">Between</span>
+              <span id="infoCountries" class="info-value"></span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Connects</span>
+              <span id="infoConnects" class="info-value"></span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Boundary</span>
+              <span id="infoBoundary" class="info-value" lang="bn"></span>
+            </div>
           </div>
         </aside>
 
@@ -61,11 +68,6 @@
               <input type="checkbox" data-layer-group="borders" checked />
               <span class="legend-swatch" style="background: #8a8a96"></span>
               International borders
-            </label>
-            <label class="layers-menu-item">
-              <input type="checkbox" data-layer-group="disputed" checked />
-              <span class="legend-swatch" style="background: #e34ec9"></span>
-              Disputed boundaries
             </label>
             <label class="layers-menu-item">
               <input type="checkbox" data-layer-group="famousLines" checked />
@@ -85,8 +87,6 @@
           </div>
         </div>
       </div>
-
-      <div id="straitButtons" class="strait-buttons"></div>
     </section>
 
     <!-- pmtiles reads the map data with HTTP range requests; loaded first so app.js can use it. -->

@@ -17,6 +17,8 @@ body {
 
   background: #07121d;
   color: white;
+  /* No pull-to-refresh or bounce inside the app's WebView. */
+  overscroll-behavior: none;
 }
 
 .strait-explorer {
@@ -31,6 +33,35 @@ body {
   align-items: center;
   gap: 20px;
   margin-bottom: 12px;
+}
+
+.strait-selector {
+  min-width: 220px;
+  padding: 12px 36px 12px 14px;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+
+  background-color: #132536;
+  color: white;
+
+  /* local, inline SVG chevron — no external icon request */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23ffffff' fill-opacity='0.6' d='M5.5 7.5l4.5 4.5 4.5-4.5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  appearance: none;
+  -webkit-appearance: none;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.strait-selector:focus-visible,
+.sheet-handle:focus-visible {
+  outline: 2px solid #76d3ff;
+  outline-offset: 2px;
 }
 
 /* Present for screen readers, takes no space (the app's viewer shows the title). */
@@ -55,29 +86,6 @@ body {
 
 [lang='bn'] {
   font-family: 'Noto Sans Bengali', Inter, system-ui, sans-serif;
-}
-
-.strait-selector {
-  min-width: 220px;
-  padding: 12px 36px 12px 14px;
-
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 12px;
-
-  background-color: #132536;
-  color: white;
-
-  /* local, inline SVG chevron — no external icon request */
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23ffffff' fill-opacity='0.6' d='M5.5 7.5l4.5 4.5 4.5-4.5z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  appearance: none;
-  -webkit-appearance: none;
-
-  font-size: 14px;
-  font-weight: 600;
-
-  cursor: pointer;
 }
 
 .map-shell {
@@ -122,27 +130,66 @@ body {
   display: flex;
 }
 
-
-.info-card {
+/*
+ * Information sheet: floats over the bottom of the map and slides with a
+ * transform, so the map itself never resizes while it moves. --sheet-offset
+ * is set from app.js: 0 = open, (height − handle) = hidden with only the
+ * handle showing. touch-action: none keeps a drag on the sheet from ever
+ * reaching the page or the map.
+ */
+.info-sheet {
   position: absolute;
   left: 20px;
-  /* Clears the attribution line, which must stay visible. */
-  bottom: 40px;
-
-  width: min(340px, calc(100% - 40px));
-
-  padding: 18px;
-
-  border-radius: 18px;
-
-  background: rgba(7, 18, 29, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.13);
-
-  backdrop-filter: blur(15px);
-
+  bottom: 0;
   z-index: 10;
 
-  pointer-events: none;
+  width: min(360px, calc(100% - 40px));
+
+  border-radius: 18px 18px 0 0;
+  background: #08131e;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-bottom: 0;
+
+  transform: translateY(var(--sheet-offset, 0px));
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+  touch-action: none;
+}
+
+.info-sheet.dragging {
+  transition: none;
+}
+
+.sheet-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: grab;
+}
+
+.sheet-grip {
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.info-sheet-body {
+  padding: 0 18px 16px;
+}
+
+/* The credit line rides just above the sheet, so it is never covered. */
+.maplibregl-ctrl-bottom-right {
+  bottom: var(--sheet-visible, 0px);
+  transition: bottom 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.map-shell.sheet-dragging .maplibregl-ctrl-bottom-right {
+  transition: none;
 }
 
 .info-kicker {
@@ -191,53 +238,6 @@ body {
 .info-value {
   color: rgba(255, 255, 255, 0.92);
   font-weight: 600;
-}
-
-.strait-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-
-  margin-top: 14px;
-}
-
-.strait-button {
-  appearance: none;
-
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 100px;
-
-  padding: 9px 13px;
-
-  background: #102334;
-  color: rgba(255, 255, 255, 0.74);
-
-  font-size: 12px;
-  font-weight: 650;
-
-  cursor: pointer;
-
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    color 0.2s ease;
-}
-
-.strait-button:hover {
-  background: #183348;
-  color: white;
-}
-
-.strait-button.active {
-  background: #ffffff;
-  color: #07121d;
-  border-color: white;
-}
-
-.strait-button:focus-visible,
-.strait-selector:focus-visible {
-  outline: 2px solid #76d3ff;
-  outline-offset: 2px;
 }
 
 .maplibregl-ctrl-group {
@@ -382,10 +382,10 @@ body {
 }
 
 /*
- * Phones (and the app's WebView): the page is exactly one screen tall and
- * the map takes whatever the dropdown and the strait row leave. The page
- * itself never scrolls, so a drag always pans the map instead of scrolling
- * the page underneath it.
+ * Phones (and the app's WebView): the page is exactly one screen tall — a
+ * slim dropdown on top, the map taking everything else down to the bottom
+ * edge, the information sheet floating over it. The page itself never
+ * scrolls, so a drag always pans the map instead of scrolling the page.
  */
 @media (max-width: 700px) {
   .strait-explorer {
@@ -393,7 +393,7 @@ body {
     flex-direction: column;
     height: 100vh;
     height: 100dvh;
-    padding: 10px;
+    padding: 10px 10px 0;
   }
 
   .explorer-header {
@@ -411,33 +411,19 @@ body {
     height: auto;
     /* A floor for very short screens — there the page scrolls instead. */
     min-height: 320px;
-    border-radius: 18px;
+    border-radius: 18px 18px 0 0;
+    border-bottom: 0;
   }
 
-  /* One swipeable row instead of three wrapped ones: ~40px instead of ~126px. */
-  .strait-buttons {
-    flex-wrap: nowrap;
-    flex-shrink: 0;
-    margin-top: 8px;
-    overflow-x: auto;
-    scrollbar-width: none;
+  .info-sheet {
+    left: 0;
+    width: 100%;
+    border-left: 0;
+    border-right: 0;
   }
 
-  .strait-buttons::-webkit-scrollbar {
-    display: none;
-  }
-
-  .strait-button {
-    flex-shrink: 0;
-  }
-
-  .info-card {
-    left: 12px;
-    bottom: 36px;
-
-    width: calc(100% - 24px);
-
-    padding: 14px;
+  .info-sheet-body {
+    padding: 0 16px 14px;
   }
 
   .info-title {

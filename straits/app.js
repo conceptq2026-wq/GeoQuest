@@ -8,7 +8,10 @@ import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs'
 */
 
 const selector = document.getElementById('straitSelector');
-const buttonContainer = document.getElementById('straitButtons');
+const mapShell = document.querySelector('.map-shell');
+const infoSheet = document.getElementById('infoSheet');
+const infoSheetBody = document.getElementById('infoSheetBody');
+const sheetHandle = document.getElementById('sheetHandle');
 const infoTitle = document.getElementById('infoTitle');
 const infoEn = document.getElementById('infoEn');
 const infoCountries = document.getElementById('infoCountries');
@@ -23,25 +26,19 @@ const layerCheckboxes = document.querySelectorAll('#layersMenu input[type="check
 |--------------------------------------------------------------------------
 | BUILD CONTROLS
 |
-| Controls are English; the place names on them are Bengali content.
+| Controls are English; the place names on them are Bengali content. One
+| dropdown picks the passage: with 10+ straits and canals, reading a list
+| beats swiping through a row of pills, and it costs one slim line.
 |--------------------------------------------------------------------------
 */
+
+let currentKey = INITIAL_STRAIT_KEY;
 
 Object.entries(STRAITS).forEach(([key, strait]) => {
   const option = document.createElement('option');
   option.value = key;
   option.textContent = `${strait.nameBn} — ${strait.nameEn}`;
   selector.appendChild(option);
-
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.className = 'strait-button';
-  button.dataset.strait = key;
-  button.textContent = strait.nameBn;
-  button.lang = 'bn';
-  button.title = strait.nameEn;
-  button.addEventListener('click', () => selectStrait(key));
-  buttonContainer.appendChild(button);
 });
 
 /*
@@ -74,7 +71,6 @@ const COLORS = {
   land: '#1c1c1f',
   coast: '#33333a',
   border: '#6d6d78',
-  disputed: '#e34ec9',
   famous: '#5ad1ff',
   countryLabel: '#9a9aa5',
 };
@@ -84,7 +80,7 @@ const tileSource = (minzoom, maxzoom) => ({
   tiles: [`pmtiles://${WORLD_PMTILES}/{z}/{x}/{y}`],
   minzoom,
   maxzoom,
-  attribution: '<a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a> (public domain) · Bangladesh point of view',
+  attribution: '<a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a>',
 });
 
 const landLayers = (source) => [
@@ -101,14 +97,6 @@ const landLayers = (source) => [
     'source-layer': 'borders',
     layout: { 'line-join': 'round', 'line-cap': 'round' },
     paint: { 'line-color': COLORS.border, 'line-width': 0.8, 'line-opacity': 0.85 },
-  },
-  {
-    id: `${source}-disputed`,
-    type: 'line',
-    source,
-    'source-layer': 'disputed',
-    layout: { 'line-join': 'round', 'line-cap': 'round' },
-    paint: { 'line-color': COLORS.disputed, 'line-width': 1.6, 'line-dasharray': [2.5, 1.5] },
   },
 ];
 
@@ -227,13 +215,14 @@ const map = new maplibregl.Map({
   touchZoomRotate: true,
 });
 
-// Always-visible credit line (not the collapsible "i" button).
+// Always-visible credit line (not the collapsible "i" button), kept to one
+// line at phone width. Licence details are in the README.
 map.addControl(
   new maplibregl.AttributionControl({
     compact: false,
     customAttribution: [
       '<a href="https://maplibre.org/" target="_blank" rel="noopener">MapLibre</a>',
-      '<a href="../shared/fonts/noto-sans-bengali/OFL.txt" target="_blank" rel="noopener">Noto Sans Bengali (OFL)</a>',
+      '<a href="../shared/fonts/noto-sans-bengali/OFL.txt" target="_blank" rel="noopener">Noto Sans Bengali</a>',
     ],
   }),
   'bottom-right',
@@ -298,7 +287,7 @@ const marker = new maplibregl.Marker({ element: markerEl }).setLngLat(initial.ce
 
 markerEl.addEventListener('click', (event) => {
   event.stopPropagation();
-  const strait = STRAITS[selector.value];
+  const strait = STRAITS[currentKey];
   if (!strait) return;
   new maplibregl.Popup({ offset: 15, closeButton: true })
     .setLngLat(strait.center)
@@ -336,9 +325,13 @@ function selectStrait(key) {
   const strait = STRAITS[key];
   if (!strait) return;
 
+  currentKey = key;
   selector.value = key;
 
-  map.flyTo({ center: strait.center, zoom: strait.zoom, bearing: 0, pitch: 0, duration: 1800, essential: true });
+  // The student just asked for this passage, so its information reopens.
+  updateInfo(key);
+  setSheetOpen(true);
+  showStrait(strait, true);
 
   const routeSource = map.getSource('strait-route');
   if (routeSource) routeSource.setData(createRouteGeoJSON(strait.route));
@@ -346,8 +339,23 @@ function selectStrait(key) {
   const markerSource = map.getSource('strait-marker');
   if (markerSource) markerSource.setData(createMarkerGeoJSON(strait));
   marker.setLngLat(strait.center);
+}
 
-  updateInfo(key);
+/**
+ * Centres the passage in the part of the map the sheet leaves visible:
+ * MapLibre's padding shifts the centre point up by the sheet's height, so a
+ * strait the student just picked never sits underneath it.
+ */
+function showStrait(strait, animate) {
+  const camera = {
+    center: strait.center,
+    zoom: strait.zoom,
+    bearing: 0,
+    pitch: 0,
+    padding: { top: 0, right: 0, left: 0, bottom: sheetHeight() },
+  };
+  if (animate) map.flyTo({ ...camera, duration: 1800, essential: true });
+  else map.jumpTo(camera);
 }
 
 /*
@@ -364,15 +372,106 @@ function updateInfo(key) {
   infoCountries.textContent = strait.countries;
   infoConnects.textContent = strait.connects;
   infoBoundary.textContent = strait.boundaryNote || '—';
-
-  document.querySelectorAll('.strait-button').forEach((button) => {
-    button.classList.toggle('active', button.dataset.strait === key);
-  });
 }
 
 selector.addEventListener('change', (event) => {
   selectStrait(event.target.value);
 });
+
+/*
+|--------------------------------------------------------------------------
+| INFORMATION SHEET — drag or tap to hide/show
+|
+| Tapping the handle is the dependable path; dragging the sheet is a bonus.
+| The sheet is a separate element above the map, so a finger that starts on
+| it never pans the map, and one that starts on the map never moves it.
+| Hidden, only the handle strip stays visible and the map is full-screen.
+|--------------------------------------------------------------------------
+*/
+
+const HANDLE_HEIGHT = 26;
+const FLICK_SPEED = 0.5; // px per ms
+const DRAG_SLOP = 6; // px of movement before a press counts as a drag
+
+let sheetOpen = true;
+let sheetOffset = 0;
+let drag = null;
+let lastDragEnd = -Infinity;
+
+const sheetHeight = () => infoSheet.offsetHeight;
+const closedOffset = () => Math.max(0, sheetHeight() - HANDLE_HEIGHT);
+
+function applySheetOffset(offset) {
+  sheetOffset = offset;
+  infoSheet.style.setProperty('--sheet-offset', `${offset}px`);
+  mapShell.style.setProperty('--sheet-visible', `${sheetHeight() - offset}px`);
+}
+
+function setSheetOpen(open) {
+  sheetOpen = open;
+  sheetHandle.setAttribute('aria-expanded', String(open));
+  sheetHandle.setAttribute('aria-label', open ? 'Hide details' : 'Show details');
+  infoSheetBody.inert = !open;
+  applySheetOffset(open ? 0 : closedOffset());
+}
+
+sheetHandle.addEventListener('click', (event) => {
+  // A drag that starts on the handle ends with a click on it too; that click
+  // must not undo what the drag just did.
+  if (event.timeStamp - lastDragEnd < 400) return;
+  setSheetOpen(!sheetOpen);
+});
+
+// A drag starts on the sheet but is followed on the window: a finger or
+// mouse quickly leaves the 26 px handle strip while pulling it up.
+infoSheet.addEventListener('pointerdown', (event) => {
+  if (event.button !== 0) return;
+  drag = { id: event.pointerId, startY: event.clientY, startOffset: sheetOffset, lastY: event.clientY, lastT: event.timeStamp, velocity: 0, moved: false };
+  window.addEventListener('pointermove', onDragMove);
+  window.addEventListener('pointerup', endDrag);
+  window.addEventListener('pointercancel', endDrag);
+});
+
+function onDragMove(event) {
+  if (!drag || event.pointerId !== drag.id) return;
+  const dy = event.clientY - drag.startY;
+  if (!drag.moved) {
+    if (Math.abs(dy) < DRAG_SLOP) return;
+    drag.moved = true;
+    infoSheet.classList.add('dragging');
+    mapShell.classList.add('sheet-dragging');
+  }
+  const dt = event.timeStamp - drag.lastT;
+  if (dt > 0) drag.velocity = (event.clientY - drag.lastY) / dt;
+  drag.lastY = event.clientY;
+  drag.lastT = event.timeStamp;
+  applySheetOffset(Math.min(Math.max(drag.startOffset + dy, 0), closedOffset()));
+}
+
+function endDrag(event) {
+  if (!drag || event.pointerId !== drag.id) return;
+  const { moved, velocity, startOffset } = drag;
+  drag = null;
+  window.removeEventListener('pointermove', onDragMove);
+  window.removeEventListener('pointerup', endDrag);
+  window.removeEventListener('pointercancel', endDrag);
+  if (!moved) return; // a plain tap: the handle's click does the toggling
+  lastDragEnd = event.timeStamp;
+  infoSheet.classList.remove('dragging');
+  mapShell.classList.remove('sheet-dragging');
+  // A flick decides by its direction; otherwise it takes a third of the way.
+  const third = closedOffset() / 3;
+  let open;
+  if (velocity > FLICK_SPEED) open = false;
+  else if (velocity < -FLICK_SPEED) open = true;
+  else open = startOffset === 0 ? sheetOffset < third : sheetOffset < closedOffset() - third;
+  setSheetOpen(open);
+}
+
+// Content height changes between passages (a longer note, canal rows): keep
+// a hidden sheet tucked away and the credit line sitting right above it.
+new ResizeObserver(() => applySheetOffset(sheetOpen ? 0 : closedOffset())).observe(infoSheet);
+
 
 /*
 |--------------------------------------------------------------------------
@@ -406,13 +505,12 @@ map.on('mouseleave', 'famous-line-points', () => {
 
 /*
 |--------------------------------------------------------------------------
-| LAYERS DROPDOWN (toggle borders / disputed lines / straits on & off)
+| LAYERS DROPDOWN (toggle borders / famous lines / labels / straits on & off)
 |--------------------------------------------------------------------------
 */
 
 const LAYER_GROUPS = {
   borders: ['world-borders', 'detail-borders'],
-  disputed: ['world-disputed', 'detail-disputed'],
   straits: ['strait-route-glow', 'strait-route-line', 'strait-name'],
   countryLabels: ['country-labels'],
   famousLines: ['famous-line-points', 'famous-line-labels', 'famous-line-traced'],
@@ -452,3 +550,5 @@ document.addEventListener('click', (event) => {
 
 selector.value = initialKey;
 updateInfo(initialKey);
+setSheetOpen(true);
+showStrait(initial, false);
