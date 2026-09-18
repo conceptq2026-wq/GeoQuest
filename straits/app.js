@@ -1,4 +1,4 @@
-import { STRAITS, INITIAL_STRAIT_KEY } from './data.js';
+import { STRAITS } from './data.js';
 import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs';
 
 /*
@@ -32,7 +32,8 @@ const layerCheckboxes = document.querySelectorAll('#layersMenu input[type="check
 |--------------------------------------------------------------------------
 */
 
-let currentKey = INITIAL_STRAIT_KEY;
+/** The passage being shown, or null on the opening world view. */
+let currentKey = null;
 
 Object.entries(STRAITS).forEach(([key, strait]) => {
   const option = document.createElement('option');
@@ -49,7 +50,7 @@ Object.entries(STRAITS).forEach(([key, strait]) => {
 |   z0–6   whole world, Natural Earth 1:50m
 |   z7–10  1:10m, only inside small boxes around narrow waterways
 | They are read as two sources. Outside the boxes the "world" tiles simply
-| overzoom; inside them, "detail" paints an ocean-coloured mask over the
+| overzoom; inside them, "detail" paints a sea-coloured mask over the
 | coarse 1:50m shapes and draws the 1:10m coastline on top. Without this the
 | Bosporus would be a straight wedge at the zoom it opens at.
 |
@@ -66,13 +67,21 @@ const LABEL_FONT = ['Noto Sans Bengali'];
 const protocol = new window.pmtiles.Protocol();
 maplibregl.addProtocol('pmtiles', protocol.tile);
 
+/*
+ * Light "school atlas" palette: a teaching map on a phone needs a clear
+ * land/sea edge and labels that read over either, more than it needs to
+ * look sophisticated. Every label sits on a white halo; no text colour is
+ * lighter than #3f4650 on the light background.
+ */
 const COLORS = {
-  sea: '#0a0a0c',
-  land: '#1c1c1f',
-  coast: '#33333a',
-  border: '#6d6d78',
-  famous: '#5ad1ff',
-  countryLabel: '#9a9aa5',
+  sea: '#b9d9ee',
+  land: '#f6f2e7',
+  coast: '#7fa7c4',
+  border: '#a0928a',
+  label: '#3f4650',
+  halo: '#ffffff',
+  navy: '#0b3d91',
+  route: '#e8590c',
 };
 
 const tileSource = (minzoom, maxzoom) => ({
@@ -88,20 +97,31 @@ const landLayers = (source) => [
   // Detail land is clipped to its box, so an outline would also trace the
   // box edge as a fake coast. Only the world tiles get the coast stroke.
   ...(source === 'world'
-    ? [{ id: 'world-coast', type: 'line', source, 'source-layer': 'land', paint: { 'line-color': COLORS.coast, 'line-width': 0.6 } }]
+    ? [{ id: 'world-coast', type: 'line', source, 'source-layer': 'land', paint: { 'line-color': COLORS.coast, 'line-width': 0.9 } }]
     : []),
   {
     id: `${source}-borders`,
     type: 'line',
     source,
     'source-layer': 'borders',
-    layout: { 'line-join': 'round', 'line-cap': 'round' },
-    paint: { 'line-color': COLORS.border, 'line-width': 0.8, 'line-opacity': 0.85 },
+    layout: { 'line-join': 'round' },
+    paint: { 'line-color': COLORS.border, 'line-width': 1, 'line-dasharray': [3, 1.5] },
   },
 ];
 
-const initialKey = INITIAL_STRAIT_KEY;
-const initial = STRAITS[initialKey];
+const EMPTY = { type: 'FeatureCollection', features: [] };
+
+/** Every passage as a point, so the opening world view shows them all. */
+function passagesGeoJSON() {
+  return {
+    type: 'FeatureCollection',
+    features: Object.entries(STRAITS).map(([key, strait]) => ({
+      type: 'Feature',
+      properties: { key, nameBn: strait.nameBn, selected: key === currentKey },
+      geometry: { type: 'Point', coordinates: strait.center },
+    })),
+  };
+}
 
 const map = new maplibregl.Map({
   container: 'map',
@@ -111,9 +131,8 @@ const map = new maplibregl.Map({
     sources: {
       world: tileSource(0, 6),
       detail: tileSource(7, 10),
-      famous: { type: 'geojson', data: './famous-lines.geojson' },
-      'strait-route': { type: 'geojson', data: createRouteGeoJSON(initial.route) },
-      'strait-marker': { type: 'geojson', data: createMarkerGeoJSON(initial) },
+      passages: { type: 'geojson', data: passagesGeoJSON() },
+      'strait-route': { type: 'geojson', data: EMPTY },
     },
     layers: [
       { id: 'bg', type: 'background', paint: { 'background-color': COLORS.sea } },
@@ -121,26 +140,18 @@ const map = new maplibregl.Map({
       { id: 'detail-mask', type: 'fill', source: 'detail', 'source-layer': 'detail_extent', paint: { 'fill-color': COLORS.sea } },
       ...landLayers('detail'),
       {
-        id: 'famous-line-traced',
-        type: 'line',
-        source: 'famous',
-        filter: ['==', ['get', 'kind'], 'trace'],
-        layout: { 'line-join': 'round', 'line-cap': 'round' },
-        paint: { 'line-color': COLORS.famous, 'line-width': 2.6, 'line-opacity': 0.95 },
-      },
-      {
-        id: 'strait-route-glow',
+        id: 'strait-route-casing',
         type: 'line',
         source: 'strait-route',
         layout: { 'line-cap': 'round', 'line-join': 'round' },
-        paint: { 'line-color': '#f8c84a', 'line-width': 11, 'line-opacity': 0.18 },
+        paint: { 'line-color': '#ffffff', 'line-width': 7, 'line-opacity': 0.95 },
       },
       {
         id: 'strait-route-line',
         type: 'line',
         source: 'strait-route',
         layout: { 'line-cap': 'round', 'line-join': 'round' },
-        paint: { 'line-color': '#ffd65a', 'line-width': 3.5, 'line-opacity': 0.95, 'line-dasharray': [2, 2] },
+        paint: { 'line-color': COLORS.route, 'line-width': 3.5, 'line-dasharray': [2, 1.2] },
       },
       {
         id: 'country-labels',
@@ -156,59 +167,52 @@ const map = new maplibregl.Map({
           'text-allow-overlap': false,
           'text-optional': true,
         },
-        paint: { 'text-color': COLORS.countryLabel, 'text-halo-color': COLORS.sea, 'text-halo-width': 1.2 },
+        paint: { 'text-color': COLORS.label, 'text-halo-color': COLORS.halo, 'text-halo-width': 1.4 },
       },
+      // The selected passage is drawn by the pulsing DOM marker instead.
       {
-        id: 'famous-line-points',
+        id: 'passage-points',
         type: 'circle',
-        source: 'famous',
-        filter: ['==', ['get', 'kind'], 'label'],
-        paint: {
-          'circle-radius': 5,
-          'circle-color': ['match', ['get', 'status'], 'historical', '#9a9aa5', COLORS.famous],
-          'circle-stroke-width': 1.2,
-          'circle-stroke-color': COLORS.sea,
-        },
+        source: 'passages',
+        filter: ['!', ['get', 'selected']],
+        paint: { 'circle-radius': 6, 'circle-color': COLORS.navy, 'circle-stroke-width': 2, 'circle-stroke-color': '#ffffff' },
+      },
+      // Invisible, finger-sized tap target around each point (~44 px across).
+      {
+        id: 'passage-hit',
+        type: 'circle',
+        source: 'passages',
+        paint: { 'circle-radius': 22, 'circle-color': '#000000', 'circle-opacity': 0 },
       },
       {
-        id: 'famous-line-labels',
+        id: 'passage-labels',
         type: 'symbol',
-        source: 'famous',
-        filter: ['==', ['get', 'kind'], 'label'],
-        layout: {
-          'text-field': ['case', ['==', ['get', 'status'], 'historical'], ['concat', ['get', 'nameBn'], ' †'], ['get', 'nameBn']],
-          'text-font': LABEL_FONT,
-          'text-size': 12,
-          'text-offset': [0, 1.1],
-          'text-anchor': 'top',
-          'text-allow-overlap': false,
-          'text-optional': true,
-        },
-        paint: {
-          'text-color': ['match', ['get', 'status'], 'historical', '#c7c7cf', COLORS.famous],
-          'text-halo-color': COLORS.sea,
-          'text-halo-width': 1.4,
-        },
-      },
-      {
-        id: 'strait-name',
-        type: 'symbol',
-        source: 'strait-marker',
+        source: 'passages',
         layout: {
           'text-field': ['get', 'nameBn'],
           'text-font': LABEL_FONT,
-          'text-size': 16,
-          'text-offset': [0, 1.6],
+          'text-size': ['case', ['get', 'selected'], 16, 12],
+          'text-offset': [0, 1.2],
           'text-anchor': 'top',
-          'text-allow-overlap': true,
+          // The selected passage's name is placed first, so it wins collisions.
+          'symbol-sort-key': ['case', ['get', 'selected'], 0, 1],
+          'text-optional': true,
         },
-        paint: { 'text-color': '#ffffff', 'text-halo-color': '#07121d', 'text-halo-width': 2 },
+        paint: { 'text-color': COLORS.navy, 'text-halo-color': COLORS.halo, 'text-halo-width': 2 },
       },
     ],
   },
-  center: initial.center,
-  zoom: initial.zoom,
-  minZoom: 1,
+  // Opening view: a world view, so a student sees the passages before
+  // picking one. On a portrait phone Mercator can't zoom out past the point
+  // where the world fills the screen's height, which leaves only ~145° of
+  // longitude — so this frames Gibraltar to East Asia, where most passages
+  // are. The Americas and the far Pacific are one swipe away, and every
+  // passage is always in the dropdown.
+  bounds: [
+    [-20, -12],
+    [120, 62],
+  ],
+  minZoom: 0,
   maxZoom: 11,
   attributionControl: false,
   dragRotate: true,
@@ -228,13 +232,15 @@ map.addControl(
   'bottom-right',
 );
 
-map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'top-right');
+// No +/− buttons: pinch already zooms. The compass shows which way is north
+// after a two-finger rotate, and a tap on it turns the map back.
+map.addControl(new maplibregl.NavigationControl({ showZoom: false, showCompass: true, visualizePitch: false }), 'top-right');
 
 // Keep the canvas correctly sized on container/orientation changes.
 window.addEventListener('resize', () => map.resize());
 
 // Surface map errors instead of failing silently with a blank canvas. If the
-// shared tiles can't be read, say so — routes, marker and labels still work.
+// shared tiles can't be read, say so — the passages and routes still work.
 map.on('error', (event) => {
   console.error('Map error:', event && event.error);
   if (event && (event.sourceId === 'world' || event.sourceId === 'detail')) loadNotice.classList.add('visible');
@@ -242,82 +248,49 @@ map.on('error', (event) => {
 
 /*
 |--------------------------------------------------------------------------
-| GEOJSON HELPERS
+| TAPPING A PASSAGE ON THE MAP — same as picking it in the dropdown
 |--------------------------------------------------------------------------
 */
 
-function createRouteGeoJSON(coordinates) {
-  return {
-    type: 'FeatureCollection',
-    features: [{ type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates } }],
-  };
-}
+map.on('click', 'passage-hit', (event) => {
+  const feature = event.features && event.features[0];
+  if (feature) selectStrait(feature.properties.key);
+});
 
-function createMarkerGeoJSON(strait) {
-  return {
-    type: 'FeatureCollection',
-    features: [
-      {
-        type: 'Feature',
-        properties: { nameBn: strait.nameBn, nameEn: strait.nameEn },
-        geometry: { type: 'Point', coordinates: strait.center },
-      },
-    ],
-  };
-}
+map.on('mouseenter', 'passage-hit', () => {
+  map.getCanvas().style.cursor = 'pointer';
+});
+
+map.on('mouseleave', 'passage-hit', () => {
+  map.getCanvas().style.cursor = '';
+});
 
 /*
 |--------------------------------------------------------------------------
-| STRAIT MARKER
+| SELECTED-PASSAGE MARKER
 |
-| A DOM marker with a CSS pulse. The old version changed a paint property
-| on every animation frame, which forced a full map redraw 60 times a
-| second — a steady drain on low-end phones. CSS animates on the
-| compositor, so the map only redraws when it actually moves.
+| A DOM marker with a CSS pulse. Changing a paint property on every animation
+| frame would force a full map redraw 60 times a second — a steady drain on
+| low-end phones. CSS animates on the compositor, so the map only redraws
+| when it actually moves. Tapping it brings the information back.
 |--------------------------------------------------------------------------
 */
 
 const markerEl = document.createElement('button');
 markerEl.type = 'button';
 markerEl.className = 'strait-marker';
-markerEl.setAttribute('aria-label', 'Strait details');
+markerEl.setAttribute('aria-label', 'Show details');
 markerEl.innerHTML = '<span class="strait-marker-pulse"></span><span class="strait-marker-core"></span>';
-
-const marker = new maplibregl.Marker({ element: markerEl }).setLngLat(initial.center).addTo(map);
-
 markerEl.addEventListener('click', (event) => {
   event.stopPropagation();
-  const strait = STRAITS[currentKey];
-  if (!strait) return;
-  new maplibregl.Popup({ offset: 15, closeButton: true })
-    .setLngLat(strait.center)
-    .setDOMContent(popupContent(strait.nameBn, strait.nameEn, [{ text: strait.connects }]))
-    .addTo(map);
+  setSheetOpen(true);
 });
 
-function popupContent(titleBn, titleEn, lines) {
-  const root = document.createElement('div');
-  const title = document.createElement('strong');
-  title.lang = 'bn';
-  title.textContent = titleBn;
-  const en = document.createElement('div');
-  en.className = 'popup-en';
-  en.textContent = titleEn;
-  root.append(title, en);
-  lines.forEach(({ text, lang, muted }) => {
-    if (!text) return;
-    const p = document.createElement('small');
-    p.className = muted ? 'popup-line popup-muted' : 'popup-line';
-    if (lang) p.lang = lang;
-    p.textContent = text;
-    root.append(p);
-  });
-  return root;
-}
+const marker = new maplibregl.Marker({ element: markerEl });
 
 /*
 |--------------------------------------------------------------------------
-| SELECT STRAIT
+| SELECT A PASSAGE
 |--------------------------------------------------------------------------
 */
 
@@ -328,17 +301,17 @@ function selectStrait(key) {
   currentKey = key;
   selector.value = key;
 
-  // The student just asked for this passage, so its information reopens.
+  // The student just asked for this passage, so its information opens.
   updateInfo(key);
   setSheetOpen(true);
-  showStrait(strait, true);
+  showStrait(strait);
 
-  const routeSource = map.getSource('strait-route');
-  if (routeSource) routeSource.setData(createRouteGeoJSON(strait.route));
-
-  const markerSource = map.getSource('strait-marker');
-  if (markerSource) markerSource.setData(createMarkerGeoJSON(strait));
-  marker.setLngLat(strait.center);
+  map.getSource('strait-route')?.setData({
+    type: 'FeatureCollection',
+    features: [{ type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: strait.route } }],
+  });
+  map.getSource('passages')?.setData(passagesGeoJSON());
+  marker.setLngLat(strait.center).addTo(map);
 }
 
 /**
@@ -346,23 +319,17 @@ function selectStrait(key) {
  * MapLibre's padding shifts the centre point up by the sheet's height, so a
  * strait the student just picked never sits underneath it.
  */
-function showStrait(strait, animate) {
-  const camera = {
+function showStrait(strait) {
+  map.flyTo({
     center: strait.center,
     zoom: strait.zoom,
     bearing: 0,
     pitch: 0,
     padding: { top: 0, right: 0, left: 0, bottom: sheetHeight() },
-  };
-  if (animate) map.flyTo({ ...camera, duration: 1800, essential: true });
-  else map.jumpTo(camera);
+    duration: 1800,
+    essential: true,
+  });
 }
-
-/*
-|--------------------------------------------------------------------------
-| INFO PANEL
-|--------------------------------------------------------------------------
-*/
 
 function updateInfo(key) {
   const strait = STRAITS[key];
@@ -386,6 +353,8 @@ selector.addEventListener('change', (event) => {
 | The sheet is a separate element above the map, so a finger that starts on
 | it never pans the map, and one that starts on the map never moves it.
 | Hidden, only the handle strip stays visible and the map is full-screen.
+| Before anything is picked there is nothing to show, so the sheet —
+| handle included — stays fully off-screen.
 |--------------------------------------------------------------------------
 */
 
@@ -393,13 +362,13 @@ const HANDLE_HEIGHT = 26;
 const FLICK_SPEED = 0.5; // px per ms
 const DRAG_SLOP = 6; // px of movement before a press counts as a drag
 
-let sheetOpen = true;
+let sheetOpen = false;
 let sheetOffset = 0;
 let drag = null;
 let lastDragEnd = -Infinity;
 
 const sheetHeight = () => infoSheet.offsetHeight;
-const closedOffset = () => Math.max(0, sheetHeight() - HANDLE_HEIGHT);
+const closedOffset = () => (currentKey ? Math.max(0, sheetHeight() - HANDLE_HEIGHT) : sheetHeight());
 
 function applySheetOffset(offset) {
   sheetOffset = offset;
@@ -408,11 +377,13 @@ function applySheetOffset(offset) {
 }
 
 function setSheetOpen(open) {
-  sheetOpen = open;
-  sheetHandle.setAttribute('aria-expanded', String(open));
-  sheetHandle.setAttribute('aria-label', open ? 'Hide details' : 'Show details');
-  infoSheetBody.inert = !open;
-  applySheetOffset(open ? 0 : closedOffset());
+  sheetOpen = open && currentKey !== null;
+  // Nothing picked yet: the sheet is fully off-screen and out of the tab order.
+  infoSheet.inert = currentKey === null;
+  sheetHandle.setAttribute('aria-expanded', String(sheetOpen));
+  sheetHandle.setAttribute('aria-label', sheetOpen ? 'Hide details' : 'Show details');
+  infoSheetBody.inert = !sheetOpen;
+  applySheetOffset(sheetOpen ? 0 : closedOffset());
 }
 
 sheetHandle.addEventListener('click', (event) => {
@@ -425,7 +396,7 @@ sheetHandle.addEventListener('click', (event) => {
 // A drag starts on the sheet but is followed on the window: a finger or
 // mouse quickly leaves the 26 px handle strip while pulling it up.
 infoSheet.addEventListener('pointerdown', (event) => {
-  if (event.button !== 0) return;
+  if (event.button !== 0 || currentKey === null) return;
   drag = { id: event.pointerId, startY: event.clientY, startOffset: sheetOffset, lastY: event.clientY, lastT: event.timeStamp, velocity: 0, moved: false };
   window.addEventListener('pointermove', onDragMove);
   window.addEventListener('pointerup', endDrag);
@@ -472,55 +443,21 @@ function endDrag(event) {
 // a hidden sheet tucked away and the credit line sitting right above it.
 new ResizeObserver(() => applySheetOffset(sheetOpen ? 0 : closedOffset())).observe(infoSheet);
 
-
 /*
 |--------------------------------------------------------------------------
-| FAMOUS LINES — tap a point for its note
-|--------------------------------------------------------------------------
-*/
-
-map.on('click', 'famous-line-points', (event) => {
-  const feature = event.features && event.features[0];
-  if (!feature) return;
-  const { nameEn, nameBn, note, status } = feature.properties;
-
-  new maplibregl.Popup({ offset: 10, closeButton: true })
-    .setLngLat(feature.geometry.coordinates)
-    .setDOMContent(
-      popupContent(nameBn, nameEn, [
-        { text: note, lang: 'bn' },
-        { text: status === 'historical' ? '† Historical — no longer in force' : 'Current boundary', muted: true },
-      ]),
-    )
-    .addTo(map);
-});
-
-map.on('mouseenter', 'famous-line-points', () => {
-  map.getCanvas().style.cursor = 'pointer';
-});
-
-map.on('mouseleave', 'famous-line-points', () => {
-  map.getCanvas().style.cursor = '';
-});
-
-/*
-|--------------------------------------------------------------------------
-| LAYERS DROPDOWN (toggle borders / famous lines / labels / straits on & off)
+| LAYERS MENU — country names, shipping routes
 |--------------------------------------------------------------------------
 */
 
 const LAYER_GROUPS = {
-  borders: ['world-borders', 'detail-borders'],
-  straits: ['strait-route-glow', 'strait-route-line', 'strait-name'],
   countryLabels: ['country-labels'],
-  famousLines: ['famous-line-points', 'famous-line-labels', 'famous-line-traced'],
+  routes: ['strait-route-casing', 'strait-route-line'],
 };
 
 function setGroupVisibility(groupKey, visible) {
   (LAYER_GROUPS[groupKey] || []).forEach((layerId) => {
     if (map.getLayer(layerId)) map.setLayoutProperty(layerId, 'visibility', visible ? 'visible' : 'none');
   });
-  if (groupKey === 'straits') markerEl.hidden = !visible;
 }
 
 layerCheckboxes.forEach((checkbox) => {
@@ -544,11 +481,9 @@ document.addEventListener('click', (event) => {
 
 /*
 |--------------------------------------------------------------------------
-| INITIAL UI
+| INITIAL UI — world view, nothing selected, sheet off-screen
 |--------------------------------------------------------------------------
 */
 
-selector.value = initialKey;
-updateInfo(initialKey);
-setSheetOpen(true);
-showStrait(initial, false);
+selector.value = '';
+setSheetOpen(false);

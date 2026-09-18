@@ -5,8 +5,8 @@
 |
 | center = [longitude, latitude]
 | route  = deliberately simplified shipping-lane visualisation (NOT a
-|          survey-grade path — for the real coastlines & political
-|          borders we draw the local GeoJSON files in /data instead).
+|          survey-grade path). Coastlines and borders come from the
+|          shared world tiles, not from here.
 | boundaryNote = short human-readable note on the actual political /
 |          maritime line near the strait, shown in the info card.
 |
@@ -113,12 +113,14 @@ export const STRAITS = {
   },
 };
 
-export const INITIAL_STRAIT_KEY = 'hormuz';
-
 /*
 |--------------------------------------------------------------------------
 | FAMOUS NAMED BORDER / DEMARCATION LINES
 |--------------------------------------------------------------------------
+|
+| NOT DRAWN on the straits map (removed 2026-09-18). Kept, with
+| straits/famous-lines.geojson and its build step, for a future map of
+| boundary lines of its own — move both there when that map is built.
 |
 | No line geometry is drawn by hand. tools/build-straits-overlay.mjs
 | traces each line from Natural Earth 1:10m boundary lines and writes
