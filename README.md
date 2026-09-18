@@ -1,19 +1,26 @@
 # GeoQuest (map repo)
 
-Self-contained interactive maps for BCS exam preparation, published with
-GitHub Pages.
+Self-contained interactive maps for BCS exam preparation. A folder of static
+files: it works from any static host that supports HTTP range requests, at a
+domain root or under a subpath. Hosting requirements and the current host's
+addresses are in [DEPLOYMENT.md](DEPLOYMENT.md).
 
 **Two things share the name. Don't mix them up:**
 
 | | What it is | Where it lives |
 |---|---|---|
-| **GeoQuest** (this repo) | The maps themselves: HTML, map data, fonts, build tools | `github.com/conceptq2026-wq/GeoQuest`, served at `https://conceptq2026-wq.github.io/GeoQuest/` |
+| **GeoQuest** (this repo) | The maps themselves: HTML, map data, fonts, build tools | this repo; host and URL in [DEPLOYMENT.md](DEPLOYMENT.md) |
 | **Geo Quest** (app screen) | The screen in the Preli Quest app that shows a map | The ConceptQ app repo |
 
-The only connection is a URL. A map's public address, e.g.
-`https://conceptq2026-wq.github.io/GeoQuest/straits/`, is pasted into the app's CMS
-(a VaultVisual record's `hosted_url`) and the app opens it in a WebView.
-No code, packages or imports are shared in either direction.
+The only connection is one URL: the hub page (`index.html` at the top of this
+folder), stored in the app's CMS (a VaultVisual record's `hosted_url`). The
+app opens it in a WebView; the student picks a map from there. No code,
+packages or imports are shared in either direction. Moving to a new host is
+"copy the folder, update that one field".
+
+**Every path is relative to the page it is in.** No leading `/`, no domain,
+no `<base href>`, no repo name in any path. Links to a folder name its
+`index.html` explicitly. Folder and file names are lowercase with hyphens.
 
 ## Maps
 
@@ -111,7 +118,8 @@ untested: iOS, and a genuinely low-end Android device.
 
 ## Serving from GitHub Pages
 
-Pages serves `main` from the repo root. Two behaviours to know about:
+Pages serves `main` from the repo root. What any other host must provide is
+in [DEPLOYMENT.md](DEPLOYMENT.md). Two Pages behaviours to know about:
 
 **Range requests and compression.** Pages supports HTTP range requests
 (`206 Partial Content`), which PMTiles depends on. Checked live on

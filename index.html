@@ -3,67 +3,150 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GeoQuest Maps</title>
+    <meta name="description" content="Interactive maps for the BCS Preliminary exam, grouped by subject." />
+    <title>BCS Maps</title>
+    <!--
+      The hub: the one URL the app's CMS points at. Static, no requests beyond
+      this file. Every link is relative to this page, so the folder can be
+      served from any host, at the domain root or under a subpath.
+      Light palette, same colours as the maps.
+    -->
     <style>
-      @font-face {
-        font-family: 'Noto Sans Bengali';
-        src: url('./shared/fonts/noto-sans-bengali/NotoSansBengali-Regular.woff2') format('woff2');
-        font-display: swap;
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        -webkit-text-size-adjust: 100%;
       }
       body {
         margin: 0;
-        padding: 24px 16px;
-        background: #07121d;
-        color: #fff;
-        font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
+        background: #eef3f8;
+        color: #13233a;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+        line-height: 1.45;
+        overscroll-behavior: none;
       }
       main {
         max-width: 640px;
         margin: 0 auto;
+        padding: 20px 16px 32px;
       }
       h1 {
         margin: 0 0 4px;
+        font-size: 22px;
+        line-height: 1.25;
       }
-      p {
-        color: rgba(255, 255, 255, 0.65);
+      .intro {
+        margin: 0 0 8px;
+        color: #4f5d6e;
+        font-size: 14px;
+      }
+      section {
+        margin-top: 24px;
+      }
+      h2 {
+        margin: 0 0 10px;
+        font-size: 18px;
+        line-height: 1.3;
+      }
+      /* The BCS subject name, as the syllabus writes it. Allowed to wrap. */
+      h2 [lang='bn'] {
+        display: block;
+        margin-top: 2px;
+        color: #4f5d6e;
+        font-size: 14px;
+        font-weight: 500;
       }
       ul {
+        margin: 0;
         padding: 0;
         list-style: none;
       }
-      a {
-        display: block;
-        padding: 14px 16px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
+      li + li {
+        margin-top: 10px;
+      }
+      /* The whole card is the link: one big tap target, no hover-only cues. */
+      .card {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-height: 64px;
+        padding: 12px 14px 12px 16px;
+        border: 1px solid #c9d6e3;
         border-radius: 14px;
-        background: #102334;
-        color: #fff;
+        background: #ffffff;
+        color: #13233a;
         text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
       }
-      a:hover,
-      a:focus-visible {
-        background: #183348;
+      .card:active {
+        background: #f2f6fa;
       }
-      [lang='bn'] {
+      .card:focus-visible {
+        outline: 2px solid #0b5cad;
+        outline-offset: 2px;
+      }
+      .card-text {
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+      .card-title {
+        display: block;
+        font-size: 16px;
+        font-weight: 650;
+      }
+      .card-desc {
         display: block;
         margin-top: 2px;
-        color: rgba(255, 255, 255, 0.7);
-        font-family: 'Noto Sans Bengali', system-ui, sans-serif;
+        color: #5b6878;
+        font-size: 13px;
+      }
+      .card-arrow {
+        flex: 0 0 auto;
+        color: #0b5cad;
+        font-size: 22px;
+        line-height: 1;
+      }
+      .soon {
+        margin: 0;
+        padding: 14px 16px;
+        border: 1px dashed #c9d6e3;
+        border-radius: 14px;
+        color: #5b6878;
+        font-size: 14px;
       }
     </style>
   </head>
   <body>
     <main>
-      <h1>GeoQuest Maps</h1>
-      <p>Interactive maps for BCS preparation. Each map has its own address, used by the Geo Quest screen in the Preli Quest app.</p>
-      <ul>
-        <li>
-          <a href="./straits/">
-            Strategic Straits
-            <span lang="bn">গুরুত্বপূর্ণ প্রণালি</span>
-          </a>
-        </li>
-      </ul>
+      <h1>BCS Maps</h1>
+      <p class="intro">Interactive maps for the BCS Preliminary exam, by subject.</p>
+
+      <!-- Section order is fixed: it follows the BCS Preliminary syllabus. -->
+      <section aria-labelledby="bangladesh">
+        <h2 id="bangladesh">Bangladesh <span lang="bn">বাংলাদেশ বিষয়াবলি</span></h2>
+        <p class="soon">Coming soon</p>
+      </section>
+
+      <section aria-labelledby="international">
+        <h2 id="international">International <span lang="bn">আন্তর্জাতিক বিষয়াবলি</span></h2>
+        <ul>
+          <li>
+            <a class="card" href="international/straits/index.html">
+              <span class="card-text">
+                <span class="card-title">Straits and Canals</span>
+                <span class="card-desc">13 straits and 7 canals: where they are and which seas they join.</span>
+              </span>
+              <span class="card-arrow" aria-hidden="true">›</span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="geography">
+        <h2 id="geography">Geography <span lang="bn">ভূগোল, পরিবেশ ও দুর্যোগ ব্যবস্থাপনা</span></h2>
+        <p class="soon">Coming soon</p>
+      </section>
     </main>
   </body>
 </html>
