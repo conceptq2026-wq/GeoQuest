@@ -53,6 +53,33 @@ tools/                build pipeline (Node only, no GDAL/tippecanoe needed)
 - **Attribution.** Every map shows its data credits in the always-visible
   line at the bottom of the map.
 
+## Serving from GitHub Pages
+
+Pages serves `main` from the repo root. Two behaviours to know about:
+
+**Range requests and compression.** Pages supports HTTP range requests
+(`206 Partial Content`), which PMTiles depends on. Checked live on
+2026-09-18: a browser read the opening Hormuz view in 5 range requests,
+18.6 KB in total, and the bytes matched the file in the repo.
+
+> **Any non-browser tool that reads these `.pmtiles` files over HTTP must send
+> `Accept-Encoding: identity`.** If a request says it accepts gzip, Pages
+> returns a *slice of a gzipped copy of the file*. It is still `206`, with a
+> plausible `Content-Range` (`bytes 0-16383/1152391` instead of
+> `/1294397`) and `Content-Encoding: gzip`, so it looks like valid data but is
+> not.
+>
+> Browsers and WebViews are safe. The Fetch standard requires them to send
+> `Accept-Encoding: identity` whenever a `Range` header is present, so the
+> app's WebView gets the real bytes. `curl`, scripts and server-side readers
+> don't do that automatically. Set the header yourself, e.g.
+> `curl -H "Range: bytes=0-16383" -H "Accept-Encoding: identity" …`.
+
+**10-minute cache.** Pages sends `Cache-Control: max-age=600`. After a push, a
+phone (or the app's WebView) can keep showing the old version for up to
+10 minutes. That is caching, not a broken deploy. Wait it out, or check a
+fresh copy with `curl -I` before assuming something is wrong.
+
 ## The world basemap: `shared/tiles/world.pmtiles`
 
 | Zooms | Coverage | Source |
