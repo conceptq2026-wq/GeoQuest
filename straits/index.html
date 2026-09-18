@@ -5,9 +5,9 @@
     <!-- No page-level zoom: this page is embedded in the app's WebView, and a
          pinch must zoom the map (MapLibre), never the whole page. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
-    <meta name="description" content="Interactive map of the world's strategic straits, with Bengali place names." />
+    <meta name="description" content="Interactive map of the world's strategic straits and canals, with Bengali place names." />
 
-    <title>Strategic Straits · GeoQuest</title>
+    <title>Straits and Canals · GeoQuest</title>
 
     <!-- Everything is served from this repo: no CDN, no tile server, no API key. -->
     <link rel="stylesheet" href="../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.css" />
@@ -21,9 +21,11 @@
            already names it, and the app's viewer shows that title right above
            this page. The heading stays for screen readers. -->
       <header class="explorer-header">
-        <h1 class="visually-hidden" lang="bn">গুরুত্বপূর্ণ প্রণালি</h1>
-        <select id="straitSelector" class="strait-selector" aria-label="Choose a strait" lang="bn">
-          <option value="" disabled selected>একটি প্রণালি বেছে নিন…</option>
+        <h1 class="visually-hidden" lang="bn">গুরুত্বপূর্ণ প্রণালি ও খাল</h1>
+        <select id="straitSelector" class="strait-selector" aria-label="Choose a strait or canal" lang="bn">
+          <option value="" disabled selected>একটি প্রণালি বা খাল বেছে নিন…</option>
+          <optgroup label="প্রণালি" data-kind="strait"></optgroup>
+          <optgroup label="খাল" data-kind="canal"></optgroup>
         </select>
       </header>
 
@@ -32,7 +34,7 @@
 
         <div id="loadNotice" class="load-notice" role="alert">
           <strong>Map data could not be loaded</strong>
-          <span>Check the connection and reload the page. The straits and their shipping lanes still work.</span>
+          <span>Check the connection and reload the page. The straits, canals and shipping lanes still work.</span>
         </div>
 
         <!-- Bottom sheet over the map. Drag it down (or tap the handle) to leave
@@ -43,7 +45,7 @@
           </button>
           <div id="infoSheetBody" class="info-sheet-body" aria-live="polite">
             <!-- The card is Bengali content throughout, labels included. -->
-            <span class="info-kicker" lang="bn">প্রণালি</span>
+            <span id="infoKicker" class="info-kicker" lang="bn"></span>
             <h2 id="infoTitle" class="info-title" lang="bn"></h2>
 
             <div class="info-row">
@@ -54,9 +56,18 @@
               <span class="info-label" lang="bn">সংযোগ</span>
               <span id="infoConnects" class="info-value" lang="bn"></span>
             </div>
-            <div class="info-row">
+            <!-- A row whose value is missing is hidden, never filled with a guess. -->
+            <div class="info-row" id="rowBoundary">
               <span class="info-label" lang="bn">সীমানা</span>
               <span id="infoBoundary" class="info-value" lang="bn"></span>
+            </div>
+            <div class="info-row" id="rowOpened">
+              <span class="info-label" lang="bn">চালু</span>
+              <span id="infoOpened" class="info-value" lang="bn"></span>
+            </div>
+            <div class="info-row" id="rowLength">
+              <span class="info-label" lang="bn">দৈর্ঘ্য</span>
+              <span id="infoLength" class="info-value" lang="bn"></span>
             </div>
             <div class="info-row">
               <span class="info-label" lang="bn">নৌপথ</span>

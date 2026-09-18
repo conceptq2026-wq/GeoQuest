@@ -1,40 +1,51 @@
 /*
 |--------------------------------------------------------------------------
-| STRAIT DATA
+| PASSAGE DATA — straits and canals
 |--------------------------------------------------------------------------
 |
+| kind        = 'strait' | 'canal' — the card's kicker and its rows
+| nameBn      = the name on the map, the dropdown and the card (প্রণালি
+|               spelling everywhere, matching Natural Earth's own labels)
+| altNameBn   = optional second name, shown in brackets on the card only
 | center      = [longitude, latitude]
 | frame       = [west, south, east, north] — the first view after picking it:
 |               both neighbouring countries and a clear piece of each
 |               connected sea. Hand-set on purpose: a frame computed from
 |               label positions put Gibraltar at a third of the world.
-|               tools/verify.mjs checks the point and both sea labels fall
+|               tools/verify.mjs checks the point and every sea label fall
 |               inside it.
 | countriesBn = the land either side, Bengali (Natural Earth NAME_BN spellings)
 | connectsBn  = what it joins, Bengali, as shown on the card
 | seas        = keys into SEAS below — the water bodies it joins, labelled on
 |               the map (Layers → Connected seas)
-| routeStatus = what the card says about the shipping lane, judged by
-|               looking at the mapped OpenStreetMap scheme through the
-|               narrows (straits/routes.geojson):
-|                 'mapped'  — the scheme through the strait is mapped
+| boundaryNote = strait only; short note on the political / maritime line.
+|               null = none written yet, and the row is not shown.
+| openedBn, lengthBn = canal only. null = PENDING: sources disagree (Suez
+|               164 or 193 km, Panama 77 or 82 km) and the founder is checking
+|               the figures BCS uses against the textbook. The card hides a
+|               row whose value is null — never shows a guess.
+| routeStatus = what the card says about the shipping lane:
+|                 'mapped'  — the OSM traffic-separation scheme through the
+|                             strait is mapped (straits/routes.geojson)
 |                 'partial' — only pieces of it are mapped
 |                 'none'    — nothing mapped; no line is drawn at all
-|               Hand-drawn routes were removed on purpose: a guessed line
-|               shown as the real channel teaches something false.
-| boundaryNote = short human-readable note on the actual political /
-|          maritime line near the strait, shown in the info card.
+|                 'canal'   — the canal itself is the lane; its line comes
+|                             from OSM (straits/canals.geojson)
+|               Judged by looking at the data through the narrows. Hand-drawn
+|               routes were removed on purpose: a guessed line shown as the
+|               real channel teaches something false.
 |
 */
 
 /*
 |--------------------------------------------------------------------------
-| CONNECTED SEAS
+| SEA LABELS
 |--------------------------------------------------------------------------
 |
-| Only the seas some passage connects — a label each, at a hand-placed
-| point in open water that lies inside every frame showing that sea.
-| Names are Bengali content (drafts to be checked against BCS usage).
+| One label per water body a passage joins, at a hand-placed point in open
+| water inside every frame that shows it. A sea visible from two far-apart
+| passages (the Atlantic at Gibraltar and at Magellan) gets two keys, one
+| label near each. Names approved 2026-09-18.
 |
 */
 
@@ -43,19 +54,45 @@ export const SEAS = {
   gulfOfOman: { nameBn: 'ওমান উপসাগর', at: [58.8, 24.4] },
   andamanSea: { nameBn: 'আন্দামান সাগর', at: [96.5, 10.5] },
   southChinaSea: { nameBn: 'দক্ষিণ চীন সাগর', at: [109.0, 8.0] },
+  southChinaSeaNorth: { nameBn: 'দক্ষিণ চীন সাগর', at: [116.8, 20.8] },
+  eastChinaSea: { nameBn: 'পূর্ব চীন সাগর', at: [123.0, 27.8] },
   redSea: { nameBn: 'লোহিত সাগর', at: [40.2, 17.0] },
+  redSeaNorth: { nameBn: 'লোহিত সাগর', at: [34.8, 26.8] },
   gulfOfAden: { nameBn: 'এডেন উপসাগর', at: [48.5, 12.6] },
   atlantic: { nameBn: 'আটলান্টিক মহাসাগর', at: [-9.3, 35.2] },
+  atlanticSouth: { nameBn: 'আটলান্টিক মহাসাগর', at: [-65.0, -52.2] },
   mediterranean: { nameBn: 'ভূমধ্যসাগর', at: [-2.2, 36.3] },
+  mediterraneanEast: { nameBn: 'ভূমধ্যসাগর', at: [30.5, 32.6] },
   blackSea: { nameBn: 'কৃষ্ণ সাগর', at: [34.0, 43.4] },
   marmara: { nameBn: 'মারমারা সাগর', at: [28.35, 40.62] },
-  aegean: { nameBn: 'ইজিয়ান সাগর', at: [25.0, 38.9] },
+  aegean: { nameBn: 'এজিয়ান সাগর', at: [25.0, 38.9] },
   chukchi: { nameBn: 'চুকচি সাগর', at: [-170.5, 69.5] },
   beringSea: { nameBn: 'বেরিং সাগর', at: [-176.0, 59.5] },
+  bayOfBengal: { nameBn: 'বঙ্গোপসাগর', at: [81.8, 12.3] },
+  palkBay: { nameBn: 'পক উপসাগর', at: [79.35, 9.75] },
+  gulfOfMannar: { nameBn: 'মান্নার উপসাগর', at: [78.9, 8.6] },
+  javaSea: { nameBn: 'জাভা সাগর', at: [108.5, -4.8] },
+  indianOcean: { nameBn: 'ভারত মহাসাগর', at: [103.5, -8.0] },
+  englishChannel: { nameBn: 'ইংলিশ চ্যানেল', at: [-1.5, 50.1] },
+  northSea: { nameBn: 'উত্তর সাগর', at: [3.2, 53.3] },
+  pacificSouth: { nameBn: 'প্রশান্ত মহাসাগর', at: [-75.8, -54.0] },
+  tasmanSea: { nameBn: 'তাসমান সাগর', at: [171.0, -40.5] },
+  pacificNZ: { nameBn: 'প্রশান্ত মহাসাগর', at: [178.5, -42.5] },
+  caribbean: { nameBn: 'ক্যারিবীয় সাগর', at: [-79.3, 10.2] },
+  pacificPanama: { nameBn: 'প্রশান্ত মহাসাগর', at: [-79.6, 8.2] },
+  balticSea: { nameBn: 'বাল্টিক সাগর', at: [13.5, 55.0] },
+  gulfOfCorinth: { nameBn: 'করিন্থ উপসাগর', at: [22.4, 38.2] },
+  saronicGulf: { nameBn: 'সারোনিক উপসাগর', at: [23.45, 37.75] },
+  lakeSuperior: { nameBn: 'সুপিরিয়র হ্রদ', at: [-87.5, 47.6] },
+  lakeHuron: { nameBn: 'হুরন হ্রদ', at: [-82.4, 44.7] },
+  lakeErie: { nameBn: 'ইরি হ্রদ', at: [-81.3, 42.2] },
+  lakeOntario: { nameBn: 'অন্টারিও হ্রদ', at: [-77.8, 43.6] },
 };
 
-export const STRAITS = {
+export const PASSAGES = {
+  // ─── প্রণালি ──────────────────────────────────────────────────────────
   hormuz: {
+    kind: 'strait',
     nameEn: 'Strait of Hormuz',
     nameBn: 'হরমুজ প্রণালি',
     center: [56.35, 26.55],
@@ -68,6 +105,7 @@ export const STRAITS = {
   },
 
   malacca: {
+    kind: 'strait',
     nameEn: 'Strait of Malacca',
     nameBn: 'মালাক্কা প্রণালি',
     center: [101.2, 3.2],
@@ -80,6 +118,7 @@ export const STRAITS = {
   },
 
   babMandeb: {
+    kind: 'strait',
     nameEn: 'Bab el-Mandeb',
     nameBn: 'বাব-এল-মান্দেব প্রণালি',
     center: [43.35, 12.65],
@@ -92,6 +131,7 @@ export const STRAITS = {
   },
 
   gibraltar: {
+    kind: 'strait',
     nameEn: 'Strait of Gibraltar',
     nameBn: 'জিব্রাল্টার প্রণালি',
     center: [-5.55, 35.95],
@@ -99,11 +139,12 @@ export const STRAITS = {
     countriesBn: 'স্পেন — মরক্কো',
     connectsBn: 'আটলান্টিক মহাসাগর → ভূমধ্যসাগর',
     seas: ['atlantic', 'mediterranean'],
-    boundaryNote: 'স্পেন–মোরক্কো জলসীমা (ইউরোপ–আফ্রিকা বিভাজন)',
+    boundaryNote: 'স্পেন–মরক্কো জলসীমা (ইউরোপ–আফ্রিকা বিভাজন)',
     routeStatus: 'mapped',
   },
 
   bosporus: {
+    kind: 'strait',
     nameEn: 'Bosporus Strait',
     nameBn: 'বসফরাস প্রণালি',
     center: [29.05, 41.12],
@@ -116,18 +157,20 @@ export const STRAITS = {
   },
 
   dardanelles: {
+    kind: 'strait',
     nameEn: 'Dardanelles',
     nameBn: 'দার্দানেলিস প্রণালি',
     center: [26.5, 40.2],
     frame: [23.0, 38.0, 30.0, 41.5],
     countriesBn: 'তুরস্ক (উভয় তীর)',
-    connectsBn: 'মারমারা সাগর → ইজিয়ান সাগর',
+    connectsBn: 'মারমারা সাগর → এজিয়ান সাগর',
     seas: ['marmara', 'aegean'],
     boundaryNote: 'সম্পূর্ণ তুর্কি জলসীমা — ইউরোপ ও এশিয়ার মহাদেশীয় বিভাজন রেখা',
     routeStatus: 'partial',
   },
 
   bering: {
+    kind: 'strait',
     nameEn: 'Bering Strait',
     nameBn: 'বেরিং প্রণালি',
     center: [-169.0, 65.9],
@@ -137,6 +180,191 @@ export const STRAITS = {
     seas: ['chukchi', 'beringSea'],
     boundaryNote: 'রাশিয়া–যুক্তরাষ্ট্র সামুদ্রিক সীমানা (১৯৯০ চুক্তি, বিগ ও লিটল ডায়োমিড দ্বীপের মাঝ দিয়ে)',
     routeStatus: 'none',
+  },
+
+  palk: {
+    kind: 'strait',
+    nameEn: 'Palk Strait',
+    nameBn: 'পক প্রণালি',
+    center: [79.8, 10.1],
+    frame: [76.5, 6.5, 83.0, 13.5],
+    countriesBn: 'ভারত — শ্রীলঙ্কা',
+    connectsBn: 'বঙ্গোপসাগর → পক উপসাগর / মান্নার উপসাগর',
+    seas: ['bayOfBengal', 'palkBay', 'gulfOfMannar'],
+    boundaryNote: null,
+    routeStatus: 'none',
+  },
+
+  sunda: {
+    kind: 'strait',
+    nameEn: 'Sunda Strait',
+    nameBn: 'সুন্দা প্রণালি',
+    center: [105.8, -6.0],
+    frame: [101.5, -9.5, 110.0, -2.5],
+    countriesBn: 'ইন্দোনেশিয়া (জাভা — সুমাত্রা)',
+    connectsBn: 'জাভা সাগর → ভারত মহাসাগর',
+    seas: ['javaSea', 'indianOcean'],
+    boundaryNote: null,
+    routeStatus: 'none',
+  },
+
+  dover: {
+    kind: 'strait',
+    nameEn: 'Strait of Dover',
+    nameBn: 'ডোভার প্রণালি',
+    center: [1.45, 51.0],
+    frame: [-4.0, 48.0, 6.0, 54.5],
+    countriesBn: 'যুক্তরাজ্য — ফ্রান্স',
+    // Dover joins the Channel TO the North Sea (corrected 2026-09-18).
+    connectsBn: 'ইংলিশ চ্যানেল → উত্তর সাগর',
+    seas: ['englishChannel', 'northSea'],
+    boundaryNote: null,
+    routeStatus: 'mapped',
+  },
+
+  magellan: {
+    kind: 'strait',
+    nameEn: 'Strait of Magellan',
+    nameBn: 'ম্যাগেলান প্রণালি',
+    center: [-70.5, -53.1],
+    frame: [-76.5, -56.5, -63.5, -50.0],
+    countriesBn: 'চিলি (মূল ভূখণ্ড — তিয়েরা দেল ফুয়েগো)',
+    connectsBn: 'আটলান্টিক মহাসাগর → প্রশান্ত মহাসাগর',
+    seas: ['atlanticSouth', 'pacificSouth'],
+    boundaryNote: null,
+    routeStatus: 'none',
+  },
+
+  formosa: {
+    kind: 'strait',
+    nameEn: 'Formosa (Taiwan) Strait',
+    nameBn: 'ফরমোজা প্রণালি',
+    altNameBn: 'তাইওয়ান প্রণালি',
+    center: [119.5, 24.0],
+    frame: [115.5, 19.5, 124.5, 28.5],
+    // Bangladesh point of view: Taiwan is part of China, named as an island.
+    countriesBn: 'চীন (মূল ভূখণ্ড — তাইওয়ান দ্বীপ)',
+    connectsBn: 'পূর্ব চীন সাগর → দক্ষিণ চীন সাগর',
+    seas: ['eastChinaSea', 'southChinaSeaNorth'],
+    boundaryNote: null,
+    // OSM has port-approach schemes nearby (Xiamen, Penghu), not a lane through the strait.
+    routeStatus: 'none',
+  },
+
+  cook: {
+    kind: 'strait',
+    nameEn: 'Cook Strait',
+    nameBn: 'কুক প্রণালি',
+    center: [174.6, -41.2],
+    frame: [170.0, -45.5, 179.5, -37.0],
+    countriesBn: 'নিউজিল্যান্ড (উত্তর দ্বীপ — দক্ষিণ দ্বীপ)',
+    connectsBn: 'তাসমান সাগর → প্রশান্ত মহাসাগর',
+    seas: ['tasmanSea', 'pacificNZ'],
+    boundaryNote: null,
+    // OSM has the Wellington harbour-entrance scheme only, not a lane through the strait.
+    routeStatus: 'none',
+  },
+
+  // ─── খাল ─────────────────────────────────────────────────────────────
+  // openedBn / lengthBn: PENDING founder's check against the textbook.
+  suez: {
+    kind: 'canal',
+    nameEn: 'Suez Canal',
+    nameBn: 'সুয়েজ খাল',
+    center: [32.35, 30.5],
+    frame: [28.5, 26.0, 36.0, 33.5],
+    countriesBn: 'মিশর',
+    connectsBn: 'ভূমধ্যসাগর → লোহিত সাগর',
+    seas: ['mediterraneanEast', 'redSeaNorth'],
+    openedBn: null,
+    lengthBn: null,
+    routeStatus: 'canal',
+  },
+
+  panama: {
+    kind: 'canal',
+    nameEn: 'Panama Canal',
+    nameBn: 'পানামা খাল',
+    center: [-79.75, 9.1],
+    frame: [-82.0, 7.0, -77.5, 10.8],
+    countriesBn: 'পানামা',
+    connectsBn: 'আটলান্টিক (ক্যারিবীয় সাগর) → প্রশান্ত মহাসাগর',
+    seas: ['caribbean', 'pacificPanama'],
+    openedBn: null,
+    lengthBn: null,
+    routeStatus: 'canal',
+  },
+
+  kiel: {
+    kind: 'canal',
+    nameEn: 'Kiel Canal',
+    nameBn: 'কিয়েল খাল',
+    center: [9.6, 54.2],
+    frame: [2.5, 52.5, 15.0, 57.5],
+    countriesBn: 'জার্মানি',
+    connectsBn: 'উত্তর সাগর → বাল্টিক সাগর',
+    seas: ['northSea', 'balticSea'],
+    openedBn: null,
+    lengthBn: null,
+    routeStatus: 'canal',
+  },
+
+  corinth: {
+    kind: 'canal',
+    nameEn: 'Corinth Canal',
+    nameBn: 'করিন্থ খাল',
+    center: [22.99, 37.93],
+    frame: [21.3, 37.2, 24.3, 38.7],
+    countriesBn: 'গ্রিস',
+    connectsBn: 'করিন্থ উপসাগর → সারোনিক উপসাগর',
+    seas: ['gulfOfCorinth', 'saronicGulf'],
+    openedBn: null,
+    lengthBn: null,
+    routeStatus: 'canal',
+  },
+
+  soo: {
+    kind: 'canal',
+    nameEn: 'Soo (Sault Ste. Marie) Canal',
+    nameBn: 'সু খাল',
+    altNameBn: 'সল্ট সেন্ট মেরি',
+    center: [-84.35, 46.5],
+    frame: [-90.5, 43.5, -80.0, 49.0],
+    countriesBn: 'মার্কিন যুক্তরাষ্ট্র — কানাডা',
+    connectsBn: 'সুপিরিয়র হ্রদ → হুরন হ্রদ',
+    seas: ['lakeSuperior', 'lakeHuron'],
+    openedBn: null,
+    lengthBn: null,
+    routeStatus: 'canal',
+  },
+
+  welland: {
+    kind: 'canal',
+    nameEn: 'Welland Canal',
+    nameBn: 'ওয়েল্যান্ড খাল',
+    center: [-79.21, 43.0],
+    frame: [-83.5, 41.3, -76.0, 44.5],
+    countriesBn: 'কানাডা',
+    connectsBn: 'ইরি হ্রদ → অন্টারিও হ্রদ',
+    seas: ['lakeErie', 'lakeOntario'],
+    openedBn: null,
+    lengthBn: null,
+    routeStatus: 'canal',
+  },
+
+  grandCanal: {
+    kind: 'canal',
+    nameEn: 'Grand Canal (Beijing–Hangzhou)',
+    nameBn: 'গ্র্যান্ড ক্যানাল',
+    center: [117.3, 35.0],
+    frame: [114.0, 29.0, 122.5, 41.0],
+    countriesBn: 'গণচীন',
+    // Joins two cities, not two seas — so no sea labels.
+    connectsBn: 'বেইজিং → হাংঝৌ',
+    seas: [],
+    openedBn: null,
+    lengthBn: null,
+    routeStatus: 'canal',
   },
 };
 

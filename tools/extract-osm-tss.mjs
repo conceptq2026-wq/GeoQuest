@@ -20,7 +20,7 @@ const ENDPOINTS = [
   'https://overpass.private.coffee/api/interpreter',
   'https://overpass.kumi.systems/api/interpreter',
 ];
-const { STRAITS } = await import(pathToFileURL(path.join(ROOT, 'straits', 'data.js')).href);
+const { PASSAGES } = await import(pathToFileURL(path.join(ROOT, 'straits', 'data.js')).href);
 
 async function overpass(query) {
   for (const url of ENDPOINTS) {
@@ -41,7 +41,9 @@ async function overpass(query) {
 const round = (v) => Math.round(v * 1e5) / 1e5;
 const features = [];
 const seen = new Set();
-for (const [key, strait] of Object.entries(STRAITS)) {
+// Canals are drawn from their own line (extract-osm-canals.mjs), not a scheme.
+const STRAITS = Object.entries(PASSAGES).filter(([, p]) => p.kind === 'strait');
+for (const [key, strait] of STRAITS) {
   const [w, s, e, n] = strait.frame;
   const { json, url } = await overpass(`[out:json][timeout:170];way["seamark:type"~"^separation_"](${s},${w},${n},${e});out tags geom;`);
   let added = 0;

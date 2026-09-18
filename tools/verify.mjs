@@ -76,23 +76,30 @@ const vendored = [
 ];
 for (const [copy, original] of vendored) check(sha(path.join(ROOT, copy)) === sha(original), `${copy} matches the pinned npm package`);
 
-// ---- straits: each passage's first view must show what it sits between ----
-const { STRAITS, SEAS } = await import(pathToFileURL(path.join(ROOT, 'straits/data.js')).href);
+// ---- straits map: each passage's first view must show what it sits between ----
+const { PASSAGES, SEAS } = await import(pathToFileURL(path.join(ROOT, 'straits/data.js')).href);
 const inFrame = ([w, s, e, n], [x, y]) => x >= w && x <= e && y >= s && y <= n;
-for (const [key, p] of Object.entries(STRAITS)) {
+for (const [key, p] of Object.entries(PASSAGES)) {
   const missing = [['the passage', p.center], ...p.seas.map((k) => [`sea "${k}"`, SEAS[k]?.at])]
     .filter(([, pt]) => !pt || !inFrame(p.frame, pt))
     .map(([what]) => what);
-  check(missing.length === 0, `straits/${key}: frame contains the passage and both sea labels${missing.length ? ` — outside: ${missing.join(', ')}` : ''}`);
+  check(missing.length === 0, `straits/${key}: frame contains the passage and its ${p.seas.length} sea label(s)${missing.length ? ` — outside: ${missing.join(', ')}` : ''}`);
 }
 
-// ---- straits: shipping lanes come only from the pinned OSM snapshot ----
-const osm = JSON.parse(fs.readFileSync('sources.json', 'utf8')).osmTss;
-check(sha(path.join(ROOT, osm.file)) === osm.sha256, `${osm.file} matches its pinned checksum`);
-const routes = JSON.parse(fs.readFileSync(path.join(ROOT, 'straits/routes.geojson'), 'utf8'));
-check(/ODbL/.test(routes.properties?.licence || ''), 'straits/routes.geojson carries its ODbL licence');
-for (const [key, p] of Object.entries(STRAITS)) {
-  check(['mapped', 'partial', 'none'].includes(p.routeStatus) && !('route' in p), `straits/${key}: routeStatus "${p.routeStatus}", no hand-drawn route`);
+// ---- straits map: lanes and canals come only from the pinned OSM snapshots ----
+const pinnedSources = JSON.parse(fs.readFileSync('sources.json', 'utf8'));
+for (const entry of [pinnedSources.osmTss, pinnedSources.osmCanals]) {
+  check(sha(path.join(ROOT, entry.file)) === entry.sha256, `${entry.file} matches its pinned checksum`);
+}
+const canalLines = JSON.parse(fs.readFileSync(path.join(ROOT, 'straits/canals.geojson'), 'utf8'));
+for (const name of ['routes', 'canals']) {
+  const fc = JSON.parse(fs.readFileSync(path.join(ROOT, `straits/${name}.geojson`), 'utf8'));
+  check(/ODbL/.test(fc.properties?.licence || ''), `straits/${name}.geojson carries its ODbL licence`);
+}
+for (const [key, p] of Object.entries(PASSAGES)) {
+  const okStatus = p.kind === 'canal' ? p.routeStatus === 'canal' : ['mapped', 'partial', 'none'].includes(p.routeStatus);
+  check(okStatus && !('route' in p), `straits/${key}: routeStatus "${p.routeStatus}", no hand-drawn route`);
+  if (p.kind === 'canal') check(canalLines.features.some((f) => f.properties.canal === key), `straits/${key}: canal line present`);
 }
 
 // ---- per-map files ----

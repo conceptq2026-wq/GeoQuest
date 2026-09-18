@@ -12,7 +12,7 @@
     "verify": "node verify.mjs",
     "build": "npm run fetch && npm run vendor && npm run font && npm run world && npm run straits && npm run routes && npm run verify",
     "routes": "node build-straits-routes.mjs",
-    "extract-osm": "node extract-osm-tss.mjs"
+    "extract-osm": "node extract-osm-tss.mjs && node extract-osm-canals.mjs"
   },
   "devDependencies": {
     "geojson-vt": "4.0.3",

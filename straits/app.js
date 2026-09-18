@@ -1,4 +1,4 @@
-import { SEAS, STRAITS } from './data.js';
+import { PASSAGES, SEAS } from './data.js';
 import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs';
 
 /*
@@ -12,10 +12,13 @@ const mapShell = document.querySelector('.map-shell');
 const infoSheet = document.getElementById('infoSheet');
 const infoSheetBody = document.getElementById('infoSheetBody');
 const sheetHandle = document.getElementById('sheetHandle');
+const infoKicker = document.getElementById('infoKicker');
 const infoTitle = document.getElementById('infoTitle');
 const infoCountries = document.getElementById('infoCountries');
 const infoConnects = document.getElementById('infoConnects');
 const infoBoundary = document.getElementById('infoBoundary');
+const infoOpened = document.getElementById('infoOpened');
+const infoLength = document.getElementById('infoLength');
 const infoRoute = document.getElementById('infoRoute');
 const loadNotice = document.getElementById('loadNotice');
 const layersToggleBtn = document.getElementById('layersToggleBtn');
@@ -27,7 +30,7 @@ const layerCheckboxes = document.querySelectorAll('#layersMenu input[type="check
 | BUILD CONTROLS
 |
 | Controls are English; place names and the information card are Bengali.
-| One dropdown picks the passage: with 10+ straits and canals, reading a
+| One dropdown picks the passage: with 20 straits and canals, reading a
 | list beats swiping through a row of pills, and it costs one slim line.
 |--------------------------------------------------------------------------
 */
@@ -35,11 +38,12 @@ const layerCheckboxes = document.querySelectorAll('#layersMenu input[type="check
 /** The passage being shown, or null on the opening world view. */
 let currentKey = null;
 
-Object.entries(STRAITS).forEach(([key, strait]) => {
+// Grouped under প্রণালি / খাল, in data.js order.
+Object.entries(PASSAGES).forEach(([key, passage]) => {
   const option = document.createElement('option');
   option.value = key;
-  option.textContent = strait.nameBn;
-  selector.appendChild(option);
+  option.textContent = passage.nameBn;
+  selector.querySelector(`optgroup[data-kind="${passage.kind}"]`).appendChild(option);
 });
 
 /*
@@ -84,6 +88,7 @@ const COLORS = {
   route: '#e8590c',
   seaLabel: '#1f5f99',
   seaLabelActive: '#0b3d91',
+  canal: '#2f7fc1',
 };
 
 const tileSource = (minzoom, maxzoom) => ({
@@ -120,7 +125,7 @@ const landLayers = (source) => [
 
 /** One label per connected sea; the chosen passage's seas are "active". */
 function seasGeoJSON() {
-  const active = new Set(currentKey ? STRAITS[currentKey].seas : []);
+  const active = new Set(currentKey ? PASSAGES[currentKey].seas : []);
   return {
     type: 'FeatureCollection',
     features: Object.entries(SEAS).map(([key, sea]) => ({
@@ -135,10 +140,10 @@ function seasGeoJSON() {
 function passagesGeoJSON() {
   return {
     type: 'FeatureCollection',
-    features: Object.entries(STRAITS).map(([key, strait]) => ({
+    features: Object.entries(PASSAGES).map(([key, passage]) => ({
       type: 'Feature',
-      properties: { key, nameBn: strait.nameBn, selected: key === currentKey },
-      geometry: { type: 'Point', coordinates: strait.center },
+      properties: { key, nameBn: passage.nameBn, selected: key === currentKey },
+      geometry: { type: 'Point', coordinates: passage.center },
     })),
   };
 }
@@ -156,6 +161,8 @@ const map = new maplibregl.Map({
       // OpenStreetMap traffic-separation schemes (ODbL), built from a pinned
       // snapshot by tools/build-straits-routes.mjs. Only mapped lanes are
       // drawn — nothing is guessed or hand-joined.
+      // Each canal's navigation line, from a pinned OSM snapshot (ODbL).
+      canals: { type: 'geojson', data: './canals.geojson' },
       routes: { type: 'geojson', data: './routes.geojson', attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors' },
     },
     layers: [
@@ -163,6 +170,23 @@ const map = new maplibregl.Map({
       ...landLayers('world'),
       { id: 'detail-mask', type: 'fill', source: 'detail', 'source-layer': 'detail_extent', paint: { 'fill-color': COLORS.sea } },
       ...landLayers('detail'),
+      // Canals, drawn as water with a white casing so the cut reads on land.
+      // Always shown: the canal is what the student came to see, not an
+      // optional overlay.
+      {
+        id: 'canal-casing',
+        type: 'line',
+        source: 'canals',
+        layout: { 'line-cap': 'round', 'line-join': 'round' },
+        paint: { 'line-color': '#ffffff', 'line-width': ['interpolate', ['linear'], ['zoom'], 3, 3, 10, 8] },
+      },
+      {
+        id: 'canal-lines',
+        type: 'line',
+        source: 'canals',
+        layout: { 'line-cap': 'round', 'line-join': 'round' },
+        paint: { 'line-color': COLORS.canal, 'line-width': ['interpolate', ['linear'], ['zoom'], 3, 1.5, 10, 5] },
+      },
       // A traffic-separation scheme as charted: the separation zone between
       // the two lanes (outlined — a tinted fill read as a strip of land), the
       // scheme's outer boundaries (dashed), and the one-way lanes themselves
@@ -388,7 +412,7 @@ const marker = new maplibregl.Marker({ element: markerEl });
 */
 
 function selectStrait(key) {
-  const strait = STRAITS[key];
+  const strait = PASSAGES[key];
   if (!strait) return;
 
   currentKey = key;
@@ -428,13 +452,23 @@ function showStrait(strait) {
 }
 
 function updateInfo(key) {
-  const strait = STRAITS[key];
+  const passage = PASSAGES[key];
 
-  infoTitle.textContent = strait.nameBn;
-  infoCountries.textContent = strait.countriesBn;
-  infoConnects.textContent = strait.connectsBn;
-  infoBoundary.textContent = strait.boundaryNote || '—';
-  infoRoute.textContent = ROUTE_STATUS_BN[strait.routeStatus];
+  infoKicker.textContent = passage.kind === 'canal' ? 'খাল' : 'প্রণালি';
+  infoTitle.textContent = passage.altNameBn ? `${passage.nameBn} (${passage.altNameBn})` : passage.nameBn;
+  infoCountries.textContent = passage.countriesBn;
+  infoConnects.textContent = passage.connectsBn;
+  setRow(infoBoundary, passage.boundaryNote);
+  // Canal facts stay hidden until checked against the textbook (data.js).
+  setRow(infoOpened, passage.openedBn);
+  setRow(infoLength, passage.lengthBn);
+  infoRoute.textContent = ROUTE_STATUS_BN[passage.routeStatus];
+}
+
+/** Fills a card row, or hides it when there is nothing verified to show. */
+function setRow(valueEl, value) {
+  valueEl.textContent = value ?? '';
+  valueEl.parentElement.hidden = value == null;
 }
 
 /*
@@ -445,6 +479,7 @@ const ROUTE_STATUS_BN = {
   mapped: 'নির্ধারিত নৌপথ (IMO ট্রাফিক বিভাজন ব্যবস্থা) মানচিত্রে দেখানো হয়েছে',
   partial: 'আংশিক — নির্ধারিত নৌপথের কেবল কিছু অংশ মানচিত্রে আছে',
   none: 'এখানে কোনো নির্ধারিত নৌপথের মানচিত্রায়িত তথ্য নেই',
+  canal: 'খালটিই নৌপথ — খালের পথ মানচিত্রে দেখানো হয়েছে',
 };
 
 selector.addEventListener('change', (event) => {

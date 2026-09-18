@@ -68,6 +68,13 @@
     "file": "tools/sources/osm-tss.geojson",
     "fetched": "2026-09-18",
     "licence": "ODbL 1.0 — © OpenStreetMap contributors",
-    "sha256": "c4b9baf4c335e6f495538ce532e99a3a004dc76bf5121f83b879382c7118c482"
+    "sha256": "d32a997f2d35a3fd0cce2020e2afef05dad77eb6597f29302e4c6e2dfe90f9aa"
+  },
+  "osmCanals": {
+    "_comment": "Snapshot of each canal's navigation line from OpenStreetMap, made by extract-osm-canals.mjs and committed. The build refuses a file whose checksum differs.",
+    "file": "tools/sources/osm-canals.geojson",
+    "fetched": "2026-09-18",
+    "licence": "ODbL 1.0 — © OpenStreetMap contributors",
+    "sha256": "f26fb7836b77a7da06f7695ddc6ce076b456821df96dc9f206a7a2ed15298e40"
   }
 }

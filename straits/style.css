@@ -234,6 +234,11 @@ body {
   line-height: 1.5;
 }
 
+/* display: grid above would otherwise override the hidden attribute. */
+.info-row[hidden] {
+  display: none;
+}
+
 .info-label {
   color: #5b6878;
 }
