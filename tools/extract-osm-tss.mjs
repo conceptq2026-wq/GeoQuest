@@ -13,6 +13,8 @@ import crypto from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 
 const ROOT = path.resolve('..');
+// The straits map's folder, relative to the repo root. Change here if the map moves.
+const STRAITS_DIR = path.join(ROOT, 'international/straits');
 const OUT = path.join(ROOT, 'tools', 'sources', 'osm-tss.geojson');
 const ENDPOINTS = [
   'https://overpass-api.de/api/interpreter',
@@ -20,7 +22,7 @@ const ENDPOINTS = [
   'https://overpass.private.coffee/api/interpreter',
   'https://overpass.kumi.systems/api/interpreter',
 ];
-const { PASSAGES } = await import(pathToFileURL(path.join(ROOT, 'straits', 'data.js')).href);
+const { PASSAGES } = await import(pathToFileURL(path.join(STRAITS_DIR, 'data.js')).href);
 
 async function overpass(query) {
   for (const url of ENDPOINTS) {

@@ -15,7 +15,8 @@ import { pathToFileURL } from 'node:url';
 import mapshaper from 'mapshaper';
 import { readSource } from './lib/geo.mjs';
 
-const STRAITS_DIR = path.resolve('..', 'straits');
+// The straits map's folder, relative to the repo root. Change here if the map moves.
+const STRAITS_DIR = path.resolve('..', 'international/straits');
 const { FAMOUS_LINES } = await import(pathToFileURL(path.join(STRAITS_DIR, 'data.js')).href);
 const SIMPLIFY_METRES = 250; // well below what shows at the zooms these lines are viewed at
 

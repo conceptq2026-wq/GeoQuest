@@ -1,5 +1,5 @@
 import { PASSAGES, SEAS } from './data.js';
-import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs';
+import * as maplibregl from '../../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs';
 
 /*
 |--------------------------------------------------------------------------
@@ -64,8 +64,8 @@ Object.entries(PASSAGES).forEach(([key, passage]) => {
 |--------------------------------------------------------------------------
 */
 
-const WORLD_PMTILES = new URL('../shared/tiles/world.pmtiles', location.href).href;
-const BENGALI_FONT = new URL('../shared/fonts/noto-sans-bengali/NotoSansBengali-Regular.woff2', location.href).href;
+const WORLD_PMTILES = new URL('../../shared/tiles/world.pmtiles', location.href).href;
+const BENGALI_FONT = new URL('../../shared/fonts/noto-sans-bengali/NotoSansBengali-Regular.woff2', location.href).href;
 const LABEL_FONT = ['Noto Sans Bengali'];
 
 const protocol = new window.pmtiles.Protocol();
@@ -96,7 +96,7 @@ const tileSource = (minzoom, maxzoom) => ({
   tiles: [`pmtiles://${WORLD_PMTILES}/{z}/{x}/{y}`],
   minzoom,
   maxzoom,
-  attribution: '<a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a>',
+  attribution: '<a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener noreferrer">Natural Earth</a>',
 });
 
 const landLayers = (source) => [
@@ -184,7 +184,7 @@ const map = new maplibregl.Map({
       // drawn — nothing is guessed or hand-joined.
       // Each canal's navigation line, from a pinned OSM snapshot (ODbL).
       canals: { type: 'geojson', data: './canals.geojson' },
-      routes: { type: 'geojson', data: './routes.geojson', attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors' },
+      routes: { type: 'geojson', data: './routes.geojson', attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors' },
     },
     layers: [
       { id: 'bg', type: 'background', paint: { 'background-color': COLORS.sea } },
@@ -390,8 +390,8 @@ map.addControl(
   new maplibregl.AttributionControl({
     compact: true,
     customAttribution: [
-      '<a href="https://maplibre.org/" target="_blank" rel="noopener">MapLibre</a>',
-      '<a href="../shared/fonts/noto-sans-bengali/OFL.txt" target="_blank" rel="noopener">Noto Sans Bengali</a>',
+      '<a href="https://maplibre.org/" target="_blank" rel="noopener noreferrer">MapLibre</a>',
+      '<a href="../../shared/fonts/noto-sans-bengali/OFL.txt" target="_blank" rel="noopener noreferrer">Noto Sans Bengali</a>',
     ],
   }),
   'top-right',

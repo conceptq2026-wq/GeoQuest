@@ -16,6 +16,8 @@ const { VectorTile } = vtRequire('@mapbox/vector-tile');
 const Pbf = vtRequire('pbf');
 
 const ROOT = path.resolve('..');
+// The straits map's folder, relative to the repo root. Change here if the map moves.
+const STRAITS_DIR = path.join(ROOT, 'international/straits');
 let failures = 0;
 const check = (ok, msg) => {
   console.log(`${ok ? 'ok  ' : 'FAIL'} ${msg}`);
@@ -77,7 +79,7 @@ const vendored = [
 for (const [copy, original] of vendored) check(sha(path.join(ROOT, copy)) === sha(original), `${copy} matches the pinned npm package`);
 
 // ---- straits map: each passage's first view must show what it sits between ----
-const { PASSAGES, SEAS } = await import(pathToFileURL(path.join(ROOT, 'straits/data.js')).href);
+const { PASSAGES, SEAS } = await import(pathToFileURL(path.join(STRAITS_DIR, 'data.js')).href);
 const inFrame = ([w, s, e, n], [x, y]) => x >= w && x <= e && y >= s && y <= n;
 for (const [key, p] of Object.entries(PASSAGES)) {
   const missing = [['the passage', p.center], ...p.seas.map((k) => [`sea "${k}"`, SEAS[k]?.at])]
@@ -91,12 +93,12 @@ const pinnedSources = JSON.parse(fs.readFileSync('sources.json', 'utf8'));
 for (const entry of [pinnedSources.osmTss, pinnedSources.osmCanals]) {
   check(sha(path.join(ROOT, entry.file)) === entry.sha256, `${entry.file} matches its pinned checksum`);
 }
-const canalLines = JSON.parse(fs.readFileSync(path.join(ROOT, 'straits/canals.geojson'), 'utf8'));
+const canalLines = JSON.parse(fs.readFileSync(path.join(STRAITS_DIR, 'canals.geojson'), 'utf8'));
 for (const name of ['routes', 'canals']) {
-  const fc = JSON.parse(fs.readFileSync(path.join(ROOT, `straits/${name}.geojson`), 'utf8'));
+  const fc = JSON.parse(fs.readFileSync(path.join(STRAITS_DIR, `${name}.geojson`), 'utf8'));
   check(/ODbL/.test(fc.properties?.licence || ''), `straits/${name}.geojson carries its ODbL licence`);
 }
-const laneFile = JSON.parse(fs.readFileSync(path.join(ROOT, 'straits/routes.geojson'), 'utf8'));
+const laneFile = JSON.parse(fs.readFileSync(path.join(STRAITS_DIR, 'routes.geojson'), 'utf8'));
 const laneCoords = laneFile.features.flatMap((f) => (f.geometry.type === 'Polygon' ? f.geometry.coordinates.flat() : f.geometry.coordinates));
 for (const [key, p] of Object.entries(PASSAGES).filter(([, q]) => q.routeStatus === 'none')) {
   const [w, s, e, n] = p.frame;
@@ -110,7 +112,7 @@ for (const [key, p] of Object.entries(PASSAGES)) {
 }
 
 // ---- per-map files ----
-const famous = JSON.parse(fs.readFileSync(path.join(ROOT, 'straits/famous-lines.geojson'), 'utf8'));
+const famous = JSON.parse(fs.readFileSync(path.join(STRAITS_DIR, 'famous-lines.geojson'), 'utf8'));
 check(famous.features.some((f) => f.properties.kind === 'trace'), 'straits/famous-lines.geojson has traced lines');
 check(fs.existsSync(path.join(ROOT, 'shared/fonts/noto-sans-bengali/OFL.txt')), 'Noto Sans Bengali licence is shipped next to the font');
 

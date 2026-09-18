@@ -17,6 +17,8 @@ import { pathToFileURL } from 'node:url';
 import mapshaper from 'mapshaper';
 
 const ROOT = path.resolve('..');
+// The straits map's folder, relative to the repo root. Change here if the map moves.
+const STRAITS_DIR = path.join(ROOT, 'international/straits');
 const sources = JSON.parse(fs.readFileSync('sources.json', 'utf8'));
 
 function readPinned(entry) {
@@ -27,13 +29,13 @@ function readPinned(entry) {
 }
 
 function write(name, collection) {
-  const out = path.join(ROOT, 'straits', name);
+  const out = path.join(STRAITS_DIR, name);
   fs.writeFileSync(out, JSON.stringify(collection) + '\n');
   return `${(fs.statSync(out).size / 1024).toFixed(1)} KB`;
 }
 
 // ---- traffic-separation schemes ----
-const { PASSAGES } = await import(pathToFileURL(path.join(ROOT, 'straits', 'data.js')).href);
+const { PASSAGES } = await import(pathToFileURL(path.join(STRAITS_DIR, 'data.js')).href);
 const noLaneFrames = Object.entries(PASSAGES).filter(([, p]) => p.routeStatus === 'none');
 const coordsOf = (g) => (g.type === 'Polygon' ? g.coordinates.flat() : g.coordinates);
 const insideFrame = ([w, s, e, n]) => ([x, y]) => x >= w && x <= e && y >= s && y <= n;
