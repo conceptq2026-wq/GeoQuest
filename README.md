@@ -149,6 +149,13 @@ Panama canals run through.
   how narrow it is. Frames are hand-set on purpose — computing them from label
   positions put Gibraltar at a third of the world. `verify` checks each frame
   contains the passage and both of its sea labels.
+- **World view clustering.** Passage points closer than 25 px merge into one
+  navy circle with a Bengali count (২, ৩…); tapping it zooms in until they
+  separate (clustering stops above zoom 6). 25 px, not 40: at 40 every passage
+  merged on a portrait phone and the opening view showed only numbers.
+- **Shipping lanes start at zoom 4.** Below that they carry no information. Offsetting points (wrong places)
+  and letting labels hide each other (a hidden point can't be tapped) were
+  rejected.
 - **Connected seas** (`SEAS` in `data.js`) are labelled in blue. The chosen
   passage's two seas are always shown; the passage's own name moves to
   whichever side of its point is free.
@@ -166,15 +173,19 @@ Panama canals run through.
   | `none` | এখানে কোনো নির্ধারিত নৌপথের মানচিত্রায়িত তথ্য নেই | Bering, Palk, Sunda, Magellan, Formosa, Cook |
   | `canal` | খালটিই নৌপথ — খালের পথ মানচিত্রে দেখানো হয়েছে | all 7 canals |
 
-  Formosa and Cook are `none` although short orange pieces appear nearby: those
-  are port-approach schemes (Xiamen/Penghu, Wellington harbour), not a lane
-  through the strait.
+  **The map and the card must agree.** Inside the frame of a `none` passage,
+  no lane is drawn at all — not even a real scheme nearby. Formosa and Cook
+  have port-approach schemes in OSM (Xiamen/Penghu, Wellington harbour), not a
+  lane through the strait; drawn beside "তথ্য নেই" they would tell the student
+  the opposite, and a drawn line wins. The build drops them and `verify`
+  checks no `none` frame contains a lane.
 - **Canals** are drawn from each canal's own navigation line in OpenStreetMap,
   in blue with a white casing, always visible. One explicit selector per canal
   (`tools/extract-osm-canals.mjs`) picks the named main line, not every side
   canal nearby. The Soo is drawn from the Soo Locks (Poe and MacArthur), which
   OSM maps as St. Marys River segments tagged `lock=yes`. The Grand Canal has
-  gaps where OSM's segments carry no name.
+  gaps where OSM's segments carry no name — left as is: what is drawn is real,
+  and a hand-drawn join would be the same mistake as hand-tracing Hormuz.
 
   Statuses were set by looking at each scheme through the narrows, not by
   counting ways. Hormuz is deliberately `partial` and NOT hand-traced: it is the

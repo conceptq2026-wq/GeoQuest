@@ -5,9 +5,15 @@
 // Only mapped data is drawn. No connectors, no guessed approach legs: a
 // guessed line shown as if it were the real channel teaches something false.
 // Where OSM has no scheme, the card says so instead (routeStatus in data.js).
+//
+// The map and the card must agree: inside the frame of a passage whose card
+// says "no mapped lane" (routeStatus 'none'), no lane is drawn at all — not
+// even a real port-approach scheme nearby (Formosa, Cook), because a drawn
+// line beside "no data" tells the student the opposite, and the line wins.
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { pathToFileURL } from 'node:url';
 import mapshaper from 'mapshaper';
 
 const ROOT = path.resolve('..');
@@ -27,14 +33,26 @@ function write(name, collection) {
 }
 
 // ---- traffic-separation schemes ----
+const { PASSAGES } = await import(pathToFileURL(path.join(ROOT, 'straits', 'data.js')).href);
+const noLaneFrames = Object.entries(PASSAGES).filter(([, p]) => p.routeStatus === 'none');
+const coordsOf = (g) => (g.type === 'Polygon' ? g.coordinates.flat() : g.coordinates);
+const insideFrame = ([w, s, e, n]) => ([x, y]) => x >= w && x <= e && y >= s && y <= n;
+const dropped = {};
 const tss = readPinned(sources.osmTss);
 const routes = {
   type: 'FeatureCollection',
   properties: tss.properties, // ODbL data, and the served file says so
-  features: tss.features.map((f) => ({ type: 'Feature', properties: { seamark: f.properties.seamark }, geometry: f.geometry })),
+  features: tss.features
+    .filter((f) => {
+      const hit = noLaneFrames.find(([, p]) => coordsOf(f.geometry).some(insideFrame(p.frame)));
+      if (hit) dropped[hit[0]] = (dropped[hit[0]] || 0) + 1;
+      return !hit;
+    })
+    .map((f) => ({ type: 'Feature', properties: { seamark: f.properties.seamark }, geometry: f.geometry })),
 };
 const counts = routes.features.reduce((m, f) => ((m[f.properties.seamark] = (m[f.properties.seamark] || 0) + 1), m), {});
 console.log(`routes.geojson: ${routes.features.length} ways (${write('routes.geojson', routes)}) ${JSON.stringify(counts)}`);
+console.log(`  not drawn (card says no mapped lane): ${JSON.stringify(dropped)}`);
 
 // ---- canals ----
 // Simplified to 100 m: invisible at the zooms a canal is viewed at, and it

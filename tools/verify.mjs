@@ -96,6 +96,13 @@ for (const name of ['routes', 'canals']) {
   const fc = JSON.parse(fs.readFileSync(path.join(ROOT, `straits/${name}.geojson`), 'utf8'));
   check(/ODbL/.test(fc.properties?.licence || ''), `straits/${name}.geojson carries its ODbL licence`);
 }
+const laneFile = JSON.parse(fs.readFileSync(path.join(ROOT, 'straits/routes.geojson'), 'utf8'));
+const laneCoords = laneFile.features.flatMap((f) => (f.geometry.type === 'Polygon' ? f.geometry.coordinates.flat() : f.geometry.coordinates));
+for (const [key, p] of Object.entries(PASSAGES).filter(([, q]) => q.routeStatus === 'none')) {
+  const [w, s, e, n] = p.frame;
+  const inside = laneCoords.filter(([x, y]) => x >= w && x <= e && y >= s && y <= n).length;
+  check(inside === 0, `straits/${key}: card says no mapped lane, and no lane is drawn in its frame${inside ? ` — ${inside} points drawn` : ''}`);
+}
 for (const [key, p] of Object.entries(PASSAGES)) {
   const okStatus = p.kind === 'canal' ? p.routeStatus === 'canal' : ['mapped', 'partial', 'none'].includes(p.routeStatus);
   check(okStatus && !('route' in p), `straits/${key}: routeStatus "${p.routeStatus}", no hand-drawn route`);

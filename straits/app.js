@@ -123,6 +123,18 @@ const landLayers = (source) => [
   },
 ];
 
+// Below this zoom the lanes carry no information — only orange smudges.
+const LANE_MIN_ZOOM = 4;
+
+/** A cluster's count in Bengali numerals — the count is content, not chrome. */
+const toBengaliDigits = (n) => String(n).replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[d]);
+const BENGALI_COUNT = [
+  'match',
+  ['get', 'point_count'],
+  ...Array.from({ length: 19 }, (_, i) => [i + 2, toBengaliDigits(i + 2)]).flat(),
+  ['to-string', ['get', 'point_count']],
+];
+
 /** One label per connected sea; the chosen passage's seas are "active". */
 function seasGeoJSON() {
   const active = new Set(currentKey ? PASSAGES[currentKey].seas : []);
@@ -156,7 +168,16 @@ const map = new maplibregl.Map({
     sources: {
       world: tileSource(0, 6),
       detail: tileSource(7, 10),
-      passages: { type: 'geojson', data: passagesGeoJSON() },
+      // Points closer than 25 px merge into one numbered cluster, so passages
+      // that genuinely overlap (Bosporus, Dardanelles, Corinth; Dover and Kiel)
+      // don't pile up at world zoom. Tapping a cluster zooms in until they
+      // separate. 25 px, not 40: at 40 every passage merged on a portrait
+      // phone and the opening view showed numbers instead of names — the
+      // opening view exists so a student sees what exists straight away.
+      // Offsetting points was rejected (it would put them in the wrong place)
+      // and so was letting labels hide each other (a hidden point can't be
+      // tapped).
+      passages: { type: 'geojson', data: passagesGeoJSON(), cluster: true, clusterRadius: 25, clusterMaxZoom: 6 },
       seas: { type: 'geojson', data: seasGeoJSON() },
       // OpenStreetMap traffic-separation schemes (ODbL), built from a pinned
       // snapshot by tools/build-straits-routes.mjs. Only mapped lanes are
@@ -187,7 +208,7 @@ const map = new maplibregl.Map({
         layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: { 'line-color': COLORS.canal, 'line-width': ['interpolate', ['linear'], ['zoom'], 3, 1.5, 10, 5] },
       },
-      // A traffic-separation scheme as charted: the separation zone between
+      // A traffic-separation scheme as charted (from LANE_MIN_ZOOM up): the separation zone between
       // the two lanes (outlined — a tinted fill read as a strip of land), the
       // scheme's outer boundaries (dashed), and the one-way lanes themselves
       // with arrows in the direction of travel.
@@ -195,6 +216,7 @@ const map = new maplibregl.Map({
         id: 'tss-zones',
         type: 'line',
         source: 'routes',
+        minzoom: LANE_MIN_ZOOM,
         filter: ['in', ['get', 'seamark'], ['literal', ['separation_zone', 'separation_line', 'separation_roundabout']]],
         paint: { 'line-color': COLORS.route, 'line-width': 1.2, 'line-opacity': 0.9 },
       },
@@ -202,6 +224,7 @@ const map = new maplibregl.Map({
         id: 'tss-edges',
         type: 'line',
         source: 'routes',
+        minzoom: LANE_MIN_ZOOM,
         filter: ['==', ['get', 'seamark'], 'separation_boundary'],
         paint: { 'line-color': COLORS.route, 'line-width': 1, 'line-opacity': 0.8, 'line-dasharray': [3, 2] },
       },
@@ -209,6 +232,7 @@ const map = new maplibregl.Map({
         id: 'tss-lanes',
         type: 'line',
         source: 'routes',
+        minzoom: LANE_MIN_ZOOM,
         filter: ['==', ['get', 'seamark'], 'separation_lane'],
         layout: { 'line-cap': 'round', 'line-join': 'round' },
         paint: { 'line-color': COLORS.route, 'line-width': 2.5 },
@@ -262,15 +286,37 @@ const map = new maplibregl.Map({
         },
         paint: { 'text-color': COLORS.seaLabel, 'text-halo-color': COLORS.halo, 'text-halo-width': 1.6 },
       },
+      {
+        id: 'passage-clusters',
+        type: 'circle',
+        source: 'passages',
+        filter: ['has', 'point_count'],
+        paint: { 'circle-radius': 14, 'circle-color': COLORS.navy, 'circle-stroke-width': 2.5, 'circle-stroke-color': '#ffffff' },
+      },
+      {
+        id: 'passage-cluster-count',
+        type: 'symbol',
+        source: 'passages',
+        filter: ['has', 'point_count'],
+        layout: {
+          'text-field': BENGALI_COUNT,
+          'text-font': LABEL_FONT,
+          'text-size': 14,
+          'text-allow-overlap': true,
+          'text-ignore-placement': true,
+        },
+        paint: { 'text-color': '#ffffff' },
+      },
       // The selected passage is drawn by the pulsing DOM marker instead.
       {
         id: 'passage-points',
         type: 'circle',
         source: 'passages',
-        filter: ['!', ['get', 'selected']],
+        filter: ['all', ['!', ['has', 'point_count']], ['!', ['get', 'selected']]],
         paint: { 'circle-radius': 6, 'circle-color': COLORS.navy, 'circle-stroke-width': 2, 'circle-stroke-color': '#ffffff' },
       },
-      // Invisible, finger-sized tap target around each point (~44 px across).
+      // Invisible, finger-sized tap target around each point or cluster
+      // (~44 px across).
       {
         id: 'passage-hit',
         type: 'circle',
@@ -281,6 +327,7 @@ const map = new maplibregl.Map({
         id: 'passage-labels',
         type: 'symbol',
         source: 'passages',
+        filter: ['!', ['has', 'point_count']],
         layout: {
           'text-field': ['get', 'nameBn'],
           'text-font': LABEL_FONT,
@@ -369,9 +416,15 @@ map.on('error', (event) => {
 |--------------------------------------------------------------------------
 */
 
-map.on('click', 'passage-hit', (event) => {
+map.on('click', 'passage-hit', async (event) => {
   const feature = event.features && event.features[0];
-  if (feature) selectStrait(feature.properties.key);
+  if (!feature) return;
+  if (feature.properties.cluster) {
+    const zoom = await map.getSource('passages').getClusterExpansionZoom(feature.properties.cluster_id);
+    map.easeTo({ center: feature.geometry.coordinates, zoom, duration: 700 });
+    return;
+  }
+  selectStrait(feature.properties.key);
 });
 
 map.on('mouseenter', 'passage-hit', () => {
