@@ -49,8 +49,12 @@ tools/                build pipeline (Node only, no GDAL/tippecanoe needed)
 - **Low-end Android first.** The straits map downloads about 400 KB on first
   visit (compressed), of which about 19 KB is map data for the opening view.
   The old version was about 2 MB, including 5.5 MB of GeoJSON the phone had to parse.
-- **Language.** UI (buttons, labels, controls) is English. Place names and
-  educational content are Bengali wherever the source has them.
+- **Language.** Map controls (Layers menu, accessibility labels) are English. Everything the student reads as content is Bengali:
+  place names on the map, the passage names in the dropdown, and the whole
+  information card, including its field labels (দেশ, সংযোগ, সীমানা).
+- **Credits behind ⓘ.** Attribution stays on the page (Natural Earth, MapLibre,
+  and OpenStreetMap's ODbL require it) but sits behind an ⓘ button under the
+  compass instead of taking a line of the screen.
 - **Attribution.** Every map shows its data credits in the always-visible
   line at the bottom of the map.
 - **Light palette.** Pale blue sea, warm off-white land, dark labels on white

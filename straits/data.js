@@ -3,7 +3,11 @@
 | STRAIT DATA
 |--------------------------------------------------------------------------
 |
-| center = [longitude, latitude]
+| center      = [longitude, latitude]
+| countriesBn = the land either side, Bengali (Natural Earth NAME_BN spellings)
+| connectsBn  = what it joins, Bengali, as shown on the card
+| seas        = keys into SEAS below — the water bodies it joins, labelled on
+|               the map (Layers → Connected seas)
 | route  = deliberately simplified shipping-lane visualisation (NOT a
 |          survey-grade path). Coastlines and borders come from the
 |          shared world tiles, not from here.
@@ -12,14 +16,42 @@
 |
 */
 
+/*
+|--------------------------------------------------------------------------
+| CONNECTED SEAS
+|--------------------------------------------------------------------------
+|
+| Only the seas some passage connects — a label each, at a hand-placed
+| point in open water. Names are Bengali content (drafts to be checked
+| against BCS usage).
+|
+*/
+
+export const SEAS = {
+  persianGulf: { nameBn: 'পারস্য উপসাগর', at: [51.3, 27.2] },
+  gulfOfOman: { nameBn: 'ওমান উপসাগর', at: [58.8, 24.4] },
+  andamanSea: { nameBn: 'আন্দামান সাগর', at: [96.5, 10.5] },
+  southChinaSea: { nameBn: 'দক্ষিণ চীন সাগর', at: [113.5, 12.5] },
+  redSea: { nameBn: 'লোহিত সাগর', at: [38.6, 20.2] },
+  gulfOfAden: { nameBn: 'এডেন উপসাগর', at: [48.5, 12.6] },
+  atlantic: { nameBn: 'আটলান্টিক মহাসাগর', at: [-13.5, 35.5] },
+  mediterranean: { nameBn: 'ভূমধ্যসাগর', at: [17.5, 34.8] },
+  blackSea: { nameBn: 'কৃষ্ণ সাগর', at: [34.0, 43.4] },
+  marmara: { nameBn: 'মারমারা সাগর', at: [28.2, 40.72] },
+  aegean: { nameBn: 'ইজিয়ান সাগর', at: [25.0, 38.9] },
+  chukchi: { nameBn: 'চুকচি সাগর', at: [-170.5, 69.5] },
+  beringSea: { nameBn: 'বেরিং সাগর', at: [-176.0, 59.5] },
+};
+
 export const STRAITS = {
   hormuz: {
     nameEn: 'Strait of Hormuz',
     nameBn: 'হরমুজ প্রণালি',
     center: [56.35, 26.55],
     zoom: 6.8,
-    countries: 'Iran — Oman',
-    connects: 'Persian Gulf → Gulf of Oman',
+    countriesBn: 'ইরান — ওমান',
+    connectsBn: 'পারস্য উপসাগর → ওমান উপসাগর',
+    seas: ['persianGulf', 'gulfOfOman'],
     boundaryNote: 'ইরান–ওমান সামুদ্রিক সীমানা (মাসকট অঞ্চল, ১৯৭৪ চুক্তি)',
     route: [
       [52.4, 26.8], [53.3, 26.5], [54.2, 26.3], [55.0, 26.25],
@@ -33,8 +65,9 @@ export const STRAITS = {
     nameBn: 'মালাক্কা প্রণালি',
     center: [101.2, 3.2],
     zoom: 5.8,
-    countries: 'Malaysia — Indonesia',
-    connects: 'Andaman Sea → South China Sea',
+    countriesBn: 'মালয়েশিয়া — ইন্দোনেশিয়া',
+    connectsBn: 'আন্দামান সাগর → দক্ষিণ চীন সাগর',
+    seas: ['andamanSea', 'southChinaSea'],
     boundaryNote: 'মালয়েশিয়া–ইন্দোনেশিয়া সামুদ্রিক সীমানা (১৯৭০ চুক্তি)',
     route: [
       [94.6, 6.4], [96.2, 5.7], [98.0, 4.9], [99.5, 4.0],
@@ -47,8 +80,9 @@ export const STRAITS = {
     nameBn: 'বাব-এল-মান্দেব প্রণালি',
     center: [43.35, 12.65],
     zoom: 7,
-    countries: 'Yemen — Djibouti / Eritrea',
-    connects: 'Red Sea → Gulf of Aden',
+    countriesBn: 'ইয়েমেন — জিবুতি / ইরিত্রিয়া',
+    connectsBn: 'লোহিত সাগর → এডেন উপসাগর',
+    seas: ['redSea', 'gulfOfAden'],
     boundaryNote: 'ইয়েমেন ও জিবুতি/ইরিত্রিয়ার আঞ্চলিক জলসীমা',
     route: [
       [42.0, 15.5], [42.3, 14.4], [42.6, 13.5], [43.1, 12.7],
@@ -61,8 +95,9 @@ export const STRAITS = {
     nameBn: 'জিব্রাল্টার প্রণালি',
     center: [-5.55, 35.95],
     zoom: 7.3,
-    countries: 'Spain — Morocco',
-    connects: 'Atlantic Ocean → Mediterranean Sea',
+    countriesBn: 'স্পেন — মরক্কো',
+    connectsBn: 'আটলান্টিক মহাসাগর → ভূমধ্যসাগর',
+    seas: ['atlantic', 'mediterranean'],
     boundaryNote: 'স্পেন–মোরক্কো জলসীমা (ইউরোপ–আফ্রিকা বিভাজন)',
     route: [
       [-9.0, 35.7], [-7.7, 35.8], [-6.5, 35.9], [-5.6, 35.95],
@@ -75,8 +110,9 @@ export const STRAITS = {
     nameBn: 'বসফরাস প্রণালি',
     center: [29.05, 41.12],
     zoom: 8.6,
-    countries: 'Türkiye (উভয় তীর)',
-    connects: 'Black Sea → Sea of Marmara',
+    countriesBn: 'তুরস্ক (উভয় তীর)',
+    connectsBn: 'কৃষ্ণ সাগর → মারমারা সাগর',
+    seas: ['blackSea', 'marmara'],
     boundaryNote: 'সম্পূর্ণ তুর্কি জলসীমা — ইউরোপ ও এশিয়ার মহাদেশীয় বিভাজন রেখা',
     route: [
       [29.14, 41.3], [29.1, 41.24], [29.07, 41.18], [29.05, 41.12],
@@ -89,8 +125,9 @@ export const STRAITS = {
     nameBn: 'দার্দানেলিস প্রণালি',
     center: [26.5, 40.2],
     zoom: 8,
-    countries: 'Türkiye (উভয় তীর)',
-    connects: 'Sea of Marmara → Aegean Sea',
+    countriesBn: 'তুরস্ক (উভয় তীর)',
+    connectsBn: 'মারমারা সাগর → ইজিয়ান সাগর',
+    seas: ['marmara', 'aegean'],
     boundaryNote: 'সম্পূর্ণ তুর্কি জলসীমা — ইউরোপ ও এশিয়ার মহাদেশীয় বিভাজন রেখা',
     route: [
       [26.75, 40.48], [26.65, 40.38], [26.55, 40.28], [26.45, 40.18],
@@ -103,8 +140,9 @@ export const STRAITS = {
     nameBn: 'বেরিং প্রণালি',
     center: [-169.0, 65.9],
     zoom: 4.7,
-    countries: 'Russia — United States',
-    connects: 'Arctic Ocean → Pacific Ocean',
+    countriesBn: 'রাশিয়া — মার্কিন যুক্তরাষ্ট্র',
+    connectsBn: 'উত্তর মহাসাগর (চুকচি সাগর) → প্রশান্ত মহাসাগর (বেরিং সাগর)',
+    seas: ['chukchi', 'beringSea'],
     boundaryNote: 'রাশিয়া–যুক্তরাষ্ট্র সামুদ্রিক সীমানা (১৯৯০ চুক্তি, বিগ ও লিটল ডায়োমিড দ্বীপের মাঝ দিয়ে)',
     route: [
       [-171.5, 68.0], [-170.5, 67.0], [-169.5, 66.2], [-168.8, 65.8],

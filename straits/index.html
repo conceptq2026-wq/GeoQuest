@@ -22,8 +22,8 @@
            this page. The heading stays for screen readers. -->
       <header class="explorer-header">
         <h1 class="visually-hidden" lang="bn">গুরুত্বপূর্ণ প্রণালি</h1>
-        <select id="straitSelector" class="strait-selector" aria-label="Choose a strait">
-          <option value="" disabled selected>Choose a strait…</option>
+        <select id="straitSelector" class="strait-selector" aria-label="Choose a strait" lang="bn">
+          <option value="" disabled selected>একটি প্রণালি বেছে নিন…</option>
         </select>
       </header>
 
@@ -42,20 +42,20 @@
             <span class="sheet-grip"></span>
           </button>
           <div id="infoSheetBody" class="info-sheet-body" aria-live="polite">
-            <span class="info-kicker">Strait</span>
+            <!-- The card is Bengali content throughout, labels included. -->
+            <span class="info-kicker" lang="bn">প্রণালি</span>
             <h2 id="infoTitle" class="info-title" lang="bn"></h2>
-            <div id="infoEn" class="info-en"></div>
 
             <div class="info-row">
-              <span class="info-label">Between</span>
-              <span id="infoCountries" class="info-value"></span>
+              <span class="info-label" lang="bn">দেশ</span>
+              <span id="infoCountries" class="info-value" lang="bn"></span>
             </div>
             <div class="info-row">
-              <span class="info-label">Connects</span>
-              <span id="infoConnects" class="info-value"></span>
+              <span class="info-label" lang="bn">সংযোগ</span>
+              <span id="infoConnects" class="info-value" lang="bn"></span>
             </div>
             <div class="info-row">
-              <span class="info-label">Boundary</span>
+              <span class="info-label" lang="bn">সীমানা</span>
               <span id="infoBoundary" class="info-value" lang="bn"></span>
             </div>
           </div>
@@ -70,6 +70,11 @@
               <input type="checkbox" data-layer-group="countryLabels" checked />
               <span class="legend-swatch" style="background: #3f4650"></span>
               Country names
+            </label>
+            <label class="layers-menu-item">
+              <input type="checkbox" data-layer-group="seas" checked />
+              <span class="legend-swatch" style="background: #1f5f99"></span>
+              Connected seas
             </label>
             <label class="layers-menu-item">
               <input type="checkbox" data-layer-group="routes" checked />

@@ -54,7 +54,8 @@ body {
   appearance: none;
   -webkit-appearance: none;
 
-  font-size: 14px;
+  font-family: 'Noto Sans Bengali', Inter, system-ui, sans-serif;
+  font-size: 15px;
   font-weight: 600;
 
   cursor: pointer;
@@ -185,15 +186,6 @@ body {
   padding: 0 18px 16px;
 }
 
-/* The credit line rides just above the sheet, so it is never covered. */
-.maplibregl-ctrl-bottom-right {
-  bottom: var(--sheet-visible, 0px);
-  transition: bottom 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-.map-shell.sheet-dragging .maplibregl-ctrl-bottom-right {
-  transition: none;
-}
 
 .info-kicker {
   display: block;
@@ -206,6 +198,14 @@ body {
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+/* Uppercase and letter-spacing are for Latin; spacing out Bengali letters
+   breaks conjuncts such as প্র. */
+.info-kicker[lang='bn'] {
+  font-size: 13px;
+  letter-spacing: normal;
+  text-transform: none;
 }
 
 .info-title {

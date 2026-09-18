@@ -1,4 +1,4 @@
-import { STRAITS } from './data.js';
+import { SEAS, STRAITS } from './data.js';
 import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs';
 
 /*
@@ -13,7 +13,6 @@ const infoSheet = document.getElementById('infoSheet');
 const infoSheetBody = document.getElementById('infoSheetBody');
 const sheetHandle = document.getElementById('sheetHandle');
 const infoTitle = document.getElementById('infoTitle');
-const infoEn = document.getElementById('infoEn');
 const infoCountries = document.getElementById('infoCountries');
 const infoConnects = document.getElementById('infoConnects');
 const infoBoundary = document.getElementById('infoBoundary');
@@ -26,9 +25,9 @@ const layerCheckboxes = document.querySelectorAll('#layersMenu input[type="check
 |--------------------------------------------------------------------------
 | BUILD CONTROLS
 |
-| Controls are English; the place names on them are Bengali content. One
-| dropdown picks the passage: with 10+ straits and canals, reading a list
-| beats swiping through a row of pills, and it costs one slim line.
+| Controls are English; place names and the information card are Bengali.
+| One dropdown picks the passage: with 10+ straits and canals, reading a
+| list beats swiping through a row of pills, and it costs one slim line.
 |--------------------------------------------------------------------------
 */
 
@@ -38,7 +37,7 @@ let currentKey = null;
 Object.entries(STRAITS).forEach(([key, strait]) => {
   const option = document.createElement('option');
   option.value = key;
-  option.textContent = `${strait.nameBn} — ${strait.nameEn}`;
+  option.textContent = strait.nameBn;
   selector.appendChild(option);
 });
 
@@ -82,6 +81,8 @@ const COLORS = {
   halo: '#ffffff',
   navy: '#0b3d91',
   route: '#e8590c',
+  seaLabel: '#1f5f99',
+  seaLabelActive: '#0b3d91',
 };
 
 const tileSource = (minzoom, maxzoom) => ({
@@ -111,6 +112,19 @@ const landLayers = (source) => [
 
 const EMPTY = { type: 'FeatureCollection', features: [] };
 
+/** One label per connected sea; the chosen passage's seas are "active". */
+function seasGeoJSON() {
+  const active = new Set(currentKey ? STRAITS[currentKey].seas : []);
+  return {
+    type: 'FeatureCollection',
+    features: Object.entries(SEAS).map(([key, sea]) => ({
+      type: 'Feature',
+      properties: { nameBn: sea.nameBn, active: active.has(key) },
+      geometry: { type: 'Point', coordinates: sea.at },
+    })),
+  };
+}
+
 /** Every passage as a point, so the opening world view shows them all. */
 function passagesGeoJSON() {
   return {
@@ -132,6 +146,7 @@ const map = new maplibregl.Map({
       world: tileSource(0, 6),
       detail: tileSource(7, 10),
       passages: { type: 'geojson', data: passagesGeoJSON() },
+      seas: { type: 'geojson', data: seasGeoJSON() },
       'strait-route': { type: 'geojson', data: EMPTY },
     },
     layers: [
@@ -168,6 +183,28 @@ const map = new maplibregl.Map({
           'text-optional': true,
         },
         paint: { 'text-color': COLORS.label, 'text-halo-color': COLORS.halo, 'text-halo-width': 1.4 },
+      },
+      // Water-body names in blue, as atlases do; the two seas the chosen
+      // passage joins are larger and darker, and win label collisions.
+      {
+        id: 'sea-labels',
+        type: 'symbol',
+        source: 'seas',
+        // At world zoom the other seas' names would crowd the passage points.
+        filter: ['any', ['get', 'active'], ['>=', ['zoom'], 3]],
+        layout: {
+          'text-field': ['get', 'nameBn'],
+          'text-font': LABEL_FONT,
+          'text-size': ['case', ['get', 'active'], 15, 12],
+          'text-max-width': 7,
+          'symbol-sort-key': ['case', ['get', 'active'], 0, 1],
+          'text-optional': true,
+        },
+        paint: {
+          'text-color': ['case', ['get', 'active'], COLORS.seaLabelActive, COLORS.seaLabel],
+          'text-halo-color': COLORS.halo,
+          'text-halo-width': 1.6,
+        },
       },
       // The selected passage is drawn by the pulsing DOM marker instead.
       {
@@ -219,22 +256,27 @@ const map = new maplibregl.Map({
   touchZoomRotate: true,
 });
 
-// Always-visible credit line (not the collapsible "i" button), kept to one
-// line at phone width. Licence details are in the README.
+// No +/− buttons: pinch already zooms. The compass shows which way is north
+// after a two-finger rotate, and a tap on it turns the map back.
+map.addControl(new maplibregl.NavigationControl({ showZoom: false, showCompass: true, visualizePitch: false }), 'top-right');
+
+// Credits live behind an ⓘ button under the compass: always on the page (the
+// data licences require it), never in the way. Top-right keeps it clear of
+// the information sheet. MapLibre's compact control opens expanded; it starts
+// collapsed here, and a tap on ⓘ shows the credits.
 map.addControl(
   new maplibregl.AttributionControl({
-    compact: false,
+    compact: true,
     customAttribution: [
       '<a href="https://maplibre.org/" target="_blank" rel="noopener">MapLibre</a>',
       '<a href="../shared/fonts/noto-sans-bengali/OFL.txt" target="_blank" rel="noopener">Noto Sans Bengali</a>',
     ],
   }),
-  'bottom-right',
+  'top-right',
 );
-
-// No +/− buttons: pinch already zooms. The compass shows which way is north
-// after a two-finger rotate, and a tap on it turns the map back.
-map.addControl(new maplibregl.NavigationControl({ showZoom: false, showCompass: true, visualizePitch: false }), 'top-right');
+map.once('load', () => {
+  document.querySelector('.maplibregl-ctrl-attrib')?.classList.remove('maplibregl-compact-show');
+});
 
 // Keep the canvas correctly sized on container/orientation changes.
 window.addEventListener('resize', () => map.resize());
@@ -311,6 +353,7 @@ function selectStrait(key) {
     features: [{ type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: strait.route } }],
   });
   map.getSource('passages')?.setData(passagesGeoJSON());
+  map.getSource('seas')?.setData(seasGeoJSON());
   marker.setLngLat(strait.center).addTo(map);
 }
 
@@ -335,9 +378,8 @@ function updateInfo(key) {
   const strait = STRAITS[key];
 
   infoTitle.textContent = strait.nameBn;
-  infoEn.textContent = strait.nameEn;
-  infoCountries.textContent = strait.countries;
-  infoConnects.textContent = strait.connects;
+  infoCountries.textContent = strait.countriesBn;
+  infoConnects.textContent = strait.connectsBn;
   infoBoundary.textContent = strait.boundaryNote || '—';
 }
 
@@ -373,7 +415,6 @@ const closedOffset = () => (currentKey ? Math.max(0, sheetHeight() - HANDLE_HEIG
 function applySheetOffset(offset) {
   sheetOffset = offset;
   infoSheet.style.setProperty('--sheet-offset', `${offset}px`);
-  mapShell.style.setProperty('--sheet-visible', `${sheetHeight() - offset}px`);
 }
 
 function setSheetOpen(open) {
@@ -440,17 +481,18 @@ function endDrag(event) {
 }
 
 // Content height changes between passages (a longer note, canal rows): keep
-// a hidden sheet tucked away and the credit line sitting right above it.
+// a hidden sheet tucked away.
 new ResizeObserver(() => applySheetOffset(sheetOpen ? 0 : closedOffset())).observe(infoSheet);
 
 /*
 |--------------------------------------------------------------------------
-| LAYERS MENU — country names, shipping routes
+| LAYERS MENU — country names, connected seas, shipping routes
 |--------------------------------------------------------------------------
 */
 
 const LAYER_GROUPS = {
   countryLabels: ['country-labels'],
+  seas: ['sea-labels'],
   routes: ['strait-route-casing', 'strait-route-line'],
 };
 
