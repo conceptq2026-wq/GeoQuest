@@ -169,7 +169,12 @@
       "properties": [
         "nameBn",
         "hasGeometry"
-      ]
+      ],
+      "selectionMarker": {
+        "when": {
+          "hasGeometry": false
+        }
+      }
     }
   },
   "styles": {
@@ -233,15 +238,7 @@
         "circle-color": "#0b3d91",
         "circle-stroke-width": 2,
         "circle-stroke-color": "#ffffff",
-        "circle-radius": [
-          "case",
-          [
-            "get",
-            "selected"
-          ],
-          9,
-          6
-        ]
+        "circle-radius": 6
       }
     }
   },
@@ -376,10 +373,21 @@
       "slot": "aboveLabels",
       "style": "line-marker",
       "filter": [
-        "!",
+        "all",
         [
-          "get",
-          "hasGeometry"
+          "!",
+          [
+            "get",
+            "hasGeometry"
+          ]
+        ],
+        [
+          "!=",
+          [
+            "get",
+            "selected"
+          ],
+          true
         ]
       ]
     },

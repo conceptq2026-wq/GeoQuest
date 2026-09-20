@@ -483,9 +483,11 @@ console.log('\n\n============ border-lines ============');
   //   review  — build-time notes about undecided spellings, not display content
   //   sectors — the verbatim originals behind the Radcliffe merge; the
   //             vocabulary has no term for a nested record
+  //   geometrySource — build input only: it is what gives bdPov its
+  //             definition, and nothing on a student's device reads it
   // and one record field the seed does not carry:
   //   countriesBn — composed for approval, so it is null until approved
-  const NOT_RECORD_FIELDS = ['id', 'review', 'sectors', 'countriesBn'];
+  const NOT_RECORD_FIELDS = ['id', 'review', 'sectors', 'geometrySource', 'countriesBn'];
 
   console.log('\n---- records.json against lines.seed.json ----');
   compareTables({

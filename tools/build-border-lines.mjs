@@ -454,6 +454,16 @@ const EXPECTED_GEOMETRY = {
  * status, nameEn and nameBn need no pin: they are authored in data.js and
  * cannot change under the build.
  */
+/*
+ * One entry per line whose geometry comes FROM NATURAL EARTH, and no others.
+ *
+ * It used to carry 'absent' for the lines that trace nothing, which pinned a
+ * word rather than a fact: 'absent' was true of a line with no geometry, a
+ * line this repo generated, and a line whose classification had silently
+ * vanished, and the pin could not tell them apart. A line that is not Natural
+ * Earth's has no point of view to pin, so it is not listed — and the
+ * present-if-and-only-if check below is what makes that safe to rely on.
+ */
 const EXPECTED_BDPOV = {
   mcmahon: 'shown',
   radcliffe: 'shown',
@@ -461,11 +471,6 @@ const EXPECTED_BDPOV = {
   loc: 'shown',
   koreanDmz: 'shown',
   greenLine: 'unrecognized',
-  // No traces, so no point of view. If one ever gains geometry this fires, and
-  // its empty-geometry hash moves in the same run.
-  berlinWall: 'absent',
-  parallel17: 'absent',
-  sykesPicot: 'absent',
 };
 
 const EXPECTED_TRACES = {
@@ -506,8 +511,15 @@ for (const [id, expected] of Object.entries(EXPECTED_BDPOV)) {
   if (actual === undefined) driftErrors.push(`${id}: in EXPECTED_BDPOV but the build produced no such line`);
   else if (actual !== expected) driftErrors.push(`${id}: expected bdPov ${expected}, got ${actual}`);
 }
-for (const id of Object.keys(actualBdPov))
-  if (!(id in EXPECTED_BDPOV)) driftErrors.push(`${id}: built but has no entry in EXPECTED_BDPOV`);
+// 'absent' means the line traced nothing from Natural Earth, so there is no
+// point of view to pin and it must not be listed. A line that starts tracing
+// fails here rather than quietly acquiring a classification nobody pinned.
+for (const [id, actual] of Object.entries(actualBdPov)) {
+  if (actual === 'absent' && id in EXPECTED_BDPOV)
+    driftErrors.push(`${id}: pinned in EXPECTED_BDPOV but traces nothing from Natural Earth`);
+  if (actual !== 'absent' && !(id in EXPECTED_BDPOV))
+    driftErrors.push(`${id}: traces Natural Earth (bdPov ${actual}) but has no entry in EXPECTED_BDPOV`);
+}
 
 if (driftErrors.length)
   throw new Error(`the source data or a match rule moved under this build:\n  ${driftErrors.join('\n  ')}`);
@@ -539,6 +551,27 @@ for (const [id, spec] of Object.entries(GENERATED)) {
   generatedById.set(id, [feature]);
 }
 
+/*
+ * WHERE EACH RECORD'S GEOMETRY CAME FROM.
+ *
+ * Derived rather than authored: the build is the only thing that knows, and a
+ * hand-written value would be one more thing to keep in step. 'osm' is in the
+ * vocabulary and unused — nothing here comes from OpenStreetMap yet.
+ *
+ * This exists to give bdPov a definition that cannot drift. bdPov describes
+ * what Natural Earth's Bangladesh point-of-view file shows, so it is
+ * meaningless for a line this repo computed, and absent rather than null:
+ * there is no decision pending, the field simply does not apply.
+ */
+function geometrySourceFor(id, traces) {
+  const generated = generatedById.has(id);
+  if (traces.length && generated)
+    throw new Error(`${id}: has both Natural Earth traces and a generated line — its geometry source is ambiguous`);
+  if (traces.length) return 'naturalEarth';
+  if (generated) return 'generated';
+  return 'none';
+}
+
 // ---- lines.seed.json --------------------------------------------------------
 const seed = {};
 for (const [id, rec] of byId) {
@@ -567,6 +600,7 @@ for (const [id, rec] of byId) {
     noteBn: generated ? null : single ? single.note : null,
     hasTrace: traces.length > 0,
     hasGeometry: traces.length > 0 || generatedById.has(id),
+    geometrySource: geometrySourceFor(id, traces),
   };
   if (generated?.frame) seed[id].frame = generated.frame;
   else if (MARKER_FRAMES[id]) seed[id].frame = MARKER_FRAMES[id];
@@ -620,6 +654,7 @@ for (const [id, spec] of Object.entries(GENERATED)) {
     noteBn: null,
     hasTrace: false,
     hasGeometry: features.length > 0,
+    geometrySource: geometrySourceFor(id, []),
     frame: spec.frame,
     establishedBn: spec.establishedBn,
   };
@@ -640,6 +675,21 @@ for (const [id, rec] of Object.entries(seed))
  * tordesillas is the deliberate exception: its longitude is unsettled, so it
  * has no honest point to mark. It is listed here so the gap stays visible.
  */
+/*
+ * bdPov MEANS ONE THING: what Natural Earth's Bangladesh point-of-view
+ * boundary file shows for this record's traces. So it is present exactly when
+ * the geometry came from that file, and absent — not null — otherwise. Absent
+ * because it does not apply, not because a decision is owed.
+ */
+for (const [id, rec] of Object.entries(seed)) {
+  const hasBdPov = 'bdPov' in rec;
+  const isNaturalEarth = rec.geometrySource === 'naturalEarth';
+  if (hasBdPov !== isNaturalEarth)
+    throw new Error(
+      `${id}: bdPov is ${hasBdPov ? `present (${JSON.stringify(rec.bdPov)})` : 'absent'} but geometrySource is ${JSON.stringify(rec.geometrySource)} — bdPov is present if and only if the source is "naturalEarth"`,
+    );
+}
+
 const NO_POINT_YET = ['tordesillas'];
 for (const [id, rec] of Object.entries(seed)) {
   if (rec.hasGeometry || NO_POINT_YET.includes(id)) continue;

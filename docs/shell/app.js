@@ -615,6 +615,24 @@ for (const source of interactionSources) {
 
 const marker = markerFor();
 
+/**
+ * Whether the pulsing marker belongs on this record.
+ *
+ * `selectionMarker: true` means every record in the source, which is what a
+ * map whose records ARE points wants. `{ when: { field: value } }` narrows it
+ * — the same field/value shape expectGeometry uses — for a map that draws
+ * most records as lines and marks only the ones it cannot draw.
+ *
+ * The marker is placed imperatively at one coordinate and touches no layer,
+ * so narrowing it costs nothing elsewhere.
+ */
+function markerApplies(spec, row) {
+  const rule = spec.selectionMarker;
+  if (rule === true) return true;
+  if (!rule || typeof rule !== 'object' || !rule.when) return false;
+  return Object.entries(rule.when).every(([field, value]) => row[field] === value);
+}
+
 function markerFor() {
   const withMarker = Object.entries(sourceSpecs).find(([, spec]) => spec.selectionMarker);
   if (!withMarker) return null;
@@ -645,7 +663,11 @@ function doSelect({ table, key }) {
   syncStepButtons();
   if (marker && marker.spec.records === table) {
     const row = records[table][key];
-    marker.instance.setLngLat(row[marker.spec.geometryFrom]).addTo(map);
+    const point = row[marker.spec.geometryFrom];
+    // Taken off the map for a record it does not apply to, so selecting a
+    // traced line after a marked one does not leave a pulse behind.
+    if (point && markerApplies(marker.spec, row)) marker.instance.setLngLat(point).addTo(map);
+    else marker.instance.remove();
   }
   if (descriptor.sheet) {
     fillSheet(table, key);

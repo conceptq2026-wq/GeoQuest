@@ -16,6 +16,7 @@
     "noteBn": "ভারত–চীন (তিব্বত) সীমান্ত রেখা, ১৯১৪ সিমলা কনভেনশন — চীন স্বীকৃতি দেয় না",
     "hasTrace": true,
     "hasGeometry": true,
+    "geometrySource": "naturalEarth",
     "establishedBn": "১৯১৪",
     "bdPov": "shown",
     "review": "nameBn spelling undecided: data.js has \"ম্যাকমাহন লাইন\", the BCS corpus has \"ম্যাকমোহন লাইন\". Kept as data.js has it; change here and it changes everywhere."
@@ -38,6 +39,7 @@
     "noteBn": null,
     "hasTrace": true,
     "hasGeometry": true,
+    "geometrySource": "naturalEarth",
     "establishedBn": "১৯৪৭",
     "bdPov": "shown",
     "review": "noteBn is null because the merge has no source value: the two sectors carry different notes, and merging them is writing new content. The originals are kept verbatim under \"sectors\".",
@@ -87,6 +89,7 @@
     "noteBn": "আফগানিস্তান–পাকিস্তান সীমান্ত, ১৮৯৩ চুক্তি",
     "hasTrace": true,
     "hasGeometry": true,
+    "geometrySource": "naturalEarth",
     "establishedBn": "১৮৯৩",
     "bdPov": "shown"
   },
@@ -107,6 +110,7 @@
     "noteBn": "ভারত–পাকিস্তান, কাশ্মীর — জাতিসংঘ-স্বীকৃত সীমান্ত নয়, বাস্তব নিয়ন্ত্রণ রেখা",
     "hasTrace": true,
     "hasGeometry": true,
+    "geometrySource": "naturalEarth",
     "establishedBn": null,
     "bdPov": "shown"
   },
@@ -127,6 +131,7 @@
     "noteBn": "উত্তর–দক্ষিণ কোরিয়া, ১৯৫৩ যুদ্ধবিরতি রেখা",
     "hasTrace": true,
     "hasGeometry": true,
+    "geometrySource": "naturalEarth",
     "establishedBn": "১৯৫৩",
     "bdPov": "shown"
   },
@@ -147,6 +152,7 @@
     "noteBn": "ইসরায়েল–ওয়েস্ট ব্যাংক, ১৯৪৯ যুদ্ধবিরতি রেখা",
     "hasTrace": true,
     "hasGeometry": true,
+    "geometrySource": "naturalEarth",
     "establishedBn": "১৯৪৯",
     "bdPov": "unrecognized"
   },
@@ -164,6 +170,7 @@
     "noteBn": "১৯৬১–১৯৮৯, পূর্ব ও পশ্চিম বার্লিনের বিভাজন — বর্তমানে অস্তিত্ব নেই। এই দেয়ালের প্রকৃত পথ কোনো বর্তমান দেশের সীমান্তের সাথে মেলে না, তাই এখানে শুধু একটা রেফারেন্স পয়েন্ট — সম্পূর্ণ রেখা আঁকার জন্য পৃথক হিস্টোরিক্যাল জিআইএস ডেটা লাগবে, যা এই অফলাইন সেটআপে নেই।",
     "hasTrace": false,
     "hasGeometry": false,
+    "geometrySource": "none",
     "frame": [
       8.5,
       49.8,
@@ -187,6 +194,7 @@
     "noteBn": null,
     "hasTrace": false,
     "hasGeometry": true,
+    "geometrySource": "generated",
     "frame": [
       104.8,
       15.3,
@@ -211,6 +219,7 @@
     "noteBn": "১৯১৬ ব্রিটিশ–ফরাসি গোপন চুক্তি — আজকের সিরিয়া–ইরাক সীমান্তের ওপর প্রভাব রেখেছে কিন্তু হুবহু এক নয়, তাই পূর্ণ রেখা আঁকা হয়নি — রেফারেন্স পয়েন্ট মাত্র।",
     "hasTrace": false,
     "hasGeometry": false,
+    "geometrySource": "none",
     "frame": [
       35,
       31,
@@ -236,6 +245,7 @@
     "noteBn": null,
     "hasTrace": false,
     "hasGeometry": true,
+    "geometrySource": "generated",
     "frame": [
       24,
       19.5,
@@ -261,6 +271,7 @@
     "noteBn": null,
     "hasTrace": false,
     "hasGeometry": true,
+    "geometrySource": "generated",
     "frame": [
       67.3,
       22.6,
@@ -286,6 +297,7 @@
     "noteBn": null,
     "hasTrace": false,
     "hasGeometry": true,
+    "geometrySource": "generated",
     "frame": [
       -7.6,
       23.8,
@@ -311,6 +323,7 @@
     "noteBn": null,
     "hasTrace": false,
     "hasGeometry": true,
+    "geometrySource": "generated",
     "frame": [
       123.6,
       36.4,
@@ -337,6 +350,7 @@
     "noteBn": null,
     "hasTrace": false,
     "hasGeometry": true,
+    "geometrySource": "generated",
     "frame": [
       -124.5,
       46.5,
@@ -359,6 +373,7 @@
     "noteBn": null,
     "hasTrace": false,
     "hasGeometry": false,
+    "geometrySource": "none",
     "frame": [
       -60,
       -37,
