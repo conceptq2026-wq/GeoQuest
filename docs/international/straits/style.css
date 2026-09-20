@@ -301,8 +301,8 @@ body {
 }
 
 /*
- * Compass and tilt, top-right, in place of MapLibre's needle-only control.
- * 44px so both are a comfortable tap target on a phone.
+ * The tilt button, under MapLibre's own compass at the top right. 44px so it
+ * is a comfortable tap target on a phone.
  */
 .ctrl-btn {
   display: flex;
@@ -326,59 +326,6 @@ body {
 .ctrl-btn:focus-visible {
   outline: 2px solid #0b5cad;
   outline-offset: -2px;
-}
-
-/* The dial turns; the button under it does not. */
-.compass-dial {
-  position: relative;
-  width: 34px;
-  height: 34px;
-  /* No transition by default: during a drag-rotate the dial must track the
-     finger exactly, and a transition would lag behind it. The tap-to-north
-     easeTo animates the map, and the dial follows that. */
-}
-
-.compass-letter {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 9px;
-  font-weight: 700;
-  line-height: 1;
-  color: #6b7885;
-}
-
-.compass-n {
-  top: 0;
-  color: #c0392b;
-}
-
-.compass-s {
-  bottom: 0;
-}
-
-.compass-e {
-  top: 50%;
-  left: auto;
-  right: 0;
-  transform: translateY(-50%);
-}
-
-.compass-w {
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-}
-
-.compass-needle {
-  position: absolute;
-  top: 9px;
-  left: 50%;
-  width: 2px;
-  height: 16px;
-  margin-left: -1px;
-  border-radius: 1px;
-  background: linear-gradient(to bottom, #c0392b 0 50%, #8996a4 50% 100%);
 }
 
 .ctrl-tilt {

@@ -414,57 +414,17 @@ const map = new maplibregl.Map({
 |--------------------------------------------------------------------------
 | MAP CHROME — compass, then tilt, top-right
 |
-| No +/− buttons: pinch already zooms. MapLibre's own NavigationControl drew a
-| needle only; these two replace it with a lettered dial and a tilt toggle, in
-| the same corner and the same order, so the attribution still sits under them.
+| No +/− buttons: pinch already zooms. MapLibre's own compass shows which way is
+| north after a two-finger rotate, and a tap on it turns the map back — which is
+| exactly the behaviour wanted, so the default control is used. A lettered
+| N/S/E/W dial was tried here and rejected: at control size the letters are
+| illegible.
 |
-| Chrome is English (N/S/E/W, "Tilt"/"Flat"); only place names and the card are
-| Bengali.
+| Chrome is English ("Tilt"/"Flat"); only place names and the card are Bengali.
 |--------------------------------------------------------------------------
 */
 
 const TILT_PITCH = 55;
-
-/** A dial lettered N/E/S/W that turns with the map. Tapping it returns north. */
-class CompassControl {
-  onAdd(map) {
-    this._map = map;
-    this._container = document.createElement('div');
-    this._container.className = 'maplibregl-ctrl maplibregl-ctrl-group';
-
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'ctrl-btn ctrl-compass';
-    button.setAttribute('aria-label', 'Reset the map to north');
-    button.title = 'Reset the map to north';
-    button.innerHTML =
-      '<span class="compass-dial" aria-hidden="true">' +
-      '<span class="compass-letter compass-n">N</span>' +
-      '<span class="compass-letter compass-e">E</span>' +
-      '<span class="compass-letter compass-s">S</span>' +
-      '<span class="compass-letter compass-w">W</span>' +
-      '<span class="compass-needle"></span>' +
-      '</span>';
-    // Bearing only. Pitch belongs to the tilt button, so a student who tilted
-    // on purpose does not lose it by straightening the map.
-    button.addEventListener('click', () => map.easeTo({ bearing: 0, duration: motion(400) }));
-
-    this._dial = button.querySelector('.compass-dial');
-    this._sync = () => {
-      this._dial.style.transform = `rotate(${-map.getBearing()}deg)`;
-    };
-    map.on('rotate', this._sync);
-    this._sync();
-
-    this._container.appendChild(button);
-    return this._container;
-  }
-
-  onRemove() {
-    this._map.off('rotate', this._sync);
-    this._container.remove();
-  }
-}
 
 /** Toggles between flat and tilted. The label says what a tap will do. */
 class TiltControl {
@@ -502,7 +462,7 @@ class TiltControl {
   }
 }
 
-map.addControl(new CompassControl(), 'top-right');
+map.addControl(new maplibregl.NavigationControl({ showZoom: false, showCompass: true, visualizePitch: false }), 'top-right');
 map.addControl(new TiltControl(), 'top-right');
 
 // Credits live behind an ⓘ button under the compass: always on the page (the
