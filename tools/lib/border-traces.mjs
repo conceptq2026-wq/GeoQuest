@@ -30,6 +30,17 @@ export const matches = (props, { between, featurecla }) => {
   return !featurecla || String(props.FEATURECLA).startsWith(featurecla);
 };
 
+/**
+ * The same test on ADM0_A3 codes, which both boundary-line files carry as
+ * ADM0_A3_L / ADM0_A3_R. A code is identity; a display name is content and can
+ * be reworded, so a build that needs a stable join uses this one.
+ */
+export const matchesCodes = (props, { between, featurecla }) => {
+  const pair = [props.ADM0_A3_L, props.ADM0_A3_R].sort().join('|');
+  if (pair !== [...between].sort().join('|')) return false;
+  return !featurecla || String(props.FEATURECLA).startsWith(featurecla);
+};
+
 // Keep only the runs of real Natural Earth points inside the box. No points
 // are invented; a run is split wherever the line leaves the box, so nothing
 // is drawn straight across a gap.
@@ -92,13 +103,16 @@ export async function simplifyFeatures(features, metres) {
  * Returns { shown: [[pt,…],…], unrecognized: [...] }; both may be empty when a
  * line has no `match` rule (a historical line that follows no modern border).
  *
+ * `line` supplies { match, region }. `matcher` decides how a segment is tested
+ * — by country name (the default) or by ADM0_A3 code.
+ *
  * Insertion order matters to the callers' output, so it is fixed here: source
  * order within a group, and `shown` before `unrecognized`.
  */
-export function traceRuns(line, sourceLines) {
+export function traceRuns(line, sourceLines, matcher = matches) {
   const runsByPov = { shown: [], unrecognized: [] };
   if (!line.match) return runsByPov;
-  for (const f of sourceLines.filter((f) => matches(f.properties, line.match))) {
+  for (const f of sourceLines.filter((f) => matcher(f.properties, line.match))) {
     const parts = f.geometry.type === 'LineString' ? [f.geometry.coordinates] : f.geometry.coordinates;
     const bdPov = f.properties.FCLASS_BD === 'Unrecognized' ? 'unrecognized' : 'shown';
     for (const part of parts) runsByPov[bdPov].push(...(line.region ? clipRuns(part, line.region) : [part]));

@@ -14,7 +14,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { readSource } from './lib/geo.mjs';
-import { loadBoundarySources, traceRuns, joinRuns, simplifyFeatures, labelAnchor } from './lib/border-traces.mjs';
+import { loadBoundarySources, traceRuns, joinRuns, simplifyFeatures, labelAnchor, matchesCodes } from './lib/border-traces.mjs';
 
 const ROOT = path.resolve('..');
 // Where the authored line list lives today. It is the straits map's file for
@@ -57,6 +57,62 @@ const LINE_IDS = {
 };
 
 /*
+ * WHICH COUNTRIES EACH LINE RUNS BETWEEN, as ADM0_A3 codes.
+ *
+ * data.js states these as display names, and a display name is content: the
+ * countries file has no "China" (it calls it "People's Republic of China") and
+ * no "Israel" at all, so a name-based join silently loses lines. ADM0_A3 is
+ * unique across all 248 countries and is carried natively by both boundary-line
+ * files as ADM0_A3_L / ADM0_A3_R, so it is the identity here.
+ *
+ * Every code below was read off the features that data.js's name-based rule
+ * already matched — none is typed from memory.
+ */
+const BETWEEN = {
+  'McMahon Line': ['CHN', 'IND'],
+  'Radcliffe Line (Punjab)': ['IND', 'PAK'],
+  'Radcliffe Line (Bengal)': ['BGD', 'IND'],
+  'Durand Line': ['AFG', 'PAK'],
+  'Line of Control (LoC)': ['IND', 'PAK'],
+  'Korean DMZ (38th Parallel)': ['KOR', 'PRK'],
+  'Green Line': ['ISR', 'PSX'],
+};
+
+/**
+ * The code rule for a line: this table's pair, with everything else about the
+ * rule still taken from data.js. Only the country identity changes — the
+ * featurecla filter that separates the Radcliffe Line from the Line of Control
+ * along the same India/Pakistan pair is carried through untouched, because
+ * restating it here would be a second place to get it wrong.
+ */
+const codeRule = (line) =>
+  BETWEEN[line.nameEn] ? { between: BETWEEN[line.nameEn], featurecla: line.match?.featurecla } : null;
+
+/*
+ * WHEN A LINE CAME INTO BEING, AND WHEN IT CEASED.
+ *
+ * Taken from the notes exactly as they read, in Bengali digits. Two fields
+ * rather than one "signed" year, because several of these were not signed:
+ * the Berlin Wall was built, and ১৯৬১–১৯৮৯ is a span, not a signing date.
+ *
+ * endedBn is ABSENT on a line still in force — not applicable. establishedBn
+ * is null only where no source here carries a year at all, which is the repo's
+ * convention for a fact that is real but unverified, and puts it on the
+ * pending list rather than inviting a guess.
+ */
+const DATES = {
+  mcmahon: { establishedBn: '১৯১৪' },
+  radcliffe: { establishedBn: '১৯৪৭' },
+  durand: { establishedBn: '১৮৯৩' },
+  loc: { establishedBn: null },
+  koreanDmz: { establishedBn: '১৯৫৩' },
+  greenLine: { establishedBn: '১৯৪৯' },
+  berlinWall: { establishedBn: '১৯৬১', endedBn: '১৯৮৯' },
+  parallel17: { establishedBn: '১৯৫৪', endedBn: '১৯৭৫' },
+  sykesPicot: { establishedBn: '১৯১৬' },
+};
+
+/*
  * Values for a merged record that no single source entry can supply, given by
  * the project owner. Only what the merge makes ambiguous is listed; everything
  * else still comes straight out of data.js.
@@ -66,7 +122,7 @@ const MERGED = {
     nameEn: 'Radcliffe Line',
     // Three, not a pair: the Punjab sector divides India and Pakistan, the
     // Bengal sector India and Bangladesh.
-    countries: ['India', 'Pakistan', 'Bangladesh'],
+    countries: ['IND', 'PAK', 'BGD'],
   },
 };
 
@@ -75,7 +131,7 @@ const REVIEW = {
   mcmahon:
     'nameBn spelling undecided: data.js has "ম্যাকমাহন লাইন", the BCS corpus has "ম্যাকমোহন লাইন". Kept as data.js has it; change here and it changes everywhere.',
   radcliffe:
-    'nameBn and noteBn are null because the merge has no source value: the two source entries carry different names and different notes, and no merged Bengali name exists in any source. Author them, or pick one sector\'s. The originals are kept verbatim under "sectors".',
+    'noteBn is null because the merge has no source value: the two sectors carry different notes, and merging them is writing new content. The originals are kept verbatim under "sectors".',
 };
 
 const { FAMOUS_LINES } = await import(pathToFileURL(LINES_SOURCE).href);
@@ -87,8 +143,14 @@ for (const line of FAMOUS_LINES) {
   const id = LINE_IDS[line.nameEn];
   if (!id) throw new Error(`no id mapped for "${line.nameEn}" — add it to LINE_IDS`);
 
+  // The code rule replaces data.js's name-based one. Anything data.js can
+  // match but BETWEEN cannot is a gap to report, not to paper over.
+  const rule = codeRule(line);
+  if (line.match && !rule) throw new Error(`"${line.nameEn}" has a match rule in data.js but no ADM0_A3 pair in BETWEEN`);
+  if (rule && !line.match) throw new Error(`"${line.nameEn}" has an ADM0_A3 pair but no match rule in data.js`);
+
   const traces = [];
-  const runsByPov = traceRuns(line, sourceLines);
+  const runsByPov = traceRuns({ match: rule, region: line.region }, sourceLines, matchesCodes);
   for (const [bdPov, runs] of Object.entries(runsByPov))
     for (const run of joinRuns(runs))
       traces.push({
@@ -99,7 +161,7 @@ for (const line of FAMOUS_LINES) {
         geometry: { type: 'LineString', coordinates: run },
       });
 
-  if (line.match && !traces.length) throw new Error(`${line.nameEn}: match found no Natural Earth lines — check data.js`);
+  if (rule && !traces.length) throw new Error(`${line.nameEn}: ${rule.between.join('/')} found no Natural Earth lines`);
 
   const rec = byId.get(id) ?? { entries: [], traces: [] };
   rec.entries.push(line);
@@ -114,6 +176,17 @@ for (const t of allTraces) {
   const list = tracesById.get(t.properties.id) ?? [];
   list.push(t);
   tracesById.set(t.properties.id, list);
+}
+
+/**
+ * The merged line's Bengali name: the sector names with the parenthetical
+ * dropped. A stem of strings that already exist, not new content — and if the
+ * sectors ever disagree on the stem this fails rather than picking one.
+ */
+function mergedNameBn(entries) {
+  const stems = [...new Set(entries.map((e) => e.nameBn.replace(/\s*\(.*\)\s*$/, '')))];
+  if (stems.length !== 1) throw new Error(`sectors disagree on the merged nameBn stem: ${stems.join(' / ')}`);
+  return stems[0];
 }
 
 // ---- lines.seed.json --------------------------------------------------------
@@ -132,14 +205,25 @@ for (const [id, rec] of byId) {
     nameEn: merged?.nameEn ?? single.nameEn,
     // null means "no source value", the repo's convention for a fact that is
     // real but not yet settled. Never a guess, never a derived string.
-    nameBn: single ? single.nameBn : null,
+    nameBn: single ? single.nameBn : mergedNameBn(rec.entries),
     status: statuses[0],
-    bdPov: povs.length === 0 ? null : povs.length === 1 ? povs[0] : povs,
-    countries: merged?.countries ?? (single.match ? [...single.match.between] : []),
+    countries: merged?.countries ?? (BETWEEN[single.nameEn] ? [...BETWEEN[single.nameEn]] : []),
     labelAt: labelAnchor(traces, single ? single.coords : null),
     noteBn: single ? single.note : null,
     hasTrace: traces.length > 0,
   };
+  // establishedBn is always present, value or null. endedBn only where the line
+  // ceased: absent means not applicable, which is not the same as unverified.
+  const dates = DATES[id];
+  if (!dates) throw new Error(`${id}: no entry in DATES`);
+  seed[id].establishedBn = dates.establishedBn;
+  if ('endedBn' in dates) seed[id].endedBn = dates.endedBn;
+  // bdPov describes traces, so a line with none simply has no bdPov: absent,
+  // not null. Null would put it on the pending list as if a decision were
+  // owed, and none is.
+  if (povs.length === 1) seed[id].bdPov = povs[0];
+  else if (povs.length > 1) throw new Error(`${id}: traces disagree on bdPov (${povs.join(', ')})`);
+
   if (REVIEW[id]) seed[id].review = REVIEW[id];
   if (!single)
     seed[id].sectors = rec.entries.map((e) => ({
@@ -147,7 +231,7 @@ for (const [id, rec] of byId) {
       nameBn: e.nameBn,
       noteBn: e.note,
       labelAt: e.coords,
-      countries: e.match ? [...e.match.between] : [],
+      countries: BETWEEN[e.nameEn] ? [...BETWEEN[e.nameEn]] : [],
     }));
 }
 
@@ -156,14 +240,14 @@ const wanted = [...new Set(Object.values(seed).flatMap((r) => r.countries))].sor
 const countriesFc = readSource('ne_10m_admin_0_countries_bdg.geojson');
 // NAME_EN / NAME_BN / ADM0_A3 are the same fields build-world.mjs reads for
 // country_labels, so the two cannot disagree on a country's Bengali name.
-const byName = new Map(countriesFc.features.map((f) => [f.properties.NAME_EN, f]));
+const byCode = new Map(countriesFc.features.map((f) => [f.properties.ADM0_A3, f]));
 
 const resolved = [];
 const unresolved = [];
-for (const name of wanted) {
-  const f = byName.get(name);
-  if (f) resolved.push({ name, feature: f });
-  else unresolved.push(name);
+for (const code of wanted) {
+  const f = byCode.get(code);
+  if (f) resolved.push({ code, feature: f });
+  else unresolved.push(code);
 }
 
 const countryFeatures = await simplifyFeatures(
@@ -207,11 +291,26 @@ for (const [id, r] of Object.entries(seed))
   );
 
 console.log(`\ncountries wanted: ${wanted.length}   resolved: ${resolved.length}   unresolved: ${unresolved.length}`);
-for (const name of unresolved) {
-  // A near match is reported, never substituted: the file calling China
-  // something else is a fact about the source, not a typo to fix.
-  const near = countriesFc.features
-    .filter((f) => String(f.properties.NAME_EN).toLowerCase().includes(name.toLowerCase()))
-    .map((f) => `${JSON.stringify(f.properties.NAME_EN)} (${f.properties.ADM0_A3}, ${f.properties.NAME_BN})`);
-  console.log(`  UNRESOLVED ${name} — ${near.length ? 'file calls it ' + near.join('; ') : 'no near match in the file at all'}`);
+for (const code of unresolved) {
+  // Reported, never substituted. A code with no polygon is a fact about the
+  // Bangladesh point-of-view file, not a typo to correct.
+  const elsewhere = countriesFc.features
+    .filter((f) => Object.entries(f.properties).some(([k, v]) => /A3/.test(k) && v === code))
+    .map((f) => `${JSON.stringify(f.properties.NAME_EN)} (ADM0_A3 ${f.properties.ADM0_A3})`);
+  console.log(
+    `  UNRESOLVED ${code} — ${elsewhere.length ? "appears only as another country's alternate code: " + elsewhere.join('; ') : 'no feature in the file carries this code in any A3 field'}`,
+  );
 }
+
+// ---- the pending list -------------------------------------------------------
+// Every null field: real, but not yet settled. Absent fields are not listed,
+// because absent means not applicable rather than unverified.
+console.log('\nPENDING (null = unverified, needs a decision):');
+let pending = 0;
+for (const [id, r] of Object.entries(seed))
+  for (const [k, v] of Object.entries(r))
+    if (v === null) {
+      console.log(`  ${id}.${k}`);
+      pending++;
+    }
+console.log(`  total pending: ${pending}`);

@@ -9,29 +9,34 @@
     "nameEn": "Bangladesh",
     "nameBn": "বাংলাদেশ"
   },
+  "CHN": {
+    "id": "CHN",
+    "nameEn": "People's Republic of China",
+    "nameBn": "গণচীন"
+  },
   "IND": {
     "id": "IND",
     "nameEn": "India",
     "nameBn": "ভারত"
   },
-  "PRK": {
-    "id": "PRK",
-    "nameEn": "North Korea",
-    "nameBn": "উত্তর কোরিয়া"
+  "KOR": {
+    "id": "KOR",
+    "nameEn": "South Korea",
+    "nameBn": "দক্ষিণ কোরিয়া"
   },
   "PAK": {
     "id": "PAK",
     "nameEn": "Pakistan",
     "nameBn": "পাকিস্তান"
   },
+  "PRK": {
+    "id": "PRK",
+    "nameEn": "North Korea",
+    "nameBn": "উত্তর কোরিয়া"
+  },
   "PSX": {
     "id": "PSX",
     "nameEn": "Palestine",
     "nameBn": "ফিলিস্তিন অঞ্চল"
-  },
-  "KOR": {
-    "id": "KOR",
-    "nameEn": "South Korea",
-    "nameBn": "দক্ষিণ কোরিয়া"
   }
 }
