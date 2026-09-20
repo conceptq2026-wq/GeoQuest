@@ -10,6 +10,7 @@
 //
 // Tracing is shared with build-straits-overlay.mjs via lib/border-traces.mjs,
 // so the two builds cannot disagree about what a named line is.
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -175,6 +176,26 @@ for (const line of FAMOUS_LINES) {
   byId.set(id, rec);
 }
 
+/*
+ * A hash of each line's MATCHED SOURCE GEOMETRY — the runs as they come out of
+ * Natural Earth, clipped to the line's region and joined, but before any
+ * simplification.
+ *
+ * Hashing this rather than the written file is deliberate: changing
+ * LINE_SIMPLIFY_METRES is a rendering decision and must not churn all nine
+ * hashes, while a Natural Earth boundary moving must. The inputs are pinned and
+ * checksum-verified, so these only move when someone bumps the pin — which is
+ * exactly the moment to look at whether a line shifted.
+ */
+const geometryHash = (traces) =>
+  crypto
+    .createHash('sha256')
+    .update(JSON.stringify(traces.map((t) => t.geometry.coordinates)))
+    .digest('hex')
+    .slice(0, 16);
+
+const actualGeometry = Object.fromEntries([...byId].map(([id, rec]) => [id, geometryHash(rec.traces)]));
+
 // Simplify once, across every trace, so a merged line is treated as one line.
 const allTraces = await simplifyFeatures([...byId.values()].flatMap((r) => r.traces), LINE_SIMPLIFY_METRES);
 const tracesById = new Map();
@@ -195,6 +216,26 @@ for (const t of allTraces) {
  * A Natural Earth reclassification would merge or swap two lines just as
  * quietly. These counts are the tripwire.
  */
+/*
+ * The same tripwire for shape rather than count. A boundary can move without
+ * changing how many segments it splits into, and the counts alone would not
+ * see it. These are hashes of the matched source geometry before
+ * simplification, so changing LINE_SIMPLIFY_METRES does not churn them.
+ */
+const EXPECTED_GEOMETRY = {
+  mcmahon: 'b04c9ebd196339a4',
+  radcliffe: '31f258d1964cedc1',
+  durand: '151646968f622957',
+  loc: 'f63ad8a7647f8c65',
+  koreanDmz: 'a48d0bd366b5d4cf',
+  greenLine: 'c612db704d988b09',
+  // The three lines that trace nothing all hash the empty list, which is the
+  // same value on purpose: it moves the moment any of them gains geometry.
+  berlinWall: '4f53cda18c2baa0c',
+  parallel17: '4f53cda18c2baa0c',
+  sykesPicot: '4f53cda18c2baa0c',
+};
+
 const EXPECTED_TRACES = {
   mcmahon: 2,
   radcliffe: 3,
@@ -217,10 +258,18 @@ for (const id of tracesById.keys())
 const expectedTotal = Object.values(EXPECTED_TRACES).reduce((a, b) => a + b, 0);
 if (allTraces.length !== expectedTotal)
   countErrors.push(`total: expected ${expectedTotal} trace(s), got ${allTraces.length}`);
+// A line can keep its segment count and still be reshaped, which the counts
+// alone would not see.
+for (const [id, expected] of Object.entries(EXPECTED_GEOMETRY)) {
+  const actual = actualGeometry[id];
+  if (actual === undefined) countErrors.push(`${id}: in EXPECTED_GEOMETRY but the build produced no such line`);
+  else if (actual !== expected) countErrors.push(`${id}: expected geometry ${expected}, got ${actual}`);
+}
+for (const id of Object.keys(actualGeometry))
+  if (!(id in EXPECTED_GEOMETRY)) countErrors.push(`${id}: traced but has no entry in EXPECTED_GEOMETRY`);
+
 if (countErrors.length)
-  throw new Error(
-    `trace counts changed — the source data or a match rule moved under this build:\n  ${countErrors.join('\n  ')}`,
-  );
+  throw new Error(`the source data or a match rule moved under this build:\n  ${countErrors.join('\n  ')}`);
 
 /**
  * The merged line's Bengali name: the sector names with the parenthetical
