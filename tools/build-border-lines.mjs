@@ -15,7 +15,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { readSource } from './lib/geo.mjs';
-import { loadBoundarySources, traceRuns, joinRuns, simplifyFeatures, labelAnchor, matchesCodes } from './lib/border-traces.mjs';
+import { loadBoundarySources, traceRuns, joinRuns, simplifyFeatures, innerPoints, labelAnchor, matchesCodes } from './lib/border-traces.mjs';
 
 const ROOT = path.resolve('..');
 // Where the authored line list lives today. It is the straits map's file for
@@ -405,10 +405,19 @@ const countryFeatures = await simplifyFeatures(
   COUNTRY_SIMPLIFY_METRES,
 );
 
+// One label point per country, from the simplified polygon rather than from a
+// hand-placed guess — see innerPoints for why it is a pole of inaccessibility.
+const countryLabelPoints = await innerPoints(countryFeatures);
+
 const countrySeed = {};
 for (const { feature } of resolved) {
   const p = feature.properties;
-  countrySeed[p.ADM0_A3] = { id: p.ADM0_A3, nameEn: p.NAME_EN, nameBn: p.NAME_BN };
+  countrySeed[p.ADM0_A3] = {
+    id: p.ADM0_A3,
+    nameEn: p.NAME_EN,
+    nameBn: p.NAME_BN,
+    labelAt: countryLabelPoints[p.ADM0_A3],
+  };
 }
 
 // ---- write ------------------------------------------------------------------

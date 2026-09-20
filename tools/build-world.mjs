@@ -168,6 +168,11 @@ const world = {
     countriesBdg.features.map((f) => ({
       type: 'Feature',
       properties: {
+        // The join key a map uses to suppress this label when it draws the
+        // country's name itself. A code rather than a name: this file calls
+        // China "People's Republic of China", and matching on names has
+        // already gone wrong once.
+        adm0_a3: f.properties.ADM0_A3,
         name_bn: f.properties.NAME_BN,
         name_en: f.properties.NAME_EN,
         min_zoom: f.properties.MIN_LABEL,

@@ -1,34 +1,66 @@
 {
   "AFG": {
     "nameEn": "Afghanistan",
-    "nameBn": "আফগানিস্তান"
+    "nameBn": "আফগানিস্তান",
+    "labelAt": [
+      66.01034,
+      33.83627
+    ]
   },
   "BGD": {
     "nameEn": "Bangladesh",
-    "nameBn": "বাংলাদেশ"
+    "nameBn": "বাংলাদেশ",
+    "labelAt": [
+      89.96572,
+      24.30754
+    ]
   },
   "CHN": {
     "nameEn": "People's Republic of China",
-    "nameBn": "গণচীন"
+    "nameBn": "গণচীন",
+    "labelAt": [
+      106.1912,
+      32.69251
+    ]
   },
   "IND": {
     "nameEn": "India",
-    "nameBn": "ভারত"
+    "nameBn": "ভারত",
+    "labelAt": [
+      79.57128,
+      22.84548
+    ]
   },
   "KOR": {
     "nameEn": "South Korea",
-    "nameBn": "দক্ষিণ কোরিয়া"
+    "nameBn": "দক্ষিণ কোরিয়া",
+    "labelAt": [
+      127.99098,
+      36.38001
+    ]
   },
   "PAK": {
     "nameEn": "Pakistan",
-    "nameBn": "পাকিস্তান"
+    "nameBn": "পাকিস্তান",
+    "labelAt": [
+      68.87546,
+      29.51205
+    ]
   },
   "PRK": {
     "nameEn": "North Korea",
-    "nameBn": "উত্তর কোরিয়া"
+    "nameBn": "উত্তর কোরিয়া",
+    "labelAt": [
+      126.65889,
+      40.18329
+    ]
   },
   "PSX": {
     "nameEn": "Palestine",
-    "nameBn": "ফিলিস্তিন অঞ্চল"
+    "nameBn": "ফিলিস্তিন অঞ্চল",
+    "labelAt": [
+      34.90846,
+      31.3355
+    ]
   }
 }

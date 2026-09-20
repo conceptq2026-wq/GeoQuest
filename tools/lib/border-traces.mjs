@@ -99,6 +99,37 @@ export async function simplifyFeatures(features, metres) {
 }
 
 /**
+ * One label point per polygon feature, keyed by the feature's `id`.
+ *
+ * A pole of inaccessibility, not a centroid: the centroid of a concave country
+ * falls outside it, which would hang the name over a neighbour. mapshaper's
+ * `-points inner` places the point in the largest part, which is what a reader
+ * expects — India's name belongs on the mainland, not on an island.
+ *
+ * Computed from the SAME simplified polygons the map draws, so the point a map
+ * labels with cannot drift from the shape it labels.
+ */
+export async function innerPoints(features) {
+  if (!features.length) return {};
+  // Deep-copy first. Features that came out of a previous applyCommands still
+  // share their coordinate arrays with mapshaper's dataset, and a second pass
+  // rewinds those rings IN PLACE — so computing a label point would silently
+  // reverse the winding of the very geometry the map draws.
+  const copy = JSON.parse(JSON.stringify({ type: 'FeatureCollection', features }));
+  const out = await mapshaper.applyCommands(
+    '-i in.json -points inner -o out.json format=geojson geojson-type=FeatureCollection precision=0.00001',
+    { 'in.json': copy },
+  );
+  const points = {};
+  for (const f of JSON.parse(out['out.json'].toString()).features) {
+    points[f.properties.id] = f.geometry.coordinates;
+  }
+  const missing = features.map((f) => f.properties.id).filter((id) => !(id in points));
+  if (missing.length) throw new Error(`no inner point produced for: ${missing.join(', ')}`);
+  return points;
+}
+
+/**
  * The runs that make up one named line, grouped by Bangladesh point of view.
  * Returns { shown: [[pt,…],…], unrecognized: [...] }; both may be empty when a
  * line has no `match` rule (a historical line that follows no modern border).
