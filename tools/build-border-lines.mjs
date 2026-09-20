@@ -28,8 +28,10 @@ const OUT_DIR = path.join(ROOT, 'data-sources/border-lines');
 const LINE_SIMPLIFY_METRES = 250;
 // Country polygons are whole-country shapes shown at world scale, and they ship
 // to students on low-end phones, so they are simplified much harder than the
-// lines. 1 km is under two pixels at the basemap's maximum world zoom (z6).
-const COUNTRY_SIMPLIFY_METRES = 1000;
+// lines. 2 km is under two pixels at the basemap's maximum world zoom (z6), and
+// these shapes exist only to be washed with a translucent highlight — edge
+// precision is invisible at any zoom the map reaches.
+const COUNTRY_SIMPLIFY_METRES = 2000;
 
 /*
  * INTERNAL KEYS. Never displayed, permanent once set.
@@ -99,6 +101,10 @@ const codeRule = (line) =>
  * is null only where no source here carries a year at all, which is the repo's
  * convention for a fact that is real but unverified, and puts it on the
  * pending list rather than inviting a guess.
+ *
+ * sykesPicot is historical and still has no endedBn, deliberately: the 1916
+ * line was never implemented as a border, so there is no date on which it
+ * ceased. Absent, not null — settled, not awaiting a decision.
  */
 const DATES = {
   mcmahon: { establishedBn: '১৯১৪' },
@@ -177,6 +183,44 @@ for (const t of allTraces) {
   list.push(t);
   tracesById.set(t.properties.id, list);
 }
+
+/*
+ * HOW MANY TRACES EACH LINE MUST HAVE.
+ *
+ * radcliffe's Punjab sector and loc are both IND/PAK: the only thing telling
+ * them apart is a featurecla string. Dropping that filter once moved the total
+ * from 12 to 13 and shifted loc by three points, and nothing failed — it was
+ * caught only because a number was noticed.
+ *
+ * A Natural Earth reclassification would merge or swap two lines just as
+ * quietly. These counts are the tripwire.
+ */
+const EXPECTED_TRACES = {
+  mcmahon: 2,
+  radcliffe: 3,
+  durand: 1,
+  loc: 1,
+  koreanDmz: 1,
+  greenLine: 4,
+  berlinWall: 0,
+  parallel17: 0,
+  sykesPicot: 0,
+};
+
+const countErrors = [];
+for (const [id, expected] of Object.entries(EXPECTED_TRACES)) {
+  const actual = (tracesById.get(id) ?? []).length;
+  if (actual !== expected) countErrors.push(`${id}: expected ${expected} trace(s), got ${actual}`);
+}
+for (const id of tracesById.keys())
+  if (!(id in EXPECTED_TRACES)) countErrors.push(`${id}: traced but has no entry in EXPECTED_TRACES`);
+const expectedTotal = Object.values(EXPECTED_TRACES).reduce((a, b) => a + b, 0);
+if (allTraces.length !== expectedTotal)
+  countErrors.push(`total: expected ${expectedTotal} trace(s), got ${allTraces.length}`);
+if (countErrors.length)
+  throw new Error(
+    `trace counts changed — the source data or a match rule moved under this build:\n  ${countErrors.join('\n  ')}`,
+  );
 
 /**
  * The merged line's Bengali name: the sector names with the parenthetical
