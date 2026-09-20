@@ -6,150 +6,367 @@
     "bn": "গুরুত্বপূর্ণ প্রণালি ও খাল",
     "en": "Straits and Canals"
   },
-
   "basemap": "world",
-  "view": { "fitBounds": [-20, -12, 120, 62] },
-  "constraints": { "minZoom": 0, "maxZoom": 11 },
-
+  "view": {
+    "fitBounds": [
+      -20,
+      -12,
+      120,
+      62
+    ]
+  },
+  "constraints": {
+    "minZoom": 0,
+    "maxZoom": 11
+  },
   "lookups": {
     "passageKind": {
-      "strait": { "labelBn": "প্রণালি" },
-      "canal": { "labelBn": "খাল" }
+      "strait": {
+        "labelBn": "প্রণালি"
+      },
+      "canal": {
+        "labelBn": "খাল"
+      }
     },
     "routeStatus": {
-      "mapped": { "labelBn": "নির্ধারিত নৌপথ (IMO ট্রাফিক বিভাজন ব্যবস্থা) মানচিত্রে দেখানো হয়েছে" },
-      "partial": { "labelBn": "আংশিক — নির্ধারিত নৌপথের কেবল কিছু অংশ মানচিত্রে আছে" },
-      "none": { "labelBn": "এখানে কোনো নির্ধারিত নৌপথের মানচিত্রায়িত তথ্য নেই" },
-      "canal": { "labelBn": "খালটিই নৌপথ — খালের পথ মানচিত্রে দেখানো হয়েছে" }
+      "mapped": {
+        "labelBn": "নির্ধারিত নৌপথ (IMO ট্রাফিক বিভাজন ব্যবস্থা) মানচিত্রে দেখানো হয়েছে"
+      },
+      "partial": {
+        "labelBn": "আংশিক — নির্ধারিত নৌপথের কেবল কিছু অংশ মানচিত্রে আছে"
+      },
+      "none": {
+        "labelBn": "এখানে কোনো নির্ধারিত নৌপথের মানচিত্রায়িত তথ্য নেই"
+      },
+      "canal": {
+        "labelBn": "খালটিই নৌপথ — খালের পথ মানচিত্রে দেখানো হয়েছে"
+      }
     }
   },
-
   "records": {
     "passages": {
       "file": "./records.json",
       "fields": {
-        "kind": { "type": "enum", "lookup": "passageKind", "required": true },
-        "nameEn": { "type": "text", "required": true, "display": false },
-        "nameBn": { "type": "text", "required": true },
-        "altNameBn": { "type": "text" },
-        "center": { "type": "point", "required": true },
-        "frame": { "type": "bbox", "required": true },
-        "countriesBn": { "type": "text", "required": true },
-        "connectsBn": { "type": "text", "required": true },
-        "seas": { "type": "refs", "to": "seas", "required": true },
-        "boundaryNote": { "type": "text", "appliesWhen": { "kind": "strait" }, "verifiable": true },
-        "openedBn": { "type": "text", "appliesWhen": { "kind": "canal" }, "verifiable": true },
-        "lengthBn": { "type": "text", "appliesWhen": { "kind": "canal" }, "verifiable": true },
-        "routeStatus": { "type": "enum", "lookup": "routeStatus", "required": true }
+        "kind": {
+          "type": "enum",
+          "lookup": "passageKind",
+          "required": true
+        },
+        "nameEn": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "nameBn": {
+          "type": "text",
+          "required": true
+        },
+        "altNameBn": {
+          "type": "text"
+        },
+        "center": {
+          "type": "point",
+          "required": true
+        },
+        "frame": {
+          "type": "bbox",
+          "required": true
+        },
+        "countriesBn": {
+          "type": "text",
+          "required": true
+        },
+        "connectsBn": {
+          "type": "text",
+          "required": true
+        },
+        "seas": {
+          "type": "refs",
+          "to": "seas",
+          "required": true
+        },
+        "boundaryNote": {
+          "type": "text",
+          "appliesWhen": {
+            "kind": "strait"
+          },
+          "verifiable": true
+        },
+        "openedBn": {
+          "type": "text",
+          "appliesWhen": {
+            "kind": "canal"
+          },
+          "verifiable": true
+        },
+        "lengthBn": {
+          "type": "text",
+          "appliesWhen": {
+            "kind": "canal"
+          },
+          "verifiable": true
+        },
+        "routeStatus": {
+          "type": "enum",
+          "lookup": "routeStatus",
+          "required": true
+        }
       }
     },
     "seas": {
       "file": "./seas.json",
       "fields": {
-        "nameBn": { "type": "text", "required": true },
-        "at": { "type": "point", "required": true }
+        "nameBn": {
+          "type": "text",
+          "required": true
+        },
+        "at": {
+          "type": "point",
+          "required": true
+        }
       }
     }
   },
-
   "sources": {
     "passages": {
       "records": "passages",
-      "geometry": "center",
-      "cluster": true,
-      "state": ["selected"],
-      "selectionMarker": true
+      "cluster": {
+        "radius": 25,
+        "maxZoom": 6
+      },
+      "state": [
+        "selected"
+      ],
+      "selectionMarker": true,
+      "geometryFrom": "center",
+      "properties": [
+        "nameBn"
+      ]
     },
     "seas": {
       "records": "seas",
-      "geometry": "at",
       "state": [
         {
           "name": "active",
-          "fromSelection": { "source": "passages", "listField": "seas" }
+          "fromSelection": {
+            "listField": "seas",
+            "records": "passages"
+          }
         }
+      ],
+      "geometryFrom": "at",
+      "properties": [
+        "nameBn"
       ]
     },
     "canals": {
       "geometry": "./canals.geojson",
-      "joinField": "canal",
-      "note": "TEMPORARY PATH OFFSET: this file still lives in docs/international/straits/ because the live map fetches it from there. The path written here is its final home, beside this descriptor. The validator resolves the offset; delete this note when the file moves."
+      "joinField": "canal"
     },
     "routes": {
       "geometry": "./routes.geojson",
-      "joinField": "seamark",
-      "note": "TEMPORARY PATH OFFSET: as for canals above. See also the report — 'seamark' is a classification used by filters, not a key that resolves to any record, so it is not a join in the sense 'canal' is."
+      "joinField": "seamark"
     }
   },
-
   "styles": {
     "canal-casing": {
-      "layout": { "line-cap": "round", "line-join": "round" },
-      "paint": { "line-color": "#ffffff", "line-width": ["interpolate", ["linear"], ["zoom"], 3, 3, 10, 8] }
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "#ffffff",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          3,
+          3,
+          10,
+          8
+        ]
+      }
     },
     "canal-line": {
-      "layout": { "line-cap": "round", "line-join": "round" },
-      "paint": { "line-color": "#2f7fc1", "line-width": ["interpolate", ["linear"], ["zoom"], 3, 1.5, 10, 5] }
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "#2f7fc1",
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          3,
+          1.5,
+          10,
+          5
+        ]
+      }
     },
     "route-zone": {
-      "paint": { "line-color": "#e8590c", "line-width": 1.2, "line-opacity": 0.9 }
+      "paint": {
+        "line-color": "#e8590c",
+        "line-width": 1.2,
+        "line-opacity": 0.9
+      }
     },
     "route-boundary": {
-      "paint": { "line-color": "#e8590c", "line-width": 1, "line-opacity": 0.8, "line-dasharray": [3, 2] }
+      "paint": {
+        "line-color": "#e8590c",
+        "line-width": 1,
+        "line-opacity": 0.8,
+        "line-dasharray": [
+          3,
+          2
+        ]
+      }
     },
     "route-lane": {
-      "layout": { "line-cap": "round", "line-join": "round" },
-      "paint": { "line-color": "#e8590c", "line-width": 2.5 }
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "#e8590c",
+        "line-width": 2.5
+      }
     },
     "route-arrow": {
       "layout": {
         "symbol-placement": "line",
         "symbol-spacing": 90,
-        "text-font": ["Noto Sans Bengali"],
+        "text-font": [
+          "Noto Sans Bengali"
+        ],
         "text-size": 16,
         "text-keep-upright": false,
         "text-allow-overlap": true
       },
-      "paint": { "text-color": "#e8590c", "text-halo-color": "#ffffff", "text-halo-width": 1.5 }
+      "paint": {
+        "text-color": "#e8590c",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 1.5
+      }
     },
     "country-label": {
       "layout": {
-        "text-font": ["Noto Sans Bengali"],
-        "text-size": ["interpolate", ["linear"], ["zoom"], 2, 10, 6, 13, 10, 16],
+        "text-font": [
+          "Noto Sans Bengali"
+        ],
+        "text-size": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          2,
+          10,
+          6,
+          13,
+          10,
+          16
+        ],
         "text-allow-overlap": false,
         "text-optional": true
       },
-      "paint": { "text-color": "#3f4650", "text-halo-color": "#ffffff", "text-halo-width": 1.4 }
+      "paint": {
+        "text-color": "#3f4650",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 1.4
+      }
     },
     "sea-label": {
-      "layout": { "text-font": ["Noto Sans Bengali"], "text-size": 12, "text-max-width": 7, "text-optional": true },
-      "paint": { "text-color": "#1f5f99", "text-halo-color": "#ffffff", "text-halo-width": 1.6 }
+      "layout": {
+        "text-font": [
+          "Noto Sans Bengali"
+        ],
+        "text-size": 12,
+        "text-max-width": 7,
+        "text-optional": true
+      },
+      "paint": {
+        "text-color": "#1f5f99",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 1.6
+      }
     },
     "sea-label-active": {
-      "layout": { "text-font": ["Noto Sans Bengali"], "text-size": 15, "text-max-width": 7, "text-allow-overlap": true },
-      "paint": { "text-color": "#0b3d91", "text-halo-color": "#ffffff", "text-halo-width": 1.8 }
+      "layout": {
+        "text-font": [
+          "Noto Sans Bengali"
+        ],
+        "text-size": 15,
+        "text-max-width": 7,
+        "text-allow-overlap": true
+      },
+      "paint": {
+        "text-color": "#0b3d91",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 1.8
+      }
     },
     "cluster-circle": {
-      "paint": { "circle-radius": 14, "circle-color": "#0b3d91", "circle-stroke-width": 2.5, "circle-stroke-color": "#ffffff" }
+      "paint": {
+        "circle-radius": 14,
+        "circle-color": "#0b3d91",
+        "circle-stroke-width": 2.5,
+        "circle-stroke-color": "#ffffff"
+      }
     },
     "cluster-count": {
-      "layout": { "text-font": ["Noto Sans Bengali"], "text-size": 14, "text-allow-overlap": true, "text-ignore-placement": true },
-      "paint": { "text-color": "#ffffff" }
+      "layout": {
+        "text-font": [
+          "Noto Sans Bengali"
+        ],
+        "text-size": 14,
+        "text-allow-overlap": true,
+        "text-ignore-placement": true
+      },
+      "paint": {
+        "text-color": "#ffffff"
+      }
     },
     "passage-point": {
-      "paint": { "circle-radius": 6, "circle-color": "#0b3d91", "circle-stroke-width": 2, "circle-stroke-color": "#ffffff" }
+      "paint": {
+        "circle-radius": 6,
+        "circle-color": "#0b3d91",
+        "circle-stroke-width": 2,
+        "circle-stroke-color": "#ffffff"
+      }
     },
     "passage-label": {
       "layout": {
-        "text-font": ["Noto Sans Bengali"],
-        "text-variable-anchor": ["top", "bottom", "right", "left"],
+        "text-font": [
+          "Noto Sans Bengali"
+        ],
+        "text-variable-anchor": [
+          "top",
+          "bottom",
+          "right",
+          "left"
+        ],
         "text-radial-offset": 1,
         "text-optional": true
       },
-      "paint": { "text-color": "#0b3d91", "text-halo-color": "#ffffff", "text-halo-width": 2 }
+      "paint": {
+        "text-color": "#0b3d91",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
     }
   },
-
   "layers": [
     {
       "id": "canal-casing",
@@ -172,7 +389,21 @@
       "slot": "belowLabels",
       "style": "route-zone",
       "minzoom": 4,
-      "filter": ["in", ["get", "seamark"], ["literal", ["separation_zone", "separation_line", "separation_roundabout"]]]
+      "filter": [
+        "in",
+        [
+          "get",
+          "seamark"
+        ],
+        [
+          "literal",
+          [
+            "separation_zone",
+            "separation_line",
+            "separation_roundabout"
+          ]
+        ]
+      ]
     },
     {
       "id": "tss-edges",
@@ -181,7 +412,14 @@
       "slot": "belowLabels",
       "style": "route-boundary",
       "minzoom": 4,
-      "filter": ["==", ["get", "seamark"], "separation_boundary"]
+      "filter": [
+        "==",
+        [
+          "get",
+          "seamark"
+        ],
+        "separation_boundary"
+      ]
     },
     {
       "id": "tss-lanes",
@@ -190,7 +428,14 @@
       "slot": "belowLabels",
       "style": "route-lane",
       "minzoom": 4,
-      "filter": ["==", ["get", "seamark"], "separation_lane"]
+      "filter": [
+        "==",
+        [
+          "get",
+          "seamark"
+        ],
+        "separation_lane"
+      ]
     },
     {
       "id": "tss-arrows",
@@ -199,8 +444,17 @@
       "slot": "belowLabels",
       "style": "route-arrow",
       "minzoom": 6,
-      "filter": ["==", ["get", "seamark"], "separation_lane"],
-      "layout": { "text-field": "→" }
+      "filter": [
+        "==",
+        [
+          "get",
+          "seamark"
+        ],
+        "separation_lane"
+      ],
+      "layout": {
+        "text-field": "→"
+      }
     },
     {
       "id": "country-labels",
@@ -209,8 +463,33 @@
       "sourceLayer": "country_labels",
       "slot": "aboveLabels",
       "style": "country-label",
-      "filter": ["<=", ["get", "min_zoom"], ["+", ["zoom"], 1]],
-      "layout": { "text-field": ["coalesce", ["get", "name_bn"], ["get", "name_en"]] }
+      "filter": [
+        "<=",
+        [
+          "get",
+          "min_zoom"
+        ],
+        [
+          "+",
+          [
+            "zoom"
+          ],
+          1
+        ]
+      ],
+      "layout": {
+        "text-field": [
+          "coalesce",
+          [
+            "get",
+            "name_bn"
+          ],
+          [
+            "get",
+            "name_en"
+          ]
+        ]
+      }
     },
     {
       "id": "sea-labels",
@@ -218,8 +497,29 @@
       "source": "seas",
       "slot": "aboveLabels",
       "style": "sea-label",
-      "filter": ["all", ["!", ["get", "active"]], [">=", ["zoom"], 3]],
-      "layout": { "text-field": ["get", "nameBn"] }
+      "filter": [
+        "all",
+        [
+          "!",
+          [
+            "get",
+            "active"
+          ]
+        ],
+        [
+          ">=",
+          [
+            "zoom"
+          ],
+          3
+        ]
+      ],
+      "layout": {
+        "text-field": [
+          "get",
+          "nameBn"
+        ]
+      }
     },
     {
       "id": "passage-clusters",
@@ -227,7 +527,10 @@
       "source": "passages",
       "slot": "aboveLabels",
       "style": "cluster-circle",
-      "filter": ["has", "point_count"]
+      "filter": [
+        "has",
+        "point_count"
+      ]
     },
     {
       "id": "passage-cluster-count",
@@ -235,9 +538,63 @@
       "source": "passages",
       "slot": "aboveLabels",
       "style": "cluster-count",
-      "filter": ["has", "point_count"],
+      "filter": [
+        "has",
+        "point_count"
+      ],
       "layout": {
-        "text-field": ["match", ["get", "point_count"], 2, "২", 3, "৩", 4, "৪", 5, "৫", 6, "৬", 7, "৭", 8, "৮", 9, "৯", 10, "১০", 11, "১১", 12, "১২", 13, "১৩", 14, "১৪", 15, "১৫", 16, "১৬", 17, "১৭", 18, "১৮", 19, "১৯", 20, "২০", ["to-string", ["get", "point_count"]]]
+        "text-field": [
+          "match",
+          [
+            "get",
+            "point_count"
+          ],
+          2,
+          "২",
+          3,
+          "৩",
+          4,
+          "৪",
+          5,
+          "৫",
+          6,
+          "৬",
+          7,
+          "৭",
+          8,
+          "৮",
+          9,
+          "৯",
+          10,
+          "১০",
+          11,
+          "১১",
+          12,
+          "১২",
+          13,
+          "১৩",
+          14,
+          "১৪",
+          15,
+          "১৫",
+          16,
+          "১৬",
+          17,
+          "১৭",
+          18,
+          "১৮",
+          19,
+          "১৯",
+          20,
+          "২০",
+          [
+            "to-string",
+            [
+              "get",
+              "point_count"
+            ]
+          ]
+        ]
       }
     },
     {
@@ -246,7 +603,23 @@
       "source": "passages",
       "slot": "aboveLabels",
       "style": "passage-point",
-      "filter": ["all", ["!", ["has", "point_count"]], ["!", ["get", "selected"]]]
+      "filter": [
+        "all",
+        [
+          "!",
+          [
+            "has",
+            "point_count"
+          ]
+        ],
+        [
+          "!",
+          [
+            "get",
+            "selected"
+          ]
+        ]
+      ]
     },
     {
       "id": "passage-labels",
@@ -254,11 +627,36 @@
       "source": "passages",
       "slot": "aboveLabels",
       "style": "passage-label",
-      "filter": ["!", ["has", "point_count"]],
+      "filter": [
+        "!",
+        [
+          "has",
+          "point_count"
+        ]
+      ],
       "layout": {
-        "text-field": ["get", "nameBn"],
-        "text-size": ["case", ["get", "selected"], 16, 12],
-        "symbol-sort-key": ["case", ["get", "selected"], 0, 1]
+        "text-field": [
+          "get",
+          "nameBn"
+        ],
+        "text-size": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          16,
+          12
+        ],
+        "symbol-sort-key": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          0,
+          1
+        ]
       }
     },
     {
@@ -267,23 +665,49 @@
       "source": "seas",
       "slot": "top",
       "style": "sea-label-active",
-      "filter": ["get", "active"],
-      "layout": { "text-field": ["get", "nameBn"] }
+      "filter": [
+        "get",
+        "active"
+      ],
+      "layout": {
+        "text-field": [
+          "get",
+          "nameBn"
+        ]
+      }
     }
   ],
-
   "controls": [
     {
       "type": "picker",
       "id": "passage",
       "from": "passages",
       "labelField": "nameBn",
-      "groupBy": { "field": "kind", "lookup": "passageKind", "take": "labelBn", "order": ["strait", "canal"] },
+      "groupBy": {
+        "field": "kind",
+        "lookup": "passageKind",
+        "take": "labelBn",
+        "order": [
+          "strait",
+          "canal"
+        ]
+      },
       "placeholder": "একটি প্রণালি বা খাল বেছে নিন…",
       "labelEn": "Choose a strait or canal",
       "do": [
-        { "action": "select" },
-        { "action": "fitBounds", "field": "frame", "clear": ["sheet"], "bearing": 0, "pitch": 0, "duration": 1800 }
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "field": "frame",
+          "clear": [
+            "sheet"
+          ],
+          "bearing": 0,
+          "pitch": 0,
+          "duration": 1800
+        }
       ]
     },
     {
@@ -291,34 +715,94 @@
       "id": "layers",
       "labelEn": "Layers",
       "groups": [
-        { "labelEn": "Country names", "swatch": "country-label", "layers": ["country-labels"] },
-        { "labelEn": "Connected seas", "swatch": "sea-label", "layers": ["sea-labels", "sea-labels-active"] },
-        { "labelEn": "Shipping routes", "swatch": "route-lane", "layers": ["tss-zones", "tss-edges", "tss-lanes", "tss-arrows"] }
+        {
+          "labelEn": "Country names",
+          "swatch": "country-label",
+          "layers": [
+            "country-labels"
+          ]
+        },
+        {
+          "labelEn": "Connected seas",
+          "swatch": "sea-label",
+          "layers": [
+            "sea-labels",
+            "sea-labels-active"
+          ]
+        },
+        {
+          "labelEn": "Shipping routes",
+          "swatch": "route-lane",
+          "layers": [
+            "tss-zones",
+            "tss-edges",
+            "tss-lanes",
+            "tss-arrows"
+          ]
+        }
       ]
     }
   ],
-
   "interactions": [
     {
       "on": "click",
       "target": "source:passages",
       "do": [
-        { "action": "select" },
-        { "action": "fitBounds", "field": "frame", "clear": ["sheet"], "bearing": 0, "pitch": 0, "duration": 1800 }
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "field": "frame",
+          "clear": [
+            "sheet"
+          ],
+          "bearing": 0,
+          "pitch": 0,
+          "duration": 1800
+        }
       ]
     }
   ],
-
   "sheet": {
-    "kicker": { "lookup": "passageKind", "of": "kind", "take": "labelBn" },
-    "title": { "compose": ["nameBn", "altNameBn"], "pattern": "{nameBn} ({altNameBn})", "whenMissing": "{nameBn}" },
+    "kicker": {
+      "lookup": "passageKind",
+      "of": "kind",
+      "take": "labelBn"
+    },
+    "title": {
+      "compose": [
+        "{nameBn} ({altNameBn})",
+        "{nameBn}"
+      ]
+    },
     "rows": [
-      { "label": "দেশ", "field": "countriesBn" },
-      { "label": "সংযোগ", "field": "connectsBn" },
-      { "label": "সীমানা", "field": "boundaryNote" },
-      { "label": "চালু", "field": "openedBn" },
-      { "label": "দৈর্ঘ্য", "field": "lengthBn" },
-      { "label": "নৌপথ", "lookup": "routeStatus", "of": "routeStatus", "take": "labelBn" }
+      {
+        "label": "দেশ",
+        "field": "countriesBn"
+      },
+      {
+        "label": "সংযোগ",
+        "field": "connectsBn"
+      },
+      {
+        "label": "সীমানা",
+        "field": "boundaryNote"
+      },
+      {
+        "label": "চালু",
+        "field": "openedBn"
+      },
+      {
+        "label": "দৈর্ঘ্য",
+        "field": "lengthBn"
+      },
+      {
+        "label": "নৌপথ",
+        "lookup": "routeStatus",
+        "of": "routeStatus",
+        "take": "labelBn"
+      }
     ]
   }
 }

@@ -29,6 +29,7 @@ const CASES = [
   ['glyphs', 'noto-sans-bengali/NotoSansBengali-Regular.woff2', '/shared/fonts/noto-sans-bengali/NotoSansBengali-Regular.woff2'],
   ['sprite', 'icons.png', '/shared/sprites/icons.png'],
   ['mapData', 'canals.geojson', '/international/straits/canals.geojson'],
+  ['maps', 'straits/descriptor.json', '/maps/straits/descriptor.json'],
   ['registry', 'maps.json', '/maps.json'],
 ];
 

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- No page-level zoom: this page is embedded in the app's WebView, and a
+         pinch must zoom the map (MapLibre), never the whole page. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+    <meta name="description" content="Interactive maps with Bengali place names." />
+
+    <!-- The real title comes from the descriptor, once it has loaded. -->
+    <title>GeoQuest</title>
+
+    <link rel="stylesheet" href="../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preload" href="../shared/fonts/noto-sans-bengali/NotoSansBengali-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+
+  <body>
+    <section class="map-page">
+      <!-- No visible heading: the app's viewer shows the map's title above
+           this page. The heading stays for screen readers, filled from the
+           descriptor. -->
+      <header class="page-header">
+        <h1 id="pageTitle" class="visually-hidden" lang="bn"></h1>
+
+        <!-- Chrome the shell always owns. Each part hides itself when the
+             descriptor declares no control that needs it. -->
+        <button id="prevRecord" type="button" class="step-btn" aria-label="Previous" hidden disabled>‹</button>
+        <select id="recordPicker" class="record-picker" hidden lang="bn"></select>
+        <button id="nextRecord" type="button" class="step-btn" aria-label="Next" hidden>›</button>
+      </header>
+
+      <div class="map-shell">
+        <div id="map"></div>
+
+        <div id="loadNotice" class="load-notice" role="alert" lang="bn">
+          <strong>মানচিত্রের তথ্য লোড করা যায়নি</strong>
+          <span>সংযোগ পরীক্ষা করে পৃষ্ঠাটি আবার লোড করুন।</span>
+        </div>
+
+        <!-- Bottom sheet over the map. Drag it down (or tap the handle) to
+             leave only the handle; drag or tap the handle to bring it back. -->
+        <aside id="infoSheet" class="info-sheet" aria-labelledby="infoTitle" hidden>
+          <button id="sheetHandle" type="button" class="sheet-handle" aria-controls="infoSheetBody" aria-expanded="true" aria-label="Hide details">
+            <span class="sheet-grip"></span>
+          </button>
+          <div id="infoSheetBody" class="info-sheet-body" aria-live="polite">
+            <span id="infoKicker" class="info-kicker" lang="bn"></span>
+            <h2 id="infoTitle" class="info-title" lang="bn"></h2>
+            <div id="infoRows"></div>
+          </div>
+        </aside>
+
+        <div id="layersControl" class="layers-control" hidden>
+          <button id="layersToggleBtn" type="button" class="layers-toggle-btn" aria-expanded="false" aria-controls="layersMenu">
+            <span id="layersToggleLabel">Layers</span> ▾
+          </button>
+          <div id="layersMenu" class="layers-menu"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- pmtiles reads the map data with HTTP range requests; loaded first so app.js can use it. -->
+    <script src="../shared/vendor/pmtiles-4.5.0/pmtiles.js"></script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

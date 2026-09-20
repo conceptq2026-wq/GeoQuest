@@ -1,0 +1,521 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+
+  /* Light theme to match the light basemap. Grey text is never lighter than
+     #5b6878 on white (contrast above 5:1), so it reads on a phone in daylight. */
+  background: #eef3f8;
+  color: #13233a;
+  /* No pull-to-refresh or bounce inside the app's WebView. */
+  overscroll-behavior: none;
+}
+
+.map-page {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 12px;
+}
+
+/*
+ * The dropdown never shrinks below its own width (flex-shrink: 0), so a
+ * Bengali name is never cut off: it takes the width it needs, and wraps to its
+ * own row rather than truncating.
+ */
+.record-picker {
+  flex: 1 0 auto;
+  min-width: 220px;
+  min-height: 44px;
+  padding: 12px 36px 12px 14px;
+
+  border: 1px solid #c9d6e3;
+  border-radius: 12px;
+
+  background-color: #ffffff;
+  color: #13233a;
+
+  /* local, inline SVG chevron — no external icon request */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%2313233a' fill-opacity='0.6' d='M5.5 7.5l4.5 4.5 4.5-4.5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  appearance: none;
+  -webkit-appearance: none;
+
+  font-family: 'Noto Sans Bengali', Inter, system-ui, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.record-picker:focus-visible,
+.sheet-handle:focus-visible {
+  outline: 2px solid #0b5cad;
+  outline-offset: 2px;
+}
+
+/*
+ * Previous / next. Fixed width and never flexible beside the dropdown, so they
+ * can never take width away from a Bengali name. On narrow phones they move to
+ * their own row (see the 379px block) and share it evenly.
+ */
+.step-btn {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+
+  border: 1px solid #c9d6e3;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #13233a;
+
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.step-btn:active:not(:disabled) {
+  background: #f2f6fa;
+}
+
+.step-btn:focus-visible {
+  outline: 2px solid #0b5cad;
+  outline-offset: 2px;
+}
+
+/* The only "you are at the end" signal there is, so it has to read as off. */
+.step-btn:disabled {
+  opacity: 0.38;
+  cursor: default;
+}
+
+/* Present for screen readers, takes no space (the app's viewer shows the title). */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Bengali text uses the same bundled Noto Sans Bengali as the map labels. */
+@font-face {
+  font-family: 'Noto Sans Bengali';
+  src: url('../shared/fonts/noto-sans-bengali/NotoSansBengali-Regular.woff2') format('woff2');
+  font-display: swap;
+}
+
+[lang='bn'] {
+  font-family: 'Noto Sans Bengali', Inter, system-ui, sans-serif;
+}
+
+.map-shell {
+  position: relative;
+  width: 100%;
+  height: min(680px, 72vw);
+  min-height: 460px;
+
+  overflow: hidden;
+
+  border-radius: 24px;
+  border: 1px solid #c9d6e3;
+
+  background: #b9d9ee;
+}
+
+#map {
+  position: absolute;
+  inset: 0;
+}
+
+.load-notice {
+  position: absolute;
+  inset: 0;
+
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  padding: 24px;
+
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 20;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #13233a;
+}
+
+.load-notice.visible {
+  display: flex;
+}
+
+/*
+ * Information sheet: floats over the bottom of the map and slides with a
+ * transform, so the map itself never resizes while it moves. --sheet-offset
+ * is set from app.js: 0 = open, (height − handle) = hidden with only the
+ * handle showing. touch-action: none keeps a drag on the sheet from ever
+ * reaching the page or the map.
+ */
+.info-sheet {
+  position: absolute;
+  left: 20px;
+  bottom: 0;
+  z-index: 10;
+
+  width: min(360px, calc(100% - 40px));
+
+  border-radius: 18px 18px 0 0;
+  background: #ffffff;
+  border: 1px solid #d5dee8;
+  border-bottom: 0;
+  box-shadow: 0 -4px 18px rgba(19, 35, 58, 0.12);
+
+  transform: translateY(var(--sheet-offset, 0px));
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+  touch-action: none;
+}
+
+.info-sheet.dragging {
+  transition: none;
+}
+
+.sheet-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: grab;
+}
+
+.sheet-grip {
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: #b7c2ce;
+}
+
+.info-sheet-body {
+  padding: 0 18px 16px;
+}
+
+
+.info-kicker {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #0b5cad;
+
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Uppercase and letter-spacing are for Latin; spacing out Bengali letters
+   breaks conjuncts such as প্র. */
+.info-kicker[lang='bn'] {
+  font-size: 13px;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.info-title {
+  margin: 0;
+
+  font-size: 23px;
+  line-height: 1.2;
+}
+
+.info-en {
+  margin: 4px 0 14px;
+
+  color: #4f5d6e;
+
+  font-size: 14px;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: 82px 1fr;
+  gap: 10px;
+
+  margin-top: 9px;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* display: grid above would otherwise override the hidden attribute. */
+.info-row[hidden] {
+  display: none;
+}
+
+.info-label {
+  color: #5b6878;
+}
+
+.info-value {
+  color: #13233a;
+  font-weight: 600;
+}
+
+.maplibregl-ctrl-group {
+  border-radius: 12px !important;
+  overflow: hidden;
+}
+
+/*
+ * The tilt button, under MapLibre's own compass at the top right. 44px so it
+ * is a comfortable tap target on a phone.
+ */
+.ctrl-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: #ffffff;
+  color: #13233a;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.ctrl-btn:active {
+  background: #f2f6fa;
+}
+
+.ctrl-btn:focus-visible {
+  outline: 2px solid #0b5cad;
+  outline-offset: -2px;
+}
+
+.ctrl-tilt {
+  letter-spacing: 0.01em;
+}
+
+/* Selection marker: pulse runs on the compositor, not the map's render loop. */
+.selection-marker {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.selection-marker[hidden] {
+  display: none;
+}
+
+.selection-marker-core,
+.selection-marker-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.selection-marker-core {
+  width: 16px;
+  height: 16px;
+  background: #ff534d;
+  border: 2px solid #ffffff;
+}
+
+.selection-marker-pulse {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 83, 77, 0.2);
+  border: 2px solid rgba(255, 122, 116, 0.6);
+  animation: selection-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes selection-pulse {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(0.75);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.3);
+    opacity: 0.25;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .selection-marker-pulse {
+    animation: none;
+  }
+}
+
+.layers-control {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  z-index: 15;
+}
+
+.layers-toggle-btn {
+  appearance: none;
+  border: 1px solid #d5dee8;
+  border-radius: 10px;
+  padding: 8px 12px;
+  background: #ffffff;
+  color: #13233a;
+  box-shadow: 0 1px 4px rgba(19, 35, 58, 0.12);
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.layers-toggle-btn:hover {
+  background: #f2f6fa;
+}
+
+.layers-menu {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+
+  margin-top: 6px;
+  padding: 10px 12px;
+
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #d5dee8;
+  box-shadow: 0 2px 10px rgba(19, 35, 58, 0.12);
+
+  font-size: 12px;
+  color: #13233a;
+  white-space: nowrap;
+}
+
+.layers-menu.open {
+  display: flex;
+}
+
+.layers-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.legend-swatch {
+  width: 16px;
+  height: 3px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/*
+ * Phones (and the app's WebView): the page is exactly one screen tall — a
+ * slim dropdown on top, the map taking everything else down to the bottom
+ * edge, the information sheet floating over it. The page itself never
+ * scrolls, so a drag always pans the map instead of scrolling the page.
+ */
+@media (max-width: 700px) {
+  .map-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    height: 100dvh;
+    padding: 10px 10px 0;
+  }
+
+  .page-header {
+    align-items: stretch;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .map-shell {
+    flex: 1 1 auto;
+    height: auto;
+    /* A floor for very short screens — there the page scrolls instead. */
+    min-height: 320px;
+    border-radius: 18px 18px 0 0;
+    border-bottom: 0;
+  }
+
+  .info-sheet {
+    left: 0;
+    width: 100%;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .info-sheet-body {
+    padding: 0 16px 14px;
+  }
+
+  .info-title {
+    font-size: 19px;
+  }
+
+  .layers-control {
+    left: 12px;
+    top: 12px;
+  }
+}
+
+/*
+ * Narrow phones: the dropdown takes the full row and the two step buttons drop
+ * to their own row beneath it, sharing the width. Stacking, never truncating —
+ * the name is the exam content, so the dropdown keeps its full width and the
+ * arrows move rather than squeezing it.
+ *
+ * `order` puts the dropdown first even though the ‹ button precedes it in the
+ * markup, which is the order a screen reader and the tab sequence want.
+ */
+@media (max-width: 379px) {
+  .record-picker {
+    order: -1;
+    flex-basis: 100%;
+  }
+
+  .step-btn {
+    flex: 1 1 auto;
+  }
+}

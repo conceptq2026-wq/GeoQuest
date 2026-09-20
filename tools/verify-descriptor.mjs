@@ -20,7 +20,7 @@ const BUILT_DIR = path.join(ROOT, 'docs/international/straits');
 // TEMPORARY OFFSET: the descriptor names its geometry files as if they sat
 // beside it, which is where they will live. They are still in the built map's
 // folder because the live page fetches them from there. Resolve both.
-const GEOMETRY_DIR = BUILT_DIR;
+const GEOMETRY_DIR = MAP_DIR;
 
 let failures = 0;
 const fail = (msg) => {
@@ -166,9 +166,23 @@ check(orphanGeometry.length === 0, `no canal geometry without a record${orphanGe
 console.log('\n---- descriptor field references ----');
 const referenced = new Set();
 const noteField = (f) => f && referenced.add(f);
-noteField(descriptor.sources.passages.geometry);
+// A source that takes its geometry from a record field references that field.
+// A source that takes its geometry from a record field is checked against ITS
+// OWN table, rather than being lumped in with the passage fields below.
+let badGeometryFrom = 0;
+for (const [name, spec] of Object.entries(descriptor.sources)) {
+  if (!spec.geometryFrom) continue;
+  const table = descriptor.records[spec.records];
+  if (!table || !(spec.geometryFrom in table.fields)) {
+    fail(`source "${name}": geometryFrom "${spec.geometryFrom}" is not a field on records "${spec.records}"`);
+    badGeometryFrom++;
+  }
+}
+check(badGeometryFrom === 0, "every source's geometryFrom is a declared field on its own records table");
 noteField(descriptor.sheet.kicker.of);
-(descriptor.sheet.title.compose ?? []).forEach(noteField);
+// compose holds ordered templates; the fields are the {tokens} inside them.
+for (const template of descriptor.sheet.title.compose ?? [])
+  for (const m of String(template).matchAll(/\{([A-Za-z][A-Za-z0-9_]*)\}/g)) noteField(m[1]);
 for (const row of descriptor.sheet.rows) noteField(row.field ?? row.of);
 for (const c of descriptor.controls) {
   if (c.type !== 'picker') continue;
@@ -202,6 +216,53 @@ for (const f of referenced) {
   }
 }
 check(missingOnRecord === 0, 'every required referenced field is present on every record');
+
+// ---- 4b. every ["get", x] in a layer resolves to a property its source carries
+// This is the check that would have caught the labels rendering empty: the
+// descriptor declared layers reading "nameBn" while no source put it on a
+// feature, and nothing said so until the map was drawn.
+console.log('\n---- layer property references ----');
+const CLUSTER_PROPS = ['cluster', 'cluster_id', 'point_count', 'point_count_abbreviated'];
+const gets = (node, out = []) => {
+  if (Array.isArray(node)) {
+    if (node[0] === 'get' && typeof node[1] === 'string') out.push(node[1]);
+    for (const child of node) gets(child, out);
+  } else if (node && typeof node === 'object') {
+    for (const child of Object.values(node)) gets(child, out);
+  }
+  return out;
+};
+
+let badGets = 0;
+for (const layer of descriptor.layers) {
+  // Layers reading the basemap read tile fields, which live in the archive
+  // rather than the descriptor; those are pinned in build-world.mjs instead.
+  if (layer.source === 'basemap') continue;
+  const spec = descriptor.sources[layer.source];
+  if (!spec) {
+    fail(`layer "${layer.id}": source "${layer.source}" is not declared`);
+    badGets++;
+    continue;
+  }
+  const allowed = new Set();
+  if (spec.records) {
+    allowed.add('key');
+    for (const p of spec.properties ?? []) allowed.add(p);
+    for (const f of spec.state ?? []) allowed.add(typeof f === 'string' ? f : f.name);
+    if (spec.cluster) for (const p of CLUSTER_PROPS) allowed.add(p);
+  } else {
+    // Geometry alone: whatever the generated file actually carries.
+    const fc = readJson(path.join(GEOMETRY_DIR, path.basename(spec.geometry)));
+    for (const f of fc.features) for (const k of Object.keys(f.properties ?? {})) allowed.add(k);
+  }
+  for (const name of new Set(gets({ f: layer.filter, l: layer.layout, p: layer.paint }))) {
+    if (!allowed.has(name)) {
+      fail(`layer "${layer.id}" reads ["get","${name}"], which source "${layer.source}" does not carry`);
+      badGets++;
+    }
+  }
+}
+check(badGets === 0, `every ["get", x] in every layer resolves on its source (${descriptor.layers.length} layers)`);
 
 // ---- 5. required fields are never null --------------------------------------
 console.log('\n---- required fields ----');

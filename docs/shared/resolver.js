@@ -26,7 +26,7 @@
 */
 
 /** Asset classes. 'registry' is reserved: nothing uses it yet. */
-export const KINDS = ['tiles', 'style', 'glyphs', 'sprite', 'mapData', 'registry'];
+export const KINDS = ['tiles', 'style', 'glyphs', 'sprite', 'mapData', 'maps', 'registry'];
 
 /*
 | THE LAYOUT ASSUMPTION, IN ONE PLACE.
@@ -51,6 +51,10 @@ const BASES = {
   glyphs: { anchor: 'shared', base: 'fonts/' },
   sprite: { anchor: 'shared', base: 'sprites/' },
   mapData: { anchor: 'document', base: '' },
+  // A map's descriptor, records and geometry, addressed by map id rather than
+  // relative to the page. The shell serves every map from one document, so
+  // 'mapData' — which hangs off the document — cannot reach them.
+  maps: { anchor: 'root', base: 'maps/' },
   registry: { anchor: 'root', base: '' },
 };
 
