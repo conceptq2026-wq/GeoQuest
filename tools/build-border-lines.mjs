@@ -247,17 +247,37 @@ const GENERATED = {
   },
   tordesillas: {
     axis: 'meridian',
-    // PENDING. The treaty says 370 leagues west of Cape Verde, and the
-    // league's length is disputed, so cited meridians spread over about two
-    // degrees. Fill this in only once a value has been approved; until then
-    // the record exists and the line is not drawn.
-    value: null,
+    // 46°30′W. Settled from one authoritative source rather than averaged
+    // across the spread — see `sources.longitude` and `review` below.
+    value: -46.5,
+    // Clipped on the same grounds as the parallels: a meridian runs pole to
+    // pole, and drawing all of it would put a line through the Arctic and the
+    // Antarctic, neither of which has anything to do with what this treaty
+    // divided. The span is the Atlantic stretch where the line actually bit —
+    // a display decision, not a fact.
     span: [-35, 8],
-    frame: [-60, -37, -30, 10],
+    // Wide enough to hold the line AND Iberia: the highlight is Spain and
+    // Portugal, and a frame showing only the Atlantic makes it look like a bug.
+    frame: [-62, -38, 2, 46],
     nameEn: 'Line of Demarcation (Treaty of Tordesillas)',
     status: 'historical',
+    // NOT the countries the line runs between — it runs through open ocean and
+    // Brazil. These are the two powers that drew it, which is the exam-relevant
+    // fact about this treaty. The only record where `countries` means that.
     countries: ['ESP', 'PRT'],
     establishedBn: '১৪৯৪',
+    sources: {
+      longitude: [
+        {
+          title: 'Treaty of Tordesillas',
+          publisher: 'Encyclopaedia Britannica',
+          url: 'https://www.britannica.com/event/Treaty-of-Tordesillas',
+          states: 'The line was moved to 370 leagues (1,185 miles) west of the Cape Verde Islands, "or about 46°30′ W of Greenwich".',
+        },
+      ],
+    },
+    review:
+      'Longitude taken as 46°30′W (−46.5), the figure Encyclopaedia Britannica gives for the 370-league line. The treaty fixes the distance, not the meridian, and the length of a league is disputed, so cited meridians spread over roughly two degrees; this value is the one shown, and the disagreement is recorded rather than resolved. Not an average of the cited values. `countries` here is the two powers that drew the line, not the countries it separates — the only record where the field carries that meaning.',
   },
 };
 
@@ -555,8 +575,6 @@ const REVIEW = {
     'Gained a generated line, so the note saying "পূর্ণ রেখা আঁকা হয়নি — রেফারেন্স পয়েন্ট মাত্র" is no longer true and is nulled rather than reworded. Its countries are [] because North and South Vietnam no longer exist and no ADM0_A3 stands for either; VNM is the successor state, not a party to the division. nameBn is the data.js name; the corpus calls it ১৭° উত্তর.',
   parallel38:
     'A separate record from koreanDmz on purpose: 38°N is the 1945 division line, the DMZ is the 1953 armistice line, and they are not the same line — the DMZ crosses 38°N rather than following it.',
-  tordesillas:
-    'Longitude PENDING: the treaty fixes the line 370 leagues west of Cape Verde and the league is disputed, so cited meridians spread over about two degrees. No line is drawn until a value is approved. countries are the two treaty parties, which is why the highlight is in Iberia while the line is in the Atlantic — that pairing needs a decision too.',
 };
 
 /*
@@ -938,7 +956,10 @@ for (const [id, spec] of Object.entries(GENERATED)) {
     frame: spec.frame,
     establishedBn: spec.establishedBn,
   };
-  if (REVIEW[id]) seed[id].review = REVIEW[id];
+  if (spec.sources) seed[id].sources = spec.sources;
+  // The entry's own note wins: it is written beside the value it explains.
+  const note = spec.review ?? REVIEW[id];
+  if (note) seed[id].review = note;
 }
 
 /*
@@ -1015,16 +1036,33 @@ for (const [id, spec] of Object.entries(MARKER_ONLY)) {
   if (spec.review) seed[id].review = spec.review;
 }
 
+/*
+ * Fields settled from ONE authoritative source instead of two, by decision.
+ *
+ * Two independent sources is the rule because corroboration is what makes a
+ * memorised fact safe. It is set aside here for a value where the sources do
+ * not disagree about the FACT but about a unit — the treaty fixes 370 leagues
+ * and the league's length is disputed — so a second citation would add another
+ * arithmetic result, not another witness. The exception is listed rather than
+ * implied, so it cannot spread quietly to a field that has not earned it.
+ */
+const SINGLE_SOURCE_OK = { tordesillas: ['longitude'] };
+
 // A cited field must carry two independent citations, or the shape is being
 // used to imply corroboration that does not exist.
 for (const [id, rec] of Object.entries(seed)) {
   for (const [field, cites] of Object.entries(rec.sources ?? {})) {
-    if (!Array.isArray(cites) || cites.length !== 2)
-      throw new Error(`${id}.sources.${field}: needs exactly two independent citations, got ${Array.isArray(cites) ? cites.length : typeof cites}`);
+    const wanted = (SINGLE_SOURCE_OK[id] ?? []).includes(field) ? 1 : 2;
+    if (!Array.isArray(cites) || cites.length !== wanted)
+      throw new Error(
+        `${id}.sources.${field}: needs exactly ${wanted} citation(s), got ${Array.isArray(cites) ? cites.length : typeof cites}`,
+      );
     const hosts = cites.map((c) => new URL(c.url).host);
-    if (hosts[0] === hosts[1])
+    if (wanted === 2 && hosts[0] === hosts[1])
       throw new Error(`${id}.sources.${field}: both citations are from ${hosts[0]} — that is one source, not two`);
   }
+  for (const field of SINGLE_SOURCE_OK[id] ?? [])
+    if (!rec.sources?.[field]) throw new Error(`${id}: listed as single-source for "${field}", which carries no citation at all`);
   // A point that was placed on the strength of an extent must say whose.
   if (rec.labelAt && !rec.hasGeometry && !rec.sources?.labelAt && !(id in DATES))
     throw new Error(`${id}: has a point but no citation for the extent it sits on`);
@@ -1059,7 +1097,7 @@ for (const [id, rec] of Object.entries(seed)) {
     );
 }
 
-const NO_POINT_YET = ['tordesillas', 'hindenburgLine', 'purpleLine', 'fochLine', 'parallel90'];
+const NO_POINT_YET = ['hindenburgLine', 'purpleLine', 'fochLine', 'parallel90'];
 for (const [id, rec] of Object.entries(seed)) {
   if (rec.hasGeometry || NO_POINT_YET.includes(id)) continue;
   if (!rec.labelAt) throw new Error(`${id}: no line geometry and no labelAt — it would not appear on the map at all`);

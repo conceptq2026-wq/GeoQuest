@@ -320,16 +320,19 @@
       "PRT"
     ],
     "countriesBn": null,
-    "labelAt": null,
+    "labelAt": [
+      -46.5,
+      -13.5
+    ],
     "frame": [
-      -60,
-      -37,
-      -30,
-      10
+      -62,
+      -38,
+      2,
+      46
     ],
     "noteBn": null,
     "hasTrace": false,
-    "hasGeometry": false,
+    "hasGeometry": true,
     "establishedBn": "১৪৯৪"
   },
   "northernLimitLine": {

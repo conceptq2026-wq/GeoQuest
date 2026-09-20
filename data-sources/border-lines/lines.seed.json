@@ -369,19 +369,32 @@
       "ESP",
       "PRT"
     ],
-    "labelAt": null,
+    "labelAt": [
+      -46.5,
+      -13.5
+    ],
     "noteBn": null,
     "hasTrace": false,
-    "hasGeometry": false,
-    "geometrySource": "none",
+    "hasGeometry": true,
+    "geometrySource": "generated",
     "frame": [
-      -60,
-      -37,
-      -30,
-      10
+      -62,
+      -38,
+      2,
+      46
     ],
     "establishedBn": "১৪৯৪",
-    "review": "Longitude PENDING: the treaty fixes the line 370 leagues west of Cape Verde and the league is disputed, so cited meridians spread over about two degrees. No line is drawn until a value is approved. countries are the two treaty parties, which is why the highlight is in Iberia while the line is in the Atlantic — that pairing needs a decision too."
+    "sources": {
+      "longitude": [
+        {
+          "title": "Treaty of Tordesillas",
+          "publisher": "Encyclopaedia Britannica",
+          "url": "https://www.britannica.com/event/Treaty-of-Tordesillas",
+          "states": "The line was moved to 370 leagues (1,185 miles) west of the Cape Verde Islands, \"or about 46°30′ W of Greenwich\"."
+        }
+      ]
+    },
+    "review": "Longitude taken as 46°30′W (−46.5), the figure Encyclopaedia Britannica gives for the 370-league line. The treaty fixes the distance, not the meridian, and the length of a league is disputed, so cited meridians spread over roughly two degrees; this value is the one shown, and the disagreement is recorded rather than resolved. Not an average of the cited values. `countries` here is the two powers that drew the line, not the countries it separates — the only record where the field carries that meaning."
   },
   "northernLimitLine": {
     "id": "northernLimitLine",
