@@ -54,37 +54,105 @@ const nameBnByCode = Object.fromEntries(
 );
 const nameBnHash = crypto.createHash('sha256').update(JSON.stringify(nameBnByCode)).digest('hex').slice(0, 16);
 
-const nameDrift = [];
+// Every pinned value checked in this build collects here, so one run reports
+// all of its drift rather than stopping at the first.
+const drift = [];
+
 const actualCount = Object.keys(nameBnByCode).length;
 if (actualCount !== EXPECTED_NAME_BN_COUNT)
-  nameDrift.push(`count: expected ${EXPECTED_NAME_BN_COUNT} countries, got ${actualCount}`);
+  drift.push(`name_bn count: expected ${EXPECTED_NAME_BN_COUNT} countries, got ${actualCount}`);
 
 if (nameBnHash !== EXPECTED_NAME_BN_HASH) {
   // A bare hash mismatch across 248 entries is useless to act on, so name the
   // codes that moved by diffing against the committed copy.
   const previous = fs.existsSync(NAMES_FILE) ? JSON.parse(fs.readFileSync(NAMES_FILE, 'utf8')) : {};
+  const before = drift.length;
   for (const code of [...new Set([...Object.keys(previous), ...Object.keys(nameBnByCode)])].sort()) {
     const was = previous[code];
     const now = nameBnByCode[code];
     if (was === now) continue;
-    if (was === undefined) nameDrift.push(`${code}: added as "${now}"`);
-    else if (now === undefined) nameDrift.push(`${code}: removed (was "${was}")`);
-    else nameDrift.push(`${code}: "${was}" -> "${now}"`);
+    if (was === undefined) drift.push(`name_bn ${code}: added as "${now}"`);
+    else if (now === undefined) drift.push(`name_bn ${code}: removed (was "${was}")`);
+    else drift.push(`name_bn ${code}: "${was}" -> "${now}"`);
   }
-  if (!nameDrift.length)
-    nameDrift.push(
-      `hash: expected ${EXPECTED_NAME_BN_HASH}, got ${nameBnHash}, but ${path.basename(NAMES_FILE)} matches the new mapping — the committed copy is stale, or the pinned hash was never updated`,
+  if (drift.length === before)
+    drift.push(
+      `name_bn hash: expected ${EXPECTED_NAME_BN_HASH}, got ${nameBnHash}, but ${path.basename(NAMES_FILE)} matches the new mapping — the committed copy is stale, or the pinned hash was never updated`,
     );
 }
 
-if (nameDrift.length)
-  throw new Error(
-    `Bengali country names changed — every map displays these, so read the list before re-pinning:\n  ${nameDrift.join('\n  ')}`,
-  );
+/*
+|--------------------------------------------------------------------------
+| PINNED BOUNDARY CLASSES
+|--------------------------------------------------------------------------
+|
+| `class` comes from Natural Earth's FCLASS_BD, and bangladeshLineClass DROPS a
+| line Bangladesh does not recognise rather than marking it — 73 of them across
+| the four groups below. So `class` does not merely label a boundary, it decides
+| whether the basemap draws it at all. A reclassification upstream would move
+| the app's editorial position inside a committed binary, where no diff shows it.
+|
+| Counts per class rather than a hash: there are only a handful, and a failure
+| should say WHICH class moved. The counts are taken after the Bangladesh filter
+| and before the detail clip, so they track the source and the filter, not the
+| DETAIL_AREAS boxes — changing a box is a config decision and must not churn
+| these.
+|
+| min_zoom is deliberately not pinned: it decides when a label appears, not what
+| it says. Display timing, not fact.
+*/
+const EXPECTED_LINE_CLASSES = {
+  'world.borders': {
+    'Disputed (please verify)': 15,
+    'Indefinite (please verify)': 5,
+    'Indeterminant frontier': 2,
+    'International boundary (verify)': 358,
+    'Line of control (please verify)': 5,
+  },
+  'world.disputed': {
+    Breakaway: 1,
+    'Claim boundary': 19,
+    'Disputed (please verify)': 1,
+    'International boundary (verify)': 1,
+  },
+  'detail.borders': {
+    'Disputed (please verify)': 29,
+    'Indefinite (please verify)': 12,
+    'Indeterminant frontier': 4,
+    'International boundary (verify)': 442,
+    'Lease limit': 2,
+    'Line of control (please verify)': 7,
+    'Overlay limit': 5,
+  },
+  'detail.disputed': {
+    'Claim boundary': 29,
+    'Disputed (please verify)': 1,
+    'Elusive frontier': 1,
+    'Indefinite (please verify)': 1,
+    'International boundary (verify)': 1,
+  },
+};
 
-// Only written once the pin has passed, so the committed copy always matches
-// the pinned hash and is a usable base for the next diff.
-fs.writeFileSync(NAMES_FILE, JSON.stringify(nameBnByCode, null, 2) + '\n');
+const classCounts = (fc) => {
+  const counts = {};
+  for (const f of fc.features) counts[f.properties.class] = (counts[f.properties.class] || 0) + 1;
+  return counts;
+};
+
+function checkLineClasses(actual) {
+  for (const group of [...new Set([...Object.keys(EXPECTED_LINE_CLASSES), ...Object.keys(actual)])].sort()) {
+    const expected = EXPECTED_LINE_CLASSES[group] ?? {};
+    const got = actual[group] ?? {};
+    for (const cls of [...new Set([...Object.keys(expected), ...Object.keys(got)])].sort()) {
+      const was = expected[cls];
+      const now = got[cls];
+      if (was === now) continue;
+      if (was === undefined) drift.push(`${group}: class "${cls}" appeared, ${now} feature(s)`);
+      else if (now === undefined) drift.push(`${group}: class "${cls}" disappeared, was ${was} feature(s)`);
+      else drift.push(`${group}: class "${cls}" expected ${was} feature(s), got ${now}`);
+    }
+  }
+}
 
 // ---- World layers (1:50m) ----
 const world = {
@@ -118,6 +186,24 @@ const land10 = prepare(readSource('ne_10m_land.geojson'), () => ({}));
 const lakes10 = prepare(readSource('ne_10m_lakes.geojson'), () => ({}));
 const borders10 = prepare(readSource('ne_10m_admin_0_boundary_lines_land.geojson'), lineProps, isBdLine);
 const disputed10 = prepare(readSource('ne_10m_admin_0_boundary_lines_disputed_areas.geojson'), lineProps, isBdLine);
+checkLineClasses({
+  'world.borders': classCounts(world.borders),
+  'world.disputed': classCounts(world.disputed),
+  'detail.borders': classCounts(borders10),
+  'detail.disputed': classCounts(disputed10),
+});
+
+// Every pin is checked before the clip and the tiling, so drift fails in
+// seconds and nothing is written — not the tileset, not the names file.
+if (drift.length)
+  throw new Error(
+    `pinned values derived from Natural Earth changed — read the list before re-pinning:\n  ${drift.join('\n  ')}`,
+  );
+
+// Written only once every pin has passed, so the committed copy always matches
+// the pinned hash and is a usable base for the next diff.
+fs.writeFileSync(NAMES_FILE, JSON.stringify(nameBnByCode, null, 2) + '\n');
+
 const detail = { detail_extent: [], land: [], lakes: [], borders: [], disputed: [] };
 for (const [name, bbox] of Object.entries(DETAIL_AREAS)) {
   detail.detail_extent.push({ ...bboxPolygon(bbox), properties: { area: name } });
