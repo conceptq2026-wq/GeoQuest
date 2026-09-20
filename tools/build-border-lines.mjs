@@ -283,6 +283,47 @@ const MARKER_FRAMES = {
 
 /*
 |--------------------------------------------------------------------------
+| OPENSTREETMAP LINES — a committed extract, never the live API
+|
+| tools/sources/osm-border-lines.geojson is a dated snapshot made by
+| extract-osm-border-lines.mjs, checksummed in sources.json. The build refuses
+| a file whose checksum differs, so a changed upstream cannot slip in: it has
+| to be re-fetched, reviewed and re-pinned deliberately.
+|
+| Pinned TWICE on purpose. The checksum says the file has not changed; the
+| per-record count and hash below say what the build made of it. The first
+| catches an upstream edit, the second catches a change in how this script
+| reads the same bytes.
+|--------------------------------------------------------------------------
+*/
+const OSM_FILE = path.join(ROOT, 'tools/sources/osm-border-lines.geojson');
+const OSM_PIN = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools/sources.json'), 'utf8')).osmBorderLines;
+const osmText = fs.readFileSync(OSM_FILE, 'utf8');
+const osmSha = crypto.createHash('sha256').update(osmText).digest('hex');
+if (OSM_PIN && osmSha !== OSM_PIN.sha256)
+  throw new Error(
+    `tools/sources/osm-border-lines.geojson has changed.\n  pinned ${OSM_PIN.sha256}\n  actual ${osmSha}\nRe-run extract-osm-border-lines.mjs only on purpose, review the diff, then re-pin.`,
+  );
+const osmExtract = JSON.parse(osmText);
+
+/*
+ * Which OSM-sourced records become drawn lines. A record is here only if its
+ * extract was measured against the feature's historical extent and passed;
+ * siegfriedLine is deliberately absent, and is a marker instead.
+ */
+const OSM_DRAWN = {
+  northernLimitLine: {
+    nameEn: 'Northern Limit Line',
+    kind: 'boundary',
+    status: 'active',
+    // The tagging the query relied on: left:country=North Korea,
+    // right:country=South Korea.
+    countries: ['KOR', 'PRK'],
+  },
+};
+
+/*
+|--------------------------------------------------------------------------
 | MARKER-ONLY LINES — no geometry anywhere, so a point and a frame
 |
 | The survey established that none of these can be traced: no present-day
@@ -427,6 +468,36 @@ const MARKER_ONLY = {
     review:
       'The 1919 Entente demarcation line between Poland and Lithuania. The only source reached is a Wikipedia stub, which says the line left Vilnius on the Polish side and that after 1945 only its westernmost part near Suwałki still follows it. No extent statement and no second independent source.',
   },
+  siegfriedLine: {
+    nameEn: 'Siegfried Line',
+    kind: 'boundary',
+    status: 'historical',
+    // A vertex of the committed OSM extract — way/366849051, "Höckerlinie
+    // (Westwall)" — so the point is a surviving stretch of the line itself
+    // rather than a spot chosen off a map.
+    labelAt: [6.2176, 50.15147],
+    // The DOCUMENTED extent, Kleve to Weil am Rhein, not the surviving
+    // remains: the marker stands for the whole line.
+    frame: [4.8, 47.0, 9.7, 52.5],
+    sources: {
+      labelAt: [
+        {
+          title: 'Siegfried Line',
+          publisher: 'Wikipedia',
+          url: 'https://en.wikipedia.org/wiki/Siegfried_Line',
+          states: 'Stretched more than 630 km from Kleve on the border with the Netherlands, along the western border of Nazi Germany, to Weil am Rhein on the border with Switzerland.',
+        },
+        {
+          title: 'Siegfried Line',
+          publisher: 'Encyclopaedia Britannica',
+          url: 'https://www.britannica.com/topic/Siegfried-Line',
+          states: 'A system of pillboxes and strongpoints built along the German western frontier in the 1930s and greatly expanded in 1944; illustrates its dragon\'s teeth near Aachen.',
+        },
+      ],
+    },
+    review:
+      'OSM relation/1629004 carries 98 surviving barrier=tank_trap ways, and they were measured against the documented extent before anything was drawn: they span 49.045N to 50.850N, 43.1% of the Kleve-to-Weil-am-Rhein range, against a 60% bar, and occupy 3 of 4 latitude bands with the southern band empty. Clustered in the middle, so drawing them would teach the wrong stretch of border. Marker instead. The extract is still committed and pinned, so the decision can be revisited against the same bytes.',
+  },
   parallel90: {
     nameEn: '90th Parallel North',
     kind: 'parallel',
@@ -470,6 +541,8 @@ const KIND = {
   purpleLine: 'boundary',
   fochLine: 'boundary',
   parallel90: 'parallel',
+  northernLimitLine: 'boundary',
+  siegfriedLine: 'boundary',
 };
 
 /** Decisions left open on purpose, carried into the seed so they stay visible. */
@@ -492,7 +565,8 @@ const REVIEW = {
  * is visible and fixable; a plausible invented name would be neither.
  */
 const BENGALI_PENDING = ['parallel22', 'parallel24', 'parallel25', 'parallel38', 'parallel49', 'tordesillas',
-  'mannerheim', 'maginot', 'wallaceLine', 'mcnamaraLine', 'hindenburgLine', 'purpleLine', 'fochLine', 'parallel90'];
+  'mannerheim', 'maginot', 'wallaceLine', 'mcnamaraLine', 'hindenburgLine', 'purpleLine', 'fochLine', 'parallel90',
+  'northernLimitLine', 'siegfriedLine'];
 
 const { FAMOUS_LINES } = await import(pathToFileURL(LINES_SOURCE).href);
 const sourceLines = loadBoundarySources();
@@ -700,6 +774,47 @@ function mergedNameBn(entries) {
   return stems[0];
 }
 
+// ---- OpenStreetMap geometry -------------------------------------------------
+// Contiguous ways are joined so one record does not carry ten fragments where
+// the source means two runs of coastline-to-coastline boundary.
+const osmById = new Map();
+const osmFeatures = [];
+for (const id of Object.keys(OSM_DRAWN)) {
+  const runs = osmExtract.features.filter((f) => f.properties.id === id).map((f) => f.geometry.coordinates);
+  if (!runs.length) throw new Error(`${id}: OSM_DRAWN names it but the extract has no ways for it`);
+  const traces = joinRuns(runs).map((run) => ({
+    type: 'Feature',
+    properties: { id, kind: 'trace' },
+    geometry: { type: 'LineString', coordinates: run },
+  }));
+  osmById.set(id, traces);
+  osmFeatures.push(...traces);
+}
+
+/*
+ * The same two tripwires the Natural Earth lines have, for the same reasons:
+ * a count catches a run splitting or merging, a hash catches it moving
+ * without changing how many pieces it is in. Hashed before simplification,
+ * so a rendering decision does not churn them.
+ */
+const EXPECTED_OSM_TRACES = { northernLimitLine: 2 };
+const EXPECTED_OSM_GEOMETRY = { northernLimitLine: 'a6e2db9b1fbdd77f' };
+
+for (const [id, expected] of Object.entries(EXPECTED_OSM_TRACES)) {
+  const actual = (osmById.get(id) ?? []).length;
+  if (actual !== expected) driftErrors.push(`${id}: expected ${expected} OSM trace(s), got ${actual}`);
+}
+for (const [id, expected] of Object.entries(EXPECTED_OSM_GEOMETRY)) {
+  const actual = geometryHash(osmById.get(id) ?? []);
+  if (actual !== expected) driftErrors.push(`${id}: expected OSM geometry ${expected}, got ${actual}`);
+}
+for (const id of osmById.keys()) {
+  if (!(id in EXPECTED_OSM_TRACES)) driftErrors.push(`${id}: drawn from OSM but has no entry in EXPECTED_OSM_TRACES`);
+  if (!(id in EXPECTED_OSM_GEOMETRY)) driftErrors.push(`${id}: drawn from OSM but has no entry in EXPECTED_OSM_GEOMETRY`);
+}
+if (driftErrors.length)
+  throw new Error(`the source data or a match rule moved under this build:\n  ${driftErrors.join('\n  ')}`);
+
 // ---- generated geometry -----------------------------------------------------
 // Computed from the constants above, so there is nothing to pin: these cannot
 // move unless someone edits GENERATED, and that edit is the review.
@@ -824,6 +939,51 @@ for (const [id, spec] of Object.entries(GENERATED)) {
     establishedBn: spec.establishedBn,
   };
   if (REVIEW[id]) seed[id].review = REVIEW[id];
+}
+
+/*
+ * Records drawn from the committed OpenStreetMap extract. geometrySource is
+ * 'osm', so bdPov does not apply and the present-if-and-only-if assertion
+ * below proves it stays absent.
+ */
+for (const [id, spec] of Object.entries(OSM_DRAWN)) {
+  if (seed[id]) throw new Error(`${id}: already built — an OSM record cannot share an id`);
+  const traces = osmById.get(id) ?? [];
+  seed[id] = {
+    id,
+    nameEn: spec.nameEn,
+    nameBn: null,
+    kind: KIND[id] ?? null,
+    status: spec.status,
+    countries: [...spec.countries],
+    // Derived from the drawn geometry, so the label cannot sit off the line.
+    labelAt: labelAnchor(traces, null),
+    noteBn: null,
+    // hasTrace means a NATURAL EARTH trace, which this is not. hasGeometry is
+    // what the map keys off, and it is true.
+    hasTrace: false,
+    hasGeometry: traces.length > 0,
+    geometrySource: 'osm',
+    establishedBn: null,
+    // No frame on purpose: with none, fitBounds unions every feature of the
+    // record, which is what a two-segment line needs.
+    sources: {
+      labelAt: [
+        {
+          title: 'OpenStreetMap ways named 북방한계선 (Northern Limit Line)',
+          publisher: 'OpenStreetMap contributors, ODbL 1.0',
+          url: 'https://www.openstreetmap.org/relation/1629004',
+          states: 'Mapped as a national maritime boundary: boundary=administrative, admin_level=2, border_type=nation, maritime=yes, left:country=North Korea, right:country=South Korea. Committed as tools/sources/osm-border-lines.geojson.',
+        },
+        {
+          title: 'Northern Limit Line',
+          publisher: 'Wikipedia',
+          url: 'https://en.wikipedia.org/wiki/Northern_Limit_Line',
+          states: 'A disputed maritime demarcation line in the Yellow Sea between North and South Korea, with a corresponding line in the East Sea.',
+        },
+      ],
+    },
+  };
 }
 
 /*
@@ -965,7 +1125,7 @@ const write = (name, data) => {
 const sizes = [
   // Traced first, then generated, so the file reads in the order the two
   // kinds were added rather than interleaved by id.
-  write('lines.geojson', { type: 'FeatureCollection', features: [...allTraces, ...generatedFeatures] }),
+  write('lines.geojson', { type: 'FeatureCollection', features: [...allTraces, ...osmFeatures, ...generatedFeatures] }),
   write('lines.seed.json', seed),
   write('countries.geojson', { type: 'FeatureCollection', features: countryFeatures }),
   write('countries.seed.json', countrySeed),

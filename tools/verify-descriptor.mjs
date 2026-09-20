@@ -515,7 +515,7 @@ console.log('\n\n============ border-lines ============');
   // falsified by a line gaining geometry plus six lines with no note yet),
   // 6 establishedBn with no year in any source here, and tordesillas.labelAt,
   // which has nowhere to sit until its longitude is settled.
-  checkMap({ id: 'border-lines', expectedPending: 61 });
+  checkMap({ id: 'border-lines', expectedPending: 68 });
 }
 
 // ---- done -------------------------------------------------------------------

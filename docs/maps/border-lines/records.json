@@ -332,6 +332,25 @@
     "hasGeometry": false,
     "establishedBn": "১৪৯৪"
   },
+  "northernLimitLine": {
+    "nameEn": "Northern Limit Line",
+    "nameBn": null,
+    "kind": "boundary",
+    "status": "active",
+    "countries": [
+      "KOR",
+      "PRK"
+    ],
+    "countriesBn": null,
+    "labelAt": [
+      125.42631,
+      37.64921
+    ],
+    "noteBn": null,
+    "hasTrace": false,
+    "hasGeometry": true,
+    "establishedBn": null
+  },
   "mannerheim": {
     "nameEn": "Mannerheim Line",
     "nameBn": null,
@@ -447,6 +466,27 @@
     "status": "historical",
     "countries": [],
     "labelAt": null,
+    "noteBn": null,
+    "hasTrace": false,
+    "hasGeometry": false,
+    "establishedBn": null
+  },
+  "siegfriedLine": {
+    "nameEn": "Siegfried Line",
+    "nameBn": null,
+    "kind": "boundary",
+    "status": "historical",
+    "countries": [],
+    "labelAt": [
+      6.2176,
+      50.15147
+    ],
+    "frame": [
+      4.8,
+      47,
+      9.7,
+      52.5
+    ],
     "noteBn": null,
     "hasTrace": false,
     "hasGeometry": false,

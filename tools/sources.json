@@ -76,5 +76,16 @@
     "fetched": "2026-09-18",
     "licence": "ODbL 1.0 — © OpenStreetMap contributors",
     "sha256": "f26fb7836b77a7da06f7695ddc6ce076b456821df96dc9f206a7a2ed15298e40"
+  },
+  "osmBorderLines": {
+    "_comment": "Snapshot of the two border lines OpenStreetMap carries as geometry — the Northern Limit Line and the surviving Siegfried Line tank traps — made by extract-osm-border-lines.mjs and committed. The build refuses a file whose checksum differs, so what is drawn only changes on purpose. way/979904704 is excluded: it shares the NLL name but is the Han estuary neutral zone (left:country=Demarcation Zone).",
+    "file": "tools/sources/osm-border-lines.geojson",
+    "queries": {
+      "northernLimitLine": "[out:json][timeout:180];way[\"name\"=\"북방한계선\"];out tags geom;",
+      "siegfriedLine": "[out:json][timeout:180];rel(1629004);way(r)[\"barrier\"=\"tank_trap\"];out tags geom;"
+    },
+    "fetched": "2026-09-21",
+    "licence": "ODbL 1.0 — © OpenStreetMap contributors",
+    "sha256": "806c8ec0a47e5fa9b2373976687d3a9ace3040ff134dabca2878a2301d068f55"
   }
 }

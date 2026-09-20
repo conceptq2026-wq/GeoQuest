@@ -383,6 +383,42 @@
     "establishedBn": "১৪৯৪",
     "review": "Longitude PENDING: the treaty fixes the line 370 leagues west of Cape Verde and the league is disputed, so cited meridians spread over about two degrees. No line is drawn until a value is approved. countries are the two treaty parties, which is why the highlight is in Iberia while the line is in the Atlantic — that pairing needs a decision too."
   },
+  "northernLimitLine": {
+    "id": "northernLimitLine",
+    "nameEn": "Northern Limit Line",
+    "nameBn": null,
+    "kind": "boundary",
+    "status": "active",
+    "countries": [
+      "KOR",
+      "PRK"
+    ],
+    "labelAt": [
+      125.42631,
+      37.64921
+    ],
+    "noteBn": null,
+    "hasTrace": false,
+    "hasGeometry": true,
+    "geometrySource": "osm",
+    "establishedBn": null,
+    "sources": {
+      "labelAt": [
+        {
+          "title": "OpenStreetMap ways named 북방한계선 (Northern Limit Line)",
+          "publisher": "OpenStreetMap contributors, ODbL 1.0",
+          "url": "https://www.openstreetmap.org/relation/1629004",
+          "states": "Mapped as a national maritime boundary: boundary=administrative, admin_level=2, border_type=nation, maritime=yes, left:country=North Korea, right:country=South Korea. Committed as tools/sources/osm-border-lines.geojson."
+        },
+        {
+          "title": "Northern Limit Line",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Northern_Limit_Line",
+          "states": "A disputed maritime demarcation line in the Yellow Sea between North and South Korea, with a corresponding line in the East Sea."
+        }
+      ]
+    }
+  },
   "mannerheim": {
     "id": "mannerheim",
     "nameEn": "Mannerheim Line",
@@ -585,6 +621,46 @@
     "geometrySource": "none",
     "establishedBn": null,
     "review": "The 1919 Entente demarcation line between Poland and Lithuania. The only source reached is a Wikipedia stub, which says the line left Vilnius on the Polish side and that after 1945 only its westernmost part near Suwałki still follows it. No extent statement and no second independent source."
+  },
+  "siegfriedLine": {
+    "id": "siegfriedLine",
+    "nameEn": "Siegfried Line",
+    "nameBn": null,
+    "kind": "boundary",
+    "status": "historical",
+    "countries": [],
+    "labelAt": [
+      6.2176,
+      50.15147
+    ],
+    "noteBn": null,
+    "hasTrace": false,
+    "hasGeometry": false,
+    "geometrySource": "none",
+    "establishedBn": null,
+    "frame": [
+      4.8,
+      47,
+      9.7,
+      52.5
+    ],
+    "sources": {
+      "labelAt": [
+        {
+          "title": "Siegfried Line",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Siegfried_Line",
+          "states": "Stretched more than 630 km from Kleve on the border with the Netherlands, along the western border of Nazi Germany, to Weil am Rhein on the border with Switzerland."
+        },
+        {
+          "title": "Siegfried Line",
+          "publisher": "Encyclopaedia Britannica",
+          "url": "https://www.britannica.com/topic/Siegfried-Line",
+          "states": "A system of pillboxes and strongpoints built along the German western frontier in the 1930s and greatly expanded in 1944; illustrates its dragon's teeth near Aachen."
+        }
+      ]
+    },
+    "review": "OSM relation/1629004 carries 98 surviving barrier=tank_trap ways, and they were measured against the documented extent before anything was drawn: they span 49.045N to 50.850N, 43.1% of the Kleve-to-Weil-am-Rhein range, against a 60% bar, and occupy 3 of 4 latitude bands with the southern band empty. Clustered in the middle, so drawing them would teach the wrong stretch of border. Marker instead. The extract is still committed and pinned, so the decision can be revisited against the same bytes."
   },
   "parallel90": {
     "id": "parallel90",
