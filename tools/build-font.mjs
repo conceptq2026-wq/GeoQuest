@@ -12,7 +12,8 @@ import subsetFont from 'subset-font';
 
 const require = createRequire(import.meta.url);
 const SRC = path.resolve('.cache/noto-bengali');
-const OUT = path.resolve('..', 'shared', 'fonts', 'noto-sans-bengali');
+// Inside the served tree. Change here if it moves.
+const OUT = path.resolve('..', 'docs', 'shared', 'fonts', 'noto-sans-bengali');
 const TTF = path.join(SRC, 'NotoSansBengali/unhinted/ttf/NotoSansBengali-Regular.ttf');
 
 const hb = await require('harfbuzzjs');

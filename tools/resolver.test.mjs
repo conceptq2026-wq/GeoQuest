@@ -6,7 +6,7 @@
 // under a subpath, because GitHub Pages serves this repo from /GeoQuest/.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createResolver, KINDS } from '../shared/resolver.js';
+import { createResolver, KINDS } from '../docs/shared/resolver.js';
 
 // The two deployments, written the way the browser sees them.
 const ROOT = {

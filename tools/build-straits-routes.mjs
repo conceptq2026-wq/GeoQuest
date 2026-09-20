@@ -17,8 +17,9 @@ import { pathToFileURL } from 'node:url';
 import mapshaper from 'mapshaper';
 
 const ROOT = path.resolve('..');
-// The straits map's folder, relative to the repo root. Change here if the map moves.
-const STRAITS_DIR = path.join(ROOT, 'international/straits');
+// The straits map's folder inside the served tree, relative to the repo root.
+// Change here if the map moves.
+const STRAITS_DIR = path.join(ROOT, 'docs/international/straits');
 const sources = JSON.parse(fs.readFileSync('sources.json', 'utf8'));
 
 function readPinned(entry) {

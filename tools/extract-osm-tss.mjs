@@ -14,7 +14,7 @@ import { pathToFileURL } from 'node:url';
 
 const ROOT = path.resolve('..');
 // The straits map's folder, relative to the repo root. Change here if the map moves.
-const STRAITS_DIR = path.join(ROOT, 'international/straits');
+const STRAITS_DIR = path.join(ROOT, 'docs/international/straits');
 const OUT = path.join(ROOT, 'tools', 'sources', 'osm-tss.geojson');
 const ENDPOINTS = [
   'https://overpass-api.de/api/interpreter',

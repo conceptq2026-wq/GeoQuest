@@ -8,7 +8,8 @@ import { writeArchive } from './lib/pmtiles-writer.mjs';
 import { readSource, prepare, bangladeshLineClass, featureCollection, bboxPolygon } from './lib/geo.mjs';
 import { WORLD_MAX_ZOOM, DETAIL_MIN_ZOOM, DETAIL_MAX_ZOOM, DETAIL_AREAS } from './world.config.mjs';
 
-const OUT = path.resolve('..', 'shared', 'tiles', 'world.pmtiles');
+// Inside the served tree. Change here if it moves.
+const OUT = path.resolve('..', 'docs', 'shared', 'tiles', 'world.pmtiles');
 const VT_OPTIONS = { extent: 4096, buffer: 64, tolerance: 3, indexMaxPoints: 0 };
 
 const lineProps = (p) => ({ class: bangladeshLineClass(p) });

@@ -1,4 +1,4 @@
-// Builds straits/famous-lines.geojson: the real boundary segments that carry
+// Builds data-sources/famous-lines.geojson: the real boundary segments that carry
 // a famous name (McMahon Line, Radcliffe Line…), plus one label point each.
 //
 // Lines are picked from Natural Earth 1:10m boundary lines by the two
@@ -15,8 +15,12 @@ import { pathToFileURL } from 'node:url';
 import mapshaper from 'mapshaper';
 import { readSource } from './lib/geo.mjs';
 
-// The straits map's folder, relative to the repo root. Change here if the map moves.
-const STRAITS_DIR = path.resolve('..', 'international/straits');
+// The straits map's folder inside the served tree, relative to the repo root.
+// Change here if the map moves.
+const STRAITS_DIR = path.resolve('..', 'docs/international/straits');
+// Where famous-lines.geojson is written. No map draws it, so it is kept out of
+// the served tree rather than published for nothing. Change here if it moves.
+const OUT_DIR = path.resolve('..', 'data-sources');
 const { FAMOUS_LINES } = await import(pathToFileURL(path.join(STRAITS_DIR, 'data.js')).href);
 const SIMPLIFY_METRES = 250; // well below what shows at the zooms these lines are viewed at
 
@@ -113,7 +117,7 @@ for (const line of FAMOUS_LINES) {
   if (line.match && !traces.length) throw new Error(`${line.nameEn}: match found no Natural Earth lines — check data.js`);
 }
 
-const out = path.join(STRAITS_DIR, 'famous-lines.geojson');
+const out = path.join(OUT_DIR, 'famous-lines.geojson');
 fs.writeFileSync(out, JSON.stringify({ type: 'FeatureCollection', features }) + '\n');
 console.log(`famous-lines.geojson: ${(fs.statSync(out).size / 1024).toFixed(1)} KB`);
 report.forEach((r) => console.log('  ' + r));

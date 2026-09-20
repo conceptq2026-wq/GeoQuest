@@ -16,8 +16,13 @@ const { VectorTile } = vtRequire('@mapbox/vector-tile');
 const Pbf = vtRequire('pbf');
 
 const ROOT = path.resolve('..');
-// The straits map's folder, relative to the repo root. Change here if the map moves.
-const STRAITS_DIR = path.join(ROOT, 'international/straits');
+// The served tree — everything GitHub Pages publishes, and nothing else.
+// Change here if it moves.
+const SERVED = path.join(ROOT, 'docs');
+// The straits map's folder inside the served tree. Change here if the map moves.
+const STRAITS_DIR = path.join(SERVED, 'international/straits');
+// Data kept out of the served tree because no map draws it.
+const DATA_SOURCES = path.join(ROOT, 'data-sources');
 let failures = 0;
 const check = (ok, msg) => {
   console.log(`${ok ? 'ok  ' : 'FAIL'} ${msg}`);
@@ -32,7 +37,7 @@ class FileSource {
     return { data: this.buf.buffer.slice(this.buf.byteOffset + offset, this.buf.byteOffset + offset + length) };
   }
 }
-const archive = new PMTiles(new FileSource(path.join(ROOT, 'shared/tiles/world.pmtiles')));
+const archive = new PMTiles(new FileSource(path.join(SERVED, 'shared/tiles/world.pmtiles')));
 const header = await archive.getHeader();
 check(header.specVersion === 3 && header.tileType === 1, `world.pmtiles is PMTiles v3 / MVT (z${header.minZoom}–${header.maxZoom})`);
 
@@ -76,7 +81,7 @@ const vendored = [
   ['shared/vendor/maplibre-gl-6.9.0/maplibre-gl.css', 'node_modules/maplibre-gl/dist/maplibre-gl.css'],
   ['shared/vendor/pmtiles-4.5.0/pmtiles.js', 'node_modules/pmtiles/dist/pmtiles.js'],
 ];
-for (const [copy, original] of vendored) check(sha(path.join(ROOT, copy)) === sha(original), `${copy} matches the pinned npm package`);
+for (const [copy, original] of vendored) check(sha(path.join(SERVED, copy)) === sha(original), `${copy} matches the pinned npm package`);
 
 // ---- straits map: each passage's first view must show what it sits between ----
 const { PASSAGES, SEAS } = await import(pathToFileURL(path.join(STRAITS_DIR, 'data.js')).href);
@@ -112,9 +117,9 @@ for (const [key, p] of Object.entries(PASSAGES)) {
 }
 
 // ---- per-map files ----
-const famous = JSON.parse(fs.readFileSync(path.join(STRAITS_DIR, 'famous-lines.geojson'), 'utf8'));
-check(famous.features.some((f) => f.properties.kind === 'trace'), 'straits/famous-lines.geojson has traced lines');
-check(fs.existsSync(path.join(ROOT, 'shared/fonts/noto-sans-bengali/OFL.txt')), 'Noto Sans Bengali licence is shipped next to the font');
+const famous = JSON.parse(fs.readFileSync(path.join(DATA_SOURCES, 'famous-lines.geojson'), 'utf8'));
+check(famous.features.some((f) => f.properties.kind === 'trace'), 'data-sources/famous-lines.geojson has traced lines');
+check(fs.existsSync(path.join(SERVED, 'shared/fonts/noto-sans-bengali/OFL.txt')), 'Noto Sans Bengali licence is shipped next to the font');
 
 if (failures) {
   console.error(`\n${failures} check(s) failed.`);

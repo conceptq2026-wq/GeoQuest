@@ -10,7 +10,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8')).devDependencies;
-const OUT = path.resolve('..', 'shared', 'vendor');
+// Inside the served tree. Change here if it moves.
+const OUT = path.resolve('..', 'docs', 'shared', 'vendor');
 
 const libs = [
   { name: 'maplibre-gl', files: ['dist/maplibre-gl.mjs', 'dist/maplibre-gl-shared.mjs', 'dist/maplibre-gl-worker.mjs', 'dist/maplibre-gl.css', 'LICENSE.txt'] },
