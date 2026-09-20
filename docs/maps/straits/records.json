@@ -1,0 +1,469 @@
+{
+  "hormuz": {
+    "kind": "strait",
+    "nameEn": "Strait of Hormuz",
+    "nameBn": "হরমুজ প্রণালি",
+    "center": [
+      56.35,
+      26.55
+    ],
+    "frame": [
+      50,
+      22.5,
+      60.5,
+      30.5
+    ],
+    "countriesBn": "ইরান — ওমান",
+    "connectsBn": "পারস্য উপসাগর → ওমান উপসাগর",
+    "seas": [
+      "persianGulf",
+      "gulfOfOman"
+    ],
+    "boundaryNote": "ইরান–ওমান সামুদ্রিক সীমানা (মাসকট অঞ্চল, ১৯৭৪ চুক্তি)",
+    "routeStatus": "partial"
+  },
+  "malacca": {
+    "kind": "strait",
+    "nameEn": "Strait of Malacca",
+    "nameBn": "মালাক্কা প্রণালি",
+    "center": [
+      101.2,
+      3.2
+    ],
+    "frame": [
+      93.5,
+      -1.5,
+      111,
+      13.5
+    ],
+    "countriesBn": "মালয়েশিয়া — ইন্দোনেশিয়া",
+    "connectsBn": "আন্দামান সাগর → দক্ষিণ চীন সাগর",
+    "seas": [
+      "andamanSea",
+      "southChinaSea"
+    ],
+    "boundaryNote": "মালয়েশিয়া–ইন্দোনেশিয়া সামুদ্রিক সীমানা (১৯৭০ চুক্তি)",
+    "routeStatus": "mapped"
+  },
+  "babMandeb": {
+    "kind": "strait",
+    "nameEn": "Bab el-Mandeb",
+    "nameBn": "বাব-এল-মান্দেব প্রণালি",
+    "center": [
+      43.35,
+      12.65
+    ],
+    "frame": [
+      37.5,
+      9,
+      50,
+      18.5
+    ],
+    "countriesBn": "ইয়েমেন — জিবুতি / ইরিত্রিয়া",
+    "connectsBn": "লোহিত সাগর → এডেন উপসাগর",
+    "seas": [
+      "redSea",
+      "gulfOfAden"
+    ],
+    "boundaryNote": "ইয়েমেন ও জিবুতি/ইরিত্রিয়ার আঞ্চলিক জলসীমা",
+    "routeStatus": "mapped"
+  },
+  "gibraltar": {
+    "kind": "strait",
+    "nameEn": "Strait of Gibraltar",
+    "nameBn": "জিব্রাল্টার প্রণালি",
+    "center": [
+      -5.55,
+      35.95
+    ],
+    "frame": [
+      -11,
+      33.5,
+      1,
+      39.5
+    ],
+    "countriesBn": "স্পেন — মরক্কো",
+    "connectsBn": "আটলান্টিক মহাসাগর → ভূমধ্যসাগর",
+    "seas": [
+      "atlantic",
+      "mediterranean"
+    ],
+    "boundaryNote": "স্পেন–মরক্কো জলসীমা (ইউরোপ–আফ্রিকা বিভাজন)",
+    "routeStatus": "mapped"
+  },
+  "bosporus": {
+    "kind": "strait",
+    "nameEn": "Bosporus Strait",
+    "nameBn": "বসফরাস প্রণালি",
+    "center": [
+      29.05,
+      41.12
+    ],
+    "frame": [
+      26,
+      39.5,
+      36,
+      44.5
+    ],
+    "countriesBn": "তুরস্ক (উভয় তীর)",
+    "connectsBn": "কৃষ্ণ সাগর → মারমারা সাগর",
+    "seas": [
+      "blackSea",
+      "marmara"
+    ],
+    "boundaryNote": "সম্পূর্ণ তুর্কি জলসীমা — ইউরোপ ও এশিয়ার মহাদেশীয় বিভাজন রেখা",
+    "routeStatus": "mapped"
+  },
+  "dardanelles": {
+    "kind": "strait",
+    "nameEn": "Dardanelles",
+    "nameBn": "দার্দানেলিস প্রণালি",
+    "center": [
+      26.5,
+      40.2
+    ],
+    "frame": [
+      23,
+      38,
+      30,
+      41.5
+    ],
+    "countriesBn": "তুরস্ক (উভয় তীর)",
+    "connectsBn": "মারমারা সাগর → এজিয়ান সাগর",
+    "seas": [
+      "marmara",
+      "aegean"
+    ],
+    "boundaryNote": "সম্পূর্ণ তুর্কি জলসীমা — ইউরোপ ও এশিয়ার মহাদেশীয় বিভাজন রেখা",
+    "routeStatus": "partial"
+  },
+  "bering": {
+    "kind": "strait",
+    "nameEn": "Bering Strait",
+    "nameBn": "বেরিং প্রণালি",
+    "center": [
+      -169,
+      65.9
+    ],
+    "frame": [
+      -180,
+      58.5,
+      -160,
+      70.5
+    ],
+    "countriesBn": "রাশিয়া — মার্কিন যুক্তরাষ্ট্র",
+    "connectsBn": "উত্তর মহাসাগর (চুকচি সাগর) → প্রশান্ত মহাসাগর (বেরিং সাগর)",
+    "seas": [
+      "chukchi",
+      "beringSea"
+    ],
+    "boundaryNote": "রাশিয়া–যুক্তরাষ্ট্র সামুদ্রিক সীমানা (১৯৯০ চুক্তি, বিগ ও লিটল ডায়োমিড দ্বীপের মাঝ দিয়ে)",
+    "routeStatus": "none"
+  },
+  "palk": {
+    "kind": "strait",
+    "nameEn": "Palk Strait",
+    "nameBn": "পক প্রণালি",
+    "center": [
+      79.8,
+      10.1
+    ],
+    "frame": [
+      76.5,
+      6.5,
+      83,
+      13.5
+    ],
+    "countriesBn": "ভারত — শ্রীলঙ্কা",
+    "connectsBn": "বঙ্গোপসাগর → পক উপসাগর / মান্নার উপসাগর",
+    "seas": [
+      "bayOfBengal",
+      "palkBay",
+      "gulfOfMannar"
+    ],
+    "boundaryNote": null,
+    "routeStatus": "none"
+  },
+  "sunda": {
+    "kind": "strait",
+    "nameEn": "Sunda Strait",
+    "nameBn": "সুন্দা প্রণালি",
+    "center": [
+      105.8,
+      -6
+    ],
+    "frame": [
+      101.5,
+      -9.5,
+      110,
+      -2.5
+    ],
+    "countriesBn": "ইন্দোনেশিয়া (জাভা — সুমাত্রা)",
+    "connectsBn": "জাভা সাগর → ভারত মহাসাগর",
+    "seas": [
+      "javaSea",
+      "indianOcean"
+    ],
+    "boundaryNote": null,
+    "routeStatus": "none"
+  },
+  "dover": {
+    "kind": "strait",
+    "nameEn": "Strait of Dover",
+    "nameBn": "ডোভার প্রণালি",
+    "center": [
+      1.45,
+      51
+    ],
+    "frame": [
+      -4,
+      48,
+      6,
+      54.5
+    ],
+    "countriesBn": "যুক্তরাজ্য — ফ্রান্স",
+    "connectsBn": "ইংলিশ চ্যানেল → উত্তর সাগর",
+    "seas": [
+      "englishChannel",
+      "northSea"
+    ],
+    "boundaryNote": null,
+    "routeStatus": "mapped"
+  },
+  "magellan": {
+    "kind": "strait",
+    "nameEn": "Strait of Magellan",
+    "nameBn": "ম্যাগেলান প্রণালি",
+    "center": [
+      -70.5,
+      -53.1
+    ],
+    "frame": [
+      -76.5,
+      -56.5,
+      -63.5,
+      -50
+    ],
+    "countriesBn": "চিলি (মূল ভূখণ্ড — তিয়েরা দেল ফুয়েগো)",
+    "connectsBn": "আটলান্টিক মহাসাগর → প্রশান্ত মহাসাগর",
+    "seas": [
+      "atlanticSouth",
+      "pacificSouth"
+    ],
+    "boundaryNote": null,
+    "routeStatus": "none"
+  },
+  "formosa": {
+    "kind": "strait",
+    "nameEn": "Formosa (Taiwan) Strait",
+    "nameBn": "ফরমোজা প্রণালি",
+    "altNameBn": "তাইওয়ান প্রণালি",
+    "center": [
+      119.5,
+      24
+    ],
+    "frame": [
+      115.5,
+      19.5,
+      124.5,
+      28.5
+    ],
+    "countriesBn": "চীন (মূল ভূখণ্ড — তাইওয়ান দ্বীপ)",
+    "connectsBn": "পূর্ব চীন সাগর → দক্ষিণ চীন সাগর",
+    "seas": [
+      "eastChinaSea",
+      "southChinaSeaNorth"
+    ],
+    "boundaryNote": null,
+    "routeStatus": "none"
+  },
+  "cook": {
+    "kind": "strait",
+    "nameEn": "Cook Strait",
+    "nameBn": "কুক প্রণালি",
+    "center": [
+      174.6,
+      -41.2
+    ],
+    "frame": [
+      170,
+      -45.5,
+      179.5,
+      -37
+    ],
+    "countriesBn": "নিউজিল্যান্ড (উত্তর দ্বীপ — দক্ষিণ দ্বীপ)",
+    "connectsBn": "তাসমান সাগর → প্রশান্ত মহাসাগর",
+    "seas": [
+      "tasmanSea",
+      "pacificNZ"
+    ],
+    "boundaryNote": null,
+    "routeStatus": "none"
+  },
+  "suez": {
+    "kind": "canal",
+    "nameEn": "Suez Canal",
+    "nameBn": "সুয়েজ খাল",
+    "center": [
+      32.35,
+      30.5
+    ],
+    "frame": [
+      28.5,
+      26,
+      36,
+      33.5
+    ],
+    "countriesBn": "মিশর",
+    "connectsBn": "ভূমধ্যসাগর → লোহিত সাগর",
+    "seas": [
+      "mediterraneanEast",
+      "redSeaNorth"
+    ],
+    "openedBn": null,
+    "lengthBn": null,
+    "routeStatus": "canal"
+  },
+  "panama": {
+    "kind": "canal",
+    "nameEn": "Panama Canal",
+    "nameBn": "পানামা খাল",
+    "center": [
+      -79.75,
+      9.1
+    ],
+    "frame": [
+      -82,
+      7,
+      -77.5,
+      10.8
+    ],
+    "countriesBn": "পানামা",
+    "connectsBn": "আটলান্টিক (ক্যারিবীয় সাগর) → প্রশান্ত মহাসাগর",
+    "seas": [
+      "caribbean",
+      "pacificPanama"
+    ],
+    "openedBn": null,
+    "lengthBn": null,
+    "routeStatus": "canal"
+  },
+  "kiel": {
+    "kind": "canal",
+    "nameEn": "Kiel Canal",
+    "nameBn": "কিয়েল খাল",
+    "center": [
+      9.6,
+      54.2
+    ],
+    "frame": [
+      2.5,
+      52.5,
+      15,
+      57.5
+    ],
+    "countriesBn": "জার্মানি",
+    "connectsBn": "উত্তর সাগর → বাল্টিক সাগর",
+    "seas": [
+      "northSea",
+      "balticSea"
+    ],
+    "openedBn": null,
+    "lengthBn": null,
+    "routeStatus": "canal"
+  },
+  "corinth": {
+    "kind": "canal",
+    "nameEn": "Corinth Canal",
+    "nameBn": "করিন্থ খাল",
+    "center": [
+      22.99,
+      37.93
+    ],
+    "frame": [
+      21.3,
+      37.2,
+      24.3,
+      38.7
+    ],
+    "countriesBn": "গ্রিস",
+    "connectsBn": "করিন্থ উপসাগর → সারোনিক উপসাগর",
+    "seas": [
+      "gulfOfCorinth",
+      "saronicGulf"
+    ],
+    "openedBn": null,
+    "lengthBn": null,
+    "routeStatus": "canal"
+  },
+  "soo": {
+    "kind": "canal",
+    "nameEn": "Soo (Sault Ste. Marie) Canal",
+    "nameBn": "সু খাল",
+    "altNameBn": "সল্ট সেন্ট মেরি",
+    "center": [
+      -84.35,
+      46.5
+    ],
+    "frame": [
+      -90.5,
+      43.5,
+      -80,
+      49
+    ],
+    "countriesBn": "মার্কিন যুক্তরাষ্ট্র — কানাডা",
+    "connectsBn": "সুপিরিয়র হ্রদ → হুরন হ্রদ",
+    "seas": [
+      "lakeSuperior",
+      "lakeHuron"
+    ],
+    "openedBn": null,
+    "lengthBn": null,
+    "routeStatus": "canal"
+  },
+  "welland": {
+    "kind": "canal",
+    "nameEn": "Welland Canal",
+    "nameBn": "ওয়েল্যান্ড খাল",
+    "center": [
+      -79.21,
+      43
+    ],
+    "frame": [
+      -83.5,
+      41.3,
+      -76,
+      44.5
+    ],
+    "countriesBn": "কানাডা",
+    "connectsBn": "ইরি হ্রদ → অন্টারিও হ্রদ",
+    "seas": [
+      "lakeErie",
+      "lakeOntario"
+    ],
+    "openedBn": null,
+    "lengthBn": null,
+    "routeStatus": "canal"
+  },
+  "grandCanal": {
+    "kind": "canal",
+    "nameEn": "Grand Canal (Beijing–Hangzhou)",
+    "nameBn": "গ্র্যান্ড ক্যানাল",
+    "center": [
+      117.3,
+      35
+    ],
+    "frame": [
+      114,
+      29,
+      122.5,
+      41
+    ],
+    "countriesBn": "গণচীন",
+    "connectsBn": "বেইজিং → হাংঝৌ",
+    "seas": [],
+    "openedBn": null,
+    "lengthBn": null,
+    "routeStatus": "canal"
+  }
+}
