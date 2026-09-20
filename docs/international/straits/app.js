@@ -25,6 +25,16 @@ const loadNotice = document.getElementById('loadNotice');
 const layersToggleBtn = document.getElementById('layersToggleBtn');
 const layersMenu = document.getElementById('layersMenu');
 const layerCheckboxes = document.querySelectorAll('#layersMenu input[type="checkbox"]');
+const prevBtn = document.getElementById('prevPassage');
+const nextBtn = document.getElementById('nextPassage');
+
+/*
+ * Animations the student did not ask for are skipped when the system asks for
+ * reduced motion — the same rule the marker pulse follows in style.css. The
+ * camera still moves, it just arrives immediately.
+ */
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const motion = (ms) => (reduceMotion.matches ? 0 : ms);
 
 /*
 |--------------------------------------------------------------------------
@@ -391,14 +401,109 @@ const map = new maplibregl.Map({
   ],
   minZoom: 0,
   maxZoom: 11,
+  // Past this a flat map turns to mush at the horizon, and there is no terrain
+  // to justify it: world.pmtiles carries no elevation, so tilting gives a
+  // tilted flat map, not relief. A drag gesture cannot exceed this either.
+  maxPitch: 60,
   attributionControl: false,
   dragRotate: true,
   touchZoomRotate: true,
 });
 
-// No +/− buttons: pinch already zooms. The compass shows which way is north
-// after a two-finger rotate, and a tap on it turns the map back.
-map.addControl(new maplibregl.NavigationControl({ showZoom: false, showCompass: true, visualizePitch: false }), 'top-right');
+/*
+|--------------------------------------------------------------------------
+| MAP CHROME — compass, then tilt, top-right
+|
+| No +/− buttons: pinch already zooms. MapLibre's own NavigationControl drew a
+| needle only; these two replace it with a lettered dial and a tilt toggle, in
+| the same corner and the same order, so the attribution still sits under them.
+|
+| Chrome is English (N/S/E/W, "Tilt"/"Flat"); only place names and the card are
+| Bengali.
+|--------------------------------------------------------------------------
+*/
+
+const TILT_PITCH = 55;
+
+/** A dial lettered N/E/S/W that turns with the map. Tapping it returns north. */
+class CompassControl {
+  onAdd(map) {
+    this._map = map;
+    this._container = document.createElement('div');
+    this._container.className = 'maplibregl-ctrl maplibregl-ctrl-group';
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'ctrl-btn ctrl-compass';
+    button.setAttribute('aria-label', 'Reset the map to north');
+    button.title = 'Reset the map to north';
+    button.innerHTML =
+      '<span class="compass-dial" aria-hidden="true">' +
+      '<span class="compass-letter compass-n">N</span>' +
+      '<span class="compass-letter compass-e">E</span>' +
+      '<span class="compass-letter compass-s">S</span>' +
+      '<span class="compass-letter compass-w">W</span>' +
+      '<span class="compass-needle"></span>' +
+      '</span>';
+    // Bearing only. Pitch belongs to the tilt button, so a student who tilted
+    // on purpose does not lose it by straightening the map.
+    button.addEventListener('click', () => map.easeTo({ bearing: 0, duration: motion(400) }));
+
+    this._dial = button.querySelector('.compass-dial');
+    this._sync = () => {
+      this._dial.style.transform = `rotate(${-map.getBearing()}deg)`;
+    };
+    map.on('rotate', this._sync);
+    this._sync();
+
+    this._container.appendChild(button);
+    return this._container;
+  }
+
+  onRemove() {
+    this._map.off('rotate', this._sync);
+    this._container.remove();
+  }
+}
+
+/** Toggles between flat and tilted. The label says what a tap will do. */
+class TiltControl {
+  onAdd(map) {
+    this._map = map;
+    this._container = document.createElement('div');
+    this._container.className = 'maplibregl-ctrl maplibregl-ctrl-group';
+
+    this._button = document.createElement('button');
+    this._button.type = 'button';
+    this._button.className = 'ctrl-btn ctrl-tilt';
+    this._button.addEventListener('click', () => {
+      const flat = map.getPitch() < 1;
+      map.easeTo({ pitch: flat ? TILT_PITCH : 0, duration: motion(500) });
+    });
+
+    this._sync = () => {
+      const flat = map.getPitch() < 1;
+      // What tapping does next, not what the map is now.
+      this._button.textContent = flat ? 'Tilt' : 'Flat';
+      this._button.setAttribute('aria-label', flat ? 'Tilt the map' : 'Return the map to flat');
+      this._button.title = this._button.getAttribute('aria-label');
+      this._button.setAttribute('aria-pressed', String(!flat));
+    };
+    map.on('pitch', this._sync);
+    this._sync();
+
+    this._container.appendChild(this._button);
+    return this._container;
+  }
+
+  onRemove() {
+    this._map.off('pitch', this._sync);
+    this._container.remove();
+  }
+}
+
+map.addControl(new CompassControl(), 'top-right');
+map.addControl(new TiltControl(), 'top-right');
 
 // Credits live behind an ⓘ button under the compass: always on the page (the
 // data licences require it), never in the way. Top-right keeps it clear of
@@ -497,6 +602,10 @@ function selectStrait(key) {
   map.getSource('passages')?.setData(passagesGeoJSON());
   map.getSource('seas')?.setData(seasGeoJSON());
   marker.setLngLat(strait.center).addTo(map);
+
+  // Whichever route got here — dropdown, map tap, or the step buttons — the
+  // ends of the list are re-checked in one place.
+  syncStepButtons();
 }
 
 /**
@@ -504,6 +613,21 @@ function selectStrait(key) {
  * and both connected seas — into the part of the map the sheet leaves
  * visible. A student first needs to see WHERE the passage is and what it
  * joins; pinching in shows how narrow it is.
+ *
+ * Orientation is preserved on purpose. It used to be forced to bearing 0 and
+ * pitch 0, which threw away any rotation or tilt on the next selection and
+ * would make the compass and the tilt button pointless. The compass is how a
+ * student returns to north; the tilt button is how they return to flat.
+ *
+ * The current bearing is passed EXPLICITLY. Leaving it out does not mean
+ * "keep it": MapLibre's cameraForBounds defaults the bearing to 0, so an
+ * omitted option silently straightens the map. Measured in 6.9.0 — a fit from
+ * bearing 45 landed at bearing 0. Given the bearing, it fits correctly for the
+ * rotated view (the same bounds want zoom 4.315 at bearing 0 and 3.937 at 45).
+ *
+ * Pitch is a different story: cameraForBounds ignores it entirely, returning
+ * the same zoom at every pitch, so a tilted fit runs slightly tight. See the
+ * PITCH_FIT_EASE note below.
  */
 function showStrait(strait) {
   const [w, s, e, n] = strait.frame;
@@ -514,8 +638,7 @@ function showStrait(strait) {
     ],
     {
       padding: { top: 16, right: 16, left: 16, bottom: sheetHeight() + 16 },
-      bearing: 0,
-      pitch: 0,
+      bearing: map.getBearing(),
       duration: 1800,
       essential: true,
     },
@@ -556,6 +679,42 @@ const ROUTE_STATUS_BN = {
 selector.addEventListener('change', (event) => {
   selectStrait(event.target.value);
 });
+
+/*
+|--------------------------------------------------------------------------
+| PREVIOUS / NEXT
+|
+| Steps the whole list in data.js order. The প্রণালি / খাল grouping in the
+| dropdown is visual only, so stepping crosses it without stopping.
+|
+| Both buttons go through selectStrait, the same route the dropdown takes, so
+| the camera, the marker and the card have exactly one implementation.
+|
+| The ends stop rather than wrap. There is no counter anywhere, so a disabled
+| button is the only "you are at the end" the student gets; wrapping silently
+| from the last entry to the first would just look like a jump.
+|--------------------------------------------------------------------------
+*/
+
+const ORDER = Object.keys(PASSAGES);
+
+/** -1 when nothing is picked yet, so "next" lands on the first entry. */
+const currentIndex = () => (currentKey === null ? -1 : ORDER.indexOf(currentKey));
+
+function syncStepButtons() {
+  const i = currentIndex();
+  prevBtn.disabled = i <= 0;
+  nextBtn.disabled = i >= ORDER.length - 1;
+}
+
+function step(delta) {
+  const next = currentIndex() + delta;
+  if (next < 0 || next >= ORDER.length) return;
+  selectStrait(ORDER[next]);
+}
+
+prevBtn.addEventListener('click', () => step(-1));
+nextBtn.addEventListener('click', () => step(1));
 
 /*
 |--------------------------------------------------------------------------
@@ -699,3 +858,5 @@ document.addEventListener('click', (event) => {
 
 selector.value = '';
 setSheetOpen(false);
+// Nothing picked: ‹ is dead, › starts the list at its first entry.
+syncStepButtons();

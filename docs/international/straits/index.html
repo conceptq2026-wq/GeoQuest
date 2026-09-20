@@ -22,11 +22,18 @@
            this page. The heading stays for screen readers. -->
       <header class="explorer-header">
         <h1 class="visually-hidden" lang="bn">গুরুত্বপূর্ণ প্রণালি ও খাল</h1>
+        <!-- Step through the whole list in data.js order; the প্রণালি / খাল
+             grouping in the dropdown is visual only. Both buttons take the
+             same route as the dropdown, and stop at the ends rather than
+             wrapping — a disabled button is the only position feedback there
+             is, so a silent wrap would be disorienting. -->
+        <button id="prevPassage" type="button" class="step-btn" aria-label="Previous passage" disabled>‹</button>
         <select id="straitSelector" class="strait-selector" aria-label="Choose a strait or canal" lang="bn">
           <option value="" disabled selected>একটি প্রণালি বা খাল বেছে নিন…</option>
           <optgroup label="প্রণালি" data-kind="strait"></optgroup>
           <optgroup label="খাল" data-kind="canal"></optgroup>
         </select>
+        <button id="nextPassage" type="button" class="step-btn" aria-label="Next passage">›</button>
       </header>
 
       <div class="map-shell">

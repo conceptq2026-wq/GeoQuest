@@ -75,6 +75,45 @@ body {
   outline-offset: 2px;
 }
 
+/*
+ * Previous / next. Fixed width and never flexible beside the dropdown, so they
+ * can never take width away from a Bengali name. On narrow phones they move to
+ * their own row (see the 379px block) and share it evenly.
+ */
+.step-btn {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+
+  border: 1px solid #c9d6e3;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #13233a;
+
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.step-btn:active:not(:disabled) {
+  background: #f2f6fa;
+}
+
+.step-btn:focus-visible {
+  outline: 2px solid #0b5cad;
+  outline-offset: 2px;
+}
+
+/* The only "you are at the end" signal there is, so it has to read as off. */
+.step-btn:disabled {
+  opacity: 0.38;
+  cursor: default;
+}
+
 /* Present for screen readers, takes no space (the app's viewer shows the title). */
 .visually-hidden {
   position: absolute;
@@ -261,6 +300,91 @@ body {
   overflow: hidden;
 }
 
+/*
+ * Compass and tilt, top-right, in place of MapLibre's needle-only control.
+ * 44px so both are a comfortable tap target on a phone.
+ */
+.ctrl-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: #ffffff;
+  color: #13233a;
+  font-size: 12px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.ctrl-btn:active {
+  background: #f2f6fa;
+}
+
+.ctrl-btn:focus-visible {
+  outline: 2px solid #0b5cad;
+  outline-offset: -2px;
+}
+
+/* The dial turns; the button under it does not. */
+.compass-dial {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  /* No transition by default: during a drag-rotate the dial must track the
+     finger exactly, and a transition would lag behind it. The tap-to-north
+     easeTo animates the map, and the dial follows that. */
+}
+
+.compass-letter {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+  color: #6b7885;
+}
+
+.compass-n {
+  top: 0;
+  color: #c0392b;
+}
+
+.compass-s {
+  bottom: 0;
+}
+
+.compass-e {
+  top: 50%;
+  left: auto;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.compass-w {
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.compass-needle {
+  position: absolute;
+  top: 9px;
+  left: 50%;
+  width: 2px;
+  height: 16px;
+  margin-left: -1px;
+  border-radius: 1px;
+  background: linear-gradient(to bottom, #c0392b 0 50%, #8996a4 50% 100%);
+}
+
+.ctrl-tilt {
+  letter-spacing: 0.01em;
+}
+
 /* Strait marker: pulse runs on the compositor, not the map's render loop. */
 .strait-marker {
   position: relative;
@@ -429,10 +553,22 @@ body {
   }
 }
 
-/* Narrow phones: the dropdown takes the full row. Stacking, never
-   truncating — the name is the exam content. */
+/*
+ * Narrow phones: the dropdown takes the full row and the two step buttons drop
+ * to their own row beneath it, sharing the width. Stacking, never truncating —
+ * the name is the exam content, so the dropdown keeps its full width and the
+ * arrows move rather than squeezing it.
+ *
+ * `order` puts the dropdown first even though the ‹ button precedes it in the
+ * markup, which is the order a screen reader and the tab sequence want.
+ */
 @media (max-width: 379px) {
   .strait-selector {
+    order: -1;
     flex-basis: 100%;
+  }
+
+  .step-btn {
+    flex: 1 1 auto;
   }
 }
