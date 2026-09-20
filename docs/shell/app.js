@@ -194,9 +194,22 @@ const fetchJson = async (url) => {
 
 const descriptor = await fetchJson(mapFile('descriptor.json'));
 
+/*
+ * BASELINE RECORDS — loaded on every map, declared by none.
+ *
+ * Sea names are wanted on all of them, so they are shared data rather than
+ * one map's content. A map that needs to reference them (which seas a strait
+ * joins) points a `refs` field at this table exactly as it would at its own.
+ */
+const BASELINE_TABLES = { seas: 'seas.json' };
+
 /** Tables of authored records, keyed. Names, facts, camera frames. */
 const records = {};
+for (const [table, file] of Object.entries(BASELINE_TABLES)) {
+  records[table] = await fetchJson(resolver.url('sharedData', file));
+}
 for (const [table, spec] of Object.entries(descriptor.records ?? {})) {
+  if (table in BASELINE_TABLES) throw new Error(`descriptor declares records table "${table}", which the shell provides`);
   records[table] = spec.rows ?? (await fetchJson(mapFile(spec.file.replace(/^\.\//, ''))));
 }
 
@@ -321,6 +334,9 @@ const map = new maplibregl.Map({
   ...(view.fitBounds ? { bounds: [[view.fitBounds[0], view.fitBounds[1]], [view.fitBounds[2], view.fitBounds[3]]] } : {}),
   minZoom: descriptor.constraints?.minZoom ?? 0,
   maxZoom: descriptor.constraints?.maxZoom ?? 22,
+  // The tilt button stops at 55; this stops a drag going further. Baseline,
+  // not a descriptor field: every map gets the same ceiling.
+  maxPitch: 60,
   ...(descriptor.constraints?.maxBounds ? { maxBounds: descriptor.constraints.maxBounds } : {}),
   attributionControl: false,
 });
@@ -336,7 +352,49 @@ await new Promise((resolve) => map.once('load', resolve));
 |--------------------------------------------------------------------------
 */
 
-const sourceSpecs = descriptor.sources ?? {};
+/*
+|--------------------------------------------------------------------------
+| THE BASELINE — sea and country labels, on every map, declared by none
+|
+| These used to be descriptor content, which meant a map could omit them by
+| forgetting them. They are shell chrome now: the styles, the layer ids and
+| the order below are the same on every map and no descriptor can reach them.
+|
+| The one map-specific part is which labels are EMPHASISED — the seas a strait
+| joins, the countries a border line divides. That is not declared either: it
+| is DERIVED from the `refs` field a map already declares for its own data, so
+| there is nothing extra to write and nothing extra to forget.
+|--------------------------------------------------------------------------
+*/
+
+const COUNTRY_TABLE = 'countries';
+
+/** The field on some declared table that lists keys of `target`, if any. */
+function relationTo(target) {
+  for (const [table, spec] of Object.entries(descriptor.records ?? {})) {
+    for (const [field, decl] of Object.entries(spec.fields ?? {})) {
+      if (decl.type === 'refs' && decl.to === target) return { records: table, listField: field };
+    }
+  }
+  return null;
+}
+
+const seaRelation = relationTo('seas');
+const countryRelation = records[COUNTRY_TABLE] ? relationTo(COUNTRY_TABLE) : null;
+const activeState = (relation) => (relation ? [{ name: 'active', fromSelection: relation }] : []);
+
+const BASELINE_SOURCES = {
+  seas: { records: 'seas', geometryFrom: 'at', properties: ['nameBn'], state: activeState(seaRelation) },
+  // Only where the map carries country records of its own. Their label points
+  // are the map's, not Natural Earth's, so a map that has them puts its names
+  // exactly where it computed them.
+  ...(records[COUNTRY_TABLE]
+    ? { countryLabels: { records: COUNTRY_TABLE, geometryFrom: 'labelAt', properties: ['nameBn'], state: activeState(countryRelation) } }
+    : {}),
+};
+
+const isBaselineSource = (name) => name in BASELINE_SOURCES;
+const sourceSpecs = { ...BASELINE_SOURCES, ...(descriptor.sources ?? {}) };
 
 for (const [name, spec] of Object.entries(sourceSpecs)) {
   const geojson = { type: 'geojson', data: derive(name, spec) };
@@ -346,7 +404,10 @@ for (const [name, spec] of Object.entries(sourceSpecs)) {
     geojson.clusterMaxZoom = spec.cluster.maxZoom ?? 6;
   }
   if (spec.attribution) geojson.attribution = spec.attribution;
-  own.source(map, name, geojson);
+  // Baseline sources belong to the page, not to the map, so they stay out of
+  // the teardown registry — the registry is for what a MAP creates.
+  if (isBaselineSource(name)) map.addSource(name, geojson);
+  else own.source(map, name, geojson);
 }
 
 /** Re-derive every source whose state depends on a table that just changed. */
@@ -357,15 +418,102 @@ function refresh(changedTable) {
   }
 }
 
-const styles = descriptor.styles ?? {};
+/*
+ * Baseline label appearance. Shell constants, identical on every map, so two
+ * maps cannot drift into naming the same sea at two different sizes.
+ */
+const BASELINE_STYLES = {
+  'country-label': {
+    layout: {
+      'text-font': ['Noto Sans Bengali'],
+      'text-size': ['interpolate', ['linear'], ['zoom'], 2, 10, 6, 13, 10, 16],
+      'text-allow-overlap': false,
+      'text-optional': true,
+    },
+    paint: { 'text-color': '#3f4650', 'text-halo-color': '#ffffff', 'text-halo-width': 1.4 },
+  },
+  'country-label-active': {
+    layout: {
+      'text-font': ['Noto Sans Bengali'],
+      'text-size': ['interpolate', ['linear'], ['zoom'], 2, 13, 6, 16, 10, 19],
+      'text-allow-overlap': true,
+    },
+    paint: { 'text-color': '#0b3d91', 'text-halo-color': '#ffffff', 'text-halo-width': 1.8 },
+  },
+  'sea-label': {
+    layout: { 'text-font': ['Noto Sans Bengali'], 'text-size': 12, 'text-max-width': 7, 'text-optional': true },
+    paint: { 'text-color': '#1f5f99', 'text-halo-color': '#ffffff', 'text-halo-width': 1.6 },
+  },
+  'sea-label-active': {
+    layout: { 'text-font': ['Noto Sans Bengali'], 'text-size': 15, 'text-max-width': 7, 'text-allow-overlap': true },
+    paint: { 'text-color': '#0b3d91', 'text-halo-color': '#ffffff', 'text-halo-width': 1.8 },
+  },
+};
+
+/*
+ * Null-safe on purpose. A map with no relation to emphasise has no `active`
+ * property on these features at all, and ["!", null] fails the expression's
+ * type check — which drops every feature silently, so the labels simply do
+ * not appear. Comparing against true works whether the property is there or
+ * not, and means the same thing when it is.
+ */
+const NOT_ACTIVE = ['!=', ['get', 'active'], true];
+const IS_ACTIVE = ['==', ['get', 'active'], true];
+
+/**
+ * The plain labels, drawn UNDER everything a map adds above the basemap, and
+ * the emphasised ones, drawn OVER it. Both halves of the same decision: a
+ * name for context stays out of the way, a name the selection points at does
+ * not get covered.
+ */
+function baselineLayers() {
+  const named = records[COUNTRY_TABLE] ? Object.keys(records[COUNTRY_TABLE]) : [];
+  const plain = [
+    {
+      id: 'country-labels',
+      type: 'symbol',
+      source: 'basemap',
+      sourceLayer: 'country_labels',
+      style: 'country-label',
+      filter: [
+        'all',
+        ['<=', ['get', 'min_zoom'], ['+', ['zoom'], 1]],
+        // A country this map names itself is dropped here, or the name draws
+        // twice. Joined on the code, never on the name: this file calls China
+        // "People's Republic of China".
+        ...(named.length ? [['!', ['in', ['get', 'adm0_a3'], ['literal', named]]]] : []),
+      ],
+      layout: { 'text-field': ['coalesce', ['get', 'name_bn'], ['get', 'name_en']] },
+    },
+    ...(records[COUNTRY_TABLE]
+      ? [{ id: 'country-labels-named', type: 'symbol', source: 'countryLabels', style: 'country-label', filter: NOT_ACTIVE, layout: { 'text-field': ['get', 'nameBn'] } }]
+      : []),
+    { id: 'sea-labels', type: 'symbol', source: 'seas', style: 'sea-label', filter: ['all', NOT_ACTIVE, ['>=', ['zoom'], 3]], layout: { 'text-field': ['get', 'nameBn'] } },
+  ];
+  const active = [
+    { id: 'sea-labels-active', type: 'symbol', source: 'seas', style: 'sea-label-active', filter: IS_ACTIVE, layout: { 'text-field': ['get', 'nameBn'] } },
+    ...(records[COUNTRY_TABLE]
+      ? [{ id: 'country-labels-active', type: 'symbol', source: 'countryLabels', style: 'country-label-active', filter: IS_ACTIVE, layout: { 'text-field': ['get', 'nameBn'] } }]
+      : []),
+  ];
+  return { plain, active };
+}
+
+const baseline = baselineLayers();
+const baselineIds = new Set([...baseline.plain, ...baseline.active].map((l) => l.id));
+
+const styles = { ...BASELINE_STYLES, ...(descriptor.styles ?? {}) };
 const resolveSource = (name) => (name === 'basemap' ? BASEMAP_SOURCES.world : name);
 
 // Slot order is the layer order. Within a slot, descriptor order is kept.
 const bySlot = new Map(SLOTS.map((slot) => [slot, []]));
 for (const layer of descriptor.layers ?? []) {
+  if (baselineIds.has(layer.id)) throw new Error(`layer "${layer.id}" is provided by the shell; a descriptor cannot declare it`);
   if (!bySlot.has(layer.slot)) throw new Error(`layer "${layer.id}" wants slot "${layer.slot}", which the basemap does not declare`);
   bySlot.get(layer.slot).push(layer);
 }
+// The labels bracket whatever the map puts in its top slot.
+bySlot.set('aboveLabels', [...baseline.plain, ...bySlot.get('aboveLabels'), ...baseline.active]);
 
 for (const slot of SLOTS) {
   for (const layer of bySlot.get(slot)) {
@@ -383,9 +531,19 @@ for (const slot of SLOTS) {
       layout: { ...(token.layout ?? {}), ...(layer.layout ?? {}) },
       paint: { ...(token.paint ?? {}), ...(layer.paint ?? {}) },
     };
-    own.layer(map, spec);
+    // Baseline labels are the page's, not the map's: unregistered, so a map
+    // switch rebuilds around them rather than taking them with it.
+    if (baselineIds.has(layer.id)) map.addLayer(spec);
+    else own.layer(map, spec);
   }
 }
+
+// What the PAGE owns now includes the baseline, so tearing a map down and
+// finding the sea labels still there is the correct outcome rather than a
+// leak. Without this the leak check would demand the removal of the very
+// thing that is supposed to outlive the map.
+pristine.layers.push(...baselineIds);
+pristine.sources.push(...Object.keys(BASELINE_SOURCES));
 
 /*
 |--------------------------------------------------------------------------
@@ -502,7 +660,11 @@ function doFitBounds(action, { table, key, feature }) {
   if (box) {
     map.fitBounds([[box[0], box[1]], [box[2], box[3]]], {
       padding,
-      ...(action.bearing !== undefined ? { bearing: action.bearing } : {}),
+      // fitBounds defaults bearing to 0 — it straightens the map without
+      // being asked. Passing the current bearing keeps a rotated map rotated,
+      // so selecting something does not silently undo the compass. Pitch it
+      // ignores entirely, which is why there is nothing to pass for it.
+      bearing: action.bearing ?? map.getBearing(),
       ...(action.pitch !== undefined ? { pitch: action.pitch } : {}),
       duration: motion(action.duration ?? 1200),
       essential: true,
@@ -526,6 +688,7 @@ function doFitBounds(action, { table, key, feature }) {
   }
   map.fitBounds([[Math.min(...lngs), Math.min(...lats)], [Math.max(...lngs), Math.max(...lats)]], {
     padding,
+    bearing: action.bearing ?? map.getBearing(),
     duration: motion(action.duration ?? 1200),
     essential: true,
   });
@@ -861,13 +1024,63 @@ if (descriptor.sheet) {
 
 /*
 |--------------------------------------------------------------------------
-| ATTRIBUTION, ERRORS, COMPASS
+| ATTRIBUTION, ERRORS, COMPASS, TILT
+|
+| SHELL CHROME, created once. None of it is registered for teardown and no
+| descriptor can ask for it or opt out: the registry is for what a MAP
+| creates, and these belong to the page. A control in the registry would
+| disappear on the first map switch.
 |--------------------------------------------------------------------------
 */
 
-own.control(map, new maplibregl.NavigationControl({ showZoom: false, showCompass: true, visualizePitch: false }), 'top-right');
-own.control(
-  map,
+const TILT_PITCH = 55;
+
+/**
+ * A visible, tappable tilt toggle. Deliberately a button rather than a drag
+ * on the compass or visualizePitch: a gesture nobody discovers is a feature
+ * nobody has. The label says what a tap will DO, not what the map is now.
+ */
+class TiltControl {
+  onAdd(controlMap) {
+    this._map = controlMap;
+    this._container = document.createElement('div');
+    this._container.className = 'maplibregl-ctrl maplibregl-ctrl-group';
+
+    this._button = document.createElement('button');
+    this._button.type = 'button';
+    this._button.className = 'ctrl-btn ctrl-tilt';
+    this._onClick = () => {
+      const flat = controlMap.getPitch() < 1;
+      controlMap.easeTo({ pitch: flat ? TILT_PITCH : 0, duration: motion(500) });
+    };
+    this._button.addEventListener('click', this._onClick);
+
+    // Driven by the map's pitch rather than by the click, so a drag that
+    // changes the pitch updates the label too.
+    this._sync = () => {
+      const flat = controlMap.getPitch() < 1;
+      this._button.textContent = flat ? 'Tilt' : 'Flat';
+      this._button.setAttribute('aria-label', flat ? 'Tilt the map' : 'Return the map to flat');
+      this._button.title = this._button.getAttribute('aria-label');
+      this._button.setAttribute('aria-pressed', String(!flat));
+    };
+    controlMap.on('pitch', this._sync);
+    this._sync();
+
+    this._container.appendChild(this._button);
+    return this._container;
+  }
+
+  onRemove() {
+    this._map.off('pitch', this._sync);
+    this._button.removeEventListener('click', this._onClick);
+    this._container.remove();
+  }
+}
+
+map.addControl(new maplibregl.NavigationControl({ showZoom: false, showCompass: true, visualizePitch: false }), 'top-right');
+map.addControl(new TiltControl(), 'top-right');
+map.addControl(
   new maplibregl.AttributionControl({
     compact: true,
     customAttribution: [

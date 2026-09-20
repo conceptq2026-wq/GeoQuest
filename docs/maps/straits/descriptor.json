@@ -112,19 +112,6 @@
           "required": true
         }
       }
-    },
-    "seas": {
-      "file": "./seas.json",
-      "fields": {
-        "nameBn": {
-          "type": "text",
-          "required": true
-        },
-        "at": {
-          "type": "point",
-          "required": true
-        }
-      }
     }
   },
   "sources": {
@@ -139,22 +126,6 @@
       ],
       "selectionMarker": true,
       "geometryFrom": "center",
-      "properties": [
-        "nameBn"
-      ]
-    },
-    "seas": {
-      "records": "seas",
-      "state": [
-        {
-          "name": "active",
-          "fromSelection": {
-            "listField": "seas",
-            "records": "passages"
-          }
-        }
-      ],
-      "geometryFrom": "at",
       "properties": [
         "nameBn"
       ]
@@ -261,65 +232,6 @@
         "text-color": "#e8590c",
         "text-halo-color": "#ffffff",
         "text-halo-width": 1.5
-      }
-    },
-    "country-label": {
-      "layout": {
-        "text-font": [
-          "Noto Sans Bengali"
-        ],
-        "text-size": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          2,
-          10,
-          6,
-          13,
-          10,
-          16
-        ],
-        "text-allow-overlap": false,
-        "text-optional": true
-      },
-      "paint": {
-        "text-color": "#3f4650",
-        "text-halo-color": "#ffffff",
-        "text-halo-width": 1.4
-      }
-    },
-    "sea-label": {
-      "layout": {
-        "text-font": [
-          "Noto Sans Bengali"
-        ],
-        "text-size": 12,
-        "text-max-width": 7,
-        "text-optional": true
-      },
-      "paint": {
-        "text-color": "#1f5f99",
-        "text-halo-color": "#ffffff",
-        "text-halo-width": 1.6
-      }
-    },
-    "sea-label-active": {
-      "layout": {
-        "text-font": [
-          "Noto Sans Bengali"
-        ],
-        "text-size": 15,
-        "text-max-width": 7,
-        "text-allow-overlap": true
-      },
-      "paint": {
-        "text-color": "#0b3d91",
-        "text-halo-color": "#ffffff",
-        "text-halo-width": 1.8
       }
     },
     "cluster-circle": {
@@ -462,71 +374,6 @@
       }
     },
     {
-      "id": "country-labels",
-      "type": "symbol",
-      "source": "basemap",
-      "sourceLayer": "country_labels",
-      "slot": "aboveLabels",
-      "style": "country-label",
-      "filter": [
-        "<=",
-        [
-          "get",
-          "min_zoom"
-        ],
-        [
-          "+",
-          [
-            "zoom"
-          ],
-          1
-        ]
-      ],
-      "layout": {
-        "text-field": [
-          "coalesce",
-          [
-            "get",
-            "name_bn"
-          ],
-          [
-            "get",
-            "name_en"
-          ]
-        ]
-      }
-    },
-    {
-      "id": "sea-labels",
-      "type": "symbol",
-      "source": "seas",
-      "slot": "aboveLabels",
-      "style": "sea-label",
-      "filter": [
-        "all",
-        [
-          "!",
-          [
-            "get",
-            "active"
-          ]
-        ],
-        [
-          ">=",
-          [
-            "zoom"
-          ],
-          3
-        ]
-      ],
-      "layout": {
-        "text-field": [
-          "get",
-          "nameBn"
-        ]
-      }
-    },
-    {
       "id": "passage-clusters",
       "type": "circle",
       "source": "passages",
@@ -663,23 +510,6 @@
           1
         ]
       }
-    },
-    {
-      "id": "sea-labels-active",
-      "type": "symbol",
-      "source": "seas",
-      "slot": "top",
-      "style": "sea-label-active",
-      "filter": [
-        "get",
-        "active"
-      ],
-      "layout": {
-        "text-field": [
-          "get",
-          "nameBn"
-        ]
-      }
     }
   ],
   "controls": [
@@ -709,8 +539,6 @@
           "clear": [
             "sheet"
           ],
-          "bearing": 0,
-          "pitch": 0,
           "duration": 1800
         }
       ]
@@ -762,8 +590,6 @@
           "clear": [
             "sheet"
           ],
-          "bearing": 0,
-          "pitch": 0,
           "duration": 1800
         }
       ]

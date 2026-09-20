@@ -1,0 +1,26 @@
+{
+  "generatedBy": "tools/build-registry.mjs",
+  "sections": [
+    "bangladesh",
+    "international",
+    "geography"
+  ],
+  "maps": [
+    {
+      "id": "border-lines",
+      "section": "international",
+      "title": {
+        "en": "International Border Lines",
+        "bn": "গুরুত্বপূর্ণ আন্তর্জাতিক সীমান্ত রেখা"
+      }
+    },
+    {
+      "id": "straits",
+      "section": "international",
+      "title": {
+        "en": "Straits and Canals",
+        "bn": "গুরুত্বপূর্ণ প্রণালি ও খাল"
+      }
+    }
+  ]
+}

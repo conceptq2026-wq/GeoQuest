@@ -19,6 +19,20 @@ const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z
 const ROOT = path.resolve(HERE, '..');
 // Every authored map lives under here, one folder per map id.
 const MAPS_DIR = path.join(ROOT, 'docs/maps');
+// Data every map gets whether it declares it or not.
+const SHARED_DIR = path.join(ROOT, 'docs/shared');
+
+/*
+ * BASELINE RECORDS — the shell loads these on every map, so no descriptor
+ * declares them and every descriptor may still reference them. Their fields
+ * are stated here because there is no declaration to read them from.
+ */
+const BASELINE_TABLES = {
+  seas: {
+    file: path.join(SHARED_DIR, 'seas.json'),
+    fields: { nameBn: { type: 'text', required: true }, at: { type: 'point', required: true } },
+  },
+};
 // The built straits map this extraction is checked against. Change here if it moves.
 const BUILT_STRAITS = path.join(ROOT, 'docs/international/straits');
 // The border-lines build output the records were taken from.
@@ -100,15 +114,23 @@ function checkMap({ id, expectedPending }) {
   const dir = path.join(MAPS_DIR, id);
   const descriptor = readJson(path.join(dir, 'descriptor.json'));
   const tables = {};
+  // Baseline first, so a descriptor that tries to redeclare one collides.
+  const declarations = {};
+  for (const [name, baseline] of Object.entries(BASELINE_TABLES)) {
+    tables[name] = readJson(baseline.file);
+    declarations[name] = { fields: baseline.fields };
+  }
   for (const [name, decl] of Object.entries(descriptor.records)) {
+    if (name in BASELINE_TABLES) fail(`${id}: declares records table "${name}", which the shell provides`);
     tables[name] = readJson(path.join(dir, path.basename(decl.file)));
+    declarations[name] = decl;
   }
   // The table the sheet and the picker read.
   const primary = descriptor.controls.find((c) => c.type === 'picker')?.from;
 
   // ---- null versus absent, per field, with counts ---------------------------
   console.log('\n---- null versus absent ----');
-  for (const [table, decl] of Object.entries(descriptor.records)) {
+  for (const [table, decl] of Object.entries(declarations)) {
     const keys = Object.keys(tables[table]);
     for (const f of Object.keys(decl.fields)) {
       let value = 0;
@@ -125,7 +147,7 @@ function checkMap({ id, expectedPending }) {
 
   // ---- references resolve ---------------------------------------------------
   console.log('\n---- references ----');
-  for (const [table, decl] of Object.entries(descriptor.records)) {
+  for (const [table, decl] of Object.entries(declarations)) {
     for (const [f, fd] of Object.entries(decl.fields)) {
       if (fd.type !== 'refs') continue;
       const target = tables[fd.to];
@@ -197,7 +219,7 @@ function checkMap({ id, expectedPending }) {
     // A source that takes its geometry from a record field references that
     // field, and it is checked against ITS OWN table.
     if (spec.geometryFrom) {
-      const decl = descriptor.records[spec.records];
+      const decl = declarations[spec.records];
       if (!decl || !(spec.geometryFrom in decl.fields)) {
         fail(`source "${name}": geometryFrom "${spec.geometryFrom}" is not a field on records "${spec.records}"`);
         badGeometryFrom++;
@@ -233,13 +255,13 @@ function checkMap({ id, expectedPending }) {
     for (const a of i.do ?? []) note(source?.records, a.field);
   }
   // appliesWhen makes one field depend on another; that is a reference too.
-  for (const [table, decl] of Object.entries(descriptor.records))
+  for (const [table, decl] of Object.entries(declarations))
     for (const fd of Object.values(decl.fields)) for (const f of Object.keys(fd.appliesWhen ?? {})) note(table, f);
 
   let unknownRef = 0;
   let refCount = 0;
   for (const [table, fields] of Object.entries(referenced)) {
-    const decls = descriptor.records[table]?.fields ?? {};
+    const decls = declarations[table]?.fields ?? {};
     for (const f of fields) {
       refCount++;
       if (!(f in decls)) {
@@ -253,7 +275,7 @@ function checkMap({ id, expectedPending }) {
   // A referenced field must actually exist on the records that should carry it.
   let missingOnRecord = 0;
   for (const [table, fields] of Object.entries(referenced)) {
-    const decls = descriptor.records[table]?.fields ?? {};
+    const decls = declarations[table]?.fields ?? {};
     for (const f of fields) {
       if (!decls[f]?.required) continue;
       for (const key of Object.keys(tables[table])) {
@@ -306,7 +328,7 @@ function checkMap({ id, expectedPending }) {
   console.log('\n---- required fields ----');
   let nullRequired = 0;
   let requiredCount = 0;
-  for (const [table, decl] of Object.entries(descriptor.records)) {
+  for (const [table, decl] of Object.entries(declarations)) {
     for (const [f, fd] of Object.entries(decl.fields)) {
       if (!fd.required) continue;
       requiredCount++;
@@ -322,7 +344,7 @@ function checkMap({ id, expectedPending }) {
 
   // Only a verifiable field may be null.
   let nullNotVerifiable = 0;
-  for (const [table, decl] of Object.entries(descriptor.records)) {
+  for (const [table, decl] of Object.entries(declarations)) {
     for (const key of Object.keys(tables[table])) {
       for (const [f, v] of Object.entries(tables[table][key])) {
         if (v === null && !decl.fields[f]?.verifiable) {
@@ -337,7 +359,7 @@ function checkMap({ id, expectedPending }) {
   // ---- enum values used by records exist in their lookup --------------------
   console.log('\n---- lookups ----');
   let badEnum = 0;
-  for (const [table, decl] of Object.entries(descriptor.records)) {
+  for (const [table, decl] of Object.entries(declarations)) {
     for (const [f, fd] of Object.entries(decl.fields)) {
       if (fd.type !== 'enum') continue;
       const lookup = descriptor.lookups[fd.lookup];
@@ -386,7 +408,7 @@ function checkMap({ id, expectedPending }) {
   // ---- fields the descriptor never references -------------------------------
   console.log('\n---- unreferenced record fields (not an error) ----');
   let any = false;
-  for (const [table, decl] of Object.entries(descriptor.records)) {
+  for (const [table, decl] of Object.entries(declarations)) {
     for (const f of Object.keys(decl.fields)) {
       if (referenced[table]?.has(f)) continue;
       any = true;
@@ -432,9 +454,11 @@ console.log('\n============ straits ============');
   console.log('\n---- records.json against data.js ----');
   compareTables({ source: PASSAGES, file: readJson(path.join(dir, 'records.json')), label: 'records.json' });
 
-  console.log('\n---- seas.json against data.js ----');
-  const seas = readJson(path.join(dir, 'seas.json'));
-  compareTables({ source: SEAS, file: seas, label: 'seas.json' });
+  // Shared now, not the straits map's: the shell labels these seas on every
+  // map. Still checked against data.js, because that is where they came from.
+  console.log('\n---- shared/seas.json against data.js ----');
+  const seas = readJson(path.join(SHARED_DIR, 'seas.json'));
+  compareTables({ source: SEAS, file: seas, label: 'shared/seas.json' });
 
   const byName = {};
   for (const [k, v] of Object.entries(seas)) (byName[v.nameBn] ??= []).push(k);

@@ -170,22 +170,6 @@
         "nameBn",
         "hasGeometry"
       ]
-    },
-    "countryLabels": {
-      "records": "countries",
-      "geometryFrom": "labelAt",
-      "state": [
-        {
-          "name": "active",
-          "fromSelection": {
-            "records": "lines",
-            "listField": "countries"
-          }
-        }
-      ],
-      "properties": [
-        "nameBn"
-      ]
     }
   },
   "styles": {
@@ -221,63 +205,6 @@
       },
       "paint": {
         "line-color": "#b02a37"
-      }
-    },
-    "country-label": {
-      "layout": {
-        "text-font": [
-          "Noto Sans Bengali"
-        ],
-        "text-size": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          2,
-          10,
-          6,
-          13,
-          10,
-          16
-        ],
-        "text-allow-overlap": false,
-        "text-optional": true
-      },
-      "paint": {
-        "text-color": "#3f4650",
-        "text-halo-color": "#ffffff",
-        "text-halo-width": 1.4
-      }
-    },
-    "country-label-active": {
-      "layout": {
-        "text-font": [
-          "Noto Sans Bengali"
-        ],
-        "text-size": [
-          "interpolate",
-          [
-            "linear"
-          ],
-          [
-            "zoom"
-          ],
-          2,
-          13,
-          6,
-          16,
-          10,
-          19
-        ],
-        "text-allow-overlap": true
-      },
-      "paint": {
-        "text-color": "#0b3d91",
-        "text-halo-color": "#ffffff",
-        "text-halo-width": 1.8
       }
     },
     "line-label": {
@@ -443,87 +370,6 @@
       }
     },
     {
-      "id": "basemap-country-labels",
-      "type": "symbol",
-      "source": "basemap",
-      "sourceLayer": "country_labels",
-      "slot": "aboveLabels",
-      "style": "country-label",
-      "filter": [
-        "all",
-        [
-          "<=",
-          [
-            "get",
-            "min_zoom"
-          ],
-          [
-            "+",
-            [
-              "zoom"
-            ],
-            1
-          ]
-        ],
-        [
-          "!",
-          [
-            "in",
-            [
-              "get",
-              "adm0_a3"
-            ],
-            [
-              "literal",
-              [
-                "AFG",
-                "BGD",
-                "CHN",
-                "IND",
-                "KOR",
-                "PAK",
-                "PRK",
-                "PSX"
-              ]
-            ]
-          ]
-        ]
-      ],
-      "layout": {
-        "text-field": [
-          "coalesce",
-          [
-            "get",
-            "name_bn"
-          ],
-          [
-            "get",
-            "name_en"
-          ]
-        ]
-      }
-    },
-    {
-      "id": "country-label",
-      "type": "symbol",
-      "source": "countryLabels",
-      "slot": "aboveLabels",
-      "style": "country-label",
-      "filter": [
-        "!",
-        [
-          "get",
-          "active"
-        ]
-      ],
-      "layout": {
-        "text-field": [
-          "get",
-          "nameBn"
-        ]
-      }
-    },
-    {
       "id": "line-marker",
       "type": "circle",
       "source": "lineLabels",
@@ -567,23 +413,6 @@
           1
         ]
       }
-    },
-    {
-      "id": "country-label-active",
-      "type": "symbol",
-      "source": "countryLabels",
-      "slot": "aboveLabels",
-      "style": "country-label-active",
-      "filter": [
-        "get",
-        "active"
-      ],
-      "layout": {
-        "text-field": [
-          "get",
-          "nameBn"
-        ]
-      }
     }
   ],
   "controls": [
@@ -611,8 +440,6 @@
           "clear": [
             "sheet"
           ],
-          "bearing": 0,
-          "pitch": 0,
           "duration": 1800,
           "field": "frame"
         }
@@ -638,8 +465,6 @@
           "clear": [
             "sheet"
           ],
-          "bearing": 0,
-          "pitch": 0,
           "duration": 1800,
           "field": "frame"
         }
@@ -657,8 +482,6 @@
           "clear": [
             "sheet"
           ],
-          "bearing": 0,
-          "pitch": 0,
           "duration": 1800,
           "field": "frame"
         }

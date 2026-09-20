@@ -121,6 +121,71 @@ const famous = JSON.parse(fs.readFileSync(path.join(DATA_SOURCES, 'famous-lines.
 check(famous.features.some((f) => f.properties.kind === 'trace'), 'data-sources/famous-lines.geojson has traced lines');
 check(fs.existsSync(path.join(SERVED, 'shared/fonts/noto-sans-bengali/OFL.txt')), 'Noto Sans Bengali licence is shipped next to the font');
 
+/*
+|--------------------------------------------------------------------------
+| THE BASELINE — what every map gets without asking
+|
+| Sea labels, country labels and the section a map belongs to are provided by
+| the shell and the build, so with those in place these checks are
+| structurally true. That is the point of writing them down: they fail the
+| day someone makes one of them declarable again "just for this one map",
+| which is exactly when nobody is looking.
+|--------------------------------------------------------------------------
+*/
+console.log('\n---- the baseline ----');
+
+const SECTIONS = ['bangladesh', 'international', 'geography'];
+// Provided by the shell. A descriptor may not declare any of these, by any route.
+const BASELINE_LAYERS = ['country-labels', 'country-labels-named', 'country-labels-active', 'sea-labels', 'sea-labels-active'];
+const BASELINE_SOURCES = ['seas', 'countryLabels'];
+const BASELINE_RECORDS = ['seas'];
+
+const MAPS_DIR = path.join(SERVED, 'maps');
+const mapIds = fs
+  .readdirSync(MAPS_DIR, { withFileTypes: true })
+  .filter((e) => e.isDirectory())
+  .map((e) => e.name)
+  .sort();
+
+const shellSource = fs.readFileSync(path.join(SERVED, 'shell/app.js'), 'utf8');
+for (const id of BASELINE_LAYERS) {
+  check(shellSource.includes(`id: '${id}'`), `the shell still creates the baseline layer "${id}"`);
+}
+
+const descriptors = {};
+for (const id of mapIds) {
+  const d = JSON.parse(fs.readFileSync(path.join(MAPS_DIR, id, 'descriptor.json'), 'utf8'));
+  descriptors[id] = d;
+  check(SECTIONS.includes(d.section), `${id}: section "${d.section}" is one of ${SECTIONS.join(', ')}`);
+
+  const declaredLayers = (d.layers ?? []).map((l) => l.id).filter((l) => BASELINE_LAYERS.includes(l));
+  const declaredSources = Object.keys(d.sources ?? {}).filter((s) => BASELINE_SOURCES.includes(s));
+  const declaredRecords = Object.keys(d.records ?? {}).filter((r) => BASELINE_RECORDS.includes(r));
+  const taken = [...declaredLayers, ...declaredSources, ...declaredRecords];
+  check(taken.length === 0, `${id}: declares nothing the shell provides${taken.length ? ` — ${taken.join(', ')}` : ''}`);
+}
+
+// The registry is generated, so it cannot disagree with the descriptors — and
+// this is the check that says so out loud if the generator stops being run.
+const registry = JSON.parse(fs.readFileSync(path.join(SERVED, 'registry.json'), 'utf8'));
+const registered = registry.maps.map((m) => m.id).sort();
+check(
+  registered.length === mapIds.length && registered.every((id, i) => id === mapIds[i]),
+  `registry.json lists exactly the maps that exist (${registered.length})${registered.join(',') === mapIds.join(',') ? '' : ` — registry ${registered.join(', ')} vs folders ${mapIds.join(', ')}`}`,
+);
+const drifted = registry.maps.filter((entry) => {
+  const d = descriptors[entry.id];
+  return d && (entry.section !== d.section || entry.title?.en !== d.title?.en || entry.title?.bn !== d.title?.bn);
+});
+check(
+  drifted.length === 0,
+  `every registry entry matches its descriptor${drifted.length ? ` — ${drifted.map((e) => e.id).join(', ')} stale, re-run tools/build-registry.mjs` : ''}`,
+);
+check(
+  registry.sections.join(',') === SECTIONS.join(','),
+  `registry.json keeps the syllabus section order (${SECTIONS.join(', ')})`,
+);
+
 if (failures) {
   console.error(`\n${failures} check(s) failed.`);
   process.exit(1);

@@ -26,7 +26,7 @@
 */
 
 /** Asset classes. 'registry' is reserved: nothing uses it yet. */
-export const KINDS = ['tiles', 'style', 'glyphs', 'sprite', 'mapData', 'maps', 'registry'];
+export const KINDS = ['tiles', 'style', 'glyphs', 'sprite', 'mapData', 'maps', 'sharedData', 'registry'];
 
 /*
 | THE LAYOUT ASSUMPTION, IN ONE PLACE.
@@ -55,6 +55,10 @@ const BASES = {
   // relative to the page. The shell serves every map from one document, so
   // 'mapData' — which hangs off the document — cannot reach them.
   maps: { anchor: 'root', base: 'maps/' },
+  // Records every map gets whether it asks or not — the sea names the shell
+  // labels on all of them. Beside the fonts and tiles, because it is shared
+  // data rather than any one map's content.
+  sharedData: { anchor: 'shared', base: '' },
   registry: { anchor: 'root', base: '' },
 };
 

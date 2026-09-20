@@ -121,32 +121,77 @@
     <main>
       <h1>BCS Maps</h1>
       <p class="intro">Interactive maps for the BCS Preliminary exam, by subject.</p>
-
-      <!-- Section order is fixed: it follows the BCS Preliminary syllabus. -->
-      <section aria-labelledby="bangladesh">
-        <h2 id="bangladesh">Bangladesh <span lang="bn">বাংলাদেশ বিষয়াবলি</span></h2>
-        <p class="soon">Coming soon</p>
-      </section>
-
-      <section aria-labelledby="international">
-        <h2 id="international">International <span lang="bn">আন্তর্জাতিক বিষয়াবলি</span></h2>
-        <ul>
-          <li>
-            <a class="card" href="international/straits/index.html">
-              <span class="card-text">
-                <span class="card-title">Straits and Canals</span>
-                <span class="card-desc">13 straits and 7 canals: where they are and which seas they join.</span>
-              </span>
-              <span class="card-arrow" aria-hidden="true">›</span>
-            </a>
-          </li>
-        </ul>
-      </section>
-
-      <section aria-labelledby="geography">
-        <h2 id="geography">Geography <span lang="bn">ভূগোল, পরিবেশ ও দুর্যোগ ব্যবস্থাপনা</span></h2>
-        <p class="soon">Coming soon</p>
-      </section>
+      <div id="sections"></div>
+      <p id="failure" class="soon" hidden>The map list could not be loaded. Reload the page.</p>
     </main>
+
+    <script>
+      /*
+       * The list is GENERATED. tools/build-registry.mjs writes registry.json
+       * from every descriptor under maps/, and this page renders whatever it
+       * finds — so adding a map is one action, writing its descriptor, and a
+       * map can never be missing from a list nobody remembered to edit.
+       *
+       * Every URL here is relative and spells out index.html: the production
+       * host does not resolve directory indexes, and a bare directory link is
+       * the kind of failure that only shows up after migration.
+       */
+      const SECTION_NAMES = {
+        bangladesh: { en: 'Bangladesh', bn: 'বাংলাদেশ বিষয়াবলি' },
+        international: { en: 'International', bn: 'আন্তর্জাতিক বিষয়াবলি' },
+        geography: { en: 'Geography', bn: 'ভূগোল, পরিবেশ ও দুর্যোগ ব্যবস্থাপনা' },
+      };
+
+      const el = (tag, props = {}, kids = []) => {
+        const node = Object.assign(document.createElement(tag), props);
+        for (const kid of kids) node.append(kid);
+        return node;
+      };
+
+      function render(registry) {
+        const root = document.getElementById('sections');
+        // Section ORDER comes from the registry, which takes it from the
+        // syllabus. Not sorted here, and not sorted there.
+        for (const section of registry.sections) {
+          const names = SECTION_NAMES[section] ?? { en: section, bn: '' };
+          const heading = el('h2', { id: section }, [names.en + ' ']);
+          if (names.bn) heading.append(el('span', { lang: 'bn', textContent: names.bn }));
+
+          const maps = registry.maps.filter((m) => m.section === section);
+          const body = maps.length
+            ? el(
+                'ul',
+                {},
+                maps.map((m) =>
+                  el('li', {}, [
+                    el('a', { className: 'card', href: 'shell/index.html?map=' + encodeURIComponent(m.id) }, [
+                      el('span', { className: 'card-text' }, [
+                        el('span', { className: 'card-title', textContent: m.title.en }),
+                        el('span', { className: 'card-desc', lang: 'bn', textContent: m.title.bn }),
+                      ]),
+                      el('span', { className: 'card-arrow', ariaHidden: 'true', textContent: '›' }),
+                    ]),
+                  ]),
+                ),
+              )
+            : // An empty section still renders: the three-subject structure is
+              // the point, and a missing heading would read as a missing subject.
+              el('p', { className: 'soon', textContent: 'Coming soon' });
+
+          root.append(el('section', { ariaLabelledby: section }, [heading, body]));
+        }
+      }
+
+      fetch('./registry.json')
+        .then((r) => {
+          if (!r.ok) throw new Error('registry.json: HTTP ' + r.status);
+          return r.json();
+        })
+        .then(render)
+        .catch((error) => {
+          console.error(error);
+          document.getElementById('failure').hidden = false;
+        });
+    </script>
   </body>
 </html>

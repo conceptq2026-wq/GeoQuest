@@ -303,7 +303,12 @@ body {
 /*
  * The tilt button, under MapLibre's own compass at the top right. 44px so it
  * is a comfortable tap target on a phone.
+ *
+ * The selector carries the ctrl-group prefix on purpose: MapLibre's own
+ * `.maplibregl-ctrl-group button` rule is a class plus an element, so a bare
+ * `.ctrl-btn` loses to it and the button renders at MapLibre's 29px.
  */
+.maplibregl-ctrl-group button.ctrl-btn,
 .ctrl-btn {
   display: flex;
   align-items: center;

@@ -30,6 +30,7 @@ const CASES = [
   ['sprite', 'icons.png', '/shared/sprites/icons.png'],
   ['mapData', 'canals.geojson', '/international/straits/canals.geojson'],
   ['maps', 'straits/descriptor.json', '/maps/straits/descriptor.json'],
+  ['sharedData', 'seas.json', '/shared/seas.json'],
   ['registry', 'maps.json', '/maps.json'],
 ];
 
