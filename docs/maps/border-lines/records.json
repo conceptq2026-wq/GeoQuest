@@ -331,5 +331,137 @@
     "hasTrace": false,
     "hasGeometry": false,
     "establishedBn": "১৪৯৪"
+  },
+  "mannerheim": {
+    "nameEn": "Mannerheim Line",
+    "nameBn": null,
+    "kind": "boundary",
+    "status": "historical",
+    "countries": [],
+    "labelAt": [
+      29.417,
+      60.5
+    ],
+    "frame": [
+      26.6,
+      59.2,
+      32.9,
+      62.1
+    ],
+    "noteBn": null,
+    "hasTrace": false,
+    "hasGeometry": false,
+    "establishedBn": null
+  },
+  "maginot": {
+    "nameEn": "Maginot Line",
+    "nameBn": null,
+    "kind": "boundary",
+    "status": "historical",
+    "countries": [],
+    "labelAt": [
+      6.36556,
+      49.34139
+    ],
+    "frame": [
+      3.4,
+      46.1,
+      10.3,
+      51.2
+    ],
+    "noteBn": null,
+    "hasTrace": false,
+    "hasGeometry": false,
+    "establishedBn": null
+  },
+  "wallaceLine": {
+    "nameEn": "Wallace Line",
+    "nameBn": null,
+    "kind": "boundary",
+    "status": "active",
+    "countries": [],
+    "labelAt": [
+      115.733,
+      -8.767
+    ],
+    "frame": [
+      113.5,
+      -9.6,
+      120.5,
+      2.5
+    ],
+    "noteBn": null,
+    "hasTrace": false,
+    "hasGeometry": false,
+    "establishedBn": null
+  },
+  "mcnamaraLine": {
+    "nameEn": "McNamara Line",
+    "nameBn": null,
+    "kind": "boundary",
+    "status": "historical",
+    "countries": [],
+    "labelAt": [
+      106.98,
+      16.90972
+    ],
+    "frame": [
+      104.4,
+      14.6,
+      110.2,
+      19.2
+    ],
+    "noteBn": null,
+    "hasTrace": false,
+    "hasGeometry": false,
+    "establishedBn": null
+  },
+  "hindenburgLine": {
+    "nameEn": "Hindenburg Line",
+    "nameBn": null,
+    "kind": "boundary",
+    "status": "historical",
+    "countries": [],
+    "labelAt": null,
+    "noteBn": null,
+    "hasTrace": false,
+    "hasGeometry": false,
+    "establishedBn": null
+  },
+  "purpleLine": {
+    "nameEn": "Purple Line",
+    "nameBn": null,
+    "kind": "boundary",
+    "status": "historical",
+    "countries": [],
+    "labelAt": null,
+    "noteBn": null,
+    "hasTrace": false,
+    "hasGeometry": false,
+    "establishedBn": null
+  },
+  "fochLine": {
+    "nameEn": "Foch Line",
+    "nameBn": null,
+    "kind": "boundary",
+    "status": "historical",
+    "countries": [],
+    "labelAt": null,
+    "noteBn": null,
+    "hasTrace": false,
+    "hasGeometry": false,
+    "establishedBn": null
+  },
+  "parallel90": {
+    "nameEn": "90th Parallel North",
+    "nameBn": null,
+    "kind": "parallel",
+    "status": "active",
+    "countries": [],
+    "labelAt": null,
+    "noteBn": null,
+    "hasTrace": false,
+    "hasGeometry": false,
+    "establishedBn": null
   }
 }

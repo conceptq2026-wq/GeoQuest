@@ -487,7 +487,7 @@ console.log('\n\n============ border-lines ============');
   //             definition, and nothing on a student's device reads it
   // and one record field the seed does not carry:
   //   countriesBn — composed for approval, so it is null until approved
-  const NOT_RECORD_FIELDS = ['id', 'review', 'sectors', 'geometrySource', 'countriesBn'];
+  const NOT_RECORD_FIELDS = ['id', 'review', 'sectors', 'geometrySource', 'sources', 'countriesBn'];
 
   console.log('\n---- records.json against lines.seed.json ----');
   compareTables({
@@ -515,7 +515,7 @@ console.log('\n\n============ border-lines ============');
   // falsified by a line gaining geometry plus six lines with no note yet),
   // 6 establishedBn with no year in any source here, and tordesillas.labelAt,
   // which has nowhere to sit until its longitude is settled.
-  checkMap({ id: 'border-lines', expectedPending: 33 });
+  checkMap({ id: 'border-lines', expectedPending: 61 });
 }
 
 // ---- done -------------------------------------------------------------------

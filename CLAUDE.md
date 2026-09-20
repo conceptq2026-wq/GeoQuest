@@ -124,9 +124,12 @@ pitch 55; drags are clamped at `maxPitch` 60, slightly above the button's stop.
 A map is a **descriptor** plus **records** plus **geometry**. The descriptor
 declares sources, layers, sheet rows and actions; it holds no content.
 
-- **`properties` is required on every source.** A source that does not declare
-  the properties its layers read produces empty labels and no error. Every
-  `["get", x]` must resolve on its layer's source; the validator asserts this.
+- **`properties` is required on every source derived from a records table.**
+  Those sources are built from rows, so a property no one declared never
+  reaches the feature: the result is empty labels and no error. A GeoJSON
+  source carries its own properties and declares none — straits' `routes` is
+  the example. Every `["get", x]` must resolve on its layer's source; the
+  validator asserts this.
 - Record keys are **structure, not content**. Joins depend on them. Never
   rename, never reorder. Content replacement is field-level at known keys.
 - Camera padding is **symbolic, never numeric**. A pixel number in a
@@ -149,9 +152,16 @@ unsure, ask which one the field is.
 Every fact shown to a student is verified. Content is supplied by the user, map
 by map. **Nothing is guessed to fill a gap.**
 
-- **Two independent, non-circular sources** for anything a student memorises —
-  numbers, dates, names, and the pairs of things a feature connects. An
-  encyclopaedia and a page citing it are one source.
+- **One authoritative source per claim, and stop there.** The source is chosen
+  for the kind of claim: the body that owns the thing for its own facts (a
+  canal authority for that canal's length and opening year), the BCS corpus
+  for Bengali names and exam-relevant values, OSM or Natural Earth for
+  geometry. Record which one. Do not sweep for corroboration once the
+  authoritative source has answered — the cost of a second opinion is not
+  worth what it adds.
+- **A weak source is a `null`, not a reason to keep hunting.** If the best
+  available source is vague, self-contradictory, or plainly not the authority
+  for that claim, the field stays unverified and goes on the pending list.
 - **Geometry is verified differently.** The bar is *the right feature was
   selected and clipped*, checked by looking at the rendered result against a
   reference map — not by two sources and not by reading coordinates.
@@ -161,14 +171,20 @@ by map. **Nothing is guessed to fill a gap.**
   wrong for this product.
 - Where sources disagree, record both, show the more common one, and record the
   disagreement. Never silently pick.
-- **Provenance lives outside the served tree** — `data-sources/<map>/
-  provenance.json`, keyed by record and field. Never referenced by a
-  descriptor, never downloaded by a student. *Not built yet: no
-  `provenance.json` exists. What exists today is `data-sources/border-lines/
-  *.seed.json`, which carries a `review` field on the records whose sourcing is
-  unsettled.*
+- **Provenance lives outside the served tree, in the seed.**
+  `data-sources/<map>/*.seed.json` is the provenance carrier. It holds two
+  things: `review`, the free-text editorial note on a record whose sourcing is
+  unsettled, and `sources`, an object keyed by the record field each citation
+  justifies, every cited field carrying exactly two independent non-circular
+  citations. The build fails a field with one citation, or with two from the
+  same host. What is cited is the feature's **documented extent**, not the
+  point — the point only has to lie on that extent, the way the straits map
+  marks a strait with a point. There is no `provenance.json` and none is
+  wanted — one input, not two. The seed is also where the shipped fields are
+  built from, but nothing in it that is provenance — `review`, `sources` — is
+  shipped in `records.json` or reaches a student.
 - The user's own verification is recorded as editor-verified with a date, and
-  stays distinguishable from two cited sources.
+  stays distinguishable from a cited source.
 - Never invent Bengali content. An unsupplied Bengali field is `null`.
 - Shortening the pending list is not a goal. A fact with one weak source stays
   pending.
@@ -209,12 +225,16 @@ That is the mechanism. Do not reintroduce feature-state for selection.
 ## Records with no line geometry get a point marker
 
 A record that cannot be traced is marked with a point, the same treatment the
-straits map gives a passage — radius 6, `#0b3d91`, 2px white stroke. *On
-selection the circle grows to radius 9 and stays; it does not hide itself or
-take a pulsing DOM marker. The pulse is per-source in the shell, and the source
-that carries these points carries every record, so adding it would also pulse
-every traced line. Reaching the straits behaviour needs a way to give the
-marker to part of a source, which does not exist yet.*
+straits map gives a passage — radius 6, `#0b3d91`, 2px white stroke, property
+for property. On selection the circle hides and the pulsing DOM marker takes
+its place, exactly as on straits. A record that has a line to draw — traced or
+generated — gets no marker and keeps the line-width idiom.
+
+The marker is one `maplibregl.Marker` placed at one coordinate, so it is
+narrowed by a condition rather than by the source it hangs off:
+`selectionMarker` takes an optional `when`, in the same field/value shape
+`expectGeometry` uses. border-lines declares `{ when: { hasGeometry: false } }`;
+straits declares `true`.
 
 The build fails, naming the record, when a record has no line geometry, no
 point and no frame. A record that legitimately cannot be given a point is

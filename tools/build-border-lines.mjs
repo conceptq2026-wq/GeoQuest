@@ -282,6 +282,162 @@ const MARKER_FRAMES = {
 };
 
 /*
+|--------------------------------------------------------------------------
+| MARKER-ONLY LINES — no geometry anywhere, so a point and a frame
+|
+| The survey established that none of these can be traced: no present-day
+| boundary file carries them, and nothing reachable in OpenStreetMap is the
+| line rather than a street named after it. They take the treatment berlinWall
+| and sykesPicot already have — a point marker with its label.
+|
+| `sources` cites the feature's DOCUMENTED EXTENT, not the point. The point
+| only has to lie on that extent, the way the straits map marks a strait with
+| a point. Two independent, non-circular citations per field, or the record
+| gets no point at all and waits on the pending list.
+|
+| A record with `labelAt: null` is in NO_POINT_YET below, with the reason.
+|--------------------------------------------------------------------------
+*/
+const MARKER_ONLY = {
+  mannerheim: {
+    nameEn: 'Mannerheim Line',
+    kind: 'boundary',
+    status: 'historical',
+    labelAt: [29.417, 60.5],
+    frame: [26.6, 59.2, 32.9, 62.1],
+    sources: {
+      labelAt: [
+        {
+          title: 'Mannerheim Line',
+          publisher: 'Wikipedia',
+          url: 'https://en.wikipedia.org/wiki/Mannerheim_Line',
+          states: 'Ran from the coast of the Gulf of Finland in the west, through Summa to the Vuoksi River, ending at Taipale in the east; gives the line\'s position as 60.500 N 29.417 E.',
+        },
+        {
+          title: 'Archaeology of the Mannerheim Line — History of the Mannerheim Line',
+          publisher: 'University of Helsinki',
+          url: 'https://blogs.helsinki.fi/mannerheim-line-archaeology/history-of-mannerheim-line/',
+          states: 'A 132 km line across the Karelian Isthmus, "Laatokalta Suomenlahdelle" — from Lake Ladoga to the Gulf of Finland.',
+        },
+      ],
+    },
+  },
+  maginot: {
+    nameEn: 'Maginot Line',
+    kind: 'boundary',
+    status: 'historical',
+    // Ouvrage Hackenberg, Fortified Sector of Boulay: a documented work ON
+    // the line rather than a point picked off the middle of it.
+    labelAt: [6.36556, 49.34139],
+    frame: [3.4, 46.1, 10.3, 51.2],
+    sources: {
+      labelAt: [
+        {
+          title: 'Maginot Line',
+          publisher: 'Wikipedia',
+          url: 'https://en.wikipedia.org/wiki/Maginot_Line',
+          states: 'The line stretched from Switzerland to Luxembourg, on the French side of its borders with Italy, Switzerland, Germany, Luxembourg and Belgium.',
+        },
+        {
+          title: 'Maginot Line',
+          publisher: 'Encyclopaedia Britannica',
+          url: 'https://www.britannica.com/topic/Maginot-Line',
+          states: 'An elaborate defensive barrier in north-east France covering the French–German frontier but not the French–Belgian, with Sedan at its northern end.',
+        },
+      ],
+    },
+    review:
+      'Sources agree on the southern end (the Swiss frontier) and disagree on the northern terminus: Wikipedia says Luxembourg, Britannica says Sedan, and the French heritage literature says Montmédy. The point is deliberately well inside the undisputed stretch.',
+  },
+  wallaceLine: {
+    nameEn: 'Wallace Line',
+    kind: 'boundary',
+    status: 'active',
+    // The Lombok Strait, the southern end of the line and the place the two
+    // sources agree on most precisely.
+    labelAt: [115.733, -8.767],
+    frame: [113.5, -9.6, 120.5, 2.5],
+    sources: {
+      labelAt: [
+        {
+          title: 'Wallace Line',
+          publisher: 'Wikipedia',
+          url: 'https://en.wikipedia.org/wiki/Wallace_Line',
+          states: 'Runs through the Makassar Strait between Borneo and Sulawesi, and through the Lombok Strait between Bali and Lombok.',
+        },
+        {
+          title: 'The Wallace Line',
+          publisher: 'Center for Southeast Asia and its Diasporas, University of Washington',
+          url: 'https://jsis.washington.edu/csead/resources/educators/where-in-southeast-asia/the-wallace-line/',
+          states: 'An imaginary line intersecting the Lombok Strait between Bali and Lombok to the south, extending north through the Makassar Strait between Kalimantan (Borneo) and Sulawesi.',
+        },
+      ],
+    },
+    review:
+      'A biogeographic boundary rather than a political one, so it sits in the সীমারেখা group for want of a third. Whether the corpus treats it as a সীমারেখা at all is a content decision.',
+  },
+  mcnamaraLine: {
+    nameEn: 'McNamara Line',
+    kind: 'boundary',
+    status: 'historical',
+    // Con Thien, a documented strongpoint on the barrier.
+    labelAt: [106.98, 16.90972],
+    // Wide enough to stay inside the world basemap's useful zooms: a box tight
+    // on the DMZ frames past z8, and the world tiles stop at z6 outside the
+    // detail areas, leaving the marker on blank land.
+    frame: [104.4, 14.6, 110.2, 19.2],
+    sources: {
+      labelAt: [
+        {
+          title: 'McNamara Line',
+          publisher: 'Wikipedia',
+          url: 'https://en.wikipedia.org/wiki/McNamara_Line',
+          states: 'Ran across South Vietnam along the Vietnamese Demilitarized Zone from Cửa Việt to the Laotian border at Mường Phìn, 76 km in total; "the Trace" ran from Gio Linh west to Con Thien.',
+        },
+        {
+          title: 'The Story Behind the McNamara Line (Vietnam magazine, February 1996)',
+          publisher: 'Peter Brush, hosted by Montclair State University',
+          url: 'https://msuweb.montclair.edu/~furrg/pbmcnamara.html',
+          states: 'The barrier would begin at the coast of South Vietnam below the DMZ and continue westward across the coastal plain about thirty kilometres, becoming a marked and obstructed route onward to the Laotian border.',
+        },
+      ],
+    },
+  },
+  hindenburgLine: {
+    nameEn: 'Hindenburg Line',
+    kind: 'boundary',
+    status: 'historical',
+    labelAt: null,
+    review:
+      'Extent is well attested by one source — Wikipedia gives Arras to Laffaux near Soissons, with the line at 49.500 N 2.833 E — but no second independent source could be reached. The Imperial War Museum, National Army Museum and Australian War Memorial pages found all describe events on the line without stating where it ran. A second source almost certainly exists in the British Official History (Military Operations France and Belgium 1917, Vol. I), which the IWM catalogues but does not serve as text.',
+  },
+  purpleLine: {
+    nameEn: 'Purple Line',
+    kind: 'boundary',
+    status: 'historical',
+    labelAt: null,
+    review:
+      'Two independent sources agree on what it IS — the 1967 Six-Day War ceasefire line on the Golan — and that the 1974 Disengagement Agreement replaced it with Lines A and B, Israel pulling back west of line A-1 in the Kuneitra area. Neither gives endpoints or a coordinate, and the only mapped candidates in reach are Natural Earth\'s "Ceasefire Lines 1974" and "UNDOF", which are the 1974 lines and excluded for this record. No point until a source places the 1967 line itself.',
+  },
+  fochLine: {
+    nameEn: 'Foch Line',
+    kind: 'boundary',
+    status: 'historical',
+    labelAt: null,
+    review:
+      'The 1919 Entente demarcation line between Poland and Lithuania. The only source reached is a Wikipedia stub, which says the line left Vilnius on the Polish side and that after 1945 only its westernmost part near Suwałki still follows it. No extent statement and no second independent source.',
+  },
+  parallel90: {
+    nameEn: '90th Parallel North',
+    kind: 'parallel',
+    status: 'active',
+    labelAt: null,
+    review:
+      'Named in the corpus and previously absent from the map altogether, which the never-silently-absent rule forbids. It has no point because Web Mercator cannot represent the pole — the projection runs to about 85.05 degrees — and a marker at 85 would be in the wrong place while looking entirely right. How 90 degrees should appear is a decision, not an omission.',
+  },
+};
+
+/*
  * WHICH KIND OF LINE EACH ONE IS, for the picker's two groups.
  *
  * সীমারেখা / অক্ষরেখা is how the source material is organised and how the
@@ -306,6 +462,14 @@ const KIND = {
   parallel25: 'parallel',
   parallel38: 'parallel',
   parallel49: 'parallel',
+  mannerheim: 'boundary',
+  maginot: 'boundary',
+  wallaceLine: 'boundary',
+  mcnamaraLine: 'boundary',
+  hindenburgLine: 'boundary',
+  purpleLine: 'boundary',
+  fochLine: 'boundary',
+  parallel90: 'parallel',
 };
 
 /** Decisions left open on purpose, carried into the seed so they stay visible. */
@@ -327,7 +491,8 @@ const REVIEW = {
  * and proposed instead. These records therefore reach the map unnamed, which
  * is visible and fixable; a plausible invented name would be neither.
  */
-const BENGALI_PENDING = ['parallel22', 'parallel24', 'parallel25', 'parallel38', 'parallel49', 'tordesillas'];
+const BENGALI_PENDING = ['parallel22', 'parallel24', 'parallel25', 'parallel38', 'parallel49', 'tordesillas',
+  'mannerheim', 'maginot', 'wallaceLine', 'mcnamaraLine', 'hindenburgLine', 'purpleLine', 'fochLine', 'parallel90'];
 
 const { FAMOUS_LINES } = await import(pathToFileURL(LINES_SOURCE).href);
 const sourceLines = loadBoundarySources();
@@ -661,6 +826,50 @@ for (const [id, spec] of Object.entries(GENERATED)) {
   if (REVIEW[id]) seed[id].review = REVIEW[id];
 }
 
+/*
+ * Records with no geometry at all — marked with a point, or held back with no
+ * point where the extent could not be established from two sources. Nothing
+ * here is traced or generated, so geometrySource is 'none' and bdPov does not
+ * apply. Bengali is null throughout: the names come from the BCS corpus.
+ */
+for (const [id, spec] of Object.entries(MARKER_ONLY)) {
+  if (seed[id]) throw new Error(`${id}: already built — a marker-only record cannot share an id`);
+  seed[id] = {
+    id,
+    nameEn: spec.nameEn,
+    nameBn: null,
+    kind: KIND[id] ?? null,
+    status: spec.status,
+    countries: [],
+    labelAt: spec.labelAt ?? null,
+    noteBn: null,
+    hasTrace: false,
+    hasGeometry: false,
+    geometrySource: 'none',
+    establishedBn: null,
+  };
+  if (spec.frame) seed[id].frame = spec.frame;
+  // The citations for the feature's documented extent, keyed by the field
+  // they justify. Seed only — never shipped, never near a student.
+  if (spec.sources) seed[id].sources = spec.sources;
+  if (spec.review) seed[id].review = spec.review;
+}
+
+// A cited field must carry two independent citations, or the shape is being
+// used to imply corroboration that does not exist.
+for (const [id, rec] of Object.entries(seed)) {
+  for (const [field, cites] of Object.entries(rec.sources ?? {})) {
+    if (!Array.isArray(cites) || cites.length !== 2)
+      throw new Error(`${id}.sources.${field}: needs exactly two independent citations, got ${Array.isArray(cites) ? cites.length : typeof cites}`);
+    const hosts = cites.map((c) => new URL(c.url).host);
+    if (hosts[0] === hosts[1])
+      throw new Error(`${id}.sources.${field}: both citations are from ${hosts[0]} — that is one source, not two`);
+  }
+  // A point that was placed on the strength of an extent must say whose.
+  if (rec.labelAt && !rec.hasGeometry && !rec.sources?.labelAt && !(id in DATES))
+    throw new Error(`${id}: has a point but no citation for the extent it sits on`);
+}
+
 // Nothing may reach the seed unclassified: the picker groups on kind, and a
 // record with no kind would simply not appear in either group.
 for (const [id, rec] of Object.entries(seed))
@@ -690,7 +899,7 @@ for (const [id, rec] of Object.entries(seed)) {
     );
 }
 
-const NO_POINT_YET = ['tordesillas'];
+const NO_POINT_YET = ['tordesillas', 'hindenburgLine', 'purpleLine', 'fochLine', 'parallel90'];
 for (const [id, rec] of Object.entries(seed)) {
   if (rec.hasGeometry || NO_POINT_YET.includes(id)) continue;
   if (!rec.labelAt) throw new Error(`${id}: no line geometry and no labelAt — it would not appear on the map at all`);
