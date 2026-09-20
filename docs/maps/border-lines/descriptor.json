@@ -27,6 +27,14 @@
       "historical": {
         "labelBn": "ঐতিহাসিক"
       }
+    },
+    "lineKind": {
+      "boundary": {
+        "labelBn": "সীমারেখা"
+      },
+      "parallel": {
+        "labelBn": "অক্ষরেখা"
+      }
     }
   },
   "records": {
@@ -40,6 +48,11 @@
         },
         "nameBn": {
           "type": "text",
+          "verifiable": true
+        },
+        "kind": {
+          "type": "enum",
+          "lookup": "lineKind",
           "required": true
         },
         "status": {
@@ -61,7 +74,7 @@
         },
         "labelAt": {
           "type": "point",
-          "required": true
+          "verifiable": true
         },
         "noteBn": {
           "type": "text",
@@ -88,6 +101,13 @@
             "hasTrace": true
           },
           "display": false
+        },
+        "frame": {
+          "type": "bbox"
+        },
+        "hasGeometry": {
+          "type": "boolean",
+          "required": true
         }
       }
     },
@@ -131,7 +151,7 @@
       "geometry": "./lines.geojson",
       "joinField": "id",
       "expectGeometry": {
-        "hasTrace": true
+        "hasGeometry": true
       },
       "state": [
         "selected"
@@ -147,7 +167,8 @@
         "selected"
       ],
       "properties": [
-        "nameBn"
+        "nameBn",
+        "hasGeometry"
       ]
     },
     "countryLabels": {
@@ -278,6 +299,22 @@
         "text-color": "#0b3d91",
         "text-halo-color": "#ffffff",
         "text-halo-width": 2
+      }
+    },
+    "line-marker": {
+      "paint": {
+        "circle-color": "#0b3d91",
+        "circle-stroke-width": 2,
+        "circle-stroke-color": "#ffffff",
+        "circle-radius": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          9,
+          6
+        ]
       }
     }
   },
@@ -487,6 +524,20 @@
       }
     },
     {
+      "id": "line-marker",
+      "type": "circle",
+      "source": "lineLabels",
+      "slot": "aboveLabels",
+      "style": "line-marker",
+      "filter": [
+        "!",
+        [
+          "get",
+          "hasGeometry"
+        ]
+      ]
+    },
+    {
       "id": "line-label",
       "type": "symbol",
       "source": "lineLabels",
@@ -540,14 +591,13 @@
       "type": "picker",
       "id": "line",
       "from": "lines",
-      "labelField": "nameBn",
       "groupBy": {
-        "field": "status",
-        "lookup": "lineStatus",
+        "field": "kind",
+        "lookup": "lineKind",
         "take": "labelBn",
         "order": [
-          "active",
-          "historical"
+          "boundary",
+          "parallel"
         ]
       },
       "placeholder": "একটি সীমান্ত রেখা বেছে নিন…",
@@ -563,9 +613,16 @@
           ],
           "bearing": 0,
           "pitch": 0,
-          "duration": 1800
+          "duration": 1800,
+          "field": "frame"
         }
-      ]
+      ],
+      "label": {
+        "compose": [
+          "{nameBn}",
+          "{nameEn}"
+        ]
+      }
     }
   ],
   "interactions": [
@@ -583,7 +640,8 @@
           ],
           "bearing": 0,
           "pitch": 0,
-          "duration": 1800
+          "duration": 1800,
+          "field": "frame"
         }
       ]
     },
@@ -601,7 +659,8 @@
           ],
           "bearing": 0,
           "pitch": 0,
-          "duration": 1800
+          "duration": 1800,
+          "field": "frame"
         }
       ]
     }
@@ -614,7 +673,8 @@
     },
     "title": {
       "compose": [
-        "{nameBn}"
+        "{nameBn}",
+        "{nameEn}"
       ]
     },
     "rows": [

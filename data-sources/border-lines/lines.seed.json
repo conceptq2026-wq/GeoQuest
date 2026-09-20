@@ -3,6 +3,7 @@
     "id": "mcmahon",
     "nameEn": "McMahon Line",
     "nameBn": "ম্যাকমাহন লাইন",
+    "kind": "boundary",
     "status": "active",
     "countries": [
       "CHN",
@@ -14,6 +15,7 @@
     ],
     "noteBn": "ভারত–চীন (তিব্বত) সীমান্ত রেখা, ১৯১৪ সিমলা কনভেনশন — চীন স্বীকৃতি দেয় না",
     "hasTrace": true,
+    "hasGeometry": true,
     "establishedBn": "১৯১৪",
     "bdPov": "shown",
     "review": "nameBn spelling undecided: data.js has \"ম্যাকমাহন লাইন\", the BCS corpus has \"ম্যাকমোহন লাইন\". Kept as data.js has it; change here and it changes everywhere."
@@ -22,6 +24,7 @@
     "id": "radcliffe",
     "nameEn": "Radcliffe Line",
     "nameBn": "র‍্যাডক্লিফ লাইন",
+    "kind": "boundary",
     "status": "active",
     "countries": [
       "IND",
@@ -34,6 +37,7 @@
     ],
     "noteBn": null,
     "hasTrace": true,
+    "hasGeometry": true,
     "establishedBn": "১৯৪৭",
     "bdPov": "shown",
     "review": "noteBn is null because the merge has no source value: the two sectors carry different notes, and merging them is writing new content. The originals are kept verbatim under \"sectors\".",
@@ -70,6 +74,7 @@
     "id": "durand",
     "nameEn": "Durand Line",
     "nameBn": "ডুরান্ড লাইন",
+    "kind": "boundary",
     "status": "active",
     "countries": [
       "AFG",
@@ -81,6 +86,7 @@
     ],
     "noteBn": "আফগানিস্তান–পাকিস্তান সীমান্ত, ১৮৯৩ চুক্তি",
     "hasTrace": true,
+    "hasGeometry": true,
     "establishedBn": "১৮৯৩",
     "bdPov": "shown"
   },
@@ -88,6 +94,7 @@
     "id": "loc",
     "nameEn": "Line of Control (LoC)",
     "nameBn": "নিয়ন্ত্রণ রেখা (LoC)",
+    "kind": "boundary",
     "status": "active",
     "countries": [
       "IND",
@@ -99,6 +106,7 @@
     ],
     "noteBn": "ভারত–পাকিস্তান, কাশ্মীর — জাতিসংঘ-স্বীকৃত সীমান্ত নয়, বাস্তব নিয়ন্ত্রণ রেখা",
     "hasTrace": true,
+    "hasGeometry": true,
     "establishedBn": null,
     "bdPov": "shown"
   },
@@ -106,6 +114,7 @@
     "id": "koreanDmz",
     "nameEn": "Korean DMZ (38th Parallel)",
     "nameBn": "কোরীয় DMZ (৩৮তম প্যারালাল)",
+    "kind": "boundary",
     "status": "active",
     "countries": [
       "KOR",
@@ -117,6 +126,7 @@
     ],
     "noteBn": "উত্তর–দক্ষিণ কোরিয়া, ১৯৫৩ যুদ্ধবিরতি রেখা",
     "hasTrace": true,
+    "hasGeometry": true,
     "establishedBn": "১৯৫৩",
     "bdPov": "shown"
   },
@@ -124,6 +134,7 @@
     "id": "greenLine",
     "nameEn": "Green Line",
     "nameBn": "গ্রিন লাইন",
+    "kind": "boundary",
     "status": "active",
     "countries": [
       "ISR",
@@ -135,6 +146,7 @@
     ],
     "noteBn": "ইসরায়েল–ওয়েস্ট ব্যাংক, ১৯৪৯ যুদ্ধবিরতি রেখা",
     "hasTrace": true,
+    "hasGeometry": true,
     "establishedBn": "১৯৪৯",
     "bdPov": "unrecognized"
   },
@@ -142,6 +154,7 @@
     "id": "berlinWall",
     "nameEn": "Berlin Wall",
     "nameBn": "বার্লিন ওয়াল",
+    "kind": "boundary",
     "status": "historical",
     "countries": [],
     "labelAt": [
@@ -150,6 +163,13 @@
     ],
     "noteBn": "১৯৬১–১৯৮৯, পূর্ব ও পশ্চিম বার্লিনের বিভাজন — বর্তমানে অস্তিত্ব নেই। এই দেয়ালের প্রকৃত পথ কোনো বর্তমান দেশের সীমান্তের সাথে মেলে না, তাই এখানে শুধু একটা রেফারেন্স পয়েন্ট — সম্পূর্ণ রেখা আঁকার জন্য পৃথক হিস্টোরিক্যাল জিআইএস ডেটা লাগবে, যা এই অফলাইন সেটআপে নেই।",
     "hasTrace": false,
+    "hasGeometry": false,
+    "frame": [
+      8.5,
+      49.8,
+      18.5,
+      55.2
+    ],
     "establishedBn": "১৯৬১",
     "endedBn": "১৯৮৯"
   },
@@ -157,21 +177,31 @@
     "id": "parallel17",
     "nameEn": "17th Parallel",
     "nameBn": "১৭তম প্যারালাল",
+    "kind": "parallel",
     "status": "historical",
     "countries": [],
     "labelAt": [
       106.6,
       17
     ],
-    "noteBn": "উত্তর–দক্ষিণ ভিয়েতনাম বিভাজন রেখা, ১৯৫৪–১৯৭৫ — বর্তমানে অস্তিত্ব নেই। বর্তমান কোনো সীমান্তের সাথে মেলে না, তাই পূর্ণ রেখা আঁকা হয়নি — রেফারেন্স পয়েন্ট মাত্র।",
+    "noteBn": null,
     "hasTrace": false,
+    "hasGeometry": true,
+    "frame": [
+      104.8,
+      15.3,
+      108.9,
+      18.7
+    ],
     "establishedBn": "১৯৫৪",
-    "endedBn": "১৯৭৫"
+    "endedBn": "১৯৭৫",
+    "review": "Gained a generated line, so the note saying \"পূর্ণ রেখা আঁকা হয়নি — রেফারেন্স পয়েন্ট মাত্র\" is no longer true and is nulled rather than reworded. Its countries are [] because North and South Vietnam no longer exist and no ADM0_A3 stands for either; VNM is the successor state, not a party to the division. nameBn is the data.js name; the corpus calls it ১৭° উত্তর."
   },
   "sykesPicot": {
     "id": "sykesPicot",
     "nameEn": "Sykes–Picot Line",
     "nameBn": "সাইকস–পিকো লাইন",
+    "kind": "boundary",
     "status": "historical",
     "countries": [],
     "labelAt": [
@@ -180,6 +210,162 @@
     ],
     "noteBn": "১৯১৬ ব্রিটিশ–ফরাসি গোপন চুক্তি — আজকের সিরিয়া–ইরাক সীমান্তের ওপর প্রভাব রেখেছে কিন্তু হুবহু এক নয়, তাই পূর্ণ রেখা আঁকা হয়নি — রেফারেন্স পয়েন্ট মাত্র।",
     "hasTrace": false,
+    "hasGeometry": false,
+    "frame": [
+      35,
+      31,
+      45,
+      39
+    ],
     "establishedBn": "১৯১৬"
+  },
+  "parallel22": {
+    "id": "parallel22",
+    "nameEn": "22nd Parallel North",
+    "nameBn": null,
+    "kind": "parallel",
+    "status": "active",
+    "countries": [
+      "EGY",
+      "SDN"
+    ],
+    "labelAt": [
+      30.9,
+      22
+    ],
+    "noteBn": null,
+    "hasTrace": false,
+    "hasGeometry": true,
+    "frame": [
+      24,
+      19.5,
+      37.8,
+      24.5
+    ],
+    "establishedBn": null
+  },
+  "parallel24": {
+    "id": "parallel24",
+    "nameEn": "24th Parallel North",
+    "nameBn": null,
+    "kind": "parallel",
+    "status": "active",
+    "countries": [
+      "PAK",
+      "IND"
+    ],
+    "labelAt": [
+      69.5,
+      24
+    ],
+    "noteBn": null,
+    "hasTrace": false,
+    "hasGeometry": true,
+    "frame": [
+      67.3,
+      22.6,
+      71.7,
+      25.4
+    ],
+    "establishedBn": null
+  },
+  "parallel25": {
+    "id": "parallel25",
+    "nameEn": "25th Parallel North",
+    "nameBn": null,
+    "kind": "parallel",
+    "status": "active",
+    "countries": [
+      "MRT",
+      "MLI"
+    ],
+    "labelAt": [
+      -5.7,
+      25
+    ],
+    "noteBn": null,
+    "hasTrace": false,
+    "hasGeometry": true,
+    "frame": [
+      -7.6,
+      23.8,
+      -3.8,
+      26.2
+    ],
+    "establishedBn": null
+  },
+  "parallel38": {
+    "id": "parallel38",
+    "nameEn": "38th Parallel North",
+    "nameBn": null,
+    "kind": "parallel",
+    "status": "active",
+    "countries": [
+      "KOR",
+      "PRK"
+    ],
+    "labelAt": [
+      126.9,
+      38
+    ],
+    "noteBn": null,
+    "hasTrace": false,
+    "hasGeometry": true,
+    "frame": [
+      123.6,
+      36.4,
+      130.2,
+      39.6
+    ],
+    "establishedBn": null,
+    "review": "A separate record from koreanDmz on purpose: 38°N is the 1945 division line, the DMZ is the 1953 armistice line, and they are not the same line — the DMZ crosses 38°N rather than following it."
+  },
+  "parallel49": {
+    "id": "parallel49",
+    "nameEn": "49th Parallel North",
+    "nameBn": null,
+    "kind": "parallel",
+    "status": "active",
+    "countries": [
+      "USA",
+      "CAN"
+    ],
+    "labelAt": [
+      -108.75,
+      49
+    ],
+    "noteBn": null,
+    "hasTrace": false,
+    "hasGeometry": true,
+    "frame": [
+      -124.5,
+      46.5,
+      -93,
+      51.5
+    ],
+    "establishedBn": null
+  },
+  "tordesillas": {
+    "id": "tordesillas",
+    "nameEn": "Line of Demarcation (Treaty of Tordesillas)",
+    "nameBn": null,
+    "kind": "boundary",
+    "status": "historical",
+    "countries": [
+      "ESP",
+      "PRT"
+    ],
+    "labelAt": null,
+    "noteBn": null,
+    "hasTrace": false,
+    "hasGeometry": false,
+    "frame": [
+      -60,
+      -37,
+      -30,
+      10
+    ],
+    "establishedBn": "১৪৯৪",
+    "review": "Longitude PENDING: the treaty fixes the line 370 leagues west of Cape Verde and the league is disputed, so cited meridians spread over about two degrees. No line is drawn until a value is approved. countries are the two treaty parties, which is why the highlight is in Iberia while the line is in the Atlantic — that pairing needs a decision too."
   }
 }

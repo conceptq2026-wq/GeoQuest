@@ -273,7 +273,10 @@ function derive(name, spec) {
     const table = records[spec.records] ?? {};
     return {
       type: 'FeatureCollection',
-      features: Object.entries(table).map(([key, row]) => {
+      // A record whose point is not yet settled has no feature at all. Null
+      // coordinates would be a feature at nowhere, which MapLibre rejects and
+      // which would be a lie even if it did not.
+      features: Object.entries(table).filter(([, row]) => row[spec.geometryFrom] != null).map(([key, row]) => {
         const properties = { key, ...pick(row, spec.properties) };
         for (const field of fields) properties[stateName(field)] = stateValue(field, spec.records, key);
         return { type: 'Feature', properties, geometry: { type: 'Point', coordinates: row[spec.geometryFrom] } };
@@ -628,10 +631,14 @@ function buildPicker(control) {
     }
   }
 
+  // `labelField` names one field; `label` takes the same field/lookup/compose
+  // spec the sheet uses, so a map whose names are still being approved can
+  // fall back to another field instead of listing blank rows.
+  const labelSpec = control.label ?? { field: control.labelField };
   for (const key of order) {
     const option = document.createElement('option');
     option.value = key;
-    option.textContent = table[key][control.labelField];
+    option.textContent = valueOf(labelSpec, table[key]) ?? '';
     const parent = group ? dom.picker.querySelector(`optgroup[data-value="${table[key][group.field]}"]`) : null;
     (parent ?? dom.picker).appendChild(option);
   }
@@ -767,7 +774,11 @@ function valueOf(spec, row) {
   return null;
 }
 
-const fill = (template, row) => template.replace(/\{([A-Za-z][A-Za-z0-9_]*)\}/g, (_, name) => row[name] ?? '');
+// A declaration, not a const: valueOf is reached while the picker is being
+// built, which happens before this point in module evaluation.
+function fill(template, row) {
+  return template.replace(/\{([A-Za-z][A-Za-z0-9_]*)\}/g, (_, name) => row[name] ?? '');
+}
 
 /*
  * Sheet behaviour is the shell's throughout: a descriptor never says a pixel.

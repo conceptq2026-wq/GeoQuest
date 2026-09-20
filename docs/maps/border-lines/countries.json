@@ -15,12 +15,36 @@
       24.30754
     ]
   },
+  "CAN": {
+    "nameEn": "Canada",
+    "nameBn": "কানাডা",
+    "labelAt": [
+      -103.69998,
+      57.84469
+    ]
+  },
   "CHN": {
     "nameEn": "People's Republic of China",
     "nameBn": "গণচীন",
     "labelAt": [
       106.1912,
       32.69251
+    ]
+  },
+  "EGY": {
+    "nameEn": "Egypt",
+    "nameBn": "মিশর",
+    "labelAt": [
+      29.7309,
+      26.36051
+    ]
+  },
+  "ESP": {
+    "nameEn": "Spain",
+    "nameBn": "স্পেন",
+    "labelAt": [
+      -3.56136,
+      40.38834
     ]
   },
   "IND": {
@@ -39,6 +63,22 @@
       36.38001
     ]
   },
+  "MLI": {
+    "nameEn": "Mali",
+    "nameBn": "মালি",
+    "labelAt": [
+      -2.3546,
+      18.09971
+    ]
+  },
+  "MRT": {
+    "nameEn": "Mauritania",
+    "nameBn": "মৌরিতানিয়া",
+    "labelAt": [
+      -9.85866,
+      20.09065
+    ]
+  },
   "PAK": {
     "nameEn": "Pakistan",
     "nameBn": "পাকিস্তান",
@@ -55,12 +95,36 @@
       40.18329
     ]
   },
+  "PRT": {
+    "nameEn": "Portugal",
+    "nameBn": "পর্তুগাল",
+    "labelAt": [
+      -7.92992,
+      40.34472
+    ]
+  },
   "PSX": {
     "nameEn": "Palestine",
     "nameBn": "ফিলিস্তিন অঞ্চল",
     "labelAt": [
       34.90846,
-      31.3355
+      31.33556
+    ]
+  },
+  "SDN": {
+    "nameEn": "Sudan",
+    "nameBn": "সুদান",
+    "labelAt": [
+      29.86223,
+      16.26179
+    ]
+  },
+  "USA": {
+    "nameEn": "United States of America",
+    "nameBn": "মার্কিন যুক্তরাষ্ট্র",
+    "labelAt": [
+      -99.14772,
+      39.52765
     ]
   }
 }

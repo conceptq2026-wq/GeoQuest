@@ -221,6 +221,10 @@ function checkMap({ id, expectedPending }) {
   for (const c of descriptor.controls) {
     if (c.type !== 'picker') continue;
     note(c.from, c.labelField);
+    // `label` takes the same field/lookup/compose spec the sheet uses.
+    note(c.from, c.label?.field ?? c.label?.of);
+    for (const template of c.label?.compose ?? [])
+      for (const m of String(template).matchAll(/\{([A-Za-z][A-Za-z0-9_]*)\}/g)) note(c.from, m[1]);
     note(c.from, c.groupBy?.field);
     for (const a of c.do ?? []) note(c.from, a.field);
   }
@@ -352,15 +356,31 @@ function checkMap({ id, expectedPending }) {
     }
   }
   check(badEnum === 0, 'every enum value used by a record exists in its lookup table');
-  // The kicker and the picker's group labels must read the same table.
+  // The picker and the sheet kicker may read DIFFERENT lookups: a map can
+  // group by one property and caption by another, which border-lines does —
+  // it groups by kind and captions by status. What must hold is that each
+  // lookup exists and that the picker's order covers its own lookup
+  // completely, so no record lands in a group the picker never renders.
   const picker = descriptor.controls.find((c) => c.type === 'picker');
   check(
-    picker.groupBy.lookup === descriptor.sheet.kicker.lookup,
-    `picker groups and the sheet kicker read the same lookup ("${picker.groupBy.lookup}")`,
+    Boolean(picker.labelField || picker.label),
+    'the picker says how to label a record, by labelField or by label',
   );
+  for (const [what, name] of [
+    ['picker groupBy', picker.groupBy.lookup],
+    ['sheet kicker', descriptor.sheet.kicker.lookup],
+  ]) {
+    check(name in descriptor.lookups, `${what} reads lookup "${name}", which the descriptor defines`);
+  }
+  const groupLookup = descriptor.lookups[picker.groupBy.lookup] ?? {};
   check(
-    picker.groupBy.order.every((k) => k in descriptor.lookups[picker.groupBy.lookup]),
+    picker.groupBy.order.every((k) => k in groupLookup),
     `every group in the picker's order exists in "${picker.groupBy.lookup}"`,
+  );
+  const ungrouped = Object.keys(groupLookup).filter((k) => !picker.groupBy.order.includes(k));
+  check(
+    ungrouped.length === 0,
+    `the picker's order covers every value in "${picker.groupBy.lookup}"${ungrouped.length ? ` — ${ungrouped.join(', ')} would never be shown` : ''}`,
   );
 
   // ---- fields the descriptor never references -------------------------------
@@ -465,7 +485,11 @@ console.log('\n\n============ border-lines ============');
     check(same, `${f} is byte-identical to the build output in data-sources/border-lines/`);
   }
 
-  checkMap({ id: 'border-lines', expectedPending: 8 });
+  // 33: 12 countriesBn and 6 nameBn awaiting approval, 8 noteBn (two notes
+  // falsified by a line gaining geometry plus six lines with no note yet),
+  // 6 establishedBn with no year in any source here, and tordesillas.labelAt,
+  // which has nowhere to sit until its longitude is settled.
+  checkMap({ id: 'border-lines', expectedPending: 33 });
 }
 
 // ---- done -------------------------------------------------------------------

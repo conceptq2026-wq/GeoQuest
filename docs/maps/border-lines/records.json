@@ -2,6 +2,7 @@
   "mcmahon": {
     "nameEn": "McMahon Line",
     "nameBn": "ম্যাকমাহন লাইন",
+    "kind": "boundary",
     "status": "active",
     "countries": [
       "CHN",
@@ -14,12 +15,14 @@
     ],
     "noteBn": "ভারত–চীন (তিব্বত) সীমান্ত রেখা, ১৯১৪ সিমলা কনভেনশন — চীন স্বীকৃতি দেয় না",
     "hasTrace": true,
+    "hasGeometry": true,
     "establishedBn": "১৯১৪",
     "bdPov": "shown"
   },
   "radcliffe": {
     "nameEn": "Radcliffe Line",
     "nameBn": "র‍্যাডক্লিফ লাইন",
+    "kind": "boundary",
     "status": "active",
     "countries": [
       "IND",
@@ -33,12 +36,14 @@
     ],
     "noteBn": null,
     "hasTrace": true,
+    "hasGeometry": true,
     "establishedBn": "১৯৪৭",
     "bdPov": "shown"
   },
   "durand": {
     "nameEn": "Durand Line",
     "nameBn": "ডুরান্ড লাইন",
+    "kind": "boundary",
     "status": "active",
     "countries": [
       "AFG",
@@ -51,12 +56,14 @@
     ],
     "noteBn": "আফগানিস্তান–পাকিস্তান সীমান্ত, ১৮৯৩ চুক্তি",
     "hasTrace": true,
+    "hasGeometry": true,
     "establishedBn": "১৮৯৩",
     "bdPov": "shown"
   },
   "loc": {
     "nameEn": "Line of Control (LoC)",
     "nameBn": "নিয়ন্ত্রণ রেখা (LoC)",
+    "kind": "boundary",
     "status": "active",
     "countries": [
       "IND",
@@ -69,12 +76,14 @@
     ],
     "noteBn": "ভারত–পাকিস্তান, কাশ্মীর — জাতিসংঘ-স্বীকৃত সীমান্ত নয়, বাস্তব নিয়ন্ত্রণ রেখা",
     "hasTrace": true,
+    "hasGeometry": true,
     "establishedBn": null,
     "bdPov": "shown"
   },
   "koreanDmz": {
     "nameEn": "Korean DMZ (38th Parallel)",
     "nameBn": "কোরীয় DMZ (৩৮তম প্যারালাল)",
+    "kind": "boundary",
     "status": "active",
     "countries": [
       "KOR",
@@ -87,12 +96,14 @@
     ],
     "noteBn": "উত্তর–দক্ষিণ কোরিয়া, ১৯৫৩ যুদ্ধবিরতি রেখা",
     "hasTrace": true,
+    "hasGeometry": true,
     "establishedBn": "১৯৫৩",
     "bdPov": "shown"
   },
   "greenLine": {
     "nameEn": "Green Line",
     "nameBn": "গ্রিন লাইন",
+    "kind": "boundary",
     "status": "active",
     "countries": [
       "ISR",
@@ -105,48 +116,220 @@
     ],
     "noteBn": "ইসরায়েল–ওয়েস্ট ব্যাংক, ১৯৪৯ যুদ্ধবিরতি রেখা",
     "hasTrace": true,
+    "hasGeometry": true,
     "establishedBn": "১৯৪৯",
     "bdPov": "unrecognized"
   },
   "berlinWall": {
     "nameEn": "Berlin Wall",
     "nameBn": "বার্লিন ওয়াল",
+    "kind": "boundary",
     "status": "historical",
     "countries": [],
     "labelAt": [
       13.38,
       52.52
     ],
+    "frame": [
+      8.5,
+      49.8,
+      18.5,
+      55.2
+    ],
     "noteBn": "১৯৬১–১৯৮৯, পূর্ব ও পশ্চিম বার্লিনের বিভাজন — বর্তমানে অস্তিত্ব নেই। এই দেয়ালের প্রকৃত পথ কোনো বর্তমান দেশের সীমান্তের সাথে মেলে না, তাই এখানে শুধু একটা রেফারেন্স পয়েন্ট — সম্পূর্ণ রেখা আঁকার জন্য পৃথক হিস্টোরিক্যাল জিআইএস ডেটা লাগবে, যা এই অফলাইন সেটআপে নেই।",
     "hasTrace": false,
+    "hasGeometry": false,
     "establishedBn": "১৯৬১",
     "endedBn": "১৯৮৯"
   },
   "parallel17": {
     "nameEn": "17th Parallel",
     "nameBn": "১৭তম প্যারালাল",
+    "kind": "parallel",
     "status": "historical",
     "countries": [],
     "labelAt": [
       106.6,
       17
     ],
-    "noteBn": "উত্তর–দক্ষিণ ভিয়েতনাম বিভাজন রেখা, ১৯৫৪–১৯৭৫ — বর্তমানে অস্তিত্ব নেই। বর্তমান কোনো সীমান্তের সাথে মেলে না, তাই পূর্ণ রেখা আঁকা হয়নি — রেফারেন্স পয়েন্ট মাত্র।",
+    "frame": [
+      104.8,
+      15.3,
+      108.9,
+      18.7
+    ],
+    "noteBn": null,
     "hasTrace": false,
+    "hasGeometry": true,
     "establishedBn": "১৯৫৪",
     "endedBn": "১৯৭৫"
   },
   "sykesPicot": {
     "nameEn": "Sykes–Picot Line",
     "nameBn": "সাইকস–পিকো লাইন",
+    "kind": "boundary",
     "status": "historical",
     "countries": [],
     "labelAt": [
       40,
       35
     ],
+    "frame": [
+      35,
+      31,
+      45,
+      39
+    ],
     "noteBn": "১৯১৬ ব্রিটিশ–ফরাসি গোপন চুক্তি — আজকের সিরিয়া–ইরাক সীমান্তের ওপর প্রভাব রেখেছে কিন্তু হুবহু এক নয়, তাই পূর্ণ রেখা আঁকা হয়নি — রেফারেন্স পয়েন্ট মাত্র।",
     "hasTrace": false,
+    "hasGeometry": false,
     "establishedBn": "১৯১৬"
+  },
+  "parallel22": {
+    "nameEn": "22nd Parallel North",
+    "nameBn": null,
+    "kind": "parallel",
+    "status": "active",
+    "countries": [
+      "EGY",
+      "SDN"
+    ],
+    "countriesBn": null,
+    "labelAt": [
+      30.9,
+      22
+    ],
+    "frame": [
+      24,
+      19.5,
+      37.8,
+      24.5
+    ],
+    "noteBn": null,
+    "hasTrace": false,
+    "hasGeometry": true,
+    "establishedBn": null
+  },
+  "parallel24": {
+    "nameEn": "24th Parallel North",
+    "nameBn": null,
+    "kind": "parallel",
+    "status": "active",
+    "countries": [
+      "PAK",
+      "IND"
+    ],
+    "countriesBn": null,
+    "labelAt": [
+      69.5,
+      24
+    ],
+    "frame": [
+      67.3,
+      22.6,
+      71.7,
+      25.4
+    ],
+    "noteBn": null,
+    "hasTrace": false,
+    "hasGeometry": true,
+    "establishedBn": null
+  },
+  "parallel25": {
+    "nameEn": "25th Parallel North",
+    "nameBn": null,
+    "kind": "parallel",
+    "status": "active",
+    "countries": [
+      "MRT",
+      "MLI"
+    ],
+    "countriesBn": null,
+    "labelAt": [
+      -5.7,
+      25
+    ],
+    "frame": [
+      -7.6,
+      23.8,
+      -3.8,
+      26.2
+    ],
+    "noteBn": null,
+    "hasTrace": false,
+    "hasGeometry": true,
+    "establishedBn": null
+  },
+  "parallel38": {
+    "nameEn": "38th Parallel North",
+    "nameBn": null,
+    "kind": "parallel",
+    "status": "active",
+    "countries": [
+      "KOR",
+      "PRK"
+    ],
+    "countriesBn": null,
+    "labelAt": [
+      126.9,
+      38
+    ],
+    "frame": [
+      123.6,
+      36.4,
+      130.2,
+      39.6
+    ],
+    "noteBn": null,
+    "hasTrace": false,
+    "hasGeometry": true,
+    "establishedBn": null
+  },
+  "parallel49": {
+    "nameEn": "49th Parallel North",
+    "nameBn": null,
+    "kind": "parallel",
+    "status": "active",
+    "countries": [
+      "USA",
+      "CAN"
+    ],
+    "countriesBn": null,
+    "labelAt": [
+      -108.75,
+      49
+    ],
+    "frame": [
+      -124.5,
+      46.5,
+      -93,
+      51.5
+    ],
+    "noteBn": null,
+    "hasTrace": false,
+    "hasGeometry": true,
+    "establishedBn": null
+  },
+  "tordesillas": {
+    "nameEn": "Line of Demarcation (Treaty of Tordesillas)",
+    "nameBn": null,
+    "kind": "boundary",
+    "status": "historical",
+    "countries": [
+      "ESP",
+      "PRT"
+    ],
+    "countriesBn": null,
+    "labelAt": null,
+    "frame": [
+      -60,
+      -37,
+      -30,
+      10
+    ],
+    "noteBn": null,
+    "hasTrace": false,
+    "hasGeometry": false,
+    "establishedBn": "১৪৯৪"
   }
 }
