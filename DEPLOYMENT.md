@@ -11,9 +11,6 @@ field.** Nothing else refers to the host.
 GitHub Pages, branch `main`, folder `/` (root).
 
 - Hub: `https://conceptq2026-wq.github.io/GeoQuest/`
-- Temporary: the old straits address `https://conceptq2026-wq.github.io/GeoQuest/straits/`
-  forwards to `international/straits/`. `straits/` is deleted once the CMS
-  field points at the hub and that has been checked on a phone.
 - `.nojekyll` at the root stops Jekyll from processing the site (harmless on
   other hosts).
 - Pages sends `Cache-Control: max-age=600`: a push can take up to 10 minutes
