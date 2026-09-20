@@ -1,0 +1,34 @@
+{
+  "AFG": {
+    "nameEn": "Afghanistan",
+    "nameBn": "আফগানিস্তান"
+  },
+  "BGD": {
+    "nameEn": "Bangladesh",
+    "nameBn": "বাংলাদেশ"
+  },
+  "CHN": {
+    "nameEn": "People's Republic of China",
+    "nameBn": "গণচীন"
+  },
+  "IND": {
+    "nameEn": "India",
+    "nameBn": "ভারত"
+  },
+  "KOR": {
+    "nameEn": "South Korea",
+    "nameBn": "দক্ষিণ কোরিয়া"
+  },
+  "PAK": {
+    "nameEn": "Pakistan",
+    "nameBn": "পাকিস্তান"
+  },
+  "PRK": {
+    "nameEn": "North Korea",
+    "nameBn": "উত্তর কোরিয়া"
+  },
+  "PSX": {
+    "nameEn": "Palestine",
+    "nameBn": "ফিলিস্তিন অঞ্চল"
+  }
+}

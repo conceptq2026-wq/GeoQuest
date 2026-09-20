@@ -160,8 +160,13 @@
       ]
     },
     "canals": {
+      "records": "passages",
       "geometry": "./canals.geojson",
-      "joinField": "canal"
+      "joinField": "canal",
+      "expectGeometry": {
+        "kind": "canal"
+      },
+      "properties": []
     },
     "routes": {
       "geometry": "./routes.geojson",

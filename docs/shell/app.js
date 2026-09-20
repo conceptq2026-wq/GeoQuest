@@ -395,12 +395,31 @@ const targetSource = (target) => (target?.startsWith('source:') ? target.slice('
 const interactionSources = new Set(interactions.map((i) => targetSource(i.target)).filter(Boolean));
 
 /*
- * An invisible finger-sized tap target for every point source that is an
- * interaction target, derived from the SOURCE and never filtered — so a
- * selected feature stays tappable even when the visible layer filters it out,
- * and so no descriptor has to author an invisible layer.
+ * An invisible finger-sized tap target for every source that is an interaction
+ * target, derived from the SOURCE and never filtered — so a selected feature
+ * stays tappable even when the visible layer filters it out, and so no
+ * descriptor has to author an invisible layer.
  */
 const hitLayerId = (source) => `${source}--hit`;
+
+/*
+ * The tap target has to match the geometry it is standing in for: a circle
+ * layer renders nothing for a LineString, so a traced line fronted by a circle
+ * would simply not be tappable.  Ask the geometry rather than assuming points.
+ */
+function geometryKind(name, spec) {
+  if (spec.geometryFrom) return 'point';
+  const type = geometryFiles[name]?.features?.[0]?.geometry?.type ?? 'Point';
+  if (type.includes('Line')) return 'line';
+  if (type.includes('Polygon')) return 'fill';
+  return 'point';
+}
+
+function hitLayerPaint(kind) {
+  if (kind === 'line') return { type: 'line', paint: { 'line-width': 22, 'line-color': '#000000', 'line-opacity': 0 } };
+  if (kind === 'fill') return { type: 'fill', paint: { 'fill-color': '#000000', 'fill-opacity': 0 } };
+  return { type: 'circle', paint: { 'circle-radius': 22, 'circle-color': '#000000', 'circle-opacity': 0 } };
+}
 
 /*
  * Where the tap target goes: directly above the source's own topmost drawn
@@ -422,12 +441,7 @@ function hitLayerBefore(source) {
 for (const source of interactionSources) {
   own.layer(
     map,
-    {
-      id: hitLayerId(source),
-      type: 'circle',
-      source,
-      paint: { 'circle-radius': 22, 'circle-color': '#000000', 'circle-opacity': 0 },
-    },
+    { id: hitLayerId(source), source, ...hitLayerPaint(geometryKind(source, sourceSpecs[source])) },
     hitLayerBefore(source),
   );
 }
@@ -492,21 +506,42 @@ function doFitBounds(action, { table, key, feature }) {
     });
     return;
   }
-  // No named field: fall back to the feature's own geometry.
-  const coordinates = feature?.geometry?.coordinates;
-  if (!coordinates) return;
-  if (feature.geometry.type === 'Point') {
-    map.easeTo({ center: coordinates, padding, duration: motion(action.duration ?? 1200), essential: true });
-    return;
-  }
+  // No named field: fit the selected record's own geometry.  Every feature of
+  // it, not the one that was tapped — one record is often drawn as several
+  // (a line traced in three pieces frames to a third of itself otherwise),
+  // and the picker selects a record without tapping anything at all.
+  const parts = table && key !== undefined ? geometryOf(table, key) : [];
+  const coordinates = parts.length ? parts : feature?.geometry ? [feature.geometry.coordinates] : [];
+  if (!coordinates.length) return;
+
   const flat = coordinates.flat(Infinity);
   const lngs = flat.filter((_, i) => i % 2 === 0);
   const lats = flat.filter((_, i) => i % 2 === 1);
+  if (flat.length === 2) {
+    map.easeTo({ center: [lngs[0], lats[0]], padding, duration: motion(action.duration ?? 1200), essential: true });
+    return;
+  }
   map.fitBounds([[Math.min(...lngs), Math.min(...lats)], [Math.max(...lngs), Math.max(...lats)]], {
     padding,
     duration: motion(action.duration ?? 1200),
     essential: true,
   });
+}
+
+/**
+ * Every drawn coordinate belonging to one record, gathered across the sources
+ * that join geometry to it. Label-point sources are left out on purpose: a
+ * line's frame is its trace, not the spot its name sits on.
+ */
+function geometryOf(table, key) {
+  const parts = [];
+  for (const [name, spec] of Object.entries(sourceSpecs)) {
+    if (spec.records !== table || !spec.geometry) continue;
+    for (const candidate of derive(name, spec).features) {
+      if (candidate.properties.key === key) parts.push(candidate.geometry.coordinates);
+    }
+  }
+  return parts;
 }
 
 /*

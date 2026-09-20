@@ -1,0 +1,464 @@
+{
+  "schema": "geoquest/map-descriptor@1",
+  "id": "border-lines",
+  "section": "international",
+  "title": {
+    "bn": "গুরুত্বপূর্ণ আন্তর্জাতিক সীমান্ত রেখা",
+    "en": "International Border Lines"
+  },
+  "basemap": "world",
+  "view": {
+    "fitBounds": [
+      13,
+      16,
+      129,
+      54
+    ]
+  },
+  "constraints": {
+    "minZoom": 0,
+    "maxZoom": 11
+  },
+  "lookups": {
+    "lineStatus": {
+      "active": {
+        "labelBn": "চলমান"
+      },
+      "historical": {
+        "labelBn": "ঐতিহাসিক"
+      }
+    }
+  },
+  "records": {
+    "lines": {
+      "file": "./records.json",
+      "fields": {
+        "nameEn": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "nameBn": {
+          "type": "text",
+          "required": true
+        },
+        "status": {
+          "type": "enum",
+          "lookup": "lineStatus",
+          "required": true
+        },
+        "countries": {
+          "type": "refs",
+          "to": "countries",
+          "required": true,
+          "knownUnresolved": [
+            "ISR"
+          ]
+        },
+        "countriesBn": {
+          "type": "text",
+          "verifiable": true
+        },
+        "labelAt": {
+          "type": "point",
+          "required": true
+        },
+        "noteBn": {
+          "type": "text",
+          "verifiable": true
+        },
+        "hasTrace": {
+          "type": "boolean",
+          "required": true
+        },
+        "establishedBn": {
+          "type": "text",
+          "verifiable": true
+        },
+        "endedBn": {
+          "type": "text",
+          "appliesWhen": {
+            "status": "historical"
+          },
+          "verifiable": true
+        },
+        "bdPov": {
+          "type": "text",
+          "appliesWhen": {
+            "hasTrace": true
+          },
+          "display": false
+        }
+      }
+    },
+    "countries": {
+      "file": "./countries.json",
+      "fields": {
+        "nameEn": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "nameBn": {
+          "type": "text",
+          "required": true
+        }
+      }
+    }
+  },
+  "sources": {
+    "countries": {
+      "records": "countries",
+      "geometry": "./countries.geojson",
+      "joinField": "id",
+      "state": [
+        {
+          "name": "active",
+          "fromSelection": {
+            "records": "lines",
+            "listField": "countries"
+          }
+        }
+      ],
+      "properties": []
+    },
+    "lines": {
+      "records": "lines",
+      "geometry": "./lines.geojson",
+      "joinField": "id",
+      "expectGeometry": {
+        "hasTrace": true
+      },
+      "state": [
+        "selected"
+      ],
+      "properties": [
+        "status"
+      ]
+    },
+    "lineLabels": {
+      "records": "lines",
+      "geometryFrom": "labelAt",
+      "state": [
+        "selected"
+      ],
+      "properties": [
+        "nameBn"
+      ]
+    }
+  },
+  "styles": {
+    "country-active-fill": {
+      "paint": {
+        "fill-color": "#2f7fc1",
+        "fill-opacity": 0.16
+      }
+    },
+    "country-active-edge": {
+      "layout": {
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "#2f7fc1",
+        "line-width": 1.2,
+        "line-opacity": 0.85
+      }
+    },
+    "line-casing": {
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "#ffffff"
+      }
+    },
+    "line-trace": {
+      "layout": {
+        "line-cap": "butt",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "#b02a37"
+      }
+    },
+    "line-label": {
+      "layout": {
+        "text-font": [
+          "Noto Sans Bengali"
+        ],
+        "text-variable-anchor": [
+          "top",
+          "bottom",
+          "right",
+          "left"
+        ],
+        "text-radial-offset": 0.9,
+        "text-max-width": 9,
+        "text-optional": true
+      },
+      "paint": {
+        "text-color": "#0b3d91",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    }
+  },
+  "layers": [
+    {
+      "id": "country-active-fill",
+      "type": "fill",
+      "source": "countries",
+      "slot": "belowLabels",
+      "style": "country-active-fill",
+      "filter": [
+        "get",
+        "active"
+      ]
+    },
+    {
+      "id": "country-active-edge",
+      "type": "line",
+      "source": "countries",
+      "slot": "belowLabels",
+      "style": "country-active-edge",
+      "filter": [
+        "get",
+        "active"
+      ]
+    },
+    {
+      "id": "line-casing",
+      "type": "line",
+      "source": "lines",
+      "slot": "belowLabels",
+      "style": "line-casing",
+      "paint": {
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          3,
+          [
+            "case",
+            [
+              "get",
+              "selected"
+            ],
+            6,
+            3.6
+          ],
+          10,
+          [
+            "case",
+            [
+              "get",
+              "selected"
+            ],
+            11,
+            7
+          ]
+        ]
+      }
+    },
+    {
+      "id": "line-trace",
+      "type": "line",
+      "source": "lines",
+      "slot": "belowLabels",
+      "style": "line-trace",
+      "paint": {
+        "line-width": [
+          "interpolate",
+          [
+            "linear"
+          ],
+          [
+            "zoom"
+          ],
+          3,
+          [
+            "case",
+            [
+              "get",
+              "selected"
+            ],
+            3.5,
+            1.8
+          ],
+          10,
+          [
+            "case",
+            [
+              "get",
+              "selected"
+            ],
+            7,
+            4
+          ]
+        ],
+        "line-dasharray": [
+          "case",
+          [
+            "==",
+            [
+              "get",
+              "status"
+            ],
+            "historical"
+          ],
+          [
+            "literal",
+            [
+              2,
+              1.5
+            ]
+          ],
+          [
+            "literal",
+            [
+              1,
+              0
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "id": "line-label",
+      "type": "symbol",
+      "source": "lineLabels",
+      "slot": "aboveLabels",
+      "style": "line-label",
+      "layout": {
+        "text-field": [
+          "get",
+          "nameBn"
+        ],
+        "text-size": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          15,
+          11.5
+        ],
+        "symbol-sort-key": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          0,
+          1
+        ]
+      }
+    }
+  ],
+  "controls": [
+    {
+      "type": "picker",
+      "id": "line",
+      "from": "lines",
+      "labelField": "nameBn",
+      "groupBy": {
+        "field": "status",
+        "lookup": "lineStatus",
+        "take": "labelBn",
+        "order": [
+          "active",
+          "historical"
+        ]
+      },
+      "placeholder": "একটি সীমান্ত রেখা বেছে নিন…",
+      "labelEn": "Choose a border line",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "bearing": 0,
+          "pitch": 0,
+          "duration": 1800
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "on": "click",
+      "target": "source:lines",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "bearing": 0,
+          "pitch": 0,
+          "duration": 1800
+        }
+      ]
+    },
+    {
+      "on": "click",
+      "target": "source:lineLabels",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "bearing": 0,
+          "pitch": 0,
+          "duration": 1800
+        }
+      ]
+    }
+  ],
+  "sheet": {
+    "kicker": {
+      "lookup": "lineStatus",
+      "of": "status",
+      "take": "labelBn"
+    },
+    "title": {
+      "compose": [
+        "{nameBn}"
+      ]
+    },
+    "rows": [
+      {
+        "label": "দেশ",
+        "field": "countriesBn"
+      },
+      {
+        "label": "প্রতিষ্ঠা",
+        "field": "establishedBn"
+      },
+      {
+        "label": "বিলুপ্ত",
+        "field": "endedBn"
+      },
+      {
+        "label": "বিবরণ",
+        "field": "noteBn"
+      }
+    ]
+  }
+}

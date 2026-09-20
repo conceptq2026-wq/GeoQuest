@@ -1,0 +1,152 @@
+{
+  "mcmahon": {
+    "nameEn": "McMahon Line",
+    "nameBn": "ম্যাকমাহন লাইন",
+    "status": "active",
+    "countries": [
+      "CHN",
+      "IND"
+    ],
+    "countriesBn": null,
+    "labelAt": [
+      94.17366,
+      28.93016
+    ],
+    "noteBn": "ভারত–চীন (তিব্বত) সীমান্ত রেখা, ১৯১৪ সিমলা কনভেনশন — চীন স্বীকৃতি দেয় না",
+    "hasTrace": true,
+    "establishedBn": "১৯১৪",
+    "bdPov": "shown"
+  },
+  "radcliffe": {
+    "nameEn": "Radcliffe Line",
+    "nameBn": "র‍্যাডক্লিফ লাইন",
+    "status": "active",
+    "countries": [
+      "IND",
+      "PAK",
+      "BGD"
+    ],
+    "countriesBn": null,
+    "labelAt": [
+      88.13992,
+      26.08533
+    ],
+    "noteBn": null,
+    "hasTrace": true,
+    "establishedBn": "১৯৪৭",
+    "bdPov": "shown"
+  },
+  "durand": {
+    "nameEn": "Durand Line",
+    "nameBn": "ডুরান্ড লাইন",
+    "status": "active",
+    "countries": [
+      "AFG",
+      "PAK"
+    ],
+    "countriesBn": null,
+    "labelAt": [
+      70.10815,
+      33.7273
+    ],
+    "noteBn": "আফগানিস্তান–পাকিস্তান সীমান্ত, ১৮৯৩ চুক্তি",
+    "hasTrace": true,
+    "establishedBn": "১৮৯৩",
+    "bdPov": "shown"
+  },
+  "loc": {
+    "nameEn": "Line of Control (LoC)",
+    "nameBn": "নিয়ন্ত্রণ রেখা (LoC)",
+    "status": "active",
+    "countries": [
+      "IND",
+      "PAK"
+    ],
+    "countriesBn": null,
+    "labelAt": [
+      73.96079,
+      33.69229
+    ],
+    "noteBn": "ভারত–পাকিস্তান, কাশ্মীর — জাতিসংঘ-স্বীকৃত সীমান্ত নয়, বাস্তব নিয়ন্ত্রণ রেখা",
+    "hasTrace": true,
+    "establishedBn": null,
+    "bdPov": "shown"
+  },
+  "koreanDmz": {
+    "nameEn": "Korean DMZ (38th Parallel)",
+    "nameBn": "কোরীয় DMZ (৩৮তম প্যারালাল)",
+    "status": "active",
+    "countries": [
+      "KOR",
+      "PRK"
+    ],
+    "countriesBn": null,
+    "labelAt": [
+      127.56082,
+      38.31208
+    ],
+    "noteBn": "উত্তর–দক্ষিণ কোরিয়া, ১৯৫৩ যুদ্ধবিরতি রেখা",
+    "hasTrace": true,
+    "establishedBn": "১৯৫৩",
+    "bdPov": "shown"
+  },
+  "greenLine": {
+    "nameEn": "Green Line",
+    "nameBn": "গ্রিন লাইন",
+    "status": "active",
+    "countries": [
+      "ISR",
+      "PSX"
+    ],
+    "countriesBn": null,
+    "labelAt": [
+      34.99727,
+      31.92808
+    ],
+    "noteBn": "ইসরায়েল–ওয়েস্ট ব্যাংক, ১৯৪৯ যুদ্ধবিরতি রেখা",
+    "hasTrace": true,
+    "establishedBn": "১৯৪৯",
+    "bdPov": "unrecognized"
+  },
+  "berlinWall": {
+    "nameEn": "Berlin Wall",
+    "nameBn": "বার্লিন ওয়াল",
+    "status": "historical",
+    "countries": [],
+    "labelAt": [
+      13.38,
+      52.52
+    ],
+    "noteBn": "১৯৬১–১৯৮৯, পূর্ব ও পশ্চিম বার্লিনের বিভাজন — বর্তমানে অস্তিত্ব নেই। এই দেয়ালের প্রকৃত পথ কোনো বর্তমান দেশের সীমান্তের সাথে মেলে না, তাই এখানে শুধু একটা রেফারেন্স পয়েন্ট — সম্পূর্ণ রেখা আঁকার জন্য পৃথক হিস্টোরিক্যাল জিআইএস ডেটা লাগবে, যা এই অফলাইন সেটআপে নেই।",
+    "hasTrace": false,
+    "establishedBn": "১৯৬১",
+    "endedBn": "১৯৮৯"
+  },
+  "parallel17": {
+    "nameEn": "17th Parallel",
+    "nameBn": "১৭তম প্যারালাল",
+    "status": "historical",
+    "countries": [],
+    "labelAt": [
+      106.6,
+      17
+    ],
+    "noteBn": "উত্তর–দক্ষিণ ভিয়েতনাম বিভাজন রেখা, ১৯৫৪–১৯৭৫ — বর্তমানে অস্তিত্ব নেই। বর্তমান কোনো সীমান্তের সাথে মেলে না, তাই পূর্ণ রেখা আঁকা হয়নি — রেফারেন্স পয়েন্ট মাত্র।",
+    "hasTrace": false,
+    "establishedBn": "১৯৫৪",
+    "endedBn": "১৯৭৫"
+  },
+  "sykesPicot": {
+    "nameEn": "Sykes–Picot Line",
+    "nameBn": "সাইকস–পিকো লাইন",
+    "status": "historical",
+    "countries": [],
+    "labelAt": [
+      40,
+      35
+    ],
+    "noteBn": "১৯১৬ ব্রিটিশ–ফরাসি গোপন চুক্তি — আজকের সিরিয়া–ইরাক সীমান্তের ওপর প্রভাব রেখেছে কিন্তু হুবহু এক নয়, তাই পূর্ণ রেখা আঁকা হয়নি — রেফারেন্স পয়েন্ট মাত্র।",
+    "hasTrace": false,
+    "establishedBn": "১৯১৬"
+  }
+}
