@@ -38,38 +38,10 @@ body {
   margin-bottom: 12px;
 }
 
-/* Back to the hub. 44px tall so it is an easy tap target. */
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  flex: 0 0 auto;
-  min-height: 44px;
-  padding: 0 14px;
-
-  border: 1px solid #c9d6e3;
-  border-radius: 12px;
-  background: #ffffff;
-  color: #13233a;
-
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.back-link:active {
-  background: #f2f6fa;
-}
-
-.back-link:focus-visible {
-  outline: 2px solid #0b5cad;
-  outline-offset: 2px;
-}
-
 /*
  * The dropdown never shrinks below its own width (flex-shrink: 0), so a
- * Bengali name is never cut off: when it does not fit beside the back link it
- * wraps to its own row instead.
+ * Bengali name is never cut off: it takes the width it needs, and wraps to its
+ * own row rather than truncating.
  */
 .strait-selector {
   flex: 1 0 auto;
@@ -457,8 +429,8 @@ body {
   }
 }
 
-/* Narrow phones: the dropdown always gets its own full-width row under the
-   back link. Stacking, never truncating — the name is the exam content. */
+/* Narrow phones: the dropdown takes the full row. Stacking, never
+   truncating — the name is the exam content. */
 @media (max-width: 379px) {
   .strait-selector {
     flex-basis: 100%;
