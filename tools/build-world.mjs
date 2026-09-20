@@ -1,4 +1,5 @@
 // Builds shared/tiles/world.pmtiles from the pinned Natural Earth sources.
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import geojsonvt from 'geojson-vt';
@@ -15,6 +16,76 @@ const VT_OPTIONS = { extent: 4096, buffer: 64, tolerance: 3, indexMaxPoints: 0 }
 const lineProps = (p) => ({ class: bangladeshLineClass(p) });
 const isBdLine = (p) => bangladeshLineClass(p) !== null;
 
+// Read once: this file is 13 MB, and both the label layer and the name pin
+// below need it.
+const countriesBdg = readSource('ne_10m_admin_0_countries_bdg.geojson');
+
+/*
+|--------------------------------------------------------------------------
+| PINNED BENGALI COUNTRY NAMES
+|--------------------------------------------------------------------------
+|
+| country_labels carries name_bn, and every map displays it. The names come
+| from Natural Earth's NAME_BN, and world.pmtiles is a committed binary — so a
+| pin bump that renamed a country in Bengali would show in git as
+| "world.pmtiles changed" and nothing more. That is the most invisible change
+| the pipeline can make: a student reads a different country name and no diff
+| says so.
+|
+| A hash rather than a 248-entry literal table, which nobody would read. The
+| mapping itself is written to country-names-bn.json beside this script and
+| committed, so the hash says THAT something moved and the file says WHAT.
+|
+| The country POLYGONS are deliberately not pinned, here or in
+| build-border-lines.mjs: their only job is to be washed with a translucent
+| highlight, so a border moving a kilometre is invisible and pinning it would
+| churn for no reader. The bar for a pin is that a value is derived from an
+| external source AND is either displayed to a student or load-bearing for
+| what is displayed.
+*/
+const NAMES_FILE = path.resolve('country-names-bn.json');
+const EXPECTED_NAME_BN_COUNT = 248;
+const EXPECTED_NAME_BN_HASH = '225f20facb7e4861';
+
+const nameBnByCode = Object.fromEntries(
+  countriesBdg.features
+    .map((f) => [f.properties.ADM0_A3, f.properties.NAME_BN])
+    .sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)),
+);
+const nameBnHash = crypto.createHash('sha256').update(JSON.stringify(nameBnByCode)).digest('hex').slice(0, 16);
+
+const nameDrift = [];
+const actualCount = Object.keys(nameBnByCode).length;
+if (actualCount !== EXPECTED_NAME_BN_COUNT)
+  nameDrift.push(`count: expected ${EXPECTED_NAME_BN_COUNT} countries, got ${actualCount}`);
+
+if (nameBnHash !== EXPECTED_NAME_BN_HASH) {
+  // A bare hash mismatch across 248 entries is useless to act on, so name the
+  // codes that moved by diffing against the committed copy.
+  const previous = fs.existsSync(NAMES_FILE) ? JSON.parse(fs.readFileSync(NAMES_FILE, 'utf8')) : {};
+  for (const code of [...new Set([...Object.keys(previous), ...Object.keys(nameBnByCode)])].sort()) {
+    const was = previous[code];
+    const now = nameBnByCode[code];
+    if (was === now) continue;
+    if (was === undefined) nameDrift.push(`${code}: added as "${now}"`);
+    else if (now === undefined) nameDrift.push(`${code}: removed (was "${was}")`);
+    else nameDrift.push(`${code}: "${was}" -> "${now}"`);
+  }
+  if (!nameDrift.length)
+    nameDrift.push(
+      `hash: expected ${EXPECTED_NAME_BN_HASH}, got ${nameBnHash}, but ${path.basename(NAMES_FILE)} matches the new mapping — the committed copy is stale, or the pinned hash was never updated`,
+    );
+}
+
+if (nameDrift.length)
+  throw new Error(
+    `Bengali country names changed — every map displays these, so read the list before re-pinning:\n  ${nameDrift.join('\n  ')}`,
+  );
+
+// Only written once the pin has passed, so the committed copy always matches
+// the pinned hash and is a usable base for the next diff.
+fs.writeFileSync(NAMES_FILE, JSON.stringify(nameBnByCode, null, 2) + '\n');
+
 // ---- World layers (1:50m) ----
 const world = {
   land: prepare(readSource('ne_50m_land.geojson'), () => ({})),
@@ -26,7 +97,7 @@ const world = {
   // Label points come from the Bangladesh-POV countries file: one point per
   // country at Natural Earth's own label position, Bengali name included.
   country_labels: featureCollection(
-    readSource('ne_10m_admin_0_countries_bdg.geojson').features.map((f) => ({
+    countriesBdg.features.map((f) => ({
       type: 'Feature',
       properties: {
         name_bn: f.properties.NAME_BN,
