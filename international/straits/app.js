@@ -1,5 +1,6 @@
 import { PASSAGES, SEAS } from './data.js';
 import * as maplibregl from '../../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs';
+import { resolver } from '../../shared/resolver.js';
 
 /*
 |--------------------------------------------------------------------------
@@ -64,11 +65,24 @@ Object.entries(PASSAGES).forEach(([key, passage]) => {
 |--------------------------------------------------------------------------
 */
 
-const WORLD_PMTILES = new URL('../../shared/tiles/world.pmtiles', location.href).href;
-const BENGALI_FONT = new URL('../../shared/fonts/noto-sans-bengali/NotoSansBengali-Regular.woff2', location.href).href;
+// Every URL below comes from shared/resolver.js. Nothing here composes one.
+//
+// The font is named by the path it has inside the 'glyphs' class, not by a
+// finished URL: MapLibre hands it to transformRequest before fetching it, and
+// the resolver turns it into a URL there. See shared/resolver.js.
+const BENGALI_FONT = 'noto-sans-bengali/NotoSansBengali-Regular.woff2';
 const LABEL_FONT = ['Noto Sans Bengali'];
 
+/*
+ * pmtiles reads the archive with its own HTTP range requests, through its own
+ * Source — they never pass through MapLibre, so transformRequest cannot reach
+ * them. The archive URL has to be right at the moment the PMTiles object is
+ * made, so it is made once, here, and the Protocol is given that instance.
+ * A signed URL will be supplied at this same line and nowhere else.
+ */
+const WORLD = resolver.pmtilesSource('world.pmtiles');
 const protocol = new window.pmtiles.Protocol();
+protocol.add(new window.pmtiles.PMTiles(WORLD.archive));
 maplibregl.addProtocol('pmtiles', protocol.tile);
 
 /*
@@ -93,7 +107,7 @@ const COLORS = {
 
 const tileSource = (minzoom, maxzoom) => ({
   type: 'vector',
-  tiles: [`pmtiles://${WORLD_PMTILES}/{z}/{x}/{y}`],
+  tiles: [WORLD.tiles],
   minzoom,
   maxzoom,
   attribution: '<a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener noreferrer">Natural Earth</a>',
@@ -162,6 +176,10 @@ function passagesGeoJSON() {
 
 const map = new maplibregl.Map({
   container: 'map',
+  // Everything MapLibre fetches for itself goes through the resolver here,
+  // rather than being rewritten inside the style: the hook sees the request
+  // and its resource type at the moment it is made.
+  transformRequest: (url, resourceType) => resolver.transformRequest(url, resourceType),
   style: {
     version: 8,
     'font-faces': { 'Noto Sans Bengali': BENGALI_FONT },
@@ -183,8 +201,8 @@ const map = new maplibregl.Map({
       // snapshot by tools/build-straits-routes.mjs. Only mapped lanes are
       // drawn — nothing is guessed or hand-joined.
       // Each canal's navigation line, from a pinned OSM snapshot (ODbL).
-      canals: { type: 'geojson', data: './canals.geojson' },
-      routes: { type: 'geojson', data: './routes.geojson', attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors' },
+      canals: { type: 'geojson', data: resolver.url('mapData', 'canals.geojson') },
+      routes: { type: 'geojson', data: resolver.url('mapData', 'routes.geojson'), attribution: '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors' },
     },
     layers: [
       { id: 'bg', type: 'background', paint: { 'background-color': COLORS.sea } },
@@ -391,7 +409,7 @@ map.addControl(
     compact: true,
     customAttribution: [
       '<a href="https://maplibre.org/" target="_blank" rel="noopener noreferrer">MapLibre</a>',
-      '<a href="../../shared/fonts/noto-sans-bengali/OFL.txt" target="_blank" rel="noopener noreferrer">Noto Sans Bengali</a>',
+      `<a href="${resolver.url('glyphs', 'noto-sans-bengali/OFL.txt')}" target="_blank" rel="noopener noreferrer">Noto Sans Bengali</a>`,
     ],
   }),
   'top-right',
