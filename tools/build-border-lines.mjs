@@ -196,6 +196,22 @@ const geometryHash = (traces) =>
 
 const actualGeometry = Object.fromEntries([...byId].map(([id, rec]) => [id, geometryHash(rec.traces)]));
 
+/*
+ * Each line's Bangladesh point of view, as a literal rather than a hash: it is
+ * a two-value enum and belongs readable in the source. 'absent' is a line with
+ * no traces, which has no point of view at all.
+ *
+ * A line whose traces disagree comes out as "shown+unrecognized", which matches
+ * no expectation and so fails — the right outcome, since the seed stores bdPov
+ * as a scalar.
+ */
+const actualBdPov = Object.fromEntries(
+  [...byId].map(([id, rec]) => {
+    const povs = [...new Set(rec.traces.map((t) => t.properties.bdPov))].sort();
+    return [id, povs.length === 0 ? 'absent' : povs.join('+')];
+  }),
+);
+
 // Simplify once, across every trace, so a merged line is treated as one line.
 const allTraces = await simplifyFeatures([...byId.values()].flatMap((r) => r.traces), LINE_SIMPLIFY_METRES);
 const tracesById = new Map();
@@ -236,6 +252,34 @@ const EXPECTED_GEOMETRY = {
   sykesPicot: '4f53cda18c2baa0c',
 };
 
+/*
+ * The third pin, and the last silent hole. bdPov is derived from Natural
+ * Earth's FCLASS_BD, so a pin bump could flip a line from recognised to
+ * unrecognised without moving a coordinate or changing a segment count, and
+ * neither of the other two checks would see it.
+ *
+ * Kept separate from the geometry hash rather than folded in, so that "the line
+ * moved" and "the classification changed" stay distinguishable — they call for
+ * different responses — and so the geometry hashes keep meaning exactly what
+ * their name says.
+ *
+ * status, nameEn and nameBn need no pin: they are authored in data.js and
+ * cannot change under the build.
+ */
+const EXPECTED_BDPOV = {
+  mcmahon: 'shown',
+  radcliffe: 'shown',
+  durand: 'shown',
+  loc: 'shown',
+  koreanDmz: 'shown',
+  greenLine: 'unrecognized',
+  // No traces, so no point of view. If one ever gains geometry this fires, and
+  // its empty-geometry hash moves in the same run.
+  berlinWall: 'absent',
+  parallel17: 'absent',
+  sykesPicot: 'absent',
+};
+
 const EXPECTED_TRACES = {
   mcmahon: 2,
   radcliffe: 3,
@@ -248,28 +292,37 @@ const EXPECTED_TRACES = {
   sykesPicot: 0,
 };
 
-const countErrors = [];
+const driftErrors = [];
 for (const [id, expected] of Object.entries(EXPECTED_TRACES)) {
   const actual = (tracesById.get(id) ?? []).length;
-  if (actual !== expected) countErrors.push(`${id}: expected ${expected} trace(s), got ${actual}`);
+  if (actual !== expected) driftErrors.push(`${id}: expected ${expected} trace(s), got ${actual}`);
 }
 for (const id of tracesById.keys())
-  if (!(id in EXPECTED_TRACES)) countErrors.push(`${id}: traced but has no entry in EXPECTED_TRACES`);
+  if (!(id in EXPECTED_TRACES)) driftErrors.push(`${id}: traced but has no entry in EXPECTED_TRACES`);
 const expectedTotal = Object.values(EXPECTED_TRACES).reduce((a, b) => a + b, 0);
 if (allTraces.length !== expectedTotal)
-  countErrors.push(`total: expected ${expectedTotal} trace(s), got ${allTraces.length}`);
+  driftErrors.push(`total: expected ${expectedTotal} trace(s), got ${allTraces.length}`);
 // A line can keep its segment count and still be reshaped, which the counts
 // alone would not see.
 for (const [id, expected] of Object.entries(EXPECTED_GEOMETRY)) {
   const actual = actualGeometry[id];
-  if (actual === undefined) countErrors.push(`${id}: in EXPECTED_GEOMETRY but the build produced no such line`);
-  else if (actual !== expected) countErrors.push(`${id}: expected geometry ${expected}, got ${actual}`);
+  if (actual === undefined) driftErrors.push(`${id}: in EXPECTED_GEOMETRY but the build produced no such line`);
+  else if (actual !== expected) driftErrors.push(`${id}: expected geometry ${expected}, got ${actual}`);
 }
 for (const id of Object.keys(actualGeometry))
-  if (!(id in EXPECTED_GEOMETRY)) countErrors.push(`${id}: traced but has no entry in EXPECTED_GEOMETRY`);
+  if (!(id in EXPECTED_GEOMETRY)) driftErrors.push(`${id}: traced but has no entry in EXPECTED_GEOMETRY`);
 
-if (countErrors.length)
-  throw new Error(`the source data or a match rule moved under this build:\n  ${countErrors.join('\n  ')}`);
+// A reclassification moves neither a coordinate nor a count.
+for (const [id, expected] of Object.entries(EXPECTED_BDPOV)) {
+  const actual = actualBdPov[id];
+  if (actual === undefined) driftErrors.push(`${id}: in EXPECTED_BDPOV but the build produced no such line`);
+  else if (actual !== expected) driftErrors.push(`${id}: expected bdPov ${expected}, got ${actual}`);
+}
+for (const id of Object.keys(actualBdPov))
+  if (!(id in EXPECTED_BDPOV)) driftErrors.push(`${id}: built but has no entry in EXPECTED_BDPOV`);
+
+if (driftErrors.length)
+  throw new Error(`the source data or a match rule moved under this build:\n  ${driftErrors.join('\n  ')}`);
 
 /**
  * The merged line's Bengali name: the sector names with the parenthetical
