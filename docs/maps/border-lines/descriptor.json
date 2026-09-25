@@ -43,8 +43,7 @@
       "fields": {
         "nameEn": {
           "type": "text",
-          "required": true,
-          "display": false
+          "required": true
         },
         "nameBn": {
           "type": "text",
@@ -168,6 +167,7 @@
       ],
       "properties": [
         "nameBn",
+        "nameEn",
         "hasGeometry"
       ],
       "selectionMarker": {
@@ -399,8 +399,15 @@
       "style": "line-label",
       "layout": {
         "text-field": [
-          "get",
-          "nameBn"
+          "coalesce",
+          [
+            "get",
+            "nameBn"
+          ],
+          [
+            "get",
+            "nameEn"
+          ]
         ],
         "text-size": [
           "case",

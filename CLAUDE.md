@@ -175,9 +175,11 @@ by map. **Nothing is guessed to fill a gap.**
   `data-sources/<map>/*.seed.json` is the provenance carrier. It holds two
   things: `review`, the free-text editorial note on a record whose sourcing is
   unsettled, and `sources`, an object keyed by the record field each citation
-  justifies, every cited field carrying exactly two independent non-circular
-  citations. The build fails a field with one citation, or with two from the
-  same host. What is cited is the feature's **documented extent**, not the
+  justifies. Every cited field carries at least one citation — the
+  authoritative source, per the rule above — and the build fails a field with
+  none, or with two from the same host, since one host is one source. Records
+  written under the older two-source rule keep their second citation; it is not
+  deleted. What is cited is the feature's **documented extent**, not the
   point — the point only has to lie on that extent, the way the straits map
   marks a strait with a point. There is no `provenance.json` and none is
   wanted — one input, not two. The seed is also where the shipped fields are
@@ -186,6 +188,15 @@ by map. **Nothing is guessed to fill a gap.**
 - The user's own verification is recorded as editor-verified with a date, and
   stays distinguishable from a cited source.
 - Never invent Bengali content. An unsupplied Bengali field is `null`.
+- **Names are the exception, by decision.** Where a record has no Bengali name,
+  its English name is final: `nameBn` is **absent**, not null, and never counts
+  as pending. The record is listed in `ENGLISH_NAME_FINAL` in the build, and
+  every place a name is shown — map label, picker, sheet title — falls back
+  `nameBn` → `nameEn` (`["coalesce", ["get","nameBn"], ["get","nameEn"]]` on the
+  map, `compose` in the picker and sheet). The build fails a listed record that
+  carries a `nameBn`, an unlisted record that lacks one, and any `nameBn: null`.
+  Supplying a Bengali name later means adding it and taking the record off the
+  list in the same edit.
 - Shortening the pending list is not a goal. A fact with one weak source stays
   pending.
 
@@ -205,12 +216,12 @@ Earth.
 
 Each record records its geometry source: `naturalEarth | osm | generated |
 none`, in the build input, not in shipped records. Build assertion: `bdPov` is
-present if and only if the source is `naturalEarth`. *Not built yet: there is
-no `geometrySource` field and no such assertion. The rule is held to in
-practice — `bdPov` is written only from traced Natural Earth runs, and is
-absent on generated and untraced records — but nothing enforces it. What the
-records carry instead is the pair `hasTrace` (a Natural Earth trace exists) and
-`hasGeometry` (any geometry exists, traced or generated).*
+present if and only if the source is `naturalEarth`, and the build fails
+naming the record and both values. `geometrySource` is derived by the build
+from how the geometry was produced, lives in `lines.seed.json`, and is dropped
+on the way into `records.json`. Alongside it the records carry `hasTrace` (a
+Natural Earth trace exists) and `hasGeometry` (any geometry exists — traced,
+OSM or generated), and it is `hasGeometry` the map keys off.
 
 Bangladesh's own position on a line is a different claim, is user-supplied
 content, and does not exist as a field yet.
@@ -248,13 +259,23 @@ World tiles stop at z6 outside the detail areas. A frame tight around a
 city-scale feature leaves its marker on blank land with nothing to place it
 against. Widen the frame and say why in the report.
 
+**Measure every record's resulting zoom at phone width — a 390 px wide
+viewport (390×780), which leaves 368 px of map — and widen anything that lands
+past z6.** Zoom depends on the canvas, so a frame that looks fine on a desktop
+pane can land at z7+ on a phone. A record with no frame is fitted to its own
+geometry and is measured the same way: a short traced line needs a frame too,
+and that frame must contain the whole trace.
+
 ## Build pins
 
 A value earns a pin when it is derived from an external source **and** is either
 displayed to a student or load-bearing for what is displayed.
 
 Currently pinned: trace count, per-record geometry hash, `bdPov` literals,
-`name_bn` hash and count, per-class boundary counts.
+`name_bn` hash and count, per-class boundary counts — and for the OpenStreetMap
+extract, its file checksum in `tools/sources.json` plus a per-record OSM trace
+count and geometry hash. Generated lines carry no hash: they are computed from
+constants in the build, and editing those constants is the review.
 
 When a pin moves, **stop and report the old and new values.** Never re-pin to
 make a build pass. A dropped `featurecla` once shifted a line by three points

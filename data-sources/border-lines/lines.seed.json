@@ -111,6 +111,12 @@
     "hasTrace": true,
     "hasGeometry": true,
     "geometrySource": "naturalEarth",
+    "frame": [
+      71.9,
+      30.1,
+      77.7,
+      37
+    ],
     "establishedBn": null,
     "bdPov": "shown"
   },
@@ -132,6 +138,12 @@
     "hasTrace": true,
     "hasGeometry": true,
     "geometrySource": "naturalEarth",
+    "frame": [
+      124.6,
+      35.9,
+      130.4,
+      40.6
+    ],
     "establishedBn": "১৯৫৩",
     "bdPov": "shown"
   },
@@ -153,6 +165,12 @@
     "hasTrace": true,
     "hasGeometry": true,
     "geometrySource": "naturalEarth",
+    "frame": [
+      32.3,
+      29.3,
+      37.5,
+      34.5
+    ],
     "establishedBn": "১৯৪৯",
     "bdPov": "unrecognized"
   },
@@ -231,7 +249,6 @@
   "parallel22": {
     "id": "parallel22",
     "nameEn": "22nd Parallel North",
-    "nameBn": null,
     "kind": "parallel",
     "status": "active",
     "countries": [
@@ -257,7 +274,6 @@
   "parallel24": {
     "id": "parallel24",
     "nameEn": "24th Parallel North",
-    "nameBn": null,
     "kind": "parallel",
     "status": "active",
     "countries": [
@@ -283,7 +299,6 @@
   "parallel25": {
     "id": "parallel25",
     "nameEn": "25th Parallel North",
-    "nameBn": null,
     "kind": "parallel",
     "status": "active",
     "countries": [
@@ -309,7 +324,6 @@
   "parallel38": {
     "id": "parallel38",
     "nameEn": "38th Parallel North",
-    "nameBn": null,
     "kind": "parallel",
     "status": "active",
     "countries": [
@@ -336,7 +350,6 @@
   "parallel49": {
     "id": "parallel49",
     "nameEn": "49th Parallel North",
-    "nameBn": null,
     "kind": "parallel",
     "status": "active",
     "countries": [
@@ -361,8 +374,7 @@
   },
   "tordesillas": {
     "id": "tordesillas",
-    "nameEn": "Line of Demarcation (Treaty of Tordesillas)",
-    "nameBn": null,
+    "nameEn": "Treaty of Tordesillas",
     "kind": "boundary",
     "status": "historical",
     "countries": [
@@ -399,7 +411,6 @@
   "northernLimitLine": {
     "id": "northernLimitLine",
     "nameEn": "Northern Limit Line",
-    "nameBn": null,
     "kind": "boundary",
     "status": "active",
     "countries": [
@@ -435,7 +446,6 @@
   "mannerheim": {
     "id": "mannerheim",
     "nameEn": "Mannerheim Line",
-    "nameBn": null,
     "kind": "boundary",
     "status": "historical",
     "countries": [],
@@ -474,7 +484,6 @@
   "maginot": {
     "id": "maginot",
     "nameEn": "Maginot Line",
-    "nameBn": null,
     "kind": "boundary",
     "status": "historical",
     "countries": [],
@@ -514,7 +523,6 @@
   "wallaceLine": {
     "id": "wallaceLine",
     "nameEn": "Wallace Line",
-    "nameBn": null,
     "kind": "boundary",
     "status": "active",
     "countries": [],
@@ -554,7 +562,6 @@
   "mcnamaraLine": {
     "id": "mcnamaraLine",
     "nameEn": "McNamara Line",
-    "nameBn": null,
     "kind": "boundary",
     "status": "historical",
     "countries": [],
@@ -593,22 +600,38 @@
   "hindenburgLine": {
     "id": "hindenburgLine",
     "nameEn": "Hindenburg Line",
-    "nameBn": null,
     "kind": "boundary",
     "status": "historical",
     "countries": [],
-    "labelAt": null,
+    "labelAt": [
+      2.87834,
+      50.19978
+    ],
     "noteBn": null,
     "hasTrace": false,
     "hasGeometry": false,
     "geometrySource": "none",
     "establishedBn": null,
-    "review": "Extent is well attested by one source — Wikipedia gives Arras to Laffaux near Soissons, with the line at 49.500 N 2.833 E — but no second independent source could be reached. The Imperial War Museum, National Army Museum and Australian War Memorial pages found all describe events on the line without stating where it ran. A second source almost certainly exists in the British Official History (Military Operations France and Belgium 1917, Vol. I), which the IWM catalogues but does not serve as text."
+    "frame": [
+      -0.6,
+      47.6,
+      6.4,
+      52.4
+    ],
+    "sources": {
+      "labelAt": [
+        {
+          "title": "The Hindenburg Line (Siegfriedstellung), 1916-1918 - photograph Q 50309",
+          "publisher": "Imperial War Museums",
+          "url": "https://www.iwm.org.uk/collections/item/object/205284123",
+          "states": "An unfinished pill-box in the Hindenburg Line near Croisilles, May 1917."
+        }
+      ]
+    }
   },
   "purpleLine": {
     "id": "purpleLine",
     "nameEn": "Purple Line",
-    "nameBn": null,
     "kind": "boundary",
     "status": "historical",
     "countries": [],
@@ -618,27 +641,43 @@
     "hasGeometry": false,
     "geometrySource": "none",
     "establishedBn": null,
-    "review": "Two independent sources agree on what it IS — the 1967 Six-Day War ceasefire line on the Golan — and that the 1974 Disengagement Agreement replaced it with Lines A and B, Israel pulling back west of line A-1 in the Kuneitra area. Neither gives endpoints or a coordinate, and the only mapped candidates in reach are Natural Earth's \"Ceasefire Lines 1974\" and \"UNDOF\", which are the 1974 lines and excluded for this record. No point until a source places the 1967 line itself."
+    "review": "The 1967 Six-Day War ceasefire line on the Golan, replaced in 1974 by Lines A and B, with Israel pulling back west of line A-1 in the Kuneitra area. One attempt was made to find a stretch away from Quneitra where the 1967 and 1974 lines coincide, since a point there would lie on both: the best source for that is the 1974 Separation of Forces Agreement itself (Avalon Project, Yale Law School), and it defines Lines A and A-1 only by reference to an attached map that the text does not include. It locates no coinciding segment, so no point, and by decision no further search."
   },
   "fochLine": {
     "id": "fochLine",
     "nameEn": "Foch Line",
-    "nameBn": null,
     "kind": "boundary",
     "status": "historical",
     "countries": [],
-    "labelAt": null,
+    "labelAt": [
+      23.19727,
+      54.26785
+    ],
     "noteBn": null,
     "hasTrace": false,
     "hasGeometry": false,
     "geometrySource": "none",
     "establishedBn": null,
-    "review": "The 1919 Entente demarcation line between Poland and Lithuania. The only source reached is a Wikipedia stub, which says the line left Vilnius on the Polish side and that after 1945 only its westernmost part near Suwałki still follows it. No extent statement and no second independent source."
+    "frame": [
+      19.4,
+      51.6,
+      27,
+      56.9
+    ],
+    "sources": {
+      "labelAt": [
+        {
+          "title": "Foch Line",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Foch_Line",
+          "states": "The 1919 Entente demarcation line between Poland and Lithuania; after the Second World War only its westernmost part, close to the town of Suwalki, follows the line."
+        }
+      ]
+    }
   },
   "siegfriedLine": {
     "id": "siegfriedLine",
     "nameEn": "Siegfried Line",
-    "nameBn": null,
     "kind": "boundary",
     "status": "historical",
     "countries": [],
@@ -678,7 +717,6 @@
   "parallel90": {
     "id": "parallel90",
     "nameEn": "90th Parallel North",
-    "nameBn": null,
     "kind": "parallel",
     "status": "active",
     "countries": [],

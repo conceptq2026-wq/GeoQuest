@@ -259,7 +259,7 @@ const GENERATED = {
     // Wide enough to hold the line AND Iberia: the highlight is Spain and
     // Portugal, and a frame showing only the Atlantic makes it look like a bug.
     frame: [-62, -38, 2, 46],
-    nameEn: 'Line of Demarcation (Treaty of Tordesillas)',
+    nameEn: 'Treaty of Tordesillas',
     status: 'historical',
     // NOT the countries the line runs between — it runs through open ocean and
     // Brazil. These are the two powers that drew it, which is the exam-relevant
@@ -468,9 +468,21 @@ const MARKER_ONLY = {
     nameEn: 'Hindenburg Line',
     kind: 'boundary',
     status: 'historical',
-    labelAt: null,
-    review:
-      'Extent is well attested by one source — Wikipedia gives Arras to Laffaux near Soissons, with the line at 49.500 N 2.833 E — but no second independent source could be reached. The Imperial War Museum, National Army Museum and Australian War Memorial pages found all describe events on the line without stating where it ran. A second source almost certainly exists in the British Official History (Military Operations France and Belgium 1917, Vol. I), which the IWM catalogues but does not serve as text.',
+    // Croisilles, Pas-de-Calais: the village the Imperial War Museum names as
+    // on the line. Coordinate from OSM node/1129276621, selected by place tag
+    // inside a bbox around Arras - France has four villages of this name.
+    labelAt: [2.87834, 50.19978],
+    frame: [-0.6, 47.6, 6.4, 52.4],
+    sources: {
+      labelAt: [
+        {
+          title: 'The Hindenburg Line (Siegfriedstellung), 1916-1918 - photograph Q 50309',
+          publisher: 'Imperial War Museums',
+          url: 'https://www.iwm.org.uk/collections/item/object/205284123',
+          states: 'An unfinished pill-box in the Hindenburg Line near Croisilles, May 1917.',
+        },
+      ],
+    },
   },
   purpleLine: {
     nameEn: 'Purple Line',
@@ -478,15 +490,27 @@ const MARKER_ONLY = {
     status: 'historical',
     labelAt: null,
     review:
-      'Two independent sources agree on what it IS — the 1967 Six-Day War ceasefire line on the Golan — and that the 1974 Disengagement Agreement replaced it with Lines A and B, Israel pulling back west of line A-1 in the Kuneitra area. Neither gives endpoints or a coordinate, and the only mapped candidates in reach are Natural Earth\'s "Ceasefire Lines 1974" and "UNDOF", which are the 1974 lines and excluded for this record. No point until a source places the 1967 line itself.',
+      'The 1967 Six-Day War ceasefire line on the Golan, replaced in 1974 by Lines A and B, with Israel pulling back west of line A-1 in the Kuneitra area. One attempt was made to find a stretch away from Quneitra where the 1967 and 1974 lines coincide, since a point there would lie on both: the best source for that is the 1974 Separation of Forces Agreement itself (Avalon Project, Yale Law School), and it defines Lines A and A-1 only by reference to an attached map that the text does not include. It locates no coinciding segment, so no point, and by decision no further search.',
   },
   fochLine: {
     nameEn: 'Foch Line',
     kind: 'boundary',
     status: 'historical',
-    labelAt: null,
-    review:
-      'The 1919 Entente demarcation line between Poland and Lithuania. The only source reached is a Wikipedia stub, which says the line left Vilnius on the Polish side and that after 1945 only its westernmost part near Suwałki still follows it. No extent statement and no second independent source.',
+    // On the modern Poland-Lithuania border, which is the part of the Foch
+    // Line that still survives. The vertex nearest the centre of Natural
+    // Earth's POL/LTU boundary, selected by ADM0_A3 code, not by name.
+    labelAt: [23.19727, 54.26785],
+    frame: [19.4, 51.6, 27.0, 56.9],
+    sources: {
+      labelAt: [
+        {
+          title: 'Foch Line',
+          publisher: 'Wikipedia',
+          url: 'https://en.wikipedia.org/wiki/Foch_Line',
+          states: 'The 1919 Entente demarcation line between Poland and Lithuania; after the Second World War only its westernmost part, close to the town of Suwalki, follows the line.',
+        },
+      ],
+    },
   },
   siegfriedLine: {
     nameEn: 'Siegfried Line',
@@ -526,6 +550,22 @@ const MARKER_ONLY = {
     review:
       'Named in the corpus and previously absent from the map altogether, which the never-silently-absent rule forbids. It has no point because Web Mercator cannot represent the pole — the projection runs to about 85.05 degrees — and a marker at 85 would be in the wrong place while looking entirely right. How 90 degrees should appear is a decision, not an omission.',
   },
+};
+
+/*
+ * FRAMES FOR TRACED LINES THAT WOULD OTHERWISE FIT TOO CLOSE.
+ *
+ * A traced line with no frame is fitted to its own geometry, which is right
+ * for a long line and wrong for a short one: measured at phone width (a 390 px
+ * viewport, 368 px of map), these three land past z6, where the world tiles
+ * stop outside the detail areas and the line sits on land with nothing around
+ * it to place it by. Each box contains the whole trace, so nothing is cut, and
+ * widens it until the fit lands at or under z6.
+ */
+const CONTEXT_FRAMES = {
+  loc: [71.9, 30.1, 77.7, 37.0],
+  koreanDmz: [124.6, 35.9, 130.4, 40.6],
+  greenLine: [32.3, 29.3, 37.5, 34.5],
 };
 
 /*
@@ -578,11 +618,18 @@ const REVIEW = {
 };
 
 /*
- * Bengali that would have to be WRITTEN rather than transcribed is left null
- * and proposed instead. These records therefore reach the map unnamed, which
- * is visible and fixable; a plausible invented name would be neither.
+ * ENGLISH NAMES ARE FINAL for these records. A decision, not a backlog: there
+ * is no Bengali name for them, so `nameBn` does not apply and is ABSENT rather
+ * than null — it is not waiting on anything and never counts as pending. The
+ * map labels them with `nameEn` wherever it would have used `nameBn`.
+ *
+ * The list replaces BENGALI_PENDING, which meant the opposite. The check below
+ * is what keeps it honest: a listed record must have no `nameBn`, every other
+ * record must have one, and `nameBn: null` is no longer a state a name can be
+ * in. Supplying a Bengali name later means adding it to the entry and taking
+ * the record off this list, in the same edit.
  */
-const BENGALI_PENDING = ['parallel22', 'parallel24', 'parallel25', 'parallel38', 'parallel49', 'tordesillas',
+const ENGLISH_NAME_FINAL = ['parallel22', 'parallel24', 'parallel25', 'parallel38', 'parallel49', 'tordesillas',
   'mannerheim', 'maginot', 'wallaceLine', 'mcnamaraLine', 'hindenburgLine', 'purpleLine', 'fochLine', 'parallel90',
   'northernLimitLine', 'siegfriedLine'];
 
@@ -902,6 +949,7 @@ for (const [id, rec] of byId) {
   };
   if (generated?.frame) seed[id].frame = generated.frame;
   else if (MARKER_FRAMES[id]) seed[id].frame = MARKER_FRAMES[id];
+  else if (CONTEXT_FRAMES[id]) seed[id].frame = CONTEXT_FRAMES[id];
   // establishedBn is always present, value or null. endedBn only where the line
   // ceased: absent means not applicable, which is not the same as unverified.
   const dates = DATES[id];
@@ -944,7 +992,7 @@ for (const [id, spec] of Object.entries(GENERATED)) {
   seed[id] = {
     id,
     nameEn: spec.nameEn,
-    nameBn: null,
+    ...(spec.nameBn ? { nameBn: spec.nameBn } : {}),
     kind: KIND[id] ?? null,
     status: spec.status,
     countries: [...spec.countries],
@@ -973,7 +1021,7 @@ for (const [id, spec] of Object.entries(OSM_DRAWN)) {
   seed[id] = {
     id,
     nameEn: spec.nameEn,
-    nameBn: null,
+    ...(spec.nameBn ? { nameBn: spec.nameBn } : {}),
     kind: KIND[id] ?? null,
     status: spec.status,
     countries: [...spec.countries],
@@ -1018,7 +1066,7 @@ for (const [id, spec] of Object.entries(MARKER_ONLY)) {
   seed[id] = {
     id,
     nameEn: spec.nameEn,
-    nameBn: null,
+    ...(spec.nameBn ? { nameBn: spec.nameBn } : {}),
     kind: KIND[id] ?? null,
     status: spec.status,
     countries: [],
@@ -1037,32 +1085,21 @@ for (const [id, spec] of Object.entries(MARKER_ONLY)) {
 }
 
 /*
- * Fields settled from ONE authoritative source instead of two, by decision.
- *
- * Two independent sources is the rule because corroboration is what makes a
- * memorised fact safe. It is set aside here for a value where the sources do
- * not disagree about the FACT but about a unit — the treaty fixes 370 leagues
- * and the league's length is disputed — so a second citation would add another
- * arithmetic result, not another witness. The exception is listed rather than
- * implied, so it cannot spread quietly to a field that has not earned it.
+ * ONE AUTHORITATIVE SOURCE PER CLAIM, and the search stops there. A cited
+ * field needs at least one citation; a field that happens to carry two (the
+ * records written under the older two-source rule) must not carry them from
+ * the same host, because one host is one source however many pages it has.
+ * Corroboration is not swept for, and the older second citations are left in
+ * place rather than deleted, since removing provenance helps nobody.
  */
-const SINGLE_SOURCE_OK = { tordesillas: ['longitude'] };
-
-// A cited field must carry two independent citations, or the shape is being
-// used to imply corroboration that does not exist.
 for (const [id, rec] of Object.entries(seed)) {
   for (const [field, cites] of Object.entries(rec.sources ?? {})) {
-    const wanted = (SINGLE_SOURCE_OK[id] ?? []).includes(field) ? 1 : 2;
-    if (!Array.isArray(cites) || cites.length !== wanted)
-      throw new Error(
-        `${id}.sources.${field}: needs exactly ${wanted} citation(s), got ${Array.isArray(cites) ? cites.length : typeof cites}`,
-      );
+    if (!Array.isArray(cites) || cites.length < 1)
+      throw new Error(`${id}.sources.${field}: needs at least one citation, got ${Array.isArray(cites) ? 0 : typeof cites}`);
     const hosts = cites.map((c) => new URL(c.url).host);
-    if (wanted === 2 && hosts[0] === hosts[1])
-      throw new Error(`${id}.sources.${field}: both citations are from ${hosts[0]} — that is one source, not two`);
+    if (new Set(hosts).size !== hosts.length)
+      throw new Error(`${id}.sources.${field}: two citations from ${hosts.join(', ')} — one host is one source`);
   }
-  for (const field of SINGLE_SOURCE_OK[id] ?? [])
-    if (!rec.sources?.[field]) throw new Error(`${id}: listed as single-source for "${field}", which carries no citation at all`);
   // A point that was placed on the strength of an extent must say whose.
   if (rec.labelAt && !rec.hasGeometry && !rec.sources?.labelAt && !(id in DATES))
     throw new Error(`${id}: has a point but no citation for the extent it sits on`);
@@ -1097,7 +1134,7 @@ for (const [id, rec] of Object.entries(seed)) {
     );
 }
 
-const NO_POINT_YET = ['hindenburgLine', 'purpleLine', 'fochLine', 'parallel90'];
+const NO_POINT_YET = ['purpleLine', 'parallel90'];
 for (const [id, rec] of Object.entries(seed)) {
   if (rec.hasGeometry || NO_POINT_YET.includes(id)) continue;
   if (!rec.labelAt) throw new Error(`${id}: no line geometry and no labelAt — it would not appear on the map at all`);
@@ -1105,13 +1142,16 @@ for (const [id, rec] of Object.entries(seed)) {
 }
 for (const id of NO_POINT_YET)
   if (seed[id]?.labelAt) throw new Error(`${id}: listed as having no point yet, but it now has a labelAt — drop it from NO_POINT_YET`);
-// Every line whose Bengali is deliberately unwritten must actually be null, so
-// the list cannot drift out of step with the records.
-for (const id of BENGALI_PENDING)
-  if (seed[id]?.nameBn !== null) throw new Error(`${id}: listed as BENGALI_PENDING but nameBn is not null`);
-for (const [id, rec] of Object.entries(seed))
-  if (rec.nameBn === null && !BENGALI_PENDING.includes(id))
-    throw new Error(`${id}: nameBn is null but the line is not listed in BENGALI_PENDING`);
+for (const [id, rec] of Object.entries(seed)) {
+  const englishFinal = ENGLISH_NAME_FINAL.includes(id);
+  if (rec.nameBn === null)
+    throw new Error(`${id}: nameBn is null — a name is either supplied or, by decision, English-final; it is never pending`);
+  if (englishFinal && 'nameBn' in rec)
+    throw new Error(`${id}: listed as ENGLISH_NAME_FINAL but carries a nameBn — take it off the list`);
+  if (englishFinal && !rec.nameEn) throw new Error(`${id}: English-final but has no nameEn to show`);
+  if (!englishFinal && !(typeof rec.nameBn === 'string' && rec.nameBn.length))
+    throw new Error(`${id}: has no Bengali name and is not listed as ENGLISH_NAME_FINAL`);
+}
 
 // ---- countries --------------------------------------------------------------
 const wanted = [...new Set(Object.values(seed).flatMap((r) => r.countries))].sort();
