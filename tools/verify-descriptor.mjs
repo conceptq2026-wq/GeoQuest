@@ -8,6 +8,7 @@
 //
 //   straits       checked against the built map's data.js
 //   border-lines  checked against data-sources/border-lines/*.seed.json
+//   org-headquarters  checked against data-sources/org-headquarters/*.seed.json
 //
 // Run:  node tools/verify-descriptor.mjs   (from the repo root or from tools/)
 import fs from 'node:fs';
@@ -37,6 +38,8 @@ const BASELINE_TABLES = {
 const BUILT_STRAITS = path.join(ROOT, 'docs/international/straits');
 // The border-lines build output the records were taken from.
 const BORDER_SEEDS = path.join(ROOT, 'data-sources/border-lines');
+// The org-headquarters seed, approved content, and the cities derived from it.
+const ORG_SEEDS = path.join(ROOT, 'data-sources/org-headquarters');
 
 let failures = 0;
 const fail = (msg) => {
@@ -235,11 +238,59 @@ function checkMap({ id, expectedPending }) {
   }
   check(badGeometryFrom === 0, "every source's geometryFrom is a declared field on its own records table");
 
-  note(primary, descriptor.sheet.kicker.of);
-  // compose holds ordered templates; the fields are the {tokens} inside them.
-  for (const template of descriptor.sheet.title.compose ?? [])
-    for (const m of String(template).matchAll(/\{([A-Za-z][A-Za-z0-9_]*)\}/g)) note(primary, m[1]);
-  for (const row of descriptor.sheet.rows) note(primary, row.field ?? row.of);
+  // A value spec — field | lookup | compose, or a bare template — names
+  // fields on the table it is read against.
+  const noteSpec = (table, spec) => {
+    if (spec === undefined || spec === null) return;
+    const templates = typeof spec === 'string' ? [spec] : spec.compose ?? [];
+    // compose holds ordered templates; the fields are the {tokens} inside them.
+    for (const template of templates)
+      for (const m of String(template).matchAll(/\{([A-Za-z][A-Za-z0-9_]*)\}/g)) note(table, m[1]);
+    if (typeof spec === 'object') note(table, spec.field ?? spec.of);
+  };
+
+  // `sheet` is the card for the picker's table; `sheets` is one card per
+  // records table, for a map where more than one table can be selected.
+  const sheets = descriptor.sheets ? Object.entries(descriptor.sheets) : [[primary, descriptor.sheet]];
+  for (const [table, sheet] of sheets) {
+    if (!declarations[table]) fail(`sheets: "${table}" is not a declared records table`);
+    noteSpec(table, sheet.kicker);
+    noteSpec(table, sheet.title);
+    for (const row of sheet.rows ?? []) {
+      if (!row.referencedBy) {
+        noteSpec(table, row);
+        continue;
+      }
+      // The reverse of a refs field: the named field must BE a refs field,
+      // pointing at this sheet's table, or the list could never fill.
+      const { records: from, listField } = row.referencedBy;
+      const decl = declarations[from]?.fields?.[listField];
+      check(
+        decl?.type === 'refs' && decl.to === table,
+        `sheet "${table}": referencedBy ${from}.${listField} is a refs field pointing at "${table}"`,
+      );
+      check(Array.isArray(row.do) && row.do.length > 0, `sheet "${table}": the referencedBy row says what a tap does`);
+      note(from, listField);
+      noteSpec(from, row.item);
+      for (const a of row.do ?? []) note(from, a.field);
+    }
+  }
+  // Every table a student can select has a card to show.
+  if (descriptor.sheets) {
+    const selectable = new Set([primary]);
+    for (const i of descriptor.interactions) selectable.add(descriptor.sources[String(i.target).replace(/^source:/, '')]?.records);
+    for (const [, sheet] of sheets) for (const row of sheet.rows ?? []) if (row.referencedBy) selectable.add(row.referencedBy.records);
+    const cardless = [...selectable].filter((t) => t && !descriptor.sheets[t]);
+    check(cardless.length === 0, `every selectable table has a sheet${cardless.length ? ` — none for ${cardless.join(', ')}` : ''}`);
+  }
+  // The pulsing marker is one marker; each source that asks for it must say
+  // where its records sit, and no table may ask twice.
+  const markerTables = Object.values(descriptor.sources).filter((s) => s.selectionMarker).map((s) => s.records);
+  check(
+    Object.values(descriptor.sources).filter((s) => s.selectionMarker).every((s) => s.geometryFrom),
+    'every selectionMarker source takes its point from a record field',
+  );
+  check(new Set(markerTables).size === markerTables.length, `no records table has two selectionMarker sources (${markerTables.join(', ') || 'none'})`);
   for (const c of descriptor.controls) {
     if (c.type !== 'picker') continue;
     note(c.from, c.labelField);
@@ -390,19 +441,26 @@ function checkMap({ id, expectedPending }) {
   );
   for (const [what, name] of [
     ['picker groupBy', picker.groupBy.lookup],
-    ['sheet kicker', descriptor.sheet.kicker.lookup],
+    ...sheets.map(([table, sheet]) => [`sheet "${table}" kicker`, sheet.kicker?.lookup]),
   ]) {
+    if (name === undefined) continue;
     check(name in descriptor.lookups, `${what} reads lookup "${name}", which the descriptor defines`);
   }
-  const groupLookup = descriptor.lookups[picker.groupBy.lookup] ?? {};
+  // A group is a lookup key, or — with no lookup — the field's value itself,
+  // shown as it stands. Either way the order must name every group that
+  // occurs, or a record lands in a group the picker never renders.
+  const groupValues = picker.groupBy.lookup
+    ? Object.keys(descriptor.lookups[picker.groupBy.lookup] ?? {})
+    : [...new Set(Object.values(tables[primary]).map((r) => r[picker.groupBy.field]))];
+  const groupSource = picker.groupBy.lookup ? `"${picker.groupBy.lookup}"` : `${primary}.${picker.groupBy.field}`;
   check(
-    picker.groupBy.order.every((k) => k in groupLookup),
-    `every group in the picker's order exists in "${picker.groupBy.lookup}"`,
+    picker.groupBy.order.every((k) => groupValues.includes(k)),
+    `every group in the picker's order exists in ${groupSource}`,
   );
-  const ungrouped = Object.keys(groupLookup).filter((k) => !picker.groupBy.order.includes(k));
+  const ungrouped = groupValues.filter((k) => !picker.groupBy.order.includes(k));
   check(
     ungrouped.length === 0,
-    `the picker's order covers every value in "${picker.groupBy.lookup}"${ungrouped.length ? ` — ${ungrouped.join(', ')} would never be shown` : ''}`,
+    `the picker's order covers every value in ${groupSource}${ungrouped.length ? ` — ${ungrouped.join(', ')} would never be shown` : ''}`,
   );
 
   // ---- fields the descriptor never references -------------------------------
@@ -516,6 +574,79 @@ console.log('\n\n============ border-lines ============');
   // 6 establishedBn with no year in any source here, and tordesillas.labelAt,
   // which has nowhere to sit until its longitude is settled.
   checkMap({ id: 'border-lines', expectedPending: 49 });
+}
+
+/*
+|--------------------------------------------------------------------------
+| ORG HEADQUARTERS — faithful to the approved seed
+|--------------------------------------------------------------------------
+*/
+console.log('\n\n============ org-headquarters ============');
+{
+  const dir = path.join(MAPS_DIR, 'org-headquarters');
+  const seed = readJson(path.join(ORG_SEEDS, 'organisations.seed.json'));
+  const citySeed = readJson(path.join(ORG_SEEDS, 'cities.seed.json'));
+  const orgs = readJson(path.join(dir, 'records.json'));
+  const cities = readJson(path.join(dir, 'cities.json'));
+  const countries = readJson(path.join(dir, 'countries.json'));
+
+  // Every seed field ships exactly as approved, except the seed's identity
+  // and provenance. The four joins the build adds are checked below instead.
+  console.log('\n---- records.json against organisations.seed.json ----');
+  const DERIVED = ['cities', 'countries', 'at', 'frame'];
+  compareTables({ source: seed, file: orgs, label: 'records.json', ignore: ['id', 'sources', 'review', ...DERIVED] });
+
+  console.log('\n---- cities.json against cities.seed.json ----');
+  compareTables({ source: citySeed, file: cities, label: 'cities.json', ignore: ['geometrySource', 'sources'] });
+
+  // Provenance: every organisation is editor-verified or cited, and the
+  // three that were under review are cited now.
+  const unsourced = Object.keys(seed).filter((k) => !seed[k].sources);
+  check(unsourced.length === 0, `every organisation's city is editor-verified or cited${unsourced.length ? ` — not: ${unsourced.join(', ')}` : ''}`);
+  const inReview = Object.keys(seed).filter((k) => 'review' in seed[k]);
+  check(inReview.length === 0, `no organisation is still under review${inReview.length ? ` — ${inReview.join(', ')}` : ''}`);
+  const cited = Object.keys(seed).filter((k) => Array.isArray(seed[k].sources?.cityBn));
+  ok(`${cited.length} organisation(s) cited from their own site: ${cited.join(', ')}`);
+
+  // One city per (cityEn, iso3), each named once, each placed by one source.
+  const cityOf = (r) => Object.keys(cities).find((k) => cities[k].nameEn === r.cityEn && cities[k].iso3 === r.iso3);
+  const wantCities = new Set(Object.values(seed).map((r) => `${r.cityEn}|${r.iso3}`));
+  check(wantCities.size === Object.keys(cities).length, `one city per distinct (cityEn, iso3) in the seed (${wantCities.size})`);
+  let badJoin = 0;
+  for (const [id, r] of Object.entries(seed)) {
+    const key = cityOf(r);
+    const o = orgs[id];
+    const good =
+      key &&
+      cities[key].nameBn === r.cityBn &&
+      cities[key].countryBn === r.countryBn &&
+      JSON.stringify(o.cities) === JSON.stringify([key]) &&
+      JSON.stringify(o.countries) === JSON.stringify([r.iso3]) &&
+      JSON.stringify(o.at) === JSON.stringify(cities[key].at) &&
+      JSON.stringify(o.frame) === JSON.stringify(cities[key].frame);
+    if (!good) {
+      fail(`${id}: its city, country, point or frame does not match the city it names`);
+      badJoin++;
+    }
+  }
+  check(badJoin === 0, `every organisation joins to its own city — same Bengali name, country, point and frame (${Object.keys(seed).length})`);
+  const bySource = {};
+  for (const [key, c] of Object.entries(citySeed)) {
+    (bySource[c.geometrySource] ??= []).push(key);
+    if (!['naturalEarth', 'osm'].includes(c.geometrySource) || c.sources?.at?.length !== 1) fail(`${key}: not exactly one point source`);
+  }
+  // Pinned: which source placed each city is displayed-position-bearing.
+  check(
+    bySource.naturalEarth?.length === 56 && bySource.osm?.length === 6,
+    `city points: Natural Earth ${bySource.naturalEarth?.length}, OSM ${bySource.osm?.length} (pinned 56 / 6)`,
+  );
+
+  // A host country's Bengali name is the seed's, never Natural Earth's.
+  const countryBn = new Map(Object.values(seed).map((r) => [r.iso3, r.countryBn]));
+  const wrongName = Object.keys(countries).filter((k) => countries[k].nameBn !== countryBn.get(k));
+  check(wrongName.length === 0, `every host country is named as the seed names it (${Object.keys(countries).length})${wrongName.length ? ` — ${wrongName.join(', ')}` : ''}`);
+
+  checkMap({ id: 'org-headquarters', expectedPending: 0 });
 }
 
 // ---- done -------------------------------------------------------------------

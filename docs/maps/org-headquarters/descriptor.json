@@ -1,0 +1,196 @@
+{
+  "schema": "geoquest/map-descriptor@1",
+  "id": "org-headquarters",
+  "section": "international",
+  "title": {
+    "bn": "আন্তর্জাতিক সংস্থার সদর দপ্তর",
+    "en": "International Organisation Headquarters"
+  },
+  "basemap": "world",
+  "view": {
+    "fitBounds": [-125, -42, 150, 62]
+  },
+  "constraints": {
+    "minZoom": 0,
+    "maxZoom": 11
+  },
+  "lookups": {},
+  "records": {
+    "organisations": {
+      "file": "./records.json",
+      "fields": {
+        "category": { "type": "text", "required": true },
+        "pickerLabel": { "type": "text", "required": true },
+        "nameBn": { "type": "text", "required": true },
+        "cityBn": { "type": "text", "required": true },
+        "countryBn": { "type": "text", "required": true },
+        "noteBn": { "type": "text", "verifiable": true },
+        "nameEn": { "type": "text", "required": true, "display": false },
+        "cityEn": { "type": "text", "required": true, "display": false },
+        "iso3": { "type": "text", "required": true, "display": false },
+        "cities": { "type": "refs", "to": "cities", "required": true },
+        "countries": { "type": "refs", "to": "countries", "required": true, "knownUnresolved": ["ISR"] },
+        "at": { "type": "point", "required": true },
+        "frame": { "type": "bbox", "required": true }
+      }
+    },
+    "cities": {
+      "file": "./cities.json",
+      "fields": {
+        "nameEn": { "type": "text", "required": true, "display": false },
+        "nameBn": { "type": "text", "required": true },
+        "iso3": { "type": "text", "required": true, "display": false },
+        "countryBn": { "type": "text", "required": true },
+        "at": { "type": "point", "required": true },
+        "frame": { "type": "bbox", "required": true }
+      }
+    },
+    "countries": {
+      "file": "./countries.json",
+      "fields": {
+        "nameEn": { "type": "text", "required": true, "display": false },
+        "nameBn": { "type": "text", "required": true },
+        "labelAt": { "type": "point", "required": true }
+      }
+    }
+  },
+  "sources": {
+    "countries": {
+      "records": "countries",
+      "geometry": "./countries.geojson",
+      "joinField": "id",
+      "state": [{ "name": "active", "fromSelection": { "records": "organisations", "listField": "countries" } }],
+      "properties": []
+    },
+    "cities": {
+      "records": "cities",
+      "geometryFrom": "at",
+      "cluster": { "radius": 20, "maxZoom": 2 },
+      "state": ["selected", { "name": "active", "fromSelection": { "records": "organisations", "listField": "cities" } }],
+      "properties": ["nameBn"],
+      "selectionMarker": true,
+      "attribution": "<a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener noreferrer\">© OpenStreetMap contributors</a>"
+    },
+    "organisations": {
+      "records": "organisations",
+      "geometryFrom": "at",
+      "state": ["selected"],
+      "properties": [],
+      "selectionMarker": true
+    }
+  },
+  "styles": {
+    "country-active-fill": { "paint": { "fill-color": "#2f7fc1", "fill-opacity": 0.16 } },
+    "country-active-edge": {
+      "layout": { "line-join": "round" },
+      "paint": { "line-color": "#2f7fc1", "line-width": 1.2, "line-opacity": 0.85 }
+    },
+    "cluster-circle": {
+      "paint": { "circle-radius": 14, "circle-color": "#0b3d91", "circle-stroke-width": 2.5, "circle-stroke-color": "#ffffff" }
+    },
+    "cluster-count": {
+      "layout": { "text-font": ["Noto Sans Bengali"], "text-size": 14, "text-allow-overlap": true, "text-ignore-placement": true },
+      "paint": { "text-color": "#ffffff" }
+    },
+    "city-point": {
+      "paint": { "circle-radius": 6, "circle-color": "#0b3d91", "circle-stroke-width": 2, "circle-stroke-color": "#ffffff" }
+    },
+    "city-label": {
+      "layout": {
+        "text-font": ["Noto Sans Bengali"],
+        "text-variable-anchor": ["top", "bottom", "right", "left"],
+        "text-radial-offset": 1,
+        "text-optional": true
+      },
+      "paint": { "text-color": "#0b3d91", "text-halo-color": "#ffffff", "text-halo-width": 2 }
+    }
+  },
+  "layers": [
+    { "id": "country-active-fill", "type": "fill", "source": "countries", "slot": "belowLabels", "style": "country-active-fill", "filter": ["get", "active"] },
+    { "id": "country-active-edge", "type": "line", "source": "countries", "slot": "belowLabels", "style": "country-active-edge", "filter": ["get", "active"] },
+    { "id": "city-clusters", "type": "circle", "source": "cities", "slot": "aboveLabels", "style": "cluster-circle", "filter": ["has", "point_count"] },
+    {
+      "id": "city-cluster-count",
+      "type": "symbol",
+      "source": "cities",
+      "slot": "aboveLabels",
+      "style": "cluster-count",
+      "filter": ["has", "point_count"],
+      "layout": { "text-field": ["number-format", ["get", "point_count"], { "locale": "bn" }] }
+    },
+    {
+      "id": "city-points",
+      "type": "circle",
+      "source": "cities",
+      "slot": "aboveLabels",
+      "style": "city-point",
+      "filter": ["all", ["!", ["has", "point_count"]], ["!=", ["get", "selected"], true], ["!=", ["get", "active"], true]]
+    },
+    {
+      "id": "city-labels",
+      "type": "symbol",
+      "source": "cities",
+      "slot": "aboveLabels",
+      "style": "city-label",
+      "filter": ["!", ["has", "point_count"]],
+      "layout": {
+        "text-field": ["get", "nameBn"],
+        "text-size": ["case", ["any", ["get", "selected"], ["get", "active"]], 16, 12],
+        "symbol-sort-key": ["case", ["any", ["get", "selected"], ["get", "active"]], 0, 1]
+      }
+    }
+  ],
+  "controls": [
+    {
+      "type": "picker",
+      "id": "organisation",
+      "from": "organisations",
+      "groupBy": {
+        "field": "category",
+        "order": [
+          "জাতিসংঘ",
+          "ইউরোপীয় ইউনিয়ন",
+          "আঞ্চলিক সংস্থা",
+          "আর্থিক প্রতিষ্ঠান",
+          "পরিবেশ সংস্থা",
+          "গোয়েন্দা সংস্থা",
+          "ক্রীড়া সংস্থা",
+          "আন্তর্জাতিক সংগঠন (অন্যান্য)"
+        ]
+      },
+      "placeholder": "একটি সংস্থা বেছে নিন…",
+      "labelEn": "Choose an organisation",
+      "label": { "field": "pickerLabel" },
+      "do": [{ "action": "select" }, { "action": "fitBounds", "clear": ["sheet"], "duration": 1800, "field": "frame" }]
+    }
+  ],
+  "interactions": [
+    {
+      "on": "click",
+      "target": "source:cities",
+      "do": [{ "action": "select" }, { "action": "fitBounds", "clear": ["sheet"], "duration": 1800, "field": "frame" }]
+    }
+  ],
+  "sheets": {
+    "organisations": {
+      "kicker": { "field": "pickerLabel" },
+      "title": { "field": "nameBn" },
+      "rows": [
+        { "label": "সদর দপ্তর", "field": "cityBn" },
+        { "label": "দেশ", "field": "countryBn" },
+        { "label": "বিবরণ", "field": "noteBn" }
+      ]
+    },
+    "cities": {
+      "title": { "field": "nameBn" },
+      "rows": [
+        { "label": "দেশ", "field": "countryBn" },
+        {
+          "referencedBy": { "records": "organisations", "listField": "cities" },
+          "item": { "compose": ["{pickerLabel} — {nameBn}"] },
+          "do": [{ "action": "select" }, { "action": "fitBounds", "clear": ["sheet"], "duration": 1800, "field": "frame" }]
+        }
+      ]
+    }
+  }
+}

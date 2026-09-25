@@ -15,6 +15,14 @@
       }
     },
     {
+      "id": "org-headquarters",
+      "section": "international",
+      "title": {
+        "en": "International Organisation Headquarters",
+        "bn": "আন্তর্জাতিক সংস্থার সদর দপ্তর"
+      }
+    },
+    {
       "id": "straits",
       "section": "international",
       "title": {

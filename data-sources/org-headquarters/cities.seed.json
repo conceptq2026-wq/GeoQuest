@@ -1,0 +1,1676 @@
+{
+  "vienna-aut": {
+    "nameEn": "Vienna",
+    "nameBn": "ভিয়েনা",
+    "iso3": "AUT",
+    "countryBn": "অস্ট্রিয়া",
+    "at": [
+      16.36469,
+      48.20196
+    ],
+    "frame": [
+      13.765,
+      45.202,
+      18.965,
+      51.202
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Vienna",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Vienna, Austria (AUT), ne_id 1159151563, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "rome-ita": {
+    "nameEn": "Rome",
+    "nameBn": "রোম",
+    "iso3": "ITA",
+    "countryBn": "ইতালি",
+    "at": [
+      12.48131,
+      41.8979
+    ],
+    "frame": [
+      9.881,
+      38.898,
+      15.081,
+      44.898
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Rome",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Rome, Italy (ITA), ne_id 1159151593, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "montreal-can": {
+    "nameEn": "Montreal",
+    "nameBn": "মন্ট্রিল",
+    "iso3": "CAN",
+    "countryBn": "কানাডা",
+    "at": [
+      -73.58524,
+      45.50194
+    ],
+    "frame": [
+      -76.185,
+      42.502,
+      -70.985,
+      48.502
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Montréal",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Montréal, Canada (CAN), ne_id 1159151457, Populated place."
+        }
+      ]
+    }
+  },
+  "the-hague-nld": {
+    "nameEn": "The Hague",
+    "nameBn": "দ্য হেগ",
+    "iso3": "NLD",
+    "countryBn": "নেদারল্যান্ডস",
+    "at": [
+      4.26996,
+      52.08004
+    ],
+    "frame": [
+      1.67,
+      49.08,
+      6.87,
+      55.08
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — The Hague",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "The Hague, Netherlands (NLD), ne_id 1159149457, Admin-0 capital alt."
+        }
+      ]
+    }
+  },
+  "geneva-che": {
+    "nameEn": "Geneva",
+    "nameBn": "জেনেভা",
+    "iso3": "CHE",
+    "countryBn": "সুইজারল্যান্ড",
+    "at": [
+      6.14003,
+      46.21001
+    ],
+    "frame": [
+      3.54,
+      43.21,
+      8.74,
+      49.21
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Geneva",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Geneva, Switzerland (CHE), ne_id 1159151505, Admin-1 capital."
+        }
+      ]
+    }
+  },
+  "london-gbr": {
+    "nameEn": "London",
+    "nameBn": "লন্ডন",
+    "iso3": "GBR",
+    "countryBn": "যুক্তরাজ্য",
+    "at": [
+      -0.11867,
+      51.50194
+    ],
+    "frame": [
+      -2.719,
+      48.502,
+      2.481,
+      54.502
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — London",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "London, United Kingdom (GBR), ne_id 1159151577, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "new-york-usa": {
+    "nameEn": "New York",
+    "nameBn": "নিউইয়র্ক",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -73.99572,
+      40.72156
+    ],
+    "frame": [
+      -76.596,
+      37.722,
+      -71.396,
+      43.722
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — New York",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "New York, United States of America (USA), ne_id 1159151575, Populated place."
+        }
+      ]
+    }
+  },
+  "madrid-esp": {
+    "nameEn": "Madrid",
+    "nameBn": "মাদ্রিদ",
+    "iso3": "ESP",
+    "countryBn": "স্পেন",
+    "at": [
+      -3.6853,
+      40.40197
+    ],
+    "frame": [
+      -6.285,
+      37.402,
+      -1.085,
+      43.402
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Madrid",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Madrid, Spain (ESP), ne_id 1159151503, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "nairobi-ken": {
+    "nameEn": "Nairobi",
+    "nameBn": "নাইরোবি",
+    "iso3": "KEN",
+    "countryBn": "কেনিয়া",
+    "at": [
+      36.81471,
+      -1.2814
+    ],
+    "frame": [
+      34.215,
+      -4.281,
+      39.415,
+      1.719
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Nairobi",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Nairobi, Kenya (KEN), ne_id 1159151597, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "paris-fra": {
+    "nameEn": "Paris",
+    "nameBn": "প্যারিস",
+    "iso3": "FRA",
+    "countryBn": "ফ্রান্স",
+    "at": [
+      2.35299,
+      48.85809
+    ],
+    "frame": [
+      -0.247,
+      45.858,
+      4.953,
+      51.858
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Paris",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Paris, France (FRA), ne_id 1159151613, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "amman-jor": {
+    "nameEn": "Amman",
+    "nameBn": "আম্মান",
+    "iso3": "JOR",
+    "countryBn": "জর্ডান",
+    "at": [
+      35.93135,
+      31.95197
+    ],
+    "frame": [
+      33.331,
+      28.952,
+      38.531,
+      34.952
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Amman",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Amman, Jordan (JOR), ne_id 1159150807, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "tokyo-jpn": {
+    "nameEn": "Tokyo",
+    "nameBn": "টোকিও",
+    "iso3": "JPN",
+    "countryBn": "জাপান",
+    "at": [
+      139.74946,
+      35.68696
+    ],
+    "frame": [
+      137.149,
+      32.687,
+      142.349,
+      38.687
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Tokyo",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Tokyo, Japan (JPN), ne_id 1159151609, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "bern-che": {
+    "nameEn": "Bern",
+    "nameBn": "বার্ন",
+    "iso3": "CHE",
+    "countryBn": "সুইজারল্যান্ড",
+    "at": [
+      7.46698,
+      46.91668
+    ],
+    "frame": [
+      4.867,
+      43.917,
+      10.067,
+      49.917
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Bern",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Bern, Switzerland (CHE), ne_id 1159149737, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "luxembourg-lux": {
+    "nameEn": "Luxembourg",
+    "nameBn": "লুক্সেমবার্গ",
+    "iso3": "LUX",
+    "countryBn": "লুক্সেমবার্গ",
+    "at": [
+      6.13,
+      49.61166
+    ],
+    "frame": [
+      3.53,
+      46.612,
+      8.73,
+      52.612
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Luxembourg",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Luxembourg, Luxembourg (LUX), ne_id 1159146437, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "frankfurt-deu": {
+    "nameEn": "Frankfurt",
+    "nameBn": "ফ্রাঙ্কফুর্ট",
+    "iso3": "DEU",
+    "countryBn": "জার্মানি",
+    "at": [
+      8.67502,
+      50.09998
+    ],
+    "frame": [
+      6.075,
+      47.1,
+      11.275,
+      53.1
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Frankfurt",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Frankfurt, Germany (DEU), ne_id 1159151351, Populated place."
+        }
+      ]
+    }
+  },
+  "amsterdam-nld": {
+    "nameEn": "Amsterdam",
+    "nameBn": "আমস্টারডাম",
+    "iso3": "NLD",
+    "countryBn": "নেদারল্যান্ডস",
+    "at": [
+      4.91469,
+      52.35191
+    ],
+    "frame": [
+      2.315,
+      49.352,
+      7.515,
+      55.352
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Amsterdam",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Amsterdam, Netherlands (NLD), ne_id 1159151519, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "strasbourg-fra": {
+    "nameEn": "Strasbourg",
+    "nameBn": "স্ট্রাসবুর্গ",
+    "iso3": "FRA",
+    "countryBn": "ফ্রান্স",
+    "at": [
+      7.75001,
+      48.57997
+    ],
+    "frame": [
+      5.15,
+      45.58,
+      10.35,
+      51.58
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Strasbourg",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Strasbourg, France (FRA), ne_id 1159147229, Admin-1 region capital."
+        }
+      ]
+    }
+  },
+  "brussels-bel": {
+    "nameEn": "Brussels",
+    "nameBn": "ব্রাসেলস",
+    "iso3": "BEL",
+    "countryBn": "বেলজিয়াম",
+    "at": [
+      4.33137,
+      50.83526
+    ],
+    "frame": [
+      1.731,
+      47.835,
+      6.931,
+      53.835
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Brussels",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Brussels, Belgium (BEL), ne_id 1159151465, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "singapore-sgp": {
+    "nameEn": "Singapore",
+    "nameBn": "সিঙ্গাপুর",
+    "iso3": "SGP",
+    "countryBn": "সিঙ্গাপুর",
+    "at": [
+      103.85388,
+      1.29498
+    ],
+    "frame": [
+      101.254,
+      -1.705,
+      106.454,
+      4.295
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Singapore",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Singapore, Singapore (SGP), ne_id 1159151627, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "cairo-egy": {
+    "nameEn": "Cairo",
+    "nameBn": "কায়রো",
+    "iso3": "EGY",
+    "countryBn": "মিশর",
+    "at": [
+      31.24802,
+      30.05191
+    ],
+    "frame": [
+      28.648,
+      27.052,
+      33.848,
+      33.052
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Cairo",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Cairo, Egypt (EGY), ne_id 1159151603, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "jakarta-idn": {
+    "nameEn": "Jakarta",
+    "nameBn": "জাকার্তা",
+    "iso3": "IDN",
+    "countryBn": "ইন্দোনেশিয়া",
+    "at": [
+      106.82749,
+      -6.17247
+    ],
+    "frame": [
+      104.227,
+      -9.172,
+      109.427,
+      -3.172
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Jakarta",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Jakarta, Indonesia (IDN), ne_id 1159151599, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "addis-ababa-eth": {
+    "nameEn": "Addis Ababa",
+    "nameBn": "আদ্দিস আবাবা",
+    "iso3": "ETH",
+    "countryBn": "ইথিওপিয়া",
+    "at": [
+      38.69806,
+      9.03526
+    ],
+    "frame": [
+      36.098,
+      6.035,
+      41.298,
+      12.035
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Addis Ababa",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Addis Ababa, Ethiopia (ETH), ne_id 1159151549, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "dhaka-bgd": {
+    "nameEn": "Dhaka",
+    "nameBn": "ঢাকা",
+    "iso3": "BGD",
+    "countryBn": "বাংলাদেশ",
+    "at": [
+      90.40663,
+      23.72501
+    ],
+    "frame": [
+      87.807,
+      20.725,
+      93.007,
+      26.725
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Dhaka",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Dhaka, Bangladesh (BGD), ne_id 1159151467, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "georgetown-guy": {
+    "nameEn": "Georgetown",
+    "nameBn": "জর্জটাউন",
+    "iso3": "GUY",
+    "countryBn": "গায়ানা",
+    "at": [
+      -58.16703,
+      6.80197
+    ],
+    "frame": [
+      -60.767,
+      3.802,
+      -55.567,
+      9.802
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Georgetown",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Georgetown, Guyana (GUY), ne_id 1159150585, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "astana-kaz": {
+    "nameEn": "Astana",
+    "nameBn": "আস্তানা",
+    "iso3": "KAZ",
+    "countryBn": "কাজাখস্তান",
+    "at": [
+      71.42777,
+      51.18113
+    ],
+    "frame": [
+      68.828,
+      48.181,
+      74.028,
+      54.181
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Nur-Sultan",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Nur-Sultan, Kazakhstan (KAZ), ne_id 1159150965, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "minsk-blr": {
+    "nameEn": "Minsk",
+    "nameBn": "মিনস্ক",
+    "iso3": "BLR",
+    "countryBn": "বেলারুশ",
+    "at": [
+      27.56468,
+      53.90192
+    ],
+    "frame": [
+      24.965,
+      50.902,
+      30.165,
+      56.902
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Minsk",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Minsk, Belarus (BLR), ne_id 1159151149, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "colombo-lka": {
+    "nameEn": "Colombo",
+    "nameBn": "কলম্বো",
+    "iso3": "LKA",
+    "countryBn": "শ্রীলঙ্কা",
+    "at": [
+      79.85775,
+      6.93197
+    ],
+    "frame": [
+      77.258,
+      3.932,
+      82.458,
+      9.932
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Colombo",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Colombo, Sri Lanka (LKA), ne_id 1159150719, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "moscow-rus": {
+    "nameEn": "Moscow",
+    "nameBn": "মস্কো",
+    "iso3": "RUS",
+    "countryBn": "রাশিয়া",
+    "at": [
+      37.61358,
+      55.75411
+    ],
+    "frame": [
+      35.014,
+      52.754,
+      40.214,
+      58.754
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Moscow",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Moscow, Russia (RUS), ne_id 1159151585, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "istanbul-tur": {
+    "nameEn": "Istanbul",
+    "nameBn": "ইস্তাম্বুল",
+    "iso3": "TUR",
+    "countryBn": "তুরস্ক",
+    "at": [
+      28.97428,
+      41.0176
+    ],
+    "frame": [
+      26.374,
+      38.018,
+      31.574,
+      44.018
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Istanbul",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Istanbul, Turkey (TUR), ne_id 1159151579, Admin-1 capital."
+        }
+      ]
+    }
+  },
+  "tehran-irn": {
+    "nameEn": "Tehran",
+    "nameBn": "তেহরান",
+    "iso3": "IRN",
+    "countryBn": "ইরান",
+    "at": [
+      51.4224,
+      35.67389
+    ],
+    "frame": [
+      48.822,
+      32.674,
+      54.022,
+      38.674
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Tehran",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Tehran, Iran (IRN), ne_id 1159151551, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "abuja-nga": {
+    "nameEn": "Abuja",
+    "nameBn": "আবুজা",
+    "iso3": "NGA",
+    "countryBn": "নাইজেরিয়া",
+    "at": [
+      7.48951,
+      9.05462
+    ],
+    "frame": [
+      4.89,
+      6.055,
+      10.09,
+      12.055
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Abuja",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Abuja, Nigeria (NGA), ne_id 1159150799, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "riyadh-sau": {
+    "nameEn": "Riyadh",
+    "nameBn": "রিয়াদ",
+    "iso3": "SAU",
+    "countryBn": "সৌদি আরব",
+    "at": [
+      46.72049,
+      24.6345
+    ],
+    "frame": [
+      44.12,
+      21.634,
+      49.32,
+      27.634
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Riyadh",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Riyadh, Saudi Arabia (SAU), ne_id 1159151581, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "kathmandu-npl": {
+    "nameEn": "Kathmandu",
+    "nameBn": "কাঠমান্ডু",
+    "iso3": "NPL",
+    "countryBn": "নেপাল",
+    "at": [
+      85.3147,
+      27.71864
+    ],
+    "frame": [
+      82.715,
+      24.719,
+      87.915,
+      30.719
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Kathmandu",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Kathmandu, Nepal (NPL), ne_id 1159150655, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "ebene-mus": {
+    "nameEn": "Ebene",
+    "nameBn": "এবেনে",
+    "iso3": "MUS",
+    "countryBn": "মরিশাস",
+    "at": [
+      57.4823,
+      -20.24182
+    ],
+    "frame": [
+      54.882,
+      -23.242,
+      60.082,
+      -17.242
+    ],
+    "geometrySource": "osm",
+    "sources": {
+      "at": [
+        {
+          "title": "OpenStreetMap node 9280540367 — Ébène",
+          "publisher": "OpenStreetMap contributors, ODbL 1.0",
+          "url": "https://www.openstreetmap.org/node/9280540367",
+          "states": "place=suburb, found by name inside a bounding box. Committed as tools/sources/osm-places.geojson."
+        }
+      ]
+    }
+  },
+  "montevideo-ury": {
+    "nameEn": "Montevideo",
+    "nameBn": "মন্টেভিডিও",
+    "iso3": "URY",
+    "countryBn": "উরুগুয়ে",
+    "at": [
+      -56.18682,
+      -34.90538
+    ],
+    "frame": [
+      -58.787,
+      -37.905,
+      -53.587,
+      -31.905
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Montevideo",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Montevideo, Uruguay (URY), ne_id 1159150469, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "washington-d-c-usa": {
+    "nameEn": "Washington, D.C.",
+    "nameBn": "ওয়াশিংটন ডি.সি.",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -77.01136,
+      38.90149
+    ],
+    "frame": [
+      -79.611,
+      35.901,
+      -74.411,
+      41.901
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Washington,  D.C.",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Washington,  D.C., United States of America (USA), ne_id 1159151573, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "jeddah-sau": {
+    "nameEn": "Jeddah",
+    "nameBn": "জেদ্দা",
+    "iso3": "SAU",
+    "countryBn": "সৌদি আরব",
+    "at": [
+      39.21725,
+      21.51883
+    ],
+    "frame": [
+      36.617,
+      18.519,
+      41.817,
+      24.519
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Jeddah",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Jeddah, Saudi Arabia (SAU), ne_id 1159151277, Populated place."
+        }
+      ]
+    }
+  },
+  "gaborone-bwa": {
+    "nameEn": "Gaborone",
+    "nameBn": "গ্যাবোরোন",
+    "iso3": "BWA",
+    "countryBn": "বতসোয়ানা",
+    "at": [
+      25.91195,
+      -24.64631
+    ],
+    "frame": [
+      23.312,
+      -27.646,
+      28.512,
+      -21.646
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Gaborone",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Gaborone, Botswana (BWA), ne_id 1159151153, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "beijing-chn": {
+    "nameEn": "Beijing",
+    "nameBn": "বেইজিং",
+    "iso3": "CHN",
+    "countryBn": "চীন",
+    "at": [
+      116.3942,
+      39.90172
+    ],
+    "frame": [
+      113.794,
+      36.902,
+      118.994,
+      42.902
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Beijing",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Beijing, China (CHN), ne_id 1159151595, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "manila-phl": {
+    "nameEn": "Manila",
+    "nameBn": "ম্যানিলা",
+    "iso3": "PHL",
+    "countryBn": "ফিলিপাইন",
+    "at": [
+      120.98027,
+      14.6061
+    ],
+    "frame": [
+      118.38,
+      11.606,
+      123.58,
+      17.606
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Manila",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Manila, Philippines (PHL), ne_id 1159151525, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "abidjan-civ": {
+    "nameEn": "Abidjan",
+    "nameBn": "আবিদজান",
+    "iso3": "CIV",
+    "countryBn": "আইভরি কোস্ট",
+    "at": [
+      -4.02021,
+      5.32313
+    ],
+    "frame": [
+      -6.62,
+      2.323,
+      -1.42,
+      8.323
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Abidjan",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Abidjan, Ivory Coast (CIV), ne_id 1159151439, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "basel-che": {
+    "nameEn": "Basel",
+    "nameBn": "বাসেল",
+    "iso3": "CHE",
+    "countryBn": "সুইজারল্যান্ড",
+    "at": [
+      7.59002,
+      47.58039
+    ],
+    "frame": [
+      4.99,
+      44.58,
+      10.19,
+      50.58
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Basel",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Basel, Switzerland (CHE), ne_id 1159135709, Admin-1 capital."
+        }
+      ]
+    }
+  },
+  "shanghai-chn": {
+    "nameEn": "Shanghai",
+    "nameBn": "সাংহাই",
+    "iso3": "CHN",
+    "countryBn": "চীন",
+    "at": [
+      121.43456,
+      31.2184
+    ],
+    "frame": [
+      118.835,
+      28.218,
+      124.035,
+      34.218
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Shanghai",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Shanghai, China (CHN), ne_id 1159151605, Admin-1 capital."
+        }
+      ]
+    }
+  },
+  "incheon-kor": {
+    "nameEn": "Incheon",
+    "nameBn": "ইনচন",
+    "iso3": "KOR",
+    "countryBn": "দক্ষিণ কোরিয়া",
+    "at": [
+      126.64029,
+      37.47809
+    ],
+    "frame": [
+      124.04,
+      34.478,
+      129.24,
+      40.478
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Incheon",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Incheon, South Korea (KOR), ne_id 1159149125, Admin-1 capital."
+        }
+      ]
+    }
+  },
+  "abu-dhabi-are": {
+    "nameEn": "Abu Dhabi",
+    "nameBn": "আবুধাবি",
+    "iso3": "ARE",
+    "countryBn": "সংযুক্ত আরব আমিরাত",
+    "at": [
+      54.36659,
+      24.46668
+    ],
+    "frame": [
+      51.767,
+      21.467,
+      56.967,
+      27.467
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Abu Dhabi",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Abu Dhabi, United Arab Emirates (ARE), ne_id 1159150565, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "gurugram-ind": {
+    "nameEn": "Gurugram",
+    "nameBn": "গুরুগ্রাম",
+    "iso3": "IND",
+    "countryBn": "ভারত",
+    "at": [
+      77.01999,
+      28.45001
+    ],
+    "frame": [
+      74.42,
+      25.45,
+      79.62,
+      31.45
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Gurgaon (the pre-rename name of Gurugram)",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Gurgaon, India (IND), ne_id 1159130429, Populated place."
+        }
+      ]
+    }
+  },
+  "gland-che": {
+    "nameEn": "Gland",
+    "nameBn": "গ্ল্যান্ড",
+    "iso3": "CHE",
+    "countryBn": "সুইজারল্যান্ড",
+    "at": [
+      6.26551,
+      46.42394
+    ],
+    "frame": [
+      3.666,
+      43.424,
+      8.866,
+      49.424
+    ],
+    "geometrySource": "osm",
+    "sources": {
+      "at": [
+        {
+          "title": "OpenStreetMap node 1932397580 — Gland",
+          "publisher": "OpenStreetMap contributors, ODbL 1.0",
+          "url": "https://www.openstreetmap.org/node/1932397580",
+          "states": "place=town, found by name inside a bounding box. Committed as tools/sources/osm-places.geojson."
+        }
+      ]
+    }
+  },
+  "bonn-deu": {
+    "nameEn": "Bonn",
+    "nameBn": "বন",
+    "iso3": "DEU",
+    "countryBn": "জার্মানি",
+    "at": [
+      7.08002,
+      50.72046
+    ],
+    "frame": [
+      4.48,
+      47.72,
+      9.68,
+      53.72
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Bonn",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Bonn, Germany (DEU), ne_id 1159140541, Populated place."
+        }
+      ]
+    }
+  },
+  "berlin-deu": {
+    "nameEn": "Berlin",
+    "nameBn": "বার্লিন",
+    "iso3": "DEU",
+    "countryBn": "জার্মানি",
+    "at": [
+      13.3996,
+      52.52376
+    ],
+    "frame": [
+      10.8,
+      49.524,
+      16,
+      55.524
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Berlin",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Berlin, Germany (DEU), ne_id 1159151529, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "langley-virginia-usa": {
+    "nameEn": "Langley, Virginia",
+    "nameBn": "ল্যাংলি, ভার্জিনিয়া",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -77.15887,
+      38.9465
+    ],
+    "frame": [
+      -79.759,
+      35.947,
+      -74.559,
+      41.947
+    ],
+    "geometrySource": "osm",
+    "sources": {
+      "at": [
+        {
+          "title": "OpenStreetMap node 158642381 — Langley",
+          "publisher": "OpenStreetMap contributors, ODbL 1.0",
+          "url": "https://www.openstreetmap.org/node/158642381",
+          "states": "place=suburb, found by name inside a bounding box. Committed as tools/sources/osm-places.geojson."
+        }
+      ]
+    }
+  },
+  "islamabad-pak": {
+    "nameEn": "Islamabad",
+    "nameBn": "ইসলামাবাদ",
+    "iso3": "PAK",
+    "countryBn": "পাকিস্তান",
+    "at": [
+      73.08063,
+      33.68937
+    ],
+    "frame": [
+      70.481,
+      30.689,
+      75.681,
+      36.689
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Islamabad",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Islamabad, Pakistan (PAK), ne_id 1159150645, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "tel-aviv-isr": {
+    "nameEn": "Tel Aviv",
+    "nameBn": "তেল আবিব",
+    "iso3": "ISR",
+    "countryBn": "ইসরায়েল",
+    "at": [
+      34.76807,
+      32.08194
+    ],
+    "frame": [
+      32.168,
+      29.082,
+      37.368,
+      35.082
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Tel Aviv",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Tel Aviv, Israel (ISR), ne_id 1159151417, Admin-0 capital alt."
+        }
+      ]
+    }
+  },
+  "fort-meade-maryland-usa": {
+    "nameEn": "Fort Meade, Maryland",
+    "nameBn": "ফোর্ট মিড, মেরিল্যান্ড",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -76.74125,
+      39.1027
+    ],
+    "frame": [
+      -79.341,
+      36.103,
+      -74.141,
+      42.103
+    ],
+    "geometrySource": "osm",
+    "sources": {
+      "at": [
+        {
+          "title": "OpenStreetMap node 9208851449 — Fort Meade",
+          "publisher": "OpenStreetMap contributors, ODbL 1.0",
+          "url": "https://www.openstreetmap.org/node/9208851449",
+          "states": "place=village, found by name inside a bounding box. Committed as tools/sources/osm-places.geojson."
+        }
+      ]
+    }
+  },
+  "new-delhi-ind": {
+    "nameEn": "New Delhi",
+    "nameBn": "নয়াদিল্লি",
+    "iso3": "IND",
+    "countryBn": "ভারত",
+    "at": [
+      77.19998,
+      28.60002
+    ],
+    "frame": [
+      74.6,
+      25.6,
+      79.8,
+      31.6
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — New Delhi",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "New Delhi, India (IND), ne_id 1159151541, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "zurich-che": {
+    "nameEn": "Zurich",
+    "nameBn": "জুরিখ",
+    "iso3": "CHE",
+    "countryBn": "সুইজারল্যান্ড",
+    "at": [
+      8.54806,
+      47.38193
+    ],
+    "frame": [
+      5.948,
+      44.382,
+      11.148,
+      50.382
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Zürich",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Zürich, Switzerland (CHE), ne_id 1159151271, Admin-1 capital."
+        }
+      ]
+    }
+  },
+  "dubai-are": {
+    "nameEn": "Dubai",
+    "nameBn": "দুবাই",
+    "iso3": "ARE",
+    "countryBn": "সংযুক্ত আরব আমিরাত",
+    "at": [
+      55.28695,
+      25.21491
+    ],
+    "frame": [
+      52.687,
+      22.215,
+      57.887,
+      28.215
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Dubai",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Dubai, United Arab Emirates (ARE), ne_id 1159151497, Admin-1 capital."
+        }
+      ]
+    }
+  },
+  "lausanne-che": {
+    "nameEn": "Lausanne",
+    "nameBn": "লুজান",
+    "iso3": "CHE",
+    "countryBn": "সুইজারল্যান্ড",
+    "at": [
+      6.65002,
+      46.53043
+    ],
+    "frame": [
+      4.05,
+      43.53,
+      9.25,
+      49.53
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Lausanne",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Lausanne, Switzerland (CHE), ne_id 1159135705, Admin-1 capital."
+        }
+      ]
+    }
+  },
+  "nyon-che": {
+    "nameEn": "Nyon",
+    "nameBn": "নিয়ন",
+    "iso3": "CHE",
+    "countryBn": "সুইজারল্যান্ড",
+    "at": [
+      6.24028,
+      46.38206
+    ],
+    "frame": [
+      3.64,
+      43.382,
+      8.84,
+      49.382
+    ],
+    "geometrySource": "osm",
+    "sources": {
+      "at": [
+        {
+          "title": "OpenStreetMap node 240039598 — Nyon",
+          "publisher": "OpenStreetMap contributors, ODbL 1.0",
+          "url": "https://www.openstreetmap.org/node/240039598",
+          "states": "place=town, found by name inside a bounding box. Committed as tools/sources/osm-places.geojson."
+        }
+      ]
+    }
+  },
+  "lyon-fra": {
+    "nameEn": "Lyon",
+    "nameBn": "লিওঁ",
+    "iso3": "FRA",
+    "countryBn": "ফ্রান্স",
+    "at": [
+      4.82808,
+      45.77195
+    ],
+    "frame": [
+      2.228,
+      42.772,
+      7.428,
+      48.772
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Lyon",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Lyon, France (FRA), ne_id 1159150845, Admin-1 region capital."
+        }
+      ]
+    }
+  },
+  "kuwait-city-kwt": {
+    "nameEn": "Kuwait City",
+    "nameBn": "কুয়েত সিটি",
+    "iso3": "KWT",
+    "countryBn": "কুয়েত",
+    "at": [
+      47.97635,
+      29.37166
+    ],
+    "frame": [
+      45.376,
+      26.372,
+      50.576,
+      32.372
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Kuwait City",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Kuwait City, Kuwait (KWT), ne_id 1159151361, Admin-0 capital."
+        }
+      ]
+    }
+  },
+  "evanston-illinois-usa": {
+    "nameEn": "Evanston, Illinois",
+    "nameBn": "এভানস্টন, ইলিনয়",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -87.69996,
+      42.04835
+    ],
+    "frame": [
+      -90.3,
+      39.048,
+      -85.1,
+      45.048
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Evanston",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Evanston, United States of America (USA), ne_id 1159125089, Populated place."
+        }
+      ]
+    }
+  },
+  "cologny-che": {
+    "nameEn": "Cologny",
+    "nameBn": "কোলোনি (জেনেভা)",
+    "iso3": "CHE",
+    "countryBn": "সুইজারল্যান্ড",
+    "at": [
+      6.18176,
+      46.2164
+    ],
+    "frame": [
+      3.582,
+      43.216,
+      8.782,
+      49.216
+    ],
+    "geometrySource": "osm",
+    "sources": {
+      "at": [
+        {
+          "title": "OpenStreetMap node 60401402 — Cologny",
+          "publisher": "OpenStreetMap contributors, ODbL 1.0",
+          "url": "https://www.openstreetmap.org/node/60401402",
+          "states": "place=village, found by name inside a bounding box. Committed as tools/sources/osm-places.geojson."
+        }
+      ]
+    }
+  }
+}

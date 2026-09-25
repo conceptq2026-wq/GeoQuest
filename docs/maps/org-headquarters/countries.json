@@ -1,0 +1,330 @@
+{
+  "ARE": {
+    "nameEn": "United Arab Emirates",
+    "nameBn": "সংযুক্ত আরব আমিরাত",
+    "labelAt": [
+      54.49078,
+      23.54595
+    ]
+  },
+  "AUT": {
+    "nameEn": "Austria",
+    "nameBn": "অস্ট্রিয়া",
+    "labelAt": [
+      14.12244,
+      47.58535
+    ]
+  },
+  "BEL": {
+    "nameEn": "Belgium",
+    "nameBn": "বেলজিয়াম",
+    "labelAt": [
+      4.61807,
+      50.69439
+    ]
+  },
+  "BGD": {
+    "nameEn": "Bangladesh",
+    "nameBn": "বাংলাদেশ",
+    "labelAt": [
+      89.97456,
+      24.3108
+    ]
+  },
+  "BLR": {
+    "nameEn": "Belarus",
+    "nameBn": "বেলারুশ",
+    "labelAt": [
+      28.02697,
+      53.58587
+    ]
+  },
+  "BWA": {
+    "nameEn": "Botswana",
+    "nameBn": "বতসোয়ানা",
+    "labelAt": [
+      23.84944,
+      -22.18441
+    ]
+  },
+  "CAN": {
+    "nameEn": "Canada",
+    "nameBn": "কানাডা",
+    "labelAt": [
+      -103.71085,
+      57.89669
+    ]
+  },
+  "CHE": {
+    "nameEn": "Switzerland",
+    "nameBn": "সুইজারল্যান্ড",
+    "labelAt": [
+      7.91239,
+      46.92952
+    ]
+  },
+  "CHN": {
+    "nameEn": "People's Republic of China",
+    "nameBn": "চীন",
+    "labelAt": [
+      106.1915,
+      32.69243
+    ]
+  },
+  "CIV": {
+    "nameEn": "Ivory Coast",
+    "nameBn": "আইভরি কোস্ট",
+    "labelAt": [
+      -5.57103,
+      7.63104
+    ]
+  },
+  "DEU": {
+    "nameEn": "Germany",
+    "nameBn": "জার্মানি",
+    "labelAt": [
+      10.03902,
+      51.2524
+    ]
+  },
+  "EGY": {
+    "nameEn": "Egypt",
+    "nameBn": "মিশর",
+    "labelAt": [
+      29.68286,
+      26.43161
+    ]
+  },
+  "ESP": {
+    "nameEn": "Spain",
+    "nameBn": "স্পেন",
+    "labelAt": [
+      -3.55992,
+      40.38416
+    ]
+  },
+  "ETH": {
+    "nameEn": "Ethiopia",
+    "nameBn": "ইথিওপিয়া",
+    "labelAt": [
+      39.2403,
+      8.2486
+    ]
+  },
+  "FRA": {
+    "nameEn": "France",
+    "nameBn": "ফ্রান্স",
+    "labelAt": [
+      2.44621,
+      46.61197
+    ]
+  },
+  "GBR": {
+    "nameEn": "United Kingdom",
+    "nameBn": "যুক্তরাজ্য",
+    "labelAt": [
+      -1.59859,
+      52.88132
+    ]
+  },
+  "GUY": {
+    "nameEn": "Guyana",
+    "nameBn": "গায়ানা",
+    "labelAt": [
+      -58.9179,
+      5.19596
+    ]
+  },
+  "IDN": {
+    "nameEn": "Indonesia",
+    "nameBn": "ইন্দোনেশিয়া",
+    "labelAt": [
+      101.95379,
+      -1.0697
+    ]
+  },
+  "IND": {
+    "nameEn": "India",
+    "nameBn": "ভারত",
+    "labelAt": [
+      79.57424,
+      22.85874
+    ]
+  },
+  "IRN": {
+    "nameEn": "Iran",
+    "nameBn": "ইরান",
+    "labelAt": [
+      54.28963,
+      32.35594
+    ]
+  },
+  "ITA": {
+    "nameEn": "Italy",
+    "nameBn": "ইতালি",
+    "labelAt": [
+      11.0791,
+      44.71833
+    ]
+  },
+  "JOR": {
+    "nameEn": "Jordan",
+    "nameBn": "জর্ডান",
+    "labelAt": [
+      36.37829,
+      30.83617
+    ]
+  },
+  "JPN": {
+    "nameEn": "Japan",
+    "nameBn": "জাপান",
+    "labelAt": [
+      138.16025,
+      36.07893
+    ]
+  },
+  "KAZ": {
+    "nameEn": "Kazakhstan",
+    "nameBn": "কাজাখস্তান",
+    "labelAt": [
+      67.47939,
+      48.58789
+    ]
+  },
+  "KEN": {
+    "nameEn": "Kenya",
+    "nameBn": "কেনিয়া",
+    "labelAt": [
+      37.84064,
+      0.52934
+    ]
+  },
+  "KOR": {
+    "nameEn": "South Korea",
+    "nameBn": "দক্ষিণ কোরিয়া",
+    "labelAt": [
+      127.99493,
+      36.37654
+    ]
+  },
+  "KWT": {
+    "nameEn": "Kuwait",
+    "nameBn": "কুয়েত",
+    "labelAt": [
+      47.33213,
+      29.38169
+    ]
+  },
+  "LKA": {
+    "nameEn": "Sri Lanka",
+    "nameBn": "শ্রীলঙ্কা",
+    "labelAt": [
+      80.68362,
+      7.59683
+    ]
+  },
+  "LUX": {
+    "nameEn": "Luxembourg",
+    "nameBn": "লুক্সেমবার্গ",
+    "labelAt": [
+      6.07195,
+      49.75833
+    ]
+  },
+  "MUS": {
+    "nameEn": "Mauritius",
+    "nameBn": "মরিশাস",
+    "labelAt": [
+      57.56235,
+      -20.27502
+    ]
+  },
+  "NGA": {
+    "nameEn": "Nigeria",
+    "nameBn": "নাইজেরিয়া",
+    "labelAt": [
+      8.0898,
+      9.59685
+    ]
+  },
+  "NLD": {
+    "nameEn": "Netherlands",
+    "nameBn": "নেদারল্যান্ডস",
+    "labelAt": [
+      5.56623,
+      52.39697
+    ]
+  },
+  "NPL": {
+    "nameEn": "Nepal",
+    "nameBn": "নেপাল",
+    "labelAt": [
+      82.76387,
+      28.63165
+    ]
+  },
+  "PAK": {
+    "nameEn": "Pakistan",
+    "nameBn": "পাকিস্তান",
+    "labelAt": [
+      68.85946,
+      29.49603
+    ]
+  },
+  "PHL": {
+    "nameEn": "Philippines",
+    "nameBn": "ফিলিপাইন",
+    "labelAt": [
+      121.26217,
+      16.73774
+    ]
+  },
+  "RUS": {
+    "nameEn": "Russia",
+    "nameBn": "রাশিয়া",
+    "labelAt": [
+      99.0799,
+      63.16205
+    ]
+  },
+  "SAU": {
+    "nameEn": "Saudi Arabia",
+    "nameBn": "সৌদি আরব",
+    "labelAt": [
+      44.54119,
+      24.12453
+    ]
+  },
+  "SGP": {
+    "nameEn": "Singapore",
+    "nameBn": "সিঙ্গাপুর",
+    "labelAt": [
+      103.80872,
+      1.34983
+    ]
+  },
+  "TUR": {
+    "nameEn": "Turkey",
+    "nameBn": "তুরস্ক",
+    "labelAt": [
+      34.95571,
+      39.25835
+    ]
+  },
+  "URY": {
+    "nameEn": "Uruguay",
+    "nameBn": "উরুগুয়ে",
+    "labelAt": [
+      -56.01853,
+      -32.80307
+    ]
+  },
+  "USA": {
+    "nameEn": "United States of America",
+    "nameBn": "যুক্তরাষ্ট্র",
+    "labelAt": [
+      -99.15127,
+      39.5269
+    ]
+  }
+}

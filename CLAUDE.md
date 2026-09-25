@@ -136,6 +136,26 @@ declares sources, layers, sheet rows and actions; it holds no content.
   descriptor is a bug waiting for a different phone.
 - `fitBounds` on a record unions every feature of that record. A record with
   three traces must not frame one of them.
+- **One selection at a time.** Selection is held per records table, but
+  selecting a record in one table clears every other table's selection, and a
+  selection the picker does not list puts the picker back to its placeholder.
+  The sheet shows one record, so only one may be lit.
+- **`sheet` or `sheets`.** `sheet` is the card for a map that selects from one
+  table. `sheets` is the same card keyed by records table, for a map where
+  more than one table can be selected; the validator fails a selectable table
+  with no card. A kicker that resolves to nothing is hidden.
+- **`referencedBy` is the reverse of a `refs` field**, in the `fromSelection`
+  shape pointed the other way. A sheet row
+  `{ "referencedBy": { "records": R, "listField": F }, "item": <value spec>,
+  "do": [actions] }` lists every record of `R` whose `F` contains the shown
+  key, in `R`'s own order, each a button that runs `do` on that record. `F`
+  must be a `refs` field pointing at the sheet's table; the validator asserts
+  it. No match hides the row, like a null. org-headquarters uses it for the
+  organisations a city hosts.
+- A picker's `groupBy` may omit `lookup`: the field's value is then the group
+  label as it stands, and `order` must name every value that occurs.
+- A tap on overlapping points goes to the one **nearest the finger**, not the
+  first the renderer lists.
 
 ## `null` versus absent — they are different
 
@@ -245,7 +265,11 @@ The marker is one `maplibregl.Marker` placed at one coordinate, so it is
 narrowed by a condition rather than by the source it hangs off:
 `selectionMarker` takes an optional `when`, in the same field/value shape
 `expectGeometry` uses. border-lines declares `{ when: { hasGeometry: false } }`;
-straits declares `true`.
+straits declares `true`. More than one source may declare `selectionMarker`,
+at most one per records table; the one marker goes to whichever table holds
+the selection. org-headquarters declares it on `cities` and on
+`organisations`, so a tapped city and a chosen organisation both pulse at the
+city.
 
 The build fails, naming the record, when a record has no line geometry, no
 point and no frame. A record that legitimately cannot be given a point is
@@ -275,7 +299,10 @@ Currently pinned: trace count, per-record geometry hash, `bdPov` literals,
 `name_bn` hash and count, per-class boundary counts — and for the OpenStreetMap
 extract, its file checksum in `tools/sources.json` plus a per-record OSM trace
 count and geometry hash. Generated lines carry no hash: they are computed from
-constants in the build, and editing those constants is the review.
+constants in the build, and editing those constants is the review. For
+org-headquarters: the Natural Earth populated-places file (size and blob SHA in
+`tools/sources.json`), the OSM places extract's checksum, and the split of city
+points by source — 56 Natural Earth, 6 OSM — in the validator.
 
 When a pin moves, **stop and report the old and new values.** Never re-pin to
 make a build pass. A dropped `featurecla` once shifted a line by three points
@@ -331,9 +358,15 @@ mechanical work already specified; fixing a bug in something already approved.
 
 State which kind a task is when reporting it.
 
-## Current state, as of aa5fc36
+## Current state
 
-- Two maps: `docs/maps/straits/` and `docs/maps/border-lines/`.
+- Three maps: `docs/maps/straits/`, `docs/maps/border-lines/` and
+  `docs/maps/org-headquarters/`.
+- org-headquarters is built by `tools/build-org-headquarters.mjs` from
+  `data-sources/org-headquarters/organisations.seed.json`, the user-approved
+  content, which the build reads and never rewrites. The cities table, the
+  host countries and every point and frame are derived from it; the cities'
+  provenance goes to `cities.seed.json` beside it.
 - One basemap archive exists, `docs/shared/tiles/world.pmtiles`. A
   `bangladesh.pmtiles` is planned and not built. A cross-basemap switch is a
   full re-initialise; the shell decides that from each map's descriptor.

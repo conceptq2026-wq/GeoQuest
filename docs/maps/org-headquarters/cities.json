@@ -1,0 +1,994 @@
+{
+  "vienna-aut": {
+    "nameEn": "Vienna",
+    "nameBn": "ভিয়েনা",
+    "iso3": "AUT",
+    "countryBn": "অস্ট্রিয়া",
+    "at": [
+      16.36469,
+      48.20196
+    ],
+    "frame": [
+      13.765,
+      45.202,
+      18.965,
+      51.202
+    ]
+  },
+  "rome-ita": {
+    "nameEn": "Rome",
+    "nameBn": "রোম",
+    "iso3": "ITA",
+    "countryBn": "ইতালি",
+    "at": [
+      12.48131,
+      41.8979
+    ],
+    "frame": [
+      9.881,
+      38.898,
+      15.081,
+      44.898
+    ]
+  },
+  "montreal-can": {
+    "nameEn": "Montreal",
+    "nameBn": "মন্ট্রিল",
+    "iso3": "CAN",
+    "countryBn": "কানাডা",
+    "at": [
+      -73.58524,
+      45.50194
+    ],
+    "frame": [
+      -76.185,
+      42.502,
+      -70.985,
+      48.502
+    ]
+  },
+  "the-hague-nld": {
+    "nameEn": "The Hague",
+    "nameBn": "দ্য হেগ",
+    "iso3": "NLD",
+    "countryBn": "নেদারল্যান্ডস",
+    "at": [
+      4.26996,
+      52.08004
+    ],
+    "frame": [
+      1.67,
+      49.08,
+      6.87,
+      55.08
+    ]
+  },
+  "geneva-che": {
+    "nameEn": "Geneva",
+    "nameBn": "জেনেভা",
+    "iso3": "CHE",
+    "countryBn": "সুইজারল্যান্ড",
+    "at": [
+      6.14003,
+      46.21001
+    ],
+    "frame": [
+      3.54,
+      43.21,
+      8.74,
+      49.21
+    ]
+  },
+  "london-gbr": {
+    "nameEn": "London",
+    "nameBn": "লন্ডন",
+    "iso3": "GBR",
+    "countryBn": "যুক্তরাজ্য",
+    "at": [
+      -0.11867,
+      51.50194
+    ],
+    "frame": [
+      -2.719,
+      48.502,
+      2.481,
+      54.502
+    ]
+  },
+  "new-york-usa": {
+    "nameEn": "New York",
+    "nameBn": "নিউইয়র্ক",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -73.99572,
+      40.72156
+    ],
+    "frame": [
+      -76.596,
+      37.722,
+      -71.396,
+      43.722
+    ]
+  },
+  "madrid-esp": {
+    "nameEn": "Madrid",
+    "nameBn": "মাদ্রিদ",
+    "iso3": "ESP",
+    "countryBn": "স্পেন",
+    "at": [
+      -3.6853,
+      40.40197
+    ],
+    "frame": [
+      -6.285,
+      37.402,
+      -1.085,
+      43.402
+    ]
+  },
+  "nairobi-ken": {
+    "nameEn": "Nairobi",
+    "nameBn": "নাইরোবি",
+    "iso3": "KEN",
+    "countryBn": "কেনিয়া",
+    "at": [
+      36.81471,
+      -1.2814
+    ],
+    "frame": [
+      34.215,
+      -4.281,
+      39.415,
+      1.719
+    ]
+  },
+  "paris-fra": {
+    "nameEn": "Paris",
+    "nameBn": "প্যারিস",
+    "iso3": "FRA",
+    "countryBn": "ফ্রান্স",
+    "at": [
+      2.35299,
+      48.85809
+    ],
+    "frame": [
+      -0.247,
+      45.858,
+      4.953,
+      51.858
+    ]
+  },
+  "amman-jor": {
+    "nameEn": "Amman",
+    "nameBn": "আম্মান",
+    "iso3": "JOR",
+    "countryBn": "জর্ডান",
+    "at": [
+      35.93135,
+      31.95197
+    ],
+    "frame": [
+      33.331,
+      28.952,
+      38.531,
+      34.952
+    ]
+  },
+  "tokyo-jpn": {
+    "nameEn": "Tokyo",
+    "nameBn": "টোকিও",
+    "iso3": "JPN",
+    "countryBn": "জাপান",
+    "at": [
+      139.74946,
+      35.68696
+    ],
+    "frame": [
+      137.149,
+      32.687,
+      142.349,
+      38.687
+    ]
+  },
+  "bern-che": {
+    "nameEn": "Bern",
+    "nameBn": "বার্ন",
+    "iso3": "CHE",
+    "countryBn": "সুইজারল্যান্ড",
+    "at": [
+      7.46698,
+      46.91668
+    ],
+    "frame": [
+      4.867,
+      43.917,
+      10.067,
+      49.917
+    ]
+  },
+  "luxembourg-lux": {
+    "nameEn": "Luxembourg",
+    "nameBn": "লুক্সেমবার্গ",
+    "iso3": "LUX",
+    "countryBn": "লুক্সেমবার্গ",
+    "at": [
+      6.13,
+      49.61166
+    ],
+    "frame": [
+      3.53,
+      46.612,
+      8.73,
+      52.612
+    ]
+  },
+  "frankfurt-deu": {
+    "nameEn": "Frankfurt",
+    "nameBn": "ফ্রাঙ্কফুর্ট",
+    "iso3": "DEU",
+    "countryBn": "জার্মানি",
+    "at": [
+      8.67502,
+      50.09998
+    ],
+    "frame": [
+      6.075,
+      47.1,
+      11.275,
+      53.1
+    ]
+  },
+  "amsterdam-nld": {
+    "nameEn": "Amsterdam",
+    "nameBn": "আমস্টারডাম",
+    "iso3": "NLD",
+    "countryBn": "নেদারল্যান্ডস",
+    "at": [
+      4.91469,
+      52.35191
+    ],
+    "frame": [
+      2.315,
+      49.352,
+      7.515,
+      55.352
+    ]
+  },
+  "strasbourg-fra": {
+    "nameEn": "Strasbourg",
+    "nameBn": "স্ট্রাসবুর্গ",
+    "iso3": "FRA",
+    "countryBn": "ফ্রান্স",
+    "at": [
+      7.75001,
+      48.57997
+    ],
+    "frame": [
+      5.15,
+      45.58,
+      10.35,
+      51.58
+    ]
+  },
+  "brussels-bel": {
+    "nameEn": "Brussels",
+    "nameBn": "ব্রাসেলস",
+    "iso3": "BEL",
+    "countryBn": "বেলজিয়াম",
+    "at": [
+      4.33137,
+      50.83526
+    ],
+    "frame": [
+      1.731,
+      47.835,
+      6.931,
+      53.835
+    ]
+  },
+  "singapore-sgp": {
+    "nameEn": "Singapore",
+    "nameBn": "সিঙ্গাপুর",
+    "iso3": "SGP",
+    "countryBn": "সিঙ্গাপুর",
+    "at": [
+      103.85388,
+      1.29498
+    ],
+    "frame": [
+      101.254,
+      -1.705,
+      106.454,
+      4.295
+    ]
+  },
+  "cairo-egy": {
+    "nameEn": "Cairo",
+    "nameBn": "কায়রো",
+    "iso3": "EGY",
+    "countryBn": "মিশর",
+    "at": [
+      31.24802,
+      30.05191
+    ],
+    "frame": [
+      28.648,
+      27.052,
+      33.848,
+      33.052
+    ]
+  },
+  "jakarta-idn": {
+    "nameEn": "Jakarta",
+    "nameBn": "জাকার্তা",
+    "iso3": "IDN",
+    "countryBn": "ইন্দোনেশিয়া",
+    "at": [
+      106.82749,
+      -6.17247
+    ],
+    "frame": [
+      104.227,
+      -9.172,
+      109.427,
+      -3.172
+    ]
+  },
+  "addis-ababa-eth": {
+    "nameEn": "Addis Ababa",
+    "nameBn": "আদ্দিস আবাবা",
+    "iso3": "ETH",
+    "countryBn": "ইথিওপিয়া",
+    "at": [
+      38.69806,
+      9.03526
+    ],
+    "frame": [
+      36.098,
+      6.035,
+      41.298,
+      12.035
+    ]
+  },
+  "dhaka-bgd": {
+    "nameEn": "Dhaka",
+    "nameBn": "ঢাকা",
+    "iso3": "BGD",
+    "countryBn": "বাংলাদেশ",
+    "at": [
+      90.40663,
+      23.72501
+    ],
+    "frame": [
+      87.807,
+      20.725,
+      93.007,
+      26.725
+    ]
+  },
+  "georgetown-guy": {
+    "nameEn": "Georgetown",
+    "nameBn": "জর্জটাউন",
+    "iso3": "GUY",
+    "countryBn": "গায়ানা",
+    "at": [
+      -58.16703,
+      6.80197
+    ],
+    "frame": [
+      -60.767,
+      3.802,
+      -55.567,
+      9.802
+    ]
+  },
+  "astana-kaz": {
+    "nameEn": "Astana",
+    "nameBn": "আস্তানা",
+    "iso3": "KAZ",
+    "countryBn": "কাজাখস্তান",
+    "at": [
+      71.42777,
+      51.18113
+    ],
+    "frame": [
+      68.828,
+      48.181,
+      74.028,
+      54.181
+    ]
+  },
+  "minsk-blr": {
+    "nameEn": "Minsk",
+    "nameBn": "মিনস্ক",
+    "iso3": "BLR",
+    "countryBn": "বেলারুশ",
+    "at": [
+      27.56468,
+      53.90192
+    ],
+    "frame": [
+      24.965,
+      50.902,
+      30.165,
+      56.902
+    ]
+  },
+  "colombo-lka": {
+    "nameEn": "Colombo",
+    "nameBn": "কলম্বো",
+    "iso3": "LKA",
+    "countryBn": "শ্রীলঙ্কা",
+    "at": [
+      79.85775,
+      6.93197
+    ],
+    "frame": [
+      77.258,
+      3.932,
+      82.458,
+      9.932
+    ]
+  },
+  "moscow-rus": {
+    "nameEn": "Moscow",
+    "nameBn": "মস্কো",
+    "iso3": "RUS",
+    "countryBn": "রাশিয়া",
+    "at": [
+      37.61358,
+      55.75411
+    ],
+    "frame": [
+      35.014,
+      52.754,
+      40.214,
+      58.754
+    ]
+  },
+  "istanbul-tur": {
+    "nameEn": "Istanbul",
+    "nameBn": "ইস্তাম্বুল",
+    "iso3": "TUR",
+    "countryBn": "তুরস্ক",
+    "at": [
+      28.97428,
+      41.0176
+    ],
+    "frame": [
+      26.374,
+      38.018,
+      31.574,
+      44.018
+    ]
+  },
+  "tehran-irn": {
+    "nameEn": "Tehran",
+    "nameBn": "তেহরান",
+    "iso3": "IRN",
+    "countryBn": "ইরান",
+    "at": [
+      51.4224,
+      35.67389
+    ],
+    "frame": [
+      48.822,
+      32.674,
+      54.022,
+      38.674
+    ]
+  },
+  "abuja-nga": {
+    "nameEn": "Abuja",
+    "nameBn": "আবুজা",
+    "iso3": "NGA",
+    "countryBn": "নাইজেরিয়া",
+    "at": [
+      7.48951,
+      9.05462
+    ],
+    "frame": [
+      4.89,
+      6.055,
+      10.09,
+      12.055
+    ]
+  },
+  "riyadh-sau": {
+    "nameEn": "Riyadh",
+    "nameBn": "রিয়াদ",
+    "iso3": "SAU",
+    "countryBn": "সৌদি আরব",
+    "at": [
+      46.72049,
+      24.6345
+    ],
+    "frame": [
+      44.12,
+      21.634,
+      49.32,
+      27.634
+    ]
+  },
+  "kathmandu-npl": {
+    "nameEn": "Kathmandu",
+    "nameBn": "কাঠমান্ডু",
+    "iso3": "NPL",
+    "countryBn": "নেপাল",
+    "at": [
+      85.3147,
+      27.71864
+    ],
+    "frame": [
+      82.715,
+      24.719,
+      87.915,
+      30.719
+    ]
+  },
+  "ebene-mus": {
+    "nameEn": "Ebene",
+    "nameBn": "এবেনে",
+    "iso3": "MUS",
+    "countryBn": "মরিশাস",
+    "at": [
+      57.4823,
+      -20.24182
+    ],
+    "frame": [
+      54.882,
+      -23.242,
+      60.082,
+      -17.242
+    ]
+  },
+  "montevideo-ury": {
+    "nameEn": "Montevideo",
+    "nameBn": "মন্টেভিডিও",
+    "iso3": "URY",
+    "countryBn": "উরুগুয়ে",
+    "at": [
+      -56.18682,
+      -34.90538
+    ],
+    "frame": [
+      -58.787,
+      -37.905,
+      -53.587,
+      -31.905
+    ]
+  },
+  "washington-d-c-usa": {
+    "nameEn": "Washington, D.C.",
+    "nameBn": "ওয়াশিংটন ডি.সি.",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -77.01136,
+      38.90149
+    ],
+    "frame": [
+      -79.611,
+      35.901,
+      -74.411,
+      41.901
+    ]
+  },
+  "jeddah-sau": {
+    "nameEn": "Jeddah",
+    "nameBn": "জেদ্দা",
+    "iso3": "SAU",
+    "countryBn": "সৌদি আরব",
+    "at": [
+      39.21725,
+      21.51883
+    ],
+    "frame": [
+      36.617,
+      18.519,
+      41.817,
+      24.519
+    ]
+  },
+  "gaborone-bwa": {
+    "nameEn": "Gaborone",
+    "nameBn": "গ্যাবোরোন",
+    "iso3": "BWA",
+    "countryBn": "বতসোয়ানা",
+    "at": [
+      25.91195,
+      -24.64631
+    ],
+    "frame": [
+      23.312,
+      -27.646,
+      28.512,
+      -21.646
+    ]
+  },
+  "beijing-chn": {
+    "nameEn": "Beijing",
+    "nameBn": "বেইজিং",
+    "iso3": "CHN",
+    "countryBn": "চীন",
+    "at": [
+      116.3942,
+      39.90172
+    ],
+    "frame": [
+      113.794,
+      36.902,
+      118.994,
+      42.902
+    ]
+  },
+  "manila-phl": {
+    "nameEn": "Manila",
+    "nameBn": "ম্যানিলা",
+    "iso3": "PHL",
+    "countryBn": "ফিলিপাইন",
+    "at": [
+      120.98027,
+      14.6061
+    ],
+    "frame": [
+      118.38,
+      11.606,
+      123.58,
+      17.606
+    ]
+  },
+  "abidjan-civ": {
+    "nameEn": "Abidjan",
+    "nameBn": "আবিদজান",
+    "iso3": "CIV",
+    "countryBn": "আইভরি কোস্ট",
+    "at": [
+      -4.02021,
+      5.32313
+    ],
+    "frame": [
+      -6.62,
+      2.323,
+      -1.42,
+      8.323
+    ]
+  },
+  "basel-che": {
+    "nameEn": "Basel",
+    "nameBn": "বাসেল",
+    "iso3": "CHE",
+    "countryBn": "সুইজারল্যান্ড",
+    "at": [
+      7.59002,
+      47.58039
+    ],
+    "frame": [
+      4.99,
+      44.58,
+      10.19,
+      50.58
+    ]
+  },
+  "shanghai-chn": {
+    "nameEn": "Shanghai",
+    "nameBn": "সাংহাই",
+    "iso3": "CHN",
+    "countryBn": "চীন",
+    "at": [
+      121.43456,
+      31.2184
+    ],
+    "frame": [
+      118.835,
+      28.218,
+      124.035,
+      34.218
+    ]
+  },
+  "incheon-kor": {
+    "nameEn": "Incheon",
+    "nameBn": "ইনচন",
+    "iso3": "KOR",
+    "countryBn": "দক্ষিণ কোরিয়া",
+    "at": [
+      126.64029,
+      37.47809
+    ],
+    "frame": [
+      124.04,
+      34.478,
+      129.24,
+      40.478
+    ]
+  },
+  "abu-dhabi-are": {
+    "nameEn": "Abu Dhabi",
+    "nameBn": "আবুধাবি",
+    "iso3": "ARE",
+    "countryBn": "সংযুক্ত আরব আমিরাত",
+    "at": [
+      54.36659,
+      24.46668
+    ],
+    "frame": [
+      51.767,
+      21.467,
+      56.967,
+      27.467
+    ]
+  },
+  "gurugram-ind": {
+    "nameEn": "Gurugram",
+    "nameBn": "গুরুগ্রাম",
+    "iso3": "IND",
+    "countryBn": "ভারত",
+    "at": [
+      77.01999,
+      28.45001
+    ],
+    "frame": [
+      74.42,
+      25.45,
+      79.62,
+      31.45
+    ]
+  },
+  "gland-che": {
+    "nameEn": "Gland",
+    "nameBn": "গ্ল্যান্ড",
+    "iso3": "CHE",
+    "countryBn": "সুইজারল্যান্ড",
+    "at": [
+      6.26551,
+      46.42394
+    ],
+    "frame": [
+      3.666,
+      43.424,
+      8.866,
+      49.424
+    ]
+  },
+  "bonn-deu": {
+    "nameEn": "Bonn",
+    "nameBn": "বন",
+    "iso3": "DEU",
+    "countryBn": "জার্মানি",
+    "at": [
+      7.08002,
+      50.72046
+    ],
+    "frame": [
+      4.48,
+      47.72,
+      9.68,
+      53.72
+    ]
+  },
+  "berlin-deu": {
+    "nameEn": "Berlin",
+    "nameBn": "বার্লিন",
+    "iso3": "DEU",
+    "countryBn": "জার্মানি",
+    "at": [
+      13.3996,
+      52.52376
+    ],
+    "frame": [
+      10.8,
+      49.524,
+      16,
+      55.524
+    ]
+  },
+  "langley-virginia-usa": {
+    "nameEn": "Langley, Virginia",
+    "nameBn": "ল্যাংলি, ভার্জিনিয়া",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -77.15887,
+      38.9465
+    ],
+    "frame": [
+      -79.759,
+      35.947,
+      -74.559,
+      41.947
+    ]
+  },
+  "islamabad-pak": {
+    "nameEn": "Islamabad",
+    "nameBn": "ইসলামাবাদ",
+    "iso3": "PAK",
+    "countryBn": "পাকিস্তান",
+    "at": [
+      73.08063,
+      33.68937
+    ],
+    "frame": [
+      70.481,
+      30.689,
+      75.681,
+      36.689
+    ]
+  },
+  "tel-aviv-isr": {
+    "nameEn": "Tel Aviv",
+    "nameBn": "তেল আবিব",
+    "iso3": "ISR",
+    "countryBn": "ইসরায়েল",
+    "at": [
+      34.76807,
+      32.08194
+    ],
+    "frame": [
+      32.168,
+      29.082,
+      37.368,
+      35.082
+    ]
+  },
+  "fort-meade-maryland-usa": {
+    "nameEn": "Fort Meade, Maryland",
+    "nameBn": "ফোর্ট মিড, মেরিল্যান্ড",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -76.74125,
+      39.1027
+    ],
+    "frame": [
+      -79.341,
+      36.103,
+      -74.141,
+      42.103
+    ]
+  },
+  "new-delhi-ind": {
+    "nameEn": "New Delhi",
+    "nameBn": "নয়াদিল্লি",
+    "iso3": "IND",
+    "countryBn": "ভারত",
+    "at": [
+      77.19998,
+      28.60002
+    ],
+    "frame": [
+      74.6,
+      25.6,
+      79.8,
+      31.6
+    ]
+  },
+  "zurich-che": {
+    "nameEn": "Zurich",
+    "nameBn": "জুরিখ",
+    "iso3": "CHE",
+    "countryBn": "সুইজারল্যান্ড",
+    "at": [
+      8.54806,
+      47.38193
+    ],
+    "frame": [
+      5.948,
+      44.382,
+      11.148,
+      50.382
+    ]
+  },
+  "dubai-are": {
+    "nameEn": "Dubai",
+    "nameBn": "দুবাই",
+    "iso3": "ARE",
+    "countryBn": "সংযুক্ত আরব আমিরাত",
+    "at": [
+      55.28695,
+      25.21491
+    ],
+    "frame": [
+      52.687,
+      22.215,
+      57.887,
+      28.215
+    ]
+  },
+  "lausanne-che": {
+    "nameEn": "Lausanne",
+    "nameBn": "লুজান",
+    "iso3": "CHE",
+    "countryBn": "সুইজারল্যান্ড",
+    "at": [
+      6.65002,
+      46.53043
+    ],
+    "frame": [
+      4.05,
+      43.53,
+      9.25,
+      49.53
+    ]
+  },
+  "nyon-che": {
+    "nameEn": "Nyon",
+    "nameBn": "নিয়ন",
+    "iso3": "CHE",
+    "countryBn": "সুইজারল্যান্ড",
+    "at": [
+      6.24028,
+      46.38206
+    ],
+    "frame": [
+      3.64,
+      43.382,
+      8.84,
+      49.382
+    ]
+  },
+  "lyon-fra": {
+    "nameEn": "Lyon",
+    "nameBn": "লিওঁ",
+    "iso3": "FRA",
+    "countryBn": "ফ্রান্স",
+    "at": [
+      4.82808,
+      45.77195
+    ],
+    "frame": [
+      2.228,
+      42.772,
+      7.428,
+      48.772
+    ]
+  },
+  "kuwait-city-kwt": {
+    "nameEn": "Kuwait City",
+    "nameBn": "কুয়েত সিটি",
+    "iso3": "KWT",
+    "countryBn": "কুয়েত",
+    "at": [
+      47.97635,
+      29.37166
+    ],
+    "frame": [
+      45.376,
+      26.372,
+      50.576,
+      32.372
+    ]
+  },
+  "evanston-illinois-usa": {
+    "nameEn": "Evanston, Illinois",
+    "nameBn": "এভানস্টন, ইলিনয়",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -87.69996,
+      42.04835
+    ],
+    "frame": [
+      -90.3,
+      39.048,
+      -85.1,
+      45.048
+    ]
+  },
+  "cologny-che": {
+    "nameEn": "Cologny",
+    "nameBn": "কোলোনি (জেনেভা)",
+    "iso3": "CHE",
+    "countryBn": "সুইজারল্যান্ড",
+    "at": [
+      6.18176,
+      46.2164
+    ],
+    "frame": [
+      3.582,
+      43.216,
+      8.782,
+      49.216
+    ]
+  }
+}

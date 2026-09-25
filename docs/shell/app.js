@@ -633,9 +633,15 @@ function markerApplies(spec, row) {
   return Object.entries(rule.when).every(([field, value]) => row[field] === value);
 }
 
+/*
+ * ONE marker, however many sources ask for it: only one record is selected at
+ * a time, so there is only ever one place to pulse. Each source that declares
+ * selectionMarker says where its table's records sit; the marker goes to the
+ * one whose table holds the selection.
+ */
 function markerFor() {
-  const withMarker = Object.entries(sourceSpecs).find(([, spec]) => spec.selectionMarker);
-  if (!withMarker) return null;
+  const withMarker = Object.values(sourceSpecs).filter((spec) => spec.selectionMarker);
+  if (!withMarker.length) return null;
   const element = own.node(document.createElement('button'), 'selection marker');
   element.type = 'button';
   element.className = 'selection-marker';
@@ -645,7 +651,18 @@ function markerFor() {
     event.stopPropagation();
     setSheetOpen(true);
   });
-  return { instance: own.marker(new maplibregl.Marker({ element }), 'selection'), source: withMarker[0], spec: withMarker[1] };
+  return { instance: own.marker(new maplibregl.Marker({ element }), 'selection'), specs: withMarker };
+}
+
+function placeMarker(table, key) {
+  if (!marker) return;
+  const row = records[table][key];
+  const spec = marker.specs.find((s) => s.records === table);
+  const point = spec ? row[spec.geometryFrom] : null;
+  // Taken off the map for a record it does not apply to, so selecting a
+  // traced line after a marked one does not leave a pulse behind.
+  if (point && markerApplies(spec, row)) marker.instance.setLngLat(point).addTo(map);
+  else marker.instance.remove();
 }
 
 function runActions(actions, context) {
@@ -657,19 +674,22 @@ function runActions(actions, context) {
 }
 
 function doSelect({ table, key }) {
+  // One selection at a time. The sheet shows one record, so a record from
+  // another table replaces it — its state is cleared, not left lit behind.
+  for (const other of [...selection.keys()]) {
+    if (other === table) continue;
+    selection.delete(other);
+    refresh(other);
+  }
   selection.set(table, key);
   refresh(table);
+  // A selection the picker does not list puts the picker back to its prompt,
+  // so it never names a record the sheet is not showing.
   if (dom.picker.dataset.table === table) dom.picker.value = key;
+  else if (dom.picker.dataset.table) dom.picker.value = '';
   syncStepButtons();
-  if (marker && marker.spec.records === table) {
-    const row = records[table][key];
-    const point = row[marker.spec.geometryFrom];
-    // Taken off the map for a record it does not apply to, so selecting a
-    // traced line after a marked one does not leave a pulse behind.
-    if (point && markerApplies(marker.spec, row)) marker.instance.setLngLat(point).addTo(map);
-    else marker.instance.remove();
-  }
-  if (descriptor.sheet) {
+  placeMarker(table, key);
+  if (sheetFor(table)) {
     fillSheet(table, key);
     setSheetOpen(true);
   }
@@ -749,13 +769,35 @@ function paddingFor(clear) {
 |--------------------------------------------------------------------------
 */
 
+/*
+ * The tap target is a finger wide, so two points a few pixels apart are both
+ * under it — Geneva and Cologny are at frame zoom. The one nearest the finger
+ * wins, not whichever the renderer happened to list first. Lines and areas
+ * have no single point to measure, so they keep the renderer's order.
+ */
+function nearest(features, point) {
+  if (!features?.length) return null;
+  let best = features[0];
+  let bestDistance = Infinity;
+  for (const candidate of features) {
+    if (candidate.geometry?.type !== 'Point') continue;
+    const at = map.project(candidate.geometry.coordinates);
+    const distance = Math.hypot(at.x - point.x, at.y - point.y);
+    if (distance < bestDistance) {
+      best = candidate;
+      bestDistance = distance;
+    }
+  }
+  return best;
+}
+
 for (const interaction of interactions) {
   const source = targetSource(interaction.target);
   if (!source) throw new Error(`interaction target "${interaction.target}" is not a source`);
   const spec = sourceSpecs[source];
 
   own.mapHandler(map, interaction.on, hitLayerId(source), async (event) => {
-    const feature = event.features?.[0];
+    const feature = nearest(event.features, event.point);
     if (!feature) return;
 
     // Cluster tap is the shell's, not the descriptor's: expanding a cluster is
@@ -912,15 +954,30 @@ function swatchColour(token) {
 |--------------------------------------------------------------------------
 */
 
+/*
+ * `sheet` is the card for a map that selects from one table. `sheets` is the
+ * same card keyed by records table, for a map where more than one table can
+ * be selected — each table gets its own title and rows.
+ */
+const sheetFor = (table) => (descriptor.sheets ? descriptor.sheets[table] : descriptor.sheet) ?? null;
+const hasSheet = Boolean(descriptor.sheet || descriptor.sheets);
+
 function fillSheet(table, key) {
-  const sheet = descriptor.sheet;
+  const sheet = sheetFor(table);
   const row = records[table][key];
   dom.sheet.hidden = false;
-  dom.kicker.textContent = valueOf(sheet.kicker, row) ?? '';
+  const kicker = valueOf(sheet.kicker, row) ?? '';
+  dom.kicker.textContent = kicker;
+  dom.kicker.hidden = kicker === '';
   dom.sheetTitle.textContent = valueOf(sheet.title, row) ?? '';
 
   dom.rows.replaceChildren();
-  for (const spec of sheet.rows ?? []) {
+  for (const [index, spec] of (sheet.rows ?? []).entries()) {
+    if (spec.referencedBy) {
+      const list = referencedByRow(spec, index, key);
+      if (list) dom.rows.appendChild(list);
+      continue;
+    }
     const value = valueOf(spec, row);
     // A null value hides the row, uniformly, whichever mechanism produced it.
     if (value === null || value === undefined || value === '') continue;
@@ -937,6 +994,45 @@ function fillSheet(table, key) {
     line.append(label, text);
     dom.rows.appendChild(line);
   }
+}
+
+/**
+ * The reverse of a `refs` field: every record of `referencedBy.records` whose
+ * `listField` lists this key, in that table's own order — the organisations a
+ * city hosts, read off the organisations' own `cities` field. Same shape as
+ * fromSelection, pointed the other way. Each is a button that runs the row's
+ * `do` on that record. No record, no row: an empty list hides like a null.
+ */
+function referencedByRow(spec, index, key) {
+  const { records: from, listField } = spec.referencedBy;
+  const table = records[from] ?? {};
+  const keys = Object.keys(table).filter((k) => (table[k][listField] ?? []).includes(key));
+  if (!keys.length) return null;
+  const line = document.createElement('div');
+  line.className = 'info-row info-row-list';
+  if (spec.label) {
+    const label = document.createElement('span');
+    label.className = 'info-label';
+    label.lang = 'bn';
+    label.textContent = spec.label;
+    line.appendChild(label);
+  }
+  const list = document.createElement('ul');
+  list.className = 'info-list';
+  for (const k of keys) {
+    const item = document.createElement('li');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'info-link';
+    button.lang = 'bn';
+    button.dataset.row = String(index);
+    button.dataset.key = k;
+    button.textContent = valueOf(spec.item, table[k]) ?? '';
+    item.appendChild(button);
+    list.appendChild(item);
+  }
+  line.appendChild(list);
+  return line;
 }
 
 /** field | lookup | compose — the three mechanisms, and nothing else. */
@@ -992,7 +1088,17 @@ function setSheetOpen(open) {
   applySheetOffset(sheetOpen ? 0 : closedOffset());
 }
 
-if (descriptor.sheet) {
+if (hasSheet) {
+  // One handler for every list button, however often the rows are rebuilt:
+  // a handler per button would grow the teardown registry on every fill.
+  own.domHandler(dom.rows, 'click', (event) => {
+    const button = event.target.closest('.info-link');
+    if (!button) return;
+    const table = [...selection.keys()][0];
+    const spec = sheetFor(table)?.rows?.[Number(button.dataset.row)];
+    if (spec?.referencedBy) runActions(spec.do, { table: spec.referencedBy.records, key: button.dataset.key });
+  });
+
   own.domHandler(dom.sheetHandle, 'click', (event) => {
     if (event.timeStamp - lastDragEnd < 400) return;
     setSheetOpen(!sheetOpen);
@@ -1035,6 +1141,9 @@ if (descriptor.sheet) {
 
   own.domHandler(dom.sheet, 'pointerdown', (event) => {
     if (event.button !== 0 || selection.size === 0) return;
+    // A list long enough to scroll scrolls; it does not drag the sheet.
+    const list = event.target.closest('.info-list');
+    if (list && list.scrollHeight > list.clientHeight) return;
     drag = { id: event.pointerId, startY: event.clientY, startOffset: sheetOffset, lastY: event.clientY, lastT: event.timeStamp, velocity: 0, moved: false };
     window.addEventListener('pointermove', onDragMove);
     window.addEventListener('pointerup', endDrag);
@@ -1127,7 +1236,7 @@ own.mapHandler(map, 'error', (event) => {
 
 own.domHandler(window, 'resize', () => map.resize());
 
-if (descriptor.sheet) setSheetOpen(false);
+if (hasSheet) setSheetOpen(false);
 
 /*
 |--------------------------------------------------------------------------

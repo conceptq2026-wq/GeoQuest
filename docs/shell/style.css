@@ -290,6 +290,51 @@ body {
   color: #5b6878;
 }
 
+/* display: block above would otherwise override the hidden attribute. */
+.info-kicker[hidden] {
+  display: none;
+}
+
+/*
+ * A list of related records — the organisations one city hosts. Full width
+ * rather than in the value column: each entry is a whole name, and a name is
+ * wrapped, never truncated. Capped and scrolled so a long list cannot push
+ * the map out from under the sheet.
+ */
+.info-row-list {
+  display: block;
+}
+
+.info-list {
+  max-height: 32vh;
+  margin: 4px 0 0;
+  padding: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  list-style: none;
+}
+
+.info-link {
+  display: block;
+  width: 100%;
+  padding: 7px 0;
+  border: 0;
+  border-bottom: 1px solid #e6ecf2;
+  background: none;
+  color: #0b3d91;
+  font-family: 'Noto Sans Bengali', Inter, system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.45;
+  text-align: left;
+  cursor: pointer;
+}
+
+.info-list li:last-child .info-link {
+  border-bottom: 0;
+}
+
 .info-value {
   color: #13233a;
   font-weight: 600;

@@ -45,6 +45,10 @@
       "ne_10m_lakes.geojson": {
         "size": 5043554,
         "gitBlobSha1": "e48ec603e0943b62f8c81960fb990bb6bab4a4a8"
+      },
+      "ne_10m_populated_places_simple.geojson": {
+        "size": 4932147,
+        "gitBlobSha1": "4da9c6b27b5cd41d7c930ea9cd0c1f84548b65fb"
       }
     }
   },
@@ -87,5 +91,20 @@
     "fetched": "2026-09-21",
     "licence": "ODbL 1.0 — © OpenStreetMap contributors",
     "sha256": "806c8ec0a47e5fa9b2373976687d3a9ace3040ff134dabca2878a2301d068f55"
+  },
+  "osmPlaces": {
+    "_comment": "Snapshot of the OpenStreetMap place nodes for headquarters towns too small for Natural Earth populated places, made by extract-osm-places.mjs and committed. Each is a place=* node found by name inside a tight bbox, never by bare name. The build refuses a file whose checksum differs.",
+    "file": "tools/sources/osm-places.geojson",
+    "queries": {
+      "Gland|CHE": "[out:json][timeout:60];node[\"place\"][\"name\"=\"Gland\"](46.38,6.22,46.46,6.32);out body;",
+      "Nyon|CHE": "[out:json][timeout:60];node[\"place\"][\"name\"=\"Nyon\"](46.35,6.2,46.42,6.28);out body;",
+      "Cologny|CHE": "[out:json][timeout:60];node[\"place\"][\"name\"=\"Cologny\"](46.2,6.16,46.24,6.21);out body;",
+      "Ebene|MUS": "[out:json][timeout:60];node[\"place\"][\"name\"~\"^[EÉ]b[eè]ne$\"](-20.3,57.45,-20.2,57.53);out body;",
+      "Langley, Virginia|USA": "[out:json][timeout:60];node[\"place\"][\"name\"=\"Langley\"](38.9,-77.22,39,-77.1);out body;",
+      "Fort Meade, Maryland|USA": "[out:json][timeout:60];node[\"place\"][\"name\"=\"Fort Meade\"](39.05,-76.8,39.15,-76.68);out body;"
+    },
+    "fetched": "2026-09-25",
+    "licence": "ODbL 1.0 — © OpenStreetMap contributors",
+    "sha256": "9bb7efcd7362d009d138a8b7e57f1bbb8fbc1df4f72799e7948ad2f0e3a80197"
   }
 }

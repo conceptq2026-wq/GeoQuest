@@ -1,0 +1,1894 @@
+{
+  "ctbto": {
+    "id": "ctbto",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "CTBTO",
+    "nameBn": "সমন্বিত পারমাণবিক পরীক্ষা নিষিদ্ধকরণ চুক্তি সংস্থা (সিটিবিটিও)",
+    "cityBn": "ভিয়েনা",
+    "countryBn": "অস্ট্রিয়া",
+    "nameEn": "Comprehensive Nuclear-Test-Ban Treaty Organization",
+    "cityEn": "Vienna",
+    "iso3": "AUT",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "fao": {
+    "id": "fao",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "FAO",
+    "nameBn": "খাদ্য ও কৃষি সংস্থা (এফএও)",
+    "cityBn": "রোম",
+    "countryBn": "ইতালি",
+    "nameEn": "Food and Agriculture Organization",
+    "cityEn": "Rome",
+    "iso3": "ITA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "iaea": {
+    "id": "iaea",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "IAEA",
+    "nameBn": "আন্তর্জাতিক পরমাণু শক্তি সংস্থা (আইএইএ)",
+    "cityBn": "ভিয়েনা",
+    "countryBn": "অস্ট্রিয়া",
+    "nameEn": "International Atomic Energy Agency",
+    "cityEn": "Vienna",
+    "iso3": "AUT",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "icao": {
+    "id": "icao",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "ICAO",
+    "nameBn": "আন্তর্জাতিক বেসামরিক বিমান চলাচল সংস্থা (ইকাও)",
+    "cityBn": "মন্ট্রিল",
+    "countryBn": "কানাডা",
+    "nameEn": "International Civil Aviation Organization",
+    "cityEn": "Montreal",
+    "iso3": "CAN",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "icj": {
+    "id": "icj",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "ICJ",
+    "nameBn": "আন্তর্জাতিক বিচার আদালত",
+    "cityBn": "দ্য হেগ",
+    "countryBn": "নেদারল্যান্ডস",
+    "nameEn": "International Court of Justice",
+    "cityEn": "The Hague",
+    "iso3": "NLD",
+    "noteBn": "জাতিসংঘের একমাত্র প্রধান অঙ্গ যার সদর দপ্তর নিউইয়র্কের বাইরে",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "ifad": {
+    "id": "ifad",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "IFAD",
+    "nameBn": "আন্তর্জাতিক কৃষি উন্নয়ন তহবিল (ইফাদ)",
+    "cityBn": "রোম",
+    "countryBn": "ইতালি",
+    "nameEn": "International Fund for Agricultural Development",
+    "cityEn": "Rome",
+    "iso3": "ITA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "ilo": {
+    "id": "ilo",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "ILO",
+    "nameBn": "আন্তর্জাতিক শ্রম সংস্থা (আইএলও)",
+    "cityBn": "জেনেভা",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "International Labour Organization",
+    "cityEn": "Geneva",
+    "iso3": "CHE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "imo": {
+    "id": "imo",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "IMO",
+    "nameBn": "আন্তর্জাতিক সমুদ্র সংস্থা (আইএমও)",
+    "cityBn": "লন্ডন",
+    "countryBn": "যুক্তরাজ্য",
+    "nameEn": "International Maritime Organization",
+    "cityEn": "London",
+    "iso3": "GBR",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "iom": {
+    "id": "iom",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "IOM",
+    "nameBn": "আন্তর্জাতিক অভিবাসন সংস্থা (আইওএম)",
+    "cityBn": "জেনেভা",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "International Organization for Migration",
+    "cityEn": "Geneva",
+    "iso3": "CHE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "itu": {
+    "id": "itu",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "ITU",
+    "nameBn": "আন্তর্জাতিক টেলিযোগাযোগ ইউনিয়ন (আইটিইউ)",
+    "cityBn": "জেনেভা",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "International Telecommunication Union",
+    "cityEn": "Geneva",
+    "iso3": "CHE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "ohchr": {
+    "id": "ohchr",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "OHCHR",
+    "nameBn": "জাতিসংঘ মানবাধিকার হাইকমিশনারের কার্যালয়",
+    "cityBn": "জেনেভা",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "UN High Commissioner for Human Rights",
+    "cityEn": "Geneva",
+    "iso3": "CHE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "opcw": {
+    "id": "opcw",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "OPCW",
+    "nameBn": "রাসায়নিক অস্ত্র নিষিদ্ধকরণ সংস্থা (ওপিসিডব্লিউ)",
+    "cityBn": "দ্য হেগ",
+    "countryBn": "নেদারল্যান্ডস",
+    "nameEn": "Organisation for the Prohibition of Chemical Weapons",
+    "cityEn": "The Hague",
+    "iso3": "NLD",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "un": {
+    "id": "un",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "UN",
+    "nameBn": "জাতিসংঘ",
+    "cityBn": "নিউইয়র্ক",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "United Nations",
+    "cityEn": "New York",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "untourism": {
+    "id": "untourism",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "UN Tourism",
+    "nameBn": "জাতিসংঘ পর্যটন সংস্থা",
+    "cityBn": "মাদ্রিদ",
+    "countryBn": "স্পেন",
+    "nameEn": "UN Tourism",
+    "cityEn": "Madrid",
+    "iso3": "ESP",
+    "sources": {
+      "cityBn": [
+        {
+          "title": "UN Tourism — official site",
+          "publisher": "UN Tourism",
+          "url": "https://www.untourism.int/",
+          "states": "Headquarters address in the site footer: Calle Poeta Joan Maragall 42, 28020 Madrid, Spain."
+        }
+      ]
+    }
+  },
+  "unwomen": {
+    "id": "unwomen",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "UN Women",
+    "nameBn": "ইউএন উইমেন",
+    "cityBn": "নিউইয়র্ক",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "UN Women",
+    "cityEn": "New York",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "unhabitat": {
+    "id": "unhabitat",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "UN-Habitat",
+    "nameBn": "জাতিসংঘ মানব বসতি কর্মসূচি (ইউএন-হ্যাবিট্যাট)",
+    "cityBn": "নাইরোবি",
+    "countryBn": "কেনিয়া",
+    "nameEn": "UN Human Settlements Programme",
+    "cityEn": "Nairobi",
+    "iso3": "KEN",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "unaids": {
+    "id": "unaids",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "UNAIDS",
+    "nameBn": "ইউএনএইডস",
+    "cityBn": "জেনেভা",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "Joint UN Programme on HIV/AIDS",
+    "cityEn": "Geneva",
+    "iso3": "CHE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "unctad": {
+    "id": "unctad",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "UNCTAD",
+    "nameBn": "জাতিসংঘ বাণিজ্য ও উন্নয়ন সম্মেলন (আঙ্কটাড)",
+    "cityBn": "জেনেভা",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "UN Conference on Trade and Development",
+    "cityEn": "Geneva",
+    "iso3": "CHE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "undp": {
+    "id": "undp",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "UNDP",
+    "nameBn": "জাতিসংঘ উন্নয়ন কর্মসূচি (ইউএনডিপি)",
+    "cityBn": "নিউইয়র্ক",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "United Nations Development Programme",
+    "cityEn": "New York",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "unesco": {
+    "id": "unesco",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "UNESCO",
+    "nameBn": "ইউনেস্কো",
+    "cityBn": "প্যারিস",
+    "countryBn": "ফ্রান্স",
+    "nameEn": "UN Educational, Scientific and Cultural Organization",
+    "cityEn": "Paris",
+    "iso3": "FRA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "unfpa": {
+    "id": "unfpa",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "UNFPA",
+    "nameBn": "জাতিসংঘ জনসংখ্যা তহবিল (ইউএনএফপিএ)",
+    "cityBn": "নিউইয়র্ক",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "United Nations Population Fund",
+    "cityEn": "New York",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "unhcr": {
+    "id": "unhcr",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "UNHCR",
+    "nameBn": "জাতিসংঘ শরণার্থী বিষয়ক হাইকমিশনার (ইউএনএইচসিআর)",
+    "cityBn": "জেনেভা",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "UN High Commissioner for Refugees",
+    "cityEn": "Geneva",
+    "iso3": "CHE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "unicef": {
+    "id": "unicef",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "UNICEF",
+    "nameBn": "জাতিসংঘ শিশু তহবিল (ইউনিসেফ)",
+    "cityBn": "নিউইয়র্ক",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "United Nations Children's Fund",
+    "cityEn": "New York",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "unido": {
+    "id": "unido",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "UNIDO",
+    "nameBn": "জাতিসংঘ শিল্প উন্নয়ন সংস্থা (ইউনিডো)",
+    "cityBn": "ভিয়েনা",
+    "countryBn": "অস্ট্রিয়া",
+    "nameEn": "UN Industrial Development Organization",
+    "cityEn": "Vienna",
+    "iso3": "AUT",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "unodc": {
+    "id": "unodc",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "UNODC",
+    "nameBn": "জাতিসংঘ মাদক ও অপরাধ বিষয়ক কার্যালয়",
+    "cityBn": "ভিয়েনা",
+    "countryBn": "অস্ট্রিয়া",
+    "nameEn": "UN Office on Drugs and Crime",
+    "cityEn": "Vienna",
+    "iso3": "AUT",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "unog": {
+    "id": "unog",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "UNOG",
+    "nameBn": "জাতিসংঘের জেনেভা কার্যালয়",
+    "cityBn": "জেনেভা",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "United Nations Office at Geneva",
+    "cityEn": "Geneva",
+    "iso3": "CHE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "unon": {
+    "id": "unon",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "UNON",
+    "nameBn": "জাতিসংঘের নাইরোবি কার্যালয়",
+    "cityBn": "নাইরোবি",
+    "countryBn": "কেনিয়া",
+    "nameEn": "United Nations Office at Nairobi",
+    "cityEn": "Nairobi",
+    "iso3": "KEN",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "unov": {
+    "id": "unov",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "UNOV",
+    "nameBn": "জাতিসংঘের ভিয়েনা কার্যালয়",
+    "cityBn": "ভিয়েনা",
+    "countryBn": "অস্ট্রিয়া",
+    "nameEn": "United Nations Office at Vienna",
+    "cityEn": "Vienna",
+    "iso3": "AUT",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "unrwa": {
+    "id": "unrwa",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "UNRWA",
+    "nameBn": "জাতিসংঘ ফিলিস্তিনি শরণার্থী ত্রাণ ও কর্মসংস্থান সংস্থা",
+    "cityBn": "আম্মান",
+    "countryBn": "জর্ডান",
+    "nameEn": "UN Relief and Works Agency for Palestine Refugees",
+    "cityEn": "Amman",
+    "iso3": "JOR",
+    "noteBn": "সদর দপ্তর দুটি: আম্মান ও গাজা",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "unu": {
+    "id": "unu",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "UNU",
+    "nameBn": "জাতিসংঘ বিশ্ববিদ্যালয়",
+    "cityBn": "টোকিও",
+    "countryBn": "জাপান",
+    "nameEn": "United Nations University",
+    "cityEn": "Tokyo",
+    "iso3": "JPN",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "upu": {
+    "id": "upu",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "UPU",
+    "nameBn": "বিশ্ব ডাক ইউনিয়ন (ইউপিইউ)",
+    "cityBn": "বার্ন",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "Universal Postal Union",
+    "cityEn": "Bern",
+    "iso3": "CHE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "wfp": {
+    "id": "wfp",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "WFP",
+    "nameBn": "বিশ্ব খাদ্য কর্মসূচি",
+    "cityBn": "রোম",
+    "countryBn": "ইতালি",
+    "nameEn": "World Food Programme",
+    "cityEn": "Rome",
+    "iso3": "ITA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "who": {
+    "id": "who",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "WHO",
+    "nameBn": "বিশ্ব স্বাস্থ্য সংস্থা",
+    "cityBn": "জেনেভা",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "World Health Organization",
+    "cityEn": "Geneva",
+    "iso3": "CHE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "wipo": {
+    "id": "wipo",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "WIPO",
+    "nameBn": "বিশ্ব মেধাসম্পদ সংস্থা (ওয়াইপো)",
+    "cityBn": "জেনেভা",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "World Intellectual Property Organization",
+    "cityEn": "Geneva",
+    "iso3": "CHE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "wmo": {
+    "id": "wmo",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "WMO",
+    "nameBn": "বিশ্ব আবহাওয়া সংস্থা",
+    "cityBn": "জেনেভা",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "World Meteorological Organization",
+    "cityEn": "Geneva",
+    "iso3": "CHE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "wto": {
+    "id": "wto",
+    "category": "জাতিসংঘ",
+    "pickerLabel": "WTO",
+    "nameBn": "বিশ্ব বাণিজ্য সংস্থা",
+    "cityBn": "জেনেভা",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "World Trade Organization",
+    "cityEn": "Geneva",
+    "iso3": "CHE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "cjeu": {
+    "id": "cjeu",
+    "category": "ইউরোপীয় ইউনিয়ন",
+    "pickerLabel": "CJEU",
+    "nameBn": "ইউরোপীয় ইউনিয়নের বিচার আদালত",
+    "cityBn": "লুক্সেমবার্গ",
+    "countryBn": "লুক্সেমবার্গ",
+    "nameEn": "Court of Justice of the European Union",
+    "cityEn": "Luxembourg",
+    "iso3": "LUX",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "ecb": {
+    "id": "ecb",
+    "category": "ইউরোপীয় ইউনিয়ন",
+    "pickerLabel": "ECB",
+    "nameBn": "ইউরোপীয় কেন্দ্রীয় ব্যাংক",
+    "cityBn": "ফ্রাঙ্কফুর্ট",
+    "countryBn": "জার্মানি",
+    "nameEn": "European Central Bank",
+    "cityEn": "Frankfurt",
+    "iso3": "DEU",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "ema": {
+    "id": "ema",
+    "category": "ইউরোপীয় ইউনিয়ন",
+    "pickerLabel": "EMA",
+    "nameBn": "ইউরোপীয় ঔষধ সংস্থা",
+    "cityBn": "আমস্টারডাম",
+    "countryBn": "নেদারল্যান্ডস",
+    "nameEn": "European Medicines Agency",
+    "cityEn": "Amsterdam",
+    "iso3": "NLD",
+    "noteBn": "২০১৯-এ ব্রেক্সিটের কারণে লন্ডন থেকে স্থানান্তর",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "europarl": {
+    "id": "europarl",
+    "category": "ইউরোপীয় ইউনিয়ন",
+    "pickerLabel": "EP",
+    "nameBn": "ইউরোপীয় পার্লামেন্ট",
+    "cityBn": "স্ট্রাসবুর্গ",
+    "countryBn": "ফ্রান্স",
+    "nameEn": "European Parliament",
+    "cityEn": "Strasbourg",
+    "iso3": "FRA",
+    "noteBn": "দাপ্তরিক আসন স্ট্রাসবুর্গ; ব্রাসেলস ও লুক্সেমবার্গেও কার্যালয়",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "eu": {
+    "id": "eu",
+    "category": "ইউরোপীয় ইউনিয়ন",
+    "pickerLabel": "EU",
+    "nameBn": "ইউরোপীয় ইউনিয়ন (ইউরোপীয় কমিশন)",
+    "cityBn": "ব্রাসেলস",
+    "countryBn": "বেলজিয়াম",
+    "nameEn": "European Union (European Commission)",
+    "cityEn": "Brussels",
+    "iso3": "BEL",
+    "noteBn": "একক সদর দপ্তর নেই; কমিশন ও কাউন্সিল ব্রাসেলসে, তাই পরীক্ষার উত্তর ব্রাসেলস",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "europol": {
+    "id": "europol",
+    "category": "ইউরোপীয় ইউনিয়ন",
+    "pickerLabel": "Europol",
+    "nameBn": "ইউরোপোল",
+    "cityBn": "দ্য হেগ",
+    "countryBn": "নেদারল্যান্ডস",
+    "nameEn": "Europol",
+    "cityEn": "The Hague",
+    "iso3": "NLD",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "apec": {
+    "id": "apec",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "APEC",
+    "nameBn": "অ্যাপেক",
+    "cityBn": "সিঙ্গাপুর",
+    "countryBn": "সিঙ্গাপুর",
+    "nameEn": "Asia-Pacific Economic Cooperation",
+    "cityEn": "Singapore",
+    "iso3": "SGP",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "arableague": {
+    "id": "arableague",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "Arab League",
+    "nameBn": "আরব লীগ",
+    "cityBn": "কায়রো",
+    "countryBn": "মিশর",
+    "nameEn": "League of Arab States",
+    "cityEn": "Cairo",
+    "iso3": "EGY",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "asean": {
+    "id": "asean",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "ASEAN",
+    "nameBn": "আসিয়ান",
+    "cityBn": "জাকার্তা",
+    "countryBn": "ইন্দোনেশিয়া",
+    "nameEn": "Association of Southeast Asian Nations",
+    "cityEn": "Jakarta",
+    "iso3": "IDN",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "au": {
+    "id": "au",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "AU",
+    "nameBn": "আফ্রিকান ইউনিয়ন",
+    "cityBn": "আদ্দিস আবাবা",
+    "countryBn": "ইথিওপিয়া",
+    "nameEn": "African Union",
+    "cityEn": "Addis Ababa",
+    "iso3": "ETH",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "bimstec": {
+    "id": "bimstec",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "BIMSTEC",
+    "nameBn": "বিমসটেক",
+    "cityBn": "ঢাকা",
+    "countryBn": "বাংলাদেশ",
+    "nameEn": "Bay of Bengal Initiative for Multi-Sectoral Technical and Economic Cooperation",
+    "cityEn": "Dhaka",
+    "iso3": "BGD",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "caricom": {
+    "id": "caricom",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "CARICOM",
+    "nameBn": "ক্যারিকম",
+    "cityBn": "জর্জটাউন",
+    "countryBn": "গায়ানা",
+    "nameEn": "Caribbean Community",
+    "cityEn": "Georgetown",
+    "iso3": "GUY",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "cica": {
+    "id": "cica",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "CICA",
+    "nameBn": "সিকা",
+    "cityBn": "আস্তানা",
+    "countryBn": "কাজাখস্তান",
+    "nameEn": "Conference on Interaction and Confidence-Building Measures in Asia",
+    "cityEn": "Astana",
+    "iso3": "KAZ",
+    "sources": {
+      "cityBn": [
+        {
+          "title": "CICA — official site",
+          "publisher": "Conference on Interaction and Confidence-Building Measures in Asia",
+          "url": "https://www.s-cica.org/",
+          "states": "Secretariat address: 3/1, E669 str., Astana, Republic of Kazakhstan."
+        }
+      ]
+    }
+  },
+  "cirdap": {
+    "id": "cirdap",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "CIRDAP",
+    "nameBn": "সিরডাপ",
+    "cityBn": "ঢাকা",
+    "countryBn": "বাংলাদেশ",
+    "nameEn": "Centre on Integrated Rural Development for Asia and the Pacific",
+    "cityEn": "Dhaka",
+    "iso3": "BGD",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "cis": {
+    "id": "cis",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "CIS",
+    "nameBn": "স্বাধীন রাষ্ট্রসমূহের কমনওয়েলথ (সিআইএস)",
+    "cityBn": "মিনস্ক",
+    "countryBn": "বেলারুশ",
+    "nameEn": "Commonwealth of Independent States",
+    "cityEn": "Minsk",
+    "iso3": "BLR",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "coe": {
+    "id": "coe",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "CoE",
+    "nameBn": "কাউন্সিল অব ইউরোপ",
+    "cityBn": "স্ট্রাসবুর্গ",
+    "countryBn": "ফ্রান্স",
+    "nameEn": "Council of Europe",
+    "cityEn": "Strasbourg",
+    "iso3": "FRA",
+    "noteBn": "ইইউ-র অংশ নয় — পরীক্ষায় প্রায়ই গুলিয়ে ফেলা হয়",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "colomboplan": {
+    "id": "colomboplan",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "Colombo Plan",
+    "nameBn": "কলম্বো প্ল্যান",
+    "cityBn": "কলম্বো",
+    "countryBn": "শ্রীলঙ্কা",
+    "nameEn": "Colombo Plan",
+    "cityEn": "Colombo",
+    "iso3": "LKA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "commonwealth": {
+    "id": "commonwealth",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "Commonwealth",
+    "nameBn": "কমনওয়েলথ",
+    "cityBn": "লন্ডন",
+    "countryBn": "যুক্তরাজ্য",
+    "nameEn": "Commonwealth of Nations",
+    "cityEn": "London",
+    "iso3": "GBR",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "csto": {
+    "id": "csto",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "CSTO",
+    "nameBn": "যৌথ নিরাপত্তা চুক্তি সংস্থা (সিএসটিও)",
+    "cityBn": "মস্কো",
+    "countryBn": "রাশিয়া",
+    "nameEn": "Collective Security Treaty Organization",
+    "cityEn": "Moscow",
+    "iso3": "RUS",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "d8": {
+    "id": "d8",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "D-8",
+    "nameBn": "ডি-৮",
+    "cityBn": "ইস্তাম্বুল",
+    "countryBn": "তুরস্ক",
+    "nameEn": "D-8 Organization for Economic Cooperation",
+    "cityEn": "Istanbul",
+    "iso3": "TUR",
+    "sources": {
+      "cityBn": [
+        {
+          "title": "Contact Us — D-8 Organization for Economic Cooperation",
+          "publisher": "D-8 Organization for Economic Cooperation",
+          "url": "https://developing8.org/contact-us/",
+          "states": "Secretariat: Ferko Line Residence, Merkez Mahallesi, Cendere Caddesi, No: 9 Kat:6 Kagithane, Istanbul/Turkiye."
+        }
+      ]
+    }
+  },
+  "eaeu": {
+    "id": "eaeu",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "EAEU",
+    "nameBn": "ইউরেশীয় অর্থনৈতিক ইউনিয়ন",
+    "cityBn": "মস্কো",
+    "countryBn": "রাশিয়া",
+    "nameEn": "Eurasian Economic Union",
+    "cityEn": "Moscow",
+    "iso3": "RUS",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "eco": {
+    "id": "eco",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "ECO",
+    "nameBn": "অর্থনৈতিক সহযোগিতা সংস্থা (ইকো)",
+    "cityBn": "তেহরান",
+    "countryBn": "ইরান",
+    "nameEn": "Economic Cooperation Organization",
+    "cityEn": "Tehran",
+    "iso3": "IRN",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "ecowas": {
+    "id": "ecowas",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "ECOWAS",
+    "nameBn": "ইকোয়াস",
+    "cityBn": "আবুজা",
+    "countryBn": "নাইজেরিয়া",
+    "nameEn": "Economic Community of West African States",
+    "cityEn": "Abuja",
+    "iso3": "NGA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "echr": {
+    "id": "echr",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "ECtHR",
+    "nameBn": "ইউরোপীয় মানবাধিকার আদালত",
+    "cityBn": "স্ট্রাসবুর্গ",
+    "countryBn": "ফ্রান্স",
+    "nameEn": "European Court of Human Rights",
+    "cityEn": "Strasbourg",
+    "iso3": "FRA",
+    "noteBn": "কাউন্সিল অব ইউরোপের অঙ্গ, ইইউ-র নয়",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "gcc": {
+    "id": "gcc",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "GCC",
+    "nameBn": "উপসাগরীয় সহযোগিতা পরিষদ (জিসিসি)",
+    "cityBn": "রিয়াদ",
+    "countryBn": "সৌদি আরব",
+    "nameEn": "Gulf Cooperation Council",
+    "cityEn": "Riyadh",
+    "iso3": "SAU",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "icimod": {
+    "id": "icimod",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "ICIMOD",
+    "nameBn": "ইসিমোড",
+    "cityBn": "কাঠমান্ডু",
+    "countryBn": "নেপাল",
+    "nameEn": "International Centre for Integrated Mountain Development",
+    "cityEn": "Kathmandu",
+    "iso3": "NPL",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "iora": {
+    "id": "iora",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "IORA",
+    "nameBn": "ভারত মহাসাগরীয় রিম অ্যাসোসিয়েশন (আইওরা)",
+    "cityBn": "এবেনে",
+    "countryBn": "মরিশাস",
+    "nameEn": "Indian Ocean Rim Association",
+    "cityEn": "Ebene",
+    "iso3": "MUS",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "mercosur": {
+    "id": "mercosur",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "Mercosur",
+    "nameBn": "মার্কোসুর",
+    "cityBn": "মন্টেভিডিও",
+    "countryBn": "উরুগুয়ে",
+    "nameEn": "Mercosur",
+    "cityEn": "Montevideo",
+    "iso3": "URY",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "nato": {
+    "id": "nato",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "NATO",
+    "nameBn": "ন্যাটো",
+    "cityBn": "ব্রাসেলস",
+    "countryBn": "বেলজিয়াম",
+    "nameEn": "North Atlantic Treaty Organization",
+    "cityEn": "Brussels",
+    "iso3": "BEL",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "oas": {
+    "id": "oas",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "OAS",
+    "nameBn": "আমেরিকান রাষ্ট্রসমূহের সংস্থা (ওএএস)",
+    "cityBn": "ওয়াশিংটন ডি.সি.",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Organization of American States",
+    "cityEn": "Washington, D.C.",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "oic": {
+    "id": "oic",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "OIC",
+    "nameBn": "ইসলামি সহযোগিতা সংস্থা (ওআইসি)",
+    "cityBn": "জেদ্দা",
+    "countryBn": "সৌদি আরব",
+    "nameEn": "Organisation of Islamic Cooperation",
+    "cityEn": "Jeddah",
+    "iso3": "SAU",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "oif": {
+    "id": "oif",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "OIF",
+    "nameBn": "ফ্রাঙ্কোফোনি",
+    "cityBn": "প্যারিস",
+    "countryBn": "ফ্রান্স",
+    "nameEn": "Organisation internationale de la Francophonie",
+    "cityEn": "Paris",
+    "iso3": "FRA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "osce": {
+    "id": "osce",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "OSCE",
+    "nameBn": "ইউরোপীয় নিরাপত্তা ও সহযোগিতা সংস্থা (ওএসসিই)",
+    "cityBn": "ভিয়েনা",
+    "countryBn": "অস্ট্রিয়া",
+    "nameEn": "Organization for Security and Co-operation in Europe",
+    "cityEn": "Vienna",
+    "iso3": "AUT",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "saarc": {
+    "id": "saarc",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "SAARC",
+    "nameBn": "সার্ক",
+    "cityBn": "কাঠমান্ডু",
+    "countryBn": "নেপাল",
+    "nameEn": "South Asian Association for Regional Cooperation",
+    "cityEn": "Kathmandu",
+    "iso3": "NPL",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "saarcagri": {
+    "id": "saarcagri",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "SAC",
+    "nameBn": "সার্ক কৃষি কেন্দ্র",
+    "cityBn": "ঢাকা",
+    "countryBn": "বাংলাদেশ",
+    "nameEn": "SAARC Agriculture Centre",
+    "cityEn": "Dhaka",
+    "iso3": "BGD",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "sadc": {
+    "id": "sadc",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "SADC",
+    "nameBn": "সাদেক",
+    "cityBn": "গ্যাবোরোন",
+    "countryBn": "বতসোয়ানা",
+    "nameEn": "Southern African Development Community",
+    "cityEn": "Gaborone",
+    "iso3": "BWA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "sco": {
+    "id": "sco",
+    "category": "আঞ্চলিক সংস্থা",
+    "pickerLabel": "SCO",
+    "nameBn": "সাংহাই সহযোগিতা সংস্থা",
+    "cityBn": "বেইজিং",
+    "countryBn": "চীন",
+    "nameEn": "Shanghai Cooperation Organisation",
+    "cityEn": "Beijing",
+    "iso3": "CHN",
+    "noteBn": "নামে সাংহাই, সদর দপ্তর বেইজিং",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "acu": {
+    "id": "acu",
+    "category": "আর্থিক প্রতিষ্ঠান",
+    "pickerLabel": "ACU",
+    "nameBn": "এশিয়ান ক্লিয়ারিং ইউনিয়ন (আকু)",
+    "cityBn": "তেহরান",
+    "countryBn": "ইরান",
+    "nameEn": "Asian Clearing Union",
+    "cityEn": "Tehran",
+    "iso3": "IRN",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "adb": {
+    "id": "adb",
+    "category": "আর্থিক প্রতিষ্ঠান",
+    "pickerLabel": "ADB",
+    "nameBn": "এশীয় উন্নয়ন ব্যাংক (এডিবি)",
+    "cityBn": "ম্যানিলা",
+    "countryBn": "ফিলিপাইন",
+    "nameEn": "Asian Development Bank",
+    "cityEn": "Manila",
+    "iso3": "PHL",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "afdb": {
+    "id": "afdb",
+    "category": "আর্থিক প্রতিষ্ঠান",
+    "pickerLabel": "AfDB",
+    "nameBn": "আফ্রিকান উন্নয়ন ব্যাংক",
+    "cityBn": "আবিদজান",
+    "countryBn": "আইভরি কোস্ট",
+    "nameEn": "African Development Bank",
+    "cityEn": "Abidjan",
+    "iso3": "CIV",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "aiib": {
+    "id": "aiib",
+    "category": "আর্থিক প্রতিষ্ঠান",
+    "pickerLabel": "AIIB",
+    "nameBn": "এশীয় অবকাঠামো বিনিয়োগ ব্যাংক (এআইআইবি)",
+    "cityBn": "বেইজিং",
+    "countryBn": "চীন",
+    "nameEn": "Asian Infrastructure Investment Bank",
+    "cityEn": "Beijing",
+    "iso3": "CHN",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "bis": {
+    "id": "bis",
+    "category": "আর্থিক প্রতিষ্ঠান",
+    "pickerLabel": "BIS",
+    "nameBn": "ব্যাংক ফর ইন্টারন্যাশনাল সেটেলমেন্টস (বিআইএস)",
+    "cityBn": "বাসেল",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "Bank for International Settlements",
+    "cityEn": "Basel",
+    "iso3": "CHE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "ebrd": {
+    "id": "ebrd",
+    "category": "আর্থিক প্রতিষ্ঠান",
+    "pickerLabel": "EBRD",
+    "nameBn": "ইউরোপীয় পুনর্গঠন ও উন্নয়ন ব্যাংক",
+    "cityBn": "লন্ডন",
+    "countryBn": "যুক্তরাজ্য",
+    "nameEn": "European Bank for Reconstruction and Development",
+    "cityEn": "London",
+    "iso3": "GBR",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "iadb": {
+    "id": "iadb",
+    "category": "আর্থিক প্রতিষ্ঠান",
+    "pickerLabel": "IDB",
+    "nameBn": "আন্তঃআমেরিকান উন্নয়ন ব্যাংক",
+    "cityBn": "ওয়াশিংটন ডি.সি.",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Inter-American Development Bank",
+    "cityEn": "Washington, D.C.",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "imf": {
+    "id": "imf",
+    "category": "আর্থিক প্রতিষ্ঠান",
+    "pickerLabel": "IMF",
+    "nameBn": "আন্তর্জাতিক মুদ্রা তহবিল (আইএমএফ)",
+    "cityBn": "ওয়াশিংটন ডি.সি.",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "International Monetary Fund",
+    "cityEn": "Washington, D.C.",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "isdb": {
+    "id": "isdb",
+    "category": "আর্থিক প্রতিষ্ঠান",
+    "pickerLabel": "IsDB",
+    "nameBn": "ইসলামি উন্নয়ন ব্যাংক (আইডিবি)",
+    "cityBn": "জেদ্দা",
+    "countryBn": "সৌদি আরব",
+    "nameEn": "Islamic Development Bank",
+    "cityEn": "Jeddah",
+    "iso3": "SAU",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "ndb": {
+    "id": "ndb",
+    "category": "আর্থিক প্রতিষ্ঠান",
+    "pickerLabel": "NDB",
+    "nameBn": "নিউ ডেভেলপমেন্ট ব্যাংক (ব্রিকস ব্যাংক)",
+    "cityBn": "সাংহাই",
+    "countryBn": "চীন",
+    "nameEn": "New Development Bank",
+    "cityEn": "Shanghai",
+    "iso3": "CHN",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "oecd": {
+    "id": "oecd",
+    "category": "আর্থিক প্রতিষ্ঠান",
+    "pickerLabel": "OECD",
+    "nameBn": "অর্থনৈতিক সহযোগিতা ও উন্নয়ন সংস্থা (ওইসিডি)",
+    "cityBn": "প্যারিস",
+    "countryBn": "ফ্রান্স",
+    "nameEn": "Organisation for Economic Co-operation and Development",
+    "cityEn": "Paris",
+    "iso3": "FRA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "worldbank": {
+    "id": "worldbank",
+    "category": "আর্থিক প্রতিষ্ঠান",
+    "pickerLabel": "WB",
+    "nameBn": "বিশ্বব্যাংক",
+    "cityBn": "ওয়াশিংটন ডি.সি.",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "World Bank",
+    "cityEn": "Washington, D.C.",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "cbd": {
+    "id": "cbd",
+    "category": "পরিবেশ সংস্থা",
+    "pickerLabel": "CBD",
+    "nameBn": "জীববৈচিত্র্য সনদ সচিবালয়",
+    "cityBn": "মন্ট্রিল",
+    "countryBn": "কানাডা",
+    "nameEn": "Secretariat of the Convention on Biological Diversity",
+    "cityEn": "Montreal",
+    "iso3": "CAN",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "cites": {
+    "id": "cites",
+    "category": "পরিবেশ সংস্থা",
+    "pickerLabel": "CITES",
+    "nameBn": "সাইটিস সচিবালয়",
+    "cityBn": "জেনেভা",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "CITES Secretariat",
+    "cityEn": "Geneva",
+    "iso3": "CHE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "gcf": {
+    "id": "gcf",
+    "category": "পরিবেশ সংস্থা",
+    "pickerLabel": "GCF",
+    "nameBn": "সবুজ জলবায়ু তহবিল (জিসিএফ)",
+    "cityBn": "ইনচন",
+    "countryBn": "দক্ষিণ কোরিয়া",
+    "nameEn": "Green Climate Fund",
+    "cityEn": "Incheon",
+    "iso3": "KOR",
+    "noteBn": "সংদো, ইনচন",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "gef": {
+    "id": "gef",
+    "category": "পরিবেশ সংস্থা",
+    "pickerLabel": "GEF",
+    "nameBn": "বৈশ্বিক পরিবেশ সুবিধা (জিইএফ)",
+    "cityBn": "ওয়াশিংটন ডি.সি.",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Global Environment Facility",
+    "cityEn": "Washington, D.C.",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "greenpeace": {
+    "id": "greenpeace",
+    "category": "পরিবেশ সংস্থা",
+    "pickerLabel": "Greenpeace",
+    "nameBn": "গ্রিনপিস",
+    "cityBn": "আমস্টারডাম",
+    "countryBn": "নেদারল্যান্ডস",
+    "nameEn": "Greenpeace International",
+    "cityEn": "Amsterdam",
+    "iso3": "NLD",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "ipcc": {
+    "id": "ipcc",
+    "category": "পরিবেশ সংস্থা",
+    "pickerLabel": "IPCC",
+    "nameBn": "জলবায়ু পরিবর্তন বিষয়ক আন্তঃসরকার প্যানেল (আইপিসিসি)",
+    "cityBn": "জেনেভা",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "Intergovernmental Panel on Climate Change",
+    "cityEn": "Geneva",
+    "iso3": "CHE",
+    "noteBn": "WMO-র সদর দপ্তরে অবস্থিত",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "irena": {
+    "id": "irena",
+    "category": "পরিবেশ সংস্থা",
+    "pickerLabel": "IRENA",
+    "nameBn": "আন্তর্জাতিক নবায়নযোগ্য জ্বালানি সংস্থা (আইরিনা)",
+    "cityBn": "আবুধাবি",
+    "countryBn": "সংযুক্ত আরব আমিরাত",
+    "nameEn": "International Renewable Energy Agency",
+    "cityEn": "Abu Dhabi",
+    "iso3": "ARE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "isa": {
+    "id": "isa",
+    "category": "পরিবেশ সংস্থা",
+    "pickerLabel": "ISA",
+    "nameBn": "আন্তর্জাতিক সৌর জোট",
+    "cityBn": "গুরুগ্রাম",
+    "countryBn": "ভারত",
+    "nameEn": "International Solar Alliance",
+    "cityEn": "Gurugram",
+    "iso3": "IND",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "iucn": {
+    "id": "iucn",
+    "category": "পরিবেশ সংস্থা",
+    "pickerLabel": "IUCN",
+    "nameBn": "প্রকৃতি সংরক্ষণের আন্তর্জাতিক ইউনিয়ন (আইইউসিএন)",
+    "cityBn": "গ্ল্যান্ড",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "International Union for Conservation of Nature",
+    "cityEn": "Gland",
+    "iso3": "CHE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "ozone": {
+    "id": "ozone",
+    "category": "পরিবেশ সংস্থা",
+    "pickerLabel": "Ozone Secretariat",
+    "nameBn": "ওজোন সচিবালয় (মন্ট্রিল প্রটোকল)",
+    "cityBn": "নাইরোবি",
+    "countryBn": "কেনিয়া",
+    "nameEn": "Ozone Secretariat",
+    "cityEn": "Nairobi",
+    "iso3": "KEN",
+    "noteBn": "প্রটোকলের নাম মন্ট্রিল, সচিবালয় নাইরোবিতে",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "ramsar": {
+    "id": "ramsar",
+    "category": "পরিবেশ সংস্থা",
+    "pickerLabel": "Ramsar",
+    "nameBn": "রামসার সনদ সচিবালয়",
+    "cityBn": "গ্ল্যান্ড",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "Ramsar Convention Secretariat",
+    "cityEn": "Gland",
+    "iso3": "CHE",
+    "noteBn": "সনদের নাম ইরানের রামসার শহরে, সচিবালয় গ্ল্যান্ডে",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "unccd": {
+    "id": "unccd",
+    "category": "পরিবেশ সংস্থা",
+    "pickerLabel": "UNCCD",
+    "nameBn": "জাতিসংঘ মরুকরণ প্রতিরোধ সনদ সচিবালয়",
+    "cityBn": "বন",
+    "countryBn": "জার্মানি",
+    "nameEn": "UNCCD Secretariat",
+    "cityEn": "Bonn",
+    "iso3": "DEU",
+    "noteBn": "জাতিসংঘের সংস্থা",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "unep": {
+    "id": "unep",
+    "category": "পরিবেশ সংস্থা",
+    "pickerLabel": "UNEP",
+    "nameBn": "জাতিসংঘ পরিবেশ কর্মসূচি (ইউএনইপি)",
+    "cityBn": "নাইরোবি",
+    "countryBn": "কেনিয়া",
+    "nameEn": "UN Environment Programme",
+    "cityEn": "Nairobi",
+    "iso3": "KEN",
+    "noteBn": "জাতিসংঘের সংস্থা",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "unfccc": {
+    "id": "unfccc",
+    "category": "পরিবেশ সংস্থা",
+    "pickerLabel": "UNFCCC",
+    "nameBn": "জাতিসংঘ জলবায়ু পরিবর্তন বিষয়ক কাঠামো সনদ সচিবালয়",
+    "cityBn": "বন",
+    "countryBn": "জার্মানি",
+    "nameEn": "UNFCCC Secretariat",
+    "cityEn": "Bonn",
+    "iso3": "DEU",
+    "noteBn": "জাতিসংঘের সংস্থা",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "wwf": {
+    "id": "wwf",
+    "category": "পরিবেশ সংস্থা",
+    "pickerLabel": "WWF",
+    "nameBn": "বিশ্ব প্রকৃতি তহবিল (ডব্লিউডব্লিউএফ)",
+    "cityBn": "গ্ল্যান্ড",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "World Wide Fund for Nature",
+    "cityEn": "Gland",
+    "iso3": "CHE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "bnd": {
+    "id": "bnd",
+    "category": "গোয়েন্দা সংস্থা",
+    "pickerLabel": "BND",
+    "nameBn": "বিএনডি",
+    "cityBn": "বার্লিন",
+    "countryBn": "জার্মানি",
+    "nameEn": "Federal Intelligence Service",
+    "cityEn": "Berlin",
+    "iso3": "DEU",
+    "noteBn": "২০১৯-এ পুলাখ থেকে বার্লিনে স্থানান্তর",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "cia": {
+    "id": "cia",
+    "category": "গোয়েন্দা সংস্থা",
+    "pickerLabel": "CIA",
+    "nameBn": "সিআইএ",
+    "cityBn": "ল্যাংলি, ভার্জিনিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Central Intelligence Agency",
+    "cityEn": "Langley, Virginia",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "dgse": {
+    "id": "dgse",
+    "category": "গোয়েন্দা সংস্থা",
+    "pickerLabel": "DGSE",
+    "nameBn": "ডিজিএসই",
+    "cityBn": "প্যারিস",
+    "countryBn": "ফ্রান্স",
+    "nameEn": "Directorate-General for External Security",
+    "cityEn": "Paris",
+    "iso3": "FRA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "fbi": {
+    "id": "fbi",
+    "category": "গোয়েন্দা সংস্থা",
+    "pickerLabel": "FBI",
+    "nameBn": "এফবিআই",
+    "cityBn": "ওয়াশিংটন ডি.সি.",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Federal Bureau of Investigation",
+    "cityEn": "Washington, D.C.",
+    "iso3": "USA",
+    "noteBn": "গোয়েন্দা ও আইনশৃঙ্খলা সংস্থা",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "fsb": {
+    "id": "fsb",
+    "category": "গোয়েন্দা সংস্থা",
+    "pickerLabel": "FSB",
+    "nameBn": "এফএসবি",
+    "cityBn": "মস্কো",
+    "countryBn": "রাশিয়া",
+    "nameEn": "Federal Security Service",
+    "cityEn": "Moscow",
+    "iso3": "RUS",
+    "noteBn": "কেজিবির উত্তরসূরি",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "isi": {
+    "id": "isi",
+    "category": "গোয়েন্দা সংস্থা",
+    "pickerLabel": "ISI",
+    "nameBn": "আইএসআই",
+    "cityBn": "ইসলামাবাদ",
+    "countryBn": "পাকিস্তান",
+    "nameEn": "Inter-Services Intelligence",
+    "cityEn": "Islamabad",
+    "iso3": "PAK",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "mi5": {
+    "id": "mi5",
+    "category": "গোয়েন্দা সংস্থা",
+    "pickerLabel": "MI5",
+    "nameBn": "এমআই৫",
+    "cityBn": "লন্ডন",
+    "countryBn": "যুক্তরাজ্য",
+    "nameEn": "Security Service",
+    "cityEn": "London",
+    "iso3": "GBR",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "mi6": {
+    "id": "mi6",
+    "category": "গোয়েন্দা সংস্থা",
+    "pickerLabel": "MI6",
+    "nameBn": "এমআই৬",
+    "cityBn": "লন্ডন",
+    "countryBn": "যুক্তরাজ্য",
+    "nameEn": "Secret Intelligence Service",
+    "cityEn": "London",
+    "iso3": "GBR",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "mossad": {
+    "id": "mossad",
+    "category": "গোয়েন্দা সংস্থা",
+    "pickerLabel": "Mossad",
+    "nameBn": "মোসাদ",
+    "cityBn": "তেল আবিব",
+    "countryBn": "ইসরায়েল",
+    "nameEn": "Mossad",
+    "cityEn": "Tel Aviv",
+    "iso3": "ISR",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "mss": {
+    "id": "mss",
+    "category": "গোয়েন্দা সংস্থা",
+    "pickerLabel": "MSS",
+    "nameBn": "চীনের রাষ্ট্রীয় নিরাপত্তা মন্ত্রণালয় (এমএসএস)",
+    "cityBn": "বেইজিং",
+    "countryBn": "চীন",
+    "nameEn": "Ministry of State Security",
+    "cityEn": "Beijing",
+    "iso3": "CHN",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "nsa": {
+    "id": "nsa",
+    "category": "গোয়েন্দা সংস্থা",
+    "pickerLabel": "NSA",
+    "nameBn": "এনএসএ",
+    "cityBn": "ফোর্ট মিড, মেরিল্যান্ড",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "National Security Agency",
+    "cityEn": "Fort Meade, Maryland",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "raw": {
+    "id": "raw",
+    "category": "গোয়েন্দা সংস্থা",
+    "pickerLabel": "RAW",
+    "nameBn": "র (RAW)",
+    "cityBn": "নয়াদিল্লি",
+    "countryBn": "ভারত",
+    "nameEn": "Research and Analysis Wing",
+    "cityEn": "New Delhi",
+    "iso3": "IND",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "fifa": {
+    "id": "fifa",
+    "category": "ক্রীড়া সংস্থা",
+    "pickerLabel": "FIFA",
+    "nameBn": "ফিফা",
+    "cityBn": "জুরিখ",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "Fédération Internationale de Football Association",
+    "cityEn": "Zurich",
+    "iso3": "CHE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "icc_cricket": {
+    "id": "icc_cricket",
+    "category": "ক্রীড়া সংস্থা",
+    "pickerLabel": "ICC",
+    "nameBn": "আন্তর্জাতিক ক্রিকেট কাউন্সিল",
+    "cityBn": "দুবাই",
+    "countryBn": "সংযুক্ত আরব আমিরাত",
+    "nameEn": "International Cricket Council",
+    "cityEn": "Dubai",
+    "iso3": "ARE",
+    "noteBn": "২০০৫-এ লন্ডন (লর্ডস) থেকে স্থানান্তর",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "ioc": {
+    "id": "ioc",
+    "category": "ক্রীড়া সংস্থা",
+    "pickerLabel": "IOC",
+    "nameBn": "আন্তর্জাতিক অলিম্পিক কমিটি",
+    "cityBn": "লুজান",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "International Olympic Committee",
+    "cityEn": "Lausanne",
+    "iso3": "CHE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "uefa": {
+    "id": "uefa",
+    "category": "ক্রীড়া সংস্থা",
+    "pickerLabel": "UEFA",
+    "nameBn": "উয়েফা",
+    "cityBn": "নিয়ন",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "Union of European Football Associations",
+    "cityEn": "Nyon",
+    "iso3": "CHE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "amnesty": {
+    "id": "amnesty",
+    "category": "আন্তর্জাতিক সংগঠন (অন্যান্য)",
+    "pickerLabel": "Amnesty International",
+    "nameBn": "অ্যামনেস্টি ইন্টারন্যাশনাল",
+    "cityBn": "লন্ডন",
+    "countryBn": "যুক্তরাজ্য",
+    "nameEn": "Amnesty International",
+    "cityEn": "London",
+    "iso3": "GBR",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "esa": {
+    "id": "esa",
+    "category": "আন্তর্জাতিক সংগঠন (অন্যান্য)",
+    "pickerLabel": "ESA",
+    "nameBn": "ইউরোপীয় মহাকাশ সংস্থা",
+    "cityBn": "প্যারিস",
+    "countryBn": "ফ্রান্স",
+    "nameEn": "European Space Agency",
+    "cityEn": "Paris",
+    "iso3": "FRA",
+    "noteBn": "ইইউ-র সংস্থা নয়",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "hrw": {
+    "id": "hrw",
+    "category": "আন্তর্জাতিক সংগঠন (অন্যান্য)",
+    "pickerLabel": "HRW",
+    "nameBn": "হিউম্যান রাইটস ওয়াচ",
+    "cityBn": "নিউইয়র্ক",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Human Rights Watch",
+    "cityEn": "New York",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "icc_court": {
+    "id": "icc_court",
+    "category": "আন্তর্জাতিক সংগঠন (অন্যান্য)",
+    "pickerLabel": "ICC",
+    "nameBn": "আন্তর্জাতিক অপরাধ আদালত",
+    "cityBn": "দ্য হেগ",
+    "countryBn": "নেদারল্যান্ডস",
+    "nameEn": "International Criminal Court",
+    "cityEn": "The Hague",
+    "iso3": "NLD",
+    "noteBn": "জাতিসংঘের অঙ্গ নয়",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "icrc": {
+    "id": "icrc",
+    "category": "আন্তর্জাতিক সংগঠন (অন্যান্য)",
+    "pickerLabel": "ICRC",
+    "nameBn": "আন্তর্জাতিক রেড ক্রস কমিটি",
+    "cityBn": "জেনেভা",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "International Committee of the Red Cross",
+    "cityEn": "Geneva",
+    "iso3": "CHE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "iea": {
+    "id": "iea",
+    "category": "আন্তর্জাতিক সংগঠন (অন্যান্য)",
+    "pickerLabel": "IEA",
+    "nameBn": "আন্তর্জাতিক জ্বালানি সংস্থা (আইইএ)",
+    "cityBn": "প্যারিস",
+    "countryBn": "ফ্রান্স",
+    "nameEn": "International Energy Agency",
+    "cityEn": "Paris",
+    "iso3": "FRA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "ifrc": {
+    "id": "ifrc",
+    "category": "আন্তর্জাতিক সংগঠন (অন্যান্য)",
+    "pickerLabel": "IFRC",
+    "nameBn": "আন্তর্জাতিক রেড ক্রস ও রেড ক্রিসেন্ট ফেডারেশন",
+    "cityBn": "জেনেভা",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "International Federation of Red Cross and Red Crescent Societies",
+    "cityEn": "Geneva",
+    "iso3": "CHE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "interpol": {
+    "id": "interpol",
+    "category": "আন্তর্জাতিক সংগঠন (অন্যান্য)",
+    "pickerLabel": "INTERPOL",
+    "nameBn": "ইন্টারপোল",
+    "cityBn": "লিওঁ",
+    "countryBn": "ফ্রান্স",
+    "nameEn": "International Criminal Police Organization",
+    "cityEn": "Lyon",
+    "iso3": "FRA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "ipu": {
+    "id": "ipu",
+    "category": "আন্তর্জাতিক সংগঠন (অন্যান্য)",
+    "pickerLabel": "IPU",
+    "nameBn": "আন্তঃসংসদীয় ইউনিয়ন (আইপিইউ)",
+    "cityBn": "জেনেভা",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "Inter-Parliamentary Union",
+    "cityEn": "Geneva",
+    "iso3": "CHE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "msf": {
+    "id": "msf",
+    "category": "আন্তর্জাতিক সংগঠন (অন্যান্য)",
+    "pickerLabel": "MSF",
+    "nameBn": "ডক্টরস উইদাউট বর্ডারস (এমএসএফ)",
+    "cityBn": "জেনেভা",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "Médecins Sans Frontières",
+    "cityEn": "Geneva",
+    "iso3": "CHE",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "oapec": {
+    "id": "oapec",
+    "category": "আন্তর্জাতিক সংগঠন (অন্যান্য)",
+    "pickerLabel": "OAPEC",
+    "nameBn": "ওয়াপেক",
+    "cityBn": "কুয়েত সিটি",
+    "countryBn": "কুয়েত",
+    "nameEn": "Organization of Arab Petroleum Exporting Countries",
+    "cityEn": "Kuwait City",
+    "iso3": "KWT",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "opec": {
+    "id": "opec",
+    "category": "আন্তর্জাতিক সংগঠন (অন্যান্য)",
+    "pickerLabel": "OPEC",
+    "nameBn": "ওপেক",
+    "cityBn": "ভিয়েনা",
+    "countryBn": "অস্ট্রিয়া",
+    "nameEn": "Organization of the Petroleum Exporting Countries",
+    "cityEn": "Vienna",
+    "iso3": "AUT",
+    "noteBn": "সদর দপ্তর এমন দেশে যে সদস্য নয় (অস্ট্রিয়া)",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "pca": {
+    "id": "pca",
+    "category": "আন্তর্জাতিক সংগঠন (অন্যান্য)",
+    "pickerLabel": "PCA",
+    "nameBn": "স্থায়ী সালিশি আদালত",
+    "cityBn": "দ্য হেগ",
+    "countryBn": "নেদারল্যান্ডস",
+    "nameEn": "Permanent Court of Arbitration",
+    "cityEn": "The Hague",
+    "iso3": "NLD",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "rotary": {
+    "id": "rotary",
+    "category": "আন্তর্জাতিক সংগঠন (অন্যান্য)",
+    "pickerLabel": "Rotary International",
+    "nameBn": "রোটারি ইন্টারন্যাশনাল",
+    "cityBn": "এভানস্টন, ইলিনয়",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Rotary International",
+    "cityEn": "Evanston, Illinois",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "ti": {
+    "id": "ti",
+    "category": "আন্তর্জাতিক সংগঠন (অন্যান্য)",
+    "pickerLabel": "TI",
+    "nameBn": "ট্রান্সপারেন্সি ইন্টারন্যাশনাল",
+    "cityBn": "বার্লিন",
+    "countryBn": "জার্মানি",
+    "nameEn": "Transparency International",
+    "cityEn": "Berlin",
+    "iso3": "DEU",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "wef": {
+    "id": "wef",
+    "category": "আন্তর্জাতিক সংগঠন (অন্যান্য)",
+    "pickerLabel": "WEF",
+    "nameBn": "বিশ্ব অর্থনৈতিক ফোরাম",
+    "cityBn": "কোলোনি (জেনেভা)",
+    "countryBn": "সুইজারল্যান্ড",
+    "nameEn": "World Economic Forum",
+    "cityEn": "Cologny",
+    "iso3": "CHE",
+    "noteBn": "বার্ষিক সম্মেলন দাভোসে; সদর দপ্তর দাভোস নয়",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  }
+}
