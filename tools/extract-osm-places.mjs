@@ -1,5 +1,6 @@
 // One-off: saves a dated snapshot of the OpenStreetMap place nodes for the
-// headquarters towns too small for Natural Earth's populated places, into
+// headquarters towns too small for Natural Earth's populated places — of
+// international organisations and of technology companies, one map — into
 // tools/sources/osm-places.geojson. The build reads that committed file and
 // never the live API, so a rebuild cannot change silently when OSM changes.
 //
@@ -39,6 +40,19 @@ export const PLACES = {
   'Ebene|MUS': { name: '^[EÉ]b[eè]ne$', bbox: [-20.3, 57.45, -20.2, 57.53] },
   'Langley, Virginia|USA': { name: 'Langley', bbox: [38.9, -77.22, 39.0, -77.1] },
   'Fort Meade, Maryland|USA': { name: 'Fort Meade', bbox: [39.05, -76.8, 39.15, -76.68] },
+  // Technology company headquarters, same map. Several of these names recur
+  // across the United States (there is a Redmond in Oregon, a Santa Clara in
+  // Utah, a Bastrop in Louisiana), so each box is drawn round the one town.
+  'Santa Clara, California|USA': { name: 'Santa Clara', bbox: [37.32, -122.0, 37.4, -121.92] },
+  'Cupertino, California|USA': { name: 'Cupertino', bbox: [37.29, -122.08, 37.35, -121.99] },
+  'Mountain View, California|USA': { name: 'Mountain View', bbox: [37.36, -122.12, 37.42, -122.04] },
+  'Menlo Park, California|USA': { name: 'Menlo Park', bbox: [37.42, -122.22, 37.48, -122.14] },
+  'Los Gatos, California|USA': { name: 'Los Gatos', bbox: [37.2, -122.01, 37.26, -121.94] },
+  'Redmond, Washington|USA': { name: 'Redmond', bbox: [47.63, -122.17, 47.72, -122.07] },
+  'Armonk, New York|USA': { name: 'Armonk', bbox: [41.1, -73.75, 41.15, -73.68] },
+  'Starbase, Texas|USA': { name: 'Starbase', bbox: [25.95, -97.2, 26.05, -97.1] },
+  'Bastrop, Texas|USA': { name: 'Bastrop', bbox: [30.07, -97.36, 30.15, -97.27] },
+  'Espoo|FIN': { name: 'Espoo', bbox: [60.15, 24.55, 60.25, 24.75] },
 };
 
 async function overpass(query) {

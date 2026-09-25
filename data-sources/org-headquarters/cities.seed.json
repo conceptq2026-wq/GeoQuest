@@ -1672,5 +1672,518 @@
         }
       ]
     }
+  },
+  "san-jose-california-usa": {
+    "nameEn": "San Jose, California",
+    "nameBn": "সান হোসে, ক্যালিফোর্নিয়া",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -121.88818,
+      37.33094
+    ],
+    "frame": [
+      -124.488,
+      34.331,
+      -119.288,
+      40.331
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — San Jose",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "San Jose, United States of America (USA), ne_id 1159150479, Populated place."
+        }
+      ]
+    }
+  },
+  "seattle-washington-usa": {
+    "nameEn": "Seattle, Washington",
+    "nameBn": "সিয়াটল, ওয়াশিংটন",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -122.31532,
+      47.60042
+    ],
+    "frame": [
+      -124.915,
+      44.6,
+      -119.715,
+      50.6
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Seattle",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Seattle, United States of America (USA), ne_id 1159151223, Populated place."
+        }
+      ]
+    }
+  },
+  "santa-clara-california-usa": {
+    "nameEn": "Santa Clara, California",
+    "nameBn": "সান্টা ক্লারা, ক্যালিফোর্নিয়া",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -121.95517,
+      37.35411
+    ],
+    "frame": [
+      -124.555,
+      34.354,
+      -119.355,
+      40.354
+    ],
+    "geometrySource": "osm",
+    "sources": {
+      "at": [
+        {
+          "title": "OpenStreetMap node 150938195 — Santa Clara",
+          "publisher": "OpenStreetMap contributors, ODbL 1.0",
+          "url": "https://www.openstreetmap.org/node/150938195",
+          "states": "place=city, found by name inside a bounding box. Committed as tools/sources/osm-places.geojson."
+        }
+      ]
+    }
+  },
+  "cupertino-california-usa": {
+    "nameEn": "Cupertino, California",
+    "nameBn": "কুপারটিনো, ক্যালিফোর্নিয়া",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -122.03229,
+      37.32289
+    ],
+    "frame": [
+      -124.632,
+      34.323,
+      -119.432,
+      40.323
+    ],
+    "geometrySource": "osm",
+    "sources": {
+      "at": [
+        {
+          "title": "OpenStreetMap node 150966332 — Cupertino",
+          "publisher": "OpenStreetMap contributors, ODbL 1.0",
+          "url": "https://www.openstreetmap.org/node/150966332",
+          "states": "place=city, found by name inside a bounding box. Committed as tools/sources/osm-places.geojson."
+        }
+      ]
+    }
+  },
+  "mountain-view-california-usa": {
+    "nameEn": "Mountain View, California",
+    "nameBn": "মাউন্টেন ভিউ, ক্যালিফোর্নিয়া",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -122.08321,
+      37.38939
+    ],
+    "frame": [
+      -124.683,
+      34.389,
+      -119.483,
+      40.389
+    ],
+    "geometrySource": "osm",
+    "sources": {
+      "at": [
+        {
+          "title": "OpenStreetMap node 81013838 — Mountain View",
+          "publisher": "OpenStreetMap contributors, ODbL 1.0",
+          "url": "https://www.openstreetmap.org/node/81013838",
+          "states": "place=city, found by name inside a bounding box. Committed as tools/sources/osm-places.geojson."
+        }
+      ]
+    }
+  },
+  "armonk-new-york-usa": {
+    "nameEn": "Armonk, New York",
+    "nameBn": "আরমংক, নিউইয়র্ক",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -73.71398,
+      41.12648
+    ],
+    "frame": [
+      -76.314,
+      38.126,
+      -71.114,
+      44.126
+    ],
+    "geometrySource": "osm",
+    "sources": {
+      "at": [
+        {
+          "title": "OpenStreetMap node 158898373 — Armonk",
+          "publisher": "OpenStreetMap contributors, ODbL 1.0",
+          "url": "https://www.openstreetmap.org/node/158898373",
+          "states": "place=town, found by name inside a bounding box. Committed as tools/sources/osm-places.geojson."
+        }
+      ]
+    }
+  },
+  "menlo-park-california-usa": {
+    "nameEn": "Menlo Park, California",
+    "nameBn": "মেনলো পার্ক, ক্যালিফোর্নিয়া",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -122.17799,
+      37.45197
+    ],
+    "frame": [
+      -124.778,
+      34.452,
+      -119.578,
+      40.452
+    ],
+    "geometrySource": "osm",
+    "sources": {
+      "at": [
+        {
+          "title": "OpenStreetMap node 150981209 — Menlo Park",
+          "publisher": "OpenStreetMap contributors, ODbL 1.0",
+          "url": "https://www.openstreetmap.org/node/150981209",
+          "states": "place=town, found by name inside a bounding box. Committed as tools/sources/osm-places.geojson."
+        }
+      ]
+    }
+  },
+  "redmond-washington-usa": {
+    "nameEn": "Redmond, Washington",
+    "nameBn": "রেডমন্ড, ওয়াশিংটন",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -122.12388,
+      47.66941
+    ],
+    "frame": [
+      -124.724,
+      44.669,
+      -119.524,
+      50.669
+    ],
+    "geometrySource": "osm",
+    "sources": {
+      "at": [
+        {
+          "title": "OpenStreetMap node 48717784 — Redmond",
+          "publisher": "OpenStreetMap contributors, ODbL 1.0",
+          "url": "https://www.openstreetmap.org/node/48717784",
+          "states": "place=town, found by name inside a bounding box. Committed as tools/sources/osm-places.geojson."
+        }
+      ]
+    }
+  },
+  "los-gatos-california-usa": {
+    "nameEn": "Los Gatos, California",
+    "nameBn": "লস গাতোস, ক্যালিফোর্নিয়া",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -121.97468,
+      37.22661
+    ],
+    "frame": [
+      -124.575,
+      34.227,
+      -119.375,
+      40.227
+    ],
+    "geometrySource": "osm",
+    "sources": {
+      "at": [
+        {
+          "title": "OpenStreetMap node 150951857 — Los Gatos",
+          "publisher": "OpenStreetMap contributors, ODbL 1.0",
+          "url": "https://www.openstreetmap.org/node/150951857",
+          "states": "place=town, found by name inside a bounding box. Committed as tools/sources/osm-places.geojson."
+        }
+      ]
+    }
+  },
+  "san-francisco-california-usa": {
+    "nameEn": "San Francisco, California",
+    "nameBn": "সান ফ্রান্সিসকো, ক্যালিফোর্নিয়া",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -122.3996,
+      37.78426
+    ],
+    "frame": [
+      -125,
+      34.784,
+      -119.8,
+      40.784
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — San Francisco",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "San Francisco, United States of America (USA), ne_id 1159151479, Populated place."
+        }
+      ]
+    }
+  },
+  "austin-texas-usa": {
+    "nameEn": "Austin, Texas",
+    "nameBn": "অস্টিন, টেক্সাস",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -97.74472,
+      30.2689
+    ],
+    "frame": [
+      -100.345,
+      27.269,
+      -95.145,
+      33.269
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Austin",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Austin, United States of America (USA), ne_id 1159149261, Admin-1 capital."
+        }
+      ]
+    }
+  },
+  "san-diego-california-usa": {
+    "nameEn": "San Diego, California",
+    "nameBn": "সান দিয়েগো, ক্যালিফোর্নিয়া",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -117.15088,
+      32.71891
+    ],
+    "frame": [
+      -119.751,
+      29.719,
+      -114.551,
+      35.719
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — San Diego",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "San Diego, United States of America (USA), ne_id 1159151227, Populated place."
+        }
+      ]
+    }
+  },
+  "starbase-texas-usa": {
+    "nameEn": "Starbase, Texas",
+    "nameBn": "স্টারবেস, টেক্সাস",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -97.18298,
+      25.99146
+    ],
+    "frame": [
+      -99.783,
+      22.991,
+      -94.583,
+      28.991
+    ],
+    "geometrySource": "osm",
+    "sources": {
+      "at": [
+        {
+          "title": "OpenStreetMap node 151500265 — Starbase",
+          "publisher": "OpenStreetMap contributors, ODbL 1.0",
+          "url": "https://www.openstreetmap.org/node/151500265",
+          "states": "place=village, found by name inside a bounding box. Committed as tools/sources/osm-places.geojson."
+        }
+      ]
+    }
+  },
+  "bastrop-texas-usa": {
+    "nameEn": "Bastrop, Texas",
+    "nameBn": "বাস্ট্রপ, টেক্সাস",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -97.31527,
+      30.11049
+    ],
+    "frame": [
+      -99.915,
+      27.11,
+      -94.715,
+      33.11
+    ],
+    "geometrySource": "osm",
+    "sources": {
+      "at": [
+        {
+          "title": "OpenStreetMap node 151324760 — Bastrop",
+          "publisher": "OpenStreetMap contributors, ODbL 1.0",
+          "url": "https://www.openstreetmap.org/node/151324760",
+          "states": "place=town, found by name inside a bounding box. Committed as tools/sources/osm-places.geojson."
+        }
+      ]
+    }
+  },
+  "hangzhou-chn": {
+    "nameEn": "Hangzhou",
+    "nameBn": "হাংচৌ",
+    "iso3": "CHN",
+    "countryBn": "চীন",
+    "at": [
+      120.16807,
+      30.25192
+    ],
+    "frame": [
+      117.568,
+      27.252,
+      122.768,
+      33.252
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Hangzhou",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Hangzhou, China (CHN), ne_id 1159151387, Admin-1 capital."
+        }
+      ]
+    }
+  },
+  "shenzhen-chn": {
+    "nameEn": "Shenzhen",
+    "nameBn": "শেনচেন",
+    "iso3": "CHN",
+    "countryBn": "চীন",
+    "at": [
+      114.06115,
+      22.5481
+    ],
+    "frame": [
+      111.461,
+      19.548,
+      116.661,
+      25.548
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Shenzhen",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Shenzhen, China (CHN), ne_id 1159151215, Populated place."
+        }
+      ]
+    }
+  },
+  "hsinchu-twn": {
+    "nameEn": "Hsinchu",
+    "nameBn": "সিনচু",
+    "iso3": "TWN",
+    "countryBn": "তাইওয়ান",
+    "at": [
+      120.97674,
+      24.81679
+    ],
+    "frame": [
+      118.377,
+      21.817,
+      123.577,
+      27.817
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Hsinchu",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Hsinchu, Taiwan (TWN), ne_id 1159146175, Admin-1 capital."
+        }
+      ]
+    }
+  },
+  "suwon-kor": {
+    "nameEn": "Suwon",
+    "nameBn": "সুওন",
+    "iso3": "KOR",
+    "countryBn": "দক্ষিণ কোরিয়া",
+    "at": [
+      127.00895,
+      37.25973
+    ],
+    "frame": [
+      124.409,
+      34.26,
+      129.609,
+      40.26
+    ],
+    "geometrySource": "naturalEarth",
+    "sources": {
+      "at": [
+        {
+          "title": "ne_10m_populated_places_simple — Suwon",
+          "publisher": "Natural Earth v5.1.2",
+          "url": "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/f1890d9f152c896d250a77557a5751a93d494776/geojson/ne_10m_populated_places_simple.geojson",
+          "states": "Suwon, South Korea (KOR), ne_id 1159146381, Admin-1 capital."
+        }
+      ]
+    }
+  },
+  "espoo-fin": {
+    "nameEn": "Espoo",
+    "nameBn": "এসপো",
+    "iso3": "FIN",
+    "countryBn": "ফিনল্যান্ড",
+    "at": [
+      24.65598,
+      60.20497
+    ],
+    "frame": [
+      22.056,
+      57.205,
+      27.256,
+      63.205
+    ],
+    "geometrySource": "osm",
+    "sources": {
+      "at": [
+        {
+          "title": "OpenStreetMap node 25963545 — Espoo",
+          "publisher": "OpenStreetMap contributors, ODbL 1.0",
+          "url": "https://www.openstreetmap.org/node/25963545",
+          "states": "place=city, found by name inside a bounding box. Committed as tools/sources/osm-places.geojson."
+        }
+      ]
+    }
   }
 }

@@ -3453,5 +3453,710 @@
       8.782,
       49.216
     ]
+  },
+  "adobe": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "Adobe",
+    "nameBn": "অ্যাডোবি",
+    "cityBn": "সান হোসে, ক্যালিফোর্নিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Adobe",
+    "cityEn": "San Jose, California",
+    "iso3": "USA",
+    "cities": [
+      "san-jose-california-usa"
+    ],
+    "countries": [
+      "USA"
+    ],
+    "at": [
+      -121.88818,
+      37.33094
+    ],
+    "frame": [
+      -124.488,
+      34.331,
+      -119.288,
+      40.331
+    ]
+  },
+  "amazon": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "Amazon",
+    "nameBn": "অ্যামাজন",
+    "cityBn": "সিয়াটল, ওয়াশিংটন",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Amazon",
+    "cityEn": "Seattle, Washington",
+    "iso3": "USA",
+    "noteBn": "দ্বিতীয় সদর দপ্তর আর্লিংটন, ভার্জিনিয়া",
+    "cities": [
+      "seattle-washington-usa"
+    ],
+    "countries": [
+      "USA"
+    ],
+    "at": [
+      -122.31532,
+      47.60042
+    ],
+    "frame": [
+      -124.915,
+      44.6,
+      -119.715,
+      50.6
+    ]
+  },
+  "amd": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "AMD",
+    "nameBn": "এএমডি",
+    "cityBn": "সান্টা ক্লারা, ক্যালিফোর্নিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "AMD",
+    "cityEn": "Santa Clara, California",
+    "iso3": "USA",
+    "cities": [
+      "santa-clara-california-usa"
+    ],
+    "countries": [
+      "USA"
+    ],
+    "at": [
+      -121.95517,
+      37.35411
+    ],
+    "frame": [
+      -124.555,
+      34.354,
+      -119.355,
+      40.354
+    ]
+  },
+  "apple": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "Apple",
+    "nameBn": "অ্যাপল",
+    "cityBn": "কুপারটিনো, ক্যালিফোর্নিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Apple",
+    "cityEn": "Cupertino, California",
+    "iso3": "USA",
+    "cities": [
+      "cupertino-california-usa"
+    ],
+    "countries": [
+      "USA"
+    ],
+    "at": [
+      -122.03229,
+      37.32289
+    ],
+    "frame": [
+      -124.632,
+      34.323,
+      -119.432,
+      40.323
+    ]
+  },
+  "cisco": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "Cisco",
+    "nameBn": "সিসকো",
+    "cityBn": "সান হোসে, ক্যালিফোর্নিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Cisco",
+    "cityEn": "San Jose, California",
+    "iso3": "USA",
+    "cities": [
+      "san-jose-california-usa"
+    ],
+    "countries": [
+      "USA"
+    ],
+    "at": [
+      -121.88818,
+      37.33094
+    ],
+    "frame": [
+      -124.488,
+      34.331,
+      -119.288,
+      40.331
+    ]
+  },
+  "google": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "Google",
+    "nameBn": "গুগল (অ্যালফাবেট)",
+    "cityBn": "মাউন্টেন ভিউ, ক্যালিফোর্নিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Google (Alphabet)",
+    "cityEn": "Mountain View, California",
+    "iso3": "USA",
+    "cities": [
+      "mountain-view-california-usa"
+    ],
+    "countries": [
+      "USA"
+    ],
+    "at": [
+      -122.08321,
+      37.38939
+    ],
+    "frame": [
+      -124.683,
+      34.389,
+      -119.483,
+      40.389
+    ]
+  },
+  "ibm": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "IBM",
+    "nameBn": "আইবিএম",
+    "cityBn": "আরমংক, নিউইয়র্ক",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "IBM",
+    "cityEn": "Armonk, New York",
+    "iso3": "USA",
+    "cities": [
+      "armonk-new-york-usa"
+    ],
+    "countries": [
+      "USA"
+    ],
+    "at": [
+      -73.71398,
+      41.12648
+    ],
+    "frame": [
+      -76.314,
+      38.126,
+      -71.114,
+      44.126
+    ]
+  },
+  "intel": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "Intel",
+    "nameBn": "ইন্টেল",
+    "cityBn": "সান্টা ক্লারা, ক্যালিফোর্নিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Intel",
+    "cityEn": "Santa Clara, California",
+    "iso3": "USA",
+    "cities": [
+      "santa-clara-california-usa"
+    ],
+    "countries": [
+      "USA"
+    ],
+    "at": [
+      -121.95517,
+      37.35411
+    ],
+    "frame": [
+      -124.555,
+      34.354,
+      -119.355,
+      40.354
+    ]
+  },
+  "meta": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "Meta (Facebook)",
+    "nameBn": "মেটা (ফেসবুক)",
+    "cityBn": "মেনলো পার্ক, ক্যালিফোর্নিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Meta Platforms (Facebook)",
+    "cityEn": "Menlo Park, California",
+    "iso3": "USA",
+    "cities": [
+      "menlo-park-california-usa"
+    ],
+    "countries": [
+      "USA"
+    ],
+    "at": [
+      -122.17799,
+      37.45197
+    ],
+    "frame": [
+      -124.778,
+      34.452,
+      -119.578,
+      40.452
+    ]
+  },
+  "microsoft": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "Microsoft",
+    "nameBn": "মাইক্রোসফট",
+    "cityBn": "রেডমন্ড, ওয়াশিংটন",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Microsoft",
+    "cityEn": "Redmond, Washington",
+    "iso3": "USA",
+    "cities": [
+      "redmond-washington-usa"
+    ],
+    "countries": [
+      "USA"
+    ],
+    "at": [
+      -122.12388,
+      47.66941
+    ],
+    "frame": [
+      -124.724,
+      44.669,
+      -119.524,
+      50.669
+    ]
+  },
+  "netflix": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "Netflix",
+    "nameBn": "নেটফ্লিক্স",
+    "cityBn": "লস গাতোস, ক্যালিফোর্নিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Netflix",
+    "cityEn": "Los Gatos, California",
+    "iso3": "USA",
+    "cities": [
+      "los-gatos-california-usa"
+    ],
+    "countries": [
+      "USA"
+    ],
+    "at": [
+      -121.97468,
+      37.22661
+    ],
+    "frame": [
+      -124.575,
+      34.227,
+      -119.375,
+      40.227
+    ]
+  },
+  "nvidia": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "Nvidia",
+    "nameBn": "এনভিডিয়া",
+    "cityBn": "সান্টা ক্লারা, ক্যালিফোর্নিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Nvidia",
+    "cityEn": "Santa Clara, California",
+    "iso3": "USA",
+    "cities": [
+      "santa-clara-california-usa"
+    ],
+    "countries": [
+      "USA"
+    ],
+    "at": [
+      -121.95517,
+      37.35411
+    ],
+    "frame": [
+      -124.555,
+      34.354,
+      -119.355,
+      40.354
+    ]
+  },
+  "openai": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "OpenAI",
+    "nameBn": "ওপেনএআই",
+    "cityBn": "সান ফ্রান্সিসকো, ক্যালিফোর্নিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "OpenAI",
+    "cityEn": "San Francisco, California",
+    "iso3": "USA",
+    "cities": [
+      "san-francisco-california-usa"
+    ],
+    "countries": [
+      "USA"
+    ],
+    "at": [
+      -122.3996,
+      37.78426
+    ],
+    "frame": [
+      -125,
+      34.784,
+      -119.8,
+      40.784
+    ]
+  },
+  "oracle": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "Oracle",
+    "nameBn": "ওরাকল",
+    "cityBn": "অস্টিন, টেক্সাস",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Oracle",
+    "cityEn": "Austin, Texas",
+    "iso3": "USA",
+    "cities": [
+      "austin-texas-usa"
+    ],
+    "countries": [
+      "USA"
+    ],
+    "at": [
+      -97.74472,
+      30.2689
+    ],
+    "frame": [
+      -100.345,
+      27.269,
+      -95.145,
+      33.269
+    ]
+  },
+  "qualcomm": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "Qualcomm",
+    "nameBn": "কোয়ালকম",
+    "cityBn": "সান দিয়েগো, ক্যালিফোর্নিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Qualcomm",
+    "cityEn": "San Diego, California",
+    "iso3": "USA",
+    "cities": [
+      "san-diego-california-usa"
+    ],
+    "countries": [
+      "USA"
+    ],
+    "at": [
+      -117.15088,
+      32.71891
+    ],
+    "frame": [
+      -119.751,
+      29.719,
+      -114.551,
+      35.719
+    ]
+  },
+  "spacex": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "SpaceX",
+    "nameBn": "স্পেসএক্স",
+    "cityBn": "স্টারবেস, টেক্সাস",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "SpaceX",
+    "cityEn": "Starbase, Texas",
+    "iso3": "USA",
+    "cities": [
+      "starbase-texas-usa"
+    ],
+    "countries": [
+      "USA"
+    ],
+    "at": [
+      -97.18298,
+      25.99146
+    ],
+    "frame": [
+      -99.783,
+      22.991,
+      -94.583,
+      28.991
+    ]
+  },
+  "tesla": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "Tesla",
+    "nameBn": "টেসলা",
+    "cityBn": "অস্টিন, টেক্সাস",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Tesla",
+    "cityEn": "Austin, Texas",
+    "iso3": "USA",
+    "noteBn": "২০২১-এ পালো অল্টো থেকে স্থানান্তর",
+    "cities": [
+      "austin-texas-usa"
+    ],
+    "countries": [
+      "USA"
+    ],
+    "at": [
+      -97.74472,
+      30.2689
+    ],
+    "frame": [
+      -100.345,
+      27.269,
+      -95.145,
+      33.269
+    ]
+  },
+  "wikimedia": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "Wikimedia (Wikipedia)",
+    "nameBn": "উইকিমিডিয়া ফাউন্ডেশন (উইকিপিডিয়া)",
+    "cityBn": "সান ফ্রান্সিসকো, ক্যালিফোর্নিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Wikimedia Foundation (Wikipedia)",
+    "cityEn": "San Francisco, California",
+    "iso3": "USA",
+    "cities": [
+      "san-francisco-california-usa"
+    ],
+    "countries": [
+      "USA"
+    ],
+    "at": [
+      -122.3996,
+      37.78426
+    ],
+    "frame": [
+      -125,
+      34.784,
+      -119.8,
+      40.784
+    ]
+  },
+  "x": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "X (Twitter)",
+    "nameBn": "এক্স (টুইটার)",
+    "cityBn": "বাস্ট্রপ, টেক্সাস",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "X (Twitter)",
+    "cityEn": "Bastrop, Texas",
+    "iso3": "USA",
+    "cities": [
+      "bastrop-texas-usa"
+    ],
+    "countries": [
+      "USA"
+    ],
+    "at": [
+      -97.31527,
+      30.11049
+    ],
+    "frame": [
+      -99.915,
+      27.11,
+      -94.715,
+      33.11
+    ]
+  },
+  "alibaba": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "Alibaba",
+    "nameBn": "আলিবাবা",
+    "cityBn": "হাংচৌ",
+    "countryBn": "চীন",
+    "nameEn": "Alibaba",
+    "cityEn": "Hangzhou",
+    "iso3": "CHN",
+    "cities": [
+      "hangzhou-chn"
+    ],
+    "countries": [
+      "CHN"
+    ],
+    "at": [
+      120.16807,
+      30.25192
+    ],
+    "frame": [
+      117.568,
+      27.252,
+      122.768,
+      33.252
+    ]
+  },
+  "bytedance": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "ByteDance (TikTok)",
+    "nameBn": "বাইটড্যান্স (টিকটক)",
+    "cityBn": "বেইজিং",
+    "countryBn": "চীন",
+    "nameEn": "ByteDance (TikTok)",
+    "cityEn": "Beijing",
+    "iso3": "CHN",
+    "noteBn": "টিকটকের কার্যালয় সিঙ্গাপুর ও লস অ্যাঞ্জেলেসে",
+    "cities": [
+      "beijing-chn"
+    ],
+    "countries": [
+      "CHN"
+    ],
+    "at": [
+      116.3942,
+      39.90172
+    ],
+    "frame": [
+      113.794,
+      36.902,
+      118.994,
+      42.902
+    ]
+  },
+  "huawei": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "Huawei",
+    "nameBn": "হুয়াওয়ে",
+    "cityBn": "শেনচেন",
+    "countryBn": "চীন",
+    "nameEn": "Huawei",
+    "cityEn": "Shenzhen",
+    "iso3": "CHN",
+    "cities": [
+      "shenzhen-chn"
+    ],
+    "countries": [
+      "CHN"
+    ],
+    "at": [
+      114.06115,
+      22.5481
+    ],
+    "frame": [
+      111.461,
+      19.548,
+      116.661,
+      25.548
+    ]
+  },
+  "xiaomi": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "Xiaomi",
+    "nameBn": "শাওমি",
+    "cityBn": "বেইজিং",
+    "countryBn": "চীন",
+    "nameEn": "Xiaomi",
+    "cityEn": "Beijing",
+    "iso3": "CHN",
+    "cities": [
+      "beijing-chn"
+    ],
+    "countries": [
+      "CHN"
+    ],
+    "at": [
+      116.3942,
+      39.90172
+    ],
+    "frame": [
+      113.794,
+      36.902,
+      118.994,
+      42.902
+    ]
+  },
+  "sony": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "Sony",
+    "nameBn": "সনি",
+    "cityBn": "টোকিও",
+    "countryBn": "জাপান",
+    "nameEn": "Sony",
+    "cityEn": "Tokyo",
+    "iso3": "JPN",
+    "cities": [
+      "tokyo-jpn"
+    ],
+    "countries": [
+      "JPN"
+    ],
+    "at": [
+      139.74946,
+      35.68696
+    ],
+    "frame": [
+      137.149,
+      32.687,
+      142.349,
+      38.687
+    ]
+  },
+  "tsmc": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "TSMC",
+    "nameBn": "টিএসএমসি",
+    "cityBn": "সিনচু",
+    "countryBn": "তাইওয়ান",
+    "nameEn": "TSMC",
+    "cityEn": "Hsinchu",
+    "iso3": "TWN",
+    "cities": [
+      "hsinchu-twn"
+    ],
+    "countries": [
+      "TWN"
+    ],
+    "at": [
+      120.97674,
+      24.81679
+    ],
+    "frame": [
+      118.377,
+      21.817,
+      123.577,
+      27.817
+    ]
+  },
+  "samsung": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "Samsung",
+    "nameBn": "স্যামসাং",
+    "cityBn": "সুওন",
+    "countryBn": "দক্ষিণ কোরিয়া",
+    "nameEn": "Samsung Electronics",
+    "cityEn": "Suwon",
+    "iso3": "KOR",
+    "cities": [
+      "suwon-kor"
+    ],
+    "countries": [
+      "KOR"
+    ],
+    "at": [
+      127.00895,
+      37.25973
+    ],
+    "frame": [
+      124.409,
+      34.26,
+      129.609,
+      40.26
+    ]
+  },
+  "nokia": {
+    "category": "প্রযুক্তি প্রতিষ্ঠান",
+    "pickerLabel": "Nokia",
+    "nameBn": "নোকিয়া",
+    "cityBn": "এসপো",
+    "countryBn": "ফিনল্যান্ড",
+    "nameEn": "Nokia",
+    "cityEn": "Espoo",
+    "iso3": "FIN",
+    "cities": [
+      "espoo-fin"
+    ],
+    "countries": [
+      "FIN"
+    ],
+    "at": [
+      24.65598,
+      60.20497
+    ],
+    "frame": [
+      22.056,
+      57.205,
+      27.256,
+      63.205
+    ]
   }
 }

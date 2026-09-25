@@ -9,6 +9,7 @@
 //   straits       checked against the built map's data.js
 //   border-lines  checked against data-sources/border-lines/*.seed.json
 //   org-headquarters  checked against data-sources/org-headquarters/*.seed.json
+//                     and data-sources/tech-headquarters/companies.seed.json
 //
 // Run:  node tools/verify-descriptor.mjs   (from the repo root or from tools/)
 import fs from 'node:fs';
@@ -40,6 +41,9 @@ const BUILT_STRAITS = path.join(ROOT, 'docs/international/straits');
 const BORDER_SEEDS = path.join(ROOT, 'data-sources/border-lines');
 // The org-headquarters seed, approved content, and the cities derived from it.
 const ORG_SEEDS = path.join(ROOT, 'data-sources/org-headquarters');
+// The technology companies on the same map, and the picker group they form.
+const TECH_SEED = path.join(ROOT, 'data-sources/tech-headquarters/companies.seed.json');
+const TECH_CATEGORY = 'প্রযুক্তি প্রতিষ্ঠান';
 
 let failures = 0;
 const fail = (msg) => {
@@ -578,13 +582,23 @@ console.log('\n\n============ border-lines ============');
 
 /*
 |--------------------------------------------------------------------------
-| ORG HEADQUARTERS — faithful to the approved seed
+| ORG HEADQUARTERS — faithful to the two approved seeds
 |--------------------------------------------------------------------------
 */
 console.log('\n\n============ org-headquarters ============');
 {
   const dir = path.join(MAPS_DIR, 'org-headquarters');
-  const seed = readJson(path.join(ORG_SEEDS, 'organisations.seed.json'));
+  // The map's one table is the organisations, then the companies, each in its
+  // own seed's order; a company gets its picker group from the build.
+  const orgSeed = readJson(path.join(ORG_SEEDS, 'organisations.seed.json'));
+  const techSeed = readJson(TECH_SEED);
+  const seed = { ...orgSeed };
+  for (const [id, r] of Object.entries(techSeed)) seed[id] = { ...r, category: TECH_CATEGORY };
+  const clash = Object.keys(techSeed).filter((k) => k in orgSeed);
+  check(clash.length === 0, `no record key is in both seeds${clash.length ? ` — ${clash.join(', ')}` : ''}`);
+  // A company's `country` repeats its countryBn and is not shipped.
+  const drift = Object.keys(techSeed).filter((k) => techSeed[k].country !== techSeed[k].countryBn);
+  check(drift.length === 0, `every company's unshipped country equals its countryBn${drift.length ? ` — ${drift.join(', ')}` : ''}`);
   const citySeed = readJson(path.join(ORG_SEEDS, 'cities.seed.json'));
   const orgs = readJson(path.join(dir, 'records.json'));
   const cities = readJson(path.join(dir, 'cities.json'));
@@ -592,21 +606,21 @@ console.log('\n\n============ org-headquarters ============');
 
   // Every seed field ships exactly as approved, except the seed's identity
   // and provenance. The four joins the build adds are checked below instead.
-  console.log('\n---- records.json against organisations.seed.json ----');
+  console.log('\n---- records.json against both seeds ----');
   const DERIVED = ['cities', 'countries', 'at', 'frame'];
-  compareTables({ source: seed, file: orgs, label: 'records.json', ignore: ['id', 'sources', 'review', ...DERIVED] });
+  compareTables({ source: seed, file: orgs, label: 'records.json', ignore: ['id', 'sources', 'review', 'country', ...DERIVED] });
 
   console.log('\n---- cities.json against cities.seed.json ----');
   compareTables({ source: citySeed, file: cities, label: 'cities.json', ignore: ['geometrySource', 'sources'] });
 
-  // Provenance: every organisation is editor-verified or cited, and the
-  // three that were under review are cited now.
+  // Provenance: every record is editor-verified or cited, and the six that
+  // were under review — three organisations, three companies — are cited now.
   const unsourced = Object.keys(seed).filter((k) => !seed[k].sources);
-  check(unsourced.length === 0, `every organisation's city is editor-verified or cited${unsourced.length ? ` — not: ${unsourced.join(', ')}` : ''}`);
+  check(unsourced.length === 0, `every record's city is editor-verified or cited${unsourced.length ? ` — not: ${unsourced.join(', ')}` : ''}`);
   const inReview = Object.keys(seed).filter((k) => 'review' in seed[k]);
-  check(inReview.length === 0, `no organisation is still under review${inReview.length ? ` — ${inReview.join(', ')}` : ''}`);
+  check(inReview.length === 0, `no record is still under review${inReview.length ? ` — ${inReview.join(', ')}` : ''}`);
   const cited = Object.keys(seed).filter((k) => Array.isArray(seed[k].sources?.cityBn));
-  ok(`${cited.length} organisation(s) cited from their own site: ${cited.join(', ')}`);
+  ok(`${cited.length} record(s) cited from the body's own statement: ${cited.join(', ')}`);
 
   // One city per (cityEn, iso3), each named once, each placed by one source.
   const cityOf = (r) => Object.keys(cities).find((k) => cities[k].nameEn === r.cityEn && cities[k].iso3 === r.iso3);
@@ -629,7 +643,7 @@ console.log('\n\n============ org-headquarters ============');
       badJoin++;
     }
   }
-  check(badJoin === 0, `every organisation joins to its own city — same Bengali name, country, point and frame (${Object.keys(seed).length})`);
+  check(badJoin === 0, `every record joins to its own city — same Bengali name, country, point and frame (${Object.keys(seed).length})`);
   const bySource = {};
   for (const [key, c] of Object.entries(citySeed)) {
     (bySource[c.geometrySource] ??= []).push(key);
@@ -637,8 +651,8 @@ console.log('\n\n============ org-headquarters ============');
   }
   // Pinned: which source placed each city is displayed-position-bearing.
   check(
-    bySource.naturalEarth?.length === 56 && bySource.osm?.length === 6,
-    `city points: Natural Earth ${bySource.naturalEarth?.length}, OSM ${bySource.osm?.length} (pinned 56 / 6)`,
+    bySource.naturalEarth?.length === 65 && bySource.osm?.length === 16,
+    `city points: Natural Earth ${bySource.naturalEarth?.length}, OSM ${bySource.osm?.length} (pinned 65 / 16)`,
   );
 
   // A host country's Bengali name is the seed's, never Natural Earth's.

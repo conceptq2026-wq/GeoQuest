@@ -1,15 +1,17 @@
-// Builds the org-headquarters map from its approved seed.
+// Builds the org-headquarters map from its two approved seeds: international
+// organisations, and technology companies, which the user put on the same map.
 //
 //   data-sources/org-headquarters/organisations.seed.json   INPUT, user-approved
+//   data-sources/tech-headquarters/companies.seed.json      INPUT, user-approved
 //   data-sources/org-headquarters/cities.seed.json          derived, with provenance
 //   docs/maps/org-headquarters/records.json                 organisations, shipped
 //   docs/maps/org-headquarters/cities.json                  one record per city
 //   docs/maps/org-headquarters/countries.json               the host countries
 //   docs/maps/org-headquarters/countries.geojson            their outlines
 //
-// The seed is content and is never rewritten here: it is read, and everything
-// the map needs beyond it — the cities, their points and frames, the host
-// countries — is derived from it.
+// The seeds are content and are never rewritten here: they are read, and
+// everything the map needs beyond them — the cities, their points and frames,
+// the host countries — is derived from them.
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -20,6 +22,11 @@ const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z
 const ROOT = path.resolve(HERE, '..');
 // The seed and the derived provenance. Not served. Change here if it moves.
 const SEED_DIR = path.join(ROOT, 'data-sources/org-headquarters');
+// The technology companies' seed. Not served. Change here if it moves.
+const TECH_SEED = path.join(ROOT, 'data-sources/tech-headquarters/companies.seed.json');
+// The companies carry no category of their own; they are one picker group,
+// shown after the organisations' eight. Label chosen by the user, 2026-09-26.
+const TECH_CATEGORY = 'প্রযুক্তি প্রতিষ্ঠান';
 // The map folder inside the served tree. Change here if the map moves.
 const MAP_DIR = path.join(ROOT, 'docs/maps/org-headquarters');
 // The committed OSM extract for the towns Natural Earth does not carry.
@@ -43,7 +50,19 @@ const FRAME_HALF = { lon: 2.6, lat: 3.0 };
 const sources = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools/sources.json'), 'utf8'));
 const NE_BASE = sources.naturalEarth.baseUrl;
 
-const seed = JSON.parse(fs.readFileSync(path.join(SEED_DIR, 'organisations.seed.json'), 'utf8'));
+const orgSeed = JSON.parse(fs.readFileSync(path.join(SEED_DIR, 'organisations.seed.json'), 'utf8'));
+const techSeed = JSON.parse(fs.readFileSync(TECH_SEED, 'utf8'));
+
+// One table: the organisations in their order, then the companies in theirs.
+// A company's `country` repeats its countryBn, so it is checked equal here
+// and not shipped.
+const seed = { ...orgSeed };
+for (const [id, r] of Object.entries(techSeed)) {
+  if (id in orgSeed) throw new Error(`${id}: in both seeds — record keys must be unique across the map`);
+  if (r.country !== r.countryBn) throw new Error(`${id}: country "${r.country}" is not its countryBn "${r.countryBn}"`);
+  const { id: own, ...rest } = r;
+  seed[id] = { id: own, category: TECH_CATEGORY, ...rest };
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -74,7 +93,7 @@ if (problems.length) throw new Error(`the seed breaks its own rules:\n  ${proble
 |--------------------------------------------------------------------------
 | CITIES — one per (cityEn, iso3), in the order the seed first names them
 |
-| One marker per city rather than per organisation: Geneva hosts eighteen,
+| One marker per city rather than per record: Geneva hosts eighteen,
 | and eighteen markers on one point is a stack nobody can tap.
 |--------------------------------------------------------------------------
 */
@@ -109,6 +128,9 @@ for (const r of Object.values(seed)) {
  * Natural Earth still carries the old name.
  */
 const NE_ALIASES = { 'Gurugram|IND': 'Gurgaon' };
+// The seed's qualifier after the comma, where Natural Earth names that
+// first-level division differently.
+const NE_STATE_NAMES = { 'D.C.': 'District of Columbia' };
 
 const norm = (s) =>
   s
@@ -130,8 +152,15 @@ const unplaced = [];
 for (const [key, c] of cities) {
   const seedKey = `${c.nameEn}|${c.iso3}`;
   const want = norm(NE_ALIASES[seedKey] ?? c.nameEn);
+  // "San Jose, California": where the seed names a state, the place must be
+  // in it — a country code alone does not tell one American town from another.
+  const qualifier = c.nameEn.includes(',') ? c.nameEn.split(',')[1].trim() : null;
+  const state = NE_STATE_NAMES[qualifier] ?? qualifier;
   const hits = places.filter(
-    (f) => f.properties.adm0_a3 === c.iso3 && [f.properties.name, f.properties.nameascii, f.properties.namealt].filter(Boolean).some((n) => norm(n) === want),
+    (f) =>
+      f.properties.adm0_a3 === c.iso3 &&
+      (!state || f.properties.adm1name === state) &&
+      [f.properties.name, f.properties.nameascii, f.properties.namealt].filter(Boolean).some((n) => norm(n) === want),
   );
   if (hits.length > 1) throw new Error(`${key}: ${hits.length} Natural Earth places match — the match is not specific enough`);
   const o = osmByKey.get(seedKey);
@@ -198,7 +227,10 @@ const countryFile = readSource('ne_10m_admin_0_countries_bdg.geojson');
 const byCode = new Map(countryFile.features.map((f) => [f.properties.ADM0_A3, f]));
 // Codes the seed names that Natural Earth's Bangladesh point-of-view file has
 // no feature for. Declared so a NEW gap fails instead of hiding behind these.
-const KNOWN_NO_COUNTRY = ['ISR'];
+// TWN: that file draws Taiwan inside China. Washing China instead would put a
+// different country behind TSMC's card, so nothing is washed; the card still
+// names the country as the seed does.
+const KNOWN_NO_COUNTRY = ['ISR', 'TWN'];
 const noCountry = [...countryBnByCode.keys()].filter((c) => !byCode.has(c));
 const surprise = noCountry.filter((c) => !KNOWN_NO_COUNTRY.includes(c));
 if (surprise.length) throw new Error(`no Natural Earth country for: ${surprise.join(', ')}`);
@@ -249,7 +281,7 @@ for (const code of codes) {
 |--------------------------------------------------------------------------
 */
 // Provenance and identity stay in the seed; nothing here is content.
-const NOT_SHIPPED = new Set(['id', 'sources', 'review']);
+const NOT_SHIPPED = new Set(['id', 'sources', 'review', 'country']);
 const organisations = {};
 for (const [id, r] of Object.entries(seed)) {
   const out = {};
@@ -290,7 +322,7 @@ const sizes = [
 const bySource = { naturalEarth: [], osm: [] };
 for (const [key, c] of cities) bySource[c.source].push(key);
 console.log(sizes.join('\n'));
-console.log(`\norganisations: ${Object.keys(organisations).length}   cities: ${cities.size}   countries: ${codes.length} (+ ${KNOWN_NO_COUNTRY.join(', ')} with no outline)`);
+console.log(`\nrecords: ${Object.keys(organisations).length} (organisations ${Object.keys(orgSeed).length}, companies ${Object.keys(techSeed).length})   cities: ${cities.size}   countries: ${codes.length} (+ ${KNOWN_NO_COUNTRY.join(', ')} with no outline)`);
 console.log(`  Natural Earth: ${bySource.naturalEarth.length}`);
 console.log(`  OSM:           ${bySource.osm.length}  ${bySource.osm.join(', ')}`);
 console.log(`  aliases:       ${Object.entries(NE_ALIASES).map(([k, v]) => `${k} as ${v}`).join(', ')}`);

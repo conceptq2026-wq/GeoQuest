@@ -990,5 +990,309 @@
       8.782,
       49.216
     ]
+  },
+  "san-jose-california-usa": {
+    "nameEn": "San Jose, California",
+    "nameBn": "সান হোসে, ক্যালিফোর্নিয়া",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -121.88818,
+      37.33094
+    ],
+    "frame": [
+      -124.488,
+      34.331,
+      -119.288,
+      40.331
+    ]
+  },
+  "seattle-washington-usa": {
+    "nameEn": "Seattle, Washington",
+    "nameBn": "সিয়াটল, ওয়াশিংটন",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -122.31532,
+      47.60042
+    ],
+    "frame": [
+      -124.915,
+      44.6,
+      -119.715,
+      50.6
+    ]
+  },
+  "santa-clara-california-usa": {
+    "nameEn": "Santa Clara, California",
+    "nameBn": "সান্টা ক্লারা, ক্যালিফোর্নিয়া",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -121.95517,
+      37.35411
+    ],
+    "frame": [
+      -124.555,
+      34.354,
+      -119.355,
+      40.354
+    ]
+  },
+  "cupertino-california-usa": {
+    "nameEn": "Cupertino, California",
+    "nameBn": "কুপারটিনো, ক্যালিফোর্নিয়া",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -122.03229,
+      37.32289
+    ],
+    "frame": [
+      -124.632,
+      34.323,
+      -119.432,
+      40.323
+    ]
+  },
+  "mountain-view-california-usa": {
+    "nameEn": "Mountain View, California",
+    "nameBn": "মাউন্টেন ভিউ, ক্যালিফোর্নিয়া",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -122.08321,
+      37.38939
+    ],
+    "frame": [
+      -124.683,
+      34.389,
+      -119.483,
+      40.389
+    ]
+  },
+  "armonk-new-york-usa": {
+    "nameEn": "Armonk, New York",
+    "nameBn": "আরমংক, নিউইয়র্ক",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -73.71398,
+      41.12648
+    ],
+    "frame": [
+      -76.314,
+      38.126,
+      -71.114,
+      44.126
+    ]
+  },
+  "menlo-park-california-usa": {
+    "nameEn": "Menlo Park, California",
+    "nameBn": "মেনলো পার্ক, ক্যালিফোর্নিয়া",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -122.17799,
+      37.45197
+    ],
+    "frame": [
+      -124.778,
+      34.452,
+      -119.578,
+      40.452
+    ]
+  },
+  "redmond-washington-usa": {
+    "nameEn": "Redmond, Washington",
+    "nameBn": "রেডমন্ড, ওয়াশিংটন",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -122.12388,
+      47.66941
+    ],
+    "frame": [
+      -124.724,
+      44.669,
+      -119.524,
+      50.669
+    ]
+  },
+  "los-gatos-california-usa": {
+    "nameEn": "Los Gatos, California",
+    "nameBn": "লস গাতোস, ক্যালিফোর্নিয়া",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -121.97468,
+      37.22661
+    ],
+    "frame": [
+      -124.575,
+      34.227,
+      -119.375,
+      40.227
+    ]
+  },
+  "san-francisco-california-usa": {
+    "nameEn": "San Francisco, California",
+    "nameBn": "সান ফ্রান্সিসকো, ক্যালিফোর্নিয়া",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -122.3996,
+      37.78426
+    ],
+    "frame": [
+      -125,
+      34.784,
+      -119.8,
+      40.784
+    ]
+  },
+  "austin-texas-usa": {
+    "nameEn": "Austin, Texas",
+    "nameBn": "অস্টিন, টেক্সাস",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -97.74472,
+      30.2689
+    ],
+    "frame": [
+      -100.345,
+      27.269,
+      -95.145,
+      33.269
+    ]
+  },
+  "san-diego-california-usa": {
+    "nameEn": "San Diego, California",
+    "nameBn": "সান দিয়েগো, ক্যালিফোর্নিয়া",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -117.15088,
+      32.71891
+    ],
+    "frame": [
+      -119.751,
+      29.719,
+      -114.551,
+      35.719
+    ]
+  },
+  "starbase-texas-usa": {
+    "nameEn": "Starbase, Texas",
+    "nameBn": "স্টারবেস, টেক্সাস",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -97.18298,
+      25.99146
+    ],
+    "frame": [
+      -99.783,
+      22.991,
+      -94.583,
+      28.991
+    ]
+  },
+  "bastrop-texas-usa": {
+    "nameEn": "Bastrop, Texas",
+    "nameBn": "বাস্ট্রপ, টেক্সাস",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -97.31527,
+      30.11049
+    ],
+    "frame": [
+      -99.915,
+      27.11,
+      -94.715,
+      33.11
+    ]
+  },
+  "hangzhou-chn": {
+    "nameEn": "Hangzhou",
+    "nameBn": "হাংচৌ",
+    "iso3": "CHN",
+    "countryBn": "চীন",
+    "at": [
+      120.16807,
+      30.25192
+    ],
+    "frame": [
+      117.568,
+      27.252,
+      122.768,
+      33.252
+    ]
+  },
+  "shenzhen-chn": {
+    "nameEn": "Shenzhen",
+    "nameBn": "শেনচেন",
+    "iso3": "CHN",
+    "countryBn": "চীন",
+    "at": [
+      114.06115,
+      22.5481
+    ],
+    "frame": [
+      111.461,
+      19.548,
+      116.661,
+      25.548
+    ]
+  },
+  "hsinchu-twn": {
+    "nameEn": "Hsinchu",
+    "nameBn": "সিনচু",
+    "iso3": "TWN",
+    "countryBn": "তাইওয়ান",
+    "at": [
+      120.97674,
+      24.81679
+    ],
+    "frame": [
+      118.377,
+      21.817,
+      123.577,
+      27.817
+    ]
+  },
+  "suwon-kor": {
+    "nameEn": "Suwon",
+    "nameBn": "সুওন",
+    "iso3": "KOR",
+    "countryBn": "দক্ষিণ কোরিয়া",
+    "at": [
+      127.00895,
+      37.25973
+    ],
+    "frame": [
+      124.409,
+      34.26,
+      129.609,
+      40.26
+    ]
+  },
+  "espoo-fin": {
+    "nameEn": "Espoo",
+    "nameBn": "এসপো",
+    "iso3": "FIN",
+    "countryBn": "ফিনল্যান্ড",
+    "at": [
+      24.65598,
+      60.20497
+    ],
+    "frame": [
+      22.056,
+      57.205,
+      27.256,
+      63.205
+    ]
   }
 }

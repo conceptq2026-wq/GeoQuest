@@ -1,0 +1,404 @@
+{
+  "adobe": {
+    "id": "adobe",
+    "country": "যুক্তরাষ্ট্র",
+    "pickerLabel": "Adobe",
+    "nameBn": "অ্যাডোবি",
+    "cityBn": "সান হোসে, ক্যালিফোর্নিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Adobe",
+    "cityEn": "San Jose, California",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "amazon": {
+    "id": "amazon",
+    "country": "যুক্তরাষ্ট্র",
+    "pickerLabel": "Amazon",
+    "nameBn": "অ্যামাজন",
+    "cityBn": "সিয়াটল, ওয়াশিংটন",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Amazon",
+    "cityEn": "Seattle, Washington",
+    "iso3": "USA",
+    "noteBn": "দ্বিতীয় সদর দপ্তর আর্লিংটন, ভার্জিনিয়া",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "amd": {
+    "id": "amd",
+    "country": "যুক্তরাষ্ট্র",
+    "pickerLabel": "AMD",
+    "nameBn": "এএমডি",
+    "cityBn": "সান্টা ক্লারা, ক্যালিফোর্নিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "AMD",
+    "cityEn": "Santa Clara, California",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "apple": {
+    "id": "apple",
+    "country": "যুক্তরাষ্ট্র",
+    "pickerLabel": "Apple",
+    "nameBn": "অ্যাপল",
+    "cityBn": "কুপারটিনো, ক্যালিফোর্নিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Apple",
+    "cityEn": "Cupertino, California",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "cisco": {
+    "id": "cisco",
+    "country": "যুক্তরাষ্ট্র",
+    "pickerLabel": "Cisco",
+    "nameBn": "সিসকো",
+    "cityBn": "সান হোসে, ক্যালিফোর্নিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Cisco",
+    "cityEn": "San Jose, California",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "google": {
+    "id": "google",
+    "country": "যুক্তরাষ্ট্র",
+    "pickerLabel": "Google",
+    "nameBn": "গুগল (অ্যালফাবেট)",
+    "cityBn": "মাউন্টেন ভিউ, ক্যালিফোর্নিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Google (Alphabet)",
+    "cityEn": "Mountain View, California",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "ibm": {
+    "id": "ibm",
+    "country": "যুক্তরাষ্ট্র",
+    "pickerLabel": "IBM",
+    "nameBn": "আইবিএম",
+    "cityBn": "আরমংক, নিউইয়র্ক",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "IBM",
+    "cityEn": "Armonk, New York",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "intel": {
+    "id": "intel",
+    "country": "যুক্তরাষ্ট্র",
+    "pickerLabel": "Intel",
+    "nameBn": "ইন্টেল",
+    "cityBn": "সান্টা ক্লারা, ক্যালিফোর্নিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Intel",
+    "cityEn": "Santa Clara, California",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "meta": {
+    "id": "meta",
+    "country": "যুক্তরাষ্ট্র",
+    "pickerLabel": "Meta (Facebook)",
+    "nameBn": "মেটা (ফেসবুক)",
+    "cityBn": "মেনলো পার্ক, ক্যালিফোর্নিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Meta Platforms (Facebook)",
+    "cityEn": "Menlo Park, California",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "microsoft": {
+    "id": "microsoft",
+    "country": "যুক্তরাষ্ট্র",
+    "pickerLabel": "Microsoft",
+    "nameBn": "মাইক্রোসফট",
+    "cityBn": "রেডমন্ড, ওয়াশিংটন",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Microsoft",
+    "cityEn": "Redmond, Washington",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "netflix": {
+    "id": "netflix",
+    "country": "যুক্তরাষ্ট্র",
+    "pickerLabel": "Netflix",
+    "nameBn": "নেটফ্লিক্স",
+    "cityBn": "লস গাতোস, ক্যালিফোর্নিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Netflix",
+    "cityEn": "Los Gatos, California",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "nvidia": {
+    "id": "nvidia",
+    "country": "যুক্তরাষ্ট্র",
+    "pickerLabel": "Nvidia",
+    "nameBn": "এনভিডিয়া",
+    "cityBn": "সান্টা ক্লারা, ক্যালিফোর্নিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Nvidia",
+    "cityEn": "Santa Clara, California",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "openai": {
+    "id": "openai",
+    "country": "যুক্তরাষ্ট্র",
+    "pickerLabel": "OpenAI",
+    "nameBn": "ওপেনএআই",
+    "cityBn": "সান ফ্রান্সিসকো, ক্যালিফোর্নিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "OpenAI",
+    "cityEn": "San Francisco, California",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "oracle": {
+    "id": "oracle",
+    "country": "যুক্তরাষ্ট্র",
+    "pickerLabel": "Oracle",
+    "nameBn": "ওরাকল",
+    "cityBn": "অস্টিন, টেক্সাস",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Oracle",
+    "cityEn": "Austin, Texas",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": [
+        {
+          "title": "Oracle Corporation — Form 10-K for the fiscal year ended May 31, 2026 (cover page)",
+          "publisher": "Oracle Corporation (filed with the U.S. SEC, 2026-06-22)",
+          "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526277521/orcl-20260531.htm",
+          "states": "Address of principal executive offices: 2300 Oracle Way, Austin, Texas 78741."
+        }
+      ]
+    }
+  },
+  "qualcomm": {
+    "id": "qualcomm",
+    "country": "যুক্তরাষ্ট্র",
+    "pickerLabel": "Qualcomm",
+    "nameBn": "কোয়ালকম",
+    "cityBn": "সান দিয়েগো, ক্যালিফোর্নিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Qualcomm",
+    "cityEn": "San Diego, California",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "spacex": {
+    "id": "spacex",
+    "country": "যুক্তরাষ্ট্র",
+    "pickerLabel": "SpaceX",
+    "nameBn": "স্পেসএক্স",
+    "cityBn": "স্টারবেস, টেক্সাস",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "SpaceX",
+    "cityEn": "Starbase, Texas",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": [
+        {
+          "title": "FAQs and Contact — SpaceX Investor Relations",
+          "publisher": "Space Exploration Technologies Corp.",
+          "url": "https://ir.spacex.com/faqs-and-contact/default.aspx",
+          "states": "Contact the Company: Space Exploration Technologies Corp., 1 Rocket Road, Starbase, TX 78725, United States."
+        }
+      ]
+    }
+  },
+  "tesla": {
+    "id": "tesla",
+    "country": "যুক্তরাষ্ট্র",
+    "pickerLabel": "Tesla",
+    "nameBn": "টেসলা",
+    "cityBn": "অস্টিন, টেক্সাস",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Tesla",
+    "cityEn": "Austin, Texas",
+    "iso3": "USA",
+    "noteBn": "২০২১-এ পালো অল্টো থেকে স্থানান্তর",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "wikimedia": {
+    "id": "wikimedia",
+    "country": "যুক্তরাষ্ট্র",
+    "pickerLabel": "Wikimedia (Wikipedia)",
+    "nameBn": "উইকিমিডিয়া ফাউন্ডেশন (উইকিপিডিয়া)",
+    "cityBn": "সান ফ্রান্সিসকো, ক্যালিফোর্নিয়া",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "Wikimedia Foundation (Wikipedia)",
+    "cityEn": "San Francisco, California",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "x": {
+    "id": "x",
+    "country": "যুক্তরাষ্ট্র",
+    "pickerLabel": "X (Twitter)",
+    "nameBn": "এক্স (টুইটার)",
+    "cityBn": "বাস্ট্রপ, টেক্সাস",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "nameEn": "X (Twitter)",
+    "cityEn": "Bastrop, Texas",
+    "iso3": "USA",
+    "sources": {
+      "cityBn": [
+        {
+          "title": "X Terms of Service",
+          "publisher": "X Corp.",
+          "url": "https://x.com/en/tos",
+          "states": "X Corp., with its registered office at 865 FM 1209, Building 2, Bastrop, TX 78602 U.S.A."
+        }
+      ]
+    }
+  },
+  "alibaba": {
+    "id": "alibaba",
+    "country": "চীন",
+    "pickerLabel": "Alibaba",
+    "nameBn": "আলিবাবা",
+    "cityBn": "হাংচৌ",
+    "countryBn": "চীন",
+    "nameEn": "Alibaba",
+    "cityEn": "Hangzhou",
+    "iso3": "CHN",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "bytedance": {
+    "id": "bytedance",
+    "country": "চীন",
+    "pickerLabel": "ByteDance (TikTok)",
+    "nameBn": "বাইটড্যান্স (টিকটক)",
+    "cityBn": "বেইজিং",
+    "countryBn": "চীন",
+    "nameEn": "ByteDance (TikTok)",
+    "cityEn": "Beijing",
+    "iso3": "CHN",
+    "noteBn": "টিকটকের কার্যালয় সিঙ্গাপুর ও লস অ্যাঞ্জেলেসে",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "huawei": {
+    "id": "huawei",
+    "country": "চীন",
+    "pickerLabel": "Huawei",
+    "nameBn": "হুয়াওয়ে",
+    "cityBn": "শেনচেন",
+    "countryBn": "চীন",
+    "nameEn": "Huawei",
+    "cityEn": "Shenzhen",
+    "iso3": "CHN",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "xiaomi": {
+    "id": "xiaomi",
+    "country": "চীন",
+    "pickerLabel": "Xiaomi",
+    "nameBn": "শাওমি",
+    "cityBn": "বেইজিং",
+    "countryBn": "চীন",
+    "nameEn": "Xiaomi",
+    "cityEn": "Beijing",
+    "iso3": "CHN",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "sony": {
+    "id": "sony",
+    "country": "জাপান",
+    "pickerLabel": "Sony",
+    "nameBn": "সনি",
+    "cityBn": "টোকিও",
+    "countryBn": "জাপান",
+    "nameEn": "Sony",
+    "cityEn": "Tokyo",
+    "iso3": "JPN",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "tsmc": {
+    "id": "tsmc",
+    "country": "তাইওয়ান",
+    "pickerLabel": "TSMC",
+    "nameBn": "টিএসএমসি",
+    "cityBn": "সিনচু",
+    "countryBn": "তাইওয়ান",
+    "nameEn": "TSMC",
+    "cityEn": "Hsinchu",
+    "iso3": "TWN",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "samsung": {
+    "id": "samsung",
+    "country": "দক্ষিণ কোরিয়া",
+    "pickerLabel": "Samsung",
+    "nameBn": "স্যামসাং",
+    "cityBn": "সুওন",
+    "countryBn": "দক্ষিণ কোরিয়া",
+    "nameEn": "Samsung Electronics",
+    "cityEn": "Suwon",
+    "iso3": "KOR",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "nokia": {
+    "id": "nokia",
+    "country": "ফিনল্যান্ড",
+    "pickerLabel": "Nokia",
+    "nameBn": "নোকিয়া",
+    "cityBn": "এসপো",
+    "countryBn": "ফিনল্যান্ড",
+    "nameEn": "Nokia",
+    "cityEn": "Espoo",
+    "iso3": "FIN",
+    "sources": {
+      "cityBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  }
+}

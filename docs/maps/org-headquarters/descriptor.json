@@ -3,8 +3,8 @@
   "id": "org-headquarters",
   "section": "international",
   "title": {
-    "bn": "আন্তর্জাতিক সংস্থার সদর দপ্তর",
-    "en": "International Organisation Headquarters"
+    "bn": "আন্তর্জাতিক সংস্থা ও প্রযুক্তি প্রতিষ্ঠানের সদর দপ্তর",
+    "en": "Headquarters of International Organisations and Tech Companies"
   },
   "basemap": "world",
   "view": {
@@ -29,7 +29,7 @@
         "cityEn": { "type": "text", "required": true, "display": false },
         "iso3": { "type": "text", "required": true, "display": false },
         "cities": { "type": "refs", "to": "cities", "required": true },
-        "countries": { "type": "refs", "to": "countries", "required": true, "knownUnresolved": ["ISR"] },
+        "countries": { "type": "refs", "to": "countries", "required": true, "knownUnresolved": ["ISR", "TWN"] },
         "at": { "type": "point", "required": true },
         "frame": { "type": "bbox", "required": true }
       }
@@ -155,7 +155,8 @@
           "পরিবেশ সংস্থা",
           "গোয়েন্দা সংস্থা",
           "ক্রীড়া সংস্থা",
-          "আন্তর্জাতিক সংগঠন (অন্যান্য)"
+          "আন্তর্জাতিক সংগঠন (অন্যান্য)",
+          "প্রযুক্তি প্রতিষ্ঠান"
         ]
       },
       "placeholder": "একটি সংস্থা বেছে নিন…",

@@ -302,7 +302,7 @@ count and geometry hash. Generated lines carry no hash: they are computed from
 constants in the build, and editing those constants is the review. For
 org-headquarters: the Natural Earth populated-places file (size and blob SHA in
 `tools/sources.json`), the OSM places extract's checksum, and the split of city
-points by source — 56 Natural Earth, 6 OSM — in the validator.
+points by source — 65 Natural Earth, 16 OSM — in the validator.
 
 When a pin moves, **stop and report the old and new values.** Never re-pin to
 make a build pass. A dropped `featurecla` once shifted a line by three points
@@ -362,11 +362,16 @@ State which kind a task is when reporting it.
 
 - Three maps: `docs/maps/straits/`, `docs/maps/border-lines/` and
   `docs/maps/org-headquarters/`.
-- org-headquarters is built by `tools/build-org-headquarters.mjs` from
-  `data-sources/org-headquarters/organisations.seed.json`, the user-approved
-  content, which the build reads and never rewrites. The cities table, the
-  host countries and every point and frame are derived from it; the cities'
-  provenance goes to `cities.seed.json` beside it.
+- org-headquarters holds international organisations **and** technology
+  companies, one map by the user's decision. It is built by
+  `tools/build-org-headquarters.mjs` from two user-approved seeds, which the
+  build reads and never rewrites:
+  `data-sources/org-headquarters/organisations.seed.json` and
+  `data-sources/tech-headquarters/companies.seed.json`. They become one records
+  table, organisations first; the companies carry no category and form one
+  picker group, `প্রযুক্তি প্রতিষ্ঠান`, shown last. The cities table, the host
+  countries and every point and frame are derived; the cities' provenance goes
+  to `data-sources/org-headquarters/cities.seed.json`.
 - One basemap archive exists, `docs/shared/tiles/world.pmtiles`. A
   `bangladesh.pmtiles` is planned and not built. A cross-basemap switch is a
   full re-initialise; the shell decides that from each map's descriptor.
