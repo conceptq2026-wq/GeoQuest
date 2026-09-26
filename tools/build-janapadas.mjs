@@ -24,7 +24,7 @@ import mapshaper from 'mapshaper';
 import { CACHE, readSource, zipEntry } from './lib/geo.mjs';
 import { innerPoints, simplifyFeatures } from './lib/border-traces.mjs';
 import { bangladeshUnits, SegmentGrid, ringsOf, inPolygon } from './lib/bangladesh-units.mjs';
-import { COVERAGE, DETAIL_AREAS } from './bangladesh.config.mjs';
+import { COVERAGE, DETAIL_AREAS, FRAME as BASEMAP_FRAME } from './bangladesh.config.mjs';
 
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const ROOT = path.resolve(HERE, '..');
@@ -60,6 +60,26 @@ const FRAME_MARGIN = 0.08;
 // the fit's margins, which is 3.69° of longitude at z6: a frame at least this
 // wide lands at z6 or below whatever card is open. Widened about its centre.
 const MIN_FRAME_LON = 3.7;
+// The default view on the narrowest phone checked, 320×780: map.getBounds() at
+// the camera the map opens on (zoom 5.4568), rounded inward to 0.01°. Measured,
+// not derived:
+// on a tall phone the basemap's bounds set the opening zoom, while the page is
+// still laying out, and the view shows less than the frame the map was asked
+// to open on — 86.86–91.64°E of its 85.5–93.0°E. It was measured with the
+// frame and coverage beside it; the build fails if either changes, and then it
+// has to be measured again.
+const DEFAULT_VIEW = { box: [86.87, 17.42, 91.63, 27.21], zoom: 5.4568, frame: [85.5, 20.2, 93.0, 27.6], coverage: [85.5, 17.0, 95.3, 27.6] };
+// Room for a name in that view, at the zoom it opens at: its point at least
+// half a name's width from the view's edges (a janapada's name at 14 px is up
+// to about 50 px wide), and clear of every photo, whose marker is 28 px in
+// radius (shell CSS), by the name's own 2 px of padding.
+const NAME_ROOM_PX = 25;
+const PHOTO_CLEAR_PX = 30;
+// Janapadas no part of which lies in that view, so that their names cannot be
+// placed in it; each keeps its whole area's inner point, and gives the reason.
+const OUT_OF_VIEW = {
+  ruhma: 'Rakhine lies east of 92.17°E; the default view ends at 91.64°E on a 320 px phone and at 92.20°E on a 390 px one.',
+};
 const [DETAIL_BOX] = Object.values(DETAIL_AREAS);
 
 // Where a unit's Bengali in the seed has no counterpart in the names table,
@@ -536,7 +556,44 @@ if (moved.length || stale.length) throw new Error(`area pins do not hold — sto
 | RECORDS — the shipped ones
 |--------------------------------------------------------------------------
 */
-const inner = await innerPoints(ids.map((id) => ({ type: 'Feature', properties: { id }, geometry: built[id].geometry })));
+/*
+ * A name point lies in the default view, with room for the name: the inner
+ * point of the part of the area inside that view, half a name's width from its
+ * edges and clear of the photos — not of the whole area, whose inner point can
+ * fall out of view or under a photo. Harikela's, pulled east by Cachar, sat
+ * past the edge of a 320 px phone; taken only from its part inside the view,
+ * it lay under Samatata's photo, with room for the name only off the screen.
+ * An area with no such part takes its part in the view; one with no part in
+ * the view at all must be listed in OUT_OF_VIEW, and keeps its own.
+ */
+const descriptor = JSON.parse(fs.readFileSync(path.join(DIR, 'descriptor.json'), 'utf8'));
+if (descriptor.view?.fitBounds) throw new Error("the map sets its own frame, and DEFAULT_VIEW was measured on the basemap's: measure it again");
+if (JSON.stringify(DEFAULT_VIEW.frame) !== JSON.stringify(BASEMAP_FRAME) || JSON.stringify(DEFAULT_VIEW.coverage) !== JSON.stringify(COVERAGE)) throw new Error("the basemap's frame or coverage has changed since DEFAULT_VIEW was measured: measure it again");
+const VIEW = DEFAULT_VIEW.box;
+const inView = ([lon, lat]) => lon >= VIEW[0] && lon <= VIEW[2] && lat >= VIEW[1] && lat <= VIEW[3];
+const deg = (px) => px / ((512 * 2 ** DEFAULT_VIEW.zoom) / 360);
+const room = deg(NAME_ROOM_PX);
+const ROOMY = [VIEW[0] + room, VIEW[1] + room, VIEW[2] - room, VIEW[3] - room];
+// A photo's circle on the screen, in degrees about its site.
+const circle = ([lon, lat], r) => ({ type: 'Polygon', coordinates: [Array.from({ length: 65 }, (_, i) => [lon + r * Math.cos((i / 32) * Math.PI), lat + r * Math.cos((lat * Math.PI) / 180) * Math.sin((i / 32) * Math.PI)])] });
+const sites = ids.filter((id) => 'photo' in seed[id] && photos[id]?.site).map((id) => ({ type: 'Feature', properties: {}, geometry: circle(photos[id].site.at, deg(PHOTO_CLEAR_PX)) }));
+const whole = ids.map((id) => ({ type: 'Feature', properties: { id }, geometry: built[id].geometry }));
+const viewed = (await ms(`-i in.json -clip bbox=${VIEW}`, { 'in.json': fc(whole) })).features.filter((f) => f.geometry);
+const roomy = (await ms(`-i in.json -clip bbox=${ROOMY}`, { 'in.json': fc(whole) })).features.filter((f) => f.geometry);
+const clear = (await ms('-i combine-files a.json c.json -target a -erase source=c', { 'a.json': fc(roomy), 'c.json': fc(sites) })).features.filter((f) => f.geometry);
+const unseen = ids.filter((id) => !viewed.some((f) => f.properties.id === id));
+const unlisted = unseen.filter((id) => !(id in OUT_OF_VIEW));
+const listedInView = Object.keys(OUT_OF_VIEW).filter((id) => !unseen.includes(id));
+if (unlisted.length || listedInView.length) throw new Error(`default view ${VIEW.join(', ')}: ${[...unlisted.map((id) => `no part of ${id} lies in it, and OUT_OF_VIEW does not list it`), ...listedInView.map((id) => `OUT_OF_VIEW lists ${id}, which now lies partly in it`)].join('; ')}`);
+const namedFrom = {};
+const part = (id) => {
+  for (const [how, list] of [['in view with room, clear of photos', clear], ['in view', viewed], ['whole area (out of view)', whole]]) {
+    const f = list.find((x) => x.properties.id === id);
+    if (f) return (namedFrom[id] = how), f;
+  }
+};
+const inner = await innerPoints(ids.map(part));
+console.log(`name points: ${Object.entries(Object.groupBy(ids, (id) => namedFrom[id])).map(([how, list]) => `${how}: ${list.join(', ')}`).join('; ')}`);
 const cropped = (p) => Object.values(p.crop).some(([x, y, w, h]) => x !== 0 || y !== 0 || w !== p.size[0] || h !== p.size[1]);
 
 const out = {};
@@ -545,6 +602,7 @@ for (const id of ids) {
   const rec = {};
   for (const f of SHIPPED) if (f in r) rec[f] = r[f];
   built[id].labelAt = inner[id].map((n) => Number(n.toFixed(5)));
+  if (!inView(built[id].labelAt) && !(id in OUT_OF_VIEW)) throw new Error(`${id}: its name point ${built[id].labelAt.join(', ')} lies outside the default view`);
   rec.labelAt = built[id].labelAt;
   rec.frame = built[id].frame;
   // null in the seed means a photo is wanted: the photo seed's, else still
@@ -567,6 +625,7 @@ for (const id of ids) {
     if (p) {
       const at = photos[id].site.at;
       if (!inPolygon(at, built[id].union)) throw new Error(`${id}: its photo's site ${photos[id].site.wikidata} at ${at.join(', ')} lies outside its area`);
+      if (!inView(at)) throw new Error(`${id}: its name stands under its photo at ${at.join(', ')}, outside the default view`);
       rec.siteAt = at.map((n) => Number(n.toFixed(5)));
     }
   }
@@ -580,7 +639,7 @@ for (const id of SHIP)
     madeOf.add(u.country === 'BGD' ? 'COD-AB' : u.country === 'IND' ? 'geoBoundaries' : 'Natural Earth');
     if (u.pieces.length) madeOf.add('OpenStreetMap');
   }
-const credited = JSON.parse(fs.readFileSync(path.join(DIR, 'descriptor.json'), 'utf8')).sources.areas.attribution;
+const credited = descriptor.sources.areas.attribution;
 const uncredited = [...madeOf].filter((s) => !credited.includes(CREDITS[s].link));
 if (uncredited.length) throw new Error(`the shipped areas are made from ${[...madeOf].join(', ')}, and the descriptor's credit for them leaves out ${uncredited.join(', ')}`);
 const made = Object.keys(CREDITS).filter((s) => madeOf.has(s));

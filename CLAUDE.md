@@ -553,20 +553,30 @@ State which kind a task is when reporting it.
   at Tamluk. Nothing on this map is pending. A record with a photo is drawn
   as a photo marker at that site, never at the area's centre, with its name
   under it, or above or beside it where that would collide; a record without
-  one has no marker and its name sits on the area's inner point, or beside
-  it. Names take those alternative anchors (`text-variable-anchor` with a
+  one has no marker, and its name sits on its name point, or beside it. Names
+  take those alternative anchors (`text-variable-anchor` with a
   `text-radial-offset`) rather than overlap, and avoid the photos (see
-  **Names avoid photos**): in the default view today হরিকেল finds room only
-  past the canvas's right edge at 390 px, and none at 320 px. Every area is a
-  thin outline; only the selected one is filled. Every Bengali unit name the
-  seed shows must be the names table's spelling; the build fails any other,
-  except where `NAME_EXCEPTIONS` lists one with its reason — today Harikela's
-  কাছাড়, cited to the seed's own source, where the names table has no
-  Bengali. The areas credit every source they are made from — COD-AB (CC BY
-  3.0 IGO), geoBoundaries India (ODbL 1.0), Natural Earth, and OpenStreetMap
-  (ODbL) for the land between a unit and the border — and, holding ODbL data,
-  the areas file is offered under the ODbL; the build fails if the
-  descriptor's credit leaves any of that out.
+  **Names avoid photos**). A name point is the inner point of the part of the
+  area inside the default view, kept half a name's width (25 px) from the
+  view's edges and 30 px from every photo's centre, never of the whole area,
+  so every name stands in the default view; the build fails one that does
+  not. The default view is `DEFAULT_VIEW` in the build: what a 320×780 phone
+  shows at the camera the map opens on, measured, not derived. The basemap's
+  bounds set that zoom on a tall screen, so the view is narrower than the
+  frame the map asks for, 86.9–91.6°E of 85.5–93.0°E. It is recorded with the
+  frame and coverage it was measured on, and the build fails if either
+  changes; a change to the page's layout needs it measured again by hand. A
+  janapada with no part in that view keeps its whole area's inner point and
+  is listed in `OUT_OF_VIEW` with the reason: today Ruhma, as Rakhine lies
+  east of 92.17°E. Every area is a thin outline; only the selected one is
+  filled. Every Bengali unit name the seed shows must be the names table's
+  spelling; the build fails any other, except where `NAME_EXCEPTIONS` lists
+  one with its reason — today Harikela's কাছাড়, cited to the seed's own
+  source, where the names table has no Bengali. The areas credit every source
+  they are made from — COD-AB (CC BY 3.0 IGO), geoBoundaries India (ODbL 1.0),
+  Natural Earth, and OpenStreetMap (ODbL) for the land between a unit and the
+  border — and, holding ODbL data, the areas file is offered under the ODbL;
+  the build fails if the descriptor's credit leaves any of that out.
 - The five Geography maps are built by one script, `tools/build-geography.mjs`,
   from `data-sources/<map>/<map>.seed.json` — approved content in display
   order, with the geometry, photo and pinned citations added to it. Their
