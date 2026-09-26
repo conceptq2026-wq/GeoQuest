@@ -122,13 +122,33 @@ const motion = (ms) => (reduceMotion.matches ? 0 : ms);
 | an overlay one, and why a descriptor never names a basemap layer id. Slots
 | are the only way a descriptor positions itself, and the basemap declares
 | which ones it offers in its own metadata.
+|
+| A descriptor chooses its basemap by name in its `basemap` field. Every
+| archive is tiled the same way — overview tiles to z6 everywhere, detail
+| tiles z7–10 only inside its detail areas, drawn over a mask — so both keep
+| the same two source ids, and `basemap` in a descriptor means the overview
+| source whichever archive it is.
 |--------------------------------------------------------------------------
 */
 
-const BASEMAP_COLORS = { sea: '#b9d9ee', land: '#f6f2e7', coast: '#7fa7c4', border: '#a0928a' };
+const BASEMAP_COLORS = { sea: '#b9d9ee', land: '#f6f2e7', coast: '#7fa7c4', border: '#a0928a', muted: '#e6e2d6', admin: '#a89a8e', river: '#8fbde0' };
 const BASEMAP_SOURCES = { world: 'basemap', detail: 'basemap-detail' };
+const LABEL_FONT = ['Noto Sans Bengali'];
 
-function basemapStyle(archive) {
+/*
+ * name → archive and style. `bounded` basemaps cover one region only: the
+ * archive's own metadata carries its frame and its bounds, and a map on it
+ * opens at that frame and cannot pan past those bounds. They are read from
+ * the archive, not declared here, so a rebuilt box needs no shell edit.
+ */
+const BASEMAPS = {
+  world: { archive: 'world.pmtiles', style: worldStyle, bounded: false },
+  bangladesh: { archive: 'bangladesh.pmtiles', style: regionStyle, bounded: true },
+};
+
+const credit = (href, text) => `<a href="${href}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+
+function worldStyle(archive) {
   const tiles = (minzoom, maxzoom) => ({
     type: 'vector',
     tiles: [archive.tiles],
@@ -171,6 +191,125 @@ function basemapStyle(archive) {
       ...land(BASEMAP_SOURCES.world, true),
       { id: 'basemap-detail-mask', type: 'fill', source: BASEMAP_SOURCES.detail, 'source-layer': 'detail_extent', paint: { 'fill-color': BASEMAP_COLORS.sea } },
       ...land(BASEMAP_SOURCES.detail, false),
+    ],
+  };
+}
+
+/*
+ * A regional basemap: the region itself in the land colour, its neighbours
+ * muted, administrative outlines, rivers, and the names of the units it
+ * covers. Coast is a line layer of its own, cut free of the tile-box edges,
+ * so both sources can stroke it.
+ *
+ * Labels come last and are split by zoom rather than masked: a symbol hidden
+ * under the detail mask would still take its collision space and push the
+ * detail labels off the map. Below the detail zoom the overview labels draw;
+ * above it they draw only outside the detail areas (`detail` is false).
+ */
+function regionStyle(archive, meta) {
+  const attribution = [
+    credit('https://www.openstreetmap.org/copyright', '© OpenStreetMap contributors'),
+    credit('https://data.humdata.org/dataset/cod-ab-bgd', 'BBS / OCHA (CC BY-IGO)'),
+    credit('https://www.geoboundaries.org/', 'geoBoundaries (ODbL)'),
+    credit('https://www.naturalearthdata.com/', 'Natural Earth'),
+  ].join(' · ');
+  const tiles = (minzoom, maxzoom) => ({ type: 'vector', tiles: [archive.tiles], minzoom, maxzoom, attribution });
+  const detailFrom = meta.detailMinZoom;
+  const layersOf = (source) => [
+    { id: `${source}-land`, type: 'fill', source, 'source-layer': 'land', paint: { 'fill-color': BASEMAP_COLORS.land } },
+    { id: `${source}-muted`, type: 'fill', source, 'source-layer': 'muted', paint: { 'fill-color': BASEMAP_COLORS.muted } },
+    { id: `${source}-lakes`, type: 'fill', source, 'source-layer': 'lakes', paint: { 'fill-color': BASEMAP_COLORS.sea } },
+    { id: `${source}-lake-shore`, type: 'line', source, 'source-layer': 'lakes', paint: { 'line-color': BASEMAP_COLORS.coast, 'line-width': 0.7 } },
+    { id: `${source}-coast`, type: 'line', source, 'source-layer': 'coast', paint: { 'line-color': BASEMAP_COLORS.coast, 'line-width': 0.9 } },
+    {
+      id: `${source}-rivers`,
+      type: 'line',
+      source,
+      'source-layer': 'rivers',
+      layout: { 'line-join': 'round', 'line-cap': 'round' },
+      paint: { 'line-color': BASEMAP_COLORS.river, 'line-width': ['interpolate', ['linear'], ['zoom'], 5, 0.8, 8, 1.8, 10, 3] },
+    },
+    {
+      id: `${source}-admin-district`,
+      type: 'line',
+      source,
+      'source-layer': 'admin',
+      filter: ['==', ['get', 'level'], 'district'],
+      layout: { 'line-join': 'round' },
+      paint: { 'line-color': BASEMAP_COLORS.admin, 'line-width': ['interpolate', ['linear'], ['zoom'], 5, 0.4, 9, 0.9], 'line-dasharray': [2, 1.5] },
+    },
+    {
+      id: `${source}-admin-major`,
+      type: 'line',
+      source,
+      'source-layer': 'admin',
+      filter: ['!=', ['get', 'level'], 'district'],
+      layout: { 'line-join': 'round' },
+      paint: { 'line-color': BASEMAP_COLORS.admin, 'line-width': ['interpolate', ['linear'], ['zoom'], 5, 0.8, 9, 1.5] },
+    },
+    {
+      id: `${source}-borders`,
+      type: 'line',
+      source,
+      'source-layer': 'borders',
+      layout: { 'line-join': 'round' },
+      paint: { 'line-color': BASEMAP_COLORS.border, 'line-width': 1.2, 'line-dasharray': [3, 1.5] },
+    },
+  ];
+  const outsideDetail = ['any', ['<', ['zoom'], detailFrom], ['!=', ['get', 'detail'], true]];
+  const name = ['coalesce', ['get', 'name_bn'], ['get', 'name_en']];
+  const labelsOf = (source, only) => [
+    {
+      id: `${source}-river-labels`,
+      type: 'symbol',
+      source,
+      'source-layer': 'rivers',
+      filter: ['all', ['has', 'name_en'], ...(only ? [only] : [])],
+      layout: { 'symbol-placement': 'line', 'text-field': name, 'text-font': LABEL_FONT, 'text-size': 11, 'symbol-spacing': 320 },
+      paint: { 'text-color': '#2f6c9e', 'text-halo-color': '#ffffff', 'text-halo-width': 1.4 },
+    },
+    // A river named at a place rather than along its line — the main channel,
+    // which reads as two names. Beside the channel, on the named town's side.
+    {
+      id: `${source}-river-point-labels`,
+      type: 'symbol',
+      source,
+      'source-layer': 'river_labels',
+      filter: ['all', ['<=', ['get', 'min_zoom'], ['zoom']], ['>', ['get', 'max_zoom'], ['zoom']], ...(only ? [only] : [])],
+      layout: { 'text-field': name, 'text-font': LABEL_FONT, 'text-size': 12, 'text-anchor': ['get', 'anchor'], 'text-radial-offset': 0.5 },
+      paint: { 'text-color': '#2f6c9e', 'text-halo-color': '#ffffff', 'text-halo-width': 1.4 },
+    },
+    {
+      id: `${source}-admin-labels`,
+      type: 'symbol',
+      source,
+      'source-layer': 'admin_labels',
+      filter: ['all', ['<=', ['get', 'min_zoom'], ['zoom']], ['>', ['get', 'max_zoom'], ['zoom']], ...(only ? [only] : [])],
+      layout: {
+        'text-field': name,
+        'text-font': LABEL_FONT,
+        'text-size': ['match', ['get', 'level'], 'district', 11, 12.5],
+        'text-max-width': 7,
+        'text-optional': true,
+      },
+      paint: { 'text-color': ['match', ['get', 'level'], 'district', '#5b5047', '#463b33'], 'text-halo-color': '#ffffff', 'text-halo-width': 1.4 },
+    },
+  ];
+
+  return {
+    version: 8,
+    metadata: { slots: ['belowLabels', 'aboveLabels', 'top'] },
+    sources: {
+      [BASEMAP_SOURCES.world]: tiles(0, meta.overviewMaxZoom),
+      [BASEMAP_SOURCES.detail]: tiles(detailFrom, meta.detailMaxZoom),
+    },
+    layers: [
+      { id: 'basemap-bg', type: 'background', paint: { 'background-color': BASEMAP_COLORS.sea } },
+      ...layersOf(BASEMAP_SOURCES.world),
+      { id: 'basemap-detail-mask', type: 'fill', source: BASEMAP_SOURCES.detail, 'source-layer': 'detail_extent', paint: { 'fill-color': BASEMAP_COLORS.sea } },
+      ...layersOf(BASEMAP_SOURCES.detail),
+      ...labelsOf(BASEMAP_SOURCES.world, outsideDetail),
+      ...labelsOf(BASEMAP_SOURCES.detail, null),
     ],
   };
 }
@@ -361,16 +500,25 @@ function pick(row, keys) {
 |--------------------------------------------------------------------------
 */
 
-const archive = resolver.pmtilesSource('world.pmtiles');
+const basemap = BASEMAPS[descriptor.basemap];
+if (!basemap) throw new Error(`basemap "${descriptor.basemap}" is not one of: ${Object.keys(BASEMAPS).join(', ')}`);
+const archive = resolver.pmtilesSource(basemap.archive);
 const protocol = new window.pmtiles.Protocol();
-protocol.add(new window.pmtiles.PMTiles(archive.archive));
+const tileArchive = new window.pmtiles.PMTiles(archive.archive);
+protocol.add(tileArchive);
 maplibregl.addProtocol('pmtiles', protocol.tile);
 remember('protocol', 'pmtiles', () => maplibregl.removeProtocol('pmtiles'));
 
-const style = basemapStyle(archive);
+// Only a bounded basemap is asked for its metadata; the world archive needs
+// none, and its requests stay exactly what they were.
+const region = basemap.bounded ? (await tileArchive.getMetadata()).geoquest : null;
+const style = basemap.style(archive, region);
 const SLOTS = style.metadata.slots;
 
 const view = descriptor.view ?? {};
+// A map's own frame wins; otherwise a regional basemap opens on its frame.
+const frame = view.fitBounds ?? region?.frame;
+const maxBounds = descriptor.constraints?.maxBounds ?? region?.maxBounds;
 const map = new maplibregl.Map({
   container: 'map',
   transformRequest: (url, resourceType) => resolver.transformRequest(url, resourceType),
@@ -379,13 +527,13 @@ const map = new maplibregl.Map({
     // Bengali is shaped by the browser from a bundled font; see the resolver.
     'font-faces': { 'Noto Sans Bengali': 'noto-sans-bengali/NotoSansBengali-Regular.woff2' },
   },
-  ...(view.fitBounds ? { bounds: [[view.fitBounds[0], view.fitBounds[1]], [view.fitBounds[2], view.fitBounds[3]]] } : {}),
+  ...(frame ? { bounds: [[frame[0], frame[1]], [frame[2], frame[3]]] } : {}),
   minZoom: descriptor.constraints?.minZoom ?? 0,
   maxZoom: descriptor.constraints?.maxZoom ?? 22,
   // The tilt button stops at 55; this stops a drag going further. Baseline,
   // not a descriptor field: every map gets the same ceiling.
   maxPitch: 60,
-  ...(descriptor.constraints?.maxBounds ? { maxBounds: descriptor.constraints.maxBounds } : {}),
+  ...(maxBounds ? { maxBounds } : {}),
   attributionControl: false,
 });
 remember('map', 'map', () => map.remove());
