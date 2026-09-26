@@ -492,6 +492,27 @@ body {
   cursor: pointer;
 }
 
+/*
+ * The record filter's menu carries Bengali labels, which wrap rather than
+ * run off a narrow phone: a label is never truncated. Capped to the map's
+ * width less its gutters.
+ */
+.filter-menu {
+  max-width: calc(100vw - 56px);
+  white-space: normal;
+  font-size: 13px;
+}
+
+.filter-menu .layers-menu-item {
+  align-items: flex-start;
+  line-height: 1.4;
+}
+
+.filter-menu input {
+  flex-shrink: 0;
+  margin: 2px 0 0;
+}
+
 .legend-swatch {
   width: 16px;
   height: 3px;

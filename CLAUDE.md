@@ -156,6 +156,20 @@ declares sources, layers, sheet rows and actions; it holds no content.
   label as it stands, and `order` must name every value that occurs.
 - A tap on overlapping points goes to the one **nearest the finger**, not the
   first the renderer lists.
+- **`recordFilter` hides records by a field value.** A control
+  `{ "type": "recordFilter", "id": ..., "records": T, "field": F, "label": ...,
+  "allLabel": ... }` draws the layerToggle's button and checkbox menu: a
+  select-all row, then one checkbox per value. The values, their order and
+  their labels are the picker's `groupBy` on the same field, which the
+  validator requires, so the two cannot list different things. Unchecking a
+  value hides every record of `T` carrying it — from every source derived
+  from `T`, from the picker and from ‹ ›, and from `referencedBy` lists — and
+  a record of a table `T` references through a `refs` field (a city) stays
+  only while a shown record still points at it. A selection the filter hides
+  is cleared and its card closed. Baseline sources are never filtered.
+  Everything starts checked on every load; nothing is persisted. The
+  mechanism is the selection's: sources re-derived with `setData`. A map
+  declares a layerToggle or a recordFilter, not both — they share a corner.
 - **A source whose geometry comes from OpenStreetMap declares the ODbL credit**
   as its `attribution` — `© OpenStreetMap contributors`, linked to
   openstreetmap.org/copyright. The licence requires it. straits (`routes`,

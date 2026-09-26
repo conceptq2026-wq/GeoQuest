@@ -467,6 +467,22 @@ function checkMap({ id, expectedPending }) {
     `the picker's order covers every value in ${groupSource}${ungrouped.length ? ` — ${ungrouped.join(', ')} would never be shown` : ''}`,
   );
 
+  // ---- record filter ----------------------------------------------------------
+  // Its values, order and labels are the picker's groups on the same field, so
+  // it must filter the picker's table by the field the picker groups on.
+  for (const c of descriptor.controls.filter((x) => x.type === 'recordFilter')) {
+    note(c.records, c.field);
+    check(
+      picker.from === c.records && picker.groupBy?.field === c.field,
+      `recordFilter "${c.id}" filters ${c.records}.${c.field}, the field the picker groups on`,
+    );
+    check(Boolean(c.label && c.allLabel), `recordFilter "${c.id}" has its button label and its select-all label`);
+    check(
+      !descriptor.controls.some((x) => x.type === 'layerToggle'),
+      `recordFilter "${c.id}" is not beside a layerToggle — they share one corner`,
+    );
+  }
+
   // ---- fields the descriptor never references -------------------------------
   console.log('\n---- unreferenced record fields (not an error) ----');
   let any = false;

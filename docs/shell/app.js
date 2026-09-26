@@ -241,6 +241,45 @@ const selection = new Map(); // records table -> key, or absent
 
 const stateFields = (sourceSpec) => sourceSpec.state ?? [];
 
+/*
+ * RECORD FILTER — which records are on the map at all.
+ *
+ * A `recordFilter` control names a records table and a field; unchecking a
+ * value hides every record of that table carrying it. A record of a table the
+ * filtered one REFERENCES (a city, through the organisations' `cities` refs)
+ * stays only while some shown record still points at it — so a city whose
+ * organisations are all filtered out goes with them. Baseline sources are
+ * shell chrome and are never filtered.
+ *
+ * Same mechanism as selection: the sources are re-derived with setData.
+ */
+const recordFilter = (descriptor.controls ?? []).find((c) => c.type === 'recordFilter') ?? null;
+const filteredOut = new Set(); // values of recordFilter.field that are unchecked
+let reachable = null; // table -> keys some shown record references; rebuilt on change
+
+function shown(table, key) {
+  if (!recordFilter || filteredOut.size === 0) return true;
+  if (table === recordFilter.records) return !filteredOut.has(records[table]?.[key]?.[recordFilter.field]);
+  reachable ??= referencedByShown();
+  const keys = reachable.get(table);
+  return keys ? keys.has(key) : true;
+}
+
+function referencedByShown() {
+  const out = new Map();
+  const rows = records[recordFilter.records] ?? {};
+  for (const [field, decl] of Object.entries(descriptor.records[recordFilter.records]?.fields ?? {})) {
+    if (decl.type !== 'refs') continue;
+    const keys = out.get(decl.to) ?? new Set();
+    for (const row of Object.values(rows)) {
+      if (filteredOut.has(row[recordFilter.field])) continue;
+      for (const ref of row[field] ?? []) keys.add(ref);
+    }
+    out.set(decl.to, keys);
+  }
+  return out;
+}
+
 /** Does this state field describe the feature itself, or a relation to one? */
 const stateValue = (field, table, key) => {
   if (typeof field === 'string') return selection.get(table) === key;
@@ -264,6 +303,12 @@ function dependsOn(sourceSpec) {
 
 /** A source's features, with its declared state written into each one. */
 function derive(name, spec) {
+  const all = deriveAll(name, spec);
+  if (!spec.records || isBaselineSource(name) || !recordFilter || filteredOut.size === 0) return all;
+  return { ...all, features: all.features.filter((f) => shown(spec.records, f.properties.key)) };
+}
+
+function deriveAll(name, spec) {
   const fields = stateFields(spec);
 
   // Records joined to a geometry file on a shared key.
@@ -828,13 +873,39 @@ for (const interaction of interactions) {
 const lookups = descriptor.lookups ?? {};
 const lookupValue = (name, key, take) => lookups[name]?.[key]?.[take] ?? null;
 
-let order = [];
+let order = []; // what ‹ › step through: the shown records, in author order
+let allOrder = [];
+const pickerGroups = new Map(); // group value -> optgroup, built once
+const pickerOptions = new Map(); // record key -> option, built once
 const picker = (descriptor.controls ?? []).find((c) => c.type === 'picker');
 if (picker) buildPicker(picker);
 
+/**
+ * Put the shown records into the picker, in author order under their groups,
+ * and drop a group left empty. Rebuilt from the elements made once, so a
+ * filter change never re-creates an option.
+ */
+function renderPicker() {
+  const table = records[picker.from] ?? {};
+  const group = picker.groupBy;
+  order = allOrder.filter((key) => shown(picker.from, key));
+  // Everything but the placeholder comes off, then goes back filtered.
+  for (const child of [...dom.picker.children]) if (!(child.tagName === 'OPTION' && child.value === '')) child.remove();
+  for (const og of pickerGroups.values()) og.replaceChildren();
+  const loose = [];
+  for (const key of order) {
+    const og = group ? pickerGroups.get(table[key][group.field]) : null;
+    if (og) og.appendChild(pickerOptions.get(key));
+    else loose.push(pickerOptions.get(key));
+  }
+  for (const og of pickerGroups.values()) if (og.children.length) dom.picker.appendChild(og);
+  for (const option of loose) dom.picker.appendChild(option);
+  dom.picker.value = selection.get(picker.from) ?? '';
+}
+
 function buildPicker(control) {
   const table = records[control.from] ?? {};
-  order = Object.keys(table); // author order, groups ignored
+  allOrder = Object.keys(table); // author order, groups ignored
   dom.picker.hidden = false;
   dom.picker.dataset.table = control.from;
   if (control.labelEn) dom.picker.setAttribute('aria-label', control.labelEn);
@@ -854,7 +925,7 @@ function buildPicker(control) {
       const optgroup = document.createElement('optgroup');
       optgroup.label = lookupValue(group.lookup, value, group.take) ?? value;
       optgroup.dataset.value = value;
-      dom.picker.appendChild(optgroup);
+      pickerGroups.set(value, optgroup);
     }
   }
 
@@ -862,13 +933,13 @@ function buildPicker(control) {
   // spec the sheet uses, so a map whose names are still being approved can
   // fall back to another field instead of listing blank rows.
   const labelSpec = control.label ?? { field: control.labelField };
-  for (const key of order) {
+  for (const key of allOrder) {
     const option = document.createElement('option');
     option.value = key;
     option.textContent = valueOf(labelSpec, table[key]) ?? '';
-    const parent = group ? dom.picker.querySelector(`optgroup[data-value="${table[key][group.field]}"]`) : null;
-    (parent ?? dom.picker).appendChild(option);
+    pickerOptions.set(key, option);
   }
+  renderPicker();
 
   own.domHandler(dom.picker, 'change', (event) => {
     const key = event.target.value;
@@ -939,6 +1010,96 @@ function buildLayerToggle(control) {
   });
 }
 
+if (recordFilter) {
+  if (toggle) throw new Error('a map declares both a layerToggle and a recordFilter; they share one corner');
+  buildRecordFilter(recordFilter);
+}
+
+/**
+ * The record filter's menu: the layerToggle's look and placement, a checkbox
+ * per value. The values, their order and their labels are the picker's groups
+ * on the same field, so the two can never list different things; a "select
+ * all" row sits on top. Built here rather than in the page because it is the
+ * map's, and everything it creates is registered for teardown.
+ */
+function buildRecordFilter(control) {
+  const group = picker?.groupBy;
+  if (!picker || picker.from !== control.records || group?.field !== control.field)
+    throw new Error(`recordFilter on ${control.records}.${control.field} needs a picker grouped by that field`);
+  const values = group.order ?? [];
+
+  const wrapper = own.node(document.createElement('div'), 'record filter');
+  wrapper.className = 'layers-control';
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'layers-toggle-btn';
+  button.lang = 'bn';
+  button.setAttribute('aria-expanded', 'false');
+  button.setAttribute('aria-controls', 'recordFilterMenu');
+  button.textContent = `${control.label} ▾`;
+  const menu = document.createElement('div');
+  menu.id = 'recordFilterMenu';
+  menu.className = 'layers-menu filter-menu';
+
+  const row = (text, value) => {
+    const label = document.createElement('label');
+    label.className = 'layers-menu-item';
+    const box = document.createElement('input');
+    box.type = 'checkbox';
+    box.checked = true;
+    if (value !== undefined) box.dataset.value = value;
+    const span = document.createElement('span');
+    span.lang = 'bn';
+    span.textContent = text;
+    label.append(box, span);
+    menu.appendChild(label);
+    return box;
+  };
+  const all = row(control.allLabel);
+  const boxes = values.map((v) => row(lookupValue(group.lookup, v, group.take) ?? v, v));
+
+  wrapper.append(button, menu);
+  dom.mapShell.appendChild(wrapper);
+
+  own.domHandler(menu, 'change', (event) => {
+    if (event.target === all) for (const box of boxes) box.checked = all.checked;
+    filteredOut.clear();
+    for (const box of boxes) if (!box.checked) filteredOut.add(box.dataset.value);
+    all.checked = filteredOut.size === 0;
+    all.indeterminate = filteredOut.size > 0 && filteredOut.size < boxes.length;
+    applyFilter();
+  });
+  own.domHandler(button, 'click', (event) => {
+    event.stopPropagation();
+    const open = menu.classList.toggle('open');
+    button.setAttribute('aria-expanded', String(open));
+  });
+  own.domHandler(document, 'click', (event) => {
+    if (!wrapper.contains(event.target)) {
+      menu.classList.remove('open');
+      button.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
+/**
+ * After a filter change: a selection the filter now hides is cleared and its
+ * card closed; every source is re-derived; the picker and ‹ › follow; a card
+ * still open is refilled, since a city's list may have shrunk.
+ */
+function applyFilter() {
+  reachable = null;
+  for (const [table, key] of [...selection]) if (!shown(table, key)) selection.delete(table);
+  for (const [name, spec] of Object.entries(sourceSpecs)) map.getSource(name)?.setData(derive(name, spec));
+  if (picker) renderPicker();
+  syncStepButtons();
+  const [current] = [...selection];
+  if (!current) {
+    marker?.instance.remove();
+    if (hasSheet) setSheetOpen(false);
+  } else if (sheetFor(current[0])) fillSheet(current[0], current[1]);
+}
+
 /** A swatch names a style token, never a literal colour, so it cannot drift. */
 function swatchColour(token) {
   const paint = styles[token]?.paint ?? {};
@@ -1006,7 +1167,7 @@ function fillSheet(table, key) {
 function referencedByRow(spec, index, key) {
   const { records: from, listField } = spec.referencedBy;
   const table = records[from] ?? {};
-  const keys = Object.keys(table).filter((k) => (table[k][listField] ?? []).includes(key));
+  const keys = Object.keys(table).filter((k) => (table[k][listField] ?? []).includes(key) && shown(from, k));
   if (!keys.length) return null;
   const line = document.createElement('div');
   line.className = 'info-row info-row-list';

@@ -164,6 +164,14 @@
       "labelEn": "Choose an organisation",
       "label": { "field": "pickerLabel" },
       "do": [{ "action": "select" }, { "action": "fitBounds", "clear": ["sheet"], "duration": 1800, "field": "frame" }]
+    },
+    {
+      "type": "recordFilter",
+      "id": "category",
+      "records": "organisations",
+      "field": "category",
+      "label": "ক্যাটাগরি",
+      "allLabel": "সব"
     }
   ],
   "interactions": [
