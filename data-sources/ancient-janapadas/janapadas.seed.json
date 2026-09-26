@@ -1,0 +1,1224 @@
+{
+  "pundra": {
+    "id": "pundra",
+    "order": 1,
+    "nameBn": "পুণ্ড্র",
+    "nameEn": "Pundra",
+    "altNamesBn": "পৌঁড, পুণ্ড্রবর্ধন",
+    "locationBn": "বৃহত্তর বগুড়া, রাজশাহী, রংপুর ও দিনাজপুর জেলার অংশ বিশেষ",
+    "districtsBn": "বগুড়া, জয়পুরহাট, রাজশাহী, নাটোর, নওগাঁ, চাঁপাইনবাবগঞ্জ, রংপুর, কুড়িগ্রাম, লালমনিরহাট, নীলফামারী, গাইবান্ধা, দিনাজপুর, ঠাকুরগাঁও, পঞ্চগড়",
+    "areaCaptionBn": "আনুমানিক এলাকা — সূত্রে উল্লিখিত বর্তমান জেলাগুলোর পুরো সীমানা জুড়ে আঁকা",
+    "capitalBn": "পুণ্ড্রবর্ধন বা পুণ্ড্রনগর (বর্তমান মহাস্থানগড়, বগুড়া)",
+    "noteBn": "বাংলার প্রাচীনতম জনপদ (সূত্র অনুযায়ী)",
+    "photo": null,
+    "geometry": {
+      "area": {
+        "method": "adminUnion",
+        "bangladesh": [
+          {
+            "nameBn": "বগুড়া",
+            "nameEn": "Bogura",
+            "pcode": "BD5010"
+          },
+          {
+            "nameBn": "জয়পুরহাট",
+            "nameEn": "Joypurhat",
+            "pcode": "BD5038"
+          },
+          {
+            "nameBn": "রাজশাহী",
+            "nameEn": "Rajshahi",
+            "pcode": "BD5081"
+          },
+          {
+            "nameBn": "নাটোর",
+            "nameEn": "Natore",
+            "pcode": "BD5069"
+          },
+          {
+            "nameBn": "নওগাঁ",
+            "nameEn": "Naogaon",
+            "pcode": "BD5064"
+          },
+          {
+            "nameBn": "চাঁপাইনবাবগঞ্জ",
+            "nameEn": "Chapainababganj",
+            "pcode": "BD5070"
+          },
+          {
+            "nameBn": "রংপুর",
+            "nameEn": "Rangpur",
+            "pcode": "BD5585"
+          },
+          {
+            "nameBn": "কুড়িগ্রাম",
+            "nameEn": "Kurigram",
+            "pcode": "BD5549"
+          },
+          {
+            "nameBn": "লালমনিরহাট",
+            "nameEn": "Lalmonirhat",
+            "pcode": "BD5552"
+          },
+          {
+            "nameBn": "নীলফামারী",
+            "nameEn": "Nilphamari",
+            "pcode": "BD5573"
+          },
+          {
+            "nameBn": "গাইবান্ধা",
+            "nameEn": "Gaibandha",
+            "pcode": "BD5532"
+          },
+          {
+            "nameBn": "দিনাজপুর",
+            "nameEn": "Dinajpur",
+            "pcode": "BD5527"
+          },
+          {
+            "nameBn": "ঠাকুরগাঁও",
+            "nameEn": "Thakurgaon",
+            "pcode": "BD5594"
+          },
+          {
+            "nameBn": "পঞ্চগড়",
+            "nameEn": "Panchagarh",
+            "pcode": "BD5577"
+          }
+        ],
+        "outside": []
+      },
+      "note": "The union of the whole present-day administrative units named here. Where the source says 'part of', the whole unit is still drawn; the card says 'approximate area'."
+    },
+    "photoSite": "Mahasthangarh",
+    "sources": {
+      "nameBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "Listed as a janapada: পুণ্ড্র."
+        }
+      ],
+      "locationBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "বৃহত্তর বগুড়া, রাজশাহী, রংপুর ও দিনাজপুর জেলার অংশ বিশেষ"
+        }
+      ],
+      "geometry": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "বৃহত্তর বগুড়া, রাজশাহী, রংপুর ও দিনাজপুর জেলার অংশ বিশেষ (whole units drawn; greater districts expanded per bn.wikipedia 'বৃহত্তর জেলা')"
+        }
+      ],
+      "altNamesBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "পৌঁড, পুণ্ড্রবর্ধন"
+        }
+      ],
+      "capitalBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "পুণ্ড্রবর্ধন বা পুণ্ড্রনগর (বর্তমান মহাস্থানগড়, বগুড়া)"
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "বাংলার প্রাচীনতম জনপদ (সূত্র অনুযায়ী)"
+        }
+      ]
+    },
+    "review": "সূত্রে \"অংশ বিশেষ\" — পুরো জেলা নিলে এলাকা বেশি দেখাবে Pending: the user's BCS book is the authority; values may be corrected before approval. Spelling: displayed fields use মালদা, নেত্রকোণা, রাঙ্গামাটি (the official portal and district-site spellings, chosen by the user 2026-09-26); source quotes keep the source's own spelling."
+  },
+  "barendra": {
+    "id": "barendra",
+    "order": 2,
+    "nameBn": "বরেন্দ্র",
+    "nameEn": "Varendra",
+    "altNamesBn": "বারিন্দ, বরেন্দ্রভূমি",
+    "locationBn": "বগুড়ার পশ্চিমাংশ, পাবনা, রাজশাহী বিভাগের উত্তর পশ্চিমাংশ, রংপুর ও দিনাজপুরের কিছু অংশ; নেপালের কুশি নদীর পূর্বাংশ ও বিহারের গঙ্গার উত্তরাংশ পর্যন্ত।",
+    "districtsBn": "বগুড়া, নওগাঁ, রাজশাহী, পাবনা, দিনাজপুর, উত্তর দিনাজপুর (পশ্চিমবঙ্গ), দক্ষিণ দিনাজপুর (পশ্চিমবঙ্গ), মালদা (পশ্চিমবঙ্গ)",
+    "areaCaptionBn": "আনুমানিক এলাকা — সূত্রে উল্লিখিত বর্তমান জেলাগুলোর পুরো সীমানা জুড়ে আঁকা",
+    "noteBn": "করতোয়া নদীর পশ্চিম তীরের লালমাটির অঞ্চল (সূত্র অনুযায়ী)",
+    "photo": null,
+    "geometry": {
+      "area": {
+        "method": "adminUnion",
+        "bangladesh": [
+          {
+            "nameBn": "বগুড়া",
+            "nameEn": "Bogura",
+            "pcode": "BD5010"
+          },
+          {
+            "nameBn": "নওগাঁ",
+            "nameEn": "Naogaon",
+            "pcode": "BD5064"
+          },
+          {
+            "nameBn": "রাজশাহী",
+            "nameEn": "Rajshahi",
+            "pcode": "BD5081"
+          },
+          {
+            "nameBn": "পাবনা",
+            "nameEn": "Pabna",
+            "pcode": "BD5076"
+          },
+          {
+            "nameBn": "দিনাজপুর",
+            "nameEn": "Dinajpur",
+            "pcode": "BD5527"
+          }
+        ],
+        "outside": [
+          {
+            "country": "IND",
+            "admin1": "West Bengal",
+            "admin2": "Uttar Dinajpur",
+            "nameBn": "উত্তর দিনাজপুর"
+          },
+          {
+            "country": "IND",
+            "admin1": "West Bengal",
+            "admin2": "Dakshin Dinajpur",
+            "nameBn": "দক্ষিণ দিনাজপুর"
+          },
+          {
+            "country": "IND",
+            "admin1": "West Bengal",
+            "admin2": "Maldah",
+            "nameBn": "মালদা"
+          }
+        ]
+      },
+      "note": "The union of the whole present-day administrative units named here. Where the source says 'part of', the whole unit is still drawn; the card says 'approximate area'."
+    },
+    "photoSite": "Somapura Mahavihara, Paharpur (editor suggestion, not in the source)",
+    "sources": {
+      "nameBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "Listed as a janapada: বরেন্দ্র."
+        }
+      ],
+      "locationBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "বগুড়ার পশ্চিমাংশ, পাবনা, রাজশাহী বিভাগের উত্তর পশ্চিমাংশ, রংপুর ও দিনাজপুরের কিছু অংশ; নেপালের কুশি নদীর পূর্বাংশ ও বিহারের গঙ্গার উত্তরাংশ পর্যন্ত।"
+        }
+      ],
+      "geometry": [
+        {
+          "title": "Varendra",
+          "publisher": "Wikipedia (revision 1370372101)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Varendra&oldid=1370372101",
+          "cites": "AM Chowdhury (2012), \"Varendra\", Banglapedia",
+          "states": "Varendra included the districts of Bogra, Naogaon, Rajshahi, Pabna and Dinajpur of Bangladesh and Uttar Dinajpur, Dakshin Dinajpur and Malda of West Bengal."
+        }
+      ],
+      "altNamesBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "বারিন্দ, বরেন্দ্রভূমি"
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "করতোয়া নদীর পশ্চিম তীরের লালমাটির অঞ্চল (সূত্র অনুযায়ী)"
+        }
+      ]
+    },
+    "review": "সূত্রে বর্তমান জেলার নাম আলাদা করে দেওয়া (নওগাঁ আলাদা লেখা), তাই বর্তমান জেলাই নেওয়া হলো, বৃহত্তর জেলা নয়। ফলে নাটোর, চাঁপাইনবাবগঞ্জ, জয়পুরহাট নেই। পুরোটাই পুণ্ড্রের ভেতরে পড়ে; পুণ্ড্রের এলাকায় ট্যাপ করলে ছোট বলে বরেন্দ্র খুলবে। নেপাল-বিহারের অংশ আঁকা হবে না। নাটোর বাদ পড়ায় পাবনা বাকি অংশ থেকে আলাদা টুকরো হয়ে যেতে পারে — বানানোর সময় যাচাই হবে। Pending: the user's BCS book is the authority; values may be corrected before approval. Spelling: displayed fields use মালদা, নেত্রকোণা, রাঙ্গামাটি (the official portal and district-site spellings, chosen by the user 2026-09-26); source quotes keep the source's own spelling."
+  },
+  "banga": {
+    "id": "banga",
+    "order": 3,
+    "nameBn": "বঙ্গ",
+    "nameEn": "Vanga",
+    "locationBn": "বৃহত্তর ঢাকা, বরিশাল, খুলনা, ফরিদপুর, যশোর, নদীয়া, কুষ্টিয়া, টাঙ্গাইল ও ময়মনসিংহ অঞ্চল",
+    "districtsBn": "ঢাকা, গাজীপুর, নারায়ণগঞ্জ, মুন্সীগঞ্জ, মানিকগঞ্জ, নরসিংদী, বরিশাল, ঝালকাঠি, পিরোজপুর, ভোলা, খুলনা, বাগেরহাট, সাতক্ষীরা, ফরিদপুর, রাজবাড়ী, গোপালগঞ্জ, মাদারীপুর, শরীয়তপুর, যশোর, ঝিনাইদহ, মাগুরা, নড়াইল, কুষ্টিয়া, চুয়াডাঙ্গা, মেহেরপুর, টাঙ্গাইল, ময়মনসিংহ, নেত্রকোণা, শেরপুর, জামালপুর, কিশোরগঞ্জ, নদীয়া (পশ্চিমবঙ্গ)",
+    "areaCaptionBn": "আনুমানিক এলাকা — সূত্রে উল্লিখিত বর্তমান জেলাগুলোর পুরো সীমানা জুড়ে আঁকা",
+    "noteBn": "পাঠান আমলে সমগ্র বাংলা বঙ্গ নামে ঐক্যবদ্ধ হয় (সূত্র অনুযায়ী)",
+    "photo": null,
+    "geometry": {
+      "area": {
+        "method": "adminUnion",
+        "bangladesh": [
+          {
+            "nameBn": "ঢাকা",
+            "nameEn": "Dhaka",
+            "pcode": "BD3026"
+          },
+          {
+            "nameBn": "গাজীপুর",
+            "nameEn": "Gazipur",
+            "pcode": "BD3033"
+          },
+          {
+            "nameBn": "নারায়ণগঞ্জ",
+            "nameEn": "Narayanganj",
+            "pcode": "BD3067"
+          },
+          {
+            "nameBn": "মুন্সীগঞ্জ",
+            "nameEn": "Munshiganj",
+            "pcode": "BD3059"
+          },
+          {
+            "nameBn": "মানিকগঞ্জ",
+            "nameEn": "Manikganj",
+            "pcode": "BD3056"
+          },
+          {
+            "nameBn": "নরসিংদী",
+            "nameEn": "Narsingdi",
+            "pcode": "BD3068"
+          },
+          {
+            "nameBn": "বরিশাল",
+            "nameEn": "Barishal",
+            "pcode": "BD1006"
+          },
+          {
+            "nameBn": "ঝালকাঠি",
+            "nameEn": "Jhalokati",
+            "pcode": "BD1042"
+          },
+          {
+            "nameBn": "পিরোজপুর",
+            "nameEn": "Pirojpur",
+            "pcode": "BD1079"
+          },
+          {
+            "nameBn": "ভোলা",
+            "nameEn": "Bhola",
+            "pcode": "BD1009"
+          },
+          {
+            "nameBn": "খুলনা",
+            "nameEn": "Khulna",
+            "pcode": "BD4047"
+          },
+          {
+            "nameBn": "বাগেরহাট",
+            "nameEn": "Bagerhat",
+            "pcode": "BD4001"
+          },
+          {
+            "nameBn": "সাতক্ষীরা",
+            "nameEn": "Satkhira",
+            "pcode": "BD4087"
+          },
+          {
+            "nameBn": "ফরিদপুর",
+            "nameEn": "Faridpur",
+            "pcode": "BD3029"
+          },
+          {
+            "nameBn": "রাজবাড়ী",
+            "nameEn": "Rajbari",
+            "pcode": "BD3082"
+          },
+          {
+            "nameBn": "গোপালগঞ্জ",
+            "nameEn": "Gopalganj",
+            "pcode": "BD3035"
+          },
+          {
+            "nameBn": "মাদারীপুর",
+            "nameEn": "Madaripur",
+            "pcode": "BD3054"
+          },
+          {
+            "nameBn": "শরীয়তপুর",
+            "nameEn": "Shariatpur",
+            "pcode": "BD3086"
+          },
+          {
+            "nameBn": "যশোর",
+            "nameEn": "Jashore",
+            "pcode": "BD4041"
+          },
+          {
+            "nameBn": "ঝিনাইদহ",
+            "nameEn": "Jhenaidah",
+            "pcode": "BD4044"
+          },
+          {
+            "nameBn": "মাগুরা",
+            "nameEn": "Magura",
+            "pcode": "BD4055"
+          },
+          {
+            "nameBn": "নড়াইল",
+            "nameEn": "Narail",
+            "pcode": "BD4065"
+          },
+          {
+            "nameBn": "কুষ্টিয়া",
+            "nameEn": "Kushtia",
+            "pcode": "BD4050"
+          },
+          {
+            "nameBn": "চুয়াডাঙ্গা",
+            "nameEn": "Chuadanga",
+            "pcode": "BD4018"
+          },
+          {
+            "nameBn": "মেহেরপুর",
+            "nameEn": "Meherpur",
+            "pcode": "BD4057"
+          },
+          {
+            "nameBn": "টাঙ্গাইল",
+            "nameEn": "Tangail",
+            "pcode": "BD3093"
+          },
+          {
+            "nameBn": "ময়মনসিংহ",
+            "nameEn": "Mymensingh",
+            "pcode": "BD4561"
+          },
+          {
+            "nameBn": "নেত্রকোণা",
+            "nameEn": "Netrakona",
+            "pcode": "BD4572"
+          },
+          {
+            "nameBn": "শেরপুর",
+            "nameEn": "Sherpur",
+            "pcode": "BD4589"
+          },
+          {
+            "nameBn": "জামালপুর",
+            "nameEn": "Jamalpur",
+            "pcode": "BD4539"
+          },
+          {
+            "nameBn": "কিশোরগঞ্জ",
+            "nameEn": "Kishoreganj",
+            "pcode": "BD3048"
+          }
+        ],
+        "outside": [
+          {
+            "country": "IND",
+            "admin1": "West Bengal",
+            "admin2": "Nadia",
+            "nameBn": "নদীয়া"
+          }
+        ]
+      },
+      "note": "The union of the whole present-day administrative units named here. Where the source says 'part of', the whole unit is still drawn; the card says 'approximate area'."
+    },
+    "photoSite": "Wari-Bateshwar (editor suggestion, not in the source)",
+    "sources": {
+      "nameBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "Listed as a janapada: বঙ্গ."
+        }
+      ],
+      "locationBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "বৃহত্তর ঢাকা, বরিশাল, খুলনা, ফরিদপুর, যশোর, নদীয়া, কুষ্টিয়া, টাঙ্গাইল ও ময়মনসিংহ অঞ্চল"
+        }
+      ],
+      "geometry": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "বৃহত্তর ঢাকা, বরিশাল, খুলনা, ফরিদপুর, যশোর, নদীয়া, কুষ্টিয়া, টাঙ্গাইল ও ময়মনসিংহ অঞ্চল (whole units drawn; greater districts expanded per bn.wikipedia 'বৃহত্তর জেলা')"
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "পাঠান আমলে সমগ্র বাংলা বঙ্গ নামে ঐক্যবদ্ধ হয় (সূত্র অনুযায়ী)"
+        }
+      ]
+    },
+    "review": "খুব বড় এলাকা — ৩১টি জেলা; চন্দ্রদ্বীপের সঙ্গে মেলে Pending: the user's BCS book is the authority; values may be corrected before approval. Spelling: displayed fields use মালদা, নেত্রকোণা, রাঙ্গামাটি (the official portal and district-site spellings, chosen by the user 2026-09-26); source quotes keep the source's own spelling."
+  },
+  "gauda": {
+    "id": "gauda",
+    "order": 4,
+    "nameBn": "গৌড়",
+    "nameEn": "Gauda",
+    "locationBn": "মালদা, মুর্শিদাবাদ, বীরভূম, বর্ধমান ও চাঁপাইনবাবগঞ্জ",
+    "districtsBn": "চাঁপাইনবাবগঞ্জ, মালদা (পশ্চিমবঙ্গ), মুর্শিদাবাদ (পশ্চিমবঙ্গ), বীরভূম (পশ্চিমবঙ্গ), পূর্ব বর্ধমান (পশ্চিমবঙ্গ), পশ্চিম বর্ধমান (পশ্চিমবঙ্গ)",
+    "areaCaptionBn": "আনুমানিক এলাকা — সূত্রে উল্লিখিত বর্তমান জেলাগুলোর পুরো সীমানা জুড়ে আঁকা",
+    "capitalBn": "কর্ণসুবর্ণ (মুর্শিদাবাদ), শশাঙ্কের রাজধানী",
+    "noteBn": "শশাঙ্ক বাংলার জনপদগুলোকে গৌড় নামে একত্র করেন (সূত্র অনুযায়ী)",
+    "photo": null,
+    "geometry": {
+      "area": {
+        "method": "adminUnion",
+        "bangladesh": [
+          {
+            "nameBn": "চাঁপাইনবাবগঞ্জ",
+            "nameEn": "Chapainababganj",
+            "pcode": "BD5070"
+          }
+        ],
+        "outside": [
+          {
+            "country": "IND",
+            "admin1": "West Bengal",
+            "admin2": "Maldah",
+            "nameBn": "মালদা"
+          },
+          {
+            "country": "IND",
+            "admin1": "West Bengal",
+            "admin2": "Murshidabad",
+            "nameBn": "মুর্শিদাবাদ"
+          },
+          {
+            "country": "IND",
+            "admin1": "West Bengal",
+            "admin2": "Birbhum",
+            "nameBn": "বীরভূম"
+          },
+          {
+            "country": "IND",
+            "admin1": "West Bengal",
+            "admin2": "Purba Bardhaman",
+            "nameBn": "পূর্ব বর্ধমান"
+          },
+          {
+            "country": "IND",
+            "admin1": "West Bengal",
+            "admin2": "Paschim Bardhaman",
+            "nameBn": "পশ্চিম বর্ধমান"
+          }
+        ]
+      },
+      "note": "The union of the whole present-day administrative units named here. Where the source says 'part of', the whole unit is still drawn; the card says 'approximate area'."
+    },
+    "photoSite": "Karnasubarna (Rajbaridanga), Murshidabad (editor suggestion)",
+    "sources": {
+      "nameBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "Listed as a janapada: গৌড়."
+        }
+      ],
+      "locationBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "মালদহ, মুর্শিদাবাদ, বীরভূম, বর্ধমান ও চাঁপাইনবাবগঞ্জ"
+        }
+      ],
+      "geometry": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "মালদহ, মুর্শিদাবাদ, বীরভূম, বর্ধমান ও চাঁপাইনবাবগঞ্জ (whole units drawn; greater districts expanded per bn.wikipedia 'বৃহত্তর জেলা')"
+        }
+      ],
+      "capitalBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "কর্ণসুবর্ণ (মুর্শিদাবাদ), শশাঙ্কের রাজধানী"
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "শশাঙ্ক বাংলার জনপদগুলোকে গৌড় নামে একত্র করেন (সূত্র অনুযায়ী)"
+        }
+      ]
+    },
+    "review": "বর্ধমান ২০১৭ সালে পূর্ব ও পশ্চিম বর্ধমানে ভাগ হয়েছে — দুটোই নেওয়ার প্রস্তাব Pending: the user's BCS book is the authority; values may be corrected before approval. Spelling: displayed fields use মালদা, নেত্রকোণা, রাঙ্গামাটি (the official portal and district-site spellings, chosen by the user 2026-09-26); source quotes keep the source's own spelling."
+  },
+  "samatata": {
+    "id": "samatata",
+    "order": 5,
+    "nameBn": "সমতট",
+    "nameEn": "Samatata",
+    "locationBn": "বৃহত্তর কুমিল্লা, ত্রিপুরা ও নোয়াখালী অঞ্চল",
+    "districtsBn": "কুমিল্লা, চাঁদপুর, ব্রাহ্মণবাড়িয়া, নোয়াখালী, লক্ষ্মীপুর, ফেনী, ত্রিপুরা (ভারত)",
+    "areaCaptionBn": "আনুমানিক এলাকা — সূত্রে উল্লিখিত বর্তমান জেলাগুলোর পুরো সীমানা জুড়ে আঁকা",
+    "capitalBn": "বড় কামতা (কুমিল্লা)",
+    "noteBn": "মেঘনার মোহনাসহ; হিউয়েন সাংয়ের বিবরণে বাংলার দক্ষিণ-পূর্বাংশের রাজ্য",
+    "photo": null,
+    "geometry": {
+      "area": {
+        "method": "adminUnion",
+        "bangladesh": [
+          {
+            "nameBn": "কুমিল্লা",
+            "nameEn": "Cumilla",
+            "pcode": "BD2019"
+          },
+          {
+            "nameBn": "চাঁদপুর",
+            "nameEn": "Chandpur",
+            "pcode": "BD2013"
+          },
+          {
+            "nameBn": "ব্রাহ্মণবাড়িয়া",
+            "nameEn": "Brahmanbaria",
+            "pcode": "BD2012"
+          },
+          {
+            "nameBn": "নোয়াখালী",
+            "nameEn": "Noakhali",
+            "pcode": "BD2075"
+          },
+          {
+            "nameBn": "লক্ষ্মীপুর",
+            "nameEn": "Lakshmipur",
+            "pcode": "BD2051"
+          },
+          {
+            "nameBn": "ফেনী",
+            "nameEn": "Feni",
+            "pcode": "BD2030"
+          }
+        ],
+        "outside": [
+          {
+            "country": "IND",
+            "admin1": "Tripura",
+            "level": "admin1",
+            "nameBn": "ত্রিপুরা"
+          }
+        ]
+      },
+      "note": "The union of the whole present-day administrative units named here. Where the source says 'part of', the whole unit is still drawn; the card says 'approximate area'."
+    },
+    "photoSite": "Shalban Vihara, Mainamati",
+    "sources": {
+      "nameBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "Listed as a janapada: সমতট."
+        }
+      ],
+      "locationBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "বৃহত্তর কুমিল্লা, ত্রিপুরা ও নোয়াখালী অঞ্চল"
+        }
+      ],
+      "geometry": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "বৃহত্তর কুমিল্লা, ত্রিপুরা ও নোয়াখালী অঞ্চল (whole units drawn; greater districts expanded per bn.wikipedia 'বৃহত্তর জেলা')"
+        }
+      ],
+      "capitalBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "বড় কামতা (কুমিল্লা)"
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "মেঘনার মোহনাসহ; হিউয়েন সাংয়ের বিবরণে বাংলার দক্ষিণ-পূর্বাংশের রাজ্য"
+        }
+      ]
+    },
+    "review": "ত্রিপুরা হরিকেলেও আছে — দুই জনপদ মেলে Pending: the user's BCS book is the authority; values may be corrected before approval. Spelling: displayed fields use মালদা, নেত্রকোণা, রাঙ্গামাটি (the official portal and district-site spellings, chosen by the user 2026-09-26); source quotes keep the source's own spelling."
+  },
+  "radha": {
+    "id": "radha",
+    "order": 6,
+    "nameBn": "রাঢ়",
+    "nameEn": "Radha (Rarh)",
+    "locationBn": "ঝাড়খন্ডের সুবর্ণরেখা উপত্যকা ও পশ্চিম বাংলার দক্ষিণ এবং পশ্চিমাঞ্চল।",
+    "districtsBn": "বীরভূম (পশ্চিমবঙ্গ), পূর্ব বর্ধমান (পশ্চিমবঙ্গ), পশ্চিম বর্ধমান (পশ্চিমবঙ্গ), মুর্শিদাবাদ (পশ্চিমবঙ্গ), নদীয়া (পশ্চিমবঙ্গ), বাঁকুড়া (পশ্চিমবঙ্গ), হুগলি (পশ্চিমবঙ্গ), হাওড়া (পশ্চিমবঙ্গ)",
+    "areaCaptionBn": "আনুমানিক এলাকা — সূত্রে উল্লিখিত বর্তমান জেলাগুলোর পুরো সীমানা জুড়ে আঁকা",
+    "noteBn": "ভাগীরথীর পশ্চিম তীর হতে গঙ্গার দক্ষিণাঞ্চল (সূত্র অনুযায়ী)",
+    "geometry": {
+      "area": {
+        "method": "adminUnion",
+        "bangladesh": [],
+        "outside": [
+          {
+            "country": "IND",
+            "admin1": "West Bengal",
+            "admin2": "Birbhum",
+            "nameBn": "বীরভূম"
+          },
+          {
+            "country": "IND",
+            "admin1": "West Bengal",
+            "admin2": "Purba Bardhaman",
+            "nameBn": "পূর্ব বর্ধমান"
+          },
+          {
+            "country": "IND",
+            "admin1": "West Bengal",
+            "admin2": "Paschim Bardhaman",
+            "nameBn": "পশ্চিম বর্ধমান"
+          },
+          {
+            "country": "IND",
+            "admin1": "West Bengal",
+            "admin2": "Murshidabad",
+            "nameBn": "মুর্শিদাবাদ"
+          },
+          {
+            "country": "IND",
+            "admin1": "West Bengal",
+            "admin2": "Nadia",
+            "nameBn": "নদীয়া"
+          },
+          {
+            "country": "IND",
+            "admin1": "West Bengal",
+            "admin2": "Bankura",
+            "nameBn": "বাঁকুড়া"
+          },
+          {
+            "country": "IND",
+            "admin1": "West Bengal",
+            "admin2": "Hooghly",
+            "nameBn": "হুগলি"
+          },
+          {
+            "country": "IND",
+            "admin1": "West Bengal",
+            "admin2": "Howrah",
+            "nameBn": "হাওড়া"
+          }
+        ]
+      },
+      "note": "The union of the whole present-day administrative units named here. Where the source says 'part of', the whole unit is still drawn; the card says 'approximate area'."
+    },
+    "sources": {
+      "nameBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "Listed as a janapada: রাঢ়."
+        }
+      ],
+      "locationBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "ঝাড়খন্ডের সুবর্ণরেখা উপত্যকা ও পশ্চিম বাংলার দক্ষিণ এবং পশ্চিমাঞ্চল।"
+        }
+      ],
+      "geometry": [
+        {
+          "title": "Rarh region",
+          "publisher": "Wikipedia (revision 1376591116, 2026-09-25)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Rarh_region&oldid=1376591116",
+          "cites": "Rupendra Kumar Chattopadhyay (2012), \"Radha\", Banglapedia",
+          "states": "Northern Rarh: certain parts of Birbhum, Burdwan, Murshidabad and Nadia; Southern Rarh: certain parts of Burdwan, Bankura, Hooghly and Howrah; divided by the Damodar."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "ভাগীরথীর পশ্চিম তীর হতে গঙ্গার দক্ষিণাঞ্চল (সূত্র অনুযায়ী)"
+        }
+      ]
+    },
+    "review": "সূত্রে \"Certain parts\" — পুরো জেলা নিলে বড় দেখাবে। বর্ধমান ২০১৭-এ পূর্ব ও পশ্চিমে ভাগ হয়েছে, দুটোই নেওয়া। ঝাড়খন্ড লাগবে না। সূহ্মের পুরোটা রাঢ়ের ভেতরে পড়ে; গৌড় (মুর্শিদাবাদ, বীরভূম, বর্ধমান) ও বঙ্গের (নদীয়া) সঙ্গেও মেলে। চাইলে উত্তর রাঢ় ও দক্ষিণ রাঢ় আলাদা রঙে দেখানো যায়। Pending: the user's BCS book is the authority; values may be corrected before approval. Spelling: displayed fields use মালদা, নেত্রকোণা, রাঙ্গামাটি (the official portal and district-site spellings, chosen by the user 2026-09-26); source quotes keep the source's own spelling."
+  },
+  "harikela": {
+    "id": "harikela",
+    "order": 7,
+    "nameBn": "হরিকেল",
+    "nameEn": "Harikela",
+    "altNamesBn": "হরকল, হারিকেলা",
+    "locationBn": "চট্টগ্রাম, পার্বত্য চট্টগ্রাম, ত্রিপুরা, সিলেট ও কাছাড়",
+    "districtsBn": "চট্টগ্রাম, কক্সবাজার, রাঙ্গামাটি, বান্দরবান, খাগড়াছড়ি, সিলেট, সুনামগঞ্জ, হবিগঞ্জ, মৌলভীবাজার, ত্রিপুরা (ভারত), কাছাড় (আসাম)",
+    "areaCaptionBn": "আনুমানিক এলাকা — সূত্রে উল্লিখিত বর্তমান জেলাগুলোর পুরো সীমানা জুড়ে আঁকা",
+    "capitalBn": "শিলাহাট (সিলেট)",
+    "noteBn": "ত্রিপুরার শৈলশ্রেণির সমান্তরালে সিলেট থেকে চট্টগ্রাম পর্যন্ত",
+    "geometry": {
+      "area": {
+        "method": "adminUnion",
+        "bangladesh": [
+          {
+            "nameBn": "চট্টগ্রাম",
+            "nameEn": "Chattogram",
+            "pcode": "BD2015"
+          },
+          {
+            "nameBn": "কক্সবাজার",
+            "nameEn": "Cox's Bazar",
+            "pcode": "BD2022"
+          },
+          {
+            "nameBn": "রাঙ্গামাটি",
+            "nameEn": "Rangamati",
+            "pcode": "BD2084"
+          },
+          {
+            "nameBn": "বান্দরবান",
+            "nameEn": "Bandarban",
+            "pcode": "BD2003"
+          },
+          {
+            "nameBn": "খাগড়াছড়ি",
+            "nameEn": "Khagrachhari",
+            "pcode": "BD2046"
+          },
+          {
+            "nameBn": "সিলেট",
+            "nameEn": "Sylhet",
+            "pcode": "BD6091"
+          },
+          {
+            "nameBn": "সুনামগঞ্জ",
+            "nameEn": "Sunamganj",
+            "pcode": "BD6090"
+          },
+          {
+            "nameBn": "হবিগঞ্জ",
+            "nameEn": "Habiganj",
+            "pcode": "BD6036"
+          },
+          {
+            "nameBn": "মৌলভীবাজার",
+            "nameEn": "Moulvibazar",
+            "pcode": "BD6058"
+          }
+        ],
+        "outside": [
+          {
+            "country": "IND",
+            "admin1": "Tripura",
+            "level": "admin1",
+            "nameBn": "ত্রিপুরা"
+          },
+          {
+            "country": "IND",
+            "admin1": "Assam",
+            "admin2": "Cachar",
+            "nameBn": "কাছাড়"
+          }
+        ]
+      },
+      "note": "The union of the whole present-day administrative units named here. Where the source says 'part of', the whole unit is still drawn; the card says 'approximate area'."
+    },
+    "sources": {
+      "nameBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "Listed as a janapada: হরিকেল."
+        }
+      ],
+      "locationBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "চট্টগ্রাম, পার্বত্য চট্টগ্রাম, ত্রিপুরা, সিলেট ও কাছাড়"
+        }
+      ],
+      "geometry": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "চট্টগ্রাম, পার্বত্য চট্টগ্রাম, ত্রিপুরা, সিলেট ও কাছাড় (whole units drawn; greater districts expanded per bn.wikipedia 'বৃহত্তর জেলা')"
+        }
+      ],
+      "altNamesBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "হরকল, হারিকেলা"
+        }
+      ],
+      "capitalBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "শিলাহাট (সিলেট)"
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "ত্রিপুরার শৈলশ্রেণির সমান্তরালে সিলেট থেকে চট্টগ্রাম পর্যন্ত"
+        }
+      ]
+    },
+    "review": "কাছাড় আসামে — basemap-এ কাছাড় জেলা যোগ করতে হবে Pending: the user's BCS book is the authority; values may be corrected before approval. Spelling: displayed fields use মালদা, নেত্রকোণা, রাঙ্গামাটি (the official portal and district-site spellings, chosen by the user 2026-09-26); source quotes keep the source's own spelling."
+  },
+  "chandradwip": {
+    "id": "chandradwip",
+    "order": 8,
+    "nameBn": "চন্দ্রদ্বীপ",
+    "nameEn": "Chandradwip",
+    "locationBn": "বরিশাল ও এর পার্শ্ববর্তী ঢাকা-বিক্রমপুর ফরিদপুর অঞ্চল; বালেশ্বর নদ ও মেঘনা নদীর মধ্যবর্তী স্থান",
+    "districtsBn": "বরিশাল, ঝালকাঠি, পিরোজপুর, ভোলা, পটুয়াখালী, বরগুনা",
+    "areaCaptionBn": "আনুমানিক এলাকা — সূত্রে উল্লিখিত বর্তমান জেলাগুলোর পুরো সীমানা জুড়ে আঁকা",
+    "noteBn": "মূলত আদি বঙ্গের অংশ; চন্দ্র রাজবংশের রাজা ত্রৈলোক্যচন্দ্রের শাসনে নাম (সূত্র অনুযায়ী)",
+    "geometry": {
+      "area": {
+        "method": "adminUnion",
+        "bangladesh": [
+          {
+            "nameBn": "বরিশাল",
+            "nameEn": "Barishal",
+            "pcode": "BD1006"
+          },
+          {
+            "nameBn": "ঝালকাঠি",
+            "nameEn": "Jhalokati",
+            "pcode": "BD1042"
+          },
+          {
+            "nameBn": "পিরোজপুর",
+            "nameEn": "Pirojpur",
+            "pcode": "BD1079"
+          },
+          {
+            "nameBn": "ভোলা",
+            "nameEn": "Bhola",
+            "pcode": "BD1009"
+          },
+          {
+            "nameBn": "পটুয়াখালী",
+            "nameEn": "Patuakhali",
+            "pcode": "BD1078"
+          },
+          {
+            "nameBn": "বরগুনা",
+            "nameEn": "Barguna",
+            "pcode": "BD1004"
+          }
+        ],
+        "outside": []
+      },
+      "note": "The union of the whole present-day administrative units named here. Where the source says 'part of', the whole unit is still drawn; the card says 'approximate area'."
+    },
+    "sources": {
+      "nameBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "Listed as a janapada: চন্দ্রদ্বীপ."
+        }
+      ],
+      "locationBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "বরিশাল ও এর পার্শ্ববর্তী ঢাকা-বিক্রমপুর ফরিদপুর অঞ্চল; বালেশ্বর নদ ও মেঘনা নদীর মধ্যবর্তী স্থান"
+        }
+      ],
+      "geometry": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "বরিশাল ও এর পার্শ্ববর্তী ঢাকা-বিক্রমপুর ফরিদপুর অঞ্চল; বালেশ্বর নদ ও মেঘনা নদীর মধ্যবর্তী স্থান (whole units drawn; greater districts expanded per bn.wikipedia 'বৃহত্তর জেলা')"
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "মূলত আদি বঙ্গের অংশ; চন্দ্র রাজবংশের রাজা ত্রৈলোক্যচন্দ্রের শাসনে নাম (সূত্র অনুযায়ী)"
+        }
+      ]
+    },
+    "review": "\"পার্শ্ববর্তী অঞ্চল\" অস্পষ্ট; বালেশ্বর–মেঘনার মধ্যবর্তী বলে বরিশাল ও পটুয়াখালী অঞ্চল প্রস্তাব Pending: the user's BCS book is the authority; values may be corrected before approval. Spelling: displayed fields use মালদা, নেত্রকোণা, রাঙ্গামাটি (the official portal and district-site spellings, chosen by the user 2026-09-26); source quotes keep the source's own spelling."
+  },
+  "tamralipta": {
+    "id": "tamralipta",
+    "order": 9,
+    "nameBn": "তাম্রলিপ্ত",
+    "nameEn": "Tamralipta",
+    "altNamesBn": "তমলুক, দণ্ডভুক্তি",
+    "locationBn": "বৃহত্তর মেদিনীপুর জেলা",
+    "districtsBn": "পূর্ব মেদিনীপুর (পশ্চিমবঙ্গ), পশ্চিম মেদিনীপুর (পশ্চিমবঙ্গ), ঝাড়গ্রাম (পশ্চিমবঙ্গ)",
+    "areaCaptionBn": "আনুমানিক এলাকা — সূত্রে উল্লিখিত বর্তমান জেলাগুলোর পুরো সীমানা জুড়ে আঁকা",
+    "capitalBn": "তমলুক",
+    "noteBn": "প্রাচীন বাংলার বিখ্যাত বন্দর; আট শতকের পর সমৃদ্ধি নষ্ট হয় (সূত্র অনুযায়ী)",
+    "photo": null,
+    "geometry": {
+      "area": {
+        "method": "adminUnion",
+        "bangladesh": [],
+        "outside": [
+          {
+            "country": "IND",
+            "admin1": "West Bengal",
+            "admin2": "Purba Medinipur",
+            "nameBn": "পূর্ব মেদিনীপুর"
+          },
+          {
+            "country": "IND",
+            "admin1": "West Bengal",
+            "admin2": "Paschim Medinipur",
+            "nameBn": "পশ্চিম মেদিনীপুর"
+          },
+          {
+            "country": "IND",
+            "admin1": "West Bengal",
+            "admin2": "Jhargram",
+            "nameBn": "ঝাড়গ্রাম"
+          }
+        ]
+      },
+      "note": "The union of the whole present-day administrative units named here. Where the source says 'part of', the whole unit is still drawn; the card says 'approximate area'."
+    },
+    "photoSite": "Tamluk (editor suggestion)",
+    "sources": {
+      "nameBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "Listed as a janapada: তাম্রলিপ্ত."
+        }
+      ],
+      "locationBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "বৃহত্তর মেদিনীপুর জেলা"
+        }
+      ],
+      "geometry": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "বৃহত্তর মেদিনীপুর জেলা (whole units drawn; greater districts expanded per bn.wikipedia 'বৃহত্তর জেলা')"
+        }
+      ],
+      "altNamesBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "তমলুক, দণ্ডভুক্তি"
+        }
+      ],
+      "capitalBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "তমলুক"
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "প্রাচীন বাংলার বিখ্যাত বন্দর; আট শতকের পর সমৃদ্ধি নষ্ট হয় (সূত্র অনুযায়ী)"
+        }
+      ]
+    },
+    "review": "অবিভক্ত মেদিনীপুর ২০০২ ও ২০১৭-এ ভাগ হয়ে এই তিন জেলা Pending: the user's BCS book is the authority; values may be corrected before approval. Spelling: displayed fields use মালদা, নেত্রকোণা, রাঙ্গামাটি (the official portal and district-site spellings, chosen by the user 2026-09-26); source quotes keep the source's own spelling."
+  },
+  "suhma": {
+    "id": "suhma",
+    "order": 10,
+    "nameBn": "সূহ্ম",
+    "nameEn": "Suhma",
+    "locationBn": "বর্ধমানের দক্ষিণাংশ, হুগলির বৃহদাংশ, হাওড়া এবং বীরভূম জেলা",
+    "districtsBn": "পূর্ব বর্ধমান (পশ্চিমবঙ্গ), হুগলি (পশ্চিমবঙ্গ), হাওড়া (পশ্চিমবঙ্গ), বীরভূম (পশ্চিমবঙ্গ)",
+    "areaCaptionBn": "আনুমানিক এলাকা — সূত্রে উল্লিখিত বর্তমান জেলাগুলোর পুরো সীমানা জুড়ে আঁকা",
+    "noteBn": "গঙ্গা-ভাগীরথীর পশ্চিম তীরের দক্ষিণ ভূভাগ (সূত্র অনুযায়ী)",
+    "geometry": {
+      "area": {
+        "method": "adminUnion",
+        "bangladesh": [],
+        "outside": [
+          {
+            "country": "IND",
+            "admin1": "West Bengal",
+            "admin2": "Purba Bardhaman",
+            "nameBn": "পূর্ব বর্ধমান"
+          },
+          {
+            "country": "IND",
+            "admin1": "West Bengal",
+            "admin2": "Hooghly",
+            "nameBn": "হুগলি"
+          },
+          {
+            "country": "IND",
+            "admin1": "West Bengal",
+            "admin2": "Howrah",
+            "nameBn": "হাওড়া"
+          },
+          {
+            "country": "IND",
+            "admin1": "West Bengal",
+            "admin2": "Birbhum",
+            "nameBn": "বীরভূম"
+          }
+        ]
+      },
+      "note": "The union of the whole present-day administrative units named here. Where the source says 'part of', the whole unit is still drawn; the card says 'approximate area'."
+    },
+    "sources": {
+      "nameBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "Listed as a janapada: সূহ্ম."
+        }
+      ],
+      "locationBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "বর্ধমানের দক্ষিণাংশ, হুগলির বৃহদাংশ, হাওড়া এবং বীরভূম জেলা"
+        }
+      ],
+      "geometry": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "বর্ধমানের দক্ষিণাংশ, হুগলির বৃহদাংশ, হাওড়া এবং বীরভূম জেলা (whole units drawn; greater districts expanded per bn.wikipedia 'বৃহত্তর জেলা')"
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "গঙ্গা-ভাগীরথীর পশ্চিম তীরের দক্ষিণ ভূভাগ (সূত্র অনুযায়ী)"
+        }
+      ]
+    },
+    "review": "\"দক্ষিণাংশ\", \"বৃহদাংশ\" — পুরো জেলা নিলে এলাকা বেশি দেখাবে; বীরভূম গৌড়েও আছে Pending: the user's BCS book is the authority; values may be corrected before approval. Spelling: displayed fields use মালদা, নেত্রকোণা, রাঙ্গামাটি (the official portal and district-site spellings, chosen by the user 2026-09-26); source quotes keep the source's own spelling."
+  },
+  "ruhma": {
+    "id": "ruhma",
+    "order": 11,
+    "nameBn": "রূহ্ম",
+    "nameEn": "Ruhma",
+    "altNamesBn": "আরাকান",
+    "locationBn": "মিয়ানমারের পশ্চিমাঞ্চল — বৃহত্তর আরাকান, বৈশালী, ম্রহাং",
+    "districtsBn": "রাখাইন রাজ্য (মিয়ানমার)",
+    "areaCaptionBn": "আনুমানিক এলাকা — সূত্রে উল্লিখিত বর্তমান জেলাগুলোর পুরো সীমানা জুড়ে আঁকা",
+    "geometry": {
+      "area": {
+        "method": "adminUnion",
+        "bangladesh": [],
+        "outside": [
+          {
+            "country": "MMR",
+            "admin1": "Rakhine",
+            "level": "admin1",
+            "nameBn": "রাখাইন রাজ্য"
+          }
+        ]
+      },
+      "note": "The union of the whole present-day administrative units named here. Where the source says 'part of', the whole unit is still drawn; the card says 'approximate area'."
+    },
+    "sources": {
+      "nameBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "Listed as a janapada: রূহ্ম."
+        }
+      ],
+      "locationBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "মিয়ানমারের পশ্চিমাঞ্চল — বৃহত্তর আরাকান, বৈশালী, ম্রহাং"
+        }
+      ],
+      "geometry": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "মিয়ানমারের পশ্চিমাঞ্চল — বৃহত্তর আরাকান, বৈশালী, ম্রহাং (whole units drawn; greater districts expanded per bn.wikipedia 'বৃহত্তর জেলা')"
+        }
+      ],
+      "altNamesBn": [
+        {
+          "title": "বাংলার প্রাচীন জনপদসমূহ",
+          "publisher": "বাংলা উইকিপিডিয়া (revision 9167617, 2026-09-20)",
+          "url": "https://bn.wikipedia.org/w/index.php?oldid=9167617",
+          "states": "আরাকান"
+        }
+      ]
+    },
+    "review": "সূত্রে \"বৃহত্তর আরাকান\" — আজকের রাখাইন রাজ্য পুরোটা নেওয়া হলো। basemap-এ রাখাইন রাজ্য যোগ করতে হবে (কাছাড়ের মতো)। Pending: the user's BCS book is the authority; values may be corrected before approval. Spelling: displayed fields use মালদা, নেত্রকোণা, রাঙ্গামাটি (the official portal and district-site spellings, chosen by the user 2026-09-26); source quotes keep the source's own spelling."
+  }
+}
