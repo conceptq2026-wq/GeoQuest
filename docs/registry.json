@@ -37,6 +37,14 @@
         "en": "Famous Deserts of the World",
         "bn": "বিশ্বের বিখ্যাত মরুভূমি"
       }
+    },
+    {
+      "id": "lakes",
+      "section": "geography",
+      "title": {
+        "en": "Famous Lakes of the World",
+        "bn": "বিশ্বের বিখ্যাত হ্রদ"
+      }
     }
   ]
 }

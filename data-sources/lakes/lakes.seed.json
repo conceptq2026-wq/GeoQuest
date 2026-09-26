@@ -1,0 +1,1015 @@
+{
+  "victoria_l": {
+    "id": "victoria_l",
+    "groupBn": "আফ্রিকা",
+    "nameBn": "ভিক্টোরিয়া হ্রদ",
+    "nameEn": "Lake Victoria",
+    "typeBn": "মিঠা পানির হ্রদ",
+    "countriesBn": "তানজানিয়া, উগান্ডা, কেনিয়া",
+    "areaBn": "৫৯,৯৪০ বর্গকিমি",
+    "noteBn": "আফ্রিকার বৃহত্তম হ্রদ",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_lakes.geojson",
+        "match": {
+          "name": "Lake Victoria"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:The Shore at Ssese Islands, on Lake Victoria.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:The_Shore_at_Ssese_Islands,_on_Lake_Victoria.jpg",
+      "author": "Jiame Josh",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha1": "ab9e9dbea3fa88e5b866291cc58d84114e8f33e8",
+      "size": [
+        5472,
+        3648
+      ],
+      "crop": {
+        "marker": [
+          912,
+          0,
+          3648,
+          3648
+        ],
+        "card": [
+          0,
+          114,
+          5472,
+          3420
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of lakes by area",
+          "publisher": "Wikipedia (revision 1376022156, 2026-09-21)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_lakes_by_area&oldid=1376022156",
+          "states": "Lake Victoria: 59,940 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of lakes by area",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_lakes_by_area"
+        }
+      ]
+    }
+  },
+  "tanganyika": {
+    "id": "tanganyika",
+    "groupBn": "আফ্রিকা",
+    "nameBn": "টাঙ্গানিকা হ্রদ",
+    "nameEn": "Lake Tanganyika",
+    "typeBn": "মিঠা পানির হ্রদ",
+    "countriesBn": "তানজানিয়া, কঙ্গো গণপ্রজাতন্ত্র, বুরুন্ডি, জাম্বিয়া",
+    "areaBn": "৩২,৯০০ বর্গকিমি",
+    "noteBn": "পৃথিবীর দীর্ঘতম মিঠা পানির হ্রদ; দ্বিতীয় গভীরতম (১,৪৭০ মি)",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_lakes.geojson",
+        "match": {
+          "name": "Lake Tanganyika"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Lake Tanganyika.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Lake_Tanganyika.jpg",
+      "author": "Orrling",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sha1": "72d5f5c618c8b774a6302451a410065fadcbe508",
+      "size": [
+        3264,
+        2448
+      ],
+      "crop": {
+        "marker": [
+          408,
+          0,
+          2448,
+          2448
+        ],
+        "card": [
+          0,
+          204,
+          3264,
+          2040
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of lakes by area",
+          "publisher": "Wikipedia (revision 1376022156, 2026-09-21)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_lakes_by_area&oldid=1376022156",
+          "states": "Lake Tanganyika: 32,900 km²."
+        },
+        {
+          "title": "Lake Tanganyika",
+          "publisher": "Wikipedia (revision 1370336401, 2026-08-20)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Lake_Tanganyika&oldid=1370336401",
+          "states": "Lake Tanganyika: 32,900 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of lakes by area",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_lakes_by_area"
+        },
+        {
+          "title": "Lake Tanganyika",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Lake_Tanganyika"
+        }
+      ]
+    }
+  },
+  "malawi": {
+    "id": "malawi",
+    "groupBn": "আফ্রিকা",
+    "nameBn": "মালাউই (নায়াসা) হ্রদ",
+    "nameEn": "Lake Malawi (Nyasa)",
+    "typeBn": "মিঠা পানির হ্রদ",
+    "countriesBn": "মালাউই, মোজাম্বিক, তানজানিয়া",
+    "areaBn": "২৯,৬০০ বর্গকিমি",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_lakes.geojson",
+        "match": {
+          "name": "Lake Malawi"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Otter Point, Cape Maclear (Malawi).jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Otter_Point,_Cape_Maclear_(Malawi).jpg",
+      "author": "Hans Hillewaert",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha1": "89daa6f8f8b4369f7897f464770107b71b104116",
+      "size": [
+        1365,
+        1024
+      ],
+      "crop": {
+        "marker": [
+          171,
+          0,
+          1024,
+          1024
+        ],
+        "card": [
+          0,
+          86,
+          1365,
+          853
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of lakes by area",
+          "publisher": "Wikipedia (revision 1376022156, 2026-09-21)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_lakes_by_area&oldid=1376022156",
+          "states": "Lake Malawi (Nyasa): 29,600 km²."
+        }
+      ]
+    }
+  },
+  "caspian": {
+    "id": "caspian",
+    "groupBn": "এশিয়া",
+    "nameBn": "কাস্পিয়ান সাগর",
+    "nameEn": "Caspian Sea",
+    "typeBn": "লবণাক্ত হ্রদ",
+    "countriesBn": "ইরান, কাজাখস্তান, তুর্কমেনিস্তান, আজারবাইজান, রাশিয়া",
+    "areaBn": "৩,৮৯,০০০ বর্গকিমি",
+    "noteBn": "পৃথিবীর বৃহত্তম হ্রদ",
+    "geometry": {
+      "point": {
+        "source": "wikidata",
+        "qid": "Q5484"
+      },
+      "note": "Natural Earth files the Caspian as a sea, not in its lakes layer."
+    },
+    "photo": {
+      "commonsFile": "File:Caspian Sea from orbit.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Caspian_Sea_from_orbit.jpg",
+      "author": "Jeff Schmaltz, MODIS Rapid Response Team, NASA/GSFC",
+      "licence": "Public domain",
+      "sha1": "67680b9374004de157c7612c1187c3ad60f363ee",
+      "size": [
+        4400,
+        5600
+      ],
+      "crop": {
+        "marker": [
+          0,
+          600,
+          4400,
+          4400
+        ],
+        "card": [
+          0,
+          1425,
+          4400,
+          2750
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of lakes by area",
+          "publisher": "Wikipedia (revision 1376022156, 2026-09-21)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_lakes_by_area&oldid=1376022156",
+          "states": "Caspian Sea: 389,000 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of lakes by area",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_lakes_by_area"
+        }
+      ]
+    }
+  },
+  "baikal": {
+    "id": "baikal",
+    "groupBn": "এশিয়া",
+    "nameBn": "বৈকাল হ্রদ",
+    "nameEn": "Lake Baikal",
+    "typeBn": "মিঠা পানির হ্রদ",
+    "countriesBn": "রাশিয়া",
+    "areaBn": "৩১,৭২২ বর্গকিমি",
+    "noteBn": "পৃথিবীর গভীরতম (১,৬৪২ মি) ও প্রাচীনতম হ্রদ; পানির পরিমাণে বৃহত্তম মিঠা পানির হ্রদ",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_lakes.geojson",
+        "match": {
+          "name": "Lake Baikal"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Olkhon Island and Lake Baikal.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Olkhon_Island_and_Lake_Baikal.jpg",
+      "author": "Jason Rogers",
+      "licence": "CC BY 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0",
+      "sha1": "360bd118b8668743ec31a25ae2792d188c51fa1f",
+      "size": [
+        2000,
+        3008
+      ],
+      "crop": {
+        "marker": [
+          0,
+          504,
+          2000,
+          2000
+        ],
+        "card": [
+          0,
+          879,
+          2000,
+          1250
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of lakes by area",
+          "publisher": "Wikipedia (revision 1376022156, 2026-09-21)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_lakes_by_area&oldid=1376022156",
+          "states": "Lake Baikal: 31,722 km²."
+        },
+        {
+          "title": "Lake Baikal",
+          "publisher": "Wikipedia (revision 1375969070, 2026-09-21)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Lake_Baikal&oldid=1375969070",
+          "states": "Lake Baikal: 31,722 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of lakes by area",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_lakes_by_area"
+        },
+        {
+          "title": "Lake Baikal",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Lake_Baikal"
+        }
+      ]
+    }
+  },
+  "balkhash": {
+    "id": "balkhash",
+    "groupBn": "এশিয়া",
+    "nameBn": "বলখাশ হ্রদ",
+    "nameEn": "Lake Balkhash",
+    "countriesBn": "কাজাখস্তান",
+    "areaBn": "১৬,৪০০ বর্গকিমি",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_lakes.geojson",
+        "match": {
+          "name": "Lake Balkhash"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:STS039-085-00E Lake Balkhash, Kazakhstan April 1991.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:STS039-085-00E_Lake_Balkhash,_Kazakhstan_April_1991.jpg",
+      "author": "NASA",
+      "licence": "Public domain",
+      "sha1": "5bf44044e0c941ed3ff59f9062ca61a9acba2b2f",
+      "size": [
+        3948,
+        3153
+      ],
+      "crop": {
+        "marker": [
+          398,
+          0,
+          3153,
+          3153
+        ],
+        "card": [
+          0,
+          343,
+          3948,
+          2468
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of lakes by area",
+          "publisher": "Wikipedia (revision 1376022156, 2026-09-21)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_lakes_by_area&oldid=1376022156",
+          "states": "Lake Balkhash: 16,400 km²."
+        }
+      ]
+    }
+  },
+  "aral": {
+    "id": "aral",
+    "groupBn": "এশিয়া",
+    "nameBn": "আরল সাগর",
+    "nameEn": "Aral Sea",
+    "typeBn": "লবণাক্ত হ্রদ",
+    "countriesBn": "কাজাখস্তান, উজবেকিস্তান",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_lakes.geojson",
+        "match": {
+          "name": [
+            "North Aral Sea",
+            "South Aral Sea"
+          ]
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Aral Sea 1989-2008.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Aral_Sea_1989-2008.jpg",
+      "author": "NASA, derivative work by Zafiroblue05 at en.wikipedia",
+      "licence": "Public domain",
+      "sha1": "4ba5a118f5267f15fadd1fc7c0e97073f838466e",
+      "size": [
+        1471,
+        1250
+      ],
+      "crop": {
+        "marker": [
+          10,
+          275,
+          700,
+          700
+        ],
+        "card": [
+          0,
+          166,
+          1471,
+          919
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "deadsea": {
+    "id": "deadsea",
+    "groupBn": "এশিয়া",
+    "nameBn": "মৃত সাগর",
+    "nameEn": "Dead Sea",
+    "typeBn": "লবণাক্ত হ্রদ",
+    "countriesBn": "জর্ডান, ফিলিস্তিন (পশ্চিম তীর), ইসরায়েল",
+    "noteBn": "তীরভূমি পৃথিবীর সর্বনিম্ন স্থলভাগ; সমুদ্রের চেয়ে ৯.৬ গুণ লবণাক্ত",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_lakes.geojson",
+        "match": {
+          "name": "Dead Sea"
+        },
+        "count": 2
+      },
+      "note": "Natural Earth draws the Dead Sea as two features, its north and south basins; both are the record."
+    },
+    "photo": {
+      "commonsFile": "File:Dead Sea by David Shankbone.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Dead_Sea_by_David_Shankbone.jpg",
+      "author": "David Shankbone",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+      "sha1": "1c4eb7d3a4c6591279f9ebbb2d2ea3f8b5b6aa27",
+      "size": [
+        3264,
+        2448
+      ],
+      "crop": {
+        "marker": [
+          408,
+          0,
+          2448,
+          2448
+        ],
+        "card": [
+          0,
+          204,
+          3264,
+          2040
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "noteBn": [
+        {
+          "title": "Dead Sea",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Dead_Sea"
+        }
+      ]
+    }
+  },
+  "ladoga": {
+    "id": "ladoga",
+    "groupBn": "ইউরোপ",
+    "nameBn": "লাডোগা হ্রদ",
+    "nameEn": "Lake Ladoga",
+    "typeBn": "মিঠা পানির হ্রদ",
+    "countriesBn": "রাশিয়া",
+    "areaBn": "১৭,৭০০ বর্গকিমি",
+    "noteBn": "কাস্পিয়ান বাদে ইউরোপের বৃহত্তম হ্রদ",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_lakes.geojson",
+        "match": {
+          "name": "Lake Ladoga"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Sortavalan saaristoa.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Sortavalan_saaristoa.jpg",
+      "author": "Yoneh",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+      "sha1": "abc2218ee55cd5e7c7de86effd8c5ec00f3dfe2e",
+      "size": [
+        2000,
+        1502
+      ],
+      "crop": {
+        "marker": [
+          249,
+          0,
+          1502,
+          1502
+        ],
+        "card": [
+          0,
+          126,
+          2000,
+          1250
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of lakes by area",
+          "publisher": "Wikipedia (revision 1376022156, 2026-09-21)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_lakes_by_area&oldid=1376022156",
+          "states": "Lake Ladoga: 17,700 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of lakes by area",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_lakes_by_area"
+        }
+      ]
+    }
+  },
+  "superior": {
+    "id": "superior",
+    "groupBn": "উত্তর আমেরিকা",
+    "nameBn": "সুপিরিয়র হ্রদ",
+    "nameEn": "Lake Superior",
+    "typeBn": "মিঠা পানির হ্রদ",
+    "countriesBn": "কানাডা, যুক্তরাষ্ট্র",
+    "areaBn": "৮২,১০০ বর্গকিমি",
+    "noteBn": "আয়তনে বৃহত্তম মিঠা পানির হ্রদ; উত্তর আমেরিকার পঞ্চ মহাহ্রদের একটি",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_lakes.geojson",
+        "match": {
+          "name": "Lake Superior"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Lake Superior, ISS.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Lake_Superior,_ISS.jpg",
+      "author": "NASA",
+      "licence": "Public domain",
+      "sha1": "54197fc9f62a2afe13e8304f64e72aa682a1bdd9",
+      "size": [
+        3800,
+        2290
+      ],
+      "crop": {
+        "marker": [
+          755,
+          0,
+          2290,
+          2290
+        ],
+        "card": [
+          68,
+          0,
+          3664,
+          2290
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of lakes by area",
+          "publisher": "Wikipedia (revision 1376022156, 2026-09-21)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_lakes_by_area&oldid=1376022156",
+          "states": "Lake Superior: 82,100 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of lakes by area",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_lakes_by_area"
+        }
+      ]
+    }
+  },
+  "michigan": {
+    "id": "michigan",
+    "groupBn": "উত্তর আমেরিকা",
+    "nameBn": "মিশিগান হ্রদ",
+    "nameEn": "Lake Michigan",
+    "typeBn": "মিঠা পানির হ্রদ",
+    "countriesBn": "যুক্তরাষ্ট্র",
+    "areaBn": "৫৭,৮০০ বর্গকিমি",
+    "noteBn": "পঞ্চ মহাহ্রদের একটি; সম্পূর্ণ যুক্তরাষ্ট্রে",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_lakes.geojson",
+        "match": {
+          "name": "Lake Michigan"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Lake Michigan in true color.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Lake_Michigan_in_true_color.jpg",
+      "author": "Earth Science and Remote Sensing Unit, NASA Johnson Space Center, ISS Expedition 60",
+      "licence": "Public domain",
+      "sha1": "ecab628dd9f42f306a81b01f4f92a76ee36e5498",
+      "size": [
+        2549,
+        5568
+      ],
+      "crop": {
+        "marker": [
+          0,
+          1510,
+          2549,
+          2549
+        ],
+        "card": [
+          0,
+          1988,
+          2549,
+          1593
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of lakes by area",
+          "publisher": "Wikipedia (revision 1376022156, 2026-09-21)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_lakes_by_area&oldid=1376022156",
+          "states": "Lake Michigan: 57,800 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of lakes by area",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_lakes_by_area"
+        }
+      ]
+    }
+  },
+  "huron": {
+    "id": "huron",
+    "groupBn": "উত্তর আমেরিকা",
+    "nameBn": "হুরন হ্রদ",
+    "nameEn": "Lake Huron",
+    "typeBn": "মিঠা পানির হ্রদ",
+    "countriesBn": "কানাডা, যুক্তরাষ্ট্র",
+    "areaBn": "৫৯,৫৭০ বর্গকিমি",
+    "noteBn": "পঞ্চ মহাহ্রদের একটি",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_lakes.geojson",
+        "match": {
+          "name": "Lake Huron"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Lake Huron in winter.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Lake_Huron_in_winter.jpg",
+      "author": "NASA",
+      "licence": "Public domain",
+      "sha1": "24b06548bc7b83ada3126f3941c9261af1a267c3",
+      "size": [
+        2400,
+        2400
+      ],
+      "crop": {
+        "marker": [
+          0,
+          0,
+          2400,
+          2400
+        ],
+        "card": [
+          0,
+          450,
+          2400,
+          1500
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of lakes by area",
+          "publisher": "Wikipedia (revision 1376022156, 2026-09-21)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_lakes_by_area&oldid=1376022156",
+          "states": "Lake Huron: 59,570 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of lakes by area",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_lakes_by_area"
+        }
+      ]
+    }
+  },
+  "erie": {
+    "id": "erie",
+    "groupBn": "উত্তর আমেরিকা",
+    "nameBn": "ইরি হ্রদ",
+    "nameEn": "Lake Erie",
+    "typeBn": "মিঠা পানির হ্রদ",
+    "countriesBn": "কানাডা, যুক্তরাষ্ট্র",
+    "areaBn": "২৫,৬৬৭ বর্গকিমি",
+    "noteBn": "পঞ্চ মহাহ্রদের একটি",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_lakes.geojson",
+        "match": {
+          "name": "Lake Erie"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:A1.23188.1851.LakeErie.143.250m.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:A1.23188.1851.LakeErie.143.250m.jpg",
+      "author": "NOAA",
+      "licence": "Public domain",
+      "sha1": "da044002551dc8c5c1a8fe7490f5990190669978",
+      "size": [
+        1605,
+        748
+      ],
+      "crop": {
+        "marker": [
+          429,
+          0,
+          748,
+          748
+        ],
+        "card": [
+          204,
+          0,
+          1197,
+          748
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of lakes by area",
+          "publisher": "Wikipedia (revision 1376022156, 2026-09-21)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_lakes_by_area&oldid=1376022156",
+          "states": "Lake Erie: 25,667 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of lakes by area",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_lakes_by_area"
+        }
+      ]
+    }
+  },
+  "ontario": {
+    "id": "ontario",
+    "groupBn": "উত্তর আমেরিকা",
+    "nameBn": "অন্টারিও হ্রদ",
+    "nameEn": "Lake Ontario",
+    "typeBn": "মিঠা পানির হ্রদ",
+    "countriesBn": "কানাডা, যুক্তরাষ্ট্র",
+    "areaBn": "১৯,০১১ বর্গকিমি",
+    "noteBn": "পঞ্চ মহাহ্রদের একটি",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_lakes.geojson",
+        "match": {
+          "name": "Lake Ontario"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:ISS-36 Lake Ontario (horizontal).jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:ISS-36_Lake_Ontario_(horizontal).jpg",
+      "author": "NASA",
+      "licence": "Public domain",
+      "sha1": "44851a0bbc3f8e6c3fb57043c2c91ead05fe9fd1",
+      "size": [
+        4256,
+        2832
+      ],
+      "crop": {
+        "marker": [
+          712,
+          0,
+          2832,
+          2832
+        ],
+        "card": [
+          0,
+          86,
+          4256,
+          2660
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of lakes by area",
+          "publisher": "Wikipedia (revision 1376022156, 2026-09-21)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_lakes_by_area&oldid=1376022156",
+          "states": "Lake Ontario: 19,011 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of lakes by area",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_lakes_by_area"
+        }
+      ]
+    }
+  },
+  "greatbear": {
+    "id": "greatbear",
+    "groupBn": "উত্তর আমেরিকা",
+    "nameBn": "গ্রেট বিয়ার হ্রদ",
+    "nameEn": "Great Bear Lake",
+    "typeBn": "মিঠা পানির হ্রদ",
+    "countriesBn": "কানাডা",
+    "areaBn": "৩১,১৫৩ বর্গকিমি",
+    "noteBn": "কানাডার বৃহত্তম হ্রদ",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_lakes.geojson",
+        "match": {
+          "name": "Great Bear Lake"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Great Bear Lake (158842785).jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Great_Bear_Lake_(158842785).jpg",
+      "author": "mattcatpurple from Hay River, Canada",
+      "licence": "CC BY-SA 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "sha1": "82f0b0c3099e2a3e7ae351a52cc1159713b7a81d",
+      "size": [
+        1280,
+        960
+      ],
+      "crop": {
+        "marker": [
+          160,
+          0,
+          960,
+          960
+        ],
+        "card": [
+          0,
+          80,
+          1280,
+          800
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of lakes by area",
+          "publisher": "Wikipedia (revision 1376022156, 2026-09-21)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_lakes_by_area&oldid=1376022156",
+          "states": "Great Bear Lake: 31,153 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of lakes by area",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_lakes_by_area"
+        }
+      ]
+    }
+  },
+  "titicaca": {
+    "id": "titicaca",
+    "groupBn": "দক্ষিণ আমেরিকা",
+    "nameBn": "টিটিকাকা হ্রদ",
+    "nameEn": "Lake Titicaca",
+    "typeBn": "মিঠা পানির হ্রদ",
+    "countriesBn": "পেরু, বলিভিয়া",
+    "areaBn": "৮,৩৭২ বর্গকিমি",
+    "noteBn": "নৌ-চলাচলযোগ্য সর্বোচ্চ হ্রদ হিসেবে পরিচিত (৩,৮১২ মি উচ্চতায়); দক্ষিণ আমেরিকার বৃহত্তম হ্রদ",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_lakes.geojson",
+        "match": {
+          "name": "Lago Titicaca"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Amanecer en el lago Titicaca, Puno, Perú, 2015-08-01, DD 01.JPG",
+      "page": "https://commons.wikimedia.org/wiki/File:Amanecer_en_el_lago_Titicaca,_Puno,_Per%C3%BA,_2015-08-01,_DD_01.JPG",
+      "author": "Diego Delso",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha1": "c5f0a5f5abef77083a33164a9c3f97b4ebcbf5fb",
+      "size": [
+        8688,
+        4205
+      ],
+      "crop": {
+        "marker": [
+          2242,
+          0,
+          4205,
+          4205
+        ],
+        "card": [
+          980,
+          0,
+          6728,
+          4205
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "Lake Titicaca",
+          "publisher": "Wikipedia (revision 1366281262, 2026-07-27)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Lake_Titicaca&oldid=1366281262",
+          "states": "Lake Titicaca: 8,372 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "Lake Titicaca",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Lake_Titicaca"
+        }
+      ]
+    }
+  }
+}

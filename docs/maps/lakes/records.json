@@ -1,0 +1,452 @@
+{
+  "victoria_l": {
+    "groupBn": "আফ্রিকা",
+    "nameBn": "ভিক্টোরিয়া হ্রদ",
+    "nameEn": "Lake Victoria",
+    "typeBn": "মিঠা পানির হ্রদ",
+    "countriesBn": "তানজানিয়া, উগান্ডা, কেনিয়া",
+    "areaBn": "৫৯,৯৪০ বর্গকিমি",
+    "noteBn": "আফ্রিকার বৃহত্তম হ্রদ",
+    "labelAt": [
+      32.90228,
+      -1.10151
+    ],
+    "hasArea": true,
+    "frame": [
+      30.302,
+      -4.102,
+      35.502,
+      1.898
+    ],
+    "photo": {
+      "marker": "photos/victoria_l-marker.webp",
+      "card": "photos/victoria_l-card.webp",
+      "author": "Jiame Josh",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:The_Shore_at_Ssese_Islands,_on_Lake_Victoria.jpg",
+      "cropped": true
+    }
+  },
+  "tanganyika": {
+    "groupBn": "আফ্রিকা",
+    "nameBn": "টাঙ্গানিকা হ্রদ",
+    "nameEn": "Lake Tanganyika",
+    "typeBn": "মিঠা পানির হ্রদ",
+    "countriesBn": "তানজানিয়া, কঙ্গো গণপ্রজাতন্ত্র, বুরুন্ডি, জাম্বিয়া",
+    "areaBn": "৩২,৯০০ বর্গকিমি",
+    "noteBn": "পৃথিবীর দীর্ঘতম মিঠা পানির হ্রদ; দ্বিতীয় গভীরতম (১,৪৭০ মি)",
+    "labelAt": [
+      30.04344,
+      -6.80584
+    ],
+    "hasArea": true,
+    "frame": [
+      27.443,
+      -9.806,
+      32.643,
+      -3.334
+    ],
+    "photo": {
+      "marker": "photos/tanganyika-marker.webp",
+      "card": "photos/tanganyika-card.webp",
+      "author": "Orrling",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Lake_Tanganyika.jpg",
+      "cropped": true
+    }
+  },
+  "malawi": {
+    "groupBn": "আফ্রিকা",
+    "nameBn": "মালাউই (নায়াসা) হ্রদ",
+    "nameEn": "Lake Malawi (Nyasa)",
+    "typeBn": "মিঠা পানির হ্রদ",
+    "countriesBn": "মালাউই, মোজাম্বিক, তানজানিয়া",
+    "areaBn": "২৯,৬০০ বর্গকিমি",
+    "labelAt": [
+      34.41946,
+      -12.08246
+    ],
+    "hasArea": true,
+    "frame": [
+      31.819,
+      -15.082,
+      37.019,
+      -9.082
+    ],
+    "photo": {
+      "marker": "photos/malawi-marker.webp",
+      "card": "photos/malawi-card.webp",
+      "author": "Hans Hillewaert",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Otter_Point,_Cape_Maclear_(Malawi).jpg",
+      "cropped": true
+    }
+  },
+  "caspian": {
+    "groupBn": "এশিয়া",
+    "nameBn": "কাস্পিয়ান সাগর",
+    "nameEn": "Caspian Sea",
+    "typeBn": "লবণাক্ত হ্রদ",
+    "countriesBn": "ইরান, কাজাখস্তান, তুর্কমেনিস্তান, আজারবাইজান, রাশিয়া",
+    "areaBn": "৩,৮৯,০০০ বর্গকিমি",
+    "noteBn": "পৃথিবীর বৃহত্তম হ্রদ",
+    "labelAt": [
+      50.5,
+      42
+    ],
+    "hasArea": false,
+    "frame": [
+      47.9,
+      39,
+      53.1,
+      45
+    ],
+    "photo": {
+      "marker": "photos/caspian-marker.webp",
+      "card": "photos/caspian-card.webp",
+      "author": "Jeff Schmaltz, MODIS Rapid Response Team, NASA/GSFC",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:Caspian_Sea_from_orbit.jpg",
+      "cropped": true
+    }
+  },
+  "baikal": {
+    "groupBn": "এশিয়া",
+    "nameBn": "বৈকাল হ্রদ",
+    "nameEn": "Lake Baikal",
+    "typeBn": "মিঠা পানির হ্রদ",
+    "countriesBn": "রাশিয়া",
+    "areaBn": "৩১,৭২২ বর্গকিমি",
+    "noteBn": "পৃথিবীর গভীরতম (১,৬৪২ মি) ও প্রাচীনতম হ্রদ; পানির পরিমাণে বৃহত্তম মিঠা পানির হ্রদ",
+    "labelAt": [
+      108.93376,
+      54.25625
+    ],
+    "hasArea": true,
+    "frame": [
+      103.709,
+      51.256,
+      111.534,
+      57.256
+    ],
+    "photo": {
+      "marker": "photos/baikal-marker.webp",
+      "card": "photos/baikal-card.webp",
+      "author": "Jason Rogers",
+      "licence": "CC BY 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Olkhon_Island_and_Lake_Baikal.jpg",
+      "cropped": true
+    }
+  },
+  "balkhash": {
+    "groupBn": "এশিয়া",
+    "nameBn": "বলখাশ হ্রদ",
+    "nameEn": "Lake Balkhash",
+    "countriesBn": "কাজাখস্তান",
+    "areaBn": "১৬,৪০০ বর্গকিমি",
+    "labelAt": [
+      73.84519,
+      45.69969
+    ],
+    "hasArea": true,
+    "frame": [
+      71.245,
+      42.7,
+      79.259,
+      48.7
+    ],
+    "photo": {
+      "marker": "photos/balkhash-marker.webp",
+      "card": "photos/balkhash-card.webp",
+      "author": "NASA",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:STS039-085-00E_Lake_Balkhash,_Kazakhstan_April_1991.jpg",
+      "cropped": true
+    }
+  },
+  "aral": {
+    "groupBn": "এশিয়া",
+    "nameBn": "আরল সাগর",
+    "nameEn": "Aral Sea",
+    "typeBn": "লবণাক্ত হ্রদ",
+    "countriesBn": "কাজাখস্তান, উজবেকিস্তান",
+    "labelAt": [
+      58.41271,
+      44.90225
+    ],
+    "hasArea": true,
+    "frame": [
+      55.813,
+      41.902,
+      61.528,
+      47.902
+    ],
+    "photo": {
+      "marker": "photos/aral-marker.webp",
+      "card": "photos/aral-card.webp",
+      "author": "NASA, derivative work by Zafiroblue05 at en.wikipedia",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:Aral_Sea_1989-2008.jpg",
+      "cropped": true
+    }
+  },
+  "deadsea": {
+    "groupBn": "এশিয়া",
+    "nameBn": "মৃত সাগর",
+    "nameEn": "Dead Sea",
+    "typeBn": "লবণাক্ত হ্রদ",
+    "countriesBn": "জর্ডান, ফিলিস্তিন (পশ্চিম তীর), ইসরায়েল",
+    "noteBn": "তীরভূমি পৃথিবীর সর্বনিম্ন স্থলভাগ; সমুদ্রের চেয়ে ৯.৬ গুণ লবণাক্ত",
+    "labelAt": [
+      35.47921,
+      31.52035
+    ],
+    "hasArea": true,
+    "frame": [
+      32.879,
+      28.52,
+      38.079,
+      34.52
+    ],
+    "photo": {
+      "marker": "photos/deadsea-marker.webp",
+      "card": "photos/deadsea-card.webp",
+      "author": "David Shankbone",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+      "page": "https://commons.wikimedia.org/wiki/File:Dead_Sea_by_David_Shankbone.jpg",
+      "cropped": true
+    }
+  },
+  "ladoga": {
+    "groupBn": "ইউরোপ",
+    "nameBn": "লাডোগা হ্রদ",
+    "nameEn": "Lake Ladoga",
+    "typeBn": "মিঠা পানির হ্রদ",
+    "countriesBn": "রাশিয়া",
+    "areaBn": "১৭,৭০০ বর্গকিমি",
+    "noteBn": "কাস্পিয়ান বাদে ইউরোপের বৃহত্তম হ্রদ",
+    "labelAt": [
+      31.43512,
+      60.79568
+    ],
+    "hasArea": true,
+    "frame": [
+      28.835,
+      57.796,
+      34.035,
+      63.796
+    ],
+    "photo": {
+      "marker": "photos/ladoga-marker.webp",
+      "card": "photos/ladoga-card.webp",
+      "author": "Yoneh",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+      "page": "https://commons.wikimedia.org/wiki/File:Sortavalan_saaristoa.jpg",
+      "cropped": true
+    }
+  },
+  "superior": {
+    "groupBn": "উত্তর আমেরিকা",
+    "nameBn": "সুপিরিয়র হ্রদ",
+    "nameEn": "Lake Superior",
+    "typeBn": "মিঠা পানির হ্রদ",
+    "countriesBn": "কানাডা, যুক্তরাষ্ট্র",
+    "areaBn": "৮২,১০০ বর্গকিমি",
+    "noteBn": "আয়তনে বৃহত্তম মিঠা পানির হ্রদ; উত্তর আমেরিকার পঞ্চ মহাহ্রদের একটি",
+    "labelAt": [
+      -86.99912,
+      47.80503
+    ],
+    "hasArea": true,
+    "frame": [
+      -92.114,
+      44.805,
+      -84.36,
+      50.805
+    ],
+    "photo": {
+      "marker": "photos/superior-marker.webp",
+      "card": "photos/superior-card.webp",
+      "author": "NASA",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:Lake_Superior,_ISS.jpg",
+      "cropped": true
+    }
+  },
+  "michigan": {
+    "groupBn": "উত্তর আমেরিকা",
+    "nameBn": "মিশিগান হ্রদ",
+    "nameEn": "Lake Michigan",
+    "typeBn": "মিঠা পানির হ্রদ",
+    "countriesBn": "যুক্তরাষ্ট্র",
+    "areaBn": "৫৭,৮০০ বর্গকিমি",
+    "noteBn": "পঞ্চ মহাহ্রদের একটি; সম্পূর্ণ যুক্তরাষ্ট্রে",
+    "labelAt": [
+      -87.13859,
+      43.25587
+    ],
+    "hasArea": true,
+    "frame": [
+      -89.739,
+      40.256,
+      -84.539,
+      46.256
+    ],
+    "photo": {
+      "marker": "photos/michigan-marker.webp",
+      "card": "photos/michigan-card.webp",
+      "author": "Earth Science and Remote Sensing Unit, NASA Johnson Space Center, ISS Expedition 60",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:Lake_Michigan_in_true_color.jpg",
+      "cropped": true
+    }
+  },
+  "huron": {
+    "groupBn": "উত্তর আমেরিকা",
+    "nameBn": "হুরন হ্রদ",
+    "nameEn": "Lake Huron",
+    "typeBn": "মিঠা পানির হ্রদ",
+    "countriesBn": "কানাডা, যুক্তরাষ্ট্র",
+    "areaBn": "৫৯,৫৭০ বর্গকিমি",
+    "noteBn": "পঞ্চ মহাহ্রদের একটি",
+    "labelAt": [
+      -82.3929,
+      44.87004
+    ],
+    "hasArea": true,
+    "frame": [
+      -84.993,
+      41.87,
+      -79.663,
+      47.87
+    ],
+    "photo": {
+      "marker": "photos/huron-marker.webp",
+      "card": "photos/huron-card.webp",
+      "author": "NASA",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:Lake_Huron_in_winter.jpg",
+      "cropped": true
+    }
+  },
+  "erie": {
+    "groupBn": "উত্তর আমেরিকা",
+    "nameBn": "ইরি হ্রদ",
+    "nameEn": "Lake Erie",
+    "typeBn": "মিঠা পানির হ্রদ",
+    "countriesBn": "কানাডা, যুক্তরাষ্ট্র",
+    "areaBn": "২৫,৬৬৭ বর্গকিমি",
+    "noteBn": "পঞ্চ মহাহ্রদের একটি",
+    "labelAt": [
+      -81.24525,
+      42.18145
+    ],
+    "hasArea": true,
+    "frame": [
+      -83.845,
+      39.181,
+      -78.645,
+      45.181
+    ],
+    "photo": {
+      "marker": "photos/erie-marker.webp",
+      "card": "photos/erie-card.webp",
+      "author": "NOAA",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:A1.23188.1851.LakeErie.143.250m.jpg",
+      "cropped": true
+    }
+  },
+  "ontario": {
+    "groupBn": "উত্তর আমেরিকা",
+    "nameBn": "অন্টারিও হ্রদ",
+    "nameEn": "Lake Ontario",
+    "typeBn": "মিঠা পানির হ্রদ",
+    "countriesBn": "কানাডা, যুক্তরাষ্ট্র",
+    "areaBn": "১৯,০১১ বর্গকিমি",
+    "noteBn": "পঞ্চ মহাহ্রদের একটি",
+    "labelAt": [
+      -77.72982,
+      43.68093
+    ],
+    "hasArea": true,
+    "frame": [
+      -80.33,
+      40.681,
+      -75.13,
+      46.681
+    ],
+    "photo": {
+      "marker": "photos/ontario-marker.webp",
+      "card": "photos/ontario-card.webp",
+      "author": "NASA",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:ISS-36_Lake_Ontario_(horizontal).jpg",
+      "cropped": true
+    }
+  },
+  "greatbear": {
+    "groupBn": "উত্তর আমেরিকা",
+    "nameBn": "গ্রেট বিয়ার হ্রদ",
+    "nameEn": "Great Bear Lake",
+    "typeBn": "মিঠা পানির হ্রদ",
+    "countriesBn": "কানাডা",
+    "areaBn": "৩১,১৫৩ বর্গকিমি",
+    "noteBn": "কানাডার বৃহত্তম হ্রদ",
+    "labelAt": [
+      -120.8337,
+      66.01857
+    ],
+    "hasArea": true,
+    "frame": [
+      -125.122,
+      63.019,
+      -117.467,
+      69.019
+    ],
+    "photo": {
+      "marker": "photos/greatbear-marker.webp",
+      "card": "photos/greatbear-card.webp",
+      "author": "mattcatpurple from Hay River, Canada",
+      "licence": "CC BY-SA 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Great_Bear_Lake_(158842785).jpg",
+      "cropped": true
+    }
+  },
+  "titicaca": {
+    "groupBn": "দক্ষিণ আমেরিকা",
+    "nameBn": "টিটিকাকা হ্রদ",
+    "nameEn": "Lake Titicaca",
+    "typeBn": "মিঠা পানির হ্রদ",
+    "countriesBn": "পেরু, বলিভিয়া",
+    "areaBn": "৮,৩৭২ বর্গকিমি",
+    "noteBn": "নৌ-চলাচলযোগ্য সর্বোচ্চ হ্রদ হিসেবে পরিচিত (৩,৮১২ মি উচ্চতায়); দক্ষিণ আমেরিকার বৃহত্তম হ্রদ",
+    "labelAt": [
+      -69.45122,
+      -15.7891
+    ],
+    "hasArea": true,
+    "frame": [
+      -72.051,
+      -18.789,
+      -66.851,
+      -12.789
+    ],
+    "photo": {
+      "marker": "photos/titicaca-marker.webp",
+      "card": "photos/titicaca-card.webp",
+      "author": "Diego Delso",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Amanecer_en_el_lago_Titicaca,_Puno,_Per%C3%BA,_2015-08-01,_DD_01.JPG",
+      "cropped": true
+    }
+  }
+}
