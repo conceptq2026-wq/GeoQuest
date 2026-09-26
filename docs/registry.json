@@ -7,6 +7,14 @@
   ],
   "maps": [
     {
+      "id": "ancient-janapadas",
+      "section": "bangladesh",
+      "title": {
+        "en": "Ancient Janapadas of Bengal",
+        "bn": "বাংলার প্রাচীন জনপদ"
+      }
+    },
+    {
       "id": "border-lines",
       "section": "international",
       "title": {

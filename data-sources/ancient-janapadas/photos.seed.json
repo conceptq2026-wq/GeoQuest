@@ -1,0 +1,195 @@
+{
+  "pundra": {
+    "photo": {
+      "commonsFile": "File:Mahasthangarh3.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Mahasthangarh3.jpg",
+      "author": "Kawsaru",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "sha1": "836d467038139e680f99dd91e53d0ea57cd97d51",
+      "size": [
+        2048,
+        1365
+      ],
+      "crop": {
+        "marker": [
+          512,
+          240,
+          1024,
+          1024
+        ],
+        "card": [
+          0,
+          0,
+          2048,
+          1280
+        ]
+      },
+      "note": "The brick rampart of the Mahasthangarh citadel, Bogura — the seed's photoSite. Commons description মহাস্থানগড়, Wiki Loves Monuments 2017 monument ID BD-E-03-78, location 24.961111, 89.342778; in Category:Mahasthangarh. No people: checked at full size (the one speck in the background is a staked sapling). The card crop stops above the railing at the bottom edge. Chosen 2026-09-26 from the category's free files; a file of the same view with a herder in it was passed over.",
+      "approved": "user, 2026-09-26"
+    },
+    "site": {
+      "wikidata": "Q3085127",
+      "at": [
+        89.34277778,
+        24.96111111
+      ],
+      "found": "Wikidata items with a coordinate (P625) inside 89.2, 24.85, 89.45, 25.05 whose English or Bengali label contains Mahasthan / মহাস্থান — two: this one, Mahasthangarh / মহাস্থানগড়, an archaeological site (P31 Q839954) with the enwiki and bnwiki articles; and Q25588062, the site's archaeological museum (P31 museum), passed over. The photo's own Commons location, 24.961111, 89.342778, is the same point."
+    },
+    "sources": {
+      "siteAt": [
+        {
+          "title": "Mahasthangarh (Q3085127)",
+          "publisher": "Wikidata (revision 2525909860, 2026-08-01)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q3085127&oldid=2525909860",
+          "states": "coordinate location (P625): 24°57'40\"N, 89°20'34\"E — 24.96111111, 89.34277778, to 1″",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "barendra": {
+    "photo": {
+      "commonsFile": "File:A sign of past.JPG",
+      "page": "https://commons.wikimedia.org/wiki/File:A_sign_of_past.JPG",
+      "author": "Rasel37",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "sha1": "68deed2b24a4e5237963237fed48ab73b190e1da",
+      "size": [
+        3264,
+        2448
+      ],
+      "crop": {
+        "marker": [
+          1345,
+          230,
+          1350,
+          1350
+        ],
+        "card": [
+          0,
+          150,
+          3264,
+          2040
+        ]
+      },
+      "note": "The central shrine of Somapura Mahavihara, Paharpur, over the site's garden — the seed's photoSite. From the site's own Commons category (its Wikidata item's P373), 64 free photos of at least 1000×625 looked at. No people: checked at full size, the shrine's terraces, the garden and both edges. The sharper blue-sky view (File:BuddhistBihar.jpg) was passed over: a group of visitors stands at its left edge. The marker crop leaves out the signboard; the card crop keeps the shrine's top clear of the frame."
+    },
+    "site": {
+      "wikidata": "Q305044",
+      "at": [
+        88.97694444,
+        25.03111111
+      ],
+      "found": "Wikidata items with a coordinate (P625) inside 88.9, 24.98, 89.05, 25.08 whose English or Bengali label contains Somapura / Paharpur / সোমপুর / পাহাড়পুর, or typed as an archaeological site — 4: this one, the monastery (ruins; vihāra) with the enwiki and bnwiki articles and the Commons category; Q10365477 (Somapura Mahavihara, no type, no articles); Q97249695 (পাহাড়পুর ইউনিয়ন, বদলগাছী, union council of Bangladesh); Q118455517 (Paharpur Archaeological Museum, museum), passed over."
+    },
+    "sources": {
+      "siteAt": [
+        {
+          "title": "পাহাড়পুর বৌদ্ধ বিহার (Q305044)",
+          "publisher": "Wikidata (revision 2523211901, 2026-07-27)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q305044&oldid=2523211901",
+          "states": "coordinate location (P625): 25°01′52″N, 88°58′37″E — 25.03111111, 88.97694444",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "gauda": {
+    "photo": {
+      "commonsFile": "File:Mound known as Raja Karna's Palace alias Karnasubarna at Murshidabad district in West Bengal.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Mound_known_as_Raja_Karna%27s_Palace_alias_Karnasubarna_at_Murshidabad_district_in_West_Bengal.jpg",
+      "author": "Amitabha Gupta",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "sha1": "7c667504c16273302a00cd599299da35e38b5c8f",
+      "size": [
+        6000,
+        4000
+      ],
+      "crop": {
+        "marker": [
+          1000,
+          1500,
+          2000,
+          2000
+        ],
+        "card": [
+          0,
+          937,
+          4896,
+          3060
+        ]
+      },
+      "note": "The excavated monastery in the mound known as Raja Karna's Palace (Rajbaridanga), Karnasubarna, Murshidabad — the seed's photoSite. The photograph is titled and filed as Karnasubarna, and its camera location, 88.190929, 24.029193, lies on the Karnasuvarna item's point. From the site's own Commons category (its Wikidata item's P373), 16 free photos looked at. No people: checked at full size, the ruins, the houses, the haystacks and the fence behind them. The card crop leaves out the foggy sky and the modern building at the right edge."
+    },
+    "site": {
+      "wikidata": "Q3350691",
+      "at": [
+        88.19030762,
+        24.02946091
+      ],
+      "found": "Wikidata items with a coordinate (P625) inside 88.1, 23.97, 88.3, 24.13 whose English or Bengali label contains Karnasubarna / Karnasuvarna / Rajbaridanga / Raktamrittika, or typed as an archaeological site — 5: this one, Karnasuvarna (archaeological site) with the enwiki and bnwiki articles, the Commons category and a lead image from the same photographer's series of the mound; Q61422839 (Karnasubarna Sub-centre, health sub-centre); Q60152516 (Karnasubarna railway station, railway station); Q134335141 (Bharat Petroleum Fuel Filling Station Karnasubarna (Shiv Durga S/Stn.), gas station); Q117485471 (Raktamrittika Mahavihara, no type, no Commons category), passed over."
+    },
+    "sources": {
+      "siteAt": [
+        {
+          "title": "Karnasuvarna (Q3350691)",
+          "publisher": "Wikidata (revision 2512461595, 2026-07-01)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q3350691&oldid=2512461595",
+          "states": "coordinate location (P625): 24.02946091, 88.19030762",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "samatata": {
+    "photo": {
+      "commonsFile": "File:শালবন বিহার 3.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:%E0%A6%B6%E0%A6%BE%E0%A6%B2%E0%A6%AC%E0%A6%A8_%E0%A6%AC%E0%A6%BF%E0%A6%B9%E0%A6%BE%E0%A6%B0_3.jpg",
+      "author": "Fakrularnob",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "sha1": "5d1f44268d0f9bcbd5e76d5e71319b48d332d0d4",
+      "size": [
+        1920,
+        1280
+      ],
+      "crop": {
+        "marker": [
+          520,
+          150,
+          900,
+          900
+        ],
+        "card": [
+          0,
+          40,
+          1920,
+          1200
+        ]
+      },
+      "note": "The central shrine of Shalban Vihara, Mainamati, Cumilla — its pillars and the mound behind them; the seed's photoSite. The photograph's own location is the item's point. From the site's own Commons category (its Wikidata item's P373) and its two subcategories, 81 free photos looked at; most show visitors on the shrine or are signboards. No people: checked at full size, the mound, the trees and the wall."
+    },
+    "site": {
+      "wikidata": "Q7487152",
+      "at": [
+        91.1372098,
+        23.426234
+      ],
+      "found": "Wikidata items with a coordinate (P625) inside 91.07, 23.37, 91.21, 23.51 whose English or Bengali label contains Shalban / Salban / শালবন, or typed as an archaeological site — 9, the sites of the Mainamati ridge: this one, Shalban Vihara (archaeological site; vihāra) with the enwiki and bnwiki articles and the Commons category; Q31724363 (Lotikot Mura); Q16345035 (Itakhola Mura); Q13056967 (Anand Bihar); Q13057582 (Kotila Mura); Q6736254 (Mainamati); Q26962476 (Rupban Mura); Q29838798 (Charpatra Mura); Q56085884 (Colonel Mura), passed over."
+    },
+    "sources": {
+      "siteAt": [
+        {
+          "title": "Shalban Vihara (Q7487152)",
+          "publisher": "Wikidata (revision 2430604266, 2025-11-17)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q7487152&oldid=2430604266",
+          "states": "coordinate location (P625): 23.426234, 91.1372098",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  }
+}

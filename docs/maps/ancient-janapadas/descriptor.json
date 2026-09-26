@@ -1,0 +1,373 @@
+{
+  "schema": "geoquest/map-descriptor@1",
+  "id": "ancient-janapadas",
+  "section": "bangladesh",
+  "title": {
+    "bn": "বাংলার প্রাচীন জনপদ",
+    "en": "Ancient Janapadas of Bengal"
+  },
+  "basemap": "bangladesh",
+  "constraints": {
+    "maxZoom": 11
+  },
+  "lookups": {},
+  "records": {
+    "janapadas": {
+      "file": "./records.json",
+      "fields": {
+        "nameBn": {
+          "type": "text",
+          "required": true
+        },
+        "nameEn": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "altNamesBn": {
+          "type": "text",
+          "verifiable": true
+        },
+        "locationBn": {
+          "type": "text",
+          "verifiable": true
+        },
+        "districtsBn": {
+          "type": "text",
+          "verifiable": true
+        },
+        "areaCaptionBn": {
+          "type": "text",
+          "verifiable": true
+        },
+        "capitalBn": {
+          "type": "text",
+          "verifiable": true
+        },
+        "noteBn": {
+          "type": "text",
+          "verifiable": true
+        },
+        "photo": {
+          "type": "photo",
+          "verifiable": true
+        },
+        "siteAt": {
+          "type": "point"
+        },
+        "labelAt": {
+          "type": "point",
+          "required": true
+        },
+        "frame": {
+          "type": "bbox",
+          "required": true
+        }
+      }
+    }
+  },
+  "sources": {
+    "areas": {
+      "records": "janapadas",
+      "geometry": "./areas.geojson",
+      "joinField": "id",
+      "state": [
+        "selected"
+      ],
+      "properties": [],
+      "attribution": "Janapada areas: districts from <a href=\"https://data.humdata.org/dataset/cod-ab-bgd\" target=\"_blank\" rel=\"noopener noreferrer\">Bangladesh – Subnational Administrative Boundaries</a> (BBS / OCHA FISS), <a href=\"http://creativecommons.org/licenses/by/3.0/igo/legalcode\" target=\"_blank\" rel=\"noopener noreferrer\">CC BY 3.0 IGO</a>; India’s districts from <a href=\"https://www.geoboundaries.org\" target=\"_blank\" rel=\"noopener noreferrer\">geoBoundaries</a>, ODbL 1.0; Rakhine from <a href=\"https://www.naturalearthdata.com\" target=\"_blank\" rel=\"noopener noreferrer\">Natural Earth</a>; the land between them and Bangladesh’s border © <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener noreferrer\">OpenStreetMap contributors</a> — merged and simplified. The areas file is offered under the <a href=\"https://opendatacommons.org/licenses/odbl/1-0/\" target=\"_blank\" rel=\"noopener noreferrer\">ODbL 1.0</a>."
+    },
+    "labels": {
+      "records": "janapadas",
+      "geometryFrom": "labelAt",
+      "state": [
+        "selected"
+      ],
+      "properties": [
+        "nameBn",
+        "siteAt"
+      ]
+    },
+    "sites": {
+      "records": "janapadas",
+      "geometryFrom": "siteAt",
+      "state": [
+        "selected"
+      ],
+      "properties": [
+        "nameBn"
+      ],
+      "selectionMarker": true,
+      "photoMarker": {
+        "field": "photo"
+      }
+    }
+  },
+  "styles": {
+    "area-fill": {
+      "paint": {
+        "fill-color": "#c0583a"
+      }
+    },
+    "area-edge": {
+      "layout": {
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "#9b3b22"
+      }
+    },
+    "label": {
+      "layout": {
+        "text-font": [
+          "Noto Sans Bengali"
+        ],
+        "text-optional": true
+      },
+      "paint": {
+        "text-color": "#7a2d18",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    "site-label": {
+      "layout": {
+        "text-font": [
+          "Noto Sans Bengali"
+        ],
+        "text-anchor": "top",
+        "text-optional": true
+      },
+      "paint": {
+        "text-color": "#7a2d18",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    }
+  },
+  "layers": [
+    {
+      "id": "area-fill",
+      "type": "fill",
+      "source": "areas",
+      "slot": "belowLabels",
+      "style": "area-fill",
+      "paint": {
+        "fill-opacity": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          0.3,
+          0
+        ]
+      }
+    },
+    {
+      "id": "area-edge",
+      "type": "line",
+      "source": "areas",
+      "slot": "belowLabels",
+      "style": "area-edge",
+      "paint": {
+        "line-width": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          2.4,
+          1.2
+        ]
+      }
+    },
+    {
+      "id": "label",
+      "type": "symbol",
+      "source": "labels",
+      "slot": "aboveLabels",
+      "style": "label",
+      "layout": {
+        "text-field": [
+          "get",
+          "nameBn"
+        ],
+        "text-size": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          17,
+          14
+        ],
+        "symbol-sort-key": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          0,
+          1
+        ]
+      },
+      "filter": [
+        "!",
+        [
+          "to-boolean",
+          [
+            "get",
+            "siteAt"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "site-label",
+      "type": "symbol",
+      "source": "sites",
+      "slot": "aboveLabels",
+      "style": "site-label",
+      "layout": {
+        "text-field": [
+          "get",
+          "nameBn"
+        ],
+        "text-size": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          17,
+          14
+        ],
+        "text-offset": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          [
+            "literal",
+            [
+              0,
+              2.65
+            ]
+          ],
+          [
+            "literal",
+            [
+              0,
+              2.32
+            ]
+          ]
+        ],
+        "symbol-sort-key": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          0,
+          1
+        ]
+      }
+    }
+  ],
+  "controls": [
+    {
+      "type": "picker",
+      "id": "janapadas",
+      "from": "janapadas",
+      "placeholder": "একটি জনপদ বেছে নিন…",
+      "labelEn": "Choose a janapada",
+      "label": {
+        "field": "nameBn"
+      },
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "on": "click",
+      "target": "source:areas",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
+    },
+    {
+      "on": "click",
+      "target": "source:sites",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
+    }
+  ],
+  "sheet": {
+    "photo": {
+      "field": "photo"
+    },
+    "title": {
+      "field": "nameBn"
+    },
+    "subtitle": {
+      "field": "areaCaptionBn"
+    },
+    "rows": [
+      {
+        "label": "অন্য নাম",
+        "field": "altNamesBn"
+      },
+      {
+        "label": "সূত্রে অবস্থান",
+        "field": "locationBn"
+      },
+      {
+        "label": "আজকের জেলা",
+        "field": "districtsBn"
+      },
+      {
+        "label": "রাজধানী / কেন্দ্র",
+        "field": "capitalBn"
+      },
+      {
+        "label": "তথ্য",
+        "field": "noteBn"
+      }
+    ]
+  }
+}

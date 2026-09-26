@@ -12,6 +12,8 @@
 //                     and data-sources/tech-headquarters/companies.seed.json
 //   deserts, lakes, forests, mountains, waterfalls
 //                 checked against data-sources/<map>/<map>.seed.json
+//   ancient-janapadas  checked against data-sources/ancient-janapadas/
+//                      janapadas.seed.json and photos.seed.json
 //
 // Run:  node tools/verify-descriptor.mjs   (from the repo root or from tools/)
 import fs from 'node:fs';
@@ -51,6 +53,8 @@ const TECH_SEED = path.join(ROOT, 'data-sources/tech-headquarters/companies.seed
 const GEO_SEEDS = path.join(ROOT, 'data-sources');
 const GEOGRAPHY = { deserts: 2, lakes: 0, forests: 0, mountains: 0, waterfalls: 0 };
 const TECH_CATEGORY = 'প্রযুক্তি প্রতিষ্ঠান';
+// The janapada map: the editor's seed, never written, and the photos found for it.
+const JANAPADA_SEEDS = path.join(ROOT, 'data-sources/ancient-janapadas');
 
 let failures = 0;
 const fail = (msg) => {
@@ -845,6 +849,66 @@ for (const [map, expectedPending] of Object.entries(GEOGRAPHY)) {
   const withheld = Object.keys(seed).filter((id) => seed[id].geometry?.withheld);
   if (withheld.length) ok(`areas withheld, with their reason in the seed: ${withheld.join(', ')}`);
   checkMap({ id: map, expectedPending });
+}
+
+/*
+|--------------------------------------------------------------------------
+| ANCIENT JANAPADAS — faithful to the editor's seed, of which it ships a sample
+|--------------------------------------------------------------------------
+*/
+console.log('\n\n============ ancient-janapadas ============');
+{
+  const dir = path.join(MAPS_DIR, 'ancient-janapadas');
+  const seed = readJson(path.join(JANAPADA_SEEDS, 'janapadas.seed.json'));
+  const photoSeed = readJson(path.join(JANAPADA_SEEDS, 'photos.seed.json'));
+  const recs = readJson(path.join(dir, 'records.json'));
+  // The build ships the records under review; the rest are built, not shipped.
+  const order = Object.keys(seed).sort((a, b) => seed[a].order - seed[b].order);
+  const shipped = Object.keys(recs);
+  check(
+    shipped.every((k) => k in seed) && shipped.every((k, i) => i === 0 || order.indexOf(k) > order.indexOf(shipped[i - 1])),
+    `records.json ships ${shipped.length} of the seed's ${order.length} records, in the seed's order (${shipped.join(', ')})`,
+  );
+  console.log('\n---- records.json against janapadas.seed.json ----');
+  compareTables({
+    source: Object.fromEntries(shipped.map((k) => [k, seed[k]])),
+    file: recs,
+    label: 'records.json',
+    ignore: ['id', 'order', 'sources', 'review', 'geometry', 'photo', 'photoSite', 'labelAt', 'frame', 'siteAt'],
+  });
+  // null in the seed wants a photo: the photo seed's, with its own credit, or
+  // still null. Absent in the seed stays absent.
+  let badPhoto = 0;
+  for (const k of shipped) {
+    const p = photoSeed[k]?.photo;
+    const wasCropped = p && Object.values(p.crop).some(([x, y, w, h]) => x || y || w !== p.size[0] || h !== p.size[1]);
+    const want = !('photo' in seed[k])
+      ? undefined
+      : p
+        ? { marker: `photos/${k}-marker.webp`, card: `photos/${k}-card.webp`, author: p.author, licence: p.licence, ...(p.licenceUrl ? { licenceUrl: p.licenceUrl } : {}), page: p.page, ...(wasCropped ? { cropped: true } : {}) }
+        : seed[k].photo;
+    if (JSON.stringify(recs[k].photo) !== JSON.stringify(want)) {
+      fail(`ancient-janapadas/${k}: the shipped photo is not the one the photo seed credits`);
+      badPhoto++;
+    }
+  }
+  check(badPhoto === 0, `every shipped photo is the photo seed's, with its credit, "cropped" where it was (${shipped.filter((k) => recs[k].photo).length})`);
+  // A photo's marker stands on the site the photo shows — the photo seed's
+  // point, from the site's Wikidata item, cited there — and only a record with
+  // a photo has one.
+  const badSite = shipped.filter((k) => {
+    const site = photoSeed[k]?.site;
+    const want = recs[k].photo ? site?.at.map((n) => Number(n.toFixed(5))) : undefined;
+    const cited = !recs[k].photo || (photoSeed[k]?.sources?.siteAt ?? []).some((c) => c.states && c.url?.includes(`wikidata.org`) && c.url.includes(site?.wikidata));
+    return JSON.stringify(recs[k].siteAt) !== JSON.stringify(want) || !cited;
+  });
+  check(badSite.length === 0, `every record with a photo has its site's point from the photo seed, cited to its Wikidata item, and no other record has one (${shipped.filter((k) => recs[k].siteAt).length})${badSite.length ? ` — not: ${badSite.join(', ')}` : ''}`);
+  const strays = Object.keys(photoSeed).filter((k) => seed[k]?.photo !== null);
+  check(strays.length === 0, `the photo seed holds photos only for records whose seed photo is null${strays.length ? ` — not: ${strays.join(', ')}` : ''}`);
+  // Two photos are wanted and not found: banga's site's Wikidata point is
+  // 22 km off the site, and no Wikidata item is an archaeological site at
+  // Tamluk, so neither has a point for its marker.
+  checkMap({ id: 'ancient-janapadas', expectedPending: 2 });
 }
 
 // ---- done -------------------------------------------------------------------

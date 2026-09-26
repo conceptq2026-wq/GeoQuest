@@ -18,9 +18,14 @@ import path from 'node:path';
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const ROOT = path.resolve(HERE, '..');
 // Per map: its seed, and the folder its photos are served from. Change here if either moves.
-const MAPS = Object.fromEntries(
-  ['deserts', 'lakes', 'forests', 'mountains', 'waterfalls'].map((m) => [m, { seed: path.join(ROOT, `data-sources/${m}/${m}.seed.json`), out: path.join(ROOT, `docs/maps/${m}/photos`) }]),
-);
+const MAPS = {
+  ...Object.fromEntries(
+    ['deserts', 'lakes', 'forests', 'mountains', 'waterfalls'].map((m) => [m, { seed: path.join(ROOT, `data-sources/${m}/${m}.seed.json`), out: path.join(ROOT, `docs/maps/${m}/photos`) }]),
+  ),
+  // The janapada seed is the editor's and is never written; the photos found
+  // for it live in a seed of their own, keyed by record like the others.
+  'ancient-janapadas': { seed: path.join(ROOT, 'data-sources/ancient-janapadas/photos.seed.json'), out: path.join(ROOT, 'docs/maps/ancient-janapadas/photos') },
+};
 // Originals wider than this are fetched as Commons' own rendition at this
 // width — the shipped files are 640 px at most — and the crop boxes, which
 // the seed gives in the original's pixels, are scaled to it. It must be one
