@@ -485,6 +485,21 @@ tap-to-open, never a live map.
 - The straits map unchanged unless the task says otherwise.
 - Trace count and geometry hashes unchanged unless the task changed geometry.
 
+Verification scales with what changed:
+
+- Only one map's data or its own folder: run the three suites and check that
+  map. Do not open other maps.
+- The shell or shared code (`docs/shell/`, `docs/shared/`, `tools/lib/`): run
+  the suites, plus a request-and-camera comparison on two maps only, straits
+  (world basemap) and ancient-janapadas (bangladesh basemap), at the site root
+  only.
+- A basemap, a vendored library, or the resolver: full verification as before.
+- New shell features are separate modules that load only for maps whose
+  descriptor uses them.
+
+Screenshots only of what changed. The pending-count summary stays in every
+report.
+
 ## What needs the user's approval
 
 Needs approval: any schema change or new descriptor term; which places appear on
