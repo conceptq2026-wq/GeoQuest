@@ -16,11 +16,12 @@ import crypto from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 import mapshaper from 'mapshaper';
 
-const ROOT = path.resolve('..');
+const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
+const ROOT = path.resolve(HERE, '..');
 // The straits map's folder inside the served tree, relative to the repo root.
 // Change here if the map moves.
 const STRAITS_DIR = path.join(ROOT, 'docs/international/straits');
-const sources = JSON.parse(fs.readFileSync('sources.json', 'utf8'));
+const sources = JSON.parse(fs.readFileSync(path.join(HERE, 'sources.json'), 'utf8'));
 
 function readPinned(entry) {
   const body = fs.readFileSync(path.join(ROOT, entry.file));

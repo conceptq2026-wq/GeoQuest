@@ -12,7 +12,8 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 
-const ROOT = path.resolve('..');
+const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
+const ROOT = path.resolve(HERE, '..');
 // The straits map's folder, relative to the repo root. Change here if the map moves.
 const STRAITS_DIR = path.join(ROOT, 'docs/international/straits');
 const OUT = path.join(ROOT, 'tools', 'sources', 'osm-tss.geojson');

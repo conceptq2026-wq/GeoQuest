@@ -17,8 +17,6 @@
 //   admin_labels      unit names — Bengali from tools/sources/bangladesh-names.json
 //   country_labels    the fields world.pmtiles carries, so the shell baseline
 //                     works on this archive unchanged
-//
-// Run from tools/.
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -30,15 +28,17 @@ import { writeArchive } from './lib/pmtiles-writer.mjs';
 import { CACHE, readSource, prepare, bangladeshLineClass, featureCollection, bboxPolygon, zipEntry } from './lib/geo.mjs';
 import { COVERAGE, FRAME, DETAIL_AREAS, OVERVIEW_MIN_ZOOM, OVERVIEW_MAX_ZOOM, DETAIL_MIN_ZOOM, DETAIL_MAX_ZOOM } from './bangladesh.config.mjs';
 
+const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
+const ROOT = path.resolve(HERE, '..');
 // Inside the served tree. Change here if it moves.
-const OUT = path.resolve('..', 'docs', 'shared', 'tiles', 'bangladesh.pmtiles');
-const NAMES = path.resolve('sources', 'bangladesh-names.json');
+const OUT = path.join(ROOT, 'docs', 'shared', 'tiles', 'bangladesh.pmtiles');
+const NAMES = path.join(HERE, 'sources', 'bangladesh-names.json');
 const VT_OPTIONS = { extent: 4096, buffer: 64, tolerance: 3, indexMaxPoints: 0 };
 const [DETAIL_BOX] = Object.values(DETAIL_AREAS);
 // The class Bangladesh's own border carries in the borders layer.
 const BD_BORDER_CLASS = 'Bangladesh land border (BBS, COD-AB v03)';
 
-const sources = JSON.parse(fs.readFileSync('sources.json', 'utf8'));
+const sources = JSON.parse(fs.readFileSync(path.join(HERE, 'sources.json'), 'utf8'));
 const sha256 = (buf) => crypto.createHash('sha256').update(buf).digest('hex');
 function pinned(entry, file) {
   const buf = fs.readFileSync(file);
@@ -84,8 +84,8 @@ const bd1 = zipEntry(codAbZip, 'bgd_admin1.geojson');
 const bd2 = zipEntry(codAbZip, 'bgd_admin2.geojson');
 const capitals = zipEntry(codAbZip, 'bgd_admincapitals.geojson');
 const gbIndia = JSON.parse(pinned(sources.geoBoundariesIndia, path.join(CACHE, sources.geoBoundariesIndia.file)));
-const riversIn = JSON.parse(pinned(sources.osmBangladeshRivers, path.resolve('..', sources.osmBangladeshRivers.file)));
-const landIn = JSON.parse(pinned(sources.osmBangladeshLand, path.resolve('..', sources.osmBangladeshLand.file)));
+const riversIn = JSON.parse(pinned(sources.osmBangladeshRivers, path.join(ROOT, sources.osmBangladeshRivers.file)));
+const landIn = JSON.parse(pinned(sources.osmBangladeshLand, path.join(ROOT, sources.osmBangladeshLand.file)));
 const countries = readSource('ne_10m_admin_0_countries_bdg.geojson');
 const admin1 = readSource('ne_10m_admin_1_states_provinces.geojson');
 const neLines = readSource('ne_10m_admin_0_boundary_lines_land.geojson');

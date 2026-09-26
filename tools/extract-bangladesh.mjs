@@ -22,7 +22,8 @@ import mapshaper from 'mapshaper';
 import { CACHE } from './lib/geo.mjs';
 import { COVERAGE, DETAIL_AREAS } from './bangladesh.config.mjs';
 
-const ROOT = path.resolve('..');
+const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
+const ROOT = path.resolve(HERE, '..');
 const OUT_RIVERS = path.join(ROOT, 'tools', 'sources', 'osm-bangladesh-rivers.geojson');
 const OUT_LAND = path.join(ROOT, 'tools', 'sources', 'osm-bangladesh-land.geojson');
 const LAND_OVERVIEW = path.join(CACHE, 'osm-land', 'simplified-land-polygons-complete-3857', 'simplified_land_polygons.shp');

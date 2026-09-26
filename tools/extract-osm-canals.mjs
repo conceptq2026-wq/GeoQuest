@@ -12,7 +12,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 
-const ROOT = path.resolve('..');
+const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
+const ROOT = path.resolve(HERE, '..');
 const OUT = path.join(ROOT, 'tools', 'sources', 'osm-canals.geojson');
 const ENDPOINTS = [
   'https://overpass-api.de/api/interpreter',
