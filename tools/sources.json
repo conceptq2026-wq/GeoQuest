@@ -61,6 +61,10 @@
       "ne_10m_geography_marine_polys.geojson": {
         "size": 1692635,
         "gitBlobSha1": "bea6b3567d415123ca75123c2aa1619076bf2250"
+      },
+      "ne_10m_admin_1_states_provinces.geojson": {
+        "size": 40726851,
+        "gitBlobSha1": "4a8438f98ac7dfec7dc1739b1eaf91398ad33f22"
       }
     }
   },
@@ -150,5 +154,35 @@
     "file": "tools/sources/osm-waterfalls.geojson",
     "licence": "ODbL 1.0 — © OpenStreetMap contributors",
     "sha256": "7db90baab2c4c79cc80fce512ed540aec5c8b098c29d47647f0f2711fad1b27c"
+  },
+  "codAbBangladesh": {
+    "_comment": "OCHA Common Operational Dataset, Bangladesh administrative boundaries (source: Bangladesh Bureau of Statistics), v03, valid on 2023-05-21; HDX resource last modified 2026-01-26. Divisions and districts, joined by pcode. HDX licence field: \"Creative Commons Attribution for Intergovernmental Organisations (CC BY-IGO)\", http://creativecommons.org/licenses/by/3.0/igo/legalcode — commercial use allowed with attribution.",
+    "url": "https://data.humdata.org/dataset/401d3fae-4262-48c9-891f-461fd776d49b/resource/cec2abe3-d8b7-4025-9362-9f7e780f2a07/download/bgd_admin_boundaries.geojson.zip",
+    "file": "bgd_admin_boundaries.geojson.zip",
+    "size": 37759475,
+    "sha256": "ec54c97c2004bbee084afa3f662abb202d8ec038dbfd398af2ebb9b1bf3ec9e5",
+    "licence": "CC BY-IGO 3.0 — Bangladesh Bureau of Statistics / OCHA"
+  },
+  "geoBoundariesIndia": {
+    "_comment": "geoBoundaries gbOpen IND ADM2 (boundaryID IND-ADM2-76128533), year represented 2021, source \"Pathways Data Pvt. Ltd., lgdirectory.gov.in\", fixed at geoBoundaries commit 9469f09. Licence field: \"Open Data Commons Open Database License 1.0\" — commercial use allowed, with attribution; a database derived from it stays under ODbL. Districts only: the ADM1 file is a different dataset (DataMeet, 2011, CC BY 2.5 IN) and is not used; Tripura is the union of its districts.",
+    "url": "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/IND/ADM2/geoBoundaries-IND-ADM2.geojson",
+    "file": "geoBoundaries-IND-ADM2.geojson",
+    "size": 48317735,
+    "sha256": "8bef6929fd65432e7dc775e7c44473e84efff064ebddbfd6b834e6291546db40",
+    "licence": "ODbL 1.0 — geoBoundaries (Pathways Data, Local Government Directory)"
+  },
+  "osmBangladeshRivers": {
+    "_comment": "The named major rivers of the Bangladesh basemap, from extract-bangladesh.mjs and committed; one exact-name selector per river inside its own box, the Brahmaputra family by way id. The build refuses a file whose checksum differs.",
+    "file": "tools/sources/osm-bangladesh-rivers.geojson",
+    "fetched": "2026-09-26",
+    "licence": "ODbL 1.0 — © OpenStreetMap contributors",
+    "sha256": "645ce0ffb905acad219e8d07a2867157e447f6266364dd4e2af6e6b2daeadb1f"
+  },
+  "osmBangladeshLand": {
+    "_comment": "Coastline land for the Bangladesh basemap, from extract-bangladesh.mjs and committed: OSM simplified land polygons for COVERAGE, full land polygons for the detail area. The upstream files are regenerated daily, so the files used are recorded inside the snapshot (date, size, sha256). The build refuses a file whose checksum differs.",
+    "file": "tools/sources/osm-bangladesh-land.geojson",
+    "fetched": "2026-09-26",
+    "licence": "ODbL 1.0 — © OpenStreetMap contributors",
+    "sha256": "17e07b46c75e35a112827a6052d91282d1d32309984a67abb17cfb7a2028b5b0"
   }
 }

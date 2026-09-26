@@ -1,0 +1,1028 @@
+{
+  "_comment": "Bengali names for the Bangladesh basemap, one official source per name, as that source writes it. Made once from the pages fetched on the date below; build-bangladesh.mjs reads this file and never the sites. A unit whose nameBn is null is not labelled — never in English — and the build lists it.",
+  "fetched": "2026-09-26",
+  "sources": {
+    "bangladesh": {
+      "title": "বাংলাদেশ জাতীয় তথ্য বাতায়ন — বিভাগসমূহ, জেলাসমূহ",
+      "urls": [
+        "https://bangladesh.gov.bd/views/division-list",
+        "https://bangladesh.gov.bd/views/district-list"
+      ],
+      "note": "The \" জেলা\" / \" বিভাগ\" suffix is dropped; রাঙ্গামাটি is listed as \"রাঙ্গামাটি পার্বত্য জেলা\". Each entry links to the unit's own portal, which is how it is joined to its COD-AB pcode; the portal's division grouping is checked against COD-AB's."
+    },
+    "india": {
+      "title": "Each district's own official website (Bengali version); district list and codes from the Local Government Directory, Government of India",
+      "urls": [
+        "https://lgdirectory.gov.in/webservices/lgdws/districtList"
+      ]
+    },
+    "rivers": {
+      "title": "বাংলাদেশের নদ-নদীর তালিকা — ১লা বৈশাখ ১৪৩২, জাতীয় নদী রক্ষা কমিশন",
+      "urls": [
+        "https://nrcc.gov.bd/pages/publications/6922d9ca81fc96cef9eb3db8",
+        "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-nrccb/2024/12/53b9a2aa6f1f415eb257be319b7c6122.pdf"
+      ],
+      "note": "Read from the PDF's page images: its Bengali text is not extractable."
+    }
+  },
+  "bangladesh": {
+    "BD10": {
+      "level": "division",
+      "nameEn": "Barishal",
+      "nameBn": "বরিশাল",
+      "portalText": "বরিশাল বিভাগ",
+      "source": "https://barisaldiv.gov.bd"
+    },
+    "BD20": {
+      "level": "division",
+      "nameEn": "Chattogram",
+      "nameBn": "চট্টগ্রাম",
+      "portalText": "চট্টগ্রাম বিভাগ",
+      "source": "https://chattogramdiv.gov.bd"
+    },
+    "BD30": {
+      "level": "division",
+      "nameEn": "Dhaka",
+      "nameBn": "ঢাকা",
+      "portalText": "ঢাকা বিভাগ",
+      "source": "https://dhakadiv.gov.bd"
+    },
+    "BD40": {
+      "level": "division",
+      "nameEn": "Khulna",
+      "nameBn": "খুলনা",
+      "portalText": "খুলনা বিভাগ",
+      "source": "https://khulnadiv.gov.bd"
+    },
+    "BD45": {
+      "level": "division",
+      "nameEn": "Mymensingh",
+      "nameBn": "ময়মনসিংহ",
+      "portalText": "ময়মনসিংহ বিভাগ",
+      "source": "https://mymensinghdiv.gov.bd"
+    },
+    "BD50": {
+      "level": "division",
+      "nameEn": "Rajshahi",
+      "nameBn": "রাজশাহী",
+      "portalText": "রাজশাহী বিভাগ",
+      "source": "https://rajshahidiv.gov.bd"
+    },
+    "BD55": {
+      "level": "division",
+      "nameEn": "Rangpur",
+      "nameBn": "রংপুর",
+      "portalText": "রংপুর বিভাগ",
+      "source": "https://rangpurdiv.gov.bd"
+    },
+    "BD60": {
+      "level": "division",
+      "nameEn": "Sylhet",
+      "nameBn": "সিলেট",
+      "portalText": "সিলেট বিভাগ",
+      "source": "https://sylhetdiv.gov.bd"
+    },
+    "BD1004": {
+      "level": "district",
+      "division": "BD10",
+      "nameEn": "Barguna",
+      "nameBn": "বরগুনা",
+      "portalText": "বরগুনা জেলা",
+      "source": "https://barguna.gov.bd"
+    },
+    "BD1006": {
+      "level": "district",
+      "division": "BD10",
+      "nameEn": "Barishal",
+      "nameBn": "বরিশাল",
+      "portalText": "বরিশাল জেলা",
+      "source": "https://barisal.gov.bd"
+    },
+    "BD1009": {
+      "level": "district",
+      "division": "BD10",
+      "nameEn": "Bhola",
+      "nameBn": "ভোলা",
+      "portalText": "ভোলা জেলা",
+      "source": "https://bhola.gov.bd"
+    },
+    "BD1042": {
+      "level": "district",
+      "division": "BD10",
+      "nameEn": "Jhalokati",
+      "nameBn": "ঝালকাঠি",
+      "portalText": "ঝালকাঠি জেলা",
+      "source": "https://jhalakathi.gov.bd"
+    },
+    "BD1078": {
+      "level": "district",
+      "division": "BD10",
+      "nameEn": "Patuakhali",
+      "nameBn": "পটুয়াখালী",
+      "portalText": "পটুয়াখালী জেলা",
+      "source": "https://patuakhali.gov.bd"
+    },
+    "BD1079": {
+      "level": "district",
+      "division": "BD10",
+      "nameEn": "Pirojpur",
+      "nameBn": "পিরোজপুর",
+      "portalText": "পিরোজপুর জেলা",
+      "source": "https://pirojpur.gov.bd"
+    },
+    "BD2003": {
+      "level": "district",
+      "division": "BD20",
+      "nameEn": "Bandarban",
+      "nameBn": "বান্দরবান",
+      "portalText": "বান্দরবান জেলা",
+      "source": "https://bandarban.gov.bd"
+    },
+    "BD2012": {
+      "level": "district",
+      "division": "BD20",
+      "nameEn": "Brahmanbaria",
+      "nameBn": "ব্রাহ্মণবাড়িয়া",
+      "portalText": "ব্রাহ্মণবাড়িয়া জেলা",
+      "source": "https://brahmanbaria.gov.bd"
+    },
+    "BD2013": {
+      "level": "district",
+      "division": "BD20",
+      "nameEn": "Chandpur",
+      "nameBn": "চাঁদপুর",
+      "portalText": "চাঁদপুর জেলা",
+      "source": "https://chandpur.gov.bd"
+    },
+    "BD2015": {
+      "level": "district",
+      "division": "BD20",
+      "nameEn": "Chattogram",
+      "nameBn": "চট্টগ্রাম",
+      "portalText": "চট্টগ্রাম জেলা",
+      "source": "https://chattogram.gov.bd"
+    },
+    "BD2019": {
+      "level": "district",
+      "division": "BD20",
+      "nameEn": "Cumilla",
+      "nameBn": "কুমিল্লা",
+      "portalText": "কুমিল্লা জেলা",
+      "source": "https://comilla.gov.bd"
+    },
+    "BD2022": {
+      "level": "district",
+      "division": "BD20",
+      "nameEn": "Cox's Bazar",
+      "nameBn": "কক্সবাজার",
+      "portalText": "কক্সবাজার জেলা",
+      "source": "https://coxsbazar.gov.bd"
+    },
+    "BD2030": {
+      "level": "district",
+      "division": "BD20",
+      "nameEn": "Feni",
+      "nameBn": "ফেনী",
+      "portalText": "ফেনী জেলা",
+      "source": "https://feni.gov.bd"
+    },
+    "BD2046": {
+      "level": "district",
+      "division": "BD20",
+      "nameEn": "Khagrachhari",
+      "nameBn": "খাগড়াছড়ি",
+      "portalText": "খাগড়াছড়ি জেলা",
+      "source": "https://khagrachhari.gov.bd"
+    },
+    "BD2051": {
+      "level": "district",
+      "division": "BD20",
+      "nameEn": "Lakshmipur",
+      "nameBn": "লক্ষ্মীপুর",
+      "portalText": "লক্ষ্মীপুর জেলা",
+      "source": "https://lakshmipur.gov.bd"
+    },
+    "BD2075": {
+      "level": "district",
+      "division": "BD20",
+      "nameEn": "Noakhali",
+      "nameBn": "নোয়াখালী",
+      "portalText": "নোয়াখালী জেলা",
+      "source": "https://noakhali.gov.bd"
+    },
+    "BD2084": {
+      "level": "district",
+      "division": "BD20",
+      "nameEn": "Rangamati",
+      "nameBn": "রাঙ্গামাটি",
+      "portalText": "রাঙ্গামাটি পার্বত্য জেলা",
+      "source": "https://rangamati.gov.bd"
+    },
+    "BD3026": {
+      "level": "district",
+      "division": "BD30",
+      "nameEn": "Dhaka",
+      "nameBn": "ঢাকা",
+      "portalText": "ঢাকা জেলা",
+      "source": "https://dhaka.gov.bd"
+    },
+    "BD3029": {
+      "level": "district",
+      "division": "BD30",
+      "nameEn": "Faridpur",
+      "nameBn": "ফরিদপুর",
+      "portalText": "ফরিদপুর জেলা",
+      "source": "https://faridpur.gov.bd"
+    },
+    "BD3033": {
+      "level": "district",
+      "division": "BD30",
+      "nameEn": "Gazipur",
+      "nameBn": "গাজীপুর",
+      "portalText": "গাজীপুর জেলা",
+      "source": "https://gazipur.gov.bd"
+    },
+    "BD3035": {
+      "level": "district",
+      "division": "BD30",
+      "nameEn": "Gopalganj",
+      "nameBn": "গোপালগঞ্জ",
+      "portalText": "গোপালগঞ্জ জেলা",
+      "source": "https://gopalganj.gov.bd"
+    },
+    "BD3048": {
+      "level": "district",
+      "division": "BD30",
+      "nameEn": "Kishoreganj",
+      "nameBn": "কিশোরগঞ্জ",
+      "portalText": "কিশোরগঞ্জ জেলা",
+      "source": "https://kishoreganj.gov.bd"
+    },
+    "BD3054": {
+      "level": "district",
+      "division": "BD30",
+      "nameEn": "Madaripur",
+      "nameBn": "মাদারীপুর",
+      "portalText": "মাদারীপুর জেলা",
+      "source": "https://madaripur.gov.bd"
+    },
+    "BD3056": {
+      "level": "district",
+      "division": "BD30",
+      "nameEn": "Manikganj",
+      "nameBn": "মানিকগঞ্জ",
+      "portalText": "মানিকগঞ্জ জেলা",
+      "source": "https://manikganj.gov.bd"
+    },
+    "BD3059": {
+      "level": "district",
+      "division": "BD30",
+      "nameEn": "Munshiganj",
+      "nameBn": "মুন্সীগঞ্জ",
+      "portalText": "মুন্সীগঞ্জ জেলা",
+      "source": "https://munshiganj.gov.bd"
+    },
+    "BD3067": {
+      "level": "district",
+      "division": "BD30",
+      "nameEn": "Narayanganj",
+      "nameBn": "নারায়ণগঞ্জ",
+      "portalText": "নারায়ণগঞ্জ জেলা",
+      "source": "https://narayanganj.gov.bd"
+    },
+    "BD3068": {
+      "level": "district",
+      "division": "BD30",
+      "nameEn": "Narsingdi",
+      "nameBn": "নরসিংদী",
+      "portalText": "নরসিংদী জেলা",
+      "source": "https://narsingdi.gov.bd"
+    },
+    "BD3082": {
+      "level": "district",
+      "division": "BD30",
+      "nameEn": "Rajbari",
+      "nameBn": "রাজবাড়ী",
+      "portalText": "রাজবাড়ী জেলা",
+      "source": "https://rajbari.gov.bd"
+    },
+    "BD3086": {
+      "level": "district",
+      "division": "BD30",
+      "nameEn": "Shariatpur",
+      "nameBn": "শরীয়তপুর",
+      "portalText": "শরীয়তপুর জেলা",
+      "source": "https://shariatpur.gov.bd"
+    },
+    "BD3093": {
+      "level": "district",
+      "division": "BD30",
+      "nameEn": "Tangail",
+      "nameBn": "টাঙ্গাইল",
+      "portalText": "টাঙ্গাইল জেলা",
+      "source": "https://tangail.gov.bd"
+    },
+    "BD4001": {
+      "level": "district",
+      "division": "BD40",
+      "nameEn": "Bagerhat",
+      "nameBn": "বাগেরহাট",
+      "portalText": "বাগেরহাট জেলা",
+      "source": "https://bagerhat.gov.bd"
+    },
+    "BD4018": {
+      "level": "district",
+      "division": "BD40",
+      "nameEn": "Chuadanga",
+      "nameBn": "চুয়াডাঙ্গা",
+      "portalText": "চুয়াডাঙ্গা জেলা",
+      "source": "https://chuadanga.gov.bd"
+    },
+    "BD4041": {
+      "level": "district",
+      "division": "BD40",
+      "nameEn": "Jashore",
+      "nameBn": "যশোর",
+      "portalText": "যশোর জেলা",
+      "source": "https://jashore.gov.bd"
+    },
+    "BD4044": {
+      "level": "district",
+      "division": "BD40",
+      "nameEn": "Jhenaidah",
+      "nameBn": "ঝিনাইদহ",
+      "portalText": "ঝিনাইদহ জেলা",
+      "source": "https://jhenaidah.gov.bd"
+    },
+    "BD4047": {
+      "level": "district",
+      "division": "BD40",
+      "nameEn": "Khulna",
+      "nameBn": "খুলনা",
+      "portalText": "খুলনা জেলা",
+      "source": "https://khulna.gov.bd"
+    },
+    "BD4050": {
+      "level": "district",
+      "division": "BD40",
+      "nameEn": "Kushtia",
+      "nameBn": "কুষ্টিয়া",
+      "portalText": "কুষ্টিয়া জেলা",
+      "source": "https://kushtia.gov.bd"
+    },
+    "BD4055": {
+      "level": "district",
+      "division": "BD40",
+      "nameEn": "Magura",
+      "nameBn": "মাগুরা",
+      "portalText": "মাগুরা জেলা",
+      "source": "https://magura.gov.bd"
+    },
+    "BD4057": {
+      "level": "district",
+      "division": "BD40",
+      "nameEn": "Meherpur",
+      "nameBn": "মেহেরপুর",
+      "portalText": "মেহেরপুর জেলা",
+      "source": "https://meherpur.gov.bd"
+    },
+    "BD4065": {
+      "level": "district",
+      "division": "BD40",
+      "nameEn": "Narail",
+      "nameBn": "নড়াইল",
+      "portalText": "নড়াইল জেলা",
+      "source": "https://narail.gov.bd"
+    },
+    "BD4087": {
+      "level": "district",
+      "division": "BD40",
+      "nameEn": "Satkhira",
+      "nameBn": "সাতক্ষীরা",
+      "portalText": "সাতক্ষীরা জেলা",
+      "source": "https://satkhira.gov.bd"
+    },
+    "BD4539": {
+      "level": "district",
+      "division": "BD45",
+      "nameEn": "Jamalpur",
+      "nameBn": "জামালপুর",
+      "portalText": "জামালপুর জেলা",
+      "source": "https://jamalpur.gov.bd"
+    },
+    "BD4561": {
+      "level": "district",
+      "division": "BD45",
+      "nameEn": "Mymensingh",
+      "nameBn": "ময়মনসিংহ",
+      "portalText": "ময়মনসিংহ জেলা",
+      "source": "https://mymensingh.gov.bd"
+    },
+    "BD4572": {
+      "level": "district",
+      "division": "BD45",
+      "nameEn": "Netrakona",
+      "nameBn": "নেত্রকোণা",
+      "portalText": "নেত্রকোণা জেলা",
+      "source": "https://netrokona.gov.bd"
+    },
+    "BD4589": {
+      "level": "district",
+      "division": "BD45",
+      "nameEn": "Sherpur",
+      "nameBn": "শেরপুর",
+      "portalText": "শেরপুর জেলা",
+      "source": "https://sherpur.gov.bd"
+    },
+    "BD5010": {
+      "level": "district",
+      "division": "BD50",
+      "nameEn": "Bogura",
+      "nameBn": "বগুড়া",
+      "portalText": "বগুড়া জেলা",
+      "source": "https://bogra.gov.bd"
+    },
+    "BD5038": {
+      "level": "district",
+      "division": "BD50",
+      "nameEn": "Joypurhat",
+      "nameBn": "জয়পুরহাট",
+      "portalText": "জয়পুরহাট জেলা",
+      "source": "https://joypurhat.gov.bd"
+    },
+    "BD5064": {
+      "level": "district",
+      "division": "BD50",
+      "nameEn": "Naogaon",
+      "nameBn": "নওগাঁ",
+      "portalText": "নওগাঁ জেলা",
+      "source": "https://naogaon.gov.bd"
+    },
+    "BD5069": {
+      "level": "district",
+      "division": "BD50",
+      "nameEn": "Natore",
+      "nameBn": "নাটোর",
+      "portalText": "নাটোর জেলা",
+      "source": "https://natore.gov.bd"
+    },
+    "BD5070": {
+      "level": "district",
+      "division": "BD50",
+      "nameEn": "Chapainababganj",
+      "nameBn": "চাঁপাইনবাবগঞ্জ",
+      "portalText": "চাঁপাইনবাবগঞ্জ জেলা",
+      "source": "https://chapainawabganj.gov.bd"
+    },
+    "BD5076": {
+      "level": "district",
+      "division": "BD50",
+      "nameEn": "Pabna",
+      "nameBn": "পাবনা",
+      "portalText": "পাবনা জেলা",
+      "source": "https://pabna.gov.bd"
+    },
+    "BD5081": {
+      "level": "district",
+      "division": "BD50",
+      "nameEn": "Rajshahi",
+      "nameBn": "রাজশাহী",
+      "portalText": "রাজশাহী জেলা",
+      "source": "https://rajshahi.gov.bd"
+    },
+    "BD5088": {
+      "level": "district",
+      "division": "BD50",
+      "nameEn": "Sirajganj",
+      "nameBn": "সিরাজগঞ্জ",
+      "portalText": "সিরাজগঞ্জ জেলা",
+      "source": "https://sirajganj.gov.bd"
+    },
+    "BD5527": {
+      "level": "district",
+      "division": "BD55",
+      "nameEn": "Dinajpur",
+      "nameBn": "দিনাজপুর",
+      "portalText": "দিনাজপুর জেলা",
+      "source": "https://dinajpur.gov.bd"
+    },
+    "BD5532": {
+      "level": "district",
+      "division": "BD55",
+      "nameEn": "Gaibandha",
+      "nameBn": "গাইবান্ধা",
+      "portalText": "গাইবান্ধা জেলা",
+      "source": "https://gaibandha.gov.bd"
+    },
+    "BD5549": {
+      "level": "district",
+      "division": "BD55",
+      "nameEn": "Kurigram",
+      "nameBn": "কুড়িগ্রাম",
+      "portalText": "কুড়িগ্রাম জেলা",
+      "source": "https://kurigram.gov.bd"
+    },
+    "BD5552": {
+      "level": "district",
+      "division": "BD55",
+      "nameEn": "Lalmonirhat",
+      "nameBn": "লালমনিরহাট",
+      "portalText": "লালমনিরহাট জেলা",
+      "source": "https://lalmonirhat.gov.bd"
+    },
+    "BD5573": {
+      "level": "district",
+      "division": "BD55",
+      "nameEn": "Nilphamari",
+      "nameBn": "নীলফামারী",
+      "portalText": "নীলফামারী জেলা",
+      "source": "https://nilphamari.gov.bd"
+    },
+    "BD5577": {
+      "level": "district",
+      "division": "BD55",
+      "nameEn": "Panchagarh",
+      "nameBn": "পঞ্চগড়",
+      "portalText": "পঞ্চগড় জেলা",
+      "source": "https://panchagarh.gov.bd"
+    },
+    "BD5585": {
+      "level": "district",
+      "division": "BD55",
+      "nameEn": "Rangpur",
+      "nameBn": "রংপুর",
+      "portalText": "রংপুর জেলা",
+      "source": "https://rangpur.gov.bd"
+    },
+    "BD5594": {
+      "level": "district",
+      "division": "BD55",
+      "nameEn": "Thakurgaon",
+      "nameBn": "ঠাকুরগাঁও",
+      "portalText": "ঠাকুরগাঁও জেলা",
+      "source": "https://thakurgaon.gov.bd"
+    },
+    "BD6036": {
+      "level": "district",
+      "division": "BD60",
+      "nameEn": "Habiganj",
+      "nameBn": "হবিগঞ্জ",
+      "portalText": "হবিগঞ্জ জেলা",
+      "source": "https://habiganj.gov.bd"
+    },
+    "BD6058": {
+      "level": "district",
+      "division": "BD60",
+      "nameEn": "Moulvibazar",
+      "nameBn": "মৌলভীবাজার",
+      "portalText": "মৌলভীবাজার জেলা",
+      "source": "https://moulvibazar.gov.bd"
+    },
+    "BD6090": {
+      "level": "district",
+      "division": "BD60",
+      "nameEn": "Sunamganj",
+      "nameBn": "সুনামগঞ্জ",
+      "portalText": "সুনামগঞ্জ জেলা",
+      "source": "https://sunamganj.gov.bd"
+    },
+    "BD6091": {
+      "level": "district",
+      "division": "BD60",
+      "nameEn": "Sylhet",
+      "nameBn": "সিলেট",
+      "portalText": "সিলেট জেলা",
+      "source": "https://sylhet.gov.bd"
+    }
+  },
+  "india": {
+    "Alipurduar": {
+      "state": "West Bengal",
+      "lgdCode": 664,
+      "nameEn": "Alipurduar",
+      "geoBoundaries": "Alipurduar",
+      "nameBn": "আলিপুরদুয়ার",
+      "source": "https://alipurduar.gov.in/bn/",
+      "where": "title"
+    },
+    "Bankura": {
+      "state": "West Bengal",
+      "lgdCode": 305,
+      "nameEn": "Bankura",
+      "geoBoundaries": "Bankura",
+      "nameBn": "বাঁকুড়া",
+      "source": "https://bankura.gov.in/bn/",
+      "where": "title"
+    },
+    "Birbhum": {
+      "state": "West Bengal",
+      "lgdCode": 307,
+      "nameEn": "Birbhum",
+      "geoBoundaries": "Birbhum",
+      "nameBn": "বীরভূম",
+      "source": "https://birbhum.gov.in/bn/",
+      "where": "title"
+    },
+    "Cooch Behar": {
+      "state": "West Bengal",
+      "lgdCode": 308,
+      "nameEn": "Cooch Behar",
+      "geoBoundaries": "Koch Bihar",
+      "nameBn": "কোচবিহার",
+      "source": "https://coochbehar.gov.in/bn/",
+      "where": "title"
+    },
+    "Dakshin Dinajpur": {
+      "state": "West Bengal",
+      "lgdCode": 310,
+      "nameEn": "Dakshin Dinajpur",
+      "geoBoundaries": "Dakshin Dinajpur",
+      "nameBn": "দক্ষিণ দিনাজপুর",
+      "source": "https://ddinajpur.nic.in/bn/",
+      "where": "title"
+    },
+    "Darjeeling": {
+      "state": "West Bengal",
+      "lgdCode": 309,
+      "nameEn": "Darjeeling",
+      "geoBoundaries": "Darjiling",
+      "nameBn": "দার্জিলিং",
+      "source": "https://darjeeling.gov.in/bn/",
+      "where": "title"
+    },
+    "Hooghly": {
+      "state": "West Bengal",
+      "lgdCode": 312,
+      "nameEn": "Hooghly",
+      "geoBoundaries": "Hugli",
+      "nameBn": "হুগলি",
+      "source": "https://hooghly.nic.in/bn/",
+      "where": "title"
+    },
+    "Howrah": {
+      "state": "West Bengal",
+      "lgdCode": 313,
+      "nameEn": "Howrah",
+      "geoBoundaries": "Haora",
+      "nameBn": "হাওড়া",
+      "source": "https://howrah.gov.in/bn/",
+      "where": "title"
+    },
+    "Jalpaiguri": {
+      "state": "West Bengal",
+      "lgdCode": 314,
+      "nameEn": "Jalpaiguri",
+      "geoBoundaries": "Jalpaiguri",
+      "nameBn": "জলপাইগুড়ি",
+      "source": "https://jalpaiguri.gov.in/bn/",
+      "where": "title"
+    },
+    "Jhargram": {
+      "state": "West Bengal",
+      "lgdCode": 703,
+      "nameEn": "Jhargram",
+      "geoBoundaries": "Jhargram",
+      "nameBn": "ঝাড়গ্রাম",
+      "source": "https://jhargram.gov.in/bn/",
+      "where": "title"
+    },
+    "Kalimpong": {
+      "state": "West Bengal",
+      "lgdCode": 702,
+      "nameEn": "Kalimpong",
+      "geoBoundaries": "Kalimpong",
+      "nameBn": null,
+      "source": "https://kalimpong.gov.in/",
+      "where": "the site has no Bengali version"
+    },
+    "Kolkata": {
+      "state": "West Bengal",
+      "lgdCode": 315,
+      "nameEn": "Kolkata",
+      "geoBoundaries": "Kolkata",
+      "nameBn": "কলকাতা",
+      "source": "https://kolkatacollectorate.wb.gov.in/bn/",
+      "where": "title (কলকাতা কালেক্টরেট)"
+    },
+    "Malda": {
+      "state": "West Bengal",
+      "lgdCode": 316,
+      "nameEn": "Malda",
+      "geoBoundaries": "Maldah",
+      "nameBn": "মালদা",
+      "source": "https://malda.gov.in/bn/",
+      "where": "title"
+    },
+    "Murshidabad": {
+      "state": "West Bengal",
+      "lgdCode": 319,
+      "nameEn": "Murshidabad",
+      "geoBoundaries": "Murshidabad",
+      "nameBn": "মুর্শিদাবাদ",
+      "source": "https://murshidabad.gov.in/bn/",
+      "where": "footer (© মুর্শিদাবাদ); the title is in English"
+    },
+    "Nadia": {
+      "state": "West Bengal",
+      "lgdCode": 320,
+      "nameEn": "Nadia",
+      "geoBoundaries": "Nadia",
+      "nameBn": "নদীয়া",
+      "source": "https://nadia.gov.in/bn/",
+      "where": "title"
+    },
+    "North 24 Parganas": {
+      "state": "West Bengal",
+      "lgdCode": 303,
+      "nameEn": "North 24 Parganas",
+      "geoBoundaries": "North Twenty Four Parganas",
+      "nameBn": "উত্তর ২৪ পরগণা",
+      "source": "https://north24parganas.gov.in/bn/",
+      "where": "title"
+    },
+    "Paschim Bardhaman": {
+      "state": "West Bengal",
+      "lgdCode": 704,
+      "nameEn": "Paschim Bardhaman",
+      "geoBoundaries": "Paschim Barddhaman",
+      "nameBn": "পশ্চিম বর্ধমান",
+      "source": "https://paschimbardhaman.gov.in/bn/",
+      "where": "title"
+    },
+    "Paschim Medinipur": {
+      "state": "West Bengal",
+      "lgdCode": 318,
+      "nameEn": "Paschim Medinipur",
+      "geoBoundaries": "Paschim Medinipur",
+      "nameBn": "পশ্চিম মেদিনীপুর",
+      "source": "https://paschimmedinipur.gov.in/bn/",
+      "where": "title"
+    },
+    "Purba Bardhaman": {
+      "state": "West Bengal",
+      "lgdCode": 306,
+      "nameEn": "Purba Bardhaman",
+      "geoBoundaries": "Barddhaman",
+      "nameBn": "পূর্ব বর্ধমান",
+      "source": "https://purbabardhaman.nic.in/bn/",
+      "where": "footer (© পূর্ব বর্ধমান জেলা প্রশাসন); the title is in English"
+    },
+    "Purba Medinipur": {
+      "state": "West Bengal",
+      "lgdCode": 317,
+      "nameEn": "Purba Medinipur",
+      "geoBoundaries": "Purba Medinipur",
+      "nameBn": "পূর্ব মেদিনীপুর",
+      "source": "https://purbamedinipur.gov.in/bn/",
+      "where": "title"
+    },
+    "Purulia": {
+      "state": "West Bengal",
+      "lgdCode": 321,
+      "nameEn": "Purulia",
+      "geoBoundaries": "Puruliya",
+      "nameBn": "পুরুলিয়া",
+      "source": "https://purulia.gov.in/bn/",
+      "where": "title"
+    },
+    "South 24 Parganas": {
+      "state": "West Bengal",
+      "lgdCode": 304,
+      "nameEn": "South 24 Parganas",
+      "geoBoundaries": "South Twenty Four Parganas",
+      "nameBn": "দক্ষিণ ২৪ পরগণা",
+      "source": "https://s24pgs.gov.in/bn/",
+      "where": "title"
+    },
+    "Uttar Dinajpur": {
+      "state": "West Bengal",
+      "lgdCode": 311,
+      "nameEn": "Uttar Dinajpur",
+      "geoBoundaries": "Uttar Dinajpur",
+      "nameBn": "উত্তর দিনাজপুর",
+      "source": "https://uttardinajpur.gov.in/bn/",
+      "where": "title"
+    },
+    "Dhalai": {
+      "state": "Tripura",
+      "lgdCode": 269,
+      "nameEn": "Dhalai",
+      "geoBoundaries": "Dhalai",
+      "nameBn": "ধলাই",
+      "source": "https://dhalai.nic.in/bn/",
+      "where": "title",
+      "approved": "user, 2026-09-26"
+    },
+    "Gomati": {
+      "state": "Tripura",
+      "lgdCode": 654,
+      "nameEn": "Gomati",
+      "geoBoundaries": "Gomati",
+      "nameBn": "গোমতী",
+      "source": "https://gomati.nic.in/bn/",
+      "where": "title",
+      "lgdLocalName": "গোমতি",
+      "approved": "user, 2026-09-26"
+    },
+    "Khowai": {
+      "state": "Tripura",
+      "lgdCode": 652,
+      "nameEn": "Khowai",
+      "geoBoundaries": "Khowai",
+      "nameBn": "খোয়াই",
+      "source": "https://khowai.nic.in/bn/",
+      "where": "title",
+      "lgdLocalName": "খোয়াই",
+      "approved": "user, 2026-09-26"
+    },
+    "North Tripura": {
+      "state": "Tripura",
+      "lgdCode": 270,
+      "nameEn": "North Tripura",
+      "geoBoundaries": "North Tripura",
+      "nameBn": "উত্তর ত্রিপুরা",
+      "source": "https://northtripura.nic.in/bn/",
+      "where": "title",
+      "approved": "user, 2026-09-26"
+    },
+    "Sepahijala": {
+      "state": "Tripura",
+      "lgdCode": 653,
+      "nameEn": "Sepahijala",
+      "geoBoundaries": "Sipahijula",
+      "nameBn": "সিপাহীজলা",
+      "source": "https://sepahijala.nic.in/bn/",
+      "where": "title",
+      "lgdLocalName": "সিপাহিজলা",
+      "approved": "user, 2026-09-26"
+    },
+    "South Tripura": {
+      "state": "Tripura",
+      "lgdCode": 271,
+      "nameEn": "South Tripura",
+      "geoBoundaries": "South Tripura",
+      "nameBn": "দক্ষিণ ত্রিপুরা",
+      "source": "https://southtripura.nic.in/bn/",
+      "where": "title",
+      "lgdLocalName": "দক্ষিন ত্রিপুরা",
+      "approved": "user, 2026-09-26"
+    },
+    "Unakoti": {
+      "state": "Tripura",
+      "lgdCode": 655,
+      "nameEn": "Unakoti",
+      "geoBoundaries": "Unokoti",
+      "nameBn": "ঊনকোটি",
+      "source": "https://unakoti.nic.in/bn/",
+      "where": "title",
+      "approved": "user, 2026-09-26"
+    },
+    "West Tripura": {
+      "state": "Tripura",
+      "lgdCode": 272,
+      "nameEn": "West Tripura",
+      "geoBoundaries": "West Tripura",
+      "nameBn": "পশ্চিম ত্রিপুরা",
+      "source": "https://westtripura.nic.in/bn/",
+      "where": "body (পশ্চিম ত্রিপুরা জেলা); the title reads পশ্চিম জেলা",
+      "approved": "user, 2026-09-26"
+    },
+    "Cachar": {
+      "state": "Assam",
+      "lgdCode": 282,
+      "nameEn": "Cachar",
+      "geoBoundaries": "Cachar",
+      "nameBn": null,
+      "source": null,
+      "checked": [
+        "https://cachar.gov.in/ — the district website; refuses connections (2026-09-26). Its Wayback Machine copy of 2024-10-12 (http://web.archive.org/web/20241012114055/https://cachar.gov.in/) is English only: no Bengali text, no language versions.",
+        "https://cachar.assam.gov.in/ — the Government of Assam district portal: English; /bn is 404; its only Bengali-script text is Assamese (অসম লোকসেৱা অধিকাৰ …)."
+      ],
+      "where": "No Bengali name on the district's official sites (checked 2026-09-26). Not labelled; never in English."
+    }
+  },
+  "rivers": {
+    "padma": {
+      "nameEn": "Padma",
+      "nameBn": "পদ্মা",
+      "nrcc": [
+        "707 পদ্মা",
+        "277 গঙ্গা/ পদ্মা (local name পদ্মা)"
+      ]
+    },
+    "brahmaputraJamuna": {
+      "nameEn": "Brahmaputra–Jamuna",
+      "nameBn": "ব্রহ্মপুত্র-যমুনা",
+      "nrcc": [
+        "971 ব্রহ্মপুত্র-যমুনা"
+      ],
+      "displayLabels": [
+        {
+          "nameBn": "ব্রহ্মপুত্র",
+          "nameEn": "Brahmaputra",
+          "near": {
+            "place": "Chilmari, Kurigram",
+            "adm2_pcode": "BD5549",
+            "adm3_pcode": "BD55490009"
+          },
+          "status": "editor-verified 2026-09-26 (user decision; textbook usage)"
+        },
+        {
+          "nameBn": "যমুনা",
+          "nameEn": "Jamuna",
+          "near": {
+            "place": "Sirajganj",
+            "adm2_pcode": "BD5088",
+            "adm3_pcode": null
+          },
+          "status": "editor-verified 2026-09-26 (user decision; textbook usage)"
+        }
+      ],
+      "note": "The line is one river in the NRCC list (entry 971, ব্রহ্মপুত্র-যমুনা), which stays its official record. On the map it carries the two names the textbooks use, as labels only, placed on the channel nearest the COD-AB capital of each place named — not a split point."
+    },
+    "oldBrahmaputra": {
+      "nameEn": "Old Brahmaputra",
+      "nameBn": "পুরাতন ব্রহ্মপুত্র",
+      "nrcc": [
+        "769 পুরাতন ব্রহ্মপুত্র"
+      ]
+    },
+    "brahmaputra": {
+      "nameEn": "Brahmaputra",
+      "nameBn": "ব্রহ্মপুত্র",
+      "nrcc": [
+        "970 ব্রহ্মপুত্র (নরসিংদী-মুন্সীগঞ্জ)"
+      ]
+    },
+    "meghna": {
+      "nameEn": "Meghna",
+      "nameBn": "মেঘনা",
+      "nrcc": [
+        "1136 মেঘনা (আপার)",
+        "1137 মেঘনা (লোয়ার)"
+      ]
+    },
+    "teesta": {
+      "nameEn": "Teesta",
+      "nameBn": "তিস্তা",
+      "nrcc": [
+        "536 তিস্তা"
+      ]
+    },
+    "karatoya": {
+      "nameEn": "Karatoya",
+      "nameBn": "করতোয়া",
+      "nrcc": [
+        "104–108 করতোয়া"
+      ]
+    },
+    "surma": {
+      "nameEn": "Surma",
+      "nameBn": "সুরমা",
+      "nrcc": [
+        "1337 সুরমা"
+      ]
+    },
+    "kushiyara": {
+      "nameEn": "Kushiyara",
+      "nameBn": "কুশিয়ারা",
+      "nrcc": [
+        "226 কুশিয়ারা"
+      ]
+    },
+    "karnaphuli": {
+      "nameEn": "Karnaphuli",
+      "nameBn": "কর্ণফুলী",
+      "nrcc": [
+        "113 কর্ণফুলী"
+      ]
+    },
+    "madhumati": {
+      "nameEn": "Madhumati",
+      "nameBn": "মধুমতি",
+      "nrcc": [
+        "1025 মধুমতি"
+      ]
+    },
+    "bhagirathi": {
+      "nameEn": "Bhagirathi",
+      "nameBn": null,
+      "nrcc": []
+    },
+    "hooghly": {
+      "nameEn": "Hooghly",
+      "nameBn": null,
+      "nrcc": []
+    },
+    "ganga": {
+      "nameEn": "Ganga",
+      "nameBn": null,
+      "nrcc": []
+    },
+    "brahmaputraAssam": {
+      "nameEn": "Brahmaputra",
+      "nameBn": null,
+      "nrcc": []
+    }
+  }
+}

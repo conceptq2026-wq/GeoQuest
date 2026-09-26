@@ -72,6 +72,54 @@ for (let i = 0; i < hormuz.layers.land.length; i++) {
 }
 check(outerOk, 'land outer rings are wound correctly (land will not render as sea)');
 
+// ---- bangladesh.pmtiles ----
+// The shell's baseline reads these layers and fields from whichever archive a
+// map names, so a regional archive must carry them exactly as world.pmtiles does.
+{
+  const bd = new PMTiles(new FileSource(path.join(SERVED, 'shared/tiles/bangladesh.pmtiles')));
+  const h = await bd.getHeader();
+  check(h.specVersion === 3 && h.tileType === 1, `bangladesh.pmtiles is PMTiles v3 / MVT (z${h.minZoom}–${h.maxZoom})`);
+  const meta = (await bd.getMetadata()).geoquest ?? {};
+  const box = (b) => Array.isArray(b) && b.length === 4 && b[0] < b[2] && b[1] < b[3];
+  check(box(meta.frame) && box(meta.maxBounds) && meta.frame.every((v, i) => (i < 2 ? v >= meta.maxBounds[i] : v <= meta.maxBounds[i])), 'bangladesh.pmtiles metadata carries a frame inside its maxBounds');
+  const tile = async (lon, lat, z) => {
+    const t = await bd.getZxy(z, lon2x(lon, z), lat2y(lat, z));
+    return t && new VectorTile(new Pbf(new Uint8Array(t.data)));
+  };
+  const overview = await tile(90.4, 23.8, 6);
+  const fieldsOf = (layer) => (layer ? new Set(Object.keys(layer.feature(0).properties)) : new Set());
+  const labels = fieldsOf((await tile(90.4, 23.8, 4))?.layers.country_labels);
+  check(['name_bn', 'name_en', 'adm0_a3', 'min_zoom'].every((k) => labels.has(k)), 'bangladesh z4 country_labels carry name_bn, name_en, adm0_a3, min_zoom');
+  check(['land', 'lakes', 'borders'].every((k) => overview?.layers[k]), 'bangladesh z6 tile has land, lakes and borders');
+  const dhaka = await tile(90.41, 23.81, 10);
+  check(dhaka && ['detail_extent', 'land', 'admin', 'admin_labels', 'rivers'].every((k) => dhaka.layers[k]), 'bangladesh z10 tile at Dhaka has detail_extent, land, admin, admin_labels, rivers');
+  const rakhine = await tile(93.5, 20.0, 6);
+  check(rakhine?.layers.land && rakhine?.layers.admin_labels, 'bangladesh z6 tile at Rakhine has land and a unit label');
+  let wound = true;
+  for (let i = 0; i < dhaka.layers.land.length; i++) {
+    const rings = dhaka.layers.land.feature(i).loadGeometry();
+    if (ringArea(rings.reduce((a, b) => (Math.abs(ringArea(b)) > Math.abs(ringArea(a)) ? b : a))) < 0) wound = false;
+  }
+  check(wound, 'bangladesh land outer rings are wound correctly');
+  // Bangladesh's own border is the government's line (COD-AB), in both tile sets.
+  const classes = (t) => new Set(t?.layers.borders ? Array.from({ length: t.layers.borders.length }, (_, i) => t.layers.borders.feature(i).properties.class) : []);
+  const rajshahi = await tile(88.6, 24.35, 9);
+  check(classes(rajshahi).has('Bangladesh land border (BBS, COD-AB v03)') && classes(overview).has('Bangladesh land border (BBS, COD-AB v03)'), "bangladesh borders carry Bangladesh's land border from COD-AB, at z6 and at z9 on the Padma");
+  // The main channel's two display names, and no unit label without a Bengali name.
+  const riverLabels = [];
+  const unitLabels = [];
+  for (let x = lon2x(85.5, 6); x <= lon2x(95.3, 6); x++)
+    for (let y = lat2y(27.6, 6); y <= lat2y(17.0, 6); y++) {
+      const t = await bd.getZxy(6, x, y);
+      if (!t) continue;
+      const v = new VectorTile(new Pbf(new Uint8Array(t.data)));
+      for (let i = 0; i < (v.layers.river_labels?.length ?? 0); i++) riverLabels.push(v.layers.river_labels.feature(i).properties.name_bn);
+      for (let i = 0; i < (v.layers.admin_labels?.length ?? 0); i++) unitLabels.push(v.layers.admin_labels.feature(i).properties);
+    }
+  check(JSON.stringify(riverLabels.sort()) === JSON.stringify(['ব্রহ্মপুত্র', 'যমুনা'].sort()), `bangladesh z6 river_labels are the main channel's two names (${riverLabels.join(', ')})`);
+  check(unitLabels.length > 0 && unitLabels.every((p) => p.name_bn), `every bangladesh unit label has a Bengali name (${unitLabels.length} at z6)`);
+}
+
 // ---- vendored libraries ----
 const sha = (f) => crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex');
 const vendored = [

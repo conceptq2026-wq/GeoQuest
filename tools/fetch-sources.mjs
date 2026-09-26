@@ -36,6 +36,12 @@ const font = sources.notoSansBengali;
 await fetchVerified(font.url, path.join(cache, font.file),
   (buf) => buf.length === font.size && sha256(buf) === font.sha256);
 
+// The Bangladesh basemap's administrative boundaries, one file per country.
+for (const entry of [sources.codAbBangladesh, sources.geoBoundariesIndia]) {
+  await fetchVerified(entry.url, path.join(cache, entry.file),
+    (buf) => buf.length === entry.size && sha256(buf) === entry.sha256);
+}
+
 const lic = sources.pmtilesLicence;
 await fetchVerified(lic.url, path.join(cache, lic.file),
   (buf) => buf.length === lic.size && gitBlobSha1(buf) === lic.gitBlobSha1);
