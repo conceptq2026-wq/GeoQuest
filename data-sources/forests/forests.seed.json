@@ -8,11 +8,11 @@
     "countriesBn": "ব্রাজিল, পেরু, কলম্বিয়াসহ ৯টি দেশ",
     "noteBn": "বৃহত্তম ক্রান্তীয় বৃষ্টিঅরণ্য; প্রায় ৬০% ব্রাজিলে",
     "geometry": {
-      "point": {
-        "source": "wikidata",
-        "qid": "Q177567"
+      "area": {
+        "source": "resolve",
+        "id": "amazon"
       },
-      "note": "No single open polygon of the Amazon rainforest; RESOLVE divides it into many ecoregions."
+      "note": "The union of the 22 RESOLVE Ecoregions 2017 ecoregions whose own Wikipedia articles place them in the Amazon biome, basin or rainforest: Caquetá, Guianan Highlands, Guianan lowland and Guianan piedmont moist forests; Gurupa, Iquitos, Marajó, Monte Alegre and Purus várzea; Japurá–Solimões–Negro, Juruá–Purus, Madeira–Tapajós, Napo, Negro–Branco, Purus–Madeira, Solimões–Japurá, Southwest Amazon, Tapajós–Xingu, Uatumã–Trombetas, Ucayali and Xingu–Tocantins–Araguaia moist forests; Rio Negro campinarana. Left out: Tocantins/Pindaré moist forests, whose article calls it the most developed, most severely deforested part of the Amazon region, and the ecoregions whose articles only name the Amazon as a neighbour. CC BY 4.0, credited on the map."
     },
     "photo": {
       "commonsFile": "File:Amazon Manaus forest.jpg",
@@ -40,6 +40,7 @@
         ]
       }
     },
+    "review": "area: 5,577,264 km², against the 5,500,000 km² of the Amazon rainforest article (Wikipedia revision 1375225388), across the nine countries it names. Accepted.",
     "sources": {
       "nameBn": "editor-verified 2026-09-26 (approved list)",
       "countriesBn": "editor-verified 2026-09-26 (approved list)",
@@ -62,11 +63,11 @@
     "countriesBn": "কঙ্গো গণপ্রজাতন্ত্র, কঙ্গো প্রজাতন্ত্র, ক্যামেরুন, গ্যাবন, মধ্য আফ্রিকান প্রজাতন্ত্র",
     "noteBn": "দ্বিতীয় বৃহত্তম ক্রান্তীয় বনভূমি",
     "geometry": {
-      "point": {
-        "source": "wikidata",
-        "qid": "Q3079079"
+      "area": {
+        "source": "resolve",
+        "id": "congo"
       },
-      "note": "No single open polygon of the Congo rainforest; RESOLVE divides it into several ecoregions."
+      "note": "The union of the six ecoregions into which WWF divides the Congolian forests (Congolian rainforests, Wikipedia revision 1375427369): Atlantic Equatorial coastal forests (RESOLVE: Congolian coastal forests), Central Congolian lowland forests, Eastern Congolian swamp forests, Northeast and Northwest Congolian lowland forests, Western Congolian swamp forests. The Congolian forest-savanna mosaics are left out: they would count savanna as forest. CC BY 4.0, credited on the map."
     },
     "photo": {
       "commonsFile": "File:Rainforest - Ituri (20874628148).jpg",
@@ -94,6 +95,7 @@
         ]
       }
     },
+    "review": "area: 1,777,830 km² across the basin of the Congo River, in the Democratic Republic of the Congo, the Republic of the Congo, Gabon, Cameroon, the Central African Republic and Equatorial Guinea, as the Congolian rainforests article describes. Accepted.",
     "sources": {
       "nameBn": "editor-verified 2026-09-26 (approved list)",
       "countriesBn": "editor-verified 2026-09-26 (approved list)",
@@ -115,11 +117,11 @@
     "typeBn": "ক্রান্তীয় বৃষ্টিঅরণ্য",
     "countriesBn": "ইন্দোনেশিয়া, মালয়েশিয়া, ব্রুনাই",
     "geometry": {
-      "point": {
-        "source": "wikidata",
-        "qid": "Q2913503"
+      "area": {
+        "source": "resolve",
+        "id": "borneo"
       },
-      "note": "No single open polygon of the Borneo rainforest; RESOLVE divides it into lowland, montane and peat-swamp ecoregions."
+      "note": "The union of RESOLVE Ecoregions 2017's four ecoregions named Borneo: lowland rain forests, montane rain forests, peat swamp forests, and Southwest Borneo freshwater swamp forests. Left out: Sundaland heath forests, which also reach other islands, the Sunda Shelf mangroves, and Kinabalu's alpine meadows. CC BY 4.0, credited on the map."
     },
     "photo": {
       "commonsFile": "File:Gunung Palung Jungle.jpg",
@@ -147,6 +149,7 @@
         ]
       }
     },
+    "review": "area: 652,645 km², smaller than the island's 743,330 km² (Borneo, Wikipedia revision 1376121141): its mangroves, heath forests and alpine meadows are not rainforest ecoregions. Accepted as smaller than the usual extent.",
     "sources": {
       "nameBn": "editor-verified 2026-09-26 (approved list)",
       "countriesBn": "editor-verified 2026-09-26 (approved list)",
