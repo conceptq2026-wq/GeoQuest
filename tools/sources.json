@@ -57,6 +57,10 @@
       "ne_10m_geography_regions_elevation_points.geojson": {
         "size": 862686,
         "gitBlobSha1": "86076ef74c48d1adca1eadefd2b22894795d070c"
+      },
+      "ne_10m_geography_marine_polys.geojson": {
+        "size": 1692635,
+        "gitBlobSha1": "bea6b3567d415123ca75123c2aa1619076bf2250"
       }
     }
   },
@@ -133,7 +137,7 @@
     "sha256": "be36d6209e443038d02e309f0447c6e7f2a62f5fe60c605ffe90d064952f2a60",
     "licence": "CC BY 4.0 — RESOLVE Ecoregions 2017 (Dinerstein et al. 2017)",
     "extract": "tools/sources/resolve-extract.geojson",
-    "extractSha256": "84ac45ad1d4354f556a63751acc6dd7edb89cf6c9de5c46f27483edce2cadc5b"
+    "extractSha256": "a4413c02641d9ce7b04d0e77f86adec85d987a794e0bbcf3a0e0a02aa0b89e39"
   },
   "wikidataPoints": {
     "_comment": "P625 coordinates of the Wikidata items the Geography seeds name, from tools/extract-geography-points.mjs.",

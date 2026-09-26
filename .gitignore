@@ -2,3 +2,6 @@
 # tools/package-lock.json, so never committed.
 tools/node_modules/
 tools/.cache/
+
+# Screenshots and scratch output from assistant sessions — not project files.
+Claude outputs/

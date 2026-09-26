@@ -224,12 +224,22 @@ declares sources, layers, sheet rows and actions; it holds no content.
   region's usual description moves to `geometry.withheld` with its reason,
   and the record ships as a marker only unless an openly licensed better
   polygon exists. The Libyan Desert is marker-only: its polygon runs deep
-  into Darfur and Kordofan. The Sahara's Natural Earth polygon, which runs to
-  9°N, is withheld; by the user's decision the Sahara is drawn instead as the
-  union of RESOLVE Ecoregions 2017's Sahara ecoregions (CC BY 4.0, credited),
-  whose edge runs at about 17–19°N, north of the conventional 15–16°N — it
-  claims no non-desert land, and no area was the larger gap. Its `review`
-  records this.
+  into Darfur and Kordofan.
+- **Ecoregion unions, by the user's approved method.** Where no single open
+  polygon of a named feature exists, its area may be the union of the RESOLVE
+  Ecoregions 2017 ecoregions that make it up (CC BY 4.0, credited on every map
+  that uses one). An ecoregion is included only if its name matches the
+  feature or a cited description places it inside it; the seed records which,
+  and why others were left out. The union is compared with the basemap and a
+  cited description of the feature's usual extent: somewhat smaller is
+  accepted and noted in `review`; claiming land that is not the feature —
+  savanna as desert, farmland as forest, an offshore island as a desert — is
+  rejected and the record stays a marker, the union kept in
+  `geometry.withheld` with the reason. Drawn this way: the Sahara (edge at
+  17–19°N, north of the conventional 15–16°N), the Arabian, Mojave and Great
+  Basin deserts, and the Amazon, Congo and Borneo rainforests. Rejected: the
+  Patagonian Desert, whose steppe ecoregion takes in the Falkland Islands. The
+  Caspian is Natural Earth's own "Caspian Sea" marine polygon.
 - **A source whose geometry comes from OpenStreetMap declares the ODbL credit**
   as its `attribution` — `© OpenStreetMap contributors`, linked to
   openstreetmap.org/copyright. The licence requires it. straits (`routes`,
@@ -385,7 +395,8 @@ constants in the build, and editing those constants is the review. For the
 five Geography maps: every record's geometry hash, as its source has it, in
 `tools/geography-pins.json`; the three Natural Earth files they read; and the
 checksums of the RESOLVE, Wikidata and OSM-waterfall extracts, all in
-`tools/sources.json`. org-headquarters: the Natural Earth populated-places file (size and blob SHA in
+`tools/sources.json` — as are the geography-regions, elevation-points and
+marine-polygons files they read. org-headquarters: the Natural Earth populated-places file (size and blob SHA in
 `tools/sources.json`), the OSM places extract's checksum, and the split of city
 points by source — 65 Natural Earth, 16 OSM — in the validator.
 

@@ -41,8 +41,49 @@ export const SAHARA = [
   'Tibesti-Jebel Uweinat montane xeric woodlands',
 ];
 
+/*
+ * The other features drawn as ecoregion unions. An ecoregion is included only
+ * if its name matches the feature or a cited description places it inside it;
+ * the seed of each record carries those citations.
+ */
+export const UNIONS = {
+  // Named "Arabian … desert". Left out: "Red Sea-Arabian Desert shrublands"
+  // (Egypt's Eastern Desert, which Egypt calls the Arabian Desert — another
+  // feature) and the South/Southwest Arabian woodlands and escarpments.
+  arabian: ['Arabian desert', 'Arabian sand desert', 'Arabian-Persian Gulf coastal plain desert', 'North Arabian desert', 'East Arabian fog shrublands and sand desert', 'South Arabian plains and plateau desert'],
+  mojave: ['Mojave desert'],
+  // "Largely overlaps the Great Basin shrub steppe" (Great Basin Desert,
+  // Wikipedia rev. 1369608835). The Great Basin montane forests are forest.
+  greatbasin: ['Great Basin shrub steppe'],
+  // "Patagonian Desert, also known as the Patagonian Steppe" (Wikipedia rev. 1361380627).
+  patagonian: ['Patagonian steppe'],
+  // Each placed in the Amazon biome, basin or rainforest by its own Wikipedia
+  // article. Tocantins/Pindaré is too, but its article calls it the most
+  // developed, most severely deforested part: it would count farmland as forest.
+  amazon: [
+    'Caqueta moist forests', 'Guianan Highlands moist forests', 'Guianan lowland moist forests', 'Guianan piedmont moist forests',
+    'Gurupa várzea', 'Iquitos várzea', 'Japurá-Solimões-Negro moist forests', 'Juruá-Purus moist forests', 'Madeira-Tapajós moist forests',
+    'Marajó várzea', 'Monte Alegre várzea', 'Napo moist forests', 'Negro-Branco moist forests', 'Purus-Madeira moist forests', 'Purus várzea',
+    'Rio Negro campinarana', 'Solimões-Japurá moist forests', 'Southwest Amazon moist forests', 'Tapajós-Xingu moist forests',
+    'Uatumã-Trombetas moist forests', 'Ucayali moist forests', 'Xingu-Tocantins-Araguaia moist forests',
+  ],
+  // The six ecoregions of the Congolian forests (Congolian rainforests,
+  // Wikipedia rev. 1375427369). The forest-savanna mosaics are left out.
+  congo: ['Congolian coastal forests', 'Central Congolian lowland forests', 'Eastern Congolian swamp forests', 'Northeast Congolian lowland forests', 'Northwest Congolian lowland forests', 'Western Congolian swamp forests'],
+  // Named Borneo. Sundaland heath forests also reach other islands.
+  borneo: ['Borneo lowland rain forests', 'Borneo montane rain forests', 'Borneo peat swamp forests', 'Southwest Borneo freshwater swamp forests'],
+};
+const union = (names, simplifyMetres) => ({ where: `[${names.map((n) => `'${n}'`).join(',')}].includes(ECO_NAME)`, dissolve: true, simplifyMetres, expect: names.length });
+
 export const TAKE = {
   sahara: { where: `[${SAHARA.map((n) => `'${n}'`).join(',')}].includes(ECO_NAME)`, dissolve: true, simplifyMetres: 3000, expect: SAHARA.length },
+  arabian: union(UNIONS.arabian, 3000),
+  mojave: union(UNIONS.mojave, 1500),
+  greatbasin: union(UNIONS.greatbasin, 2000),
+  patagonian: union(UNIONS.patagonian, 2000),
+  amazon: union(UNIONS.amazon, 4000),
+  congo: union(UNIONS.congo, 3000),
+  borneo: union(UNIONS.borneo, 1500),
   sundarbans: { where: "ECO_NAME == 'Sundarbans mangroves'", simplifyMetres: 300 },
   taiga: { where: "BIOME_NAME == 'Boreal Forests/Taiga'", dissolve: true, simplifyMetres: 8000 },
 };

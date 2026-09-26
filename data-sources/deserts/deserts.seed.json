@@ -400,11 +400,11 @@
     "areaBn": "২৩,৩০,০০০ বর্গকিমি",
     "noteBn": "এশিয়ার বৃহত্তম মরুভূমি",
     "geometry": {
-      "point": {
-        "source": "wikidata",
-        "qid": "Q208299"
+      "area": {
+        "source": "resolve",
+        "id": "arabian"
       },
-      "note": "Natural Earth has no Arabian Desert polygon."
+      "note": "The union of RESOLVE Ecoregions 2017's six ecoregions named Arabian … desert: Arabian desert, Arabian sand desert, Arabian-Persian Gulf coastal plain desert, North Arabian desert, East Arabian fog shrublands and sand desert, South Arabian plains and plateau desert. Left out: Red Sea-Arabian Desert shrublands (Egypt's Eastern Desert, a different feature) and the South and Southwest Arabian woodland, escarpment and montane ecoregions. CC BY 4.0, credited on the map."
     },
     "photo": {
       "commonsFile": "File:Arabian Desert - panoramio.jpg",
@@ -432,6 +432,7 @@
         ]
       }
     },
+    "review": "area: the RESOLVE union covers 2,519,652 km², a little more than the 2,330,000 km² of List of deserts by area; it lies mostly in Saudi Arabia and reaches southern Iraq, southern Jordan, the Gulf states, western Oman and north-eastern Yemen, as the Arabian Desert article (Wikipedia revision 1373358142) describes, and takes in most of the Sinai and the Negev, which that article places in the Arabian Desert ecoregion. Accepted: it claims no land that is not desert.",
     "sources": {
       "nameBn": "editor-verified 2026-09-26 (approved list)",
       "countriesBn": "editor-verified 2026-09-26 (approved list)",
@@ -1374,11 +1375,11 @@
     "areaBn": "১,২৪,০০০ বর্গকিমি",
     "noteBn": "ডেথ ভ্যালি এই মরুভূমিতে",
     "geometry": {
-      "point": {
-        "source": "wikidata",
-        "qid": "Q184355"
+      "area": {
+        "source": "resolve",
+        "id": "mojave"
       },
-      "note": "Natural Earth has no Mojave polygon."
+      "note": "RESOLVE Ecoregions 2017's Mojave desert ecoregion. CC BY 4.0, credited on the map."
     },
     "photo": {
       "commonsFile": "File:Calico basin red rock cumulus mediocris.jpg",
@@ -1406,6 +1407,7 @@
         ]
       }
     },
+    "review": "area: 127,731 km², against the 124,000 km² of List of deserts by area; south-eastern California and southern Nevada with edges of Arizona and Utah, as the Mojave Desert article (Wikipedia revision 1374999016) describes. Accepted.",
     "sources": {
       "nameBn": "editor-verified 2026-09-26 (approved list)",
       "countriesBn": "editor-verified 2026-09-26 (approved list)",
@@ -1560,11 +1562,11 @@
     "areaBn": "৪,৯২,০০০ বর্গকিমি",
     "noteBn": "যুক্তরাষ্ট্রের বৃহত্তম মরুভূমি",
     "geometry": {
-      "point": {
-        "source": "wikidata",
-        "qid": "Q273446"
+      "area": {
+        "source": "resolve",
+        "id": "greatbasin"
       },
-      "note": "Natural Earth has no Great Basin Desert polygon (its \"Great Salt Lake Desert\" is a different, smaller feature)."
+      "note": "RESOLVE Ecoregions 2017's Great Basin shrub steppe, which the Great Basin Desert article (Wikipedia revision 1369608835) says the desert largely overlaps. The Great Basin montane forests are left out: they are forest. CC BY 4.0, credited on the map."
     },
     "photo": {
       "commonsFile": "File:Great Basin Desert 3 by Earth's beauty site.jpg",
@@ -1592,6 +1594,7 @@
         ]
       }
     },
+    "review": "area: 302,528 km², smaller than the 492,000 km² of List of deserts by area, which counts a wider Great Basin. Accepted as smaller than the usual extent: it lies between the Sierra Nevada and the Wasatch Range, where the article places the desert, and claims no land that is not desert.",
     "sources": {
       "nameBn": "editor-verified 2026-09-26 (approved list)",
       "countriesBn": "editor-verified 2026-09-26 (approved list)",
@@ -1692,7 +1695,13 @@
         "source": "wikidata",
         "qid": "Q1061324"
       },
-      "note": "Natural Earth has no Patagonian Desert polygon."
+      "withheld": {
+        "area": {
+          "source": "resolve",
+          "id": "patagonian"
+        },
+        "reason": "RESOLVE's Patagonian steppe — the Patagonian Desert, also known as the Patagonian Steppe (Wikipedia revision 1361380627) — covers 576,907 km², but 2% of it is the Falkland Islands. The desert is bounded by the Andes to the west and the Atlantic to the east, so the union claims land that is not the feature. Marker only."
+      }
     },
     "photo": {
       "commonsFile": "File:Neuquen river 1.jpg",
@@ -1720,6 +1729,7 @@
         ]
       }
     },
+    "review": "area: rejected — the RESOLVE Patagonian steppe includes the Falkland Islands, which lie in the Atlantic beyond the desert's eastern bound. Marker only.",
     "sources": {
       "nameBn": "editor-verified 2026-09-26 (approved list)",
       "countriesBn": "editor-verified 2026-09-26 (approved list)",
