@@ -110,7 +110,12 @@ Where the data comes from:
 
 - Sea names — `docs/shared/seas.json`, loaded on every map through the
   `sharedData` kind. A map that needs to reference a sea points a `refs` field
-  at this table exactly as it would at its own.
+  at this table exactly as it would at its own. A record may also carry
+  `atByBasemap: { <basemap>: [lon, lat] }`, a better place for its label on
+  that basemap, used there instead of `at`; the name stays in its one record.
+  The Bay of Bengal has one for `bangladesh`, whose bounds its world anchor
+  lies outside. The validator requires each such anchor to lie inside that
+  basemap's frame, on open water at least 50 km from any coast.
 - Country names — the **basemap tiles**, source layer `country_labels`, field
   `name_bn` falling back to `name_en`. No shared records file.
 - A per-map `countries` table exists only to name the countries that map
@@ -375,7 +380,8 @@ listed in `NO_POINT_YET`, and the build also fails if that list goes stale.
 
 ## Frames need basemap context
 
-World tiles stop at z6 outside the detail areas. A frame tight around a
+Every basemap's tiles stop at z6 outside its detail areas — world.pmtiles'
+strait boxes, bangladesh.pmtiles' Bangladesh box. A frame tight around a
 city-scale feature leaves its marker on blank land with nothing to place it
 against. Widen the frame and say why in the report.
 
@@ -403,6 +409,15 @@ checksums of the RESOLVE, Wikidata and OSM-waterfall extracts, all in
 marine-polygons files they read. org-headquarters: the Natural Earth populated-places file (size and blob SHA in
 `tools/sources.json`), the OSM places extract's checksum, and the split of city
 points by source — 65 Natural Earth, 16 OSM — in the validator.
+bangladesh.pmtiles: the COD-AB zip and the geoBoundaries India file (sha256),
+the Natural Earth admin-1 file (size and blob SHA), the two OSM extracts'
+checksums, all in `tools/sources.json`; and in `tools/build-bangladesh.mjs` the
+unit counts (8 divisions, 64 districts, West Bengal 23, Tripura 8), the
+classes of Natural Earth's lines inside the box other than Bangladesh's own (5
+international, 2 disputed — both at Doklam, between Bhutan and China),
+Bangladesh's land border as COD-AB draws it (2 parts: the 4,038 km mainland
+stretch and the 29 km Dahagram–Angarpota exclave), and that each box still
+holds its units with 0.3° to spare.
 
 When a pin moves, **stop and report the old and new values.** Never re-pin to
 make a build pass. A dropped `featurecla` once shifted a line by three points
@@ -462,7 +477,10 @@ State which kind a task is when reporting it.
 
 - Eight maps. International: `straits`, `border-lines`, `org-headquarters`.
   Geography: `deserts`, `lakes`, `forests`, `mountains`, `waterfalls`, all
-  under `docs/maps/`.
+  under `docs/maps/`. The editor's seed for the first Bangladesh map, the
+  ancient janapadas of Bengal, is in
+  `data-sources/ancient-janapadas/janapadas.seed.json`; the map itself is
+  under review and not yet committed.
 - The five Geography maps are built by one script, `tools/build-geography.mjs`,
   from `data-sources/<map>/<map>.seed.json` — approved content in display
   order, with the geometry, photo and pinned citations added to it. Their
@@ -492,9 +510,49 @@ State which kind a task is when reporting it.
   (`hub` names where each went), and each record keeps its own `cityBn` and
   gains `regionBn`, the hub's name, shown as অঞ্চল. No descriptor term: the
   hub is an ordinary record of the marker table.
-- One basemap archive exists, `docs/shared/tiles/world.pmtiles`. A
-  `bangladesh.pmtiles` is planned and not built. A cross-basemap switch is a
-  full re-initialise; the shell decides that from each map's descriptor.
+- Two basemap archives: `docs/shared/tiles/world.pmtiles` and
+  `docs/shared/tiles/bangladesh.pmtiles`. A descriptor names one in `basemap`;
+  the shell's `BASEMAPS` table maps the name to its archive (through the
+  resolver) and its style. Both are tiled alike — overview to z6, detail z7–10
+  inside detail areas, drawn over a mask — so both keep the source ids
+  `basemap` / `basemap-detail` and the baseline reads either unchanged. A
+  cross-basemap switch is a full re-initialise.
+- **bangladesh.pmtiles** is a *bounded* basemap: its own metadata carries the
+  frame a map opens on (Bangladesh, West Bengal, Tripura) and the bounds it
+  cannot pan past (those plus Cachar and Rakhine); a descriptor's own
+  `fitBounds` / `maxBounds` win. Boxes are in `tools/bangladesh.config.mjs`.
+  Built by `tools/build-bangladesh.mjs` from: OSM land and named rivers
+  (committed snapshots from `tools/extract-bangladesh.mjs`), OCHA COD-AB for
+  Bangladesh's divisions and districts (by pcode), geoBoundaries India ADM2
+  for West Bengal, Tripura (the union of its districts) and Cachar (by name,
+  inside the box, each exactly once), Natural Earth admin-1 for Rakhine, and
+  Natural Earth's Bangladesh point-of-view lines for every international
+  border but one.
+- **The one exception to "the point-of-view line wins": inside
+  bangladesh.pmtiles, Bangladesh's own land border is the government's line**
+  — the Bangladesh Bureau of Statistics', as OCHA COD-AB v03 admin0 publishes
+  it. Measured along the whole border, Natural Earth's 1:10m line runs a
+  median 1.44 km and up to 8.64 km off it (in Panchagarh), and it crosses the
+  Padma. The land border is the stretch of COD-AB's outline between the two
+  places Natural Earth's own Bangladesh lines reach the sea — the Sundarbans
+  and the Naf — plus the ring of the Dahagram–Angarpota exclave. world.pmtiles
+  keeps the point-of-view line, and every other border in bangladesh.pmtiles
+  is still Natural Earth's. The other sources yield to it: their district
+  edges are cut at the border or carried on to it (≤ 3 km), Bangladesh's own
+  district lines end on it exactly (COD-AB draws both), land between it and a
+  neighbour's edge goes to the neighbour, and other land no source owns goes
+  to the nearest unit of the country whose point-of-view polygon holds it.
+  Land outside the units it covers is muted.
+- **bangladesh.pmtiles names.** Inside Bangladesh: every division, district
+  and listed river. The main channel's record is NRCC entry 971,
+  ব্রহ্মপুত্র-যমুনা; on the map it carries two display labels, ব্রহ্মপুত্র
+  near Chilmari and যমুনা near Sirajganj (the user's decision, textbook usage)
+  — labels placed on the channel, not a split. Outside Bangladesh: only the
+  units the janapada seed uses. Bengali names come from
+  `tools/sources/bangladesh-names.json`, one official source each (National
+  Portal, each Indian district's own site, NRCC's river list). A unit with no
+  sourced Bengali name is not labelled — never in English — and the build
+  lists it: today Cachar, whose official sites have none.
 - The straits map's content exists twice — `docs/international/straits/data.js`,
   which the live page reads, and `docs/maps/straits/records.json`. **Until the
   live page is retired, `data.js` is the single source**: supplied content goes
