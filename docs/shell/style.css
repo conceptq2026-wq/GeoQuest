@@ -299,6 +299,20 @@ body {
   line-height: 1.2;
 }
 
+/* A qualifier under the title — "approximate area" — in the row labels' grey. */
+.info-subtitle {
+  margin: 4px 0 0;
+
+  color: #5b6878;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.info-subtitle[hidden] {
+  display: none;
+}
+
 .info-en {
   margin: 4px 0 14px;
 

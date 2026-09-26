@@ -103,6 +103,7 @@ const dom = {
   sheetHandle: document.getElementById('sheetHandle'),
   kicker: document.getElementById('infoKicker'),
   sheetTitle: document.getElementById('infoTitle'),
+  sheetSubtitle: document.getElementById('infoSubtitle'),
   rows: document.getElementById('infoRows'),
   loadNotice: document.getElementById('loadNotice'),
   layersControl: document.getElementById('layersControl'),
@@ -1468,6 +1469,10 @@ function fillSheet(table, key) {
   dom.kicker.textContent = kicker;
   dom.kicker.hidden = kicker === '';
   dom.sheetTitle.textContent = valueOf(sheet.title, row) ?? '';
+  // A small grey line under the title; like a row, it hides when it has nothing to say.
+  const subtitle = valueOf(sheet.subtitle, row) ?? '';
+  dom.sheetSubtitle.textContent = subtitle;
+  dom.sheetSubtitle.hidden = subtitle === '';
 
   dom.rows.replaceChildren();
   for (const [index, spec] of (sheet.rows ?? []).entries()) {
@@ -1575,7 +1580,76 @@ const closedOffset = () => (selection.size ? Math.max(0, sheetHeight() - HANDLE_
 const applySheetOffset = (offset) => {
   sheetOffset = offset;
   dom.sheet.style.setProperty('--sheet-offset', `${offset}px`);
+  boundUnderCard();
 };
+
+/*
+ * Bounds under the card. MapLibre keeps the whole canvas inside maxBounds,
+ * card or no card, so on a bounded map an area near the box's edge could not
+ * be lifted above the open card, and zooming out far enough to show it was
+ * refused. While the card spans the map, the box's south edge gives way by
+ * exactly the height the card covers: only what lies under the card may go
+ * past the box, and everything the student sees stays inside it. When the card
+ * closes, the camera eases back inside the box with it and the normal bounds
+ * return. Like MapLibre's own bound, this takes the screen as unrotated. A map
+ * without maxBounds never reaches any of it.
+ */
+const maxBox = maxBounds ? map.getMaxBounds() : null;
+const boundsUnderCard = Boolean(maxBox) && maxBox.getWest() < maxBox.getEast();
+let cardCovers = 0;
+let boundsToRelease = false;
+const mercatorX = (lng) => (180 + lng) / 360;
+const mercatorY = (lat) => (180 - (180 / Math.PI) * Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360))) / 360;
+
+/** The camera nearest this one whose view, less `covered` px at the bottom, lies inside the box. */
+function insideBox(center, zoom, covered) {
+  const { clientWidth: width, clientHeight: height } = map.getContainer();
+  const [w, e] = [mercatorX(maxBox.getWest()), mercatorX(maxBox.getEast())];
+  const [n, s] = [mercatorY(maxBox.getNorth()), mercatorY(maxBox.getSouth())];
+  // Zoomed in, if need be, until the box is as wide as the view and as tall as
+  // the part above the card — about the middle of that part, where a record's
+  // frame is fitted, so the frame stays in view.
+  const z = Math.max(
+    Math.min(Math.max(zoom, map.getMinZoom()), map.getMaxZoom()),
+    Math.log2(width / ((e - w) * 512)),
+    Math.log2(Math.max(1, height - covered) / ((s - n) * 512)),
+  );
+  const size = 512 * 2 ** z;
+  const middle = mercatorY(center.lat) - covered / 2 / (512 * 2 ** zoom);
+  const x = Math.min(Math.max(mercatorX(center.lng) * size, w * size + width / 2), e * size - width / 2) / size;
+  const y = Math.min(Math.max(middle * size + covered / 2, n * size + height / 2), s * size + covered - height / 2) / size;
+  return { center: new maplibregl.LngLat(x * 360 - 180, (360 / Math.PI) * Math.atan(Math.exp(((180 - y * 360) * Math.PI) / 180)) - 90), zoom: z };
+}
+
+function boundUnderCard() {
+  if (!boundsUnderCard) return;
+  // The card's own height to the fraction of a pixel: offsetHeight rounds it.
+  const covered = sheetOpen && dom.sheet.offsetWidth >= map.getContainer().clientWidth ? Math.max(0, dom.sheet.getBoundingClientRect().height - sheetOffset) : 0;
+  if (covered === cardCovers) return;
+  cardCovers = covered;
+  if (covered) {
+    boundsToRelease = false;
+    map.setTransformConstrain((center, zoom) => insideBox(center, zoom, covered));
+    return;
+  }
+  const to = insideBox(map.getCenter(), map.getZoom(), 0);
+  const here = map.getCenter();
+  if (Math.abs(to.zoom - map.getZoom()) < 1e-9 && Math.abs(to.center.lng - here.lng) < 1e-9 && Math.abs(to.center.lat - here.lat) < 1e-9) {
+    map.setTransformConstrain(null);
+    return;
+  }
+  // Back inside the box as the card slides away; MapLibre's own bounds once there.
+  boundsToRelease = true;
+  map.easeTo({ center: to.center, zoom: to.zoom, duration: motion(280), essential: true });
+}
+if (boundsUnderCard) {
+  own.mapHandler(map, 'moveend', () => {
+    if (!boundsToRelease || cardCovers) return;
+    boundsToRelease = false;
+    map.setTransformConstrain(null);
+  });
+  remember('constrain', 'bounds under the card', () => map.setTransformConstrain(null));
+}
 
 function setSheetOpen(open) {
   sheetOpen = open && selection.size > 0;

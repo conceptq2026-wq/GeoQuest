@@ -307,6 +307,7 @@ function checkMap({ id, expectedPending }) {
     }
     noteSpec(table, sheet.kicker);
     noteSpec(table, sheet.title);
+    noteSpec(table, sheet.subtitle);
     for (const row of sheet.rows ?? []) {
       if (!row.referencedBy) {
         noteSpec(table, row);
