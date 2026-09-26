@@ -82,7 +82,8 @@
       "state": [
         "selected"
       ],
-      "properties": []
+      "properties": [],
+      "attribution": "<a href=\"https://ecoregions.appspot.com/\" target=\"_blank\" rel=\"noopener noreferrer\">RESOLVE Ecoregions 2017 (CC BY 4.0)</a>"
     },
     "points": {
       "records": "deserts",

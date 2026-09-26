@@ -222,11 +222,14 @@ declares sources, layers, sheet rows and actions; it holds no content.
   photo marker sits at its pole of inaccessibility. **A wrong area is worse
   than no area**: a polygon that is visibly wrong against the basemap and the
   region's usual description moves to `geometry.withheld` with its reason,
-  and the record ships as a marker only. Two today: the Sahara, whose Natural
-  Earth polygon runs to 9°N where the desert ends near 15–16°N (the union of
-  RESOLVE's Sahara ecoregions, measured as the alternative, keeps its edge at
-  about 17–19°N and awaits the user's decision), and the Libyan Desert, whose
-  polygon runs deep into Darfur and Kordofan.
+  and the record ships as a marker only unless an openly licensed better
+  polygon exists. The Libyan Desert is marker-only: its polygon runs deep
+  into Darfur and Kordofan. The Sahara's Natural Earth polygon, which runs to
+  9°N, is withheld; by the user's decision the Sahara is drawn instead as the
+  union of RESOLVE Ecoregions 2017's Sahara ecoregions (CC BY 4.0, credited),
+  whose edge runs at about 17–19°N, north of the conventional 15–16°N — it
+  claims no non-desert land, and no area was the larger gap. Its `review`
+  records this.
 - **A source whose geometry comes from OpenStreetMap declares the ODbL credit**
   as its `attribution` — `© OpenStreetMap contributors`, linked to
   openstreetmap.org/copyright. The licence requires it. straits (`routes`,

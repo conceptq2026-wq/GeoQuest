@@ -36,9 +36,9 @@
       "note": "Erg Chebbi, Morocco. A Commons featured picture and picture of the day; no people. The shipped WebP files are cropped and resized from it and are shared under the same licence."
     },
     "geometry": {
-      "point": {
-        "source": "wikidata",
-        "qid": "Q6583"
+      "area": {
+        "source": "resolve",
+        "id": "sahara"
       },
       "withheld": {
         "area": {
@@ -49,9 +49,11 @@
             "FEATURECLA": "Desert"
           }
         },
-        "reason": "Natural Earth's polygon runs south to about 9°N in Chad and Sudan; the desert ends around 15–16°N. The union of RESOLVE Ecoregions 2017's Sahara ecoregions (the eight named Sahara or Saharan, and Tibesti–Jebel Uweinat, which Wikipedia places in the eastern Sahara) was measured as the alternative: its southern edge runs at about 17–19°N (median 17.9°N), dipping to 14.8°N at 20–22°E, with a small detached patch at 12.7°N in the Darfur highlands. That is not near 15–16°N, so the Sahara ships as a marker only until the user decides; the union is kept in tools/sources/resolve-extract.geojson as 'sahara'."
-      }
+        "reason": "Natural Earth's SAHARA polygon runs south to about 9°N in Chad and Sudan, where the desert ends around 15–16°N; the RESOLVE union is drawn instead."
+      },
+      "note": "The union of RESOLVE Ecoregions 2017's eight ecoregions named Sahara or Saharan and Tibesti–Jebel Uweinat, which Wikipedia (revision 1333931716) calls an ecoregion in the eastern Sahara. CC BY 4.0, credited on the map."
     },
+    "review": "area: the Sahara is drawn as the union of RESOLVE Ecoregions 2017's Sahara ecoregions. Its southern edge runs at about 17–19°N (median 17.9°N; 14.8°N at 20–22°E; a small detached patch at 12.7°N in Darfur), north of the conventional 15–16°N boundary. Accepted by the user's decision (2026-09-26): the union claims no non-desert land, and a Sahara with no area was the larger gap on this map. Natural Earth's polygon, which runs to about 9°N, stays withheld.",
     "sources": {
       "nameBn": "editor-verified 2026-09-26 (supplied with the design sample)",
       "typeBn": "editor-verified 2026-09-26 (supplied with the design sample)",
