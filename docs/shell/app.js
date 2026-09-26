@@ -347,6 +347,13 @@ const records = {};
 for (const [table, file] of Object.entries(BASELINE_TABLES)) {
   records[table] = await fetchJson(resolver.url('sharedData', file));
 }
+// A sea may name a better place for its label on one basemap — the Bay of
+// Bengal's world anchor lies outside the Bangladesh basemap's bounds. The name
+// stays in its one record; only where it sits changes, and only there.
+for (const row of Object.values(records.seas)) {
+  const at = row.atByBasemap?.[descriptor.basemap];
+  if (at) row.at = at;
+}
 for (const [table, spec] of Object.entries(descriptor.records ?? {})) {
   if (table in BASELINE_TABLES) throw new Error(`descriptor declares records table "${table}", which the shell provides`);
   records[table] = spec.rows ?? (await fetchJson(mapFile(spec.file.replace(/^\.\//, ''))));

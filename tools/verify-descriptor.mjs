@@ -34,7 +34,8 @@ const SHARED_DIR = path.join(ROOT, 'docs/shared');
 const BASELINE_TABLES = {
   seas: {
     file: path.join(SHARED_DIR, 'seas.json'),
-    fields: { nameBn: { type: 'text', required: true }, at: { type: 'point', required: true } },
+    // atByBasemap: an optional better place for the label on one basemap, keyed by basemap name.
+    fields: { nameBn: { type: 'text', required: true }, at: { type: 'point', required: true }, atByBasemap: { type: 'anchors' } },
   },
 };
 // The built straits map this extraction is checked against. Change here if it moves.
@@ -585,7 +586,53 @@ console.log('\n============ straits ============');
   // map. Still checked against data.js, because that is where they came from.
   console.log('\n---- shared/seas.json against data.js ----');
   const seas = readJson(path.join(SHARED_DIR, 'seas.json'));
-  compareTables({ source: SEAS, file: seas, label: 'shared/seas.json' });
+  // data.js knows one place per sea; the per-basemap anchors are the shared table's own.
+  compareTables({ source: SEAS, file: seas, label: 'shared/seas.json', ignore: ['atByBasemap'] });
+
+  // A per-basemap anchor names a basemap that exists, sits inside the frame a
+  // map on that basemap opens on — so the name is on screen — and sits on
+  // open water well clear of every coast, so it reads as the sea's.
+  const { FRAME: BANGLADESH_FRAME } = await import(pathToFileURL(path.join(HERE, 'bangladesh.config.mjs')).href);
+  const FRAMES = { bangladesh: BANGLADESH_FRAME };
+  const LAND = { bangladesh: readJson(path.join(HERE, 'sources/osm-bangladesh-land.geojson')).features.filter((f) => f.properties.set === 'overview') };
+  const inRing = ([x, y], ring) => {
+    let c = false;
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      const [xi, yi] = ring[i];
+      const [xj, yj] = ring[j];
+      if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c;
+    }
+    return c;
+  };
+  const polysOf = (g) => (g.type === 'Polygon' ? [g.coordinates] : g.coordinates);
+  const nearestLandKm = (land, [px, py]) => {
+    const k = Math.cos((py * Math.PI) / 180);
+    let best = Infinity;
+    for (const f of land)
+      for (const poly of polysOf(f.geometry))
+        for (const r of poly)
+          for (let i = 1; i < r.length; i++) {
+            const [ax, ay] = r[i - 1];
+            const [bx, by] = r[i];
+            const dx = (bx - ax) * k;
+            const dy = by - ay;
+            const t = Math.max(0, Math.min(1, ((px - ax) * k * dx + (py - ay) * dy) / (dx * dx + dy * dy || 1)));
+            best = Math.min(best, Math.hypot((px - ax) * k - t * dx, py - ay - t * dy) * 111.32);
+          }
+    return best;
+  };
+  let anchors = 0;
+  for (const [key, row] of Object.entries(seas))
+    for (const [basemap, at] of Object.entries(row.atByBasemap ?? {})) {
+      anchors++;
+      const [w, s, e, n] = FRAMES[basemap] ?? [];
+      check(fs.existsSync(path.join(SHARED_DIR, 'tiles', `${basemap}.pmtiles`)) && FRAMES[basemap], `seas.${key}: its ${basemap} anchor names a basemap with a frame`);
+      check(at[0] >= w && at[0] <= e && at[1] >= s && at[1] <= n, `seas.${key}: its ${basemap} anchor ${at.join(', ')} lies inside that basemap's frame`);
+      const onLand = LAND[basemap].some((f) => polysOf(f.geometry).some((poly) => inRing(at, poly[0]) && !poly.slice(1).some((h) => inRing(at, h))));
+      const clear = nearestLandKm(LAND[basemap], at);
+      check(!onLand && clear >= 50, `seas.${key}: its ${basemap} anchor is on open water, ${clear.toFixed(0)} km from the nearest coast`);
+    }
+  ok(`${anchors} per-basemap sea anchor(s) checked`);
 
   const byName = {};
   for (const [k, v] of Object.entries(seas)) (byName[v.nameBn] ??= []).push(k);

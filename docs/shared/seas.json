@@ -130,7 +130,13 @@
     "at": [
       81.8,
       12.3
-    ]
+    ],
+    "atByBasemap": {
+      "bangladesh": [
+        89.8,
+        20.9
+      ]
+    }
   },
   "palkBay": {
     "nameBn": "পক উপসাগর",
