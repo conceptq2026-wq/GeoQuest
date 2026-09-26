@@ -1698,7 +1698,8 @@
           "states": "San Jose, United States of America (USA), ne_id 1159150479, Populated place."
         }
       ]
-    }
+    },
+    "hub": "silicon-valley"
   },
   "seattle-washington-usa": {
     "nameEn": "Seattle, Washington",
@@ -1752,7 +1753,8 @@
           "states": "place=city, found by name inside a bounding box. Committed as tools/sources/osm-places.geojson."
         }
       ]
-    }
+    },
+    "hub": "silicon-valley"
   },
   "cupertino-california-usa": {
     "nameEn": "Cupertino, California",
@@ -1779,7 +1781,8 @@
           "states": "place=city, found by name inside a bounding box. Committed as tools/sources/osm-places.geojson."
         }
       ]
-    }
+    },
+    "hub": "silicon-valley"
   },
   "mountain-view-california-usa": {
     "nameEn": "Mountain View, California",
@@ -1806,7 +1809,8 @@
           "states": "place=city, found by name inside a bounding box. Committed as tools/sources/osm-places.geojson."
         }
       ]
-    }
+    },
+    "hub": "silicon-valley"
   },
   "armonk-new-york-usa": {
     "nameEn": "Armonk, New York",
@@ -1860,7 +1864,8 @@
           "states": "place=town, found by name inside a bounding box. Committed as tools/sources/osm-places.geojson."
         }
       ]
-    }
+    },
+    "hub": "silicon-valley"
   },
   "redmond-washington-usa": {
     "nameEn": "Redmond, Washington",
@@ -1914,7 +1919,8 @@
           "states": "place=town, found by name inside a bounding box. Committed as tools/sources/osm-places.geojson."
         }
       ]
-    }
+    },
+    "hub": "silicon-valley"
   },
   "san-francisco-california-usa": {
     "nameEn": "San Francisco, California",
@@ -2184,6 +2190,34 @@
           "states": "place=city, found by name inside a bounding box. Committed as tools/sources/osm-places.geojson."
         }
       ]
+    }
+  },
+  "silicon-valley": {
+    "nameEn": "Silicon Valley",
+    "nameBn": "সিলিকন ভ্যালি",
+    "iso3": "USA",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "at": [
+      -122.01859,
+      37.34598
+    ],
+    "frame": [
+      -124.778,
+      34.227,
+      -119.288,
+      40.452
+    ],
+    "geometrySource": "generated",
+    "members": [
+      "cupertino-california-usa",
+      "mountain-view-california-usa",
+      "menlo-park-california-usa",
+      "santa-clara-california-usa",
+      "san-jose-california-usa",
+      "los-gatos-california-usa"
+    ],
+    "sources": {
+      "at": "generated: the mean of its member towns’ points; frame: their extent widened by FRAME_HALF"
     }
   }
 }

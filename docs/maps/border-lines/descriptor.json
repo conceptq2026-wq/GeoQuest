@@ -157,7 +157,8 @@
       ],
       "properties": [
         "status"
-      ]
+      ],
+      "attribution": "<a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener noreferrer\">© OpenStreetMap contributors</a>"
     },
     "lineLabels": {
       "records": "lines",

@@ -347,6 +347,7 @@
     "nameEn": "UN Tourism",
     "cityEn": "Madrid",
     "iso3": "ESP",
+    "noteBn": "পূর্বনাম বিশ্ব পর্যটন সংস্থা (UNWTO)",
     "cities": [
       "madrid-esp"
     ],
@@ -3463,21 +3464,22 @@
     "nameEn": "Adobe",
     "cityEn": "San Jose, California",
     "iso3": "USA",
+    "regionBn": "সিলিকন ভ্যালি",
     "cities": [
-      "san-jose-california-usa"
+      "silicon-valley"
     ],
     "countries": [
       "USA"
     ],
     "at": [
-      -121.88818,
-      37.33094
+      -122.01859,
+      37.34598
     ],
     "frame": [
-      -124.488,
-      34.331,
+      -124.778,
+      34.227,
       -119.288,
-      40.331
+      40.452
     ]
   },
   "amazon": {
@@ -3516,21 +3518,22 @@
     "nameEn": "AMD",
     "cityEn": "Santa Clara, California",
     "iso3": "USA",
+    "regionBn": "সিলিকন ভ্যালি",
     "cities": [
-      "santa-clara-california-usa"
+      "silicon-valley"
     ],
     "countries": [
       "USA"
     ],
     "at": [
-      -121.95517,
-      37.35411
+      -122.01859,
+      37.34598
     ],
     "frame": [
-      -124.555,
-      34.354,
-      -119.355,
-      40.354
+      -124.778,
+      34.227,
+      -119.288,
+      40.452
     ]
   },
   "apple": {
@@ -3542,21 +3545,22 @@
     "nameEn": "Apple",
     "cityEn": "Cupertino, California",
     "iso3": "USA",
+    "regionBn": "সিলিকন ভ্যালি",
     "cities": [
-      "cupertino-california-usa"
+      "silicon-valley"
     ],
     "countries": [
       "USA"
     ],
     "at": [
-      -122.03229,
-      37.32289
+      -122.01859,
+      37.34598
     ],
     "frame": [
-      -124.632,
-      34.323,
-      -119.432,
-      40.323
+      -124.778,
+      34.227,
+      -119.288,
+      40.452
     ]
   },
   "cisco": {
@@ -3568,21 +3572,22 @@
     "nameEn": "Cisco",
     "cityEn": "San Jose, California",
     "iso3": "USA",
+    "regionBn": "সিলিকন ভ্যালি",
     "cities": [
-      "san-jose-california-usa"
+      "silicon-valley"
     ],
     "countries": [
       "USA"
     ],
     "at": [
-      -121.88818,
-      37.33094
+      -122.01859,
+      37.34598
     ],
     "frame": [
-      -124.488,
-      34.331,
+      -124.778,
+      34.227,
       -119.288,
-      40.331
+      40.452
     ]
   },
   "google": {
@@ -3594,21 +3599,22 @@
     "nameEn": "Google (Alphabet)",
     "cityEn": "Mountain View, California",
     "iso3": "USA",
+    "regionBn": "সিলিকন ভ্যালি",
     "cities": [
-      "mountain-view-california-usa"
+      "silicon-valley"
     ],
     "countries": [
       "USA"
     ],
     "at": [
-      -122.08321,
-      37.38939
+      -122.01859,
+      37.34598
     ],
     "frame": [
-      -124.683,
-      34.389,
-      -119.483,
-      40.389
+      -124.778,
+      34.227,
+      -119.288,
+      40.452
     ]
   },
   "ibm": {
@@ -3646,21 +3652,22 @@
     "nameEn": "Intel",
     "cityEn": "Santa Clara, California",
     "iso3": "USA",
+    "regionBn": "সিলিকন ভ্যালি",
     "cities": [
-      "santa-clara-california-usa"
+      "silicon-valley"
     ],
     "countries": [
       "USA"
     ],
     "at": [
-      -121.95517,
-      37.35411
+      -122.01859,
+      37.34598
     ],
     "frame": [
-      -124.555,
-      34.354,
-      -119.355,
-      40.354
+      -124.778,
+      34.227,
+      -119.288,
+      40.452
     ]
   },
   "meta": {
@@ -3672,20 +3679,21 @@
     "nameEn": "Meta Platforms (Facebook)",
     "cityEn": "Menlo Park, California",
     "iso3": "USA",
+    "regionBn": "সিলিকন ভ্যালি",
     "cities": [
-      "menlo-park-california-usa"
+      "silicon-valley"
     ],
     "countries": [
       "USA"
     ],
     "at": [
-      -122.17799,
-      37.45197
+      -122.01859,
+      37.34598
     ],
     "frame": [
       -124.778,
-      34.452,
-      -119.578,
+      34.227,
+      -119.288,
       40.452
     ]
   },
@@ -3724,21 +3732,22 @@
     "nameEn": "Netflix",
     "cityEn": "Los Gatos, California",
     "iso3": "USA",
+    "regionBn": "সিলিকন ভ্যালি",
     "cities": [
-      "los-gatos-california-usa"
+      "silicon-valley"
     ],
     "countries": [
       "USA"
     ],
     "at": [
-      -121.97468,
-      37.22661
+      -122.01859,
+      37.34598
     ],
     "frame": [
-      -124.575,
+      -124.778,
       34.227,
-      -119.375,
-      40.227
+      -119.288,
+      40.452
     ]
   },
   "nvidia": {
@@ -3750,21 +3759,22 @@
     "nameEn": "Nvidia",
     "cityEn": "Santa Clara, California",
     "iso3": "USA",
+    "regionBn": "সিলিকন ভ্যালি",
     "cities": [
-      "santa-clara-california-usa"
+      "silicon-valley"
     ],
     "countries": [
       "USA"
     ],
     "at": [
-      -121.95517,
-      37.35411
+      -122.01859,
+      37.34598
     ],
     "frame": [
-      -124.555,
-      34.354,
-      -119.355,
-      40.354
+      -124.778,
+      34.227,
+      -119.288,
+      40.452
     ]
   },
   "openai": {

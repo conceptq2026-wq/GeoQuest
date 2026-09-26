@@ -24,6 +24,7 @@
         "nameBn": { "type": "text", "required": true },
         "cityBn": { "type": "text", "required": true },
         "countryBn": { "type": "text", "required": true },
+        "regionBn": { "type": "text" },
         "noteBn": { "type": "text", "verifiable": true },
         "nameEn": { "type": "text", "required": true, "display": false },
         "cityEn": { "type": "text", "required": true, "display": false },
@@ -159,7 +160,7 @@
           "প্রযুক্তি প্রতিষ্ঠান"
         ]
       },
-      "placeholder": "একটি সংস্থা বেছে নিন…",
+      "placeholder": "একটি সংস্থা বা প্রতিষ্ঠান বেছে নিন…",
       "labelEn": "Choose an organisation",
       "label": { "field": "pickerLabel" },
       "do": [{ "action": "select" }, { "action": "fitBounds", "clear": ["sheet"], "duration": 1800, "field": "frame" }]
@@ -178,6 +179,7 @@
       "title": { "field": "nameBn" },
       "rows": [
         { "label": "সদর দপ্তর", "field": "cityBn" },
+        { "label": "অঞ্চল", "field": "regionBn" },
         { "label": "দেশ", "field": "countryBn" },
         { "label": "বিবরণ", "field": "noteBn" }
       ]

@@ -1,0 +1,18 @@
+{
+  "silicon-valley": {
+    "nameBn": "সিলিকন ভ্যালি",
+    "nameEn": "Silicon Valley",
+    "towns": [
+      "Cupertino, California|USA",
+      "Mountain View, California|USA",
+      "Menlo Park, California|USA",
+      "Santa Clara, California|USA",
+      "San Jose, California|USA",
+      "Los Gatos, California|USA"
+    ],
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (hub and name chosen by the user)",
+      "towns": "editor-verified 2026-09-26 (hub and name chosen by the user)"
+    }
+  }
+}

@@ -3,6 +3,7 @@
 //
 //   data-sources/org-headquarters/organisations.seed.json   INPUT, user-approved
 //   data-sources/tech-headquarters/companies.seed.json      INPUT, user-approved
+//   data-sources/org-headquarters/hubs.seed.json            INPUT, user-approved
 //   data-sources/org-headquarters/cities.seed.json          derived, with provenance
 //   docs/maps/org-headquarters/records.json                 organisations, shipped
 //   docs/maps/org-headquarters/cities.json                  one record per city
@@ -200,10 +201,57 @@ for (const [key, c] of cities) {
 if (unplaced.length) throw new Error(`no point for: ${unplaced.join(', ')} — add it to the OSM extract, never guess one`);
 
 // Frames centred on the point; see FRAME_HALF for how they were measured.
-for (const c of cities.values()) {
-  const [lon, lat] = c.at;
-  c.frame = [lon - FRAME_HALF.lon, lat - FRAME_HALF.lat, lon + FRAME_HALF.lon, lat + FRAME_HALF.lat].map((n) => Number(n.toFixed(3)));
+const frameAround = ([minLon, minLat, maxLon, maxLat]) =>
+  [minLon - FRAME_HALF.lon, minLat - FRAME_HALF.lat, maxLon + FRAME_HALF.lon, maxLat + FRAME_HALF.lat].map((n) => Number(n.toFixed(3)));
+for (const c of cities.values()) c.frame = frameAround([...c.at, ...c.at]);
+
+/*
+|--------------------------------------------------------------------------
+| HUBS — towns too close together to be told apart share one marker
+|
+| Six Silicon Valley towns sit 2–7 px apart at frame zoom, against a finger
+| about 40 px wide: a tap there opens one of six cards at random, and none
+| lists every company. A hub replaces its towns in the MARKER table, so it
+| has one marker and one card listing everything in all of them. The towns
+| keep their own points and provenance in cities.seed.json, and each record
+| keeps its own cityBn; it gains `regionBn`, the hub's name.
+|
+| The hub's point is the mean of its towns' points and its frame their extent
+| widened by FRAME_HALF — derived from sourced points, nothing placed by hand.
+|--------------------------------------------------------------------------
+*/
+const hubSeed = JSON.parse(fs.readFileSync(path.join(SEED_DIR, 'hubs.seed.json'), 'utf8'));
+const hubOfTown = new Map(); // city key -> hub key
+const hubs = new Map();
+for (const [hubKey, h] of Object.entries(hubSeed)) {
+  if (cities.has(hubKey)) throw new Error(`hub "${hubKey}" has the key of a city`);
+  const members = h.towns.map((t) => {
+    const [cityEn, iso3] = t.split('|');
+    const key = cityKey({ cityEn, iso3 });
+    if (!cities.has(key)) throw new Error(`hub "${hubKey}": no record is in "${t}"`);
+    if (hubOfTown.has(key)) throw new Error(`${key} is in two hubs`);
+    hubOfTown.set(key, hubKey);
+    return cities.get(key);
+  });
+  // One hub, one country: its card has one দেশ row.
+  const countriesOf = new Set(members.map((m) => `${m.iso3}|${m.countryBn}`));
+  if (countriesOf.size !== 1) throw new Error(`hub "${hubKey}" spans ${[...countriesOf].join(', ')}`);
+  const lons = members.map((m) => m.at[0]);
+  const lats = members.map((m) => m.at[1]);
+  const mean = (xs) => Number((xs.reduce((a, b) => a + b, 0) / xs.length).toFixed(5));
+  hubs.set(hubKey, {
+    nameEn: h.nameEn,
+    nameBn: h.nameBn,
+    iso3: members[0].iso3,
+    countryBn: members[0].countryBn,
+    at: [mean(lons), mean(lats)],
+    frame: frameAround([Math.min(...lons), Math.min(...lats), Math.max(...lons), Math.max(...lats)]),
+    members: h.towns.map((t) => cityKey({ cityEn: t.split('|')[0], iso3: t.split('|')[1] })),
+  });
 }
+// The place a record's marker is: its hub if its town is in one, else its town.
+const placeKey = (r) => hubOfTown.get(cityKey(r)) ?? cityKey(r);
+const placeOf = (r) => hubs.get(placeKey(r)) ?? cities.get(cityKey(r));
 
 /*
 |--------------------------------------------------------------------------
@@ -276,8 +324,9 @@ for (const code of codes) {
 | ORGANISATIONS — the seed's shipped fields, plus the joins the map needs
 |
 | `cities` and `countries` are lists of keys, the same `refs` shape
-| border-lines uses — one entry each today. `at` and `frame` are the city's,
-| so selecting an organisation pulses its city and frames it.
+| border-lines uses — one entry each today. `cities` names the marker the
+| record hangs off — its town, or the town's hub — and `at` and `frame` are
+| that marker's, so selecting a record pulses it and frames it.
 |--------------------------------------------------------------------------
 */
 // Provenance and identity stay in the seed; nothing here is content.
@@ -286,20 +335,37 @@ const organisations = {};
 for (const [id, r] of Object.entries(seed)) {
   const out = {};
   for (const [k, v] of Object.entries(r)) if (!NOT_SHIPPED.has(k)) out[k] = v;
-  const c = cities.get(cityKey(r));
-  out.cities = [cityKey(r)];
+  const place = placeOf(r);
+  const hub = hubs.get(placeKey(r));
+  if (hub) out.regionBn = hub.nameBn;
+  out.cities = [placeKey(r)];
   out.countries = [r.iso3];
-  out.at = c.at;
-  out.frame = c.frame;
+  out.at = place.at;
+  out.frame = place.frame;
   organisations[id] = out;
 }
 
+// The marker table: every town not in a hub, and each hub where its first
+// town would have been. The seed keeps every town, with the hub it went to.
 const cityRecords = {};
 const citySeed = {};
 for (const [key, c] of cities) {
   const { source, sources: cited, ...shipped } = c;
-  cityRecords[key] = shipped;
-  citySeed[key] = { ...shipped, geometrySource: source, sources: cited };
+  const hubKey = hubOfTown.get(key);
+  citySeed[key] = { ...shipped, geometrySource: source, sources: cited, ...(hubKey ? { hub: hubKey } : {}) };
+  if (!hubKey) cityRecords[key] = shipped;
+  else if (!(hubKey in cityRecords)) {
+    const { members, ...hubShipped } = hubs.get(hubKey);
+    cityRecords[hubKey] = hubShipped;
+  }
+}
+for (const [hubKey, h] of hubs) {
+  citySeed[hubKey] = {
+    ...Object.fromEntries(Object.entries(h).filter(([k]) => k !== 'members')),
+    geometrySource: 'generated',
+    members: h.members,
+    sources: { at: 'generated: the mean of its member towns’ points; frame: their extent widened by FRAME_HALF' },
+  };
 }
 
 // ---- write ------------------------------------------------------------------
@@ -326,3 +392,4 @@ console.log(`\nrecords: ${Object.keys(organisations).length} (organisations ${Ob
 console.log(`  Natural Earth: ${bySource.naturalEarth.length}`);
 console.log(`  OSM:           ${bySource.osm.length}  ${bySource.osm.join(', ')}`);
 console.log(`  aliases:       ${Object.entries(NE_ALIASES).map(([k, v]) => `${k} as ${v}`).join(', ')}`);
+console.log(`markers: ${Object.keys(cityRecords).length}   hubs: ${[...hubs].map(([k, h]) => `${k} (${h.members.length} towns, at ${h.at})`).join(', ')}`);

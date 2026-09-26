@@ -607,11 +607,20 @@ console.log('\n\n============ org-headquarters ============');
   // Every seed field ships exactly as approved, except the seed's identity
   // and provenance. The four joins the build adds are checked below instead.
   console.log('\n---- records.json against both seeds ----');
-  const DERIVED = ['cities', 'countries', 'at', 'frame'];
+  const DERIVED = ['cities', 'countries', 'at', 'frame', 'regionBn'];
   compareTables({ source: seed, file: orgs, label: 'records.json', ignore: ['id', 'sources', 'review', 'country', ...DERIVED] });
 
+  // The marker table is the seed's towns that are in no hub, plus the hubs,
+  // each where its first town would have been.
+  const hubSeed = readJson(path.join(ORG_SEEDS, 'hubs.seed.json'));
+  const expectedMarkers = {};
+  for (const [key, c] of Object.entries(citySeed)) {
+    if (c.geometrySource === 'generated') continue;
+    const place = c.hub ?? key;
+    if (!(place in expectedMarkers)) expectedMarkers[place] = citySeed[place];
+  }
   console.log('\n---- cities.json against cities.seed.json ----');
-  compareTables({ source: citySeed, file: cities, label: 'cities.json', ignore: ['geometrySource', 'sources'] });
+  compareTables({ source: expectedMarkers, file: cities, label: 'cities.json', ignore: ['geometrySource', 'sources', 'members'] });
 
   // Provenance: every record is editor-verified or cited, and the six that
   // were under review — three organisations, three companies — are cited now.
@@ -622,38 +631,60 @@ console.log('\n\n============ org-headquarters ============');
   const cited = Object.keys(seed).filter((k) => Array.isArray(seed[k].sources?.cityBn));
   ok(`${cited.length} record(s) cited from the body's own statement: ${cited.join(', ')}`);
 
-  // One city per (cityEn, iso3), each named once, each placed by one source.
-  const cityOf = (r) => Object.keys(cities).find((k) => cities[k].nameEn === r.cityEn && cities[k].iso3 === r.iso3);
-  const wantCities = new Set(Object.values(seed).map((r) => `${r.cityEn}|${r.iso3}`));
-  check(wantCities.size === Object.keys(cities).length, `one city per distinct (cityEn, iso3) in the seed (${wantCities.size})`);
+  // One town per (cityEn, iso3), each named once, each placed by one source.
+  const towns = Object.fromEntries(Object.entries(citySeed).filter(([, c]) => c.geometrySource !== 'generated'));
+  const townOf = (r) => Object.keys(towns).find((k) => towns[k].nameEn === r.cityEn && towns[k].iso3 === r.iso3);
+  const wantTowns = new Set(Object.values(seed).map((r) => `${r.cityEn}|${r.iso3}`));
+  check(wantTowns.size === Object.keys(towns).length, `one town per distinct (cityEn, iso3) in the seeds (${wantTowns.size})`);
   let badJoin = 0;
   for (const [id, r] of Object.entries(seed)) {
-    const key = cityOf(r);
+    const town = townOf(r);
+    const place = town && (towns[town].hub ?? town);
     const o = orgs[id];
+    const hub = town && towns[town].hub ? hubSeed[towns[town].hub] : null;
     const good =
-      key &&
-      cities[key].nameBn === r.cityBn &&
-      cities[key].countryBn === r.countryBn &&
-      JSON.stringify(o.cities) === JSON.stringify([key]) &&
+      town &&
+      towns[town].nameBn === r.cityBn &&
+      towns[town].countryBn === r.countryBn &&
+      (hub ? o.regionBn === hub.nameBn : !('regionBn' in o)) &&
+      JSON.stringify(o.cities) === JSON.stringify([place]) &&
       JSON.stringify(o.countries) === JSON.stringify([r.iso3]) &&
-      JSON.stringify(o.at) === JSON.stringify(cities[key].at) &&
-      JSON.stringify(o.frame) === JSON.stringify(cities[key].frame);
+      JSON.stringify(o.at) === JSON.stringify(cities[place].at) &&
+      JSON.stringify(o.frame) === JSON.stringify(cities[place].frame);
     if (!good) {
-      fail(`${id}: its city, country, point or frame does not match the city it names`);
+      fail(`${id}: its town, hub, country, point or frame does not match`);
       badJoin++;
     }
   }
-  check(badJoin === 0, `every record joins to its own city — same Bengali name, country, point and frame (${Object.keys(seed).length})`);
+  check(badJoin === 0, `every record joins to its own town, and to its hub's marker where it has one (${Object.keys(seed).length})`);
   const bySource = {};
-  for (const [key, c] of Object.entries(citySeed)) {
+  for (const [key, c] of Object.entries(towns)) {
     (bySource[c.geometrySource] ??= []).push(key);
     if (!['naturalEarth', 'osm'].includes(c.geometrySource) || c.sources?.at?.length !== 1) fail(`${key}: not exactly one point source`);
   }
-  // Pinned: which source placed each city is displayed-position-bearing.
+  // Pinned: which source placed each town is displayed-position-bearing.
   check(
     bySource.naturalEarth?.length === 65 && bySource.osm?.length === 16,
-    `city points: Natural Earth ${bySource.naturalEarth?.length}, OSM ${bySource.osm?.length} (pinned 65 / 16)`,
+    `town points: Natural Earth ${bySource.naturalEarth?.length}, OSM ${bySource.osm?.length} (pinned 65 / 16)`,
   );
+
+  // Each hub is exactly the towns its seed names, and its point is theirs.
+  for (const [hubKey, h] of Object.entries(hubSeed)) {
+    const members = Object.keys(towns).filter((k) => towns[k].hub === hubKey);
+    const named = h.towns.map((t) => townOf({ cityEn: t.split('|')[0], iso3: t.split('|')[1] }));
+    check(
+      members.length === h.towns.length && named.every((k) => members.includes(k)),
+      `hub "${hubKey}": exactly the ${h.towns.length} towns its seed names`,
+    );
+    const mean = (i) => Number((members.reduce((a, k) => a + towns[k].at[i], 0) / members.length).toFixed(5));
+    const c = cities[hubKey];
+    check(
+      c && c.nameBn === h.nameBn && JSON.stringify(c.at) === JSON.stringify([mean(0), mean(1)]),
+      `hub "${hubKey}": one marker named "${h.nameBn}", at the mean of its towns`,
+    );
+    const listed = Object.keys(orgs).filter((k) => orgs[k].cities.includes(hubKey));
+    ok(`hub "${hubKey}": its card lists ${listed.length} — ${listed.join(', ')}`);
+  }
 
   // A host country's Bengali name is the seed's, never Natural Earth's.
   const countryBn = new Map(Object.values(seed).map((r) => [r.iso3, r.countryBn]));

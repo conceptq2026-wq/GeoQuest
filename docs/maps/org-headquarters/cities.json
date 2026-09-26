@@ -991,20 +991,20 @@
       49.216
     ]
   },
-  "san-jose-california-usa": {
-    "nameEn": "San Jose, California",
-    "nameBn": "সান হোসে, ক্যালিফোর্নিয়া",
+  "silicon-valley": {
+    "nameEn": "Silicon Valley",
+    "nameBn": "সিলিকন ভ্যালি",
     "iso3": "USA",
     "countryBn": "যুক্তরাষ্ট্র",
     "at": [
-      -121.88818,
-      37.33094
+      -122.01859,
+      37.34598
     ],
     "frame": [
-      -124.488,
-      34.331,
+      -124.778,
+      34.227,
       -119.288,
-      40.331
+      40.452
     ]
   },
   "seattle-washington-usa": {
@@ -1023,54 +1023,6 @@
       50.6
     ]
   },
-  "santa-clara-california-usa": {
-    "nameEn": "Santa Clara, California",
-    "nameBn": "সান্টা ক্লারা, ক্যালিফোর্নিয়া",
-    "iso3": "USA",
-    "countryBn": "যুক্তরাষ্ট্র",
-    "at": [
-      -121.95517,
-      37.35411
-    ],
-    "frame": [
-      -124.555,
-      34.354,
-      -119.355,
-      40.354
-    ]
-  },
-  "cupertino-california-usa": {
-    "nameEn": "Cupertino, California",
-    "nameBn": "কুপারটিনো, ক্যালিফোর্নিয়া",
-    "iso3": "USA",
-    "countryBn": "যুক্তরাষ্ট্র",
-    "at": [
-      -122.03229,
-      37.32289
-    ],
-    "frame": [
-      -124.632,
-      34.323,
-      -119.432,
-      40.323
-    ]
-  },
-  "mountain-view-california-usa": {
-    "nameEn": "Mountain View, California",
-    "nameBn": "মাউন্টেন ভিউ, ক্যালিফোর্নিয়া",
-    "iso3": "USA",
-    "countryBn": "যুক্তরাষ্ট্র",
-    "at": [
-      -122.08321,
-      37.38939
-    ],
-    "frame": [
-      -124.683,
-      34.389,
-      -119.483,
-      40.389
-    ]
-  },
   "armonk-new-york-usa": {
     "nameEn": "Armonk, New York",
     "nameBn": "আরমংক, নিউইয়র্ক",
@@ -1087,22 +1039,6 @@
       44.126
     ]
   },
-  "menlo-park-california-usa": {
-    "nameEn": "Menlo Park, California",
-    "nameBn": "মেনলো পার্ক, ক্যালিফোর্নিয়া",
-    "iso3": "USA",
-    "countryBn": "যুক্তরাষ্ট্র",
-    "at": [
-      -122.17799,
-      37.45197
-    ],
-    "frame": [
-      -124.778,
-      34.452,
-      -119.578,
-      40.452
-    ]
-  },
   "redmond-washington-usa": {
     "nameEn": "Redmond, Washington",
     "nameBn": "রেডমন্ড, ওয়াশিংটন",
@@ -1117,22 +1053,6 @@
       44.669,
       -119.524,
       50.669
-    ]
-  },
-  "los-gatos-california-usa": {
-    "nameEn": "Los Gatos, California",
-    "nameBn": "লস গাতোস, ক্যালিফোর্নিয়া",
-    "iso3": "USA",
-    "countryBn": "যুক্তরাষ্ট্র",
-    "at": [
-      -121.97468,
-      37.22661
-    ],
-    "frame": [
-      -124.575,
-      34.227,
-      -119.375,
-      40.227
     ]
   },
   "san-francisco-california-usa": {

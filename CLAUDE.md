@@ -156,6 +156,10 @@ declares sources, layers, sheet rows and actions; it holds no content.
   label as it stands, and `order` must name every value that occurs.
 - A tap on overlapping points goes to the one **nearest the finger**, not the
   first the renderer lists.
+- **A source whose geometry comes from OpenStreetMap declares the ODbL credit**
+  as its `attribution` — `© OpenStreetMap contributors`, linked to
+  openstreetmap.org/copyright. The licence requires it. straits (`routes`,
+  `canals`), border-lines (`lines`) and org-headquarters (`cities`) do.
 
 ## `null` versus absent — they are different
 
@@ -372,6 +376,17 @@ State which kind a task is when reporting it.
   picker group, `প্রযুক্তি প্রতিষ্ঠান`, shown last. The cities table, the host
   countries and every point and frame are derived; the cities' provenance goes
   to `data-sources/org-headquarters/cities.seed.json`.
+- **Hubs.** Towns too close to tell apart at frame zoom share one marker, by
+  the user's decision. `data-sources/org-headquarters/hubs.seed.json` names
+  each hub and its member towns; today that is `silicon-valley`
+  (সিলিকন ভ্যালি): Cupertino, Mountain View, Menlo Park, Santa Clara, San Jose
+  and Los Gatos. In the shipped marker table (`cities.json`) a hub replaces
+  its towns, with its point the mean of theirs and its frame their extent
+  widened by `FRAME_HALF`, so its one card lists everything in all of them.
+  The towns keep their own points and provenance in `cities.seed.json`
+  (`hub` names where each went), and each record keeps its own `cityBn` and
+  gains `regionBn`, the hub's name, shown as অঞ্চল. No descriptor term: the
+  hub is an ordinary record of the marker table.
 - One basemap archive exists, `docs/shared/tiles/world.pmtiles`. A
   `bangladesh.pmtiles` is planned and not built. A cross-basemap switch is a
   full re-initialise; the shell decides that from each map's descriptor.

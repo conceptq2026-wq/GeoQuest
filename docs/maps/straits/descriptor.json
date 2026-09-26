@@ -137,11 +137,13 @@
       "expectGeometry": {
         "kind": "canal"
       },
-      "properties": []
+      "properties": [],
+      "attribution": "<a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener noreferrer\">© OpenStreetMap contributors</a>"
     },
     "routes": {
       "geometry": "./routes.geojson",
-      "joinField": "seamark"
+      "joinField": "seamark",
+      "attribution": "<a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener noreferrer\">© OpenStreetMap contributors</a>"
     }
   },
   "styles": {
