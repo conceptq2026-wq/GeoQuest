@@ -81,7 +81,19 @@
       91.506,
       25.737
     ],
-    "photo": null
+    "photo": {
+      "marker": "photos/banga-marker.webp",
+      "card": "photos/banga-card.webp",
+      "author": "omarshehab",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+      "page": "https://commons.wikimedia.org/wiki/File:The-boundary-wall-of-the-city.jpg",
+      "cropped": true
+    },
+    "siteAt": [
+      90.82556,
+      24.09306
+    ]
   },
   "gauda": {
     "nameBn": "গৌড়",
@@ -221,8 +233,7 @@
       21.504,
       89.236,
       23.06
-    ],
-    "photo": null
+    ]
   },
   "suhma": {
     "nameBn": "সূহ্ম",

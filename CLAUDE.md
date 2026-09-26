@@ -189,17 +189,22 @@ declares sources, layers, sheet rows and actions; it holds no content.
   whose points come from a record field (`geometryFrom`) draws each record as
   a round photo — 56 px with a 2 px white ring and a soft shadow, 72 px with a
   2 px `#0b3d91` ring when selected, the pulse behind it — and a tap runs that
-  source's click interaction. A record with no free photo gets the plain dot
-  the straits map gives a passage instead, so it is never missing from the
-  map. `photo: { field }` on a sheet puts the card photo (16:10) at the top of
-  the card and its credit — author · licence · Wikimedia Commons, both linked
-  — at the bottom; one term draws both, so a card cannot show a photo without
-  the credit CC BY and CC BY-SA require. When the shipped image is a crop, the
-  value carries `cropped: true` and the credit says "Photo (cropped)": CC BY-SA
-  asks the credit of a derivative to say what was changed.
-  Sizes, rings and shadows are shell CSS, identical on every map. The
-  validator fails a photo missing either file or any part of its credit, or
-  carrying a licence other than public domain, CC0, CC BY or CC BY-SA.
+  source's click interaction. Two sites close together overlap at a wide
+  zoom (Mahasthangarh and Paharpur on the janapada map): both markers stay at
+  their real sites, the selected one draws on top, and a tap on the overlap
+  goes to the site nearest the finger, not to the disc on top; a click with
+  no pointer — Enter or Space on a focused marker — is that marker's own. A
+  record with no free photo gets the plain dot the straits map gives a
+  passage instead, so it is never missing from the map. `photo: { field }` on
+  a sheet puts the card photo (16:10) at the top of the card and its credit —
+  author · licence · Wikimedia Commons, both linked — at the bottom; one term
+  draws both, so a card cannot show a photo without the credit CC BY and CC
+  BY-SA require. When the shipped image is a crop, the value carries
+  `cropped: true` and the credit says "Photo (cropped)": CC BY-SA asks the
+  credit of a derivative to say what was changed. Sizes, rings and shadows are
+  shell CSS, identical on every map. The validator fails a photo missing
+  either file or any part of its credit, or carrying a licence other than
+  public domain, CC0, CC BY or CC BY-SA.
 - **Photos are light.** Every marker on a map loads when the map opens, so a
   marker file is at most 8 KB; a card photo loads only when its card opens,
   never at map load, and is at most 40 KB. The extractor steps WebP quality
@@ -508,22 +513,31 @@ State which kind a task is when reporting it.
   provenance goes to `photos.seed.json` beside the seed, which
   `tools/extract-commons-photos.mjs ancient-janapadas` reads; the same entry
   holds the point of the site the photo shows — its Wikidata item's P625,
-  cited there — which ships as `siteAt`. A record whose site has no Wikidata
-  point to trust keeps its photo null, and so pending: today banga (the
-  Wari-Bateshwar item's point is 22 km off the site) and tamralipta (no item
-  is an archaeological site at Tamluk). A record with a photo is drawn as a
-  photo marker at that site, never at the area's centre, with its name under
-  it as on the geography maps; a record without one has no marker and its name
-  sits at the area's inner point. Every area is a thin outline; only the
-  selected one is filled. Every Bengali unit name the seed shows must be the
-  names table's spelling; the build fails any other, except where
-  `NAME_EXCEPTIONS` lists one with its reason — today Harikela's কাছাড়,
-  cited to the seed's own source, where the names table has no Bengali. The
-  areas credit every source they are made from — COD-AB (CC BY 3.0 IGO),
-  geoBoundaries India (ODbL 1.0), Natural Earth, and OpenStreetMap (ODbL) for
-  the land between a unit and the border — and, holding ODbL data, the areas
-  file is offered under the ODbL; the build fails if the descriptor's credit
-  leaves any of that out.
+  cited there — which ships as `siteAt`. Where the item's point is wrong, the
+  point is the site's own Wikipedia article's, cited to its revision, and the
+  entry keeps the item's point and says why (`pointFrom: "wikipedia"`,
+  `wikidataPoint`, `why`): today banga, whose item puts Wari-Bateshwar 22 km
+  off, at Narsingdi town. A record that can have no photo — no site point for
+  one to stand on — is made absent in the photo seed, `absent: { reason }`,
+  and ships with no `photo` field, never pending; the editor's seed still says
+  null. Today that is tamralipta: no Wikidata item is an archaeological site
+  at Tamluk. Nothing on this map is pending. A record with a photo is drawn
+  as a photo marker at that site, never at the area's centre, with its name
+  under it, or above or beside it where that would collide; a record without
+  one has no marker and its name sits on the area's inner point, or beside
+  it. Names take those alternative anchors (`text-variable-anchor` with a
+  `text-radial-offset`) rather than overlap. MapLibre's collision cannot see
+  the DOM photo discs, so a name can still fall under another record's disc:
+  in the default view today, বঙ্গ and হরিকেল under সমতট's. Every area is a
+  thin outline; only the selected one is filled. Every Bengali unit name the
+  seed shows must be the names table's spelling; the build fails any other,
+  except where `NAME_EXCEPTIONS` lists one with its reason — today Harikela's
+  কাছাড়, cited to the seed's own source, where the names table has no
+  Bengali. The areas credit every source they are made from — COD-AB (CC BY
+  3.0 IGO), geoBoundaries India (ODbL 1.0), Natural Earth, and OpenStreetMap
+  (ODbL) for the land between a unit and the border — and, holding ODbL data,
+  the areas file is offered under the ODbL; the build fails if the
+  descriptor's credit leaves any of that out.
 - The five Geography maps are built by one script, `tools/build-geography.mjs`,
   from `data-sources/<map>/<map>.seed.json` — approved content in display
   order, with the geometry, photo and pinned citations added to it. Their

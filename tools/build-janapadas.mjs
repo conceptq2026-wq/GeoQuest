@@ -160,10 +160,17 @@ for (const [id, r] of Object.entries(seed)) {
   if (r.geometry?.area?.method !== 'adminUnion') problems.push(`${id}: geometry.area.method is not adminUnion`);
   if (!Array.isArray(r.sources?.geometry) || !r.sources.geometry.length) problems.push(`${id}: its units are not cited`);
 }
-// A photo is found only for a record whose seed says it wants one (null).
+// A photo is found only for a record whose seed says it wants one (null). Where
+// none can be, the photo seed says so — `absent`, with the reason — and the
+// record ships with no photo rather than a pending one.
 for (const [id, entry] of Object.entries(photos)) {
   if (!(id in seed)) problems.push(`photos.seed.json: "${id}" is not a record`);
   else if (seed[id].photo !== null) problems.push(`photos.seed.json: ${id}'s seed photo is ${JSON.stringify(seed[id].photo)}, not null`);
+  if (entry.absent) {
+    if (!entry.absent.reason) problems.push(`${id}: its photo is absent with no reason given`);
+    if (entry.photo || entry.site) problems.push(`${id}: its photo is absent, and the photo seed still gives one`);
+    continue;
+  }
   const p = entry.photo;
   for (const f of ['commonsFile', 'page', 'author', 'licence', 'sha1', 'size', 'crop']) if (!p?.[f]) problems.push(`${id}.photo: no ${f}`);
   if (!FREE_LICENCES.test(p?.licence ?? '')) problems.push(`${id}.photo: licence "${p?.licence}" is not one these maps may ship`);
@@ -174,12 +181,20 @@ for (const [id, entry] of Object.entries(photos)) {
     else if (fs.statSync(file).size > PHOTO_MAX_KB[kind] * 1024) problems.push(`${id}.photo: ${kind} file is over ${PHOTO_MAX_KB[kind]} KB`);
   }
   // The photo's marker sits at the site it shows: the site's own point, from
-  // its Wikidata item, cited — never the area's centre.
+  // its Wikidata item, cited — never the area's centre. Where the item's point
+  // is wrong, the point is its own Wikipedia article's, cited to the revision,
+  // and the seed keeps the item's point and says why it was not used.
   const site = entry.site;
   if (!/^Q\d+$/.test(site?.wikidata ?? '') || !Array.isArray(site?.at) || site.at.length !== 2 || !site.at.every(Number.isFinite)) problems.push(`${id}.site: no Wikidata item and point for the site the photo shows`);
+  const from = site?.pointFrom ?? 'wikidata';
   const cites = entry.sources?.siteAt;
   if (!Array.isArray(cites) || !cites.length || !cites.every((c) => c.url && c.states)) problems.push(`${id}.site: its point is not cited with what the source states`);
-  else if (!cites.some((c) => new URL(c.url).host === 'www.wikidata.org' && c.url.includes(site?.wikidata))) problems.push(`${id}.site: not cited to its own Wikidata item`);
+  else if (from === 'wikidata') {
+    if (!cites.some((c) => new URL(c.url).host === 'www.wikidata.org' && c.url.includes(site?.wikidata))) problems.push(`${id}.site: not cited to its own Wikidata item`);
+  } else if (from === 'wikipedia') {
+    if (!cites.some((c) => new URL(c.url).host.endsWith('.wikipedia.org') && /[?&]oldid=\d+/.test(c.url))) problems.push(`${id}.site: its point is said to be its Wikipedia article's, and is not cited to a revision of it`);
+    if (!Array.isArray(site.wikidataPoint) || !site.why) problems.push(`${id}.site: its Wikidata point was not used, and the seed does not keep it and say why`);
+  } else problems.push(`${id}.site: pointFrom "${from}" is neither wikidata nor wikipedia`);
 }
 if (problems.length) throw new Error(`the seed breaks its own rules:\n  ${problems.join('\n  ')}`);
 
@@ -532,8 +547,9 @@ for (const id of ids) {
   built[id].labelAt = inner[id].map((n) => Number(n.toFixed(5)));
   rec.labelAt = built[id].labelAt;
   rec.frame = built[id].frame;
-  // null in the seed means a photo is wanted: the photo seed's, else still null.
-  if ('photo' in r) {
+  // null in the seed means a photo is wanted: the photo seed's, else still
+  // null — unless the photo seed records that there can be none.
+  if ('photo' in r && !photos[id]?.absent) {
     const p = photos[id]?.photo;
     rec.photo = p
       ? {

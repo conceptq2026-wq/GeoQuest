@@ -74,7 +74,8 @@
           2040
         ]
       },
-      "note": "The central shrine of Somapura Mahavihara, Paharpur, over the site's garden — the seed's photoSite. From the site's own Commons category (its Wikidata item's P373), 64 free photos of at least 1000×625 looked at. No people: checked at full size, the shrine's terraces, the garden and both edges. The sharper blue-sky view (File:BuddhistBihar.jpg) was passed over: a group of visitors stands at its left edge. The marker crop leaves out the signboard; the card crop keeps the shrine's top clear of the frame."
+      "note": "The central shrine of Somapura Mahavihara, Paharpur, over the site's garden — the seed's photoSite. From the site's own Commons category (its Wikidata item's P373), 64 free photos of at least 1000×625 looked at. No people: checked at full size, the shrine's terraces, the garden and both edges. The sharper blue-sky view (File:BuddhistBihar.jpg) was passed over: a group of visitors stands at its left edge. The marker crop leaves out the signboard; the card crop keeps the shrine's top clear of the frame.",
+      "approved": "user, 2026-09-26"
     },
     "site": {
       "wikidata": "Q305044",
@@ -91,6 +92,60 @@
           "publisher": "Wikidata (revision 2523211901, 2026-07-27)",
           "url": "https://www.wikidata.org/w/index.php?title=Q305044&oldid=2523211901",
           "states": "coordinate location (P625): 25°01′52″N, 88°58′37″E — 25.03111111, 88.97694444",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "banga": {
+    "photo": {
+      "commonsFile": "File:The-boundary-wall-of-the-city.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:The-boundary-wall-of-the-city.jpg",
+      "author": "omarshehab",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+      "sha1": "d1105e814ee600a3dc3dffa5ac898fed5053dce6",
+      "size": [
+        1024,
+        683
+      ],
+      "crop": {
+        "marker": [
+          330,
+          40,
+          560,
+          560
+        ],
+        "card": [
+          0,
+          20,
+          1024,
+          640
+        ]
+      },
+      "note": "A stretch of the earthen rampart round the ancient fort city of Wari-Bateshwar — the file's own description: \"A part of the boundary wall of the ancient fort city\" — the seed's photoSite. Uploaded under the GFDL and relicensed to CC BY-SA 3.0 by Commons' licence migration. From the site's own Commons category (its Wikidata item's P373) and its subcategories, 75 free photos looked at: most are museum cases, signboards, the shelters of the open-air museum, or people digging; one is a model of the settlement, not the site. No people: checked at full size (the original is 1024 px wide). Passed over for people: the open-air museum's pits with pottery (visitors behind), a brick wall in a trench (a digger's feet at the top), the museum's grass plot (a visitor in red)."
+    },
+    "site": {
+      "wikidata": "Q7969421",
+      "pointFrom": "wikipedia",
+      "at": [
+        90.82555556,
+        24.09305556
+      ],
+      "wikidataPoint": [
+        90.7176492,
+        23.9192671
+      ],
+      "why": "The item's own P625, 23.9192671, 90.7176492, lies 22 km south-west of the site, at Narsingdi town. Its enwiki and bnwiki articles and the seven geotagged photos in its Commons category all place the site at 24.0931, 90.8256, so the English article's point is used and Wikidata's is not — by the user's decision, 2026-09-26.",
+      "found": "Wikidata items with a coordinate (P625) inside 90.5, 23.75, 91.05, 24.25 whose English or Bengali label contains Wari / Bateshwar / উয়ারী / বটেশ্বর, or typed as an archaeological site — two: this one, Wari-Bateshwar ruins (archaeological sites in Bangladesh) with the enwiki and bnwiki articles and the Commons category; and Q97252992, the village of Wari, passed over. Its point is taken from its own English article instead of from the item; see why."
+    },
+    "sources": {
+      "siteAt": [
+        {
+          "title": "Wari-Bateshwar ruins",
+          "publisher": "English Wikipedia (revision 1374962132, 2026-09-15)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Wari-Bateshwar_ruins&oldid=1374962132",
+          "states": "coordinates: {{coord|24|05|35|N|90|49|32|E}} — 24°05′35″N, 90°49′32″E, 24.09305556, 90.82555556",
           "retrieved": "2026-09-26"
         }
       ]
@@ -122,7 +177,8 @@
           3060
         ]
       },
-      "note": "The excavated monastery in the mound known as Raja Karna's Palace (Rajbaridanga), Karnasubarna, Murshidabad — the seed's photoSite. The photograph is titled and filed as Karnasubarna, and its camera location, 88.190929, 24.029193, lies on the Karnasuvarna item's point. From the site's own Commons category (its Wikidata item's P373), 16 free photos looked at. No people: checked at full size, the ruins, the houses, the haystacks and the fence behind them. The card crop leaves out the foggy sky and the modern building at the right edge."
+      "note": "The excavated monastery in the mound known as Raja Karna's Palace (Rajbaridanga), Karnasubarna, Murshidabad — the seed's photoSite. The photograph is titled and filed as Karnasubarna, and its camera location, 88.190929, 24.029193, lies on the Karnasuvarna item's point. From the site's own Commons category (its Wikidata item's P373), 16 free photos looked at. No people: checked at full size, the ruins, the houses, the haystacks and the fence behind them. The card crop leaves out the foggy sky and the modern building at the right edge.",
+      "approved": "user, 2026-09-26"
     },
     "site": {
       "wikidata": "Q3350691",
@@ -170,7 +226,8 @@
           1200
         ]
       },
-      "note": "The central shrine of Shalban Vihara, Mainamati, Cumilla — its pillars and the mound behind them; the seed's photoSite. The photograph's own location is the item's point. From the site's own Commons category (its Wikidata item's P373) and its two subcategories, 81 free photos looked at; most show visitors on the shrine or are signboards. No people: checked at full size, the mound, the trees and the wall."
+      "note": "The central shrine of Shalban Vihara, Mainamati, Cumilla — its pillars and the mound behind them; the seed's photoSite. The photograph's own location is the item's point. From the site's own Commons category (its Wikidata item's P373) and its two subcategories, 81 free photos looked at; most show visitors on the shrine or are signboards. No people: checked at full size, the mound, the trees and the wall.",
+      "approved": "user, 2026-09-26"
     },
     "site": {
       "wikidata": "Q7487152",
@@ -190,6 +247,11 @@
           "retrieved": "2026-09-26"
         }
       ]
+    }
+  },
+  "tamralipta": {
+    "absent": {
+      "reason": "No photo, by the user's decision, 2026-09-26: a photo on this map is drawn at the site it shows, and no Wikidata item within about 15 km of Tamluk is an archaeological site (none inside 87.75, 22.15, 88.05, 22.45), so a photo of the site would have no point to stand on. The Tamluk Rajbari palace ruins (Q56247259) are not the site and were not substituted. The editor's seed still asks for a photo (null); this entry makes it absent."
     }
   }
 }

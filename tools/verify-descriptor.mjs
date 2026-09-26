@@ -877,12 +877,13 @@ console.log('\n\n============ ancient-janapadas ============');
     ignore: ['id', 'order', 'sources', 'review', 'geometry', 'photo', 'photoSite', 'labelAt', 'frame', 'siteAt'],
   });
   // null in the seed wants a photo: the photo seed's, with its own credit, or
-  // still null. Absent in the seed stays absent.
+  // still null — absent where the photo seed records that there can be none.
+  // Absent in the seed stays absent.
   let badPhoto = 0;
   for (const k of shipped) {
     const p = photoSeed[k]?.photo;
     const wasCropped = p && Object.values(p.crop).some(([x, y, w, h]) => x || y || w !== p.size[0] || h !== p.size[1]);
-    const want = !('photo' in seed[k])
+    const want = !('photo' in seed[k]) || photoSeed[k]?.absent
       ? undefined
       : p
         ? { marker: `photos/${k}-marker.webp`, card: `photos/${k}-card.webp`, author: p.author, licence: p.licence, ...(p.licenceUrl ? { licenceUrl: p.licenceUrl } : {}), page: p.page, ...(wasCropped ? { cropped: true } : {}) }
@@ -894,21 +895,28 @@ console.log('\n\n============ ancient-janapadas ============');
   }
   check(badPhoto === 0, `every shipped photo is the photo seed's, with its credit, "cropped" where it was (${shipped.filter((k) => recs[k].photo).length})`);
   // A photo's marker stands on the site the photo shows — the photo seed's
-  // point, from the site's Wikidata item, cited there — and only a record with
-  // a photo has one.
+  // point, from the site's Wikidata item, cited there, or where that point is
+  // wrong from its Wikipedia article, cited to the revision — and only a record
+  // with a photo has one.
+  const citesPoint = (site, c) => c.states && (
+    (site.pointFrom ?? 'wikidata') === 'wikidata'
+      ? new URL(c.url).host === 'www.wikidata.org' && c.url.includes(site.wikidata)
+      : site.pointFrom === 'wikipedia' && new URL(c.url).host.endsWith('.wikipedia.org') && /[?&]oldid=\d+/.test(c.url));
   const badSite = shipped.filter((k) => {
     const site = photoSeed[k]?.site;
     const want = recs[k].photo ? site?.at.map((n) => Number(n.toFixed(5))) : undefined;
-    const cited = !recs[k].photo || (photoSeed[k]?.sources?.siteAt ?? []).some((c) => c.states && c.url?.includes(`wikidata.org`) && c.url.includes(site?.wikidata));
+    const cited = !recs[k].photo || (photoSeed[k]?.sources?.siteAt ?? []).some((c) => citesPoint(site, c));
     return JSON.stringify(recs[k].siteAt) !== JSON.stringify(want) || !cited;
   });
-  check(badSite.length === 0, `every record with a photo has its site's point from the photo seed, cited to its Wikidata item, and no other record has one (${shipped.filter((k) => recs[k].siteAt).length})${badSite.length ? ` — not: ${badSite.join(', ')}` : ''}`);
+  const byWikipedia = shipped.filter((k) => recs[k].siteAt && photoSeed[k].site.pointFrom === 'wikipedia');
+  check(badSite.length === 0, `every record with a photo has its site's point from the photo seed, cited (${shipped.filter((k) => recs[k].siteAt).length}; from its Wikipedia article: ${byWikipedia.join(', ') || 'none'}), and no other record has one${badSite.length ? ` — not: ${badSite.join(', ')}` : ''}`);
   const strays = Object.keys(photoSeed).filter((k) => seed[k]?.photo !== null);
   check(strays.length === 0, `the photo seed holds photos only for records whose seed photo is null${strays.length ? ` — not: ${strays.join(', ')}` : ''}`);
-  // Two photos are wanted and not found: banga's site's Wikidata point is
-  // 22 km off the site, and no Wikidata item is an archaeological site at
-  // Tamluk, so neither has a point for its marker.
-  checkMap({ id: 'ancient-janapadas', expectedPending: 2 });
+  const absent = Object.keys(photoSeed).filter((k) => photoSeed[k].absent);
+  check(absent.every((k) => photoSeed[k].absent.reason && !('photo' in recs[k])), `a photo the photo seed makes absent ships absent, with its reason in the seed (${absent.join(', ') || 'none'})`);
+  // Nothing is pending: every photo the seed wants is found, or the photo seed
+  // records why there can be none (tamralipta).
+  checkMap({ id: 'ancient-janapadas', expectedPending: 0 });
 }
 
 // ---- done -------------------------------------------------------------------

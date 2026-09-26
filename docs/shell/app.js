@@ -1075,6 +1075,12 @@ for (const interaction of interactions) {
 | DOM markers, not a symbol layer: a photo is an image with a ring and a
 | shadow, which a symbol cannot draw. Each is made once and registered for
 | teardown; a re-derive only shows, hides or restyles it.
+|
+| Two sites close together overlap at a wide zoom — Mahasthangarh and
+| Paharpur on the janapada map. Both stay at their real sites; the selected
+| one draws on top (shell CSS), and a tap on the overlap goes, as a tap on
+| overlapping points does, to the site nearest the finger, not to whichever
+| disc lies on top.
 |--------------------------------------------------------------------------
 */
 
@@ -1088,7 +1094,7 @@ for (const [name, spec] of Object.entries(sourceSpecs)) {
 function syncPhotoMarkers(name, data) {
   const entry = photoMarkers.get(name);
   if (!entry) return;
-  const { spec, click, byKey } = entry;
+  const { spec, byKey } = entry;
   const present = new Set();
   for (const feature of data.features) {
     const key = feature.properties.key;
@@ -1112,7 +1118,10 @@ function syncPhotoMarkers(name, data) {
       }
       own.domHandler(element, 'click', (event) => {
         event.stopPropagation();
-        if (click) runActions(click.do, { table: spec.records, key });
+        // A pointer's tap goes to the nearest site under it; a click with no
+        // pointer (Enter or Space on the focused marker) is this marker's own.
+        const hit = (event.detail && nearestPhoto(event.clientX, event.clientY)) || { entry, key };
+        if (hit.entry.click) runActions(hit.entry.click.do, { table: hit.entry.spec.records, key: hit.key });
       });
       m = { instance: own.marker(new maplibregl.Marker({ element }), `photo ${key}`), element, shown: false };
       m.instance.setLngLat(feature.geometry.coordinates);
@@ -1129,6 +1138,19 @@ function syncPhotoMarkers(name, data) {
     m.instance.remove();
     m.shown = false;
   }
+}
+
+/** The shown photo marker whose disc holds this point and whose site is nearest it. */
+function nearestPhoto(x, y) {
+  let best = null;
+  for (const entry of photoMarkers.values())
+    for (const [key, m] of entry.byKey) {
+      if (!m.shown) continue;
+      const box = m.element.getBoundingClientRect();
+      const distance = Math.hypot(x - (box.left + box.width / 2), y - (box.top + box.height / 2));
+      if (distance <= box.width / 2 && distance < (best?.distance ?? Infinity)) best = { entry, key, distance };
+    }
+  return best;
 }
 
 /*

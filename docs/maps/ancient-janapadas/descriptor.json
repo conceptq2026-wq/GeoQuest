@@ -122,6 +122,14 @@
         "text-font": [
           "Noto Sans Bengali"
         ],
+        "text-variable-anchor": [
+          "center",
+          "top",
+          "bottom",
+          "right",
+          "left"
+        ],
+        "text-radial-offset": 0.9,
         "text-optional": true
       },
       "paint": {
@@ -135,7 +143,12 @@
         "text-font": [
           "Noto Sans Bengali"
         ],
-        "text-anchor": "top",
+        "text-variable-anchor": [
+          "top",
+          "bottom",
+          "right",
+          "left"
+        ],
         "text-optional": true
       },
       "paint": {
@@ -243,26 +256,14 @@
           17,
           14
         ],
-        "text-offset": [
+        "text-radial-offset": [
           "case",
           [
             "get",
             "selected"
           ],
-          [
-            "literal",
-            [
-              0,
-              2.65
-            ]
-          ],
-          [
-            "literal",
-            [
-              0,
-              2.32
-            ]
-          ]
+          2.65,
+          2.32
         ],
         "symbol-sort-key": [
           "case",
