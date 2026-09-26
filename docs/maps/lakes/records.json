@@ -94,15 +94,15 @@
     "areaBn": "৩,৮৯,০০০ বর্গকিমি",
     "noteBn": "পৃথিবীর বৃহত্তম হ্রদ",
     "labelAt": [
-      50.5,
-      42
+      51.47919,
+      39.06432
     ],
-    "hasArea": false,
+    "hasArea": true,
     "frame": [
-      47.9,
-      39,
-      53.1,
-      45
+      46.707,
+      36.064,
+      54.079,
+      47.11
     ],
     "photo": {
       "marker": "photos/caspian-marker.webp",

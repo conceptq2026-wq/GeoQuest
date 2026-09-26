@@ -207,11 +207,15 @@
     "areaBn": "৩,৮৯,০০০ বর্গকিমি",
     "noteBn": "পৃথিবীর বৃহত্তম হ্রদ",
     "geometry": {
-      "point": {
-        "source": "wikidata",
-        "qid": "Q5484"
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_marine_polys.geojson",
+        "match": {
+          "name": "Caspian Sea",
+          "featurecla": "sea"
+        }
       },
-      "note": "Natural Earth files the Caspian as a sea, not in its lakes layer."
+      "note": "Natural Earth files the Caspian as a sea, in its marine polygons, not in its lakes layer; this is that polygon."
     },
     "photo": {
       "commonsFile": "File:Caspian Sea from orbit.jpg",
