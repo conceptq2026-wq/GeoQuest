@@ -137,7 +137,7 @@
     "sha256": "be36d6209e443038d02e309f0447c6e7f2a62f5fe60c605ffe90d064952f2a60",
     "licence": "CC BY 4.0 — RESOLVE Ecoregions 2017 (Dinerstein et al. 2017)",
     "extract": "tools/sources/resolve-extract.geojson",
-    "extractSha256": "a4413c02641d9ce7b04d0e77f86adec85d987a794e0bbcf3a0e0a02aa0b89e39"
+    "extractSha256": "d7712da95568dd6d25becf7b500c96cb9026adaa954a3dff68ed2f98d82a88b2"
   },
   "wikidataPoints": {
     "_comment": "P625 coordinates of the Wikidata items the Geography seeds name, from tools/extract-geography-points.mjs.",

@@ -1691,17 +1691,11 @@
     "areaBn": "৬,৭৩,০০০ বর্গকিমি",
     "noteBn": "দক্ষিণ আমেরিকার বৃহত্তম মরুভূমি",
     "geometry": {
-      "point": {
-        "source": "wikidata",
-        "qid": "Q1061324"
+      "area": {
+        "source": "resolve",
+        "id": "patagonian"
       },
-      "withheld": {
-        "area": {
-          "source": "resolve",
-          "id": "patagonian"
-        },
-        "reason": "RESOLVE's Patagonian steppe — the Patagonian Desert, also known as the Patagonian Steppe (Wikipedia revision 1361380627) — covers 576,907 km², but 2% of it is the Falkland Islands. The desert is bounded by the Andes to the west and the Atlantic to the east, so the union claims land that is not the feature. Marker only."
-      }
+      "note": "RESOLVE Ecoregions 2017's Patagonian steppe — the Patagonian Desert, also known as the Patagonian Steppe (Wikipedia revision 1361380627) — keeping only its parts on the same Natural Earth land polygon as its main body. That leaves out the Falkland Islands and Tierra del Fuego, which are separate landmasses, whole; no part is cut or redrawn. CC BY 4.0, credited on the map."
     },
     "photo": {
       "commonsFile": "File:Neuquen river 1.jpg",
@@ -1729,7 +1723,7 @@
         ]
       }
     },
-    "review": "area: rejected — the RESOLVE Patagonian steppe includes the Falkland Islands, which lie in the Atlantic beyond the desert's eastern bound. Marker only.",
+    "review": "area: first rejected because the RESOLVE Patagonian steppe includes the Falkland Islands, beyond the desert's Atlantic bound. By the user's decision (2026-09-26) the union is kept without its detached components: dropping a disjoint component of a source polygon is selection, not drawing — the same reasoning as the Sahara's detached Darfur patch. Only parts on the mainland are kept, which also leaves out Tierra del Fuego (15,072 km²), an island. What remains covers 550,232 km², smaller than the 673,000 km² of List of deserts by area, 96% in Argentina and 3% in Chile, between the Andes and the Atlantic as the Patagonian Desert article describes. Accepted as smaller than the usual extent.",
     "sources": {
       "nameBn": "editor-verified 2026-09-26 (approved list)",
       "countriesBn": "editor-verified 2026-09-26 (approved list)",

@@ -236,10 +236,14 @@ declares sources, layers, sheet rows and actions; it holds no content.
   savanna as desert, farmland as forest, an offshore island as a desert — is
   rejected and the record stays a marker, the union kept in
   `geometry.withheld` with the reason. Drawn this way: the Sahara (edge at
-  17–19°N, north of the conventional 15–16°N), the Arabian, Mojave and Great
-  Basin deserts, and the Amazon, Congo and Borneo rainforests. Rejected: the
-  Patagonian Desert, whose steppe ecoregion takes in the Falkland Islands. The
-  Caspian is Natural Earth's own "Caspian Sea" marine polygon.
+  17–19°N, north of the conventional 15–16°N), the Arabian, Mojave, Great
+  Basin and Patagonian deserts, and the Amazon, Congo and Borneo rainforests.
+  **Dropping a disjoint component is selection, not drawing**: where a union
+  takes in a detached landmass that is not the feature, only the parts on the
+  same Natural Earth land polygon as its main body are kept, each whole
+  (`mainlandOnly` in `tools/extract-resolve.mjs`). The Patagonian steppe
+  loses the Falklands and Tierra del Fuego that way. The Caspian is Natural
+  Earth's own "Caspian Sea" marine polygon.
 - **A source whose geometry comes from OpenStreetMap declares the ODbL credit**
   as its `attribution` — `© OpenStreetMap contributors`, linked to
   openstreetmap.org/copyright. The licence requires it. straits (`routes`,

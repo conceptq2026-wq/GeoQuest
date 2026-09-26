@@ -80,7 +80,10 @@ export const TAKE = {
   arabian: union(UNIONS.arabian, 3000),
   mojave: union(UNIONS.mojave, 1500),
   greatbasin: union(UNIONS.greatbasin, 2000),
-  patagonian: union(UNIONS.patagonian, 2000),
+  // The steppe ecoregion also takes in the Falkland Islands, beyond the
+  // desert's Atlantic bound. Only the parts on the same landmass as its main
+  // body are kept: a detached component is left out, never redrawn.
+  patagonian: { ...union(UNIONS.patagonian, 2000), mainlandOnly: true },
   amazon: union(UNIONS.amazon, 4000),
   congo: union(UNIONS.congo, 3000),
   borneo: union(UNIONS.borneo, 1500),
@@ -97,6 +100,37 @@ const sha = crypto.createHash('sha256').update(fs.readFileSync(zip)).digest('hex
 if (sha !== pin.sha256) throw new Error(`${pin.file}: sha256 ${sha}, pinned ${pin.sha256} — refusing it`);
 const shp = path.join(CACHE, 'resolve', 'Ecoregions2017.shp');
 if (!fs.existsSync(shp)) throw new Error(`unzip ${pin.file} into ${path.dirname(shp)} first`);
+
+/*
+ * Keep only the parts of a union that lie on the same landmass as its largest
+ * part, the landmass taken from Natural Earth's 10m land (pinned in
+ * sources.json). A part is kept whole or dropped whole: this selects
+ * components, it never cuts one.
+ */
+const LAND = JSON.parse(fs.readFileSync(path.join(CACHE, 'ne_10m_land.geojson'), 'utf8'));
+const inRing = ([x, y], ring) => {
+  let c = false;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    const [xi, yi] = ring[i], [xj, yj] = ring[j];
+    if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c;
+  }
+  return c;
+};
+const landPolygons = LAND.features.flatMap((f) => (f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates));
+const landmassOf = (pt) => landPolygons.findIndex((poly) => inRing(pt, poly[0]));
+async function sameLandmass(id, feature) {
+  const out = await mapshaper.applyCommands('-i a.json -explode -each "km2=this.area/1e6" -points inner -o parts.json format=geojson', { 'a.json': { type: 'FeatureCollection', features: [feature] } });
+  const points = JSON.parse(out['parts.json'].toString()).features;
+  const parts = feature.geometry.type === 'Polygon' ? [feature.geometry.coordinates] : feature.geometry.coordinates;
+  if (points.length !== parts.length) throw new Error(`${id}: ${points.length} inner points for ${parts.length} parts`);
+  const largest = points.reduce((a, b, i) => (b.properties.km2 > points[a].properties.km2 ? i : a), 0);
+  const home = landmassOf(points[largest].geometry.coordinates);
+  if (home < 0) throw new Error(`${id}: its largest part is on no Natural Earth land polygon`);
+  const keep = parts.filter((_, i) => landmassOf(points[i].geometry.coordinates) === home);
+  const dropped = points.filter((p, i) => landmassOf(p.geometry.coordinates) !== home);
+  console.log(`  ${id}: kept ${keep.length} of ${parts.length} parts; dropped ${dropped.length} (${dropped.map((p) => `${Math.round(p.properties.km2)} km² at ${p.geometry.coordinates.map((n) => n.toFixed(1))}`).join('; ')})`);
+  return { ...feature, geometry: keep.length === 1 ? { type: 'Polygon', coordinates: keep[0] } : { type: 'MultiPolygon', coordinates: keep } };
+}
 
 const features = [];
 for (const [id, t] of Object.entries(TAKE)) {
@@ -118,7 +152,7 @@ for (const [id, t] of Object.entries(TAKE)) {
   const out = await mapshaper.applyCommands(cmd);
   const fc = JSON.parse(out['out.json'].toString());
   if (fc.features.length !== 1) throw new Error(`${id}: ${fc.features.length} features for ${t.where} — expected exactly one`);
-  features.push(fc.features[0]);
+  features.push(t.mainlandOnly ? await sameLandmass(id, fc.features[0]) : fc.features[0]);
   console.log(`  ${id}: ${t.where}${t.dissolve ? ' (merged)' : ''}`);
 }
 
