@@ -15,7 +15,8 @@ const vtRequire = createRequire(require.resolve('vt-pbf'));
 const { VectorTile } = vtRequire('@mapbox/vector-tile');
 const Pbf = vtRequire('pbf');
 
-const ROOT = path.resolve('..');
+const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
+const ROOT = path.resolve(HERE, '..');
 // The served tree — everything GitHub Pages publishes, and nothing else.
 // Change here if it moves.
 const SERVED = path.join(ROOT, 'docs');
@@ -129,7 +130,7 @@ const vendored = [
   ['shared/vendor/maplibre-gl-6.9.0/maplibre-gl.css', 'node_modules/maplibre-gl/dist/maplibre-gl.css'],
   ['shared/vendor/pmtiles-4.5.0/pmtiles.js', 'node_modules/pmtiles/dist/pmtiles.js'],
 ];
-for (const [copy, original] of vendored) check(sha(path.join(SERVED, copy)) === sha(original), `${copy} matches the pinned npm package`);
+for (const [copy, original] of vendored) check(sha(path.join(SERVED, copy)) === sha(path.join(HERE, original)), `${copy} matches the pinned npm package`);
 
 // ---- straits map: each passage's first view must show what it sits between ----
 const { PASSAGES, SEAS } = await import(pathToFileURL(path.join(STRAITS_DIR, 'data.js')).href);
@@ -142,7 +143,7 @@ for (const [key, p] of Object.entries(PASSAGES)) {
 }
 
 // ---- straits map: lanes and canals come only from the pinned OSM snapshots ----
-const pinnedSources = JSON.parse(fs.readFileSync('sources.json', 'utf8'));
+const pinnedSources = JSON.parse(fs.readFileSync(path.join(HERE, 'sources.json'), 'utf8'));
 for (const entry of [pinnedSources.osmTss, pinnedSources.osmCanals]) {
   check(sha(path.join(ROOT, entry.file)) === entry.sha256, `${entry.file} matches its pinned checksum`);
 }

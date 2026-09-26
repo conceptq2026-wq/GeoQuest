@@ -17,7 +17,8 @@ import { pathToFileURL } from 'node:url';
 import { readSource } from './lib/geo.mjs';
 import { loadBoundarySources, traceRuns, joinRuns, simplifyFeatures, innerPoints, labelAnchor, matchesCodes } from './lib/border-traces.mjs';
 
-const ROOT = path.resolve('..');
+const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
+const ROOT = path.resolve(HERE, '..');
 // Where the authored line list lives today. It is the straits map's file for
 // historical reasons; the border lines are no longer that map's concern, and
 // this is the only thing still read from there.
