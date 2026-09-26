@@ -1,0 +1,224 @@
+{
+  "amazon": {
+    "groupBn": "ক্রান্তীয় বৃষ্টিঅরণ্য",
+    "nameBn": "আমাজন বৃষ্টিঅরণ্য",
+    "nameEn": "Amazon rainforest",
+    "typeBn": "ক্রান্তীয় বৃষ্টিঅরণ্য",
+    "countriesBn": "ব্রাজিল, পেরু, কলম্বিয়াসহ ৯টি দেশ",
+    "noteBn": "বৃহত্তম ক্রান্তীয় বৃষ্টিঅরণ্য; প্রায় ৬০% ব্রাজিলে",
+    "labelAt": [
+      -60.03,
+      -3.16
+    ],
+    "hasArea": false,
+    "frame": [
+      -62.63,
+      -6.16,
+      -57.43,
+      -0.16
+    ],
+    "photo": {
+      "marker": "photos/amazon-marker.webp",
+      "card": "photos/amazon-card.webp",
+      "author": "Phil P Harris.",
+      "licence": "CC BY-SA 2.5",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+      "page": "https://commons.wikimedia.org/wiki/File:Amazon_Manaus_forest.jpg",
+      "cropped": true
+    }
+  },
+  "congo": {
+    "groupBn": "ক্রান্তীয় বৃষ্টিঅরণ্য",
+    "nameBn": "কঙ্গো বৃষ্টিঅরণ্য",
+    "nameEn": "Congo rainforest",
+    "typeBn": "ক্রান্তীয় বৃষ্টিঅরণ্য",
+    "countriesBn": "কঙ্গো গণপ্রজাতন্ত্র, কঙ্গো প্রজাতন্ত্র, ক্যামেরুন, গ্যাবন, মধ্য আফ্রিকান প্রজাতন্ত্র",
+    "noteBn": "দ্বিতীয় বৃহত্তম ক্রান্তীয় বনভূমি",
+    "labelAt": [
+      21.10786,
+      1.06722
+    ],
+    "hasArea": false,
+    "frame": [
+      18.508,
+      -1.933,
+      23.708,
+      4.067
+    ],
+    "photo": {
+      "marker": "photos/congo-marker.webp",
+      "card": "photos/congo-card.webp",
+      "author": "MONUSCO Photos",
+      "licence": "CC BY-SA 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Rainforest_-_Ituri_(20874628148).jpg",
+      "cropped": true
+    }
+  },
+  "borneo": {
+    "groupBn": "ক্রান্তীয় বৃষ্টিঅরণ্য",
+    "nameBn": "বোর্নিও বৃষ্টিঅরণ্য",
+    "nameEn": "Borneo rainforest",
+    "typeBn": "ক্রান্তীয় বৃষ্টিঅরণ্য",
+    "countriesBn": "ইন্দোনেশিয়া, মালয়েশিয়া, ব্রুনাই",
+    "labelAt": [
+      114,
+      -2
+    ],
+    "hasArea": false,
+    "frame": [
+      111.4,
+      -5,
+      116.6,
+      1
+    ],
+    "photo": {
+      "marker": "photos/borneo-marker.webp",
+      "card": "photos/borneo-card.webp",
+      "author": "Tom from the Netherlands",
+      "licence": "CC BY-SA 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Gunung_Palung_Jungle.jpg",
+      "cropped": true
+    }
+  },
+  "daintree": {
+    "groupBn": "ক্রান্তীয় বৃষ্টিঅরণ্য",
+    "nameBn": "ডেইনট্রি বৃষ্টিঅরণ্য",
+    "nameEn": "Daintree Rainforest",
+    "typeBn": "ক্রান্তীয় বৃষ্টিঅরণ্য",
+    "countriesBn": "অস্ট্রেলিয়া",
+    "noteBn": "প্রাচীনতম ক্রান্তীয় বৃষ্টিঅরণ্যগুলোর একটি (প্রায় ১৮ কোটি বছর)",
+    "labelAt": [
+      145.4,
+      -16.2
+    ],
+    "hasArea": false,
+    "frame": [
+      142.8,
+      -19.2,
+      148,
+      -13.2
+    ],
+    "photo": {
+      "marker": "photos/daintree-marker.webp",
+      "card": "photos/daintree-card.webp",
+      "author": "Killerscene",
+      "licence": "CC0",
+      "licenceUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "page": "https://commons.wikimedia.org/wiki/File:Daintree_Rainforest_2.jpg",
+      "cropped": true
+    }
+  },
+  "sundarbans": {
+    "groupBn": "ম্যানগ্রোভ",
+    "nameBn": "সুন্দরবন",
+    "nameEn": "Sundarbans",
+    "typeBn": "ম্যানগ্রোভ",
+    "countriesBn": "বাংলাদেশ, ভারত",
+    "noteBn": "পৃথিবীর বৃহত্তম ম্যানগ্রোভ বন (১০,২৭৭ বর্গকিমি)",
+    "labelAt": [
+      89.26414,
+      22.16585
+    ],
+    "hasArea": true,
+    "frame": [
+      86.664,
+      19.166,
+      91.864,
+      25.166
+    ],
+    "photo": {
+      "marker": "photos/sundarbans-marker.webp",
+      "card": "photos/sundarbans-card.webp",
+      "author": "Kingshuk Mondal",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Dense_Mangrove_Forest_of_the_Sundarban_Tiger_Reserve_during_High_Tide,_West_Bengal,_India_03.jpg",
+      "cropped": true
+    }
+  },
+  "taiga": {
+    "groupBn": "সরলবর্গীয়",
+    "nameBn": "তৈগা (বোরিয়াল বন)",
+    "nameEn": "Taiga (boreal forest)",
+    "typeBn": "সরলবর্গীয়",
+    "countriesBn": "রাশিয়া, কানাডা, যুক্তরাষ্ট্র (আলাস্কা), নর্ডিক দেশসমূহ",
+    "noteBn": "পৃথিবীর বৃহত্তম স্থলজ বায়োম",
+    "labelAt": [
+      102.43073,
+      60.43897
+    ],
+    "hasArea": true,
+    "frame": [
+      -164.945,
+      45.53,
+      169.912,
+      71.417
+    ],
+    "photo": {
+      "marker": "photos/taiga-marker.webp",
+      "card": "photos/taiga-card.webp",
+      "author": "Vyacheslav Argenberg",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Ergaki,_Taiga_in_Siberia,_Dark_coniferous_forest,_Sayan_Mountains,_Russia.jpg",
+      "cropped": true
+    }
+  },
+  "blackforest": {
+    "groupBn": "নাতিশীতোষ্ণ",
+    "nameBn": "ব্ল্যাক ফরেস্ট",
+    "nameEn": "Black Forest",
+    "typeBn": "নাতিশীতোষ্ণ",
+    "countriesBn": "জার্মানি",
+    "labelAt": [
+      8.15,
+      48.3
+    ],
+    "hasArea": false,
+    "frame": [
+      5.55,
+      45.3,
+      10.75,
+      51.3
+    ],
+    "photo": {
+      "marker": "photos/blackforest-marker.webp",
+      "card": "photos/blackforest-card.webp",
+      "author": "Stefan Karl",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Blick_ins_Renchtal.JPG",
+      "cropped": true
+    }
+  },
+  "bialowieza": {
+    "groupBn": "নাতিশীতোষ্ণ",
+    "nameBn": "বিয়ালোভিয়েজা বন",
+    "nameEn": "Białowieża Forest",
+    "typeBn": "নাতিশীতোষ্ণ",
+    "countriesBn": "পোল্যান্ড, বেলারুশ",
+    "noteBn": "ইউরোপের আদিম বনভূমির অবশিষ্ট বৃহত্তম অংশ",
+    "labelAt": [
+      23.95,
+      52.75
+    ],
+    "hasArea": false,
+    "frame": [
+      21.35,
+      49.75,
+      26.55,
+      55.75
+    ],
+    "photo": {
+      "marker": "photos/bialowieza-marker.webp",
+      "card": "photos/bialowieza-card.webp",
+      "author": "Jacek Karczmarz",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Bialowieza_National_Park_in_Poland0029.JPG",
+      "cropped": true
+    }
+  }
+}

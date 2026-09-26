@@ -1,0 +1,318 @@
+{
+  "schema": "geoquest/map-descriptor@1",
+  "id": "forests",
+  "section": "geography",
+  "title": {
+    "bn": "বিশ্বের বিখ্যাত বনভূমি",
+    "en": "Famous Forests of the World"
+  },
+  "basemap": "world",
+  "view": {
+    "fitBounds": [
+      -125,
+      -42,
+      150,
+      62
+    ]
+  },
+  "constraints": {
+    "minZoom": 0,
+    "maxZoom": 11
+  },
+  "lookups": {},
+  "records": {
+    "forests": {
+      "file": "./records.json",
+      "fields": {
+        "groupBn": {
+          "type": "text",
+          "required": true
+        },
+        "nameBn": {
+          "type": "text",
+          "required": true
+        },
+        "nameEn": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "typeBn": {
+          "type": "text",
+          "verifiable": true
+        },
+        "countriesBn": {
+          "type": "text",
+          "required": true
+        },
+        "noteBn": {
+          "type": "text",
+          "verifiable": true
+        },
+        "labelAt": {
+          "type": "point",
+          "required": true
+        },
+        "hasArea": {
+          "type": "boolean",
+          "required": true
+        },
+        "frame": {
+          "type": "bbox",
+          "required": true
+        },
+        "photo": {
+          "type": "photo"
+        }
+      }
+    }
+  },
+  "sources": {
+    "areas": {
+      "records": "forests",
+      "geometry": "./areas.geojson",
+      "joinField": "id",
+      "expectGeometry": {
+        "hasArea": true
+      },
+      "state": [
+        "selected"
+      ],
+      "properties": [],
+      "attribution": "<a href=\"https://ecoregions.appspot.com/\" target=\"_blank\" rel=\"noopener noreferrer\">RESOLVE Ecoregions 2017 (CC BY 4.0)</a>"
+    },
+    "points": {
+      "records": "forests",
+      "geometryFrom": "labelAt",
+      "state": [
+        "selected"
+      ],
+      "properties": [
+        "nameBn"
+      ],
+      "selectionMarker": true,
+      "photoMarker": {
+        "field": "photo"
+      }
+    }
+  },
+  "styles": {
+    "label": {
+      "layout": {
+        "text-font": [
+          "Noto Sans Bengali"
+        ],
+        "text-anchor": "top",
+        "text-optional": true
+      },
+      "paint": {
+        "text-color": "#13233a",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    "area-fill": {
+      "paint": {
+        "fill-color": "#3f8f52"
+      }
+    },
+    "area-edge": {
+      "layout": {
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "#2a6538"
+      }
+    }
+  },
+  "layers": [
+    {
+      "id": "area-fill",
+      "type": "fill",
+      "source": "areas",
+      "slot": "belowLabels",
+      "style": "area-fill",
+      "paint": {
+        "fill-opacity": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          0.55,
+          0.3
+        ]
+      }
+    },
+    {
+      "id": "area-edge",
+      "type": "line",
+      "source": "areas",
+      "slot": "belowLabels",
+      "style": "area-edge",
+      "paint": {
+        "line-width": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          1.6,
+          0.67
+        ],
+        "line-opacity": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          1,
+          0.8
+        ]
+      }
+    },
+    {
+      "id": "label",
+      "type": "symbol",
+      "source": "points",
+      "slot": "aboveLabels",
+      "style": "label",
+      "layout": {
+        "text-field": [
+          "get",
+          "nameBn"
+        ],
+        "text-size": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          15,
+          12.5
+        ],
+        "text-offset": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          [
+            "literal",
+            [
+              0,
+              3
+            ]
+          ],
+          [
+            "literal",
+            [
+              0,
+              2.6
+            ]
+          ]
+        ],
+        "symbol-sort-key": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          0,
+          1
+        ]
+      }
+    }
+  ],
+  "controls": [
+    {
+      "type": "picker",
+      "id": "forests",
+      "from": "forests",
+      "groupBy": {
+        "field": "groupBn",
+        "order": [
+          "ক্রান্তীয় বৃষ্টিঅরণ্য",
+          "ম্যানগ্রোভ",
+          "সরলবর্গীয়",
+          "নাতিশীতোষ্ণ"
+        ]
+      },
+      "placeholder": "একটি বনভূমি বেছে নিন…",
+      "labelEn": "Choose a forest",
+      "label": {
+        "field": "nameBn"
+      },
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "on": "click",
+      "target": "source:points",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
+    },
+    {
+      "on": "click",
+      "target": "source:areas",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
+    }
+  ],
+  "sheet": {
+    "photo": {
+      "field": "photo"
+    },
+    "kicker": {
+      "field": "typeBn"
+    },
+    "title": {
+      "field": "nameBn"
+    },
+    "rows": [
+      {
+        "label": "দেশ",
+        "field": "countriesBn"
+      },
+      {
+        "label": "বিবরণ",
+        "field": "noteBn"
+      }
+    ]
+  }
+}

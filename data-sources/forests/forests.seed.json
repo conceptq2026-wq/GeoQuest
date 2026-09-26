@@ -1,0 +1,416 @@
+{
+  "amazon": {
+    "id": "amazon",
+    "groupBn": "ক্রান্তীয় বৃষ্টিঅরণ্য",
+    "nameBn": "আমাজন বৃষ্টিঅরণ্য",
+    "nameEn": "Amazon rainforest",
+    "typeBn": "ক্রান্তীয় বৃষ্টিঅরণ্য",
+    "countriesBn": "ব্রাজিল, পেরু, কলম্বিয়াসহ ৯টি দেশ",
+    "noteBn": "বৃহত্তম ক্রান্তীয় বৃষ্টিঅরণ্য; প্রায় ৬০% ব্রাজিলে",
+    "geometry": {
+      "point": {
+        "source": "wikidata",
+        "qid": "Q177567"
+      },
+      "note": "No single open polygon of the Amazon rainforest; RESOLVE divides it into many ecoregions."
+    },
+    "photo": {
+      "commonsFile": "File:Amazon Manaus forest.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Amazon_Manaus_forest.jpg",
+      "author": "Phil P Harris.",
+      "licence": "CC BY-SA 2.5",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+      "sha1": "63fdc91b2a2c9bf52ace2528c059faaed143127e",
+      "size": [
+        964,
+        415
+      ],
+      "crop": {
+        "marker": [
+          275,
+          0,
+          415,
+          415
+        ],
+        "card": [
+          150,
+          0,
+          664,
+          415
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "noteBn": [
+        {
+          "title": "Amazon rainforest",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Amazon_rainforest"
+        }
+      ]
+    }
+  },
+  "congo": {
+    "id": "congo",
+    "groupBn": "ক্রান্তীয় বৃষ্টিঅরণ্য",
+    "nameBn": "কঙ্গো বৃষ্টিঅরণ্য",
+    "nameEn": "Congo rainforest",
+    "typeBn": "ক্রান্তীয় বৃষ্টিঅরণ্য",
+    "countriesBn": "কঙ্গো গণপ্রজাতন্ত্র, কঙ্গো প্রজাতন্ত্র, ক্যামেরুন, গ্যাবন, মধ্য আফ্রিকান প্রজাতন্ত্র",
+    "noteBn": "দ্বিতীয় বৃহত্তম ক্রান্তীয় বনভূমি",
+    "geometry": {
+      "point": {
+        "source": "wikidata",
+        "qid": "Q3079079"
+      },
+      "note": "No single open polygon of the Congo rainforest; RESOLVE divides it into several ecoregions."
+    },
+    "photo": {
+      "commonsFile": "File:Rainforest - Ituri (20874628148).jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Rainforest_-_Ituri_(20874628148).jpg",
+      "author": "MONUSCO Photos",
+      "licence": "CC BY-SA 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "sha1": "1d02f25741da27a8d354063fe7b7e07a65e25017",
+      "size": [
+        5760,
+        3840
+      ],
+      "crop": {
+        "marker": [
+          960,
+          0,
+          3840,
+          3840
+        ],
+        "card": [
+          0,
+          120,
+          5760,
+          3600
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "noteBn": [
+        {
+          "title": "Congolian rainforests",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Congolian_rainforests"
+        }
+      ]
+    }
+  },
+  "borneo": {
+    "id": "borneo",
+    "groupBn": "ক্রান্তীয় বৃষ্টিঅরণ্য",
+    "nameBn": "বোর্নিও বৃষ্টিঅরণ্য",
+    "nameEn": "Borneo rainforest",
+    "typeBn": "ক্রান্তীয় বৃষ্টিঅরণ্য",
+    "countriesBn": "ইন্দোনেশিয়া, মালয়েশিয়া, ব্রুনাই",
+    "geometry": {
+      "point": {
+        "source": "wikidata",
+        "qid": "Q2913503"
+      },
+      "note": "No single open polygon of the Borneo rainforest; RESOLVE divides it into lowland, montane and peat-swamp ecoregions."
+    },
+    "photo": {
+      "commonsFile": "File:Gunung Palung Jungle.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Gunung_Palung_Jungle.jpg",
+      "author": "Tom from the Netherlands",
+      "licence": "CC BY-SA 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "sha1": "a637b45548662c371ab14ee3bb70b3d20e5d3ec7",
+      "size": [
+        1600,
+        1067
+      ],
+      "crop": {
+        "marker": [
+          267,
+          0,
+          1067,
+          1067
+        ],
+        "card": [
+          0,
+          34,
+          1600,
+          1000
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "daintree": {
+    "id": "daintree",
+    "groupBn": "ক্রান্তীয় বৃষ্টিঅরণ্য",
+    "nameBn": "ডেইনট্রি বৃষ্টিঅরণ্য",
+    "nameEn": "Daintree Rainforest",
+    "typeBn": "ক্রান্তীয় বৃষ্টিঅরণ্য",
+    "countriesBn": "অস্ট্রেলিয়া",
+    "noteBn": "প্রাচীনতম ক্রান্তীয় বৃষ্টিঅরণ্যগুলোর একটি (প্রায় ১৮ কোটি বছর)",
+    "geometry": {
+      "point": {
+        "source": "wikidata",
+        "qid": "Q5209517"
+      },
+      "note": "No open polygon of the whole Daintree Rainforest; the national park covers only part of it."
+    },
+    "photo": {
+      "commonsFile": "File:Daintree Rainforest 2.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Daintree_Rainforest_2.jpg",
+      "author": "Killerscene",
+      "licence": "CC0",
+      "licenceUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "sha1": "3a237a6f3bbb3a5eb32f652dc68cc2845bb8992d",
+      "size": [
+        2448,
+        3264
+      ],
+      "crop": {
+        "marker": [
+          0,
+          408,
+          2448,
+          2448
+        ],
+        "card": [
+          0,
+          867,
+          2448,
+          1530
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "noteBn": [
+        {
+          "title": "Daintree Rainforest",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Daintree_Rainforest"
+        }
+      ]
+    }
+  },
+  "sundarbans": {
+    "id": "sundarbans",
+    "groupBn": "ম্যানগ্রোভ",
+    "nameBn": "সুন্দরবন",
+    "nameEn": "Sundarbans",
+    "typeBn": "ম্যানগ্রোভ",
+    "countriesBn": "বাংলাদেশ, ভারত",
+    "noteBn": "পৃথিবীর বৃহত্তম ম্যানগ্রোভ বন (১০,২৭৭ বর্গকিমি)",
+    "geometry": {
+      "area": {
+        "source": "resolve",
+        "id": "sundarbans"
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Dense Mangrove Forest of the Sundarban Tiger Reserve during High Tide, West Bengal, India 03.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Dense_Mangrove_Forest_of_the_Sundarban_Tiger_Reserve_during_High_Tide,_West_Bengal,_India_03.jpg",
+      "author": "Kingshuk Mondal",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
+      "sha1": "b084c3f718d2e83c3eca0e411d28f0155c96c7c3",
+      "size": [
+        6000,
+        4000
+      ],
+      "crop": {
+        "marker": [
+          1000,
+          0,
+          4000,
+          4000
+        ],
+        "card": [
+          0,
+          125,
+          6000,
+          3750
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "noteBn": [
+        {
+          "title": "Sundarbans",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Sundarbans"
+        }
+      ]
+    }
+  },
+  "taiga": {
+    "id": "taiga",
+    "groupBn": "সরলবর্গীয়",
+    "nameBn": "তৈগা (বোরিয়াল বন)",
+    "nameEn": "Taiga (boreal forest)",
+    "typeBn": "সরলবর্গীয়",
+    "countriesBn": "রাশিয়া, কানাডা, যুক্তরাষ্ট্র (আলাস্কা), নর্ডিক দেশসমূহ",
+    "noteBn": "পৃথিবীর বৃহত্তম স্থলজ বায়োম",
+    "geometry": {
+      "area": {
+        "source": "resolve",
+        "id": "taiga"
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Ergaki, Taiga in Siberia, Dark coniferous forest, Sayan Mountains, Russia.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Ergaki,_Taiga_in_Siberia,_Dark_coniferous_forest,_Sayan_Mountains,_Russia.jpg",
+      "author": "Vyacheslav Argenberg",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
+      "sha1": "be10e1d9216cb426814dfb477780e93bf3b71eaa",
+      "size": [
+        6000,
+        4000
+      ],
+      "crop": {
+        "marker": [
+          1000,
+          0,
+          4000,
+          4000
+        ],
+        "card": [
+          0,
+          125,
+          6000,
+          3750
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "noteBn": [
+        {
+          "title": "Taiga",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Taiga"
+        }
+      ]
+    }
+  },
+  "blackforest": {
+    "id": "blackforest",
+    "groupBn": "নাতিশীতোষ্ণ",
+    "nameBn": "ব্ল্যাক ফরেস্ট",
+    "nameEn": "Black Forest",
+    "typeBn": "নাতিশীতোষ্ণ",
+    "countriesBn": "জার্মানি",
+    "geometry": {
+      "point": {
+        "source": "wikidata",
+        "qid": "Q4204"
+      },
+      "note": "No open polygon of the whole Black Forest; its nature parks cover only parts."
+    },
+    "photo": {
+      "commonsFile": "File:Blick ins Renchtal.JPG",
+      "page": "https://commons.wikimedia.org/wiki/File:Blick_ins_Renchtal.JPG",
+      "author": "Stefan Karl",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sha1": "1ff5f4b35bb95f55d8ea02e15ea075f56315f961",
+      "size": [
+        4000,
+        3000
+      ],
+      "crop": {
+        "marker": [
+          500,
+          0,
+          3000,
+          3000
+        ],
+        "card": [
+          0,
+          250,
+          4000,
+          2500
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "bialowieza": {
+    "id": "bialowieza",
+    "groupBn": "নাতিশীতোষ্ণ",
+    "nameBn": "বিয়ালোভিয়েজা বন",
+    "nameEn": "Białowieża Forest",
+    "typeBn": "নাতিশীতোষ্ণ",
+    "countriesBn": "পোল্যান্ড, বেলারুশ",
+    "noteBn": "ইউরোপের আদিম বনভূমির অবশিষ্ট বৃহত্তম অংশ",
+    "geometry": {
+      "point": {
+        "source": "wikidata",
+        "qid": "Q192666"
+      },
+      "note": "No single open polygon of the whole forest; the Polish and Belarusian national parks cover only parts."
+    },
+    "photo": {
+      "commonsFile": "File:Bialowieza National Park in Poland0029.JPG",
+      "page": "https://commons.wikimedia.org/wiki/File:Bialowieza_National_Park_in_Poland0029.JPG",
+      "author": "Jacek Karczmarz",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sha1": "648ce39351d00870a23db7d2af8413c64ee8701c",
+      "size": [
+        4288,
+        2848
+      ],
+      "crop": {
+        "marker": [
+          720,
+          0,
+          2848,
+          2848
+        ],
+        "card": [
+          0,
+          84,
+          4288,
+          2680
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "noteBn": [
+        {
+          "title": "Białowieża Forest",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Białowieża_Forest"
+        }
+      ]
+    }
+  }
+}

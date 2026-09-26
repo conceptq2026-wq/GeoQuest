@@ -39,6 +39,14 @@
       }
     },
     {
+      "id": "forests",
+      "section": "geography",
+      "title": {
+        "en": "Famous Forests of the World",
+        "bn": "বিশ্বের বিখ্যাত বনভূমি"
+      }
+    },
+    {
       "id": "lakes",
       "section": "geography",
       "title": {
