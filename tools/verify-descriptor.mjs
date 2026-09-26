@@ -48,7 +48,7 @@ const TECH_SEED = path.join(ROOT, 'data-sources/tech-headquarters/companies.seed
 // The Geography seeds, one folder per map, and each map's expected pending
 // count: deserts 2 (Nubian and Sinai areas, no source found).
 const GEO_SEEDS = path.join(ROOT, 'data-sources');
-const GEOGRAPHY = { deserts: 2, lakes: 0, forests: 0 };
+const GEOGRAPHY = { deserts: 2, lakes: 0, forests: 0, mountains: 0 };
 const TECH_CATEGORY = 'প্রযুক্তি প্রতিষ্ঠান';
 
 let failures = 0;

@@ -53,6 +53,14 @@
         "en": "Famous Lakes of the World",
         "bn": "বিশ্বের বিখ্যাত হ্রদ"
       }
+    },
+    {
+      "id": "mountains",
+      "section": "geography",
+      "title": {
+        "en": "Famous Mountains and Peaks of the World",
+        "bn": "বিশ্বের বিখ্যাত পর্বত ও শৃঙ্গ"
+      }
     }
   ]
 }

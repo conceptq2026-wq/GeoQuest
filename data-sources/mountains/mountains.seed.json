@@ -1,0 +1,1747 @@
+{
+  "himalaya": {
+    "id": "himalaya",
+    "groupBn": "পর্বতমালা",
+    "nameBn": "হিমালয়",
+    "nameEn": "Himalayas",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "নেপাল, ভারত, চীন, ভুটান, পাকিস্তান",
+    "noteBn": "সর্বোচ্চ শৃঙ্গ মাউন্ট এভারেস্ট",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "HIMALAYAS",
+          "FEATURECLA": "Range/mtn"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Himalayas.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Himalayas.jpg",
+      "author": "NASA",
+      "licence": "Public domain",
+      "sha1": "90e1d850f531558d161a4e1f662c1b527c799ea3",
+      "size": [
+        3032,
+        1998
+      ],
+      "crop": {
+        "marker": [
+          517,
+          0,
+          1998,
+          1998
+        ],
+        "card": [
+          0,
+          52,
+          3032,
+          1895
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "noteBn": [
+        {
+          "title": "List of highest mountains on Earth",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_highest_mountains_on_Earth"
+        }
+      ]
+    }
+  },
+  "karakoram": {
+    "id": "karakoram",
+    "groupBn": "পর্বতমালা",
+    "nameBn": "কারাকোরাম",
+    "nameEn": "Karakoram",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "পাকিস্তান, ভারত, চীন",
+    "noteBn": "সর্বোচ্চ শৃঙ্গ কে-টু",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "KARAKORAM RA.",
+          "FEATURECLA": "Range/mtn"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:K2-big.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:K2-big.jpg",
+      "author": "AdamJacobMuller",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+      "sha1": "fc241f1672811468e683d69cf1b300c55bef9dfa",
+      "size": [
+        1000,
+        1333
+      ],
+      "crop": {
+        "marker": [
+          0,
+          167,
+          1000,
+          1000
+        ],
+        "card": [
+          0,
+          354,
+          1000,
+          625
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "noteBn": [
+        {
+          "title": "List of highest mountains on Earth",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_highest_mountains_on_Earth"
+        }
+      ]
+    }
+  },
+  "hindukush": {
+    "id": "hindukush",
+    "groupBn": "পর্বতমালা",
+    "nameBn": "হিন্দুকুশ",
+    "nameEn": "Hindu Kush",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "আফগানিস্তান, পাকিস্তান",
+    "noteBn": "সর্বোচ্চ শৃঙ্গ তিরিচ মির",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "HINDU KUSH",
+          "FEATURECLA": "Range/mtn"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Mountains in Afghanistan.JPG",
+      "page": "https://commons.wikimedia.org/wiki/File:Mountains_in_Afghanistan.JPG",
+      "author": "Master Sgt. Andy Dunaway, U.S. Air Force",
+      "licence": "Public domain",
+      "sha1": "cc98cf9d25eb3b9a99ca7a0a2e90421f7eb5ffbf",
+      "size": [
+        4288,
+        2848
+      ],
+      "crop": {
+        "marker": [
+          720,
+          0,
+          2848,
+          2848
+        ],
+        "card": [
+          0,
+          84,
+          4288,
+          2680
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "noteBn": [
+        {
+          "title": "List of highest mountains on Earth",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_highest_mountains_on_Earth"
+        }
+      ]
+    }
+  },
+  "pamir": {
+    "id": "pamir",
+    "groupBn": "পর্বতমালা",
+    "nameBn": "পামির",
+    "nameEn": "Pamir Mountains",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "তাজিকিস্তান, কিরগিজস্তান, আফগানিস্তান, চীন, পাকিস্তান",
+    "noteBn": "\"পৃথিবীর ছাদ\" নামে পরিচিত",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "PAMIRS",
+          "FEATURECLA": "Range/mtn"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Gutman Karakul lake.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Gutman_Karakul_lake.jpg",
+      "author": "Caroline Gutman",
+      "licence": "CC0",
+      "licenceUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "sha1": "79415941e965d399a38edf4ba847e64a2f7a9d4a",
+      "size": [
+        3264,
+        2448
+      ],
+      "crop": {
+        "marker": [
+          408,
+          0,
+          2448,
+          2448
+        ],
+        "card": [
+          0,
+          204,
+          3264,
+          2040
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "noteBn": [
+        {
+          "title": "Pamir Mountains",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Pamir_Mountains"
+        }
+      ]
+    }
+  },
+  "urals": {
+    "id": "urals",
+    "groupBn": "পর্বতমালা",
+    "nameBn": "উরাল",
+    "nameEn": "Ural Mountains",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "রাশিয়া, কাজাখস্তান",
+    "noteBn": "ইউরোপ ও এশিয়ার প্রচলিত সীমারেখা",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "URAL MOUNTAINS",
+          "FEATURECLA": "Range/mtn"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Landscape view in Circumpolar Urals.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Landscape_view_in_Circumpolar_Urals.jpg",
+      "author": "ugraland from Moscow, Russia",
+      "licence": "CC BY 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0",
+      "sha1": "f032f72d8a1214b3d15401fd544ffe04fd937877",
+      "size": [
+        2272,
+        1704
+      ],
+      "crop": {
+        "marker": [
+          284,
+          0,
+          1704,
+          1704
+        ],
+        "card": [
+          0,
+          142,
+          2272,
+          1420
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "noteBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "caucasus": {
+    "id": "caucasus",
+    "groupBn": "পর্বতমালা",
+    "nameBn": "ককেশাস",
+    "nameEn": "Caucasus Mountains",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "রাশিয়া, জর্জিয়া, আজারবাইজান, আর্মেনিয়া",
+    "noteBn": "সর্বোচ্চ শৃঙ্গ এলব্রুস",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "CAUCASUS MTS.",
+          "FEATURECLA": "Range/mtn"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Kavkasioni.JPG",
+      "page": "https://commons.wikimedia.org/wiki/File:Kavkasioni.JPG",
+      "author": "პაატა შ",
+      "licence": "Public domain",
+      "sha1": "3daf5f37aa69aafadcdc020b380f22f8998d4082",
+      "size": [
+        3648,
+        2736
+      ],
+      "crop": {
+        "marker": [
+          456,
+          0,
+          2736,
+          2736
+        ],
+        "card": [
+          0,
+          228,
+          3648,
+          2280
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "noteBn": [
+        {
+          "title": "Seven Summits",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Seven_Summits"
+        }
+      ]
+    }
+  },
+  "alps": {
+    "id": "alps",
+    "groupBn": "পর্বতমালা",
+    "nameBn": "আল্পস",
+    "nameEn": "Alps",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "ফ্রান্স, সুইজারল্যান্ড, ইতালি, অস্ট্রিয়া, জার্মানিসহ ৮টি দেশ",
+    "noteBn": "সর্বোচ্চ শৃঙ্গ মঁ ব্লাঁ",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "ALPS",
+          "FEATURECLA": "Range/mtn"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Alps 2007-03-13 10.10UTC 1px-250m.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Alps_2007-03-13_10.10UTC_1px-250m.jpg",
+      "author": "Terra (EOS AM-1) satellite",
+      "licence": "Public domain",
+      "sha1": "2094b39d651de6bd98e193a856e751850e029c0e",
+      "size": [
+        3600,
+        2800
+      ],
+      "crop": {
+        "marker": [
+          400,
+          0,
+          2800,
+          2800
+        ],
+        "card": [
+          0,
+          275,
+          3600,
+          2250
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "noteBn": [
+        {
+          "title": "Mont Blanc",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Mont_Blanc"
+        }
+      ]
+    }
+  },
+  "pyrenees": {
+    "id": "pyrenees",
+    "groupBn": "পর্বতমালা",
+    "nameBn": "পিরেনিজ",
+    "nameEn": "Pyrenees",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "ফ্রান্স, স্পেন, অ্যান্ডোরা",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "PYRENEES",
+          "FEATURECLA": "Range/mtn"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:2019 - Parc national des Pyrenees - Vallée de Gavarnie.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:2019_-_Parc_national_des_Pyrenees_-_Vall%C3%A9e_de_Gavarnie.jpg",
+      "author": "Moahim",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha1": "85828749dfb3497c5db0ec0adbb70e475374735b",
+      "size": [
+        4493,
+        2995
+      ],
+      "crop": {
+        "marker": [
+          749,
+          0,
+          2995,
+          2995
+        ],
+        "card": [
+          0,
+          94,
+          4493,
+          2808
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "atlas": {
+    "id": "atlas",
+    "groupBn": "পর্বতমালা",
+    "nameBn": "অ্যাটলাস",
+    "nameEn": "Atlas Mountains",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "মরক্কো, আলজেরিয়া, তিউনিসিয়া",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "ATLAS MOUNTAINS",
+          "FEATURECLA": "Range/mtn"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Atlas mountains aerial 1.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Atlas_mountains_aerial_1.jpg",
+      "author": "kallerna",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha1": "4336d57e67bc848cb6ac2718318e5eea70bcdb84",
+      "size": [
+        4900,
+        3675
+      ],
+      "crop": {
+        "marker": [
+          613,
+          0,
+          3675,
+          3675
+        ],
+        "card": [
+          0,
+          306,
+          4900,
+          3063
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "drakensberg": {
+    "id": "drakensberg",
+    "groupBn": "পর্বতমালা",
+    "nameBn": "ড্রাকেন্সবার্গ",
+    "nameEn": "Drakensberg",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "দক্ষিণ আফ্রিকা, লেসোথো",
+    "noteBn": "টুগেলা জলপ্রপাত এখানে",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "DRAKENSBERG",
+          "FEATURECLA": "Range/mtn"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Monks Cowl (15127602555).jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Monks_Cowl_(15127602555).jpg",
+      "author": "Darren Glanville from Acle, Norfolk, UK",
+      "licence": "CC BY-SA 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "sha1": "017ba4edec6c736c6664e449d150325e5b5df934",
+      "size": [
+        4288,
+        2848
+      ],
+      "crop": {
+        "marker": [
+          720,
+          0,
+          2848,
+          2848
+        ],
+        "card": [
+          0,
+          84,
+          4288,
+          2680
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "noteBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "rockies": {
+    "id": "rockies",
+    "groupBn": "পর্বতমালা",
+    "nameBn": "রকি",
+    "nameEn": "Rocky Mountains",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "যুক্তরাষ্ট্র, কানাডা",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "ROCKY MOUNTAINS",
+          "FEATURECLA": "Range/mtn"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Moraine Lake 17092005.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Moraine_Lake_17092005.jpg",
+      "author": "Gorgo",
+      "licence": "Public domain",
+      "sha1": "49ae7406505d7a28b8fe0b4bef9414c104064874",
+      "size": [
+        2048,
+        1536
+      ],
+      "crop": {
+        "marker": [
+          256,
+          0,
+          1536,
+          1536
+        ],
+        "card": [
+          0,
+          128,
+          2048,
+          1280
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "appalachian": {
+    "id": "appalachian",
+    "groupBn": "পর্বতমালা",
+    "nameBn": "অ্যাপালাচিয়ান",
+    "nameEn": "Appalachian Mountains",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "যুক্তরাষ্ট্র, কানাডা",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "APPALACHIAN MTS.",
+          "FEATURECLA": "Range/mtn"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Mount Mitchell-27527.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Mount_Mitchell-27527.jpg",
+      "author": "Ken Thomas",
+      "licence": "Public domain",
+      "sha1": "ebfe0725ad557b166e9d200d32797adb0187f61a",
+      "size": [
+        2000,
+        1100
+      ],
+      "crop": {
+        "marker": [
+          450,
+          0,
+          1100,
+          1100
+        ],
+        "card": [
+          120,
+          0,
+          1760,
+          1100
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "andes": {
+    "id": "andes",
+    "groupBn": "পর্বতমালা",
+    "nameBn": "আন্দিজ",
+    "nameEn": "Andes",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "আর্জেন্টিনা, বলিভিয়া, চিলি, কলম্বিয়া, ইকুয়েডর, পেরু, ভেনেজুয়েলা",
+    "noteBn": "দীর্ঘতম মহাদেশীয় পর্বতমালা (প্রায় ৭,০০০ কিমি); সর্বোচ্চ শৃঙ্গ অ্যাকনকাগুয়া",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "ANDES",
+          "FEATURECLA": "Range/mtn"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Andes 70.30345W 42.99203S.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Andes_70.30345W_42.99203S.jpg",
+      "author": "JuWiki",
+      "licence": "Public domain",
+      "sha1": "9cb2c606065d7612fb5a786e745fec538b2a1827",
+      "size": [
+        1280,
+        958
+      ],
+      "crop": {
+        "marker": [
+          161,
+          0,
+          958,
+          958
+        ],
+        "card": [
+          0,
+          79,
+          1280,
+          800
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "noteBn": [
+        {
+          "title": "Andes",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Andes"
+        }
+      ]
+    }
+  },
+  "greatdividing": {
+    "id": "greatdividing",
+    "groupBn": "পর্বতমালা",
+    "nameBn": "গ্রেট ডিভাইডিং রেঞ্জ",
+    "nameEn": "Great Dividing Range",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "অস্ট্রেলিয়া",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "GREAT DIVIDING RANGE",
+          "FEATURECLA": "Range/mtn"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Mt. Feathertop444 edit.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Mt._Feathertop444_edit.jpg",
+      "author": "Benjamint444, edited by Fir0002",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+      "sha1": "d26b01fe792aca8739f4cc538a5f17b7bcf14c08",
+      "size": [
+        4038,
+        1200
+      ],
+      "crop": {
+        "marker": [
+          1419,
+          0,
+          1200,
+          1200
+        ],
+        "card": [
+          1059,
+          0,
+          1920,
+          1200
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "everest": {
+    "id": "everest",
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "মাউন্ট এভারেস্ট",
+    "nameEn": "Mount Everest",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "নেপাল, চীন",
+    "heightBn": "৮,৮৪৮.৮৬ মিটার",
+    "noteBn": "পৃথিবীর সর্বোচ্চ শৃঙ্গ; উচ্চতা ২০২০ সালে চীন-নেপালের যৌথ ঘোষণা",
+    "geometry": {
+      "point": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_elevation_points.geojson",
+        "match": {
+          "name": "Mount Everest",
+          "featurecla": "mountain"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Mount Everest as seen from Drukair2 PLW edit.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Mount_Everest_as_seen_from_Drukair2_PLW_edit.jpg",
+      "author": "shrimpo1967, derivative work by Papa Lima Whiskey 2",
+      "licence": "CC BY-SA 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "sha1": "f3374ad94a12cd8143edc347d1b9bc11feee05d5",
+      "size": [
+        2971,
+        1615
+      ],
+      "crop": {
+        "marker": [
+          678,
+          0,
+          1615,
+          1615
+        ],
+        "card": [
+          194,
+          0,
+          2584,
+          1615
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "heightBn": [
+        {
+          "title": "List of highest mountains on Earth",
+          "publisher": "Wikipedia (revision 1374856534, 2026-09-14)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_highest_mountains_on_Earth&oldid=1374856534",
+          "states": "Mount Everest: 8,848.86 m."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of highest mountains on Earth",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_highest_mountains_on_Earth"
+        }
+      ]
+    }
+  },
+  "k2": {
+    "id": "k2",
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "কে-টু (গডউইন অস্টিন)",
+    "nameEn": "K2",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "পাকিস্তান, চীন",
+    "heightBn": "৮,৬১১ মিটার",
+    "noteBn": "দ্বিতীয় সর্বোচ্চ শৃঙ্গ; কারাকোরামে",
+    "geometry": {
+      "point": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_elevation_points.geojson",
+        "match": {
+          "name": "K2",
+          "featurecla": "mountain"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:K2 2006b.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:K2_2006b.jpg",
+      "author": "Svy123",
+      "licence": "CC BY 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/3.0",
+      "sha1": "36619fca93c1c8c4fba34abb3fb703039dfc642a",
+      "size": [
+        1600,
+        1200
+      ],
+      "crop": {
+        "marker": [
+          200,
+          0,
+          1200,
+          1200
+        ],
+        "card": [
+          0,
+          100,
+          1600,
+          1000
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "heightBn": [
+        {
+          "title": "List of highest mountains on Earth",
+          "publisher": "Wikipedia (revision 1374856534, 2026-09-14)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_highest_mountains_on_Earth&oldid=1374856534",
+          "states": "K2: 8,611 m."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of highest mountains on Earth",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_highest_mountains_on_Earth"
+        }
+      ]
+    }
+  },
+  "kangchenjunga": {
+    "id": "kangchenjunga",
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "কাঞ্চনজঙ্ঘা",
+    "nameEn": "Kangchenjunga",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "নেপাল, ভারত",
+    "heightBn": "৮,৫৮৬ মিটার",
+    "noteBn": "তৃতীয় সর্বোচ্চ শৃঙ্গ",
+    "geometry": {
+      "point": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_elevation_points.geojson",
+        "match": {
+          "name": "Kanchenjunga",
+          "featurecla": "mountain"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Kangchenjunga, India.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Kangchenjunga,_India.jpg",
+      "author": "My Discovery",
+      "licence": "CC BY 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0",
+      "sha1": "b19c20ae11646bd4f9f2f200d830cd52f17ed873",
+      "size": [
+        1024,
+        683
+      ],
+      "crop": {
+        "marker": [
+          171,
+          0,
+          683,
+          683
+        ],
+        "card": [
+          0,
+          22,
+          1024,
+          640
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "heightBn": [
+        {
+          "title": "List of highest mountains on Earth",
+          "publisher": "Wikipedia (revision 1374856534, 2026-09-14)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_highest_mountains_on_Earth&oldid=1374856534",
+          "states": "Kangchenjunga: 8,586 m."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of highest mountains on Earth",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_highest_mountains_on_Earth"
+        }
+      ]
+    }
+  },
+  "nangaparbat": {
+    "id": "nangaparbat",
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "নাঙ্গা পর্বত",
+    "nameEn": "Nanga Parbat",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "পাকিস্তান",
+    "heightBn": "৮,১২৬ মিটার",
+    "noteBn": "নবম সর্বোচ্চ শৃঙ্গ",
+    "geometry": {
+      "point": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_elevation_points.geojson",
+        "match": {
+          "name": "Nanga Parbat",
+          "featurecla": "mountain"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Nanga Parbat 2.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Nanga_Parbat_2.jpg",
+      "author": "Aasim85",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sha1": "eb8dce0f06f8e5c883a693540a0a1947866aa6fc",
+      "size": [
+        4928,
+        2772
+      ],
+      "crop": {
+        "marker": [
+          1078,
+          0,
+          2772,
+          2772
+        ],
+        "card": [
+          247,
+          0,
+          4435,
+          2772
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "heightBn": [
+        {
+          "title": "List of highest mountains on Earth",
+          "publisher": "Wikipedia (revision 1374856534, 2026-09-14)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_highest_mountains_on_Earth&oldid=1374856534",
+          "states": "Nanga Parbat: 8,126 m."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of highest mountains on Earth",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_highest_mountains_on_Earth"
+        }
+      ]
+    }
+  },
+  "tirichmir": {
+    "id": "tirichmir",
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "তিরিচ মির",
+    "nameEn": "Tirich Mir",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "পাকিস্তান",
+    "heightBn": "৭,৭০৮ মিটার",
+    "noteBn": "হিন্দুকুশের সর্বোচ্চ শৃঙ্গ",
+    "geometry": {
+      "point": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_elevation_points.geojson",
+        "match": {
+          "name": "Tirich Mir",
+          "featurecla": "mountain"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Tirich Mir (The Kingdom Of Djinns And Fairies).jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Tirich_Mir_(The_Kingdom_Of_Djinns_And_Fairies).jpg",
+      "author": "KaleemUllah550",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha1": "dbb696281f8e105447a3be08943f91361d852a50",
+      "size": [
+        4800,
+        2700
+      ],
+      "crop": {
+        "marker": [
+          1050,
+          0,
+          2700,
+          2700
+        ],
+        "card": [
+          240,
+          0,
+          4320,
+          2700
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "heightBn": [
+        {
+          "title": "List of highest mountains on Earth",
+          "publisher": "Wikipedia (revision 1374856534, 2026-09-14)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_highest_mountains_on_Earth&oldid=1374856534",
+          "states": "Tirich Mir: 7,708 m."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of highest mountains on Earth",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_highest_mountains_on_Earth"
+        }
+      ]
+    }
+  },
+  "fuji": {
+    "id": "fuji",
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "মাউন্ট ফুজি",
+    "nameEn": "Mount Fuji",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "জাপান",
+    "heightBn": "৩,৭৭৬ মিটার",
+    "noteBn": "জাপানের সর্বোচ্চ পর্বত",
+    "geometry": {
+      "point": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_elevation_points.geojson",
+        "match": {
+          "name": "Fuji",
+          "featurecla": "mountain"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Kodaki fuji frm shojinko refurb.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Kodaki_fuji_frm_shojinko_refurb.jpg",
+      "author": "名古屋太郎, (edited by Hannes_24)",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sha1": "bb63dc093b31d3cad896b3b11f58a87a6da11d4e",
+      "size": [
+        4000,
+        2677
+      ],
+      "crop": {
+        "marker": [
+          662,
+          0,
+          2677,
+          2677
+        ],
+        "card": [
+          0,
+          89,
+          4000,
+          2500
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "heightBn": [
+        {
+          "title": "Mount Fuji",
+          "publisher": "Wikipedia (revision 1375821240, 2026-09-20)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Mount_Fuji&oldid=1375821240",
+          "states": "Summit elevation 3,776.24 m."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "Mount Fuji",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Mount_Fuji"
+        }
+      ]
+    }
+  },
+  "elbrus": {
+    "id": "elbrus",
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "এলব্রুস",
+    "nameEn": "Mount Elbrus",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "রাশিয়া",
+    "heightBn": "৫,৬৪২ মিটার",
+    "noteBn": "ইউরোপের সর্বোচ্চ শৃঙ্গ (ককেশাসের জলবিভাজিকাকে ইউরোপ-এশিয়া সীমা ধরলে)",
+    "geometry": {
+      "point": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_elevation_points.geojson",
+        "match": {
+          "name": "Gora Elbrus",
+          "featurecla": "mountain"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Mt. Elbrus in Russia.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Mt._Elbrus_in_Russia.jpg",
+      "author": "Jason Blue-Smith",
+      "licence": "CC BY-SA 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "sha1": "fbdf478e156198793c238fffc8cdaa2324c0b7a0",
+      "size": [
+        1600,
+        1200
+      ],
+      "crop": {
+        "marker": [
+          200,
+          0,
+          1200,
+          1200
+        ],
+        "card": [
+          0,
+          100,
+          1600,
+          1000
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "heightBn": [
+        {
+          "title": "Seven Summits",
+          "publisher": "Wikipedia (revision 1371814205, 2026-08-28)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Seven_Summits&oldid=1371814205",
+          "states": "Mount Elbrus: 5,642 m."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "Seven Summits",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Seven_Summits"
+        }
+      ]
+    }
+  },
+  "montblanc": {
+    "id": "montblanc",
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "মঁ ব্লাঁ",
+    "nameEn": "Mont Blanc",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "ফ্রান্স, ইতালি",
+    "heightBn": "প্রায় ৪,৮০৫.৫৯ মিটার",
+    "noteBn": "আল্পসের সর্বোচ্চ; বরফের পুরুত্বে উচ্চতা বদলায়; কোনো কোনো হিসাবে ইউরোপের সর্বোচ্চ",
+    "geometry": {
+      "point": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_elevation_points.geojson",
+        "match": {
+          "name": "Mont Blanc",
+          "featurecla": "mountain"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Panorama of Mont Blanc du Tacul, Mont Maudit and Mont Blanc from Aiguille du Midi, Chamonix, Haute-Savoie.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Panorama_of_Mont_Blanc_du_Tacul,_Mont_Maudit_and_Mont_Blanc_from_Aiguille_du_Midi,_Chamonix,_Haute-Savoie.jpg",
+      "author": "Christian David",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha1": "9980b126b39c033b68394e8ebd60f97a4cc3a8d8",
+      "size": [
+        22716,
+        7572
+      ],
+      "crop": {
+        "marker": [
+          7572,
+          0,
+          7572,
+          7572
+        ],
+        "card": [
+          5301,
+          0,
+          12115,
+          7572
+        ]
+      }
+    },
+    "review": "heightBn: the summit is an ice cap whose thickness changes, so surveys differ; the card note says so. Shown: the most recent survey, 4,805.59 m (2023). Other values: the Mont Blanc article lead gives 4,807.3 m and names 4,807 m as the long-standing official figure; the Seven Summits article (revision 1371814205) gives 4,810 m; the approved list had 4,807 m.",
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "heightBn": [
+        {
+          "title": "Mont Blanc",
+          "publisher": "Wikipedia (revision 1373961755, 2026-09-09)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Mont_Blanc&oldid=1373961755",
+          "states": "Infobox elevation 4,805.59 m, the 2023 survey (reported 5 October 2023 by The Guardian and Le Monde)."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "Mont Blanc",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Mont_Blanc"
+        },
+        {
+          "title": "Seven Summits",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Seven_Summits"
+        }
+      ]
+    }
+  },
+  "kilimanjaro": {
+    "id": "kilimanjaro",
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "কিলিমাঞ্জারো",
+    "nameEn": "Mount Kilimanjaro",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "তানজানিয়া",
+    "heightBn": "৫,৮৯৫ মিটার",
+    "noteBn": "আফ্রিকার সর্বোচ্চ; পৃথিবীর সর্বোচ্চ একক (স্বতন্ত্র) পর্বত",
+    "geometry": {
+      "point": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_elevation_points.geojson",
+        "match": {
+          "name": "Mount Kilimanjaro",
+          "featurecla": "mountain"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Kilimanjaro from Amboseli.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Kilimanjaro_from_Amboseli.jpg",
+      "author": "Sergey Pesterev",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha1": "f7c730c3f7338538bd2a4d439b107b5f34d46714",
+      "size": [
+        3043,
+        2036
+      ],
+      "crop": {
+        "marker": [
+          504,
+          0,
+          2036,
+          2036
+        ],
+        "card": [
+          0,
+          67,
+          3043,
+          1902
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "heightBn": [
+        {
+          "title": "Mount Kilimanjaro",
+          "publisher": "Wikipedia (revision 1376247192, 2026-09-23)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Mount_Kilimanjaro&oldid=1376247192",
+          "states": "Mount Kilimanjaro: 5,895 m."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "Mount Kilimanjaro",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Mount_Kilimanjaro"
+        }
+      ]
+    }
+  },
+  "denali": {
+    "id": "denali",
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "ডেনালি (মাউন্ট ম্যাককিনলি)",
+    "nameEn": "Denali (Mount McKinley)",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "যুক্তরাষ্ট্র",
+    "heightBn": "৬,১৯০ মিটার",
+    "noteBn": "উত্তর আমেরিকার সর্বোচ্চ; ২০২৫ সালে যুক্তরাষ্ট্রের ফেডারেল নাম আবার মাউন্ট ম্যাককিনলি করা হয়",
+    "geometry": {
+      "point": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_elevation_points.geojson",
+        "match": {
+          "name": "Denali",
+          "featurecla": "mountain"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Wonder Lake and Denali.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Wonder_Lake_and_Denali.jpg",
+      "author": "Denali National Park and Preserve",
+      "licence": "Public domain",
+      "sha1": "e67cf5d35688bebe42340de27965eb4bb4e081b1",
+      "size": [
+        2824,
+        2176
+      ],
+      "crop": {
+        "marker": [
+          324,
+          0,
+          2176,
+          2176
+        ],
+        "card": [
+          0,
+          206,
+          2824,
+          1765
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "heightBn": [
+        {
+          "title": "Denali",
+          "publisher": "Wikipedia (revision 1376552220, 2026-09-24)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Denali&oldid=1376552220",
+          "states": "Infobox elevation 20,310 ft, shown converted as 6,190 m."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "Denali",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Denali"
+        }
+      ]
+    }
+  },
+  "maunakea": {
+    "id": "maunakea",
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "মাউনা কেয়া",
+    "nameEn": "Mauna Kea",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "যুক্তরাষ্ট্র (হাওয়াই)",
+    "heightBn": "৪,২০৭ মিটার",
+    "noteBn": "সমুদ্রতলের ভিত্তি থেকে মাপলে পৃথিবীর সর্বোচ্চ (প্রায় ৯,৩৩০ মি)",
+    "geometry": {
+      "point": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_elevation_points.geojson",
+        "match": {
+          "name": "Mauna Kea",
+          "featurecla": "mountain"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Mauna Kea Summit 2021-06-16 33 (cropped).jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Mauna_Kea_Summit_2021-06-16_33_(cropped).jpg",
+      "author": "Leijurv",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha1": "0d0194d3bc30dbc7aef0d3f85304c85ee8884619",
+      "size": [
+        3942,
+        2012
+      ],
+      "crop": {
+        "marker": [
+          965,
+          0,
+          2012,
+          2012
+        ],
+        "card": [
+          362,
+          0,
+          3219,
+          2012
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "heightBn": [
+        {
+          "title": "Mauna Kea",
+          "publisher": "Wikipedia (revision 1376650003, 2026-09-25)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Mauna_Kea&oldid=1376650003",
+          "states": "Summit 4,207.3 m above sea level."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "Mauna Kea",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Mauna_Kea"
+        }
+      ]
+    }
+  },
+  "aconcagua": {
+    "id": "aconcagua",
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "অ্যাকনকাগুয়া",
+    "nameEn": "Aconcagua",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "আর্জেন্টিনা",
+    "heightBn": "৬,৯৬১ মিটার",
+    "noteBn": "দক্ষিণ আমেরিকার সর্বোচ্চ",
+    "geometry": {
+      "point": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_elevation_points.geojson",
+        "match": {
+          "name": "Cerro Aconcagua",
+          "featurecla": "mountain"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Aconcagua2016.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Aconcagua2016.jpg",
+      "author": "Bjørn Christian Tørrissen",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha1": "338bebb7004657645b57a984d3b6a0201b8d4642",
+      "size": [
+        4994,
+        2758
+      ],
+      "crop": {
+        "marker": [
+          1118,
+          0,
+          2758,
+          2758
+        ],
+        "card": [
+          291,
+          0,
+          4413,
+          2758
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "heightBn": [
+        {
+          "title": "Seven Summits",
+          "publisher": "Wikipedia (revision 1371814205, 2026-08-28)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Seven_Summits&oldid=1371814205",
+          "states": "Aconcagua: 6,961 m."
+        },
+        {
+          "title": "Andes",
+          "publisher": "Wikipedia (revision 1375882999, 2026-09-20)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Andes&oldid=1375882999",
+          "states": "Aconcagua: 6,961 m."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "Seven Summits",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Seven_Summits"
+        },
+        {
+          "title": "Andes",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Andes"
+        }
+      ]
+    }
+  },
+  "kosciuszko": {
+    "id": "kosciuszko",
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "কসিয়াস্কো",
+    "nameEn": "Mount Kosciuszko",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "অস্ট্রেলিয়া",
+    "heightBn": "২,২২৮ মিটার",
+    "noteBn": "অস্ট্রেলিয়া মূল ভূখণ্ডের সর্বোচ্চ",
+    "geometry": {
+      "point": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_elevation_points.geojson",
+        "match": {
+          "name": "Mount Kosciuszko",
+          "featurecla": "mountain"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Kosciuszko Townsend.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Kosciuszko_Townsend.jpg",
+      "author": "John Wormell",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha1": "44f73ae25194302f42963836f73f08a7cfb81a6b",
+      "size": [
+        2400,
+        1600
+      ],
+      "crop": {
+        "marker": [
+          400,
+          0,
+          1600,
+          1600
+        ],
+        "card": [
+          0,
+          50,
+          2400,
+          1500
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "heightBn": [
+        {
+          "title": "Seven Summits",
+          "publisher": "Wikipedia (revision 1371814205, 2026-08-28)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Seven_Summits&oldid=1371814205",
+          "states": "Mount Kosciuszko: 2,228 m."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "Seven Summits",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Seven_Summits"
+        }
+      ]
+    }
+  },
+  "puncakjaya": {
+    "id": "puncakjaya",
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "পুঞ্চাক জায়া (কার্সটেনজ পিরামিড)",
+    "nameEn": "Puncak Jaya",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "ইন্দোনেশিয়া",
+    "heightBn": "৪,৮৮৪ মিটার",
+    "noteBn": "ওশেনিয়ার সর্বোচ্চ (অস্ট্রেলীয় মহাদেশীয় সোপান ধরলে)",
+    "geometry": {
+      "point": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_elevation_points.geojson",
+        "match": {
+          "name": "Puncak Jaya",
+          "featurecla": "mountain"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Puncakjaya.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Puncakjaya.jpg",
+      "author": "Alfindra Primaldhi",
+      "licence": "CC BY 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0",
+      "sha1": "55c4a9afcff5c6c193ab9a1ced01f58ca48962f7",
+      "size": [
+        640,
+        480
+      ],
+      "crop": {
+        "marker": [
+          80,
+          0,
+          480,
+          480
+        ],
+        "card": [
+          0,
+          40,
+          640,
+          400
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "heightBn": [
+        {
+          "title": "Seven Summits",
+          "publisher": "Wikipedia (revision 1371814205, 2026-08-28)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Seven_Summits&oldid=1371814205",
+          "states": "Puncak Jaya: 4,884 m."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "Seven Summits",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Seven_Summits"
+        }
+      ]
+    }
+  },
+  "vinson": {
+    "id": "vinson",
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "ভিনসন ম্যাসিফ",
+    "nameEn": "Mount Vinson",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "অ্যান্টার্কটিকা",
+    "heightBn": "৪,৮৯২ মিটার",
+    "noteBn": "অ্যান্টার্কটিকার সর্বোচ্চ",
+    "geometry": {
+      "point": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_elevation_points.geojson",
+        "match": {
+          "name": "Vinson Massif",
+          "featurecla": "mountain"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Mount Vinson from NW at Vinson Plateau by Christian Stangl (flickr).jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Mount_Vinson_from_NW_at_Vinson_Plateau_by_Christian_Stangl_(flickr).jpg",
+      "author": "Christian Stangl",
+      "licence": "CC BY-SA 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "sha1": "bd6f328deeeb46123696a0d27fa3385b798ff155",
+      "size": [
+        1400,
+        991
+      ],
+      "crop": {
+        "marker": [
+          205,
+          0,
+          991,
+          991
+        ],
+        "card": [
+          0,
+          58,
+          1400,
+          875
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "heightBn": [
+        {
+          "title": "Seven Summits",
+          "publisher": "Wikipedia (revision 1371814205, 2026-08-28)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Seven_Summits&oldid=1371814205",
+          "states": "Mount Vinson: 4,892 m."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "Seven Summits",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Seven_Summits"
+        }
+      ]
+    }
+  }
+}

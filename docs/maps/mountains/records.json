@@ -1,0 +1,816 @@
+{
+  "himalaya": {
+    "groupBn": "পর্বতমালা",
+    "nameBn": "হিমালয়",
+    "nameEn": "Himalayas",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "নেপাল, ভারত, চীন, ভুটান, পাকিস্তান",
+    "noteBn": "সর্বোচ্চ শৃঙ্গ মাউন্ট এভারেস্ট",
+    "labelAt": [
+      78.00995,
+      32.10688
+    ],
+    "hasArea": true,
+    "frame": [
+      75.41,
+      26.86,
+      95.663,
+      35.107
+    ],
+    "photo": {
+      "marker": "photos/himalaya-marker.webp",
+      "card": "photos/himalaya-card.webp",
+      "author": "NASA",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:Himalayas.jpg",
+      "cropped": true
+    }
+  },
+  "karakoram": {
+    "groupBn": "পর্বতমালা",
+    "nameBn": "কারাকোরাম",
+    "nameEn": "Karakoram",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "পাকিস্তান, ভারত, চীন",
+    "noteBn": "সর্বোচ্চ শৃঙ্গ কে-টু",
+    "labelAt": [
+      77.43121,
+      35.43661
+    ],
+    "hasArea": true,
+    "frame": [
+      74.831,
+      32.437,
+      80.031,
+      38.437
+    ],
+    "photo": {
+      "marker": "photos/karakoram-marker.webp",
+      "card": "photos/karakoram-card.webp",
+      "author": "AdamJacobMuller",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+      "page": "https://commons.wikimedia.org/wiki/File:K2-big.jpg",
+      "cropped": true
+    }
+  },
+  "hindukush": {
+    "groupBn": "পর্বতমালা",
+    "nameBn": "হিন্দুকুশ",
+    "nameEn": "Hindu Kush",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "আফগানিস্তান, পাকিস্তান",
+    "noteBn": "সর্বোচ্চ শৃঙ্গ তিরিচ মির",
+    "labelAt": [
+      70.90366,
+      35.8116
+    ],
+    "hasArea": true,
+    "frame": [
+      66.674,
+      32.812,
+      75.717,
+      38.812
+    ],
+    "photo": {
+      "marker": "photos/hindukush-marker.webp",
+      "card": "photos/hindukush-card.webp",
+      "author": "Master Sgt. Andy Dunaway, U.S. Air Force",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:Mountains_in_Afghanistan.JPG",
+      "cropped": true
+    }
+  },
+  "pamir": {
+    "groupBn": "পর্বতমালা",
+    "nameBn": "পামির",
+    "nameEn": "Pamir Mountains",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "তাজিকিস্তান, কিরগিজস্তান, আফগানিস্তান, চীন, পাকিস্তান",
+    "noteBn": "\"পৃথিবীর ছাদ\" নামে পরিচিত",
+    "labelAt": [
+      73.66897,
+      38.46381
+    ],
+    "hasArea": true,
+    "frame": [
+      71.069,
+      35.464,
+      77.032,
+      41.464
+    ],
+    "photo": {
+      "marker": "photos/pamir-marker.webp",
+      "card": "photos/pamir-card.webp",
+      "author": "Caroline Gutman",
+      "licence": "CC0",
+      "licenceUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "page": "https://commons.wikimedia.org/wiki/File:Gutman_Karakul_lake.jpg",
+      "cropped": true
+    }
+  },
+  "urals": {
+    "groupBn": "পর্বতমালা",
+    "nameBn": "উরাল",
+    "nameEn": "Ural Mountains",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "রাশিয়া, কাজাখস্তান",
+    "noteBn": "ইউরোপ ও এশিয়ার প্রচলিত সীমারেখা",
+    "labelAt": [
+      58.83064,
+      56.85081
+    ],
+    "hasArea": true,
+    "frame": [
+      56.22,
+      51.567,
+      66.91,
+      68.358
+    ],
+    "photo": {
+      "marker": "photos/urals-marker.webp",
+      "card": "photos/urals-card.webp",
+      "author": "ugraland from Moscow, Russia",
+      "licence": "CC BY 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Landscape_view_in_Circumpolar_Urals.jpg",
+      "cropped": true
+    }
+  },
+  "caucasus": {
+    "groupBn": "পর্বতমালা",
+    "nameBn": "ককেশাস",
+    "nameEn": "Caucasus Mountains",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "রাশিয়া, জর্জিয়া, আজারবাইজান, আর্মেনিয়া",
+    "noteBn": "সর্বোচ্চ শৃঙ্গ এলব্রুস",
+    "labelAt": [
+      43.74805,
+      43.08779
+    ],
+    "hasArea": true,
+    "frame": [
+      37.207,
+      40.088,
+      49.464,
+      46.088
+    ],
+    "photo": {
+      "marker": "photos/caucasus-marker.webp",
+      "card": "photos/caucasus-card.webp",
+      "author": "პაატა შ",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:Kavkasioni.JPG",
+      "cropped": true
+    }
+  },
+  "alps": {
+    "groupBn": "পর্বতমালা",
+    "nameBn": "আল্পস",
+    "nameEn": "Alps",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "ফ্রান্স, সুইজারল্যান্ড, ইতালি, অস্ট্রিয়া, জার্মানিসহ ৮টি দেশ",
+    "noteBn": "সর্বোচ্চ শৃঙ্গ মঁ ব্লাঁ",
+    "labelAt": [
+      10.2772,
+      46.76638
+    ],
+    "hasArea": true,
+    "frame": [
+      5.157,
+      43.666,
+      16.183,
+      49.766
+    ],
+    "photo": {
+      "marker": "photos/alps-marker.webp",
+      "card": "photos/alps-card.webp",
+      "author": "Terra (EOS AM-1) satellite",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:Alps_2007-03-13_10.10UTC_1px-250m.jpg",
+      "cropped": true
+    }
+  },
+  "pyrenees": {
+    "groupBn": "পর্বতমালা",
+    "nameBn": "পিরেনিজ",
+    "nameEn": "Pyrenees",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "ফ্রান্স, স্পেন, অ্যান্ডোরা",
+    "labelAt": [
+      0.63657,
+      42.74955
+    ],
+    "hasArea": true,
+    "frame": [
+      -2.286,
+      39.75,
+      3.237,
+      45.75
+    ],
+    "photo": {
+      "marker": "photos/pyrenees-marker.webp",
+      "card": "photos/pyrenees-card.webp",
+      "author": "Moahim",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:2019_-_Parc_national_des_Pyrenees_-_Vall%C3%A9e_de_Gavarnie.jpg",
+      "cropped": true
+    }
+  },
+  "atlas": {
+    "groupBn": "পর্বতমালা",
+    "nameBn": "অ্যাটলাস",
+    "nameEn": "Atlas Mountains",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "মরক্কো, আলজেরিয়া, তিউনিসিয়া",
+    "labelAt": [
+      -2.54444,
+      33.29154
+    ],
+    "hasArea": true,
+    "frame": [
+      -10.989,
+      28.312,
+      10.469,
+      37.308
+    ],
+    "photo": {
+      "marker": "photos/atlas-marker.webp",
+      "card": "photos/atlas-card.webp",
+      "author": "kallerna",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Atlas_mountains_aerial_1.jpg",
+      "cropped": true
+    }
+  },
+  "drakensberg": {
+    "groupBn": "পর্বতমালা",
+    "nameBn": "ড্রাকেন্সবার্গ",
+    "nameEn": "Drakensberg",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "দক্ষিণ আফ্রিকা, লেসোথো",
+    "noteBn": "টুগেলা জলপ্রপাত এখানে",
+    "labelAt": [
+      29.00661,
+      -29.54252
+    ],
+    "hasArea": true,
+    "frame": [
+      23.526,
+      -33.508,
+      32.336,
+      -22.383
+    ],
+    "photo": {
+      "marker": "photos/drakensberg-marker.webp",
+      "card": "photos/drakensberg-card.webp",
+      "author": "Darren Glanville from Acle, Norfolk, UK",
+      "licence": "CC BY-SA 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Monks_Cowl_(15127602555).jpg",
+      "cropped": true
+    }
+  },
+  "rockies": {
+    "groupBn": "পর্বতমালা",
+    "nameBn": "রকি",
+    "nameEn": "Rocky Mountains",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "যুক্তরাষ্ট্র, কানাডা",
+    "labelAt": [
+      -109.79889,
+      43.1823
+    ],
+    "hasArea": true,
+    "frame": [
+      -127.194,
+      35.27,
+      -104.123,
+      59.711
+    ],
+    "photo": {
+      "marker": "photos/rockies-marker.webp",
+      "card": "photos/rockies-card.webp",
+      "author": "Gorgo",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:Moraine_Lake_17092005.jpg",
+      "cropped": true
+    }
+  },
+  "appalachian": {
+    "groupBn": "পর্বতমালা",
+    "nameBn": "অ্যাপালাচিয়ান",
+    "nameEn": "Appalachian Mountains",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "যুক্তরাষ্ট্র, কানাডা",
+    "labelAt": [
+      -83.53922,
+      36.52064
+    ],
+    "hasArea": true,
+    "frame": [
+      -88.541,
+      32.606,
+      -64.209,
+      49.251
+    ],
+    "photo": {
+      "marker": "photos/appalachian-marker.webp",
+      "card": "photos/appalachian-card.webp",
+      "author": "Ken Thomas",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:Mount_Mitchell-27527.jpg",
+      "cropped": true
+    }
+  },
+  "andes": {
+    "groupBn": "পর্বতমালা",
+    "nameBn": "আন্দিজ",
+    "nameEn": "Andes",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "আর্জেন্টিনা, বলিভিয়া, চিলি, কলম্বিয়া, ইকুয়েডর, পেরু, ভেনেজুয়েলা",
+    "noteBn": "দীর্ঘতম মহাদেশীয় পর্বতমালা (প্রায় ৭,০০০ কিমি); সর্বোচ্চ শৃঙ্গ অ্যাকনকাগুয়া",
+    "labelAt": [
+      -66.66234,
+      -20.13493
+    ],
+    "hasArea": true,
+    "frame": [
+      -80.601,
+      -55.293,
+      -63.086,
+      11.414
+    ],
+    "photo": {
+      "marker": "photos/andes-marker.webp",
+      "card": "photos/andes-card.webp",
+      "author": "JuWiki",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:Andes_70.30345W_42.99203S.jpg",
+      "cropped": true
+    }
+  },
+  "greatdividing": {
+    "groupBn": "পর্বতমালা",
+    "nameBn": "গ্রেট ডিভাইডিং রেঞ্জ",
+    "nameEn": "Great Dividing Range",
+    "typeBn": "পর্বতমালা",
+    "countriesBn": "অস্ট্রেলিয়া",
+    "labelAt": [
+      147.2841,
+      -22.3569
+    ],
+    "hasArea": true,
+    "frame": [
+      142.681,
+      -38.027,
+      153.3,
+      -12.658
+    ],
+    "photo": {
+      "marker": "photos/greatdividing-marker.webp",
+      "card": "photos/greatdividing-card.webp",
+      "author": "Benjamint444, edited by Fir0002",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+      "page": "https://commons.wikimedia.org/wiki/File:Mt._Feathertop444_edit.jpg",
+      "cropped": true
+    }
+  },
+  "everest": {
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "মাউন্ট এভারেস্ট",
+    "nameEn": "Mount Everest",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "নেপাল, চীন",
+    "heightBn": "৮,৮৪৮.৮৬ মিটার",
+    "noteBn": "পৃথিবীর সর্বোচ্চ শৃঙ্গ; উচ্চতা ২০২০ সালে চীন-নেপালের যৌথ ঘোষণা",
+    "labelAt": [
+      86.8806,
+      27.98048
+    ],
+    "hasArea": false,
+    "frame": [
+      84.281,
+      24.98,
+      89.481,
+      30.98
+    ],
+    "photo": {
+      "marker": "photos/everest-marker.webp",
+      "card": "photos/everest-card.webp",
+      "author": "shrimpo1967, derivative work by Papa Lima Whiskey 2",
+      "licence": "CC BY-SA 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Mount_Everest_as_seen_from_Drukair2_PLW_edit.jpg",
+      "cropped": true
+    }
+  },
+  "k2": {
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "কে-টু (গডউইন অস্টিন)",
+    "nameEn": "K2",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "পাকিস্তান, চীন",
+    "heightBn": "৮,৬১১ মিটার",
+    "noteBn": "দ্বিতীয় সর্বোচ্চ শৃঙ্গ; কারাকোরামে",
+    "labelAt": [
+      76.51321,
+      35.88241
+    ],
+    "hasArea": false,
+    "frame": [
+      73.913,
+      32.882,
+      79.113,
+      38.882
+    ],
+    "photo": {
+      "marker": "photos/k2-marker.webp",
+      "card": "photos/k2-card.webp",
+      "author": "Svy123",
+      "licence": "CC BY 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/3.0",
+      "page": "https://commons.wikimedia.org/wiki/File:K2_2006b.jpg",
+      "cropped": true
+    }
+  },
+  "kangchenjunga": {
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "কাঞ্চনজঙ্ঘা",
+    "nameEn": "Kangchenjunga",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "নেপাল, ভারত",
+    "heightBn": "৮,৫৮৬ মিটার",
+    "noteBn": "তৃতীয় সর্বোচ্চ শৃঙ্গ",
+    "labelAt": [
+      88.15002,
+      27.70008
+    ],
+    "hasArea": false,
+    "frame": [
+      85.55,
+      24.7,
+      90.75,
+      30.7
+    ],
+    "photo": {
+      "marker": "photos/kangchenjunga-marker.webp",
+      "card": "photos/kangchenjunga-card.webp",
+      "author": "My Discovery",
+      "licence": "CC BY 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Kangchenjunga,_India.jpg",
+      "cropped": true
+    }
+  },
+  "nangaparbat": {
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "নাঙ্গা পর্বত",
+    "nameEn": "Nanga Parbat",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "পাকিস্তান",
+    "heightBn": "৮,১২৬ মিটার",
+    "noteBn": "নবম সর্বোচ্চ শৃঙ্গ",
+    "labelAt": [
+      74.59001,
+      35.23998
+    ],
+    "hasArea": false,
+    "frame": [
+      71.99,
+      32.24,
+      77.19,
+      38.24
+    ],
+    "photo": {
+      "marker": "photos/nangaparbat-marker.webp",
+      "card": "photos/nangaparbat-card.webp",
+      "author": "Aasim85",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Nanga_Parbat_2.jpg",
+      "cropped": true
+    }
+  },
+  "tirichmir": {
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "তিরিচ মির",
+    "nameEn": "Tirich Mir",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "পাকিস্তান",
+    "heightBn": "৭,৭০৮ মিটার",
+    "noteBn": "হিন্দুকুশের সর্বোচ্চ শৃঙ্গ",
+    "labelAt": [
+      71.83998,
+      36.25001
+    ],
+    "hasArea": false,
+    "frame": [
+      69.24,
+      33.25,
+      74.44,
+      39.25
+    ],
+    "photo": {
+      "marker": "photos/tirichmir-marker.webp",
+      "card": "photos/tirichmir-card.webp",
+      "author": "KaleemUllah550",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Tirich_Mir_(The_Kingdom_Of_Djinns_And_Fairies).jpg",
+      "cropped": true
+    }
+  },
+  "fuji": {
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "মাউন্ট ফুজি",
+    "nameEn": "Mount Fuji",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "জাপান",
+    "heightBn": "৩,৭৭৬ মিটার",
+    "noteBn": "জাপানের সর্বোচ্চ পর্বত",
+    "labelAt": [
+      138.73094,
+      35.35792
+    ],
+    "hasArea": false,
+    "frame": [
+      136.131,
+      32.358,
+      141.331,
+      38.358
+    ],
+    "photo": {
+      "marker": "photos/fuji-marker.webp",
+      "card": "photos/fuji-card.webp",
+      "author": "名古屋太郎, (edited by Hannes_24)",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Kodaki_fuji_frm_shojinko_refurb.jpg",
+      "cropped": true
+    }
+  },
+  "elbrus": {
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "এলব্রুস",
+    "nameEn": "Mount Elbrus",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "রাশিয়া",
+    "heightBn": "৫,৬৪২ মিটার",
+    "noteBn": "ইউরোপের সর্বোচ্চ শৃঙ্গ (ককেশাসের জলবিভাজিকাকে ইউরোপ-এশিয়া সীমা ধরলে)",
+    "labelAt": [
+      42.4392,
+      43.35517
+    ],
+    "hasArea": false,
+    "frame": [
+      39.839,
+      40.355,
+      45.039,
+      46.355
+    ],
+    "photo": {
+      "marker": "photos/elbrus-marker.webp",
+      "card": "photos/elbrus-card.webp",
+      "author": "Jason Blue-Smith",
+      "licence": "CC BY-SA 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Mt._Elbrus_in_Russia.jpg",
+      "cropped": true
+    }
+  },
+  "montblanc": {
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "মঁ ব্লাঁ",
+    "nameEn": "Mont Blanc",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "ফ্রান্স, ইতালি",
+    "heightBn": "প্রায় ৪,৮০৫.৫৯ মিটার",
+    "noteBn": "আল্পসের সর্বোচ্চ; বরফের পুরুত্বে উচ্চতা বদলায়; কোনো কোনো হিসাবে ইউরোপের সর্বোচ্চ",
+    "labelAt": [
+      6.86504,
+      45.83368
+    ],
+    "hasArea": false,
+    "frame": [
+      4.265,
+      42.834,
+      9.465,
+      48.834
+    ],
+    "photo": {
+      "marker": "photos/montblanc-marker.webp",
+      "card": "photos/montblanc-card.webp",
+      "author": "Christian David",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Panorama_of_Mont_Blanc_du_Tacul,_Mont_Maudit_and_Mont_Blanc_from_Aiguille_du_Midi,_Chamonix,_Haute-Savoie.jpg",
+      "cropped": true
+    }
+  },
+  "kilimanjaro": {
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "কিলিমাঞ্জারো",
+    "nameEn": "Mount Kilimanjaro",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "তানজানিয়া",
+    "heightBn": "৫,৮৯৫ মিটার",
+    "noteBn": "আফ্রিকার সর্বোচ্চ; পৃথিবীর সর্বোচ্চ একক (স্বতন্ত্র) পর্বত",
+    "labelAt": [
+      37.35325,
+      -3.07572
+    ],
+    "hasArea": false,
+    "frame": [
+      34.753,
+      -6.076,
+      39.953,
+      -0.076
+    ],
+    "photo": {
+      "marker": "photos/kilimanjaro-marker.webp",
+      "card": "photos/kilimanjaro-card.webp",
+      "author": "Sergey Pesterev",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Kilimanjaro_from_Amboseli.jpg",
+      "cropped": true
+    }
+  },
+  "denali": {
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "ডেনালি (মাউন্ট ম্যাককিনলি)",
+    "nameEn": "Denali (Mount McKinley)",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "যুক্তরাষ্ট্র",
+    "heightBn": "৬,১৯০ মিটার",
+    "noteBn": "উত্তর আমেরিকার সর্বোচ্চ; ২০২৫ সালে যুক্তরাষ্ট্রের ফেডারেল নাম আবার মাউন্ট ম্যাককিনলি করা হয়",
+    "labelAt": [
+      -151.0073,
+      63.06941
+    ],
+    "hasArea": false,
+    "frame": [
+      -153.607,
+      60.069,
+      -148.407,
+      66.069
+    ],
+    "photo": {
+      "marker": "photos/denali-marker.webp",
+      "card": "photos/denali-card.webp",
+      "author": "Denali National Park and Preserve",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:Wonder_Lake_and_Denali.jpg",
+      "cropped": true
+    }
+  },
+  "maunakea": {
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "মাউনা কেয়া",
+    "nameEn": "Mauna Kea",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "যুক্তরাষ্ট্র (হাওয়াই)",
+    "heightBn": "৪,২০৭ মিটার",
+    "noteBn": "সমুদ্রতলের ভিত্তি থেকে মাপলে পৃথিবীর সর্বোচ্চ (প্রায় ৯,৩৩০ মি)",
+    "labelAt": [
+      -155.46814,
+      19.82049
+    ],
+    "hasArea": false,
+    "frame": [
+      -158.068,
+      16.82,
+      -152.868,
+      22.82
+    ],
+    "photo": {
+      "marker": "photos/maunakea-marker.webp",
+      "card": "photos/maunakea-card.webp",
+      "author": "Leijurv",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Mauna_Kea_Summit_2021-06-16_33_(cropped).jpg",
+      "cropped": true
+    }
+  },
+  "aconcagua": {
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "অ্যাকনকাগুয়া",
+    "nameEn": "Aconcagua",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "আর্জেন্টিনা",
+    "heightBn": "৬,৯৬১ মিটার",
+    "noteBn": "দক্ষিণ আমেরিকার সর্বোচ্চ",
+    "labelAt": [
+      -70.0158,
+      -32.65568
+    ],
+    "hasArea": false,
+    "frame": [
+      -72.616,
+      -35.656,
+      -67.416,
+      -29.656
+    ],
+    "photo": {
+      "marker": "photos/aconcagua-marker.webp",
+      "card": "photos/aconcagua-card.webp",
+      "author": "Bjørn Christian Tørrissen",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Aconcagua2016.jpg",
+      "cropped": true
+    }
+  },
+  "kosciuszko": {
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "কসিয়াস্কো",
+    "nameEn": "Mount Kosciuszko",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "অস্ট্রেলিয়া",
+    "heightBn": "২,২২৮ মিটার",
+    "noteBn": "অস্ট্রেলিয়া মূল ভূখণ্ডের সর্বোচ্চ",
+    "labelAt": [
+      148.26319,
+      -36.45588
+    ],
+    "hasArea": false,
+    "frame": [
+      145.663,
+      -39.456,
+      150.863,
+      -33.456
+    ],
+    "photo": {
+      "marker": "photos/kosciuszko-marker.webp",
+      "card": "photos/kosciuszko-card.webp",
+      "author": "John Wormell",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Kosciuszko_Townsend.jpg",
+      "cropped": true
+    }
+  },
+  "puncakjaya": {
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "পুঞ্চাক জায়া (কার্সটেনজ পিরামিড)",
+    "nameEn": "Puncak Jaya",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "ইন্দোনেশিয়া",
+    "heightBn": "৪,৮৮৪ মিটার",
+    "noteBn": "ওশেনিয়ার সর্বোচ্চ (অস্ট্রেলীয় মহাদেশীয় সোপান ধরলে)",
+    "labelAt": [
+      137.16625,
+      -4.07767
+    ],
+    "hasArea": false,
+    "frame": [
+      134.566,
+      -7.078,
+      139.766,
+      -1.078
+    ],
+    "photo": {
+      "marker": "photos/puncakjaya-marker.webp",
+      "card": "photos/puncakjaya-card.webp",
+      "author": "Alfindra Primaldhi",
+      "licence": "CC BY 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Puncakjaya.jpg",
+      "cropped": true
+    }
+  },
+  "vinson": {
+    "groupBn": "শৃঙ্গ",
+    "nameBn": "ভিনসন ম্যাসিফ",
+    "nameEn": "Mount Vinson",
+    "typeBn": "শৃঙ্গ",
+    "countriesBn": "অ্যান্টার্কটিকা",
+    "heightBn": "৪,৮৯২ মিটার",
+    "noteBn": "অ্যান্টার্কটিকার সর্বোচ্চ",
+    "labelAt": [
+      -85.63373,
+      -78.52936
+    ],
+    "hasArea": false,
+    "frame": [
+      -88.234,
+      -80,
+      -83.034,
+      -75.529
+    ],
+    "photo": {
+      "marker": "photos/vinson-marker.webp",
+      "card": "photos/vinson-card.webp",
+      "author": "Christian Stangl",
+      "licence": "CC BY-SA 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Mount_Vinson_from_NW_at_Vinson_Plateau_by_Christian_Stangl_(flickr).jpg",
+      "cropped": true
+    }
+  }
+}

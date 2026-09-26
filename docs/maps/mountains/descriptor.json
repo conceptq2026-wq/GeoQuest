@@ -1,0 +1,323 @@
+{
+  "schema": "geoquest/map-descriptor@1",
+  "id": "mountains",
+  "section": "geography",
+  "title": {
+    "bn": "বিশ্বের বিখ্যাত পর্বত ও শৃঙ্গ",
+    "en": "Famous Mountains and Peaks of the World"
+  },
+  "basemap": "world",
+  "view": {
+    "fitBounds": [
+      -125,
+      -42,
+      150,
+      62
+    ]
+  },
+  "constraints": {
+    "minZoom": 0,
+    "maxZoom": 11
+  },
+  "lookups": {},
+  "records": {
+    "mountains": {
+      "file": "./records.json",
+      "fields": {
+        "groupBn": {
+          "type": "text",
+          "required": true
+        },
+        "nameBn": {
+          "type": "text",
+          "required": true
+        },
+        "nameEn": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "typeBn": {
+          "type": "text",
+          "verifiable": true
+        },
+        "countriesBn": {
+          "type": "text",
+          "required": true
+        },
+        "heightBn": {
+          "type": "text",
+          "verifiable": true
+        },
+        "noteBn": {
+          "type": "text",
+          "verifiable": true
+        },
+        "labelAt": {
+          "type": "point",
+          "required": true
+        },
+        "hasArea": {
+          "type": "boolean",
+          "required": true
+        },
+        "frame": {
+          "type": "bbox",
+          "required": true
+        },
+        "photo": {
+          "type": "photo"
+        }
+      }
+    }
+  },
+  "sources": {
+    "areas": {
+      "records": "mountains",
+      "geometry": "./areas.geojson",
+      "joinField": "id",
+      "expectGeometry": {
+        "hasArea": true
+      },
+      "state": [
+        "selected"
+      ],
+      "properties": []
+    },
+    "points": {
+      "records": "mountains",
+      "geometryFrom": "labelAt",
+      "state": [
+        "selected"
+      ],
+      "properties": [
+        "nameBn"
+      ],
+      "selectionMarker": true,
+      "photoMarker": {
+        "field": "photo"
+      }
+    }
+  },
+  "styles": {
+    "label": {
+      "layout": {
+        "text-font": [
+          "Noto Sans Bengali"
+        ],
+        "text-anchor": "top",
+        "text-optional": true
+      },
+      "paint": {
+        "text-color": "#13233a",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    "area-fill": {
+      "paint": {
+        "fill-color": "#9c7a57"
+      }
+    },
+    "area-edge": {
+      "layout": {
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "#6e5238"
+      }
+    }
+  },
+  "layers": [
+    {
+      "id": "area-fill",
+      "type": "fill",
+      "source": "areas",
+      "slot": "belowLabels",
+      "style": "area-fill",
+      "paint": {
+        "fill-opacity": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          0.55,
+          0.3
+        ]
+      }
+    },
+    {
+      "id": "area-edge",
+      "type": "line",
+      "source": "areas",
+      "slot": "belowLabels",
+      "style": "area-edge",
+      "paint": {
+        "line-width": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          1.6,
+          0.67
+        ],
+        "line-opacity": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          1,
+          0.8
+        ]
+      }
+    },
+    {
+      "id": "label",
+      "type": "symbol",
+      "source": "points",
+      "slot": "aboveLabels",
+      "style": "label",
+      "layout": {
+        "text-field": [
+          "get",
+          "nameBn"
+        ],
+        "text-size": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          15,
+          12.5
+        ],
+        "text-offset": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          [
+            "literal",
+            [
+              0,
+              3
+            ]
+          ],
+          [
+            "literal",
+            [
+              0,
+              2.6
+            ]
+          ]
+        ],
+        "symbol-sort-key": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          0,
+          1
+        ]
+      }
+    }
+  ],
+  "controls": [
+    {
+      "type": "picker",
+      "id": "mountains",
+      "from": "mountains",
+      "groupBy": {
+        "field": "groupBn",
+        "order": [
+          "পর্বতমালা",
+          "শৃঙ্গ"
+        ]
+      },
+      "placeholder": "একটি পর্বত বা শৃঙ্গ বেছে নিন…",
+      "labelEn": "Choose a mountain or peak",
+      "label": {
+        "field": "nameBn"
+      },
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "on": "click",
+      "target": "source:points",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
+    },
+    {
+      "on": "click",
+      "target": "source:areas",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
+    }
+  ],
+  "sheet": {
+    "photo": {
+      "field": "photo"
+    },
+    "kicker": {
+      "field": "typeBn"
+    },
+    "title": {
+      "field": "nameBn"
+    },
+    "rows": [
+      {
+        "label": "দেশ",
+        "field": "countriesBn"
+      },
+      {
+        "label": "উচ্চতা",
+        "field": "heightBn"
+      },
+      {
+        "label": "বিবরণ",
+        "field": "noteBn"
+      }
+    ]
+  }
+}
