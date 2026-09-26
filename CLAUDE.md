@@ -217,7 +217,8 @@ declares sources, layers, sheet rows and actions; it holds no content.
   tilted, MapLibre scales symbols with perspective and the DOM markers not,
   so at the tilt button's 55° the reserve is 92–95% of the marker. A name
   under its own photo must sit outside that photo's reserve or it is pushed
-  off it: the janapada names clear it by 0.5 px, the geography maps' by 2.5 px.
+  off it: the janapada names clear it by 0.4 px, the geography maps' by 2.5 px
+  (6 px beside it).
 - **Photos are light.** Every marker on a map loads when the map opens, so a
   marker file is at most 8 KB; a card photo loads only when its card opens,
   never at map load, and is at most 40 KB. The extractor steps WebP quality
@@ -573,7 +574,12 @@ State which kind a task is when reporting it.
   own tool: `tools/extract-resolve.mjs` (RESOLVE Ecoregions 2017, CC BY 4.0 —
   the Sundarbans and taiga areas), `tools/extract-geography-points.mjs`
   (Wikidata points, OSM waterfall nodes) and
-  `tools/extract-commons-photos.mjs` (the photos).
+  `tools/extract-commons-photos.mjs` (the photos). Their names take the
+  janapada map's alternative positions: under the photo, else above it, right
+  or left (`text-variable-anchor`), at radial offsets of 2.73 em and 3.16 em
+  when selected, which put a name under its photo exactly where the fixed
+  2.6 em and 3 em offsets did — measured in MapLibre's collision index, since
+  a variable anchor lifts the text by an amount that depends on its size.
 - org-headquarters holds international organisations **and** technology
   companies, one map by the user's decision. It is built by
   `tools/build-org-headquarters.mjs` from two user-approved seeds, which the

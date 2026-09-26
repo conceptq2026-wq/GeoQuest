@@ -94,7 +94,12 @@
         "text-font": [
           "Noto Sans Bengali"
         ],
-        "text-anchor": "top",
+        "text-variable-anchor": [
+          "top",
+          "bottom",
+          "right",
+          "left"
+        ],
         "text-optional": true
       },
       "paint": {
@@ -125,26 +130,14 @@
           15,
           12.5
         ],
-        "text-offset": [
+        "text-radial-offset": [
           "case",
           [
             "get",
             "selected"
           ],
-          [
-            "literal",
-            [
-              0,
-              3
-            ]
-          ],
-          [
-            "literal",
-            [
-              0,
-              2.6
-            ]
-          ]
+          3.16,
+          2.73
         ],
         "symbol-sort-key": [
           "case",
