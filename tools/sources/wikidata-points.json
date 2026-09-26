@@ -1,0 +1,142 @@
+{
+ "licence": "CC0 — Wikidata",
+ "fetched": "2026-09-26",
+ "points": {
+  "Q6583": {
+   "record": "sahara",
+   "label": "Sahara",
+   "at": [
+    12.61222,
+    23.07972
+   ]
+  },
+  "Q181528": {
+   "record": "libyan",
+   "label": "Libyan Desert",
+   "at": [
+    25,
+    24
+   ]
+  },
+  "Q208299": {
+   "record": "arabian",
+   "label": "Arabian Desert",
+   "at": [
+    42.36806,
+    18.26722
+   ]
+  },
+  "Q36755": {
+   "record": "sinai",
+   "label": "Sinai Peninsula",
+   "at": [
+    34,
+    29.5
+   ]
+  },
+  "Q797491": {
+   "record": "cholistan",
+   "label": "Cholistan Desert",
+   "at": [
+    71.43478,
+    28.40514
+   ]
+  },
+  "Q200667": {
+   "record": "ladakh",
+   "label": "Ladakh",
+   "at": [
+    77.58333,
+    34.16667
+   ]
+  },
+  "Q184355": {
+   "record": "mojave",
+   "label": "Mojave Desert",
+   "at": [
+    -115.475,
+    35.00833
+   ]
+  },
+  "Q273446": {
+   "record": "greatbasin",
+   "label": "Great Basin Desert",
+   "at": [
+    -114.2197,
+    39.0058
+   ]
+  },
+  "Q1061324": {
+   "record": "patagonian",
+   "label": "Patagonian Desert",
+   "at": [
+    -69.32,
+    -41.32
+   ]
+  },
+  "Q398398": {
+   "record": "arctic",
+   "label": "Arctic desert",
+   "at": [
+    55,
+    81
+   ]
+  },
+  "Q5484": {
+   "record": "caspian",
+   "label": "Caspian Sea",
+   "at": [
+    50.5,
+    42
+   ]
+  },
+  "Q177567": {
+   "record": "amazon",
+   "label": "Amazon rainforest",
+   "at": [
+    -60.03,
+    -3.16
+   ]
+  },
+  "Q3079079": {
+   "record": "congo",
+   "label": "Congolian forests",
+   "at": [
+    21.10786,
+    1.06722
+   ]
+  },
+  "Q2913503": {
+   "record": "borneo",
+   "label": "Borneo lowland rain forests",
+   "at": [
+    114,
+    -2
+   ]
+  },
+  "Q5209517": {
+   "record": "daintree",
+   "label": "Daintree Rainforest",
+   "at": [
+    145.4,
+    -16.2
+   ]
+  },
+  "Q4204": {
+   "record": "blackforest",
+   "label": "Black Forest",
+   "at": [
+    8.15,
+    48.3
+   ]
+  },
+  "Q192666": {
+   "record": "bialowieza",
+   "label": "Białowieża Forest",
+   "at": [
+    23.95,
+    52.75
+   ]
+  }
+ }
+}

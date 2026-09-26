@@ -10,7 +10,8 @@
 //   border-lines  checked against data-sources/border-lines/*.seed.json
 //   org-headquarters  checked against data-sources/org-headquarters/*.seed.json
 //                     and data-sources/tech-headquarters/companies.seed.json
-//   deserts       checked against data-sources/deserts/deserts.seed.json
+//   deserts, lakes, forests, mountains, waterfalls
+//                 checked against data-sources/<map>/<map>.seed.json
 //
 // Run:  node tools/verify-descriptor.mjs   (from the repo root or from tools/)
 import fs from 'node:fs';
@@ -44,8 +45,10 @@ const BORDER_SEEDS = path.join(ROOT, 'data-sources/border-lines');
 const ORG_SEEDS = path.join(ROOT, 'data-sources/org-headquarters');
 // The technology companies on the same map, and the picker group they form.
 const TECH_SEED = path.join(ROOT, 'data-sources/tech-headquarters/companies.seed.json');
-// The deserts seed: content, provenance and each photo's credit.
-const DESERT_SEED = path.join(ROOT, 'data-sources/deserts/deserts.seed.json');
+// The Geography seeds, one folder per map, and each map's expected pending
+// count: deserts 2 (Nubian and Sinai areas, no source found).
+const GEO_SEEDS = path.join(ROOT, 'data-sources');
+const GEOGRAPHY = { deserts: 2 };
 const TECH_CATEGORY = 'প্রযুক্তি প্রতিষ্ঠান';
 
 let failures = 0;
@@ -262,7 +265,8 @@ function checkMap({ id, expectedPending }) {
   // A photo value carries both files and the whole credit; the card cannot
   // show one without the other, so a photo missing any part fails here.
   const isPhotoField = (table, f) => declarations[table]?.fields?.[f]?.type === 'photo';
-  const CREDIT = ['author', 'licence', 'licenceUrl', 'page'];
+  // A CC BY or CC BY-SA credit links its licence; public domain has none to link.
+  const CREDIT = ['author', 'licence', 'page'];
   const FREE = /^(Public domain|CC0( 1\.0)?|CC BY(-SA)? (1\.0|2\.0|2\.5|3\.0|4\.0))$/;
   for (const [table, decl] of Object.entries(declarations)) {
     for (const [f, fd] of Object.entries(decl.fields)) {
@@ -273,7 +277,7 @@ function checkMap({ id, expectedPending }) {
         const p = row[f];
         if (p === undefined || p === null) continue;
         n++;
-        const missing = [...CREDIT, 'marker', 'card'].filter((k) => !p[k]);
+        const missing = [...CREDIT, 'marker', 'card', ...(/^CC BY/.test(p.licence ?? '') ? ['licenceUrl'] : [])].filter((k) => !p[k]);
         const files = ['marker', 'card'].filter((k) => p[k] && !fs.existsSync(path.join(dir, p[k])));
         if (missing.length || files.length || !FREE.test(p.licence ?? '')) {
           fail(`${table}.${key}.${f}: ${[...missing.map((m) => `no ${m}`), ...files.map((k) => `${k} file ${p[k]} missing`), FREE.test(p.licence ?? '') ? null : `licence "${p.licence}" not free`].filter(Boolean).join(', ')}`);
@@ -757,34 +761,42 @@ console.log('\n\n============ org-headquarters ============');
 
 /*
 |--------------------------------------------------------------------------
-| DESERTS — faithful to the seed
+| GEOGRAPHY — five maps, each faithful to its own seed
 |--------------------------------------------------------------------------
 */
-console.log('\n\n============ deserts ============');
-{
-  const dir = path.join(MAPS_DIR, 'deserts');
-  const seed = readJson(DESERT_SEED);
+for (const [map, expectedPending] of Object.entries(GEOGRAPHY)) {
+  console.log(`\n\n============ ${map} ============`);
+  const dir = path.join(MAPS_DIR, map);
+  const seed = readJson(path.join(GEO_SEEDS, map, `${map}.seed.json`));
   const recs = readJson(path.join(dir, 'records.json'));
-  console.log('\n---- records.json against deserts.seed.json ----');
-  // The content fields ship as the seed has them; identity, provenance and the
-  // build's inputs stay behind; the point, frame and photo are checked below.
-  compareTables({ source: seed, file: recs, label: 'records.json', ignore: ['id', 'sources', 'review', 'area', 'photo', 'labelAt', 'frame'] });
+  console.log(`\n---- records.json against ${map}.seed.json ----`);
+  // Content fields ship as the seed has them; identity, provenance and the
+  // build's inputs stay behind; what the build derives is checked below.
+  compareTables({ source: seed, file: recs, label: 'records.json', ignore: ['id', 'sources', 'review', 'geometry', 'photo', 'labelAt', 'hasArea', 'frame'] });
   let badPhoto = 0;
+  let badArea = 0;
   for (const [id, r] of Object.entries(seed)) {
     const p = recs[id].photo;
-    const want = r.photo && { marker: `photos/${id}-marker.webp`, card: `photos/${id}-card.webp`, author: r.photo.author, licence: r.photo.licence, licenceUrl: r.photo.licenceUrl, page: r.photo.page };
+    const [W, H] = r.photo?.size ?? [];
+    const wasCropped = r.photo && Object.values(r.photo.crop).some(([x, y, w, h]) => x || y || w !== W || h !== H);
+    const want = r.photo && {
+      marker: `photos/${id}-marker.webp`, card: `photos/${id}-card.webp`, author: r.photo.author, licence: r.photo.licence,
+      ...(r.photo.licenceUrl ? { licenceUrl: r.photo.licenceUrl } : {}), page: r.photo.page, ...(wasCropped ? { cropped: true } : {}),
+    };
     if (JSON.stringify(p) !== JSON.stringify(want)) {
-      fail(`${id}: the shipped photo credit is not the seed's`);
+      fail(`${map}/${id}: the shipped photo credit is not the seed's`);
       badPhoto++;
     }
+    if (recs[id].hasArea !== Boolean(r.geometry?.area)) {
+      fail(`${map}/${id}: hasArea ${recs[id].hasArea}, but the seed ${r.geometry?.area ? 'names' : 'names no'} area`);
+      badArea++;
+    }
   }
-  check(badPhoto === 0, `every shipped photo carries the seed's own credit (${Object.keys(seed).length})`);
-  const areas = readJson(path.join(dir, 'areas.geojson'));
-  check(
-    Object.keys(seed).filter((id) => seed[id].area).every((id) => areas.features.some((f) => f.properties.id === id)),
-    `every record with an area has it drawn (${areas.features.length})`,
-  );
-  checkMap({ id: 'deserts', expectedPending: 0 });
+  check(badPhoto === 0, `every shipped photo carries the seed's own credit, "cropped" where it was (${Object.values(recs).filter((r) => r.photo).length})`);
+  check(badArea === 0, `every record draws an area exactly when its seed names one (${Object.values(recs).filter((r) => r.hasArea).length} areas)`);
+  const withheld = Object.keys(seed).filter((id) => seed[id].geometry?.withheld);
+  if (withheld.length) ok(`areas withheld, with their reason in the seed: ${withheld.join(', ')}`);
+  checkMap({ id: map, expectedPending });
 }
 
 // ---- done -------------------------------------------------------------------

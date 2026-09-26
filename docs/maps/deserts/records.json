@@ -1,5 +1,6 @@
 {
   "sahara": {
+    "groupBn": "আফ্রিকা",
     "nameBn": "সাহারা",
     "nameEn": "Sahara",
     "typeBn": "উষ্ণ মরুভূমি",
@@ -7,14 +8,15 @@
     "areaBn": "৯২,০০,০০০ বর্গকিমি",
     "noteBn": "বৃহত্তম উষ্ণ মরুভূমি",
     "labelAt": [
-      12.26736,
-      22.24602
+      12.61222,
+      23.07972
     ],
+    "hasArea": false,
     "frame": [
-      -17.072,
-      9.341,
-      38.461,
-      34.609
+      10.012,
+      20.08,
+      15.212,
+      26.08
     ],
     "photo": {
       "marker": "photos/sahara-marker.webp",
@@ -22,7 +24,973 @@
       "author": "Rosa Cabecinhas and Alcino Cunha",
       "licence": "CC BY-SA 2.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
-      "page": "https://commons.wikimedia.org/wiki/File:Morocco_Africa_Flickr_Rosino_December_2005_84514010_edited_by_Buchling.jpg"
+      "page": "https://commons.wikimedia.org/wiki/File:Morocco_Africa_Flickr_Rosino_December_2005_84514010_edited_by_Buchling.jpg",
+      "cropped": true
+    }
+  },
+  "libyan": {
+    "groupBn": "আফ্রিকা",
+    "nameBn": "লিবীয় মরুভূমি",
+    "nameEn": "Libyan Desert",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "লিবিয়া, মিশর, সুদান",
+    "areaBn": "১৩,০০,০০০ বর্গকিমি",
+    "noteBn": "সাহারার পূর্বাংশ",
+    "labelAt": [
+      25,
+      24
+    ],
+    "hasArea": false,
+    "frame": [
+      22.4,
+      21,
+      27.6,
+      27
+    ],
+    "photo": {
+      "marker": "photos/libyan-marker.webp",
+      "card": "photos/libyan-card.webp",
+      "author": "Roberdan",
+      "licence": "CC BY-SA 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Libyan_Desert_-_2006.jpg",
+      "cropped": true
+    }
+  },
+  "nubian": {
+    "groupBn": "আফ্রিকা",
+    "nameBn": "নুবিয়ান মরুভূমি",
+    "nameEn": "Nubian Desert",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "সুদান, মিশর",
+    "areaBn": null,
+    "noteBn": "সাহারার পূর্বাংশ",
+    "labelAt": [
+      34.19482,
+      20.58578
+    ],
+    "hasArea": true,
+    "frame": [
+      30.365,
+      17.586,
+      37.209,
+      23.586
+    ],
+    "photo": {
+      "marker": "photos/nubian-marker.webp",
+      "card": "photos/nubian-card.webp",
+      "author": "David Stanley from Nanaimo, Canada",
+      "licence": "CC BY 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Nubian_Desert_(8651154432).jpg",
+      "cropped": true
+    }
+  },
+  "kalahari": {
+    "groupBn": "আফ্রিকা",
+    "nameBn": "কালাহারি",
+    "nameEn": "Kalahari",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "বতসোয়ানা, নামিবিয়া, দক্ষিণ আফ্রিকা",
+    "areaBn": "৯,০০,০০০ বর্গকিমি",
+    "labelAt": [
+      21.54559,
+      -24.66459
+    ],
+    "hasArea": true,
+    "frame": [
+      13.15,
+      -30.532,
+      25.431,
+      -15.186
+    ],
+    "photo": {
+      "marker": "photos/kalahari-marker.webp",
+      "card": "photos/kalahari-card.webp",
+      "author": "Winfried Bruenken (Amrum)",
+      "licence": "CC BY-SA 2.5",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+      "page": "https://commons.wikimedia.org/wiki/File:Kalahari_PICT0036.JPG",
+      "cropped": true
+    }
+  },
+  "namib": {
+    "groupBn": "আফ্রিকা",
+    "nameBn": "নামিব",
+    "nameEn": "Namib",
+    "typeBn": "উপকূলীয় মরুভূমি (শীতল স্রোতের প্রভাবে)",
+    "countriesBn": "নামিবিয়া, অ্যাঙ্গোলা",
+    "areaBn": "৮১,০০০ বর্গকিমি",
+    "noteBn": "বেঙ্গুয়েলা শীতল স্রোতের প্রভাবে সৃষ্ট; প্রাচীনতম মরুভূমি হিসেবে পরিচিত",
+    "labelAt": [
+      15.45873,
+      -25.51216
+    ],
+    "hasArea": true,
+    "frame": [
+      11.722,
+      -28.512,
+      18.059,
+      -12.547
+    ],
+    "photo": {
+      "marker": "photos/namib-marker.webp",
+      "card": "photos/namib-card.webp",
+      "author": "Diego Delso",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Sossusvlei,_Namibia,_2018-08-06,_DD_040.jpg",
+      "cropped": true
+    }
+  },
+  "danakil": {
+    "groupBn": "আফ্রিকা",
+    "nameBn": "দানাকিল",
+    "nameEn": "Danakil Desert",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "ইথিওপিয়া, ইরিত্রিয়া, জিবুতি",
+    "areaBn": "১,৩৬,৯৫৬ বর্গকিমি",
+    "noteBn": "পৃথিবীর উষ্ণতম স্থানগুলোর একটি",
+    "labelAt": [
+      41.65607,
+      12.5067
+    ],
+    "hasArea": true,
+    "frame": [
+      39.056,
+      9.507,
+      44.256,
+      15.507
+    ],
+    "photo": {
+      "marker": "photos/danakil-marker.webp",
+      "card": "photos/danakil-card.webp",
+      "author": "Ji-Elle",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Danakil-Sable.jpg",
+      "cropped": true
+    }
+  },
+  "arabian": {
+    "groupBn": "এশিয়া",
+    "nameBn": "আরব মরুভূমি",
+    "nameEn": "Arabian Desert",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "সৌদি আরব, ইয়েমেন, ওমান, সংযুক্ত আরব আমিরাত, কাতার, কুয়েত, জর্ডান, ইরাক",
+    "areaBn": "২৩,৩০,০০০ বর্গকিমি",
+    "noteBn": "এশিয়ার বৃহত্তম মরুভূমি",
+    "labelAt": [
+      42.36806,
+      18.26722
+    ],
+    "hasArea": false,
+    "frame": [
+      39.768,
+      15.267,
+      44.968,
+      21.267
+    ],
+    "photo": {
+      "marker": "photos/arabian-marker.webp",
+      "card": "photos/arabian-card.webp",
+      "author": "Aidas U.",
+      "licence": "CC BY 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/3.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Arabian_Desert_-_panoramio.jpg",
+      "cropped": true
+    }
+  },
+  "rubalkhali": {
+    "groupBn": "এশিয়া",
+    "nameBn": "রুব আল খালি",
+    "nameEn": "Rub' al Khali",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "সৌদি আরব, ওমান, সংযুক্ত আরব আমিরাত, ইয়েমেন",
+    "areaBn": "৬,৫০,০০০ বর্গকিমি",
+    "noteBn": "আরব মরুভূমির অংশ; বৃহত্তম একটানা বালুকাময় মরুভূমি",
+    "labelAt": [
+      50.54444,
+      20.21605
+    ],
+    "hasArea": true,
+    "frame": [
+      44.773,
+      16.541,
+      56.199,
+      24.256
+    ],
+    "photo": {
+      "marker": "photos/rubalkhali-marker.webp",
+      "card": "photos/rubalkhali-card.webp",
+      "author": "Nepenthes",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Rub_al_Khali_002.JPG",
+      "cropped": true
+    }
+  },
+  "nefud": {
+    "groupBn": "এশিয়া",
+    "nameBn": "নেফুদ",
+    "nameEn": "An Nafud",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "সৌদি আরব",
+    "areaBn": "৬৫,০০০ বর্গকিমি",
+    "noteBn": "আরব মরুভূমির অংশ",
+    "labelAt": [
+      42.1719,
+      29.08921
+    ],
+    "hasArea": true,
+    "frame": [
+      39.565,
+      26.089,
+      44.783,
+      32.089
+    ],
+    "photo": {
+      "marker": "photos/nefud-marker.webp",
+      "card": "photos/nefud-card.webp",
+      "author": "NASA",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:ISS-64_Jubba_with_Nefud_Desert,_Saudi_Arabia.jpg",
+      "cropped": true
+    }
+  },
+  "syrian": {
+    "groupBn": "এশিয়া",
+    "nameBn": "সিরীয় মরুভূমি",
+    "nameEn": "Syrian Desert",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "সিরিয়া, ইরাক, জর্ডান, সৌদি আরব",
+    "areaBn": "৫,০০,০০০ বর্গকিমি",
+    "labelAt": [
+      40.14512,
+      32.33315
+    ],
+    "hasArea": true,
+    "frame": [
+      36.858,
+      29.333,
+      43.545,
+      35.333
+    ],
+    "photo": {
+      "marker": "photos/syrian-marker.webp",
+      "card": "photos/syrian-card.webp",
+      "author": "Vyacheslav Argenberg",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Valley_of_the_Tombs,_Panoramic_view,_Palmyra,_Syria.jpg",
+      "cropped": true
+    }
+  },
+  "negev": {
+    "groupBn": "এশিয়া",
+    "nameBn": "নেগেভ",
+    "nameEn": "Negev",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "ইসরায়েল",
+    "areaBn": "১৩,০০০ বর্গকিমি",
+    "labelAt": [
+      34.893,
+      30.75547
+    ],
+    "hasArea": true,
+    "frame": [
+      32.293,
+      27.755,
+      37.493,
+      33.755
+    ],
+    "photo": {
+      "marker": "photos/negev-marker.webp",
+      "card": "photos/negev-card.webp",
+      "author": "Unknown author",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:Negev-2005-1.JPG",
+      "cropped": true
+    }
+  },
+  "sinai": {
+    "groupBn": "এশিয়া",
+    "nameBn": "সিনাই",
+    "nameEn": "Sinai Desert",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "মিশর",
+    "areaBn": null,
+    "noteBn": "মিশরের এশীয় অংশ, সিনাই উপদ্বীপ",
+    "labelAt": [
+      34,
+      29.5
+    ],
+    "hasArea": false,
+    "frame": [
+      31.4,
+      26.5,
+      36.6,
+      32.5
+    ],
+    "photo": {
+      "marker": "photos/sinai-marker.webp",
+      "card": "photos/sinai-card.webp",
+      "author": "Daniel Fafard",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:Mont_sinai2.jpg",
+      "cropped": true
+    }
+  },
+  "kavir": {
+    "groupBn": "এশিয়া",
+    "nameBn": "দাশত-ই-কাভির",
+    "nameEn": "Dasht-e Kavir",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "ইরান",
+    "areaBn": "৭৭,০০০ বর্গকিমি",
+    "noteBn": "লবণ মরুভূমি",
+    "labelAt": [
+      55.68837,
+      34.76735
+    ],
+    "hasArea": true,
+    "frame": [
+      52.772,
+      31.767,
+      58.288,
+      37.767
+    ],
+    "photo": {
+      "marker": "photos/kavir-marker.webp",
+      "card": "photos/kavir-card.webp",
+      "author": "Klára Nováková",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Dasht-e_Kavir_2,_Iran.JPG",
+      "cropped": true
+    }
+  },
+  "lut": {
+    "groupBn": "এশিয়া",
+    "nameBn": "দাশত-ই-লুত",
+    "nameEn": "Dasht-e Lut",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "ইরান",
+    "areaBn": "৫২,০০০ বর্গকিমি",
+    "noteBn": "ভূপৃষ্ঠের সর্বোচ্চ তাপমাত্রা (উপগ্রহে মাপা)",
+    "labelAt": [
+      57.98034,
+      31.62709
+    ],
+    "hasArea": true,
+    "frame": [
+      55.38,
+      28.627,
+      60.58,
+      34.627
+    ],
+    "photo": {
+      "marker": "photos/lut-marker.webp",
+      "card": "photos/lut-card.webp",
+      "author": "Betta27",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:Sand_castles_-_Dasht-e_Lut_desert_-_Kerman.JPG",
+      "cropped": true
+    }
+  },
+  "karakum": {
+    "groupBn": "এশিয়া",
+    "nameBn": "কারাকুম",
+    "nameEn": "Karakum",
+    "typeBn": "শীতল মরুভূমি",
+    "countriesBn": "তুর্কমেনিস্তান",
+    "areaBn": "৩,৫০,০০০ বর্গকিমি",
+    "labelAt": [
+      60.55763,
+      39.51967
+    ],
+    "hasArea": true,
+    "frame": [
+      55.852,
+      36.223,
+      67.217,
+      45.48
+    ],
+    "photo": {
+      "marker": "photos/karakum-marker.webp",
+      "card": "photos/karakum-card.webp",
+      "author": "Ziegler175",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:MAKarakum6.jpg",
+      "cropped": true
+    }
+  },
+  "kyzylkum": {
+    "groupBn": "এশিয়া",
+    "nameBn": "কিজিলকুম",
+    "nameEn": "Kyzylkum",
+    "typeBn": "শীতল মরুভূমি",
+    "countriesBn": "উজবেকিস্তান, কাজাখস্তান",
+    "areaBn": "৩,০০,০০০ বর্গকিমি",
+    "labelAt": [
+      63.93592,
+      43.38193
+    ],
+    "hasArea": true,
+    "frame": [
+      59.029,
+      39.118,
+      69.115,
+      47.492
+    ],
+    "photo": {
+      "marker": "photos/kyzylkum-marker.webp",
+      "card": "photos/kyzylkum-card.webp",
+      "author": "Bgag",
+      "licence": "CC0",
+      "licenceUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "page": "https://commons.wikimedia.org/wiki/File:Kyzylkum_Desert_in_Uzbekistan.jpg",
+      "cropped": true
+    }
+  },
+  "registan": {
+    "groupBn": "এশিয়া",
+    "nameBn": "রেগিস্তান",
+    "nameEn": "Registan Desert",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "আফগানিস্তান",
+    "areaBn": "১,৪৬,০০০ বর্গকিমি",
+    "labelAt": [
+      64.94473,
+      30.67685
+    ],
+    "hasArea": true,
+    "frame": [
+      62.345,
+      27.677,
+      67.545,
+      33.677
+    ],
+    "photo": {
+      "marker": "photos/registan-marker.webp",
+      "card": "photos/registan-card.webp",
+      "author": "Unknown author",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:Registan_ast_2000233_lrg.jpg",
+      "cropped": true
+    }
+  },
+  "thar": {
+    "groupBn": "এশিয়া",
+    "nameBn": "থর",
+    "nameEn": "Thar",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "ভারত, পাকিস্তান",
+    "areaBn": "২,৬৪,০৯১ বর্গকিমি",
+    "noteBn": "গ্রেট ইন্ডিয়ান ডেজার্ট নামেও পরিচিত",
+    "labelAt": [
+      71.76204,
+      27.52489
+    ],
+    "hasArea": true,
+    "frame": [
+      68.357,
+      24.415,
+      75.667,
+      30.525
+    ],
+    "photo": {
+      "marker": "photos/thar-marker.webp",
+      "card": "photos/thar-card.webp",
+      "author": "sushmita balasubramani",
+      "licence": "CC BY 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Thar_desert_Rajasthan_India.jpg",
+      "cropped": true
+    }
+  },
+  "cholistan": {
+    "groupBn": "এশিয়া",
+    "nameBn": "চোলিস্তান",
+    "nameEn": "Cholistan",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "পাকিস্তান",
+    "areaBn": "২৫,৮০০ বর্গকিমি",
+    "noteBn": "থরের সঙ্গে সংযুক্ত",
+    "labelAt": [
+      71.43478,
+      28.40514
+    ],
+    "hasArea": false,
+    "frame": [
+      68.835,
+      25.405,
+      74.035,
+      31.405
+    ],
+    "photo": {
+      "marker": "photos/cholistan-marker.webp",
+      "card": "photos/cholistan-card.webp",
+      "author": "Rohaan Bhatti",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Derawar_Fort_side_view.jpg",
+      "cropped": true
+    }
+  },
+  "ladakh": {
+    "groupBn": "এশিয়া",
+    "nameBn": "লাদাখ",
+    "nameEn": "Ladakh (cold desert)",
+    "typeBn": "শীতল মরুভূমি",
+    "countriesBn": "ভারত",
+    "areaBn": "৫৯,১৪৬ বর্গকিমি",
+    "noteBn": "ভারতের শীতল মরুভূমি",
+    "labelAt": [
+      77.58333,
+      34.16667
+    ],
+    "hasArea": false,
+    "frame": [
+      74.983,
+      31.167,
+      80.183,
+      37.167
+    ],
+    "photo": {
+      "marker": "photos/ladakh-marker.webp",
+      "card": "photos/ladakh-card.webp",
+      "author": "HiranmoyPAC",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Cold_desert_Nubra_Valley_Ladakh.jpg",
+      "cropped": true
+    }
+  },
+  "gobi": {
+    "groupBn": "এশিয়া",
+    "nameBn": "গোবি",
+    "nameEn": "Gobi",
+    "typeBn": "শীতল মরুভূমি",
+    "countriesBn": "মঙ্গোলিয়া, চীন",
+    "areaBn": "১২,৯৫,০০০ বর্গকিমি",
+    "noteBn": "এশিয়ার দ্বিতীয় বৃহত্তম মরুভূমি",
+    "labelAt": [
+      103.37725,
+      41.98238
+    ],
+    "hasArea": true,
+    "frame": [
+      94.462,
+      37.837,
+      117.721,
+      47.786
+    ],
+    "photo": {
+      "marker": "photos/gobi-marker.webp",
+      "card": "photos/gobi-card.webp",
+      "author": "Marcin Konsek",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Gobi,_krajobraz_pustyni_(23).jpg",
+      "cropped": true
+    }
+  },
+  "taklimakan": {
+    "groupBn": "এশিয়া",
+    "nameBn": "তাকলামাকান",
+    "nameEn": "Taklimakan",
+    "typeBn": "শীতল মরুভূমি",
+    "countriesBn": "চীন",
+    "areaBn": "৩,৩৭,০০০ বর্গকিমি",
+    "noteBn": "তারিম অববাহিকা",
+    "labelAt": [
+      83.08546,
+      38.95658
+    ],
+    "hasArea": true,
+    "frame": [
+      78.279,
+      35.957,
+      87.654,
+      41.957
+    ],
+    "photo": {
+      "marker": "photos/taklimakan-marker.webp",
+      "card": "photos/taklimakan-card.webp",
+      "author": "NASA/GSFC/METI/ERSDAC/JAROS, and U.S./Japan ASTER Science Team",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:Alluvial_fan,_Taklimakan_Desert,_XinJiang_Province,_China,_NASA,_ASTER.jpg",
+      "cropped": true
+    }
+  },
+  "mojave": {
+    "groupBn": "উত্তর আমেরিকা",
+    "nameBn": "মোহাভি",
+    "nameEn": "Mojave",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "যুক্তরাষ্ট্র",
+    "areaBn": "১,২৪,০০০ বর্গকিমি",
+    "noteBn": "ডেথ ভ্যালি এই মরুভূমিতে",
+    "labelAt": [
+      -115.475,
+      35.00833
+    ],
+    "hasArea": false,
+    "frame": [
+      -118.075,
+      32.008,
+      -112.875,
+      38.008
+    ],
+    "photo": {
+      "marker": "photos/mojave-marker.webp",
+      "card": "photos/mojave-card.webp",
+      "author": "Fred Morledge",
+      "licence": "CC BY-SA 2.5",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+      "page": "https://commons.wikimedia.org/wiki/File:Calico_basin_red_rock_cumulus_mediocris.jpg",
+      "cropped": true
+    }
+  },
+  "sonoran": {
+    "groupBn": "উত্তর আমেরিকা",
+    "nameBn": "সোনোরান",
+    "nameEn": "Sonoran",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "যুক্তরাষ্ট্র, মেক্সিকো",
+    "areaBn": "৩,১০,০০০ বর্গকিমি",
+    "labelAt": [
+      -112.69054,
+      32.55145
+    ],
+    "hasArea": true,
+    "frame": [
+      -116.719,
+      27.567,
+      -109.924,
+      35.551
+    ],
+    "photo": {
+      "marker": "photos/sonoran-marker.webp",
+      "card": "photos/sonoran-card.webp",
+      "author": "United States Bureau of Land Management",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:AguaFriaNM_(cropped).jpeg",
+      "cropped": true
+    }
+  },
+  "chihuahuan": {
+    "groupBn": "উত্তর আমেরিকা",
+    "nameBn": "চিহুয়াহুয়ান",
+    "nameEn": "Chihuahuan",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "মেক্সিকো, যুক্তরাষ্ট্র",
+    "areaBn": "৪,৫০,০০০ বর্গকিমি",
+    "noteBn": "উত্তর আমেরিকার বৃহত্তম উষ্ণ মরুভূমি",
+    "labelAt": [
+      -104.80436,
+      29.77369
+    ],
+    "hasArea": true,
+    "frame": [
+      -111.019,
+      24.252,
+      -100.474,
+      34.297
+    ],
+    "photo": {
+      "marker": "photos/chihuahuan-marker.webp",
+      "card": "photos/chihuahuan-card.webp",
+      "author": "Adbar",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Big_Bend_Chihuahuan_Desert.jpg",
+      "cropped": true
+    }
+  },
+  "greatbasin": {
+    "groupBn": "উত্তর আমেরিকা",
+    "nameBn": "গ্রেট বেসিন",
+    "nameEn": "Great Basin",
+    "typeBn": "শীতল মরুভূমি",
+    "countriesBn": "যুক্তরাষ্ট্র",
+    "areaBn": "৪,৯২,০০০ বর্গকিমি",
+    "noteBn": "যুক্তরাষ্ট্রের বৃহত্তম মরুভূমি",
+    "labelAt": [
+      -114.2197,
+      39.0058
+    ],
+    "hasArea": false,
+    "frame": [
+      -116.82,
+      36.006,
+      -111.62,
+      42.006
+    ],
+    "photo": {
+      "marker": "photos/greatbasin-marker.webp",
+      "card": "photos/greatbasin-card.webp",
+      "author": "Earth's beauty internet site",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Great_Basin_Desert_3_by_Earth%27s_beauty_site.jpg",
+      "cropped": true
+    }
+  },
+  "atacama": {
+    "groupBn": "দক্ষিণ আমেরিকা",
+    "nameBn": "আতাকামা",
+    "nameEn": "Atacama",
+    "typeBn": "উপকূলীয় মরুভূমি (শীতল স্রোতের প্রভাবে)",
+    "countriesBn": "চিলি",
+    "areaBn": "১,৪০,০০০ বর্গকিমি",
+    "noteBn": "মেরু অঞ্চল বাদে পৃথিবীর শুষ্কতম মরুভূমি; হামবোল্ট (পেরু) শীতল স্রোতের প্রভাব",
+    "labelAt": [
+      -69.25485,
+      -23.21753
+    ],
+    "hasArea": true,
+    "frame": [
+      -71.855,
+      -28.003,
+      -66.655,
+      -17.889
+    ],
+    "photo": {
+      "marker": "photos/atacama-marker.webp",
+      "card": "photos/atacama-card.webp",
+      "author": "Diego Delso",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Anfiteatro,_Valle_de_la_Luna,_San_Pedro_de_Atacama,_Chile,_2016-02-01,_DD_149.JPG",
+      "cropped": true
+    }
+  },
+  "patagonian": {
+    "groupBn": "দক্ষিণ আমেরিকা",
+    "nameBn": "প্যাটাগোনিয়া",
+    "nameEn": "Patagonian Desert",
+    "typeBn": "শীতল মরুভূমি",
+    "countriesBn": "আর্জেন্টিনা, চিলি",
+    "areaBn": "৬,৭৩,০০০ বর্গকিমি",
+    "noteBn": "দক্ষিণ আমেরিকার বৃহত্তম মরুভূমি",
+    "labelAt": [
+      -69.32,
+      -41.32
+    ],
+    "hasArea": false,
+    "frame": [
+      -71.92,
+      -44.32,
+      -66.72,
+      -38.32
+    ],
+    "photo": {
+      "marker": "photos/patagonian-marker.webp",
+      "card": "photos/patagonian-card.webp",
+      "author": "Andarin2",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Neuquen_river_1.jpg",
+      "cropped": true
+    }
+  },
+  "greatvictoria": {
+    "groupBn": "ওশেনিয়া",
+    "nameBn": "গ্রেট ভিক্টোরিয়া",
+    "nameEn": "Great Victoria Desert",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "অস্ট্রেলিয়া",
+    "areaBn": "৩,৪৮,৭৫০ বর্গকিমি",
+    "noteBn": "অস্ট্রেলিয়ার বৃহত্তম মরুভূমি",
+    "labelAt": [
+      127.93727,
+      -28.24459
+    ],
+    "hasArea": true,
+    "frame": [
+      123.756,
+      -31.245,
+      132.362,
+      -25.245
+    ],
+    "photo": {
+      "marker": "photos/greatvictoria-marker.webp",
+      "card": "photos/greatvictoria-card.webp",
+      "author": "Wayne England",
+      "licence": "CC BY 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Red_Earth_Desert.jpg",
+      "cropped": true
+    }
+  },
+  "greatsandy": {
+    "groupBn": "ওশেনিয়া",
+    "nameBn": "গ্রেট স্যান্ডি",
+    "nameEn": "Great Sandy Desert",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "অস্ট্রেলিয়া",
+    "areaBn": "২,৬৭,২৫০ বর্গকিমি",
+    "labelAt": [
+      124.92452,
+      -20.61152
+    ],
+    "hasArea": true,
+    "frame": [
+      121.301,
+      -23.612,
+      128.449,
+      -17.612
+    ],
+    "photo": {
+      "marker": "photos/greatsandy-marker.webp",
+      "card": "photos/greatsandy-card.webp",
+      "author": "NASA",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:Great_Sandy_Desert,_Australia.jpg",
+      "cropped": true
+    }
+  },
+  "gibson": {
+    "groupBn": "ওশেনিয়া",
+    "nameBn": "গিবসন",
+    "nameEn": "Gibson Desert",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "অস্ট্রেলিয়া",
+    "areaBn": "১,৫৬,০০০ বর্গকিমি",
+    "labelAt": [
+      124.99091,
+      -24.49201
+    ],
+    "hasArea": true,
+    "frame": [
+      122.391,
+      -27.492,
+      127.591,
+      -21.492
+    ],
+    "photo": {
+      "marker": "photos/gibson-marker.webp",
+      "card": "photos/gibson-card.webp",
+      "author": "Gazjo",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:Gibson_Desert_and_moon_from_Alfred_%26_Marie_Range.jpg",
+      "cropped": true
+    }
+  },
+  "simpson": {
+    "groupBn": "ওশেনিয়া",
+    "nameBn": "সিম্পসন",
+    "nameEn": "Simpson Desert",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "অস্ট্রেলিয়া",
+    "areaBn": "১,৭৬,৫০০ বর্গকিমি",
+    "labelAt": [
+      137.27979,
+      -25.2264
+    ],
+    "hasArea": true,
+    "frame": [
+      134.68,
+      -28.226,
+      139.88,
+      -22.226
+    ],
+    "photo": {
+      "marker": "photos/simpson-marker.webp",
+      "card": "photos/simpson-card.webp",
+      "author": "Sentinel Hub",
+      "licence": "CC BY 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Parallel_Dunes_of_Munga-Thirri%E2%80%93Simpson_Desert_(50952731586).png",
+      "cropped": true
+    }
+  },
+  "tanami": {
+    "groupBn": "ওশেনিয়া",
+    "nameBn": "তানামি",
+    "nameEn": "Tanami Desert",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "অস্ট্রেলিয়া",
+    "areaBn": "১,৮৪,৫০০ বর্গকিমি",
+    "labelAt": [
+      131.6691,
+      -19.65284
+    ],
+    "hasArea": true,
+    "frame": [
+      129.069,
+      -22.653,
+      134.269,
+      -16.653
+    ],
+    "photo": {
+      "marker": "photos/tanami-marker.webp",
+      "card": "photos/tanami-card.webp",
+      "author": "Robertewelsh at English Wikipedia",
+      "licence": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:Tanami_Track_23rd_June.jpg",
+      "cropped": true
+    }
+  },
+  "antarctic": {
+    "groupBn": "মেরু অঞ্চল",
+    "nameBn": "অ্যান্টার্কটিক মরুভূমি",
+    "nameEn": "Antarctic Desert",
+    "typeBn": "মেরু মরুভূমি",
+    "countriesBn": "অ্যান্টার্কটিকা",
+    "areaBn": "১,৪২,০০,০০০ বর্গকিমি",
+    "noteBn": "আয়তনে পৃথিবীর বৃহত্তম মরুভূমি",
+    "labelAt": [
+      44.78028,
+      -79.20587
+    ],
+    "hasArea": true,
+    "frame": [
+      -180,
+      -80,
+      180,
+      -61.076
+    ],
+    "photo": {
+      "marker": "photos/antarctic-marker.webp",
+      "card": "photos/antarctic-card.webp",
+      "author": "Robert L. Dale",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Ice-and-mountains.jpg",
+      "cropped": true
+    }
+  },
+  "arctic": {
+    "groupBn": "মেরু অঞ্চল",
+    "nameBn": "আর্কটিক মরুভূমি",
+    "nameEn": "Arctic Desert",
+    "typeBn": "মেরু মরুভূমি",
+    "countriesBn": "আর্কটিক অঞ্চল",
+    "areaBn": "১,৩৯,০০,০০০ বর্গকিমি",
+    "noteBn": "দ্বিতীয় বৃহত্তম মরুভূমি",
+    "labelAt": [
+      55,
+      81
+    ],
+    "hasArea": false,
+    "frame": [
+      52.4,
+      78,
+      57.6,
+      80
+    ],
+    "photo": {
+      "marker": "photos/arctic-marker.webp",
+      "card": "photos/arctic-card.webp",
+      "author": "Николай Гернет",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:%D0%92%D0%B8%D0%B4_%D0%BD%D0%B0_%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B2_%D0%91%D1%8D%D0%BB%D0%BB.jpg",
+      "cropped": true
     }
   }
 }

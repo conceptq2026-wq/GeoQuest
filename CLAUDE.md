@@ -101,6 +101,11 @@ and one data source — never a restructure.**
 owns the baseline layer ids and styles; a descriptor that declares one throws.
 A map cannot omit a baseline item by forgetting it.
 
+The row keeps that form while it fits. A name too wide for it — a long option
+in the picker — would wrap the row and leave one arrow alone, so a row that
+wraps goes fully stacked: the picker on its own row, ‹ › sharing the next, the
+same form a phone under 380 px always gets. The name is never truncated.
+
 Where the data comes from:
 
 - Sea names — `docs/shared/seas.json`, loaded on every map through the
@@ -174,23 +179,54 @@ declares sources, layers, sheet rows and actions; it holds no content.
   holds `{ marker, card, author, licence, licenceUrl, page }`: two files in
   the map's folder and the whole credit. `photoMarker: { field }` on a source
   whose points come from a record field (`geometryFrom`) draws each record as
-  a round photo — 56 px with a white ring and a soft shadow, 72 px with a
-  `#0b3d91` ring when selected, the pulse behind it — and a tap runs that
-  source's click interaction. `photo: { field }` on a sheet puts the card
-  photo (16:10) at the top of the card and its credit — author · licence ·
-  Wikimedia Commons, both linked — at the bottom; one term draws both, so a
-  card cannot show a photo without the credit CC BY and CC BY-SA require.
+  a round photo — 56 px with a 2 px white ring and a soft shadow, 72 px with a
+  2 px `#0b3d91` ring when selected, the pulse behind it — and a tap runs that
+  source's click interaction. A record with no free photo gets the plain dot
+  the straits map gives a passage instead, so it is never missing from the
+  map. `photo: { field }` on a sheet puts the card photo (16:10) at the top of
+  the card and its credit — author · licence · Wikimedia Commons, both linked
+  — at the bottom; one term draws both, so a card cannot show a photo without
+  the credit CC BY and CC BY-SA require. When the shipped image is a crop, the
+  value carries `cropped: true` and the credit says "Photo (cropped)": CC BY-SA
+  asks the credit of a derivative to say what was changed.
   Sizes, rings and shadows are shell CSS, identical on every map. The
   validator fails a photo missing either file or any part of its credit, or
   carrying a licence other than public domain, CC0, CC BY or CC BY-SA.
+- **Photos are light.** Every marker on a map loads when the map opens, so a
+  marker file is at most 8 KB; a card photo loads only when its card opens,
+  never at map load, and is at most 40 KB. The extractor steps WebP quality
+  down until each file fits; the build fails a file over either cap.
 - **Photos come from Wikimedia Commons, freely licensed, with no people.** The
   seed records the Commons file, its page, author, licence, the original's
-  SHA-1 and the two crop boxes; `tools/extract-commons-photos.mjs <map>`
-  refuses an original whose SHA-1 differs, crops, and writes
-  `photos/<id>-marker.webp` (128 px square) and `photos/<id>-card.webp`
-  (640×400) with ffmpeg. The build reads the committed files, never Commons.
+  SHA-1 and the two crop boxes, in the original's pixels;
+  `tools/extract-commons-photos.mjs <map>` refuses a file whose SHA-1
+  differs, crops, and writes `photos/<id>-marker.webp` (128 px square) and
+  `photos/<id>-card.webp` (640×400) with ffmpeg. An original wider than 1280
+  px is fetched as Commons' own 1280 px rendition (a standard thumbnail width;
+  others are refused) and the crop boxes are scaled to it. The build reads
+  the committed files, never Commons. A photo is a satellite view only where
+  that is what shows the place recognisably — a whole lake, a desert with no
+  free ground photo — and never a map.
 - A card taller than 62% of the screen scrolls inside the sheet; the handle
   still drags it.
+- **Areas nest, and the smallest wins a tap.** The Nubian Desert lies inside
+  the Sahara, Rub' al Khali inside the Arabian. A tap on overlapping areas
+  selects the smallest, measured on each record's whole geometry rather than
+  the tile-clipped piece the renderer hands back. Photo markers draw above
+  every area.
+- **A record's place comes from one named source, in the seed.** A Geography
+  seed record carries `geometry`: an `area` (a Natural Earth feature matched
+  by exact field values — a list of values where one record is several
+  features, as the Aral Sea is — or a RESOLVE extract feature) or a `point` (a
+  Natural Earth feature, an OSM node, or a Wikidata item's P625). An area's
+  photo marker sits at its pole of inaccessibility. **A wrong area is worse
+  than no area**: a polygon that is visibly wrong against the basemap and the
+  region's usual description moves to `geometry.withheld` with its reason,
+  and the record ships as a marker only. Two today: the Sahara, whose Natural
+  Earth polygon runs to 9°N where the desert ends near 15–16°N (the union of
+  RESOLVE's Sahara ecoregions, measured as the alternative, keeps its edge at
+  about 17–19°N and awaits the user's decision), and the Libyan Desert, whose
+  polygon runs deep into Darfur and Kordofan.
 - **A source whose geometry comes from OpenStreetMap declares the ODbL credit**
   as its `attribution` — `© OpenStreetMap contributors`, linked to
   openstreetmap.org/copyright. The licence requires it. straits (`routes`,
@@ -256,6 +292,10 @@ by map. **Nothing is guessed to fill a gap.**
   carries a `nameBn`, an unlisted record that lacks one, and any `nameBn: null`.
   Supplying a Bengali name later means adding it and taking the record off the
   list in the same edit.
+- **A value that varies by nature is not unverified.** Where sources differ
+  because the thing itself changes — Mont Blanc's summit is an ice cap whose
+  thickness changes — the card shows the most recent survey as "প্রায় …",
+  cited to that survey and its year, and `review` logs the other values.
 - Shortening the pending list is not a goal. A fact with one weak source stays
   pending.
 
@@ -338,9 +378,10 @@ Currently pinned: trace count, per-record geometry hash, `bdPov` literals,
 `name_bn` hash and count, per-class boundary counts — and for the OpenStreetMap
 extract, its file checksum in `tools/sources.json` plus a per-record OSM trace
 count and geometry hash. Generated lines carry no hash: they are computed from
-constants in the build, and editing those constants is the review. For
-deserts: each area's Natural Earth geometry hash (`EXPECTED_AREA` in
-`tools/build-deserts.mjs`), and the geography-regions file in
+constants in the build, and editing those constants is the review. For the
+five Geography maps: every record's geometry hash, as its source has it, in
+`tools/geography-pins.json`; the three Natural Earth files they read; and the
+checksums of the RESOLVE, Wikidata and OSM-waterfall extracts, all in
 `tools/sources.json`. org-headquarters: the Natural Earth populated-places file (size and blob SHA in
 `tools/sources.json`), the OSM places extract's checksum, and the split of city
 points by source — 65 Natural Earth, 16 OSM — in the validator.
@@ -401,15 +442,17 @@ State which kind a task is when reporting it.
 
 ## Current state
 
-- Four maps: `docs/maps/straits/`, `docs/maps/border-lines/`,
-  `docs/maps/org-headquarters/` and `docs/maps/deserts/`.
-- deserts is the first Geography map and a design sample: one record, the
-  Sahara, awaiting the user's review before any other is added. Four more
-  Geography maps — lakes, forests, mountains, waterfalls — are planned to
-  reuse its photo terms unchanged. It is built by `tools/build-deserts.mjs`
-  from `data-sources/deserts/deserts.seed.json`; each area is Natural Earth's
-  `ne_10m_geography_regions_polys` feature matched by NAME and FEATURECLA,
-  its photo marker at the area's pole of inaccessibility.
+- Eight maps. International: `straits`, `border-lines`, `org-headquarters`.
+  Geography: `deserts`, `lakes`, `forests`, `mountains`, `waterfalls`, all
+  under `docs/maps/`.
+- The five Geography maps are built by one script, `tools/build-geography.mjs`,
+  from `data-sources/<map>/<map>.seed.json` — approved content in display
+  order, with the geometry, photo and pinned citations added to it. Their
+  outside sources are committed extracts, each re-made only on purpose by its
+  own tool: `tools/extract-resolve.mjs` (RESOLVE Ecoregions 2017, CC BY 4.0 —
+  the Sundarbans and taiga areas), `tools/extract-geography-points.mjs`
+  (Wikidata points, OSM waterfall nodes) and
+  `tools/extract-commons-photos.mjs` (the photos).
 - org-headquarters holds international organisations **and** technology
   companies, one map by the user's decision. It is built by
   `tools/build-org-headquarters.mjs` from two user-approved seeds, which the

@@ -1,17 +1,13 @@
 {
   "sahara": {
     "id": "sahara",
+    "groupBn": "আফ্রিকা",
     "nameBn": "সাহারা",
     "nameEn": "Sahara",
     "typeBn": "উষ্ণ মরুভূমি",
     "countriesBn": "আলজেরিয়া, লিবিয়া, মিশর, মালি, নাইজার, চাদ, সুদানসহ উত্তর আফ্রিকার বহু দেশ",
     "areaBn": "৯২,০০,০০০ বর্গকিমি",
     "noteBn": "বৃহত্তম উষ্ণ মরুভূমি",
-    "area": {
-      "file": "ne_10m_geography_regions_polys.geojson",
-      "NAME": "SAHARA",
-      "FEATURECLA": "Desert"
-    },
     "photo": {
       "commonsFile": "File:Morocco Africa Flickr Rosino December 2005 84514010 edited by Buchling.jpg",
       "page": "https://commons.wikimedia.org/wiki/File:Morocco_Africa_Flickr_Rosino_December_2005_84514010_edited_by_Buchling.jpg",
@@ -19,12 +15,42 @@
       "licence": "CC BY-SA 2.0",
       "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
       "sha1": "58290a3291fa6d6599cb03eeebd0769cfe9d74a9",
-      "size": [1697, 2784],
+      "size": [
+        1697,
+        2784
+      ],
       "crop": {
-        "marker": [177, 619, 1060, 1060],
-        "card": [0, 442, 1697, 1061]
+        "marker": [
+          177,
+          619,
+          1060,
+          1060
+        ],
+        "card": [
+          0,
+          442,
+          1697,
+          1061
+        ]
       },
       "note": "Erg Chebbi, Morocco. A Commons featured picture and picture of the day; no people. The shipped WebP files are cropped and resized from it and are shared under the same licence."
+    },
+    "geometry": {
+      "point": {
+        "source": "wikidata",
+        "qid": "Q6583"
+      },
+      "withheld": {
+        "area": {
+          "source": "naturalEarth",
+          "file": "ne_10m_geography_regions_polys.geojson",
+          "match": {
+            "NAME": "SAHARA",
+            "FEATURECLA": "Desert"
+          }
+        },
+        "reason": "Natural Earth's polygon runs south to about 9°N in Chad and Sudan; the desert ends around 15–16°N. The union of RESOLVE Ecoregions 2017's Sahara ecoregions (the eight named Sahara or Saharan, and Tibesti–Jebel Uweinat, which Wikipedia places in the eastern Sahara) was measured as the alternative: its southern edge runs at about 17–19°N (median 17.9°N), dipping to 14.8°N at 20–22°E, with a small detached patch at 12.7°N in the Darfur highlands. That is not near 15–16°N, so the Sahara ships as a marker only until the user decides; the union is kept in tools/sources/resolve-extract.geojson as 'sahara'."
+      }
     },
     "sources": {
       "nameBn": "editor-verified 2026-09-26 (supplied with the design sample)",
@@ -35,7 +61,7 @@
           "title": "List of deserts by area",
           "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
           "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
-          "states": "Rank 3, Sahara Desert, type Subtropical, area 9,200,000 km² (citing The World Factbook)."
+          "states": "Sahara: 9,200,000 km²."
         }
       ],
       "noteBn": [
@@ -44,6 +70,2096 @@
           "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
           "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
           "states": "Ranked 3rd of all deserts, after only the Antarctic and Arctic polar deserts, and typed Subtropical: the largest desert that is not polar. The page does not use the words 'largest hot desert'."
+        }
+      ]
+    }
+  },
+  "libyan": {
+    "id": "libyan",
+    "groupBn": "আফ্রিকা",
+    "nameBn": "লিবীয় মরুভূমি",
+    "nameEn": "Libyan Desert",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "লিবিয়া, মিশর, সুদান",
+    "areaBn": "১৩,০০,০০০ বর্গকিমি",
+    "noteBn": "সাহারার পূর্বাংশ",
+    "geometry": {
+      "point": {
+        "source": "wikidata",
+        "qid": "Q181528"
+      },
+      "withheld": {
+        "area": {
+          "source": "naturalEarth",
+          "file": "ne_10m_geography_regions_polys.geojson",
+          "match": {
+            "NAME": "LIBYAN DESERT",
+            "FEATURECLA": "Desert"
+          }
+        },
+        "reason": "Natural Earth's LIBYAN DESERT polygon runs from the Libyan coast south to about 13°N, deep into Darfur and Kordofan; the Libyan Desert covers eastern Libya, western Egypt and only north-western Sudan. Marker only."
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Libyan Desert - 2006.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Libyan_Desert_-_2006.jpg",
+      "author": "Roberdan",
+      "licence": "CC BY-SA 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "sha1": "f503b92ab940a50545d7dad2177e0d3660151e35",
+      "size": [
+        1280,
+        960
+      ],
+      "crop": {
+        "marker": [
+          160,
+          0,
+          960,
+          960
+        ],
+        "card": [
+          0,
+          80,
+          1280,
+          800
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "noteBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "Libyan Desert",
+          "publisher": "Wikipedia (revision 1366524275, 2026-07-28)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Libyan_Desert&oldid=1366524275",
+          "states": "The Libyan Desert covers an area of approximately 1,300,000 km²."
+        }
+      ]
+    }
+  },
+  "nubian": {
+    "id": "nubian",
+    "groupBn": "আফ্রিকা",
+    "nameBn": "নুবিয়ান মরুভূমি",
+    "nameEn": "Nubian Desert",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "সুদান, মিশর",
+    "areaBn": null,
+    "noteBn": "সাহারার পূর্বাংশ",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "NUBIAN DESERT",
+          "FEATURECLA": "Desert"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Nubian Desert (8651154432).jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Nubian_Desert_(8651154432).jpg",
+      "author": "David Stanley from Nanaimo, Canada",
+      "licence": "CC BY 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0",
+      "sha1": "a933517f8961a15d880ba8b55f918006782d4dd6",
+      "size": [
+        1024,
+        768
+      ],
+      "crop": {
+        "marker": [
+          128,
+          0,
+          768,
+          768
+        ],
+        "card": [
+          0,
+          64,
+          1024,
+          640
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "noteBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "kalahari": {
+    "id": "kalahari",
+    "groupBn": "আফ্রিকা",
+    "nameBn": "কালাহারি",
+    "nameEn": "Kalahari",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "বতসোয়ানা, নামিবিয়া, দক্ষিণ আফ্রিকা",
+    "areaBn": "৯,০০,০০০ বর্গকিমি",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "KALAHARI DESERT",
+          "FEATURECLA": "Desert"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Kalahari PICT0036.JPG",
+      "page": "https://commons.wikimedia.org/wiki/File:Kalahari_PICT0036.JPG",
+      "author": "Winfried Bruenken (Amrum)",
+      "licence": "CC BY-SA 2.5",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+      "sha1": "5b55b6861215ddc7f76d0b04a09d11474caa79b5",
+      "size": [
+        2560,
+        1920
+      ],
+      "crop": {
+        "marker": [
+          320,
+          0,
+          1920,
+          1920
+        ],
+        "card": [
+          0,
+          160,
+          2560,
+          1600
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
+          "states": "Kalahari: 900,000 km²."
+        }
+      ]
+    }
+  },
+  "namib": {
+    "id": "namib",
+    "groupBn": "আফ্রিকা",
+    "nameBn": "নামিব",
+    "nameEn": "Namib",
+    "typeBn": "উপকূলীয় মরুভূমি (শীতল স্রোতের প্রভাবে)",
+    "countriesBn": "নামিবিয়া, অ্যাঙ্গোলা",
+    "areaBn": "৮১,০০০ বর্গকিমি",
+    "noteBn": "বেঙ্গুয়েলা শীতল স্রোতের প্রভাবে সৃষ্ট; প্রাচীনতম মরুভূমি হিসেবে পরিচিত",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "NAMIB DESERT",
+          "FEATURECLA": "Desert"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Sossusvlei, Namibia, 2018-08-06, DD 040.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Sossusvlei,_Namibia,_2018-08-06,_DD_040.jpg",
+      "author": "Diego Delso",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha1": "e4e1929a531665670e9b10d2062461041c9ebdff",
+      "size": [
+        6418,
+        3503
+      ],
+      "crop": {
+        "marker": [
+          1458,
+          0,
+          3503,
+          3503
+        ],
+        "card": [
+          407,
+          0,
+          5605,
+          3503
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
+          "states": "Namib: 81,000 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "Namib",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Namib"
+        },
+        {
+          "title": "List of deserts by area",
+          "publisher": "List of deserts by area",
+          "url": "https://en.wikipedia.org/wiki/List_of_deserts_by_area"
+        }
+      ]
+    }
+  },
+  "danakil": {
+    "id": "danakil",
+    "groupBn": "আফ্রিকা",
+    "nameBn": "দানাকিল",
+    "nameEn": "Danakil Desert",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "ইথিওপিয়া, ইরিত্রিয়া, জিবুতি",
+    "areaBn": "১,৩৬,৯৫৬ বর্গকিমি",
+    "noteBn": "পৃথিবীর উষ্ণতম স্থানগুলোর একটি",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "Danakil",
+          "FEATURECLA": "Desert"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Danakil-Sable.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Danakil-Sable.jpg",
+      "author": "Ji-Elle",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sha1": "84fab8c9e06d3bda59ede5557836ca3339afc8d6",
+      "size": [
+        4320,
+        3240
+      ],
+      "crop": {
+        "marker": [
+          540,
+          0,
+          3240,
+          3240
+        ],
+        "card": [
+          0,
+          270,
+          4320,
+          2700
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
+          "states": "Danakil Desert: 136,956 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_deserts_by_area"
+        }
+      ]
+    }
+  },
+  "arabian": {
+    "id": "arabian",
+    "groupBn": "এশিয়া",
+    "nameBn": "আরব মরুভূমি",
+    "nameEn": "Arabian Desert",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "সৌদি আরব, ইয়েমেন, ওমান, সংযুক্ত আরব আমিরাত, কাতার, কুয়েত, জর্ডান, ইরাক",
+    "areaBn": "২৩,৩০,০০০ বর্গকিমি",
+    "noteBn": "এশিয়ার বৃহত্তম মরুভূমি",
+    "geometry": {
+      "point": {
+        "source": "wikidata",
+        "qid": "Q208299"
+      },
+      "note": "Natural Earth has no Arabian Desert polygon."
+    },
+    "photo": {
+      "commonsFile": "File:Arabian Desert - panoramio.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Arabian_Desert_-_panoramio.jpg",
+      "author": "Aidas U.",
+      "licence": "CC BY 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/3.0",
+      "sha1": "f731478bae97758d59d0db69fffd9740109df4cd",
+      "size": [
+        3264,
+        2448
+      ],
+      "crop": {
+        "marker": [
+          408,
+          0,
+          2448,
+          2448
+        ],
+        "card": [
+          0,
+          204,
+          3264,
+          2040
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
+          "states": "Arabian Desert: 2,330,000 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_deserts_by_area"
+        },
+        {
+          "title": "সম্পাদকের সিদ্ধান্ত ২০২৬-০৯-২৬ — কিছু প্রস্তুতি-সাইটে গোবি লেখা",
+          "publisher": "সম্পাদকের সিদ্ধান্ত ২০২৬-০৯-২৬ — কিছু প্রস্তুতি-সাইটে গোবি লেখা"
+        }
+      ]
+    }
+  },
+  "rubalkhali": {
+    "id": "rubalkhali",
+    "groupBn": "এশিয়া",
+    "nameBn": "রুব আল খালি",
+    "nameEn": "Rub' al Khali",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "সৌদি আরব, ওমান, সংযুক্ত আরব আমিরাত, ইয়েমেন",
+    "areaBn": "৬,৫০,০০০ বর্গকিমি",
+    "noteBn": "আরব মরুভূমির অংশ; বৃহত্তম একটানা বালুকাময় মরুভূমি",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "RUB’ AL KHALI",
+          "FEATURECLA": "Desert"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Rub al Khali 002.JPG",
+      "page": "https://commons.wikimedia.org/wiki/File:Rub_al_Khali_002.JPG",
+      "author": "Nepenthes",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sha1": "072bcdea669fb18bac9074d7f2e1783bbae93d95",
+      "size": [
+        3553,
+        1987
+      ],
+      "crop": {
+        "marker": [
+          783,
+          0,
+          1987,
+          1987
+        ],
+        "card": [
+          187,
+          0,
+          3179,
+          1987
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "noteBn": [
+        {
+          "title": "Guinness World Records",
+          "publisher": "Guinness World Records"
+        }
+      ],
+      "areaBn": [
+        {
+          "title": "Rub' al Khali",
+          "publisher": "Wikipedia (revision 1376457484, 2026-09-24)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Rub'_al_Khali&oldid=1376457484",
+          "states": "The desert covers some 650,000 km²."
+        }
+      ]
+    }
+  },
+  "nefud": {
+    "id": "nefud",
+    "groupBn": "এশিয়া",
+    "nameBn": "নেফুদ",
+    "nameEn": "An Nafud",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "সৌদি আরব",
+    "areaBn": "৬৫,০০০ বর্গকিমি",
+    "noteBn": "আরব মরুভূমির অংশ",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "An Nafud Desert",
+          "FEATURECLA": "Desert"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:ISS-64 Jubba with Nefud Desert, Saudi Arabia.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:ISS-64_Jubba_with_Nefud_Desert,_Saudi_Arabia.jpg",
+      "author": "NASA",
+      "licence": "Public domain",
+      "sha1": "69b48d6f113f15078c5e989945e073d841e513b2",
+      "size": [
+        5568,
+        3712
+      ],
+      "crop": {
+        "marker": [
+          928,
+          0,
+          3712,
+          3712
+        ],
+        "card": [
+          0,
+          116,
+          5568,
+          3480
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "noteBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "Nafud desert",
+          "publisher": "Wikipedia (revision 1364607713, 2026-07-17)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Nafud_desert&oldid=1364607713",
+          "states": "An area of 65,000 km²."
+        }
+      ]
+    }
+  },
+  "syrian": {
+    "id": "syrian",
+    "groupBn": "এশিয়া",
+    "nameBn": "সিরীয় মরুভূমি",
+    "nameEn": "Syrian Desert",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "সিরিয়া, ইরাক, জর্ডান, সৌদি আরব",
+    "areaBn": "৫,০০,০০০ বর্গকিমি",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "SYRIAN DESERT",
+          "FEATURECLA": "Desert"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Valley of the Tombs, Panoramic view, Palmyra, Syria.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Valley_of_the_Tombs,_Panoramic_view,_Palmyra,_Syria.jpg",
+      "author": "Vyacheslav Argenberg",
+      "licence": "CC BY 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
+      "sha1": "0ff945c6e0df14d69e19a80f1f5f9972d31364e7",
+      "size": [
+        4000,
+        2248
+      ],
+      "crop": {
+        "marker": [
+          876,
+          0,
+          2248,
+          2248
+        ],
+        "card": [
+          202,
+          0,
+          3597,
+          2248
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
+          "states": "Syrian Desert: 500,000 km²."
+        }
+      ]
+    }
+  },
+  "negev": {
+    "id": "negev",
+    "groupBn": "এশিয়া",
+    "nameBn": "নেগেভ",
+    "nameEn": "Negev",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "ইসরায়েল",
+    "areaBn": "১৩,০০০ বর্গকিমি",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "Negev Desert",
+          "FEATURECLA": "Desert"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Negev-2005-1.JPG",
+      "page": "https://commons.wikimedia.org/wiki/File:Negev-2005-1.JPG",
+      "author": "Unknown author",
+      "licence": "Public domain",
+      "sha1": "9c6b4bb9392902db7c6125fc5bb743dd708a4e71",
+      "size": [
+        640,
+        480
+      ],
+      "crop": {
+        "marker": [
+          80,
+          0,
+          480,
+          480
+        ],
+        "card": [
+          0,
+          40,
+          640,
+          400
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "Negev",
+          "publisher": "Wikipedia (revision 1372779457, 2026-09-02)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Negev&oldid=1372779457",
+          "states": "It covers some 13,000 km², more than half of Israel."
+        }
+      ]
+    }
+  },
+  "sinai": {
+    "id": "sinai",
+    "groupBn": "এশিয়া",
+    "nameBn": "সিনাই",
+    "nameEn": "Sinai Desert",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "মিশর",
+    "areaBn": null,
+    "noteBn": "মিশরের এশীয় অংশ, সিনাই উপদ্বীপ",
+    "geometry": {
+      "point": {
+        "source": "wikidata",
+        "qid": "Q36755"
+      },
+      "note": "Natural Earth has no Sinai Desert polygon."
+    },
+    "photo": {
+      "commonsFile": "File:Mont sinai2.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Mont_sinai2.jpg",
+      "author": "Daniel Fafard",
+      "licence": "Public domain",
+      "sha1": "932e4b1dc407ecc69c44a2ac781a5f172be7ea2f",
+      "size": [
+        3888,
+        2592
+      ],
+      "crop": {
+        "marker": [
+          648,
+          0,
+          2592,
+          2592
+        ],
+        "card": [
+          0,
+          81,
+          3888,
+          2430
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "noteBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "kavir": {
+    "id": "kavir",
+    "groupBn": "এশিয়া",
+    "nameBn": "দাশত-ই-কাভির",
+    "nameEn": "Dasht-e Kavir",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "ইরান",
+    "areaBn": "৭৭,০০০ বর্গকিমি",
+    "noteBn": "লবণ মরুভূমি",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "Kavir Desert",
+          "FEATURECLA": "Desert"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Dasht-e Kavir 2, Iran.JPG",
+      "page": "https://commons.wikimedia.org/wiki/File:Dasht-e_Kavir_2,_Iran.JPG",
+      "author": "Klára Nováková",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha1": "7406f3a889092f824b32d8d3cf31724572627c4a",
+      "size": [
+        1500,
+        1000
+      ],
+      "crop": {
+        "marker": [
+          250,
+          0,
+          1000,
+          1000
+        ],
+        "card": [
+          0,
+          31,
+          1500,
+          938
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
+          "states": "Great Salt Desert (Dasht-e Kavir) row: 77,000 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_deserts_by_area"
+        }
+      ]
+    }
+  },
+  "lut": {
+    "id": "lut",
+    "groupBn": "এশিয়া",
+    "nameBn": "দাশত-ই-লুত",
+    "nameEn": "Dasht-e Lut",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "ইরান",
+    "areaBn": "৫২,০০০ বর্গকিমি",
+    "noteBn": "ভূপৃষ্ঠের সর্বোচ্চ তাপমাত্রা (উপগ্রহে মাপা)",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "LUT DESERT",
+          "FEATURECLA": "Desert"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Sand castles - Dasht-e Lut desert - Kerman.JPG",
+      "page": "https://commons.wikimedia.org/wiki/File:Sand_castles_-_Dasht-e_Lut_desert_-_Kerman.JPG",
+      "author": "Betta27",
+      "licence": "Public domain",
+      "sha1": "77162923082903ed99daca0e35de93061b8b6fc0",
+      "size": [
+        800,
+        533
+      ],
+      "crop": {
+        "marker": [
+          134,
+          0,
+          533,
+          533
+        ],
+        "card": [
+          0,
+          17,
+          800,
+          500
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
+          "states": "Lut Desert row: 52,000 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "ESA: Dasht-e Lut salt desert",
+          "publisher": "ESA: Dasht-e Lut salt desert"
+        }
+      ]
+    }
+  },
+  "karakum": {
+    "id": "karakum",
+    "groupBn": "এশিয়া",
+    "nameBn": "কারাকুম",
+    "nameEn": "Karakum",
+    "typeBn": "শীতল মরুভূমি",
+    "countriesBn": "তুর্কমেনিস্তান",
+    "areaBn": "৩,৫০,০০০ বর্গকিমি",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "GARAGUM DESERT",
+          "FEATURECLA": "Desert"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:MAKarakum6.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:MAKarakum6.jpg",
+      "author": "Ziegler175",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha1": "dbf4e012a1cb99633493a87fe801dddd077c687f",
+      "size": [
+        2258,
+        1364
+      ],
+      "crop": {
+        "marker": [
+          447,
+          0,
+          1364,
+          1364
+        ],
+        "card": [
+          38,
+          0,
+          2182,
+          1364
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
+          "states": "Karakum: 350,000 km²."
+        }
+      ]
+    }
+  },
+  "kyzylkum": {
+    "id": "kyzylkum",
+    "groupBn": "এশিয়া",
+    "nameBn": "কিজিলকুম",
+    "nameEn": "Kyzylkum",
+    "typeBn": "শীতল মরুভূমি",
+    "countriesBn": "উজবেকিস্তান, কাজাখস্তান",
+    "areaBn": "৩,০০,০০০ বর্গকিমি",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "QIZILQUM DESERT",
+          "FEATURECLA": "Desert"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Kyzylkum Desert in Uzbekistan.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Kyzylkum_Desert_in_Uzbekistan.jpg",
+      "author": "Bgag",
+      "licence": "CC0",
+      "licenceUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "sha1": "4424c650a4fea75f63b3fbd04fb53fe02d46b573",
+      "size": [
+        3792,
+        2175
+      ],
+      "crop": {
+        "marker": [
+          809,
+          0,
+          2175,
+          2175
+        ],
+        "card": [
+          156,
+          0,
+          3480,
+          2175
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
+          "states": "Kyzylkum Desert row: 115,000 sq mi, shown converted as 300,000 km²."
+        }
+      ]
+    }
+  },
+  "registan": {
+    "id": "registan",
+    "groupBn": "এশিয়া",
+    "nameBn": "রেগিস্তান",
+    "nameEn": "Registan Desert",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "আফগানিস্তান",
+    "areaBn": "১,৪৬,০০০ বর্গকিমি",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "Rigestan",
+          "FEATURECLA": "Desert"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Registan ast 2000233 lrg.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Registan_ast_2000233_lrg.jpg",
+      "author": "Unknown author",
+      "licence": "Public domain",
+      "sha1": "649fe08a2d247718117b2ef4b3d38b6b58804305",
+      "size": [
+        4980,
+        4200
+      ],
+      "crop": {
+        "marker": [
+          600,
+          210,
+          3780,
+          3780
+        ],
+        "card": [
+          600,
+          919,
+          3780,
+          2363
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
+          "states": "Registan Desert: 146,000 km²."
+        }
+      ]
+    }
+  },
+  "thar": {
+    "id": "thar",
+    "groupBn": "এশিয়া",
+    "nameBn": "থর",
+    "nameEn": "Thar",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "ভারত, পাকিস্তান",
+    "areaBn": "২,৬৪,০৯১ বর্গকিমি",
+    "noteBn": "গ্রেট ইন্ডিয়ান ডেজার্ট নামেও পরিচিত",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "THAR DESERT",
+          "FEATURECLA": "Desert"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Thar desert Rajasthan India.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Thar_desert_Rajasthan_India.jpg",
+      "author": "sushmita balasubramani",
+      "licence": "CC BY 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0",
+      "sha1": "e180c287675bc4aa6ed275d81030a8e74b767b11",
+      "size": [
+        3888,
+        2592
+      ],
+      "crop": {
+        "marker": [
+          648,
+          0,
+          2592,
+          2592
+        ],
+        "card": [
+          0,
+          81,
+          3888,
+          2430
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
+          "states": "Thar: 264,091 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_deserts_by_area"
+        }
+      ]
+    }
+  },
+  "cholistan": {
+    "id": "cholistan",
+    "groupBn": "এশিয়া",
+    "nameBn": "চোলিস্তান",
+    "nameEn": "Cholistan",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "পাকিস্তান",
+    "areaBn": "২৫,৮০০ বর্গকিমি",
+    "noteBn": "থরের সঙ্গে সংযুক্ত",
+    "geometry": {
+      "point": {
+        "source": "wikidata",
+        "qid": "Q797491"
+      },
+      "note": "Natural Earth has no Cholistan polygon."
+    },
+    "photo": {
+      "commonsFile": "File:Derawar Fort side view.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Derawar_Fort_side_view.jpg",
+      "author": "Rohaan Bhatti",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sha1": "f5000b8a22a77477c45eb4b169240c79c423623a",
+      "size": [
+        2000,
+        1170
+      ],
+      "crop": {
+        "marker": [
+          415,
+          0,
+          1170,
+          1170
+        ],
+        "card": [
+          64,
+          0,
+          1872,
+          1170
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "noteBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "Cholistan Desert",
+          "publisher": "Wikipedia (revision 1372353957, 2026-08-31)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Cholistan_Desert&oldid=1372353957",
+          "states": "Cholistan covers an area of 25,800 km²."
+        }
+      ]
+    }
+  },
+  "ladakh": {
+    "id": "ladakh",
+    "groupBn": "এশিয়া",
+    "nameBn": "লাদাখ",
+    "nameEn": "Ladakh (cold desert)",
+    "typeBn": "শীতল মরুভূমি",
+    "countriesBn": "ভারত",
+    "areaBn": "৫৯,১৪৬ বর্গকিমি",
+    "noteBn": "ভারতের শীতল মরুভূমি",
+    "geometry": {
+      "point": {
+        "source": "wikidata",
+        "qid": "Q200667"
+      },
+      "note": "Natural Earth has no Ladakh desert polygon; the point is the Ladakh region."
+    },
+    "photo": {
+      "commonsFile": "File:Cold desert Nubra Valley Ladakh.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Cold_desert_Nubra_Valley_Ladakh.jpg",
+      "author": "HiranmoyPAC",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha1": "c59666ee5e0993e5d46c4f4f55c58f7329c36145",
+      "size": [
+        4032,
+        3024
+      ],
+      "crop": {
+        "marker": [
+          504,
+          0,
+          3024,
+          3024
+        ],
+        "card": [
+          0,
+          252,
+          4032,
+          2520
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
+          "states": "Ladakh (cold desert): 59,146 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_deserts_by_area"
+        }
+      ]
+    }
+  },
+  "gobi": {
+    "id": "gobi",
+    "groupBn": "এশিয়া",
+    "nameBn": "গোবি",
+    "nameEn": "Gobi",
+    "typeBn": "শীতল মরুভূমি",
+    "countriesBn": "মঙ্গোলিয়া, চীন",
+    "areaBn": "১২,৯৫,০০০ বর্গকিমি",
+    "noteBn": "এশিয়ার দ্বিতীয় বৃহত্তম মরুভূমি",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "GOBI DESERT",
+          "FEATURECLA": "Desert"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Gobi, krajobraz pustyni (23).jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Gobi,_krajobraz_pustyni_(23).jpg",
+      "author": "Marcin Konsek",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha1": "8bb4e06c0b4b1db4a978da2f6cdc56c1b2e684c4",
+      "size": [
+        3399,
+        2266
+      ],
+      "crop": {
+        "marker": [
+          567,
+          0,
+          2266,
+          2266
+        ],
+        "card": [
+          0,
+          71,
+          3399,
+          2124
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
+          "states": "Gobi: 1,295,000 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_deserts_by_area"
+        }
+      ]
+    }
+  },
+  "taklimakan": {
+    "id": "taklimakan",
+    "groupBn": "এশিয়া",
+    "nameBn": "তাকলামাকান",
+    "nameEn": "Taklimakan",
+    "typeBn": "শীতল মরুভূমি",
+    "countriesBn": "চীন",
+    "areaBn": "৩,৩৭,০০০ বর্গকিমি",
+    "noteBn": "তারিম অববাহিকা",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "TAKLIMAKAN DESERT",
+          "FEATURECLA": "Desert"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Alluvial fan, Taklimakan Desert, XinJiang Province, China, NASA, ASTER.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Alluvial_fan,_Taklimakan_Desert,_XinJiang_Province,_China,_NASA,_ASTER.jpg",
+      "author": "NASA/GSFC/METI/ERSDAC/JAROS, and U.S./Japan ASTER Science Team",
+      "licence": "Public domain",
+      "sha1": "223d1c4b03890572b488d610ee981da261778ae5",
+      "size": [
+        3774,
+        4086
+      ],
+      "crop": {
+        "marker": [
+          0,
+          156,
+          3774,
+          3774
+        ],
+        "card": [
+          0,
+          864,
+          3774,
+          2359
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
+          "states": "Taklamakan Desert row: 337,000 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_deserts_by_area"
+        }
+      ]
+    }
+  },
+  "mojave": {
+    "id": "mojave",
+    "groupBn": "উত্তর আমেরিকা",
+    "nameBn": "মোহাভি",
+    "nameEn": "Mojave",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "যুক্তরাষ্ট্র",
+    "areaBn": "১,২৪,০০০ বর্গকিমি",
+    "noteBn": "ডেথ ভ্যালি এই মরুভূমিতে",
+    "geometry": {
+      "point": {
+        "source": "wikidata",
+        "qid": "Q184355"
+      },
+      "note": "Natural Earth has no Mojave polygon."
+    },
+    "photo": {
+      "commonsFile": "File:Calico basin red rock cumulus mediocris.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Calico_basin_red_rock_cumulus_mediocris.jpg",
+      "author": "Fred Morledge",
+      "licence": "CC BY-SA 2.5",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.5",
+      "sha1": "27f91ea566da648ad000bf52b30b002871d7c34c",
+      "size": [
+        1024,
+        682
+      ],
+      "crop": {
+        "marker": [
+          171,
+          0,
+          682,
+          682
+        ],
+        "card": [
+          0,
+          21,
+          1024,
+          640
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
+          "states": "Mojave: 124,000 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_deserts_by_area"
+        }
+      ]
+    }
+  },
+  "sonoran": {
+    "id": "sonoran",
+    "groupBn": "উত্তর আমেরিকা",
+    "nameBn": "সোনোরান",
+    "nameEn": "Sonoran",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "যুক্তরাষ্ট্র, মেক্সিকো",
+    "areaBn": "৩,১০,০০০ বর্গকিমি",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "SONORAN DESERT",
+          "FEATURECLA": "Desert"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:AguaFriaNM (cropped).jpeg",
+      "page": "https://commons.wikimedia.org/wiki/File:AguaFriaNM_(cropped).jpeg",
+      "author": "United States Bureau of Land Management",
+      "licence": "Public domain",
+      "sha1": "21c0ccbd4ebb9981e71508b219ae18563e3ba689",
+      "size": [
+        1371,
+        2177
+      ],
+      "crop": {
+        "marker": [
+          0,
+          403,
+          1371,
+          1371
+        ],
+        "card": [
+          0,
+          660,
+          1371,
+          857
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
+          "states": "Sonoran Desert row: 120,000 sq mi, shown converted as 310,000 km²."
+        }
+      ]
+    }
+  },
+  "chihuahuan": {
+    "id": "chihuahuan",
+    "groupBn": "উত্তর আমেরিকা",
+    "nameBn": "চিহুয়াহুয়ান",
+    "nameEn": "Chihuahuan",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "মেক্সিকো, যুক্তরাষ্ট্র",
+    "areaBn": "৪,৫০,০০০ বর্গকিমি",
+    "noteBn": "উত্তর আমেরিকার বৃহত্তম উষ্ণ মরুভূমি",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "CHIHUAHUAN DESERT",
+          "FEATURECLA": "Desert"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Big Bend Chihuahuan Desert.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Big_Bend_Chihuahuan_Desert.jpg",
+      "author": "Adbar",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sha1": "f85a73623e4f7a0ccd2a99fdf904325432b63d95",
+      "size": [
+        2856,
+        1904
+      ],
+      "crop": {
+        "marker": [
+          476,
+          0,
+          1904,
+          1904
+        ],
+        "card": [
+          0,
+          60,
+          2856,
+          1785
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
+          "states": "Chihuahuan Desert row: 175,000 sq mi, shown converted as 450,000 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_deserts_by_area"
+        }
+      ]
+    }
+  },
+  "greatbasin": {
+    "id": "greatbasin",
+    "groupBn": "উত্তর আমেরিকা",
+    "nameBn": "গ্রেট বেসিন",
+    "nameEn": "Great Basin",
+    "typeBn": "শীতল মরুভূমি",
+    "countriesBn": "যুক্তরাষ্ট্র",
+    "areaBn": "৪,৯২,০০০ বর্গকিমি",
+    "noteBn": "যুক্তরাষ্ট্রের বৃহত্তম মরুভূমি",
+    "geometry": {
+      "point": {
+        "source": "wikidata",
+        "qid": "Q273446"
+      },
+      "note": "Natural Earth has no Great Basin Desert polygon (its \"Great Salt Lake Desert\" is a different, smaller feature)."
+    },
+    "photo": {
+      "commonsFile": "File:Great Basin Desert 3 by Earth's beauty site.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Great_Basin_Desert_3_by_Earth%27s_beauty_site.jpg",
+      "author": "Earth's beauty internet site",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sha1": "3344148e15f6fccd2eb7712a1a8746ad980742c7",
+      "size": [
+        1558,
+        1043
+      ],
+      "crop": {
+        "marker": [
+          258,
+          0,
+          1043,
+          1043
+        ],
+        "card": [
+          0,
+          35,
+          1558,
+          974
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
+          "states": "Great Basin: 492,000 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_deserts_by_area"
+        }
+      ]
+    }
+  },
+  "atacama": {
+    "id": "atacama",
+    "groupBn": "দক্ষিণ আমেরিকা",
+    "nameBn": "আতাকামা",
+    "nameEn": "Atacama",
+    "typeBn": "উপকূলীয় মরুভূমি (শীতল স্রোতের প্রভাবে)",
+    "countriesBn": "চিলি",
+    "areaBn": "১,৪০,০০০ বর্গকিমি",
+    "noteBn": "মেরু অঞ্চল বাদে পৃথিবীর শুষ্কতম মরুভূমি; হামবোল্ট (পেরু) শীতল স্রোতের প্রভাব",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "DESIERTO DE ATACAMA",
+          "FEATURECLA": "Desert"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Anfiteatro, Valle de la Luna, San Pedro de Atacama, Chile, 2016-02-01, DD 149.JPG",
+      "page": "https://commons.wikimedia.org/wiki/File:Anfiteatro,_Valle_de_la_Luna,_San_Pedro_de_Atacama,_Chile,_2016-02-01,_DD_149.JPG",
+      "author": "Diego Delso",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha1": "b1f944c7091bb97936f772b3e9a2f26bdb617421",
+      "size": [
+        8688,
+        4379
+      ],
+      "crop": {
+        "marker": [
+          2155,
+          0,
+          4379,
+          4379
+        ],
+        "card": [
+          841,
+          0,
+          7006,
+          4379
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
+          "states": "Atacama Desert row: 54,000 sq mi, shown converted as 140,000 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "Geography Realm: Driest non-polar desert",
+          "publisher": "Geography Realm: Driest non-polar desert"
+        }
+      ]
+    }
+  },
+  "patagonian": {
+    "id": "patagonian",
+    "groupBn": "দক্ষিণ আমেরিকা",
+    "nameBn": "প্যাটাগোনিয়া",
+    "nameEn": "Patagonian Desert",
+    "typeBn": "শীতল মরুভূমি",
+    "countriesBn": "আর্জেন্টিনা, চিলি",
+    "areaBn": "৬,৭৩,০০০ বর্গকিমি",
+    "noteBn": "দক্ষিণ আমেরিকার বৃহত্তম মরুভূমি",
+    "geometry": {
+      "point": {
+        "source": "wikidata",
+        "qid": "Q1061324"
+      },
+      "note": "Natural Earth has no Patagonian Desert polygon."
+    },
+    "photo": {
+      "commonsFile": "File:Neuquen river 1.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Neuquen_river_1.jpg",
+      "author": "Andarin2",
+      "licence": "CC BY-SA 3.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+      "sha1": "c3f92fa1e1c67c6894c8849f479816d71ac4b32f",
+      "size": [
+        2816,
+        2112
+      ],
+      "crop": {
+        "marker": [
+          352,
+          0,
+          2112,
+          2112
+        ],
+        "card": [
+          0,
+          176,
+          2816,
+          1760
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
+          "states": "Patagonian Desert: 673,000 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_deserts_by_area"
+        }
+      ]
+    }
+  },
+  "greatvictoria": {
+    "id": "greatvictoria",
+    "groupBn": "ওশেনিয়া",
+    "nameBn": "গ্রেট ভিক্টোরিয়া",
+    "nameEn": "Great Victoria Desert",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "অস্ট্রেলিয়া",
+    "areaBn": "৩,৪৮,৭৫০ বর্গকিমি",
+    "noteBn": "অস্ট্রেলিয়ার বৃহত্তম মরুভূমি",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "GREAT VICTORIA DESERT",
+          "FEATURECLA": "Desert"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Red Earth Desert.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Red_Earth_Desert.jpg",
+      "author": "Wayne England",
+      "licence": "CC BY 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0",
+      "sha1": "c18f44e3bf958582e54a0f41a6cea0a5ff4deda6",
+      "size": [
+        3008,
+        2000
+      ],
+      "crop": {
+        "marker": [
+          504,
+          0,
+          2000,
+          2000
+        ],
+        "card": [
+          0,
+          60,
+          3008,
+          1880
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "Deserts of Australia",
+          "publisher": "Wikipedia (revision 1374501335, 2026-09-12)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Deserts_of_Australia&oldid=1374501335",
+          "states": "Great Victoria Desert: 348,750 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "Deserts of Australia",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Deserts_of_Australia"
+        }
+      ]
+    }
+  },
+  "greatsandy": {
+    "id": "greatsandy",
+    "groupBn": "ওশেনিয়া",
+    "nameBn": "গ্রেট স্যান্ডি",
+    "nameEn": "Great Sandy Desert",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "অস্ট্রেলিয়া",
+    "areaBn": "২,৬৭,২৫০ বর্গকিমি",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "GREAT SANDY DESERT",
+          "FEATURECLA": "Desert"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Great Sandy Desert, Australia.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Great_Sandy_Desert,_Australia.jpg",
+      "author": "NASA",
+      "licence": "Public domain",
+      "sha1": "65c3e2efc0bf19dfa4a68f07ee56a69e38c11916",
+      "size": [
+        1440,
+        960
+      ],
+      "crop": {
+        "marker": [
+          240,
+          0,
+          960,
+          960
+        ],
+        "card": [
+          0,
+          30,
+          1440,
+          900
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "Deserts of Australia",
+          "publisher": "Wikipedia (revision 1374501335, 2026-09-12)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Deserts_of_Australia&oldid=1374501335",
+          "states": "Great Sandy Desert: 267,250 km²."
+        }
+      ]
+    }
+  },
+  "gibson": {
+    "id": "gibson",
+    "groupBn": "ওশেনিয়া",
+    "nameBn": "গিবসন",
+    "nameEn": "Gibson Desert",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "অস্ট্রেলিয়া",
+    "areaBn": "১,৫৬,০০০ বর্গকিমি",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "Gibson Desert",
+          "FEATURECLA": "Desert"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Gibson Desert and moon from Alfred & Marie Range.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Gibson_Desert_and_moon_from_Alfred_%26_Marie_Range.jpg",
+      "author": "Gazjo",
+      "licence": "Public domain",
+      "sha1": "83c82b4a74d083f4071e642b4304cdc39456b4d0",
+      "size": [
+        2304,
+        1728
+      ],
+      "crop": {
+        "marker": [
+          452,
+          0,
+          1400,
+          1400
+        ],
+        "card": [
+          0,
+          0,
+          2304,
+          1440
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "Deserts of Australia",
+          "publisher": "Wikipedia (revision 1374501335, 2026-09-12)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Deserts_of_Australia&oldid=1374501335",
+          "states": "Gibson Desert: 156,000 km²."
+        }
+      ]
+    }
+  },
+  "simpson": {
+    "id": "simpson",
+    "groupBn": "ওশেনিয়া",
+    "nameBn": "সিম্পসন",
+    "nameEn": "Simpson Desert",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "অস্ট্রেলিয়া",
+    "areaBn": "১,৭৬,৫০০ বর্গকিমি",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "Simpson Desert",
+          "FEATURECLA": "Desert"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Parallel Dunes of Munga-Thirri–Simpson Desert (50952731586).png",
+      "page": "https://commons.wikimedia.org/wiki/File:Parallel_Dunes_of_Munga-Thirri%E2%80%93Simpson_Desert_(50952731586).png",
+      "author": "Sentinel Hub",
+      "licence": "CC BY 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by/2.0",
+      "sha1": "14451fc07ae522d3fd0621594e536471ae97de11",
+      "size": [
+        12144,
+        7050
+      ],
+      "crop": {
+        "marker": [
+          2547,
+          0,
+          7050,
+          7050
+        ],
+        "card": [
+          432,
+          0,
+          11280,
+          7050
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "Deserts of Australia",
+          "publisher": "Wikipedia (revision 1374501335, 2026-09-12)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Deserts_of_Australia&oldid=1374501335",
+          "states": "Simpson Desert: 176,500 km²."
+        }
+      ]
+    }
+  },
+  "tanami": {
+    "id": "tanami",
+    "groupBn": "ওশেনিয়া",
+    "nameBn": "তানামি",
+    "nameEn": "Tanami Desert",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "অস্ট্রেলিয়া",
+    "areaBn": "১,৮৪,৫০০ বর্গকিমি",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "Tanami Desert",
+          "FEATURECLA": "Desert"
+        }
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Tanami Track 23rd June.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Tanami_Track_23rd_June.jpg",
+      "author": "Robertewelsh at English Wikipedia",
+      "licence": "Public domain",
+      "sha1": "c960646b4dbd558d2a6ea2eadb189bd1659edf6e",
+      "size": [
+        1158,
+        779
+      ],
+      "crop": {
+        "marker": [
+          190,
+          0,
+          779,
+          779
+        ],
+        "card": [
+          0,
+          28,
+          1158,
+          724
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "Deserts of Australia",
+          "publisher": "Wikipedia (revision 1374501335, 2026-09-12)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Deserts_of_Australia&oldid=1374501335",
+          "states": "Tanami Desert: 184,500 km²."
+        }
+      ]
+    }
+  },
+  "antarctic": {
+    "id": "antarctic",
+    "groupBn": "মেরু অঞ্চল",
+    "nameBn": "অ্যান্টার্কটিক মরুভূমি",
+    "nameEn": "Antarctic Desert",
+    "typeBn": "মেরু মরুভূমি",
+    "countriesBn": "অ্যান্টার্কটিকা",
+    "areaBn": "১,৪২,০০,০০০ বর্গকিমি",
+    "noteBn": "আয়তনে পৃথিবীর বৃহত্তম মরুভূমি",
+    "geometry": {
+      "area": {
+        "source": "naturalEarth",
+        "file": "ne_10m_geography_regions_polys.geojson",
+        "match": {
+          "NAME": "ANTARCTICA",
+          "FEATURECLA": "Continent"
+        }
+      },
+      "note": "The Antarctic Desert is the whole continent; Natural Earth has no separate desert feature."
+    },
+    "photo": {
+      "commonsFile": "File:Ice-and-mountains.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Ice-and-mountains.jpg",
+      "author": "Robert L. Dale",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha1": "f5ea0cc06e1ae7ef0b352005d973c69f39e6e0fe",
+      "size": [
+        3465,
+        3465
+      ],
+      "crop": {
+        "marker": [
+          0,
+          0,
+          3465,
+          3465
+        ],
+        "card": [
+          0,
+          1299,
+          3465,
+          2166
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
+          "states": "Antarctic Desert: 14,200,000 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_deserts_by_area"
+        }
+      ]
+    }
+  },
+  "arctic": {
+    "id": "arctic",
+    "groupBn": "মেরু অঞ্চল",
+    "nameBn": "আর্কটিক মরুভূমি",
+    "nameEn": "Arctic Desert",
+    "typeBn": "মেরু মরুভূমি",
+    "countriesBn": "আর্কটিক অঞ্চল",
+    "areaBn": "১,৩৯,০০,০০০ বর্গকিমি",
+    "noteBn": "দ্বিতীয় বৃহত্তম মরুভূমি",
+    "geometry": {
+      "point": {
+        "source": "wikidata",
+        "qid": "Q398398"
+      },
+      "note": "No open polygon of the whole Arctic Desert; the point is the Wikidata item for it."
+    },
+    "photo": {
+      "commonsFile": "File:Вид на остров Бэлл.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:%D0%92%D0%B8%D0%B4_%D0%BD%D0%B0_%D0%BE%D1%81%D1%82%D1%80%D0%BE%D0%B2_%D0%91%D1%8D%D0%BB%D0%BB.jpg",
+      "author": "Николай Гернет",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha1": "fa819c5fc80b44af9ef4489cbf2b761a1f22082c",
+      "size": [
+        4752,
+        3168
+      ],
+      "crop": {
+        "marker": [
+          792,
+          0,
+          3168,
+          3168
+        ],
+        "card": [
+          0,
+          99,
+          4752,
+          2970
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "typeBn": "editor-verified 2026-09-26 (approved list)",
+      "areaBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
+          "states": "Arctic Desert: 13,900,000 km²."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_deserts_by_area"
         }
       ]
     }

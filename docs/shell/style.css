@@ -478,7 +478,8 @@ body {
 
 /*
  * PHOTO MARKER — a record drawn as a round photo. Shell look, identical on
- * every map: 56 px with a white ring, 72 px with a dark ring when selected.
+ * every map: 56 px with a 2 px white ring, 72 px with a 2 px dark ring when
+ * selected.
  * It sits above the selection pulse, which grows to show round it.
  */
 .photo-marker {
@@ -487,7 +488,7 @@ body {
   height: 56px;
   padding: 0;
   overflow: hidden;
-  border: 3px solid #ffffff;
+  border: 2px solid #ffffff;
   border-radius: 50%;
   background: #e9d8b4;
   box-shadow: 0 2px 8px rgba(19, 35, 58, 0.35);
@@ -510,6 +511,20 @@ body {
   width: 72px;
   height: 72px;
   border-color: #0b3d91;
+}
+
+/* No free photo: the straits point marker, property for property. */
+.photo-marker.plain {
+  width: 16px;
+  height: 16px;
+  background: #0b3d91;
+  box-shadow: none;
+}
+
+.photo-marker.plain.selected {
+  width: 20px;
+  height: 20px;
+  border-color: #ffffff;
 }
 
 .photo-marker:focus-visible {
@@ -676,4 +691,19 @@ body {
   .step-btn {
     flex: 1 1 auto;
   }
+}
+
+/*
+ * The same stacked form on any width where the row would otherwise break
+ * unevenly — a map whose longest name is too wide for [ ‹ ] [ name ] [ › ]
+ * on one row. The shell sets `stacked` when it sees the row wrap; the name is
+ * still never truncated.
+ */
+.page-header.stacked .record-picker {
+  order: -1;
+  flex-basis: 100%;
+}
+
+.page-header.stacked .step-btn {
+  flex: 1 1 auto;
 }

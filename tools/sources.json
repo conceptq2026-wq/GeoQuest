@@ -53,6 +53,10 @@
       "ne_10m_geography_regions_polys.geojson": {
         "size": 5583870,
         "gitBlobSha1": "b0af6a56d56c7903c9aa40df5b01813bb4334c94"
+      },
+      "ne_10m_geography_regions_elevation_points.geojson": {
+        "size": 862686,
+        "gitBlobSha1": "86076ef74c48d1adca1eadefd2b22894795d070c"
       }
     }
   },
@@ -120,5 +124,27 @@
     "fetched": "2026-09-25",
     "licence": "ODbL 1.0 — © OpenStreetMap contributors",
     "sha256": "64d4b760f5476a33bb7b5d58cf7183032b811cb572c6a63d38363d5f407e21ca"
+  },
+  "resolveEcoregions": {
+    "_comment": "RESOLVE Ecoregions 2017 release, used only by tools/extract-resolve.mjs; the build reads the committed extract.",
+    "url": "https://storage.googleapis.com/teow2016/Ecoregions2017.zip",
+    "file": "Ecoregions2017.zip",
+    "size": 149248653,
+    "sha256": "be36d6209e443038d02e309f0447c6e7f2a62f5fe60c605ffe90d064952f2a60",
+    "licence": "CC BY 4.0 — RESOLVE Ecoregions 2017 (Dinerstein et al. 2017)",
+    "extract": "tools/sources/resolve-extract.geojson",
+    "extractSha256": "84ac45ad1d4354f556a63751acc6dd7edb89cf6c9de5c46f27483edce2cadc5b"
+  },
+  "wikidataPoints": {
+    "_comment": "P625 coordinates of the Wikidata items the Geography seeds name, from tools/extract-geography-points.mjs.",
+    "file": "tools/sources/wikidata-points.json",
+    "licence": "CC0 — Wikidata",
+    "sha256": "0d7ef31824631e47cbdfc40cc1824686812ae8509db8d6a9b1e15215e0cbfb8e"
+  },
+  "osmWaterfalls": {
+    "_comment": "The waterfall nodes the waterfalls seed names, each checked inside its box, from tools/extract-geography-points.mjs.",
+    "file": "tools/sources/osm-waterfalls.geojson",
+    "licence": "ODbL 1.0 — © OpenStreetMap contributors",
+    "sha256": "7db90baab2c4c79cc80fce512ed540aec5c8b098c29d47647f0f2711fad1b27c"
   }
 }

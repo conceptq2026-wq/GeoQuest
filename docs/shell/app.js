@@ -829,23 +829,53 @@ function paddingFor(clear) {
 /*
  * The tap target is a finger wide, so two points a few pixels apart are both
  * under it — Geneva and Cologny are at frame zoom. The one nearest the finger
- * wins, not whichever the renderer happened to list first. Lines and areas
- * have no single point to measure, so they keep the renderer's order.
+ * wins, not whichever the renderer happened to list first.
+ *
+ * Areas nest — the Nubian Desert inside the Sahara, Rub' al Khali inside the
+ * Arabian — so a tap on overlapping areas selects the SMALLEST: the one the
+ * tap most specifically means. Measured on the record's whole geometry, not
+ * the tile-clipped piece the renderer hands back.
  */
-function nearest(features, point) {
+function nearest(features, point, source) {
   if (!features?.length) return null;
   let best = features[0];
-  let bestDistance = Infinity;
+  let bestScore = Infinity;
   for (const candidate of features) {
-    if (candidate.geometry?.type !== 'Point') continue;
-    const at = map.project(candidate.geometry.coordinates);
-    const distance = Math.hypot(at.x - point.x, at.y - point.y);
-    if (distance < bestDistance) {
+    const type = candidate.geometry?.type;
+    let score;
+    if (type === 'Point') {
+      const at = map.project(candidate.geometry.coordinates);
+      score = Math.hypot(at.x - point.x, at.y - point.y);
+    } else if (type === 'Polygon' || type === 'MultiPolygon') {
+      score = recordArea(source, candidate.properties.key);
+    } else continue;
+    if (score < bestScore) {
       best = candidate;
-      bestDistance = distance;
+      bestScore = score;
     }
   }
   return best;
+}
+
+/** A record's area in its source, in square degrees scaled by latitude — enough to rank. */
+const areaCache = new Map();
+function recordArea(source, key) {
+  const id = `${source}|${key}`;
+  if (areaCache.has(id)) return areaCache.get(id);
+  const spec = sourceSpecs[source];
+  let total = 0;
+  for (const f of geometryFiles[source]?.features ?? []) {
+    if (f.properties[spec.joinField] !== key) continue;
+    const polys = f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates;
+    for (const [outer] of polys) {
+      let a = 0;
+      for (let i = 0, j = outer.length - 1; i < outer.length; j = i++) a += (outer[j][0] - outer[i][0]) * (outer[j][1] + outer[i][1]);
+      const lat = outer.reduce((s, p) => s + p[1], 0) / outer.length;
+      total += Math.abs(a / 2) * Math.cos((lat * Math.PI) / 180);
+    }
+  }
+  areaCache.set(id, total || Infinity);
+  return areaCache.get(id);
 }
 
 for (const interaction of interactions) {
@@ -854,7 +884,7 @@ for (const interaction of interactions) {
   const spec = sourceSpecs[source];
 
   own.mapHandler(map, interaction.on, hitLayerId(source), async (event) => {
-    const feature = nearest(event.features, event.point);
+    const feature = nearest(event.features, event.point, source);
     if (!feature) return;
 
     // Cluster tap is the shell's, not the descriptor's: expanding a cluster is
@@ -911,16 +941,19 @@ function syncPhotoMarkers(name, data) {
     if (!m) {
       const row = records[spec.records][key];
       const photo = row[spec.photoMarker.field];
-      if (!photo) continue;
       const element = own.node(document.createElement('button'), `photo marker ${key}`);
       element.type = 'button';
-      element.className = 'photo-marker';
+      // A record with no free photo is never left off the map: it gets the
+      // plain dot the straits map gives a passage.
+      element.className = photo ? 'photo-marker' : 'photo-marker plain';
       element.setAttribute('aria-label', valueOf(sheetFor(spec.records)?.title, row) ?? key);
-      const img = document.createElement('img');
-      img.src = mapFile(photo.marker);
-      img.alt = '';
-      img.decoding = 'async';
-      element.appendChild(img);
+      if (photo) {
+        const img = document.createElement('img');
+        img.src = mapFile(photo.marker);
+        img.alt = '';
+        img.decoding = 'async';
+        element.appendChild(img);
+      }
       own.domHandler(element, 'click', (event) => {
         event.stopPropagation();
         if (click) runActions(click.do, { table: spec.records, key });
@@ -979,6 +1012,22 @@ function renderPicker() {
   for (const og of pickerGroups.values()) if (og.children.length) dom.picker.appendChild(og);
   for (const option of loose) dom.picker.appendChild(option);
   dom.picker.value = selection.get(picker.from) ?? '';
+  stackPickerRow();
+}
+
+/*
+ * The picker row keeps one form, [ ‹ ] [ name ] [ › ]. A name too wide for it
+ * wraps the row — and a row that wraps goes fully stacked (the name on its
+ * own row, the arrows sharing the next) rather than leaving one arrow alone.
+ */
+function stackPickerRow() {
+  const header = dom.picker.parentElement;
+  header.classList.remove('stacked');
+  if (dom.prev.hidden) return;
+  // Wrapped means a whole row down, not the pixel a taller select sits apart.
+  const top = dom.prev.offsetTop;
+  const apart = (el) => Math.abs(el.offsetTop - top) > dom.prev.offsetHeight / 2;
+  if (apart(dom.picker) || apart(dom.next)) header.classList.add('stacked');
 }
 
 function buildPicker(control) {
@@ -1039,6 +1088,10 @@ function buildPicker(control) {
   own.domHandler(dom.prev, 'click', () => step(-1));
   own.domHandler(dom.next, 'click', () => step(1));
   syncStepButtons();
+  // Measured once the arrows show, and again once the Bengali font has
+  // arrived, since the font sets how wide a name is.
+  stackPickerRow();
+  document.fonts?.ready.then(() => stackPickerRow());
 }
 
 function syncStepButtons() {
@@ -1242,8 +1295,9 @@ function fillPhoto(sheet, row) {
     a.textContent = text;
     return a;
   };
+  // CC BY-SA asks the credit of a derivative to say what was changed.
   credit.replaceChildren(
-    document.createTextNode(`Photo: ${photo.author} · `),
+    document.createTextNode(`Photo${photo.cropped ? ' (cropped)' : ''}: ${photo.author} · `),
     photo.licenceUrl ? link(photo.licenceUrl, photo.licence) : document.createTextNode(photo.licence),
     document.createTextNode(' · '),
     link(photo.page, 'Wikimedia Commons'),
@@ -1524,7 +1578,10 @@ own.mapHandler(map, 'error', (event) => {
   if (event && basemapSourceIds.has(event.sourceId)) dom.loadNotice.classList.add('visible');
 });
 
-own.domHandler(window, 'resize', () => map.resize());
+own.domHandler(window, 'resize', () => {
+  map.resize();
+  if (picker) stackPickerRow();
+});
 
 if (hasSheet) setSheetOpen(false);
 

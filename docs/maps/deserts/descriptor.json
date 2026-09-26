@@ -8,7 +8,12 @@
   },
   "basemap": "world",
   "view": {
-    "fitBounds": [-125, -42, 150, 62]
+    "fitBounds": [
+      -125,
+      -42,
+      150,
+      62
+    ]
   },
   "constraints": {
     "minZoom": 0,
@@ -19,15 +24,50 @@
     "deserts": {
       "file": "./records.json",
       "fields": {
-        "nameBn": { "type": "text", "required": true },
-        "nameEn": { "type": "text", "required": true, "display": false },
-        "typeBn": { "type": "text", "verifiable": true },
-        "countriesBn": { "type": "text", "verifiable": true },
-        "areaBn": { "type": "text", "verifiable": true },
-        "noteBn": { "type": "text", "verifiable": true },
-        "labelAt": { "type": "point", "required": true },
-        "frame": { "type": "bbox", "required": true },
-        "photo": { "type": "photo" }
+        "groupBn": {
+          "type": "text",
+          "required": true
+        },
+        "nameBn": {
+          "type": "text",
+          "required": true
+        },
+        "nameEn": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "typeBn": {
+          "type": "text",
+          "verifiable": true
+        },
+        "countriesBn": {
+          "type": "text",
+          "required": true
+        },
+        "areaBn": {
+          "type": "text",
+          "verifiable": true
+        },
+        "noteBn": {
+          "type": "text",
+          "verifiable": true
+        },
+        "labelAt": {
+          "type": "point",
+          "required": true
+        },
+        "hasArea": {
+          "type": "boolean",
+          "required": true
+        },
+        "frame": {
+          "type": "bbox",
+          "required": true
+        },
+        "photo": {
+          "type": "photo"
+        }
       }
     }
   },
@@ -36,95 +76,252 @@
       "records": "deserts",
       "geometry": "./areas.geojson",
       "joinField": "id",
-      "state": ["selected"],
+      "expectGeometry": {
+        "hasArea": true
+      },
+      "state": [
+        "selected"
+      ],
       "properties": []
     },
-    "desertPoints": {
+    "points": {
       "records": "deserts",
       "geometryFrom": "labelAt",
-      "state": ["selected"],
-      "properties": ["nameBn"],
+      "state": [
+        "selected"
+      ],
+      "properties": [
+        "nameBn"
+      ],
       "selectionMarker": true,
-      "photoMarker": { "field": "photo" }
+      "photoMarker": {
+        "field": "photo"
+      }
     }
   },
   "styles": {
-    "desert-fill": { "paint": { "fill-color": "#e8c98a" } },
-    "desert-edge": { "layout": { "line-join": "round" }, "paint": { "line-color": "#b07d3a" } },
-    "desert-label": {
+    "label": {
       "layout": {
-        "text-font": ["Noto Sans Bengali"],
+        "text-font": [
+          "Noto Sans Bengali"
+        ],
         "text-anchor": "top",
         "text-optional": true
       },
-      "paint": { "text-color": "#6b4414", "text-halo-color": "#ffffff", "text-halo-width": 2 }
+      "paint": {
+        "text-color": "#13233a",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    "area-fill": {
+      "paint": {
+        "fill-color": "#e8c98a"
+      }
+    },
+    "area-edge": {
+      "layout": {
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "#b07d3a"
+      }
     }
   },
   "layers": [
     {
-      "id": "desert-fill",
+      "id": "area-fill",
       "type": "fill",
       "source": "areas",
       "slot": "belowLabels",
-      "style": "desert-fill",
-      "paint": { "fill-opacity": ["case", ["get", "selected"], 0.72, 0.42] }
-    },
-    {
-      "id": "desert-edge",
-      "type": "line",
-      "source": "areas",
-      "slot": "belowLabels",
-      "style": "desert-edge",
+      "style": "area-fill",
       "paint": {
-        "line-width": ["case", ["get", "selected"], 2.4, 1],
-        "line-opacity": ["case", ["get", "selected"], 1, 0.8]
+        "fill-opacity": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          0.72,
+          0.42
+        ]
       }
     },
     {
-      "id": "desert-label",
+      "id": "area-edge",
+      "type": "line",
+      "source": "areas",
+      "slot": "belowLabels",
+      "style": "area-edge",
+      "paint": {
+        "line-width": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          1.6,
+          0.67
+        ],
+        "line-opacity": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          1,
+          0.8
+        ]
+      }
+    },
+    {
+      "id": "label",
       "type": "symbol",
-      "source": "desertPoints",
+      "source": "points",
       "slot": "aboveLabels",
-      "style": "desert-label",
+      "style": "label",
       "layout": {
-        "text-field": ["get", "nameBn"],
-        "text-size": ["case", ["get", "selected"], 15, 13],
-        "text-offset": ["case", ["get", "selected"], ["literal", [0, 3]], ["literal", [0, 2.6]]],
-        "symbol-sort-key": ["case", ["get", "selected"], 0, 1]
+        "text-field": [
+          "get",
+          "nameBn"
+        ],
+        "text-size": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          15,
+          12.5
+        ],
+        "text-offset": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          [
+            "literal",
+            [
+              0,
+              3
+            ]
+          ],
+          [
+            "literal",
+            [
+              0,
+              2.6
+            ]
+          ]
+        ],
+        "symbol-sort-key": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          0,
+          1
+        ]
       }
     }
   ],
   "controls": [
     {
       "type": "picker",
-      "id": "desert",
+      "id": "deserts",
       "from": "deserts",
+      "groupBy": {
+        "field": "groupBn",
+        "order": [
+          "আফ্রিকা",
+          "এশিয়া",
+          "উত্তর আমেরিকা",
+          "দক্ষিণ আমেরিকা",
+          "ওশেনিয়া",
+          "মেরু অঞ্চল"
+        ]
+      },
       "placeholder": "একটি মরুভূমি বেছে নিন…",
       "labelEn": "Choose a desert",
-      "label": { "field": "nameBn" },
-      "do": [{ "action": "select" }, { "action": "fitBounds", "clear": ["sheet"], "duration": 1800, "field": "frame" }]
+      "label": {
+        "field": "nameBn"
+      },
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
     }
   ],
   "interactions": [
     {
       "on": "click",
-      "target": "source:desertPoints",
-      "do": [{ "action": "select" }, { "action": "fitBounds", "clear": ["sheet"], "duration": 1800, "field": "frame" }]
+      "target": "source:points",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
     },
     {
       "on": "click",
       "target": "source:areas",
-      "do": [{ "action": "select" }, { "action": "fitBounds", "clear": ["sheet"], "duration": 1800, "field": "frame" }]
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
     }
   ],
   "sheet": {
-    "photo": { "field": "photo" },
-    "kicker": { "field": "typeBn" },
-    "title": { "field": "nameBn" },
+    "photo": {
+      "field": "photo"
+    },
+    "kicker": {
+      "field": "typeBn"
+    },
+    "title": {
+      "field": "nameBn"
+    },
     "rows": [
-      { "label": "দেশ", "field": "countriesBn" },
-      { "label": "আয়তন", "field": "areaBn" },
-      { "label": "বিবরণ", "field": "noteBn" }
+      {
+        "label": "দেশ",
+        "field": "countriesBn"
+      },
+      {
+        "label": "আয়তন",
+        "field": "areaBn"
+      },
+      {
+        "label": "বিবরণ",
+        "field": "noteBn"
+      }
     ]
   }
 }
