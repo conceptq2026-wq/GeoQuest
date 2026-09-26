@@ -205,6 +205,19 @@ declares sources, layers, sheet rows and actions; it holds no content.
   shell CSS, identical on every map. The validator fails a photo missing
   either file or any part of its credit, or carrying a licence other than
   public domain, CC0, CC BY or CC BY-SA.
+- **Names avoid photos.** A photo marker is DOM, above the canvas, so
+  MapLibre's label placement cannot see it. The shell reserves each marker's
+  circle in the collision index with invisible icons on its topmost layers,
+  placed before any name: three centred rectangles that cover the circle and
+  overreach it by at most 17% of the radius (one square would by 41%, and turn
+  away names that sit beside a photo), sized from the marker as the CSS draws
+  it. A name is placed round a photo as round another name, and one with
+  nowhere to go is dropped rather than drawn under a photo. The icons are
+  never drawn and take no tap. Flat, they match the marker at every zoom;
+  tilted, MapLibre scales symbols with perspective and the DOM markers not,
+  so at the tilt button's 55° the reserve is 92–95% of the marker. A name
+  under its own photo must sit outside that photo's reserve or it is pushed
+  off it: the janapada names clear it by 0.5 px, the geography maps' by 2.5 px.
 - **Photos are light.** Every marker on a map loads when the map opens, so a
   marker file is at most 8 KB; a card photo loads only when its card opens,
   never at map load, and is at most 40 KB. The extractor steps WebP quality
@@ -442,10 +455,10 @@ The builder records every id it creates — layer, source, image, handler, timer
 observer, DOM node — into a per-map registry, and teardown loops it in reverse.
 Correctness must not depend on anyone remembering anything.
 
-Between teardown and the next build, a **leak assertion**: layer and source
-sets equal the pristine baseline, the registry is empty, no popups or markers
-remain, handler and observer registries are empty. Loud in dev, counted in
-production.
+Between teardown and the next build, a **leak assertion**: layer, source and
+image sets equal the pristine baseline, the registry is empty, no popups or
+markers remain, handler and observer registries are empty. Loud in dev,
+counted in production.
 
 The build pipeline runs an **A→B→A test**: build A, switch to B, switch back,
 assert the style is identical to a freshly built A. *Not built yet: there is no
@@ -526,9 +539,9 @@ State which kind a task is when reporting it.
   under it, or above or beside it where that would collide; a record without
   one has no marker and its name sits on the area's inner point, or beside
   it. Names take those alternative anchors (`text-variable-anchor` with a
-  `text-radial-offset`) rather than overlap. MapLibre's collision cannot see
-  the DOM photo discs, so a name can still fall under another record's disc:
-  in the default view today, বঙ্গ and হরিকেল under সমতট's. Every area is a
+  `text-radial-offset`) rather than overlap, and avoid the photos (see
+  **Names avoid photos**): in the default view today হরিকেল finds room only
+  past the canvas's right edge at 390 px, and none at 320 px. Every area is a
   thin outline; only the selected one is filled. Every Bengali unit name the
   seed shows must be the names table's spelling; the build fails any other,
   except where `NAME_EXCEPTIONS` lists one with its reason — today Harikela's

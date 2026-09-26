@@ -55,6 +55,10 @@ const own = {
     map.addSource(id, spec);
     remember('source', id, () => map.getSource(id) && map.removeSource(id));
   },
+  image(map, id, image) {
+    map.addImage(id, image);
+    remember('image', id, () => map.hasImage(id) && map.removeImage(id));
+  },
   mapHandler(map, type, layerOrHandler, maybeHandler) {
     const layer = maybeHandler ? layerOrHandler : undefined;
     const handler = maybeHandler ?? layerOrHandler;
@@ -549,6 +553,7 @@ remember('map', 'map', () => map.remove());
 const pristine = { layers: style.layers.map((l) => l.id), sources: Object.keys(style.sources) };
 
 await new Promise((resolve) => map.once('load', resolve));
+pristine.images = map.listImages();
 
 /*
 |--------------------------------------------------------------------------
@@ -1137,6 +1142,79 @@ function syncPhotoMarkers(name, data) {
     if (present.has(key) || !m.shown) continue;
     m.instance.remove();
     m.shown = false;
+  }
+}
+
+/*
+ * A photo marker is DOM, drawn above the canvas, so MapLibre places names
+ * without seeing it and a name could land under another record's photo. Each
+ * marker's circle is therefore reserved in MapLibre's collision index, by
+ * invisible icons at the marker's point sized from the marker as the shell's
+ * CSS draws it, on the topmost layers so they are placed before any name.
+ * Names then avoid a photo the way they avoid each other. The icons are always
+ * placed (photos overlap one another, and each keeps its space) and never
+ * drawn. They are not tap targets: nothing is bound to them, and a tap is
+ * resolved on the hit layers and the markers themselves.
+ *
+ * The collision index holds boxes, not circles, so the circle is covered by
+ * three centred rectangles, their corners at 35.3° and 54.7° round it: they
+ * overreach it by at most 17% of the radius, where one square would by 41%
+ * and turn away a name that sits beside a photo rather than under it.
+ */
+const PHOTO_SPACE = [
+  // name, half-width and half-height as fractions of the radius
+  ['wide', 1, Math.sqrt(1 / 3)],
+  ['square', Math.sqrt(2 / 3), Math.sqrt(2 / 3)],
+  ['tall', Math.sqrt(1 / 3), 1],
+];
+const PHOTO_SPACE_PX = 64; // the images' circle, in px; icon-size scales it to the marker's
+const photoSpaceId = (part) => `photo-space-${part}`;
+const photoSpaceLayerId = (source, part) => `${source}--photo-space-${part}`;
+
+if (photoMarkers.size) {
+  for (const [part, w, h] of PHOTO_SPACE) {
+    // Rounded up, so the three still cover the whole circle.
+    const width = Math.ceil(PHOTO_SPACE_PX * w);
+    const height = Math.ceil(PHOTO_SPACE_PX * h);
+    own.image(map, photoSpaceId(part), { width, height, data: new Uint8Array(width * height * 4) });
+  }
+  const size = {
+    photo: markerSize('photo-marker'),
+    photoSelected: markerSize('photo-marker selected'),
+    plain: markerSize('photo-marker plain'),
+    plainSelected: markerSize('photo-marker plain selected'),
+  };
+  for (const [name, { spec }] of photoMarkers) {
+    const table = records[spec.records];
+    const plain = Object.keys(table).filter((key) => !table[key][spec.photoMarker.field]);
+    const byKind = (photo, dot) => (plain.length ? ['match', ['get', 'key'], plain, dot / PHOTO_SPACE_PX, photo / PHOTO_SPACE_PX] : photo / PHOTO_SPACE_PX);
+    for (const [part] of PHOTO_SPACE) {
+      own.layer(map, {
+        id: photoSpaceLayerId(name, part),
+        type: 'symbol',
+        source: name,
+        layout: {
+          'icon-image': photoSpaceId(part),
+          'icon-size': ['case', ['==', ['get', 'selected'], true], byKind(size.photoSelected, size.plainSelected), byKind(size.photo, size.plain)],
+          'icon-allow-overlap': true,
+          'icon-padding': 0,
+        },
+        paint: { 'icon-opacity': 0 },
+      });
+    }
+  }
+}
+
+/** A photo marker's width as the shell's CSS draws it, in px. */
+function markerSize(className) {
+  const probe = document.createElement('button');
+  probe.className = className;
+  probe.style.visibility = 'hidden';
+  map.getCanvasContainer().appendChild(probe);
+  try {
+    return probe.offsetWidth;
+  } finally {
+    probe.remove();
   }
 }
 
@@ -1865,8 +1943,10 @@ function assertNoLeaks() {
 
     const extraLayers = layers.filter((id) => !pristine.layers.includes(id));
     const extraSources = sources.filter((id) => !pristine.sources.includes(id));
+    const extraImages = map.listImages().filter((id) => !pristine.images.includes(id));
     if (extraLayers.length) problems.push(`layers left behind: ${extraLayers.join(', ')}`);
     if (extraSources.length) problems.push(`sources left behind: ${extraSources.join(', ')}`);
+    if (extraImages.length) problems.push(`images left behind: ${extraImages.join(', ')}`);
     if (layers.length !== pristine.layers.length) problems.push(`layer count ${layers.length}, pristine ${pristine.layers.length}`);
   } else if (document.querySelector('#map canvas')) {
     // No style, yet MapLibre's canvas is still on the page: the map went away
