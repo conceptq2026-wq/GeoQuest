@@ -10,6 +10,7 @@
 //   border-lines  checked against data-sources/border-lines/*.seed.json
 //   org-headquarters  checked against data-sources/org-headquarters/*.seed.json
 //                     and data-sources/tech-headquarters/companies.seed.json
+//   deserts       checked against data-sources/deserts/deserts.seed.json
 //
 // Run:  node tools/verify-descriptor.mjs   (from the repo root or from tools/)
 import fs from 'node:fs';
@@ -43,6 +44,8 @@ const BORDER_SEEDS = path.join(ROOT, 'data-sources/border-lines');
 const ORG_SEEDS = path.join(ROOT, 'data-sources/org-headquarters');
 // The technology companies on the same map, and the picker group they form.
 const TECH_SEED = path.join(ROOT, 'data-sources/tech-headquarters/companies.seed.json');
+// The deserts seed: content, provenance and each photo's credit.
+const DESERT_SEED = path.join(ROOT, 'data-sources/deserts/deserts.seed.json');
 const TECH_CATEGORY = 'প্রযুক্তি প্রতিষ্ঠান';
 
 let failures = 0;
@@ -256,8 +259,47 @@ function checkMap({ id, expectedPending }) {
   // `sheet` is the card for the picker's table; `sheets` is one card per
   // records table, for a map where more than one table can be selected.
   const sheets = descriptor.sheets ? Object.entries(descriptor.sheets) : [[primary, descriptor.sheet]];
+  // A photo value carries both files and the whole credit; the card cannot
+  // show one without the other, so a photo missing any part fails here.
+  const isPhotoField = (table, f) => declarations[table]?.fields?.[f]?.type === 'photo';
+  const CREDIT = ['author', 'licence', 'licenceUrl', 'page'];
+  const FREE = /^(Public domain|CC0( 1\.0)?|CC BY(-SA)? (1\.0|2\.0|2\.5|3\.0|4\.0))$/;
+  for (const [table, decl] of Object.entries(declarations)) {
+    for (const [f, fd] of Object.entries(decl.fields)) {
+      if (fd.type !== 'photo') continue;
+      let bad = 0;
+      let n = 0;
+      for (const [key, row] of Object.entries(tables[table])) {
+        const p = row[f];
+        if (p === undefined || p === null) continue;
+        n++;
+        const missing = [...CREDIT, 'marker', 'card'].filter((k) => !p[k]);
+        const files = ['marker', 'card'].filter((k) => p[k] && !fs.existsSync(path.join(dir, p[k])));
+        if (missing.length || files.length || !FREE.test(p.licence ?? '')) {
+          fail(`${table}.${key}.${f}: ${[...missing.map((m) => `no ${m}`), ...files.map((k) => `${k} file ${p[k]} missing`), FREE.test(p.licence ?? '') ? null : `licence "${p.licence}" not free`].filter(Boolean).join(', ')}`);
+          bad++;
+        }
+      }
+      check(bad === 0, `${table}.${f}: every photo has both files, a free licence and its full credit (${n})`);
+    }
+  }
+  for (const [name, spec] of Object.entries(descriptor.sources)) {
+    if (!spec.photoMarker) continue;
+    note(spec.records, spec.photoMarker.field);
+    check(Boolean(spec.geometryFrom), `source "${name}": its photoMarker sits on a point taken from a record field`);
+    check(isPhotoField(spec.records, spec.photoMarker.field), `source "${name}": photoMarker.field ${spec.records}.${spec.photoMarker.field} is a photo field`);
+    check(
+      descriptor.interactions.some((i) => i.on === 'click' && i.target === `source:${name}`),
+      `source "${name}": a tap on its photo marker has a click interaction to run`,
+    );
+  }
+
   for (const [table, sheet] of sheets) {
     if (!declarations[table]) fail(`sheets: "${table}" is not a declared records table`);
+    if (sheet.photo) {
+      note(table, sheet.photo.field);
+      check(isPhotoField(table, sheet.photo.field), `sheet "${table}": photo.field ${sheet.photo.field} is a photo field`);
+    }
     noteSpec(table, sheet.kicker);
     noteSpec(table, sheet.title);
     for (const row of sheet.rows ?? []) {
@@ -444,28 +486,31 @@ function checkMap({ id, expectedPending }) {
     'the picker says how to label a record, by labelField or by label',
   );
   for (const [what, name] of [
-    ['picker groupBy', picker.groupBy.lookup],
+    ['picker groupBy', picker.groupBy?.lookup],
     ...sheets.map(([table, sheet]) => [`sheet "${table}" kicker`, sheet.kicker?.lookup]),
   ]) {
     if (name === undefined) continue;
     check(name in descriptor.lookups, `${what} reads lookup "${name}", which the descriptor defines`);
   }
-  // A group is a lookup key, or — with no lookup — the field's value itself,
-  // shown as it stands. Either way the order must name every group that
-  // occurs, or a record lands in a group the picker never renders.
-  const groupValues = picker.groupBy.lookup
-    ? Object.keys(descriptor.lookups[picker.groupBy.lookup] ?? {})
-    : [...new Set(Object.values(tables[primary]).map((r) => r[picker.groupBy.field]))];
-  const groupSource = picker.groupBy.lookup ? `"${picker.groupBy.lookup}"` : `${primary}.${picker.groupBy.field}`;
-  check(
-    picker.groupBy.order.every((k) => groupValues.includes(k)),
-    `every group in the picker's order exists in ${groupSource}`,
-  );
-  const ungrouped = groupValues.filter((k) => !picker.groupBy.order.includes(k));
-  check(
-    ungrouped.length === 0,
-    `the picker's order covers every value in ${groupSource}${ungrouped.length ? ` — ${ungrouped.join(', ')} would never be shown` : ''}`,
-  );
+  // Grouping is optional: a map with few records lists them flat.
+  if (picker.groupBy) {
+    // A group is a lookup key, or — with no lookup — the field's value itself,
+    // shown as it stands. Either way the order must name every group that
+    // occurs, or a record lands in a group the picker never renders.
+    const groupValues = picker.groupBy.lookup
+      ? Object.keys(descriptor.lookups[picker.groupBy.lookup] ?? {})
+      : [...new Set(Object.values(tables[primary]).map((r) => r[picker.groupBy.field]))];
+    const groupSource = picker.groupBy.lookup ? `"${picker.groupBy.lookup}"` : `${primary}.${picker.groupBy.field}`;
+    check(
+      picker.groupBy.order.every((k) => groupValues.includes(k)),
+      `every group in the picker's order exists in ${groupSource}`,
+    );
+    const ungrouped = groupValues.filter((k) => !picker.groupBy.order.includes(k));
+    check(
+      ungrouped.length === 0,
+      `the picker's order covers every value in ${groupSource}${ungrouped.length ? ` — ${ungrouped.join(', ')} would never be shown` : ''}`,
+    );
+  }
 
   // ---- record filter ----------------------------------------------------------
   // Its values, order and labels are the picker's groups on the same field, so
@@ -708,6 +753,38 @@ console.log('\n\n============ org-headquarters ============');
   check(wrongName.length === 0, `every host country is named as the seed names it (${Object.keys(countries).length})${wrongName.length ? ` — ${wrongName.join(', ')}` : ''}`);
 
   checkMap({ id: 'org-headquarters', expectedPending: 0 });
+}
+
+/*
+|--------------------------------------------------------------------------
+| DESERTS — faithful to the seed
+|--------------------------------------------------------------------------
+*/
+console.log('\n\n============ deserts ============');
+{
+  const dir = path.join(MAPS_DIR, 'deserts');
+  const seed = readJson(DESERT_SEED);
+  const recs = readJson(path.join(dir, 'records.json'));
+  console.log('\n---- records.json against deserts.seed.json ----');
+  // The content fields ship as the seed has them; identity, provenance and the
+  // build's inputs stay behind; the point, frame and photo are checked below.
+  compareTables({ source: seed, file: recs, label: 'records.json', ignore: ['id', 'sources', 'review', 'area', 'photo', 'labelAt', 'frame'] });
+  let badPhoto = 0;
+  for (const [id, r] of Object.entries(seed)) {
+    const p = recs[id].photo;
+    const want = r.photo && { marker: `photos/${id}-marker.webp`, card: `photos/${id}-card.webp`, author: r.photo.author, licence: r.photo.licence, licenceUrl: r.photo.licenceUrl, page: r.photo.page };
+    if (JSON.stringify(p) !== JSON.stringify(want)) {
+      fail(`${id}: the shipped photo credit is not the seed's`);
+      badPhoto++;
+    }
+  }
+  check(badPhoto === 0, `every shipped photo carries the seed's own credit (${Object.keys(seed).length})`);
+  const areas = readJson(path.join(dir, 'areas.geojson'));
+  check(
+    Object.keys(seed).filter((id) => seed[id].area).every((id) => areas.features.some((f) => f.properties.id === id)),
+    `every record with an area has it drawn (${areas.features.length})`,
+  );
+  checkMap({ id: 'deserts', expectedPending: 0 });
 }
 
 // ---- done -------------------------------------------------------------------

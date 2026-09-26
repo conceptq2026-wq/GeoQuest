@@ -231,6 +231,43 @@ body {
 
 .info-sheet-body {
   padding: 0 18px 16px;
+  /* A card taller than this scrolls inside the sheet; the handle still drags. */
+  max-height: 62vh;
+  max-height: 62dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+}
+
+/*
+ * A card's photo, full width at the top, in one fixed shape so the card's
+ * height is known before the image arrives; and its credit, small, at the end.
+ */
+.info-photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  margin: 2px 0 12px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: #eef1f4;
+}
+
+.info-photo[hidden],
+.info-credit[hidden] {
+  display: none;
+}
+
+.info-credit {
+  margin: 14px 0 0;
+  color: #5b6878;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.info-credit a {
+  color: #0b5cad;
+  white-space: nowrap;
 }
 
 
@@ -437,6 +474,56 @@ body {
   .selection-marker-pulse {
     animation: none;
   }
+}
+
+/*
+ * PHOTO MARKER — a record drawn as a round photo. Shell look, identical on
+ * every map: 56 px with a white ring, 72 px with a dark ring when selected.
+ * It sits above the selection pulse, which grows to show round it.
+ */
+.photo-marker {
+  z-index: 2;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  overflow: hidden;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  background: #e9d8b4;
+  box-shadow: 0 2px 8px rgba(19, 35, 58, 0.35);
+  cursor: pointer;
+  transition:
+    width 0.2s ease,
+    height 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.photo-marker img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-marker.selected {
+  z-index: 3;
+  width: 72px;
+  height: 72px;
+  border-color: #0b3d91;
+}
+
+.photo-marker:focus-visible {
+  outline: 2px solid #0b5cad;
+  outline-offset: 2px;
+}
+
+.selection-marker {
+  z-index: 1;
+}
+
+.selection-marker--photo .selection-marker-pulse {
+  width: 108px;
+  height: 108px;
 }
 
 .layers-control {

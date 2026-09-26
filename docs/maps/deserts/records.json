@@ -1,0 +1,28 @@
+{
+  "sahara": {
+    "nameBn": "সাহারা",
+    "nameEn": "Sahara",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "আলজেরিয়া, লিবিয়া, মিশর, মালি, নাইজার, চাদ, সুদানসহ উত্তর আফ্রিকার বহু দেশ",
+    "areaBn": "৯২,০০,০০০ বর্গকিমি",
+    "noteBn": "বৃহত্তম উষ্ণ মরুভূমি",
+    "labelAt": [
+      12.26736,
+      22.24602
+    ],
+    "frame": [
+      -17.072,
+      9.341,
+      38.461,
+      34.609
+    ],
+    "photo": {
+      "marker": "photos/sahara-marker.webp",
+      "card": "photos/sahara-card.webp",
+      "author": "Rosa Cabecinhas and Alcino Cunha",
+      "licence": "CC BY-SA 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "page": "https://commons.wikimedia.org/wiki/File:Morocco_Africa_Flickr_Rosino_December_2005_84514010_edited_by_Buchling.jpg"
+    }
+  }
+}

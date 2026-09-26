@@ -1,0 +1,51 @@
+{
+  "sahara": {
+    "id": "sahara",
+    "nameBn": "সাহারা",
+    "nameEn": "Sahara",
+    "typeBn": "উষ্ণ মরুভূমি",
+    "countriesBn": "আলজেরিয়া, লিবিয়া, মিশর, মালি, নাইজার, চাদ, সুদানসহ উত্তর আফ্রিকার বহু দেশ",
+    "areaBn": "৯২,০০,০০০ বর্গকিমি",
+    "noteBn": "বৃহত্তম উষ্ণ মরুভূমি",
+    "area": {
+      "file": "ne_10m_geography_regions_polys.geojson",
+      "NAME": "SAHARA",
+      "FEATURECLA": "Desert"
+    },
+    "photo": {
+      "commonsFile": "File:Morocco Africa Flickr Rosino December 2005 84514010 edited by Buchling.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Morocco_Africa_Flickr_Rosino_December_2005_84514010_edited_by_Buchling.jpg",
+      "author": "Rosa Cabecinhas and Alcino Cunha",
+      "licence": "CC BY-SA 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "sha1": "58290a3291fa6d6599cb03eeebd0769cfe9d74a9",
+      "size": [1697, 2784],
+      "crop": {
+        "marker": [177, 619, 1060, 1060],
+        "card": [0, 442, 1697, 1061]
+      },
+      "note": "Erg Chebbi, Morocco. A Commons featured picture and picture of the day; no people. The shipped WebP files are cropped and resized from it and are shared under the same licence."
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (supplied with the design sample)",
+      "typeBn": "editor-verified 2026-09-26 (supplied with the design sample)",
+      "countriesBn": "editor-verified 2026-09-26 (supplied with the design sample)",
+      "areaBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
+          "states": "Rank 3, Sahara Desert, type Subtropical, area 9,200,000 km² (citing The World Factbook)."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of deserts by area",
+          "publisher": "Wikipedia (revision 1367717169, 2026-08-04)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_deserts_by_area&oldid=1367717169",
+          "states": "Ranked 3rd of all deserts, after only the Antarctic and Arctic polar deserts, and typed Subtropical: the largest desert that is not polar. The page does not use the words 'largest hot desert'."
+        }
+      ]
+    }
+  }
+}

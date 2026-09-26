@@ -170,6 +170,27 @@ declares sources, layers, sheet rows and actions; it holds no content.
   Everything starts checked on every load; nothing is persisted. The
   mechanism is the selection's: sources re-derived with `setData`. A map
   declares a layerToggle or a recordFilter, not both — they share a corner.
+- **Photos: one field type and two terms.** A record field of type `photo`
+  holds `{ marker, card, author, licence, licenceUrl, page }`: two files in
+  the map's folder and the whole credit. `photoMarker: { field }` on a source
+  whose points come from a record field (`geometryFrom`) draws each record as
+  a round photo — 56 px with a white ring and a soft shadow, 72 px with a
+  `#0b3d91` ring when selected, the pulse behind it — and a tap runs that
+  source's click interaction. `photo: { field }` on a sheet puts the card
+  photo (16:10) at the top of the card and its credit — author · licence ·
+  Wikimedia Commons, both linked — at the bottom; one term draws both, so a
+  card cannot show a photo without the credit CC BY and CC BY-SA require.
+  Sizes, rings and shadows are shell CSS, identical on every map. The
+  validator fails a photo missing either file or any part of its credit, or
+  carrying a licence other than public domain, CC0, CC BY or CC BY-SA.
+- **Photos come from Wikimedia Commons, freely licensed, with no people.** The
+  seed records the Commons file, its page, author, licence, the original's
+  SHA-1 and the two crop boxes; `tools/extract-commons-photos.mjs <map>`
+  refuses an original whose SHA-1 differs, crops, and writes
+  `photos/<id>-marker.webp` (128 px square) and `photos/<id>-card.webp`
+  (640×400) with ffmpeg. The build reads the committed files, never Commons.
+- A card taller than 62% of the screen scrolls inside the sheet; the handle
+  still drags it.
 - **A source whose geometry comes from OpenStreetMap declares the ODbL credit**
   as its `attribution` — `© OpenStreetMap contributors`, linked to
   openstreetmap.org/copyright. The licence requires it. straits (`routes`,
@@ -318,7 +339,9 @@ Currently pinned: trace count, per-record geometry hash, `bdPov` literals,
 extract, its file checksum in `tools/sources.json` plus a per-record OSM trace
 count and geometry hash. Generated lines carry no hash: they are computed from
 constants in the build, and editing those constants is the review. For
-org-headquarters: the Natural Earth populated-places file (size and blob SHA in
+deserts: each area's Natural Earth geometry hash (`EXPECTED_AREA` in
+`tools/build-deserts.mjs`), and the geography-regions file in
+`tools/sources.json`. org-headquarters: the Natural Earth populated-places file (size and blob SHA in
 `tools/sources.json`), the OSM places extract's checksum, and the split of city
 points by source — 65 Natural Earth, 16 OSM — in the validator.
 
@@ -378,8 +401,15 @@ State which kind a task is when reporting it.
 
 ## Current state
 
-- Three maps: `docs/maps/straits/`, `docs/maps/border-lines/` and
-  `docs/maps/org-headquarters/`.
+- Four maps: `docs/maps/straits/`, `docs/maps/border-lines/`,
+  `docs/maps/org-headquarters/` and `docs/maps/deserts/`.
+- deserts is the first Geography map and a design sample: one record, the
+  Sahara, awaiting the user's review before any other is added. Four more
+  Geography maps — lakes, forests, mountains, waterfalls — are planned to
+  reuse its photo terms unchanged. It is built by `tools/build-deserts.mjs`
+  from `data-sources/deserts/deserts.seed.json`; each area is Natural Earth's
+  `ne_10m_geography_regions_polys` feature matched by NAME and FEATURECLA,
+  its photo marker at the area's pole of inaccessibility.
 - org-headquarters holds international organisations **and** technology
   companies, one map by the user's decision. It is built by
   `tools/build-org-headquarters.mjs` from two user-approved seeds, which the

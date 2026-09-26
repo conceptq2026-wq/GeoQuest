@@ -49,6 +49,10 @@
       "ne_10m_populated_places_simple.geojson": {
         "size": 4932147,
         "gitBlobSha1": "4da9c6b27b5cd41d7c930ea9cd0c1f84548b65fb"
+      },
+      "ne_10m_geography_regions_polys.geojson": {
+        "size": 5583870,
+        "gitBlobSha1": "b0af6a56d56c7903c9aa40df5b01813bb4334c94"
       }
     }
   },

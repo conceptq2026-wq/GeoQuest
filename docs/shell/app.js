@@ -238,6 +238,9 @@ document.title = descriptor.title?.en ?? descriptor.title?.bn ?? document.title;
 */
 
 const selection = new Map(); // records table -> key, or absent
+// Photo markers, per source that declares `photoMarker`: built once, then
+// shown, hidden and restyled from each re-derive. See PHOTO MARKERS below.
+const photoMarkers = new Map();
 
 const stateFields = (sourceSpec) => sourceSpec.state ?? [];
 
@@ -459,8 +462,15 @@ for (const [name, spec] of Object.entries(sourceSpecs)) {
 function refresh(changedTable) {
   for (const [name, spec] of Object.entries(sourceSpecs)) {
     if (!dependsOn(spec).has(changedTable)) continue;
-    map.getSource(name)?.setData(derive(name, spec));
+    rederive(name, spec);
   }
+}
+
+/** One source's features re-derived, and its photo markers brought into line. */
+function rederive(name, spec) {
+  const data = derive(name, spec);
+  map.getSource(name)?.setData(data);
+  syncPhotoMarkers(name, data);
 }
 
 /*
@@ -706,6 +716,8 @@ function placeMarker(table, key) {
   const point = spec ? row[spec.geometryFrom] : null;
   // Taken off the map for a record it does not apply to, so selecting a
   // traced line after a marked one does not leave a pulse behind.
+  // Behind a photo marker the pulse is drawn larger, so it shows round it.
+  marker.instance.getElement().classList.toggle('selection-marker--photo', Boolean(spec?.photoMarker));
   if (point && markerApplies(spec, row)) marker.instance.setLngLat(point).addTo(map);
   else marker.instance.remove();
 }
@@ -862,6 +874,72 @@ for (const interaction of interactions) {
   own.mapHandler(map, 'mouseleave', hitLayerId(source), () => {
     map.getCanvas().style.cursor = '';
   });
+}
+
+/*
+|--------------------------------------------------------------------------
+| PHOTO MARKERS
+|
+| A source may declare `photoMarker: { field }`: each of its features is then
+| drawn as a round photo — the record's `field`, a value of type `photo` — at
+| the feature's point, and tapping it runs the source's click interaction.
+| The size, ring and shadow are the shell's, identical on every map; the
+| selected one is larger with a dark ring, and the pulse sits behind it.
+|
+| DOM markers, not a symbol layer: a photo is an image with a ring and a
+| shadow, which a symbol cannot draw. Each is made once and registered for
+| teardown; a re-derive only shows, hides or restyles it.
+|--------------------------------------------------------------------------
+*/
+
+for (const [name, spec] of Object.entries(sourceSpecs)) {
+  if (!spec.photoMarker) continue;
+  const click = interactions.find((i) => i.on === 'click' && targetSource(i.target) === name);
+  photoMarkers.set(name, { spec, click, byKey: new Map() });
+  syncPhotoMarkers(name, derive(name, spec));
+}
+
+function syncPhotoMarkers(name, data) {
+  const entry = photoMarkers.get(name);
+  if (!entry) return;
+  const { spec, click, byKey } = entry;
+  const present = new Set();
+  for (const feature of data.features) {
+    const key = feature.properties.key;
+    present.add(key);
+    let m = byKey.get(key);
+    if (!m) {
+      const row = records[spec.records][key];
+      const photo = row[spec.photoMarker.field];
+      if (!photo) continue;
+      const element = own.node(document.createElement('button'), `photo marker ${key}`);
+      element.type = 'button';
+      element.className = 'photo-marker';
+      element.setAttribute('aria-label', valueOf(sheetFor(spec.records)?.title, row) ?? key);
+      const img = document.createElement('img');
+      img.src = mapFile(photo.marker);
+      img.alt = '';
+      img.decoding = 'async';
+      element.appendChild(img);
+      own.domHandler(element, 'click', (event) => {
+        event.stopPropagation();
+        if (click) runActions(click.do, { table: spec.records, key });
+      });
+      m = { instance: own.marker(new maplibregl.Marker({ element }), `photo ${key}`), element, shown: false };
+      m.instance.setLngLat(feature.geometry.coordinates);
+      byKey.set(key, m);
+    }
+    m.element.classList.toggle('selected', feature.properties.selected === true);
+    if (!m.shown) {
+      m.instance.addTo(map);
+      m.shown = true;
+    }
+  }
+  for (const [key, m] of byKey) {
+    if (present.has(key) || !m.shown) continue;
+    m.instance.remove();
+    m.shown = false;
+  }
 }
 
 /*
@@ -1090,7 +1168,7 @@ function buildRecordFilter(control) {
 function applyFilter() {
   reachable = null;
   for (const [table, key] of [...selection]) if (!shown(table, key)) selection.delete(table);
-  for (const [name, spec] of Object.entries(sourceSpecs)) map.getSource(name)?.setData(derive(name, spec));
+  for (const [name, spec] of Object.entries(sourceSpecs)) rederive(name, spec);
   if (picker) renderPicker();
   syncStepButtons();
   const [current] = [...selection];
@@ -1120,13 +1198,63 @@ function swatchColour(token) {
  * same card keyed by records table, for a map where more than one table can
  * be selected — each table gets its own title and rows.
  */
-const sheetFor = (table) => (descriptor.sheets ? descriptor.sheets[table] : descriptor.sheet) ?? null;
+// A declaration, not a const: photo markers are built, and name themselves
+// from a card's title, before this point in module evaluation.
+function sheetFor(table) {
+  return (descriptor.sheets ? descriptor.sheets[table] : descriptor.sheet) ?? null;
+}
 const hasSheet = Boolean(descriptor.sheet || descriptor.sheets);
+
+/*
+ * A sheet may declare `photo: { field }`: the record's photo is shown at the
+ * top of the card and its credit — author, licence, a link to its page — at
+ * the bottom. One term draws both, so a card cannot show a photo without the
+ * credit its licence requires.
+ */
+let sheetPhoto = null;
+function photoParts() {
+  if (sheetPhoto) return sheetPhoto;
+  const img = own.node(document.createElement('img'), 'sheet photo');
+  img.className = 'info-photo';
+  img.alt = '';
+  img.decoding = 'async';
+  dom.sheetBody.insertBefore(img, dom.kicker);
+  const credit = own.node(document.createElement('p'), 'sheet photo credit');
+  credit.className = 'info-credit';
+  dom.sheetBody.appendChild(credit);
+  sheetPhoto = { img, credit };
+  return sheetPhoto;
+}
+
+function fillPhoto(sheet, row) {
+  const photo = sheet.photo ? row[sheet.photo.field] : null;
+  if (!photo && !sheetPhoto) return;
+  const { img, credit } = photoParts();
+  img.hidden = credit.hidden = !photo;
+  if (!photo) return;
+  img.src = mapFile(photo.card);
+  // External credit links open outside the WebView, and read as plain credit.
+  const link = (href, text) => {
+    const a = document.createElement('a');
+    a.href = href;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.textContent = text;
+    return a;
+  };
+  credit.replaceChildren(
+    document.createTextNode(`Photo: ${photo.author} · `),
+    photo.licenceUrl ? link(photo.licenceUrl, photo.licence) : document.createTextNode(photo.licence),
+    document.createTextNode(' · '),
+    link(photo.page, 'Wikimedia Commons'),
+  );
+}
 
 function fillSheet(table, key) {
   const sheet = sheetFor(table);
   const row = records[table][key];
   dom.sheet.hidden = false;
+  fillPhoto(sheet, row);
   const kicker = valueOf(sheet.kicker, row) ?? '';
   dom.kicker.textContent = kicker;
   dom.kicker.hidden = kicker === '';
@@ -1302,9 +1430,10 @@ if (hasSheet) {
 
   own.domHandler(dom.sheet, 'pointerdown', (event) => {
     if (event.button !== 0 || selection.size === 0) return;
-    // A list long enough to scroll scrolls; it does not drag the sheet.
-    const list = event.target.closest('.info-list');
-    if (list && list.scrollHeight > list.clientHeight) return;
+    // A list or card long enough to scroll scrolls; it does not drag the
+    // sheet. The handle always drags.
+    for (const scroller of [event.target.closest('.info-list'), event.target.closest('.info-sheet-body')])
+      if (scroller && scroller.scrollHeight > scroller.clientHeight) return;
     drag = { id: event.pointerId, startY: event.clientY, startOffset: sheetOffset, lastY: event.clientY, lastT: event.timeStamp, velocity: 0, moved: false };
     window.addEventListener('pointermove', onDragMove);
     window.addEventListener('pointerup', endDrag);

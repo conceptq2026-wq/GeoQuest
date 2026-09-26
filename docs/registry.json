@@ -29,6 +29,14 @@
         "en": "Straits and Canals",
         "bn": "গুরুত্বপূর্ণ প্রণালি ও খাল"
       }
+    },
+    {
+      "id": "deserts",
+      "section": "geography",
+      "title": {
+        "en": "Famous Deserts of the World",
+        "bn": "বিশ্বের বিখ্যাত মরুভূমি"
+      }
     }
   ]
 }
