@@ -1,0 +1,166 @@
+{
+  "tugela": {
+    "groupBn": "আফ্রিকা",
+    "nameBn": "টুগেলা জলপ্রপাত",
+    "nameEn": "Tugela Falls",
+    "countriesBn": "দক্ষিণ আফ্রিকা",
+    "heightBn": "৯৪৭ মিটার",
+    "noteBn": "তালিকায় দ্বিতীয় সর্বোচ্চ",
+    "labelAt": [
+      28.89462,
+      -28.75227
+    ],
+    "hasArea": false,
+    "frame": [
+      26.295,
+      -31.752,
+      31.495,
+      -25.752
+    ],
+    "photo": {
+      "marker": "photos/tugela-marker.webp",
+      "card": "photos/tugela-card.webp",
+      "author": "Juniper339",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Tugela_falls.jpg",
+      "cropped": true
+    }
+  },
+  "victoria_f": {
+    "groupBn": "আফ্রিকা",
+    "nameBn": "ভিক্টোরিয়া জলপ্রপাত",
+    "nameEn": "Victoria Falls",
+    "countriesBn": "জাম্বিয়া, জিম্বাবুয়ে",
+    "heightBn": "১০৮ মিটার",
+    "noteBn": "পতনশীল পানির বৃহত্তম পর্দা (প্রস্থ ১,৭০৮ মি); জাম্বেজি নদীতে; স্থানীয় নাম মোসি-ওয়া-তুনিয়া",
+    "labelAt": [
+      25.84743,
+      -17.92301
+    ],
+    "hasArea": false,
+    "frame": [
+      23.247,
+      -20.923,
+      28.447,
+      -14.923
+    ],
+    "photo": {
+      "marker": "photos/victoria_f-marker.webp",
+      "card": "photos/victoria_f-card.webp",
+      "author": "Diego Delso",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Cataratas_Victoria,_Zambia-Zimbabue,_2018-07-27,_DD_05.jpg",
+      "cropped": true
+    }
+  },
+  "khone": {
+    "groupBn": "এশিয়া",
+    "nameBn": "খোন ফাফেং জলপ্রপাত",
+    "nameEn": "Khone Phapheng Falls",
+    "countriesBn": "লাওস",
+    "noteBn": "পৃথিবীর প্রশস্ততম জলপ্রপাত (১০,৭৮৩ মি); মেকং নদীতে",
+    "labelAt": [
+      105.98653,
+      13.95977
+    ],
+    "hasArea": false,
+    "frame": [
+      103.387,
+      10.96,
+      108.587,
+      16.96
+    ],
+    "photo": {
+      "marker": "photos/khone-marker.webp",
+      "card": "photos/khone-card.webp",
+      "author": "Hiroo Yamagata",
+      "licence": "CC BY-SA 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Khone_Phapheng_Falls_-_1.jpg",
+      "cropped": true
+    }
+  },
+  "niagara": {
+    "groupBn": "উত্তর আমেরিকা",
+    "nameBn": "নায়াগ্রা জলপ্রপাত",
+    "nameEn": "Niagara Falls",
+    "countriesBn": "কানাডা, যুক্তরাষ্ট্র",
+    "labelAt": [
+      -79.07506,
+      43.07725
+    ],
+    "hasArea": false,
+    "frame": [
+      -81.675,
+      40.077,
+      -76.475,
+      46.077
+    ],
+    "photo": {
+      "marker": "photos/niagara-marker.webp",
+      "card": "photos/niagara-card.webp",
+      "author": "Robert F. Tobler",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Niagara_Falls_USA_Canada_from_Skylon_Tower_on_2002-05-28,_full_size.jpg",
+      "cropped": true
+    }
+  },
+  "angel": {
+    "groupBn": "দক্ষিণ আমেরিকা",
+    "nameBn": "অ্যাঞ্জেল জলপ্রপাত",
+    "nameEn": "Angel Falls",
+    "countriesBn": "ভেনেজুয়েলা",
+    "heightBn": "৯৭৯ মিটার",
+    "noteBn": "পৃথিবীর সর্বোচ্চ জলপ্রপাত",
+    "labelAt": [
+      -62.53615,
+      5.96883
+    ],
+    "hasArea": false,
+    "frame": [
+      -65.136,
+      2.969,
+      -59.936,
+      8.969
+    ],
+    "photo": {
+      "marker": "photos/angel-marker.webp",
+      "card": "photos/angel-card.webp",
+      "author": "Paulo Capiotti",
+      "licence": "CC BY-SA 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "page": "https://commons.wikimedia.org/wiki/File:SaltoAngel4.jpg",
+      "cropped": true
+    }
+  },
+  "iguazu": {
+    "groupBn": "দক্ষিণ আমেরিকা",
+    "nameBn": "ইগুয়াজু জলপ্রপাত",
+    "nameEn": "Iguazu Falls",
+    "countriesBn": "আর্জেন্টিনা, ব্রাজিল",
+    "noteBn": "পৃথিবীর বৃহত্তম জলপ্রপাত ব্যবস্থা; ইগুয়াজু নদীতে",
+    "labelAt": [
+      -54.43654,
+      -25.69391
+    ],
+    "hasArea": false,
+    "frame": [
+      -57.037,
+      -28.694,
+      -51.837,
+      -22.694
+    ],
+    "photo": {
+      "marker": "photos/iguazu-marker.webp",
+      "card": "photos/iguazu-card.webp",
+      "author": "Mariordo (Mario Roberto Durán Ortiz)",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "page": "https://commons.wikimedia.org/wiki/File:Aerial_Foz_de_Igua%C3%A7u_26_Nov_2005.jpg",
+      "cropped": true
+    }
+  }
+}

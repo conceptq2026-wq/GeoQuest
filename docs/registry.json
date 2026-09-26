@@ -61,6 +61,14 @@
         "en": "Famous Mountains and Peaks of the World",
         "bn": "বিশ্বের বিখ্যাত পর্বত ও শৃঙ্গ"
       }
+    },
+    {
+      "id": "waterfalls",
+      "section": "geography",
+      "title": {
+        "en": "Famous Waterfalls of the World",
+        "bn": "বিশ্বের বিখ্যাত জলপ্রপাত"
+      }
     }
   ]
 }

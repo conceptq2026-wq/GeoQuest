@@ -1,0 +1,328 @@
+{
+  "tugela": {
+    "id": "tugela",
+    "groupBn": "আফ্রিকা",
+    "nameBn": "টুগেলা জলপ্রপাত",
+    "nameEn": "Tugela Falls",
+    "countriesBn": "দক্ষিণ আফ্রিকা",
+    "heightBn": "৯৪৭ মিটার",
+    "noteBn": "তালিকায় দ্বিতীয় সর্বোচ্চ",
+    "geometry": {
+      "point": {
+        "source": "osm",
+        "node": 1174043787
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Tugela falls.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Tugela_falls.jpg",
+      "author": "Juniper339",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha1": "bab606347b2b1ef016d485dec0f01d548472529a",
+      "size": [
+        3024,
+        4032
+      ],
+      "crop": {
+        "marker": [
+          0,
+          504,
+          3024,
+          3024
+        ],
+        "card": [
+          0,
+          1071,
+          3024,
+          1890
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "heightBn": [
+        {
+          "title": "List of waterfalls by height",
+          "publisher": "Wikipedia (revision 1376302764, 2026-09-23)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_waterfalls_by_height&oldid=1376302764",
+          "states": "Tugela Falls: 947 m."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of waterfalls by height",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_waterfalls_by_height"
+        }
+      ]
+    }
+  },
+  "victoria_f": {
+    "id": "victoria_f",
+    "groupBn": "আফ্রিকা",
+    "nameBn": "ভিক্টোরিয়া জলপ্রপাত",
+    "nameEn": "Victoria Falls",
+    "countriesBn": "জাম্বিয়া, জিম্বাবুয়ে",
+    "heightBn": "১০৮ মিটার",
+    "noteBn": "পতনশীল পানির বৃহত্তম পর্দা (প্রস্থ ১,৭০৮ মি); জাম্বেজি নদীতে; স্থানীয় নাম মোসি-ওয়া-তুনিয়া",
+    "geometry": {
+      "point": {
+        "source": "osm",
+        "node": 13269511601
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Cataratas Victoria, Zambia-Zimbabue, 2018-07-27, DD 05.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Cataratas_Victoria,_Zambia-Zimbabue,_2018-07-27,_DD_05.jpg",
+      "author": "Diego Delso",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha1": "bc569126b68e9340c951334d1620de0e0bf7b814",
+      "size": [
+        6819,
+        3891
+      ],
+      "crop": {
+        "marker": [
+          1464,
+          0,
+          3891,
+          3891
+        ],
+        "card": [
+          297,
+          0,
+          6226,
+          3891
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "heightBn": [
+        {
+          "title": "Victoria Falls",
+          "publisher": "Wikipedia (revision 1368479331, 2026-08-09)",
+          "url": "https://en.wikipedia.org/w/index.php?title=Victoria_Falls&oldid=1368479331",
+          "states": "Infobox height 355 ft, shown as 108 m."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "Victoria Falls",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Victoria_Falls"
+        }
+      ]
+    }
+  },
+  "khone": {
+    "id": "khone",
+    "groupBn": "এশিয়া",
+    "nameBn": "খোন ফাফেং জলপ্রপাত",
+    "nameEn": "Khone Phapheng Falls",
+    "countriesBn": "লাওস",
+    "noteBn": "পৃথিবীর প্রশস্ততম জলপ্রপাত (১০,৭৮৩ মি); মেকং নদীতে",
+    "geometry": {
+      "point": {
+        "source": "osm",
+        "node": 427599195
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Khone Phapheng Falls - 1.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Khone_Phapheng_Falls_-_1.jpg",
+      "author": "Hiroo Yamagata",
+      "licence": "CC BY-SA 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "sha1": "570ca4018ec0c259fce0b630dcd8d6b5e59dfd75",
+      "size": [
+        3648,
+        2736
+      ],
+      "crop": {
+        "marker": [
+          456,
+          0,
+          2736,
+          2736
+        ],
+        "card": [
+          0,
+          228,
+          3648,
+          2280
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "noteBn": [
+        {
+          "title": "Khone Phapheng Falls",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Khone_Phapheng_Falls"
+        }
+      ]
+    }
+  },
+  "niagara": {
+    "id": "niagara",
+    "groupBn": "উত্তর আমেরিকা",
+    "nameBn": "নায়াগ্রা জলপ্রপাত",
+    "nameEn": "Niagara Falls",
+    "countriesBn": "কানাডা, যুক্তরাষ্ট্র",
+    "geometry": {
+      "point": {
+        "source": "osm",
+        "node": 708267915
+      },
+      "note": "OSM has no single \"Niagara Falls\" node; the point is Horseshoe Falls, the largest of its three falls, which lies on its extent."
+    },
+    "photo": {
+      "commonsFile": "File:Niagara Falls USA Canada from Skylon Tower on 2002-05-28, full size.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Niagara_Falls_USA_Canada_from_Skylon_Tower_on_2002-05-28,_full_size.jpg",
+      "author": "Robert F. Tobler",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha1": "d911228140a6d4550ab35177cbaa2f3e00162a72",
+      "size": [
+        12288,
+        3072
+      ],
+      "crop": {
+        "marker": [
+          8300,
+          0,
+          3072,
+          3072
+        ],
+        "card": [
+          7373,
+          0,
+          4915,
+          3072
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)"
+    }
+  },
+  "angel": {
+    "id": "angel",
+    "groupBn": "দক্ষিণ আমেরিকা",
+    "nameBn": "অ্যাঞ্জেল জলপ্রপাত",
+    "nameEn": "Angel Falls",
+    "countriesBn": "ভেনেজুয়েলা",
+    "heightBn": "৯৭৯ মিটার",
+    "noteBn": "পৃথিবীর সর্বোচ্চ জলপ্রপাত",
+    "geometry": {
+      "point": {
+        "source": "osm",
+        "node": 366604035
+      }
+    },
+    "photo": {
+      "commonsFile": "File:SaltoAngel4.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:SaltoAngel4.jpg",
+      "author": "Paulo Capiotti",
+      "licence": "CC BY-SA 2.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+      "sha1": "84cba671bbe4ff1269858c423621b5fd4c82870a",
+      "size": [
+        2832,
+        4256
+      ],
+      "crop": {
+        "marker": [
+          0,
+          712,
+          2832,
+          2832
+        ],
+        "card": [
+          0,
+          1243,
+          2832,
+          1770
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "heightBn": [
+        {
+          "title": "List of waterfalls by height",
+          "publisher": "Wikipedia (revision 1376302764, 2026-09-23)",
+          "url": "https://en.wikipedia.org/w/index.php?title=List_of_waterfalls_by_height&oldid=1376302764",
+          "states": "Angel Falls: 979 m."
+        }
+      ],
+      "noteBn": [
+        {
+          "title": "List of waterfalls by height",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/List_of_waterfalls_by_height"
+        }
+      ]
+    }
+  },
+  "iguazu": {
+    "id": "iguazu",
+    "groupBn": "দক্ষিণ আমেরিকা",
+    "nameBn": "ইগুয়াজু জলপ্রপাত",
+    "nameEn": "Iguazu Falls",
+    "countriesBn": "আর্জেন্টিনা, ব্রাজিল",
+    "noteBn": "পৃথিবীর বৃহত্তম জলপ্রপাত ব্যবস্থা; ইগুয়াজু নদীতে",
+    "geometry": {
+      "point": {
+        "source": "osm",
+        "node": 361426109
+      }
+    },
+    "photo": {
+      "commonsFile": "File:Aerial Foz de Iguaçu 26 Nov 2005.jpg",
+      "page": "https://commons.wikimedia.org/wiki/File:Aerial_Foz_de_Igua%C3%A7u_26_Nov_2005.jpg",
+      "author": "Mariordo (Mario Roberto Durán Ortiz)",
+      "licence": "CC BY-SA 4.0",
+      "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+      "sha1": "af77db9225cda3049360bff5ae07e7f66607a53a",
+      "size": [
+        1500,
+        925
+      ],
+      "crop": {
+        "marker": [
+          288,
+          0,
+          925,
+          925
+        ],
+        "card": [
+          10,
+          0,
+          1480,
+          925
+        ]
+      }
+    },
+    "sources": {
+      "nameBn": "editor-verified 2026-09-26 (approved list)",
+      "countriesBn": "editor-verified 2026-09-26 (approved list)",
+      "noteBn": [
+        {
+          "title": "Iguazu Falls",
+          "publisher": "Wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Iguazu_Falls"
+        }
+      ]
+    }
+  }
+}
