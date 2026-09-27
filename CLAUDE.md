@@ -381,10 +381,12 @@ creates or changes goes through `own`, so teardown undoes it.
 The user's decisions (2026-09-27; the exploded view revised the same day).
 Built so far: the registry and the home page take diagram entries, the
 resolver has a `diagrams` kind, three.js 0.185.1 is vendored for a future 3D
-diagram — atmosphere-layers does not use it — and the no-calls check covers
-diagram code, vendored libraries and diagram build tools. Nothing else exists
-yet — no diagram, no `docs/visual/`, no `docs/diagrams/` — so every rule
-below about the shell or the views is decided, not built.
+diagram — atmosphere-layers does not use it — the no-calls check covers
+diagram code, vendored libraries and diagram build tools, and
+`tools/build-diagram-atmosphere-art.mjs` cuts atmosphere-layers' art into a
+staging folder outside `docs/`. Nothing else exists yet — no diagram, no
+`docs/visual/`, no `docs/diagrams/` — so every rule below about the shell or
+the views is decided, not built.
 
 - **A second shell.** A diagram opens in its own page,
   `docs/visual/index.html?v=<id>` — HTML, images and SVG, served from our own
@@ -467,19 +469,22 @@ below about the shell or the views is decided, not built.
 - **The art is final and approved by the user**, in
   `data-sources/atmosphere-layers/art/`, untracked like the seed, and kept:
   - `stack-master.png` — the whole stack without text, 1024×1536, on a
-    background of about `#ECF4FA`. It is the position reference.
+    background of `#EDF4FA`. It is the position reference.
   - `exosphere.png`, `thermosphere.png`, `mesosphere.png`,
     `stratosphere.png`, `troposphere.png` and `earth.png` — one slab, or the
     Earth slice, alone on the same canvas. The image model moved each one
-    vertically, so each is placed by the master, never by its own position.
-    The editor's measurements, the top of the front-left upright edge, alone
-    → in the master: exosphere 245 → 247, thermosphere 330 → 402, mesosphere
-    518 → 564, stratosphere 681 → 740, troposphere 679 → 934; the slabs'
-    widths match the master's (x ≈ 180–845). `earth.png` is 750 px wide
-    against the master's 675, so it is placed at scale 0.9 with its left edge
-    on the master's (x 176, top y 1181). `earth.png` is the editor's retouch,
-    a missing back strip filled in; `earth-original-v3.png` is the untouched
-    original, kept for the record only.
+    vertically, and drew some up to 17 px thicker or thinner than the master
+    does, so each is placed by the master, never by its own position: fitted
+    by the ends of its two upright edges, alone and in the master, and centred
+    on them. The fitted offsets lie within 1.2–4.5 px of the editor's
+    measurements (the top of the front-left upright edge, alone → in the
+    master: exosphere 245 → 247, thermosphere 330 → 402, mesosphere 518 →
+    564, stratosphere 681 → 740, troposphere 679 → 934). `earth.png` is the
+    editor's retouch, a missing back strip filled in, and draws the Earth 581
+    px wide, so it is placed at scale 1.1638, its left edge on the master's at
+    x 176; `earth-original-v3.png`, the untouched original, draws it 750 px
+    wide — the scale 0.9 first given for `earth.png` is the original's — and
+    is kept for the record only.
   - `icons-master.png` — the card's 13 icons, in a four-column grid with
     light cell borders: 1 ozone ring, 2 jet, 3 weather balloon, 4 cloud with
     sun (weather), 5 storm with lightning, 6 snowy peak (Everest), 7 wind
@@ -494,7 +499,8 @@ below about the shell or the views is decided, not built.
   of the one below, as in the master. The selected slab is drawn last.
 - **The one interaction is a tap.** Nothing rotates. Tapping a slab lifts it,
   scales it about 1.08 and gives it the mockup's white outline and soft
-  glow; the other slabs dim; the card opens. «বন্ধ করুন» (×), or tapping the
+  glow, and highlights that layer's stretch of the relative temperature
+  curve; the other slabs dim; the card opens. «বন্ধ করুন» (×), or tapping the
   slab again, closes it. With reduced motion, nothing animates. The Earth
   slice is not tappable. The ionosphere and the aurora are in the
   thermosphere slab, as the art draws them, and the card gives their real
@@ -515,9 +521,8 @@ below about the shell or the views is decided, not built.
   rendering on change only, nothing drawn at rest; shader-error checking off
   in production (`renderer.debug.checkShaderErrors = false`).
 - **Interface words are data, never code** (approved 2026-09-27). They live in
-  the diagram's descriptor: the tabs «৩ডি স্তর» and «প্রস্থচ্ছেদ»; the buttons
-  «আগের কোণে ফিরুন» and «বন্ধ করুন» — the first was the rotating view's reset,
-  and has no use while nothing rotates; the unit «কিমি»; the curve's caption
+  the diagram's descriptor: the tabs «৩ডি স্তর» and «প্রস্থচ্ছেদ»; the button
+  «বন্ধ করুন»; the unit «কিমি»; the curve's caption
   «তাপমাত্রা (আপেক্ষিক)»; the card labels «উচ্চতা», «তাপমাত্রা» and
   «যা ঘটে»; the layer chips «স্তর ১» to «স্তর ৫».
 - **The order of the work** (approved 2026-09-27, revised the same day), one
@@ -529,14 +534,31 @@ below about the shell or the views is decided, not built.
   3. Done: three.js 0.185.1 vendored and pinned.
   4. Done: the no-calls check tightened for 3D — loader calls, data paths,
      the pinned library surface, and the build-tool check.
-  5. The art tool, `tools/build-diagram-atmosphere-art.mjs`, inside the
-     no-network rule: it places each image of one slab by the master, cuts it
-     out with a soft alpha mask against the background, trims it, and exports
-     WebP at 1× and 2× for a 390 px layout, under size caps; cuts the 13
-     icons out inside their cell borders; writes a manifest — each slab's
-     position, size, draw order, outline polygon for taps, and the front-face
-     line its name is laid along; and records the SHA-256 of every master in
-     the seed. Tier: tools.
+  5. Done: the art tool, `tools/build-diagram-atmosphere-art.mjs`, inside the
+     no-network rule — ffmpeg on this machine and the approved files, nothing
+     else. It refuses an input whose SHA-256 differs from the seed's
+     `art.files`. It places each image of one slab by the master, at the
+     placements recorded in the tool, and fails if a fresh fit (`--measure`)
+     moves one. It cuts each out with a soft alpha key against its own
+     image's background — solid inside the picture's shape, holes filled, so a
+     white cloud or edge never shows the slab below through it; soft only at
+     the edge and in the glows and shadows, where every pixel shows over that
+     background exactly as painted; a speck of the image's noise dropped. It
+     trims each and exports WebP at 1× and 2× for a layout 390 CSS px wide,
+     the master's 1024 px making 390, at quality 82 stepping down to fit caps
+     of 12 KB and 32 KB per slab. It cuts the 13 icons as squares inside their
+     cell borders, opaque on the card's white, 40 CSS px across, capped at 1
+     KB and 2 KB. It writes `manifest.json` with the page's colour, `#EDF4FA`,
+     taken from the master; for each slab its id, draw order, box in layout
+     px, tap outline, the line its name is laid along (two points, the
+     angle, the face's height) and where the km axis and the curve meet it;
+     the boundaries between slabs, in the middle of each gap, by the seed's
+     boundary ids; and the icons by the seed's feature ids. The proof
+     recomposes the stack from the 2× files: each cut over the page's colour
+     must match its own image within a mean of 1 level and a 99th percentile
+     of 4, or the build fails; the encoder's loss, and the stack against the
+     master, are reported. The outputs wait, untracked, in
+     `data-sources/atmosphere-layers/build/` until step 7. Tier: tools.
   6. `docs/visual/` with the 2D exploded view, built and tested locally
      against the uncommitted diagram, and committed without it. Tier: a new
      folder, nothing shared changed — the suites, the strict check, and the
@@ -727,6 +749,9 @@ every area's geometry hash, all eleven whether shipped or not, in
 `data-sources/environment-treaties/cities.seed.json`, by checksum
 (`treatyCities` in `tools/sources.json`), and the seed's table counts —
 conventions 12, treaties 7, summits 4, COPs 31 — in the build.
+atmosphere-layers: the SHA-256 of each of the eight art inputs, in the
+seed's `art.files`, and each image's placement on the master, in
+`tools/build-diagram-atmosphere-art.mjs`, which fails if a fresh fit moves it.
 
 When a pin moves, **stop and report the old and new values.** Never re-pin to
 make a build pass. A dropped `featurecla` once shifted a line by three points
