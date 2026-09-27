@@ -18,12 +18,13 @@
 // pinned cache that tools/fetch-sources.mjs fills.
 //
 // The descriptor declares `globe`, which the shell's globe module draws
-// (docs/shell/globe.js): the globe opening on Bangladesh, a pill per record
-// in place of the picker row, each line named at the globe's edge, the
-// latitude and longitude beside Bangladesh and Dhaka, and the button that
-// turns the globe between Bangladesh and its antipode. The card's row labels
-// and the button's two labels are the words the user approved (WORDS); no
-// other Bengali is written here, only the seed's.
+// (docs/shell/globe.js): the globe opening on Bangladesh, each line named at
+// the globe's edge, the latitude and longitude beside Bangladesh and Dhaka,
+// and the button that turns the globe between Bangladesh and its antipode.
+// Its selector is the shell's picker row, as on every map (the user's
+// decision, 2026-09-28). The picker's placeholder, the card's row labels and
+// the button's two labels are the words the user approved (WORDS); no other
+// Bengali is written here, only the seed's.
 //
 //   node tools/build-latitude-longitude.mjs [out-dir]
 //
@@ -111,7 +112,8 @@ const IMAGERY_FADE_OUT = [3, 4];
 // The globe (the shell's globe module): its diameter as a share of the map's
 // shorter side — the investigation's opening view, 320 px on a 390 px phone —
 // the record that faces the viewer when it opens, and how long a flight to a
-// pill's record and the turn to the antipode take (the measured flight).
+// record chosen in the picker and the turn to the antipode take (the
+// measured flight).
 const GLOBE_SIZE = 0.82;
 const GLOBE_OPEN = 'bangladesh';
 const FLIGHT_MS = 1800;
@@ -121,10 +123,12 @@ const ANTIPODE_MS = 2600;
 // either side of it crowd a 320 px phone.
 const COORDINATES_MIN_ZOOM = 3.2;
 
-// Words the user approved for this map (2026-09-27), the card's row labels
-// and the antipode button's two labels. No other Bengali is shown but the
-// seed's own.
+// Words the user approved for this map: the card's row labels and the
+// antipode button's two labels (2026-09-27), and the picker's placeholder
+// (2026-09-28), which ends in the ellipsis every map's placeholder ends in.
+// No other Bengali is shown but the seed's own.
 const WORDS = {
+  placeholder: 'একটি রেখা বা স্থান বেছে নিন…',
   latitude: 'অক্ষাংশ',
   longitude: 'দ্রাঘিমাংশ',
   time: 'সময়',
@@ -389,9 +393,9 @@ const anchor = (href, text) => `<a href="${href}" target="_blank" rel="noopener 
 const byKey = (table, fallback) => ['match', ['get', 'key'], ...Object.entries(table).flat(), fallback];
 const lineColour = byKey(LINE_COLOURS, '#0b3d91');
 const isDashed = ['in', ['get', 'key'], ['literal', DASHED]];
-// A pill flies the globe to its record and opens its card; a tap on the globe
-// only opens the card, where it is.
-const pillDo = [{ action: 'select' }, { action: 'flyTo', duration: FLIGHT_MS }];
+// A record chosen in the picker, or by ‹ ›, flies the globe to it and opens
+// its card; a tap on the globe only opens the card, where it is.
+const pickDo = [{ action: 'select' }, { action: 'flyTo', duration: FLIGHT_MS }];
 const tapDo = [{ action: 'select' }];
 // The card: every Bengali field a record has, in the seed's order, each
 // under its approved label, or on its own where none was approved.
@@ -409,8 +413,6 @@ const descriptor = {
     // NASA's Blue Marble, tiled into this folder, over the vector world
     // basemap, fading out as the world basemap's own detail begins to matter.
     imagery: { file: `./${IMAGERY_FILE}`, fadeOut: IMAGERY_FADE_OUT },
-    // The map's selector, in place of the picker row: one pill per record.
-    pills: { from: 'items', label: { field: 'nameBn' }, labelEn: 'Lines, points and places', do: pillDo },
     // Each line's name where the line meets the globe's visible edge.
     edgeLabels: { source: 'lines', text: { field: 'nameBn' }, colour: { style: 'line', paint: 'line-color' } },
     // The latitude and longitude beside Bangladesh and Dhaka, as the seed words them.
@@ -525,8 +527,8 @@ const descriptor = {
     { id: 'point-marker', type: 'circle', source: 'points', slot: 'aboveLabels', style: 'point-marker', filter: ['!=', ['get', 'selected'], true] },
     { id: 'point-label', type: 'symbol', source: 'points', slot: 'aboveLabels', style: 'point-label', layout: { 'text-field': ['get', 'nameBn'] } },
   ],
-  // No picker row: the globe's pills are the map's selector.
-  controls: [],
+  // The picker row, as on every map: every record, in the seed's order, by its name.
+  controls: [{ type: 'picker', id: 'items', from: 'items', placeholder: WORDS.placeholder, labelEn: 'Choose a line or a place', label: { field: 'nameBn' }, do: pickDo }],
   interactions: ['lines', 'areas', 'points'].map((source) => ({ on: 'click', target: `source:${source}`, do: tapDo })),
   sheet: {
     chip: { field: 'chipBn' },

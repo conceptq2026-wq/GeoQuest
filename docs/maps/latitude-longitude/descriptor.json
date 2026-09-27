@@ -19,22 +19,6 @@
         4
       ]
     },
-    "pills": {
-      "from": "items",
-      "label": {
-        "field": "nameBn"
-      },
-      "labelEn": "Lines, points and places",
-      "do": [
-        {
-          "action": "select"
-        },
-        {
-          "action": "flyTo",
-          "duration": 1800
-        }
-      ]
-    },
     "edgeLabels": {
       "source": "lines",
       "text": {
@@ -447,7 +431,27 @@
       }
     }
   ],
-  "controls": [],
+  "controls": [
+    {
+      "type": "picker",
+      "id": "items",
+      "from": "items",
+      "placeholder": "একটি রেখা বা স্থান বেছে নিন…",
+      "labelEn": "Choose a line or a place",
+      "label": {
+        "field": "nameBn"
+      },
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "flyTo",
+          "duration": 1800
+        }
+      ]
+    }
+  ],
   "interactions": [
     {
       "on": "click",

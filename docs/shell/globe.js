@@ -7,7 +7,6 @@
 |     open: { record },                        the record that faces the viewer when the map opens
 |     imagery: { file, fadeOut: [from, to] },  a raster archive in the map's folder, faded out over
 |                                              the vector basemap between the two zooms
-|     pills: { from, label, labelEn?, do },    the map's selector: one pill per record
 |     edgeLabels: { source, text, colour: { style, paint } },
 |     coordinates?: { at, lines, minZoom },    latitude and longitude beside some places
 |     antipode?: { between: [a, b], labels: { a, b }, duration },
@@ -21,12 +20,13 @@
 | frame. When the map's area changes — the card docks, or closes — a globe
 | seen whole is fitted again.
 |
-| The pill row replaces the picker row: one pill per record, in the table's
-| order, each running `do` (a flight to the record, `flyTo`, and its card);
-| the selected pill stays marked. A line is turned to the least way into the
-| globe's middle, seen whole from no further toward a pole than LINE_LAT; a
-| pole comes to the middle's top or foot; a place is fitted to its frame. A
-| flight cut short, by another or by a drag, runs nothing after it.
+| The map's selector is the shell's own picker row, as on every map (the
+| user's decision, 2026-09-28): its table is the globe's, its options the
+| records in their order, and its `do` a flight to the record, `flyTo`, and
+| its card. A line is turned to the least way into the globe's middle, seen
+| whole from no further toward a pole than LINE_LAT; a pole comes to the
+| middle's top or foot; a place is fitted to its frame. A flight cut short,
+| by another or by a drag, runs nothing after it.
 |
 | On the globe, drawn as HTML over it, by this module's own projection of
 | MapLibre's globe:
@@ -45,11 +45,12 @@
 |   - each record whose point lies beyond Web Mercator's ±85.05° — the
 |     poles — as a marker at its true place, named, hidden on the far side.
 |     Such a record is taken off the map's own point layers, which cannot
-|     draw it where it is.
+|     draw it where it is, by a filter on its key: it stays in the picker
+|     and in ‹ ›.
 |
 | Taps are the module's (the user's order, 2026-09-28): the nearest dot
 | within TAP px, else the nearest line within TAP px — lines within TIE px of
-| each other, as at a crossing, go by the pill order — else the smallest
+| each other, as at a crossing, go by the picker's order — else the smallest
 | area under the finger. Nothing on the far side is ever hit. A tap on no
 | record closes the card.
 |
@@ -84,17 +85,17 @@ const MIN_SHARE = 0.45; // the least a pinch may shrink the globe to, as a share
 const REFIT = 0.25; // zoom: a globe within this of its fitted size counts as seen whole
 const SAMPLE = 1; // degrees between the points a line is followed by
 const TAP = 14; // px: a finger's reach round the tap
-const TIE = 1.5; // px: two lines nearer than this to each other tie, and the pill order decides
+const TIE = 1.5; // px: two lines nearer than this to each other tie, and the picker's order decides
 const LEADER = 14; // px: from the edge to a name
 const INSET = 18; // px: how far inside the edge a leader meets its line
 const PATH = 160; // px: how far along a line from the edge its leader may meet it
 const STEP = 4; // px: the spacing a line is followed at, on the screen
 const GAP = 12; // px: from a place to its callout
 const DOT = 9; // px: round a place's dot, kept clear of names
-const SLIDE = 64; // px: how far a name may slide along its side to clear what is in its way
+const SLIDE = 160; // px: how far a name may slide along its side to clear what is in its way — as far as it must, which beats hiding it
 const FRAME_PADDING = 24; // px: round a place's frame when it is flown to
 const MARGIN = 4; // px: between a name and the map's edge, a control or another name
-const TINT = 0.55; // a pill's or a chip's colour: its record's, this far toward white
+const TINT = 0.55; // a chip's colour: its record's, this far toward white
 const SVG = 'http://www.w3.org/2000/svg';
 
 let api;
@@ -105,28 +106,28 @@ let map;
 let container;
 let overlay;
 let leaders;
-let pillRow;
+let pickerLabel; // a record's name, as the picker lists it
 let close;
 let turnBar;
 let turnButton;
-const pills = new Map(); // key -> pill button
 const poles = new Map(); // key -> { element, marker }
 const edges = []; // one per line: { key, parts, parallel, element, line, dot, size }
 const callouts = []; // one per place with coordinates: { key, v, ll, element, line, size }
-let order = []; // the table's keys, in its own order: the pills' order and the lines' tie order
+let order = []; // the table's keys, in its own order: the picker's order and the lines' tie order
 let lastSize = [0, 0];
 let flying = false;
 let flights = 0; // counts flights started, so an interrupted one knows it was
 const keep = { svg: null, items: [], on: false }; // the antipode pair, drawn here through its flight
 
-/** Before the map is built: the page's layout, the pills, the camera and the map's own options. */
+/** Before the map is built: the page's layout, the camera and the map's own options. */
 export async function mount(shellApi) {
   api = shellApi;
   spec = api.descriptor.globe;
-  if (!spec.pills) throw new Error('globe: `pills` is the globe map’s selector');
-  if ((api.descriptor.controls ?? []).some((c) => c.type === 'picker')) throw new Error('globe: a globe map declares no picker — its pills are its selector');
+  const picker = (api.descriptor.controls ?? []).find((c) => c.type === 'picker');
+  if (!picker) throw new Error('globe: a globe map selects through the picker row, as every map does');
   if (api.descriptor.timeline) throw new Error('globe: a globe map has no timeline');
-  table = spec.pills.from;
+  table = picker.from;
+  pickerLabel = picker.label ?? { field: picker.labelField };
   rows = api.records[table];
   if (!rows) throw new Error(`globe: "${table}" is not a records table`);
   order = Object.keys(rows);
@@ -136,27 +137,9 @@ export async function mount(shellApi) {
   page.classList.add('has-globe');
   api.own.undo('the globe page layout', () => page.classList.remove('has-globe'));
 
-  pillRow = api.own.node(document.createElement('nav'), 'globe pills');
-  pillRow.className = 'globe-pills';
-  if (spec.pills.labelEn) pillRow.setAttribute('aria-label', spec.pills.labelEn);
-  for (const key of order) {
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'globe-pill';
-    button.lang = api.language;
-    button.dataset.key = key;
-    button.setAttribute('aria-pressed', 'false');
-    button.textContent = api.valueOf(spec.pills.label, rows[key]) ?? key;
-    button.style.setProperty('--pill', tint(colourOf(key)));
-    pillRow.appendChild(button);
-    pills.set(key, button);
-  }
-  api.dom.mapShell.insertBefore(pillRow, api.dom.sheet);
-
   // A place beyond ±85.05° cannot be drawn by the map's point layers — they
   // would put it at 85.05° — so it is theirs no more, and a marker's here.
   for (const key of order) if (Math.abs(rows[key].at?.[1] ?? 0) > MERCATOR_LAT) poles.set(key, null);
-  api.hide((t, key) => t === table && poles.has(key));
 
   container = document.getElementById('map');
   const { clientWidth: width, clientHeight: height } = container;
@@ -198,12 +181,12 @@ export function install(shellApi) {
   buildKeep();
   map.getCanvasContainer().after(...(keep.svg ? [keep.svg] : []), leaders, overlay);
 
+  polesOffTheLayers();
   buildPoles();
   buildEdges();
   buildCallouts();
   buildCard();
 
-  for (const [key, button] of pills) api.own.domHandler(button, 'click', () => api.runActions(spec.pills.do, { table, key }));
   api.own.mapHandler(map, 'click', (event) => {
     const hit = resolveTap(event.point);
     if (hit) api.runActions(hit.do, { table: hit.table, key: hit.key });
@@ -214,8 +197,6 @@ export function install(shellApi) {
   api.onChange((what) => {
     if (what !== 'select') return;
     const key = api.selection.get(table);
-    for (const [k, button] of pills) button.setAttribute('aria-pressed', String(k === key));
-    pills.get(key)?.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduced() ? 'auto' : 'smooth' });
     for (const [k, pole] of poles) pole.element.classList.toggle('selected', k === key);
     const kicker = api.dom.kicker;
     if (key !== undefined) kicker.style.setProperty('--chip', tint(colourOf(key)));
@@ -337,11 +318,30 @@ async function imagery() {
 
 /* ---- the poles ------------------------------------------------------------------------ */
 
+/*
+ * Every layer the map draws from a point source of the table, its tap layer
+ * too, leaves the poles out, by their keys: not the shell's `hide`, which
+ * would take them off the picker and ‹ › as well.
+ */
+function polesOffTheLayers() {
+  if (!poles.size) return;
+  const off = ['!', ['in', ['get', 'key'], ['literal', [...poles.keys()]]]];
+  const points = new Set(Object.entries(api.descriptor.sources ?? {}).filter(([, s]) => s.records === table && s.geometryFrom).map(([name]) => name));
+  for (const layer of map.getStyle().layers) {
+    if (!points.has(layer.source)) continue;
+    const was = map.getFilter(layer.id);
+    map.setFilter(layer.id, was ? ['all', was, off] : off);
+    api.own.undo(`the poles off ${layer.id}`, () => {
+      if (map.getLayer(layer.id)) map.setFilter(layer.id, was ?? null);
+    });
+  }
+}
+
 function buildPoles() {
   const tapDo = tapTarget('point')?.do ?? [{ action: 'select' }];
   for (const key of poles.keys()) {
     const row = rows[key];
-    const name = api.valueOf(spec.pills.label, row) ?? key;
+    const name = api.valueOf(pickerLabel, row) ?? key;
     const element = api.own.node(document.createElement('button'), `pole ${key}`);
     element.type = 'button';
     element.className = 'globe-pole';
@@ -606,7 +606,7 @@ function toward(p, q, by) {
  * globe's edge, or the map's when the globe is larger than it. The names on
  * one side of the globe stand in the order of their lines there, moved apart
  * as little as they can, so no two overlap and no leaders cross. The
- * selected line's name keeps its place first, then the pill order; a name
+ * selected line's name keeps its place first, then the picker's order; a name
  * with no room tries its line's next crossing, and is hidden when it has none.
  */
 function placeEdges(view, taken) {
@@ -941,7 +941,7 @@ const tapTarget = (kind) => api.tapTargets.find((t) => t.kind === kind && t.tabl
 /**
  * The user's order (2026-09-28): the nearest dot within TAP px of the finger;
  * else the nearest line within TAP px, lines within TIE px of each other (as
- * at a crossing) going by the pill order; else the smallest area under the
+ * at a crossing) going by the picker's order; else the smallest area under the
  * finger. The renderer lists features on the globe's far side too, so each
  * counts only where it faces the viewer: a dot in front, a line's run in
  * front, an area holding the tap's own point on the front of the globe.
@@ -1255,7 +1255,7 @@ function evaluate(expression, row) {
   throw new Error(`globe: an expression the globe does not read: "${op}"`);
 }
 
-/** A colour lightened toward white by TINT: a pill's or a chip's, under dark text. */
+/** A colour lightened toward white by TINT: a chip's, under dark text. */
 function tint(hex) {
   if (!/^#[0-9a-f]{6}$/i.test(hex)) return '#e3e9f1';
   const c = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));

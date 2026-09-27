@@ -1,26 +1,16 @@
 /*
  * GLOBE — the globe module's own styles, loaded only with it.
  *
- * A globe map's page, top to bottom: the globe on the page's pale blue, its
- * lines named at its visible edge; the pill row, which scrolls sideways; and
- * the card docked at the foot, shown while something is selected. No picker
- * row and no tilt: the pills are the selector, and the globe stays upright.
+ * A globe map's page, top to bottom: the shell's own picker row, where and as
+ * it is on every map; the globe on the page's pale blue, its lines named at
+ * its visible edge; and the card docked at the foot, shown while something is
+ * selected. No tilt: the globe stays upright.
  */
 
 /* ---- the page ---------------------------------------------------------- */
 
 .has-globe {
   background: #eaf2fa;
-}
-
-/* No picker row: the arrows keep their hidden attribute, which the shell's
-   display for them would otherwise override. */
-.has-globe .step-btn[hidden] {
-  display: none;
-}
-
-.has-globe .page-header {
-  margin: 0;
 }
 
 .has-globe .map-shell {
@@ -41,8 +31,14 @@
 }
 
 @media (max-width: 700px) {
+  /* The globe spans the page's width; the picker row keeps the inset every
+     map's page gives it, so it stands exactly where it does on the others. */
   .has-globe.map-page {
     padding: 0;
+  }
+
+  .has-globe .page-header {
+    padding: 10px 10px 0;
   }
 
   .has-globe .map-shell {
@@ -54,48 +50,6 @@
 .has-globe .maplibregl-marker-covered {
   visibility: hidden;
   pointer-events: none;
-}
-
-/* ---- the pill row -------------------------------------------------------- */
-
-.globe-pills {
-  display: flex;
-  flex: 0 0 auto;
-  gap: 8px;
-  padding: 8px 12px 10px;
-  overflow-x: auto;
-  overscroll-behavior-x: contain;
-  scrollbar-width: none;
-}
-
-.globe-pills::-webkit-scrollbar {
-  display: none;
-}
-
-.globe-pill {
-  flex: none;
-  padding: 7px 14px;
-
-  border: 0;
-  border-radius: 999px;
-  background: #dfe7f0;
-  color: #16233a;
-
-  font-family: 'Noto Sans Bengali', Inter, system-ui, sans-serif;
-  font-size: 13.5px;
-  line-height: 1.35;
-  white-space: nowrap;
-  cursor: pointer;
-}
-
-.globe-pill[aria-pressed='true'] {
-  background: var(--pill, #ffd28a);
-  font-weight: 600;
-}
-
-.globe-pill:focus-visible {
-  outline: 2px solid #0b5cad;
-  outline-offset: 1px;
 }
 
 /* ---- the docked card ------------------------------------------------------ */
