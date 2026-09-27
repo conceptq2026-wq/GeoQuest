@@ -106,6 +106,13 @@ in the picker — would wrap the row and leave one arrow alone, so a row that
 wraps goes fully stacked: the picker on its own row, ‹ › sharing the next, the
 same form a phone under 380 px always gets. The name is never truncated.
 
+**One exception, the user's decision (2026-09-27): a map with a timeline has
+no picker row** — no `<select>` and no ‹ ›. The timeline is its selector, and
+keyboard access runs through the timeline's dot buttons, in time order. Every
+other map keeps the picker. It is enforced both ways: the validator fails a
+map with neither a picker nor a timeline and a map with both, and the timeline
+throws if a picker is declared beside it.
+
 Where the data comes from:
 
 - Sea names — `docs/shared/seas.json`, loaded on every map through the
@@ -120,6 +127,19 @@ Where the data comes from:
   `name_bn` falling back to `name_en`. No shared records file.
 - A per-map `countries` table exists only to name the countries that map
   **emphasises**, and it joins on `adm0_a3`, never on the name.
+
+**Every map is in Bengali but one.** environment-treaties is in English, by the
+user's decision (2026-09-27), and declares it: `language: "en"`. A map that
+declares no language is Bengali; the validator accepts only `bn` and `en`.
+The shell turns its own words with the map — the page's title and every `lang`
+attribute, the load notice, country names from the tiles' `name_en` alone,
+Western digits — and shows no sea names, because `seas.json` has them in
+Bengali only. The map's English fields are the editor's, each the translation
+of a Bengali field (a date, the cited source's own wording), present exactly
+where it is: null where it is null, absent where it is absent. The Bengali
+fields stay in the data, unused there. The validator fails an English map
+that shows any Bengali field, and that map's build and validator fail an
+English field whose null or absent state differs from its Bengali one.
 
 **Which labels are emphasised is derived, never declared** — taken from the
 `refs` field a map already has for its own data. Nothing extra to write and
@@ -157,6 +177,20 @@ declares sources, layers, sheet rows and actions; it holds no content.
   declare `subtitle` — a value spec shown as a small grey line under the title
   (the janapadas' "approximate area" caption); like a row, it hides when it
   resolves to nothing.
+- **Card terms.** `chip` — a value spec drawn as a pill on the kicker's line
+  (a record's theme); a card declares a kicker or a chip, not both. A row
+  declared `stacked` puts its value under its label, across the card.
+  `columns: n` lays a card's rows out as cells of an n-column grid, filled in
+  order: a cell that does not apply to the record — none of the fields it
+  reads, no linked record — is left out, one whose value is null keeps its
+  place empty so its neighbour stays in its own column, and a grid row with
+  nothing in it is dropped; stacked rows run under the grid, across it. A row
+  may declare `when: { field: value | [values] }`, in `expectGeometry`'s
+  field/value shape: it applies only to records whose field holds one of the
+  values, and the validator requires each value to occur. A cell may declare
+  `short`, a value spec shown instead where the value does not fit the cell's
+  one line — measured again whenever the card resizes, card by card.
+  environment-treaties uses all of them.
 - **`referencedBy` is the reverse of a `refs` field**, in the `fromSelection`
   shape pointed the other way. A sheet row
   `{ "referencedBy": { "records": R, "listField": F }, "item": <value spec>,
@@ -275,6 +309,60 @@ declares sources, layers, sheet rows and actions; it holds no content.
   as its `attribution` — `© OpenStreetMap contributors`, linked to
   openstreetmap.org/copyright. The licence requires it. straits (`routes`,
   `canals`), border-lines (`lines`) and org-headquarters (`cities`) do.
+
+## Shell modules: tabs and timeline
+
+A shell feature that not every map needs is a module of its own, loaded only
+for a map whose descriptor declares its term (`SHELL_MODULES` in `app.js`), so
+no other map requests it. A module mounts before the map is built — it may
+take room on the page, and hide records through the shell's `hide` — and
+installs once it is, with `map`, `runActions`, `refilter`, `deselect` and
+`onChange` (after a selection, or a change in what is shown). Everything it
+creates or changes goes through `own`, so teardown undoes it.
+
+- **`tabs: { records, field, from, label }`** divides one records table by a
+  field, one part at a time: the tabs are the rows of `from`, in its order,
+  titled by `label`. Only the active tab's records are on the map and in the
+  timeline; a table they refer to (a shared city marker) stays only while an
+  active record points at it; card links are not divided, and selecting a
+  record in another tab opens that tab. A tab the student picks resets the
+  camera to the map's own view; one opened by a selection keeps that
+  selection's frame. The first tab is active on every load; nothing is kept.
+  Drawn as one rounded pill bar, the active tab a filled pill.
+- **`timeline: { records, at, label?, rowBy?, rowLabel?, colour?, state?, do }`**
+  puts each record at its year (`at`) as a dot labelled above it — `label`
+  (default the card's title) over the year, in the map's digits — one lane per
+  `rowBy` value, each row opening with a chip (`rowLabel`, read off its first
+  record) in a tint of its colour, pinned at the left while the rows scroll
+  sideways. `colour` names a style token and paint property: the dots take
+  the markers' colour from the same expression (a literal, or `match` on
+  `get`; the timeline names anything else rather than guess). `state` lights
+  dots as a source's state does; a tap runs `do`. Nothing overlaps: every dot
+  keeps a 24 px target, and two closer than that — two records of one year —
+  move apart sideways as little as they can, never into a second lane; a
+  label that would touch a neighbour's goes below its dot, and where labels
+  still touch, the plot widens to the least px-per-year at which all fit and
+  scrolls sideways. Short of that the rows fill the panel's width, spending
+  their edge margins rather than scroll a few pixels. Year axes run along the
+  top and the bottom, pinned while the rows scroll up and down. The selected
+  dot is larger, ringed in white with a soft glow, its label bold, and a
+  dashed line in its colour runs from it down to the bottom axis; whatever
+  selected it, it is scrolled into view. The dots are buttons in time order,
+  so the keyboard walks the years.
+- **Spans are reserved, not built**: a timeline of periods would declare
+  `span: { from, to }` in place of `at`, a bar from one year to the other. The
+  validator fails a timeline that declares one, and the module throws.
+- **The docked card.** A map with a timeline lays its page out from the
+  module's CSS: the tabs, the map edge to edge, the card docked at the map's
+  foot — over its last few pixels, never over what it frames — and the panel.
+  The card shows while a record is selected, collapses with nothing selected,
+  and has a × that clears the selection (`deselect`) and gives the room back
+  to the map. A docked card does not float, so the camera is not padded for
+  it and it is not dragged (the shell checks `sheetFloats()`). The map never
+  drops under 35% of the screen: the panel fits its rows but gives way first,
+  down to one row (122 px), then the card, down to its title; each scrolls
+  inside itself when short of room.
+- The timeline is the map's selector: see the baseline exception above.
 
 ## `null` versus absent — they are different
 
@@ -441,7 +529,10 @@ Bangladesh's land border as COD-AB draws it (2 parts: the 4,038 km mainland
 stretch and the 29 km Dahagram–Angarpota exclave), and that each box still
 holds its units with 0.3° to spare. ancient-janapadas:
 every area's geometry hash, all eleven whether shipped or not, in
-`tools/janapada-pins.json`.
+`tools/janapada-pins.json`. environment-treaties: its cities extract,
+`data-sources/environment-treaties/cities.seed.json`, by checksum
+(`treatyCities` in `tools/sources.json`), and the seed's table counts —
+conventions 12, treaties 7, summits 4, COPs 31 — in the build.
 
 When a pin moves, **stop and report the old and new values.** Never re-pin to
 make a build pass. A dropped `featurecla` once shifted a line by three points
@@ -453,7 +544,9 @@ content.
 ## Teardown is derived, not written
 
 The builder records every id it creates — layer, source, image, handler, timer,
-observer, DOM node — into a per-map registry, and teardown loops it in reverse.
+observer, DOM node — into a per-map registry, and teardown loops it in reverse;
+a change a map makes to the page it did not create — a class, an inline style
+on the shell's own card — is recorded too, with how to undo it (`own.undo`).
 Correctness must not depend on anyone remembering anything.
 
 Between teardown and the next build, a **leak assertion**: layer, source and
@@ -514,9 +607,41 @@ State which kind a task is when reporting it.
 
 ## Current state
 
-- Nine maps. Bangladesh: `ancient-janapadas`. International: `straits`,
-  `border-lines`, `org-headquarters`. Geography: `deserts`, `lakes`,
-  `forests`, `mountains`, `waterfalls`, all under `docs/maps/`.
+- Ten maps. Bangladesh: `ancient-janapadas`. International: `straits`,
+  `border-lines`, `org-headquarters`, `environment-treaties`. Geography:
+  `deserts`, `lakes`, `forests`, `mountains`, `waterfalls`, all under
+  `docs/maps/`.
+- **environment-treaties** — environmental conventions, treaties and
+  protocols, world summits and UNFCCC COPs, in four tabs, in English (see the
+  baseline section) — is built by `tools/build-environment-treaties.mjs` from
+  the editor's seed, `data-sources/environment-treaties/treaties.seed.json`,
+  which the build reads and never writes. Its four tables become one records
+  table, `items`, each record carrying its `tab`. A record's city is its
+  Wikidata item's point, from `tools/extract-treaty-cities.mjs` — matched by
+  English label within the named country and a settlement or administrative
+  type, and cross-checked against the city's English Wikipedia title — into
+  `cities.seed.json`, cited to the revision read. A value the seed leaves
+  null that a cited source was found for comes from `additions.seed.json`,
+  and only there: today Montreal's parent, the Vienna Convention. A city that
+  holds two or more records in one tab is one shared marker, `places.json`,
+  whose card lists them; `children`, the reverse of `parentId`, is the
+  card's "Under" link. The build derives three values for the card —
+  `inForceYear`, the one year in `inForceEn` (it must match `inForceBn`'s),
+  `parentShortEn`, the abbreviation closing `parentTextEn` (UNCLOS, for the
+  High Seas Treaty, whose parent is not on the map), and `tabBn`/`tabEn`,
+  which name a timeline row whose records carry no theme. The card, in
+  `columns: 2`: Adopted | In force, Place | Under for a convention or a
+  treaty; Held | Place, Under for a summit or a COP; years only; the note
+  under the grid. Place is "City, Country", or the city alone (`short`) in a
+  card too narrow for it — at 320 px, 19 of the 54. Values the seed gives
+  without a citation stand on the user's approval, listed in the build's
+  `EDITOR_VERIFIED`: every COP's parent (UNFCCC) and two COP notes. Markers
+  are small dots in their theme's colour, the selected one larger with a glow
+  (no pulse), each with its city's name beside it, a shared marker's once,
+  in plain dark text under normal collision rules. Pending: 30 — Bangladesh's
+  ratification (19, not shown yet); the cities of CITES, UNCCD and the 2002
+  World Summit and the countries of CITES and UNCCD, each in both languages
+  (10); and the High Seas Treaty's parent.
 - **ancient-janapadas** is built by `tools/build-janapadas.mjs` from the
   editor's seed, `data-sources/ancient-janapadas/janapadas.seed.json`, which
   the build reads and never writes. A janapada is the union of the whole
@@ -614,10 +739,13 @@ State which kind a task is when reporting it.
 - Two basemap archives: `docs/shared/tiles/world.pmtiles` and
   `docs/shared/tiles/bangladesh.pmtiles`. A descriptor names one in `basemap`;
   the shell's `BASEMAPS` table maps the name to its archive (through the
-  resolver) and its style. Both are tiled alike — overview to z6, detail z7–10
-  inside detail areas, drawn over a mask — so both keep the source ids
-  `basemap` / `basemap-detail` and the baseline reads either unchanged. A
-  cross-basemap switch is a full re-initialise.
+  resolver) and its style. `world-light` is the world archive in the
+  environment-treaties mockup's palette — paler water and land, thin solid
+  borders, no coastline stroke; `world` is unchanged by it. Both archives
+  are tiled alike — overview to z6, detail z7–10 inside detail areas, drawn
+  over a mask — so both keep the source ids `basemap` / `basemap-detail` and
+  the baseline reads either unchanged. A cross-basemap switch is a full
+  re-initialise.
 - **bangladesh.pmtiles** is a *bounded* basemap: its own metadata carries the
   frame a map opens on (Bangladesh, West Bengal, Tripura) and the bounds it
   cannot pan past (those plus Cachar and Rakhine); a descriptor's own
