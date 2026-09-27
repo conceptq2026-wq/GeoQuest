@@ -217,6 +217,10 @@
     "group": "place",
     "hasLine": false,
     "hasArea": true,
+    "coordAt": [
+      90.0631,
+      23.7943
+    ],
     "frame": [
       87.6346,
       20.1377,
@@ -237,6 +241,10 @@
     ],
     "hasLine": false,
     "hasArea": false,
+    "coordAt": [
+      90.408611,
+      23.723056
+    ],
     "frame": [
       88.3086,
       22.5231,

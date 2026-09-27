@@ -17,6 +17,14 @@
 // Earth's. The build makes no network call: its inputs are the seed and the
 // pinned cache that tools/fetch-sources.mjs fills.
 //
+// The descriptor declares `globe`, which the shell's globe module draws
+// (docs/shell/globe.js): the globe opening on Bangladesh, a pill per record
+// in place of the picker row, each line named at the globe's edge, the
+// latitude and longitude beside Bangladesh and Dhaka, and the button that
+// turns the globe between Bangladesh and its antipode. The card's row labels
+// and the button's two labels are the words the user approved (WORDS); no
+// other Bengali is written here, only the seed's.
+//
 //   node tools/build-latitude-longitude.mjs [out-dir]
 //
 // With no argument it writes the map's folder under docs/; tools/preview.mjs
@@ -68,10 +76,11 @@ const PROVE_TO_ZOOM = 6;
 const SIMPLIFY_METRES = 500;
 const DECIMALS = 4;
 
-// A frame for the flat shell's fitBounds, per record; the globe comes with its
-// own camera later. Frames need basemap context: the world tiles stop at z6,
-// so none may land past z6 on a 390×780 phone (368 × 728 px of map), and a
-// point's frame is never narrower than this.
+// A frame per record. The globe module fits a place to its frame (Greenwich,
+// Bangladesh, Dhaka, the antipode) and flies to a line or a pole whole-globe,
+// so only a place's frame is ever flown to. Frames need basemap context: the
+// world tiles stop at z6, so none may land past z6 on a 390×780 phone
+// (368 × 728 px of map), and a point's frame is never narrower than this.
 const MIN_FRAME_LON = 4.2;
 const PHONE_MAP_PX = [368, 728];
 const MAX_FRAME_ZOOM = 6;
@@ -98,6 +107,32 @@ const DASHED = ['tropic-cancer', 'tropic-capricorn', 'arctic-circle', 'antarctic
 const AREA_COLOURS = { bangladesh: ['#1f9d55', '#0d5c2e'], antipode: ['#e08a00', '#8a4b00'] };
 // The imagery fades out over the vector world basemap between these zooms.
 const IMAGERY_FADE_OUT = [3, 4];
+
+// The globe (the shell's globe module): its diameter as a share of the map's
+// shorter side — the investigation's opening view, 320 px on a 390 px phone —
+// the record that faces the viewer when it opens, and how long a flight to a
+// pill's record and the turn to the antipode take (the measured flight).
+const GLOBE_SIZE = 0.82;
+const GLOBE_OPEN = 'bangladesh';
+const FLIGHT_MS = 1800;
+const ANTIPODE_MS = 2600;
+// The latitude and longitude callouts beside Bangladesh and Dhaka show from
+// this zoom: below it Bangladesh is under about 30 px across, and two callouts
+// either side of it crowd a 320 px phone.
+const COORDINATES_MIN_ZOOM = 3.2;
+
+// Words the user approved for this map (2026-09-27), the card's row labels
+// and the antipode button's two labels. No other Bengali is shown but the
+// seed's own.
+const WORDS = {
+  latitude: 'অক্ষাংশ',
+  longitude: 'দ্রাঘিমাংশ',
+  time: 'সময়',
+  nearestLand: 'নিকটতম স্থলভাগ',
+  where: 'অবস্থান',
+  toAntipode: 'প্রতিপাদে যান',
+  toBangladesh: 'বাংলাদেশে ফিরুন',
+};
 
 const sha256 = (buf) => crypto.createHash('sha256').update(buf).digest('hex');
 const sources = JSON.parse(fs.readFileSync(SOURCES, 'utf8'));
@@ -202,6 +237,12 @@ const areasFc = {
   ],
 };
 const areaHits = clipEdgeVertices(areasFc, PROVE_TO_ZOOM);
+// Where Bangladesh's latitude and longitude callout points: the outline's
+// inner point, the spot deepest inside it — the one mapshaper finds.
+const innerPoint = await (async () => {
+  const out = await mapshaper.applyCommands('-i in.json -points inner -o out.json format=geojson geojson-type=FeatureCollection', { 'in.json': { type: 'FeatureCollection', features: [{ type: 'Feature', properties: {}, geometry: JSON.parse(JSON.stringify(bdGeometry)) }] } });
+  return JSON.parse(out['out.json'].toString()).features[0].geometry.coordinates.map(round);
+})();
 
 // PINNED: the geometry that comes from outside, as drawn — the date line as
 // Natural Earth has it, and Bangladesh's outline as simplified here. The
@@ -332,6 +373,10 @@ for (const e of selectable) {
   if (at) r.at = at;
   r.hasLine = e.group === 'line';
   r.hasArea = e.id === 'bangladesh' || e.id === 'antipode';
+  // The callout of a place's latitude and longitude points here: Bangladesh's
+  // inner point and Dhaka's own — the two places the user asked for.
+  if (e.id === 'bangladesh') r.coordAt = innerPoint;
+  if (e.id === 'dhaka') r.coordAt = at;
   r.frame = frameOf(e);
   const zoom = fitZoom(r.frame);
   if (zoom > MAX_FRAME_ZOOM) fail(`${e.id}: its frame lands at z${zoom.toFixed(2)} on a 390 px phone, past z${MAX_FRAME_ZOOM}`);
@@ -344,20 +389,36 @@ const anchor = (href, text) => `<a href="${href}" target="_blank" rel="noopener 
 const byKey = (table, fallback) => ['match', ['get', 'key'], ...Object.entries(table).flat(), fallback];
 const lineColour = byKey(LINE_COLOURS, '#0b3d91');
 const isDashed = ['in', ['get', 'key'], ['literal', DASHED]];
-const selectAndFrame = [{ action: 'select' }, { action: 'fitBounds', clear: ['sheet'], duration: 1800, field: 'frame' }];
+// A pill flies the globe to its record and opens its card; a tap on the globe
+// only opens the card, where it is.
+const pillDo = [{ action: 'select' }, { action: 'flyTo', duration: FLIGHT_MS }];
+const tapDo = [{ action: 'select' }];
+// The card: every Bengali field a record has, in the seed's order, each
+// under its approved label, or on its own where none was approved.
+const row = (field, label, when) => ({ ...(label ? { label } : {}), field, ...(when ? { when } : {}), stacked: true });
 const descriptor = {
   schema: 'geoquest/map-descriptor@1',
   id: MAP_ID,
   section: 'geography',
   title: { bn: seed.titleBn, en: seed.titleEn },
   basemap: 'world-light',
-  // A globe: the shell's globe module draws it (not built yet — until it is,
-  // the shell shows the map flat). The imagery is NASA's Blue Marble, tiled
-  // into this folder, over the vector world basemap, fading out as the world
-  // basemap's own detail begins to matter.
-  globe: { imagery: { file: `./${IMAGERY_FILE}`, fadeOut: IMAGERY_FADE_OUT } },
+  // A globe, drawn by the shell's globe module (docs/shell/globe.js).
+  globe: {
+    size: GLOBE_SIZE,
+    open: { record: GLOBE_OPEN },
+    // NASA's Blue Marble, tiled into this folder, over the vector world
+    // basemap, fading out as the world basemap's own detail begins to matter.
+    imagery: { file: `./${IMAGERY_FILE}`, fadeOut: IMAGERY_FADE_OUT },
+    // The map's selector, in place of the picker row: one pill per record.
+    pills: { from: 'items', label: { field: 'nameBn' }, labelEn: 'Lines, points and places', do: pillDo },
+    // Each line's name where the line meets the globe's visible edge.
+    edgeLabels: { source: 'lines', text: { field: 'nameBn' }, colour: { style: 'line', paint: 'line-color' } },
+    // The latitude and longitude beside Bangladesh and Dhaka, as the seed words them.
+    coordinates: { at: 'coordAt', lines: [{ field: 'latBn' }, { field: 'lonBn' }], minZoom: COORDINATES_MIN_ZOOM },
+    // One button on either card turns the globe to the other place.
+    antipode: { between: ['bangladesh', 'antipode'], labels: { bangladesh: WORDS.toAntipode, antipode: WORDS.toBangladesh }, duration: ANTIPODE_MS },
+  },
   attribution: { extra: [anchor(marble.page, marble.credit)] },
-  view: { fitBounds: [-180, -60, 180, 75] },
   constraints: { minZoom: 0, maxZoom: 6 },
   records: {
     items: {
@@ -380,6 +441,7 @@ const descriptor = {
         lon: { type: 'number', display: false },
         group: { type: 'text', required: true, display: false },
         at: { type: 'point' },
+        coordAt: { type: 'point' },
         hasLine: { type: 'boolean', required: true },
         hasArea: { type: 'boolean', required: true },
         frame: { type: 'bbox', required: true },
@@ -415,11 +477,9 @@ const descriptor = {
     },
   },
   styles: {
+    // A line's colour, read by its layers and by its name at the globe's edge.
+    line: { paint: { 'line-color': lineColour } },
     'point-marker': { paint: { 'circle-color': '#0b3d91', 'circle-stroke-width': 2, 'circle-stroke-color': '#ffffff', 'circle-radius': 6 } },
-    'line-label': {
-      layout: { 'text-font': ['Noto Sans Bengali'], 'symbol-placement': 'line', 'symbol-spacing': 280, 'text-size': 12.5, 'text-max-angle': 30 },
-      paint: { 'text-halo-color': '#ffffff', 'text-halo-width': 1.8 },
-    },
     'point-label': {
       layout: { 'text-font': ['Noto Sans Bengali'], 'text-size': 12, 'text-variable-anchor': ['top', 'bottom', 'right', 'left'], 'text-radial-offset': 0.9, 'text-optional': true },
       paint: { 'text-color': '#0b3d91', 'text-halo-color': '#ffffff', 'text-halo-width': 1.8 },
@@ -447,49 +507,43 @@ const descriptor = {
       type: 'line',
       source: 'lines',
       slot: 'belowLabels',
+      style: 'line',
       filter: ['!', isDashed],
       layout: { 'line-cap': 'round', 'line-join': 'round' },
-      paint: { 'line-color': lineColour, 'line-width': ['case', ['get', 'selected'], 4, 2] },
+      paint: { 'line-width': ['case', ['get', 'selected'], 4, 2] },
     },
     {
       id: 'line-dashed',
       type: 'line',
       source: 'lines',
       slot: 'belowLabels',
+      style: 'line',
       filter: isDashed,
       layout: { 'line-join': 'round' },
-      paint: { 'line-color': lineColour, 'line-width': ['case', ['get', 'selected'], 4, 2], 'line-dasharray': [3, 2] },
-    },
-    {
-      id: 'line-label',
-      type: 'symbol',
-      source: 'lines',
-      slot: 'aboveLabels',
-      style: 'line-label',
-      layout: { 'text-field': ['get', 'nameBn'] },
-      paint: { 'text-color': lineColour },
+      paint: { 'line-width': ['case', ['get', 'selected'], 4, 2], 'line-dasharray': [3, 2] },
     },
     { id: 'point-marker', type: 'circle', source: 'points', slot: 'aboveLabels', style: 'point-marker', filter: ['!=', ['get', 'selected'], true] },
     { id: 'point-label', type: 'symbol', source: 'points', slot: 'aboveLabels', style: 'point-label', layout: { 'text-field': ['get', 'nameBn'] } },
   ],
-  controls: [
-    {
-      type: 'picker',
-      id: 'item',
-      from: 'items',
-      // The only approved words for it yet: the map's own title.
-      placeholder: seed.titleBn,
-      labelEn: 'Choose a line or a place',
-      label: { field: 'nameBn' },
-      do: selectAndFrame,
-    },
-  ],
-  interactions: ['lines', 'areas', 'points'].map((source) => ({ on: 'click', target: `source:${source}`, do: selectAndFrame })),
+  // No picker row: the globe's pills are the map's selector.
+  controls: [],
+  interactions: ['lines', 'areas', 'points'].map((source) => ({ on: 'click', target: `source:${source}`, do: tapDo })),
   sheet: {
     chip: { field: 'chipBn' },
     title: { field: 'nameBn' },
-    // No row labels until their words are approved: each value reads on its own.
-    rows: ['valueBn', 'latBn', 'lonBn', 'timeBn', 'factBn', 'ruleBn', 'whereBn', 'nearestBn'].map((field) => ({ field, stacked: true })),
+    rows: [
+      row('valueBn', WORDS.latitude, { kind: 'parallel' }),
+      row('valueBn', WORDS.longitude, { kind: 'meridian' }),
+      row('valueBn', null, { kind: 'dateLine' }),
+      row('valueBn', null, { group: 'point' }),
+      row('factBn'),
+      row('timeBn', WORDS.time),
+      row('ruleBn'),
+      row('whereBn', WORDS.where),
+      row('latBn', WORDS.latitude),
+      row('lonBn', WORDS.longitude),
+      row('nearestBn', WORDS.nearestLand),
+    ],
   },
 };
 

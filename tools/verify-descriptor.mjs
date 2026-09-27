@@ -174,9 +174,9 @@ function checkMap({ id, expectedPending }) {
     tables[name] = readJson(path.join(dir, path.basename(decl.file)));
     declarations[name] = decl;
   }
-  // The table the sheet and the picker read — or, on a map with a timeline,
-  // which has no picker, the timeline.
-  const primary = descriptor.controls.find((c) => c.type === 'picker')?.from ?? descriptor.timeline?.records;
+  // The table the sheet and the picker read — or, on a map with a timeline or
+  // a globe, which have no picker, the timeline's or the globe's pills'.
+  const primary = descriptor.controls.find((c) => c.type === 'picker')?.from ?? descriptor.timeline?.records ?? descriptor.globe?.pills?.from;
 
   // ---- null versus absent, per field, with counts ---------------------------
   console.log('\n---- null versus absent ----');
@@ -538,11 +538,13 @@ function checkMap({ id, expectedPending }) {
   // lookup exists and that the picker's order covers its own lookup
   // completely, so no record lands in a group the picker never renders.
   const picker = descriptor.controls.find((c) => c.type === 'picker');
-  // The picker row is baseline chrome, with one exception, the user's
-  // (2026-09-27): a map with a timeline has none — the timeline is its selector.
+  // The picker row is baseline chrome, with two exceptions, the user's
+  // (2026-09-27): a map with a timeline has none — the timeline is its
+  // selector — and a globe map has none — its pills are.
+  const selectors = [picker && 'a picker', descriptor.timeline && 'a timeline', descriptor.globe && "a globe's pills"].filter(Boolean);
   check(
-    Boolean(picker) !== Boolean(descriptor.timeline),
-    descriptor.timeline ? 'a map with a timeline declares no picker: the timeline is its selector' : 'the map declares its picker, the baseline row',
+    selectors.length === 1,
+    `${descriptor.timeline ? 'a map with a timeline declares no picker: the timeline is its selector' : descriptor.globe ? 'a globe map declares no picker: its pills are its selector' : 'the map declares its picker, the baseline row'}${selectors.length > 1 ? ` — it declares ${selectors.join(' and ')}` : ''}`,
   );
   if (picker)
     check(
@@ -666,14 +668,62 @@ function checkMap({ id, expectedPending }) {
   }
 
   // ---- a globe ----------------------------------------------------------------
-  // `globe` marks the map as drawn on a globe, by the shell's globe module;
-  // `globe.imagery` names a raster archive in the map's own folder and the two
-  // zooms between which it fades out over the vector basemap. The archive's
-  // own credit must be in ⓘ.
+  // `globe` draws the map on a globe, by the shell's globe module: its size and
+  // the record it opens on; its pills, the map's selector; each line's name at
+  // the globe's edge; the latitude and longitude beside some places; the
+  // antipode button; and its imagery, a raster archive in the map's own
+  // folder faded out over the vector basemap, whose own credit must be in ⓘ.
   if (descriptor.globe) {
     console.log('\n---- globe ----');
     const g = descriptor.globe;
-    check(Object.keys(g).every((k) => k === 'imagery'), `globe declares only imagery (${Object.keys(g).join(', ')})`);
+    const TERMS = ['size', 'open', 'imagery', 'pills', 'edgeLabels', 'coordinates', 'antipode'];
+    check(Object.keys(g).every((k) => TERMS.includes(k)), `globe declares only ${TERMS.join(', ')} (${Object.keys(g).join(', ')})`);
+    check(['size', 'open', 'pills', 'edgeLabels'].every((k) => k in g), "globe declares its size, the record it opens on, its pills and its lines' names");
+    check(!descriptor.timeline && !descriptor.tabs, 'a globe map has no timeline and no tabs');
+    check(typeof g.size === 'number' && g.size > 0 && g.size <= 1, `globe.size ${g.size} is a share of the map's shorter side`);
+    const table = g.pills?.from;
+    const rowsOf = tables[table] ?? {};
+    check(Boolean(declarations[table]), `globe.pills.from "${table}" is a records table — one pill per record, in its order`);
+    check(Object.keys(g.pills ?? {}).every((k) => ['from', 'label', 'labelEn', 'do'].includes(k)), 'globe.pills declares only from, label, labelEn and do');
+    check(Boolean(g.pills?.label) && Array.isArray(g.pills?.do) && g.pills.do.length > 0, 'globe.pills says how a pill is labelled and what it does');
+    noteSpec(table, g.pills?.label);
+    for (const a of g.pills?.do ?? []) note(table, a.field);
+    check(g.open?.record in rowsOf, `globe.open.record "${g.open?.record}" is a record of "${table}"`);
+    // Each line's name at the edge: a source of the pills' table with geometry
+    // of its own, and a colour in a form the module reads — a literal, get, or
+    // match on get, as the timeline reads one.
+    const e = g.edgeLabels ?? {};
+    check(Object.keys(e).every((k) => ['source', 'text', 'colour'].includes(k)), 'globe.edgeLabels declares only source, text and colour');
+    const edgeSource = descriptor.sources[e.source];
+    check(Boolean(edgeSource?.geometry) && edgeSource.records === table, `globe.edgeLabels.source "${e.source}" is a source of "${table}" with a geometry file`);
+    noteSpec(table, e.text);
+    const readsColour = (x) => !Array.isArray(x) || (x[0] === 'get' && x.length === 2) || (x[0] === 'match' && readsColour(x[1]) && x.slice(2).every((y, i, all) => (i % 2 === 0 && i < all.length - 1) || readsColour(y)));
+    const colour = descriptor.styles?.[e.colour?.style]?.paint?.[e.colour?.paint];
+    check(colour !== undefined && readsColour(colour), `globe.edgeLabels.colour is style "${e.colour?.style}" paint "${e.colour?.paint}", in a form the module reads`);
+    // Latitude and longitude beside a place: a point field, lines the place
+    // has every one of, and a zoom within the map's.
+    if (g.coordinates) {
+      const c = g.coordinates;
+      check(Object.keys(c).every((k) => ['at', 'lines', 'minZoom'].includes(k)), 'globe.coordinates declares only at, lines and minZoom');
+      check(declarations[table]?.fields?.[c.at]?.type === 'point', `globe.coordinates.at "${c.at}" is a point field of "${table}"`);
+      note(table, c.at);
+      for (const line of c.lines ?? []) noteSpec(table, line);
+      const { minZoom = 0, maxZoom = 22 } = descriptor.constraints ?? {};
+      check(Number.isFinite(c.minZoom) && c.minZoom >= minZoom && c.minZoom <= maxZoom, `globe.coordinates.minZoom ${c.minZoom} lies within the map's zooms (${minZoom}–${maxZoom})`);
+      const places = Object.entries(rowsOf).filter(([, r]) => r[c.at]);
+      const half = places.filter(([, r]) => !(c.lines ?? []).every((l) => typeof r[l.field] === 'string' && r[l.field].length > 0));
+      check(Array.isArray(c.lines) && c.lines.length > 0 && c.lines.every((l) => l.field) && half.length === 0, `every place with ${c.at} has every line of its callout (${places.length} places)${half.length ? ` — not: ${half.map(([k]) => k).join(', ')}` : ''}`);
+    }
+    // The antipode button: two records of the table, the button's words on
+    // each card, and the time the turn takes.
+    if (g.antipode) {
+      const a = g.antipode;
+      const [x, y] = a.between ?? [];
+      check(Object.keys(a).every((k) => ['between', 'labels', 'duration'].includes(k)), 'globe.antipode declares only between, labels and duration');
+      check(Array.isArray(a.between) && a.between.length === 2 && x !== y && x in rowsOf && y in rowsOf, `globe.antipode.between names two records of "${table}" (${(a.between ?? []).join(', ')})`);
+      check(Object.keys(a.labels ?? {}).sort().join() === [x, y].sort().join() && [x, y].every((k) => typeof a.labels[k] === 'string' && a.labels[k].trim().length > 0), "globe.antipode.labels gives the button's words on each of the two cards");
+      check(Number.isFinite(a.duration) && a.duration > 0, `globe.antipode.duration ${a.duration} ms`);
+    }
     if (g.imagery) {
       const img = g.imagery;
       check(Object.keys(img).every((k) => ['file', 'fadeOut'].includes(k)), `globe.imagery declares only file and fadeOut (${Object.keys(img).join(', ')})`);
@@ -695,6 +745,17 @@ function checkMap({ id, expectedPending }) {
       }
     }
   }
+
+  // `flyTo` is the globe module's action: only a globe map may run one.
+  const actions = [
+    ...(descriptor.interactions ?? []).flatMap((i) => i.do ?? []),
+    ...(descriptor.controls ?? []).flatMap((c) => c.do ?? []),
+    ...(descriptor.timeline?.do ?? []),
+    ...(descriptor.globe?.pills?.do ?? []),
+    ...sheets.flatMap(([, sheet]) => (sheet?.rows ?? []).flatMap((r) => r.do ?? [])),
+  ];
+  const flights = actions.filter((a) => a.action === 'flyTo').length;
+  check(!flights || Boolean(descriptor.globe), `flyTo runs only on a globe map, whose module provides it (${flights})`);
 
   // ---- fields the descriptor never references -------------------------------
   console.log('\n---- unreferenced record fields (not an error) ----');
@@ -1233,7 +1294,8 @@ console.log('\n\n============ latitude-longitude ============');
   const ordered = [...Object.values(seed.lines), ...Object.values(seed.points), ...Object.values(seed.places)].sort((a, b) => a.order - b.order);
   const selectable = Object.fromEntries(ordered.filter((e) => e.kind !== 'graticule').map((e) => [e.id, e]));
   console.log('\n---- records.json against latitude-longitude.seed.json ----');
-  compareTables({ source: selectable, file: recs, label: 'records.json', ignore: ['id', 'order', 'sources', 'review', 'geometry', 'point', 'dhakaPoint', 'group', 'at', 'hasLine', 'hasArea', 'frame'] });
+  compareTables({ source: selectable, file: recs, label: 'records.json', ignore: ['id', 'order', 'sources', 'review', 'geometry', 'point', 'dhakaPoint', 'group', 'at', 'hasLine', 'hasArea', 'frame', 'coordAt'] });
+  check(Object.keys(recs).join() === Object.keys(selectable).join(), `records.json is in the seed's order, the pills' order (${Object.keys(recs).length} records)`);
   const atOf = (e) => (groupOf(e) === 'point' ? [e.lon, e.lat] : e.point ? [e.point.lon, e.point.lat] : e.dhakaPoint ? [e.dhakaPoint.lon, e.dhakaPoint.lat] : undefined);
   const badDerived = Object.values(selectable).filter((e) => {
     const r = recs[e.id];
@@ -1291,6 +1353,57 @@ console.log('\n\n============ latitude-longitude ============');
   const apPolys = polys(ap.geometry);
   const mirrored = bdPolys.length === apPolys.length && bdPolys.every((p, i) => p.length === apPolys[i].length && p.every((ring, j) => [JSON.stringify(apPolys[i][j]), JSON.stringify([...apPolys[i][j]].reverse())].includes(flipRing(ring))));
   check(mirrored, `the antipode is Bangladesh's outline with every vertex at (lon − 180°, −lat) (${bdPolys.length} polygons)`);
+
+  // Where the latitude and longitude callouts point: Bangladesh's inner point,
+  // inside its outline, and Dhaka's own point — the two places the user asked for.
+  const inRing = ([x, y], ring) => {
+    let inside = false;
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      const [xi, yi] = ring[i];
+      const [xj, yj] = ring[j];
+      if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) inside = !inside;
+    }
+    return inside;
+  };
+  const inside = (pt, g) => polys(g).some((poly) => inRing(pt, poly[0]) && !poly.slice(1).some((hole) => inRing(pt, hole)));
+  const withCallout = Object.keys(recs).filter((k) => recs[k].coordAt);
+  check(withCallout.join() === 'bangladesh,dhaka', `the latitude and longitude callouts are Bangladesh's and Dhaka's (${withCallout.join(', ')})`);
+  check(Boolean(recs.bangladesh.coordAt) && inside(recs.bangladesh.coordAt, bd.geometry), `Bangladesh's callout points inside its outline (${recs.bangladesh.coordAt})`);
+  check(JSON.stringify(recs.dhaka.coordAt) === JSON.stringify(recs.dhaka.at), "Dhaka's callout points at Dhaka's own point");
+
+  // ---- the globe, and the words on it ----
+  console.log('\n---- the globe and its words ----');
+  const g = descriptor.globe;
+  const sheet = descriptor.sheet;
+  check(g.open?.record === 'bangladesh', 'the globe opens with Bangladesh facing the viewer');
+  // The user's decision (2026-09-28): a pill reads its record's name. chipBn is
+  // a category shared by several records, never a selector.
+  check(g.pills?.from === 'items' && JSON.stringify(g.pills?.label) === '{"field":"nameBn"}', 'one pill per record, each reading its record\'s nameBn');
+  check(sheet.title?.field === 'nameBn' && sheet.chip?.field === 'chipBn', "the card's title is the record's nameBn, its chip the record's chipBn");
+  // The card shows every Bengali field a record has, in the seed's order.
+  const applies = (row, r) => Object.entries(row.when ?? {}).every(([f, v]) => (Array.isArray(v) ? v : [v]).includes(r[f]));
+  const shownOf = (key) => sheet.rows.filter((row) => applies(row, recs[key]) && recs[key][row.field] !== undefined).map((row) => row.field);
+  const seedOf = (entry) => Object.keys(entry).filter((f) => /Bn$/.test(f) && !['nameBn', 'chipBn'].includes(f));
+  const unshown = Object.values(selectable).filter((entry) => shownOf(entry.id).join() !== seedOf(entry).join());
+  check(unshown.length === 0, `every card shows every Bengali field its record has, once, in the seed's order (${Object.keys(selectable).length} cards)${unshown.length ? ` — not: ${unshown.map((x) => `${x.id} [${shownOf(x.id).join(', ')}] ≠ [${seedOf(x).join(', ')}]`).join('; ')}` : ''}`);
+  // The words the user approved (2026-09-27): the card's row labels and the
+  // antipode button's two labels. factBn and ruleBn read on their own; so does
+  // any value no label was approved for (the date line's, a point's).
+  const WORDS = { latitude: 'অক্ষাংশ', longitude: 'দ্রাঘিমাংশ', time: 'সময়', nearestLand: 'নিকটতম স্থলভাগ', where: 'অবস্থান', toAntipode: 'প্রতিপাদে যান', toBangladesh: 'বাংলাদেশে ফিরুন' };
+  const labelFor = (row) =>
+    row.field === 'valueBn'
+      ? { parallel: WORDS.latitude, meridian: WORDS.longitude }[row.when?.kind]
+      : { latBn: WORDS.latitude, lonBn: WORDS.longitude, timeBn: WORDS.time, nearestBn: WORDS.nearestLand, whereBn: WORDS.where }[row.field];
+  const misLabelled = sheet.rows.filter((row) => row.label !== labelFor(row));
+  check(misLabelled.length === 0, `every row label is the approved word for its field, and a row with none approved has no label (${sheet.rows.filter((r) => r.label).length} labelled of ${sheet.rows.length})${misLabelled.length ? ` — not: ${misLabelled.map((r) => `${r.field} «${r.label ?? ''}»`).join(', ')}` : ''}`);
+  check(JSON.stringify(g.antipode?.labels) === JSON.stringify({ bangladesh: WORDS.toAntipode, antipode: WORDS.toBangladesh }), `the antipode button reads «${WORDS.toAntipode}» on Bangladesh's card and «${WORDS.toBangladesh}» on the antipode's`);
+  const bare = JSON.parse(JSON.stringify(descriptor));
+  delete bare.title.bn;
+  for (const row of bare.sheet.rows) delete row.label;
+  delete bare.globe.antipode.labels;
+  const stray = [...new Set(JSON.stringify(bare).match(/[\u0980-\u09FF][\u0980-\u09FF\s]*/g) ?? [])];
+  check(stray.length === 0, `no other Bengali in the descriptor but its title${stray.length ? ` — ${stray.join(', ')}` : ''}`);
+  console.log(`     the latitude and longitude show from z${g.coordinates?.minZoom}; the antipode turn takes ${g.antipode?.duration} ms`);
 
   // Frames need basemap context: none past z6 on a 390 px phone, whose map is
   // 368 × 728 px.

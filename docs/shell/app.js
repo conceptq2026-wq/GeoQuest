@@ -547,11 +547,33 @@ function pick(row, keys) {
 | run once everything else is built. `shell` is the one surface a module has.
 |--------------------------------------------------------------------------
 */
-const SHELL_MODULES = { tabs: './tabs.js', timeline: './timeline.js' };
+const SHELL_MODULES = { tabs: './tabs.js', timeline: './timeline.js', globe: './globe.js' };
 const hiders = []; // (table, key) => true takes a record off the map, the picker and ‹ ›
 const changeListeners = []; // (what) => …, after a selection ('select') or a change in what is shown ('filter')
 const changed = (what) => changeListeners.forEach((listener) => listener(what));
-const shell = { descriptor, language: LANGUAGE, records, dom, own, valueOf, selection, shown: onMap, hide: (hider) => hiders.push(hider) };
+const moduleActions = {}; // action name -> (action, context) => …, what a module adds to select and fitBounds
+/*
+ * What a module may set while it mounts, before the map is built:
+ *   build.style    merged into the map's style (a projection, a sky)
+ *   build.options  merged into the map's options (its camera, its limits)
+ *   tapsOwned      true when the module resolves every tap itself, from
+ *                  `tapTargets`; the shell then binds no click of its own
+ * and `actions`, into which it may put an action of its own by name.
+ */
+const shell = {
+  descriptor,
+  language: LANGUAGE,
+  records,
+  dom,
+  own,
+  valueOf,
+  selection,
+  shown: onMap,
+  hide: (hider) => hiders.push(hider),
+  build: { style: {}, options: {} },
+  tapsOwned: false,
+  actions: moduleActions,
+};
 const modules = [];
 for (const [term, file] of Object.entries(SHELL_MODULES)) {
   if (descriptor[term] === undefined) continue;
@@ -597,8 +619,11 @@ const map = new maplibregl.Map({
     ...style,
     // Bengali is shaped by the browser from a bundled font; see the resolver.
     'font-faces': { 'Noto Sans Bengali': 'noto-sans-bengali/NotoSansBengali-Regular.woff2' },
+    ...shell.build.style,
   },
-  ...(frame ? { bounds: [[frame[0], frame[1]], [frame[2], frame[3]]] } : {}),
+  // A module that places the camera itself (the globe) says where; the frame
+  // is then not the camera's.
+  ...(frame && !('center' in shell.build.options) ? { bounds: [[frame[0], frame[1]], [frame[2], frame[3]]] } : {}),
   minZoom: descriptor.constraints?.minZoom ?? 0,
   maxZoom: descriptor.constraints?.maxZoom ?? 22,
   // The tilt button stops at 55; this stops a drag going further. Baseline,
@@ -606,6 +631,7 @@ const map = new maplibregl.Map({
   maxPitch: 60,
   ...(maxBounds ? { maxBounds } : {}),
   attributionControl: false,
+  ...shell.build.options,
 });
 remember('map', 'map', () => map.remove());
 
@@ -955,6 +981,7 @@ function runActions(actions, context) {
   for (const action of actions ?? []) {
     if (action.action === 'select') doSelect(context);
     else if (action.action === 'fitBounds') doFitBounds(action, context);
+    else if (moduleActions[action.action]) moduleActions[action.action](action, context);
     else throw new Error(`unknown action "${action.action}"`);
   }
 }
@@ -1121,12 +1148,25 @@ function recordArea(source, key) {
   return areaCache.get(id);
 }
 
+/*
+ * A module that resolves taps itself (the globe: points first, then places,
+ * then lines, and nothing on the far side) takes them all, from these: every
+ * click interaction's source, its tap layer, what its geometry is, and what a
+ * tap on it does. The shell then binds no click of its own.
+ */
+const tapTargets = interactions
+  .filter((i) => i.on === 'click' && targetSource(i.target))
+  .map((i) => {
+    const source = targetSource(i.target);
+    return { source, layer: hitLayerId(source), kind: geometryKind(source, sourceSpecs[source]), table: sourceSpecs[source].records, do: i.do };
+  });
+
 for (const interaction of interactions) {
   const source = targetSource(interaction.target);
   if (!source) throw new Error(`interaction target "${interaction.target}" is not a source`);
   const spec = sourceSpecs[source];
 
-  own.mapHandler(map, interaction.on, hitLayerId(source), async (event) => {
+  if (!(shell.tapsOwned && interaction.on === 'click')) own.mapHandler(map, interaction.on, hitLayerId(source), async (event) => {
     const feature = nearest(event.features, event.point, source);
     if (!feature) return;
 
@@ -2080,8 +2120,10 @@ class TiltControl {
   }
 }
 
-map.addControl(new maplibregl.NavigationControl({ showZoom: false, showCompass: true, visualizePitch: false }), 'top-right');
-map.addControl(new TiltControl(), 'top-right');
+// The compass where the map can turn, the tilt button where it can tilt — on
+// every map but a globe, which a module holds north-up and upright.
+if (map.dragRotate.isEnabled()) map.addControl(new maplibregl.NavigationControl({ showZoom: false, showCompass: true, visualizePitch: false }), 'top-right');
+if (map.getMaxPitch() > 0) map.addControl(new TiltControl(), 'top-right');
 map.addControl(
   new maplibregl.AttributionControl({
     compact: true,
@@ -2164,8 +2206,24 @@ function assertNoLeaks() {
     : { map: 'removed', registry: registry.length };
 }
 
-// Shell modules, once everything they may reach is built.
-Object.assign(shell, { map, runActions, refilter: applyFilter, deselect: clearSelection, onChange: (listener) => changeListeners.push(listener) });
+// Shell modules, once everything they may reach is built. `archive` opens a
+// PMTiles archive through the resolver on the shell's own protocol — a map's
+// imagery — and `geometry` hands out a source's geometry file as loaded.
+Object.assign(shell, {
+  map,
+  runActions,
+  refilter: applyFilter,
+  deselect: clearSelection,
+  onChange: (listener) => changeListeners.push(listener),
+  tapTargets,
+  archive: (path, kind) => {
+    const source = resolver.pmtilesSource(path, kind);
+    const opened = new window.pmtiles.PMTiles(source.archive);
+    protocol.add(opened);
+    return { ...source, header: () => opened.getHeader() };
+  },
+  geometry: (name) => geometryFiles[name] ?? null,
+});
 for (const module of modules) module.install?.(shell);
 
 // The only surface the shell exposes, for the harness and for switchMap later.

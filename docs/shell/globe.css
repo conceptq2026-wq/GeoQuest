@@ -1,0 +1,361 @@
+/*
+ * GLOBE — the globe module's own styles, loaded only with it.
+ *
+ * A globe map's page, top to bottom: the globe on the page's pale blue, its
+ * lines named at its visible edge; the pill row, which scrolls sideways; and
+ * the card docked at the foot, shown while something is selected. No picker
+ * row and no tilt: the pills are the selector, and the globe stays upright.
+ */
+
+/* ---- the page ---------------------------------------------------------- */
+
+.has-globe {
+  background: #eaf2fa;
+}
+
+/* No picker row: the arrows keep their hidden attribute, which the shell's
+   display for them would otherwise override. */
+.has-globe .step-btn[hidden] {
+  display: none;
+}
+
+.has-globe .page-header {
+  margin: 0;
+}
+
+.has-globe .map-shell {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.has-globe #map {
+  position: relative;
+  inset: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+  background: #eaf2fa;
+}
+
+@media (max-width: 700px) {
+  .has-globe.map-page {
+    padding: 0;
+  }
+
+  .has-globe .map-shell {
+    min-height: 0;
+  }
+}
+
+/* A place on the far side of the globe is not drawn, and takes no tap. */
+.has-globe .maplibregl-marker-covered {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ---- the pill row -------------------------------------------------------- */
+
+.globe-pills {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+  padding: 8px 12px 10px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.globe-pills::-webkit-scrollbar {
+  display: none;
+}
+
+.globe-pill {
+  flex: none;
+  padding: 7px 14px;
+
+  border: 0;
+  border-radius: 999px;
+  background: #dfe7f0;
+  color: #16233a;
+
+  font-family: 'Noto Sans Bengali', Inter, system-ui, sans-serif;
+  font-size: 13.5px;
+  line-height: 1.35;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.globe-pill[aria-pressed='true'] {
+  background: var(--pill, #ffd28a);
+  font-weight: 600;
+}
+
+.globe-pill:focus-visible {
+  outline: 2px solid #0b5cad;
+  outline-offset: 1px;
+}
+
+/* ---- the docked card ------------------------------------------------------ */
+
+.has-globe .info-sheet {
+  position: relative;
+  left: auto;
+  bottom: auto;
+  z-index: 3;
+  flex: 0 1 auto;
+  width: auto;
+
+  border: 0;
+  border-radius: 18px 18px 0 0;
+  background: #ffffff;
+  box-shadow: 0 -6px 22px rgba(24, 52, 94, 0.12);
+
+  transform: none;
+  transition: none;
+  touch-action: auto;
+}
+
+/* Nothing selected: no card, and the globe takes its room. */
+.has-globe .info-sheet[hidden],
+.has-globe .info-sheet[inert] {
+  display: none;
+}
+
+/* Docked, the card is not dragged; its × clears the selection. */
+.has-globe .sheet-handle {
+  display: none;
+}
+
+.has-globe .info-sheet-body {
+  max-height: 42vh;
+  max-height: 42dvh;
+  padding: 14px 16px 16px;
+  touch-action: pan-y;
+}
+
+.globe-card-close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 1;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: #6b7c93;
+
+  font-size: 24px;
+  line-height: 34px;
+  cursor: pointer;
+}
+
+.globe-card-close:hover {
+  background: #eef3f8;
+}
+
+.globe-card-close:focus-visible {
+  outline: 2px solid #0b5cad;
+  outline-offset: -2px;
+}
+
+.has-globe .info-kicker.info-chip {
+  margin: 0 40px 8px 0;
+  padding: 2px 12px;
+  border: 0;
+  background: var(--chip, #e3e9f1);
+  color: #16233d;
+}
+
+.has-globe .info-title {
+  margin-right: 34px;
+  color: #0f1d36;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.has-globe .info-row-stacked {
+  margin-top: 9px;
+}
+
+/* A value with no approved label reads on its own. */
+.has-globe .info-row-stacked .info-label:empty {
+  display: none;
+}
+
+.has-globe .info-row-stacked .info-label {
+  color: #6b7c93;
+  font-size: 12px;
+}
+
+.has-globe .info-row-stacked .info-value {
+  color: #13233a;
+  font-size: 15px;
+}
+
+/* Stuck to the card's foot, over its own bottom padding, on the card's white. */
+.globe-antipode-bar {
+  position: sticky;
+  bottom: -16px;
+  margin: 4px -16px -16px;
+  padding: 10px 16px 16px;
+  background: #ffffff;
+}
+
+.globe-antipode-bar[hidden] {
+  display: none;
+}
+
+.globe-antipode {
+  display: block;
+  padding: 9px 18px;
+
+  border: 0;
+  border-radius: 999px;
+  background: #0b3d91;
+  color: #ffffff;
+
+  font-family: 'Noto Sans Bengali', Inter, system-ui, sans-serif;
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.globe-antipode:focus-visible {
+  outline: 2px solid #0b5cad;
+  outline-offset: 2px;
+}
+
+/* ---- on the globe: names at the edge, latitude and longitude, poles ------ */
+
+.globe-flight,
+.globe-overlay,
+.globe-leaders {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* An svg is not stretched by its insets: it takes the map's size outright. */
+.globe-flight,
+.globe-leaders {
+  width: 100%;
+  height: 100%;
+}
+
+.globe-leaders line {
+  stroke-width: 1.5;
+}
+
+.globe-edge-label,
+.globe-coords {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  will-change: transform;
+}
+
+.globe-edge-label {
+  padding: 1px 7px 2px;
+
+  border: 1.5px solid var(--line, #0b3d91);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--line, #0b3d91);
+
+  font-family: 'Noto Sans Bengali', Inter, system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.globe-edge-label.selected {
+  background: var(--line, #0b3d91);
+  color: #ffffff;
+}
+
+/* One line per value, never broken: a range, or a number and its unit, stays whole. */
+.globe-coords {
+  padding: 4px 8px;
+  white-space: nowrap;
+
+  border: 1.5px solid #0d5c2e;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #13233a;
+
+  font-family: 'Noto Sans Bengali', Inter, system-ui, sans-serif;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.globe-coords div + div {
+  margin-top: 1px;
+}
+
+/* A marker: MapLibre positions it absolutely, which this must not undo — a
+   marker in the flow would push every marker after it off its place. */
+.globe-pole {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.globe-pole::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 12px;
+  height: 12px;
+  box-sizing: border-box;
+  border: 3px solid #1e88e5;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 7px #1e88e5;
+}
+
+.globe-pole.selected::before {
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-width: 4px;
+}
+
+.globe-pole-name {
+  position: absolute;
+  left: 50%;
+  padding: 0 6px;
+
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #0b5cad;
+
+  font-family: 'Noto Sans Bengali', Inter, system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+.globe-pole-name.above {
+  bottom: 100%;
+}
+
+.globe-pole-name.below {
+  top: 100%;
+}

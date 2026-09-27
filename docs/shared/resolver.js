@@ -215,9 +215,13 @@ export function createResolver({ sharedBase, documentBase }) {
    * `archive` and `tiles` must carry byte-identical archive URLs: the
    * Protocol keys its cache on the string it parses out of `tiles`, and a
    * mismatch silently opens a second archive.
+   *
+   * A basemap is a shared archive, under `tiles`; an archive that belongs to
+   * one map sits in that map's folder and is named under `maps` — a globe's
+   * imagery. Either way the envelope is made here and nowhere else.
    */
-  function pmtilesSource(path) {
-    const archive = url('tiles', path);
+  function pmtilesSource(path, kind = 'tiles') {
+    const archive = url(kind, path);
     return { archive, tiles: `pmtiles://${archive}/{z}/{x}/{y}` };
   }
 

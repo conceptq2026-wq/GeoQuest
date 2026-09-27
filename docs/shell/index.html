@@ -9,6 +9,9 @@
 
     <!-- The real title comes from the descriptor, once it has loaded. -->
     <title>GeoQuest</title>
+    <!-- No icon to fetch: without this a browser asks the host's root for
+         /favicon.ico, which is not ours to serve. -->
+    <link rel="icon" href="data:," />
 
     <link rel="stylesheet" href="../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.css" />
     <link rel="stylesheet" href="./style.css" />

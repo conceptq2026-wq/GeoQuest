@@ -126,6 +126,16 @@ test('pmtilesSource hands out byte-identical archive URLs', () => {
   }
 });
 
+test('pmtilesSource names a map-folder archive under maps, the same envelope', () => {
+  for (const site of [ROOT, SUBPATH]) {
+    const { archive, tiles } = at(site).pmtilesSource('latitude-longitude/imagery.pmtiles', 'maps');
+    assert.equal(archive, site.prefix + '/maps/latitude-longitude/imagery.pmtiles');
+    assert.equal(tiles, `pmtiles://${archive}/{z}/{x}/{y}`);
+    // The default is still the shared tiles, so every existing call is unchanged.
+    assert.equal(at(site).pmtilesSource('world.pmtiles').archive, at(site).pmtilesSource('world.pmtiles', 'tiles').archive);
+  }
+});
+
 test('setCredentials exists, selects the host strategy, and is not implemented', () => {
   const r = at(ROOT);
   assert.equal(r.strategy(), 'relative');

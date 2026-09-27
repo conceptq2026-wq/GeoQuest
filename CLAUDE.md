@@ -76,7 +76,9 @@ touching anything else. A diagram is opened the same way by a second page,
 
 `docs/` is the served tree. **Invariant: the committed contents of `docs/` are
 byte-identical to the production bucket.** Production will not resolve
-directory indexes, so every URL names `index.html` explicitly.
+directory indexes, so every URL names `index.html` explicitly. Neither shell's
+page asks for a favicon (`<link rel="icon" href="data:,">`), so a browser
+never asks the host's root for one, and no map logs a 404 for it.
 
 `docs/index.html` renders its list from `docs/registry.json`, which
 `tools/build-registry.mjs` builds from every descriptor under `docs/maps/` and
@@ -116,6 +118,12 @@ and one data source — never a restructure.**
 - The shell page's own subresources are not resolver business. `<link>`,
   `<script src>` and ES `import` are resolved by the browser before any
   JavaScript runs.
+- `resolver.pmtilesSource(path, kind = 'tiles')` gives a PMTiles archive's two
+  forms, its own URL and its `pmtiles://` tile template: a basemap is a shared
+  archive, under `tiles`; an archive that belongs to one map sits in that
+  map's folder and is named under `maps` — a globe's imagery. The shell opens
+  one through its `archive(path, kind)`, which registers it with the PMTiles
+  protocol.
 
 ## The map baseline — every map, without being asked
 
@@ -139,10 +147,17 @@ same form a phone under 380 px always gets. The name is never truncated.
 
 **One exception, the user's decision (2026-09-27): a map with a timeline has
 no picker row** — no `<select>` and no ‹ ›. The timeline is its selector, and
-keyboard access runs through the timeline's dot buttons, in time order. Every
-other map keeps the picker. It is enforced both ways: the validator fails a
-map with neither a picker nor a timeline and a map with both, and the timeline
-throws if a picker is declared beside it.
+keyboard access runs through the timeline's dot buttons, in time order.
+
+**A second, the user's too (2026-09-27): a globe map has no picker row and no
+tilt button.** Its pill row is its selector (see **Shell modules**), and the
+globe stays upright: a drag turns it, a pinch zooms it, nothing tilts or
+rotates it. The shell draws the compass only where a map can rotate and the
+tilt button only where it can tilt (`maxPitch` above 0), so every flat map
+keeps both. Every other map keeps the picker. It is enforced both ways: the
+validator fails a map with none of a picker, a timeline and a globe's pills,
+and a map with more than one; the timeline throws if a picker is declared
+beside it, and the globe module if a picker or a timeline is.
 
 Where the data comes from:
 
@@ -343,14 +358,24 @@ declares sources, layers, sheet rows and actions; it holds no content.
 - **`attribution.extra`** lists whole credits the shell adds to ⓘ that no
   source carries — each an https link that opens outside the WebView; the
   validator holds that shape. latitude-longitude's NASA credit is one.
-- **`globe`** marks a map drawn on a globe (decided, validated, not drawn
-  yet: the shell's globe module is the next step, and until then the shell
-  shows the map flat). `globe.imagery: { file, fadeOut }` names a raster
-  PMTiles archive in the map's own folder — PMTiles v3, raster tiles from
-  z0 — and the two zooms between which it fades out over the vector
-  basemap; the archive's own metadata carries its credit, which the
-  validator requires in ⓘ as a link. `globe` holds nothing else, nor
-  `imagery` anything but those two.
+- **`globe`** draws a map on a globe, by the shell's globe module (see
+  **Shell modules**): `{ size, open, imagery?, pills, edgeLabels,
+  coordinates?, antipode? }`, nothing else. `size` is the globe's diameter as
+  a share of the map's shorter side; `open: { record }` faces the viewer when
+  the map opens. `imagery: { file, fadeOut }` names a raster PMTiles archive
+  in the map's own folder — PMTiles v3, raster tiles from z0 — and the two
+  zooms between which it fades out over the vector basemap; the archive's own
+  metadata carries its credit, which the validator requires in ⓘ as a link.
+  `pills: { from, label, labelEn?, do }` is the map's selector: one pill per
+  record of `from`, in its order, reading `label`. `edgeLabels: { source,
+  text, colour: { style, paint } }` names each line of `source` — a source of
+  the pills' table with a geometry file — at the globe's edge, in its colour
+  (a literal, `get`, or `match` on `get`). `coordinates: { at, lines,
+  minZoom }` shows `lines` beside every record with a point in `at`, from
+  `minZoom`; the validator requires every such record to have every line.
+  `antipode: { between: [a, b], labels: { a, b }, duration }` is the button
+  on those two records' cards. `flyTo` is the globe's action: the validator
+  fails it on a map with no globe.
 - **Generated lines keep off the tiles' clip edges.** MapLibre's own tiler
   (`@maplibre/geojson-vt` 6.1.1, as maplibre-gl resolves it) drops a line's
   whole piece in a tile where one of its vertices lies exactly on the
@@ -367,14 +392,17 @@ declares sources, layers, sheet rows and actions; it holds no content.
   through that keeps no piece of it; latitude-longitude's build and the
   validator run it over z0–6.
 
-## Shell modules: tabs and timeline
+## Shell modules: tabs, timeline and globe
 
 A shell feature that not every map needs is a module of its own, loaded only
 for a map whose descriptor declares its term (`SHELL_MODULES` in `app.js`), so
 no other map requests it. A module mounts before the map is built — it may
-take room on the page, and hide records through the shell's `hide` — and
-installs once it is, with `map`, `runActions`, `refilter`, `deselect` and
-`onChange` (after a selection, or a change in what is shown). Everything it
+take room on the page, hide records through the shell's `hide`, add to the
+map's style and options (`build.style`, `build.options`), take the map's taps
+(`tapsOwned`, with the descriptor's click interactions as `tapTargets`) and
+add actions (`actions`) — and installs once it is, with `map`, `runActions`,
+`refilter`, `deselect`, `onChange` (after a selection, or a change in what is
+shown), `archive` and `geometry` (a source's geometry file). Everything it
 creates or changes goes through `own`, so teardown undoes it.
 
 - **`tabs: { records, field, from, label }`** divides one records table by a
@@ -420,6 +448,66 @@ creates or changes goes through `own`, so teardown undoes it.
   down to one row (122 px), then the card, down to its title; each scrolls
   inside itself when short of room.
 - The timeline is the map's selector: see the baseline exception above.
+- **`globe`** (`docs/shell/globe.js`, `globe.css`; the term under **Data
+  model**) draws the map on MapLibre's own globe projection, held upright:
+  no rotation, no tilt. It opens with `open` facing the viewer, the globe
+  `size` of the map's shorter side, the camera sized from MapLibre's own
+  globe geometry before the first frame; when the card docks or closes, a
+  globe seen whole is fitted again. Everything the module draws over the
+  globe is placed by its own projection of MapLibre's globe at pitch 0,
+  within 0.001 px of `map.project` at every zoom.
+  - **The pill row** replaces the picker: one pill per record, in the
+    table's order, scrolling sideways; the selected pill stays marked and is
+    scrolled into view. A pill runs `pills.do` — on latitude-longitude
+    select and `flyTo`, 1.8 s: a line is turned to the least way (the least
+    change of longitude and latitude together) into the globe's middle,
+    seen whole from no further toward a pole than 40°; a pole comes to the
+    middle's top or foot; a place is fitted to its frame. A flight cut
+    short, by another or by a drag, runs nothing after it.
+  - **The poles**: a record whose point lies beyond ±85.05°, which the map's
+    point layers cannot draw, is taken off them and drawn as a named marker
+    at its true place, hidden and untappable on the far side.
+  - **Each line's name at the globe's visible edge**, with a short leader
+    to a dot on the line just inside it: where the line leaves the visible
+    globe — its edge, or the map's where the globe is larger than the map —
+    a parallel's name first on the left, any other line's at the bottom.
+    The names on one side stand in the order of their lines there, moved
+    apart as little as they can, so no two overlap and no leaders cross; a
+    name blocked by a control, a pole's name, a callout or a place's dot or
+    name slides along its side, then tries its line's next crossing, and is
+    hidden when it has none. The selected line's name is placed first and
+    filled; a line out of sight has none. Measured: 0 overlaps over 72 views
+    round the globe at 390×844 and 320×640.
+  - **Latitude and longitude beside a place** (`coordinates`), from z3.2
+    on latitude-longitude — below it Bangladesh is under about 30 px across
+    — while the place faces the viewer: one line per value, never broken,
+    the selected place's first, each in the first box round its place that
+    covers nothing else and no place's point.
+  - **Taps are the module's**: nearest wins, dots first — a point within
+    14 px, the nearest — then places, an area under the finger (the
+    smallest), then lines within 14 px, the nearest; lines within 1.5 px of
+    each other at a crossing go by the pill order. Only what faces the viewer
+    is hit; a tap on nothing closes the card. On latitude-longitude a tap at
+    the Tropic of Cancer × 90°E crossing selects Dhaka at the opening zoom,
+    whose dot lies 1 px from it, and Bangladesh when zoomed to the country,
+    since the crossing lies inside Bangladesh's area; at the equator × 90°E
+    it selects the equator, at the Tropic of Cancer × the prime meridian the
+    Tropic of Cancer.
+  - **The docked card**, as the timeline's: shown while a record is
+    selected, with a × that clears the selection, its chip tinted with the
+    record's colour. On a record of `antipode.between` it carries one button,
+    kept at the card's foot while a long card scrolls under it, that turns the
+    globe to the other place over `duration` (2.6 s) — a jump with reduced
+    motion — and opens its card on arrival. From the tap until the map is
+    idle again, the pair's outlines and points are drawn by the module's own
+    overlay, as the descriptor's layers draw them, since the map's own tiles
+    for the far side load only as it turns into view; then they are handed
+    back. Measured by frame: 0 frames without the outline or the point, both
+    ways, at both phone sizes, with and without reduced motion.
+  - Measured (2026-09-28): the module is 59,387 bytes (18,708 gzipped); its
+    work each frame 0.2–0.4 ms on this machine (1.4–2.3 ms at 4× CPU
+    slowdown); the globe turns at 50 fps at 4× CPU slowdown on this machine's
+    GPU, 15 fps in software rendering.
 
 ## Interactive diagrams
 
@@ -1030,8 +1118,8 @@ State which kind a task is when reporting it.
   the user may change. Its look is
   `design/mockups/globe-latitude-longitude.png`, the user's approved mockup:
   a 3D globe with its lines, a pill row and a docked card. Its data is
-  built, in `docs/maps/latitude-longitude/`; the globe module that draws it
-  is not, so until it is the shell shows the map flat.
+  built, in `docs/maps/latitude-longitude/`, and the shell's globe module
+  draws it (see **Shell modules**).
   - `tools/build-latitude-longitude.mjs` builds it from the editor's seed,
     `data-sources/latitude-longitude/latitude-longitude.seed.json`, which it
     reads and never writes: one records table, `items` — eight lines, the
@@ -1053,15 +1141,29 @@ State which kind a task is when reporting it.
   - The imagery is NASA's Blue Marble: Next Generation, July, with
     topography and bathymetry, cut by
     `tools/build-latitude-longitude-imagery.mjs` into WebP tiles, z0–3,
-    quality 75: `imagery.pmtiles`, 905,573 bytes, 91,538 of them read when
-    the globe opens at zoom 1. It fades out between z3 and z4 over
+    quality 75: `imagery.pmtiles`, 905,573 bytes, 79,929 of them read when
+    the globe opens on a 390 px phone. It fades out between z3 and z4 over
     `world-light`, which draws no coastline — so no false ring at 85.05°S,
     where the world basemap's coastline stroke drew one on a globe. ⓘ
     credits "NASA Earth Observatory", linked to the product's page, and
     nothing names NASA otherwise, as NASA's terms ask.
-  - The card shows the seed's values without row labels, and the picker's
-    placeholder is the map's title: no other Bengali words are approved for
-    it yet. Nothing on it is pending.
+  - The globe opens on Bangladesh. Its pills read each record's `nameBn`,
+    in the seed's order (the user's decision, 2026-09-28: `chipBn` is a
+    category several records share, never a selector; it is the card's
+    chip). The card shows every Bengali field a record has, in the seed's
+    order, under the words the user approved (2026-09-27): «অক্ষাংশ» for a
+    parallel's value and `latBn`, «দ্রাঘিমাংশ» for a meridian's value and
+    `lonBn`, «সময়» for `timeBn`, «নিকটতম স্থলভাগ» for `nearestBn`,
+    «অবস্থান» for `whereBn`; `factBn` and `ruleBn` read on their own, as does
+    a value no label was approved for (the date line's, a point's). The
+    antipode button reads «প্রতিপাদে যান» on Bangladesh's card and
+    «বাংলাদেশে ফিরুন» on the antipode's. No other Bengali is shown but the
+    seed's, and the validator holds every one of these. The latitude and
+    longitude show beside Bangladesh (at its outline's inner point) and
+    Dhaka. At 320×640 the prime meridian's name is hidden at the opening
+    view, where the line runs along the globe's edge with no room for it (the
+    user accepted it, 2026-09-28); it shows when the line is selected or
+    turned into view. Nothing on it is pending.
 - **environment-treaties** — environmental conventions, treaties and
   protocols, world summits and UNFCCC COPs, in four tabs, in English (see the
   baseline section) — is built by `tools/build-environment-treaties.mjs` from
