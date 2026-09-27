@@ -195,36 +195,61 @@ const mapIds = fs
   .filter((e) => e.isDirectory())
   .map((e) => e.name)
   .sort();
+// Interactive diagrams: listed in the registry beside the maps, opened by the
+// diagram shell, and outside the map baseline. The folder comes with the first
+// diagram. Change here if it moves.
+const DIAGRAMS_DIR = path.join(SERVED, 'diagrams');
+const diagramIds = fs.existsSync(DIAGRAMS_DIR)
+  ? fs
+      .readdirSync(DIAGRAMS_DIR, { withFileTypes: true })
+      .filter((e) => e.isDirectory())
+      .map((e) => e.name)
+      .sort()
+  : [];
 
 const shellSource = fs.readFileSync(path.join(SERVED, 'shell/app.js'), 'utf8');
 for (const id of BASELINE_LAYERS) {
   check(shellSource.includes(`id: '${id}'`), `the shell still creates the baseline layer "${id}"`);
 }
 
+// A map is named by its id, a diagram by its kind and id, as their registry
+// entries say — so the two cannot stand in for each other below.
+const keyOf = (entry) => (entry.kind ? `${entry.kind}:${entry.id}` : entry.id);
+const found = [...mapIds.map((id) => ({ id })), ...diagramIds.map((id) => ({ id, kind: 'diagram' }))];
 const descriptors = {};
-for (const id of mapIds) {
-  const d = JSON.parse(fs.readFileSync(path.join(MAPS_DIR, id, 'descriptor.json'), 'utf8'));
-  descriptors[id] = d;
-  check(SECTIONS.includes(d.section), `${id}: section "${d.section}" is one of ${SECTIONS.join(', ')}`);
+for (const entry of found) {
+  const name = keyOf(entry);
+  const d = JSON.parse(fs.readFileSync(path.join(entry.kind ? DIAGRAMS_DIR : MAPS_DIR, entry.id, 'descriptor.json'), 'utf8'));
+  descriptors[name] = d;
+  check(SECTIONS.includes(d.section), `${name}: section "${d.section}" is one of ${SECTIONS.join(', ')}`);
+  // The baseline is the map shell's: a diagram has no basemap, no labels and
+  // no picker row for its descriptor to take.
+  if (entry.kind === 'diagram') continue;
 
   const declaredLayers = (d.layers ?? []).map((l) => l.id).filter((l) => BASELINE_LAYERS.includes(l));
   const declaredSources = Object.keys(d.sources ?? {}).filter((s) => BASELINE_SOURCES.includes(s));
   const declaredRecords = Object.keys(d.records ?? {}).filter((r) => BASELINE_RECORDS.includes(r));
   const taken = [...declaredLayers, ...declaredSources, ...declaredRecords];
-  check(taken.length === 0, `${id}: declares nothing the shell provides${taken.length ? ` — ${taken.join(', ')}` : ''}`);
+  check(taken.length === 0, `${name}: declares nothing the shell provides${taken.length ? ` — ${taken.join(', ')}` : ''}`);
 }
+const both = diagramIds.filter((id) => mapIds.includes(id));
+check(both.length === 0, `no id is both a map and a diagram${both.length ? ` — ${both.join(', ')}` : ''}`);
 
 // The registry is generated, so it cannot disagree with the descriptors — and
 // this is the check that says so out loud if the generator stops being run.
 const registry = JSON.parse(fs.readFileSync(path.join(SERVED, 'registry.json'), 'utf8'));
-const registered = registry.maps.map((m) => m.id).sort();
+const registered = registry.maps.map(keyOf).sort();
+const existing = found.map(keyOf).sort();
 check(
-  registered.length === mapIds.length && registered.every((id, i) => id === mapIds[i]),
-  `registry.json lists exactly the maps that exist (${registered.length})${registered.join(',') === mapIds.join(',') ? '' : ` — registry ${registered.join(', ')} vs folders ${mapIds.join(', ')}`}`,
+  registered.join(',') === existing.join(','),
+  `registry.json lists exactly the maps and diagrams that exist (${mapIds.length} + ${diagramIds.length})${registered.join(',') === existing.join(',') ? '' : ` — registry ${registered.join(', ')} vs folders ${existing.join(', ')}`}`,
 );
+// Each entry exactly as the generator writes it: { id, section, title } for a
+// map, with no new field, and "kind": "diagram" after the id for a diagram.
 const drifted = registry.maps.filter((entry) => {
-  const d = descriptors[entry.id];
-  return d && (entry.section !== d.section || entry.title?.en !== d.title?.en || entry.title?.bn !== d.title?.bn);
+  const d = descriptors[keyOf(entry)];
+  const kind = entry.kind ? { kind: entry.kind } : {};
+  return d && JSON.stringify(entry) !== JSON.stringify({ id: d.id, ...kind, section: d.section, title: { en: d.title?.en, bn: d.title?.bn } });
 });
 check(
   drifted.length === 0,

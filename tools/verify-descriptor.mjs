@@ -17,6 +17,9 @@
 //   environment-treaties  checked against data-sources/environment-treaties/
 //                         treaties.seed.json, cities.seed.json and additions.seed.json
 //
+// A map under docs/maps/ with no section here fails, by its id: a new map is
+// written into this file with its own section, not left unchecked.
+//
 // Run:  node tools/verify-descriptor.mjs   (from the repo root or from tools/)
 import fs from 'node:fs';
 import path from 'node:path';
@@ -133,7 +136,10 @@ const gets = (node, out = []) => {
 | records, so they apply to any map authored against the vocabulary.
 |--------------------------------------------------------------------------
 */
+// Every map a section below has checked, for the guard at the end.
+const CHECKED = new Set();
 function checkMap({ id, expectedPending }) {
+  CHECKED.add(id);
   const dir = path.join(MAPS_DIR, id);
   const descriptor = readJson(path.join(dir, 'descriptor.json'));
   const tables = {};
@@ -1124,6 +1130,24 @@ console.log('\n\n============ environment-treaties ============');
   // is not on this map; the seed gives it as text) — and the five unknown
   // places again in English, which the card shows.
   checkMap({ id: 'environment-treaties', expectedPending: 30 });
+}
+
+/*
+|--------------------------------------------------------------------------
+| EVERY MAP HAS ITS OWN SECTION — a map is held to its sources only by a
+| section above, so a map folder with none would pass without being read.
+|--------------------------------------------------------------------------
+*/
+console.log('\n============ every map has its own section ============');
+{
+  const maps = fs
+    .readdirSync(MAPS_DIR, { withFileTypes: true })
+    .filter((e) => e.isDirectory() && fs.existsSync(path.join(MAPS_DIR, e.name, 'descriptor.json')))
+    .map((e) => e.name)
+    .sort();
+  const missing = maps.filter((id) => !CHECKED.has(id));
+  for (const id of missing) fail(`${id}: docs/maps/${id}/descriptor.json has no section in tools/verify-descriptor.mjs — write one`);
+  if (!missing.length) ok(`all ${maps.length} maps under docs/maps/ have their own section`);
 }
 
 // ---- done -------------------------------------------------------------------

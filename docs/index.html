@@ -128,9 +128,10 @@
     <script>
       /*
        * The list is GENERATED. tools/build-registry.mjs writes registry.json
-       * from every descriptor under maps/, and this page renders whatever it
-       * finds — so adding a map is one action, writing its descriptor, and a
-       * map can never be missing from a list nobody remembered to edit.
+       * from every descriptor under maps/ and diagrams/, and this page renders
+       * whatever it finds — so adding a map is one action, writing its
+       * descriptor, and a map can never be missing from a list nobody
+       * remembered to edit.
        *
        * Every URL here is relative and spells out index.html: the production
        * host does not resolve directory indexes, and a bare directory link is
@@ -148,6 +149,13 @@
         return node;
       };
 
+      // A map opens in the map shell, a diagram in the diagram shell. The
+      // registry says which: a diagram's entry carries "kind": "diagram".
+      const hrefOf = (m) =>
+        m.kind === 'diagram'
+          ? 'visual/index.html?v=' + encodeURIComponent(m.id)
+          : 'shell/index.html?map=' + encodeURIComponent(m.id);
+
       function render(registry) {
         const root = document.getElementById('sections');
         // Section ORDER comes from the registry, which takes it from the
@@ -164,7 +172,7 @@
                 {},
                 maps.map((m) =>
                   el('li', {}, [
-                    el('a', { className: 'card', href: 'shell/index.html?map=' + encodeURIComponent(m.id) }, [
+                    el('a', { className: 'card', href: hrefOf(m) }, [
                       el('span', { className: 'card-text' }, [
                         el('span', { className: 'card-title', textContent: m.title.en }),
                         el('span', { className: 'card-desc', lang: 'bn', textContent: m.title.bn }),

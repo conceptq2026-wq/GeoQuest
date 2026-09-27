@@ -8,7 +8,8 @@ correct it from the tree and list every correction in your report.
 
 ## Two repos. Never confuse them.
 
-- **GeoQuest** (this repo, public, GitHub Pages) — maps only.
+- **GeoQuest** (this repo, public, GitHub Pages) — maps and interactive
+  diagrams only.
 - **ConceptQ** (private) — the app, admin console and CMS. Not here. Never
   reference its files, never assume access to it.
 
@@ -45,17 +46,20 @@ shell/index.html?map=straits
 
 Not one folder per map. Each map's data lives in its own file so its source can
 later change from a local file to a fetch from the app's Gateway without
-touching anything else.
+touching anything else. A diagram is opened the same way by a second page,
+`visual/index.html?v=<id>` — decided, not built yet (see **Interactive
+diagrams**).
 
 `docs/` is the served tree. **Invariant: the committed contents of `docs/` are
 byte-identical to the production bucket.** Production will not resolve
 directory indexes, so every URL names `index.html` explicitly.
 
-`docs/index.html` is generated from `docs/registry.json`, which
-`tools/build-registry.mjs` builds from every descriptor found. It is never
-hand-maintained: adding a map makes it appear under its section with no edit.
-Each descriptor declares its `section`: `bangladesh | international |
-geography`.
+`docs/index.html` renders its list from `docs/registry.json`, which
+`tools/build-registry.mjs` builds from every descriptor under `docs/maps/` and
+`docs/diagrams/`. The list is never hand-maintained: adding a map makes it
+appear under its section with no edit. Of the list, only the section names are
+written into the page (`SECTION_NAMES`). Each descriptor declares its `section`:
+`bangladesh | international | geography`.
 
 `docs/international/straits/` is the original live page. It is the reference
 implementation for how a map looks and behaves. Do not change it unless a task
@@ -364,6 +368,43 @@ creates or changes goes through `own`, so teardown undoes it.
   inside itself when short of room.
 - The timeline is the map's selector: see the baseline exception above.
 
+## Interactive diagrams
+
+The user's decisions (2026-09-27). Built so far: the registry and the home
+page take diagram entries. Nothing else exists yet — no diagram, no
+`docs/visual/`, no `docs/diagrams/`.
+
+- **A second shell.** A diagram opens in its own page,
+  `docs/visual/index.html?v=<id>` — SVG and HTML, no MapLibre, no WebGL.
+  `docs/shell/` and its URLs do not change for it. A diagram's built data
+  lives in `docs/diagrams/<id>/`, its approved seed in `data-sources/<id>/`.
+- **One registry, one home page.** `tools/build-registry.mjs` reads
+  `docs/diagrams/*/descriptor.json` beside `docs/maps/`. A diagram's entry
+  carries `"kind": "diagram"`; a map's entry gets no new field. Ids are unique
+  across maps and diagrams: the generator fails an id used by both. The home
+  page opens an entry by its kind — a map in `shell/index.html?map=<id>`, a
+  diagram in `visual/index.html?v=<id>`. `tools/verify.mjs` holds the registry
+  to both folders and runs the map baseline's checks on maps only.
+- **Shared pieces move only when needed.** A piece of the map shell moves into
+  `docs/shared/` only when the diagram shell needs it, and each move is proven
+  at the shell tier.
+- **The home section বিবিধ (`misc`)** is added together with its first entry,
+  not before: an empty section would show "Coming soon".
+- **The first diagram is atmosphere-layers, in Bengali**, with two views,
+  exploded and cross-section. The exploded view's look is
+  `design/mockups/atmosphere-layers-exploded.png`; the cross-section has no
+  approved look yet. The picture guides the look, never the data: the axis
+  ticks sit on the seed's layer boundaries, and the temperature curve follows
+  the seed's points only.
+- **Painted art, if used**, is cut from a text-free master kept outside
+  `docs/` (for example `data-sources/atmosphere-layers/art/`), whose SHA-256
+  and crop boxes the seed records. The cut WebPs go in
+  `docs/diagrams/<id>/art/` with a licence text beside them and a credit in
+  ⓘ. A painted feature — a plane, a satellite, an aurora — must agree with the
+  seed.
+- A change to the home page or the registry has its own verification tier, in
+  **Before every commit**.
+
 ## `null` versus absent — they are different
 
 - **`null`** = unverified. Hidden from the student, and printed on the pending
@@ -572,7 +613,9 @@ tap-to-open, never a live map.
 ## Before every commit
 
 - All three suites pass: `node tools/verify-descriptor.mjs`, `node --test
-  tools/resolver.test.mjs`, `node tools/verify.mjs`.
+  tools/resolver.test.mjs`, `node tools/verify.mjs`. Every map under
+  `docs/maps/` has its own section in `verify-descriptor.mjs`; the validator
+  fails a map without one, naming it.
 - 320px wide renders correctly.
 - Console clean **in a fresh tab** — stale buffers from an earlier load have
   produced false failures more than once.
@@ -583,6 +626,9 @@ Verification scales with what changed:
 
 - Only one map's data or its own folder: run the three suites and check that
   map. Do not open other maps.
+- The home page or the registry: the three suites, registry entries
+  byte-identical for existing maps, and the home page's existing sections
+  rendering identically at 390 and 320 px.
 - The shell or shared code (`docs/shell/`, `docs/shared/`, `tools/lib/`): run
   the suites, plus a request-and-camera comparison on two maps only, straits
   (world basemap) and ancient-janapadas (bangladesh basemap), at the site root
