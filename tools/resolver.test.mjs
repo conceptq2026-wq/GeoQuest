@@ -6,6 +6,7 @@
 // under a subpath, because GitHub Pages serves this repo from /GeoQuest/.
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { createResolver, KINDS } from '../docs/shared/resolver.js';
 
 // The two deployments, written the way the browser sees them.
@@ -30,6 +31,7 @@ const CASES = [
   ['sprite', 'icons.png', '/shared/sprites/icons.png'],
   ['mapData', 'canals.geojson', '/international/straits/canals.geojson'],
   ['maps', 'straits/descriptor.json', '/maps/straits/descriptor.json'],
+  ['diagrams', 'atmosphere-layers/descriptor.json', '/diagrams/atmosphere-layers/descriptor.json'],
   ['sharedData', 'seas.json', '/shared/seas.json'],
   ['registry', 'maps.json', '/maps.json'],
 ];
@@ -141,6 +143,60 @@ test('resolvers are independent and importing has no side effects', () => {
   a.setCredentials({ baseUrl: 'x', token: 'y', expiresAt: 0 });
   assert.equal(a.strategy(), 'host');
   assert.equal(b.strategy(), 'relative', 'one resolver must not reach into another');
+});
+
+test('diagrams: a file and a nested art path, at the server root and under a subpath', () => {
+  for (const site of [ROOT, SUBPATH]) {
+    const r = at(site);
+    assert.equal(r.url('diagrams', 'atmosphere-layers/layers.json'), site.prefix + '/diagrams/atmosphere-layers/layers.json');
+    assert.equal(r.url('diagrams', 'atmosphere-layers/art/slab-2@2x.webp'), site.prefix + '/diagrams/atmosphere-layers/art/slab-2@2x.webp');
+  }
+});
+
+test('diagrams: a path that could leave its own folder is refused', () => {
+  const REFUSED = {
+    'is absolute': ['https://example.com/x.json', '//cdn.example.com/x.json', '/diagrams/atmosphere-layers/x.json', 'data:application/json,{}'],
+    'has a ".." segment': [
+      'atmosphere-layers/../straits/descriptor.json',
+      'atmosphere-layers/art/..',
+      '../maps/straits/descriptor.json',
+      'atmosphere-layers/%2e%2e/x.json',
+      'atmosphere-layers/.%2E/x.json',
+    ],
+    'contains a backslash': ['atmosphere-layers\\descriptor.json', 'atmosphere-layers/art\\slab.webp', 'atmosphere-layers/%5c..%5cx.json'],
+    'encodes a "/" inside a segment': ['atmosphere-layers/art%2f..%2f..%2fx.json'],
+    'has an empty segment': ['', 'atmosphere-layers//descriptor.json', 'atmosphere-layers/', 'atmosphere-layers/art//slab.webp'],
+    'does not begin with a diagram id': ['Atmosphere-Layers/x.json', 'atmosphere_layers/x.json', '-atmosphere/x.json', 'atmosphere-/x.json', 'atmosphere--layers/x.json', 'atmo%2dlayers/x.json'],
+    'names no file under its id': ['atmosphere-layers'],
+    'is not valid percent-encoding': ['atmosphere-layers/%zz.json'],
+  };
+  for (const site of [ROOT, SUBPATH]) {
+    const r = at(site);
+    for (const [why, paths] of Object.entries(REFUSED)) {
+      for (const p of paths) {
+        assert.throws(() => r.url('diagrams', p), (e) => e.message.endsWith(why), `${JSON.stringify(p)} is refused: ${why}`);
+      }
+    }
+  }
+});
+
+test("diagrams: the id follows the map shell's own id rule", () => {
+  // The rule shell/app.js applies to ?map=, read from its source, so the two
+  // cannot drift apart.
+  const app = fs.readFileSync(new URL('../docs/shell/app.js', import.meta.url), 'utf8');
+  const literal = /if \(!\/(.+?)\/\.test\(mapId\)\)/.exec(app);
+  assert.ok(literal, 'shell/app.js still checks mapId against a regex literal');
+  const mapRule = new RegExp(literal[1]);
+  const r = at(ROOT);
+  for (const id of ['straits', 'atmosphere-layers', 'a1-b2', '9', 'Straits', 'a_b', '-a', 'a-', 'a--b', 'a.b', '']) {
+    let taken = true;
+    try {
+      r.url('diagrams', `${id}/descriptor.json`);
+    } catch {
+      taken = false;
+    }
+    assert.equal(taken, mapRule.test(id), JSON.stringify(id));
+  }
 });
 
 test('the document anchor is read at call time, not snapshotted', () => {

@@ -25,8 +25,11 @@
 |
 */
 
-/** Asset classes. 'registry' is reserved: nothing uses it yet. */
-export const KINDS = ['tiles', 'style', 'glyphs', 'sprite', 'mapData', 'maps', 'sharedData', 'registry'];
+/**
+ * Asset classes. 'registry' is reserved: nothing uses it yet. 'diagrams' waits
+ * for the diagram shell, docs/visual/.
+ */
+export const KINDS = ['tiles', 'style', 'glyphs', 'sprite', 'mapData', 'maps', 'diagrams', 'sharedData', 'registry'];
 
 /*
 | THE LAYOUT ASSUMPTION, IN ONE PLACE.
@@ -40,10 +43,10 @@ export const KINDS = ['tiles', 'style', 'glyphs', 'sprite', 'mapData', 'maps', '
 | When the file layout changes, this table is the edit. Nothing else in the
 | repo knows where anything lives.
 |
-| tiles/ and fonts/ are the two that exist today and are covered by the unit
-| test. styles/, sprites/ and the registry base are provisional: no such
-| asset exists yet, so they are a placement decision waiting to be made, not
-| a verified fact.
+| tiles/, fonts/, maps/ and the shared data exist today. styles/, sprites/
+| and the registry base are provisional: no such asset exists yet, so they
+| are a placement decision waiting to be made, not a verified fact.
+| diagrams/ is decided, and holds nothing until the first diagram lands.
 */
 const BASES = {
   tiles: { anchor: 'shared', base: 'tiles/' },
@@ -55,6 +58,10 @@ const BASES = {
   // relative to the page. The shell serves every map from one document, so
   // 'mapData' — which hangs off the document — cannot reach them.
   maps: { anchor: 'root', base: 'maps/' },
+  // A diagram's descriptor, data and art, addressed by diagram id as a map's
+  // files are — "<id>/<path>" — for the diagram shell. Decided; no diagram
+  // exists yet. Its paths are checked: see PATH_RULES below.
+  diagrams: { anchor: 'root', base: 'diagrams/' },
   // Records every map gets whether it asks or not — the sea names the shell
   // labels on all of them. Beside the fonts and tiles, because it is shared
   // data rather than any one map's content.
@@ -84,6 +91,39 @@ const RESOURCE_KIND = {
 
 /** A URL that already carries a scheme, or is protocol-relative. */
 const ABSOLUTE = /^[a-z][a-z0-9+.-]*:|^\/\//i;
+
+/*
+| PATH RULES — checked before a path is composed, for the kinds that have one.
+|
+| A diagram path is "<id>/<path>" and can reach nothing outside that diagram's
+| folder. The id follows the rule the map shell applies to ?map= in
+| shell/app.js. The rest is relative: an absolute path, a ".." segment, a
+| backslash and an empty segment are refused, not resolved — spelled out or
+| percent-encoded, since the URL parser reads %2e%2e as ".." and a server may
+| decode %5c or %2f. Every other kind resolves exactly as it did before.
+*/
+const ID = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+
+function checkDiagramPath(path) {
+  const refuse = (why) => {
+    throw new Error(`resolver: "diagrams" path "${path}" ${why}`);
+  };
+  if (ABSOLUTE.test(path) || path.startsWith('/')) refuse('is absolute');
+  let segments;
+  try {
+    segments = path.split('/').map(decodeURIComponent);
+  } catch {
+    refuse('is not valid percent-encoding');
+  }
+  if (segments.some((s) => s.includes('\\'))) refuse('contains a backslash');
+  if (segments.some((s) => s.includes('/'))) refuse('encodes a "/" inside a segment');
+  if (segments.some((s) => s === '')) refuse('has an empty segment');
+  if (segments.some((s) => s === '..')) refuse('has a ".." segment');
+  if (!ID.test(path.split('/')[0])) refuse('does not begin with a diagram id');
+  if (segments.length < 2) refuse('names no file under its id');
+}
+
+const PATH_RULES = { diagrams: checkDiagramPath };
 
 const read = (anchor) => (typeof anchor === 'function' ? anchor() : anchor);
 
@@ -124,12 +164,14 @@ export function createResolver({ sharedBase, documentBase }) {
   /**
    * resolver.url(kind, path) -> string
    * A path already carrying a scheme is returned untouched, so this is safe
-   * to call on something already resolved.
+   * to call on something already resolved — except under a kind with a path
+   * rule, which refuses it.
    */
   function url(kind, path) {
     const spec = BASES[kind];
     if (!spec) throw new Error(`resolver: unknown kind "${kind}"`);
     if (typeof path !== 'string') throw new Error(`resolver: path for "${kind}" must be a string`);
+    PATH_RULES[kind]?.(path);
     if (strategy() === 'host') {
       throw new Error('resolver: the "host" strategy is declared but not implemented');
     }

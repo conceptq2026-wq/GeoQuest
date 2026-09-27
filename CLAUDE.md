@@ -73,9 +73,10 @@ and one data source — never a restructure.**
 - Every outbound URL comes from `docs/shared/resolver.js`. Nothing else
   constructs one.
 - `resolver.url(kind, path)`, `kind ∈ tiles | style | glyphs | sprite |
-  mapData | maps | sharedData | registry`. The `kind → { anchor, base }` table
-  is the single place that knows where anything lives; a layout change is that
-  one edit.
+  mapData | maps | diagrams | sharedData | registry`. The `kind → { anchor,
+  base }` table is the single place that knows where anything lives; a layout
+  change is that one edit. Only `diagrams` checks its path before resolving
+  it (see **Interactive diagrams**).
 - **Never hard-code** a base URL, host, repo name, `.pmtiles` path, glyph URL
   or data path. `grep -rn "new URL(\|location\.href\|pmtiles://"` excluding
   vendor must return only the resolver.
@@ -371,13 +372,21 @@ creates or changes goes through `own`, so teardown undoes it.
 ## Interactive diagrams
 
 The user's decisions (2026-09-27). Built so far: the registry and the home
-page take diagram entries. Nothing else exists yet — no diagram, no
-`docs/visual/`, no `docs/diagrams/`.
+page take diagram entries, and the resolver has a `diagrams` kind. Nothing
+else exists yet — no diagram, no `docs/visual/`, no `docs/diagrams/`.
 
 - **A second shell.** A diagram opens in its own page,
   `docs/visual/index.html?v=<id>` — SVG and HTML, no MapLibre, no WebGL.
   `docs/shell/` and its URLs do not change for it. A diagram's built data
   lives in `docs/diagrams/<id>/`, its approved seed in `data-sources/<id>/`.
+- **The `diagrams` kind.** The diagram shell reaches a diagram's files through
+  `resolver.url('diagrams', '<id>/<path>')`, which resolves to
+  `diagrams/<id>/<path>` from the site root, as `maps` does for a map. The id
+  follows the map shell's rule for `?map=` — the resolver's unit test reads
+  that rule from `shell/app.js`, so the two cannot drift apart. An absolute
+  path, a `..` segment, a backslash or an empty segment — spelled out or
+  percent-encoded — is refused rather than resolved, as is an id with no file
+  under it. No other kind checks its path.
 - **One registry, one home page.** `tools/build-registry.mjs` reads
   `docs/diagrams/*/descriptor.json` beside `docs/maps/`. A diagram's entry
   carries `"kind": "diagram"`; a map's entry gets no new field. Ids are unique
@@ -402,6 +411,13 @@ page take diagram entries. Nothing else exists yet — no diagram, no
   `docs/diagrams/<id>/art/` with a licence text beside them and a credit in
   ⓘ. A painted feature — a plane, a satellite, an aurora — must agree with the
   seed.
+- **The order of the remaining work** (approved 2026-09-27). Nothing is
+  committed under `docs/diagrams/` before the diagram is whole: the registry
+  lists any folder there, and `verify.mjs` fails one it does not list. So the
+  `docs/visual/` shell with the exploded view is built and tested locally
+  against the uncommitted diagram, and committed first; then the diagram's
+  seed, build, descriptor, data, validator section and the `misc` section
+  land together, in one commit. The cross-section view comes after.
 - A change to the home page or the registry has its own verification tier, in
   **Before every commit**.
 
