@@ -21,14 +21,15 @@ const DIAGRAMS_DIR = path.join(ROOT, 'docs/diagrams');
 const OUT = path.join(ROOT, 'docs/registry.json');
 
 /*
- * The three BCS Preliminary subject divisions, in syllabus order. This order
+ * The three BCS Preliminary subject divisions, in syllabus order, then বিবিধ
+ * (misc) for what belongs to none of them — the diagrams so far. This order
  * is the index's order; it is fixed here rather than sorted, because it is a
  * property of the exam and not of the data.
  *
  * GeoQuest's own organisation: the app opens each map directly by URL and
  * never sees these sections.
  */
-export const SECTIONS = ['bangladesh', 'international', 'geography'];
+export const SECTIONS = ['bangladesh', 'international', 'geography', 'misc'];
 
 const folders = (dir) =>
   fs

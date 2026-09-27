@@ -1,0 +1,262 @@
+{
+ "_about": "The atmosphere-layers diagram's content, bottom to top, from data-sources/atmosphere-layers/atmosphere.seed.json by tools/build-diagram-atmosphere-layers.mjs. A height is km, [least, greatest] where the seed gives a range, or null: pending, not shown. boundaries are the art manifest's, in its order; a profile point names its boundary by index.",
+ "layers": [
+  {
+   "id": "troposphere",
+   "order": 1,
+   "nameBn": "ট্রপোমণ্ডল",
+   "trendBn": "উচ্চতা বাড়লে তাপমাত্রা কমে",
+   "rateBn": "প্রতি কিলোমিটারে প্রায় ৬.৫° সেলসিয়াস কমে",
+   "featureIds": [
+    "weather",
+    "lightning",
+    "everest",
+    "jetstream"
+   ],
+   "fromKm": 0,
+   "toKm": [
+    6,
+    20
+   ]
+  },
+  {
+   "id": "stratosphere",
+   "order": 2,
+   "nameBn": "স্ট্র্যাটোমণ্ডল",
+   "trendBn": "উচ্চতা বাড়লে তাপমাত্রা বাড়ে (ওজোন তৈরির সময় তাপ উৎপন্ন হয়)",
+   "rateBn": "প্রায় ২৫ কিমি পর্যন্ত তাপমাত্রা প্রায় স্থির; তার উপরে প্রতি কিলোমিটারে প্রায় ৩° সেলসিয়াস বাড়ে",
+   "featureIds": [
+    "ozone",
+    "jets",
+    "balloon"
+   ],
+   "fromKm": [
+    6,
+    20
+   ],
+   "toKm": 50
+  },
+  {
+   "id": "mesosphere",
+   "order": 3,
+   "nameBn": "মেসোমণ্ডল",
+   "trendBn": "উচ্চতা বাড়লে তাপমাত্রা কমে; সবচেয়ে ঠান্ডা স্তর",
+   "featureIds": [
+    "meteors",
+    "highclouds"
+   ],
+   "fromKm": 50,
+   "toKm": 85
+  },
+  {
+   "id": "thermosphere",
+   "order": 4,
+   "nameBn": "তাপমণ্ডল",
+   "trendBn": "উচ্চতা বাড়লে তাপমাত্রা বাড়ে; সবচেয়ে উষ্ণ স্তর (তবু বাতাস এত পাতলা যে গায়ে ঠান্ডা লাগবে)",
+   "featureIds": [
+    "aurora",
+    "ionosphere",
+    "radio"
+   ],
+   "fromKm": 85,
+   "toKm": 600
+  },
+  {
+   "id": "exosphere",
+   "order": 5,
+   "nameBn": "এক্সোমণ্ডল",
+   "noteBn": "অণু-পরমাণু মহাকাশে পালিয়ে যায়",
+   "featureIds": [
+    "satellites"
+   ],
+   "fromKm": 600,
+   "toKm": 10000
+  }
+ ],
+ "boundaries": [
+  {
+   "id": null,
+   "between": [
+    "earth",
+    "troposphere"
+   ],
+   "atKm": 0
+  },
+  {
+   "id": "tropopause",
+   "between": [
+    "troposphere",
+    "stratosphere"
+   ],
+   "atKm": [
+    6,
+    20
+   ]
+  },
+  {
+   "id": "stratopause",
+   "between": [
+    "stratosphere",
+    "mesosphere"
+   ],
+   "atKm": 50
+  },
+  {
+   "id": "mesopause",
+   "between": [
+    "mesosphere",
+    "thermosphere"
+   ],
+   "atKm": 85
+  },
+  {
+   "id": "thermopause",
+   "between": [
+    "thermosphere",
+    "exosphere"
+   ],
+   "atKm": 600
+  },
+  {
+   "id": null,
+   "between": [
+    "exosphere",
+    null
+   ],
+   "atKm": 10000
+  }
+ ],
+ "features": {
+  "weather": {
+   "nameBn": "মেঘ ও আবহাওয়া"
+  },
+  "lightning": {
+   "nameBn": "বজ্রপাত"
+  },
+  "everest": {
+   "nameBn": "মাউন্ট এভারেস্ট"
+  },
+  "jetstream": {
+   "nameBn": "জেট স্রোত"
+  },
+  "ozone": {
+   "nameBn": "ওজোন স্তর",
+   "fromKm": 15,
+   "toKm": 35
+  },
+  "jets": {
+   "nameBn": "যাত্রীবাহী জেট বিমান"
+  },
+  "balloon": {
+   "nameBn": "আবহাওয়া বেলুন (রেডিওসন্ড)"
+  },
+  "meteors": {
+   "nameBn": "উল্কা পুড়ে যাওয়া"
+  },
+  "highclouds": {
+   "nameBn": "সবচেয়ে উঁচু মেঘ"
+  },
+  "aurora": {
+   "nameBn": "মেরুজ্যোতি (অরোরা)",
+   "fromKm": 80,
+   "toKm": 500
+  },
+  "ionosphere": {
+   "nameBn": "আয়নমণ্ডল",
+   "fromKm": 60,
+   "toKm": 300
+  },
+  "radio": {
+   "nameBn": "বেতার তরঙ্গ প্রতিফলন"
+  },
+  "satellites": {
+   "nameBn": "কৃত্রিম উপগ্রহ"
+  }
+ },
+ "profile": [
+  {
+   "boundary": 0,
+   "tempC": 17
+  },
+  {
+   "boundary": 1,
+   "tempC": -51
+  },
+  {
+   "boundary": 2,
+   "tempC": -15
+  },
+  {
+   "boundary": 3,
+   "tempC": -120
+  },
+  {
+   "boundary": 4,
+   "tempC": 2000,
+   "upTo": true
+  }
+ ],
+ "credits": [
+  {
+   "title": "পৃথিবীর বায়ুমণ্ডল",
+   "by": "Bengali Wikipedia",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AA%E0%A7%83%E0%A6%A5%E0%A6%BF%E0%A6%AC%E0%A7%80%E0%A6%B0_%E0%A6%AC%E0%A6%BE%E0%A6%AF%E0%A6%BC%E0%A7%81%E0%A6%AE%E0%A6%A3%E0%A7%8D%E0%A6%A1%E0%A6%B2&oldid=8560010",
+   "lang": "bn"
+  },
+  {
+   "title": "Layers of the Atmosphere",
+   "by": "NOAA National Weather Service — JetStream",
+   "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere"
+  },
+  {
+   "title": "Earth Atmosphere Model – Metric Units",
+   "by": "NASA Glenn Research Center",
+   "url": "https://www.grc.nasa.gov/www/k-12/airplane/atmosmet.html"
+  },
+  {
+   "title": "Peeling Back the Layers of the Atmosphere",
+   "by": "NOAA NESDIS",
+   "url": "https://www.nesdis.noaa.gov/news/peeling-back-the-layers-of-the-atmosphere"
+  },
+  {
+   "title": "Lightning Basics",
+   "by": "NOAA National Severe Storms Laboratory",
+   "url": "https://www.nssl.noaa.gov/education/svrwx101/lightning/"
+  },
+  {
+   "title": "List of highest mountains on Earth",
+   "by": "Wikipedia",
+   "url": "https://en.wikipedia.org/w/index.php?title=List_of_highest_mountains_on_Earth&oldid=1374856534"
+  },
+  {
+   "title": "The Jet Stream",
+   "by": "NOAA National Weather Service — JetStream",
+   "url": "https://www.noaa.gov/jetstream/global/jet-stream"
+  },
+  {
+   "title": "Twenty Questions and Answers About the Ozone Layer: 2022 Update",
+   "by": "NOAA Chemical Sciences Laboratory / WMO",
+   "url": "https://csl.noaa.gov/assessments/ozone/2022/twentyquestions/"
+  },
+  {
+   "title": "Twenty Questions and Answers About the Ozone Layer: 2022 Update (Q1)",
+   "by": "UNEP Ozone Secretariat — Scientific Assessment of Ozone Depletion: 2022 (NOAA/WMO/UNEP/NASA/EC)",
+   "url": "https://ozone.unep.org/20-questions-and-answers"
+  },
+  {
+   "title": "Radiosondes",
+   "by": "NOAA National Weather Service — JetStream",
+   "url": "https://www.noaa.gov/jetstream/upperair/radiosondes"
+  },
+  {
+   "title": "Aurora",
+   "by": "NOAA Space Weather Prediction Center",
+   "url": "https://www.swpc.noaa.gov/phenomena/aurora"
+  },
+  {
+   "title": "The Ionosphere",
+   "by": "NOAA National Weather Service — JetStream",
+   "url": "https://www.noaa.gov/jetstream/ionosphere-max"
+  }
+ ]
+}

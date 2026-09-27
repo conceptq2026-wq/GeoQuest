@@ -1,0 +1,899 @@
+{
+  "_about": "The atmosphere-layers exploded view, for a layout 390 CSS px wide in which every position below is given (layout px; the master's 1024 px make 390). The default view is \"view\": stack-master.png itself, cut to the stack's bounds, on the page's \"background\"; its files show \"view.edge\" at their edges once decoded, a level or two off it, and the page behind them takes that. A tapped slab is lit: its cut-out, \"files\" at its box, is drawn over the view scaled by \"litScale\" about the box's centre and lifted \"lit.lift\" px, over a white outline \"lit.outline\" px wide and a soft white glow reaching \"lit.glow\" px — at that scale it covers the master's own copy of the slab. The other slabs are not dimmed. \"outline\" is the tap area, on the master; taps test the slabs from the highest \"order\" down, since each outline includes its slab's top face hidden behind the slab above. \"nameLine\" is the line the slab's Bengali name is laid along, 45% down its front-left face; \"edges\" its upright edges' ends in the master; \"meets\" where the km axis ticks (left) and the temperature curve (right) meet it. Each boundary lies in the middle of the gap between two pictures of the master; above the exosphere, half a gap over its top. Each icon is a square 40 CSS px across, on the card's white; their files show \"iconEdge\" at their edges once decoded, and the card behind them takes that. Written by tools/build-diagram-atmosphere-art.mjs.",
+  "inputs": {
+    "stack-master.png": "4711ffab5d4e752aa1fe345c6cc31bd14df44e57554139e4c5d6724229959e90",
+    "earth.png": "78403723c32aade3a886f6db911fdba2adf73364aa6c0f743ade55ae8ebdf465",
+    "troposphere.png": "6d797793c0cadd965da023239aef7077578c16019886f7e453d3ecfa22c1ee55",
+    "stratosphere.png": "560adfb6ab8b5223b7737d3d572714be857f014cf516047f96ac953a35f6652b",
+    "mesosphere.png": "9cbb12f25342332ceba62e09e47cef8b060f3fe9e1109992bb1ba1219186a4d1",
+    "thermosphere.png": "0da0e894102266f14eacc2fbf4ca7374639c61e1678b65a3e49003f0ef822f25",
+    "exosphere.png": "307220aaafdf9f36d06bb68f26255c4b05a37aec85c205021c85647b92a7c0cb",
+    "icons-master.png": "44a19770f18da8fd21942899f6bf94468dbf6b4d2ff604ac8757c84a1c96b465"
+  },
+  "layout": {
+    "width": 390,
+    "height": 585,
+    "fromMaster": 0.380859375,
+    "background": "#edf4fa"
+  },
+  "view": {
+    "x": 65,
+    "y": 68,
+    "width": 266,
+    "height": 462,
+    "files": {
+      "1x": "stack@1x.webp",
+      "2x": "stack@2x.webp"
+    },
+    "edge": "#ebf3fa"
+  },
+  "lit": {
+    "lift": 2,
+    "outline": 1.5,
+    "glow": 8
+  },
+  "slabs": [
+    {
+      "id": "troposphere",
+      "order": 1,
+      "x": 68,
+      "y": 328,
+      "width": 255,
+      "height": 112,
+      "files": {
+        "1x": "slabs/troposphere@1x.webp",
+        "2x": "slabs/troposphere@2x.webp"
+      },
+      "outline": [
+        [
+          68.55,
+          357.4
+        ],
+        [
+          71.98,
+          354.36
+        ],
+        [
+          84.55,
+          349.68
+        ],
+        [
+          123.78,
+          337.52
+        ],
+        [
+          152.34,
+          330.02
+        ],
+        [
+          157.29,
+          329.98
+        ],
+        [
+          319.16,
+          355.18
+        ],
+        [
+          322.21,
+          357.81
+        ],
+        [
+          321.83,
+          402.38
+        ],
+        [
+          298.21,
+          412.35
+        ],
+        [
+          228.9,
+          438.46
+        ],
+        [
+          221.28,
+          437.72
+        ],
+        [
+          69.7,
+          400.85
+        ],
+        [
+          68.55,
+          398.64
+        ]
+      ],
+      "nameLine": {
+        "from": [
+          79.62,
+          378.28
+        ],
+        "to": [
+          155.49,
+          395.87
+        ],
+        "angle": 13.06,
+        "faceHeight": 43.8
+      },
+      "edges": {
+        "left": {
+          "top": [
+            68.17,
+            356.48
+          ],
+          "bottom": [
+            68.17,
+            400.28
+          ]
+        },
+        "right": {
+          "top": [
+            322.59,
+            356.87
+          ],
+          "bottom": [
+            322.59,
+            402.57
+          ]
+        }
+      },
+      "meets": {
+        "axis": {
+          "bottom": [
+            68.17,
+            425.99
+          ],
+          "top": [
+            68.17,
+            343.54
+          ]
+        },
+        "curve": {
+          "bottom": [
+            322.59,
+            424.09
+          ],
+          "top": [
+            322.59,
+            344.68
+          ]
+        }
+      },
+      "litScale": 1.08
+    },
+    {
+      "id": "stratosphere",
+      "order": 2,
+      "x": 68,
+      "y": 256,
+      "width": 255,
+      "height": 111,
+      "files": {
+        "1x": "slabs/stratosphere@1x.webp",
+        "2x": "slabs/stratosphere@2x.webp"
+      },
+      "outline": [
+        [
+          68.17,
+          283.45
+        ],
+        [
+          71.22,
+          280.27
+        ],
+        [
+          79.22,
+          277.09
+        ],
+        [
+          118.45,
+          264.25
+        ],
+        [
+          151.96,
+          254.94
+        ],
+        [
+          163.77,
+          255.89
+        ],
+        [
+          312.3,
+          277.8
+        ],
+        [
+          319.54,
+          279.21
+        ],
+        [
+          322.21,
+          282
+        ],
+        [
+          321.83,
+          330.31
+        ],
+        [
+          321.06,
+          333.26
+        ],
+        [
+          319.16,
+          334.79
+        ],
+        [
+          233.85,
+          367.16
+        ],
+        [
+          228.13,
+          369.09
+        ],
+        [
+          222.8,
+          368.74
+        ],
+        [
+          69.32,
+          331.34
+        ],
+        [
+          68.17,
+          328.95
+        ]
+      ],
+      "nameLine": {
+        "from": [
+          79.21,
+          306.88
+        ],
+        "to": [
+          154.9,
+          326.5
+        ],
+        "angle": 14.54,
+        "faceHeight": 48.37
+      },
+      "edges": {
+        "left": {
+          "top": [
+            68.17,
+            282.22
+          ],
+          "bottom": [
+            68.17,
+            330.59
+          ]
+        },
+        "right": {
+          "top": [
+            322.21,
+            280.69
+          ],
+          "bottom": [
+            322.21,
+            332.49
+          ]
+        }
+      },
+      "meets": {
+        "axis": {
+          "bottom": [
+            68.17,
+            343.54
+          ],
+          "top": [
+            68.17,
+            267.75
+          ]
+        },
+        "curve": {
+          "bottom": [
+            322.21,
+            344.68
+          ],
+          "top": [
+            322.21,
+            267.36
+          ]
+        }
+      },
+      "litScale": 1.11
+    },
+    {
+      "id": "mesosphere",
+      "order": 3,
+      "x": 67,
+      "y": 189,
+      "width": 256,
+      "height": 101,
+      "files": {
+        "1x": "slabs/mesosphere@1x.webp",
+        "2x": "slabs/mesosphere@2x.webp"
+      },
+      "outline": [
+        [
+          67.79,
+          217.71
+        ],
+        [
+          70.08,
+          213.92
+        ],
+        [
+          123.78,
+          196.75
+        ],
+        [
+          151.2,
+          190.07
+        ],
+        [
+          164.15,
+          190.36
+        ],
+        [
+          320.68,
+          215.08
+        ],
+        [
+          321.83,
+          216.24
+        ],
+        [
+          322.59,
+          220.6
+        ],
+        [
+          322.21,
+          252.33
+        ],
+        [
+          321.06,
+          255.06
+        ],
+        [
+          290.98,
+          266.49
+        ],
+        [
+          231.18,
+          288.58
+        ],
+        [
+          224.71,
+          289.34
+        ],
+        [
+          69.7,
+          253.92
+        ],
+        [
+          68.17,
+          252.4
+        ]
+      ],
+      "nameLine": {
+        "from": [
+          78.94,
+          234.89
+        ],
+        "to": [
+          155.35,
+          252.24
+        ],
+        "angle": 12.79,
+        "faceHeight": 38.09
+      },
+      "edges": {
+        "left": {
+          "top": [
+            68.17,
+            215.19
+          ],
+          "bottom": [
+            68.17,
+            253.27
+          ]
+        },
+        "right": {
+          "top": [
+            322.21,
+            215.57
+          ],
+          "bottom": [
+            322.21,
+            254.03
+          ]
+        }
+      },
+      "meets": {
+        "axis": {
+          "bottom": [
+            68.17,
+            267.75
+          ],
+          "top": [
+            68.17,
+            203
+          ]
+        },
+        "curve": {
+          "bottom": [
+            322.21,
+            267.36
+          ],
+          "top": [
+            322.21,
+            204.14
+          ]
+        }
+      },
+      "litScale": 1.08
+    },
+    {
+      "id": "thermosphere",
+      "order": 4,
+      "x": 67,
+      "y": 126,
+      "width": 256,
+      "height": 102,
+      "files": {
+        "1x": "slabs/thermosphere@1x.webp",
+        "2x": "slabs/thermosphere@2x.webp"
+      },
+      "outline": [
+        [
+          68.94,
+          155.13
+        ],
+        [
+          71.6,
+          152.91
+        ],
+        [
+          133.3,
+          136.34
+        ],
+        [
+          167.96,
+          127.86
+        ],
+        [
+          172.15,
+          127.85
+        ],
+        [
+          319.92,
+          151.78
+        ],
+        [
+          321.83,
+          154.05
+        ],
+        [
+          322.21,
+          160.84
+        ],
+        [
+          321.83,
+          191.39
+        ],
+        [
+          320.3,
+          193.66
+        ],
+        [
+          258.6,
+          215.95
+        ],
+        [
+          230.8,
+          225.39
+        ],
+        [
+          225.47,
+          225.37
+        ],
+        [
+          71.22,
+          191.39
+        ],
+        [
+          69.7,
+          190.63
+        ],
+        [
+          68.94,
+          188.46
+        ]
+      ],
+      "nameLine": {
+        "from": [
+          80.03,
+          172.45
+        ],
+        "to": [
+          156.08,
+          188.35
+        ],
+        "angle": 11.81,
+        "faceHeight": 36.94
+      },
+      "edges": {
+        "left": {
+          "top": [
+            68.94,
+            153.87
+          ],
+          "bottom": [
+            68.94,
+            190.81
+          ]
+        },
+        "right": {
+          "top": [
+            321.83,
+            152.72
+          ],
+          "bottom": [
+            321.83,
+            192.71
+          ]
+        }
+      },
+      "meets": {
+        "axis": {
+          "bottom": [
+            68.94,
+            203
+          ],
+          "top": [
+            68.94,
+            141.11
+          ]
+        },
+        "curve": {
+          "bottom": [
+            321.83,
+            204.14
+          ],
+          "top": [
+            321.83,
+            141.11
+          ]
+        }
+      },
+      "litScale": 1.08
+    },
+    {
+      "id": "exosphere",
+      "order": 5,
+      "x": 67,
+      "y": 66,
+      "width": 257,
+      "height": 96,
+      "files": {
+        "1x": "slabs/exosphere@1x.webp",
+        "2x": "slabs/exosphere@2x.webp"
+      },
+      "outline": [
+        [
+          68.17,
+          98.43
+        ],
+        [
+          69.32,
+          96.04
+        ],
+        [
+          71.6,
+          94.51
+        ],
+        [
+          165.29,
+          69.58
+        ],
+        [
+          172.91,
+          68.77
+        ],
+        [
+          262.79,
+          80.8
+        ],
+        [
+          321.45,
+          90.73
+        ],
+        [
+          322.97,
+          92.6
+        ],
+        [
+          322.97,
+          128.46
+        ],
+        [
+          321.06,
+          130.7
+        ],
+        [
+          288.69,
+          141.98
+        ],
+        [
+          230.8,
+          160.77
+        ],
+        [
+          228.52,
+          160.76
+        ],
+        [
+          70.46,
+          129.58
+        ],
+        [
+          68.55,
+          127.05
+        ]
+      ],
+      "nameLine": {
+        "from": [
+          79.45,
+          112.97
+        ],
+        "to": [
+          156.78,
+          126.96
+        ],
+        "angle": 10.26,
+        "faceHeight": 32.37
+      },
+      "edges": {
+        "left": {
+          "top": [
+            68.94,
+            95.98
+          ],
+          "bottom": [
+            68.94,
+            128.35
+          ]
+        },
+        "right": {
+          "top": [
+            322.59,
+            91.79
+          ],
+          "bottom": [
+            322.59,
+            129.49
+          ]
+        }
+      },
+      "meets": {
+        "axis": {
+          "bottom": [
+            68.94,
+            141.11
+          ],
+          "top": [
+            68.94,
+            82.89
+          ]
+        },
+        "curve": {
+          "bottom": [
+            322.59,
+            141.11
+          ],
+          "top": [
+            322.59,
+            78.7
+          ]
+        }
+      },
+      "litScale": 1.08
+    }
+  ],
+  "boundaries": [
+    {
+      "id": null,
+      "between": [
+        "earth",
+        "troposphere"
+      ],
+      "left": [
+        67.03,
+        425.99
+      ],
+      "right": [
+        324.49,
+        424.09
+      ]
+    },
+    {
+      "id": "tropopause",
+      "between": [
+        "troposphere",
+        "stratosphere"
+      ],
+      "left": [
+        68.17,
+        343.54
+      ],
+      "right": [
+        322.59,
+        344.68
+      ]
+    },
+    {
+      "id": "stratopause",
+      "between": [
+        "stratosphere",
+        "mesosphere"
+      ],
+      "left": [
+        68.17,
+        267.75
+      ],
+      "right": [
+        322.21,
+        267.36
+      ]
+    },
+    {
+      "id": "mesopause",
+      "between": [
+        "mesosphere",
+        "thermosphere"
+      ],
+      "left": [
+        68.17,
+        203
+      ],
+      "right": [
+        322.21,
+        204.14
+      ]
+    },
+    {
+      "id": "thermopause",
+      "between": [
+        "thermosphere",
+        "exosphere"
+      ],
+      "left": [
+        68.94,
+        141.11
+      ],
+      "right": [
+        321.83,
+        141.11
+      ]
+    },
+    {
+      "id": null,
+      "between": [
+        "exosphere",
+        null
+      ],
+      "left": [
+        68.94,
+        82.89
+      ],
+      "right": [
+        322.59,
+        78.7
+      ]
+    }
+  ],
+  "icons": [
+    {
+      "id": "ozone",
+      "files": {
+        "1x": "icons/ozone@1x.webp",
+        "2x": "icons/ozone@2x.webp"
+      },
+      "size": 40
+    },
+    {
+      "id": "jets",
+      "files": {
+        "1x": "icons/jets@1x.webp",
+        "2x": "icons/jets@2x.webp"
+      },
+      "size": 40
+    },
+    {
+      "id": "balloon",
+      "files": {
+        "1x": "icons/balloon@1x.webp",
+        "2x": "icons/balloon@2x.webp"
+      },
+      "size": 40
+    },
+    {
+      "id": "weather",
+      "files": {
+        "1x": "icons/weather@1x.webp",
+        "2x": "icons/weather@2x.webp"
+      },
+      "size": 40
+    },
+    {
+      "id": "lightning",
+      "files": {
+        "1x": "icons/lightning@1x.webp",
+        "2x": "icons/lightning@2x.webp"
+      },
+      "size": 40
+    },
+    {
+      "id": "everest",
+      "files": {
+        "1x": "icons/everest@1x.webp",
+        "2x": "icons/everest@2x.webp"
+      },
+      "size": 40
+    },
+    {
+      "id": "jetstream",
+      "files": {
+        "1x": "icons/jetstream@1x.webp",
+        "2x": "icons/jetstream@2x.webp"
+      },
+      "size": 40
+    },
+    {
+      "id": "meteors",
+      "files": {
+        "1x": "icons/meteors@1x.webp",
+        "2x": "icons/meteors@2x.webp"
+      },
+      "size": 40
+    },
+    {
+      "id": "highclouds",
+      "files": {
+        "1x": "icons/highclouds@1x.webp",
+        "2x": "icons/highclouds@2x.webp"
+      },
+      "size": 40
+    },
+    {
+      "id": "aurora",
+      "files": {
+        "1x": "icons/aurora@1x.webp",
+        "2x": "icons/aurora@2x.webp"
+      },
+      "size": 40
+    },
+    {
+      "id": "ionosphere",
+      "files": {
+        "1x": "icons/ionosphere@1x.webp",
+        "2x": "icons/ionosphere@2x.webp"
+      },
+      "size": 40
+    },
+    {
+      "id": "radio",
+      "files": {
+        "1x": "icons/radio@1x.webp",
+        "2x": "icons/radio@2x.webp"
+      },
+      "size": 40
+    },
+    {
+      "id": "satellites",
+      "files": {
+        "1x": "icons/satellites@1x.webp",
+        "2x": "icons/satellites@2x.webp"
+      },
+      "size": 40
+    }
+  ],
+  "iconEdge": "#fdfdfd"
+}

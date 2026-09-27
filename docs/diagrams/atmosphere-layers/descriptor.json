@@ -1,0 +1,46 @@
+{
+  "id": "atmosphere-layers",
+  "section": "misc",
+  "language": "bn",
+  "title": {
+    "en": "Layers of the Atmosphere",
+    "bn": "বায়ুমণ্ডলের স্তর"
+  },
+  "data": "data.json",
+  "views": [
+    {
+      "id": "exploded",
+      "type": "exploded",
+      "tab": "৩ডি স্তর",
+      "art": "manifest.json"
+    }
+  ],
+  "words": {
+    "close": "বন্ধ করুন",
+    "unit": "কিমি",
+    "spanJoin": "থেকে",
+    "curve": "তাপমাত্রা (আপেক্ষিক)",
+    "scale": "স্কেল অনুপাতে নয়",
+    "hint": "যেকোনো স্তরে ট্যাপ করুন",
+    "altitude": "উচ্চতা",
+    "temperature": "তাপমাত্রা",
+    "happens": "যা ঘটে",
+    "chip": "স্তর {n}",
+    "loadFailed": "ডায়াগ্রামটি লোড করা যায়নি।",
+    "loadAdvice": "ইন্টারনেট সংযোগ দেখে আবার চেষ্টা করুন।"
+  },
+  "colours": {
+    "chips": {
+      "troposphere": "#1f6fc0",
+      "stratosphere": "#188090",
+      "mesosphere": "#6f58c9",
+      "thermosphere": "#b8520f",
+      "exosphere": "#3450a8"
+    },
+    "curve": [
+      "#0068fe",
+      "#8a5ce0",
+      "#ff6a10"
+    ]
+  }
+}

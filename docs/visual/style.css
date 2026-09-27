@@ -86,11 +86,14 @@ body {
   height: 100dvh;
 }
 
+/* At least ⓘ's own row, so with the tab bar hidden — a diagram of one view —
+   the stage starts below ⓘ rather than under it. */
 .visual-header {
   position: relative;
   flex: 0 0 auto;
   display: flex;
   justify-content: center;
+  min-height: 38px;
   padding: 10px 44px 4px;
 }
 

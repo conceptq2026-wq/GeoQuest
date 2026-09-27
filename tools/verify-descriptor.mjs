@@ -16,11 +16,15 @@
 //                      janapadas.seed.json and photos.seed.json
 //   environment-treaties  checked against data-sources/environment-treaties/
 //                         treaties.seed.json, cities.seed.json and additions.seed.json
+//   atmosphere-layers (a diagram)  checked against data-sources/atmosphere-layers/
+//                                  atmosphere.seed.json and the approved art
 //
-// A map under docs/maps/ with no section here fails, by its id: a new map is
-// written into this file with its own section, not left unchecked.
+// A map under docs/maps/ or a diagram under docs/diagrams/ with no section
+// here fails, by its id: a new one is written into this file with its own
+// section, not left unchecked.
 //
 // Run:  node tools/verify-descriptor.mjs   (from the repo root or from tools/)
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -63,6 +67,12 @@ const JANAPADA_SEEDS = path.join(ROOT, 'data-sources/ancient-janapadas');
 // The environment-treaties map: the editor's seed, the cities found for it, and
 // the values found for its nulls.
 const TREATY_SEEDS = path.join(ROOT, 'data-sources/environment-treaties');
+// Every authored diagram lives under here, one folder per diagram id, and the
+// diagram shell that opens them.
+const DIAGRAMS_DIR = path.join(ROOT, 'docs/diagrams');
+const VISUAL_DIR = path.join(ROOT, 'docs/visual');
+// The atmosphere-layers diagram: the editor's seed and the approved art.
+const ATMOSPHERE_SEEDS = path.join(ROOT, 'data-sources/atmosphere-layers');
 
 let failures = 0;
 const fail = (msg) => {
@@ -1134,20 +1144,169 @@ console.log('\n\n============ environment-treaties ============');
 
 /*
 |--------------------------------------------------------------------------
-| EVERY MAP HAS ITS OWN SECTION — a map is held to its sources only by a
-| section above, so a map folder with none would pass without being read.
+| ATMOSPHERE-LAYERS — a diagram, faithful to the editor's seed and to the
+| approved art. A diagram is not a map: it has no records tables for the
+| generic checks, so its section reads its own files.
 |--------------------------------------------------------------------------
 */
-console.log('\n============ every map has its own section ============');
+// Every diagram a section below has checked, for the guard at the end.
+const CHECKED_DIAGRAMS = new Set();
+
+console.log('\n\n============ atmosphere-layers (diagram) ============');
 {
-  const maps = fs
-    .readdirSync(MAPS_DIR, { withFileTypes: true })
-    .filter((e) => e.isDirectory() && fs.existsSync(path.join(MAPS_DIR, e.name, 'descriptor.json')))
-    .map((e) => e.name)
-    .sort();
+  const id = 'atmosphere-layers';
+  CHECKED_DIAGRAMS.add(id);
+  const dir = path.join(DIAGRAMS_DIR, id);
+  const seed = readJson(path.join(ATMOSPHERE_SEEDS, 'atmosphere.seed.json'));
+  const descriptor = readJson(path.join(dir, 'descriptor.json'));
+  const data = readJson(path.join(dir, descriptor.data));
+  const view = descriptor.views.find((v) => v.type === 'exploded');
+  const manifest = readJson(path.join(dir, view.art));
+  const layers = Object.values(seed.layers).sort((a, b) => a.order - b.order);
+  const bn = (n) => String(n).replace(/[0-9]/g, (d) => '০১২৩৪৫৬৭৮৯'[d]);
+
+  // ---- the descriptor ---------------------------------------------------------
+  console.log('\n---- descriptor ----');
+  check(descriptor.id === id && descriptor.language === 'bn' && descriptor.section === 'misc', `descriptor: id ${descriptor.id}, language ${descriptor.language}, section ${descriptor.section}`);
+  check(Boolean(descriptor.title?.en && descriptor.title?.bn), `title in both languages: «${descriptor.title?.bn}» / ${descriptor.title?.en}`);
+  // A view with a type has a module in the shell; one without is not built.
+  const modules = [...(fs.readFileSync(path.join(VISUAL_DIR, 'app.js'), 'utf8').match(/const VIEW_MODULES = \{([^}]*)\}/)?.[1] ?? '').matchAll(/^\s*'?([\w-]+)'?\s*:/gm)].map((m) => m[1]);
+  const unknown = descriptor.views.filter((v) => v.type && !modules.includes(v.type));
+  check(unknown.length === 0, `every view's type has a module in docs/visual/app.js (${descriptor.views.map((v) => v.type ?? '(not built)').join(', ')}; the shell has ${modules.join(', ')})`);
+  check(descriptor.views.length === 1, `one view, so the shell hides the tab bar (${descriptor.views.length})`);
+  // Every word the page reads is there: the words its code asks for, read from the code.
+  const asked = new Set();
+  for (const file of ['app.js', 'exploded.js']) {
+    for (const m of fs.readFileSync(path.join(VISUAL_DIR, file), 'utf8').matchAll(/\bwords\??\.(\w+)/g)) asked.add(m[1]);
+  }
+  const missingWords = [...asked].filter((w) => typeof descriptor.words[w] !== 'string' || !descriptor.words[w]);
+  const unusedWords = Object.keys(descriptor.words).filter((w) => !asked.has(w));
+  check(missingWords.length === 0 && unusedWords.length === 0, `the descriptor has every word the page reads, and none it does not (${asked.size})${missingWords.length ? ` — missing ${missingWords.join(', ')}` : ''}${unusedWords.length ? ` — unused ${unusedWords.join(', ')}` : ''}`);
+  // The page's own copy of the load notice, for a descriptor that never arrives, says the same.
+  const page = fs.readFileSync(path.join(VISUAL_DIR, 'index.html'), 'utf8');
+  const ownCopy = (elementId) => page.match(new RegExp(`id="${elementId}">([^<]*)<`))?.[1];
+  check(
+    ownCopy('loadNoticeHeadline') === descriptor.words.loadFailed && ownCopy('loadNoticeAdvice') === descriptor.words.loadAdvice,
+    'docs/visual/index.html carries the descriptor\'s load notice word for word',
+  );
+  const badChips = layers.filter((l) => descriptor.words.chip.replace('{n}', bn(l.order)) !== l.orderBn || !descriptor.colours.chips[l.id]);
+  check(badChips.length === 0, `every layer's chip is the descriptor's «${descriptor.words.chip}» with its number, as the seed writes it, in its own colour${badChips.length ? ` — not: ${badChips.map((l) => l.id).join(', ')}` : ''}`);
+
+  // ---- the art -----------------------------------------------------------------
+  console.log('\n---- art ----');
+  const sha = (file) => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+  const inputs = Object.entries(seed.art.files);
+  const badInputs = inputs.filter(([file, want]) => manifest.inputs[file] !== want || sha(path.join(ATMOSPHERE_SEEDS, 'art', file)) !== want);
+  check(
+    badInputs.length === 0 && Object.keys(manifest.inputs).length === inputs.length,
+    `the art is built from the ${inputs.length} inputs the seed approves, each file's SHA-256 the seed's${badInputs.length ? ` — not: ${badInputs.map(([f]) => f).join(', ')}` : ''}`,
+  );
+  const named = [
+    ...Object.values(manifest.view.files),
+    ...manifest.slabs.flatMap((s) => Object.values(s.files)),
+    ...manifest.icons.flatMap((i) => Object.values(i.files)),
+  ];
+  const onDisk = (function list(sub) {
+    return fs.readdirSync(path.join(dir, sub), { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? list(path.join(sub, e.name)) : [path.join(sub, e.name).replaceAll('\\', '/')]));
+  })('');
+  const expected = ['descriptor.json', descriptor.data, view.art, ...named].sort();
+  check(JSON.stringify(onDisk.sort()) === JSON.stringify(expected), `the folder holds the descriptor, the data, the manifest and the ${named.length} files it names, nothing else (${onDisk.length})`);
+  check(
+    manifest.slabs.map((s) => s.id).join() === layers.map((l) => l.id).join() && [...manifest.icons.map((i) => i.id)].sort().join() === Object.keys(seed.features).sort().join(),
+    `the art has a slab for each of the seed's ${layers.length} layers, in order, and an icon for each of its ${Object.keys(seed.features).length} features`,
+  );
+
+  // ---- data.json against the seed ---------------------------------------------
+  console.log('\n---- data.json against atmosphere.seed.json ----');
+  // A height as the seed gives it: km in `name`, or [least, greatest] in `nameRange`.
+  const height = (record, name) => (`${name}Range` in record ? record[`${name}Range`] : record[name]);
+  const pick = (record, fields) => Object.fromEntries(fields.filter((f) => f in record).map((f) => [f, record[f]]));
+  compareTables({
+    source: Object.fromEntries(layers.map((l) => [l.id, { ...pick(l, ['id', 'order', 'nameBn', 'trendBn', 'rateBn', 'noteBn', 'featureIds']), fromKm: height(l, 'fromKm'), toKm: height(l, 'toKm') }])),
+    file: Object.fromEntries(data.layers.map((l) => [l.id, l])),
+    label: 'data.json layers',
+  });
+  const seedBoundaries = Object.values(seed.boundaries);
+  const wantBoundaries = manifest.boundaries.map((b) => {
+    const [under, over] = b.between;
+    const own = seedBoundaries.find((s) => JSON.stringify(s.between) === JSON.stringify(b.between));
+    const atKm = under === 'earth' ? height(layers[0], 'fromKm') : !over ? height(layers.at(-1), 'toKm') : height(own, 'atKm');
+    return { id: b.id, between: b.between, atKm };
+  });
+  const boundaryDiffs = diffValue(wantBoundaries, data.boundaries, 'boundaries');
+  for (const d of boundaryDiffs) fail(`data.json: ${d}`);
+  check(boundaryDiffs.length === 0, `data.json has the art's ${wantBoundaries.length} boundaries, in its order, each at the seed's height`);
+  compareTables({
+    source: Object.fromEntries(layers.flatMap((l) => l.featureIds).map((f) => [f, { nameBn: seed.features[f].nameBn, ...pick({ fromKm: height(seed.features[f], 'fromKm'), toKm: height(seed.features[f], 'toKm') }, ['fromKm', 'toKm'].filter((k) => height(seed.features[f], k) !== undefined)) }])),
+    file: data.features,
+    label: 'data.json features',
+  });
+  const atBoundary = (p) => manifest.boundaries.findIndex((b) => (p.at === 'surface' ? b.between[0] === 'earth' : p.at === 'thermosphere top' ? b.between[0] === 'thermosphere' : b.id === p.at));
+  const wantProfile = seed.profile.points.map((p) => ({ boundary: atBoundary(p), tempC: p.tempC, ...(p.upTo ? { upTo: true } : {}) }));
+  const profileDiffs = diffValue(wantProfile, data.profile, 'profile');
+  for (const d of profileDiffs) fail(`data.json: ${d}`);
+  check(profileDiffs.length === 0, `the temperature profile is the seed's ${wantProfile.length} points, each at its boundary`);
+  const cited = new Set();
+  const cite = (record) => Object.values(record.sources ?? {}).flat().forEach((c) => cited.add(c.url));
+  [...layers, ...seedBoundaries, ...Object.values(seed.features), seed.profile].forEach(cite);
+  const credited = data.credits.map((c) => c.url);
+  check(
+    credited.length === new Set(credited).size && credited.length === cited.size && credited.every((u) => cited.has(u)),
+    `ⓘ credits every source the seed cites, each once (${credited.length})`,
+  );
+  const provenance = JSON.stringify(data).match(/"(review|sources)":/g);
+  check(!provenance, 'no provenance ships: no review, no sources in data.json');
+
+  // ---- THE PENDING LIST -------------------------------------------------------
+  console.log('\n---- PENDING: values that exist but are unverified ----');
+  const pending = [];
+  const walk = (where, v) => {
+    if (v === null) pending.push(where);
+    else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) walk(`${where}.${k}`, x);
+  };
+  // Content only: a boundary's id and `between` are the art's structure — the
+  // Earth's boundary and the one above the stack have no id, and nothing lies
+  // above the top — never unverified.
+  walk('descriptor.title', descriptor.title);
+  walk('descriptor.words', descriptor.words);
+  walk('data.layers', data.layers);
+  walk('data.features', data.features);
+  data.boundaries.forEach((b, n) => walk(`data.boundaries[${n}].atKm`, b.atKm));
+  walk('data.profile', data.profile);
+  pending.forEach((p) => console.log(`     ${p}`));
+  console.log(`\n     total pending: ${pending.length}`);
+  // Nothing is pending: the tropopause's height is NOAA's range, 6–20 km,
+  // and the seed gives the rest (the user's decision to use NOAA's figures).
+  const expectedPending = 0;
+  if (pending.length !== expectedPending) fail(`pending count is ${pending.length}, expected ${expectedPending} — reporting, not adjusting the expectation`);
+  else ok(`pending count is ${pending.length}, as expected`);
+}
+
+/*
+|--------------------------------------------------------------------------
+| EVERY MAP AND DIAGRAM HAS ITS OWN SECTION — each is held to its sources
+| only by a section above, so a folder with none would pass without being
+| read.
+|--------------------------------------------------------------------------
+*/
+console.log('\n============ every map and diagram has its own section ============');
+{
+  const authored = (dir) =>
+    fs.existsSync(dir)
+      ? fs
+          .readdirSync(dir, { withFileTypes: true })
+          .filter((e) => e.isDirectory() && fs.existsSync(path.join(dir, e.name, 'descriptor.json')))
+          .map((e) => e.name)
+          .sort()
+      : [];
+  const maps = authored(MAPS_DIR);
   const missing = maps.filter((id) => !CHECKED.has(id));
   for (const id of missing) fail(`${id}: docs/maps/${id}/descriptor.json has no section in tools/verify-descriptor.mjs — write one`);
   if (!missing.length) ok(`all ${maps.length} maps under docs/maps/ have their own section`);
+  const diagrams = authored(DIAGRAMS_DIR);
+  const missingDiagrams = diagrams.filter((id) => !CHECKED_DIAGRAMS.has(id));
+  for (const id of missingDiagrams) fail(`${id}: docs/diagrams/${id}/descriptor.json has no section in tools/verify-descriptor.mjs — write one`);
+  if (!missingDiagrams.length) ok(`all ${diagrams.length} diagrams under docs/diagrams/ have their own section`);
 }
 
 // ---- done -------------------------------------------------------------------

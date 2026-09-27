@@ -3,7 +3,8 @@
   "sections": [
     "bangladesh",
     "international",
-    "geography"
+    "geography",
+    "misc"
   ],
   "maps": [
     {
@@ -84,6 +85,15 @@
       "title": {
         "en": "Famous Waterfalls of the World",
         "bn": "বিশ্বের বিখ্যাত জলপ্রপাত"
+      }
+    },
+    {
+      "id": "atmosphere-layers",
+      "kind": "diagram",
+      "section": "misc",
+      "title": {
+        "en": "Layers of the Atmosphere",
+        "bn": "বায়ুমণ্ডলের স্তর"
       }
     }
   ]

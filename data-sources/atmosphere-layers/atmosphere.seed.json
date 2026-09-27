@@ -1,0 +1,811 @@
+{
+  "_about": "Atmosphere layers — the first interactive diagram (Bengali). Written by the editor (Claude) on 2026-09-27 from the draft বায়ুমণ্ডল_খসড়া.xlsx at the user's request to start the atmosphere work, before the user's book corrections. User decision 2026-09-27: take NOAA's figures where sources differ or a value was pending; the user will update the information later. Every record carries a review note. Main source: NOAA JetStream 'Layers of the Atmosphere'. Bengali layer and boundary names from Bengali Wikipedia (revision 8560010) until the user's textbook confirms them. Heights above the troposphere are drawn not to scale. No API calls: this file is the diagram's only data input.",
+  "layers": {
+    "troposphere": {
+      "id": "troposphere",
+      "order": 1,
+      "orderBn": "স্তর ১",
+      "nameBn": "ট্রপোমণ্ডল",
+      "nameEn": "Troposphere",
+      "fromKm": 0,
+      "toKmRange": [
+        6,
+        20
+      ],
+      "toKmByLatitude": {
+        "equator": [
+          18,
+          20
+        ],
+        "lat50": 9,
+        "poles": 6
+      },
+      "tempFromC": 17,
+      "tempToC": -51,
+      "trendBn": "উচ্চতা বাড়লে তাপমাত্রা কমে",
+      "rateBn": "প্রতি কিলোমিটারে প্রায় ৬.৫° সেলসিয়াস কমে",
+      "featureIds": [
+        "weather",
+        "lightning",
+        "everest",
+        "jetstream"
+      ],
+      "sources": {
+        "nameBn": [
+          {
+            "title": "পৃথিবীর বায়ুমণ্ডল",
+            "publisher": "Bengali Wikipedia (revision 8560010; read 2026-09-27)",
+            "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AA%E0%A7%83%E0%A6%A5%E0%A6%BF%E0%A6%AC%E0%A7%80%E0%A6%B0_%E0%A6%AC%E0%A6%BE%E0%A6%AF%E0%A6%BC%E0%A7%81%E0%A6%AE%E0%A6%A3%E0%A7%8D%E0%A6%A1%E0%A6%B2&oldid=8560010",
+            "states": "ট্রপোমণ্ডল: ভূপৃষ্ঠ থেকে ১২/১৮ কিলোমিটার (০ থেকে ৭/৯ মাইল)"
+          }
+        ],
+        "toKmByLatitude": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "It is 11-12 miles (18-20 km) high at the equator, 5½ miles (9 km) at 50°N and 50°S, and just under four miles (6 km) high at the poles."
+          }
+        ],
+        "tempFromC": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "the temperature drops from an average around 62°F (17°C) to -60°F (-51°C) at the tropopause"
+          }
+        ],
+        "tempToC": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "the temperature drops from an average around 62°F (17°C) to -60°F (-51°C) at the tropopause"
+          }
+        ],
+        "trendBn": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "the temperature drops from an average around 62°F (17°C) to -60°F (-51°C) at the tropopause"
+          }
+        ],
+        "rateBn": [
+          {
+            "title": "Earth Atmosphere Model – Metric Units",
+            "publisher": "NASA Glenn Research Center (page updated 2021-05-13; read 2026-09-27)",
+            "url": "https://www.grc.nasa.gov/www/k-12/airplane/atmosmet.html",
+            "states": "In the troposphere, the temperature decreases linearly… T = 15.04 - .00649 * h (h in metres)"
+          }
+        ],
+        "toKmRange": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "The stratosphere extends from 4 -12 miles (6-20 km) above the Earth's surface to around 31 miles (50 km)."
+          }
+        ]
+      },
+      "review": "Draft from বায়ুমণ্ডল_খসড়া.xlsx, written 2026-09-27 at the user's request to start; not yet checked against the user's book. Top height is NOAA's range, 6–20 km (6 at the poles, 9 at 50°, 18–20 at the equator); the exploded view labels the boundary with the range, the cross-section's equator/poles toggle uses toKmByLatitude. Other sources: NASA's model 11 km, Bengali Wikipedia 11–15 km. rateBn: NASA's model gives 6.49 °C per km; many Bengali books say 6.4 °C per 1,000 m — book decides. Bengali name from Bengali Wikipedia; the user's textbook decides (CLAUDE.md: the exam is the authority for Bengali names). User decision 2026-09-27: use NOAA's figures now; the user will update the information later."
+    },
+    "stratosphere": {
+      "id": "stratosphere",
+      "order": 2,
+      "orderBn": "স্তর ২",
+      "nameBn": "স্ট্র্যাটোমণ্ডল",
+      "nameEn": "Stratosphere",
+      "fromKmRange": [
+        6,
+        20
+      ],
+      "toKm": 50,
+      "tempFromC": -51,
+      "tempToC": -15,
+      "trendBn": "উচ্চতা বাড়লে তাপমাত্রা বাড়ে (ওজোন তৈরির সময় তাপ উৎপন্ন হয়)",
+      "rateBn": "প্রায় ২৫ কিমি পর্যন্ত তাপমাত্রা প্রায় স্থির; তার উপরে প্রতি কিলোমিটারে প্রায় ৩° সেলসিয়াস বাড়ে",
+      "featureIds": [
+        "ozone",
+        "jets",
+        "balloon"
+      ],
+      "sources": {
+        "nameBn": [
+          {
+            "title": "পৃথিবীর বায়ুমণ্ডল",
+            "publisher": "Bengali Wikipedia (revision 8560010; read 2026-09-27)",
+            "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AA%E0%A7%83%E0%A6%A5%E0%A6%BF%E0%A6%AC%E0%A7%80%E0%A6%B0_%E0%A6%AC%E0%A6%BE%E0%A6%AF%E0%A6%BC%E0%A7%81%E0%A6%AE%E0%A6%A3%E0%A7%8D%E0%A6%A1%E0%A6%B2&oldid=8560010",
+            "states": "মূল নিবন্ধ: স্ট্র্যাটোমণ্ডল"
+          }
+        ],
+        "toKm": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "The stratosphere extends from 4 -12 miles (6-20 km) above the Earth's surface to around 31 miles (50 km)."
+          }
+        ],
+        "tempFromC": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "from an average -60°F (-51°C) at tropopause to a maximum of about 5°F (-15°C) at the top of the stratosphere"
+          }
+        ],
+        "tempToC": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "from an average -60°F (-51°C) at tropopause to a maximum of about 5°F (-15°C) at the top of the stratosphere"
+          }
+        ],
+        "trendBn": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "Heat is produced in the process of the formation of ozone, and this heat is responsible for temperature increases"
+          }
+        ],
+        "rateBn": [
+          {
+            "title": "Earth Atmosphere Model – Metric Units",
+            "publisher": "NASA Glenn Research Center (page updated 2021-05-13; read 2026-09-27)",
+            "url": "https://www.grc.nasa.gov/www/k-12/airplane/atmosmet.html",
+            "states": "In the lower stratosphere the temperature is constant (T = -56.46, 11,000–25,000 m); in the upper stratosphere the temperature increases slightly (T = -131.21 + .00299 * h)"
+          }
+        ],
+        "fromKmRange": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "The stratosphere extends from 4 -12 miles (6-20 km) above the Earth's surface to around 31 miles (50 km)."
+          }
+        ]
+      },
+      "review": "Draft from বায়ুমণ্ডল_খসড়া.xlsx, written 2026-09-27 at the user's request to start; not yet checked against the user's book. fromKmRange = NOAA's 6–20 km. NASA's model is a curve fit with -56.46 °C in the lower stratosphere, NOAA's page averages -51 °C at the tropopause: the card shows NOAA's temperatures and NASA's rate — the two sources are different kinds of figure, recorded here. Bengali Wikipedia spells both স্ট্র্যাটোমণ্ডল (article title) and স্ট্রাটোমণ্ডল in the same article. Bengali name from Bengali Wikipedia; the user's textbook decides (CLAUDE.md: the exam is the authority for Bengali names). Editor 2026-09-27: rateBn no longer names 11 km (the NASA model's tropopause), which clashed with NOAA's 6–20 km foot shown on the card; the 25 km figure and both rates are unchanged. User decision 2026-09-27: use NOAA's figures now; the user will update the information later."
+    },
+    "mesosphere": {
+      "id": "mesosphere",
+      "order": 3,
+      "orderBn": "স্তর ৩",
+      "nameBn": "মেসোমণ্ডল",
+      "nameEn": "Mesosphere",
+      "fromKm": 50,
+      "toKm": 85,
+      "tempFromC": -15,
+      "tempToC": -120,
+      "trendBn": "উচ্চতা বাড়লে তাপমাত্রা কমে; সবচেয়ে ঠান্ডা স্তর",
+      "featureIds": [
+        "meteors",
+        "highclouds"
+      ],
+      "sources": {
+        "nameBn": [
+          {
+            "title": "পৃথিবীর বায়ুমণ্ডল",
+            "publisher": "Bengali Wikipedia (revision 8560010; read 2026-09-27)",
+            "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AA%E0%A7%83%E0%A6%A5%E0%A6%BF%E0%A6%AC%E0%A7%80%E0%A6%B0_%E0%A6%AC%E0%A6%BE%E0%A6%AF%E0%A6%BC%E0%A7%81%E0%A6%AE%E0%A6%A3%E0%A7%8D%E0%A6%A1%E0%A6%B2&oldid=8560010",
+            "states": "মেসোমণ্ডল: ৫০ থেকে ৮০ কিলোমিটার (৩১ থেকে ৫০ মাইল)"
+          }
+        ],
+        "fromKm": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "This layer extends from around 31 miles (50 km) above the Earth's surface to 53 miles (85 km)."
+          }
+        ],
+        "toKm": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "This layer extends from around 31 miles (50 km) above the Earth's surface to 53 miles (85 km)."
+          }
+        ],
+        "tempFromC": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "temperatures increase as one descends, rising to about 5°F (-15°C) near the bottom of the layer"
+          }
+        ],
+        "tempToC": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "From as low as -184°F (-120°C) at the bottom of this layer [the thermosphere]"
+          }
+        ],
+        "trendBn": [
+          {
+            "title": "Peeling Back the Layers of the Atmosphere",
+            "publisher": "NOAA NESDIS (published 2016-02-22; read 2026-09-27)",
+            "url": "https://www.nesdis.noaa.gov/news/peeling-back-the-layers-of-the-atmosphere",
+            "states": "Considered one of the coldest places on Earth, the average temperature is around -120°F."
+          }
+        ]
+      },
+      "review": "Draft from বায়ুমণ্ডল_খসড়া.xlsx, written 2026-09-27 at the user's request to start; not yet checked against the user's book. No rate: NOAA gives none (Claude's calculated ≈ 3 °C per km was dropped). Coldest point: NOAA JetStream gives a low of -120 °C at the mesopause; NOAA NESDIS gives an average of -120 °F (≈ -84 °C) for the mesosphere; Bengali Wikipedia gives an average of about -85 °C at the mesopause. The curve uses JetStream's -120 °C (same page as the other points); NOAA's -120 °C is used. Bengali name from Bengali Wikipedia; the user's textbook decides (CLAUDE.md: the exam is the authority for Bengali names). User decision 2026-09-27: use NOAA's figures now; the user will update the information later."
+    },
+    "thermosphere": {
+      "id": "thermosphere",
+      "order": 4,
+      "orderBn": "স্তর ৪",
+      "nameBn": "তাপমণ্ডল",
+      "nameEn": "Thermosphere",
+      "fromKm": 85,
+      "toKm": 600,
+      "tempFromC": -120,
+      "tempToC": 2000,
+      "trendBn": "উচ্চতা বাড়লে তাপমাত্রা বাড়ে; সবচেয়ে উষ্ণ স্তর (তবু বাতাস এত পাতলা যে গায়ে ঠান্ডা লাগবে)",
+      "featureIds": [
+        "aurora",
+        "ionosphere",
+        "radio"
+      ],
+      "sources": {
+        "nameBn": [
+          {
+            "title": "পৃথিবীর বায়ুমণ্ডল",
+            "publisher": "Bengali Wikipedia (revision 8560010; read 2026-09-27)",
+            "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AA%E0%A7%83%E0%A6%A5%E0%A6%BF%E0%A6%AC%E0%A7%80%E0%A6%B0_%E0%A6%AC%E0%A6%BE%E0%A6%AF%E0%A6%BC%E0%A7%81%E0%A6%AE%E0%A6%A3%E0%A7%8D%E0%A6%A1%E0%A6%B2&oldid=8560010",
+            "states": "তাপমণ্ডলঃ ৮০ থেকে ৭০০ কিলোমিটার (৫০ থেকে ৪৪০ মাইল)"
+          }
+        ],
+        "fromKm": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "Between about 53 miles (85 km) and 375 miles (600 km) lies the thermosphere, known as the upper atmosphere."
+          }
+        ],
+        "toKm": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "Between about 53 miles (85 km) and 375 miles (600 km) lies the thermosphere, known as the upper atmosphere."
+          }
+        ],
+        "tempFromC": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "From as low as -184°F (-120°C) at the bottom of this layer, temperatures can reach as high as 3,600°F (2,000°C) near the top."
+          }
+        ],
+        "tempToC": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "From as low as -184°F (-120°C) at the bottom of this layer, temperatures can reach as high as 3,600°F (2,000°C) near the top."
+          }
+        ],
+        "trendBn": [
+          {
+            "title": "Peeling Back the Layers of the Atmosphere",
+            "publisher": "NOAA NESDIS (published 2016-02-22; read 2026-09-27)",
+            "url": "https://www.nesdis.noaa.gov/news/peeling-back-the-layers-of-the-atmosphere",
+            "states": "despite the high temperatures, this layer of the atmosphere would still feel very cold to our skin due to the very thin atmosphere"
+          }
+        ]
+      },
+      "review": "Draft from বায়ুমণ্ডল_খসড়া.xlsx, written 2026-09-27 at the user's request to start; not yet checked against the user's book. tempToC is a maximum ('as high as'), shown as 'up to'. No rate: NOAA gives none (Claude's calculated average was dropped). Heights differ by source: NOAA JetStream 85–600 km, NOAA NESDIS 50–440 miles, Bengali Wikipedia 80–700 km — the diagram uses JetStream. Bengali Wikipedia also uses থার্মো- for its boundary. Bengali name from Bengali Wikipedia; the user's textbook decides (CLAUDE.md: the exam is the authority for Bengali names). User decision 2026-09-27: use NOAA's figures now; the user will update the information later."
+    },
+    "exosphere": {
+      "id": "exosphere",
+      "order": 5,
+      "orderBn": "স্তর ৫",
+      "nameBn": "এক্সোমণ্ডল",
+      "nameEn": "Exosphere",
+      "fromKm": 600,
+      "toKm": 10000,
+      "noteBn": "অণু-পরমাণু মহাকাশে পালিয়ে যায়",
+      "featureIds": [
+        "satellites"
+      ],
+      "sources": {
+        "nameBn": [
+          {
+            "title": "পৃথিবীর বায়ুমণ্ডল",
+            "publisher": "Bengali Wikipedia (revision 8560010; read 2026-09-27)",
+            "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AA%E0%A7%83%E0%A6%A5%E0%A6%BF%E0%A6%AC%E0%A7%80%E0%A6%B0_%E0%A6%AC%E0%A6%BE%E0%A6%AF%E0%A6%BC%E0%A7%81%E0%A6%AE%E0%A6%A3%E0%A7%8D%E0%A6%A1%E0%A6%B2&oldid=8560010",
+            "states": "এক্সোমণ্ডল: > ৭০০ কিলোমিটার (>৪৪০ মাইল)"
+          }
+        ],
+        "fromKm": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "It extends from about 375 miles (600 km) to 6,200 miles (10,000 km) above the earth."
+          }
+        ],
+        "toKm": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "It extends from about 375 miles (600 km) to 6,200 miles (10,000 km) above the earth."
+          }
+        ],
+        "noteBn": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "In this layer, atoms and molecules escape into space and satellites orbit the earth."
+          }
+        ]
+      },
+      "review": "Draft from বায়ুমণ্ডল_খসড়া.xlsx, written 2026-09-27 at the user's request to start; not yet checked against the user's book. No temperature fields: no source gives one, so the temperature curve stops at the thermosphere's top (CLAUDE.md: the curve follows the seed's points only). Some books use বহির্মণ্ডল. Bengali name from Bengali Wikipedia; the user's textbook decides (CLAUDE.md: the exam is the authority for Bengali names). Editor 2026-09-27: the escape-into-space text moved from trendBn to noteBn — it is not about temperature, and no source gives the exosphere a temperature, so the card's temperature column is left out for this layer."
+    }
+  },
+  "boundaries": {
+    "tropopause": {
+      "id": "tropopause",
+      "nameBn": "ট্রপোবিরতি",
+      "nameEn": "Tropopause",
+      "between": [
+        "troposphere",
+        "stratosphere"
+      ],
+      "atKmRange": [
+        6,
+        20
+      ],
+      "tempC": -51,
+      "sources": {
+        "nameBn": [
+          {
+            "title": "পৃথিবীর বায়ুমণ্ডল",
+            "publisher": "Bengali Wikipedia (revision 8560010; read 2026-09-27)",
+            "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AA%E0%A7%83%E0%A6%A5%E0%A6%BF%E0%A6%AC%E0%A7%80%E0%A6%B0_%E0%A6%AC%E0%A6%BE%E0%A6%AF%E0%A6%BC%E0%A7%81%E0%A6%AE%E0%A6%A3%E0%A7%8D%E0%A6%A1%E0%A6%B2&oldid=8560010",
+            "states": "ট্রপোবিরতি হচ্ছে ট্রপোমণ্ডল ও স্ট্রাটোমণ্ডলের মধ্যে সীমারেখা স্বরূপ।"
+          }
+        ],
+        "tempC": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "to -60°F (-51°C) at the tropopause"
+          }
+        ],
+        "atKmRange": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "The stratosphere extends from 4 -12 miles (6-20 km) above the Earth's surface to around 31 miles (50 km)."
+          }
+        ]
+      },
+      "review": "Draft from বায়ুমণ্ডল_খসড়া.xlsx, written 2026-09-27 at the user's request to start; not yet checked against the user's book. atKmRange = NOAA's 6–20 km. Bengali name from Bengali Wikipedia; the user's textbook decides (CLAUDE.md: the exam is the authority for Bengali names). User decision 2026-09-27: use NOAA's figures now; the user will update the information later."
+    },
+    "stratopause": {
+      "id": "stratopause",
+      "nameBn": "স্ট্র্যাটোবিরতি",
+      "nameEn": "Stratopause",
+      "between": [
+        "stratosphere",
+        "mesosphere"
+      ],
+      "atKm": 50,
+      "tempC": -15,
+      "sources": {
+        "nameBn": [
+          {
+            "title": "পৃথিবীর বায়ুমণ্ডল",
+            "publisher": "Bengali Wikipedia (revision 8560010; read 2026-09-27)",
+            "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AA%E0%A7%83%E0%A6%A5%E0%A6%BF%E0%A6%AC%E0%A7%80%E0%A6%B0_%E0%A6%AC%E0%A6%BE%E0%A6%AF%E0%A6%BC%E0%A7%81%E0%A6%AE%E0%A6%A3%E0%A7%8D%E0%A6%A1%E0%A6%B2&oldid=8560010",
+            "states": "স্ট্র্যাটোবিরতি থেকে শুরু হয়ে মেসোবিরতি পর্যন্ত"
+          }
+        ],
+        "atKm": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "The transition boundary which separates the mesosphere from the stratosphere is called the stratopause."
+          }
+        ],
+        "tempC": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "a maximum of about 5°F (-15°C) at the top of the stratosphere"
+          }
+        ]
+      },
+      "review": "Draft from বায়ুমণ্ডল_খসড়া.xlsx, written 2026-09-27 at the user's request to start; not yet checked against the user's book. Bengali Wikipedia also writes স্ট্রেটোবিরতি. Bengali name from Bengali Wikipedia; the user's textbook decides (CLAUDE.md: the exam is the authority for Bengali names)."
+    },
+    "mesopause": {
+      "id": "mesopause",
+      "nameBn": "মেসোবিরতি",
+      "nameEn": "Mesopause",
+      "between": [
+        "mesosphere",
+        "thermosphere"
+      ],
+      "atKm": 85,
+      "tempC": -120,
+      "sources": {
+        "nameBn": [
+          {
+            "title": "পৃথিবীর বায়ুমণ্ডল",
+            "publisher": "Bengali Wikipedia (revision 8560010; read 2026-09-27)",
+            "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AA%E0%A7%83%E0%A6%A5%E0%A6%BF%E0%A6%AC%E0%A7%80%E0%A6%B0_%E0%A6%AC%E0%A6%BE%E0%A6%AF%E0%A6%BC%E0%A7%81%E0%A6%AE%E0%A6%A3%E0%A7%8D%E0%A6%A1%E0%A6%B2&oldid=8560010",
+            "states": "এই স্তরকে মেসোবিরতি বলে।"
+          }
+        ],
+        "atKm": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "The bottom of the thermosphere is the mesopause - the transition into the mesosphere."
+          }
+        ],
+        "tempC": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "From as low as -184°F (-120°C) at the bottom of this layer"
+          }
+        ]
+      },
+      "review": "Draft from বায়ুমণ্ডল_খসড়া.xlsx, written 2026-09-27 at the user's request to start; not yet checked against the user's book. See the mesosphere's review for the -120 °C / -85 °C disagreement. Bengali name from Bengali Wikipedia; the user's textbook decides (CLAUDE.md: the exam is the authority for Bengali names)."
+    },
+    "thermopause": {
+      "id": "thermopause",
+      "nameBn": "তাপবিরতি",
+      "nameEn": "Thermopause",
+      "between": [
+        "thermosphere",
+        "exosphere"
+      ],
+      "atKm": 600,
+      "sources": {
+        "nameBn": [
+          {
+            "title": "পৃথিবীর বায়ুমণ্ডল",
+            "publisher": "Bengali Wikipedia (revision 8560010; read 2026-09-27)",
+            "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AA%E0%A7%83%E0%A6%A5%E0%A6%BF%E0%A6%AC%E0%A7%80%E0%A6%B0_%E0%A6%AC%E0%A6%BE%E0%A6%AF%E0%A6%BC%E0%A7%81%E0%A6%AE%E0%A6%A3%E0%A7%8D%E0%A6%A1%E0%A6%B2&oldid=8560010",
+            "states": "মেসোবিরতি থেকে তাপবিরতি পর্যন্ত"
+          }
+        ],
+        "atKm": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "At the bottom of the exosphere is a transition layer called the thermopause."
+          }
+        ]
+      },
+      "review": "Draft from বায়ুমণ্ডল_খসড়া.xlsx, written 2026-09-27 at the user's request to start; not yet checked against the user's book. Bengali Wikipedia also writes থার্মোবিরতি in the same article. Bengali name from Bengali Wikipedia; the user's textbook decides (CLAUDE.md: the exam is the authority for Bengali names)."
+    }
+  },
+  "features": {
+    "weather": {
+      "id": "weather",
+      "nameBn": "মেঘ ও আবহাওয়া",
+      "nameEn": "Weather and clouds",
+      "layer": "troposphere",
+      "sources": {
+        "layer": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "almost all weather occurs in this region"
+          }
+        ]
+      },
+      "review": "Draft from বায়ুমণ্ডল_খসড়া.xlsx, written 2026-09-27 at the user's request to start; not yet checked against the user's book."
+    },
+    "lightning": {
+      "id": "lightning",
+      "nameBn": "বজ্রপাত",
+      "nameEn": "Lightning",
+      "layer": "troposphere",
+      "sources": {
+        "layer": [
+          {
+            "title": "Lightning Basics",
+            "publisher": "NOAA National Severe Storms Laboratory (read 2026-09-27)",
+            "url": "https://www.nssl.noaa.gov/education/svrwx101/lightning/",
+            "states": "Most, if not all, lightning flashes produced by storms start inside the cloud."
+          }
+        ]
+      },
+      "review": "Draft from বায়ুমণ্ডল_খসড়া.xlsx, written 2026-09-27 at the user's request to start; not yet checked against the user's book. The layer rests on two sources together: lightning starts inside storm clouds (NSSL), and 'nearly all of the weather and clouds we see' are in the troposphere (NESDIS). No single source says 'lightning … troposphere'."
+    },
+    "everest": {
+      "id": "everest",
+      "nameBn": "মাউন্ট এভারেস্ট",
+      "nameEn": "Mount Everest",
+      "layer": "troposphere",
+      "atKm": 8.84886,
+      "sources": {
+        "atKm": [
+          {
+            "title": "List of highest mountains on Earth",
+            "publisher": "Wikipedia (revision 1374856534, 2026-09-14)",
+            "url": "https://en.wikipedia.org/w/index.php?title=List_of_highest_mountains_on_Earth&oldid=1374856534",
+            "states": "Mount Everest: 8,848.86 m."
+          }
+        ]
+      },
+      "review": "Draft from বায়ুমণ্ডল_খসড়া.xlsx, written 2026-09-27 at the user's request to start; not yet checked against the user's book. Height copied from the mountains map's seed (same source): 8,848.86 m."
+    },
+    "jetstream": {
+      "id": "jetstream",
+      "nameBn": "জেট স্রোত",
+      "nameEn": "Jet stream",
+      "layer": "troposphere",
+      "atKm": 9.1,
+      "sources": {
+        "atKm": [
+          {
+            "title": "The Jet Stream",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2024-12-09; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/global/jet-stream",
+            "states": "Jet streams are relatively narrow bands of strong wind in the upper levels of the atmosphere, typically occurring around 30,000 feet (9,100 meters) in elevation."
+          }
+        ]
+      },
+      "review": "Draft from বায়ুমণ্ডল_খসড়া.xlsx, written 2026-09-27 at the user's request to start; not yet checked against the user's book. The source gives a height, not a layer; 9.1 km lies in the troposphere at the equator but may lie above the tropopause near the poles."
+    },
+    "ozone": {
+      "id": "ozone",
+      "nameBn": "ওজোন স্তর",
+      "nameEn": "Ozone layer",
+      "layer": "stratosphere",
+      "fromKm": 15,
+      "toKm": 35,
+      "sources": {
+        "layer": [
+          {
+            "title": "Twenty Questions and Answers About the Ozone Layer: 2022 Update",
+            "publisher": "NOAA Chemical Sciences Laboratory / WMO (read 2026-09-27)",
+            "url": "https://csl.noaa.gov/assessments/ozone/2022/twentyquestions/",
+            "states": "About 90% of atmospheric ozone is contained in the stratospheric 'ozone layer', which shields Earth's surface from harmful ultraviolet radiation"
+          }
+        ],
+        "fromKm": [
+          {
+            "title": "Twenty Questions and Answers About the Ozone Layer: 2022 Update (Q1)",
+            "publisher": "UNEP Ozone Secretariat — Scientific Assessment of Ozone Depletion: 2022 (NOAA/WMO/UNEP/NASA/EC) (read 2026-09-27)",
+            "url": "https://ozone.unep.org/20-questions-and-answers",
+            "states": "The stratospheric region with the highest concentration of ozone, between about 15 and 35 km altitude, is commonly known as the “ozone layer” (see Figure Q1-2)."
+          }
+        ],
+        "toKm": [
+          {
+            "title": "Twenty Questions and Answers About the Ozone Layer: 2022 Update (Q1)",
+            "publisher": "UNEP Ozone Secretariat — Scientific Assessment of Ozone Depletion: 2022 (NOAA/WMO/UNEP/NASA/EC) (read 2026-09-27)",
+            "url": "https://ozone.unep.org/20-questions-and-answers",
+            "states": "The stratospheric region with the highest concentration of ozone, between about 15 and 35 km altitude, is commonly known as the “ozone layer” (see Figure Q1-2)."
+          }
+        ]
+      },
+      "review": "Draft from বায়ুমণ্ডল_খসড়া.xlsx, written 2026-09-27 at the user's request to start; not yet checked against the user's book. 15–35 km from Q1 of the same Twenty Questions report (read on the UNEP Ozone Secretariat's copy; the NOAA page does not show Q1's text). User decision 2026-09-27: use NOAA's figures now; the user will update the information later."
+    },
+    "jets": {
+      "id": "jets",
+      "nameBn": "যাত্রীবাহী জেট বিমান",
+      "nameEn": "Commercial jet aircraft",
+      "layer": "stratosphere",
+      "sources": {
+        "layer": [
+          {
+            "title": "Peeling Back the Layers of the Atmosphere",
+            "publisher": "NOAA NESDIS (published 2016-02-22; read 2026-09-27)",
+            "url": "https://www.nesdis.noaa.gov/news/peeling-back-the-layers-of-the-atmosphere",
+            "states": "When possible, commercial jet aircraft fly in the lower stratosphere to avoid the turbulence which is common in the troposphere, due to convection."
+          }
+        ]
+      },
+      "review": "Draft from বায়ুমণ্ডল_খসড়া.xlsx, written 2026-09-27 at the user's request to start; not yet checked against the user's book. 'When possible' — not always; the card should keep that qualifier."
+    },
+    "balloon": {
+      "id": "balloon",
+      "nameBn": "আবহাওয়া বেলুন (রেডিওসন্ড)",
+      "nameEn": "Weather balloon (radiosonde)",
+      "layer": "stratosphere",
+      "atKm": 35,
+      "sources": {
+        "atKm": [
+          {
+            "title": "Radiosondes",
+            "publisher": "NOAA National Weather Service — JetStream (read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/upperair/radiosondes",
+            "states": "the radiosonde can ascend to over 115,000 feet (35,000 m)"
+          }
+        ]
+      },
+      "review": "Draft from বায়ুমণ্ডল_খসড়া.xlsx, written 2026-09-27 at the user's request to start; not yet checked against the user's book. Reaches over 35 km, i.e. into the stratosphere."
+    },
+    "meteors": {
+      "id": "meteors",
+      "nameBn": "উল্কা পুড়ে যাওয়া",
+      "nameEn": "Meteors burn up",
+      "layer": "mesosphere",
+      "sources": {
+        "layer": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "The gases in the mesosphere are now thick enough to slow down meteors hurtling into the atmosphere, where they burn up"
+          }
+        ]
+      },
+      "review": "Draft from বায়ুমণ্ডল_খসড়া.xlsx, written 2026-09-27 at the user's request to start; not yet checked against the user's book."
+    },
+    "highclouds": {
+      "id": "highclouds",
+      "nameBn": "সবচেয়ে উঁচু মেঘ",
+      "nameEn": "Highest clouds",
+      "layer": "mesosphere",
+      "sources": {
+        "layer": [
+          {
+            "title": "Peeling Back the Layers of the Atmosphere",
+            "publisher": "NOAA NESDIS (published 2016-02-22; read 2026-09-27)",
+            "url": "https://www.nesdis.noaa.gov/news/peeling-back-the-layers-of-the-atmosphere",
+            "states": "This layer is where most meteors burn up upon entering Earth's atmosphere and is the highest elevation at which a cloud can form."
+          }
+        ]
+      },
+      "review": "Draft from বায়ুমণ্ডল_খসড়া.xlsx, written 2026-09-27 at the user's request to start; not yet checked against the user's book. An exception: almost all clouds are in the troposphere."
+    },
+    "ionosphere": {
+      "id": "ionosphere",
+      "nameBn": "আয়নমণ্ডল",
+      "nameEn": "Ionosphere",
+      "layer": "thermosphere",
+      "fromKm": 60,
+      "toKm": 300,
+      "sources": {
+        "layer": [
+          {
+            "title": "The Ionosphere",
+            "publisher": "NOAA National Weather Service — JetStream (read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/ionosphere-max",
+            "states": "The ionosphere is located within the thermosphere and extends from 37 to 190 miles (60-300 km) above the Earth's surface. It is divided into three regions or layers: the F-Layer, E-Layer, and D-Layer."
+          }
+        ]
+      },
+      "review": "Draft from বায়ুমণ্ডল_খসড়া.xlsx, written 2026-09-27 at the user's request to start; not yet checked against the user's book. 60 km lies in the mesosphere, although the same source says 'within the thermosphere' — drawn as a 60–300 km band."
+    },
+    "radio": {
+      "id": "radio",
+      "nameBn": "বেতার তরঙ্গ প্রতিফলন",
+      "nameEn": "Radio waves bounce back",
+      "layer": "thermosphere",
+      "sources": {
+        "layer": [
+          {
+            "title": "The Ionosphere",
+            "publisher": "NOAA National Weather Service — JetStream (read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/ionosphere-max",
+            "states": "Bouncing radio signals off the Ionosphere is an important quality and what allows radio to reach places all over the world."
+          }
+        ]
+      },
+      "review": "Draft from বায়ুমণ্ডল_খসড়া.xlsx, written 2026-09-27 at the user's request to start; not yet checked against the user's book."
+    },
+    "aurora": {
+      "id": "aurora",
+      "nameBn": "মেরুজ্যোতি (অরোরা)",
+      "nameEn": "Aurora",
+      "layer": "thermosphere",
+      "fromKm": 80,
+      "toKm": 500,
+      "sources": {
+        "layer": [
+          {
+            "title": "Aurora",
+            "publisher": "NOAA Space Weather Prediction Center (read 2026-09-27)",
+            "url": "https://www.swpc.noaa.gov/phenomena/aurora",
+            "states": "The aurora typically forms 80 to 500 km above Earth's surface."
+          }
+        ]
+      },
+      "review": "Draft from বায়ুমণ্ডল_খসড়া.xlsx, written 2026-09-27 at the user's request to start; not yet checked against the user's book."
+    },
+    "satellites": {
+      "id": "satellites",
+      "nameBn": "কৃত্রিম উপগ্রহ",
+      "nameEn": "Satellites",
+      "layer": "exosphere",
+      "sources": {
+        "layer": [
+          {
+            "title": "Layers of the Atmosphere",
+            "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+            "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+            "states": "In this layer, atoms and molecules escape into space and satellites orbit the earth."
+          }
+        ]
+      },
+      "review": "Draft from বায়ুমণ্ডল_খসড়া.xlsx, written 2026-09-27 at the user's request to start; not yet checked against the user's book. Many satellites (e.g. the space station) orbit lower, in the thermosphere; NESDIS says the exosphere 'contains a large portion of low-Earth orbiting satellites'. The card should say 'many satellites'; the user's book decides."
+    }
+  },
+  "profile": {
+    "note": "Temperature points for the curve, bottom to top. The curve stops at the last point (no exosphere value exists).",
+    "points": [
+      {
+        "atKm": 0,
+        "tempC": 17,
+        "at": "surface"
+      },
+      {
+        "atKmRange": [
+          6,
+          20
+        ],
+        "tempC": -51,
+        "at": "tropopause"
+      },
+      {
+        "atKm": 50,
+        "tempC": -15,
+        "at": "stratopause"
+      },
+      {
+        "atKm": 85,
+        "tempC": -120,
+        "at": "mesopause"
+      },
+      {
+        "atKm": 600,
+        "tempC": 2000,
+        "at": "thermosphere top",
+        "upTo": true
+      }
+    ],
+    "sources": {
+      "points": [
+        {
+          "title": "Layers of the Atmosphere",
+          "publisher": "NOAA National Weather Service — JetStream (page updated 2026-02-17; read 2026-09-27)",
+          "url": "https://www.noaa.gov/jetstream/atmosphere/layers-of-atmosphere",
+          "states": "the temperature drops from an average around 62°F (17°C) to -60°F (-51°C) at the tropopause … a maximum of about 5°F (-15°C) at the top of the stratosphere … From as low as -184°F (-120°C) at the bottom of this layer, temperatures can reach as high as 3,600°F (2,000°C) near the top."
+        }
+      ]
+    },
+    "review": "Draft from বায়ুমণ্ডল_খসড়া.xlsx, written 2026-09-27 at the user's request to start; not yet checked against the user's book. The tropopause point uses NOAA's 6–20 km range; the cross-section toggle picks equator or poles. User decision 2026-09-27: use NOAA's figures now; the user will update the information later."
+  },
+  "art": {
+    "note": "The approved art for the exploded view, final by the user's decision (2026-09-27): made by ConceptQ with its own model, so no licence note or credit is shipped or shown for it. The SHA-256 of every input image, recorded 2026-09-27; tools/build-diagram-atmosphere-art.mjs refuses a file whose hash differs. earth.png is the editor's retouch (a missing back strip filled); earth-original-v3.png, the untouched original, is kept for the record only and is not an input.",
+    "files": {
+      "stack-master.png": "4711ffab5d4e752aa1fe345c6cc31bd14df44e57554139e4c5d6724229959e90",
+      "earth.png": "78403723c32aade3a886f6db911fdba2adf73364aa6c0f743ade55ae8ebdf465",
+      "troposphere.png": "6d797793c0cadd965da023239aef7077578c16019886f7e453d3ecfa22c1ee55",
+      "stratosphere.png": "560adfb6ab8b5223b7737d3d572714be857f014cf516047f96ac953a35f6652b",
+      "mesosphere.png": "9cbb12f25342332ceba62e09e47cef8b060f3fe9e1109992bb1ba1219186a4d1",
+      "thermosphere.png": "0da0e894102266f14eacc2fbf4ca7374639c61e1678b65a3e49003f0ef822f25",
+      "exosphere.png": "307220aaafdf9f36d06bb68f26255c4b05a37aec85c205021c85647b92a7c0cb",
+      "icons-master.png": "44a19770f18da8fd21942899f6bf94468dbf6b4d2ff604ac8757c84a1c96b465"
+    }
+  }
+}

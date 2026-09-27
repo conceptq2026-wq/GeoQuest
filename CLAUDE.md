@@ -54,7 +54,7 @@ shell/index.html?map=straits
 Not one folder per map. Each map's data lives in its own file so its source can
 later change from a local file to a fetch from the app's Gateway without
 touching anything else. A diagram is opened the same way by a second page,
-`visual/index.html?v=<id>` — built, with no diagram live yet (see
+`visual/index.html?v=<id>` — built, with one diagram live (see
 **Interactive diagrams**).
 
 `docs/` is the served tree. **Invariant: the committed contents of `docs/` are
@@ -66,7 +66,8 @@ directory indexes, so every URL names `index.html` explicitly.
 `docs/diagrams/`. The list is never hand-maintained: adding a map makes it
 appear under its section with no edit. Of the list, only the section names are
 written into the page (`SECTION_NAMES`). Each descriptor declares its `section`:
-`bangladesh | international | geography`.
+`bangladesh | international | geography | misc` — the three BCS subjects in
+syllabus order, then বিবিধ for what belongs to none of them.
 
 `docs/international/straits/` is the original live page. It is the reference
 implementation for how a map looks and behaves. Do not change it unless a task
@@ -384,8 +385,9 @@ resolver has a `diagrams` kind, three.js 0.185.1 is vendored for a future 3D
 diagram — atmosphere-layers does not use it — the no-calls check covers
 diagram code, vendored libraries and diagram build tools,
 `tools/build-diagram-atmosphere-art.mjs` cuts atmosphere-layers' art into a
-staging folder outside `docs/`, and the diagram shell, `docs/visual/`, draws
-the exploded view. No diagram is live — no `docs/diagrams/` — and the
+staging folder outside `docs/`, the diagram shell, `docs/visual/`, draws the
+exploded view, and atmosphere-layers is live in
+`docs/diagrams/atmosphere-layers/`, under বিবিধ on the home page. The
 cross-section view is not built, so every rule below about it is decided,
 not built.
 
@@ -453,9 +455,11 @@ not built.
   `app.js` and `style.css`, and one module per view type, loaded only when
   that view's tab first opens — today `exploded.js`. `app.js` reads the
   descriptor and the diagram's data through the resolver, draws one tab per
-  view the descriptor declares, and fills ⓘ. A view that declares no `type`
-  is not built yet: its tab is there and its panel stays empty (today the
-  cross-section's); a type with no module throws. From the map shell, as it
+  view the descriptor declares, and fills ⓘ. A descriptor with one view gets
+  no tab bar, and the header keeps ⓘ's own row, so the stage starts below it
+  (atmosphere-layers today, until its cross-section lands). A view that
+  declares no `type` is not built yet: its tab is there and its panel stays
+  empty; a type with no module throws. From the map shell, as it
   is there: the `?v=` id rule (the map shell's for `?map=`), no page zoom,
   the visually hidden `<h1>` filled from the descriptor's Bengali title;
   Noto Sans Bengali from `docs/shared/fonts/`, preloaded; ⓘ drawn as
@@ -477,9 +481,10 @@ not built.
   at the shell tier. None has moved: the diagram shell imports only
   `docs/shared/resolver.js` and the font.
 - **The home section বিবিধ (`misc`)**, with the English heading
-  "Miscellaneous", is added together with its first entry, not before: an
-  empty section would show "Coming soon". Both names go into the home page's
-  `SECTION_NAMES`, beside the other three sections'.
+  "Miscellaneous", came with its first entry, atmosphere-layers — an empty
+  section would have shown "Coming soon": `misc` in the registry
+  generator's and the validator's `SECTIONS`, after the three syllabus
+  sections, and both names in the home page's `SECTION_NAMES`.
 - **The first diagram is atmosphere-layers, in Bengali**, with two views: the
   exploded view and the cross-section. **The exploded view matches
   `design/mockups/atmosphere-layers-exploded.png` 100%** (the user's
@@ -492,7 +497,8 @@ not built.
   boundaries, and the temperature curve follows the seed's points only.
   Nothing is hard-coded from the seed: the user revises its content later.
 - **The art is final and approved by the user**, in
-  `data-sources/atmosphere-layers/art/`, untracked like the seed, and kept:
+  `data-sources/atmosphere-layers/art/`, committed with the seed — the eight
+  inputs below; `earth-original-v3.png`, not an input, stays untracked:
   - `stack-master.png` — the whole stack without text, 1024×1536, on a
     background of `#EDF4FA`. It is the position reference.
   - `exosphere.png`, `thermosphere.png`, `mesosphere.png`,
@@ -661,26 +667,30 @@ not built.
      may show; each cut over the page's colour against its own image, within
      a mean of 1 level and a 99th percentile of 4, or the build fails; the
      encoder's loss for each file; and each slab lit, as the page will draw
-     it. The outputs wait, untracked, in
-     `data-sources/atmosphere-layers/build/` until step 7. Tier: tools.
+     it. The outputs are staged, untracked, in
+     `data-sources/atmosphere-layers/build/`, from where the data build
+     copies them into the diagram's folder. Tier: tools.
   6. Done: `docs/visual/` with the 2D exploded view (see **The diagram
      shell, as built** and **The exploded view, as built**), tested locally
      against the uncommitted diagram and committed without it, once the user
-     approved its look. The diagram's data is built by
-     `tools/build-diagram-atmosphere-layers.mjs` from the seed, the
-     descriptor and the art tool's staging folder into a temporary copy of
-     `docs/` outside the repo, which `tools/preview-diagram.mjs` makes and
-     serves on 127.0.0.1 — the build refuses a folder inside the repo. Both
-     tools and the descriptor stay untracked until step 7. Tier: a new
-     folder, nothing shared changed — the suites, the strict check, and the
-     page at 390 and 320 px with a clean console in a fresh tab.
-  7. The diagram lands whole, in one commit, only once it has both views
-     (the user's decision, 2026-09-27: the old steps 7 and 8 merged, the
-     diagram does not go live before the cross-section exists): the 2D
-     cross-section view, once it has an approved look, both tabs as in the
-     mockup; the seed, build, descriptor, data, art and manifest; the
-     validator section; and the বিবিধ section with its registry entry. Tier:
-     the diagram's own, plus the home page / registry tier.
+     approved its look. Tier: a new folder, nothing shared changed — the
+     suites, the strict check, and the page at 390 and 320 px with a clean
+     console in a fresh tab.
+  7. Done: the diagram landed with its exploded view alone (the user's
+     decision, 2026-09-27, replacing the plan to wait for the cross-section):
+     the seed and the eight art inputs; `tools/build-diagram-atmosphere-layers.mjs`,
+     which builds data, art and manifest into
+     `docs/diagrams/atmosphere-layers/` from the seed, the art tool's staging
+     folder and the descriptor authored there, which it only reads — a
+     second build is byte-identical; `tools/preview-diagram.mjs`, which
+     builds into a temporary copy of `docs/` outside the repo and serves it
+     on 127.0.0.1, to see a change before it is built in; the diagram's
+     section in `verify-descriptor.mjs`; and বিবিধ with its registry entry.
+     While the descriptor declares one view, the tab bar is hidden: no empty
+     tab. Tier: the diagram's own, plus the home page / registry tier.
+  8. Next: the 2D cross-section view, once it has an approved look. The tab
+     bar returns with it, both tabs as in the mockup. Tier: the diagram's
+     own.
 - A change to the home page or the registry has its own verification tier, in
   **Before every commit**.
 
@@ -860,8 +870,10 @@ every area's geometry hash, all eleven whether shipped or not, in
 (`treatyCities` in `tools/sources.json`), and the seed's table counts —
 conventions 12, treaties 7, summits 4, COPs 31 — in the build.
 atmosphere-layers: the SHA-256 of each of the eight art inputs, in the
-seed's `art.files`, and each image's placement on the master, in
-`tools/build-diagram-atmosphere-art.mjs`, which fails if a fresh fit moves it.
+seed's `art.files` — the art tool refuses, and `verify-descriptor.mjs`
+fails, a committed input that differs — and each image's placement on the
+master, in `tools/build-diagram-atmosphere-art.mjs`, which fails if a fresh
+fit moves it.
 
 When a pin moves, **stop and report the old and new values.** Never re-pin to
 make a build pass. A dropped `featurecla` once shifted a line by three points
@@ -902,8 +914,8 @@ tap-to-open, never a live map.
 
 - All three suites pass: `node tools/verify-descriptor.mjs`, `node --test
   tools/resolver.test.mjs`, `node tools/verify.mjs`. Every map under
-  `docs/maps/` has its own section in `verify-descriptor.mjs`; the validator
-  fails a map without one, naming it.
+  `docs/maps/` and every diagram under `docs/diagrams/` has its own section
+  in `verify-descriptor.mjs`; the validator fails one without, naming it.
 - 320px wide renders correctly.
 - Console clean **in a fresh tab** — stale buffers from an earlier load have
   produced false failures more than once.
@@ -912,8 +924,8 @@ tap-to-open, never a live map.
 
 Verification scales with what changed:
 
-- Only one map's data or its own folder: run the three suites and check that
-  map. Do not open other maps.
+- Only one map's or one diagram's data or its own folder: run the three
+  suites and check that map or diagram. Do not open other maps.
 - The home page or the registry: the three suites, registry entries
   byte-identical for existing maps, and the home page's existing sections
   rendering identically at 390 and 320 px.
@@ -945,8 +957,14 @@ State which kind a task is when reporting it.
   `border-lines`, `org-headquarters`, `environment-treaties`. Geography:
   `deserts`, `lakes`, `forests`, `mountains`, `waterfalls`, all under
   `docs/maps/`.
-- No diagram yet. What is built for diagrams is listed at the top of
-  **Interactive diagrams**.
+- One diagram, under বিবিধ: `atmosphere-layers`, in `docs/diagrams/`, with
+  its exploded view; its cross-section is next. It is built by
+  `tools/build-diagram-atmosphere-art.mjs`, then
+  `tools/build-diagram-atmosphere-layers.mjs`, from
+  `data-sources/atmosphere-layers/` — the seed, NOAA's figures by the user's
+  decision until the user's book is in, and the eight approved art inputs.
+  Nothing on it is pending. What is built for diagrams is listed at the top
+  of **Interactive diagrams**.
 - **environment-treaties** — environmental conventions, treaties and
   protocols, world summits and UNFCCC COPs, in four tabs, in English (see the
   baseline section) — is built by `tools/build-environment-treaties.mjs` from

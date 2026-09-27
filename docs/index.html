@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Interactive maps for the BCS Preliminary exam, grouped by subject." />
     <title>BCS Maps</title>
+    <!-- No icon, and no request for one: a browser would otherwise ask the
+         host's root for /favicon.ico. -->
+    <link rel="icon" href="data:," />
     <!--
       The hub: the one URL the app's CMS points at. Static; its one request
       beyond this file is registry.json, the list it renders. Every link is
@@ -142,6 +145,7 @@
         bangladesh: { en: 'Bangladesh', bn: 'বাংলাদেশ বিষয়াবলি' },
         international: { en: 'International', bn: 'আন্তর্জাতিক বিষয়াবলি' },
         geography: { en: 'Geography', bn: 'ভূগোল, পরিবেশ ও দুর্যোগ ব্যবস্থাপনা' },
+        misc: { en: 'Miscellaneous', bn: 'বিবিধ' },
       };
 
       const el = (tag, props = {}, kids = []) => {
@@ -183,8 +187,8 @@
                   ]),
                 ),
               )
-            : // An empty section still renders: the three-subject structure is
-              // the point, and a missing heading would read as a missing subject.
+            : // An empty section still renders: the subject structure is the
+              // point, and a missing heading would read as a missing subject.
               el('p', { className: 'soon', textContent: 'Coming soon' });
 
           root.append(el('section', { ariaLabelledby: section }, [heading, body]));

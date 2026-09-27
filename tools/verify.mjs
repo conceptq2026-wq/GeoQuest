@@ -192,7 +192,7 @@ check(fs.existsSync(path.join(SERVED, 'shared/fonts/noto-sans-bengali/OFL.txt'))
 */
 console.log('\n---- the baseline ----');
 
-const SECTIONS = ['bangladesh', 'international', 'geography'];
+const SECTIONS = ['bangladesh', 'international', 'geography', 'misc'];
 // Provided by the shell. A descriptor may not declare any of these, by any route.
 const BASELINE_LAYERS = ['country-labels', 'country-labels-named', 'country-labels-active', 'sea-labels', 'sea-labels-active'];
 const BASELINE_SOURCES = ['seas', 'countryLabels'];
