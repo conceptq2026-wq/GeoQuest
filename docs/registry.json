@@ -72,6 +72,14 @@
       }
     },
     {
+      "id": "latitude-longitude",
+      "section": "geography",
+      "title": {
+        "en": "Latitude & Longitude",
+        "bn": "অক্ষরেখা ও দ্রাঘিমারেখা"
+      }
+    },
+    {
       "id": "mountains",
       "section": "geography",
       "title": {

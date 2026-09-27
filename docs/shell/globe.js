@@ -47,10 +47,11 @@
 |     Such a record is taken off the map's own point layers, which cannot
 |     draw it where it is.
 |
-| Taps are the module's: nearest wins, points first, then places, then
-| lines; lines within TIE px of each other at a crossing go by the pill
-| order. Nothing on the far side is ever hit. A tap on no record closes the
-| card.
+| Taps are the module's (the user's order, 2026-09-28): the nearest dot
+| within TAP px, else the nearest line within TAP px — lines within TIE px of
+| each other, as at a crossing, go by the pill order — else the smallest
+| area under the finger. Nothing on the far side is ever hit. A tap on no
+| record closes the card.
 |
 | The card docks at the page's foot with a × that clears the selection; on
 | a record of `antipode.between` it carries a button, kept at the card's
@@ -482,7 +483,22 @@ function viewOf() {
     const p = screen(v);
     return p.x >= 0 && p.x <= width && p.y >= 0 && p.y <= height;
   };
-  return { width, height, middle, inFront, screen, visible };
+  // A point on the screen, back onto the globe: where the ray through it
+  // first meets the sphere, on the face turned to the viewer; null off it.
+  const unproject = (q) => {
+    const x = (q.x - middle.x) / f;
+    const y = (middle.y - q.y) / f;
+    const ray = [0, 1, 2].map((i) => x * east[i] + y * north[i] - c[i]);
+    const len = Math.hypot(...ray);
+    const r = ray.map((v) => v / len);
+    const b = d * dot(c, r);
+    const disc = b * b - (d * d - 1);
+    if (disc < 0) return null;
+    const t = -b - Math.sqrt(disc);
+    const hit = [0, 1, 2].map((i) => d * c[i] + t * r[i]);
+    return [(Math.atan2(hit[1], hit[0]) * 180) / Math.PI, (Math.asin(clamp(hit[2], -1, 1)) * 180) / Math.PI];
+  };
+  return { width, height, middle, inFront, screen, visible, unproject };
 }
 
 function place() {
@@ -923,59 +939,113 @@ function segmentsCross([a, b], [c, d]) {
 const tapTarget = (kind) => api.tapTargets.find((t) => t.kind === kind && t.table === table);
 
 /**
- * Nearest wins: points first, then places, then lines. A point counts within
- * TAP px of the finger; a place under it, or within TAP px when none is;
- * a line within TAP px, lines at a crossing tying within TIE px and going
- * by the pill order. Only what is drawn is found, so nothing on the far side.
+ * The user's order (2026-09-28): the nearest dot within TAP px of the finger;
+ * else the nearest line within TAP px, lines within TIE px of each other (as
+ * at a crossing) going by the pill order; else the smallest area under the
+ * finger. The renderer lists features on the globe's far side too, so each
+ * counts only where it faces the viewer: a dot in front, a line's run in
+ * front, an area holding the tap's own point on the front of the globe.
  */
 function resolveTap(p) {
+  const view = viewOf();
   const box = [[p.x - TAP, p.y - TAP], [p.x + TAP, p.y + TAP]];
   const found = (target, where = box) => map.queryRenderedFeatures(where, { layers: [target.layer] });
 
   let best = null;
   for (const target of api.tapTargets.filter((t) => t.kind === 'point'))
     for (const feature of found(target)) {
-      const at = map.project(feature.geometry.coordinates);
+      const v = unit(...feature.geometry.coordinates);
+      if (!view.inFront(v)) continue;
+      const at = view.screen(v);
       const d = Math.hypot(at.x - p.x, at.y - p.y);
       if (d <= TAP && (!best || d < best.d)) best = { ...target, key: feature.properties.key, d };
     }
   if (best) return best;
 
-  for (const target of api.tapTargets.filter((t) => t.kind === 'fill')) {
-    const under = found(target, [p.x, p.y]);
-    for (const feature of under.length ? under : found(target)) {
-      const frame = api.records[target.table]?.[feature.properties.key]?.frame;
-      const area = frame ? (frame[2] - frame[0]) * (frame[3] - frame[1]) : Infinity;
-      if (!best || area < best.area) best = { ...target, key: feature.properties.key, area };
-    }
-  }
-  if (best) return best;
-
-  const centre = map.getCenter();
-  const horizon = 1 / (1 + (CAMERA * container.clientHeight) / globeRadius(map.getZoom(), centre.lat));
-  const view = unit(centre.lng, centre.lat);
   for (const target of api.tapTargets.filter((t) => t.kind === 'line'))
     for (const feature of found(target)) {
-      const d = distanceTo(feature.geometry, p, view, horizon);
+      const d = distanceTo(feature.geometry, p, view);
       const rank = order.indexOf(feature.properties.key);
       if (d > TAP) continue;
       if (!best || d < best.d - TIE || (Math.abs(d - best.d) <= TIE && rank < best.rank)) best = { ...target, key: feature.properties.key, d, rank };
     }
+  if (best) return best;
+
+  const here = view.unproject(p);
+  if (!here) return null;
+  for (const target of api.tapTargets.filter((t) => t.kind === 'fill'))
+    for (const feature of found(target, [p.x, p.y])) {
+      const key = feature.properties.key;
+      const shape = areaOf(target.source, key);
+      if (!shape || !shape.rings.some((polygon) => holds(polygon, here))) continue;
+      if (!best || shape.size < best.size) best = { ...target, key, size: shape.size };
+    }
   return best;
 }
 
-/** How far a drawn line passes from the finger, over its parts in front, in px. */
-function distanceTo(geometry, p, view, horizon) {
+/** How far a drawn line passes from the finger, over its runs in front, in px. */
+function distanceTo(geometry, p, view) {
   const parts = geometry.type === 'LineString' ? [geometry.coordinates] : geometry.type === 'MultiLineString' ? geometry.coordinates : [];
   let best = Infinity;
   for (const part of parts) {
-    const points = densify(part)
-      .filter((s) => dot(s.v, view) >= horizon)
-      .map((s) => map.project([s.lng, s.lat]));
-    for (let i = 0; i + 1 < points.length; i++) best = Math.min(best, toSegment(p, points[i], points[i + 1]));
-    if (points.length === 1) best = Math.min(best, Math.hypot(points[0].x - p.x, points[0].y - p.y));
+    let last = null;
+    for (const s of densify(part)) {
+      if (!view.inFront(s.v)) {
+        last = null;
+        continue;
+      }
+      const q = view.screen(s.v);
+      best = Math.min(best, last ? toSegment(p, last, q) : Math.hypot(q.x - p.x, q.y - p.y));
+      last = q;
+    }
   }
   return best;
+}
+
+/*
+ * A record's whole area, from its source's geometry file rather than the
+ * tile-clipped piece the renderer hands back: its polygons, and its size for
+ * the smallest-wins rule, in square degrees scaled to the ground.
+ */
+const areas = new Map();
+function areaOf(source, key) {
+  const id = `${source} ${key}`;
+  if (!areas.has(id)) {
+    const joinField = api.descriptor.sources[source]?.joinField;
+    const polygons = [];
+    for (const feature of api.geometry(source)?.features ?? []) {
+      if (feature.properties?.[joinField] !== key) continue;
+      const g = feature.geometry;
+      polygons.push(...(g.type === 'Polygon' ? [g.coordinates] : g.type === 'MultiPolygon' ? g.coordinates : []));
+    }
+    let size = 0;
+    for (const [outer, ...holes] of polygons) size += Math.abs(ringArea(outer)) - holes.reduce((n, h) => n + Math.abs(ringArea(h)), 0);
+    areas.set(id, polygons.length ? { rings: polygons, size } : null);
+  }
+  return areas.get(id);
+}
+
+function ringArea(ring) {
+  let sum = 0;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    const k = Math.cos((((ring[i][1] + ring[j][1]) / 2) * Math.PI) / 180);
+    sum += (ring[j][0] * k - ring[i][0] * k) * (ring[j][1] + ring[i][1]);
+  }
+  return sum / 2;
+}
+
+/** Whether a polygon — its outer ring, less its holes — holds a point. */
+function holds([outer, ...holes], point) {
+  const inRing = (ring) => {
+    let inside = false;
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      const [xi, yi] = ring[i];
+      const [xj, yj] = ring[j];
+      if (yi > point[1] !== yj > point[1] && point[0] < ((xj - xi) * (point[1] - yi)) / (yj - yi) + xi) inside = !inside;
+    }
+    return inside;
+  };
+  return inRing(outer) && !holes.some(inRing);
 }
 
 function toSegment(p, a, b) {

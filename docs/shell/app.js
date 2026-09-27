@@ -1149,8 +1149,8 @@ function recordArea(source, key) {
 }
 
 /*
- * A module that resolves taps itself (the globe: points first, then places,
- * then lines, and nothing on the far side) takes them all, from these: every
+ * A module that resolves taps itself (the globe: dots first, then lines,
+ * then areas, and nothing on the far side) takes them all, from these: every
  * click interaction's source, its tap layer, what its geometry is, and what a
  * tap on it does. The shell then binds no click of its own.
  */

@@ -483,16 +483,20 @@ creates or changes goes through `own`, so teardown undoes it.
     — while the place faces the viewer: one line per value, never broken,
     the selected place's first, each in the first box round its place that
     covers nothing else and no place's point.
-  - **Taps are the module's**: nearest wins, dots first — a point within
-    14 px, the nearest — then places, an area under the finger (the
-    smallest), then lines within 14 px, the nearest; lines within 1.5 px of
-    each other at a crossing go by the pill order. Only what faces the viewer
-    is hit; a tap on nothing closes the card. On latitude-longitude a tap at
-    the Tropic of Cancer × 90°E crossing selects Dhaka at the opening zoom,
-    whose dot lies 1 px from it, and Bangladesh when zoomed to the country,
-    since the crossing lies inside Bangladesh's area; at the equator × 90°E
-    it selects the equator, at the Tropic of Cancer × the prime meridian the
-    Tropic of Cancer.
+  - **Taps are the module's**, in the user's order (2026-09-28): the nearest
+    dot within 14 px; else the nearest line within 14 px, lines within
+    1.5 px of each other (as at a crossing) going by the pill order; else the
+    smallest area under the finger, measured on its whole outline. Only what
+    faces the viewer counts — a dot in front, a line's run in front, an area
+    holding the tap's own point on the front of the globe, found by the
+    module's own inverse projection (within 0.0001 km of MapLibre's) — so
+    nothing on the far side is ever hit; a tap on nothing closes the card.
+    On latitude-longitude the Tropic of Cancer × 90°E crossing, in Faridpur,
+    selects Dhaka at the opening zoom, whose dot lies 1 px from it, and the
+    Tropic of Cancer at z5.2, by the pill order; a tap on either line inside
+    Bangladesh selects that line, one 20 px or more from both selects
+    Bangladesh, one inside the antipode's outline the antipode, and the
+    equator × 90°E the equator.
   - **The docked card**, as the timeline's: shown while a record is
     selected, with a × that clears the selection, its chip tinted with the
     record's colour. On a record of `antipode.between` it carries one button,
@@ -1099,11 +1103,10 @@ State which kind a task is when reporting it.
 
 ## Current state
 
-- Ten maps. Bangladesh: `ancient-janapadas`. International: `straits`,
+- Eleven maps. Bangladesh: `ancient-janapadas`. International: `straits`,
   `border-lines`, `org-headquarters`, `environment-treaties`. Geography:
-  `deserts`, `lakes`, `forests`, `mountains`, `waterfalls`, all under
-  `docs/maps/` — and beside them `latitude-longitude`, still in progress,
-  out of the registry.
+  `deserts`, `lakes`, `forests`, `mountains`, `waterfalls` and
+  `latitude-longitude`, all under `docs/maps/`.
 - One diagram, under বিবিধ: `atmosphere-layers`, in `docs/diagrams/`, with
   its exploded view; its cross-section is next. It is built by
   `tools/build-diagram-atmosphere-art.mjs`, then
@@ -1112,14 +1115,15 @@ State which kind a task is when reporting it.
   decision until the user's book is in, and the eight approved art inputs.
   Nothing on it is pending. What is built for diagrams is listed at the top
   of **Interactive diagrams**.
-- Work in progress (`tools/wip.json`), on the local preview's home page
-  only: `latitude-longitude`, a map in geography, «অক্ষরেখা ও দ্রাঘিমারেখা» /
-  "Latitude & Longitude" — the Bengali title the editor's proposal, which
-  the user may change. Its look is
+- Work in progress (`tools/wip.json`): none. The list is empty, which
+  `tools/verify.mjs`, `tools/build-registry.mjs` and `tools/preview.mjs`
+  all take as it is.
+- **latitude-longitude**, in geography, «অক্ষরেখা ও দ্রাঘিমারেখা» /
+  "Latitude & Longitude" (the title the user confirmed, 2026-09-28), left
+  the work in progress for the registry on 2026-09-28. Its look is
   `design/mockups/globe-latitude-longitude.png`, the user's approved mockup:
-  a 3D globe with its lines, a pill row and a docked card. Its data is
-  built, in `docs/maps/latitude-longitude/`, and the shell's globe module
-  draws it (see **Shell modules**).
+  a 3D globe with its lines, a pill row and a docked card. The shell's globe
+  module draws it (see **Shell modules**).
   - `tools/build-latitude-longitude.mjs` builds it from the editor's seed,
     `data-sources/latitude-longitude/latitude-longitude.seed.json`, which it
     reads and never writes: one records table, `items` — eight lines, the

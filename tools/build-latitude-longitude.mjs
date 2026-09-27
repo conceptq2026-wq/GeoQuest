@@ -27,8 +27,8 @@
 //
 //   node tools/build-latitude-longitude.mjs [out-dir]
 //
-// With no argument it writes the map's folder under docs/; tools/preview.mjs
-// passes the folder of its own copy instead.
+// With no argument it writes the map's folder under docs/; given a folder, it
+// writes that one instead, as tools/preview.mjs asks of a map in progress.
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';

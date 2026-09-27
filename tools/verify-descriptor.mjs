@@ -18,8 +18,7 @@
 //                         treaties.seed.json, cities.seed.json and additions.seed.json
 //   latitude-longitude  checked against data-sources/latitude-longitude/
 //                       latitude-longitude.seed.json, the imagery's pin and credit in
-//                       tools/sources.json and the geometry pins (still in progress,
-//                       tools/wip.json, but its folder is under docs/ and is checked)
+//                       tools/sources.json and the geometry pins
 //   atmosphere-layers (a diagram)  checked against data-sources/atmosphere-layers/
 //                                  atmosphere.seed.json and the approved art
 //
@@ -1256,8 +1255,8 @@ console.log('\n\n============ environment-treaties ============');
 
 /*
 |--------------------------------------------------------------------------
-| LATITUDE-LONGITUDE — a globe, still in progress (tools/wip.json): out of the
-| registry, but its folder is under docs/, so it is held to its seed here.
+| LATITUDE-LONGITUDE — the globe, drawn by the shell's globe module, held to
+| its seed, its pins and the words the user approved.
 |--------------------------------------------------------------------------
 */
 console.log('\n\n============ latitude-longitude ============');
