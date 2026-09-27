@@ -142,6 +142,23 @@ function backgroundOf({ w, h, data }) {
   return ch.map((v) => v.sort((a, b) => a - b)[v.length >> 1]);
 }
 
+// The colour opaque files show along their edges once decoded: the median of
+// their outer 2 px. The encoder moves a flat colour by a level or two, so what
+// lies behind an opaque file — the page behind the view, the card behind an
+// icon — must be this, not the colour painted, or the file's square shows.
+function edgeOf(files) {
+  const ch = [[], [], []];
+  for (const file of files) {
+    const { w, h, data } = decode(file);
+    for (let y = 0; y < h; y++)
+      for (let x = 0; x < w; x++) {
+        if (x >= 2 && x < w - 2 && y >= 2 && y < h - 2) continue;
+        for (let c = 0; c < 3; c++) ch[c].push(data[(y * w + x) * 3 + c]);
+      }
+  }
+  return ch.map((v) => v.sort((a, b) => a - b)[v.length >> 1]);
+}
+
 // How far each pixel stands from the background: its largest channel difference.
 function distances({ w, h, data }, bg) {
   const dist = new Uint8Array(w * h);
@@ -876,13 +893,18 @@ const icons = grid.squares.map((sq, n) => {
   return { id, files, size: ICON_SIZE };
 });
 
+// What the opaque files show at their edges, for the page and the card behind them.
+view.edge = hex(edgeOf(Object.values(view.files).map((f) => path.join(OUT, f))));
+const iconEdge = hex(edgeOf(icons.flatMap((i) => Object.values(i.files).map((f) => path.join(OUT, f)))));
+
 // ---- the manifest ----------------------------------------------------------------------
 
 const manifest = {
   _about:
     `The atmosphere-layers exploded view, for a layout ${LAYOUT_WIDTH} CSS px wide in which every position ` +
     `below is given (layout px; the master's ${master.w} px make ${LAYOUT_WIDTH}). The default view is "view": ` +
-    'stack-master.png itself, cut to the stack\'s bounds, on the page\'s "background". A tapped slab is lit: ' +
+    'stack-master.png itself, cut to the stack\'s bounds, on the page\'s "background"; its files show ' +
+    '"view.edge" at their edges once decoded, a level or two off it, and the page behind them takes that. A tapped slab is lit: ' +
     'its cut-out, "files" at its box, is drawn over the view scaled by "litScale" about the box\'s centre and ' +
     'lifted "lit.lift" px, over a white outline "lit.outline" px wide and a soft white glow reaching ' +
     '"lit.glow" px — at that scale it covers the master\'s own copy of the slab. The other slabs are not ' +
@@ -891,7 +913,8 @@ const manifest = {
     'the slab\'s Bengali name is laid along, 45% down its front-left face; "edges" its upright edges\' ends ' +
     'in the master; "meets" where the km axis ticks (left) and the temperature curve (right) meet it. Each ' +
     'boundary lies in the middle of the gap between two pictures of the master; above the exosphere, half ' +
-    `a gap over its top. Each icon is a square ${ICON_SIZE} CSS px across, on the card's white. Written by ` +
+    `a gap over its top. Each icon is a square ${ICON_SIZE} CSS px across, on the card's white; their files ` +
+    'show "iconEdge" at their edges once decoded, and the card behind them takes that. Written by ' +
     'tools/build-diagram-atmosphere-art.mjs.',
   inputs,
   layout: { width: LAYOUT_WIDTH, height: LAYOUT_HEIGHT, fromMaster: S, background: hex(page) },
@@ -900,6 +923,7 @@ const manifest = {
   slabs,
   boundaries,
   icons,
+  iconEdge,
 };
 fs.writeFileSync(path.join(OUT, 'manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`);
 

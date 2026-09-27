@@ -1,0 +1,611 @@
+* {
+  box-sizing: border-box;
+}
+
+/*
+ * Colours from the diagram's mockup. The page's own background is the art's,
+ * set from its manifest; --page is only what shows before that loads. Grey
+ * text is never lighter than #5e759d on white (contrast above 4.5:1), and the
+ * active tab is a shade deeper than the mockup's so its white text is too.
+ */
+:root {
+  --page: #eef3f8;
+  --ink: #0f1d40;
+  --muted: #5e759d;
+  --glyph: #3b5582;
+  --axis: #8596b2;
+  --axis-text: #4e6587;
+  --tab-bar: #e5eef4;
+  --tab-text: #3f5a86;
+  --tab-active: #2a74d9;
+  --card: #ffffff;
+  --divider: #e9eff5;
+  --feature-text: #132860;
+  --focus: #0b5cad;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+  background: var(--page);
+  color: var(--ink);
+  /* No pull-to-refresh or bounce inside the app's WebView. */
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Present for screen readers, takes no space (the app's viewer shows the title). */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Bengali text uses the same bundled Noto Sans Bengali as the maps. */
+@font-face {
+  font-family: 'Noto Sans Bengali';
+  src: url('../shared/fonts/noto-sans-bengali/NotoSansBengali-Regular.woff2') format('woff2');
+  font-display: swap;
+}
+
+[lang='bn'] {
+  font-family: 'Noto Sans Bengali', Inter, system-ui, sans-serif;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/*
+ * The page: the tabs, then the view's panel — its stage, and under it the
+ * docked card, which takes the room its content needs and scrolls inside
+ * itself. The stage never drops under 45% of the screen.
+ */
+.visual-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+}
+
+.visual-header {
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  padding: 10px 44px 4px;
+}
+
+/* ---- tabs: one rounded bar, the active view a filled pill --------------- */
+
+.view-tabs {
+  display: flex;
+  width: 246px;
+  max-width: 100%;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--tab-bar);
+}
+
+.view-tab {
+  flex: 1 1 0;
+  min-height: 32px;
+  margin: 0;
+  padding: 4px 10px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--tab-text);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  cursor: pointer;
+}
+
+.view-tab.active {
+  background: var(--tab-active);
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(42, 116, 217, 0.28);
+}
+
+.view-tab:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* ---- ⓘ: the map shell's compact attribution, as MapLibre draws it ------- */
+
+.attrib {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 20;
+  box-sizing: content-box;
+  min-height: 20px;
+  padding: 2px 24px 2px 0;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #000000;
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+.attrib.open {
+  max-width: calc(100vw - 56px);
+  padding: 2px 28px 2px 8px;
+  box-shadow: 0 2px 10px rgba(19, 35, 58, 0.14);
+}
+
+.attrib-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: hsla(0, 0%, 100%, 0.5);
+  color: #000000;
+  cursor: pointer;
+}
+
+.attrib.open .attrib-button {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.attrib-button:focus-visible {
+  box-shadow: 0 0 2px 2px #0096ff;
+  outline: none;
+}
+
+.attrib-button svg {
+  display: block;
+  fill: currentColor;
+}
+
+.attrib-inner {
+  max-height: 60vh;
+  margin: 0;
+  overflow-y: auto;
+}
+
+.attrib-inner a {
+  color: rgba(0, 0, 0, 0.75);
+  text-decoration: none;
+}
+
+.attrib-inner a:hover {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* ---- the load notice, as the map shell draws its own --------------------- */
+
+.load-notice {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ---- a view ------------------------------------------------------------ */
+
+.panels,
+.view-panel {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.stage {
+  position: relative;
+  flex: 1 1 0;
+  min-height: 45vh;
+  min-height: 45dvh;
+  overflow: hidden;
+  touch-action: manipulation;
+}
+
+/* The art and all that hangs off it, centred in the stage's spare height. */
+.stage-content {
+  position: absolute;
+  inset: 0;
+  transition: transform 300ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Until the picture is in, nothing that hangs off it shows. */
+.stage-content.loading {
+  visibility: hidden;
+}
+
+/* The art in its own layout px, placed and scaled as a whole from app code. */
+.art {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+}
+
+.art img {
+  position: absolute;
+  display: block;
+  max-width: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/*
+ * A lit slab: its cut-out over the master, scaled about its centre and
+ * lifted, with a white outline and a soft white glow, all in the art's px.
+ */
+.lit-slab {
+  z-index: 1;
+  opacity: 0;
+  transform-origin: 50% 50%;
+  filter: drop-shadow(var(--outline) 0 0 #ffffff) drop-shadow(calc(-1 * var(--outline)) 0 0 #ffffff) drop-shadow(0 var(--outline) 0 #ffffff)
+    drop-shadow(0 calc(-1 * var(--outline)) 0 #ffffff) drop-shadow(0 0 var(--glow) rgba(255, 255, 255, 0.95));
+  transition:
+    opacity 180ms ease,
+    transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform, opacity;
+}
+
+.lit-slab.on {
+  z-index: 2;
+  opacity: 1;
+  transform: translateY(calc(-1 * var(--lift))) scale(var(--k));
+}
+
+/* Over the art, in CSS px: nothing here takes a tap but the names. */
+.overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.layer-name {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 2px 4px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: #ffffff;
+  font-weight: 600;
+  line-height: 1.25;
+  white-space: nowrap;
+  text-shadow:
+    0 1px 2px rgba(10, 30, 70, 0.5),
+    0 0 6px rgba(10, 30, 70, 0.25);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.layer-name:focus-visible {
+  outline: 2px solid #ffffff;
+  box-shadow: 0 0 0 4px rgba(11, 92, 173, 0.85);
+}
+
+/* ---- the km axis --------------------------------------------------------- */
+
+.axis-line {
+  position: absolute;
+  width: 1.5px;
+  margin-left: -0.75px;
+  background: var(--axis);
+}
+
+.axis-tick {
+  position: absolute;
+  height: 1.5px;
+  margin-top: -0.75px;
+  background: var(--axis);
+}
+
+.axis-label,
+.scale-caption,
+.curve-caption,
+.stage-hint {
+  position: absolute;
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+.axis-label {
+  color: var(--axis-text);
+  white-space: nowrap;
+}
+
+.scale-caption {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* ---- the temperature curve ---------------------------------------------- */
+
+.curve {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: visible;
+}
+
+.curve path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.curve-line,
+.curve-arrow {
+  stroke-width: 2;
+}
+
+/* The lit layer's stretch: brighter, wider, with a soft halo. */
+.curve-stretch {
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.curve-stretch.lit {
+  opacity: 1;
+}
+
+.curve-halo {
+  stroke-width: 10;
+  stroke-opacity: 0.28;
+}
+
+.curve-bright {
+  stroke-width: 4.5;
+}
+
+.curve-caption {
+  width: max-content;
+  color: var(--axis-text);
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.curve-mark {
+  position: absolute;
+  color: var(--axis-text);
+  font-size: 15px;
+  line-height: 1;
+  transform: translateX(-50%);
+}
+
+.stage-hint {
+  color: var(--muted);
+  font-size: 12.5px;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+/* Moved by a new layout, never animated there. */
+.stage.instant .stage-content,
+.stage.instant .layer-name {
+  transition: none;
+}
+
+/* ---- the card, docked under the stage ------------------------------------ */
+
+.card {
+  position: relative;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+  min-height: 0;
+  margin: 0 auto;
+  border-radius: 22px 22px 0 0;
+  background: var(--card);
+  box-shadow: 0 -4px 18px rgba(19, 35, 58, 0.1);
+}
+
+.card-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: 16px 20px calc(16px + env(safe-area-inset-bottom, 0px));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.card-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 1;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: #6b7c93;
+  font-size: 24px;
+  line-height: 36px;
+  cursor: pointer;
+}
+
+.card-close:hover {
+  background: #eef3f8;
+}
+
+.card-close:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: -2px;
+}
+
+.card-chip {
+  display: inline-block;
+  padding: 2px 12px;
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.card-title {
+  margin: 6px 40px 0 0;
+  color: var(--ink);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* The height takes the width it needs, up to 42%; the temperature the rest. */
+.card-facts {
+  display: grid;
+  grid-template-columns: fit-content(42%) 1px minmax(0, 1fr);
+  gap: 0 12px;
+  margin-top: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--divider);
+  border-bottom: 1px solid var(--divider);
+}
+
+.card-facts.single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.card-facts.single .fact-rule {
+  display: none;
+}
+
+.fact-rule {
+  background: var(--divider);
+}
+
+.fact {
+  display: flex;
+  gap: 7px;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.fact-glyph svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: var(--glyph);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.fact-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.fact-label {
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.fact-value {
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.fact-note {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.card-happens {
+  padding-top: 10px;
+}
+
+.feature-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  row-gap: 12px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  padding: 0 6px;
+  border-left: 1px solid var(--divider);
+  text-align: center;
+}
+
+.feature:nth-child(3n + 1) {
+  border-left: 0;
+}
+
+.feature-icon {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.feature-name {
+  color: var(--feature-text);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.feature-reach {
+  color: var(--muted);
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage-content,
+  .lit-slab,
+  .layer-name,
+  .curve-stretch {
+    transition: none;
+  }
+}
