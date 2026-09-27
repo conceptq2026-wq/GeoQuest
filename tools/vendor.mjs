@@ -6,6 +6,10 @@
 // its `font-faces` support, which the style-spec docs still list as
 // unsupported on web. It works in 6.9.0 (tested); a different version must be
 // re-tested with Bengali labels before it replaces this one.
+//
+// three.js stays pinned at 0.185.1, the last release that ships official
+// minified builds (0.186 dropped them), for the 3D diagrams. Its module imports
+// "./three.core.min.js", so the pair keeps the package's own file names.
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -16,6 +20,7 @@ const OUT = path.resolve('..', 'docs', 'shared', 'vendor');
 const libs = [
   { name: 'maplibre-gl', files: ['dist/maplibre-gl.mjs', 'dist/maplibre-gl-shared.mjs', 'dist/maplibre-gl-worker.mjs', 'dist/maplibre-gl.css', 'LICENSE.txt'] },
   { name: 'pmtiles', files: ['dist/pmtiles.js'], extra: { LICENSE: '.cache/pmtiles-LICENSE' } },
+  { name: 'three', files: ['build/three.module.min.js', 'build/three.core.min.js', 'LICENSE'] },
 ];
 
 for (const { name, files, extra = {} } of libs) {

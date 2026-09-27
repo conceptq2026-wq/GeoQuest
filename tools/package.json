@@ -20,6 +20,7 @@
     "mapshaper": "0.7.61",
     "pmtiles": "4.5.0",
     "subset-font": "2.7.0",
+    "three": "0.185.1",
     "vt-pbf": "3.1.3"
   }
 }

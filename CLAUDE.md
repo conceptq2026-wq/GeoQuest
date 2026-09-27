@@ -31,10 +31,16 @@ BCS / government exam prep.
 
 - `maplibre-gl` **6.9.0**
 - `pmtiles` **4.5.0**
+- `three` **0.185.1**
 
-Vendored under `docs/shared/vendor/<lib>-<version>/`. 6.9.0 is where Bengali
-label rendering was tested on a real device. Upgrading is a separate,
-deliberate task with device testing, never a side effect.
+Vendored under `docs/shared/vendor/<lib>-<version>/` by `tools/vendor.mjs`,
+and `tools/verify.mjs` checks the vendored code byte for byte against the
+pinned npm packages. 6.9.0 is where Bengali label rendering was tested on a
+real device. three.js 0.185.1 is the last release that ships official
+minified builds — 0.186 dropped them — and its `three.module.min.js` imports
+`./three.core.min.js`, so the pair keeps the package's own file names.
+Upgrading is a separate, deliberate task with device testing, never a side
+effect.
 
 ## Structure
 
@@ -372,13 +378,19 @@ creates or changes goes through `own`, so teardown undoes it.
 ## Interactive diagrams
 
 The user's decisions (2026-09-27). Built so far: the registry and the home
-page take diagram entries, and the resolver has a `diagrams` kind. Nothing
-else exists yet — no diagram, no `docs/visual/`, no `docs/diagrams/`.
+page take diagram entries, the resolver has a `diagrams` kind, and three.js
+0.185.1 is vendored for the 3D view, though no page loads it yet. Nothing
+else exists yet — no diagram, no `docs/visual/`, no `docs/diagrams/` — so
+every rule below about the shell, the 3D view or the fallback is decided, not
+built.
 
 - **A second shell.** A diagram opens in its own page,
-  `docs/visual/index.html?v=<id>` — SVG and HTML, no MapLibre, no WebGL.
-  `docs/shell/` and its URLs do not change for it. A diagram's built data
-  lives in `docs/diagrams/<id>/`, its approved seed in `data-sources/<id>/`.
+  `docs/visual/index.html?v=<id>` — SVG and HTML, and WebGL2 for a 3D view
+  through three.js, served from our own host like everything else; no
+  MapLibre. MapLibre already requires WebGL2, so a diagram adds no new device
+  requirement. `docs/shell/` and its URLs do not change for it. A diagram's
+  built data lives in `docs/diagrams/<id>/`, its approved seed in
+  `data-sources/<id>/`.
 - **The `diagrams` kind.** The diagram shell reaches a diagram's files through
   `resolver.url('diagrams', '<id>/<path>')`, which resolves to
   `diagrams/<id>/<path>` from the site root, as `maps` does for a map. The id
@@ -416,27 +428,87 @@ else exists yet — no diagram, no `docs/visual/`, no `docs/diagrams/`.
 - **Shared pieces move only when needed.** A piece of the map shell moves into
   `docs/shared/` only when the diagram shell needs it, and each move is proven
   at the shell tier.
-- **The home section বিবিধ (`misc`)** is added together with its first entry,
-  not before: an empty section would show "Coming soon".
-- **The first diagram is atmosphere-layers, in Bengali**, with two views,
-  exploded and cross-section. The exploded view's look is
-  `design/mockups/atmosphere-layers-exploded.png`; the cross-section has no
-  approved look yet. The picture guides the look, never the data: the axis
-  ticks sit on the seed's layer boundaries, and the temperature curve follows
-  the seed's points only.
-- **Painted art, if used**, is cut from a text-free master kept outside
-  `docs/` (for example `data-sources/atmosphere-layers/art/`), whose SHA-256
-  and crop boxes the seed records. The cut WebPs go in
-  `docs/diagrams/<id>/art/` with a licence text beside them and a credit in
-  ⓘ. A painted feature — a plane, a satellite, an aurora — must agree with the
-  seed.
-- **The order of the remaining work** (approved 2026-09-27). Nothing is
-  committed under `docs/diagrams/` before the diagram is whole: the registry
-  lists any folder there, and `verify.mjs` fails one it does not list. So the
-  `docs/visual/` shell with the exploded view is built and tested locally
-  against the uncommitted diagram, and committed first; then the diagram's
-  seed, build, descriptor, data, validator section and the `misc` section
-  land together, in one commit. The cross-section view comes after.
+- **The home section বিবিধ (`misc`)**, with the English heading
+  "Miscellaneous", is added together with its first entry, not before: an
+  empty section would show "Coming soon". Both names go into the home page's
+  `SECTION_NAMES`, beside the other three sections'.
+- **The first diagram is atmosphere-layers, in Bengali**, with two views: the
+  exploded view in true 3D, three.js on WebGL2, and the cross-section in 2D
+  SVG. The exploded view's look is
+  `design/mockups/atmosphere-layers-exploded.png`: five glossy, translucent
+  slabs with gaps above a slice of Earth, the km axis on the left, the
+  relative temperature curve on the right, the docked card at the bottom. The
+  cross-section has no approved look yet. The picture guides the look, never
+  the data: the axis ticks sit on the seed's layer boundaries, and the
+  temperature curve follows the seed's points only. Nothing is hard-coded
+  from the seed: the user revises its content later.
+- **The 3D view's interactions — these and nothing more.** A one-finger drag
+  turns the stack around its vertical axis only; the tilt stays locked at the
+  default elevation (about 25°), and a small button, «আগের কোণে ফিরুন»,
+  returns it to the default angle. Tapping a layer lifts it and makes it
+  glow, dims the others, opens the card and highlights that layer's part of
+  the temperature curve; «বন্ধ করুন», or tapping the layer again, closes it.
+  No pinch zoom, no tilt, and the feature icons are not tappable. Each
+  feature is drawn in its own layer per the seed; the ionosphere and the
+  aurora are drawn in the thermosphere slab, and the card gives their real
+  ranges from the seed.
+- **All text is HTML over the canvas**, never drawn by WebGL: three.js cannot
+  shape Bengali. The layer names, the axis ticks and the curve's bands hang
+  off points on the stack's vertical axis, so turning the stack never moves
+  them.
+- **The 3D rendering rule, measured** (390×844, 4× CPU slowdown, software
+  rendering): Phong materials. No transmission — 7.5× Phong's frame cost, and it rendered dark
+  after a context restore. A Standard material with an environment map only
+  if Phong cannot reach the look — 4× the cost — and then the environment map
+  is rebuilt after a context restore. Pixel ratio capped at 2; rendering on
+  change only, nothing drawn at rest; shader-error checking off in production
+  (`renderer.debug.checkShaderErrors = false`).
+- **The fallback.** Where WebGL2 is missing or fails, or the context is lost
+  for good, the page shows a still of the default 3D view, with the slabs'
+  outlines as tap areas and the same card. The still is rendered at build
+  time by a local tool, which may drive a locally installed browser — no
+  network — and a hash of its inputs lets the validator fail a stale one. It
+  also shows while three.js loads, and it is the thumbnail an inline lesson
+  embed uses.
+- **Interface words are data, never code** (approved 2026-09-27). They live in
+  the diagram's descriptor: the tabs «৩ডি স্তর» and «প্রস্থচ্ছেদ»; the buttons
+  «আগের কোণে ফিরুন» and «বন্ধ করুন»; the unit «কিমি»; the curve's caption
+  «তাপমাত্রা (আপেক্ষিক)»; the card labels «উচ্চতা», «তাপমাত্রা» and
+  «যা ঘটে»; the layer chips «স্তর ১» to «স্তর ৫».
+- **Art** for the 3D view is cut from text-free masters kept outside `docs/`
+  (`data-sources/atmosphere-layers/art/`), whose SHA-256 and crop boxes the
+  seed records. The cut WebPs go in `docs/diagrams/<id>/art/` with a licence
+  text beside them and a credit in ⓘ. A drawn feature — a plane, a satellite,
+  an aurora — must agree with the seed.
+- **The order of the work** (approved 2026-09-27), one commit per step, each
+  at its verification tier. Nothing is committed under `docs/diagrams/` before
+  the diagram is whole: the registry lists any folder there, and `verify.mjs`
+  fails one it does not list.
+  1. Done: the registry and the home page take diagram entries.
+  2. Done: the resolver's `diagrams` kind.
+  3. Done: three.js 0.185.1 vendored and pinned.
+  4. The no-calls check tightened for 3D: a three.js loader call with a
+     hand-written URL fails like `fetch()`, a literal path into `diagrams/` or
+     `maps/` fails, and the vendored library's URLs and network calls are
+     audited against pinned counts. Tier: tools — the suites plus a fixture
+     run on a copy outside `docs/`.
+  5. The art tool: crop, clean, resize and encode WebP with size caps,
+     locally, with no network. Tier: tools; its output lands in step 8.
+  6. `docs/visual/` with the 3D exploded view — scene, overlays, interaction,
+     card, layer buttons, context loss, the fallback's display — built and
+     tested locally against the uncommitted diagram, and committed without
+     it. Tier: a new folder, nothing shared changed — the suites, the strict
+     check, and the page at 390 and 320 px with a clean console in a fresh
+     tab. Anything moved into `docs/shared/` goes first, in its own commit,
+     at the shell tier.
+  7. The fallback renderer: a local server, a locally installed headless
+     browser and ffmpeg. Tier: tools.
+  8. The diagram in one commit: seed, build, descriptor, data, art, the
+     fallback and its manifest, the validator section, and the বিবিধ section
+     with its registry entry. Tier: the diagram's own, plus the home page /
+     registry tier.
+  9. The 2D cross-section view, once it has an approved look. Tier: the
+     diagram's own.
 - A change to the home page or the registry has its own verification tier, in
   **Before every commit**.
 
@@ -692,6 +764,8 @@ State which kind a task is when reporting it.
   `border-lines`, `org-headquarters`, `environment-treaties`. Geography:
   `deserts`, `lakes`, `forests`, `mountains`, `waterfalls`, all under
   `docs/maps/`.
+- No diagram yet. What is built for diagrams is listed at the top of
+  **Interactive diagrams**.
 - **environment-treaties** — environmental conventions, treaties and
   protocols, world summits and UNFCCC COPs, in four tabs, in English (see the
   baseline section) — is built by `tools/build-environment-treaties.mjs` from
