@@ -8,7 +8,7 @@ field.** Nothing else refers to the host.
 
 ## Current host
 
-GitHub Pages, branch `main`, folder `/` (root).
+GitHub Pages, branch `main`, folder `/docs`.
 
 - Hub: `https://conceptq2026-wq.github.io/GeoQuest/`
 - `.nojekyll` at the root stops Jekyll from processing the site (harmless on

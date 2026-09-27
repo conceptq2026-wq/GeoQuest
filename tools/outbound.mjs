@@ -1,6 +1,6 @@
 // What a page asks the network for, read from its source — for the rule that a
 // page requests only static files from its own host, through the resolver, and
-// calls no API (CLAUDE.md, "Interactive diagrams": no API calls, ever).
+// calls no API (CLAUDE.md, "Portability is the point": no API calls, ever).
 //
 // A LINK is a URL the browser follows only when it is tapped: an anchor's href,
 // in <a … href="…"> markup (in HTML, or inside a JS string) or handed to a

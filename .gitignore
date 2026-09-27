@@ -5,3 +5,6 @@ tools/.cache/
 
 # Screenshots and scratch output from assistant sessions — not project files.
 Claude outputs/
+
+# tools/check.mjs output: contact sheets, the stored baseline.
+tools/.check/

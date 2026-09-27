@@ -6,6 +6,39 @@ stop and say so rather than following it. A FACT here that the tree disagrees
 with (a path, a count, an implementation status) is this file being stale:
 correct it from the tree and list every correction in your report.
 
+## Verification budget — read first
+
+The user's rule (2026-09-28). It overrides every other verification text —
+here, in `notes/`, in memory.
+
+- **While working**: only a syntax check (`node --check`), the item's build,
+  and its section of `node tools/verify-descriptor.mjs` (every map and
+  diagram has one; the validator fails one without).
+- **Once, at the end of the prompt**, after all edits:
+  - the three suites, once — `node tools/verify-descriptor.mjs`,
+    `node --test tools/resolver.test.mjs`, `node tools/verify.mjs` — and
+    after a fix only the suite that failed;
+  - `node tools/check.mjs <id>` (its header says what it does): text, 10
+    lines or fewer, contact sheets in `tools/.check/<id>/`;
+  - one look in Claude's own browser: the item, one card or one tap, one
+    screenshot; if the pane does not paint, say so and move on — one retry
+    at most.
+- **Other items**: unchanged shell, their folder hashes suffice. Only a
+  change to `docs/shell/`, `docs/visual/` or the resolver runs
+  `node tools/check.mjs --all` against a `--baseline` stored before it, as
+  text. No pixel comparisons. The straits map, the trace count and the
+  geometry hashes stay unchanged unless the task says so.
+- **Screenshots are for the user**, as contact sheets; open at most 2 per
+  prompt yourself, only when a check points at a visual problem.
+- No fps, memory or byte measurements unless asked; nothing an earlier
+  commit proved and this prompt did not touch is verified again. Big files
+  (`app.js`, `globe.js`, this file): search and line ranges, never whole.
+- **Reports: 20 lines or fewer**, numbers first, then only problems and
+  decisions for the user; no narration of the steps.
+- **After a push**: no live browser check, no screenshots — only
+  `node tools/check.mjs <id> --live` (the SHA-256 of the item's files, live
+  against committed). The user checks the live link on their phone.
+
 ## Two repos. Never confuse them.
 
 - **GeoQuest** (this repo, public, GitHub Pages) — maps and interactive
@@ -26,39 +59,15 @@ BCS / government exam prep.
 - Report in numbers, not narrative. Every report states: pending-fact count,
   trace count, geometry-hash status. Then anything that broke. Keep prose to
   what a number cannot say.
-- **Every new map or diagram goes on the home page first, before any work
-  on it — on the local preview's home page only** (the user's standing rule,
-  2026-09-27). It is listed in `tools/wip.json` — id, kind (`map` |
-  `diagram`), section, Bengali and English title — and `tools/preview.mjs`
-  adds it to the home page of its local copy of `docs/`, in its section, as
-  a card that opens whatever exists so far, or a «কাজ চলছে» page while
-  nothing does. It reaches the live home page, the committed
-  `docs/registry.json`, only when finished, leaving the list. **Finished
-  means in the registry** (the user's rule, 2026-09-27): its folder may be
-  under `docs/` while its work continues — `tools/build-registry.mjs` leaves
-  every listed id out, and `tools/verify.mjs` holds the registry to the
-  folders less the work in progress, fails an id in the list that the
-  registry has, and fails a folder whose descriptor's id, section or titles
-  differ from its entry in the list.
-- **Every task is verified by using it, in Claude's own browser** (the
-  user's standing rule, 2026-09-27): the local preview before committing,
-  the live site after a push, with screenshots of each check.
+- **Every new map or diagram goes on the home page first** — the local
+  preview's, from `tools/wip.json`, before any work; the live one only when
+  finished (the user's standing rule): `notes/home-and-registry.md`.
 
 ## Pinned, do not bump
 
 - `maplibre-gl` **6.9.0**
 - `pmtiles` **4.5.0**
 - `three` **0.185.1**
-
-Vendored under `docs/shared/vendor/<lib>-<version>/` by `tools/vendor.mjs`,
-and `tools/verify.mjs` checks the vendored code byte for byte against the
-pinned npm packages and pins each library's network surface by count (see
-**Build pins**). 6.9.0 is where Bengali label rendering was tested on a
-real device. three.js 0.185.1 is the last release that ships official
-minified builds — 0.186 dropped them — and its `three.module.min.js` imports
-`./three.core.min.js`, so the pair keeps the package's own file names.
-Upgrading is a separate, deliberate task with device testing, never a side
-effect.
 
 ## Structure
 
@@ -80,18 +89,8 @@ directory indexes, so every URL names `index.html` explicitly. Neither shell's
 page asks for a favicon (`<link rel="icon" href="data:,">`), so a browser
 never asks the host's root for one, and no map logs a 404 for it.
 
-`docs/index.html` renders its list from `docs/registry.json`, which
-`tools/build-registry.mjs` builds from every descriptor under `docs/maps/` and
-`docs/diagrams/`, less the work in progress in `tools/wip.json`. The list is
-never hand-maintained: adding a map makes it
-appear under its section with no edit. Of the list, only the section names are
-written into the page (`SECTION_NAMES`). Each descriptor declares its `section`:
-`bangladesh | international | geography | misc` — the three BCS subjects in
-syllabus order, then বিবিধ for what belongs to none of them.
-
-`docs/international/straits/` is the original live page. It is the reference
-implementation for how a map looks and behaves. Do not change it unless a task
-says to.
+The home page lists `docs/registry.json`, which is built, never written by
+hand: `notes/home-and-registry.md`.
 
 ## Portability is the point
 
@@ -100,30 +99,21 @@ and one data source — never a restructure.**
 
 - Every outbound URL comes from `docs/shared/resolver.js`. Nothing else
   constructs one.
-- `resolver.url(kind, path)`, `kind ∈ tiles | style | glyphs | sprite |
-  mapData | maps | diagrams | sharedData | registry`. The `kind → { anchor,
-  base }` table is the single place that knows where anything lives; a layout
-  change is that one edit. Only `diagrams` checks its path before resolving
-  it (see **Interactive diagrams**).
 - **Never hard-code** a base URL, host, repo name, `.pmtiles` path, glyph URL
   or data path. `grep -rn "new URL(\|location\.href\|pmtiles://"` excluding
   vendor must return only the resolver.
-- The credential cell is read **synchronously**. `transformRequest` cannot
-  await.
-- PMTiles Range reads bypass `transformRequest` entirely — they call global
-  `fetch`. Leave `pmtiles://` URLs untouched in the hook; rewriting one changes
-  which archive is opened.
-- MapLibre's `'Source'` resourceType is deliberately unmapped: it covers both
-  TileJSON and GeoJSON, and one asset class would sign the other wrongly.
-- The shell page's own subresources are not resolver business. `<link>`,
-  `<script src>` and ES `import` are resolved by the browser before any
-  JavaScript runs.
-- `resolver.pmtilesSource(path, kind = 'tiles')` gives a PMTiles archive's two
-  forms, its own URL and its `pmtiles://` tile template: a basemap is a shared
-  archive, under `tiles`; an archive that belongs to one map sits in that
-  map's folder and is named under `maps` — a globe's imagery. The shell opens
-  one through its `archive(path, kind)`, which registers it with the PMTiles
-  protocol.
+- **No API calls, ever** (the user's rule, 2026-09-27). At runtime the diagram
+  shell, like the map shell, requests only static files from our own host,
+  through the resolver — no third-party service, no API, no analytics. The
+  diagram build tools make no network calls at all: art is cut from the
+  approved masters and data comes only from the approved seed, both in
+  `data-sources/`. Nor does any map build (the user's rule, extended
+  2026-09-27): only `tools/fetch-sources.mjs` downloads, into
+  `tools/.cache/`, every file pinned in `tools/sources.json`, and a new
+  source with no published hash is pinned by its first download — its size
+  checked, its SHA-256 printed, nothing cached until that hash is recorded.
+  `tools/verify.mjs` holds both halves, with `tools/outbound.mjs` reading the
+  code — what it checks is in `notes/verify.md`.
 
 ## The map baseline — every map, without being asked
 
@@ -149,53 +139,12 @@ same form a phone under 380 px always gets. The name is never truncated.
 no picker row** — no `<select>` and no ‹ ›. The timeline is its selector, and
 keyboard access runs through the timeline's dot buttons, in time order.
 
-**A second, the user's too (2026-09-27): a globe map has no tilt button.** The
-globe stays upright: a drag turns it, a pinch zooms it, nothing tilts or
-rotates it. The shell draws the compass only where a map can rotate and the
-tilt button only where it can tilt (`maxPitch` above 0), so every flat map
-keeps both. A globe map keeps the picker row, the same bar in the same place,
-size, style and behaviour as every other map's (the user's decision,
-2026-09-28, which replaced the pill row it first had). Every map but one with
-a timeline keeps the picker. It is enforced both ways: the validator fails a
-map with neither a picker nor a timeline and a map with both; the timeline
-throws if a picker is declared beside it, and the globe module throws with no
-picker or with a timeline.
-
-Where the data comes from:
-
-- Sea names — `docs/shared/seas.json`, loaded on every map through the
-  `sharedData` kind. A map that needs to reference a sea points a `refs` field
-  at this table exactly as it would at its own. A record may also carry
-  `atByBasemap: { <basemap>: [lon, lat] }`, a better place for its label on
-  that basemap, used there instead of `at`; the name stays in its one record.
-  The Bay of Bengal has one for `bangladesh`, whose bounds its world anchor
-  lies outside. The validator requires each such anchor to lie inside that
-  basemap's frame, on open water at least 50 km from any coast.
-- Country names — the **basemap tiles**, source layer `country_labels`, field
-  `name_bn` falling back to `name_en`. No shared records file.
-- A per-map `countries` table exists only to name the countries that map
-  **emphasises**, and it joins on `adm0_a3`, never on the name.
-
-**Every map is in Bengali but one.** environment-treaties is in English, by the
-user's decision (2026-09-27), and declares it: `language: "en"`. A map that
-declares no language is Bengali; the validator accepts only `bn` and `en`.
-The shell turns its own words with the map — the page's title and every `lang`
-attribute, the load notice, country names from the tiles' `name_en` alone,
-Western digits — and shows no sea names, because `seas.json` has them in
-Bengali only. The map's English fields are the editor's, each the translation
-of a Bengali field (a date, the cited source's own wording), present exactly
-where it is: null where it is null, absent where it is absent. The Bengali
-fields stay in the data, unused there. The validator fails an English map
-that shows any Bengali field, and that map's build and validator fail an
-English field whose null or absent state differs from its Bengali one.
+A globe map has no tilt button and keeps the picker row: `notes/globe.md`.
+One map, environment-treaties, is in English: `notes/environment-treaties.md`.
 
 **Which labels are emphasised is derived, never declared** — taken from the
 `refs` field a map already has for its own data. Nothing extra to write and
 nothing extra to forget. Follow this pattern for anything similar.
-
-Selecting a record must not reset tilt or bearing: `fitBounds` defaults bearing
-to 0, so the current bearing is passed explicitly. The tilt button stops at
-pitch 55; drags are clamped at `maxPitch` 60, slightly above the button's stop.
 
 ## Data model
 
@@ -214,634 +163,6 @@ declares sources, layers, sheet rows and actions; it holds no content.
   descriptor is a bug waiting for a different phone.
 - `fitBounds` on a record unions every feature of that record. A record with
   three traces must not frame one of them.
-- **One selection at a time.** Selection is held per records table, but
-  selecting a record in one table clears every other table's selection, and a
-  selection the picker does not list puts the picker back to its placeholder.
-  The sheet shows one record, so only one may be lit.
-- **`sheet` or `sheets`.** `sheet` is the card for a map that selects from one
-  table. `sheets` is the same card keyed by records table, for a map where
-  more than one table can be selected; the validator fails a selectable table
-  with no card. A kicker that resolves to nothing is hidden. A card may also
-  declare `subtitle` — a value spec shown as a small grey line under the title
-  (the janapadas' "approximate area" caption); like a row, it hides when it
-  resolves to nothing.
-- **Card terms.** `chip` — a value spec drawn as a pill on the kicker's line
-  (a record's theme); a card declares a kicker or a chip, not both. A row
-  declared `stacked` puts its value under its label, across the card.
-  `columns: n` lays a card's rows out as cells of an n-column grid, filled in
-  order: a cell that does not apply to the record — none of the fields it
-  reads, no linked record — is left out, one whose value is null keeps its
-  place empty so its neighbour stays in its own column, and a grid row with
-  nothing in it is dropped; stacked rows run under the grid, across it. A row
-  may declare `when: { field: value | [values] }`, in `expectGeometry`'s
-  field/value shape: it applies only to records whose field holds one of the
-  values, and the validator requires each value to occur. A cell may declare
-  `short`, a value spec shown instead where the value does not fit the cell's
-  one line — measured again whenever the card resizes, card by card.
-  environment-treaties uses all of them.
-- **`referencedBy` is the reverse of a `refs` field**, in the `fromSelection`
-  shape pointed the other way. A sheet row
-  `{ "referencedBy": { "records": R, "listField": F }, "item": <value spec>,
-  "do": [actions] }` lists every record of `R` whose `F` contains the shown
-  key, in `R`'s own order, each a button that runs `do` on that record. `F`
-  must be a `refs` field pointing at the sheet's table; the validator asserts
-  it. No match hides the row, like a null. org-headquarters uses it for the
-  organisations a city hosts.
-- A picker's `groupBy` may omit `lookup`: the field's value is then the group
-  label as it stands, and `order` must name every value that occurs.
-- A tap on overlapping points goes to the one **nearest the finger**, not the
-  first the renderer lists.
-- **`recordFilter` hides records by a field value.** A control
-  `{ "type": "recordFilter", "id": ..., "records": T, "field": F, "label": ...,
-  "allLabel": ... }` draws the layerToggle's button and checkbox menu: a
-  select-all row, then one checkbox per value. The values, their order and
-  their labels are the picker's `groupBy` on the same field, which the
-  validator requires, so the two cannot list different things. Unchecking a
-  value hides every record of `T` carrying it — from every source derived
-  from `T`, from the picker and from ‹ ›, and from `referencedBy` lists — and
-  a record of a table `T` references through a `refs` field (a city) stays
-  only while a shown record still points at it. A selection the filter hides
-  is cleared and its card closed. Baseline sources are never filtered.
-  Everything starts checked on every load; nothing is persisted. The
-  mechanism is the selection's: sources re-derived with `setData`. A map
-  declares a layerToggle or a recordFilter, not both — they share a corner.
-- **Photos: one field type and two terms.** A record field of type `photo`
-  holds `{ marker, card, author, licence, licenceUrl, page }`: two files in
-  the map's folder and the whole credit. `photoMarker: { field }` on a source
-  whose points come from a record field (`geometryFrom`) draws each record as
-  a round photo — 56 px with a 2 px white ring and a soft shadow, 72 px with a
-  2 px `#0b3d91` ring when selected, the pulse behind it — and a tap runs that
-  source's click interaction. Two sites close together overlap at a wide
-  zoom (Mahasthangarh and Paharpur on the janapada map): both markers stay at
-  their real sites, the selected one draws on top, and a tap on the overlap
-  goes to the site nearest the finger, not to the disc on top; a click with
-  no pointer — Enter or Space on a focused marker — is that marker's own. A
-  record with no free photo gets the plain dot the straits map gives a
-  passage instead, so it is never missing from the map. `photo: { field }` on
-  a sheet puts the card photo (16:10) at the top of the card and its credit —
-  author · licence · Wikimedia Commons, both linked — at the bottom; one term
-  draws both, so a card cannot show a photo without the credit CC BY and CC
-  BY-SA require. When the shipped image is a crop, the value carries
-  `cropped: true` and the credit says "Photo (cropped)": CC BY-SA asks the
-  credit of a derivative to say what was changed. Sizes, rings and shadows are
-  shell CSS, identical on every map. The validator fails a photo missing
-  either file or any part of its credit, or carrying a licence other than
-  public domain, CC0, CC BY or CC BY-SA.
-- **Names avoid photos.** A photo marker is DOM, above the canvas, so
-  MapLibre's label placement cannot see it. The shell reserves each marker's
-  circle in the collision index with invisible icons on its topmost layers,
-  placed before any name: three centred rectangles that cover the circle and
-  overreach it by at most 17% of the radius (one square would by 41%, and turn
-  away names that sit beside a photo), sized from the marker as the CSS draws
-  it. A name is placed round a photo as round another name, and one with
-  nowhere to go is dropped rather than drawn under a photo. The icons are
-  never drawn and take no tap. Flat, they match the marker at every zoom;
-  tilted, MapLibre scales symbols with perspective and the DOM markers not,
-  so at the tilt button's 55° the reserve is 92–95% of the marker. A name
-  under its own photo must sit outside that photo's reserve or it is pushed
-  off it: the janapada names clear it by 0.4 px, the geography maps' by 2.5 px
-  (6 px beside it).
-- **Photos are light.** Every marker on a map loads when the map opens, so a
-  marker file is at most 8 KB; a card photo loads only when its card opens,
-  never at map load, and is at most 40 KB. The extractor steps WebP quality
-  down until each file fits; the build fails a file over either cap.
-- **Photos come from Wikimedia Commons, freely licensed, with no people.** The
-  seed records the Commons file, its page, author, licence, the original's
-  SHA-1 and the two crop boxes, in the original's pixels;
-  `tools/extract-commons-photos.mjs <map>` refuses a file whose SHA-1
-  differs, crops, and writes `photos/<id>-marker.webp` (128 px square) and
-  `photos/<id>-card.webp` (640×400) with ffmpeg. An original wider than 1280
-  px is fetched as Commons' own 1280 px rendition (a standard thumbnail width;
-  others are refused) and the crop boxes are scaled to it. The build reads
-  the committed files, never Commons. A photo is a satellite view only where
-  that is what shows the place recognisably — a whole lake, a desert with no
-  free ground photo — and never a map.
-- A card taller than 62% of the screen scrolls inside the sheet; the handle
-  still drags it.
-- **Areas nest, and the smallest wins a tap.** The Nubian Desert lies inside
-  the Sahara, Rub' al Khali inside the Arabian. A tap on overlapping areas
-  selects the smallest, measured on each record's whole geometry rather than
-  the tile-clipped piece the renderer hands back. Photo markers draw above
-  every area.
-- **A record's place comes from one named source, in the seed.** A Geography
-  seed record carries `geometry`: an `area` (a Natural Earth feature matched
-  by exact field values — a list of values where one record is several
-  features, as the Aral Sea is — or a RESOLVE extract feature) or a `point` (a
-  Natural Earth feature, an OSM node, or a Wikidata item's P625). An area's
-  photo marker sits at its pole of inaccessibility. **A wrong area is worse
-  than no area**: a polygon that is visibly wrong against the basemap and the
-  region's usual description moves to `geometry.withheld` with its reason,
-  and the record ships as a marker only unless an openly licensed better
-  polygon exists. The Libyan Desert is marker-only: its polygon runs deep
-  into Darfur and Kordofan.
-- **Ecoregion unions, by the user's approved method.** Where no single open
-  polygon of a named feature exists, its area may be the union of the RESOLVE
-  Ecoregions 2017 ecoregions that make it up (CC BY 4.0, credited on every map
-  that uses one). An ecoregion is included only if its name matches the
-  feature or a cited description places it inside it; the seed records which,
-  and why others were left out. The union is compared with the basemap and a
-  cited description of the feature's usual extent: somewhat smaller is
-  accepted and noted in `review`; claiming land that is not the feature —
-  savanna as desert, farmland as forest, an offshore island as a desert — is
-  rejected and the record stays a marker, the union kept in
-  `geometry.withheld` with the reason. Drawn this way: the Sahara (edge at
-  17–19°N, north of the conventional 15–16°N), the Arabian, Mojave, Great
-  Basin and Patagonian deserts, and the Amazon, Congo and Borneo rainforests.
-  **Dropping a disjoint component is selection, not drawing**: where a union
-  takes in a detached landmass that is not the feature, only the parts on the
-  same Natural Earth land polygon as its main body are kept, each whole
-  (`mainlandOnly` in `tools/extract-resolve.mjs`). The Patagonian steppe
-  loses the Falklands and Tierra del Fuego that way. The Caspian is Natural
-  Earth's own "Caspian Sea" marine polygon.
-- **A source whose geometry comes from OpenStreetMap declares the ODbL credit**
-  as its `attribution` — `© OpenStreetMap contributors`, linked to
-  openstreetmap.org/copyright. The licence requires it. straits (`routes`,
-  `canals`), border-lines (`lines`) and org-headquarters (`cities`) do.
-- **`attribution.extra`** lists whole credits the shell adds to ⓘ that no
-  source carries — each an https link that opens outside the WebView; the
-  validator holds that shape. latitude-longitude's NASA credit is one.
-- **`globe`** draws a map on a globe, by the shell's globe module (see
-  **Shell modules**): `{ size, open, imagery?, edgeLabels, coordinates?,
-  antipode? }`, nothing else; its table is its picker's. `size` is the
-  globe's diameter as a share of the map's shorter side; `open: { record }`
-  faces the viewer when the map opens. `imagery: { file, fadeOut }` names a
-  raster PMTiles archive in the map's own folder — PMTiles v3, raster tiles
-  from z0 — and the two zooms between which it fades out over the vector
-  basemap; the archive's own metadata carries its credit, which the
-  validator requires in ⓘ as a link. `edgeLabels: { source, text, colour:
-  { style, paint } }` names each line of `source` — a source of the
-  picker's table with a geometry file — at the globe's edge, in its colour
-  (a literal, `get`, or `match` on `get`). `coordinates: { at, lines,
-  minZoom }` shows `lines` beside every record with a point in `at`, from
-  `minZoom`; the validator requires every such record to have every line.
-  `antipode: { between: [a, b], labels: { a, b }, duration }` is the button
-  on those two records' cards. `flyTo` is the globe's action: the validator
-  fails it on a map with no globe.
-- **Generated lines keep off the tiles' clip edges.** MapLibre's own tiler
-  (`@maplibre/geojson-vt` 6.1.1, as maplibre-gl resolves it) drops a line's
-  whole piece in a tile where one of its vertices lies exactly on the
-  tile's clip edge — a quarter tile outside it — and the simplification has
-  marked that vertex unimportant, as every inner vertex of a straight line
-  is: with a vertex every 1°, 5° or 15°, every parallel vanished from the
-  eastern z1 tiles, whose edges fall at 45°W and 45°E. A parallel is
-  straight in Web Mercator and the renderer bends it on a globe, so a
-  generated parallel has a vertex every 30° and none at ±90°, and a
-  generated meridian only its two ends and the equator — one at a multiple
-  of 45° lies on an edge by construction, and the tiling proves it keeps
-  its pieces. `tools/tile-clip.mjs` finds vertices on a clip edge
-  and tiles every line as MapLibre does, failing any tile a line runs
-  through that keeps no piece of it; latitude-longitude's build and the
-  validator run it over z0–6.
-
-## Shell modules: tabs, timeline and globe
-
-A shell feature that not every map needs is a module of its own, loaded only
-for a map whose descriptor declares its term (`SHELL_MODULES` in `app.js`), so
-no other map requests it. A module mounts before the map is built — it may
-take room on the page, hide records through the shell's `hide`, add to the
-map's style and options (`build.style`, `build.options`), take the map's taps
-(`tapsOwned`, with the descriptor's click interactions as `tapTargets`) and
-add actions (`actions`) — and installs once it is, with `map`, `runActions`,
-`refilter`, `deselect`, `onChange` (after a selection, or a change in what is
-shown), `archive` and `geometry` (a source's geometry file). Everything it
-creates or changes goes through `own`, so teardown undoes it.
-
-- **`tabs: { records, field, from, label }`** divides one records table by a
-  field, one part at a time: the tabs are the rows of `from`, in its order,
-  titled by `label`. Only the active tab's records are on the map and in the
-  timeline; a table they refer to (a shared city marker) stays only while an
-  active record points at it; card links are not divided, and selecting a
-  record in another tab opens that tab. A tab the student picks resets the
-  camera to the map's own view; one opened by a selection keeps that
-  selection's frame. The first tab is active on every load; nothing is kept.
-  Drawn as one rounded pill bar, the active tab a filled pill.
-- **`timeline: { records, at, label?, rowBy?, rowLabel?, colour?, state?, do }`**
-  puts each record at its year (`at`) as a dot labelled above it — `label`
-  (default the card's title) over the year, in the map's digits — one lane per
-  `rowBy` value, each row opening with a chip (`rowLabel`, read off its first
-  record) in a tint of its colour, pinned at the left while the rows scroll
-  sideways. `colour` names a style token and paint property: the dots take
-  the markers' colour from the same expression (a literal, or `match` on
-  `get`; the timeline names anything else rather than guess). `state` lights
-  dots as a source's state does; a tap runs `do`. Nothing overlaps: every dot
-  keeps a 24 px target, and two closer than that — two records of one year —
-  move apart sideways as little as they can, never into a second lane; a
-  label that would touch a neighbour's goes below its dot, and where labels
-  still touch, the plot widens to the least px-per-year at which all fit and
-  scrolls sideways. Short of that the rows fill the panel's width, spending
-  their edge margins rather than scroll a few pixels. Year axes run along the
-  top and the bottom, pinned while the rows scroll up and down. The selected
-  dot is larger, ringed in white with a soft glow, its label bold, and a
-  dashed line in its colour runs from it down to the bottom axis; whatever
-  selected it, it is scrolled into view. The dots are buttons in time order,
-  so the keyboard walks the years.
-- **Spans are reserved, not built**: a timeline of periods would declare
-  `span: { from, to }` in place of `at`, a bar from one year to the other. The
-  validator fails a timeline that declares one, and the module throws.
-- **The docked card.** A map with a timeline lays its page out from the
-  module's CSS: the tabs, the map edge to edge, the card docked at the map's
-  foot — over its last few pixels, never over what it frames — and the panel.
-  The card shows while a record is selected, collapses with nothing selected,
-  and has a × that clears the selection (`deselect`) and gives the room back
-  to the map. A docked card does not float, so the camera is not padded for
-  it and it is not dragged (the shell checks `sheetFloats()`). The map never
-  drops under 35% of the screen: the panel fits its rows but gives way first,
-  down to one row (122 px), then the card, down to its title; each scrolls
-  inside itself when short of room.
-- The timeline is the map's selector: see the baseline exception above.
-- **`globe`** (`docs/shell/globe.js`, `globe.css`; the term under **Data
-  model**) draws the map on MapLibre's own globe projection, held upright:
-  no rotation, no tilt. It opens with `open` facing the viewer, the globe
-  `size` of the map's shorter side, the camera sized from MapLibre's own
-  globe geometry before the first frame; when the card docks or closes, a
-  globe seen whole is fitted again. Everything the module draws over the
-  globe is placed by its own projection of MapLibre's globe at pitch 0,
-  within 0.001 px of `map.project` at every zoom.
-  - **The picker row** is the map's selector, the shell's own, exactly as
-    on every map (the user's decision, 2026-09-28, replacing a pill row):
-    `globe.css` gives the header the inset every map's page gives it on a
-    phone, 10 px, while the globe itself spans the page's width. Choosing
-    a record, or ‹ ›, runs the picker's `do` — on latitude-longitude
-    select and `flyTo`, 1.8 s; the shell keeps the dropdown on the
-    selection, whatever made it (a tap, the antipode button), and back on
-    its placeholder when the card closes or a tap finds nothing. A line is
-    turned to the least way (the least change of longitude and latitude
-    together) into the globe's middle, seen whole from no further toward a
-    pole than 40°; a pole comes to the middle's top or foot; a place is
-    fitted to its frame. A flight cut short, by another or by a drag, runs
-    nothing after it.
-  - **The poles**: a record whose point lies beyond ±85.05°, which the map's
-    point layers cannot draw, is taken off them — every layer on a point
-    source of the table, its tap layer too, filtered by the records' keys,
-    not the shell's `hide`, so the picker and ‹ › keep it — and drawn as a
-    named marker at its true place, hidden and untappable on the far side.
-  - **Each line's name at the globe's visible edge**, with a short leader
-    to a dot on the line just inside it: where the line leaves the visible
-    globe — its edge, or the map's where the globe is larger than the map —
-    a parallel's name first on the left, any other line's at the bottom.
-    The names on one side stand in the order of their lines there, moved
-    apart as little as they can, so no two overlap and no leaders cross; a
-    name blocked by a control, a pole's name, a callout or a place's dot or
-    name slides along its side, then tries its line's next crossing, and is
-    hidden when it has none. The selected line's name is placed first and
-    filled; a line out of sight has none. Measured: 0 overlaps over 72 views
-    round the globe at 390×844 and 320×640.
-  - **Latitude and longitude beside a place** (`coordinates`), from z3.2
-    on latitude-longitude — below it Bangladesh is under about 30 px across
-    — while the place faces the viewer: one line per value, never broken,
-    the selected place's first, each in the first box round its place that
-    covers nothing else and no place's point.
-  - **Taps are the module's**, in the user's order (2026-09-28): the nearest
-    dot within 14 px; else the nearest line within 14 px, lines within
-    1.5 px of each other (as at a crossing) going by the picker's order; else the
-    smallest area under the finger, measured on its whole outline. Only what
-    faces the viewer counts — a dot in front, a line's run in front, an area
-    holding the tap's own point on the front of the globe, found by the
-    module's own inverse projection (within 0.0001 km of MapLibre's) — so
-    nothing on the far side is ever hit; a tap on nothing closes the card.
-    On latitude-longitude the Tropic of Cancer × 90°E crossing, in Faridpur,
-    selects Dhaka at the opening zoom, whose dot lies 1 px from it, and the
-    Tropic of Cancer at z5.2, by the picker's order; a tap on either line inside
-    Bangladesh selects that line, one 20 px or more from both selects
-    Bangladesh, one inside the antipode's outline the antipode, and the
-    equator × 90°E the equator.
-  - **The docked card**, as the timeline's: shown while a record is
-    selected, with a × that clears the selection, its chip tinted with the
-    record's colour. On a record of `antipode.between` it carries one button,
-    kept at the card's foot while a long card scrolls under it, that turns the
-    globe to the other place over `duration` (2.6 s) — a jump with reduced
-    motion — and opens its card on arrival. From the tap until the map is
-    idle again, the pair's outlines and points are drawn by the module's own
-    overlay, as the descriptor's layers draw them, since the map's own tiles
-    for the far side load only as it turns into view; then they are handed
-    back. Measured by frame: 0 frames without the outline or the point, both
-    ways, at both phone sizes, with and without reduced motion.
-  - Measured (2026-09-28): the module is 61,646 bytes (19,621 gzipped); its
-    work each frame 0.2–0.4 ms on this machine (1.4–2.3 ms at 4× CPU
-    slowdown); the globe turns at 50 fps at 4× CPU slowdown on this machine's
-    GPU, 15 fps in software rendering.
-
-## Interactive diagrams
-
-The user's decisions (2026-09-27; the exploded view revised the same day).
-Built so far: the registry and the home page take diagram entries, the
-resolver has a `diagrams` kind, three.js 0.185.1 is vendored for a future 3D
-diagram — atmosphere-layers does not use it — the no-calls check covers
-diagram code, vendored libraries and diagram build tools,
-`tools/build-diagram-atmosphere-art.mjs` cuts atmosphere-layers' art into a
-staging folder outside `docs/`, the diagram shell, `docs/visual/`, draws the
-exploded view, and atmosphere-layers is live in
-`docs/diagrams/atmosphere-layers/`, under বিবিধ on the home page. The
-cross-section view is not built, so every rule below about it is decided,
-not built.
-
-- **A second shell.** A diagram opens in its own page,
-  `docs/visual/index.html?v=<id>` — HTML, images and SVG, served from our own
-  host like everything else; no MapLibre. A 3D diagram, if one comes, adds
-  WebGL2 through three.js, which MapLibre already requires, so no new device
-  requirement. `docs/shell/` and its URLs do not change for it. A diagram's
-  built data lives in `docs/diagrams/<id>/`, its approved seed in
-  `data-sources/<id>/`.
-- **The `diagrams` kind.** The diagram shell reaches a diagram's files through
-  `resolver.url('diagrams', '<id>/<path>')`, which resolves to
-  `diagrams/<id>/<path>` from the site root, as `maps` does for a map. The id
-  follows the map shell's rule for `?map=` — the resolver's unit test reads
-  that rule from `shell/app.js`, so the two cannot drift apart. An absolute
-  path, a `..` segment, a backslash or an empty segment — spelled out or
-  percent-encoded — is refused rather than resolved, as is an id with no file
-  under it. No other kind checks its path.
-- **One registry, one home page.** `tools/build-registry.mjs` reads
-  `docs/diagrams/*/descriptor.json` beside `docs/maps/`. A diagram's entry
-  carries `"kind": "diagram"`; a map's entry gets no new field. Ids are unique
-  across maps and diagrams: the generator fails an id used by both. The home
-  page opens an entry by its kind — a map in `shell/index.html?map=<id>`, a
-  diagram in `visual/index.html?v=<id>`. `tools/verify.mjs` holds the registry
-  to both folders and runs the map baseline's checks on maps only.
-- **No API calls, ever** (the user's rule, 2026-09-27). At runtime the diagram
-  shell, like the map shell, requests only static files from our own host,
-  through the resolver — no third-party service, no API, no analytics. The
-  diagram build tools make no network calls at all: art is cut from the
-  approved masters and data comes only from the approved seed, both in
-  `data-sources/`. Nor does any map build (the user's rule, extended
-  2026-09-27): only `tools/fetch-sources.mjs` downloads, into
-  `tools/.cache/`, every file pinned in `tools/sources.json`, and a new
-  source with no published hash is pinned by its first download — its size
-  checked, its SHA-256 printed, nothing cached until that hash is recorded.
-  `tools/verify.mjs` holds both halves, with `tools/outbound.mjs` reading the
-  code:
-  - Under `docs/visual/` it fails:
-    - any absolute URL;
-    - a request whose URL is written by hand rather than taken from the
-      resolver: `fetch()`, XHR, or a three.js loader's `load()`, `loadAsync()`,
-      `setPath()` or `setResourcePath()`, on any object;
-    - a literal path into `diagrams/` or `maps/`, since their files come only
-      through the resolver;
-    - a beacon or socket;
-    - a URL built outside the resolver;
-    - code or a subresource loaded by anything but a relative path;
-    - a bare host name.
-
-    Only the W3C namespace names, SVG's among them, pass: they are names,
-    never fetched. So does `document.fonts.load()`, which takes a CSS font,
-    not a URL.
-  - The same check runs over `docs/shell/` and `docs/index.html` as a report
-    that fails nothing. It tells a link from a request by where the URL
-    stands:
-    - an anchor's `href` — in `<a>` markup, or passed to a helper whose own
-      definition writes one, as the map shell's `credit()` does — is followed
-      only on a tap;
-    - the argument of `fetch()`, `import()` and the like, a static import, an
-      element's `src`, a `<link href>` and a CSS `url()` are fetched without
-      one.
-  - Each vendored library's network surface is counted and pinned (see
-    **Build pins**).
-  - A build tool, a diagram's or a map's — `tools/build-*.mjs`, and every
-    local module it imports — fails on a network module (`http`, `https`,
-    `net`, `dns`, `undici` and the like), a `fetch()`, a socket, or a child
-    process that runs `curl` or `wget`.
-- **The diagram shell, as built.** `docs/visual/index.html` with its own
-  `app.js` and `style.css`, and one module per view type, loaded only when
-  that view's tab first opens — today `exploded.js`. `app.js` reads the
-  descriptor and the diagram's data through the resolver, draws one tab per
-  view the descriptor declares, and fills ⓘ. A descriptor with one view gets
-  no tab bar, and the header keeps ⓘ's own row, so the stage starts below it
-  (atmosphere-layers today, until its cross-section lands). A view that
-  declares no `type` is not built yet: its tab is there and its panel stays
-  empty; a type with no module throws. From the map shell, as it
-  is there: the `?v=` id rule (the map shell's for `?map=`), no page zoom,
-  the visually hidden `<h1>` filled from the descriptor's Bengali title;
-  Noto Sans Bengali from `docs/shared/fonts/`, preloaded; ⓘ drawn as
-  MapLibre's compact attribution control, collapsed until tapped, with the
-  Noto Sans Bengali credit; the load notice's look; the tab bar's roles,
-  roving focus and arrow keys; the docked card's ×. The page's `<title>` is
-  the Bengali title too, by the user's decision — the map shell's takes the
-  English one first. ⓘ lists the sources the diagram's data cites, each
-  once, from the data alone, each opening outside the WebView. Escape closes
-  ⓘ first, then the card. The page asks for no favicon (`data:,`), so a
-  browser does not ask the host's root for one.
-- **The load notice.** When the diagram cannot be loaded — its descriptor,
-  its data, a view's module or own file, or the view's picture — the page
-  says so over everything, in the descriptor's words (`loadFailed`,
-  `loadAdvice`) once it has them, and in its own copy of the same words,
-  in `index.html`, when the descriptor itself fails.
-- **Shared pieces move only when needed.** A piece of the map shell moves into
-  `docs/shared/` only when the diagram shell needs it, and each move is proven
-  at the shell tier. None has moved: the diagram shell imports only
-  `docs/shared/resolver.js` and the font.
-- **The home section বিবিধ (`misc`)**, with the English heading
-  "Miscellaneous", came with its first entry, atmosphere-layers — an empty
-  section would have shown "Coming soon": `misc` in the registry
-  generator's and the validator's `SECTIONS`, after the three syllabus
-  sections, and both names in the home page's `SECTION_NAMES`.
-- **The first diagram is atmosphere-layers, in Bengali**, with two views: the
-  exploded view and the cross-section. **The exploded view matches
-  `design/mockups/atmosphere-layers-exploded.png` 100%** (the user's
-  decision, 2026-09-27, replacing the earlier 3D plan): it is 2D painted art,
-  not a three.js scene and not art drawn in code — five glossy, translucent
-  slabs with gaps above a slice of Earth, the km axis on the left, the
-  relative temperature curve on the right, the docked card at the bottom. The
-  cross-section is 2D SVG and has no approved look yet. The picture guides
-  the look, never the data: the axis ticks sit on the seed's layer
-  boundaries, and the temperature curve follows the seed's points only.
-  Nothing is hard-coded from the seed: the user revises its content later.
-- **The art is final and approved by the user**, in
-  `data-sources/atmosphere-layers/art/`, committed with the seed — the eight
-  inputs below; `earth-original-v3.png`, not an input, stays untracked:
-  - `stack-master.png` — the whole stack without text, 1024×1536, on a
-    background of `#EDF4FA`. It is the position reference.
-  - `exosphere.png`, `thermosphere.png`, `mesosphere.png`,
-    `stratosphere.png`, `troposphere.png` and `earth.png` — one slab, or the
-    Earth slice, alone on the same canvas. The image model moved each one
-    vertically, and drew some up to 17 px thicker or thinner than the master
-    does, so each is placed by the master, never by its own position: fitted
-    by the ends of its two upright edges, alone and in the master, and centred
-    on them. The fitted offsets lie within 1.2–4.5 px of the editor's
-    measurements (the top of the front-left upright edge, alone → in the
-    master: exosphere 245 → 247, thermosphere 330 → 402, mesosphere 518 →
-    564, stratosphere 681 → 740, troposphere 679 → 934). `earth.png` is the
-    editor's retouch of `earth-original-v3.png`, its missing back strip
-    filled in, with the same geometry: it draws the Earth 750 px wide against
-    the master's 675, and fits at scale 0.9, its left edge at x 176 and its
-    front-left edge's top at y 1181.5 — the editor's 0.9, 176 and 1181. The
-    original is kept for the record only.
-  - `icons-master.png` — the card's 13 icons, in a four-column grid with
-    light cell borders: 1 ozone ring, 2 jet, 3 weather balloon, 4 cloud with
-    sun (weather), 5 storm with lightning, 6 snowy peak (Everest), 7 wind
-    ribbon (jet stream), 8 meteor, 9 high clouds, 10 aurora, 11 ionosphere
-    (radio arcs over Earth), 12 radio tower, 13 satellite.
-
-  The art was made by ConceptQ with its own model. No licence note and no
-  credit is shipped or shown for it — not in ⓘ, not beside the art. The
-  photo credits on the maps are unchanged.
-- **The default view is `stack-master.png` itself** (the user's decision,
-  2026-09-27), cut to the stack's bounds: pixel for pixel the approved
-  picture, the only loss the encoder's. The draw rule: that one picture, and
-  over it only the lit slab. The single-slab images are the model's own
-  renders — a slab's clouds, stars or thickness not quite the master's — so
-  they are never composed into the default view; each is drawn only when its
-  slab is lit.
-- **The one interaction is a tap.** Nothing rotates. Tapping a slab lights
-  it: its cut-out is drawn over the master at its fitted place, scaled about
-  its centre by 1.08 — or more, where that is what it takes for the cut-out
-  alone to cover the master's own copy of the slab (today the stratosphere,
-  1.11) — lifted 2 layout px, over the mockup's white outline and soft glow;
-  it highlights that layer's stretch of the relative temperature curve; the
-  card opens. The other slabs are not dimmed: the mockup does not dim them.
-  «বন্ধ করুন» (×), or tapping the slab again, closes it. With reduced motion,
-  nothing animates. The Earth slice is never lit and has no cut-out. Tap
-  areas are the slabs' outlines on the master, tested from the exosphere
-  down, since each outline takes in its slab's top face hidden behind the
-  slab above. The ionosphere and the aurora are in the thermosphere slab, as
-  the art draws them, and the card gives their real ranges from the seed.
-- **All text is HTML over the art**, never baked into an image. Each slab
-  shows its Bengali name from the seed, laid along the slab's front face as
-  in the mockup; the km axis and the relative temperature curve come from the
-  seed.
-- **The page's background is the art's own colour**, `#EDF4FA`, so the
-  default view's edges and a lit cut-out's soft edges blend in without
-  halos — taken as the view's file shows it at its edges once decoded
-  (`view.edge` in the manifest, `#EBF3FA` today), since the encoder moves a
-  flat colour a level or two and the file's rectangle showed against the
-  painted one. The card takes the icons' decoded white (`iconEdge`,
-  `#FDFDFD`) the same way.
-- **The exploded view, as built** (`docs/visual/exploded.js`):
-  - The stage, then the card docked under it. The stage never drops under
-    45% of the screen; the card takes the room its content needs and
-    scrolls inside itself. The art is scaled to fit the stage at those 45%,
-    never past its own size, between the km axis's column on its left, as
-    wide as the widest label, and the curve's on its right, as wide as its
-    caption's widest word — so a card opening never shrinks it. It is
-    centred in the stage's spare height, the hint under it while nothing is
-    lit; a card opening takes that room, and the art glides up. Names, axis
-    and curve show only once the picture has decoded.
-  - Each slab's name is a real button, bottom to top in the page's order,
-    `lang="bn"`, `aria-pressed` on the lit one; its font follows the art's
-    scale, never under 11 px. A lit slab's name moves with its cut-out.
-  - The km axis ticks every boundary the art has, with its height from the
-    data in Bengali digits: the Earth's 0, the pauses, and the exosphere's
-    top, «১০,০০০ কিমি». A height the seed gives as a range — `toKmRange`,
-    `fromKmRange` or `atKmRange`, NOAA's 6–20 km for the tropopause, by the
-    user's decision to use NOAA's figures until the book is in — is shown as
-    that range, «৬–২০ কিমি». «স্কেল অনুপাতে নয়» sits low in the axis's
-    column.
-  - The curve stands each profile point at its boundary's level, the known
-    temperatures across the first 78% of its width from − to +, an "up to"
-    point at + with an up-arrow; between two points an S with upright ends,
-    which never leaves the span of the two, so it shows no turn the data does
-    not have. The lit layer's stretch is drawn brighter and wider, with a
-    halo; a layer the profile does not reach (the exosphere) has none.
-  - The card: the chip in the layer's colour (the descriptor's), the name,
-    «উচ্চতা» (the layer's span) beside «তাপমাত্রা» (`trendBn`, `rateBn`
-    under it), two small line glyphs drawn in code, then «যা ঘটে» with each
-    feature's icon and name, three to a row, and under the name the reach of
-    a feature that has one (the aurora, the ionosphere, the ozone layer's
-    15–35 km). A span reads «৫০–৮৫ কিমি», or, where
-    an end is itself a range, joins its ends with «থেকে» (the user's
-    decision): the troposphere «০ থেকে ৬–২০ কিমি», the stratosphere
-    «৬–২০ থেকে ৫০ কিমি». A line breaks only at the spaces round «থেকে» —
-    never inside a range, nor between a number and its unit. A span with a
-    pending end, and a pending line, is not shown; a layer with no `trendBn`
-    has no «তাপমাত্রা» column — today the exosphere, whose one line, that
-    atoms and molecules escape into space, the editor moved to `noteBn`
-    (2026-09-27): no source gives it a temperature. `noteBn` is not shown.
-  - Keyboard: the names by Tab, Enter or Space lights one, Escape or × closes
-    it and focus returns to its name.
-  - A lit slab's cut-out, and a card's icons, load only when that slab is
-    lit: the first open is the page, the font, the descriptor, the data, the
-    manifest and the view.
-- **No WebGL and no three.js for this diagram**, so no fallback renderer.
-  three.js 0.185.1 stays vendored, unused, for a future 3D diagram, under
-  the rendering rule measured for it (390×844, 4× CPU slowdown, software
-  rendering): Phong materials; no transmission — 7.5× Phong's frame cost,
-  and it rendered dark after a context restore; a Standard material with an
-  environment map only if Phong cannot reach the look — 4× the cost — its
-  environment map rebuilt after a context restore; pixel ratio capped at 2;
-  rendering on change only, nothing drawn at rest; shader-error checking off
-  in production (`renderer.debug.checkShaderErrors = false`).
-- **Interface words are data, never code** (approved 2026-09-27). They live in
-  the diagram's descriptor: the tabs «৩ডি স্তর» and «প্রস্থচ্ছেদ»; the button
-  «বন্ধ করুন»; the unit «কিমি»; the curve's caption
-  «তাপমাত্রা (আপেক্ষিক)»; the card labels «উচ্চতা», «তাপমাত্রা» and
-  «যা ঘটে»; the layer chips «স্তর ১» to «স্তর ৫»; the scale caption
-  «স্কেল অনুপাতে নয়», the mockup's "scale not to proportion"; the hint
-  «যেকোনো স্তরে ট্যাপ করুন», shown under the stack while nothing is lit and
-  hidden while a card is open; «থেকে», joining a span whose end is a range;
-  and the load notice, «ডায়াগ্রামটি লোড করা যায়নি।» over
-  «ইন্টারনেট সংযোগ দেখে আবার চেষ্টা করুন।» (the last four approved with the
-  diagram shell, 2026-09-27). The diagram's title, «বায়ুমণ্ডলের স্তর», is in
-  its descriptor too. No other Bengali is shown until the user approves it.
-- **The order of the work** (approved 2026-09-27, revised the same day), one
-  commit per step, each at its verification tier. Nothing is committed under
-  `docs/diagrams/` before the diagram is whole: the registry lists any folder
-  there, and `verify.mjs` fails one it does not list.
-  1. Done: the registry and the home page take diagram entries.
-  2. Done: the resolver's `diagrams` kind.
-  3. Done: three.js 0.185.1 vendored and pinned.
-  4. Done: the no-calls check tightened for 3D — loader calls, data paths,
-     the pinned library surface, and the build-tool check.
-  5. Done: the art tool, `tools/build-diagram-atmosphere-art.mjs`, inside the
-     no-network rule — ffmpeg on this machine and the approved files, nothing
-     else. It refuses an input whose SHA-256 differs from the seed's
-     `art.files`. It writes, as WebP at 1× and 2× for a layout 390 CSS px
-     wide — the master's 1024 px making 390 — at quality 82 stepping down to
-     fit each file's cap:
-     - the default view: the master, cut to the stack's bounds, capped at 24
-       KB and 64 KB;
-     - the five slabs' cut-outs, for the lit state, capped at 12 KB and 32
-       KB. Each is placed by the master, at the placements recorded in the
-       tool, and the build fails if a fresh fit (`--measure`) moves one. Each
-       is cut out with a soft alpha key against its own image's background —
-       solid inside the picture's shape, holes filled, so a white cloud or
-       edge never shows what lies behind it; soft only at the edge and in the
-       glows and shadows, where every pixel shows over that background
-       exactly as painted; a speck of the image's noise dropped;
-     - the 13 icons, as squares inside their cell borders, opaque on the
-       card's white, 40 CSS px across, capped at 1 KB and 2 KB.
-
-     `manifest.json` gives the page's colour, `#EDF4FA`, taken from the
-     master, and the colours the view's and the icons' files show at their
-     edges once decoded, for what lies behind them; the view's box; and for
-     each slab its cut-out's box, and the
-     least scale from 1.08 at which the lit cut-out alone covers the master's
-     own copy of it, checked at 2×. Its order, tap outline, name line (two
-     points, the angle, the face's height), upright edges, and the points
-     where the km axis and the curve meet it all follow the master: the
-     cut-out's shape with its top face moved to the master's upright tops and
-     its foot to their feet. It also gives the boundaries — in the middle of
-     each gap, by the seed's boundary ids — and the icons, by the seed's
-     feature ids.
-
-     The proof: the view against the master, where only the encoder's loss
-     may show; each cut over the page's colour against its own image, within
-     a mean of 1 level and a 99th percentile of 4, or the build fails; the
-     encoder's loss for each file; and each slab lit, as the page will draw
-     it. The outputs are staged, untracked, in
-     `data-sources/atmosphere-layers/build/`, from where the data build
-     copies them into the diagram's folder. Tier: tools.
-  6. Done: `docs/visual/` with the 2D exploded view (see **The diagram
-     shell, as built** and **The exploded view, as built**), tested locally
-     against the uncommitted diagram and committed without it, once the user
-     approved its look. Tier: a new folder, nothing shared changed — the
-     suites, the strict check, and the page at 390 and 320 px with a clean
-     console in a fresh tab.
-  7. Done: the diagram landed with its exploded view alone (the user's
-     decision, 2026-09-27, replacing the plan to wait for the cross-section):
-     the seed and the eight art inputs; `tools/build-diagram-atmosphere-layers.mjs`,
-     which builds data, art and manifest into
-     `docs/diagrams/atmosphere-layers/` from the seed, the art tool's staging
-     folder and the descriptor authored there, which it only reads — a
-     second build is byte-identical; a preview tool, since
-     `tools/preview.mjs --build <id>`, which builds into a temporary copy of
-     `docs/` outside the repo and serves it on 127.0.0.1, to see a change
-     before it is built in; the diagram's
-     section in `verify-descriptor.mjs`; and বিবিধ with its registry entry.
-     While the descriptor declares one view, the tab bar is hidden: no empty
-     tab. Tier: the diagram's own, plus the home page / registry tier.
-  8. Next: the 2D cross-section view, once it has an approved look. The tab
-     bar returns with it, both tabs as in the mockup. Tier: the diagram's
-     own.
-- A change to the home page or the registry has its own verification tier, in
-  **Before every commit**.
 
 ## `null` versus absent — they are different
 
@@ -877,109 +198,15 @@ by map. **Nothing is guessed to fill a gap.**
   wrong for this product.
 - Where sources disagree, record both, show the more common one, and record the
   disagreement. Never silently pick.
-- **Provenance lives outside the served tree, in the seed.**
-  `data-sources/<map>/*.seed.json` is the provenance carrier. It holds two
-  things: `review`, the free-text editorial note on a record whose sourcing is
-  unsettled, and `sources`, an object keyed by the record field each citation
-  justifies. Every cited field carries at least one citation — the
-  authoritative source, per the rule above — and the build fails a field with
-  none, or with two from the same host, since one host is one source. Records
-  written under the older two-source rule keep their second citation; it is not
-  deleted. What is cited is the feature's **documented extent**, not the
-  point — the point only has to lie on that extent, the way the straits map
-  marks a strait with a point. There is no `provenance.json` and none is
-  wanted — one input, not two. The seed is also where the shipped fields are
-  built from, but nothing in it that is provenance — `review`, `sources` — is
-  shipped in `records.json` or reaches a student.
 - The user's own verification is recorded as editor-verified with a date, and
   stays distinguishable from a cited source.
 - Never invent Bengali content. An unsupplied Bengali field is `null`.
-- **Names are the exception, by decision.** Where a record has no Bengali name,
-  its English name is final: `nameBn` is **absent**, not null, and never counts
-  as pending. The record is listed in `ENGLISH_NAME_FINAL` in the build, and
-  every place a name is shown — map label, picker, sheet title — falls back
-  `nameBn` → `nameEn` (`["coalesce", ["get","nameBn"], ["get","nameEn"]]` on the
-  map, `compose` in the picker and sheet). The build fails a listed record that
-  carries a `nameBn`, an unlisted record that lacks one, and any `nameBn: null`.
-  Supplying a Bengali name later means adding it and taking the record off the
-  list in the same edit.
 - **A value that varies by nature is not unverified.** Where sources differ
   because the thing itself changes — Mont Blanc's summit is an ice cap whose
   thickness changes — the card shows the most recent survey as "প্রায় …",
   cited to that survey and its year, and `review` logs the other values.
 - Shortening the pending list is not a goal. A fact with one weak source stays
   pending.
-
-## Name matching is always constrained
-
-Never search an external source by bare name. Always bound by bbox or filter by
-tags. A bare name search once returned a rural road in Ontario named "Wallace
-Line" and a way named "Ligne Maginot" in New Jersey — either would have shipped
-a confidently wrong line. State the constraint used.
-
-## `bdPov` means one thing
-
-`bdPov` describes **only what the Natural Earth Bangladesh point-of-view
-boundary file shows for this record's traces.** It is therefore **absent** —
-not applicable — for any record whose geometry does not come from Natural
-Earth.
-
-Each record records its geometry source: `naturalEarth | osm | generated |
-none`, in the build input, not in shipped records. Build assertion: `bdPov` is
-present if and only if the source is `naturalEarth`, and the build fails
-naming the record and both values. `geometrySource` is derived by the build
-from how the geometry was produced, lives in `lines.seed.json`, and is dropped
-on the way into `records.json`. Alongside it the records carry `hasTrace` (a
-Natural Earth trace exists) and `hasGeometry` (any geometry exists — traced,
-OSM or generated), and it is `hasGeometry` the map keys off.
-
-Bangladesh's own position on a line is a different claim, is user-supplied
-content, and does not exist as a field yet.
-
-## feature-state is forbidden in `filter` and in layout properties
-
-Proven against MapLibre's own validator: *"feature-state data expressions are
-not supported with filters"*, and the same for layout properties. So selection
-state is written into the features and the source is re-derived with `setData`.
-That is the mechanism. Do not reintroduce feature-state for selection.
-
-## Records with no line geometry get a point marker
-
-A record that cannot be traced is marked with a point, the same treatment the
-straits map gives a passage — radius 6, `#0b3d91`, 2px white stroke, property
-for property. On selection the circle hides and the pulsing DOM marker takes
-its place, exactly as on straits. A record that has a line to draw — traced or
-generated — gets no marker and keeps the line-width idiom.
-
-The marker is one `maplibregl.Marker` placed at one coordinate, so it is
-narrowed by a condition rather than by the source it hangs off:
-`selectionMarker` takes an optional `when`, in the same field/value shape
-`expectGeometry` uses. border-lines declares `{ when: { hasGeometry: false } }`;
-straits declares `true`. More than one source may declare `selectionMarker`,
-at most one per records table; the one marker goes to whichever table holds
-the selection. org-headquarters declares it on `cities` and on
-`organisations`, so a tapped city and a chosen organisation both pulse at the
-city.
-
-The build fails, naming the record, when a record has no line geometry, no
-point and no frame. A record that legitimately cannot be given a point is
-listed in `NO_POINT_YET`, and the build also fails if that list goes stale.
-
-**Never silently absent from the map.**
-
-## Frames need basemap context
-
-Every basemap's tiles stop at z6 outside its detail areas — world.pmtiles'
-strait boxes, bangladesh.pmtiles' Bangladesh box. A frame tight around a
-city-scale feature leaves its marker on blank land with nothing to place it
-against. Widen the frame and say why in the report.
-
-**Measure every record's resulting zoom at phone width — a 390 px wide
-viewport (390×780), which leaves 368 px of map — and widen anything that lands
-past z6.** Zoom depends on the canvas, so a frame that looks fine on a desktop
-pane can land at z7+ on a phone. A record with no frame is fitted to its own
-geometry and is measured the same way: a short traced line needs a frame too,
-and that frame must contain the whole trace.
 
 ## Build pins
 
@@ -1038,66 +265,6 @@ and was caught only because a count moved.
 Identity comes from stable codes (`ADM0_A3`), never from names. Names are
 content.
 
-## Teardown is derived, not written
-
-The builder records every id it creates — layer, source, image, handler, timer,
-observer, DOM node — into a per-map registry, and teardown loops it in reverse;
-a change a map makes to the page it did not create — a class, an inline style
-on the shell's own card — is recorded too, with how to undo it (`own.undo`).
-Correctness must not depend on anyone remembering anything.
-
-Between teardown and the next build, a **leak assertion**: layer, source and
-image sets equal the pristine baseline, the registry is empty, no popups or
-markers remain, handler and observer registries are empty. Loud in dev,
-counted in production.
-
-The build pipeline runs an **A→B→A test**: build A, switch to B, switch back,
-assert the style is identical to a freshly built A. *Not built yet: there is no
-map switching. The shell builds one map per page load, and teardown ends by
-removing the `Map` itself. `teardown()` and `assertNoLeaks()` exist and are
-exercised, and the leak assertion reports both directions — it throws while a
-map is live and reports clean once torn down.*
-
-Kept across a switch: the `Map` instance and its WebGL context, the basemap
-source and layers, the glyph atlas, the PMTiles archive registration, the
-resolver and credential cell — and the baseline label sources and layers, which
-are deliberately left out of the per-map registry for exactly this reason.
-
-One live WebGL context, ever. An inline lesson embed is a static thumbnail with
-tap-to-open, never a live map.
-
-## Before every commit
-
-- All three suites pass: `node tools/verify-descriptor.mjs`, `node --test
-  tools/resolver.test.mjs`, `node tools/verify.mjs`. Every map under
-  `docs/maps/` and every diagram under `docs/diagrams/` has its own section
-  in `verify-descriptor.mjs`; the validator fails one without, naming it.
-- 320px wide renders correctly.
-- Console clean **in a fresh tab** — stale buffers from an earlier load have
-  produced false failures more than once.
-- The straits map unchanged unless the task says otherwise.
-- Trace count and geometry hashes unchanged unless the task changed geometry.
-
-Verification scales with what changed:
-
-- Only one map's or one diagram's data or its own folder: run the three
-  suites and check that map or diagram. Do not open other maps.
-- The home page or the registry: the three suites, registry entries
-  byte-identical for existing maps, and the home page's existing sections
-  rendering identically at 390 and 320 px.
-- The shell or shared code (`docs/shell/`, `docs/shared/`, `tools/lib/`): run
-  the suites, plus a request-and-camera comparison on two maps only, straits
-  (world basemap) and ancient-janapadas (bangladesh basemap), at the site root
-  only.
-- A basemap, a vendored library, or the resolver: full verification as before.
-- New shell features are separate modules that load only for maps whose
-  descriptor uses them.
-
-Whatever the tier, the task is also used in Claude's own browser: the local
-preview (`tools/preview.mjs`) at 390 and 320 px before committing, and the
-live site after a push. Screenshots only of what changed. The pending-count
-summary stays in every report.
-
 ## What needs the user's approval
 
 Needs approval: any schema change or new descriptor term; which places appear on
@@ -1115,257 +282,22 @@ State which kind a task is when reporting it.
   `border-lines`, `org-headquarters`, `environment-treaties`. Geography:
   `deserts`, `lakes`, `forests`, `mountains`, `waterfalls` and
   `latitude-longitude`, all under `docs/maps/`.
-- One diagram, under বিবিধ: `atmosphere-layers`, in `docs/diagrams/`, with
-  its exploded view; its cross-section is next. It is built by
-  `tools/build-diagram-atmosphere-art.mjs`, then
-  `tools/build-diagram-atmosphere-layers.mjs`, from
-  `data-sources/atmosphere-layers/` — the seed, NOAA's figures by the user's
-  decision until the user's book is in, and the eight approved art inputs.
-  Nothing on it is pending. What is built for diagrams is listed at the top
-  of **Interactive diagrams**.
 - Work in progress (`tools/wip.json`): none. The list is empty, which
   `tools/verify.mjs`, `tools/build-registry.mjs` and `tools/preview.mjs`
   all take as it is.
-- **latitude-longitude**, in geography, «অক্ষরেখা ও দ্রাঘিমারেখা» /
-  "Latitude & Longitude" (the title the user confirmed, 2026-09-28), left
-  the work in progress for the registry on 2026-09-28. Its look is
-  `design/mockups/globe-latitude-longitude.png`, the user's approved mockup:
-  a 3D globe with its lines, a pill row and a docked card — but for the pill
-  row, which the user replaced with the standard picker row (2026-09-28). The
-  shell's globe module draws it (see **Shell modules**).
-  - `tools/build-latitude-longitude.mjs` builds it from the editor's seed,
-    `data-sources/latitude-longitude/latitude-longitude.seed.json`, which it
-    reads and never writes: one records table, `items` — eight lines, the
-    two poles and Greenwich, Bangladesh, Dhaka and Bangladesh's antipode —
-    and the 15° graticule as a source of its own, drawn and never selected.
-  - Every line is drawn at the seed's value: the equator, the tropics at the
-    conventional 23°30′, the polar circles at 66°30′ (the user's decision:
-    textbook values), the prime meridian and 90°E — a parallel with a vertex
-    every 30°, a meridian with its two ends and the equator (see **Generated
-    lines** under Data model). The date line is Natural
-    Earth's current one, its feature `ne_id` 1159100219 (`featurecla` "Date
-    line"), which runs east of Kiribati to 150°W as it has since 1995.
-  - Bangladesh is COD-AB's admin0, simplified at 500 m; the antipode is
-    that outline with every vertex at (lon − 180°, −lat), and Dhaka's
-    antipode point the same flip of COD-AB's capital point. The build fails
-    if COD-AB disagrees with the seed at the card's values: the Tropic of
-    Cancer crosses 9 districts, 90°E crosses 9, and they meet in Faridpur —
-    the editor's check in the seed's `review`.
-  - The imagery is NASA's Blue Marble: Next Generation, July, with
-    topography and bathymetry, cut by
-    `tools/build-latitude-longitude-imagery.mjs` into WebP tiles, z0–3,
-    quality 75: `imagery.pmtiles`, 905,573 bytes, 79,929 of them read when
-    the globe opens on a 390 px phone. It fades out between z3 and z4 over
-    `world-light`, which draws no coastline — so no false ring at 85.05°S,
-    where the world basemap's coastline stroke drew one on a globe. ⓘ
-    credits "NASA Earth Observatory", linked to the product's page, and
-    nothing names NASA otherwise, as NASA's terms ask.
-  - The globe opens on Bangladesh. Its picker lists every record, in the
-    seed's order, by its `nameBn` (`chipBn` is a category several records
-    share, never a selector's label; it is the card's chip), under the
-    placeholder the user approved, «একটি রেখা বা স্থান বেছে নিন…»
-    (2026-09-28), ending in the ellipsis every map's placeholder ends in.
-    The card shows every Bengali field a record has, in the seed's
-    order, under the words the user approved (2026-09-27): «অক্ষাংশ» for a
-    parallel's value and `latBn`, «দ্রাঘিমাংশ» for a meridian's value and
-    `lonBn`, «সময়» for `timeBn`, «নিকটতম স্থলভাগ» for `nearestBn`,
-    «অবস্থান» for `whereBn`; `factBn` and `ruleBn` read on their own, as does
-    a value no label was approved for (the date line's, a point's). The
-    antipode button reads «প্রতিপাদে যান» on Bangladesh's card and
-    «বাংলাদেশে ফিরুন» on the antipode's. No other Bengali is shown but the
-    seed's, and the validator holds every one of these. The latitude and
-    longitude show beside Bangladesh (at its outline's inner point) and
-    Dhaka. At 320×640 the prime meridian's name is hidden at the opening
-    view, where the line runs along the globe's edge with no room for it (the
-    user accepted it, 2026-09-28); it shows when the line is selected or
-    turned into view. Nothing on it is pending.
-- **environment-treaties** — environmental conventions, treaties and
-  protocols, world summits and UNFCCC COPs, in four tabs, in English (see the
-  baseline section) — is built by `tools/build-environment-treaties.mjs` from
-  the editor's seed, `data-sources/environment-treaties/treaties.seed.json`,
-  which the build reads and never writes. Its four tables become one records
-  table, `items`, each record carrying its `tab`. A record's city is its
-  Wikidata item's point, from `tools/extract-treaty-cities.mjs` — matched by
-  English label within the named country and a settlement or administrative
-  type, and cross-checked against the city's English Wikipedia title — into
-  `cities.seed.json`, cited to the revision read. A value the seed leaves
-  null that a cited source was found for comes from `additions.seed.json`,
-  and only there: today Montreal's parent, the Vienna Convention. A city that
-  holds two or more records in one tab is one shared marker, `places.json`,
-  whose card lists them; `children`, the reverse of `parentId`, is the
-  card's "Under" link. The build derives three values for the card —
-  `inForceYear`, the one year in `inForceEn` (it must match `inForceBn`'s),
-  `parentShortEn`, the abbreviation closing `parentTextEn` (UNCLOS, for the
-  High Seas Treaty, whose parent is not on the map), and `tabBn`/`tabEn`,
-  which name a timeline row whose records carry no theme. The card, in
-  `columns: 2`: Adopted | In force, Place | Under for a convention or a
-  treaty; Held | Place, Under for a summit or a COP; years only; the note
-  under the grid. Place is "City, Country", or the city alone (`short`) in a
-  card too narrow for it — at 320 px, 19 of the 54. Values the seed gives
-  without a citation stand on the user's approval, listed in the build's
-  `EDITOR_VERIFIED`: every COP's parent (UNFCCC) and two COP notes. Markers
-  are small dots in their theme's colour, the selected one larger with a glow
-  (no pulse), each with its city's name beside it, a shared marker's once,
-  in plain dark text under normal collision rules. Pending: 30 — Bangladesh's
-  ratification (19, not shown yet); the cities of CITES, UNCCD and the 2002
-  World Summit and the countries of CITES and UNCCD, each in both languages
-  (10); and the High Seas Treaty's parent.
-- **ancient-janapadas** is built by `tools/build-janapadas.mjs` from the
-  editor's seed, `data-sources/ancient-janapadas/janapadas.seed.json`, which
-  the build reads and never writes. A janapada is the union of the whole
-  present-day units its seed names — Bangladesh's by COD-AB pcode, India's by
-  the names table and geoBoundaries (Tripura as its eight districts), Rakhine
-  from Natural Earth admin-1 — each matched exactly once or the build fails.
-  **The units are the basemap's own**, from `tools/lib/bangladesh-units.mjs`,
-  which `build-bangladesh.mjs` draws from too: a unit outside Bangladesh is
-  cut at Bangladesh's border as COD-AB draws it, and each piece of land
-  between it and that border goes to the nearest unit across it, as the
-  basemap gives it — so no area outside Bangladesh claims Bangladeshi land,
-  and every area's international edge is the basemap's border line, drawn to
-  within the 250 m it is simplified at. The areas are
-  then simplified together as the lakes map simplifies its areas (250 m), so
-  an edge two outlines share stays one line; keeping the border stretches at
-  the basemap's own 20 m was measured and refused, at +124% gzip. All eleven
-  are built, pinned and measured, and `SHIP` lists which are written — today
-  all eleven; a record the seed gains ships only once it is listed. A frame
-  outside the detail box is never narrower than `MIN_FRAME_LON` (3.7° of
-  longitude, which lands at z6 or below on a 390 px phone whatever card is
-  open), widened about its centre and kept inside the basemap's bounds. A
-  photo is found only for a record whose seed photo is null, and its
-  provenance goes to `photos.seed.json` beside the seed, which
-  `tools/extract-commons-photos.mjs ancient-janapadas` reads; the same entry
-  holds the point of the site the photo shows — its Wikidata item's P625,
-  cited there — which ships as `siteAt`. Where the item's point is wrong, the
-  point is the site's own Wikipedia article's, cited to its revision, and the
-  entry keeps the item's point and says why (`pointFrom: "wikipedia"`,
-  `wikidataPoint`, `why`): today banga, whose item puts Wari-Bateshwar 22 km
-  off, at Narsingdi town. A record that can have no photo — no site point for
-  one to stand on — is made absent in the photo seed, `absent: { reason }`,
-  and ships with no `photo` field, never pending; the editor's seed still says
-  null. Today that is tamralipta: no Wikidata item is an archaeological site
-  at Tamluk. Nothing on this map is pending. A record with a photo is drawn
-  as a photo marker at that site, never at the area's centre, with its name
-  under it, or above or beside it where that would collide; a record without
-  one has no marker, and its name sits on its name point, or beside it. Names
-  take those alternative anchors (`text-variable-anchor` with a
-  `text-radial-offset`) rather than overlap, and avoid the photos (see
-  **Names avoid photos**). A name point is the inner point of the part of the
-  area inside the default view, kept half a name's width (25 px) from the
-  view's edges and 30 px from every photo's centre, never of the whole area,
-  so every name stands in the default view; the build fails one that does
-  not. The default view is `DEFAULT_VIEW` in the build: what a 320×780 phone
-  shows at the camera the map opens on, measured, not derived. The basemap's
-  bounds set that zoom on a tall screen, so the view is narrower than the
-  frame the map asks for, 86.9–91.6°E of 85.5–93.0°E. It is recorded with the
-  frame and coverage it was measured on, and the build fails if either
-  changes; a change to the page's layout needs it measured again by hand. A
-  janapada with no part in that view keeps its whole area's inner point and
-  is listed in `OUT_OF_VIEW` with the reason: today Ruhma, as Rakhine lies
-  east of 92.17°E. Every area is a thin outline; only the selected one is
-  filled. Every Bengali unit name the seed shows must be the names table's
-  spelling; the build fails any other, except where `NAME_EXCEPTIONS` lists
-  one with its reason — today Harikela's কাছাড়, cited to the seed's own
-  source, where the names table has no Bengali. The areas credit every source
-  they are made from — COD-AB (CC BY 3.0 IGO), geoBoundaries India (ODbL 1.0),
-  Natural Earth, and OpenStreetMap (ODbL) for the land between a unit and the
-  border — and, holding ODbL data, the areas file is offered under the ODbL;
-  the build fails if the descriptor's credit leaves any of that out.
-- The five Geography maps are built by one script, `tools/build-geography.mjs`,
-  from `data-sources/<map>/<map>.seed.json` — approved content in display
-  order, with the geometry, photo and pinned citations added to it. Their
-  outside sources are committed extracts, each re-made only on purpose by its
-  own tool: `tools/extract-resolve.mjs` (RESOLVE Ecoregions 2017, CC BY 4.0 —
-  the Sundarbans and taiga areas), `tools/extract-geography-points.mjs`
-  (Wikidata points, OSM waterfall nodes) and
-  `tools/extract-commons-photos.mjs` (the photos). Their names take the
-  janapada map's alternative positions: under the photo, else above it, right
-  or left (`text-variable-anchor`), at radial offsets of 2.73 em and 3.16 em
-  when selected, which put a name under its photo exactly where the fixed
-  2.6 em and 3 em offsets did — measured in MapLibre's collision index, since
-  a variable anchor lifts the text by an amount that depends on its size.
-- org-headquarters holds international organisations **and** technology
-  companies, one map by the user's decision. It is built by
-  `tools/build-org-headquarters.mjs` from two user-approved seeds, which the
-  build reads and never rewrites:
-  `data-sources/org-headquarters/organisations.seed.json` and
-  `data-sources/tech-headquarters/companies.seed.json`. They become one records
-  table, organisations first; the companies carry no category and form one
-  picker group, `প্রযুক্তি প্রতিষ্ঠান`, shown last. The cities table, the host
-  countries and every point and frame are derived; the cities' provenance goes
-  to `data-sources/org-headquarters/cities.seed.json`.
-- **Hubs.** Towns too close to tell apart at frame zoom share one marker, by
-  the user's decision. `data-sources/org-headquarters/hubs.seed.json` names
-  each hub and its member towns; today that is `silicon-valley`
-  (সিলিকন ভ্যালি): Cupertino, Mountain View, Menlo Park, Santa Clara, San Jose
-  and Los Gatos. In the shipped marker table (`cities.json`) a hub replaces
-  its towns, with its point the mean of theirs and its frame their extent
-  widened by `FRAME_HALF`, so its one card lists everything in all of them.
-  The towns keep their own points and provenance in `cities.seed.json`
-  (`hub` names where each went), and each record keeps its own `cityBn` and
-  gains `regionBn`, the hub's name, shown as অঞ্চল. No descriptor term: the
-  hub is an ordinary record of the marker table.
-- Two basemap archives: `docs/shared/tiles/world.pmtiles` and
-  `docs/shared/tiles/bangladesh.pmtiles`. A descriptor names one in `basemap`;
-  the shell's `BASEMAPS` table maps the name to its archive (through the
-  resolver) and its style. `world-light` is the world archive in the
-  environment-treaties mockup's palette — paler water and land, thin solid
-  borders, no coastline stroke; `world` is unchanged by it. Both archives
-  are tiled alike — overview to z6, detail z7–10 inside detail areas, drawn
-  over a mask — so both keep the source ids `basemap` / `basemap-detail` and
-  the baseline reads either unchanged. A cross-basemap switch is a full
-  re-initialise.
-- **bangladesh.pmtiles** is a *bounded* basemap: its own metadata carries the
-  frame a map opens on (Bangladesh, West Bengal, Tripura) and the bounds it
-  cannot pan past (those plus Cachar and Rakhine); a descriptor's own
-  `fitBounds` / `maxBounds` win. Boxes are in `tools/bangladesh.config.mjs`.
-  **Bounds under the card**: MapLibre keeps the whole canvas inside
-  `maxBounds`, card or no card, so on any map with bounds the shell loosens
-  them while the card is open and spans the map — the box's south edge gives
-  way by exactly the height the card covers, through MapLibre's own
-  `setTransformConstrain`, so only what lies under the card may go past the
-  box and everything visible stays inside it. When the card closes the camera
-  eases back inside and MapLibre's bounds return. A map without bounds never
-  reaches this code.
-  Built by `tools/build-bangladesh.mjs` from: OSM land and named rivers
-  (committed snapshots from `tools/extract-bangladesh.mjs`), OCHA COD-AB for
-  Bangladesh's divisions and districts (by pcode), geoBoundaries India ADM2
-  for West Bengal, Tripura (the union of its districts) and Cachar (by name,
-  inside the box, each exactly once), Natural Earth admin-1 for Rakhine, and
-  Natural Earth's Bangladesh point-of-view lines for every international
-  border but one. Its units, Bangladesh's land border and the owner of each
-  piece of land between them come from `tools/lib/bangladesh-units.mjs`,
-  which the janapada build reads too.
-- **The one exception to "the point-of-view line wins": inside
-  bangladesh.pmtiles, Bangladesh's own land border is the government's line**
-  — the Bangladesh Bureau of Statistics', as OCHA COD-AB v03 admin0 publishes
-  it. Measured along the whole border, Natural Earth's 1:10m line runs a
-  median 1.44 km and up to 8.64 km off it (in Panchagarh), and it crosses the
-  Padma. The land border is the stretch of COD-AB's outline between the two
-  places Natural Earth's own Bangladesh lines reach the sea — the Sundarbans
-  and the Naf — plus the ring of the Dahagram–Angarpota exclave. world.pmtiles
-  keeps the point-of-view line, and every other border in bangladesh.pmtiles
-  is still Natural Earth's. The other sources yield to it: their district
-  edges are cut at the border or carried on to it (≤ 3 km), Bangladesh's own
-  district lines end on it exactly (COD-AB draws both), land between it and a
-  neighbour's edge goes to the neighbour, and other land no source owns goes
-  to the nearest unit of the country whose point-of-view polygon holds it.
-  Land outside the units it covers is muted.
-- **bangladesh.pmtiles names.** Inside Bangladesh: every division, district
-  and listed river. The main channel's record is NRCC entry 971,
-  ব্রহ্মপুত্র-যমুনা; on the map it carries two display labels, ব্রহ্মপুত্র
-  near Chilmari and যমুনা near Sirajganj (the user's decision, textbook usage)
-  — labels placed on the channel, not a split. Outside Bangladesh: only the
-  units the janapada seed uses. Bengali names come from
-  `tools/sources/bangladesh-names.json`, one official source each (National
-  Portal, each Indian district's own site, NRCC's river list). A unit with no
-  sourced Bengali name is not labelled — never in English — and the build
-  lists it: today Cachar, whose official sites have none.
-- The straits map's content exists twice — `docs/international/straits/data.js`,
-  which the live page reads, and `docs/maps/straits/records.json`. **Until the
-  live page is retired, `data.js` is the single source**: supplied content goes
-  there, the extractor re-runs, and the validator proves the two match exactly.
-  When the live page goes, `records.json` becomes the source and `data.js`
-  disappears.
-- The bridge to the app does not exist yet. `resolver.setCredentials()` is
-  written, works, and nothing calls it. Until it is called the resolver uses
-  the `relative` strategy, which is today's production behaviour.
+- One diagram, under বিবিধ: `atmosphere-layers`, in `docs/diagrams/`.
+
+## Index — notes, read only when working on that item
+
+Moved verbatim from this file on 2026-09-28; every line lives in one place.
+
+- Each map and diagram: `notes/<id>.md` — the Geography maps but
+  latitude-longitude share `notes/geography.md`; straits is the reference page.
+- The map shell (baseline data, tabs, timeline, teardown; a new shell feature
+  is a module loaded only where declared): `notes/shell.md`; the globe,
+  `notes/globe.md`; descriptor terms past the data model, `notes/descriptor.md`;
+  the diagram shell, `notes/diagrams.md`. A map's data (provenance, the
+  English-name exception, name matching, frames): `notes/data.md`.
+- `notes/basemaps.md`; `notes/resolver.md` (kinds, hooks, the app bridge);
+  `notes/vendor.md` (why these versions); `notes/home-and-registry.md`;
+  `notes/verify.md` (what `verify.mjs` checks for calls).

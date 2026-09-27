@@ -19,12 +19,14 @@
 //     tools/build-diagram-<id>.mjs, to see a change to its seed, art or page
 //     before it is built into docs/.
 //
-// Re-run it to pick up a change.
+// Re-run it to pick up a change. tools/check.mjs makes and serves the same
+// copy through makeSite() and serveSite().
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import http from 'node:http';
 import os from 'node:os';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const ROOT = path.resolve(HERE, '..');
@@ -34,53 +36,47 @@ const WIP = path.join(HERE, 'wip.json');
 const PREVIEW = path.join(os.tmpdir(), 'geoquest-preview', 'site');
 
 const ID = /^[a-z0-9]+(-[a-z0-9]+)*$/;
-const args = process.argv.slice(2);
-const rebuild = [];
-let port = 8765;
-for (let i = 0; i < args.length; i++) {
-  if (args[i] === '--build' && ID.test(args[i + 1] ?? '')) rebuild.push(args[++i]);
-  else if (/^\d+$/.test(args[i])) port = Number(args[i]);
-  else {
-    console.error('usage: node tools/preview.mjs [--build <diagram-id>]... [port]');
-    process.exit(2);
+
+const TOOL_OUTPUT = { stdio: 'inherit' };
+
+/**
+ * The copy of docs/ with the work in progress on its home page, made afresh
+ * in `site`: returns the folder and the ids that answer «কাজ চলছে».
+ */
+export function makeSite({ site = PREVIEW, rebuild = [], quiet = false } = {}) {
+  fs.rmSync(site, { recursive: true, force: true, maxRetries: 5, retryDelay: 200 });
+  fs.cpSync(DOCS, site, { recursive: true });
+
+  const build = (tool, out) => execFileSync(process.execPath, [tool, out], quiet ? { stdio: 'pipe' } : TOOL_OUTPUT);
+
+  for (const id of rebuild) {
+    const tool = path.join(HERE, `build-diagram-${id}.mjs`);
+    if (!fs.existsSync(tool) || !fs.existsSync(path.join(site, 'diagrams', id))) throw new Error(`--build ${id}: no finished diagram with a build tool by that id`);
+    build(tool, path.join(site, 'diagrams', id));
   }
-}
 
-const site = PREVIEW;
-fs.rmSync(site, { recursive: true, force: true });
-fs.cpSync(DOCS, site, { recursive: true });
+  // ---- the work in progress, on the copy's home page -----------------------------------
 
-const build = (tool, out) => execFileSync(process.execPath, [tool, out], { stdio: 'inherit' });
-
-for (const id of rebuild) {
-  const tool = path.join(HERE, `build-diagram-${id}.mjs`);
-  if (!fs.existsSync(tool) || !fs.existsSync(path.join(site, 'diagrams', id))) {
-    console.error(`--build ${id}: no finished diagram with a build tool by that id`);
-    process.exit(2);
+  const registryFile = path.join(site, 'registry.json');
+  const registry = JSON.parse(fs.readFileSync(registryFile, 'utf8'));
+  const placeholders = new Map(); // "maps/<id>" or "diagrams/<id>" -> the item, while nothing exists
+  for (const item of JSON.parse(fs.readFileSync(WIP, 'utf8')).items ?? []) {
+    const folder = item.kind === 'diagram' ? 'diagrams' : 'maps';
+    const out = path.join(site, folder, item.id);
+    const tool = path.join(HERE, item.kind === 'diagram' ? `build-diagram-${item.id}.mjs` : `build-${item.id}.mjs`);
+    if (fs.existsSync(tool)) {
+      fs.mkdirSync(out, { recursive: true });
+      build(tool, out);
+    }
+    if (!fs.existsSync(path.join(out, 'descriptor.json'))) placeholders.set(`${folder}/${item.id}`, item);
+    registry.maps.push({ id: item.id, ...(item.kind === 'diagram' ? { kind: 'diagram' } : {}), section: item.section, title: { en: item.title.en, bn: item.title.bn } });
+    if (!quiet) console.log(`work in progress: ${item.kind} ${item.id} (${item.section}) — ${placeholders.has(`${folder}/${item.id}`) ? 'nothing yet, «কাজ চলছে»' : 'built into the copy'}`);
   }
-  build(tool, path.join(site, 'diagrams', id));
+  // The generator's order: the syllabus sections, then id.
+  registry.maps.sort((a, b) => registry.sections.indexOf(a.section) - registry.sections.indexOf(b.section) || (a.id < b.id ? -1 : 1));
+  fs.writeFileSync(registryFile, JSON.stringify(registry, null, 2) + '\n');
+  return { site, placeholders };
 }
-
-// ---- the work in progress, on the copy's home page -----------------------------------
-
-const registryFile = path.join(site, 'registry.json');
-const registry = JSON.parse(fs.readFileSync(registryFile, 'utf8'));
-const placeholders = new Map(); // "maps/<id>" or "diagrams/<id>" -> the item, while nothing exists
-for (const item of JSON.parse(fs.readFileSync(WIP, 'utf8')).items ?? []) {
-  const folder = item.kind === 'diagram' ? 'diagrams' : 'maps';
-  const out = path.join(site, folder, item.id);
-  const tool = path.join(HERE, item.kind === 'diagram' ? `build-diagram-${item.id}.mjs` : `build-${item.id}.mjs`);
-  if (fs.existsSync(tool)) {
-    fs.mkdirSync(out, { recursive: true });
-    build(tool, out);
-  }
-  if (!fs.existsSync(path.join(out, 'descriptor.json'))) placeholders.set(`${folder}/${item.id}`, item);
-  registry.maps.push({ id: item.id, ...(item.kind === 'diagram' ? { kind: 'diagram' } : {}), section: item.section, title: { en: item.title.en, bn: item.title.bn } });
-  console.log(`work in progress: ${item.kind} ${item.id} (${item.section}) — ${placeholders.has(`${folder}/${item.id}`) ? 'nothing yet, «কাজ চলছে»' : 'built into the copy'}`);
-}
-// The generator's order: the syllabus sections, then id.
-registry.maps.sort((a, b) => registry.sections.indexOf(a.section) - registry.sections.indexOf(b.section) || (a.id < b.id ? -1 : 1));
-fs.writeFileSync(registryFile, JSON.stringify(registry, null, 2) + '\n');
 
 const escape = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 const placeholderPage = (item) => `<!doctype html>
@@ -141,19 +137,34 @@ const TYPES = {
   '.pmtiles': 'application/octet-stream',
 };
 
-http
-  .createServer((req, res) => {
+/**
+ * A server for a site folder, as production serves it: no directory index,
+ * Range requests, and nothing cached. `prefix` is the path the site sits
+ * under, "/" or a subpath like the live site's; `extra` maps a further path
+ * prefix to a folder served beside it.
+ */
+export function serveSite({ site, placeholders = new Map(), port = 0, prefix = '/', extra = {} }) {
+  const server = http.createServer((req, res) => {
     const url = new URL(req.url, 'http://x');
-    const pathname = decodeURIComponent(url.pathname);
+    let pathname = decodeURIComponent(url.pathname);
+    let root = site;
+    const more = Object.keys(extra).find((p) => pathname.startsWith(p));
+    if (more) {
+      root = extra[more];
+      pathname = '/' + pathname.slice(more.length);
+    } else {
+      if (!pathname.startsWith(prefix)) return res.writeHead(404).end('not found');
+      pathname = '/' + pathname.slice(prefix.length);
+    }
     // A work-in-progress card opens its shell; while nothing exists, the shell's URL answers «কাজ চলছে».
     const wanted = pathname === '/shell/index.html' ? `maps/${url.searchParams.get('map')}` : pathname === '/visual/index.html' ? `diagrams/${url.searchParams.get('v')}` : null;
-    if (wanted && placeholders.has(wanted)) {
+    if (!more && wanted && placeholders.has(wanted)) {
       const body = placeholderPage(placeholders.get(wanted));
       res.writeHead(200, { 'content-type': TYPES['.html'], 'cache-control': 'no-store', 'content-length': Buffer.byteLength(body) });
       return res.end(body);
     }
-    const file = path.join(site, pathname);
-    if (!file.startsWith(site + path.sep)) return res.writeHead(403).end();
+    const file = path.join(root, pathname);
+    if (!file.startsWith(root + path.sep)) return res.writeHead(403).end();
     let stat;
     try {
       stat = fs.statSync(file);
@@ -172,8 +183,32 @@ http
     }
     res.writeHead(200, { ...head, 'content-length': stat.size });
     fs.createReadStream(file).pipe(res);
-  })
-  .listen(port, '127.0.0.1', () => {
-    console.log(`serving a copy of docs/ from ${site}`);
-    console.log(`open http://127.0.0.1:${port}/index.html`);
   });
+  return new Promise((resolve) => server.listen(port, '127.0.0.1', () => resolve(server)));
+}
+
+// ---- run as a command ------------------------------------------------------------------
+
+if (path.resolve(process.argv[1] ?? '') === fileURLToPath(import.meta.url)) {
+  const args = process.argv.slice(2);
+  const rebuild = [];
+  let port = 8765;
+  for (let i = 0; i < args.length; i++) {
+    if (args[i] === '--build' && ID.test(args[i + 1] ?? '')) rebuild.push(args[++i]);
+    else if (/^\d+$/.test(args[i])) port = Number(args[i]);
+    else {
+      console.error('usage: node tools/preview.mjs [--build <diagram-id>]... [port]');
+      process.exit(2);
+    }
+  }
+  let made;
+  try {
+    made = makeSite({ rebuild });
+  } catch (error) {
+    console.error(error.message);
+    process.exit(2);
+  }
+  await serveSite({ ...made, port });
+  console.log(`serving a copy of docs/ from ${made.site}`);
+  console.log(`open http://127.0.0.1:${port}/index.html`);
+}
