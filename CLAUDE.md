@@ -565,9 +565,11 @@ not built.
     scale, never under 11 px. A lit slab's name moves with its cut-out.
   - The km axis ticks every boundary the art has, with its height from the
     data in Bengali digits: the Earth's 0, the pauses, and the exosphere's
-    top, «১০,০০০ কিমি». A height the seed gives only by latitude is shown as
-    its range — the tropopause «৬–২০ কিমি». «স্কেল অনুপাতে নয়» sits low in
-    the axis's column.
+    top, «১০,০০০ কিমি». A height the seed gives as a range — `toKmRange`,
+    `fromKmRange` or `atKmRange`, NOAA's 6–20 km for the tropopause, by the
+    user's decision to use NOAA's figures until the book is in — is shown as
+    that range, «৬–২০ কিমি». «স্কেল অনুপাতে নয়» sits low in the axis's
+    column.
   - The curve stands each profile point at its boundary's level, the known
     temperatures across the first 78% of its width from − to +, an "up to"
     point at + with an up-arrow; between two points an S with upright ends,
@@ -577,8 +579,9 @@ not built.
   - The card: the chip in the layer's colour (the descriptor's), the name,
     «উচ্চতা» (the layer's span) beside «তাপমাত্রা» (`trendBn`, `rateBn`
     under it), two small line glyphs drawn in code, then «যা ঘটে» with each
-    feature's icon and name, three to a row, and the reach of a feature that
-    has one (the aurora, the ionosphere). A span reads «৫০–৮৫ কিমি», or, where
+    feature's icon and name, three to a row, and under the name the reach of
+    a feature that has one (the aurora, the ionosphere, the ozone layer's
+    15–35 km). A span reads «৫০–৮৫ কিমি», or, where
     an end is itself a range, joins its ends with «থেকে» (the user's
     decision): the troposphere «০ থেকে ৬–২০ কিমি», the stratosphere
     «৬–২০ থেকে ৫০ কিমি». A line breaks only at the spaces round «থেকে» —
