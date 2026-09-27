@@ -5,7 +5,7 @@
 //
 //   node tools/build-diagram-atmosphere-layers.mjs             into docs/diagrams/atmosphere-layers/
 //   node tools/build-diagram-atmosphere-layers.mjs <out-dir>   into another copy of that folder,
-//                                                              as tools/preview-diagram.mjs does
+//                                                              as tools/preview.mjs --build does
 //
 // The folder is the build's but for descriptor.json, which is authored there
 // as a map's is and only read: everything else in it is removed and written

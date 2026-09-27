@@ -26,6 +26,19 @@ BCS / government exam prep.
 - Report in numbers, not narrative. Every report states: pending-fact count,
   trace count, geometry-hash status. Then anything that broke. Keep prose to
   what a number cannot say.
+- **Every new map or diagram goes on the home page first, before any work
+  on it — on the local preview's home page only** (the user's standing rule,
+  2026-09-27). It is listed in `tools/wip.json` — id, kind (`map` |
+  `diagram`), section, Bengali and English title — and `tools/preview.mjs`
+  adds it to the home page of its local copy of `docs/`, in its section, as
+  a card that opens whatever exists so far, or a «কাজ চলছে» page while
+  nothing does. It reaches the live home page, the committed
+  `docs/registry.json`, only when finished, leaving the list for its own
+  folder under `docs/`; `tools/verify.mjs` fails an id in the list that the
+  registry has or that is already a finished map or diagram.
+- **Every task is verified by using it, in Claude's own browser** (the
+  user's standing rule, 2026-09-27): the local preview before committing,
+  the live site after a push, with screenshots of each check.
 
 ## Pinned, do not bump
 
@@ -682,9 +695,10 @@ not built.
      which builds data, art and manifest into
      `docs/diagrams/atmosphere-layers/` from the seed, the art tool's staging
      folder and the descriptor authored there, which it only reads — a
-     second build is byte-identical; `tools/preview-diagram.mjs`, which
-     builds into a temporary copy of `docs/` outside the repo and serves it
-     on 127.0.0.1, to see a change before it is built in; the diagram's
+     second build is byte-identical; a preview tool, since
+     `tools/preview.mjs --build <id>`, which builds into a temporary copy of
+     `docs/` outside the repo and serves it on 127.0.0.1, to see a change
+     before it is built in; the diagram's
      section in `verify-descriptor.mjs`; and বিবিধ with its registry entry.
      While the descriptor declares one view, the tab bar is hidden: no empty
      tab. Tier: the diagram's own, plus the home page / registry tier.
@@ -937,8 +951,10 @@ Verification scales with what changed:
 - New shell features are separate modules that load only for maps whose
   descriptor uses them.
 
-Screenshots only of what changed. The pending-count summary stays in every
-report.
+Whatever the tier, the task is also used in Claude's own browser: the local
+preview (`tools/preview.mjs`) at 390 and 320 px before committing, and the
+live site after a push. Screenshots only of what changed. The pending-count
+summary stays in every report.
 
 ## What needs the user's approval
 
@@ -965,6 +981,12 @@ State which kind a task is when reporting it.
   decision until the user's book is in, and the eight approved art inputs.
   Nothing on it is pending. What is built for diagrams is listed at the top
   of **Interactive diagrams**.
+- Work in progress (`tools/wip.json`), on the local preview's home page
+  only: `latitude-longitude`, a map in geography, «অক্ষরেখা ও দ্রাঘিমারেখা» /
+  "Latitude & Longitude" — the Bengali title the editor's proposal, which
+  the user may change. Nothing of it exists yet; its card opens «কাজ চলছে».
+  Its look is `design/mockups/globe-latitude-longitude.png`, the user's
+  approved mockup: a 3D globe with its lines, a pill row and a docked card.
 - **environment-treaties** — environmental conventions, treaties and
   protocols, world summits and UNFCCC COPs, in four tabs, in English (see the
   baseline section) — is built by `tools/build-environment-treaties.mjs` from

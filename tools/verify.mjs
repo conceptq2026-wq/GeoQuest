@@ -269,6 +269,22 @@ check(
   `registry.json keeps the syllabus section order (${SECTIONS.join(', ')})`,
 );
 
+// Work in progress (tools/wip.json): on the local preview's home page only,
+// through tools/preview.mjs. None of it may reach the committed registry, and
+// an id is in progress or finished, never both — so an unfinished map or
+// diagram never shows on the live home page.
+{
+  const items = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools/wip.json'), 'utf8')).items ?? [];
+  const malformed = items.filter((w) => !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(w.id ?? '') || !['map', 'diagram'].includes(w.kind) || !SECTIONS.includes(w.section) || !w.title?.bn || !w.title?.en);
+  check(malformed.length === 0, `tools/wip.json: every item has an id, a kind (map or diagram), a section and both titles (${items.length})${malformed.length ? ` — not: ${malformed.map((w) => w.id).join(', ')}` : ''}`);
+  const ids = items.map((w) => w.id);
+  check(new Set(ids).size === ids.length, 'tools/wip.json lists each id once');
+  const listed = ids.filter((id) => registry.maps.some((e) => e.id === id));
+  check(listed.length === 0, `no work in progress is in registry.json${listed.length ? ` — ${listed.join(', ')}` : ''}`);
+  const finished = ids.filter((id) => mapIds.includes(id) || diagramIds.includes(id));
+  check(finished.length === 0, `no work in progress is also a finished map or diagram${finished.length ? ` — ${finished.join(', ')}` : ''}`);
+}
+
 /*
 |--------------------------------------------------------------------------
 | NO CALLS OUT — a page asks only its own host for static files, through the
