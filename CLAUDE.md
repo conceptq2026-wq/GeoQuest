@@ -394,6 +394,25 @@ else exists yet — no diagram, no `docs/visual/`, no `docs/diagrams/`.
   page opens an entry by its kind — a map in `shell/index.html?map=<id>`, a
   diagram in `visual/index.html?v=<id>`. `tools/verify.mjs` holds the registry
   to both folders and runs the map baseline's checks on maps only.
+- **No API calls, ever** (the user's rule, 2026-09-27). At runtime the diagram
+  shell, like the map shell, requests only static files from our own host,
+  through the resolver — no third-party service, no API, no analytics. The
+  diagram build tools make no network calls at all: art is cut locally from
+  the supplied master, and data comes only from the approved seed in
+  `data-sources/`. `tools/verify.mjs` holds the runtime half, with
+  `tools/outbound.mjs` reading the pages' HTML, JS and CSS: under
+  `docs/visual/` it fails any absolute URL, a `fetch()` or XHR whose URL is
+  written by hand rather than taken from the resolver, a beacon or socket, a
+  URL built outside the resolver, code or a subresource loaded by anything but
+  a relative path, and a bare host name. Only the W3C namespace names, SVG's
+  among them, pass: they are names, never fetched. The same check runs over
+  `docs/shell/` and `docs/index.html` as a report that fails nothing. It
+  tells a link from a request by where the URL stands: an anchor's `href` —
+  in `<a>` markup, or passed to a helper whose own definition writes one, as
+  the map shell's `credit()` does — is followed only on a tap; the argument
+  of `fetch()`, `import()` and the like, a static import, an element's `src`,
+  a `<link href>` and a CSS `url()` are fetched without one. The build-tool
+  half has no check yet: no diagram build tool exists.
 - **Shared pieces move only when needed.** A piece of the map shell moves into
   `docs/shared/` only when the diagram shell needs it, and each move is proven
   at the shell tier.

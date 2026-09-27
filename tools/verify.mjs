@@ -9,6 +9,7 @@ import { createRequire } from 'node:module';
 import { pathToFileURL } from 'node:url';
 import { PMTiles } from 'pmtiles';
 import { DETAIL_AREAS } from './world.config.mjs';
+import { sourcesAt, scan } from './outbound.mjs';
 
 const require = createRequire(import.meta.url);
 const vtRequire = createRequire(require.resolve('vt-pbf'));
@@ -259,6 +260,40 @@ check(
   registry.sections.join(',') === SECTIONS.join(','),
   `registry.json keeps the syllabus section order (${SECTIONS.join(', ')})`,
 );
+
+/*
+|--------------------------------------------------------------------------
+| NO CALLS OUT — a page asks only its own host for static files, through the
+| resolver: no API, no third-party service, no analytics. Strict over the
+| diagram shell; over the map shell and the home page a report that fails
+| nothing. What counts as a link, a request or a name: tools/outbound.mjs.
+|--------------------------------------------------------------------------
+*/
+console.log('\n---- no calls out ----');
+const relToRoot = (f) => path.relative(ROOT, f).replaceAll('\\', '/');
+const describe = (f) => `${relToRoot(f.file)}:${f.line} ${f.class} — ${f.rule}: ${f.what}${f.note ? ` (${f.note})` : ''}`;
+{
+  // Diagram shell. Everything but a namespace name fails.
+  const files = sourcesAt(path.join(SERVED, 'visual'));
+  const found = files.flatMap((f) => scan(f).findings).filter((f) => f.class !== 'namespace');
+  for (const f of found) check(false, describe(f));
+  if (!found.length) {
+    check(true, `docs/visual/ asks for no absolute URL, no hand-written request and no third-party host${files.length ? ` (${files.length} files)` : ' (no such folder yet)'}`);
+  }
+}
+{
+  // Map shell and home page, report only.
+  const files = [...sourcesAt(path.join(SERVED, 'shell')), path.join(SERVED, 'index.html')];
+  const results = files.map(scan);
+  const found = results.flatMap((r) => r.findings);
+  const sum = (pick) => results.reduce((n, r) => n + pick(r), 0);
+  console.log(
+    `     report only, nothing fails — docs/shell/ and docs/index.html, ${files.length} files: ${found.length} finding(s); ` +
+      `data requests through the resolver ${sum((r) => r.requests.resolver)}, through a value ${sum((r) => r.requests.value)}; ` +
+      `relative code and subresources ${sum((r) => r.own.relative)}, loaded through a value ${sum((r) => r.own.value)}`,
+  );
+  for (const f of found) console.log(`       ${describe(f)}`);
+}
 
 if (failures) {
   console.error(`\n${failures} check(s) failed.`);
