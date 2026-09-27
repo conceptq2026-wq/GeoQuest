@@ -1,0 +1,135 @@
+{
+  "conventions-Q8678": {
+    "nameBn": "রিও ডি জেনিরো",
+    "countryBn": "ব্রাজিল",
+    "nameEn": "Rio de Janeiro",
+    "countryEn": "Brazil",
+    "tab": "conventions",
+    "count": 2,
+    "records": [
+      "unfccc",
+      "cbd"
+    ],
+    "at": [
+      -43.20556,
+      -22.91111
+    ],
+    "frame": [
+      -45.806,
+      -25.911,
+      -40.606,
+      -19.911
+    ]
+  },
+  "treaties-Q340": {
+    "nameBn": "মন্ট্রিল",
+    "countryBn": "কানাডা",
+    "nameEn": "Montreal",
+    "countryEn": "Canada",
+    "tab": "treaties",
+    "count": 2,
+    "records": [
+      "montreal",
+      "cartagena"
+    ],
+    "at": [
+      -73.58684,
+      45.50334
+    ],
+    "frame": [
+      -76.187,
+      42.503,
+      -70.987,
+      48.503
+    ]
+  },
+  "summits-Q8678": {
+    "nameBn": "রিও ডি জেনিরো",
+    "countryBn": "ব্রাজিল",
+    "nameEn": "Rio de Janeiro",
+    "countryEn": "Brazil",
+    "tab": "summits",
+    "count": 2,
+    "records": [
+      "rio-1992",
+      "rio20-2012"
+    ],
+    "at": [
+      -43.20556,
+      -22.91111
+    ],
+    "frame": [
+      -45.806,
+      -25.911,
+      -40.606,
+      -19.911
+    ]
+  },
+  "cops-Q1486": {
+    "nameBn": "বুয়েনস আইরেস",
+    "countryBn": "আর্জেন্টিনা",
+    "nameEn": "Buenos Aires",
+    "countryEn": "Argentina",
+    "tab": "cops",
+    "count": 2,
+    "records": [
+      "cop4",
+      "cop10"
+    ],
+    "at": [
+      -58.38194,
+      -34.59972
+    ],
+    "frame": [
+      -60.982,
+      -37.6,
+      -55.782,
+      -31.6
+    ]
+  },
+  "cops-Q586": {
+    "nameBn": "বন",
+    "countryBn": "জার্মানি",
+    "nameEn": "Bonn",
+    "countryEn": "Germany",
+    "tab": "cops",
+    "count": 3,
+    "records": [
+      "cop5",
+      "cop6_2",
+      "cop23"
+    ],
+    "at": [
+      7.10222,
+      50.73528
+    ],
+    "frame": [
+      4.502,
+      47.735,
+      9.702,
+      53.735
+    ]
+  },
+  "cops-Q101625": {
+    "nameBn": "মারাকেশ",
+    "countryBn": "মরক্কো",
+    "nameEn": "Marrakesh",
+    "countryEn": "Morocco",
+    "tab": "cops",
+    "count": 2,
+    "records": [
+      "cop7",
+      "cop22"
+    ],
+    "at": [
+      -7.98108,
+      31.62947
+    ],
+    "frame": [
+      -10.581,
+      28.629,
+      -5.381,
+      34.629
+    ]
+  }
+}

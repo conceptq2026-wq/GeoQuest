@@ -1,0 +1,18 @@
+{
+  "conventions": {
+    "titleBn": "কনভেনশন",
+    "titleEn": "Conventions"
+  },
+  "treaties": {
+    "titleBn": "চুক্তি ও প্রটোকল",
+    "titleEn": "Treaties & Protocols"
+  },
+  "summits": {
+    "titleBn": "সম্মেলন",
+    "titleEn": "Summits"
+  },
+  "cops": {
+    "titleBn": "COP",
+    "titleEn": "COP"
+  }
+}

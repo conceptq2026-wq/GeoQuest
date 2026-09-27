@@ -1,0 +1,18 @@
+{
+  "_about": "Values the editor's seed leaves null, found and cited while the map was built, at the user's request. The build applies each only where the seed says null, and fails if the seed ever gives a value of its own. Not yet approved by the user.",
+  "montreal": {
+    "parentId": "vienna",
+    "sources": {
+      "parentId": [
+        {
+          "title": "Montreal Protocol on Substances that Deplete the Ozone Layer — Article 1: Definitions",
+          "publisher": "UNEP Ozone Secretariat (the Protocol's own text)",
+          "url": "https://ozone.unep.org/treaties/montreal-protocol/articles/article-1-definitions",
+          "states": "For the purposes of this Protocol: \"Convention\" means the Vienna Convention for the Protection of the Ozone Layer, adopted on 22 March 1985.",
+          "retrieved": "2026-09-27"
+        }
+      ]
+    },
+    "review": "The seed leaves the parent null because the Protocol's long name does not name its convention. Its Article 1 does, in the text the Ozone Secretariat — the treaty's own secretariat — publishes. The pinned Wikipedia revision the seed cites for this record (1375917408) was read first: it names the Vienna Convention only as the 1985 framework, never as the Protocol's parent, so it is not the citation."
+  }
+}

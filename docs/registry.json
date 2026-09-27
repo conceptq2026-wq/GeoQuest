@@ -23,6 +23,14 @@
       }
     },
     {
+      "id": "environment-treaties",
+      "section": "international",
+      "title": {
+        "en": "Environmental Conventions, Treaties and Summits",
+        "bn": "পরিবেশ বিষয়ক কনভেনশন, চুক্তি ও সম্মেলন"
+      }
+    },
+    {
       "id": "org-headquarters",
       "section": "international",
       "title": {

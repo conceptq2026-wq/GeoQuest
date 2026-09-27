@@ -14,6 +14,8 @@
 //                 checked against data-sources/<map>/<map>.seed.json
 //   ancient-janapadas  checked against data-sources/ancient-janapadas/
 //                      janapadas.seed.json and photos.seed.json
+//   environment-treaties  checked against data-sources/environment-treaties/
+//                         treaties.seed.json, cities.seed.json and additions.seed.json
 //
 // Run:  node tools/verify-descriptor.mjs   (from the repo root or from tools/)
 import fs from 'node:fs';
@@ -55,6 +57,9 @@ const GEOGRAPHY = { deserts: 2, lakes: 0, forests: 0, mountains: 0, waterfalls: 
 const TECH_CATEGORY = 'প্রযুক্তি প্রতিষ্ঠান';
 // The janapada map: the editor's seed, never written, and the photos found for it.
 const JANAPADA_SEEDS = path.join(ROOT, 'data-sources/ancient-janapadas');
+// The environment-treaties map: the editor's seed, the cities found for it, and
+// the values found for its nulls.
+const TREATY_SEEDS = path.join(ROOT, 'data-sources/environment-treaties');
 
 let failures = 0;
 const fail = (msg) => {
@@ -1003,6 +1008,122 @@ console.log('\n\n============ ancient-janapadas ============');
   // Nothing is pending: every photo the seed wants is found, or the photo seed
   // records why there can be none (tamralipta).
   checkMap({ id: 'ancient-janapadas', expectedPending: 0 });
+}
+
+/*
+|--------------------------------------------------------------------------
+| ENVIRONMENT TREATIES — faithful to the editor's seed, with its cities
+|--------------------------------------------------------------------------
+*/
+console.log('\n\n============ environment-treaties ============');
+{
+  const dir = path.join(MAPS_DIR, 'environment-treaties');
+  const seed = readJson(path.join(TREATY_SEEDS, 'treaties.seed.json'));
+  const cities = readJson(path.join(TREATY_SEEDS, 'cities.seed.json'));
+  const additions = readJson(path.join(TREATY_SEEDS, 'additions.seed.json'));
+  const recs = readJson(path.join(dir, 'records.json'));
+  const places = readJson(path.join(dir, 'places.json'));
+  const tabs = readJson(path.join(dir, 'tabs.json'));
+  const TABLES = ['conventions', 'treaties', 'summits', 'cops'];
+
+  // One table, the seed's four in tab order, each record with its tab.
+  const source = {};
+  for (const table of TABLES)
+    for (const [key, row] of Object.entries(seed[table])) {
+      const want = { tab: table };
+      for (const [f, v] of Object.entries(row)) if (!['id', 'cityQuery', 'sources', 'review'].includes(f)) want[f] = v;
+      // A value the seed leaves null takes the one found for it, cited, only there.
+      for (const [f, v] of Object.entries(additions[key] ?? {})) if (!['sources', 'review'].includes(f) && row[f] === null) want[f] = v;
+      source[key] = want;
+    }
+  console.log('\n---- records.json against treaties.seed.json ----');
+  check(TABLES.map((t) => Object.keys(seed[t]).length).join('/') === '12/7/4/31', `the seed holds conventions 12, treaties 7, summits 4, cops 31 (${TABLES.map((t) => Object.keys(seed[t]).length).join('/')})`);
+  compareTables({ source, file: recs, label: 'records.json', ignore: ['tabBn', 'tabEn', 'inForceYear', 'parentShortEn', 'at', 'soloAt', 'place', 'children', 'frame'] });
+  // A row with no theme is named by its tab: the tab's own title, from the seed.
+  const tabOf = Object.fromEntries(seed.tabs.map((t) => [t.id, t]));
+  const badTab = Object.keys(recs).filter((k) => recs[k].tabBn !== tabOf[recs[k].tab].titleBn || recs[k].tabEn !== tabOf[recs[k].tab].titleEn);
+  check(badTab.length === 0, `every record's tabBn and tabEn are its tab's titles in the seed${badTab.length ? ` — not ${badTab.join(', ')}` : ''}`);
+
+  // The map is in English (the user's decision, 2026-09-27): every English
+  // display field is there wherever its Bengali one is, null where it is null
+  // and absent where it is absent — the same fact, translated.
+  const TWINS = { nameEn: 'nameBn', shortEn: 'shortBn', themeEn: 'themeBn', cityEn: 'cityBn', countryEn: 'countryBn', signedEn: 'signedBn', inForceEn: 'inForceBn', noteEn: 'noteBn', parentTextEn: 'parentTextBn', tabEn: 'tabBn' };
+  const state = (v) => (v === undefined ? 'absent' : v === null ? 'null' : 'value');
+  const badTwins = Object.entries(recs).flatMap(([k, r]) => Object.entries(TWINS).filter(([en, bn]) => state(r[en]) !== state(r[bn])).map(([en]) => `${k}.${en}`));
+  check(badTwins.length === 0, `every English field is present where its Bengali one is, null and absent alike (${Object.keys(TWINS).length} fields, ${Object.keys(recs).length} records)${badTwins.length ? ` — not ${badTwins.join(', ')}` : ''}`);
+  // The card's two derived values: the one year inForceEn names, and the
+  // abbreviation closing parentTextEn.
+  const badYear = Object.entries(recs).filter(([, r]) => ('inForceEn' in r) !== ('inForceYear' in r) || (typeof r.inForceEn === 'string' && !(r.inForceEn.match(/\b(1[5-9]\d\d|20\d\d)\b/g)?.length === 1 && Number(r.inForceEn.match(/\b(1[5-9]\d\d|20\d\d)\b/)[1]) === r.inForceYear)));
+  check(badYear.length === 0, `every inForceYear is the one year its inForceEn names (${Object.values(recs).filter((r) => Number.isInteger(r.inForceYear)).length})${badYear.length ? ` — not ${badYear.map(([k]) => k).join(', ')}` : ''}`);
+  const badShort = Object.entries(recs).filter(([, r]) => ('parentTextEn' in r) !== ('parentShortEn' in r) || (typeof r.parentTextEn === 'string' && r.parentTextEn.match(/\(([A-Z][A-Za-z0-9-]*)\)\s*$/)?.[1] !== r.parentShortEn));
+  check(badShort.length === 0, `every parentShortEn is the abbreviation closing its parentTextEn (${Object.entries(recs).filter(([, r]) => r.parentShortEn).map(([k, r]) => `${k} ${r.parentShortEn}`).join(', ')})${badShort.length ? ` — not ${badShort.map(([k]) => k).join(', ')}` : ''}`);
+  const added =Object.entries(additions).filter(([k]) => k !== '_about');
+  check(
+    added.every(([key, entry]) => Object.keys(entry).filter((f) => !['sources', 'review'].includes(f)).every((f) => TABLES.some((t) => seed[t][key]?.[f] === null) && entry.sources?.[f]?.every((c) => c.url && c.states))),
+    `every addition fills a value the seed leaves null, cited with what its source states (${added.map(([k, e]) => Object.keys(e).filter((f) => !['sources', 'review'].includes(f)).map((f) => `${k}.${f}`).join(', ')).join(', ')})`,
+  );
+  check(JSON.stringify(tabs) === JSON.stringify(Object.fromEntries(seed.tabs.map((t) => [t.id, { titleBn: t.titleBn, titleEn: t.titleEn }]))), `tabs.json is the seed's tabs, in order, with both titles (${Object.keys(tabs).join(', ')})`);
+
+  // Every city a record names stands at its Wikidata item's point, cited to a revision.
+  let badCity = 0;
+  const cityOf = {};
+  for (const table of TABLES)
+    for (const [key, row] of Object.entries(seed[table])) {
+      if (!row.cityQuery) {
+        if (recs[key].at || recs[key].frame) (fail(`${key}: no city in the seed, yet a point or frame`), badCity++);
+        continue;
+      }
+      const c = cities[row.cityQuery];
+      cityOf[key] = row.cityQuery;
+      const cited = c?.sources?.at?.some((s) => s.url === `https://www.wikidata.org/w/index.php?title=${c.wikidata}&oldid=${s.url.split('oldid=')[1]}` && s.states);
+      if (!c || JSON.stringify(recs[key].at) !== JSON.stringify(c.at.map((n) => Number(n.toFixed(5)))) || !cited) (fail(`${key}: its point is not its city's, cited to a revision of the city's item`), badCity++);
+    }
+  check(badCity === 0, `every record with a city stands at its city's Wikidata point, cited to the revision read (${Object.keys(cityOf).length} records, ${new Set(Object.values(cityOf)).size} cities)`);
+
+  // A city that holds two or more records in one tab is one place, listing them all.
+  const groups = new Map();
+  for (const [key, q] of Object.entries(cityOf)) groups.set(`${recs[key].tab}|${q}`, [...(groups.get(`${recs[key].tab}|${q}`) ?? []), key]);
+  const shared = [...groups.values()].filter((keys) => keys.length > 1);
+  const placeKeys = new Set(Object.keys(places));
+  let badPlace = 0;
+  for (const keys of shared) {
+    const p = recs[keys[0]].place?.[0];
+    const place = places[p];
+    if (!place || JSON.stringify(place.records) !== JSON.stringify(keys) || place.count !== keys.length || !keys.every((k) => recs[k].place?.[0] === p && !recs[k].soloAt)) (fail(`${keys.join(', ')}: not one place listing them all`), badPlace++);
+    else if (!keys.every((k) => recs[k].cityEn === place.nameEn && recs[k].countryEn === place.countryEn && recs[k].cityBn === place.nameBn && recs[k].countryBn === place.countryBn)) (fail(`${p}: not named as its records name their city`), badPlace++);
+    placeKeys.delete(p);
+  }
+  const alone = [...groups.values()].filter((keys) => keys.length === 1).flat();
+  for (const k of alone) if (recs[k].place || JSON.stringify(recs[k].soloAt) !== JSON.stringify(recs[k].at)) (fail(`${k}: alone in its city, yet not its own marker`), badPlace++);
+  check(badPlace === 0 && placeKeys.size === 0, `records alone in their city in their tab are their own marker (${alone.length}); the rest are ${shared.length} places holding ${shared.flat().length}${placeKeys.size ? ` — stray places ${[...placeKeys].join(', ')}` : ''}`);
+
+  // The parent link is the reverse of parentId, so a card shows its parent.
+  const want = {};
+  for (const [key, r] of Object.entries(recs)) if (r.parentId) (want[r.parentId] ??= []).push(key);
+  const badChildren = Object.keys(recs).filter((k) => JSON.stringify(recs[k].children) !== JSON.stringify(want[k]));
+  check(badChildren.length === 0, `children is the reverse of parentId (${Object.keys(want).length} parents)${badChildren.length ? ` — not ${badChildren.join(', ')}` : ''}`);
+
+  // Every theme has its colour, or its markers and dots would fall to the tab's.
+  const colour = readJson(path.join(dir, 'descriptor.json')).styles.marker.paint['circle-color'];
+  const coloured = colour.slice(2, -1).filter((_, i) => i % 2 === 0);
+  const themes = [...new Set(Object.values(recs).map((r) => r.themeBn).filter(Boolean))];
+  check(themes.every((t) => coloured.includes(t)), `every theme has its colour (${themes.length} themes)`);
+
+  // Every marker carries its city's English name beside it: a record's own,
+  // or a shared marker's, once.
+  const descriptorEt = readJson(path.join(dir, 'descriptor.json'));
+  const labelOf = (id) => JSON.stringify(descriptorEt.layers.find((l) => l.id === id)?.layout?.['text-field']);
+  check(
+    labelOf('solo-label') === '["get","cityEn"]' && labelOf('place-label') === '["get","nameEn"]',
+    'a marker of one record carries its city, a shared marker its city once, in English',
+  );
+
+  // Pending: the country's ratification, where no source was found yet (19),
+  // the cities the seed leaves to the user's book (CITES, UNCCD) with their
+  // countries, WSSD's city, the High Seas Treaty's parent (its parent, UNCLOS,
+  // is not on this map; the seed gives it as text) — and the five unknown
+  // places again in English, which the card shows.
+  checkMap({ id: 'environment-treaties', expectedPending: 30 });
 }
 
 // ---- done -------------------------------------------------------------------

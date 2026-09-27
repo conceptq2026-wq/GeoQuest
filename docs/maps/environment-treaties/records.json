@@ -1,0 +1,1721 @@
+{
+  "ramsar": {
+    "tab": "conventions",
+    "tabBn": "কনভেনশন",
+    "tabEn": "Conventions",
+    "nameBn": "রামসার কনভেনশন (জলাভূমি)",
+    "shortBn": "রামসার",
+    "nameEn": "Ramsar Convention",
+    "themeBn": "জলাভূমি ও ঐতিহ্য",
+    "year": 1971,
+    "cityBn": "রামসার",
+    "countryBn": "ইরান",
+    "signedBn": "২ ফেব্রুয়ারি ১৯৭১",
+    "inForceBn": "২১ ডিসেম্বর ১৯৭৫",
+    "bdRatificationBn": null,
+    "shortEn": "Ramsar",
+    "themeEn": "Wetlands & Heritage",
+    "cityEn": "Ramsar",
+    "countryEn": "Iran",
+    "signedEn": "2 February 1971",
+    "inForceEn": "21 December 1975",
+    "inForceYear": 1975,
+    "at": [
+      50.64806,
+      36.91806
+    ],
+    "soloAt": [
+      50.64806,
+      36.91806
+    ],
+    "frame": [
+      48.048,
+      33.918,
+      53.248,
+      39.918
+    ]
+  },
+  "whc": {
+    "tab": "conventions",
+    "tabBn": "কনভেনশন",
+    "tabEn": "Conventions",
+    "nameBn": "বিশ্ব ঐতিহ্য কনভেনশন",
+    "shortBn": "বিশ্ব ঐতিহ্য",
+    "nameEn": "World Heritage Convention",
+    "themeBn": "জলাভূমি ও ঐতিহ্য",
+    "year": 1972,
+    "cityBn": "প্যারিস",
+    "countryBn": "ফ্রান্স",
+    "signedBn": "১৬–২৩ নভেম্বর ১৯৭২",
+    "inForceBn": "১৭ ডিসেম্বর ১৯৭৫",
+    "bdRatificationBn": null,
+    "noteBn": "প্রাকৃতিক ও সাংস্কৃতিক — দুই ধরনের ঐতিহ্য",
+    "shortEn": "World Heritage",
+    "themeEn": "Wetlands & Heritage",
+    "cityEn": "Paris",
+    "countryEn": "France",
+    "signedEn": "16–23 November 1972",
+    "inForceEn": "17 December 1975",
+    "noteEn": "Covers both natural and cultural heritage",
+    "inForceYear": 1975,
+    "at": [
+      2.35222,
+      48.85667
+    ],
+    "soloAt": [
+      2.35222,
+      48.85667
+    ],
+    "frame": [
+      -0.248,
+      45.857,
+      4.952,
+      51.857
+    ]
+  },
+  "cites": {
+    "tab": "conventions",
+    "tabBn": "কনভেনশন",
+    "tabEn": "Conventions",
+    "nameBn": "সাইটিস (CITES) — বিপন্ন প্রজাতির বাণিজ্য",
+    "shortBn": "সাইটিস",
+    "nameEn": "CITES",
+    "themeBn": "বন্যপ্রাণী ও জীববৈচিত্র্য",
+    "year": 1973,
+    "cityBn": null,
+    "countryBn": null,
+    "signedBn": "৩ মার্চ ১৯৭৩",
+    "inForceBn": "১ জুলাই ১৯৭৫",
+    "bdRatificationBn": null,
+    "shortEn": "CITES",
+    "themeEn": "Biodiversity",
+    "cityEn": null,
+    "countryEn": null,
+    "signedEn": "3 March 1973",
+    "inForceEn": "1 July 1975",
+    "inForceYear": 1975
+  },
+  "cms": {
+    "tab": "conventions",
+    "tabBn": "কনভেনশন",
+    "tabEn": "Conventions",
+    "nameBn": "বন্যপ্রাণীর পরিযায়ী প্রজাতি কনভেনশন (CMS)",
+    "shortBn": "CMS",
+    "nameEn": "Convention on Migratory Species",
+    "themeBn": "বন্যপ্রাণী ও জীববৈচিত্র্য",
+    "year": 1979,
+    "cityBn": "বন",
+    "countryBn": "জার্মানি",
+    "signedBn": "২৩ জুন ১৯৭৯",
+    "inForceBn": "১ নভেম্বর ১৯৮৩",
+    "bdRatificationBn": null,
+    "noteBn": "স্বাক্ষরের সময় বন ছিল পশ্চিম জার্মানিতে",
+    "shortEn": "CMS",
+    "themeEn": "Biodiversity",
+    "cityEn": "Bonn",
+    "countryEn": "Germany",
+    "signedEn": "23 June 1979",
+    "inForceEn": "1 November 1983",
+    "noteEn": "Bonn was in West Germany when it was signed",
+    "inForceYear": 1983,
+    "at": [
+      7.10222,
+      50.73528
+    ],
+    "soloAt": [
+      7.10222,
+      50.73528
+    ],
+    "frame": [
+      4.502,
+      47.735,
+      9.702,
+      53.735
+    ]
+  },
+  "vienna": {
+    "tab": "conventions",
+    "tabBn": "কনভেনশন",
+    "tabEn": "Conventions",
+    "nameBn": "ভিয়েনা কনভেনশন (ওজোন স্তর)",
+    "shortBn": "ভিয়েনা",
+    "nameEn": "Vienna Convention for the Protection of the Ozone Layer",
+    "themeBn": "ওজোন স্তর",
+    "year": 1985,
+    "cityBn": "ভিয়েনা",
+    "countryBn": "অস্ট্রিয়া",
+    "signedBn": "২২ মার্চ ১৯৮৫",
+    "inForceBn": "২২ সেপ্টেম্বর ১৯৮৮",
+    "bdRatificationBn": null,
+    "shortEn": "Vienna",
+    "themeEn": "Ozone",
+    "cityEn": "Vienna",
+    "countryEn": "Austria",
+    "signedEn": "22 March 1985",
+    "inForceEn": "22 September 1988",
+    "inForceYear": 1988,
+    "at": [
+      16.3725,
+      48.20833
+    ],
+    "soloAt": [
+      16.3725,
+      48.20833
+    ],
+    "frame": [
+      13.772,
+      45.208,
+      18.973,
+      51.208
+    ],
+    "children": [
+      "montreal"
+    ]
+  },
+  "basel": {
+    "tab": "conventions",
+    "tabBn": "কনভেনশন",
+    "tabEn": "Conventions",
+    "nameBn": "বাসেল কনভেনশন (বিপজ্জনক বর্জ্য)",
+    "shortBn": "বাসেল",
+    "nameEn": "Basel Convention",
+    "themeBn": "রাসায়নিক ও বর্জ্য",
+    "year": 1989,
+    "cityBn": "বাসেল",
+    "countryBn": "সুইজারল্যান্ড",
+    "signedBn": "২২ মার্চ ১৯৮৯",
+    "inForceBn": "৫ মে ১৯৯২",
+    "bdRatificationBn": null,
+    "shortEn": "Basel",
+    "themeEn": "Chemicals & Waste",
+    "cityEn": "Basel",
+    "countryEn": "Switzerland",
+    "signedEn": "22 March 1989",
+    "inForceEn": "5 May 1992",
+    "inForceYear": 1992,
+    "at": [
+      7.59056,
+      47.56056
+    ],
+    "soloAt": [
+      7.59056,
+      47.56056
+    ],
+    "frame": [
+      4.991,
+      44.561,
+      10.191,
+      50.561
+    ]
+  },
+  "unfccc": {
+    "tab": "conventions",
+    "tabBn": "কনভেনশন",
+    "tabEn": "Conventions",
+    "nameBn": "জাতিসংঘ জলবায়ু পরিবর্তন কাঠামো কনভেনশন (UNFCCC)",
+    "shortBn": "UNFCCC",
+    "nameEn": "UNFCCC",
+    "themeBn": "জলবায়ু",
+    "year": 1992,
+    "cityBn": "রিও ডি জেনিরো",
+    "countryBn": "ব্রাজিল",
+    "signedBn": "৪–১৪ জুন ১৯৯২",
+    "inForceBn": "২১ মার্চ ১৯৯৪",
+    "bdRatificationBn": null,
+    "noteBn": "স্বাক্ষর শুরু রিও ডি জেনিরোতে, পরে নিউইয়র্কে",
+    "shortEn": "UNFCCC",
+    "themeEn": "Climate",
+    "cityEn": "Rio de Janeiro",
+    "countryEn": "Brazil",
+    "signedEn": "4–14 June 1992",
+    "inForceEn": "21 March 1994",
+    "noteEn": "Signing opened in Rio de Janeiro, then New York",
+    "inForceYear": 1994,
+    "at": [
+      -43.20556,
+      -22.91111
+    ],
+    "place": [
+      "conventions-Q8678"
+    ],
+    "frame": [
+      -45.806,
+      -25.911,
+      -40.606,
+      -19.911
+    ],
+    "children": [
+      "kyoto",
+      "paris",
+      "cop1",
+      "cop2",
+      "cop3",
+      "cop4",
+      "cop5",
+      "cop6",
+      "cop6_2",
+      "cop7",
+      "cop8",
+      "cop9",
+      "cop10",
+      "cop11",
+      "cop12",
+      "cop13",
+      "cop14",
+      "cop15",
+      "cop16",
+      "cop17",
+      "cop18",
+      "cop19",
+      "cop20",
+      "cop21",
+      "cop22",
+      "cop23",
+      "cop24",
+      "cop25",
+      "cop26",
+      "cop27",
+      "cop28",
+      "cop29",
+      "cop30"
+    ]
+  },
+  "cbd": {
+    "tab": "conventions",
+    "tabBn": "কনভেনশন",
+    "tabEn": "Conventions",
+    "nameBn": "জীববৈচিত্র্য কনভেনশন (CBD)",
+    "shortBn": "CBD",
+    "nameEn": "Convention on Biological Diversity",
+    "themeBn": "বন্যপ্রাণী ও জীববৈচিত্র্য",
+    "year": 1992,
+    "cityBn": "রিও ডি জেনিরো",
+    "countryBn": "ব্রাজিল",
+    "signedBn": "৫ জুন ১৯৯২ – ৪ জুন ১৯৯৩",
+    "inForceBn": "২৯ ডিসেম্বর ১৯৯৩",
+    "bdRatificationBn": null,
+    "noteBn": "স্বাক্ষর শুরু রিও ডি জেনিরোতে, পরে নিউইয়র্কে",
+    "shortEn": "CBD",
+    "themeEn": "Biodiversity",
+    "cityEn": "Rio de Janeiro",
+    "countryEn": "Brazil",
+    "signedEn": "5 June 1992 – 4 June 1993",
+    "inForceEn": "29 December 1993",
+    "noteEn": "Signing opened in Rio de Janeiro, then New York",
+    "inForceYear": 1993,
+    "at": [
+      -43.20556,
+      -22.91111
+    ],
+    "place": [
+      "conventions-Q8678"
+    ],
+    "frame": [
+      -45.806,
+      -25.911,
+      -40.606,
+      -19.911
+    ],
+    "children": [
+      "cartagena",
+      "nagoya"
+    ]
+  },
+  "unccd": {
+    "tab": "conventions",
+    "tabBn": "কনভেনশন",
+    "tabEn": "Conventions",
+    "nameBn": "মরুকরণ প্রতিরোধ কনভেনশন (UNCCD)",
+    "shortBn": "UNCCD",
+    "nameEn": "UNCCD",
+    "themeBn": "মরুকরণ",
+    "year": 1994,
+    "cityBn": null,
+    "countryBn": null,
+    "signedBn": "১৪ অক্টোবর ১৯৯৪ – ১৩ অক্টোবর ১৯৯৫",
+    "inForceBn": "২৬ ডিসেম্বর ১৯৯৬",
+    "bdRatificationBn": null,
+    "shortEn": "UNCCD",
+    "themeEn": "Desertification",
+    "cityEn": null,
+    "countryEn": null,
+    "signedEn": "14 October 1994 – 13 October 1995",
+    "inForceEn": "26 December 1996",
+    "inForceYear": 1996
+  },
+  "rotterdam": {
+    "tab": "conventions",
+    "tabBn": "কনভেনশন",
+    "tabEn": "Conventions",
+    "nameBn": "রটারডাম কনভেনশন (বিপজ্জনক রাসায়নিক ও কীটনাশক)",
+    "shortBn": "রটারডাম",
+    "nameEn": "Rotterdam Convention",
+    "themeBn": "রাসায়নিক ও বর্জ্য",
+    "year": 1998,
+    "cityBn": "রটারডাম",
+    "countryBn": "নেদারল্যান্ডস",
+    "signedBn": "১০ সেপ্টেম্বর ১৯৯৮",
+    "inForceBn": "২৪ ফেব্রুয়ারি ২০০৪",
+    "bdRatificationBn": null,
+    "shortEn": "Rotterdam",
+    "themeEn": "Chemicals & Waste",
+    "cityEn": "Rotterdam",
+    "countryEn": "Netherlands",
+    "signedEn": "10 September 1998",
+    "inForceEn": "24 February 2004",
+    "inForceYear": 2004,
+    "at": [
+      4.48,
+      51.92
+    ],
+    "soloAt": [
+      4.48,
+      51.92
+    ],
+    "frame": [
+      1.88,
+      48.92,
+      7.08,
+      54.92
+    ]
+  },
+  "stockholm-pops": {
+    "tab": "conventions",
+    "tabBn": "কনভেনশন",
+    "tabEn": "Conventions",
+    "nameBn": "স্টকহোম কনভেনশন (স্থায়ী জৈব দূষক, POPs)",
+    "shortBn": "স্টকহোম (POPs)",
+    "nameEn": "Stockholm Convention on Persistent Organic Pollutants",
+    "themeBn": "রাসায়নিক ও বর্জ্য",
+    "year": 2001,
+    "cityBn": "স্টকহোম",
+    "countryBn": "সুইডেন",
+    "signedBn": "২২ মে ২০০১",
+    "inForceBn": "১৭ মে ২০০৪",
+    "bdRatificationBn": null,
+    "noteBn": "১৯৭২ সালের স্টকহোম সম্মেলন থেকে আলাদা",
+    "shortEn": "Stockholm (POPs)",
+    "themeEn": "Chemicals & Waste",
+    "cityEn": "Stockholm",
+    "countryEn": "Sweden",
+    "signedEn": "22 May 2001",
+    "inForceEn": "17 May 2004",
+    "noteEn": "Not the same as the 1972 Stockholm Conference",
+    "inForceYear": 2004,
+    "at": [
+      18.06861,
+      59.32944
+    ],
+    "soloAt": [
+      18.06861,
+      59.32944
+    ],
+    "frame": [
+      15.469,
+      56.329,
+      20.669,
+      62.329
+    ]
+  },
+  "minamata": {
+    "tab": "conventions",
+    "tabBn": "কনভেনশন",
+    "tabEn": "Conventions",
+    "nameBn": "মিনামাতা কনভেনশন (পারদ)",
+    "shortBn": "মিনামাতা",
+    "nameEn": "Minamata Convention on Mercury",
+    "themeBn": "রাসায়নিক ও বর্জ্য",
+    "year": 2013,
+    "cityBn": "কুমামোতো",
+    "countryBn": "জাপান",
+    "signedBn": "১০ অক্টোবর ২০১৩",
+    "inForceBn": "১৬ আগস্ট ২০১৭",
+    "bdRatificationBn": null,
+    "noteBn": "নাম মিনামাতার, কিন্তু স্বাক্ষর হয় কুমামোতোতে",
+    "shortEn": "Minamata",
+    "themeEn": "Chemicals & Waste",
+    "cityEn": "Kumamoto",
+    "countryEn": "Japan",
+    "signedEn": "10 October 2013",
+    "inForceEn": "16 August 2017",
+    "noteEn": "Named after Minamata, but signed in Kumamoto",
+    "inForceYear": 2017,
+    "at": [
+      130.70786,
+      32.803
+    ],
+    "soloAt": [
+      130.70786,
+      32.803
+    ],
+    "frame": [
+      128.108,
+      29.803,
+      133.308,
+      35.803
+    ]
+  },
+  "montreal": {
+    "tab": "treaties",
+    "tabBn": "চুক্তি ও প্রটোকল",
+    "tabEn": "Treaties & Protocols",
+    "nameBn": "মন্ট্রিল প্রটোকল",
+    "shortBn": "মন্ট্রিল",
+    "nameEn": "Montreal Protocol",
+    "themeBn": "ওজোন স্তর",
+    "year": 1987,
+    "cityBn": "মন্ট্রিল",
+    "countryBn": "কানাডা",
+    "signedBn": "১৬ সেপ্টেম্বর ১৯৮৭",
+    "inForceBn": "১ জানুয়ারি ১৯৮৯",
+    "bdRatificationBn": null,
+    "parentId": "vienna",
+    "shortEn": "Montreal",
+    "themeEn": "Ozone",
+    "cityEn": "Montreal",
+    "countryEn": "Canada",
+    "signedEn": "16 September 1987",
+    "inForceEn": "1 January 1989",
+    "inForceYear": 1989,
+    "at": [
+      -73.58684,
+      45.50334
+    ],
+    "place": [
+      "treaties-Q340"
+    ],
+    "frame": [
+      -76.187,
+      42.503,
+      -70.987,
+      48.503
+    ],
+    "children": [
+      "kigali"
+    ]
+  },
+  "kyoto": {
+    "tab": "treaties",
+    "tabBn": "চুক্তি ও প্রটোকল",
+    "tabEn": "Treaties & Protocols",
+    "nameBn": "কিয়োটো প্রটোকল",
+    "shortBn": "কিয়োটো",
+    "nameEn": "Kyoto Protocol",
+    "themeBn": "জলবায়ু",
+    "year": 1997,
+    "cityBn": "কিয়োটো",
+    "countryBn": "জাপান",
+    "signedBn": "১১ ডিসেম্বর ১৯৯৭",
+    "inForceBn": "১৬ ফেব্রুয়ারি ২০০৫",
+    "bdRatificationBn": null,
+    "parentId": "unfccc",
+    "noteBn": "মেয়াদ শেষ: ৩১ ডিসেম্বর ২০২০",
+    "shortEn": "Kyoto",
+    "themeEn": "Climate",
+    "cityEn": "Kyoto",
+    "countryEn": "Japan",
+    "signedEn": "11 December 1997",
+    "inForceEn": "16 February 2005",
+    "noteEn": "Expired 31 December 2020",
+    "inForceYear": 2005,
+    "at": [
+      135.76811,
+      35.01161
+    ],
+    "soloAt": [
+      135.76811,
+      35.01161
+    ],
+    "frame": [
+      133.168,
+      32.012,
+      138.368,
+      38.012
+    ]
+  },
+  "cartagena": {
+    "tab": "treaties",
+    "tabBn": "চুক্তি ও প্রটোকল",
+    "tabEn": "Treaties & Protocols",
+    "nameBn": "কার্টাহেনা প্রটোকল (জৈব নিরাপত্তা)",
+    "shortBn": "কার্টাহেনা",
+    "nameEn": "Cartagena Protocol on Biosafety",
+    "themeBn": "বন্যপ্রাণী ও জীববৈচিত্র্য",
+    "year": 2000,
+    "cityBn": "মন্ট্রিল",
+    "countryBn": "কানাডা",
+    "signedBn": "১৬ মে ২০০০",
+    "inForceBn": "১১ সেপ্টেম্বর ২০০৩",
+    "bdRatificationBn": null,
+    "parentId": "cbd",
+    "noteBn": "নাম কার্টাহেনার (কলম্বিয়া), কিন্তু গৃহীত হয় মন্ট্রিলে",
+    "shortEn": "Cartagena",
+    "themeEn": "Biodiversity",
+    "cityEn": "Montreal",
+    "countryEn": "Canada",
+    "signedEn": "16 May 2000",
+    "inForceEn": "11 September 2003",
+    "noteEn": "Named after Cartagena (Colombia), but adopted in Montreal",
+    "inForceYear": 2003,
+    "at": [
+      -73.58684,
+      45.50334
+    ],
+    "place": [
+      "treaties-Q340"
+    ],
+    "frame": [
+      -76.187,
+      42.503,
+      -70.987,
+      48.503
+    ]
+  },
+  "nagoya": {
+    "tab": "treaties",
+    "tabBn": "চুক্তি ও প্রটোকল",
+    "tabEn": "Treaties & Protocols",
+    "nameBn": "নাগোয়া প্রটোকল",
+    "shortBn": "নাগোয়া",
+    "nameEn": "Nagoya Protocol",
+    "themeBn": "বন্যপ্রাণী ও জীববৈচিত্র্য",
+    "year": 2010,
+    "cityBn": "নাগোয়া",
+    "countryBn": "জাপান",
+    "signedBn": "২৯ অক্টোবর ২০১০",
+    "inForceBn": "১২ অক্টোবর ২০১৪",
+    "bdRatificationBn": null,
+    "parentId": "cbd",
+    "shortEn": "Nagoya",
+    "themeEn": "Biodiversity",
+    "cityEn": "Nagoya",
+    "countryEn": "Japan",
+    "signedEn": "29 October 2010",
+    "inForceEn": "12 October 2014",
+    "inForceYear": 2014,
+    "at": [
+      136.90639,
+      35.18139
+    ],
+    "soloAt": [
+      136.90639,
+      35.18139
+    ],
+    "frame": [
+      134.306,
+      32.181,
+      139.506,
+      38.181
+    ]
+  },
+  "paris": {
+    "tab": "treaties",
+    "tabBn": "চুক্তি ও প্রটোকল",
+    "tabEn": "Treaties & Protocols",
+    "nameBn": "প্যারিস চুক্তি",
+    "shortBn": "প্যারিস",
+    "nameEn": "Paris Agreement",
+    "themeBn": "জলবায়ু",
+    "year": 2015,
+    "cityBn": "প্যারিস",
+    "countryBn": "ফ্রান্স",
+    "signedBn": "২২ এপ্রিল ২০১৬",
+    "inForceBn": "৪ নভেম্বর ২০১৬",
+    "bdRatificationBn": null,
+    "parentId": "unfccc",
+    "noteBn": "গৃহীত ২০১৫ সালে (COP21); স্বাক্ষর ২০১৬ সালে",
+    "shortEn": "Paris",
+    "themeEn": "Climate",
+    "cityEn": "Paris",
+    "countryEn": "France",
+    "signedEn": "22 April 2016",
+    "inForceEn": "4 November 2016",
+    "noteEn": "Adopted 2015 (COP21); signed 2016",
+    "inForceYear": 2016,
+    "at": [
+      2.35222,
+      48.85667
+    ],
+    "soloAt": [
+      2.35222,
+      48.85667
+    ],
+    "frame": [
+      -0.248,
+      45.857,
+      4.952,
+      51.857
+    ]
+  },
+  "kigali": {
+    "tab": "treaties",
+    "tabBn": "চুক্তি ও প্রটোকল",
+    "tabEn": "Treaties & Protocols",
+    "nameBn": "কিগালি সংশোধনী (মন্ট্রিল প্রটোকলের)",
+    "shortBn": "কিগালি",
+    "nameEn": "Kigali Amendment",
+    "themeBn": "ওজোন স্তর",
+    "year": 2016,
+    "cityBn": "কিগালি",
+    "countryBn": "রুয়ান্ডা",
+    "signedBn": "১৫ অক্টোবর ২০১৬",
+    "inForceBn": "১ জানুয়ারি ২০১৯",
+    "bdRatificationBn": null,
+    "parentId": "montreal",
+    "shortEn": "Kigali",
+    "themeEn": "Ozone",
+    "cityEn": "Kigali",
+    "countryEn": "Rwanda",
+    "signedEn": "15 October 2016",
+    "inForceEn": "1 January 2019",
+    "inForceYear": 2019,
+    "at": [
+      30.115,
+      -1.9525
+    ],
+    "soloAt": [
+      30.115,
+      -1.9525
+    ],
+    "frame": [
+      27.515,
+      -4.952,
+      32.715,
+      1.048
+    ]
+  },
+  "bbnj": {
+    "tab": "treaties",
+    "tabBn": "চুক্তি ও প্রটোকল",
+    "tabEn": "Treaties & Protocols",
+    "nameBn": "উচ্চ সমুদ্র চুক্তি (BBNJ)",
+    "shortBn": "উচ্চ সমুদ্র",
+    "nameEn": "High Seas Treaty (BBNJ Agreement)",
+    "themeBn": "বন্যপ্রাণী ও জীববৈচিত্র্য",
+    "year": 2023,
+    "cityBn": "নিউইয়র্ক",
+    "countryBn": "যুক্তরাষ্ট্র",
+    "signedBn": "২০ সেপ্টেম্বর ২০২৩",
+    "inForceBn": "১৭ জানুয়ারি ২০২৬",
+    "bdRatificationBn": null,
+    "parentId": null,
+    "parentTextBn": "জাতিসংঘ সমুদ্র আইন কনভেনশন (UNCLOS)",
+    "shortEn": "High Seas",
+    "themeEn": "Biodiversity",
+    "cityEn": "New York",
+    "countryEn": "United States",
+    "signedEn": "20 September 2023",
+    "inForceEn": "17 January 2026",
+    "parentTextEn": "UN Convention on the Law of the Sea (UNCLOS)",
+    "inForceYear": 2026,
+    "parentShortEn": "UNCLOS",
+    "at": [
+      -74.00611,
+      40.71278
+    ],
+    "soloAt": [
+      -74.00611,
+      40.71278
+    ],
+    "frame": [
+      -76.606,
+      37.713,
+      -71.406,
+      43.713
+    ]
+  },
+  "stockholm-1972": {
+    "tab": "summits",
+    "tabBn": "সম্মেলন",
+    "tabEn": "Summits",
+    "nameBn": "জাতিসংঘ মানব পরিবেশ সম্মেলন (স্টকহোম সম্মেলন)",
+    "shortBn": "স্টকহোম সম্মেলন",
+    "nameEn": "United Nations Conference on the Human Environment",
+    "year": 1972,
+    "cityBn": "স্টকহোম",
+    "countryBn": "সুইডেন",
+    "shortEn": "Stockholm Conference",
+    "cityEn": "Stockholm",
+    "countryEn": "Sweden",
+    "at": [
+      18.06861,
+      59.32944
+    ],
+    "soloAt": [
+      18.06861,
+      59.32944
+    ],
+    "frame": [
+      15.469,
+      56.329,
+      20.669,
+      62.329
+    ]
+  },
+  "rio-1992": {
+    "tab": "summits",
+    "tabBn": "সম্মেলন",
+    "tabEn": "Summits",
+    "nameBn": "ধরিত্রী সম্মেলন (রিও সম্মেলন)",
+    "shortBn": "ধরিত্রী সম্মেলন",
+    "nameEn": "Earth Summit (UNCED)",
+    "year": 1992,
+    "cityBn": "রিও ডি জেনিরো",
+    "countryBn": "ব্রাজিল",
+    "noteBn": "এখানে জলবায়ু (UNFCCC) ও জীববৈচিত্র্য (CBD) কনভেনশন স্বাক্ষরের জন্য উন্মুক্ত হয়",
+    "shortEn": "Earth Summit",
+    "cityEn": "Rio de Janeiro",
+    "countryEn": "Brazil",
+    "noteEn": "UNFCCC and CBD opened for signature here",
+    "at": [
+      -43.20556,
+      -22.91111
+    ],
+    "place": [
+      "summits-Q8678"
+    ],
+    "frame": [
+      -45.806,
+      -25.911,
+      -40.606,
+      -19.911
+    ]
+  },
+  "wssd-2002": {
+    "tab": "summits",
+    "tabBn": "সম্মেলন",
+    "tabEn": "Summits",
+    "nameBn": "টেকসই উন্নয়ন বিশ্ব সম্মেলন (রিও+১০)",
+    "shortBn": "রিও+১০",
+    "nameEn": "World Summit on Sustainable Development",
+    "year": 2002,
+    "cityBn": null,
+    "countryBn": "দক্ষিণ আফ্রিকা",
+    "shortEn": "Rio+10",
+    "cityEn": null,
+    "countryEn": "South Africa"
+  },
+  "rio20-2012": {
+    "tab": "summits",
+    "tabBn": "সম্মেলন",
+    "tabEn": "Summits",
+    "nameBn": "রিও+২০ সম্মেলন",
+    "shortBn": "রিও+২০",
+    "nameEn": "United Nations Conference on Sustainable Development (Rio+20)",
+    "year": 2012,
+    "cityBn": "রিও ডি জেনিরো",
+    "countryBn": "ব্রাজিল",
+    "shortEn": "Rio+20",
+    "cityEn": "Rio de Janeiro",
+    "countryEn": "Brazil",
+    "at": [
+      -43.20556,
+      -22.91111
+    ],
+    "place": [
+      "summits-Q8678"
+    ],
+    "frame": [
+      -45.806,
+      -25.911,
+      -40.606,
+      -19.911
+    ]
+  },
+  "cop1": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-১",
+    "shortBn": "কপ-১",
+    "nameEn": "COP 1",
+    "year": 1995,
+    "cityBn": "বার্লিন",
+    "countryBn": "জার্মানি",
+    "parentId": "unfccc",
+    "shortEn": "COP 1",
+    "cityEn": "Berlin",
+    "countryEn": "Germany",
+    "at": [
+      13.38333,
+      52.51667
+    ],
+    "soloAt": [
+      13.38333,
+      52.51667
+    ],
+    "frame": [
+      10.783,
+      49.517,
+      15.983,
+      55.517
+    ]
+  },
+  "cop2": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-২",
+    "shortBn": "কপ-২",
+    "nameEn": "COP 2",
+    "year": 1996,
+    "cityBn": "জেনেভা",
+    "countryBn": "সুইজারল্যান্ড",
+    "parentId": "unfccc",
+    "shortEn": "COP 2",
+    "cityEn": "Geneva",
+    "countryEn": "Switzerland",
+    "at": [
+      6.15,
+      46.2
+    ],
+    "soloAt": [
+      6.15,
+      46.2
+    ],
+    "frame": [
+      3.55,
+      43.2,
+      8.75,
+      49.2
+    ]
+  },
+  "cop3": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-৩",
+    "shortBn": "কপ-৩",
+    "nameEn": "COP 3",
+    "year": 1997,
+    "cityBn": "কিয়োটো",
+    "countryBn": "জাপান",
+    "parentId": "unfccc",
+    "shortEn": "COP 3",
+    "cityEn": "Kyoto",
+    "countryEn": "Japan",
+    "at": [
+      135.76811,
+      35.01161
+    ],
+    "soloAt": [
+      135.76811,
+      35.01161
+    ],
+    "frame": [
+      133.168,
+      32.012,
+      138.368,
+      38.012
+    ]
+  },
+  "cop4": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-৪",
+    "shortBn": "কপ-৪",
+    "nameEn": "COP 4",
+    "year": 1998,
+    "cityBn": "বুয়েনস আইরেস",
+    "countryBn": "আর্জেন্টিনা",
+    "parentId": "unfccc",
+    "shortEn": "COP 4",
+    "cityEn": "Buenos Aires",
+    "countryEn": "Argentina",
+    "at": [
+      -58.38194,
+      -34.59972
+    ],
+    "place": [
+      "cops-Q1486"
+    ],
+    "frame": [
+      -60.982,
+      -37.6,
+      -55.782,
+      -31.6
+    ]
+  },
+  "cop5": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-৫",
+    "shortBn": "কপ-৫",
+    "nameEn": "COP 5",
+    "year": 1999,
+    "cityBn": "বন",
+    "countryBn": "জার্মানি",
+    "parentId": "unfccc",
+    "shortEn": "COP 5",
+    "cityEn": "Bonn",
+    "countryEn": "Germany",
+    "at": [
+      7.10222,
+      50.73528
+    ],
+    "place": [
+      "cops-Q586"
+    ],
+    "frame": [
+      4.502,
+      47.735,
+      9.702,
+      53.735
+    ]
+  },
+  "cop6": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-৬",
+    "shortBn": "কপ-৬",
+    "nameEn": "COP 6",
+    "year": 2000,
+    "cityBn": "দ্য হেগ",
+    "countryBn": "নেদারল্যান্ডস",
+    "parentId": "unfccc",
+    "shortEn": "COP 6",
+    "cityEn": "The Hague",
+    "countryEn": "Netherlands",
+    "at": [
+      4.31,
+      52.08
+    ],
+    "soloAt": [
+      4.31,
+      52.08
+    ],
+    "frame": [
+      1.71,
+      49.08,
+      6.91,
+      55.08
+    ]
+  },
+  "cop6_2": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-৬-২",
+    "shortBn": "কপ-৬-২",
+    "nameEn": "COP 6-2",
+    "year": 2001,
+    "cityBn": "বন",
+    "countryBn": "জার্মানি",
+    "parentId": "unfccc",
+    "noteBn": "COP 6-এর পুনরায় বসা অধিবেশন",
+    "shortEn": "COP 6-2",
+    "cityEn": "Bonn",
+    "countryEn": "Germany",
+    "noteEn": "Resumed session of COP 6",
+    "at": [
+      7.10222,
+      50.73528
+    ],
+    "place": [
+      "cops-Q586"
+    ],
+    "frame": [
+      4.502,
+      47.735,
+      9.702,
+      53.735
+    ]
+  },
+  "cop7": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-৭",
+    "shortBn": "কপ-৭",
+    "nameEn": "COP 7",
+    "year": 2001,
+    "cityBn": "মারাকেশ",
+    "countryBn": "মরক্কো",
+    "parentId": "unfccc",
+    "shortEn": "COP 7",
+    "cityEn": "Marrakesh",
+    "countryEn": "Morocco",
+    "at": [
+      -7.98108,
+      31.62947
+    ],
+    "place": [
+      "cops-Q101625"
+    ],
+    "frame": [
+      -10.581,
+      28.629,
+      -5.381,
+      34.629
+    ]
+  },
+  "cop8": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-৮",
+    "shortBn": "কপ-৮",
+    "nameEn": "COP 8",
+    "year": 2002,
+    "cityBn": "নয়াদিল্লি",
+    "countryBn": "ভারত",
+    "parentId": "unfccc",
+    "shortEn": "COP 8",
+    "cityEn": "New Delhi",
+    "countryEn": "India",
+    "at": [
+      77.20889,
+      28.61389
+    ],
+    "soloAt": [
+      77.20889,
+      28.61389
+    ],
+    "frame": [
+      74.609,
+      25.614,
+      79.809,
+      31.614
+    ]
+  },
+  "cop9": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-৯",
+    "shortBn": "কপ-৯",
+    "nameEn": "COP 9",
+    "year": 2003,
+    "cityBn": "মিলান",
+    "countryBn": "ইতালি",
+    "parentId": "unfccc",
+    "shortEn": "COP 9",
+    "cityEn": "Milan",
+    "countryEn": "Italy",
+    "at": [
+      9.19,
+      45.46694
+    ],
+    "soloAt": [
+      9.19,
+      45.46694
+    ],
+    "frame": [
+      6.59,
+      42.467,
+      11.79,
+      48.467
+    ]
+  },
+  "cop10": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-১০",
+    "shortBn": "কপ-১০",
+    "nameEn": "COP 10",
+    "year": 2004,
+    "cityBn": "বুয়েনস আইরেস",
+    "countryBn": "আর্জেন্টিনা",
+    "parentId": "unfccc",
+    "shortEn": "COP 10",
+    "cityEn": "Buenos Aires",
+    "countryEn": "Argentina",
+    "at": [
+      -58.38194,
+      -34.59972
+    ],
+    "place": [
+      "cops-Q1486"
+    ],
+    "frame": [
+      -60.982,
+      -37.6,
+      -55.782,
+      -31.6
+    ]
+  },
+  "cop11": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-১১",
+    "shortBn": "কপ-১১",
+    "nameEn": "COP 11",
+    "year": 2005,
+    "cityBn": "মন্ট্রিল",
+    "countryBn": "কানাডা",
+    "parentId": "unfccc",
+    "shortEn": "COP 11",
+    "cityEn": "Montreal",
+    "countryEn": "Canada",
+    "at": [
+      -73.58684,
+      45.50334
+    ],
+    "soloAt": [
+      -73.58684,
+      45.50334
+    ],
+    "frame": [
+      -76.187,
+      42.503,
+      -70.987,
+      48.503
+    ]
+  },
+  "cop12": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-১২",
+    "shortBn": "কপ-১২",
+    "nameEn": "COP 12",
+    "year": 2006,
+    "cityBn": "নাইরোবি",
+    "countryBn": "কেনিয়া",
+    "parentId": "unfccc",
+    "shortEn": "COP 12",
+    "cityEn": "Nairobi",
+    "countryEn": "Kenya",
+    "at": [
+      36.81722,
+      -1.28639
+    ],
+    "soloAt": [
+      36.81722,
+      -1.28639
+    ],
+    "frame": [
+      34.217,
+      -4.286,
+      39.417,
+      1.714
+    ]
+  },
+  "cop13": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-১৩",
+    "shortBn": "কপ-১৩",
+    "nameEn": "COP 13",
+    "year": 2007,
+    "cityBn": "বালি",
+    "countryBn": "ইন্দোনেশিয়া",
+    "parentId": "unfccc",
+    "shortEn": "COP 13",
+    "cityEn": "Bali",
+    "countryEn": "Indonesia",
+    "at": [
+      115,
+      -8.5
+    ],
+    "soloAt": [
+      115,
+      -8.5
+    ],
+    "frame": [
+      112.4,
+      -11.5,
+      117.6,
+      -5.5
+    ]
+  },
+  "cop14": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-১৪",
+    "shortBn": "কপ-১৪",
+    "nameEn": "COP 14",
+    "year": 2008,
+    "cityBn": "পোজনান",
+    "countryBn": "পোল্যান্ড",
+    "parentId": "unfccc",
+    "shortEn": "COP 14",
+    "cityEn": "Poznań",
+    "countryEn": "Poland",
+    "at": [
+      16.93361,
+      52.40833
+    ],
+    "soloAt": [
+      16.93361,
+      52.40833
+    ],
+    "frame": [
+      14.334,
+      49.408,
+      19.534,
+      55.408
+    ]
+  },
+  "cop15": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-১৫",
+    "shortBn": "কপ-১৫",
+    "nameEn": "COP 15",
+    "year": 2009,
+    "cityBn": "কোপেনহেগেন",
+    "countryBn": "ডেনমার্ক",
+    "parentId": "unfccc",
+    "shortEn": "COP 15",
+    "cityEn": "Copenhagen",
+    "countryEn": "Denmark",
+    "at": [
+      12.56889,
+      55.67611
+    ],
+    "soloAt": [
+      12.56889,
+      55.67611
+    ],
+    "frame": [
+      9.969,
+      52.676,
+      15.169,
+      58.676
+    ]
+  },
+  "cop16": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-১৬",
+    "shortBn": "কপ-১৬",
+    "nameEn": "COP 16",
+    "year": 2010,
+    "cityBn": "কানকুন",
+    "countryBn": "মেক্সিকো",
+    "parentId": "unfccc",
+    "shortEn": "COP 16",
+    "cityEn": "Cancún",
+    "countryEn": "Mexico",
+    "at": [
+      -86.82481,
+      21.16142
+    ],
+    "soloAt": [
+      -86.82481,
+      21.16142
+    ],
+    "frame": [
+      -89.425,
+      18.161,
+      -84.225,
+      24.161
+    ]
+  },
+  "cop17": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-১৭",
+    "shortBn": "কপ-১৭",
+    "nameEn": "COP 17",
+    "year": 2011,
+    "cityBn": "ডারবান",
+    "countryBn": "দক্ষিণ আফ্রিকা",
+    "parentId": "unfccc",
+    "shortEn": "COP 17",
+    "cityEn": "Durban",
+    "countryEn": "South Africa",
+    "at": [
+      31.025,
+      -29.85833
+    ],
+    "soloAt": [
+      31.025,
+      -29.85833
+    ],
+    "frame": [
+      28.425,
+      -32.858,
+      33.625,
+      -26.858
+    ]
+  },
+  "cop18": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-১৮",
+    "shortBn": "কপ-১৮",
+    "nameEn": "COP 18",
+    "year": 2012,
+    "cityBn": "দোহা",
+    "countryBn": "কাতার",
+    "parentId": "unfccc",
+    "shortEn": "COP 18",
+    "cityEn": "Doha",
+    "countryEn": "Qatar",
+    "at": [
+      51.52944,
+      25.28611
+    ],
+    "soloAt": [
+      51.52944,
+      25.28611
+    ],
+    "frame": [
+      48.929,
+      22.286,
+      54.129,
+      28.286
+    ]
+  },
+  "cop19": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-১৯",
+    "shortBn": "কপ-১৯",
+    "nameEn": "COP 19",
+    "year": 2013,
+    "cityBn": "ওয়ারশ",
+    "countryBn": "পোল্যান্ড",
+    "parentId": "unfccc",
+    "shortEn": "COP 19",
+    "cityEn": "Warsaw",
+    "countryEn": "Poland",
+    "at": [
+      21.01111,
+      52.23
+    ],
+    "soloAt": [
+      21.01111,
+      52.23
+    ],
+    "frame": [
+      18.411,
+      49.23,
+      23.611,
+      55.23
+    ]
+  },
+  "cop20": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-২০",
+    "shortBn": "কপ-২০",
+    "nameEn": "COP 20",
+    "year": 2014,
+    "cityBn": "লিমা",
+    "countryBn": "পেরু",
+    "parentId": "unfccc",
+    "shortEn": "COP 20",
+    "cityEn": "Lima",
+    "countryEn": "Peru",
+    "at": [
+      -77.0375,
+      -12.06
+    ],
+    "soloAt": [
+      -77.0375,
+      -12.06
+    ],
+    "frame": [
+      -79.637,
+      -15.06,
+      -74.438,
+      -9.06
+    ]
+  },
+  "cop21": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-২১",
+    "shortBn": "কপ-২১",
+    "nameEn": "COP 21",
+    "year": 2015,
+    "cityBn": "প্যারিস",
+    "countryBn": "ফ্রান্স",
+    "parentId": "unfccc",
+    "shortEn": "COP 21",
+    "cityEn": "Paris",
+    "countryEn": "France",
+    "at": [
+      2.35222,
+      48.85667
+    ],
+    "soloAt": [
+      2.35222,
+      48.85667
+    ],
+    "frame": [
+      -0.248,
+      45.857,
+      4.952,
+      51.857
+    ]
+  },
+  "cop22": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-২২",
+    "shortBn": "কপ-২২",
+    "nameEn": "COP 22",
+    "year": 2016,
+    "cityBn": "মারাকেশ",
+    "countryBn": "মরক্কো",
+    "parentId": "unfccc",
+    "shortEn": "COP 22",
+    "cityEn": "Marrakesh",
+    "countryEn": "Morocco",
+    "at": [
+      -7.98108,
+      31.62947
+    ],
+    "place": [
+      "cops-Q101625"
+    ],
+    "frame": [
+      -10.581,
+      28.629,
+      -5.381,
+      34.629
+    ]
+  },
+  "cop23": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-২৩",
+    "shortBn": "কপ-২৩",
+    "nameEn": "COP 23",
+    "year": 2017,
+    "cityBn": "বন",
+    "countryBn": "জার্মানি",
+    "parentId": "unfccc",
+    "shortEn": "COP 23",
+    "cityEn": "Bonn",
+    "countryEn": "Germany",
+    "at": [
+      7.10222,
+      50.73528
+    ],
+    "place": [
+      "cops-Q586"
+    ],
+    "frame": [
+      4.502,
+      47.735,
+      9.702,
+      53.735
+    ]
+  },
+  "cop24": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-২৪",
+    "shortBn": "কপ-২৪",
+    "nameEn": "COP 24",
+    "year": 2018,
+    "cityBn": "কাতোভিৎসে",
+    "countryBn": "পোল্যান্ড",
+    "parentId": "unfccc",
+    "shortEn": "COP 24",
+    "cityEn": "Katowice",
+    "countryEn": "Poland",
+    "at": [
+      19,
+      50.25
+    ],
+    "soloAt": [
+      19,
+      50.25
+    ],
+    "frame": [
+      16.4,
+      47.25,
+      21.6,
+      53.25
+    ]
+  },
+  "cop25": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-২৫",
+    "shortBn": "কপ-২৫",
+    "nameEn": "COP 25",
+    "year": 2019,
+    "cityBn": "মাদ্রিদ",
+    "countryBn": "স্পেন",
+    "parentId": "unfccc",
+    "shortEn": "COP 25",
+    "cityEn": "Madrid",
+    "countryEn": "Spain",
+    "at": [
+      -3.70333,
+      40.41694
+    ],
+    "soloAt": [
+      -3.70333,
+      40.41694
+    ],
+    "frame": [
+      -6.303,
+      37.417,
+      -1.103,
+      43.417
+    ]
+  },
+  "cop26": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-২৬",
+    "shortBn": "কপ-২৬",
+    "nameEn": "COP 26",
+    "year": 2021,
+    "cityBn": "গ্লাসগো",
+    "countryBn": "যুক্তরাজ্য",
+    "parentId": "unfccc",
+    "noteBn": "কোভিডের কারণে ২০২০ থেকে পিছিয়ে ২০২১-এ হয়",
+    "shortEn": "COP 26",
+    "cityEn": "Glasgow",
+    "countryEn": "United Kingdom",
+    "noteEn": "Postponed from 2020 to 2021 (COVID-19)",
+    "at": [
+      -4.25,
+      55.86111
+    ],
+    "soloAt": [
+      -4.25,
+      55.86111
+    ],
+    "frame": [
+      -6.85,
+      52.861,
+      -1.65,
+      58.861
+    ]
+  },
+  "cop27": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-২৭",
+    "shortBn": "কপ-২৭",
+    "nameEn": "COP 27",
+    "year": 2022,
+    "cityBn": "শারম আল-শেখ",
+    "countryBn": "মিশর",
+    "parentId": "unfccc",
+    "shortEn": "COP 27",
+    "cityEn": "Sharm El Sheikh",
+    "countryEn": "Egypt",
+    "at": [
+      34.305,
+      27.85194
+    ],
+    "soloAt": [
+      34.305,
+      27.85194
+    ],
+    "frame": [
+      31.705,
+      24.852,
+      36.905,
+      30.852
+    ]
+  },
+  "cop28": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-২৮",
+    "shortBn": "কপ-২৮",
+    "nameEn": "COP 28",
+    "year": 2023,
+    "cityBn": "দুবাই",
+    "countryBn": "সংযুক্ত আরব আমিরাত",
+    "parentId": "unfccc",
+    "shortEn": "COP 28",
+    "cityEn": "Dubai",
+    "countryEn": "United Arab Emirates",
+    "at": [
+      55.30944,
+      25.26972
+    ],
+    "soloAt": [
+      55.30944,
+      25.26972
+    ],
+    "frame": [
+      52.709,
+      22.27,
+      57.909,
+      28.27
+    ]
+  },
+  "cop29": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-২৯",
+    "shortBn": "কপ-২৯",
+    "nameEn": "COP 29",
+    "year": 2024,
+    "cityBn": "বাকু",
+    "countryBn": "আজারবাইজান",
+    "parentId": "unfccc",
+    "shortEn": "COP 29",
+    "cityEn": "Baku",
+    "countryEn": "Azerbaijan",
+    "at": [
+      49.83518,
+      40.36666
+    ],
+    "soloAt": [
+      49.83518,
+      40.36666
+    ],
+    "frame": [
+      47.235,
+      37.367,
+      52.435,
+      43.367
+    ]
+  },
+  "cop30": {
+    "tab": "cops",
+    "tabBn": "COP",
+    "tabEn": "COP",
+    "nameBn": "কপ-৩০",
+    "shortBn": "কপ-৩০",
+    "nameEn": "COP 30",
+    "year": 2025,
+    "cityBn": "বেলেম",
+    "countryBn": "ব্রাজিল",
+    "parentId": "unfccc",
+    "shortEn": "COP 30",
+    "cityEn": "Belém",
+    "countryEn": "Brazil",
+    "at": [
+      -48.50389,
+      -1.45583
+    ],
+    "soloAt": [
+      -48.50389,
+      -1.45583
+    ],
+    "frame": [
+      -51.104,
+      -4.456,
+      -45.904,
+      1.544
+    ]
+  }
+}

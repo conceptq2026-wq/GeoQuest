@@ -1,0 +1,2396 @@
+{
+  "_about": "Environmental conventions, treaties and protocols, world summits, and UNFCCC COPs. Four tabs. Written by the editor from the approved draft (প্রবিবেশ_চুক্তি_খসড়া.xlsx), 2026-09-27. COP 31 (Antalya, Nov 2026) is left out until it has met. shortBn (timeline dot labels) added by the editor 2026-09-27, derived from nameBn; no new facts. English display fields (shortEn, themeEn, cityEn, countryEn, signedEn, inForceEn, noteEn, parentTextEn, tab titleEn) added by the editor 2026-09-27 at the user's request that this map be in English; dates are the cited sources' own wording, the rest are translations of the Bengali fields, no new facts.",
+  "tabs": [
+    {
+      "id": "conventions",
+      "titleBn": "কনভেনশন",
+      "titleEn": "Conventions"
+    },
+    {
+      "id": "treaties",
+      "titleBn": "চুক্তি ও প্রটোকল",
+      "titleEn": "Treaties & Protocols"
+    },
+    {
+      "id": "summits",
+      "titleBn": "সম্মেলন",
+      "titleEn": "Summits"
+    },
+    {
+      "id": "cops",
+      "titleBn": "COP",
+      "titleEn": "COP"
+    }
+  ],
+  "conventions": {
+    "ramsar": {
+      "id": "ramsar",
+      "nameBn": "রামসার কনভেনশন (জলাভূমি)",
+      "shortBn": "রামসার",
+      "shortEn": "Ramsar",
+      "themeEn": "Wetlands & Heritage",
+      "cityEn": "Ramsar",
+      "countryEn": "Iran",
+      "signedEn": "2 February 1971",
+      "inForceEn": "21 December 1975",
+      "nameEn": "Ramsar Convention",
+      "themeBn": "জলাভূমি ও ঐতিহ্য",
+      "year": 1971,
+      "cityBn": "রামসার",
+      "countryBn": "ইরান",
+      "cityQuery": "Ramsar, Mazandaran, Iran",
+      "signedBn": "২ ফেব্রুয়ারি ১৯৭১",
+      "inForceBn": "২১ ডিসেম্বর ১৯৭৫",
+      "bdRatificationBn": null,
+      "sources": {
+        "year": [
+          {
+            "title": "Ramsar Convention",
+            "publisher": "Wikipedia (revision 1376161378)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1376161378",
+            "states": "date_signed: 2 February 1971"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "Ramsar Convention",
+            "publisher": "Wikipedia (revision 1376161378)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1376161378",
+            "states": "location_signed: Ramsar, Iran"
+          }
+        ],
+        "signedBn": [
+          {
+            "title": "Ramsar Convention",
+            "publisher": "Wikipedia (revision 1376161378)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1376161378",
+            "states": "date_signed: 2 February 1971"
+          }
+        ],
+        "inForceBn": [
+          {
+            "title": "Ramsar Convention",
+            "publisher": "Wikipedia (revision 1376161378)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1376161378",
+            "states": "date_effective: 21 December 1975"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27 (Bengali names, themes and tab placement are editor content). "
+    },
+    "whc": {
+      "id": "whc",
+      "nameBn": "বিশ্ব ঐতিহ্য কনভেনশন",
+      "shortBn": "বিশ্ব ঐতিহ্য",
+      "shortEn": "World Heritage",
+      "themeEn": "Wetlands & Heritage",
+      "cityEn": "Paris",
+      "countryEn": "France",
+      "signedEn": "16–23 November 1972",
+      "inForceEn": "17 December 1975",
+      "noteEn": "Covers both natural and cultural heritage",
+      "nameEn": "World Heritage Convention",
+      "themeBn": "জলাভূমি ও ঐতিহ্য",
+      "year": 1972,
+      "cityBn": "প্যারিস",
+      "countryBn": "ফ্রান্স",
+      "cityQuery": "Paris, France",
+      "signedBn": "১৬–২৩ নভেম্বর ১৯৭২",
+      "inForceBn": "১৭ ডিসেম্বর ১৯৭৫",
+      "bdRatificationBn": null,
+      "sources": {
+        "year": [
+          {
+            "title": "World Heritage Convention",
+            "publisher": "Wikipedia (revision 1349760511)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1349760511",
+            "states": "date_signed: 16–23 November 1972"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "World Heritage Convention",
+            "publisher": "Wikipedia (revision 1349760511)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1349760511",
+            "states": "location_signed: Paris, France"
+          }
+        ],
+        "signedBn": [
+          {
+            "title": "World Heritage Convention",
+            "publisher": "Wikipedia (revision 1349760511)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1349760511",
+            "states": "date_signed: 16–23 November 1972"
+          }
+        ],
+        "inForceBn": [
+          {
+            "title": "World Heritage Convention",
+            "publisher": "Wikipedia (revision 1349760511)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1349760511",
+            "states": "date_effective: 17 December 1975"
+          }
+        ],
+        "noteBn": [
+          {
+            "title": "World Heritage Convention",
+            "publisher": "Wikipedia (revision 1349760511)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1349760511",
+            "states": "name: Convention Concerning the Protection of the World Cultural and Natural Heritage"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27 (Bengali names, themes and tab placement are editor content). ",
+      "noteBn": "প্রাকৃতিক ও সাংস্কৃতিক — দুই ধরনের ঐতিহ্য"
+    },
+    "cites": {
+      "id": "cites",
+      "nameBn": "সাইটিস (CITES) — বিপন্ন প্রজাতির বাণিজ্য",
+      "shortBn": "সাইটিস",
+      "shortEn": "CITES",
+      "themeEn": "Biodiversity",
+      "cityEn": null,
+      "countryEn": null,
+      "signedEn": "3 March 1973",
+      "inForceEn": "1 July 1975",
+      "nameEn": "CITES",
+      "themeBn": "বন্যপ্রাণী ও জীববৈচিত্র্য",
+      "year": 1973,
+      "cityBn": null,
+      "countryBn": null,
+      "cityQuery": null,
+      "signedBn": "৩ মার্চ ১৯৭৩",
+      "inForceBn": "১ জুলাই ১৯৭৫",
+      "bdRatificationBn": null,
+      "sources": {
+        "year": [
+          {
+            "title": "CITES",
+            "publisher": "Wikipedia (revision 1375981860)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1375981860",
+            "states": "date_signed: 3 March 1973"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "CITES",
+            "publisher": "Wikipedia (revision 1375981860)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1375981860",
+            "states": "location_signed: Geneva, Switzerland"
+          }
+        ],
+        "signedBn": [
+          {
+            "title": "CITES",
+            "publisher": "Wikipedia (revision 1375981860)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1375981860",
+            "states": "date_signed: 3 March 1973"
+          }
+        ],
+        "inForceBn": [
+          {
+            "title": "CITES",
+            "publisher": "Wikipedia (revision 1375981860)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1375981860",
+            "states": "date_effective: 1 July 1975"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27 (Bengali names, themes and tab placement are editor content). City left null: the source conflicts with itself or with exam usage; the user's book decides."
+    },
+    "cms": {
+      "id": "cms",
+      "nameBn": "বন্যপ্রাণীর পরিযায়ী প্রজাতি কনভেনশন (CMS)",
+      "shortBn": "CMS",
+      "shortEn": "CMS",
+      "themeEn": "Biodiversity",
+      "cityEn": "Bonn",
+      "countryEn": "Germany",
+      "signedEn": "23 June 1979",
+      "inForceEn": "1 November 1983",
+      "noteEn": "Bonn was in West Germany when it was signed",
+      "nameEn": "Convention on Migratory Species",
+      "themeBn": "বন্যপ্রাণী ও জীববৈচিত্র্য",
+      "year": 1979,
+      "cityBn": "বন",
+      "countryBn": "জার্মানি",
+      "cityQuery": "Bonn, Germany",
+      "signedBn": "২৩ জুন ১৯৭৯",
+      "inForceBn": "১ নভেম্বর ১৯৮৩",
+      "bdRatificationBn": null,
+      "sources": {
+        "year": [
+          {
+            "title": "Convention on the Conservation of Migratory Species of Wild Animals",
+            "publisher": "Wikipedia (revision 1365616314)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1365616314",
+            "states": "date_signed: 23 June 1979"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "Convention on the Conservation of Migratory Species of Wild Animals",
+            "publisher": "Wikipedia (revision 1365616314)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1365616314",
+            "states": "location_signed: Bonn, West Germany"
+          }
+        ],
+        "signedBn": [
+          {
+            "title": "Convention on the Conservation of Migratory Species of Wild Animals",
+            "publisher": "Wikipedia (revision 1365616314)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1365616314",
+            "states": "date_signed: 23 June 1979"
+          }
+        ],
+        "inForceBn": [
+          {
+            "title": "Convention on the Conservation of Migratory Species of Wild Animals",
+            "publisher": "Wikipedia (revision 1365616314)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1365616314",
+            "states": "date_effective: 1 November 1983"
+          }
+        ],
+        "noteBn": [
+          {
+            "title": "Convention on the Conservation of Migratory Species of Wild Animals",
+            "publisher": "Wikipedia (revision 1365616314)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1365616314",
+            "states": "location_signed: Bonn, West Germany"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27 (Bengali names, themes and tab placement are editor content). ",
+      "noteBn": "স্বাক্ষরের সময় বন ছিল পশ্চিম জার্মানিতে"
+    },
+    "vienna": {
+      "id": "vienna",
+      "nameBn": "ভিয়েনা কনভেনশন (ওজোন স্তর)",
+      "shortBn": "ভিয়েনা",
+      "shortEn": "Vienna",
+      "themeEn": "Ozone",
+      "cityEn": "Vienna",
+      "countryEn": "Austria",
+      "signedEn": "22 March 1985",
+      "inForceEn": "22 September 1988",
+      "nameEn": "Vienna Convention for the Protection of the Ozone Layer",
+      "themeBn": "ওজোন স্তর",
+      "year": 1985,
+      "cityBn": "ভিয়েনা",
+      "countryBn": "অস্ট্রিয়া",
+      "cityQuery": "Vienna, Austria",
+      "signedBn": "২২ মার্চ ১৯৮৫",
+      "inForceBn": "২২ সেপ্টেম্বর ১৯৮৮",
+      "bdRatificationBn": null,
+      "sources": {
+        "year": [
+          {
+            "title": "Vienna Convention for the Protection of the Ozone Layer",
+            "publisher": "Wikipedia (revision 1368435500)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1368435500",
+            "states": "date_signed: 22 March 1985"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "Vienna Convention for the Protection of the Ozone Layer",
+            "publisher": "Wikipedia (revision 1368435500)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1368435500",
+            "states": "location_signed: Vienna, Austria"
+          }
+        ],
+        "signedBn": [
+          {
+            "title": "Vienna Convention for the Protection of the Ozone Layer",
+            "publisher": "Wikipedia (revision 1368435500)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1368435500",
+            "states": "date_signed: 22 March 1985"
+          }
+        ],
+        "inForceBn": [
+          {
+            "title": "Vienna Convention for the Protection of the Ozone Layer",
+            "publisher": "Wikipedia (revision 1368435500)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1368435500",
+            "states": "date_effective: 22 September 1988"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27 (Bengali names, themes and tab placement are editor content). "
+    },
+    "basel": {
+      "id": "basel",
+      "nameBn": "বাসেল কনভেনশন (বিপজ্জনক বর্জ্য)",
+      "shortBn": "বাসেল",
+      "shortEn": "Basel",
+      "themeEn": "Chemicals & Waste",
+      "cityEn": "Basel",
+      "countryEn": "Switzerland",
+      "signedEn": "22 March 1989",
+      "inForceEn": "5 May 1992",
+      "nameEn": "Basel Convention",
+      "themeBn": "রাসায়নিক ও বর্জ্য",
+      "year": 1989,
+      "cityBn": "বাসেল",
+      "countryBn": "সুইজারল্যান্ড",
+      "cityQuery": "Basel, Switzerland",
+      "signedBn": "২২ মার্চ ১৯৮৯",
+      "inForceBn": "৫ মে ১৯৯২",
+      "bdRatificationBn": null,
+      "sources": {
+        "year": [
+          {
+            "title": "Basel Convention",
+            "publisher": "Wikipedia (revision 1347356521)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1347356521",
+            "states": "date_signed: 22 March 1989"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "Basel Convention",
+            "publisher": "Wikipedia (revision 1347356521)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1347356521",
+            "states": "location_signed: Basel, Switzerland"
+          }
+        ],
+        "signedBn": [
+          {
+            "title": "Basel Convention",
+            "publisher": "Wikipedia (revision 1347356521)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1347356521",
+            "states": "date_signed: 22 March 1989"
+          }
+        ],
+        "inForceBn": [
+          {
+            "title": "Basel Convention",
+            "publisher": "Wikipedia (revision 1347356521)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1347356521",
+            "states": "date_effective: 5 May 1992"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27 (Bengali names, themes and tab placement are editor content). "
+    },
+    "unfccc": {
+      "id": "unfccc",
+      "nameBn": "জাতিসংঘ জলবায়ু পরিবর্তন কাঠামো কনভেনশন (UNFCCC)",
+      "shortBn": "UNFCCC",
+      "shortEn": "UNFCCC",
+      "themeEn": "Climate",
+      "cityEn": "Rio de Janeiro",
+      "countryEn": "Brazil",
+      "signedEn": "4–14 June 1992",
+      "inForceEn": "21 March 1994",
+      "noteEn": "Signing opened in Rio de Janeiro, then New York",
+      "nameEn": "UNFCCC",
+      "themeBn": "জলবায়ু",
+      "year": 1992,
+      "cityBn": "রিও ডি জেনিরো",
+      "countryBn": "ব্রাজিল",
+      "cityQuery": "Rio de Janeiro, Brazil",
+      "signedBn": "৪–১৪ জুন ১৯৯২",
+      "inForceBn": "২১ মার্চ ১৯৯৪",
+      "bdRatificationBn": null,
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Framework Convention on Climate Change",
+            "publisher": "Wikipedia (revision 1369329836)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369329836",
+            "states": "date_signed: 4–14 June 1992 (then 20 June 1992 – 19 June 1993)"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Framework Convention on Climate Change",
+            "publisher": "Wikipedia (revision 1369329836)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369329836",
+            "states": "location_signed: Rio de Janeiro, Brazil / New York, United States"
+          }
+        ],
+        "signedBn": [
+          {
+            "title": "United Nations Framework Convention on Climate Change",
+            "publisher": "Wikipedia (revision 1369329836)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369329836",
+            "states": "date_signed: 4–14 June 1992 (then 20 June 1992 – 19 June 1993)"
+          }
+        ],
+        "inForceBn": [
+          {
+            "title": "United Nations Framework Convention on Climate Change",
+            "publisher": "Wikipedia (revision 1369329836)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369329836",
+            "states": "date_effective: 21 March 1994"
+          }
+        ],
+        "noteBn": [
+          {
+            "title": "United Nations Framework Convention on Climate Change",
+            "publisher": "Wikipedia (revision 1369329836)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369329836",
+            "states": "location_signed: Rio de Janeiro, Brazil / New York, United States"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27 (Bengali names, themes and tab placement are editor content). ",
+      "noteBn": "স্বাক্ষর শুরু রিও ডি জেনিরোতে, পরে নিউইয়র্কে"
+    },
+    "cbd": {
+      "id": "cbd",
+      "nameBn": "জীববৈচিত্র্য কনভেনশন (CBD)",
+      "shortBn": "CBD",
+      "shortEn": "CBD",
+      "themeEn": "Biodiversity",
+      "cityEn": "Rio de Janeiro",
+      "countryEn": "Brazil",
+      "signedEn": "5 June 1992 – 4 June 1993",
+      "inForceEn": "29 December 1993",
+      "noteEn": "Signing opened in Rio de Janeiro, then New York",
+      "nameEn": "Convention on Biological Diversity",
+      "themeBn": "বন্যপ্রাণী ও জীববৈচিত্র্য",
+      "year": 1992,
+      "cityBn": "রিও ডি জেনিরো",
+      "countryBn": "ব্রাজিল",
+      "cityQuery": "Rio de Janeiro, Brazil",
+      "signedBn": "৫ জুন ১৯৯২ – ৪ জুন ১৯৯৩",
+      "inForceBn": "২৯ ডিসেম্বর ১৯৯৩",
+      "bdRatificationBn": null,
+      "sources": {
+        "year": [
+          {
+            "title": "Convention on Biological Diversity",
+            "publisher": "Wikipedia (revision 1373871129)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1373871129",
+            "states": "date_signed: 5 June 1992 – 4 June 1993"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "Convention on Biological Diversity",
+            "publisher": "Wikipedia (revision 1373871129)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1373871129",
+            "states": "location_signed: Rio de Janeiro, Brazil / New York, United States"
+          }
+        ],
+        "signedBn": [
+          {
+            "title": "Convention on Biological Diversity",
+            "publisher": "Wikipedia (revision 1373871129)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1373871129",
+            "states": "date_signed: 5 June 1992 – 4 June 1993"
+          }
+        ],
+        "inForceBn": [
+          {
+            "title": "Convention on Biological Diversity",
+            "publisher": "Wikipedia (revision 1373871129)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1373871129",
+            "states": "date_effective: 29 December 1993"
+          }
+        ],
+        "noteBn": [
+          {
+            "title": "Convention on Biological Diversity",
+            "publisher": "Wikipedia (revision 1373871129)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1373871129",
+            "states": "location_signed: Rio de Janeiro, Brazil / New York, United States"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27 (Bengali names, themes and tab placement are editor content). ",
+      "noteBn": "স্বাক্ষর শুরু রিও ডি জেনিরোতে, পরে নিউইয়র্কে"
+    },
+    "unccd": {
+      "id": "unccd",
+      "nameBn": "মরুকরণ প্রতিরোধ কনভেনশন (UNCCD)",
+      "shortBn": "UNCCD",
+      "shortEn": "UNCCD",
+      "themeEn": "Desertification",
+      "cityEn": null,
+      "countryEn": null,
+      "signedEn": "14 October 1994 – 13 October 1995",
+      "inForceEn": "26 December 1996",
+      "nameEn": "UNCCD",
+      "themeBn": "মরুকরণ",
+      "year": 1994,
+      "cityBn": null,
+      "countryBn": null,
+      "cityQuery": null,
+      "signedBn": "১৪ অক্টোবর ১৯৯৪ – ১৩ অক্টোবর ১৯৯৫",
+      "inForceBn": "২৬ ডিসেম্বর ১৯৯৬",
+      "bdRatificationBn": null,
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Convention to Combat Desertification",
+            "publisher": "Wikipedia (revision 1353856613)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1353856613",
+            "states": "date_signed: 14 October 1994 – 13 October 1995"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Convention to Combat Desertification",
+            "publisher": "Wikipedia (revision 1353856613)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1353856613",
+            "states": "location_signed: Bonn, Germany / New York City, United States"
+          }
+        ],
+        "signedBn": [
+          {
+            "title": "United Nations Convention to Combat Desertification",
+            "publisher": "Wikipedia (revision 1353856613)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1353856613",
+            "states": "date_signed: 14 October 1994 – 13 October 1995"
+          }
+        ],
+        "inForceBn": [
+          {
+            "title": "United Nations Convention to Combat Desertification",
+            "publisher": "Wikipedia (revision 1353856613)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1353856613",
+            "states": "date_effective: 26 December 1996"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27 (Bengali names, themes and tab placement are editor content). City left null: the source conflicts with itself or with exam usage; the user's book decides."
+    },
+    "rotterdam": {
+      "id": "rotterdam",
+      "nameBn": "রটারডাম কনভেনশন (বিপজ্জনক রাসায়নিক ও কীটনাশক)",
+      "shortBn": "রটারডাম",
+      "shortEn": "Rotterdam",
+      "themeEn": "Chemicals & Waste",
+      "cityEn": "Rotterdam",
+      "countryEn": "Netherlands",
+      "signedEn": "10 September 1998",
+      "inForceEn": "24 February 2004",
+      "nameEn": "Rotterdam Convention",
+      "themeBn": "রাসায়নিক ও বর্জ্য",
+      "year": 1998,
+      "cityBn": "রটারডাম",
+      "countryBn": "নেদারল্যান্ডস",
+      "cityQuery": "Rotterdam, Netherlands",
+      "signedBn": "১০ সেপ্টেম্বর ১৯৯৮",
+      "inForceBn": "২৪ ফেব্রুয়ারি ২০০৪",
+      "bdRatificationBn": null,
+      "sources": {
+        "year": [
+          {
+            "title": "Rotterdam Convention",
+            "publisher": "Wikipedia (revision 1273860536)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1273860536",
+            "states": "date_signed: 10 September 1998"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "Rotterdam Convention",
+            "publisher": "Wikipedia (revision 1273860536)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1273860536",
+            "states": "location_signed: Rotterdam, the Netherlands"
+          }
+        ],
+        "signedBn": [
+          {
+            "title": "Rotterdam Convention",
+            "publisher": "Wikipedia (revision 1273860536)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1273860536",
+            "states": "date_signed: 10 September 1998"
+          }
+        ],
+        "inForceBn": [
+          {
+            "title": "Rotterdam Convention",
+            "publisher": "Wikipedia (revision 1273860536)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1273860536",
+            "states": "date_effective: 24 February 2004"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27 (Bengali names, themes and tab placement are editor content). "
+    },
+    "stockholm-pops": {
+      "id": "stockholm-pops",
+      "nameBn": "স্টকহোম কনভেনশন (স্থায়ী জৈব দূষক, POPs)",
+      "shortBn": "স্টকহোম (POPs)",
+      "shortEn": "Stockholm (POPs)",
+      "themeEn": "Chemicals & Waste",
+      "cityEn": "Stockholm",
+      "countryEn": "Sweden",
+      "signedEn": "22 May 2001",
+      "inForceEn": "17 May 2004",
+      "noteEn": "Not the same as the 1972 Stockholm Conference",
+      "nameEn": "Stockholm Convention on Persistent Organic Pollutants",
+      "themeBn": "রাসায়নিক ও বর্জ্য",
+      "year": 2001,
+      "cityBn": "স্টকহোম",
+      "countryBn": "সুইডেন",
+      "cityQuery": "Stockholm, Sweden",
+      "signedBn": "২২ মে ২০০১",
+      "inForceBn": "১৭ মে ২০০৪",
+      "bdRatificationBn": null,
+      "sources": {
+        "year": [
+          {
+            "title": "Stockholm Convention on Persistent Organic Pollutants",
+            "publisher": "Wikipedia (revision 1361516827)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1361516827",
+            "states": "date_signed: 22 May 2001"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "Stockholm Convention on Persistent Organic Pollutants",
+            "publisher": "Wikipedia (revision 1361516827)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1361516827",
+            "states": "location_signed: Stockholm, Sweden"
+          }
+        ],
+        "signedBn": [
+          {
+            "title": "Stockholm Convention on Persistent Organic Pollutants",
+            "publisher": "Wikipedia (revision 1361516827)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1361516827",
+            "states": "date_signed: 22 May 2001"
+          }
+        ],
+        "inForceBn": [
+          {
+            "title": "Stockholm Convention on Persistent Organic Pollutants",
+            "publisher": "Wikipedia (revision 1361516827)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1361516827",
+            "states": "date_effective: 17 May 2004"
+          }
+        ],
+        "noteBn": [
+          {
+            "title": "Stockholm Convention on Persistent Organic Pollutants",
+            "publisher": "Wikipedia (revision 1361516827)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1361516827",
+            "states": "location_signed: Stockholm, Sweden"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27 (Bengali names, themes and tab placement are editor content). ",
+      "noteBn": "১৯৭২ সালের স্টকহোম সম্মেলন থেকে আলাদা"
+    },
+    "minamata": {
+      "id": "minamata",
+      "nameBn": "মিনামাতা কনভেনশন (পারদ)",
+      "shortBn": "মিনামাতা",
+      "shortEn": "Minamata",
+      "themeEn": "Chemicals & Waste",
+      "cityEn": "Kumamoto",
+      "countryEn": "Japan",
+      "signedEn": "10 October 2013",
+      "inForceEn": "16 August 2017",
+      "noteEn": "Named after Minamata, but signed in Kumamoto",
+      "nameEn": "Minamata Convention on Mercury",
+      "themeBn": "রাসায়নিক ও বর্জ্য",
+      "year": 2013,
+      "cityBn": "কুমামোতো",
+      "countryBn": "জাপান",
+      "cityQuery": "Kumamoto, Japan",
+      "signedBn": "১০ অক্টোবর ২০১৩",
+      "inForceBn": "১৬ আগস্ট ২০১৭",
+      "bdRatificationBn": null,
+      "sources": {
+        "year": [
+          {
+            "title": "Minamata Convention on Mercury",
+            "publisher": "Wikipedia (revision 1313571225)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1313571225",
+            "states": "date_signed: 10 October 2013"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "Minamata Convention on Mercury",
+            "publisher": "Wikipedia (revision 1313571225)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1313571225",
+            "states": "location_signed: Kumamoto, Japan"
+          }
+        ],
+        "signedBn": [
+          {
+            "title": "Minamata Convention on Mercury",
+            "publisher": "Wikipedia (revision 1313571225)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1313571225",
+            "states": "date_signed: 10 October 2013"
+          }
+        ],
+        "inForceBn": [
+          {
+            "title": "Minamata Convention on Mercury",
+            "publisher": "Wikipedia (revision 1313571225)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1313571225",
+            "states": "date_effective: 16 August 2017"
+          }
+        ],
+        "noteBn": [
+          {
+            "title": "Minamata Convention on Mercury",
+            "publisher": "Wikipedia (revision 1313571225)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1313571225",
+            "states": "location_signed: Kumamoto, Japan"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27 (Bengali names, themes and tab placement are editor content). ",
+      "noteBn": "নাম মিনামাতার, কিন্তু স্বাক্ষর হয় কুমামোতোতে"
+    }
+  },
+  "treaties": {
+    "montreal": {
+      "id": "montreal",
+      "nameBn": "মন্ট্রিল প্রটোকল",
+      "shortBn": "মন্ট্রিল",
+      "shortEn": "Montreal",
+      "themeEn": "Ozone",
+      "cityEn": "Montreal",
+      "countryEn": "Canada",
+      "signedEn": "16 September 1987",
+      "inForceEn": "1 January 1989",
+      "nameEn": "Montreal Protocol",
+      "themeBn": "ওজোন স্তর",
+      "year": 1987,
+      "cityBn": "মন্ট্রিল",
+      "countryBn": "কানাডা",
+      "cityQuery": "Montreal, Canada",
+      "signedBn": "১৬ সেপ্টেম্বর ১৯৮৭",
+      "inForceBn": "১ জানুয়ারি ১৯৮৯",
+      "parentId": null,
+      "bdRatificationBn": null,
+      "sources": {
+        "year": [
+          {
+            "title": "Montreal Protocol",
+            "publisher": "Wikipedia (revision 1375917408)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1375917408",
+            "states": "date_signed: 16 September 1987"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "Montreal Protocol",
+            "publisher": "Wikipedia (revision 1375917408)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1375917408",
+            "states": "location_signed: Montreal"
+          }
+        ],
+        "signedBn": [
+          {
+            "title": "Montreal Protocol",
+            "publisher": "Wikipedia (revision 1375917408)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1375917408",
+            "states": "date_signed: 16 September 1987"
+          }
+        ],
+        "inForceBn": [
+          {
+            "title": "Montreal Protocol",
+            "publisher": "Wikipedia (revision 1375917408)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1375917408",
+            "states": "date_effective: 1 January 1989"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27 (Bengali names, themes and tab placement are editor content). "
+    },
+    "kyoto": {
+      "id": "kyoto",
+      "nameBn": "কিয়োটো প্রটোকল",
+      "shortBn": "কিয়োটো",
+      "shortEn": "Kyoto",
+      "themeEn": "Climate",
+      "cityEn": "Kyoto",
+      "countryEn": "Japan",
+      "signedEn": "11 December 1997",
+      "inForceEn": "16 February 2005",
+      "noteEn": "Expired 31 December 2020",
+      "nameEn": "Kyoto Protocol",
+      "themeBn": "জলবায়ু",
+      "year": 1997,
+      "cityBn": "কিয়োটো",
+      "countryBn": "জাপান",
+      "cityQuery": "Kyoto, Japan",
+      "signedBn": "১১ ডিসেম্বর ১৯৯৭",
+      "inForceBn": "১৬ ফেব্রুয়ারি ২০০৫",
+      "parentId": "unfccc",
+      "bdRatificationBn": null,
+      "sources": {
+        "year": [
+          {
+            "title": "Kyoto Protocol",
+            "publisher": "Wikipedia (revision 1374600856)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1374600856",
+            "states": "date_signed: 11 December 1997"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "Kyoto Protocol",
+            "publisher": "Wikipedia (revision 1374600856)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1374600856",
+            "states": "location_signed: Kyoto, Japan"
+          }
+        ],
+        "signedBn": [
+          {
+            "title": "Kyoto Protocol",
+            "publisher": "Wikipedia (revision 1374600856)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1374600856",
+            "states": "date_signed: 11 December 1997"
+          }
+        ],
+        "inForceBn": [
+          {
+            "title": "Kyoto Protocol",
+            "publisher": "Wikipedia (revision 1374600856)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1374600856",
+            "states": "date_effective: 16 February 2005"
+          }
+        ],
+        "parentId": [
+          {
+            "title": "Kyoto Protocol",
+            "publisher": "Wikipedia (revision 1374600856)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1374600856",
+            "states": "long_name: \"Kyoto Protocol to the UNFCCC\""
+          }
+        ],
+        "noteBn": [
+          {
+            "title": "Kyoto Protocol",
+            "publisher": "Wikipedia (revision 1374600856)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1374600856",
+            "states": "date_expiration: 31 December 2020"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27 (Bengali names, themes and tab placement are editor content). ",
+      "noteBn": "মেয়াদ শেষ: ৩১ ডিসেম্বর ২০২০"
+    },
+    "cartagena": {
+      "id": "cartagena",
+      "nameBn": "কার্টাহেনা প্রটোকল (জৈব নিরাপত্তা)",
+      "shortBn": "কার্টাহেনা",
+      "shortEn": "Cartagena",
+      "themeEn": "Biodiversity",
+      "cityEn": "Montreal",
+      "countryEn": "Canada",
+      "signedEn": "16 May 2000",
+      "inForceEn": "11 September 2003",
+      "noteEn": "Named after Cartagena (Colombia), but adopted in Montreal",
+      "nameEn": "Cartagena Protocol on Biosafety",
+      "themeBn": "বন্যপ্রাণী ও জীববৈচিত্র্য",
+      "year": 2000,
+      "cityBn": "মন্ট্রিল",
+      "countryBn": "কানাডা",
+      "cityQuery": "Montreal, Canada",
+      "signedBn": "১৬ মে ২০০০",
+      "inForceBn": "১১ সেপ্টেম্বর ২০০৩",
+      "parentId": "cbd",
+      "bdRatificationBn": null,
+      "sources": {
+        "year": [
+          {
+            "title": "Cartagena Protocol on Biosafety",
+            "publisher": "Wikipedia (revision 1369935190)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369935190",
+            "states": "date_drafted: 29 January 2000; date_signed: 16 May 2000"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "Cartagena Protocol on Biosafety",
+            "publisher": "Wikipedia (revision 1369935190)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369935190",
+            "states": "location_signed: Montreal, Quebec, Canada (originally scheduled for 1999 in Cartagena, Colombia)"
+          }
+        ],
+        "signedBn": [
+          {
+            "title": "Cartagena Protocol on Biosafety",
+            "publisher": "Wikipedia (revision 1369935190)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369935190",
+            "states": "date_signed: 16 May 2000 (adopted 29 January 2000)"
+          }
+        ],
+        "inForceBn": [
+          {
+            "title": "Cartagena Protocol on Biosafety",
+            "publisher": "Wikipedia (revision 1369935190)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369935190",
+            "states": "date_effective: 11 September 2003"
+          }
+        ],
+        "parentId": [
+          {
+            "title": "Cartagena Protocol on Biosafety",
+            "publisher": "Wikipedia (revision 1369935190)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369935190",
+            "states": "long_name: \"Cartagena Protocol on Biosafety to the Convention on Biological Diversity\""
+          }
+        ],
+        "noteBn": [
+          {
+            "title": "Cartagena Protocol on Biosafety",
+            "publisher": "Wikipedia (revision 1369935190)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369935190",
+            "states": "location_signed: Montreal, Quebec, Canada (originally scheduled for 1999 in Cartagena, Colombia)"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27 (Bengali names, themes and tab placement are editor content). ",
+      "noteBn": "নাম কার্টাহেনার (কলম্বিয়া), কিন্তু গৃহীত হয় মন্ট্রিলে"
+    },
+    "nagoya": {
+      "id": "nagoya",
+      "nameBn": "নাগোয়া প্রটোকল",
+      "shortBn": "নাগোয়া",
+      "shortEn": "Nagoya",
+      "themeEn": "Biodiversity",
+      "cityEn": "Nagoya",
+      "countryEn": "Japan",
+      "signedEn": "29 October 2010",
+      "inForceEn": "12 October 2014",
+      "nameEn": "Nagoya Protocol",
+      "themeBn": "বন্যপ্রাণী ও জীববৈচিত্র্য",
+      "year": 2010,
+      "cityBn": "নাগোয়া",
+      "countryBn": "জাপান",
+      "cityQuery": "Nagoya, Japan",
+      "signedBn": "২৯ অক্টোবর ২০১০",
+      "inForceBn": "১২ অক্টোবর ২০১৪",
+      "parentId": "cbd",
+      "bdRatificationBn": null,
+      "sources": {
+        "year": [
+          {
+            "title": "Nagoya Protocol",
+            "publisher": "Wikipedia (revision 1368847089)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1368847089",
+            "states": "date_signed: 29 October 2010"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "Nagoya Protocol",
+            "publisher": "Wikipedia (revision 1368847089)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1368847089",
+            "states": "location_signed: Nagoya, Japan"
+          }
+        ],
+        "signedBn": [
+          {
+            "title": "Nagoya Protocol",
+            "publisher": "Wikipedia (revision 1368847089)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1368847089",
+            "states": "date_signed: 29 October 2010"
+          }
+        ],
+        "inForceBn": [
+          {
+            "title": "Nagoya Protocol",
+            "publisher": "Wikipedia (revision 1368847089)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1368847089",
+            "states": "date_effective: 12 October 2014"
+          }
+        ],
+        "parentId": [
+          {
+            "title": "Nagoya Protocol",
+            "publisher": "Wikipedia (revision 1368847089)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1368847089",
+            "states": "long_name: \"Nagoya Protocol … to the Convention on Biological Diversity\""
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27 (Bengali names, themes and tab placement are editor content). "
+    },
+    "paris": {
+      "id": "paris",
+      "nameBn": "প্যারিস চুক্তি",
+      "shortBn": "প্যারিস",
+      "shortEn": "Paris",
+      "themeEn": "Climate",
+      "cityEn": "Paris",
+      "countryEn": "France",
+      "signedEn": "22 April 2016",
+      "inForceEn": "4 November 2016",
+      "noteEn": "Adopted 2015 (COP21); signed 2016",
+      "nameEn": "Paris Agreement",
+      "themeBn": "জলবায়ু",
+      "year": 2015,
+      "cityBn": "প্যারিস",
+      "countryBn": "ফ্রান্স",
+      "cityQuery": "Paris, France",
+      "signedBn": "২২ এপ্রিল ২০১৬",
+      "inForceBn": "৪ নভেম্বর ২০১৬",
+      "parentId": "unfccc",
+      "bdRatificationBn": null,
+      "sources": {
+        "year": [
+          {
+            "title": "Paris Agreement",
+            "publisher": "Wikipedia (revision 1376655588)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1376655588",
+            "states": "date_drafted: 30 November – 12 December 2015 (COP21); date_signed: 22 April 2016. The timeline year is the adoption year, by the editor's decision."
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "Paris Agreement",
+            "publisher": "Wikipedia (revision 1376655588)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1376655588",
+            "states": "location_signed: Paris, France"
+          }
+        ],
+        "signedBn": [
+          {
+            "title": "Paris Agreement",
+            "publisher": "Wikipedia (revision 1376655588)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1376655588",
+            "states": "date_signed: 22 April 2016 (drafted 30 Nov – 12 Dec 2015, Le Bourget)"
+          }
+        ],
+        "inForceBn": [
+          {
+            "title": "Paris Agreement",
+            "publisher": "Wikipedia (revision 1376655588)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1376655588",
+            "states": "date_effective: 4 November 2016"
+          }
+        ],
+        "parentId": [
+          {
+            "title": "Paris Agreement",
+            "publisher": "Wikipedia (revision 1376655588)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1376655588",
+            "states": "long_name: \"Paris Agreement under the United Nations Framework Convention on Climate Change\""
+          }
+        ],
+        "noteBn": [
+          {
+            "title": "Paris Agreement",
+            "publisher": "Wikipedia (revision 1376655588)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1376655588",
+            "states": "date_drafted: 30 November – 12 December 2015 (COP21); date_signed: 22 April 2016. The timeline year is the adoption year, by the editor's decision."
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27 (Bengali names, themes and tab placement are editor content). ",
+      "noteBn": "গৃহীত ২০১৫ সালে (COP21); স্বাক্ষর ২০১৬ সালে"
+    },
+    "kigali": {
+      "id": "kigali",
+      "nameBn": "কিগালি সংশোধনী (মন্ট্রিল প্রটোকলের)",
+      "shortBn": "কিগালি",
+      "shortEn": "Kigali",
+      "themeEn": "Ozone",
+      "cityEn": "Kigali",
+      "countryEn": "Rwanda",
+      "signedEn": "15 October 2016",
+      "inForceEn": "1 January 2019",
+      "nameEn": "Kigali Amendment",
+      "themeBn": "ওজোন স্তর",
+      "year": 2016,
+      "cityBn": "কিগালি",
+      "countryBn": "রুয়ান্ডা",
+      "cityQuery": "Kigali, Rwanda",
+      "signedBn": "১৫ অক্টোবর ২০১৬",
+      "inForceBn": "১ জানুয়ারি ২০১৯",
+      "parentId": "montreal",
+      "bdRatificationBn": null,
+      "sources": {
+        "year": [
+          {
+            "title": "Kigali Amendment",
+            "publisher": "Wikipedia (revision 1365502734)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1365502734",
+            "states": "date_signed: 15 October 2016"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "Kigali Amendment",
+            "publisher": "Wikipedia (revision 1365502734)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1365502734",
+            "states": "location_signed: Kigali, Rwanda"
+          }
+        ],
+        "signedBn": [
+          {
+            "title": "Kigali Amendment",
+            "publisher": "Wikipedia (revision 1365502734)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1365502734",
+            "states": "date_signed: 15 October 2016"
+          }
+        ],
+        "inForceBn": [
+          {
+            "title": "Kigali Amendment",
+            "publisher": "Wikipedia (revision 1365502734)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1365502734",
+            "states": "date_effective: 1 January 2019"
+          }
+        ],
+        "parentId": [
+          {
+            "title": "Kigali Amendment",
+            "publisher": "Wikipedia (revision 1365502734)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1365502734",
+            "states": "long_name: \"Kigali Amendment to the Montreal Protocol\""
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27 (Bengali names, themes and tab placement are editor content). "
+    },
+    "bbnj": {
+      "id": "bbnj",
+      "nameBn": "উচ্চ সমুদ্র চুক্তি (BBNJ)",
+      "shortBn": "উচ্চ সমুদ্র",
+      "shortEn": "High Seas",
+      "themeEn": "Biodiversity",
+      "cityEn": "New York",
+      "countryEn": "United States",
+      "signedEn": "20 September 2023",
+      "inForceEn": "17 January 2026",
+      "parentTextEn": "UN Convention on the Law of the Sea (UNCLOS)",
+      "nameEn": "High Seas Treaty (BBNJ Agreement)",
+      "themeBn": "বন্যপ্রাণী ও জীববৈচিত্র্য",
+      "year": 2023,
+      "cityBn": "নিউইয়র্ক",
+      "countryBn": "যুক্তরাষ্ট্র",
+      "cityQuery": "New York City, United States",
+      "signedBn": "২০ সেপ্টেম্বর ২০২৩",
+      "inForceBn": "১৭ জানুয়ারি ২০২৬",
+      "parentId": null,
+      "parentTextBn": "জাতিসংঘ সমুদ্র আইন কনভেনশন (UNCLOS)",
+      "bdRatificationBn": null,
+      "sources": {
+        "year": [
+          {
+            "title": "High Seas Treaty",
+            "publisher": "Wikipedia (revision 1376326322)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1376326322",
+            "states": "date_signed: 20 September 2023 (text agreed 4 March 2023)"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "High Seas Treaty",
+            "publisher": "Wikipedia (revision 1376326322)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1376326322",
+            "states": "location_signed: New York"
+          }
+        ],
+        "signedBn": [
+          {
+            "title": "High Seas Treaty",
+            "publisher": "Wikipedia (revision 1376326322)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1376326322",
+            "states": "date_signed: 20 September 2023 (text agreed 4 March 2023)"
+          }
+        ],
+        "inForceBn": [
+          {
+            "title": "High Seas Treaty",
+            "publisher": "Wikipedia (revision 1376326322)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1376326322",
+            "states": "date_effective: 17 January 2026"
+          }
+        ],
+        "parentTextBn": [
+          {
+            "title": "High Seas Treaty",
+            "publisher": "Wikipedia (revision 1376326322)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1376326322",
+            "states": "long_name: \"Agreement under the United Nations Convention on the Law of the Sea …\""
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27 (Bengali names, themes and tab placement are editor content). "
+    }
+  },
+  "summits": {
+    "stockholm-1972": {
+      "id": "stockholm-1972",
+      "nameBn": "জাতিসংঘ মানব পরিবেশ সম্মেলন (স্টকহোম সম্মেলন)",
+      "shortBn": "স্টকহোম সম্মেলন",
+      "shortEn": "Stockholm Conference",
+      "cityEn": "Stockholm",
+      "countryEn": "Sweden",
+      "nameEn": "United Nations Conference on the Human Environment",
+      "year": 1972,
+      "cityBn": "স্টকহোম",
+      "countryBn": "সুইডেন",
+      "cityQuery": "Stockholm, Sweden",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Conference on the Human Environment",
+            "publisher": "Wikipedia (revision 1368903261)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1368903261",
+            "states": "\"held in Stockholm, Sweden, during June 5–16, 1972\""
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Conference on the Human Environment",
+            "publisher": "Wikipedia (revision 1368903261)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1368903261",
+            "states": "\"held in Stockholm, Sweden, during June 5–16, 1972\""
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "rio-1992": {
+      "id": "rio-1992",
+      "nameBn": "ধরিত্রী সম্মেলন (রিও সম্মেলন)",
+      "shortBn": "ধরিত্রী সম্মেলন",
+      "shortEn": "Earth Summit",
+      "cityEn": "Rio de Janeiro",
+      "countryEn": "Brazil",
+      "noteEn": "UNFCCC and CBD opened for signature here",
+      "nameEn": "Earth Summit (UNCED)",
+      "year": 1992,
+      "cityBn": "রিও ডি জেনিরো",
+      "countryBn": "ব্রাজিল",
+      "cityQuery": "Rio de Janeiro, Brazil",
+      "sources": {
+        "year": [
+          {
+            "title": "Earth Summit (UNCED)",
+            "publisher": "Wikipedia (revision 1368901985)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1368901985",
+            "states": "\"held in Rio de Janeiro from 3 to 14 June 1992\""
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "Earth Summit (UNCED)",
+            "publisher": "Wikipedia (revision 1368901985)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1368901985",
+            "states": "\"held in Rio de Janeiro from 3 to 14 June 1992\""
+          }
+        ],
+        "noteBn": [
+          {
+            "title": "United Nations Framework Convention on Climate Change",
+            "publisher": "Wikipedia (revision 1369329836)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369329836",
+            "states": "date_signed: 4–14 June 1992 (then 20 June 1992 – 19 June 1993)"
+          },
+          {
+            "title": "Convention on Biological Diversity",
+            "publisher": "Wikipedia (revision 1373871129)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1373871129",
+            "states": "date_signed: 5 June 1992 – 4 June 1993"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27.",
+      "noteBn": "এখানে জলবায়ু (UNFCCC) ও জীববৈচিত্র্য (CBD) কনভেনশন স্বাক্ষরের জন্য উন্মুক্ত হয়"
+    },
+    "wssd-2002": {
+      "id": "wssd-2002",
+      "nameBn": "টেকসই উন্নয়ন বিশ্ব সম্মেলন (রিও+১০)",
+      "shortBn": "রিও+১০",
+      "shortEn": "Rio+10",
+      "cityEn": null,
+      "countryEn": "South Africa",
+      "nameEn": "World Summit on Sustainable Development",
+      "year": 2002,
+      "cityBn": null,
+      "countryBn": "দক্ষিণ আফ্রিকা",
+      "cityQuery": null,
+      "sources": {
+        "year": [
+          {
+            "title": "World Summit on Sustainable Development",
+            "publisher": "Wikipedia (revision 1365156672)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1365156672",
+            "states": "\"took place in South Africa, from 26 August to 4 September 2002\" … nicknamed \"Rio 10\""
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "World Summit on Sustainable Development",
+            "publisher": "Wikipedia (revision 1365156672)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1365156672",
+            "states": "\"took place in South Africa, from 26 August to 4 September 2002\" … nicknamed \"Rio 10\""
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27. City null: the source names only the country."
+    },
+    "rio20-2012": {
+      "id": "rio20-2012",
+      "nameBn": "রিও+২০ সম্মেলন",
+      "shortBn": "রিও+২০",
+      "shortEn": "Rio+20",
+      "cityEn": "Rio de Janeiro",
+      "countryEn": "Brazil",
+      "nameEn": "United Nations Conference on Sustainable Development (Rio+20)",
+      "year": 2012,
+      "cityBn": "রিও ডি জেনিরো",
+      "countryBn": "ব্রাজিল",
+      "cityQuery": "Rio de Janeiro, Brazil",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Conference on Sustainable Development (Rio+20)",
+            "publisher": "Wikipedia (revision 1365704671)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1365704671",
+            "states": "\"Hosted by Brazil in Rio de Janeiro from 13 to 22 June 2012\""
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Conference on Sustainable Development (Rio+20)",
+            "publisher": "Wikipedia (revision 1365704671)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1365704671",
+            "states": "\"Hosted by Brazil in Rio de Janeiro from 13 to 22 June 2012\""
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    }
+  },
+  "cops": {
+    "cop1": {
+      "id": "cop1",
+      "nameBn": "কপ-১",
+      "shortBn": "কপ-১",
+      "shortEn": "COP 1",
+      "cityEn": "Berlin",
+      "countryEn": "Germany",
+      "nameEn": "COP 1",
+      "year": 1995,
+      "cityBn": "বার্লিন",
+      "countryBn": "জার্মানি",
+      "cityQuery": "Berlin, Germany",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "1995 | COP 1 | Berlin, Germany"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "1995 | COP 1 | Berlin, Germany"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop2": {
+      "id": "cop2",
+      "nameBn": "কপ-২",
+      "shortBn": "কপ-২",
+      "shortEn": "COP 2",
+      "cityEn": "Geneva",
+      "countryEn": "Switzerland",
+      "nameEn": "COP 2",
+      "year": 1996,
+      "cityBn": "জেনেভা",
+      "countryBn": "সুইজারল্যান্ড",
+      "cityQuery": "Geneva, Switzerland",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "1996 | COP 2 | Geneva, Switzerland"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "1996 | COP 2 | Geneva, Switzerland"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop3": {
+      "id": "cop3",
+      "nameBn": "কপ-৩",
+      "shortBn": "কপ-৩",
+      "shortEn": "COP 3",
+      "cityEn": "Kyoto",
+      "countryEn": "Japan",
+      "nameEn": "COP 3",
+      "year": 1997,
+      "cityBn": "কিয়োটো",
+      "countryBn": "জাপান",
+      "cityQuery": "Kyoto, Japan",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "1997 | COP 3 | Kyoto, Japan"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "1997 | COP 3 | Kyoto, Japan"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop4": {
+      "id": "cop4",
+      "nameBn": "কপ-৪",
+      "shortBn": "কপ-৪",
+      "shortEn": "COP 4",
+      "cityEn": "Buenos Aires",
+      "countryEn": "Argentina",
+      "nameEn": "COP 4",
+      "year": 1998,
+      "cityBn": "বুয়েনস আইরেস",
+      "countryBn": "আর্জেন্টিনা",
+      "cityQuery": "Buenos Aires, Argentina",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "1998 | COP 4 | Buenos Aires, Argentina"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "1998 | COP 4 | Buenos Aires, Argentina"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop5": {
+      "id": "cop5",
+      "nameBn": "কপ-৫",
+      "shortBn": "কপ-৫",
+      "shortEn": "COP 5",
+      "cityEn": "Bonn",
+      "countryEn": "Germany",
+      "nameEn": "COP 5",
+      "year": 1999,
+      "cityBn": "বন",
+      "countryBn": "জার্মানি",
+      "cityQuery": "Bonn, Germany",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "1999 | COP 5 | Bonn, Germany"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "1999 | COP 5 | Bonn, Germany"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop6": {
+      "id": "cop6",
+      "nameBn": "কপ-৬",
+      "shortBn": "কপ-৬",
+      "shortEn": "COP 6",
+      "cityEn": "The Hague",
+      "countryEn": "Netherlands",
+      "nameEn": "COP 6",
+      "year": 2000,
+      "cityBn": "দ্য হেগ",
+      "countryBn": "নেদারল্যান্ডস",
+      "cityQuery": "The Hague, Netherlands",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2000 | COP 6 | The Hague, Netherlands"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2000 | COP 6 | The Hague, Netherlands"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop6_2": {
+      "id": "cop6_2",
+      "nameBn": "কপ-৬-২",
+      "shortBn": "কপ-৬-২",
+      "shortEn": "COP 6-2",
+      "cityEn": "Bonn",
+      "countryEn": "Germany",
+      "noteEn": "Resumed session of COP 6",
+      "nameEn": "COP 6-2",
+      "year": 2001,
+      "cityBn": "বন",
+      "countryBn": "জার্মানি",
+      "cityQuery": "Bonn, Germany",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2001 | COP 6-2 | Bonn, Germany"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2001 | COP 6-2 | Bonn, Germany"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27.",
+      "noteBn": "COP 6-এর পুনরায় বসা অধিবেশন"
+    },
+    "cop7": {
+      "id": "cop7",
+      "nameBn": "কপ-৭",
+      "shortBn": "কপ-৭",
+      "shortEn": "COP 7",
+      "cityEn": "Marrakesh",
+      "countryEn": "Morocco",
+      "nameEn": "COP 7",
+      "year": 2001,
+      "cityBn": "মারাকেশ",
+      "countryBn": "মরক্কো",
+      "cityQuery": "Marrakesh, Morocco",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2001 | COP 7 | Marrakesh, Morocco"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2001 | COP 7 | Marrakesh, Morocco"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop8": {
+      "id": "cop8",
+      "nameBn": "কপ-৮",
+      "shortBn": "কপ-৮",
+      "shortEn": "COP 8",
+      "cityEn": "New Delhi",
+      "countryEn": "India",
+      "nameEn": "COP 8",
+      "year": 2002,
+      "cityBn": "নয়াদিল্লি",
+      "countryBn": "ভারত",
+      "cityQuery": "New Delhi, India",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2002 | COP 8 | New Delhi, India"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2002 | COP 8 | New Delhi, India"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop9": {
+      "id": "cop9",
+      "nameBn": "কপ-৯",
+      "shortBn": "কপ-৯",
+      "shortEn": "COP 9",
+      "cityEn": "Milan",
+      "countryEn": "Italy",
+      "nameEn": "COP 9",
+      "year": 2003,
+      "cityBn": "মিলান",
+      "countryBn": "ইতালি",
+      "cityQuery": "Milan, Italy",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2003 | COP 9 | Milan, Italy"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2003 | COP 9 | Milan, Italy"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop10": {
+      "id": "cop10",
+      "nameBn": "কপ-১০",
+      "shortBn": "কপ-১০",
+      "shortEn": "COP 10",
+      "cityEn": "Buenos Aires",
+      "countryEn": "Argentina",
+      "nameEn": "COP 10",
+      "year": 2004,
+      "cityBn": "বুয়েনস আইরেস",
+      "countryBn": "আর্জেন্টিনা",
+      "cityQuery": "Buenos Aires, Argentina",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2004 | COP 10 | Buenos Aires, Argentina"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2004 | COP 10 | Buenos Aires, Argentina"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop11": {
+      "id": "cop11",
+      "nameBn": "কপ-১১",
+      "shortBn": "কপ-১১",
+      "shortEn": "COP 11",
+      "cityEn": "Montreal",
+      "countryEn": "Canada",
+      "nameEn": "COP 11",
+      "year": 2005,
+      "cityBn": "মন্ট্রিল",
+      "countryBn": "কানাডা",
+      "cityQuery": "Montreal, Canada",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2005 | COP 11 | Montreal, Canada"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2005 | COP 11 | Montreal, Canada"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop12": {
+      "id": "cop12",
+      "nameBn": "কপ-১২",
+      "shortBn": "কপ-১২",
+      "shortEn": "COP 12",
+      "cityEn": "Nairobi",
+      "countryEn": "Kenya",
+      "nameEn": "COP 12",
+      "year": 2006,
+      "cityBn": "নাইরোবি",
+      "countryBn": "কেনিয়া",
+      "cityQuery": "Nairobi, Kenya",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2006 | COP 12 | Nairobi, Kenya"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2006 | COP 12 | Nairobi, Kenya"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop13": {
+      "id": "cop13",
+      "nameBn": "কপ-১৩",
+      "shortBn": "কপ-১৩",
+      "shortEn": "COP 13",
+      "cityEn": "Bali",
+      "countryEn": "Indonesia",
+      "nameEn": "COP 13",
+      "year": 2007,
+      "cityBn": "বালি",
+      "countryBn": "ইন্দোনেশিয়া",
+      "cityQuery": "Bali, Indonesia",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2007 | COP 13 | Bali, Indonesia"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2007 | COP 13 | Bali, Indonesia"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop14": {
+      "id": "cop14",
+      "nameBn": "কপ-১৪",
+      "shortBn": "কপ-১৪",
+      "shortEn": "COP 14",
+      "cityEn": "Poznań",
+      "countryEn": "Poland",
+      "nameEn": "COP 14",
+      "year": 2008,
+      "cityBn": "পোজনান",
+      "countryBn": "পোল্যান্ড",
+      "cityQuery": "Poznań, Poland",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2008 | COP 14 | Poznań, Poland"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2008 | COP 14 | Poznań, Poland"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop15": {
+      "id": "cop15",
+      "nameBn": "কপ-১৫",
+      "shortBn": "কপ-১৫",
+      "shortEn": "COP 15",
+      "cityEn": "Copenhagen",
+      "countryEn": "Denmark",
+      "nameEn": "COP 15",
+      "year": 2009,
+      "cityBn": "কোপেনহেগেন",
+      "countryBn": "ডেনমার্ক",
+      "cityQuery": "Copenhagen, Denmark",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2009 | COP 15 | Copenhagen, Denmark"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2009 | COP 15 | Copenhagen, Denmark"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop16": {
+      "id": "cop16",
+      "nameBn": "কপ-১৬",
+      "shortBn": "কপ-১৬",
+      "shortEn": "COP 16",
+      "cityEn": "Cancún",
+      "countryEn": "Mexico",
+      "nameEn": "COP 16",
+      "year": 2010,
+      "cityBn": "কানকুন",
+      "countryBn": "মেক্সিকো",
+      "cityQuery": "Cancún, Mexico",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2010 | COP 16 | Cancún, Mexico"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2010 | COP 16 | Cancún, Mexico"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop17": {
+      "id": "cop17",
+      "nameBn": "কপ-১৭",
+      "shortBn": "কপ-১৭",
+      "shortEn": "COP 17",
+      "cityEn": "Durban",
+      "countryEn": "South Africa",
+      "nameEn": "COP 17",
+      "year": 2011,
+      "cityBn": "ডারবান",
+      "countryBn": "দক্ষিণ আফ্রিকা",
+      "cityQuery": "Durban, South Africa",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2011 | COP 17 | Durban, South Africa"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2011 | COP 17 | Durban, South Africa"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop18": {
+      "id": "cop18",
+      "nameBn": "কপ-১৮",
+      "shortBn": "কপ-১৮",
+      "shortEn": "COP 18",
+      "cityEn": "Doha",
+      "countryEn": "Qatar",
+      "nameEn": "COP 18",
+      "year": 2012,
+      "cityBn": "দোহা",
+      "countryBn": "কাতার",
+      "cityQuery": "Doha, Qatar",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2012 | COP 18 | Doha, Qatar"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2012 | COP 18 | Doha, Qatar"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop19": {
+      "id": "cop19",
+      "nameBn": "কপ-১৯",
+      "shortBn": "কপ-১৯",
+      "shortEn": "COP 19",
+      "cityEn": "Warsaw",
+      "countryEn": "Poland",
+      "nameEn": "COP 19",
+      "year": 2013,
+      "cityBn": "ওয়ারশ",
+      "countryBn": "পোল্যান্ড",
+      "cityQuery": "Warsaw, Poland",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2013 | COP 19 | Warsaw, Poland"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2013 | COP 19 | Warsaw, Poland"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop20": {
+      "id": "cop20",
+      "nameBn": "কপ-২০",
+      "shortBn": "কপ-২০",
+      "shortEn": "COP 20",
+      "cityEn": "Lima",
+      "countryEn": "Peru",
+      "nameEn": "COP 20",
+      "year": 2014,
+      "cityBn": "লিমা",
+      "countryBn": "পেরু",
+      "cityQuery": "Lima, Peru",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2014 | COP 20 | Lima, Peru"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2014 | COP 20 | Lima, Peru"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop21": {
+      "id": "cop21",
+      "nameBn": "কপ-২১",
+      "shortBn": "কপ-২১",
+      "shortEn": "COP 21",
+      "cityEn": "Paris",
+      "countryEn": "France",
+      "nameEn": "COP 21",
+      "year": 2015,
+      "cityBn": "প্যারিস",
+      "countryBn": "ফ্রান্স",
+      "cityQuery": "Paris, France",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2015 | COP 21 | Paris, France"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2015 | COP 21 | Paris, France"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop22": {
+      "id": "cop22",
+      "nameBn": "কপ-২২",
+      "shortBn": "কপ-২২",
+      "shortEn": "COP 22",
+      "cityEn": "Marrakesh",
+      "countryEn": "Morocco",
+      "nameEn": "COP 22",
+      "year": 2016,
+      "cityBn": "মারাকেশ",
+      "countryBn": "মরক্কো",
+      "cityQuery": "Marrakesh, Morocco",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2016 | COP 22 | Marrakesh, Morocco"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2016 | COP 22 | Marrakesh, Morocco"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop23": {
+      "id": "cop23",
+      "nameBn": "কপ-২৩",
+      "shortBn": "কপ-২৩",
+      "shortEn": "COP 23",
+      "cityEn": "Bonn",
+      "countryEn": "Germany",
+      "nameEn": "COP 23",
+      "year": 2017,
+      "cityBn": "বন",
+      "countryBn": "জার্মানি",
+      "cityQuery": "Bonn, Germany",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2017 | COP 23 | Bonn, Germany"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2017 | COP 23 | Bonn, Germany"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop24": {
+      "id": "cop24",
+      "nameBn": "কপ-২৪",
+      "shortBn": "কপ-২৪",
+      "shortEn": "COP 24",
+      "cityEn": "Katowice",
+      "countryEn": "Poland",
+      "nameEn": "COP 24",
+      "year": 2018,
+      "cityBn": "কাতোভিৎসে",
+      "countryBn": "পোল্যান্ড",
+      "cityQuery": "Katowice, Poland",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2018 | COP 24 | Katowice, Poland"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2018 | COP 24 | Katowice, Poland"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop25": {
+      "id": "cop25",
+      "nameBn": "কপ-২৫",
+      "shortBn": "কপ-২৫",
+      "shortEn": "COP 25",
+      "cityEn": "Madrid",
+      "countryEn": "Spain",
+      "nameEn": "COP 25",
+      "year": 2019,
+      "cityBn": "মাদ্রিদ",
+      "countryBn": "স্পেন",
+      "cityQuery": "Madrid, Spain",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2019 | COP 25 | Madrid, Spain"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2019 | COP 25 | Madrid, Spain"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop26": {
+      "id": "cop26",
+      "nameBn": "কপ-২৬",
+      "shortBn": "কপ-২৬",
+      "shortEn": "COP 26",
+      "cityEn": "Glasgow",
+      "countryEn": "United Kingdom",
+      "noteEn": "Postponed from 2020 to 2021 (COVID-19)",
+      "nameEn": "COP 26",
+      "year": 2021,
+      "cityBn": "গ্লাসগো",
+      "countryBn": "যুক্তরাজ্য",
+      "cityQuery": "Glasgow, United Kingdom",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2021 | COP 26 | Glasgow, United Kingdom"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2021 | COP 26 | Glasgow, United Kingdom"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27. The source table lists COP 26 under both 2020 and 2021; 2021 is when it met.",
+      "noteBn": "কোভিডের কারণে ২০২০ থেকে পিছিয়ে ২০২১-এ হয়"
+    },
+    "cop27": {
+      "id": "cop27",
+      "nameBn": "কপ-২৭",
+      "shortBn": "কপ-২৭",
+      "shortEn": "COP 27",
+      "cityEn": "Sharm El Sheikh",
+      "countryEn": "Egypt",
+      "nameEn": "COP 27",
+      "year": 2022,
+      "cityBn": "শারম আল-শেখ",
+      "countryBn": "মিশর",
+      "cityQuery": "Sharm El Sheikh, Egypt",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2022 | COP 27 | Sharm El Sheikh, Egypt"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2022 | COP 27 | Sharm El Sheikh, Egypt"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop28": {
+      "id": "cop28",
+      "nameBn": "কপ-২৮",
+      "shortBn": "কপ-২৮",
+      "shortEn": "COP 28",
+      "cityEn": "Dubai",
+      "countryEn": "United Arab Emirates",
+      "nameEn": "COP 28",
+      "year": 2023,
+      "cityBn": "দুবাই",
+      "countryBn": "সংযুক্ত আরব আমিরাত",
+      "cityQuery": "Dubai, United Arab Emirates",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2023 | COP 28 | Dubai, United Arab Emirates"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2023 | COP 28 | Dubai, United Arab Emirates"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop29": {
+      "id": "cop29",
+      "nameBn": "কপ-২৯",
+      "shortBn": "কপ-২৯",
+      "shortEn": "COP 29",
+      "cityEn": "Baku",
+      "countryEn": "Azerbaijan",
+      "nameEn": "COP 29",
+      "year": 2024,
+      "cityBn": "বাকু",
+      "countryBn": "আজারবাইজান",
+      "cityQuery": "Baku, Azerbaijan",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2024 | COP 29 | Baku, Azerbaijan"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2024 | COP 29 | Baku, Azerbaijan"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    },
+    "cop30": {
+      "id": "cop30",
+      "nameBn": "কপ-৩০",
+      "shortBn": "কপ-৩০",
+      "shortEn": "COP 30",
+      "cityEn": "Belém",
+      "countryEn": "Brazil",
+      "nameEn": "COP 30",
+      "year": 2025,
+      "cityBn": "বেলেম",
+      "countryBn": "ব্রাজিল",
+      "cityQuery": "Belém, Brazil",
+      "parentId": "unfccc",
+      "sources": {
+        "year": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2025 | COP 30 | Belém, Brazil"
+          }
+        ],
+        "cityBn": [
+          {
+            "title": "United Nations Climate Change Conference",
+            "publisher": "Wikipedia (revision 1369783680)",
+            "url": "https://en.wikipedia.org/w/index.php?oldid=1369783680",
+            "states": "2025 | COP 30 | Belém, Brazil"
+          }
+        ]
+      },
+      "review": "Draft approved by the user 2026-09-27."
+    }
+  }
+}

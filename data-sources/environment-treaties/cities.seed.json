@@ -1,0 +1,907 @@
+{
+  "_about": "The Wikidata item and point of every city tools/extract-treaty-cities.mjs found for the environment-treaties seed, keyed by the seed's cityQuery. Read at the revision each citation names; retrieved 2026-09-26. Constraint: exact label or alias in English or mul, the country (P17) the query names, and a human settlement (Q486972) by P31/P279* — or, for a query KINDS names, that kind; the item with the most sitelinks wins, and every candidate is listed.",
+  "Ramsar, Mazandaran, Iran": {
+    "wikidata": "Q951051",
+    "labelEn": "Ramsar",
+    "at": [
+      50.648056,
+      36.918056
+    ],
+    "records": [
+      "ramsar"
+    ],
+    "article": "Ramsar, Iran",
+    "found": "1 item passes: Q951051 Ramsar (60 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Ramsar (Q951051)",
+          "publisher": "Wikidata (revision 2547850162, 2026-09-20)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q951051&oldid=2547850162",
+          "states": "coordinate location (P625): 36.918055555555554, 50.64805555555556",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Paris, France": {
+    "wikidata": "Q90",
+    "labelEn": "Paris",
+    "at": [
+      2.352222,
+      48.856667
+    ],
+    "records": [
+      "whc",
+      "paris",
+      "cop21"
+    ],
+    "article": "Paris",
+    "found": "1 item passes: Q90 Paris (366 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Paris (Q90)",
+          "publisher": "Wikidata (revision 2548997705, 2026-09-24)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q90&oldid=2548997705",
+          "states": "coordinate location (P625): 48.85666666666667, 2.352222222222222",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Bonn, Germany": {
+    "wikidata": "Q586",
+    "labelEn": "Bonn",
+    "at": [
+      7.102222,
+      50.735278
+    ],
+    "records": [
+      "cms",
+      "cop5",
+      "cop6_2",
+      "cop23"
+    ],
+    "article": "Bonn",
+    "found": "3 items pass: Q586 Bonn (163 sitelinks); Q1008015 Bonn (2 sitelinks); Q1685614 Bonn (2 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Bonn (Q586)",
+          "publisher": "Wikidata (revision 2540530690, 2026-09-05)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q586&oldid=2540530690",
+          "states": "coordinate location (P625): 50.735277777777775, 7.102222222222222",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Vienna, Austria": {
+    "wikidata": "Q1741",
+    "labelEn": "Vienna",
+    "at": [
+      16.3725,
+      48.208333
+    ],
+    "records": [
+      "vienna"
+    ],
+    "article": "Vienna",
+    "found": "1 item passes: Q1741 Vienna (294 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Vienna (Q1741)",
+          "publisher": "Wikidata (revision 2541506179, 2026-09-07)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q1741&oldid=2541506179",
+          "states": "coordinate location (P625): 48.208333333333336, 16.3725",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Basel, Switzerland": {
+    "wikidata": "Q78",
+    "labelEn": "Basel",
+    "at": [
+      7.590556,
+      47.560556
+    ],
+    "records": [
+      "basel"
+    ],
+    "article": "Basel",
+    "found": "2 items pass: Q78 Basel (150 sitelinks); Q660776 canton of Basel (23 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Basel (Q78)",
+          "publisher": "Wikidata (revision 2544885760, 2026-09-13)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q78&oldid=2544885760",
+          "states": "coordinate location (P625): 47.560555555556, 7.5905555555556",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Rio de Janeiro, Brazil": {
+    "wikidata": "Q8678",
+    "labelEn": "Rio de Janeiro",
+    "at": [
+      -43.205556,
+      -22.911111
+    ],
+    "records": [
+      "unfccc",
+      "cbd",
+      "rio-1992",
+      "rio20-2012"
+    ],
+    "article": "Rio de Janeiro",
+    "found": "2 items pass: Q8678 Rio de Janeiro (303 sitelinks); Q41428 Rio de Janeiro (125 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Rio de Janeiro (Q8678)",
+          "publisher": "Wikidata (revision 2547939582, 2026-09-20)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q8678&oldid=2547939582",
+          "states": "coordinate location (P625): -22.91111111111111, -43.205555555555556",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Rotterdam, Netherlands": {
+    "wikidata": "Q34370",
+    "labelEn": "Rotterdam",
+    "at": [
+      4.48,
+      51.92
+    ],
+    "records": [
+      "rotterdam"
+    ],
+    "article": "Rotterdam",
+    "found": "2 items pass: Q34370 Rotterdam (170 sitelinks); Q2680952 Rotterdam (9 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Rotterdam (Q34370)",
+          "publisher": "Wikidata (revision 2531738385, 2026-08-15)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q34370&oldid=2531738385",
+          "states": "coordinate location (P625): 51.92, 4.48",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Stockholm, Sweden": {
+    "wikidata": "Q1754",
+    "labelEn": "Stockholm",
+    "at": [
+      18.068611,
+      59.329444
+    ],
+    "records": [
+      "stockholm-pops",
+      "stockholm-1972"
+    ],
+    "article": "Stockholm",
+    "found": "2 items pass: Q1754 Stockholm (279 sitelinks); Q506250 Stockholm Municipality (38 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Stockholm (Q1754)",
+          "publisher": "Wikidata (revision 2548180873, 2026-09-21)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q1754&oldid=2548180873",
+          "states": "coordinate location (P625): 59.329444444444, 18.068611111111",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Kumamoto, Japan": {
+    "wikidata": "Q199889",
+    "labelEn": "Kumamoto",
+    "at": [
+      130.707861,
+      32.803
+    ],
+    "records": [
+      "minamata"
+    ],
+    "article": "Kumamoto",
+    "found": "1 item passes: Q199889 Kumamoto (90 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Kumamoto (Q199889)",
+          "publisher": "Wikidata (revision 2542358091, 2026-09-08)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q199889&oldid=2542358091",
+          "states": "coordinate location (P625): 32.803, 130.7078611111111",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Montreal, Canada": {
+    "wikidata": "Q340",
+    "labelEn": "Montreal",
+    "at": [
+      -73.586841,
+      45.503343
+    ],
+    "records": [
+      "montreal",
+      "cartagena",
+      "cop11"
+    ],
+    "article": "Montreal",
+    "found": "1 item passes: Q340 Montreal (193 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Montreal (Q340)",
+          "publisher": "Wikidata (revision 2548081188, 2026-09-21)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q340&oldid=2548081188",
+          "states": "coordinate location (P625): 45.5033426, -73.5868411",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Kyoto, Japan": {
+    "wikidata": "Q34600",
+    "labelEn": "Kyoto",
+    "at": [
+      135.768111,
+      35.011611
+    ],
+    "records": [
+      "kyoto",
+      "cop3"
+    ],
+    "article": "Kyoto",
+    "found": "2 items pass: Q34600 Kyoto (260 sitelinks); Q120730 Kyoto Prefecture (106 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Kyoto (Q34600)",
+          "publisher": "Wikidata (revision 2545626273, 2026-09-14)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q34600&oldid=2545626273",
+          "states": "coordinate location (P625): 35.01161111111111, 135.76811111111112",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Nagoya, Japan": {
+    "wikidata": "Q11751",
+    "labelEn": "Nagoya",
+    "at": [
+      136.906389,
+      35.181389
+    ],
+    "records": [
+      "nagoya"
+    ],
+    "article": "Nagoya",
+    "found": "3 items pass: Q11751 Nagoya (160 sitelinks); Q15260780 Nagoya (2 sitelinks); Q17226646 Nagoya (1 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Nagoya (Q11751)",
+          "publisher": "Wikidata (revision 2548325500, 2026-09-22)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q11751&oldid=2548325500",
+          "states": "coordinate location (P625): 35.18138888888889, 136.9063888888889",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Kigali, Rwanda": {
+    "wikidata": "Q3859",
+    "labelEn": "Kigali",
+    "at": [
+      30.115,
+      -1.9525
+    ],
+    "records": [
+      "kigali"
+    ],
+    "article": "Kigali",
+    "found": "2 items pass: Q3859 Kigali (164 sitelinks); Q19545408 (mul label only) (5 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Kigali (Q3859)",
+          "publisher": "Wikidata (revision 2537907356, 2026-08-29)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q3859&oldid=2537907356",
+          "states": "coordinate location (P625): -1.9525000000000001, 30.115",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "New York City, United States": {
+    "wikidata": "Q60",
+    "labelEn": "New York City",
+    "at": [
+      -74.006111,
+      40.712778
+    ],
+    "records": [
+      "bbnj"
+    ],
+    "article": "New York City",
+    "found": "1 item passes: Q60 New York City (325 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "New York City (Q60)",
+          "publisher": "Wikidata (revision 2547610890, 2026-09-19)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q60&oldid=2547610890",
+          "states": "coordinate location (P625): 40.71277777777778, -74.00611111111111",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Berlin, Germany": {
+    "wikidata": "Q64",
+    "labelEn": "Berlin",
+    "at": [
+      13.383333,
+      52.516667
+    ],
+    "records": [
+      "cop1"
+    ],
+    "article": "Berlin",
+    "found": "3 items pass: Q64 Berlin (334 sitelinks); Q12053136 Berlin (8 sitelinks); Q31910788 Berlin (1 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Berlin (Q64)",
+          "publisher": "Wikidata (revision 2548404376, 2026-09-22)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q64&oldid=2548404376",
+          "states": "coordinate location (P625): 52.516666666667, 13.383333333333",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Geneva, Switzerland": {
+    "wikidata": "Q71",
+    "labelEn": "Geneva",
+    "at": [
+      6.15,
+      46.2
+    ],
+    "records": [
+      "cop2"
+    ],
+    "article": "Geneva",
+    "found": "2 items pass: Q71 Geneva (200 sitelinks); Q11917 Canton of Geneva (101 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Geneva (Q71)",
+          "publisher": "Wikidata (revision 2532467558, 2026-08-17)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q71&oldid=2532467558",
+          "states": "coordinate location (P625): 46.2, 6.15",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Buenos Aires, Argentina": {
+    "wikidata": "Q1486",
+    "labelEn": "Buenos Aires",
+    "at": [
+      -58.381944,
+      -34.599722
+    ],
+    "records": [
+      "cop4",
+      "cop10"
+    ],
+    "article": "Buenos Aires",
+    "found": "3 items pass: Q1486 Buenos Aires (276 sitelinks); Q44754 Buenos Aires Province (98 sitelinks); Q140297331 (mul label only) (0 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Buenos Aires (Q1486)",
+          "publisher": "Wikidata (revision 2546716664, 2026-09-16)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q1486&oldid=2546716664",
+          "states": "coordinate location (P625): -34.599722222222, -58.381944444444",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "The Hague, Netherlands": {
+    "wikidata": "Q36600",
+    "labelEn": "The Hague",
+    "at": [
+      4.31,
+      52.08
+    ],
+    "records": [
+      "cop6"
+    ],
+    "article": "The Hague",
+    "found": "1 item passes: Q36600 The Hague (183 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "The Hague (Q36600)",
+          "publisher": "Wikidata (revision 2535769319, 2026-08-24)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q36600&oldid=2535769319",
+          "states": "coordinate location (P625): 52.08, 4.31",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Marrakesh, Morocco": {
+    "wikidata": "Q101625",
+    "labelEn": "Marrakech",
+    "at": [
+      -7.98108,
+      31.62947
+    ],
+    "records": [
+      "cop7",
+      "cop22"
+    ],
+    "article": "Marrakesh",
+    "found": "1 item passes: Q101625 Marrakech (142 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Marrakech (Q101625)",
+          "publisher": "Wikidata (revision 2547744724, 2026-09-19)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q101625&oldid=2547744724",
+          "states": "coordinate location (P625): 31.62947, -7.98108",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "New Delhi, India": {
+    "wikidata": "Q987",
+    "labelEn": "New Delhi",
+    "at": [
+      77.208889,
+      28.613889
+    ],
+    "records": [
+      "cop8"
+    ],
+    "article": "New Delhi",
+    "found": "2 items pass: Q987 New Delhi (221 sitelinks); Q8560886 New Delhi district (15 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "New Delhi (Q987)",
+          "publisher": "Wikidata (revision 2544390521, 2026-09-12)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q987&oldid=2544390521",
+          "states": "coordinate location (P625): 28.613888888888887, 77.2088888888889",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Milan, Italy": {
+    "wikidata": "Q490",
+    "labelEn": "Milan",
+    "at": [
+      9.19,
+      45.466944
+    ],
+    "records": [
+      "cop9"
+    ],
+    "article": "Milan",
+    "found": "3 items pass: Q490 Milan (226 sitelinks); Q18502021 Milan (4 sitelinks); Q18506543 Milan (4 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Milan (Q490)",
+          "publisher": "Wikidata (revision 2529555790, 2026-08-10)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q490&oldid=2529555790",
+          "states": "coordinate location (P625): 45.466944444444, 9.19",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Nairobi, Kenya": {
+    "wikidata": "Q3870",
+    "labelEn": "Nairobi",
+    "at": [
+      36.817222,
+      -1.286389
+    ],
+    "records": [
+      "cop12"
+    ],
+    "article": "Nairobi",
+    "found": "1 item passes: Q3870 Nairobi (238 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Nairobi (Q3870)",
+          "publisher": "Wikidata (revision 2547934560, 2026-09-20)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q3870&oldid=2547934560",
+          "states": "coordinate location (P625): -1.2863888888889, 36.817222222222",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Bali, Indonesia": {
+    "wikidata": "Q3125978",
+    "labelEn": "Bali",
+    "at": [
+      115,
+      -8.5
+    ],
+    "records": [
+      "cop13"
+    ],
+    "kind": "Q5098",
+    "why": "The seed names Bali, not a city in it — COP 13 met at Nusa Dua, on the island. The item that is Bali (the English article 'Bali') is the province (province of Indonesia, Q5098), whose point is the island's middle; a kelurahan also called Bali, on Sumbawa, is a settlement and would pass as one.",
+    "article": "Bali",
+    "found": "1 item passes: Q3125978 Bali (86 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Bali (Q3125978)",
+          "publisher": "Wikidata (revision 2524006022, 2026-07-28)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q3125978&oldid=2524006022",
+          "states": "coordinate location (P625): -8.5, 115",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Poznań, Poland": {
+    "wikidata": "Q268",
+    "labelEn": "Poznań",
+    "at": [
+      16.933611,
+      52.408333
+    ],
+    "records": [
+      "cop14"
+    ],
+    "article": "Poznań",
+    "found": "1 item passes: Q268 (mul label only) (141 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Poznań (Q268)",
+          "publisher": "Wikidata (revision 2548504734, 2026-09-22)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q268&oldid=2548504734",
+          "states": "coordinate location (P625): 52.40833333333333, 16.933611111111112",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Copenhagen, Denmark": {
+    "wikidata": "Q1748",
+    "labelEn": "Copenhagen",
+    "at": [
+      12.568889,
+      55.676111
+    ],
+    "records": [
+      "cop15"
+    ],
+    "article": "Copenhagen",
+    "found": "2 items pass: Q1748 Copenhagen (246 sitelinks); Q504125 Copenhagen Municipality (30 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Copenhagen (Q1748)",
+          "publisher": "Wikidata (revision 2537894538, 2026-08-29)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q1748&oldid=2537894538",
+          "states": "coordinate location (P625): 55.676111111111, 12.568888888889",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Cancún, Mexico": {
+    "wikidata": "Q8969",
+    "labelEn": "Cancun",
+    "at": [
+      -86.824811,
+      21.161416
+    ],
+    "records": [
+      "cop16"
+    ],
+    "article": "Cancún",
+    "found": "4 items pass: Q8969 Cancun (104 sitelinks); Q2279198 Benito Juárez Municipality (27 sitelinks); Q61293952 (mul label only) (3 sitelinks); Q61305804 (mul label only) (3 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Cancun (Q8969)",
+          "publisher": "Wikidata (revision 2542137435, 2026-09-08)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q8969&oldid=2542137435",
+          "states": "coordinate location (P625): 21.161416111111112, -86.82481111111112",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Durban, South Africa": {
+    "wikidata": "Q5468",
+    "labelEn": "Durban",
+    "at": [
+      31.025,
+      -29.858333
+    ],
+    "records": [
+      "cop17"
+    ],
+    "article": "Durban",
+    "found": "1 item passes: Q5468 Durban (135 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Durban (Q5468)",
+          "publisher": "Wikidata (revision 2532334440, 2026-08-17)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q5468&oldid=2532334440",
+          "states": "coordinate location (P625): -29.858333333333, 31.025",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Doha, Qatar": {
+    "wikidata": "Q3861",
+    "labelEn": "Doha",
+    "at": [
+      51.529444,
+      25.286111
+    ],
+    "records": [
+      "cop18"
+    ],
+    "article": "Doha",
+    "found": "2 items pass: Q3861 Doha (187 sitelinks); Q594208 Ad-Dawhah (24 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Doha (Q3861)",
+          "publisher": "Wikidata (revision 2537921617, 2026-08-29)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q3861&oldid=2537921617",
+          "states": "coordinate location (P625): 25.28611111111111, 51.529444444444444",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Warsaw, Poland": {
+    "wikidata": "Q270",
+    "labelEn": "Warsaw",
+    "at": [
+      21.011111,
+      52.23
+    ],
+    "records": [
+      "cop19"
+    ],
+    "article": "Warsaw",
+    "found": "1 item passes: Q270 Warsaw (288 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Warsaw (Q270)",
+          "publisher": "Wikidata (revision 2548859567, 2026-09-23)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q270&oldid=2548859567",
+          "states": "coordinate location (P625): 52.23, 21.011111111111113",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Lima, Peru": {
+    "wikidata": "Q2868",
+    "labelEn": "Lima",
+    "at": [
+      -77.0375,
+      -12.06
+    ],
+    "records": [
+      "cop20"
+    ],
+    "article": "Lima",
+    "found": "4 items pass: Q2868 Lima (219 sitelinks); Q211795 Lima Department (52 sitelinks); Q579240 Lima (36 sitelinks); Q3031413 Lima (21 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Lima (Q2868)",
+          "publisher": "Wikidata (revision 2538296446, 2026-08-30)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q2868&oldid=2538296446",
+          "states": "coordinate location (P625): -12.06, -77.0375",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Katowice, Poland": {
+    "wikidata": "Q588",
+    "labelEn": "Katowice",
+    "at": [
+      19,
+      50.25
+    ],
+    "records": [
+      "cop24"
+    ],
+    "article": "Katowice",
+    "found": "1 item passes: Q588 Katowice (163 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Katowice (Q588)",
+          "publisher": "Wikidata (revision 2548038198, 2026-09-20)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q588&oldid=2548038198",
+          "states": "coordinate location (P625): 50.25, 19",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Madrid, Spain": {
+    "wikidata": "Q2807",
+    "labelEn": "Madrid",
+    "at": [
+      -3.703333,
+      40.416944
+    ],
+    "records": [
+      "cop25"
+    ],
+    "article": "Madrid",
+    "found": "5 items pass: Q2807 Madrid (305 sitelinks); Q6728617 Madrid (5 sitelinks); Q58137354 Madrid (1 sitelinks); Q116232341 Maŷrīṭ (1 sitelinks); Q116170766 Madrid city (0 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Madrid (Q2807)",
+          "publisher": "Wikidata (revision 2547875609, 2026-09-20)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q2807&oldid=2547875609",
+          "states": "coordinate location (P625): 40.41694444444445, -3.703333333333333",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Glasgow, United Kingdom": {
+    "wikidata": "Q4093",
+    "labelEn": "Glasgow",
+    "at": [
+      -4.25,
+      55.861111
+    ],
+    "records": [
+      "cop26"
+    ],
+    "article": "Glasgow",
+    "found": "4 items pass: Q4093 Glasgow (174 sitelinks); Q55934339 Glasgow City (14 sitelinks); Q68826097 Glasgow (1 sitelinks); Q77606319 City of Glasgow (1 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Glasgow (Q4093)",
+          "publisher": "Wikidata (revision 2537151426, 2026-08-27)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q4093&oldid=2537151426",
+          "states": "coordinate location (P625): 55.861111111111114, -4.25",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Sharm El Sheikh, Egypt": {
+    "wikidata": "Q644",
+    "labelEn": "Sharm el-Sheikh",
+    "at": [
+      34.305,
+      27.851944
+    ],
+    "records": [
+      "cop27"
+    ],
+    "article": "Sharm El Sheikh",
+    "found": "1 item passes: Q644 Sharm el-Sheikh (87 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Sharm el-Sheikh (Q644)",
+          "publisher": "Wikidata (revision 2538866220, 2026-09-01)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q644&oldid=2538866220",
+          "states": "coordinate location (P625): 27.851944444444445, 34.305",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Dubai, United Arab Emirates": {
+    "wikidata": "Q612",
+    "labelEn": "Dubai",
+    "at": [
+      55.309444,
+      25.269722
+    ],
+    "records": [
+      "cop28"
+    ],
+    "article": "Dubai",
+    "found": "2 items pass: Q612 Dubai (219 sitelinks); Q613 Emirate of Dubai (101 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Dubai (Q612)",
+          "publisher": "Wikidata (revision 2532334786, 2026-08-17)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q612&oldid=2532334786",
+          "states": "coordinate location (P625): 25.269722222222, 55.309444444444",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Baku, Azerbaijan": {
+    "wikidata": "Q9248",
+    "labelEn": "Baku",
+    "at": [
+      49.835183,
+      40.366656
+    ],
+    "records": [
+      "cop29"
+    ],
+    "article": "Baku",
+    "found": "1 item passes: Q9248 Baku (248 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Baku (Q9248)",
+          "publisher": "Wikidata (revision 2547042277, 2026-09-17)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q9248&oldid=2547042277",
+          "states": "coordinate location (P625): 40.366655555556, 49.835183333333",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  },
+  "Belém, Brazil": {
+    "wikidata": "Q12829733",
+    "labelEn": "Belém",
+    "at": [
+      -48.503889,
+      -1.455833
+    ],
+    "records": [
+      "cop30"
+    ],
+    "article": "Belém",
+    "found": "6 items pass: Q12829733 Belém (110 sitelinks); Q792606 Belém (27 sitelinks); Q2028301 Belém (24 sitelinks); Q2895207 Belém Velho, Porto Alegre (3 sitelinks); Q22061532 Belém (2 sitelinks); Q22060306 Belém (1 sitelinks).",
+    "sources": {
+      "at": [
+        {
+          "title": "Belém (Q12829733)",
+          "publisher": "Wikidata (revision 2530451383, 2026-08-12)",
+          "url": "https://www.wikidata.org/w/index.php?title=Q12829733&oldid=2530451383",
+          "states": "coordinate location (P625): -1.4558333333333, -48.503888888889",
+          "retrieved": "2026-09-26"
+        }
+      ]
+    }
+  }
+}

@@ -184,5 +184,11 @@
     "fetched": "2026-09-26",
     "licence": "ODbL 1.0 — © OpenStreetMap contributors",
     "sha256": "17e07b46c75e35a112827a6052d91282d1d32309984a67abb17cfb7a2028b5b0"
+  },
+  "treatyCities": {
+    "_comment": "The Wikidata item and point of every city the environment-treaties seed names, each cited to the revision it was read at, from tools/extract-treaty-cities.mjs and committed. The build refuses a file whose checksum differs, so a marker only moves on purpose.",
+    "file": "data-sources/environment-treaties/cities.seed.json",
+    "licence": "CC0 — Wikidata",
+    "sha256": "0f3f5ef985a4c1625a2c1ab7a54efae60a04cbcde8a0d1f09e83b8aaa03a22c0"
   }
 }
