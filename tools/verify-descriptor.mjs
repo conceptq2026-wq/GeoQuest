@@ -143,8 +143,9 @@ function checkMap({ id, expectedPending }) {
     tables[name] = readJson(path.join(dir, path.basename(decl.file)));
     declarations[name] = decl;
   }
-  // The table the sheet and the picker read.
-  const primary = descriptor.controls.find((c) => c.type === 'picker')?.from;
+  // The table the sheet and the picker read — or, on a map with a timeline,
+  // which has no picker, the timeline.
+  const primary = descriptor.controls.find((c) => c.type === 'picker')?.from ?? descriptor.timeline?.records;
 
   // ---- null versus absent, per field, with counts ---------------------------
   console.log('\n---- null versus absent ----');
@@ -310,9 +311,24 @@ function checkMap({ id, expectedPending }) {
       check(isPhotoField(table, sheet.photo.field), `sheet "${table}": photo.field ${sheet.photo.field} is a photo field`);
     }
     noteSpec(table, sheet.kicker);
+    noteSpec(table, sheet.chip);
+    check(!(sheet.kicker && sheet.chip), `sheet "${table}": a chip takes the kicker's line, so a card declares one or the other`);
     noteSpec(table, sheet.title);
     noteSpec(table, sheet.subtitle);
+    // `columns`: the rows as cells of a grid; `short` belongs to a cell of one.
+    if (sheet.columns !== undefined) check(Number.isInteger(sheet.columns) && sheet.columns >= 1, `sheet "${table}": columns is a whole number of columns (${sheet.columns})`);
     for (const row of sheet.rows ?? []) {
+      // `when` keeps a row to the records whose field holds one of its values.
+      for (const [field, values] of Object.entries(row.when ?? {})) {
+        note(table, field);
+        const allowed = Array.isArray(values) ? values : [values];
+        const held = new Set(Object.values(tables[table] ?? {}).map((r) => r[field]));
+        check(allowed.length > 0 && allowed.every((v) => held.has(v)), `sheet "${table}": a row's when ${field} ∈ [${allowed.join(', ')}] names values its records hold`);
+      }
+      if (row.short) {
+        check(Boolean(sheet.columns), `sheet "${table}": a short form belongs to a cell of a card in columns`);
+        noteSpec(table, row.short);
+      }
       if (!row.referencedBy) {
         noteSpec(table, row);
         continue;
@@ -491,19 +507,26 @@ function checkMap({ id, expectedPending }) {
   // lookup exists and that the picker's order covers its own lookup
   // completely, so no record lands in a group the picker never renders.
   const picker = descriptor.controls.find((c) => c.type === 'picker');
+  // The picker row is baseline chrome, with one exception, the user's
+  // (2026-09-27): a map with a timeline has none — the timeline is its selector.
   check(
-    Boolean(picker.labelField || picker.label),
-    'the picker says how to label a record, by labelField or by label',
+    Boolean(picker) !== Boolean(descriptor.timeline),
+    descriptor.timeline ? 'a map with a timeline declares no picker: the timeline is its selector' : 'the map declares its picker, the baseline row',
   );
+  if (picker)
+    check(
+      Boolean(picker.labelField || picker.label),
+      'the picker says how to label a record, by labelField or by label',
+    );
   for (const [what, name] of [
-    ['picker groupBy', picker.groupBy?.lookup],
+    ['picker groupBy', picker?.groupBy?.lookup],
     ...sheets.map(([table, sheet]) => [`sheet "${table}" kicker`, sheet.kicker?.lookup]),
   ]) {
     if (name === undefined) continue;
     check(name in descriptor.lookups, `${what} reads lookup "${name}", which the descriptor defines`);
   }
   // Grouping is optional: a map with few records lists them flat.
-  if (picker.groupBy) {
+  if (picker?.groupBy) {
     // A group is a lookup key, or — with no lookup — the field's value itself,
     // shown as it stands. Either way the order must name every group that
     // occurs, or a record lands in a group the picker never renders.
@@ -528,7 +551,7 @@ function checkMap({ id, expectedPending }) {
   for (const c of descriptor.controls.filter((x) => x.type === 'recordFilter')) {
     note(c.records, c.field);
     check(
-      picker.from === c.records && picker.groupBy?.field === c.field,
+      picker?.from === c.records && picker?.groupBy?.field === c.field,
       `recordFilter "${c.id}" filters ${c.records}.${c.field}, the field the picker groups on`,
     );
     check(Boolean(c.label && c.allLabel), `recordFilter "${c.id}" has its button label and its select-all label`);
@@ -536,6 +559,69 @@ function checkMap({ id, expectedPending }) {
       !descriptor.controls.some((x) => x.type === 'layerToggle'),
       `recordFilter "${c.id}" is not beside a layerToggle — they share one corner`,
     );
+  }
+
+  // ---- shell modules: tabs and timeline ------------------------------------
+  // Each is its own term, loaded only where a descriptor uses it; what it
+  // reads is checked here like anything else a descriptor names.
+  if (descriptor.tabs) {
+    const t = descriptor.tabs;
+    note(t.records, t.field);
+    noteSpec(t.from, t.label);
+    const values = new Set(Object.values(tables[t.records] ?? {}).map((r) => r[t.field]));
+    const tabKeys = Object.keys(tables[t.from] ?? {});
+    const untabbed = [...values].filter((v) => !tabKeys.includes(v));
+    const empty = tabKeys.filter((k) => !values.has(k));
+    check(untabbed.length === 0 && empty.length === 0, `tabs: every value of ${t.records}.${t.field} has a tab in "${t.from}", and every tab has records${untabbed.length || empty.length ? ` — untabbed ${untabbed.join(', ') || '-'}, empty ${empty.join(', ') || '-'}` : ''}`);
+    check(!descriptor.controls.some((c) => c.type === 'recordFilter'), 'tabs: not beside a recordFilter — both decide what is shown');
+  }
+  if (descriptor.timeline) {
+    const t = descriptor.timeline;
+    note(t.records, t.at);
+    note(t.records, t.rowBy);
+    noteSpec(t.records, t.label);
+    noteSpec(t.records, t.rowLabel);
+    for (const f of t.state ?? []) if (typeof f !== 'string') note(f.fromSelection?.records, f.fromSelection?.listField);
+    for (const a of t.do ?? []) note(t.records, a.field);
+    check(!t.span, 'timeline: points only — spans are not built');
+    const noYear = Object.keys(tables[t.records] ?? {}).filter((k) => !Number.isInteger(tables[t.records][k][t.at]));
+    check(noYear.length === 0, `timeline: every ${t.records} record has a whole year in "${t.at}"${noYear.length ? ` — not ${noYear.join(', ')}` : ''}`);
+    // The dots take the markers' colour by reading the same expression, in the
+    // two forms the timeline evaluates: a literal, and match on get.
+    const reads = (e) => !Array.isArray(e) || (e[0] === 'get' && e.length === 2) || (e[0] === 'match' && reads(e[1]) && e.slice(2).every((x, i, all) => (i % 2 === 0 && i < all.length - 1) || reads(x)));
+    const colour = t.colour ? descriptor.styles?.[t.colour.style]?.paint?.[t.colour.paint] : '#0b3d91';
+    check(colour !== undefined && reads(colour), `timeline: its colour is style "${t.colour?.style}" paint "${t.colour?.paint}", in a form it reads`);
+    check(Array.isArray(t.do) && t.do.length > 0, 'timeline: says what a tap does');
+  }
+
+  // ---- language ---------------------------------------------------------------
+  // Every map is in Bengali but one: environment-treaties is in English, by the
+  // user's decision (2026-09-27). An English map shows no Bengali field — its
+  // cards, tab titles, timeline labels and map text all read English fields.
+  const language = descriptor.language ?? 'bn';
+  check(['bn', 'en'].includes(language), `the map's language is bn or en (${language})`);
+  if (language === 'en') {
+    const fieldsOf = (spec) => {
+      if (spec === undefined || spec === null) return [];
+      if (typeof spec === 'string') return [...spec.matchAll(/\{([A-Za-z][A-Za-z0-9_]*)\}/g)].map((m) => m[1]);
+      return [spec.field, spec.of, ...(spec.compose ?? []).flatMap((t) => [...String(t).matchAll(/\{([A-Za-z][A-Za-z0-9_]*)\}/g)].map((m) => m[1]))].filter(Boolean);
+    };
+    const shown = [];
+    for (const [table, sheet] of sheets) {
+      for (const spec of [sheet.kicker, sheet.chip, sheet.title, sheet.subtitle]) for (const f of fieldsOf(spec)) shown.push(`${table}.${f}`);
+      for (const row of sheet.rows ?? []) {
+        if (row.referencedBy) for (const f of fieldsOf(row.item)) shown.push(`${row.referencedBy.records}.${f}`);
+        else for (const f of [...fieldsOf(row), ...fieldsOf(row.short)]) shown.push(`${table}.${f}`);
+      }
+    }
+    if (descriptor.tabs) for (const f of fieldsOf(descriptor.tabs.label)) shown.push(`${descriptor.tabs.from}.${f}`);
+    if (descriptor.timeline) for (const f of [...fieldsOf(descriptor.timeline.label), ...fieldsOf(descriptor.timeline.rowLabel)]) shown.push(`${descriptor.timeline.records}.${f}`);
+    for (const layer of descriptor.layers ?? []) {
+      const text = JSON.stringify(layer.layout?.['text-field'] ?? null);
+      for (const m of text.matchAll(/\["get","([^"]+)"\]/g)) shown.push(`${descriptor.sources[layer.source]?.records ?? layer.source}.${m[1]}`);
+    }
+    const bengali = [...new Set(shown)].filter((f) => /Bn$/.test(f));
+    check(bengali.length === 0, `an English map shows no Bengali field (${new Set(shown).size} fields shown)${bengali.length ? ` — not ${bengali.join(', ')}` : ''}`);
   }
 
   // ---- fields the descriptor never references -------------------------------

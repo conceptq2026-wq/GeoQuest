@@ -1,0 +1,67 @@
+/*
+ * TABS — the tabs module's own styles, loaded only with it.
+ *
+ * One rounded pill bar above the map. The active tab is a filled pill inside
+ * it; the others are plain text, a thin line between two neighbours that are
+ * both plain. Each tab takes the width its title needs and the bar shares out
+ * the rest; a title too long for its share wraps between words — never
+ * truncated, never broken inside a word.
+ */
+.map-tabs {
+  display: flex;
+  margin: 0 0 10px;
+  overflow: hidden;
+
+  border: 1px solid #c7d5ea;
+  border-radius: 999px;
+  background: #fbfcfe;
+}
+
+.map-tab {
+  flex: 1 1 auto;
+  min-height: 34px;
+  margin: 0;
+  padding: 5px 12px;
+
+  border: 0;
+  border-left: 1px solid #c7d5ea;
+  border-radius: 0;
+  background: none;
+  color: #4b6082;
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.25;
+  cursor: pointer;
+}
+
+.map-tab:first-child,
+.map-tab.active,
+.map-tab.active + .map-tab {
+  border-left-color: transparent;
+}
+
+.map-tab.active {
+  border-radius: 999px;
+  background: #3762b4;
+  color: #ffffff;
+}
+
+/* Inside the pill, so the bar's rounded edge does not clip it. */
+.map-tab:focus-visible {
+  outline: 2px solid #0b5cad;
+  outline-offset: -4px;
+}
+
+@media (max-width: 700px) {
+  .map-tabs {
+    flex: 0 0 auto;
+    margin-bottom: 8px;
+  }
+
+  .map-tab {
+    min-height: 32px;
+    padding: 4px 8px;
+    font-size: 13px;
+  }
+}

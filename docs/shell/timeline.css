@@ -1,0 +1,525 @@
+/*
+ * TIMELINE — the timeline module's own styles, loaded only with it.
+ *
+ * A timeline map's own page, top to bottom: the tabs, the map from edge to
+ * edge, the card docked at the map's foot — over its last few pixels, so the
+ * map shows round the card's corners, never over what it frames — and the
+ * timeline panel. With nothing selected the card collapses and the map takes
+ * its room. The map never drops under 35% of the screen: the panel fits its
+ * rows but gives way first, down to one row, and then the card, down to its
+ * title; each scrolls inside itself when short of room.
+ *
+ * The panel scrolls both ways in one box. Its year axes stick to the box's
+ * top and foot, and its chips to the box's left, so the rows pass under them.
+ * Each dot is a 24 px button holding a small mark and its two-line label, so
+ * the target is a fingertip however small the mark.
+ */
+
+/* ---- the page ---------------------------------------------------------- */
+
+.has-timeline {
+  background: #f3f7fb;
+}
+
+/*
+ * No picker row: the timeline is the selector. The arrows keep their hidden
+ * attribute, which the shell's display for them would otherwise override.
+ * Only here: on a map with a picker, the hidden arrows holding the header's
+ * height until the picker is built is what sizes the map right when it opens.
+ */
+.has-timeline .step-btn[hidden] {
+  display: none;
+}
+
+/* The map and the docked card, one above the other, inside the map's shell. */
+.has-timeline .map-shell {
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+
+  border: 0;
+  border-radius: 0;
+  background: none;
+}
+
+.has-timeline #map {
+  position: relative;
+  inset: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  background: #bae3fd;
+}
+
+/* ---- the docked card --------------------------------------------------- */
+
+.has-timeline .info-sheet {
+  position: relative;
+  left: auto;
+  bottom: auto;
+  z-index: 2;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  width: auto;
+  min-height: 96px;
+  margin: -14px 8px 0;
+
+  border: 0;
+  border-radius: 16px;
+  background: #fafcfe;
+  box-shadow:
+    0 6px 22px rgba(24, 52, 94, 0.12),
+    0 1px 3px rgba(24, 52, 94, 0.06);
+
+  transform: none;
+  transition: none;
+  touch-action: auto;
+}
+
+/* Nothing selected: no card, and the map takes its room. */
+.has-timeline .info-sheet[hidden],
+.has-timeline .info-sheet[inert] {
+  display: none;
+}
+
+/* Docked, the card is not dragged; its × clears the selection instead. */
+.has-timeline .sheet-handle {
+  display: none;
+}
+
+.has-timeline .info-sheet-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: none;
+  padding: 14px 16px 14px;
+  touch-action: pan-y;
+}
+
+.timeline-card-close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  z-index: 1;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: #6b7c93;
+
+  font-size: 22px;
+  line-height: 32px;
+  cursor: pointer;
+}
+
+.timeline-card-close:hover {
+  background: #eef3f8;
+}
+
+.timeline-card-close:focus-visible {
+  outline: 2px solid #0b5cad;
+  outline-offset: -2px;
+}
+
+/* The top line: the theme's chip in its row's colour, the × at its right. */
+.has-timeline .info-kicker.info-chip {
+  margin: 0 36px 7px 0;
+  padding: 2px 12px;
+
+  border: 0;
+  background: var(--chip, #e3e9f1);
+  color: #16233d;
+
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: normal;
+  line-height: 1.5;
+  text-transform: none;
+}
+
+.has-timeline .info-title {
+  margin-right: 30px;
+  color: #0f1d36;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+/* The facts: two columns of a muted label over a dark value. */
+.has-timeline .info-grid {
+  gap: 7px 14px;
+  margin-top: 9px;
+}
+
+.has-timeline .info-cell .info-label {
+  color: #6b7c93;
+  font-size: 11.5px;
+}
+
+.has-timeline .info-cell .info-value {
+  color: #13233a;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* A link to another record: its short name, and a chevron. */
+.has-timeline .info-list {
+  display: block;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  list-style: none;
+}
+
+.has-timeline .info-list li {
+  display: inline;
+}
+
+.has-timeline .info-list li + li {
+  margin-left: 12px;
+}
+
+.has-timeline .info-link {
+  display: inline;
+  width: auto;
+  padding: 0;
+  border: 0;
+  color: #1e72d9;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.has-timeline .info-link::after {
+  content: '\00a0›';
+}
+
+/* The note: one line across both columns, under the facts, small and muted. */
+.has-timeline .info-row-stacked {
+  display: block;
+  margin-top: 9px;
+  color: #6b7c93;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.has-timeline .info-row-stacked .info-label:empty {
+  display: none;
+}
+
+.has-timeline .info-row-stacked .info-value {
+  color: #6b7c93;
+  font-weight: 400;
+}
+
+/* A card of a shared city: its records, as links on one line. */
+.has-timeline .info-row-list {
+  display: block;
+  margin-top: 8px;
+}
+
+/* ---- the panel --------------------------------------------------------- */
+
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-height: 50vh;
+  margin-top: 10px;
+  overflow: hidden;
+
+  border-radius: 20px;
+  background: #fafcfe;
+  box-shadow: 0 -2px 14px rgba(24, 52, 94, 0.07);
+}
+
+.timeline-scroll {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scroll-padding-top: 24px;
+  scroll-padding-bottom: 24px;
+  scrollbar-width: thin;
+}
+
+.timeline-inner {
+  position: relative;
+  width: max-content;
+  min-width: 100%;
+}
+
+/* Both axes: stuck to the box's top or foot, over any row that runs under. */
+.timeline-axis {
+  position: sticky;
+  z-index: 4;
+  display: flex;
+  height: 24px;
+  background: #fafcfe;
+}
+
+.timeline-axis-top {
+  top: 0;
+}
+
+.timeline-axis-bottom {
+  bottom: 0;
+}
+
+/* Over the chips' column, where no year is. */
+.timeline-corner {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  flex: none;
+  background: #fafcfe;
+}
+
+.timeline-ticks {
+  position: relative;
+  flex: none;
+}
+
+.timeline-tick {
+  position: absolute;
+  transform: translateX(-50%);
+  color: #5c708f;
+  font-size: 11px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.timeline-tick::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  width: 1px;
+  height: 5px;
+  background: #d5dde7;
+}
+
+.timeline-axis-top .timeline-tick {
+  top: 2px;
+}
+
+.timeline-axis-top .timeline-tick::after {
+  top: 18px;
+}
+
+.timeline-axis-bottom .timeline-tick {
+  top: 5px;
+}
+
+.timeline-axis-bottom .timeline-tick::after {
+  top: -6px;
+}
+
+.timeline-body {
+  position: relative;
+  display: flex;
+}
+
+/* The chips: stuck to the box's left, over any dot that scrolls under them. */
+.timeline-chips {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+  flex: none;
+  background: #fafcfe;
+}
+
+.timeline-chip {
+  position: absolute;
+  left: 8px;
+  width: max-content;
+  max-width: 96px;
+  padding: 2px 9px;
+  transform: translateY(-50%);
+
+  border-radius: 12px;
+
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 16px;
+  text-align: center;
+}
+
+.timeline-chip[hidden] {
+  display: none;
+}
+
+.timeline-plot {
+  position: relative;
+  flex: none;
+}
+
+/* A row's line, through its dots. */
+.timeline-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-top: 1px solid #e0e9f2;
+}
+
+.timeline-dot {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  padding: 0;
+
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.timeline-dot[hidden] {
+  display: none;
+}
+
+/* A small filled dot; the 24 px button round it is the target. */
+.timeline-dot-mark {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* The label: short name over year, on the panel's colour so the guide passes behind it. */
+.timeline-dot-label {
+  position: absolute;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 4px;
+  transform: translateX(-50%);
+
+  border-radius: 4px;
+  background: #fafcfe;
+
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.timeline-dot-name {
+  color: #16284a;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.timeline-dot-year {
+  color: #3b4e70;
+  font-size: 10.5px;
+}
+
+/* A dot a selected place holds: a white ring round it. */
+.timeline-dot.active .timeline-dot-mark {
+  width: 10px;
+  height: 10px;
+  box-shadow:
+    0 0 0 2px #ffffff,
+    0 0 0 3px rgba(22, 40, 74, 0.35);
+}
+
+/* Selected: larger, a white ring and a soft glow in its own colour, the label bold. */
+.timeline-dot.selected {
+  z-index: 2;
+}
+
+.timeline-dot.selected .timeline-dot-mark {
+  width: 14px;
+  height: 14px;
+  border: 2.5px solid #ffffff;
+  box-shadow:
+    0 0 0 1px rgba(22, 40, 74, 0.08),
+    0 0 10px 4px var(--glow);
+}
+
+.timeline-dot.selected .timeline-dot-name,
+.timeline-dot.selected .timeline-dot-year {
+  font-weight: 700;
+}
+
+.timeline-dot:focus-visible {
+  outline: 2px solid #0b5cad;
+  outline-offset: -2px;
+  border-radius: 50%;
+}
+
+/* From the selected dot down to the bottom axis, in its colour. */
+.timeline-guide {
+  position: absolute;
+  bottom: 0;
+  z-index: 0;
+  width: 0;
+  border-left: 1.5px dashed;
+  pointer-events: none;
+}
+
+.timeline-guide[hidden] {
+  display: none;
+}
+
+/* Measures a label in bold, the width a selected label takes. */
+.timeline-measure {
+  position: absolute;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  font-weight: 700;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+@media (max-width: 700px) {
+  /* The map runs from edge to edge; the tabs keep a margin of their own. */
+  .has-timeline.map-page {
+    padding: 10px 0 0;
+  }
+
+  .has-timeline .map-tabs {
+    margin: 0 10px 8px;
+  }
+
+  /* A timeline map has no picker row, so its header shows nothing. */
+  .has-timeline .page-header {
+    margin: 0;
+  }
+
+  /*
+   * The page is one screen tall. The map keeps 35% of it; the panel gives way
+   * first, down to one row, and the card after it. Flex shares a shortfall by
+   * weight, so the panel's weight is set so far above the shell's that the
+   * shell's share stays under a sixty-fourth of a pixel — or the card would
+   * come up short by a fraction and scroll for nothing.
+   */
+  .has-timeline .map-shell {
+    flex: 1 1 auto;
+    min-height: 35vh;
+    min-height: 35dvh;
+  }
+
+  .has-timeline #map {
+    min-height: 35vh;
+    min-height: 35dvh;
+  }
+
+  .timeline {
+    flex: 0 1000000 auto;
+    min-height: 122px;
+    max-height: none;
+    padding-bottom: env(safe-area-inset-bottom);
+    border-radius: 20px 20px 0 0;
+  }
+}

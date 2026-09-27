@@ -88,6 +88,10 @@ const own = {
     remember('dom node', name, () => element.remove());
     return element;
   },
+  /** A change a map makes to the page it did not create — a class, an inline style — undone at teardown. */
+  undo(name, fn) {
+    remember('change', name, fn);
+  },
 };
 
 /*
@@ -148,12 +152,21 @@ const LABEL_FONT = ['Noto Sans Bengali'];
  */
 const BASEMAPS = {
   world: { archive: 'world.pmtiles', style: worldStyle, bounded: false },
+  // The same archive, drawn as the environment-treaties mockup draws it: paler
+  // water and land, thin solid borders, and no coastline stroke.
+  'world-light': { archive: 'world.pmtiles', style: (archive) => worldStyle(archive, WORLD_LIGHT), bounded: false },
   bangladesh: { archive: 'bangladesh.pmtiles', style: regionStyle, bounded: true },
 };
+const WORLD_LIGHT = { colors: { sea: '#bae3fd', land: '#f7f4e5', coast: '#bae3fd', border: '#cdd5d9' }, strokes: false, border: { 'line-width': 0.7 } };
 
 const credit = (href, text) => `<a href="${href}" target="_blank" rel="noopener noreferrer">${text}</a>`;
 
-function worldStyle(archive) {
+// `look`, the palette, is a variant's own; the shell passes every style its
+// region second, which for the world is null, so null means the usual look.
+function worldStyle(archive, look) {
+  const colors = look?.colors ?? BASEMAP_COLORS;
+  const strokes = look?.strokes ?? true;
+  const border = look?.border ?? { 'line-width': 1, 'line-dasharray': [3, 1.5] };
   const tiles = (minzoom, maxzoom) => ({
     type: 'vector',
     tiles: [archive.tiles],
@@ -162,14 +175,14 @@ function worldStyle(archive) {
     attribution: '<a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener noreferrer">Natural Earth</a>',
   });
   const land = (source, withStrokes) => [
-    { id: `${source}-land`, type: 'fill', source, 'source-layer': 'land', paint: { 'fill-color': BASEMAP_COLORS.land } },
-    { id: `${source}-lakes`, type: 'fill', source, 'source-layer': 'lakes', paint: { 'fill-color': BASEMAP_COLORS.sea } },
+    { id: `${source}-land`, type: 'fill', source, 'source-layer': 'land', paint: { 'fill-color': colors.land } },
+    { id: `${source}-lakes`, type: 'fill', source, 'source-layer': 'lakes', paint: { 'fill-color': colors.sea } },
     // Detail land is clipped to its box, so an outline would also trace the
     // box edge as a fake coast. Only the world tiles get the strokes.
-    ...(withStrokes
+    ...(withStrokes && strokes
       ? [
-          { id: `${source}-lake-shore`, type: 'line', source, 'source-layer': 'lakes', paint: { 'line-color': BASEMAP_COLORS.coast, 'line-width': 0.7 } },
-          { id: `${source}-coast`, type: 'line', source, 'source-layer': 'land', paint: { 'line-color': BASEMAP_COLORS.coast, 'line-width': 0.9 } },
+          { id: `${source}-lake-shore`, type: 'line', source, 'source-layer': 'lakes', paint: { 'line-color': colors.coast, 'line-width': 0.7 } },
+          { id: `${source}-coast`, type: 'line', source, 'source-layer': 'land', paint: { 'line-color': colors.coast, 'line-width': 0.9 } },
         ]
       : []),
     {
@@ -178,7 +191,7 @@ function worldStyle(archive) {
       source,
       'source-layer': 'borders',
       layout: { 'line-join': 'round' },
-      paint: { 'line-color': BASEMAP_COLORS.border, 'line-width': 1, 'line-dasharray': [3, 1.5] },
+      paint: { 'line-color': colors.border, ...border },
     },
   ];
 
@@ -192,9 +205,9 @@ function worldStyle(archive) {
       [BASEMAP_SOURCES.detail]: tiles(7, 10),
     },
     layers: [
-      { id: 'basemap-bg', type: 'background', paint: { 'background-color': BASEMAP_COLORS.sea } },
+      { id: 'basemap-bg', type: 'background', paint: { 'background-color': colors.sea } },
       ...land(BASEMAP_SOURCES.world, true),
-      { id: 'basemap-detail-mask', type: 'fill', source: BASEMAP_SOURCES.detail, 'source-layer': 'detail_extent', paint: { 'fill-color': BASEMAP_COLORS.sea } },
+      { id: 'basemap-detail-mask', type: 'fill', source: BASEMAP_SOURCES.detail, 'source-layer': 'detail_extent', paint: { 'fill-color': colors.sea } },
       ...land(BASEMAP_SOURCES.detail, false),
     ],
   };
@@ -339,6 +352,22 @@ const fetchJson = async (url) => {
 const descriptor = await fetchJson(mapFile('descriptor.json'));
 
 /*
+ * The map's language. Every map is in Bengali but one: environment-treaties is
+ * in English, by the user's decision (2026-09-27). `language: "en"` turns the
+ * shell's own words with it — the page's title and every lang attribute, the
+ * load notice, the country names (the tiles' name_en), and the sea names, which
+ * the shared table has in Bengali only and so are left off an English map.
+ */
+const LANGUAGE = descriptor.language ?? 'bn';
+if (!['bn', 'en'].includes(LANGUAGE)) throw new Error(`language "${LANGUAGE}" is neither bn nor en`);
+const LOAD_NOTICE = { en: ['The map could not be loaded', 'Check the connection and reload the page.'] };
+if (LANGUAGE !== 'bn') {
+  for (const el of document.querySelectorAll('[lang="bn"]')) el.lang = LANGUAGE;
+  const [headline, advice] = LOAD_NOTICE[LANGUAGE];
+  dom.loadNotice.replaceChildren(Object.assign(document.createElement('strong'), { textContent: headline }), Object.assign(document.createElement('span'), { textContent: advice }));
+}
+
+/*
  * BASELINE RECORDS — loaded on every map, declared by none.
  *
  * Sea names are wanted on all of them, so they are shared data rather than
@@ -371,7 +400,8 @@ for (const [name, spec] of Object.entries(descriptor.sources ?? {})) {
   geometryFiles[name] = await fetchJson(mapFile(spec.geometry.replace(/^\.\//, '')));
 }
 
-if (descriptor.title?.bn) dom.title.textContent = descriptor.title.bn;
+const pageTitle = descriptor.title?.[LANGUAGE] ?? descriptor.title?.bn;
+if (pageTitle) dom.title.textContent = pageTitle;
 document.title = descriptor.title?.en ?? descriptor.title?.bn ?? document.title;
 
 /*
@@ -458,8 +488,8 @@ function dependsOn(sourceSpec) {
 /** A source's features, with its declared state written into each one. */
 function derive(name, spec) {
   const all = deriveAll(name, spec);
-  if (!spec.records || isBaselineSource(name) || !recordFilter || filteredOut.size === 0) return all;
-  return { ...all, features: all.features.filter((f) => shown(spec.records, f.properties.key)) };
+  if (!spec.records || isBaselineSource(name) || ((!recordFilter || filteredOut.size === 0) && !hiders.length)) return all;
+  return { ...all, features: all.features.filter((f) => onMap(spec.records, f.properties.key)) };
 }
 
 function deriveAll(name, spec) {
@@ -504,6 +534,35 @@ function pick(row, keys) {
   const out = {};
   for (const key of keys ?? []) if (row[key] !== undefined && row[key] !== null) out[key] = row[key];
   return out;
+}
+
+/*
+|--------------------------------------------------------------------------
+| SHELL MODULES — a term a descriptor may use, in a file of its own
+|
+| A module is downloaded and run only for a map whose descriptor uses its
+| term; every other map loads exactly what it did before. Each exports
+| `mount(shell)`, run here, before the map is built, so the room it takes on
+| the page is there when the map measures its container; and `install(shell)`,
+| run once everything else is built. `shell` is the one surface a module has.
+|--------------------------------------------------------------------------
+*/
+const SHELL_MODULES = { tabs: './tabs.js', timeline: './timeline.js' };
+const hiders = []; // (table, key) => true takes a record off the map, the picker and ‹ ›
+const changeListeners = []; // (what) => …, after a selection ('select') or a change in what is shown ('filter')
+const changed = (what) => changeListeners.forEach((listener) => listener(what));
+const shell = { descriptor, language: LANGUAGE, records, dom, own, valueOf, selection, shown: onMap, hide: (hider) => hiders.push(hider) };
+const modules = [];
+for (const [term, file] of Object.entries(SHELL_MODULES)) {
+  if (descriptor[term] === undefined) continue;
+  const module = await import(file);
+  await module.mount?.(shell);
+  modules.push(module);
+}
+
+/** On the map, in the picker and in ‹ ›: shown by the record filter, and hidden by no module. */
+function onMap(table, key) {
+  return shown(table, key) && !hiders.some((hide) => hide(table, key));
 }
 
 /*
@@ -591,9 +650,16 @@ function relationTo(target) {
 const seaRelation = relationTo('seas');
 const countryRelation = records[COUNTRY_TABLE] ? relationTo(COUNTRY_TABLE) : null;
 const activeState = (relation) => (relation ? [{ name: 'active', fromSelection: relation }] : []);
+// Names in the map's language: the tiles carry name_en beside name_bn; the
+// shared seas table has its names in Bengali only, so an English map has no
+// sea names to show, and shows none.
+const COUNTRY_NAME = LANGUAGE === 'en' ? ['get', 'name_en'] : ['coalesce', ['get', 'name_bn'], ['get', 'name_en']];
+const SEA_NAME = LANGUAGE === 'en' ? 'nameEn' : 'nameBn';
+const seasNamed = Object.values(records.seas).every((sea) => typeof sea[SEA_NAME] === 'string' && sea[SEA_NAME] !== '');
+if (LANGUAGE !== 'bn' && records[COUNTRY_TABLE]) throw new Error(`a countries table on a map in "${LANGUAGE}" is not built: its names are Bengali`);
 
 const BASELINE_SOURCES = {
-  seas: { records: 'seas', geometryFrom: 'at', properties: ['nameBn'], state: activeState(seaRelation) },
+  seas: { records: 'seas', geometryFrom: 'at', properties: seasNamed ? [SEA_NAME] : [], state: activeState(seaRelation) },
   // Only where the map carries country records of its own. Their label points
   // are the map's, not Natural Earth's, so a map that has them puts its names
   // exactly where it computed them.
@@ -699,15 +765,17 @@ function baselineLayers() {
         // "People's Republic of China".
         ...(named.length ? [['!', ['in', ['get', 'adm0_a3'], ['literal', named]]]] : []),
       ],
-      layout: { 'text-field': ['coalesce', ['get', 'name_bn'], ['get', 'name_en']] },
+      layout: { 'text-field': COUNTRY_NAME },
     },
     ...(records[COUNTRY_TABLE]
       ? [{ id: 'country-labels-named', type: 'symbol', source: 'countryLabels', style: 'country-label', filter: NOT_ACTIVE, layout: { 'text-field': ['get', 'nameBn'] } }]
       : []),
-    { id: 'sea-labels', type: 'symbol', source: 'seas', style: 'sea-label', filter: ['all', NOT_ACTIVE, ['>=', ['zoom'], 3]], layout: { 'text-field': ['get', 'nameBn'] } },
+    ...(seasNamed
+      ? [{ id: 'sea-labels', type: 'symbol', source: 'seas', style: 'sea-label', filter: ['all', NOT_ACTIVE, ['>=', ['zoom'], 3]], layout: { 'text-field': ['get', SEA_NAME] } }]
+      : []),
   ];
   const active = [
-    { id: 'sea-labels-active', type: 'symbol', source: 'seas', style: 'sea-label-active', filter: IS_ACTIVE, layout: { 'text-field': ['get', 'nameBn'] } },
+    ...(seasNamed ? [{ id: 'sea-labels-active', type: 'symbol', source: 'seas', style: 'sea-label-active', filter: IS_ACTIVE, layout: { 'text-field': ['get', SEA_NAME] } }] : []),
     ...(records[COUNTRY_TABLE]
       ? [{ id: 'country-labels-active', type: 'symbol', source: 'countryLabels', style: 'country-label-active', filter: IS_ACTIVE, layout: { 'text-field': ['get', 'nameBn'] } }]
       : []),
@@ -911,6 +979,20 @@ function doSelect({ table, key }) {
     fillSheet(table, key);
     setSheetOpen(true);
   }
+  changed('select');
+}
+
+/** Nothing selected: every table's selection cleared, and the marker and the card with it. */
+function clearSelection() {
+  if (!selection.size) return;
+  const tables = [...selection.keys()];
+  selection.clear();
+  for (const table of tables) refresh(table);
+  if (dom.picker.dataset.table) dom.picker.value = '';
+  syncStepButtons();
+  marker?.instance.remove();
+  if (hasSheet) setSheetOpen(false);
+  changed('select');
 }
 
 function doFitBounds(action, { table, key, feature }) {
@@ -977,7 +1059,7 @@ function geometryOf(table, key) {
  */
 function paddingFor(clear) {
   const base = { top: 16, right: 16, bottom: 16, left: 16 };
-  if ((clear ?? []).includes('sheet') && !dom.sheet.hidden) base.bottom = sheetHeight() + 16;
+  if ((clear ?? []).includes('sheet') && !dom.sheet.hidden && sheetFloats()) base.bottom = sheetHeight() + 16;
   return base;
 }
 
@@ -1255,7 +1337,7 @@ if (picker) buildPicker(picker);
 function renderPicker() {
   const table = records[picker.from] ?? {};
   const group = picker.groupBy;
-  order = allOrder.filter((key) => shown(picker.from, key));
+  order = allOrder.filter((key) => onMap(picker.from, key));
   // Everything but the placeholder comes off, then goes back filtered.
   for (const child of [...dom.picker.children]) if (!(child.tagName === 'OPTION' && child.value === '')) child.remove();
   for (const og of pickerGroups.values()) og.replaceChildren();
@@ -1420,7 +1502,7 @@ function buildRecordFilter(control) {
   const button = document.createElement('button');
   button.type = 'button';
   button.className = 'layers-toggle-btn';
-  button.lang = 'bn';
+  button.lang = LANGUAGE;
   button.setAttribute('aria-expanded', 'false');
   button.setAttribute('aria-controls', 'recordFilterMenu');
   button.textContent = `${control.label} ▾`;
@@ -1436,7 +1518,7 @@ function buildRecordFilter(control) {
     box.checked = true;
     if (value !== undefined) box.dataset.value = value;
     const span = document.createElement('span');
-    span.lang = 'bn';
+    span.lang = LANGUAGE;
     span.textContent = text;
     label.append(box, span);
     menu.appendChild(label);
@@ -1476,7 +1558,7 @@ function buildRecordFilter(control) {
  */
 function applyFilter() {
   reachable = null;
-  for (const [table, key] of [...selection]) if (!shown(table, key)) selection.delete(table);
+  for (const [table, key] of [...selection]) if (!onMap(table, key)) selection.delete(table);
   for (const [name, spec] of Object.entries(sourceSpecs)) rederive(name, spec);
   if (picker) renderPicker();
   syncStepButtons();
@@ -1485,6 +1567,7 @@ function applyFilter() {
     marker?.instance.remove();
     if (hasSheet) setSheetOpen(false);
   } else if (sheetFor(current[0])) fillSheet(current[0], current[1]);
+  changed('filter');
 }
 
 /** A swatch names a style token, never a literal colour, so it cannot drift. */
@@ -1565,9 +1648,12 @@ function fillSheet(table, key) {
   const row = records[table][key];
   dom.sheet.hidden = false;
   fillPhoto(sheet, row);
-  const kicker = valueOf(sheet.kicker, row) ?? '';
+  // A chip — a record's theme — takes the kicker's line, drawn as a pill.
+  const chip = valueOf(sheet.chip, row) ?? '';
+  const kicker = chip || (valueOf(sheet.kicker, row) ?? '');
   dom.kicker.textContent = kicker;
   dom.kicker.hidden = kicker === '';
+  dom.kicker.classList.toggle('info-chip', chip !== '');
   dom.sheetTitle.textContent = valueOf(sheet.title, row) ?? '';
   // A small grey line under the title; like a row, it hides when it has nothing to say.
   const subtitle = valueOf(sheet.subtitle, row) ?? '';
@@ -1575,27 +1661,126 @@ function fillSheet(table, key) {
   dom.sheetSubtitle.hidden = subtitle === '';
 
   dom.rows.replaceChildren();
-  for (const [index, spec] of (sheet.rows ?? []).entries()) {
-    if (spec.referencedBy) {
-      const list = referencedByRow(spec, index, key);
-      if (list) dom.rows.appendChild(list);
-      continue;
+  // `when` keeps a row to the records it applies to, in expectGeometry's field/value shape.
+  const rows = (sheet.rows ?? []).map((spec, index) => ({ spec, index })).filter(({ spec }) => applies(spec.when, row));
+  if (sheet.columns) {
+    fillGrid(sheet.columns, rows, key, row);
+    return;
+  }
+  for (const { spec, index } of rows) {
+    const line = spec.referencedBy ? referencedByRow(spec, index, key) : valueRow(spec, row);
+    if (line) dom.rows.appendChild(line);
+  }
+}
+
+/** A row of the card: its label and its value, or nothing where the value is null. */
+function valueRow(spec, row) {
+  const value = valueOf(spec, row);
+  // A null value hides the row, uniformly, whichever mechanism produced it.
+  if (value === null || value === undefined || value === '') return null;
+  const line = document.createElement('div');
+  // `stacked`: the value under its label, for a line of text rather than a fact.
+  line.className = spec.stacked ? 'info-row info-row-stacked' : 'info-row';
+  const label = document.createElement('span');
+  label.className = 'info-label';
+  label.lang = LANGUAGE;
+  label.textContent = spec.label;
+  const text = document.createElement('span');
+  text.className = 'info-value';
+  text.lang = LANGUAGE;
+  text.textContent = value;
+  line.append(label, text);
+  return line;
+}
+
+/** `when: { field: value | [values] }` — every field named holds one of its values. */
+function applies(when, row) {
+  return !when || Object.entries(when).every(([field, values]) => (Array.isArray(values) ? values : [values]).includes(row[field]));
+}
+
+/*
+ * A card in `columns` lays its rows out as cells of a grid, filled in order a
+ * row of cells at a time. A cell that does not apply to the record — none of
+ * the fields it reads, no linked record — is left out; one whose value is
+ * null, unverified, keeps its place empty, so its neighbour stays in its own
+ * column. A row of cells with nothing in it is dropped. Stacked rows run under
+ * the grid and across it. A cell may declare `short`: the value it shows where
+ * its own does not fit the cell's one line.
+ */
+function fillGrid(columns, rows, key, row) {
+  const cells = [];
+  for (const { spec, index } of rows) {
+    if (spec.stacked) continue;
+    const cell = gridCell(spec, index, key, row);
+    if (cell !== undefined) cells.push(cell);
+  }
+  const grid = document.createElement('div');
+  grid.className = 'info-grid';
+  grid.style.setProperty('--columns', String(columns));
+  for (let i = 0; i < cells.length; i += columns) {
+    const line = cells.slice(i, i + columns);
+    if (line.every((cell) => cell === null)) continue;
+    for (const cell of line) grid.appendChild(cell ?? Object.assign(document.createElement('div'), { className: 'info-cell' }));
+  }
+  if (grid.children.length) dom.rows.appendChild(grid);
+  for (const { spec } of rows) {
+    if (!spec.stacked) continue;
+    const line = valueRow(spec, row);
+    if (line) dom.rows.appendChild(line);
+  }
+  fitCells();
+}
+
+/** A cell: its element; null for an empty place (the value unverified); undefined where it does not apply. */
+function gridCell(spec, index, key, row) {
+  let value;
+  if (spec.referencedBy) {
+    value = referencedByRow(spec, index, key)?.querySelector('.info-list');
+    if (!value) return undefined;
+    value.className = 'info-value info-list';
+  } else {
+    if (readsNothing(spec, row)) return undefined;
+    const text = valueOf(spec, row);
+    if (text === null || text === undefined || text === '') return null;
+    value = document.createElement('span');
+    value.className = 'info-value';
+    value.lang = LANGUAGE;
+    value.textContent = text;
+    const short = spec.short ? valueOf(spec.short, row) : null;
+    if (short !== null && short !== undefined && String(short) !== String(text)) {
+      value.dataset.full = String(text);
+      value.dataset.short = String(short);
     }
-    const value = valueOf(spec, row);
-    // A null value hides the row, uniformly, whichever mechanism produced it.
-    if (value === null || value === undefined || value === '') continue;
-    const line = document.createElement('div');
-    line.className = 'info-row';
-    const label = document.createElement('span');
-    label.className = 'info-label';
-    label.lang = 'bn';
-    label.textContent = spec.label;
-    const text = document.createElement('span');
-    text.className = 'info-value';
-    text.lang = 'bn';
-    text.textContent = value;
-    line.append(label, text);
-    dom.rows.appendChild(line);
+  }
+  const cell = document.createElement('div');
+  cell.className = 'info-cell';
+  const label = document.createElement('span');
+  label.className = 'info-label';
+  label.lang = LANGUAGE;
+  label.textContent = spec.label ?? '';
+  cell.append(label, value);
+  return cell;
+}
+
+/** Every field a value spec reads is absent from the record: it does not apply, rather than being unverified. */
+function readsNothing(spec, row) {
+  const fields =
+    spec.field !== undefined
+      ? [spec.field]
+      : spec.of !== undefined
+        ? [spec.of]
+        : (spec.compose ?? []).flatMap((template) => [...template.matchAll(/\{([A-Za-z][A-Za-z0-9_]*)\}/g)].map((m) => m[1]));
+  return fields.length > 0 && fields.every((field) => row[field] === undefined);
+}
+
+/** A value too long for its cell's one line takes its `short` form; measured again whenever the card is resized. */
+function fitCells() {
+  for (const value of dom.rows.querySelectorAll('.info-value[data-short]')) {
+    value.textContent = value.dataset.full;
+    value.classList.add('info-value-measuring');
+    const over = value.scrollWidth > value.clientWidth + 0.5;
+    value.classList.remove('info-value-measuring');
+    if (over) value.textContent = value.dataset.short;
   }
 }
 
@@ -1616,7 +1801,7 @@ function referencedByRow(spec, index, key) {
   if (spec.label) {
     const label = document.createElement('span');
     label.className = 'info-label';
-    label.lang = 'bn';
+    label.lang = LANGUAGE;
     label.textContent = spec.label;
     line.appendChild(label);
   }
@@ -1627,7 +1812,7 @@ function referencedByRow(spec, index, key) {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'info-link';
-    button.lang = 'bn';
+    button.lang = LANGUAGE;
     button.dataset.row = String(index);
     button.dataset.key = k;
     button.textContent = valueOf(spec.item, table[k]) ?? '';
@@ -1676,6 +1861,12 @@ let drag = null;
 let lastDragEnd = -Infinity;
 
 const sheetHeight = () => dom.sheet.offsetHeight;
+// The card floats over the map on every map but one whose layout docks it
+// beside the map (the timeline's): a docked card covers nothing, so the camera
+// is not padded for it, and it is not dragged.
+function sheetFloats() {
+  return getComputedStyle(dom.sheet).position === 'absolute';
+}
 const closedOffset = () => (selection.size ? Math.max(0, sheetHeight() - HANDLE_HEIGHT) : sheetHeight());
 const applySheetOffset = (offset) => {
   sheetOffset = offset;
@@ -1812,7 +2003,7 @@ if (hasSheet) {
   };
 
   own.domHandler(dom.sheet, 'pointerdown', (event) => {
-    if (event.button !== 0 || selection.size === 0) return;
+    if (event.button !== 0 || selection.size === 0 || !sheetFloats()) return;
     // A list or card long enough to scroll scrolls; it does not drag the
     // sheet. The handle always drags.
     for (const scroller of [event.target.closest('.info-list'), event.target.closest('.info-sheet-body')])
@@ -1823,7 +2014,14 @@ if (hasSheet) {
     window.addEventListener('pointercancel', endDrag);
   });
   // The built map leaks this observer. Here it is owned like everything else.
-  own.observer(new ResizeObserver(() => applySheetOffset(sheetOpen ? 0 : closedOffset())), dom.sheet);
+  own.observer(
+    new ResizeObserver(() => {
+      applySheetOffset(sheetOpen ? 0 : closedOffset());
+      // A card resized — shown, or turned — measures its cells again.
+      fitCells();
+    }),
+    dom.sheet,
+  );
 }
 
 /*
@@ -1965,6 +2163,10 @@ function assertNoLeaks() {
     ? { map: 'live', layers: layers.length, sources: sources.length }
     : { map: 'removed', registry: registry.length };
 }
+
+// Shell modules, once everything they may reach is built.
+Object.assign(shell, { map, runActions, refilter: applyFilter, deselect: clearSelection, onChange: (listener) => changeListeners.push(listener) });
+for (const module of modules) module.install?.(shell);
 
 // The only surface the shell exposes, for the harness and for switchMap later.
 window.__shell = { map, teardown, assertNoLeaks, registrySize: () => registry.length, descriptor };
