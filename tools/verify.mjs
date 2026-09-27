@@ -27,9 +27,11 @@ const STRAITS_DIR = path.join(SERVED, 'international/straits');
 const DATA_SOURCES = path.join(ROOT, 'data-sources');
 // The vendored browser libraries, one folder per library and version.
 const VENDOR_DIR = path.join(SERVED, 'shared/vendor');
-// Diagram build tools, which make no network call at all: tools/build-diagram*.mjs.
-// Change here if they are named otherwise.
-const DIAGRAM_BUILD_TOOL = /^build-diagram.*\.mjs$/;
+// Build tools, which make no network call at all — maps' and diagrams' alike:
+// tools/build-*.mjs. Only tools/fetch-sources.mjs downloads, into tools/.cache/,
+// and the extract tools fetch when re-run on purpose. Change here if they are
+// named otherwise.
+const BUILD_TOOL = /^build-.*\.mjs$/;
 let failures = 0;
 const check = (ok, msg) => {
   console.log(`${ok ? 'ok  ' : 'FAIL'} ${msg}`);
@@ -244,14 +246,20 @@ for (const entry of found) {
 const both = diagramIds.filter((id) => mapIds.includes(id));
 check(both.length === 0, `no id is both a map and a diagram${both.length ? ` — ${both.join(', ')}` : ''}`);
 
+// Work in progress (tools/wip.json) may have its folder under docs/ while its
+// work continues; it is finished when it is in the registry, and not before.
+const wipItems = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools/wip.json'), 'utf8')).items ?? [];
+const wipKeys = new Set(wipItems.map((w) => (w.kind === 'diagram' ? `diagram:${w.id}` : w.id)));
+
 // The registry is generated, so it cannot disagree with the descriptors — and
 // this is the check that says so out loud if the generator stops being run.
 const registry = JSON.parse(fs.readFileSync(path.join(SERVED, 'registry.json'), 'utf8'));
 const registered = registry.maps.map(keyOf).sort();
-const existing = found.map(keyOf).sort();
+const existing = found.map(keyOf).filter((k) => !wipKeys.has(k)).sort();
+const inProgressFolders = found.map(keyOf).filter((k) => wipKeys.has(k));
 check(
   registered.join(',') === existing.join(','),
-  `registry.json lists exactly the maps and diagrams that exist (${mapIds.length} + ${diagramIds.length})${registered.join(',') === existing.join(',') ? '' : ` — registry ${registered.join(', ')} vs folders ${existing.join(', ')}`}`,
+  `registry.json lists exactly the finished maps and diagrams that exist (${existing.length}; in progress, left out: ${inProgressFolders.join(', ') || 'none'})${registered.join(',') === existing.join(',') ? '' : ` — registry ${registered.join(', ')} vs folders ${existing.join(', ')}`}`,
 );
 // Each entry exactly as the generator writes it: { id, section, title } for a
 // map, with no new field, and "kind": "diagram" after the id for a diagram.
@@ -270,19 +278,26 @@ check(
 );
 
 // Work in progress (tools/wip.json): on the local preview's home page only,
-// through tools/preview.mjs. None of it may reach the committed registry, and
-// an id is in progress or finished, never both — so an unfinished map or
-// diagram never shows on the live home page.
+// through tools/preview.mjs. An id is in progress or finished, never both, and
+// finished means in the registry — so an unfinished map or diagram never shows
+// on the live home page, even while its folder is under docs/ as its work
+// continues.
 {
-  const items = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools/wip.json'), 'utf8')).items ?? [];
+  const items = wipItems;
   const malformed = items.filter((w) => !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(w.id ?? '') || !['map', 'diagram'].includes(w.kind) || !SECTIONS.includes(w.section) || !w.title?.bn || !w.title?.en);
   check(malformed.length === 0, `tools/wip.json: every item has an id, a kind (map or diagram), a section and both titles (${items.length})${malformed.length ? ` — not: ${malformed.map((w) => w.id).join(', ')}` : ''}`);
   const ids = items.map((w) => w.id);
   check(new Set(ids).size === ids.length, 'tools/wip.json lists each id once');
-  const listed = ids.filter((id) => registry.maps.some((e) => e.id === id));
-  check(listed.length === 0, `no work in progress is in registry.json${listed.length ? ` — ${listed.join(', ')}` : ''}`);
-  const finished = ids.filter((id) => mapIds.includes(id) || diagramIds.includes(id));
-  check(finished.length === 0, `no work in progress is also a finished map or diagram${finished.length ? ` — ${finished.join(', ')}` : ''}`);
+  const finished = ids.filter((id) => registry.maps.some((e) => e.id === id));
+  check(finished.length === 0, `no work in progress is a finished map or diagram — in registry.json${finished.length ? ` — ${finished.join(', ')}` : ''}`);
+  // A folder already there is the item it is listed as: its kind, its section
+  // and its titles, so the preview's card and the live one will not differ.
+  const drift = items.filter((w) => {
+    const d = descriptors[w.kind === 'diagram' ? `diagram:${w.id}` : w.id];
+    return d && (d.id !== w.id || d.section !== w.section || d.title?.bn !== w.title.bn || d.title?.en !== w.title.en);
+  });
+  const withFolder = items.filter((w) => descriptors[w.kind === 'diagram' ? `diagram:${w.id}` : w.id]).map((w) => w.id);
+  check(drift.length === 0, `work in progress with a folder under docs/ matches its tools/wip.json entry (${withFolder.join(', ') || 'none'})${drift.length ? ` — not: ${drift.map((w) => w.id).join(', ')}` : ''}`);
 }
 
 /*
@@ -349,16 +364,17 @@ const describe = (f) => `${relToRoot(f.file)}:${f.line} ${f.class} — ${f.rule}
   for (const lib of Object.keys(PINNED_SURFACE).filter((l) => !vendored.includes(l))) check(false, `${lib}: network surface pinned, but no such folder under docs/shared/vendor/`);
 }
 {
-  // Diagram build tools: no network call at all, in the tool or in any local
-  // module it imports. Passes while there is none.
+  // Build tools, a map's or a diagram's: no network call at all, in the tool
+  // or in any local module it imports. Their inputs are the seeds, the
+  // committed extracts and the pinned cache that tools/fetch-sources.mjs fills.
   const tools = fs
     .readdirSync(HERE)
-    .filter((f) => DIAGRAM_BUILD_TOOL.test(f))
+    .filter((f) => BUILD_TOOL.test(f))
     .sort()
     .map((f) => path.join(HERE, f));
   const found = tools.flatMap((f) => scanBuildTool(f));
-  for (const f of found) check(false, `${relToRoot(f.file)}:${f.line} ${f.rule}: ${f.what}${f.via ? ` (imported by ${f.via})` : ''} — a diagram build tool makes no network call`);
-  if (!found.length) check(true, `diagram build tools (tools/build-diagram*.mjs) make no network call${tools.length ? ` (${tools.length})` : ' (none yet)'}`);
+  for (const f of found) check(false, `${relToRoot(f.file)}:${f.line} ${f.rule}: ${f.what}${f.via ? ` (imported by ${f.via})` : ''} — a build tool makes no network call`);
+  if (!found.length) check(true, `build tools (tools/build-*.mjs, maps' and diagrams') make no network call (${tools.length}); only tools/fetch-sources.mjs downloads`);
 }
 
 if (failures) {

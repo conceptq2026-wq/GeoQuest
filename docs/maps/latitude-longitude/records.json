@@ -1,0 +1,270 @@
+{
+  "equator": {
+    "kind": "parallel",
+    "lat": 0,
+    "nameBn": "নিরক্ষরেখা",
+    "nameEn": "Equator",
+    "chipBn": "অক্ষরেখা",
+    "valueBn": "০°",
+    "group": "line",
+    "hasLine": true,
+    "hasArea": false,
+    "frame": [
+      -180,
+      -30,
+      180,
+      30
+    ]
+  },
+  "tropic-cancer": {
+    "kind": "parallel",
+    "lat": 23.5,
+    "nameBn": "কর্কটক্রান্তি রেখা",
+    "nameEn": "Tropic of Cancer",
+    "chipBn": "অক্ষরেখা",
+    "valueBn": "২৩°৩০′ উত্তর",
+    "factBn": "উত্তর গোলার্ধের যে সবচেয়ে উত্তরের অক্ষাংশে সূর্যকে মাথার ঠিক ওপরে দেখা যায় — জুন অয়নান্তে",
+    "passesBangladesh": true,
+    "group": "line",
+    "hasLine": true,
+    "hasArea": false,
+    "frame": [
+      -180,
+      -6.5,
+      180,
+      53.5
+    ]
+  },
+  "tropic-capricorn": {
+    "kind": "parallel",
+    "lat": -23.5,
+    "nameBn": "মকরক্রান্তি রেখা",
+    "nameEn": "Tropic of Capricorn",
+    "chipBn": "অক্ষরেখা",
+    "valueBn": "২৩°৩০′ দক্ষিণ",
+    "factBn": "দক্ষিণ গোলার্ধের যে সবচেয়ে দক্ষিণের অক্ষাংশে সূর্যকে মাথার ঠিক ওপরে দেখা যায় — ডিসেম্বর অয়নান্তে",
+    "group": "line",
+    "hasLine": true,
+    "hasArea": false,
+    "frame": [
+      -180,
+      -53.5,
+      180,
+      6.5
+    ]
+  },
+  "arctic-circle": {
+    "kind": "parallel",
+    "lat": 66.5,
+    "nameBn": "সুমেরুবৃত্ত",
+    "nameEn": "Arctic Circle",
+    "chipBn": "অক্ষরেখা",
+    "valueBn": "৬৬°৩০′ উত্তর",
+    "group": "line",
+    "hasLine": true,
+    "hasArea": false,
+    "frame": [
+      -180,
+      36.5,
+      180,
+      85
+    ]
+  },
+  "antarctic-circle": {
+    "kind": "parallel",
+    "lat": -66.5,
+    "nameBn": "কুমেরুবৃত্ত",
+    "nameEn": "Antarctic Circle",
+    "chipBn": "অক্ষরেখা",
+    "valueBn": "৬৬°৩০′ দক্ষিণ",
+    "group": "line",
+    "hasLine": true,
+    "hasArea": false,
+    "frame": [
+      -180,
+      -85,
+      180,
+      -36.5
+    ]
+  },
+  "prime-meridian": {
+    "kind": "meridian",
+    "lon": 0,
+    "nameBn": "মূল মধ্যরেখা",
+    "nameEn": "Prime Meridian (Greenwich)",
+    "chipBn": "দ্রাঘিমারেখা",
+    "valueBn": "০°",
+    "factBn": "লন্ডনের গ্রিনিচে রয়্যাল অবজারভেটরির ওপর দিয়ে গেছে",
+    "timeBn": "গ্রিনিচ মান সময় (GMT) — UTC+০০:০০; গ্রিনিচের রয়্যাল অবজারভেটরির স্থানীয় গড় সময়",
+    "group": "line",
+    "hasLine": true,
+    "hasArea": false,
+    "frame": [
+      -60,
+      -60,
+      60,
+      75
+    ]
+  },
+  "meridian-90e": {
+    "kind": "meridian",
+    "lon": 90,
+    "nameBn": "৯০° পূর্ব দ্রাঘিমারেখা",
+    "nameEn": "90° East",
+    "chipBn": "দ্রাঘিমারেখা",
+    "valueBn": "৯০° পূর্ব",
+    "factBn": "বাংলাদেশ মান সময় এই দ্রাঘিমা ধরে নির্ধারিত; রেখাটি মানিকগঞ্জের হরিরামপুর উপজেলার হারুকান্দি ইউনিয়নের ওপর দিয়ে গেছে",
+    "timeBn": "বাংলাদেশ মান সময় — UTC+০৬:০০ (GMT+৬)",
+    "passesBangladesh": true,
+    "group": "line",
+    "hasLine": true,
+    "hasArea": false,
+    "frame": [
+      30,
+      -60,
+      150,
+      75
+    ]
+  },
+  "date-line": {
+    "kind": "dateLine",
+    "nameBn": "আন্তর্জাতিক তারিখরেখা",
+    "nameEn": "International Date Line",
+    "chipBn": "রেখা",
+    "valueBn": "প্রায় ১৮০°",
+    "factBn": "প্রশান্ত মহাসাগরে ১৮০° দ্রাঘিমা মোটামুটি মেনে, কিছু দ্বীপ ও অঞ্চল এড়িয়ে আঁকাবাঁকা; পূর্ব দিকে পার হলে তারিখ এক দিন কমে, পশ্চিম দিকে পার হলে এক দিন বাড়ে",
+    "group": "line",
+    "hasLine": true,
+    "hasArea": false,
+    "frame": [
+      150,
+      -60,
+      210,
+      75
+    ]
+  },
+  "north-pole": {
+    "lat": 90,
+    "lon": 0,
+    "nameBn": "উত্তর মেরু",
+    "nameEn": "North Pole",
+    "chipBn": "বিন্দু",
+    "valueBn": "৯০° উত্তর",
+    "factBn": "পৃথিবীর সবচেয়ে উত্তরের বিন্দু; সব দ্রাঘিমারেখা এখানে মিলেছে",
+    "group": "point",
+    "at": [
+      0,
+      90
+    ],
+    "hasLine": false,
+    "hasArea": false,
+    "frame": [
+      -180,
+      60,
+      180,
+      85
+    ]
+  },
+  "south-pole": {
+    "lat": -90,
+    "lon": 0,
+    "nameBn": "দক্ষিণ মেরু",
+    "nameEn": "South Pole",
+    "chipBn": "বিন্দু",
+    "valueBn": "৯০° দক্ষিণ",
+    "factBn": "পৃথিবীর সবচেয়ে দক্ষিণের বিন্দু; উত্তর মেরুর প্রতিপাদ বিন্দু",
+    "group": "point",
+    "at": [
+      0,
+      -90
+    ],
+    "hasLine": false,
+    "hasArea": false,
+    "frame": [
+      -180,
+      -85,
+      180,
+      -60
+    ]
+  },
+  "greenwich": {
+    "lat": 51.4778111,
+    "lon": -0.001475,
+    "nameBn": "গ্রিনিচ",
+    "nameEn": "Greenwich (Royal Observatory)",
+    "chipBn": "বিন্দু",
+    "valueBn": "৫১°২৮′ উত্তর, ০°",
+    "group": "point",
+    "at": [
+      -0.001475,
+      51.4778111
+    ],
+    "hasLine": false,
+    "hasArea": false,
+    "frame": [
+      -2.1015,
+      50.2778,
+      2.0985,
+      52.6778
+    ]
+  },
+  "bangladesh": {
+    "nameBn": "বাংলাদেশ",
+    "nameEn": "Bangladesh",
+    "chipBn": "দেশ",
+    "latBn": "২০°৩৪′ উত্তর থেকে ২৬°৩৮′ উত্তর অক্ষাংশ",
+    "lonBn": "৮৮°০১′ পূর্ব থেকে ৯২°৪১′ পূর্ব দ্রাঘিমাংশ",
+    "group": "place",
+    "hasLine": false,
+    "hasArea": true,
+    "frame": [
+      87.6346,
+      20.1377,
+      93.0517,
+      27.1131
+    ]
+  },
+  "dhaka": {
+    "nameBn": "ঢাকা",
+    "nameEn": "Dhaka",
+    "chipBn": "শহর",
+    "latBn": "২৩°৪২′ থেকে ২৩°৫৪′ উত্তর অক্ষাংশ",
+    "lonBn": "৯০°২০′ থেকে ৯০°২৮′ পূর্ব দ্রাঘিমাংশ",
+    "group": "place",
+    "at": [
+      90.408611,
+      23.723056
+    ],
+    "hasLine": false,
+    "hasArea": false,
+    "frame": [
+      88.3086,
+      22.5231,
+      92.5086,
+      24.9231
+    ]
+  },
+  "antipode": {
+    "nameBn": "বাংলাদেশের প্রতিপাদ স্থান",
+    "nameEn": "Antipode of Bangladesh",
+    "chipBn": "প্রতিপাদ স্থান",
+    "ruleBn": "অক্ষাংশের দিক উল্টো (উত্তর ↔ দক্ষিণ) আর দ্রাঘিমাংশে ১৮০° যোগ বা বিয়োগ (পূর্ব ↔ পশ্চিম)",
+    "whereBn": "চিলির নিকটবর্তী প্রশান্ত মহাসাগর",
+    "latBn": "২০°৩৪′ দক্ষিণ থেকে ২৬°৩৮′ দক্ষিণ অক্ষাংশ",
+    "lonBn": "৮৭°১৯′ পশ্চিম থেকে ৯১°৫৯′ পশ্চিম দ্রাঘিমাংশ",
+    "nearestBn": "সবচেয়ে কাছের স্থল চিলির দেসভেনতুরাদাস দ্বীপপুঞ্জ — ঢাকার প্রতিপাদ বিন্দু থেকে প্রায় ৯৯৭ কিমি",
+    "group": "place",
+    "at": [
+      -89.591389,
+      -23.723056
+    ],
+    "hasLine": false,
+    "hasArea": true,
+    "frame": [
+      -92.3654,
+      -27.1131,
+      -69,
+      -20.1377
+    ]
+  }
+}

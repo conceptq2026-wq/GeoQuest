@@ -16,6 +16,10 @@
 //                      janapadas.seed.json and photos.seed.json
 //   environment-treaties  checked against data-sources/environment-treaties/
 //                         treaties.seed.json, cities.seed.json and additions.seed.json
+//   latitude-longitude  checked against data-sources/latitude-longitude/
+//                       latitude-longitude.seed.json, the imagery's pin and credit in
+//                       tools/sources.json and the geometry pins (still in progress,
+//                       tools/wip.json, but its folder is under docs/ and is checked)
 //   atmosphere-layers (a diagram)  checked against data-sources/atmosphere-layers/
 //                                  atmosphere.seed.json and the approved art
 //
@@ -27,6 +31,7 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
+import zlib from 'node:zlib';
 import { pathToFileURL } from 'node:url';
 
 // ---- where things are -------------------------------------------------------
@@ -73,6 +78,11 @@ const DIAGRAMS_DIR = path.join(ROOT, 'docs/diagrams');
 const VISUAL_DIR = path.join(ROOT, 'docs/visual');
 // The atmosphere-layers diagram: the editor's seed and the approved art.
 const ATMOSPHERE_SEEDS = path.join(ROOT, 'data-sources/atmosphere-layers');
+// The latitude-longitude globe: the editor's seed, the pinned sources (its
+// imagery's credit among them) and the geometry pins.
+const LATLON_SEED = path.join(ROOT, 'data-sources/latitude-longitude/latitude-longitude.seed.json');
+const SOURCES_JSON = path.join(HERE, 'sources.json');
+const LATLON_PINS = path.join(HERE, 'latitude-longitude-pins.json');
 
 let failures = 0;
 const fail = (msg) => {
@@ -645,6 +655,47 @@ function checkMap({ id, expectedPending }) {
     check(bengali.length === 0, `an English map shows no Bengali field (${new Set(shown).size} fields shown)${bengali.length ? ` — not ${bengali.join(', ')}` : ''}`);
   }
 
+  // ---- credits the shell adds to ⓘ ------------------------------------------
+  // `attribution.extra`: whole credits, each a link that opens outside the
+  // WebView, as every credit in ⓘ does.
+  const CREDIT_LINK = /^<a href="https:\/\/[^"<>]+" target="_blank" rel="noopener noreferrer">[^<>]+<\/a>$/;
+  const extra = descriptor.attribution?.extra ?? [];
+  if (descriptor.attribution) {
+    check(Object.keys(descriptor.attribution).every((k) => k === 'extra') && Array.isArray(extra), 'attribution declares only extra, a list');
+    check(extra.every((c) => CREDIT_LINK.test(c)), `every extra credit is a link that opens outside the WebView (${extra.length})`);
+  }
+
+  // ---- a globe ----------------------------------------------------------------
+  // `globe` marks the map as drawn on a globe, by the shell's globe module;
+  // `globe.imagery` names a raster archive in the map's own folder and the two
+  // zooms between which it fades out over the vector basemap. The archive's
+  // own credit must be in ⓘ.
+  if (descriptor.globe) {
+    console.log('\n---- globe ----');
+    const g = descriptor.globe;
+    check(Object.keys(g).every((k) => k === 'imagery'), `globe declares only imagery (${Object.keys(g).join(', ')})`);
+    if (g.imagery) {
+      const img = g.imagery;
+      check(Object.keys(img).every((k) => ['file', 'fadeOut'].includes(k)), `globe.imagery declares only file and fadeOut (${Object.keys(img).join(', ')})`);
+      const file = path.join(dir, String(img.file ?? '').replace(/^\.\//, ''));
+      const exists = /^\.\/[a-z0-9-]+\.pmtiles$/.test(img.file ?? '') && fs.existsSync(file);
+      check(exists, `globe.imagery.file ${img.file} is a PMTiles archive in the map's folder`);
+      const [from, to] = img.fadeOut ?? [];
+      const { minZoom = 0, maxZoom = 22 } = descriptor.constraints ?? {};
+      check(Number.isFinite(from) && Number.isFinite(to) && minZoom <= from && from < to && to <= maxZoom, `globe.imagery.fadeOut ${from}–${to} is a rising pair within the map's zooms (${minZoom}–${maxZoom})`);
+      if (exists) {
+        const buf = fs.readFileSync(file);
+        const u64 = (at) => Number(buf.readBigUInt64LE(at));
+        const TILE_TYPES = { 2: 'png', 3: 'jpeg', 4: 'webp' };
+        check(buf.toString('ascii', 0, 7) === 'PMTiles' && buf[7] === 3 && buf[99] in TILE_TYPES, `the imagery is PMTiles v3 of raster tiles (${TILE_TYPES[buf[99]] ?? `tile type ${buf[99]}`}, z${buf[100]}–${buf[101]})`);
+        check(buf[100] === 0 && buf[101] <= from, `the imagery starts at z0 and stops by the fade (z${buf[101]} ≤ ${from})`);
+        const meta = JSON.parse(zlib.gunzipSync(buf.subarray(u64(24), u64(24) + u64(32))).toString('utf8'));
+        const credited = extra.some((c) => CREDIT_LINK.test(c) && c.replace(/<[^>]+>/g, '') === meta.attribution);
+        check(Boolean(meta.attribution) && credited, `the imagery's own credit, "${meta.attribution}", is in ⓘ as a link`);
+      }
+    }
+  }
+
   // ---- fields the descriptor never references -------------------------------
   console.log('\n---- unreferenced record fields (not an error) ----');
   let any = false;
@@ -1140,6 +1191,132 @@ console.log('\n\n============ environment-treaties ============');
   // is not on this map; the seed gives it as text) — and the five unknown
   // places again in English, which the card shows.
   checkMap({ id: 'environment-treaties', expectedPending: 30 });
+}
+
+/*
+|--------------------------------------------------------------------------
+| LATITUDE-LONGITUDE — a globe, still in progress (tools/wip.json): out of the
+| registry, but its folder is under docs/, so it is held to its seed here.
+|--------------------------------------------------------------------------
+*/
+console.log('\n\n============ latitude-longitude ============');
+{
+  const id = 'latitude-longitude';
+  const dir = path.join(MAPS_DIR, id);
+  const seed = readJson(LATLON_SEED);
+  const pins = readJson(LATLON_PINS);
+  const marble = readJson(SOURCES_JSON).nasaBlueMarble;
+  const descriptor = readJson(path.join(dir, 'descriptor.json'));
+  const recs = readJson(path.join(dir, 'records.json'));
+  const lines = readJson(path.join(dir, 'lines.geojson'));
+  const grat = readJson(path.join(dir, 'graticule.geojson'));
+  const areas = readJson(path.join(dir, 'areas.geojson'));
+  const { lostPieces, clipEdgeVertices } = await import(pathToFileURL(path.join(HERE, 'tile-clip.mjs')).href);
+  const hash = (g) => crypto.createHash('sha256').update(JSON.stringify(g.coordinates)).digest('hex').slice(0, 16);
+
+  const FILES = ['areas.geojson', 'descriptor.json', 'graticule.geojson', 'imagery.pmtiles', 'lines.geojson', 'records.json'];
+  check(fs.readdirSync(dir).sort().join() === FILES.join(), `the map's folder holds its ${FILES.length} files and nothing else — no logo, no stray file`);
+
+  // The seed's one pending value is the date line's geometry, which the build
+  // takes from Natural Earth; nothing else in it may be null.
+  const nulls = [];
+  const walk = (node, trail) => {
+    if (node === null) nulls.push(trail);
+    else if (node && typeof node === 'object') for (const [k, v] of Object.entries(node)) walk(v, `${trail}.${k}`);
+  };
+  walk(seed, 'seed');
+  check(nulls.join() === 'seed.lines.date-line.geometry', `the seed's only pending value is the date line's geometry, which the build fills${nulls.length ? ` (${nulls.join(', ')})` : ''}`);
+
+  // One record per line, point and place, in the seed's order; the graticule
+  // is drawn, never a record.
+  const groupOf = (e) => (e.id in seed.lines ? 'line' : e.id in seed.points ? 'point' : 'place');
+  const ordered = [...Object.values(seed.lines), ...Object.values(seed.points), ...Object.values(seed.places)].sort((a, b) => a.order - b.order);
+  const selectable = Object.fromEntries(ordered.filter((e) => e.kind !== 'graticule').map((e) => [e.id, e]));
+  console.log('\n---- records.json against latitude-longitude.seed.json ----');
+  compareTables({ source: selectable, file: recs, label: 'records.json', ignore: ['id', 'order', 'sources', 'review', 'geometry', 'point', 'dhakaPoint', 'group', 'at', 'hasLine', 'hasArea', 'frame'] });
+  const atOf = (e) => (groupOf(e) === 'point' ? [e.lon, e.lat] : e.point ? [e.point.lon, e.point.lat] : e.dhakaPoint ? [e.dhakaPoint.lon, e.dhakaPoint.lat] : undefined);
+  const badDerived = Object.values(selectable).filter((e) => {
+    const r = recs[e.id];
+    return r.group !== groupOf(e) || JSON.stringify(r.at) !== JSON.stringify(atOf(e)) || r.hasLine !== (groupOf(e) === 'line') || r.hasArea !== (e.geometry?.source === 'COD-AB bgd_admin0' || e.geometry?.from === 'bangladesh');
+  });
+  check(badDerived.length === 0, `every record's group, point, line and area follow from the seed — Dhaka's point, its antipode's, the poles', Greenwich's${badDerived.length ? ` — not: ${badDerived.map((e) => e.id).join(', ')}` : ''}`);
+
+  // The lines, each at the seed's value; the date line Natural Earth's, pinned.
+  const lineIds = Object.values(selectable).filter((e) => groupOf(e) === 'line').map((e) => e.id);
+  const byId = Object.fromEntries(lines.features.map((f) => [f.properties.id, f]));
+  check(lines.features.map((f) => f.properties.id).join() === lineIds.join(), `lines.geojson has the seed's ${lineIds.length} lines, in its order`);
+  const offValue = lineIds.filter((lid) => {
+    const e = selectable[lid];
+    const c = byId[lid]?.geometry.coordinates ?? [];
+    if (e.kind === 'parallel') return !c.every(([, lat]) => lat === e.lat) || c[0]?.[0] !== -180 || c.at(-1)?.[0] !== 180;
+    if (e.kind === 'meridian') return !c.every(([lon]) => lon === e.lon) || c[0]?.[1] !== -90 || c.at(-1)?.[1] !== 90;
+    return e.kind !== 'dateLine';
+  });
+  check(offValue.length === 0, `every parallel runs round the world and every meridian pole to pole, at the seed's value${offValue.length ? ` — not: ${offValue.join(', ')}` : ''}`);
+  check(hash(byId['date-line'].geometry) === pins['date-line'], `the date line is Natural Earth's, as pinned (${pins['date-line']})`);
+
+  // The graticule: every stepDeg° but where a line of its own is drawn.
+  const step = seed.lines.graticule.stepDeg;
+  const ownLats = new Set(lineIds.filter((l) => selectable[l].kind === 'parallel').map((l) => selectable[l].lat));
+  const ownLons = new Set(lineIds.filter((l) => selectable[l].kind === 'meridian').map((l) => selectable[l].lon));
+  const wantLats = [];
+  for (let lat = -90 + step; lat < 90; lat += step) if (!ownLats.has(lat)) wantLats.push(lat);
+  const wantLons = [];
+  for (let lon = -180; lon < 180; lon += step) if (!ownLons.has(lon)) wantLons.push(lon);
+  const gotLats = grat.features.filter((f) => f.properties.kind === 'parallel').map((f) => f.properties.deg);
+  const gotLons = grat.features.filter((f) => f.properties.kind === 'meridian').map((f) => f.properties.deg);
+  check(gotLats.join() === wantLats.join() && gotLons.join() === wantLons.join() && gotLats.length + gotLons.length === grat.features.length, `the graticule is every ${step}° but the lines drawn on their own (${gotLats.length} parallels, ${gotLons.length} meridians)`);
+  const offGrat = grat.features.filter((f) => !f.geometry.coordinates.every((v) => v[f.properties.kind === 'parallel' ? 1 : 0] === f.properties.deg));
+  check(offGrat.length === 0, 'every graticule line lies at its own degree');
+  check(!descriptor.sources.graticule?.records && !descriptor.interactions.some((i) => i.target === 'source:graticule'), 'the graticule is drawn, never selected — no records, no tap (the seed: tappable false)');
+
+  // No line loses a piece where MapLibre tiles it, and no parallel carries a
+  // vertex on a tile's clip edge, where that loss begins.
+  const named = { type: 'FeatureCollection', features: [...lines.features, ...grat.features.map((f) => ({ ...f, properties: { id: `graticule ${f.properties.kind} ${f.properties.deg}°` } }))] };
+  const proof = lostPieces(named, 6);
+  check(proof.lost.length === 0, `no line loses a piece in MapLibre's tiling at z0–6 (${proof.checked} line-tile pairs)${proof.lost.length ? ` — ${proof.lost.slice(0, 6).join('; ')}` : ''}`);
+  const parallels = { type: 'FeatureCollection', features: [...lines.features.filter((f) => selectable[f.properties.id].kind === 'parallel'), ...grat.features.filter((f) => f.properties.kind === 'parallel')] };
+  const onEdge = clipEdgeVertices(parallels, 6, (f) => f.properties.id ?? `graticule ${f.properties.deg}°`);
+  check(onEdge.length === 0, `no parallel has a vertex on a tile's clip edge at z0–6 (${parallels.features.length} parallels)${onEdge.length ? ` — ${onEdge.slice(0, 4).join('; ')}` : ''}`);
+
+  // Bangladesh is COD-AB's outline, pinned; its antipode is that outline
+  // flipped, vertex for vertex.
+  const bd = areas.features.find((f) => f.properties.id === 'bangladesh');
+  const ap = areas.features.find((f) => f.properties.id === 'antipode');
+  check(areas.features.length === 2 && Boolean(bd && ap), 'areas.geojson holds Bangladesh and its antipode');
+  check(hash(bd.geometry) === pins.bangladesh, `Bangladesh is COD-AB's outline, simplified, as pinned (${pins.bangladesh})`);
+  const polys = (g) => (g.type === 'Polygon' ? [g.coordinates] : g.coordinates);
+  const flipRing = (r) => JSON.stringify(r.map(([lon, lat]) => [Number((lon - 180).toFixed(4)), Number((-lat).toFixed(4))]));
+  const bdPolys = polys(bd.geometry);
+  const apPolys = polys(ap.geometry);
+  const mirrored = bdPolys.length === apPolys.length && bdPolys.every((p, i) => p.length === apPolys[i].length && p.every((ring, j) => [JSON.stringify(apPolys[i][j]), JSON.stringify([...apPolys[i][j]].reverse())].includes(flipRing(ring))));
+  check(mirrored, `the antipode is Bangladesh's outline with every vertex at (lon − 180°, −lat) (${bdPolys.length} polygons)`);
+
+  // Frames need basemap context: none past z6 on a 390 px phone, whose map is
+  // 368 × 728 px.
+  const mercY = (lat) => {
+    const s = Math.sin((lat * Math.PI) / 180);
+    return 0.5 - (0.25 * Math.log((1 + s) / (1 - s))) / Math.PI;
+  };
+  const zoomOf = ([w, s, e, n]) => Math.min(Math.log2(368 / (((e - w) / 360) * 512)), Math.log2(728 / ((mercY(s) - mercY(n)) * 512)));
+  const deepest = Math.max(...Object.values(recs).map((r) => zoomOf(r.frame)));
+  check(deepest <= 6, `every frame lands at z6 or below on a 390 px phone (deepest z${deepest.toFixed(2)})`);
+
+  // Credits: NASA's, as its page asks and nowhere else; COD-AB's on the areas.
+  const nasa = `<a href="${marble.page}" target="_blank" rel="noopener noreferrer">${marble.credit}</a>`;
+  check(marble.credit === 'NASA Earth Observatory' && marble.terms.credit.states.includes(`“${marble.credit}.”`), `the imagery's credit is the one NASA's page asks for, "${marble.credit}"`);
+  check((descriptor.attribution?.extra ?? []).includes(nasa), 'ⓘ credits NASA Earth Observatory, linked to the imagery\'s own page');
+  const mentions = JSON.stringify(descriptor).split('NASA').length - 1 + (JSON.stringify(recs).split('NASA').length - 1);
+  check(mentions === 1, `NASA is named once, in the credit, and nowhere else — no logo, no wording that suggests endorsement (${mentions})`);
+  const codab = descriptor.sources.areas?.attribution ?? '';
+  check(codab.includes('https://data.humdata.org/dataset/cod-ab-bgd') && codab.includes('CC BY-IGO'), 'the areas credit COD-AB (BBS / OCHA, CC BY-IGO), as its licence requires');
+  const imageryMeta = JSON.parse(zlib.gunzipSync((() => {
+    const buf = fs.readFileSync(path.join(dir, 'imagery.pmtiles'));
+    return buf.subarray(Number(buf.readBigUInt64LE(24)), Number(buf.readBigUInt64LE(24)) + Number(buf.readBigUInt64LE(32)));
+  })()).toString('utf8'));
+  check(imageryMeta.source === marble.product && imageryMeta.attribution === marble.credit, `the imagery archive says it is the pinned product, "${marble.product}"`);
+
+  checkMap({ id, expectedPending: 0 });
 }
 
 /*

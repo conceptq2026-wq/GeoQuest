@@ -1,5 +1,5 @@
 // Generates docs/registry.json from every descriptor under docs/maps/ and
-// docs/diagrams/.
+// docs/diagrams/, except those still in progress (tools/wip.json).
 //
 // The home index reads this file and nothing else, so adding a map or a
 // diagram is exactly one action — write its descriptor — and it appears. A
@@ -19,6 +19,10 @@ const MAPS_DIR = path.join(ROOT, 'docs/maps');
 const DIAGRAMS_DIR = path.join(ROOT, 'docs/diagrams');
 // The generated file, inside the served tree so the index page can fetch it.
 const OUT = path.join(ROOT, 'docs/registry.json');
+// Work in progress: a map or diagram listed here may have its folder under
+// docs/ while its work continues, and stays out of the registry — so off the
+// live home page — until it leaves the list. Change here if it moves.
+const WIP = path.join(HERE, 'wip.json');
 
 /*
  * The three BCS Preliminary subject divisions, in syllabus order, then বিবিধ
@@ -49,11 +53,18 @@ const KINDS = [
   { kind: 'diagram', prefix: 'diagrams/', ids: fs.existsSync(DIAGRAMS_DIR) ? folders(DIAGRAMS_DIR) : [] },
 ];
 
+const inProgress = new Set((JSON.parse(fs.readFileSync(WIP, 'utf8')).items ?? []).map((w) => `${w.kind === 'diagram' ? 'diagrams/' : ''}${w.id}`));
+
 const problems = [];
 const entries = [];
+const leftOut = [];
 for (const { kind, prefix, ids } of KINDS) {
   for (const id of ids) {
     const name = prefix + id;
+    if (inProgress.has(name)) {
+      leftOut.push(name);
+      continue;
+    }
     const file = path.join(kind ? DIAGRAMS_DIR : MAPS_DIR, id, 'descriptor.json');
     if (!fs.existsSync(file)) {
       problems.push(`${name}/ has no descriptor.json`);
@@ -88,6 +99,7 @@ fs.writeFileSync(OUT, JSON.stringify(registry, null, 2) + '\n');
 
 const count = (kind) => entries.filter((e) => (e.kind ?? null) === kind).length;
 console.log(`wrote docs/registry.json — ${count(null)} map(s), ${count('diagram')} diagram(s)`);
+if (leftOut.length) console.log(`  left out, work in progress (tools/wip.json): ${leftOut.join(', ')}`);
 for (const section of SECTIONS) {
   const inSection = entries.filter((e) => e.section === section);
   console.log(`  ${section.padEnd(14)} ${inSection.length ? inSection.map((e) => (e.kind ? `${e.id} (${e.kind})` : e.id)).join(', ') : '(none yet)'}`);

@@ -65,6 +65,11 @@
       "ne_10m_admin_1_states_provinces.geojson": {
         "size": 40726851,
         "gitBlobSha1": "4a8438f98ac7dfec7dc1739b1eaf91398ad33f22"
+      },
+      "ne_10m_geographic_lines.geojson": {
+        "size": 60564,
+        "gitBlobSha1": "6745635fc1ccc8f8bb8d621d76d76581be1937e8",
+        "sha256": "e0d96b65c4f08856096550db5e4507d2822f05fe1cc07aadb16ad5ccb3a948e7"
       }
     }
   },
@@ -190,5 +195,38 @@
     "file": "data-sources/environment-treaties/cities.seed.json",
     "licence": "CC0 — Wikidata",
     "sha256": "0f3f5ef985a4c1625a2c1ab7a54efae60a04cbcde8a0d1f09e83b8aaa03a22c0"
+  },
+  "nasaBlueMarble": {
+    "_comment": "The latitude-longitude globe's imagery, tiled by tools/build-latitude-longitude-imagery.mjs, which refuses a file whose SHA-256 differs. Equirectangular, the whole Earth, 5400 × 2700 px (8 km/pixel). The terms below are quoted from NASA's own pages, read 2026-09-27; each rule is what the map must do.",
+    "product": "Blue Marble: Next Generation — July, with topography and bathymetry (world.topo.bathy.200407), 5400 × 2700",
+    "page": "https://science.nasa.gov/earth/earth-observatory/blue-marble-next-generation/base-topography-bathymetry/",
+    "url": "https://assets.science.nasa.gov/content/dam/science/esd/eo/images/bmng/bmng-topography-bathymetry/july/world.topo.bathy.200407.3x5400x2700.jpg",
+    "file": "world.topo.bathy.200407.3x5400x2700.jpg",
+    "size": 2308798,
+    "sha256": "4f4240673a3a1b173d61b92ca4b07bac5fd17059ea5f725ba6da5a9c5386b7ba",
+    "licence": "NASA — free to re-use, commercial use included, no copyright indicated; credit \"NASA Earth Observatory\"",
+    "credit": "NASA Earth Observatory",
+    "terms": {
+      "credit": {
+        "rule": "Credit \"NASA Earth Observatory\", in ⓘ, linked to the product's page.",
+        "states": "Anyone using or republishing Blue Marble: Next Generation please credit “NASA Earth Observatory.”",
+        "url": "https://science.nasa.gov/earth/earth-observatory/blue-marble-next-generation/"
+      },
+      "reuse": {
+        "rule": "Re-use is allowed, commercial use included; none of the product's pages indicates a copyright.",
+        "states": "Most materials published under science.nasa.gov/earth, including images, are freely available for re-publication or re-use, including commercial purposes, except for where copyright is indicated.",
+        "url": "https://science.nasa.gov/earth/faq/"
+      },
+      "endorsement": {
+        "rule": "No wording that suggests NASA endorses the map or the app.",
+        "states": "If the NASA material is to be used for commercial purposes, including advertisements, it must not explicitly or implicitly convey NASA’s endorsement of commercial goods or services.",
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      },
+      "logo": {
+        "rule": "No NASA logo, insignia or logotype.",
+        "states": "The use of the Insignia, Logotype and NASA identifiers is protected by law, and imagery is made available for use consistent with Media Usage Guidelines.",
+        "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
+      }
+    }
   }
 }

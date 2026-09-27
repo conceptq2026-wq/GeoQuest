@@ -1,0 +1,594 @@
+{
+  "schema": "geoquest/map-descriptor@1",
+  "id": "latitude-longitude",
+  "section": "geography",
+  "title": {
+    "bn": "অক্ষরেখা ও দ্রাঘিমারেখা",
+    "en": "Latitude & Longitude"
+  },
+  "basemap": "world-light",
+  "globe": {
+    "imagery": {
+      "file": "./imagery.pmtiles",
+      "fadeOut": [
+        3,
+        4
+      ]
+    }
+  },
+  "attribution": {
+    "extra": [
+      "<a href=\"https://science.nasa.gov/earth/earth-observatory/blue-marble-next-generation/base-topography-bathymetry/\" target=\"_blank\" rel=\"noopener noreferrer\">NASA Earth Observatory</a>"
+    ]
+  },
+  "view": {
+    "fitBounds": [
+      -180,
+      -60,
+      180,
+      75
+    ]
+  },
+  "constraints": {
+    "minZoom": 0,
+    "maxZoom": 6
+  },
+  "records": {
+    "items": {
+      "file": "./records.json",
+      "fields": {
+        "nameBn": {
+          "type": "text",
+          "required": true
+        },
+        "nameEn": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "chipBn": {
+          "type": "text",
+          "required": true
+        },
+        "valueBn": {
+          "type": "text"
+        },
+        "factBn": {
+          "type": "text"
+        },
+        "timeBn": {
+          "type": "text"
+        },
+        "passesBangladesh": {
+          "type": "boolean"
+        },
+        "latBn": {
+          "type": "text"
+        },
+        "lonBn": {
+          "type": "text"
+        },
+        "ruleBn": {
+          "type": "text"
+        },
+        "whereBn": {
+          "type": "text"
+        },
+        "nearestBn": {
+          "type": "text"
+        },
+        "kind": {
+          "type": "text",
+          "display": false
+        },
+        "lat": {
+          "type": "number",
+          "display": false
+        },
+        "lon": {
+          "type": "number",
+          "display": false
+        },
+        "group": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "at": {
+          "type": "point"
+        },
+        "hasLine": {
+          "type": "boolean",
+          "required": true
+        },
+        "hasArea": {
+          "type": "boolean",
+          "required": true
+        },
+        "frame": {
+          "type": "bbox",
+          "required": true
+        }
+      }
+    }
+  },
+  "sources": {
+    "graticule": {
+      "geometry": "./graticule.geojson"
+    },
+    "areas": {
+      "records": "items",
+      "geometry": "./areas.geojson",
+      "joinField": "id",
+      "expectGeometry": {
+        "hasArea": true
+      },
+      "state": [
+        "selected"
+      ],
+      "properties": [],
+      "attribution": "<a href=\"https://data.humdata.org/dataset/cod-ab-bgd\" target=\"_blank\" rel=\"noopener noreferrer\">BBS / OCHA (CC BY-IGO)</a>"
+    },
+    "lines": {
+      "records": "items",
+      "geometry": "./lines.geojson",
+      "joinField": "id",
+      "expectGeometry": {
+        "hasLine": true
+      },
+      "state": [
+        "selected"
+      ],
+      "properties": [
+        "nameBn"
+      ],
+      "attribution": "<a href=\"https://www.naturalearthdata.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Natural Earth</a>"
+    },
+    "points": {
+      "records": "items",
+      "geometryFrom": "at",
+      "state": [
+        "selected"
+      ],
+      "properties": [
+        "nameBn"
+      ],
+      "selectionMarker": true
+    }
+  },
+  "styles": {
+    "point-marker": {
+      "paint": {
+        "circle-color": "#0b3d91",
+        "circle-stroke-width": 2,
+        "circle-stroke-color": "#ffffff",
+        "circle-radius": 6
+      }
+    },
+    "line-label": {
+      "layout": {
+        "text-font": [
+          "Noto Sans Bengali"
+        ],
+        "symbol-placement": "line",
+        "symbol-spacing": 280,
+        "text-size": 12.5,
+        "text-max-angle": 30
+      },
+      "paint": {
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 1.8
+      }
+    },
+    "point-label": {
+      "layout": {
+        "text-font": [
+          "Noto Sans Bengali"
+        ],
+        "text-size": 12,
+        "text-variable-anchor": [
+          "top",
+          "bottom",
+          "right",
+          "left"
+        ],
+        "text-radial-offset": 0.9,
+        "text-optional": true
+      },
+      "paint": {
+        "text-color": "#0b3d91",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 1.8
+      }
+    }
+  },
+  "layers": [
+    {
+      "id": "graticule",
+      "type": "line",
+      "source": "graticule",
+      "slot": "belowLabels",
+      "paint": {
+        "line-color": "#ffffff",
+        "line-opacity": 0.75,
+        "line-width": 0.8
+      }
+    },
+    {
+      "id": "area-fill",
+      "type": "fill",
+      "source": "areas",
+      "slot": "belowLabels",
+      "paint": {
+        "fill-color": [
+          "match",
+          [
+            "get",
+            "key"
+          ],
+          "bangladesh",
+          "#1f9d55",
+          "antipode",
+          "#e08a00",
+          "#1f9d55"
+        ],
+        "fill-opacity": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          0.95,
+          0.8
+        ]
+      }
+    },
+    {
+      "id": "area-edge",
+      "type": "line",
+      "source": "areas",
+      "slot": "belowLabels",
+      "layout": {
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": [
+          "match",
+          [
+            "get",
+            "key"
+          ],
+          "bangladesh",
+          "#0d5c2e",
+          "antipode",
+          "#8a4b00",
+          "#0d5c2e"
+        ],
+        "line-width": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          2,
+          1
+        ]
+      }
+    },
+    {
+      "id": "line-solid",
+      "type": "line",
+      "source": "lines",
+      "slot": "belowLabels",
+      "filter": [
+        "!",
+        [
+          "in",
+          [
+            "get",
+            "key"
+          ],
+          [
+            "literal",
+            [
+              "tropic-cancer",
+              "tropic-capricorn",
+              "arctic-circle",
+              "antarctic-circle"
+            ]
+          ]
+        ]
+      ],
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": [
+          "match",
+          [
+            "get",
+            "key"
+          ],
+          "equator",
+          "#e53935",
+          "tropic-cancer",
+          "#f57c00",
+          "tropic-capricorn",
+          "#f57c00",
+          "arctic-circle",
+          "#1e88e5",
+          "antarctic-circle",
+          "#1e88e5",
+          "prime-meridian",
+          "#138a43",
+          "meridian-90e",
+          "#00897b",
+          "date-line",
+          "#7b3fc4",
+          "#0b3d91"
+        ],
+        "line-width": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          4,
+          2
+        ]
+      }
+    },
+    {
+      "id": "line-dashed",
+      "type": "line",
+      "source": "lines",
+      "slot": "belowLabels",
+      "filter": [
+        "in",
+        [
+          "get",
+          "key"
+        ],
+        [
+          "literal",
+          [
+            "tropic-cancer",
+            "tropic-capricorn",
+            "arctic-circle",
+            "antarctic-circle"
+          ]
+        ]
+      ],
+      "layout": {
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": [
+          "match",
+          [
+            "get",
+            "key"
+          ],
+          "equator",
+          "#e53935",
+          "tropic-cancer",
+          "#f57c00",
+          "tropic-capricorn",
+          "#f57c00",
+          "arctic-circle",
+          "#1e88e5",
+          "antarctic-circle",
+          "#1e88e5",
+          "prime-meridian",
+          "#138a43",
+          "meridian-90e",
+          "#00897b",
+          "date-line",
+          "#7b3fc4",
+          "#0b3d91"
+        ],
+        "line-width": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          4,
+          2
+        ],
+        "line-dasharray": [
+          3,
+          2
+        ]
+      }
+    },
+    {
+      "id": "line-label",
+      "type": "symbol",
+      "source": "lines",
+      "slot": "aboveLabels",
+      "style": "line-label",
+      "layout": {
+        "text-field": [
+          "get",
+          "nameBn"
+        ]
+      },
+      "paint": {
+        "text-color": [
+          "match",
+          [
+            "get",
+            "key"
+          ],
+          "equator",
+          "#e53935",
+          "tropic-cancer",
+          "#f57c00",
+          "tropic-capricorn",
+          "#f57c00",
+          "arctic-circle",
+          "#1e88e5",
+          "antarctic-circle",
+          "#1e88e5",
+          "prime-meridian",
+          "#138a43",
+          "meridian-90e",
+          "#00897b",
+          "date-line",
+          "#7b3fc4",
+          "#0b3d91"
+        ]
+      }
+    },
+    {
+      "id": "point-marker",
+      "type": "circle",
+      "source": "points",
+      "slot": "aboveLabels",
+      "style": "point-marker",
+      "filter": [
+        "!=",
+        [
+          "get",
+          "selected"
+        ],
+        true
+      ]
+    },
+    {
+      "id": "point-label",
+      "type": "symbol",
+      "source": "points",
+      "slot": "aboveLabels",
+      "style": "point-label",
+      "layout": {
+        "text-field": [
+          "get",
+          "nameBn"
+        ]
+      }
+    }
+  ],
+  "controls": [
+    {
+      "type": "picker",
+      "id": "item",
+      "from": "items",
+      "placeholder": "অক্ষরেখা ও দ্রাঘিমারেখা",
+      "labelEn": "Choose a line or a place",
+      "label": {
+        "field": "nameBn"
+      },
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "on": "click",
+      "target": "source:lines",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
+    },
+    {
+      "on": "click",
+      "target": "source:areas",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
+    },
+    {
+      "on": "click",
+      "target": "source:points",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
+    }
+  ],
+  "sheet": {
+    "chip": {
+      "field": "chipBn"
+    },
+    "title": {
+      "field": "nameBn"
+    },
+    "rows": [
+      {
+        "field": "valueBn",
+        "stacked": true
+      },
+      {
+        "field": "latBn",
+        "stacked": true
+      },
+      {
+        "field": "lonBn",
+        "stacked": true
+      },
+      {
+        "field": "timeBn",
+        "stacked": true
+      },
+      {
+        "field": "factBn",
+        "stacked": true
+      },
+      {
+        "field": "ruleBn",
+        "stacked": true
+      },
+      {
+        "field": "whereBn",
+        "stacked": true
+      },
+      {
+        "field": "nearestBn",
+        "stacked": true
+      }
+    ]
+  }
+}

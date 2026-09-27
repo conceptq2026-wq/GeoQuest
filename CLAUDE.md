@@ -33,9 +33,13 @@ BCS / government exam prep.
   adds it to the home page of its local copy of `docs/`, in its section, as
   a card that opens whatever exists so far, or a «কাজ চলছে» page while
   nothing does. It reaches the live home page, the committed
-  `docs/registry.json`, only when finished, leaving the list for its own
-  folder under `docs/`; `tools/verify.mjs` fails an id in the list that the
-  registry has or that is already a finished map or diagram.
+  `docs/registry.json`, only when finished, leaving the list. **Finished
+  means in the registry** (the user's rule, 2026-09-27): its folder may be
+  under `docs/` while its work continues — `tools/build-registry.mjs` leaves
+  every listed id out, and `tools/verify.mjs` holds the registry to the
+  folders less the work in progress, fails an id in the list that the
+  registry has, and fails a folder whose descriptor's id, section or titles
+  differ from its entry in the list.
 - **Every task is verified by using it, in Claude's own browser** (the
   user's standing rule, 2026-09-27): the local preview before committing,
   the live site after a push, with screenshots of each check.
@@ -76,7 +80,8 @@ directory indexes, so every URL names `index.html` explicitly.
 
 `docs/index.html` renders its list from `docs/registry.json`, which
 `tools/build-registry.mjs` builds from every descriptor under `docs/maps/` and
-`docs/diagrams/`. The list is never hand-maintained: adding a map makes it
+`docs/diagrams/`, less the work in progress in `tools/wip.json`. The list is
+never hand-maintained: adding a map makes it
 appear under its section with no edit. Of the list, only the section names are
 written into the page (`SECTION_NAMES`). Each descriptor declares its `section`:
 `bangladesh | international | geography | misc` — the three BCS subjects in
@@ -335,6 +340,32 @@ declares sources, layers, sheet rows and actions; it holds no content.
   as its `attribution` — `© OpenStreetMap contributors`, linked to
   openstreetmap.org/copyright. The licence requires it. straits (`routes`,
   `canals`), border-lines (`lines`) and org-headquarters (`cities`) do.
+- **`attribution.extra`** lists whole credits the shell adds to ⓘ that no
+  source carries — each an https link that opens outside the WebView; the
+  validator holds that shape. latitude-longitude's NASA credit is one.
+- **`globe`** marks a map drawn on a globe (decided, validated, not drawn
+  yet: the shell's globe module is the next step, and until then the shell
+  shows the map flat). `globe.imagery: { file, fadeOut }` names a raster
+  PMTiles archive in the map's own folder — PMTiles v3, raster tiles from
+  z0 — and the two zooms between which it fades out over the vector
+  basemap; the archive's own metadata carries its credit, which the
+  validator requires in ⓘ as a link. `globe` holds nothing else, nor
+  `imagery` anything but those two.
+- **Generated lines keep off the tiles' clip edges.** MapLibre's own tiler
+  (`@maplibre/geojson-vt` 6.1.1, as maplibre-gl resolves it) drops a line's
+  whole piece in a tile where one of its vertices lies exactly on the
+  tile's clip edge — a quarter tile outside it — and the simplification has
+  marked that vertex unimportant, as every inner vertex of a straight line
+  is: with a vertex every 1°, 5° or 15°, every parallel vanished from the
+  eastern z1 tiles, whose edges fall at 45°W and 45°E. A parallel is
+  straight in Web Mercator and the renderer bends it on a globe, so a
+  generated parallel has a vertex every 30° and none at ±90°, and a
+  generated meridian only its two ends and the equator — one at a multiple
+  of 45° lies on an edge by construction, and the tiling proves it keeps
+  its pieces. `tools/tile-clip.mjs` finds vertices on a clip edge
+  and tiles every line as MapLibre does, failing any tile a line runs
+  through that keeps no piece of it; latitude-longitude's build and the
+  validator run it over z0–6.
 
 ## Shell modules: tabs and timeline
 
@@ -431,7 +462,11 @@ not built.
   through the resolver — no third-party service, no API, no analytics. The
   diagram build tools make no network calls at all: art is cut from the
   approved masters and data comes only from the approved seed, both in
-  `data-sources/`.
+  `data-sources/`. Nor does any map build (the user's rule, extended
+  2026-09-27): only `tools/fetch-sources.mjs` downloads, into
+  `tools/.cache/`, every file pinned in `tools/sources.json`, and a new
+  source with no published hash is pinned by its first download — its size
+  checked, its SHA-256 printed, nothing cached until that hash is recorded.
   `tools/verify.mjs` holds both halves, with `tools/outbound.mjs` reading the
   code:
   - Under `docs/visual/` it fails:
@@ -460,10 +495,10 @@ not built.
       one.
   - Each vendored library's network surface is counted and pinned (see
     **Build pins**).
-  - A diagram build tool — `tools/build-diagram*.mjs`, and every local module
-    it imports — fails on a network module (`http`, `https`, `net`, `dns`,
-    `undici` and the like), a `fetch()`, a socket, or a child process that
-    runs `curl` or `wget`.
+  - A build tool, a diagram's or a map's — `tools/build-*.mjs`, and every
+    local module it imports — fails on a network module (`http`, `https`,
+    `net`, `dns`, `undici` and the like), a `fetch()`, a socket, or a child
+    process that runs `curl` or `wget`.
 - **The diagram shell, as built.** `docs/visual/index.html` with its own
   `app.js` and `style.css`, and one module per view type, loaded only when
   that view's tab first opens — today `exploded.js`. `app.js` reads the
@@ -887,7 +922,14 @@ atmosphere-layers: the SHA-256 of each of the eight art inputs, in the
 seed's `art.files` — the art tool refuses, and `verify-descriptor.mjs`
 fails, a committed input that differs — and each image's placement on the
 master, in `tools/build-diagram-atmosphere-art.mjs`, which fails if a fresh
-fit moves it.
+fit moves it. latitude-longitude: Natural Earth's 10m geographic lines
+(60,564 bytes, git blob SHA-1 6745635f…, SHA-256 e0d96b65…) and NASA's Blue
+Marble: Next Generation, July, topography and bathymetry, 5400 × 2700
+(2,308,798 bytes, SHA-256 4f424067…), both in `tools/sources.json`, the
+second with NASA's terms quoted; the date line's and Bangladesh's outline's
+geometry hashes, as drawn, in `tools/latitude-longitude-pins.json`; and in
+the build, the districts COD-AB gives each line at the card's value, held
+to the seed's own count.
 
 When a pin moves, **stop and report the old and new values.** Never re-pin to
 make a build pass. A dropped `featurecla` once shifted a line by three points
@@ -972,7 +1014,8 @@ State which kind a task is when reporting it.
 - Ten maps. Bangladesh: `ancient-janapadas`. International: `straits`,
   `border-lines`, `org-headquarters`, `environment-treaties`. Geography:
   `deserts`, `lakes`, `forests`, `mountains`, `waterfalls`, all under
-  `docs/maps/`.
+  `docs/maps/` — and beside them `latitude-longitude`, still in progress,
+  out of the registry.
 - One diagram, under বিবিধ: `atmosphere-layers`, in `docs/diagrams/`, with
   its exploded view; its cross-section is next. It is built by
   `tools/build-diagram-atmosphere-art.mjs`, then
@@ -984,9 +1027,41 @@ State which kind a task is when reporting it.
 - Work in progress (`tools/wip.json`), on the local preview's home page
   only: `latitude-longitude`, a map in geography, «অক্ষরেখা ও দ্রাঘিমারেখা» /
   "Latitude & Longitude" — the Bengali title the editor's proposal, which
-  the user may change. Nothing of it exists yet; its card opens «কাজ চলছে».
-  Its look is `design/mockups/globe-latitude-longitude.png`, the user's
-  approved mockup: a 3D globe with its lines, a pill row and a docked card.
+  the user may change. Its look is
+  `design/mockups/globe-latitude-longitude.png`, the user's approved mockup:
+  a 3D globe with its lines, a pill row and a docked card. Its data is
+  built, in `docs/maps/latitude-longitude/`; the globe module that draws it
+  is not, so until it is the shell shows the map flat.
+  - `tools/build-latitude-longitude.mjs` builds it from the editor's seed,
+    `data-sources/latitude-longitude/latitude-longitude.seed.json`, which it
+    reads and never writes: one records table, `items` — eight lines, the
+    two poles and Greenwich, Bangladesh, Dhaka and Bangladesh's antipode —
+    and the 15° graticule as a source of its own, drawn and never selected.
+  - Every line is drawn at the seed's value: the equator, the tropics at the
+    conventional 23°30′, the polar circles at 66°30′ (the user's decision:
+    textbook values), the prime meridian and 90°E — a parallel with a vertex
+    every 30°, a meridian with its two ends and the equator (see **Generated
+    lines** under Data model). The date line is Natural
+    Earth's current one, its feature `ne_id` 1159100219 (`featurecla` "Date
+    line"), which runs east of Kiribati to 150°W as it has since 1995.
+  - Bangladesh is COD-AB's admin0, simplified at 500 m; the antipode is
+    that outline with every vertex at (lon − 180°, −lat), and Dhaka's
+    antipode point the same flip of COD-AB's capital point. The build fails
+    if COD-AB disagrees with the seed at the card's values: the Tropic of
+    Cancer crosses 9 districts, 90°E crosses 9, and they meet in Faridpur —
+    the editor's check in the seed's `review`.
+  - The imagery is NASA's Blue Marble: Next Generation, July, with
+    topography and bathymetry, cut by
+    `tools/build-latitude-longitude-imagery.mjs` into WebP tiles, z0–3,
+    quality 75: `imagery.pmtiles`, 905,573 bytes, 91,538 of them read when
+    the globe opens at zoom 1. It fades out between z3 and z4 over
+    `world-light`, which draws no coastline — so no false ring at 85.05°S,
+    where the world basemap's coastline stroke drew one on a globe. ⓘ
+    credits "NASA Earth Observatory", linked to the product's page, and
+    nothing names NASA otherwise, as NASA's terms ask.
+  - The card shows the seed's values without row labels, and the picker's
+    placeholder is the map's title: no other Bengali words are approved for
+    it yet. Nothing on it is pending.
 - **environment-treaties** — environmental conventions, treaties and
   protocols, world summits and UNFCCC COPs, in four tabs, in English (see the
   baseline section) — is built by `tools/build-environment-treaties.mjs` from

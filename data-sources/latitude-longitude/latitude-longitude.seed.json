@@ -1,0 +1,459 @@
+{
+  "_about": "Latitude & Longitude globe (map id latitude-longitude). Written by the editor (Claude) on 2026-09-27 from গ্লোব_অক্ষ_দ্রাঘিমা_খসড়া_৩.xlsx. User decisions 2026-09-27: card values are the conventional (textbook) values; the user will update information later, wherever and however, and it is applied as given. Lines are drawn at the card's values. Imagery: NASA Blue Marble Next Generation, July (credit \"NASA Earth Observatory\"). Pending: the date line's geometry (Natural Earth file not yet pinned).",
+  "titleBn": "অক্ষরেখা ও দ্রাঘিমারেখা",
+  "titleEn": "Latitude & Longitude",
+  "lines": {
+    "equator": {
+      "id": "equator",
+      "kind": "parallel",
+      "lat": 0,
+      "order": 1,
+      "nameBn": "নিরক্ষরেখা",
+      "nameEn": "Equator",
+      "chipBn": "অক্ষরেখা",
+      "valueBn": "০°",
+      "sources": {
+        "lat": [
+          {
+            "title": "Equator",
+            "publisher": "Wikipedia (revision 1367291892; read 2026-09-27)",
+            "url": "https://en.wikipedia.org/w/index.php?title=Equator&oldid=1367291892",
+            "states": "The latitude of the Earth's equator is, by definition, 0° (zero degrees) of arc."
+          }
+        ]
+      },
+      "review": "Bengali name proposed by the editor; the user may change it. Also called বিষুবরেখা."
+    },
+    "tropic-cancer": {
+      "id": "tropic-cancer",
+      "kind": "parallel",
+      "lat": 23.5,
+      "order": 2,
+      "nameBn": "কর্কটক্রান্তি রেখা",
+      "nameEn": "Tropic of Cancer",
+      "chipBn": "অক্ষরেখা",
+      "valueBn": "২৩°৩০′ উত্তর",
+      "factBn": "উত্তর গোলার্ধের যে সবচেয়ে উত্তরের অক্ষাংশে সূর্যকে মাথার ঠিক ওপরে দেখা যায় — জুন অয়নান্তে",
+      "passesBangladesh": true,
+      "sources": {
+        "lat": [
+          {
+            "title": "অক্ষরেখা",
+            "publisher": "Bengali Wikipedia (revision 8305296; read 2026-09-27)",
+            "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%85%E0%A6%95%E0%A7%8D%E0%A6%B7%E0%A6%B0%E0%A7%87%E0%A6%96%E0%A6%BE&oldid=8305296",
+            "states": "ক্রান্তীয় বৃত্তের অক্ষ রেখার মান পৃথিবীর অক্ষীয় হেলানো মানের (২৩°৩০″ কৌণিক মানের) সমান।"
+          }
+        ],
+        "factBn": [
+          {
+            "title": "Tropic of Cancer",
+            "publisher": "Wikipedia (revision 1374212864; read 2026-09-27)",
+            "url": "https://en.wikipedia.org/w/index.php?title=Tropic_of_Cancer&oldid=1374212864",
+            "states": "The Tropic of Cancer is the Earth's northernmost circle of latitude where the Sun can be seen directly overhead. This occurs on the June solstice"
+          }
+        ],
+        "passesBangladesh": [
+          {
+            "title": "Bangladesh — Subnational Administrative Boundaries (COD-AB)",
+            "publisher": "HDX / BBS (valid_on 2023-05-21; the repo's pinned COD-AB cache)",
+            "url": "https://data.humdata.org/dataset/cod-ab-bgd",
+            "states": "computed by the editor from bgd_admin0 / bgd_admin2 / bgd_admincapitals"
+          }
+        ]
+      },
+      "review": "Conventional (textbook) value by the user's decision 2026-09-27; the line is drawn at this value. The current exact value is 23°26′08.9″ (Wikipedia rev 1374212864). The source's ″ is a misprint for ′. Districts crossed are computed by the build from COD-AB at this latitude (editor's check: 9 — Chuadanga, Jhenaidah, Magura, Faridpur, Munshiganj, Chandpur, Cumilla, Khagrachhari, Rangamati). Bengali name proposed by the editor; the user may change it."
+    },
+    "tropic-capricorn": {
+      "id": "tropic-capricorn",
+      "kind": "parallel",
+      "lat": -23.5,
+      "order": 3,
+      "nameBn": "মকরক্রান্তি রেখা",
+      "nameEn": "Tropic of Capricorn",
+      "chipBn": "অক্ষরেখা",
+      "valueBn": "২৩°৩০′ দক্ষিণ",
+      "factBn": "দক্ষিণ গোলার্ধের যে সবচেয়ে দক্ষিণের অক্ষাংশে সূর্যকে মাথার ঠিক ওপরে দেখা যায় — ডিসেম্বর অয়নান্তে",
+      "sources": {
+        "lat": [
+          {
+            "title": "অক্ষরেখা",
+            "publisher": "Bengali Wikipedia (revision 8305296; read 2026-09-27)",
+            "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%85%E0%A6%95%E0%A7%8D%E0%A6%B7%E0%A6%B0%E0%A7%87%E0%A6%96%E0%A6%BE&oldid=8305296",
+            "states": "ক্রান্তীয় বৃত্তের অক্ষ রেখার মান পৃথিবীর অক্ষীয় হেলানো মানের (২৩°৩০″ কৌণিক মানের) সমান।"
+          }
+        ],
+        "factBn": [
+          {
+            "title": "Tropic of Capricorn",
+            "publisher": "Wikipedia (revision 1373830926; read 2026-09-27)",
+            "url": "https://en.wikipedia.org/w/index.php?title=Tropic_of_Capricorn&oldid=1373830926",
+            "states": "The Tropic of Capricorn is the circle of latitude that contains the subsolar point at the December solstice. It is thus the southernmost latitude where the Sun can be seen directly overhead."
+          }
+        ]
+      },
+      "review": "Conventional (textbook) value by the user's decision 2026-09-27; the line is drawn at this value. Current exact value 23°26′08.9″ S. Bengali name proposed by the editor; the user may change it."
+    },
+    "arctic-circle": {
+      "id": "arctic-circle",
+      "kind": "parallel",
+      "lat": 66.5,
+      "order": 4,
+      "nameBn": "সুমেরুবৃত্ত",
+      "nameEn": "Arctic Circle",
+      "chipBn": "অক্ষরেখা",
+      "valueBn": "৬৬°৩০′ উত্তর",
+      "sources": {
+        "lat": [
+          {
+            "title": "অক্ষরেখা",
+            "publisher": "Bengali Wikipedia (revision 8305296; read 2026-09-27)",
+            "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%85%E0%A6%95%E0%A7%8D%E0%A6%B7%E0%A6%B0%E0%A7%87%E0%A6%96%E0%A6%BE&oldid=8305296",
+            "states": "মেরু বৃত্তের অক্ষ রেখার মান ৯০° হতে পৃথিবীর অক্ষীয় হেলানো মানের (২৩°৩০″ কৌণিক মানের) বিয়োগফলের (৬৬°৩০″ কৌণিক মানের) সমান।"
+          }
+        ]
+      },
+      "review": "Conventional (textbook) value by the user's decision 2026-09-27; the line is drawn at this value. Current exact value 66°33′51.1″ N (Wikipedia rev 1375521305). Bengali name proposed by the editor; the user may change it."
+    },
+    "antarctic-circle": {
+      "id": "antarctic-circle",
+      "kind": "parallel",
+      "lat": -66.5,
+      "order": 5,
+      "nameBn": "কুমেরুবৃত্ত",
+      "nameEn": "Antarctic Circle",
+      "chipBn": "অক্ষরেখা",
+      "valueBn": "৬৬°৩০′ দক্ষিণ",
+      "sources": {
+        "lat": [
+          {
+            "title": "অক্ষরেখা",
+            "publisher": "Bengali Wikipedia (revision 8305296; read 2026-09-27)",
+            "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%85%E0%A6%95%E0%A7%8D%E0%A6%B7%E0%A6%B0%E0%A7%87%E0%A6%96%E0%A6%BE&oldid=8305296",
+            "states": "মেরু বৃত্তের অক্ষ রেখার মান ৯০° হতে পৃথিবীর অক্ষীয় হেলানো মানের (২৩°৩০″ কৌণিক মানের) বিয়োগফলের (৬৬°৩০″ কৌণিক মানের) সমান।"
+          }
+        ]
+      },
+      "review": "Conventional (textbook) value by the user's decision 2026-09-27; the line is drawn at this value. Current exact value 66°33′51.1″ S (Wikipedia rev 1361343601). Bengali name proposed by the editor; the user may change it."
+    },
+    "prime-meridian": {
+      "id": "prime-meridian",
+      "kind": "meridian",
+      "lon": 0,
+      "order": 6,
+      "nameBn": "মূল মধ্যরেখা",
+      "nameEn": "Prime Meridian (Greenwich)",
+      "chipBn": "দ্রাঘিমারেখা",
+      "valueBn": "০°",
+      "factBn": "লন্ডনের গ্রিনিচে রয়্যাল অবজারভেটরির ওপর দিয়ে গেছে",
+      "timeBn": "গ্রিনিচ মান সময় (GMT) — UTC+০০:০০; গ্রিনিচের রয়্যাল অবজারভেটরির স্থানীয় গড় সময়",
+      "sources": {
+        "factBn": [
+          {
+            "title": "Prime meridian (Greenwich)",
+            "publisher": "Wikipedia (revision 1375921633; read 2026-09-27)",
+            "url": "https://en.wikipedia.org/w/index.php?title=Prime_meridian_(Greenwich)&oldid=1375921633",
+            "states": "The Greenwich meridian is a prime meridian, a geographical reference line that passes through the Royal Observatory, Greenwich, in London, England."
+          }
+        ],
+        "timeBn": [
+          {
+            "title": "Greenwich Mean Time",
+            "publisher": "Wikipedia (revision 1357792122; read 2026-09-27)",
+            "url": "https://en.wikipedia.org/w/index.php?title=Greenwich_Mean_Time&oldid=1357792122",
+            "states": "Greenwich Mean Time (GMT) is the local mean time at the Royal Observatory in Greenwich, London, counted from midnight. … The term \"GMT\" is also used as one of the names for the time zone UTC+00:00"
+          }
+        ]
+      },
+      "review": "The modern IERS Reference Meridian differs slightly; not shown. Bengali name proposed by the editor; the user may change it. Also called গ্রিনিচ মধ্যরেখা."
+    },
+    "meridian-90e": {
+      "id": "meridian-90e",
+      "kind": "meridian",
+      "lon": 90,
+      "order": 7,
+      "nameBn": "৯০° পূর্ব দ্রাঘিমারেখা",
+      "nameEn": "90° East",
+      "chipBn": "দ্রাঘিমারেখা",
+      "valueBn": "৯০° পূর্ব",
+      "factBn": "বাংলাদেশ মান সময় এই দ্রাঘিমা ধরে নির্ধারিত; রেখাটি মানিকগঞ্জের হরিরামপুর উপজেলার হারুকান্দি ইউনিয়নের ওপর দিয়ে গেছে",
+      "timeBn": "বাংলাদেশ মান সময় — UTC+০৬:০০ (GMT+৬)",
+      "passesBangladesh": true,
+      "sources": {
+        "factBn": [
+          {
+            "title": "Bangladesh Standard Time",
+            "publisher": "Wikipedia (revision 1325072118; read 2026-09-27)",
+            "url": "https://en.wikipedia.org/w/index.php?title=Bangladesh_Standard_Time&oldid=1325072118",
+            "states": "The official time signal of BST is determined based on the 90.00° E longitude. This meridian passes through the Harukandi Union, located in the Harirampur Upazila of the Manikganj District, within the Dhaka Division."
+          }
+        ],
+        "timeBn": [
+          {
+            "title": "Bangladesh Standard Time",
+            "publisher": "Wikipedia (revision 1325072118; read 2026-09-27)",
+            "url": "https://en.wikipedia.org/w/index.php?title=Bangladesh_Standard_Time&oldid=1325072118",
+            "states": "infobox: UTC offset BST UTC+06:00"
+          }
+        ],
+        "passesBangladesh": [
+          {
+            "title": "Bangladesh — Subnational Administrative Boundaries (COD-AB)",
+            "publisher": "HDX / BBS (valid_on 2023-05-21; the repo's pinned COD-AB cache)",
+            "url": "https://data.humdata.org/dataset/cod-ab-bgd",
+            "states": "computed by the editor from bgd_admin0 / bgd_admin2 / bgd_admincapitals"
+          }
+        ]
+      },
+      "review": "Districts crossed computed by the build from COD-AB (editor's check: 9 — Sherpur, Jamalpur, Tangail, Manikganj, Faridpur, Madaripur, Gopalganj, Pirojpur, Barguna). It meets the Tropic of Cancer (23°30′ N) inside Faridpur district. Bengali name proposed by the editor; the user may change it."
+    },
+    "date-line": {
+      "id": "date-line",
+      "kind": "dateLine",
+      "order": 8,
+      "geometry": null,
+      "nameBn": "আন্তর্জাতিক তারিখরেখা",
+      "nameEn": "International Date Line",
+      "chipBn": "রেখা",
+      "valueBn": "প্রায় ১৮০°",
+      "factBn": "প্রশান্ত মহাসাগরে ১৮০° দ্রাঘিমা মোটামুটি মেনে, কিছু দ্বীপ ও অঞ্চল এড়িয়ে আঁকাবাঁকা; পূর্ব দিকে পার হলে তারিখ এক দিন কমে, পশ্চিম দিকে পার হলে এক দিন বাড়ে",
+      "sources": {
+        "factBn": [
+          {
+            "title": "International Date Line",
+            "publisher": "Wikipedia (revision 1376938768; read 2026-09-27)",
+            "url": "https://en.wikipedia.org/w/index.php?title=International_Date_Line&oldid=1376938768",
+            "states": "It passes through the Pacific Ocean, roughly following the 180.0° line of longitude and deviating to pass around some territories and island groups. Crossing the date line eastbound decreases the date by one day, while crossing the date line westbound increases the date."
+          }
+        ]
+      },
+      "review": "geometry is null (pending): it comes from the Natural Earth geographic-lines file once downloaded and pinned; pick the current date line by an exact field value (the file also holds an old pre-1995 segment). Bengali name proposed by the editor; the user may change it."
+    },
+    "graticule": {
+      "id": "graticule",
+      "kind": "graticule",
+      "stepDeg": 15,
+      "order": 9,
+      "tappable": false,
+      "nameBn": "অক্ষরেখা ও দ্রাঘিমারেখার জাল",
+      "nameEn": "Graticule",
+      "review": "Generated; 15° as in the mockup. Vertices every 30° or 10° — never 1°/5°/15° — because of the geojson-vt clip-edge bug found in the investigation."
+    }
+  },
+  "points": {
+    "north-pole": {
+      "id": "north-pole",
+      "lat": 90,
+      "lon": 0,
+      "order": 10,
+      "nameBn": "উত্তর মেরু",
+      "nameEn": "North Pole",
+      "chipBn": "বিন্দু",
+      "valueBn": "৯০° উত্তর",
+      "factBn": "পৃথিবীর সবচেয়ে উত্তরের বিন্দু; সব দ্রাঘিমারেখা এখানে মিলেছে",
+      "sources": {
+        "factBn": [
+          {
+            "title": "North Pole",
+            "publisher": "Wikipedia (revision 1375687462; read 2026-09-27)",
+            "url": "https://en.wikipedia.org/w/index.php?title=North_Pole&oldid=1375687462",
+            "states": "The North Pole is by definition the northernmost point on the Earth… It defines geodetic latitude 90° North… all lines of longitude converge there"
+          }
+        ]
+      },
+      "review": "Bengali name proposed by the editor; the user may change it. Drawn as an HTML marker (the map clamps its own points at ±85.05°)."
+    },
+    "south-pole": {
+      "id": "south-pole",
+      "lat": -90,
+      "lon": 0,
+      "order": 11,
+      "nameBn": "দক্ষিণ মেরু",
+      "nameEn": "South Pole",
+      "chipBn": "বিন্দু",
+      "valueBn": "৯০° দক্ষিণ",
+      "factBn": "পৃথিবীর সবচেয়ে দক্ষিণের বিন্দু; উত্তর মেরুর প্রতিপাদ বিন্দু",
+      "sources": {
+        "factBn": [
+          {
+            "title": "South Pole",
+            "publisher": "Wikipedia (revision 1376335647; read 2026-09-27)",
+            "url": "https://en.wikipedia.org/w/index.php?title=South_Pole&oldid=1376335647",
+            "states": "The South Pole is by definition the southernmost point on the Earth, lying antipodally to the North Pole. It defines geodetic latitude 90° South"
+          }
+        ]
+      },
+      "review": "Bengali name proposed by the editor; the user may change it. HTML marker."
+    },
+    "greenwich": {
+      "id": "greenwich",
+      "lat": 51.4778111,
+      "lon": -0.001475,
+      "order": 12,
+      "nameBn": "গ্রিনিচ",
+      "nameEn": "Greenwich (Royal Observatory)",
+      "chipBn": "বিন্দু",
+      "valueBn": "৫১°২৮′ উত্তর, ০°",
+      "sources": {
+        "lat": [
+          {
+            "title": "Prime meridian (Greenwich)",
+            "publisher": "Wikipedia (revision 1375921633; read 2026-09-27)",
+            "url": "https://en.wikipedia.org/w/index.php?title=Prime_meridian_(Greenwich)&oldid=1375921633",
+            "states": "coordinates 51°28′40.12″N 0°00′05.31″W (51.4778111°N 0.0014750°W)"
+          }
+        ],
+        "lon": [
+          {
+            "title": "Prime meridian (Greenwich)",
+            "publisher": "Wikipedia (revision 1375921633; read 2026-09-27)",
+            "url": "https://en.wikipedia.org/w/index.php?title=Prime_meridian_(Greenwich)&oldid=1375921633",
+            "states": "coordinates 51°28′40.12″N 0°00′05.31″W (51.4778111°N 0.0014750°W)"
+          }
+        ]
+      },
+      "review": "The card may point to the prime meridian's card. Bengali name proposed by the editor; the user may change it."
+    }
+  },
+  "places": {
+    "bangladesh": {
+      "id": "bangladesh",
+      "order": 13,
+      "nameBn": "বাংলাদেশ",
+      "nameEn": "Bangladesh",
+      "chipBn": "দেশ",
+      "latBn": "২০°৩৪′ উত্তর থেকে ২৬°৩৮′ উত্তর অক্ষাংশ",
+      "lonBn": "৮৮°০১′ পূর্ব থেকে ৯২°৪১′ পূর্ব দ্রাঘিমাংশ",
+      "geometry": {
+        "source": "COD-AB bgd_admin0"
+      },
+      "sources": {
+        "latBn": [
+          {
+            "title": "বাংলাদেশ",
+            "publisher": "Bengali Wikipedia (revision 9167829; read 2026-09-27)",
+            "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B6&oldid=9167829",
+            "states": "বাংলাদেশের ভৌগোলিক অবস্থান ২০°৩৪′ থেকে ২৬°৩৮′ উত্তর অক্ষাংশ এবং ৮৮°০১′ থেকে ৯২°৪১′ পূর্ব দ্রাঘিমাংশের মধ্যে।"
+          }
+        ],
+        "lonBn": [
+          {
+            "title": "বাংলাদেশ",
+            "publisher": "Bengali Wikipedia (revision 9167829; read 2026-09-27)",
+            "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B6&oldid=9167829",
+            "states": "বাংলাদেশের ভৌগোলিক অবস্থান ২০°৩৪′ থেকে ২৬°৩৮′ উত্তর অক্ষাংশ এবং ৮৮°০১′ থেকে ৯২°৪১′ পূর্ব দ্রাঘিমাংশের মধ্যে।"
+          }
+        ],
+        "geometry": [
+          {
+            "title": "Bangladesh — Subnational Administrative Boundaries (COD-AB)",
+            "publisher": "HDX / BBS (valid_on 2023-05-21; the repo's pinned COD-AB cache)",
+            "url": "https://data.humdata.org/dataset/cod-ab-bgd",
+            "states": "computed by the editor from bgd_admin0 / bgd_admin2 / bgd_admincapitals"
+          }
+        ]
+      },
+      "review": "Conventional (textbook) value by the user's decision 2026-09-27; the outline is drawn from COD-AB. COD-AB's own extent: 20°35′26″–26°38′04″N, 88°00′29″–92°40′48″E (within 3 km)."
+    },
+    "dhaka": {
+      "id": "dhaka",
+      "order": 14,
+      "nameBn": "ঢাকা",
+      "nameEn": "Dhaka",
+      "chipBn": "শহর",
+      "latBn": "২৩°৪২′ থেকে ২৩°৫৪′ উত্তর অক্ষাংশ",
+      "lonBn": "৯০°২০′ থেকে ৯০°২৮′ পূর্ব দ্রাঘিমাংশ",
+      "point": {
+        "lat": 23.723056,
+        "lon": 90.408611
+      },
+      "sources": {
+        "latBn": [
+          {
+            "title": "ঢাকা",
+            "publisher": "Bengali Wikipedia (revision 9153126; read 2026-09-27)",
+            "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%A2%E0%A6%BE%E0%A6%95%E0%A6%BE&oldid=9153126",
+            "states": "ঢাকা মধ্য বাংলাদেশে বুড়িগঙ্গা নদীর তীরে ২৩°৪২' থেকে ২৩°৫৪' উত্তর অক্ষাংশ এবং ৯০°২০' থেকে ৯০°২৮' পূর্ব দ্রাঘিমাংশ পর্যন্ত বিস্তৃত।"
+          }
+        ],
+        "lonBn": [
+          {
+            "title": "ঢাকা",
+            "publisher": "Bengali Wikipedia (revision 9153126; read 2026-09-27)",
+            "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%A2%E0%A6%BE%E0%A6%95%E0%A6%BE&oldid=9153126",
+            "states": "ঢাকা মধ্য বাংলাদেশে বুড়িগঙ্গা নদীর তীরে ২৩°৪২' থেকে ২৩°৫৪' উত্তর অক্ষাংশ এবং ৯০°২০' থেকে ৯০°২৮' পূর্ব দ্রাঘিমাংশ পর্যন্ত বিস্তৃত।"
+          }
+        ],
+        "point": [
+          {
+            "title": "Bangladesh — Subnational Administrative Boundaries (COD-AB)",
+            "publisher": "HDX / BBS (valid_on 2023-05-21; the repo's pinned COD-AB cache)",
+            "url": "https://data.humdata.org/dataset/cod-ab-bgd",
+            "states": "computed by the editor from bgd_admin0 / bgd_admin2 / bgd_admincapitals"
+          }
+        ]
+      },
+      "review": "Conventional values on the card (user's decision); the point is COD-AB's national capital point, inside the conventional extent."
+    },
+    "antipode": {
+      "id": "antipode",
+      "order": 15,
+      "nameBn": "বাংলাদেশের প্রতিপাদ স্থান",
+      "nameEn": "Antipode of Bangladesh",
+      "chipBn": "প্রতিপাদ স্থান",
+      "ruleBn": "অক্ষাংশের দিক উল্টো (উত্তর ↔ দক্ষিণ) আর দ্রাঘিমাংশে ১৮০° যোগ বা বিয়োগ (পূর্ব ↔ পশ্চিম)",
+      "whereBn": "চিলির নিকটবর্তী প্রশান্ত মহাসাগর",
+      "latBn": "২০°৩৪′ দক্ষিণ থেকে ২৬°৩৮′ দক্ষিণ অক্ষাংশ",
+      "lonBn": "৮৭°১৯′ পশ্চিম থেকে ৯১°৫৯′ পশ্চিম দ্রাঘিমাংশ",
+      "nearestBn": "সবচেয়ে কাছের স্থল চিলির দেসভেনতুরাদাস দ্বীপপুঞ্জ — ঢাকার প্রতিপাদ বিন্দু থেকে প্রায় ৯৯৭ কিমি",
+      "geometry": {
+        "from": "bangladesh",
+        "transform": "lat → −lat, lon → lon − 180"
+      },
+      "dhakaPoint": {
+        "lat": -23.723056,
+        "lon": -89.591389
+      },
+      "sources": {
+        "whereBn": [
+          {
+            "title": "Natural Earth 10m land / admin 0 countries",
+            "publisher": "Natural Earth (the repo's cache)",
+            "url": "https://www.naturalearthdata.com/",
+            "states": "computed by the editor: distance from the antipodal point to the nearest land"
+          }
+        ],
+        "nearestBn": [
+          {
+            "title": "Natural Earth 10m land / admin 0 countries",
+            "publisher": "Natural Earth (the repo's cache)",
+            "url": "https://www.naturalearthdata.com/",
+            "states": "computed by the editor: distance from the antipodal point to the nearest land"
+          },
+          {
+            "title": "Desventuradas Islands",
+            "publisher": "Wikipedia (revision 1374681010; read 2026-09-27)",
+            "url": "https://en.wikipedia.org/w/index.php?title=Desventuradas_Islands&oldid=1374681010",
+            "states": "26.32°S 80°W … located 850 kilometres (530 mi) off the coast of Chile"
+          }
+        ],
+        "latBn": [
+          {
+            "title": "বাংলাদেশ",
+            "publisher": "Bengali Wikipedia (revision 9167829; read 2026-09-27)",
+            "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B6&oldid=9167829",
+            "states": "২০°৩৪′ থেকে ২৬°৩৮′ উত্তর অক্ষাংশ (flipped by the rule)"
+          }
+        ],
+        "lonBn": [
+          {
+            "title": "Bangladesh — Subnational Administrative Boundaries (COD-AB)",
+            "publisher": "HDX / BBS (valid_on 2023-05-21; the repo's pinned COD-AB cache)",
+            "url": "https://data.humdata.org/dataset/cod-ab-bgd",
+            "states": "computed by the editor from bgd_admin0 / bgd_admin2 / bgd_admincapitals"
+          }
+        ]
+      },
+      "review": "Computed. latBn flips the conventional latitude; lonBn is from COD-AB's own extent flipped (88°00′29″→91°59′31″W, 92°40′48″→87°19′12″W). With the conventional 88°01′–92°41′E it would read 87°19′W–91°59′W — the same to the minute. The whole area is ocean (no Natural Earth land inside it). The card shows Bangladesh and its antipode side by side."
+    }
+  }
+}

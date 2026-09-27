@@ -128,6 +128,9 @@ const placeholderPage = (item) => `<!doctype html>
 const TYPES = {
   '.html': 'text/html; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',
+  // The vendored MapLibre is ES modules named .mjs; a browser refuses a
+  // module served as anything but JavaScript, so without this no map opens.
+  '.mjs': 'text/javascript; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
   '.json': 'application/json; charset=utf-8',
   '.woff2': 'font/woff2',
