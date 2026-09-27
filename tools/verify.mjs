@@ -9,7 +9,7 @@ import { createRequire } from 'node:module';
 import { pathToFileURL } from 'node:url';
 import { PMTiles } from 'pmtiles';
 import { DETAIL_AREAS } from './world.config.mjs';
-import { sourcesAt, scan } from './outbound.mjs';
+import { sourcesAt, scan, SURFACE, librarySurface, scanBuildTool } from './outbound.mjs';
 
 const require = createRequire(import.meta.url);
 const vtRequire = createRequire(require.resolve('vt-pbf'));
@@ -25,6 +25,11 @@ const SERVED = path.join(ROOT, 'docs');
 const STRAITS_DIR = path.join(SERVED, 'international/straits');
 // Data kept out of the served tree because no map draws it.
 const DATA_SOURCES = path.join(ROOT, 'data-sources');
+// The vendored browser libraries, one folder per library and version.
+const VENDOR_DIR = path.join(SERVED, 'shared/vendor');
+// Diagram build tools, which make no network call at all: tools/build-diagram*.mjs.
+// Change here if they are named otherwise.
+const DIAGRAM_BUILD_TOOL = /^build-diagram.*\.mjs$/;
 let failures = 0;
 const check = (ok, msg) => {
   console.log(`${ok ? 'ok  ' : 'FAIL'} ${msg}`);
@@ -270,6 +275,8 @@ check(
 | resolver: no API, no third-party service, no analytics. Strict over the
 | diagram shell; over the map shell and the home page a report that fails
 | nothing. What counts as a link, a request or a name: tools/outbound.mjs.
+| Beside it, the vendored libraries' network surface, pinned by count, and
+| the diagram build tools, which make no network call at all.
 |--------------------------------------------------------------------------
 */
 console.log('\n---- no calls out ----');
@@ -281,7 +288,7 @@ const describe = (f) => `${relToRoot(f.file)}:${f.line} ${f.class} — ${f.rule}
   const found = files.flatMap((f) => scan(f).findings).filter((f) => f.class !== 'namespace');
   for (const f of found) check(false, describe(f));
   if (!found.length) {
-    check(true, `docs/visual/ asks for no absolute URL, no hand-written request and no third-party host${files.length ? ` (${files.length} files)` : ' (no such folder yet)'}`);
+    check(true, `docs/visual/ asks for no absolute URL, no hand-written request or data path and no third-party host${files.length ? ` (${files.length} files)` : ' (no such folder yet)'}`);
   }
 }
 {
@@ -296,6 +303,46 @@ const describe = (f) => `${relToRoot(f.file)}:${f.line} ${f.class} — ${f.rule}
       `relative code and subresources ${sum((r) => r.own.relative)}, loaded through a value ${sum((r) => r.own.value)}`,
   );
   for (const f of found) console.log(`       ${describe(f)}`);
+}
+{
+  // Vendored libraries: each one's network surface, counted by
+  // tools/outbound.mjs over its JS and CSS, pinned here. A changed count — a
+  // version bump above all — fails, naming the library and the count, until
+  // someone has read what changed. Byte identity with npm is checked above.
+  const PINNED_SURFACE = {
+    'maplibre-gl-6.9.0': { 'absolute URLs': 8, 'fetch( sites': 3, 'image src': 5, XHR: 1, workers: 2, sockets: 0, beacons: 0, 'dynamic imports': 2 },
+    'pmtiles-4.5.0': { 'absolute URLs': 1, 'fetch( sites': 2, 'image src': 1, XHR: 0, workers: 0, sockets: 0, beacons: 0, 'dynamic imports': 0 },
+    'three-0.185.1': { 'absolute URLs': 2, 'fetch( sites': 3, 'image src': 1, XHR: 0, workers: 0, sockets: 0, beacons: 0, 'dynamic imports': 0 },
+  };
+  const vendored = fs
+    .readdirSync(VENDOR_DIR, { withFileTypes: true })
+    .filter((e) => e.isDirectory())
+    .map((e) => e.name)
+    .sort();
+  for (const lib of vendored) {
+    const pinned = PINNED_SURFACE[lib];
+    if (!pinned) {
+      check(false, `docs/shared/vendor/${lib}: no pinned network surface — count it and review it before it ships`);
+      continue;
+    }
+    const counted = librarySurface(path.join(VENDOR_DIR, lib));
+    const moved = Object.keys(SURFACE).filter((k) => counted[k] !== pinned[k]);
+    for (const k of moved) check(false, `docs/shared/vendor/${lib}: ${k} ${counted[k]}, pinned ${pinned[k]} — review the library's network code before re-pinning`);
+    if (!moved.length) check(true, `docs/shared/vendor/${lib}: network surface as pinned (${Object.entries(counted).map(([k, n]) => `${k} ${n}`).join(', ')})`);
+  }
+  for (const lib of Object.keys(PINNED_SURFACE).filter((l) => !vendored.includes(l))) check(false, `${lib}: network surface pinned, but no such folder under docs/shared/vendor/`);
+}
+{
+  // Diagram build tools: no network call at all, in the tool or in any local
+  // module it imports. Passes while there is none.
+  const tools = fs
+    .readdirSync(HERE)
+    .filter((f) => DIAGRAM_BUILD_TOOL.test(f))
+    .sort()
+    .map((f) => path.join(HERE, f));
+  const found = tools.flatMap((f) => scanBuildTool(f));
+  for (const f of found) check(false, `${relToRoot(f.file)}:${f.line} ${f.rule}: ${f.what}${f.via ? ` (imported by ${f.via})` : ''} — a diagram build tool makes no network call`);
+  if (!found.length) check(true, `diagram build tools (tools/build-diagram*.mjs) make no network call${tools.length ? ` (${tools.length})` : ' (none yet)'}`);
 }
 
 if (failures) {

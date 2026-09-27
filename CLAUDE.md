@@ -35,7 +35,8 @@ BCS / government exam prep.
 
 Vendored under `docs/shared/vendor/<lib>-<version>/` by `tools/vendor.mjs`,
 and `tools/verify.mjs` checks the vendored code byte for byte against the
-pinned npm packages. 6.9.0 is where Bengali label rendering was tested on a
+pinned npm packages and pins each library's network surface by count (see
+**Build pins**). 6.9.0 is where Bengali label rendering was tested on a
 real device. three.js 0.185.1 is the last release that ships official
 minified builds — 0.186 dropped them — and its `three.module.min.js` imports
 `./three.core.min.js`, so the pair keeps the package's own file names.
@@ -378,8 +379,10 @@ creates or changes goes through `own`, so teardown undoes it.
 ## Interactive diagrams
 
 The user's decisions (2026-09-27). Built so far: the registry and the home
-page take diagram entries, the resolver has a `diagrams` kind, and three.js
-0.185.1 is vendored for the 3D view, though no page loads it yet. Nothing
+page take diagram entries, the resolver has a `diagrams` kind, three.js
+0.185.1 is vendored for the 3D view, though no page loads it yet, and the
+no-calls check covers 3D code, vendored libraries and diagram build tools.
+Nothing
 else exists yet — no diagram, no `docs/visual/`, no `docs/diagrams/` — so
 every rule below about the shell, the 3D view or the fallback is decided, not
 built.
@@ -409,22 +412,40 @@ built.
 - **No API calls, ever** (the user's rule, 2026-09-27). At runtime the diagram
   shell, like the map shell, requests only static files from our own host,
   through the resolver — no third-party service, no API, no analytics. The
-  diagram build tools make no network calls at all: art is cut locally from
-  the supplied master, and data comes only from the approved seed in
-  `data-sources/`. `tools/verify.mjs` holds the runtime half, with
-  `tools/outbound.mjs` reading the pages' HTML, JS and CSS: under
-  `docs/visual/` it fails any absolute URL, a `fetch()` or XHR whose URL is
-  written by hand rather than taken from the resolver, a beacon or socket, a
-  URL built outside the resolver, code or a subresource loaded by anything but
-  a relative path, and a bare host name. Only the W3C namespace names, SVG's
-  among them, pass: they are names, never fetched. The same check runs over
-  `docs/shell/` and `docs/index.html` as a report that fails nothing. It
-  tells a link from a request by where the URL stands: an anchor's `href` —
-  in `<a>` markup, or passed to a helper whose own definition writes one, as
-  the map shell's `credit()` does — is followed only on a tap; the argument
-  of `fetch()`, `import()` and the like, a static import, an element's `src`,
-  a `<link href>` and a CSS `url()` are fetched without one. The build-tool
-  half has no check yet: no diagram build tool exists.
+  diagram build tools make no network calls at all: art is drawn in our own
+  code, and data comes only from the approved seed in `data-sources/`.
+  `tools/verify.mjs` holds both halves, with `tools/outbound.mjs` reading the
+  code:
+  - Under `docs/visual/` it fails:
+    - any absolute URL;
+    - a request whose URL is written by hand rather than taken from the
+      resolver: `fetch()`, XHR, or a three.js loader's `load()`, `loadAsync()`,
+      `setPath()` or `setResourcePath()`, on any object;
+    - a literal path into `diagrams/` or `maps/`, since their files come only
+      through the resolver;
+    - a beacon or socket;
+    - a URL built outside the resolver;
+    - code or a subresource loaded by anything but a relative path;
+    - a bare host name.
+
+    Only the W3C namespace names, SVG's among them, pass: they are names,
+    never fetched. So does `document.fonts.load()`, which takes a CSS font,
+    not a URL.
+  - The same check runs over `docs/shell/` and `docs/index.html` as a report
+    that fails nothing. It tells a link from a request by where the URL
+    stands:
+    - an anchor's `href` — in `<a>` markup, or passed to a helper whose own
+      definition writes one, as the map shell's `credit()` does — is followed
+      only on a tap;
+    - the argument of `fetch()`, `import()` and the like, a static import, an
+      element's `src`, a `<link href>` and a CSS `url()` are fetched without
+      one.
+  - Each vendored library's network surface is counted and pinned (see
+    **Build pins**).
+  - A diagram build tool — `tools/build-diagram*.mjs`, and every local module
+    it imports — fails on a network module (`http`, `https`, `net`, `dns`,
+    `undici` and the like), a `fetch()`, a socket, or a child process that
+    runs `curl` or `wget`.
 - **Shared pieces move only when needed.** A piece of the map shell moves into
   `docs/shared/` only when the diagram shell needs it, and each move is proven
   at the shell tier.
@@ -475,11 +496,19 @@ built.
   «আগের কোণে ফিরুন» and «বন্ধ করুন»; the unit «কিমি»; the curve's caption
   «তাপমাত্রা (আপেক্ষিক)»; the card labels «উচ্চতা», «তাপমাত্রা» and
   «যা ঘটে»; the layer chips «স্তর ১» to «স্তর ৫».
-- **Art** for the 3D view is cut from text-free masters kept outside `docs/`
-  (`data-sources/atmosphere-layers/art/`), whose SHA-256 and crop boxes the
-  seed records. The cut WebPs go in `docs/diagrams/<id>/art/` with a licence
-  text beside them and a credit in ⓘ. A drawn feature — a plane, a satellite,
-  an aurora — must agree with the seed.
+- **All diagram art is drawn in our own code** (the user's decision) — shapes,
+  gradients and light:
+  - the Earth slice's top and side;
+  - clouds, the storm, lightning and Everest;
+  - the jet and the balloon;
+  - the meteor, the high clouds and the aurora;
+  - the satellite, the stars and the ozone band.
+
+  No AI-made and no supplied images. A painted file may later override one
+  item without a code change: the item's art is named in the diagram's data,
+  and a file named there replaces its drawing, bringing its own licence and a
+  credit in ⓘ. A drawn feature — a plane, a satellite, an aurora — must agree
+  with the seed.
 - **The order of the work** (approved 2026-09-27), one commit per step, each
   at its verification tier. Nothing is committed under `docs/diagrams/` before
   the diagram is whole: the registry lists any folder there, and `verify.mjs`
@@ -487,13 +516,12 @@ built.
   1. Done: the registry and the home page take diagram entries.
   2. Done: the resolver's `diagrams` kind.
   3. Done: three.js 0.185.1 vendored and pinned.
-  4. The no-calls check tightened for 3D: a three.js loader call with a
-     hand-written URL fails like `fetch()`, a literal path into `diagrams/` or
-     `maps/` fails, and the vendored library's URLs and network calls are
-     audited against pinned counts. Tier: tools — the suites plus a fixture
-     run on a copy outside `docs/`.
-  5. The art tool: crop, clean, resize and encode WebP with size caps,
-     locally, with no network. Tier: tools; its output lands in step 8.
+  4. Done: the no-calls check tightened for 3D — loader calls, data paths,
+     the pinned library surface, and the build-tool check.
+  5. Code-drawn art: every item drawn in our own code. Whether it is drawn at
+     runtime on a canvas or at build time into WebP is decided by
+     measurement. Tier: tools, or the diagram's own if it draws at runtime;
+     any build-time output lands in step 8.
   6. `docs/visual/` with the 3D exploded view — scene, overlays, interaction,
      card, layer buttons, context loss, the fallback's display — built and
      tested locally against the uncommitted diagram, and committed without
@@ -655,7 +683,13 @@ and that frame must contain the whole trace.
 A value earns a pin when it is derived from an external source **and** is either
 displayed to a student or load-bearing for what is displayed.
 
-Currently pinned: trace count, per-record geometry hash, `bdPov` literals,
+Currently pinned: each vendored library's network surface, counted over its
+JS and CSS — absolute URLs, `fetch(` sites, image `src`, XHR, workers,
+sockets, beacons and dynamic imports — in `tools/verify.mjs`: MapLibre
+6.9.0 8 / 3 / 5 / 1 / 2 / 0 / 0 / 2, pmtiles 4.5.0 1 / 2 / 1 / 0 / 0 / 0 / 0
+/ 0, three.js 0.185.1 2 / 3 / 1 / 0 / 0 / 0 / 0 / 0. The count cannot tell a
+live call from a mention, so any change is read before it is re-pinned.
+Then: trace count, per-record geometry hash, `bdPov` literals,
 `name_bn` hash and count, per-class boundary counts — and for the OpenStreetMap
 extract, its file checksum in `tools/sources.json` plus a per-record OSM trace
 count and geometry hash. Generated lines carry no hash: they are computed from
