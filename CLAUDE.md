@@ -378,19 +378,18 @@ creates or changes goes through `own`, so teardown undoes it.
 
 ## Interactive diagrams
 
-The user's decisions (2026-09-27). Built so far: the registry and the home
-page take diagram entries, the resolver has a `diagrams` kind, three.js
-0.185.1 is vendored for the 3D view, though no page loads it yet, and the
-no-calls check covers 3D code, vendored libraries and diagram build tools.
-Nothing
-else exists yet — no diagram, no `docs/visual/`, no `docs/diagrams/` — so
-every rule below about the shell, the 3D view or the fallback is decided, not
-built.
+The user's decisions (2026-09-27; the exploded view revised the same day).
+Built so far: the registry and the home page take diagram entries, the
+resolver has a `diagrams` kind, three.js 0.185.1 is vendored for a future 3D
+diagram — atmosphere-layers does not use it — and the no-calls check covers
+diagram code, vendored libraries and diagram build tools. Nothing else exists
+yet — no diagram, no `docs/visual/`, no `docs/diagrams/` — so every rule
+below about the shell or the views is decided, not built.
 
 - **A second shell.** A diagram opens in its own page,
-  `docs/visual/index.html?v=<id>` — SVG and HTML, and WebGL2 for a 3D view
-  through three.js, served from our own host like everything else; no
-  MapLibre. MapLibre already requires WebGL2, so a diagram adds no new device
+  `docs/visual/index.html?v=<id>` — HTML, images and SVG, served from our own
+  host like everything else; no MapLibre. A 3D diagram, if one comes, adds
+  WebGL2 through three.js, which MapLibre already requires, so no new device
   requirement. `docs/shell/` and its URLs do not change for it. A diagram's
   built data lives in `docs/diagrams/<id>/`, its approved seed in
   `data-sources/<id>/`.
@@ -412,8 +411,9 @@ built.
 - **No API calls, ever** (the user's rule, 2026-09-27). At runtime the diagram
   shell, like the map shell, requests only static files from our own host,
   through the resolver — no third-party service, no API, no analytics. The
-  diagram build tools make no network calls at all: art is drawn in our own
-  code, and data comes only from the approved seed in `data-sources/`.
+  diagram build tools make no network calls at all: art is cut from the
+  approved masters and data comes only from the approved seed, both in
+  `data-sources/`.
   `tools/verify.mjs` holds both halves, with `tools/outbound.mjs` reading the
   code:
   - Under `docs/visual/` it fails:
@@ -454,88 +454,100 @@ built.
   empty section would show "Coming soon". Both names go into the home page's
   `SECTION_NAMES`, beside the other three sections'.
 - **The first diagram is atmosphere-layers, in Bengali**, with two views: the
-  exploded view in true 3D, three.js on WebGL2, and the cross-section in 2D
-  SVG. The exploded view's look is
-  `design/mockups/atmosphere-layers-exploded.png`: five glossy, translucent
+  exploded view and the cross-section. **The exploded view matches
+  `design/mockups/atmosphere-layers-exploded.png` 100%** (the user's
+  decision, 2026-09-27, replacing the earlier 3D plan): it is 2D painted art,
+  not a three.js scene and not art drawn in code — five glossy, translucent
   slabs with gaps above a slice of Earth, the km axis on the left, the
   relative temperature curve on the right, the docked card at the bottom. The
-  cross-section has no approved look yet. The picture guides the look, never
-  the data: the axis ticks sit on the seed's layer boundaries, and the
-  temperature curve follows the seed's points only. Nothing is hard-coded
-  from the seed: the user revises its content later.
-- **The 3D view's interactions — these and nothing more.** A one-finger drag
-  turns the stack around its vertical axis only; the tilt stays locked at the
-  default elevation (about 25°), and a small button, «আগের কোণে ফিরুন»,
-  returns it to the default angle. Tapping a layer lifts it and makes it
-  glow, dims the others, opens the card and highlights that layer's part of
-  the temperature curve; «বন্ধ করুন», or tapping the layer again, closes it.
-  No pinch zoom, no tilt, and the feature icons are not tappable. Each
-  feature is drawn in its own layer per the seed; the ionosphere and the
-  aurora are drawn in the thermosphere slab, and the card gives their real
+  cross-section is 2D SVG and has no approved look yet. The picture guides
+  the look, never the data: the axis ticks sit on the seed's layer
+  boundaries, and the temperature curve follows the seed's points only.
+  Nothing is hard-coded from the seed: the user revises its content later.
+- **The art is final and approved by the user**, in
+  `data-sources/atmosphere-layers/art/`, untracked like the seed, and kept:
+  - `stack-master.png` — the whole stack without text, 1024×1536, on a
+    background of about `#ECF4FA`. It is the position reference.
+  - `exosphere.png`, `thermosphere.png`, `mesosphere.png`,
+    `stratosphere.png`, `troposphere.png` and `earth.png` — one slab, or the
+    Earth slice, alone on the same canvas. The image model moved each one
+    vertically, so each is placed by the master, never by its own position.
+    The editor's measurements, the top of the front-left upright edge, alone
+    → in the master: exosphere 245 → 247, thermosphere 330 → 402, mesosphere
+    518 → 564, stratosphere 681 → 740, troposphere 679 → 934; the slabs'
+    widths match the master's (x ≈ 180–845). `earth.png` is 750 px wide
+    against the master's 675, so it is placed at scale 0.9 with its left edge
+    on the master's (x 176, top y 1181). `earth.png` is the editor's retouch,
+    a missing back strip filled in; `earth-original-v3.png` is the untouched
+    original, kept for the record only.
+  - `icons-master.png` — the card's 13 icons, in a four-column grid with
+    light cell borders: 1 ozone ring, 2 jet, 3 weather balloon, 4 cloud with
+    sun (weather), 5 storm with lightning, 6 snowy peak (Everest), 7 wind
+    ribbon (jet stream), 8 meteor, 9 high clouds, 10 aurora, 11 ionosphere
+    (radio arcs over Earth), 12 radio tower, 13 satellite.
+
+  The art was made by ConceptQ with its own model. No licence note and no
+  credit is shipped or shown for it — not in ⓘ, not beside the art. The
+  photo credits on the maps are unchanged.
+- **Drawn bottom to top**: the Earth, the troposphere, the stratosphere, the
+  mesosphere, the thermosphere, the exosphere — each slab covering the back
+  of the one below, as in the master. The selected slab is drawn last.
+- **The one interaction is a tap.** Nothing rotates. Tapping a slab lifts it,
+  scales it about 1.08 and gives it the mockup's white outline and soft
+  glow; the other slabs dim; the card opens. «বন্ধ করুন» (×), or tapping the
+  slab again, closes it. With reduced motion, nothing animates. The Earth
+  slice is not tappable. The ionosphere and the aurora are in the
+  thermosphere slab, as the art draws them, and the card gives their real
   ranges from the seed.
-- **All text is HTML over the canvas**, never drawn by WebGL: three.js cannot
-  shape Bengali. The layer names, the axis ticks and the curve's bands hang
-  off points on the stack's vertical axis, so turning the stack never moves
-  them.
-- **The 3D rendering rule, measured** (390×844, 4× CPU slowdown, software
-  rendering): Phong materials. No transmission — 7.5× Phong's frame cost, and it rendered dark
-  after a context restore. A Standard material with an environment map only
-  if Phong cannot reach the look — 4× the cost — and then the environment map
-  is rebuilt after a context restore. Pixel ratio capped at 2; rendering on
-  change only, nothing drawn at rest; shader-error checking off in production
-  (`renderer.debug.checkShaderErrors = false`).
-- **The fallback.** Where WebGL2 is missing or fails, or the context is lost
-  for good, the page shows a still of the default 3D view, with the slabs'
-  outlines as tap areas and the same card. The still is rendered at build
-  time by a local tool, which may drive a locally installed browser — no
-  network — and a hash of its inputs lets the validator fail a stale one. It
-  also shows while three.js loads, and it is the thumbnail an inline lesson
-  embed uses.
+- **All text is HTML over the art**, never baked into an image. Each slab
+  shows its Bengali name from the seed, laid along the slab's front face as
+  in the mockup; the km axis and the relative temperature curve come from the
+  seed.
+- **The page's background is the art's own colour**, so the soft-edged
+  cut-outs blend in without halos.
+- **No WebGL and no three.js for this diagram**, so no fallback renderer.
+  three.js 0.185.1 stays vendored, unused, for a future 3D diagram, under
+  the rendering rule measured for it (390×844, 4× CPU slowdown, software
+  rendering): Phong materials; no transmission — 7.5× Phong's frame cost,
+  and it rendered dark after a context restore; a Standard material with an
+  environment map only if Phong cannot reach the look — 4× the cost — its
+  environment map rebuilt after a context restore; pixel ratio capped at 2;
+  rendering on change only, nothing drawn at rest; shader-error checking off
+  in production (`renderer.debug.checkShaderErrors = false`).
 - **Interface words are data, never code** (approved 2026-09-27). They live in
   the diagram's descriptor: the tabs «৩ডি স্তর» and «প্রস্থচ্ছেদ»; the buttons
-  «আগের কোণে ফিরুন» and «বন্ধ করুন»; the unit «কিমি»; the curve's caption
+  «আগের কোণে ফিরুন» and «বন্ধ করুন» — the first was the rotating view's reset,
+  and has no use while nothing rotates; the unit «কিমি»; the curve's caption
   «তাপমাত্রা (আপেক্ষিক)»; the card labels «উচ্চতা», «তাপমাত্রা» and
   «যা ঘটে»; the layer chips «স্তর ১» to «স্তর ৫».
-- **All diagram art is drawn in our own code** (the user's decision) — shapes,
-  gradients and light:
-  - the Earth slice's top and side;
-  - clouds, the storm, lightning and Everest;
-  - the jet and the balloon;
-  - the meteor, the high clouds and the aurora;
-  - the satellite, the stars and the ozone band.
-
-  No AI-made and no supplied images. A painted file may later override one
-  item without a code change: the item's art is named in the diagram's data,
-  and a file named there replaces its drawing, bringing its own licence and a
-  credit in ⓘ. A drawn feature — a plane, a satellite, an aurora — must agree
-  with the seed.
-- **The order of the work** (approved 2026-09-27), one commit per step, each
-  at its verification tier. Nothing is committed under `docs/diagrams/` before
-  the diagram is whole: the registry lists any folder there, and `verify.mjs`
-  fails one it does not list.
+- **The order of the work** (approved 2026-09-27, revised the same day), one
+  commit per step, each at its verification tier. Nothing is committed under
+  `docs/diagrams/` before the diagram is whole: the registry lists any folder
+  there, and `verify.mjs` fails one it does not list.
   1. Done: the registry and the home page take diagram entries.
   2. Done: the resolver's `diagrams` kind.
   3. Done: three.js 0.185.1 vendored and pinned.
   4. Done: the no-calls check tightened for 3D — loader calls, data paths,
      the pinned library surface, and the build-tool check.
-  5. Code-drawn art: every item drawn in our own code. Whether it is drawn at
-     runtime on a canvas or at build time into WebP is decided by
-     measurement. Tier: tools, or the diagram's own if it draws at runtime;
-     any build-time output lands in step 8.
-  6. `docs/visual/` with the 3D exploded view — scene, overlays, interaction,
-     card, layer buttons, context loss, the fallback's display — built and
-     tested locally against the uncommitted diagram, and committed without
-     it. Tier: a new folder, nothing shared changed — the suites, the strict
-     check, and the page at 390 and 320 px with a clean console in a fresh
-     tab. Anything moved into `docs/shared/` goes first, in its own commit,
-     at the shell tier.
-  7. The fallback renderer: a local server, a locally installed headless
-     browser and ffmpeg. Tier: tools.
-  8. The diagram in one commit: seed, build, descriptor, data, art, the
-     fallback and its manifest, the validator section, and the বিবিধ section
+  5. The art tool, `tools/build-diagram-atmosphere-art.mjs`, inside the
+     no-network rule: it places each image of one slab by the master, cuts it
+     out with a soft alpha mask against the background, trims it, and exports
+     WebP at 1× and 2× for a 390 px layout, under size caps; cuts the 13
+     icons out inside their cell borders; writes a manifest — each slab's
+     position, size, draw order, outline polygon for taps, and the front-face
+     line its name is laid along; and records the SHA-256 of every master in
+     the seed. Tier: tools.
+  6. `docs/visual/` with the 2D exploded view, built and tested locally
+     against the uncommitted diagram, and committed without it. Tier: a new
+     folder, nothing shared changed — the suites, the strict check, and the
+     page at 390 and 320 px with a clean console in a fresh tab. Anything
+     moved into `docs/shared/` goes first, in its own commit, at the shell
+     tier.
+  7. The diagram lands with বিবিধ in one commit: seed, build, descriptor,
+     data, art and manifest, the validator section, and the বিবিধ section
      with its registry entry. Tier: the diagram's own, plus the home page /
      registry tier.
-  9. The 2D cross-section view, once it has an approved look. Tier: the
+  8. The 2D cross-section view, once it has an approved look. Tier: the
      diagram's own.
 - A change to the home page or the registry has its own verification tier, in
   **Before every commit**.
