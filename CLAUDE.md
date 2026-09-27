@@ -480,11 +480,11 @@ the views is decided, not built.
     measurements (the top of the front-left upright edge, alone → in the
     master: exosphere 245 → 247, thermosphere 330 → 402, mesosphere 518 →
     564, stratosphere 681 → 740, troposphere 679 → 934). `earth.png` is the
-    editor's retouch, a missing back strip filled in, and draws the Earth 581
-    px wide, so it is placed at scale 1.1638, its left edge on the master's at
-    x 176; `earth-original-v3.png`, the untouched original, draws it 750 px
-    wide — the scale 0.9 first given for `earth.png` is the original's — and
-    is kept for the record only.
+    editor's retouch of `earth-original-v3.png`, its missing back strip
+    filled in, with the same geometry: it draws the Earth 750 px wide against
+    the master's 675, and fits at scale 0.9, its left edge at x 176 and its
+    front-left edge's top at y 1181.5 — the editor's 0.9, 176 and 1181. The
+    original is kept for the record only.
   - `icons-master.png` — the card's 13 icons, in a four-column grid with
     light cell borders: 1 ozone ring, 2 jet, 3 weather balloon, 4 cloud with
     sun (weather), 5 storm with lightning, 6 snowy peak (Everest), 7 wind
@@ -494,23 +494,33 @@ the views is decided, not built.
   The art was made by ConceptQ with its own model. No licence note and no
   credit is shipped or shown for it — not in ⓘ, not beside the art. The
   photo credits on the maps are unchanged.
-- **Drawn bottom to top**: the Earth, the troposphere, the stratosphere, the
-  mesosphere, the thermosphere, the exosphere — each slab covering the back
-  of the one below, as in the master. The selected slab is drawn last.
-- **The one interaction is a tap.** Nothing rotates. Tapping a slab lifts it,
-  scales it about 1.08 and gives it the mockup's white outline and soft
-  glow, and highlights that layer's stretch of the relative temperature
-  curve; the other slabs dim; the card opens. «বন্ধ করুন» (×), or tapping the
-  slab again, closes it. With reduced motion, nothing animates. The Earth
-  slice is not tappable. The ionosphere and the aurora are in the
-  thermosphere slab, as the art draws them, and the card gives their real
-  ranges from the seed.
+- **The default view is `stack-master.png` itself** (the user's decision,
+  2026-09-27), cut to the stack's bounds: pixel for pixel the approved
+  picture, the only loss the encoder's. The draw rule: that one picture, and
+  over it only the lit slab. The single-slab images are the model's own
+  renders — a slab's clouds, stars or thickness not quite the master's — so
+  they are never composed into the default view; each is drawn only when its
+  slab is lit.
+- **The one interaction is a tap.** Nothing rotates. Tapping a slab lights
+  it: its cut-out is drawn over the master at its fitted place, scaled about
+  its centre by 1.08 — or more, where that is what it takes for the cut-out
+  alone to cover the master's own copy of the slab (today the stratosphere,
+  1.11) — lifted 2 layout px, over the mockup's white outline and soft glow;
+  it highlights that layer's stretch of the relative temperature curve; the
+  card opens. The other slabs are not dimmed: the mockup does not dim them.
+  «বন্ধ করুন» (×), or tapping the slab again, closes it. With reduced motion,
+  nothing animates. The Earth slice is never lit and has no cut-out. Tap
+  areas are the slabs' outlines on the master, tested from the exosphere
+  down, since each outline takes in its slab's top face hidden behind the
+  slab above. The ionosphere and the aurora are in the thermosphere slab, as
+  the art draws them, and the card gives their real ranges from the seed.
 - **All text is HTML over the art**, never baked into an image. Each slab
   shows its Bengali name from the seed, laid along the slab's front face as
   in the mockup; the km axis and the relative temperature curve come from the
   seed.
-- **The page's background is the art's own colour**, so the soft-edged
-  cut-outs blend in without halos.
+- **The page's background is the art's own colour**, `#EDF4FA`, so the
+  default view's edges and a lit cut-out's soft edges blend in without
+  halos.
 - **No WebGL and no three.js for this diagram**, so no fallback renderer.
   three.js 0.185.1 stays vendored, unused, for a future 3D diagram, under
   the rendering rule measured for it (390×844, 4× CPU slowdown, software
@@ -537,27 +547,38 @@ the views is decided, not built.
   5. Done: the art tool, `tools/build-diagram-atmosphere-art.mjs`, inside the
      no-network rule — ffmpeg on this machine and the approved files, nothing
      else. It refuses an input whose SHA-256 differs from the seed's
-     `art.files`. It places each image of one slab by the master, at the
-     placements recorded in the tool, and fails if a fresh fit (`--measure`)
-     moves one. It cuts each out with a soft alpha key against its own
-     image's background — solid inside the picture's shape, holes filled, so a
-     white cloud or edge never shows the slab below through it; soft only at
-     the edge and in the glows and shadows, where every pixel shows over that
-     background exactly as painted; a speck of the image's noise dropped. It
-     trims each and exports WebP at 1× and 2× for a layout 390 CSS px wide,
-     the master's 1024 px making 390, at quality 82 stepping down to fit caps
-     of 12 KB and 32 KB per slab. It cuts the 13 icons as squares inside their
-     cell borders, opaque on the card's white, 40 CSS px across, capped at 1
-     KB and 2 KB. It writes `manifest.json` with the page's colour, `#EDF4FA`,
-     taken from the master; for each slab its id, draw order, box in layout
-     px, tap outline, the line its name is laid along (two points, the
-     angle, the face's height) and where the km axis and the curve meet it;
-     the boundaries between slabs, in the middle of each gap, by the seed's
-     boundary ids; and the icons by the seed's feature ids. The proof
-     recomposes the stack from the 2× files: each cut over the page's colour
-     must match its own image within a mean of 1 level and a 99th percentile
-     of 4, or the build fails; the encoder's loss, and the stack against the
-     master, are reported. The outputs wait, untracked, in
+     `art.files`. It writes, as WebP at 1× and 2× for a layout 390 CSS px
+     wide — the master's 1024 px making 390 — at quality 82 stepping down to
+     fit each file's cap:
+     - the default view: the master, cut to the stack's bounds, capped at 24
+       KB and 64 KB;
+     - the five slabs' cut-outs, for the lit state, capped at 12 KB and 32
+       KB. Each is placed by the master, at the placements recorded in the
+       tool, and the build fails if a fresh fit (`--measure`) moves one. Each
+       is cut out with a soft alpha key against its own image's background —
+       solid inside the picture's shape, holes filled, so a white cloud or
+       edge never shows what lies behind it; soft only at the edge and in the
+       glows and shadows, where every pixel shows over that background
+       exactly as painted; a speck of the image's noise dropped;
+     - the 13 icons, as squares inside their cell borders, opaque on the
+       card's white, 40 CSS px across, capped at 1 KB and 2 KB.
+
+     `manifest.json` gives the page's colour, `#EDF4FA`, taken from the
+     master; the view's box; and for each slab its cut-out's box, and the
+     least scale from 1.08 at which the lit cut-out alone covers the master's
+     own copy of it, checked at 2×. Its order, tap outline, name line (two
+     points, the angle, the face's height), upright edges, and the points
+     where the km axis and the curve meet it all follow the master: the
+     cut-out's shape with its top face moved to the master's upright tops and
+     its foot to their feet. It also gives the boundaries — in the middle of
+     each gap, by the seed's boundary ids — and the icons, by the seed's
+     feature ids.
+
+     The proof: the view against the master, where only the encoder's loss
+     may show; each cut over the page's colour against its own image, within
+     a mean of 1 level and a 99th percentile of 4, or the build fails; the
+     encoder's loss for each file; and each slab lit, as the page will draw
+     it. The outputs wait, untracked, in
      `data-sources/atmosphere-layers/build/` until step 7. Tier: tools.
   6. `docs/visual/` with the 2D exploded view, built and tested locally
      against the uncommitted diagram, and committed without it. Tier: a new
