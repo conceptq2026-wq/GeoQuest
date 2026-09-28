@@ -17,6 +17,7 @@
 
 import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs';
 import { resolver } from '../shared/resolver.js';
+import { pickerRow } from '../shared/picker.js';
 
 /*
 |--------------------------------------------------------------------------
@@ -1000,7 +1001,7 @@ function doSelect({ table, key }) {
   // so it never names a record the sheet is not showing.
   if (dom.picker.dataset.table === table) dom.picker.value = key;
   else if (dom.picker.dataset.table) dom.picker.value = '';
-  syncStepButtons();
+  row?.sync();
   placeMarker(table, key);
   if (sheetFor(table)) {
     fillSheet(table, key);
@@ -1016,7 +1017,7 @@ function clearSelection() {
   selection.clear();
   for (const table of tables) refresh(table);
   if (dom.picker.dataset.table) dom.picker.value = '';
-  syncStepButtons();
+  row?.sync();
   marker?.instance.remove();
   if (hasSheet) setSheetOpen(false);
   changed('select');
@@ -1161,25 +1162,39 @@ const tapTargets = interactions
     return { source, layer: hitLayerId(source), kind: geometryKind(source, sourceSpecs[source]), table: sourceSpecs[source].records, do: i.do };
   });
 
+/*
+ * A tap is resolved once, on the view it landed on: every tapped source's
+ * features under the finger are found first, then each source's actions run,
+ * in the descriptor's order, as each source's own handler once ran them. One
+ * handler per source let the first source's camera jump — instant with
+ * reduced motion — move another source's feature under the finger before
+ * that source looked (ancient-janapadas: a tap on Samatata's area opened
+ * Banga's card).
+ */
+async function runTap(interaction, source, feature) {
+  const spec = sourceSpecs[source];
+  // Cluster tap is the shell's, not the descriptor's: expanding a cluster is
+  // what clustering means. The descriptor's interaction applies only to
+  // unclustered features.
+  if (spec.cluster && feature.properties.cluster) {
+    const zoom = await map.getSource(source).getClusterExpansionZoom(feature.properties.cluster_id);
+    map.easeTo({ center: feature.geometry.coordinates, zoom, duration: motion(700) });
+    return;
+  }
+  runActions(interaction.do, { table: spec.records, key: feature.properties.key, feature });
+}
+
+const taps = [];
 for (const interaction of interactions) {
   const source = targetSource(interaction.target);
   if (!source) throw new Error(`interaction target "${interaction.target}" is not a source`);
-  const spec = sourceSpecs[source];
 
-  if (!(shell.tapsOwned && interaction.on === 'click')) own.mapHandler(map, interaction.on, hitLayerId(source), async (event) => {
-    const feature = nearest(event.features, event.point, source);
-    if (!feature) return;
-
-    // Cluster tap is the shell's, not the descriptor's: expanding a cluster is
-    // what clustering means. The descriptor's interaction applies only to
-    // unclustered features.
-    if (spec.cluster && feature.properties.cluster) {
-      const zoom = await map.getSource(source).getClusterExpansionZoom(feature.properties.cluster_id);
-      map.easeTo({ center: feature.geometry.coordinates, zoom, duration: motion(700) });
-      return;
-    }
-    runActions(interaction.do, { table: spec.records, key: feature.properties.key, feature });
-  });
+  if (interaction.on === 'click') taps.push({ interaction, source });
+  else
+    own.mapHandler(map, interaction.on, hitLayerId(source), async (event) => {
+      const feature = nearest(event.features, event.point, source);
+      if (feature) runTap(interaction, source, feature);
+    });
 
   own.mapHandler(map, 'mouseenter', hitLayerId(source), () => {
     map.getCanvas().style.cursor = 'pointer';
@@ -1188,6 +1203,17 @@ for (const interaction of interactions) {
     map.getCanvas().style.cursor = '';
   });
 }
+
+if (taps.length && !shell.tapsOwned)
+  own.mapHandler(map, 'click', (event) => {
+    const hits = [];
+    for (const { interaction, source } of taps) {
+      if (!map.getLayer(hitLayerId(source))) continue;
+      const feature = nearest(map.queryRenderedFeatures(event.point, { layers: [hitLayerId(source)] }), event.point, source);
+      if (feature) hits.push({ interaction, source, feature });
+    }
+    for (const { interaction, source, feature } of hits) runTap(interaction, source, feature);
+  });
 
 /*
 |--------------------------------------------------------------------------
@@ -1362,122 +1388,36 @@ function nearestPhoto(x, y) {
 const lookups = descriptor.lookups ?? {};
 const lookupValue = (name, key, take) => lookups[name]?.[key]?.[take] ?? null;
 
-let order = []; // what ‹ › step through: the shown records, in author order
-let allOrder = [];
-const pickerGroups = new Map(); // group value -> optgroup, built once
-const pickerOptions = new Map(); // record key -> option, built once
 const picker = (descriptor.controls ?? []).find((c) => c.type === 'picker');
-if (picker) buildPicker(picker);
-
-/**
- * Put the shown records into the picker, in author order under their groups,
- * and drop a group left empty. Rebuilt from the elements made once, so a
- * filter change never re-creates an option.
- */
-function renderPicker() {
-  const table = records[picker.from] ?? {};
-  const group = picker.groupBy;
-  order = allOrder.filter((key) => onMap(picker.from, key));
-  // Everything but the placeholder comes off, then goes back filtered.
-  for (const child of [...dom.picker.children]) if (!(child.tagName === 'OPTION' && child.value === '')) child.remove();
-  for (const og of pickerGroups.values()) og.replaceChildren();
-  const loose = [];
-  for (const key of order) {
-    const og = group ? pickerGroups.get(table[key][group.field]) : null;
-    if (og) og.appendChild(pickerOptions.get(key));
-    else loose.push(pickerOptions.get(key));
-  }
-  for (const og of pickerGroups.values()) if (og.children.length) dom.picker.appendChild(og);
-  for (const option of loose) dom.picker.appendChild(option);
-  dom.picker.value = selection.get(picker.from) ?? '';
-  stackPickerRow();
-}
+const row = picker ? buildPicker(picker) : null;
 
 /*
- * The picker row keeps one form, [ ‹ ] [ name ] [ › ]. A name too wide for it
- * wraps the row — and a row that wraps goes fully stacked (the name on its
- * own row, the arrows sharing the next) rather than leaving one arrow alone.
+ * The picker row is shared with the diagram shell (../shared/picker.js): the
+ * shown records, in author order under their groups, ‹ › stepping through
+ * them, and the row stacking rather than wrapping. The map keeps the
+ * selection; the row reads it and runs the picker's actions on a choice.
  */
-function stackPickerRow() {
-  const header = dom.picker.parentElement;
-  header.classList.remove('stacked');
-  if (dom.prev.hidden) return;
-  // Wrapped means a whole row down, not the pixel a taller select sits apart.
-  const top = dom.prev.offsetTop;
-  const apart = (el) => Math.abs(el.offsetTop - top) > dom.prev.offsetHeight / 2;
-  if (apart(dom.picker) || apart(dom.next)) header.classList.add('stacked');
-}
-
 function buildPicker(control) {
   const table = records[control.from] ?? {};
-  allOrder = Object.keys(table); // author order, groups ignored
-  dom.picker.hidden = false;
   dom.picker.dataset.table = control.from;
-  if (control.labelEn) dom.picker.setAttribute('aria-label', control.labelEn);
-
-  if (control.placeholder) {
-    const option = document.createElement('option');
-    option.value = '';
-    option.disabled = true;
-    option.selected = true;
-    option.textContent = control.placeholder;
-    dom.picker.appendChild(option);
-  }
-
   const group = control.groupBy;
-  if (group) {
-    for (const value of group.order ?? []) {
-      const optgroup = document.createElement('optgroup');
-      optgroup.label = lookupValue(group.lookup, value, group.take) ?? value;
-      optgroup.dataset.value = value;
-      pickerGroups.set(value, optgroup);
-    }
-  }
-
   // `labelField` names one field; `label` takes the same field/lookup/compose
   // spec the sheet uses, so a map whose names are still being approved can
   // fall back to another field instead of listing blank rows.
   const labelSpec = control.label ?? { field: control.labelField };
-  for (const key of allOrder) {
-    const option = document.createElement('option');
-    option.value = key;
-    option.textContent = valueOf(labelSpec, table[key]) ?? '';
-    pickerOptions.set(key, option);
-  }
-  renderPicker();
-
-  own.domHandler(dom.picker, 'change', (event) => {
-    const key = event.target.value;
-    if (key) runActions(control.do, { table: control.from, key });
+  return pickerRow({
+    select: dom.picker,
+    prev: dom.prev,
+    next: dom.next,
+    placeholder: control.placeholder,
+    label: control.labelEn,
+    groups: group ? (group.order ?? []).map((value) => ({ value, label: lookupValue(group.lookup, value, group.take) ?? value })) : [],
+    items: Object.keys(table).map((key) => ({ key, label: valueOf(labelSpec, table[key]) ?? '', group: group ? table[key][group.field] : undefined })),
+    shown: () => Object.keys(table).filter((key) => onMap(control.from, key)),
+    current: () => selection.get(control.from),
+    choose: (key) => runActions(control.do, { table: control.from, key }),
+    listen: (element, type, handler) => own.domHandler(element, type, handler),
   });
-
-  // Previous/next: the full list in author order, ignoring the groups, and
-  // stopping at the ends. A disabled button is the only position feedback
-  // there is, so wrapping silently would just look like a jump.
-  dom.prev.hidden = false;
-  dom.next.hidden = false;
-  const step = (delta) => {
-    const current = selection.get(control.from);
-    const index = current === undefined ? -1 : order.indexOf(current);
-    const next = index + delta;
-    if (next < 0 || next >= order.length) return;
-    runActions(control.do, { table: control.from, key: order[next] });
-  };
-  own.domHandler(dom.prev, 'click', () => step(-1));
-  own.domHandler(dom.next, 'click', () => step(1));
-  syncStepButtons();
-  // Measured once the arrows show, and again once the Bengali font has
-  // arrived, since the font sets how wide a name is.
-  stackPickerRow();
-  document.fonts?.ready.then(() => stackPickerRow());
-}
-
-function syncStepButtons() {
-  if (!picker) return;
-  const current = selection.get(picker.from);
-  const index = current === undefined ? -1 : order.indexOf(current);
-  dom.prev.disabled = index <= 0;
-  dom.next.disabled = index >= order.length - 1;
 }
 
 const toggle = (descriptor.controls ?? []).find((c) => c.type === 'layerToggle');
@@ -1600,8 +1540,8 @@ function applyFilter() {
   reachable = null;
   for (const [table, key] of [...selection]) if (!onMap(table, key)) selection.delete(table);
   for (const [name, spec] of Object.entries(sourceSpecs)) rederive(name, spec);
-  if (picker) renderPicker();
-  syncStepButtons();
+  row?.render();
+  row?.sync();
   const [current] = [...selection];
   if (!current) {
     marker?.instance.remove();
@@ -2149,7 +2089,7 @@ own.mapHandler(map, 'error', (event) => {
 
 own.domHandler(window, 'resize', () => {
   map.resize();
-  if (picker) stackPickerRow();
+  row?.stack();
 });
 
 if (hasSheet) setSheetOpen(false);

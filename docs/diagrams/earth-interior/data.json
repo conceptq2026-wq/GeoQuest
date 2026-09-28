@@ -1,0 +1,78 @@
+{
+  "_about": "Built by tools/build-diagram-earth-interior.mjs from data-sources/earth-interior/earth-interior.seed.json; do not edit.",
+  "layers": [
+    {
+      "id": "continental-crust",
+      "nameBn": "মহাদেশীয় ভূত্বক",
+      "rows": {
+        "constituentsBn": "সিলিকন (Si) ও অ্যালুমিনিয়াম (Al)",
+        "thicknessBn": "গড়ে ৩৫ কিমি পুরু",
+        "stateBn": "কঠিন",
+        "temperatureBn": "গভীরতায় প্রতি কিমিতে ৩০° সে. হারে বাড়ে",
+        "termBn": "সিয়াল (Sial)"
+      }
+    },
+    {
+      "id": "oceanic-crust",
+      "nameBn": "সমুদ্র তলদেশীয় ভূত্বক",
+      "rows": {
+        "constituentsBn": "সিলিকন (Si) ও ম্যাগনেসিয়াম (Mg); ব্যাসল্ট শিলা",
+        "thicknessBn": "গড়ে মাত্র ৫ কিমি পুরু",
+        "stateBn": "কঠিন",
+        "temperatureBn": "গভীরতায় প্রতি কিমিতে ৩০° সে. হারে বাড়ে",
+        "termBn": "সিমা (Sima)"
+      }
+    },
+    {
+      "id": "upper-mantle",
+      "nameBn": "ঊর্ধ্ব গুরুমণ্ডল",
+      "rows": {
+        "constituentsBn": "লোহা ও ম্যাগনেসিয়াম সমৃদ্ধ সিলিকেট খনিজ",
+        "thicknessBn": "৭০০ কিমি গভীরতা পর্যন্ত",
+        "stateBn": "আধা-কঠিন"
+      }
+    },
+    {
+      "id": "lower-mantle",
+      "nameBn": "নিম্ন গুরুমণ্ডল",
+      "rows": {
+        "constituentsBn": "আয়রন অক্সাইড, ম্যাগনেসিয়াম অক্সাইড ও সিলিকন ডাইঅক্সাইড সমৃদ্ধ খনিজ",
+        "thicknessBn": "৭০০ থেকে ২,৮৮৫ কিমি গভীরতা",
+        "stateBn": "আধা-কঠিন"
+      }
+    },
+    {
+      "id": "outer-core",
+      "nameBn": "বহিঃকেন্দ্র",
+      "rows": {
+        "constituentsBn": "প্রধানত নিকেল ও লোহা",
+        "thicknessBn": "প্রায় ২,২৭০ কিমি পুরু",
+        "stateBn": "তরল",
+        "termBn": "নিফে (Nife)"
+      }
+    },
+    {
+      "id": "inner-core",
+      "nameBn": "অন্তঃকেন্দ্র",
+      "rows": {
+        "constituentsBn": "প্রধানত নিকেল ও লোহা",
+        "thicknessBn": "১,২১৬ কিমি পুরু",
+        "stateBn": "কঠিন",
+        "termBn": "নিফে (Nife)"
+      }
+    }
+  ],
+  "credits": [
+    {
+      "title": "ভূগোল ও পরিবেশ, নবম ও দশম শ্রেণি (Bangla version, 2026 edition, «২০২৬ শিক্ষাবর্ষের জন্য পরিমার্জিত»), p. ৪৮",
+      "by": "National Curriculum and Textbook Board (NCTB)",
+      "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
+      "lang": "bn"
+    },
+    {
+      "title": "Inside the Earth (This Dynamic Earth)",
+      "by": "U.S. Geological Survey (public domain; page last modified 2025-07-11; read 2026-09-28)",
+      "url": "https://pubs.usgs.gov/gip/dynamic/inside.html"
+    }
+  ]
+}

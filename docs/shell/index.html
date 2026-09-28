@@ -14,6 +14,9 @@
     <link rel="icon" href="data:," />
 
     <link rel="stylesheet" href="../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.css" />
+    <!-- The picker row's look, shared with the diagram shell; before the
+         shell's own stylesheet, as its rules stood in it. -->
+    <link rel="stylesheet" href="../shared/picker.css" />
     <link rel="stylesheet" href="./style.css" />
     <link rel="preload" href="../shared/fonts/noto-sans-bengali/NotoSansBengali-Regular.woff2" as="font" type="font/woff2" crossorigin />
   </head>
@@ -23,7 +26,7 @@
       <!-- No visible heading: the app's viewer shows the map's title above
            this page. The heading stays for screen readers, filled from the
            descriptor. -->
-      <header class="page-header">
+      <header class="page-header picker-row">
         <h1 id="pageTitle" class="visually-hidden" lang="bn"></h1>
 
         <!-- Chrome the shell always owns. Each part hides itself when the

@@ -42,6 +42,7 @@ const dom = {
 */
 const VIEW_MODULES = {
   exploded: () => import('./exploded.js'),
+  cutaway: () => import('./cutaway.js'),
 };
 
 const diagramId = new URLSearchParams(location.search).get('v');

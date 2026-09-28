@@ -38,80 +38,10 @@ body {
   margin-bottom: 12px;
 }
 
-/*
- * The dropdown never shrinks below its own width (flex-shrink: 0), so a
- * Bengali name is never cut off: it takes the width it needs, and wraps to its
- * own row rather than truncating.
- */
-.record-picker {
-  flex: 1 0 auto;
-  min-width: 220px;
-  min-height: 44px;
-  padding: 12px 36px 12px 14px;
-
-  border: 1px solid #c9d6e3;
-  border-radius: 12px;
-
-  background-color: #ffffff;
-  color: #13233a;
-
-  /* local, inline SVG chevron — no external icon request */
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%2313233a' fill-opacity='0.6' d='M5.5 7.5l4.5 4.5 4.5-4.5z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  appearance: none;
-  -webkit-appearance: none;
-
-  font-family: 'Noto Sans Bengali', Inter, system-ui, sans-serif;
-  font-size: 15px;
-  font-weight: 600;
-
-  cursor: pointer;
-}
-
-.record-picker:focus-visible,
+/* The picker row's own look is shared, in ../shared/picker.css. */
 .sheet-handle:focus-visible {
   outline: 2px solid #0b5cad;
   outline-offset: 2px;
-}
-
-/*
- * Previous / next. Fixed width and never flexible beside the dropdown, so they
- * can never take width away from a Bengali name. On narrow phones they move to
- * their own row (see the 379px block) and share it evenly.
- */
-.step-btn {
-  flex: 0 0 auto;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 44px;
-  min-height: 44px;
-  padding: 0;
-
-  border: 1px solid #c9d6e3;
-  border-radius: 12px;
-  background: #ffffff;
-  color: #13233a;
-
-  font-size: 22px;
-  line-height: 1;
-  cursor: pointer;
-}
-
-.step-btn:active:not(:disabled) {
-  background: #f2f6fa;
-}
-
-.step-btn:focus-visible {
-  outline: 2px solid #0b5cad;
-  outline-offset: 2px;
-}
-
-/* The only "you are at the end" signal there is, so it has to read as off. */
-.step-btn:disabled {
-  opacity: 0.38;
-  cursor: default;
 }
 
 /* Present for screen readers, takes no space (the app's viewer shows the title). */
@@ -741,37 +671,3 @@ body {
   }
 }
 
-/*
- * Narrow phones: the dropdown takes the full row and the two step buttons drop
- * to their own row beneath it, sharing the width. Stacking, never truncating —
- * the name is the exam content, so the dropdown keeps its full width and the
- * arrows move rather than squeezing it.
- *
- * `order` puts the dropdown first even though the ‹ button precedes it in the
- * markup, which is the order a screen reader and the tab sequence want.
- */
-@media (max-width: 379px) {
-  .record-picker {
-    order: -1;
-    flex-basis: 100%;
-  }
-
-  .step-btn {
-    flex: 1 1 auto;
-  }
-}
-
-/*
- * The same stacked form on any width where the row would otherwise break
- * unevenly — a map whose longest name is too wide for [ ‹ ] [ name ] [ › ]
- * on one row. The shell sets `stacked` when it sees the row wrap; the name is
- * still never truncated.
- */
-.page-header.stacked .record-picker {
-  order: -1;
-  flex-basis: 100%;
-}
-
-.page-header.stacked .step-btn {
-  flex: 1 1 auto;
-}

@@ -21,6 +21,8 @@
 //                       tools/sources.json and the geometry pins
 //   atmosphere-layers (a diagram)  checked against data-sources/atmosphere-layers/
 //                                  atmosphere.seed.json and the approved art
+//   earth-interior (a diagram)  checked against data-sources/earth-interior/
+//                               earth-interior.seed.json and the approved master
 //
 // A map under docs/maps/ or a diagram under docs/diagrams/ with no section
 // here fails, by its id: a new one is written into this file with its own
@@ -77,6 +79,8 @@ const DIAGRAMS_DIR = path.join(ROOT, 'docs/diagrams');
 const VISUAL_DIR = path.join(ROOT, 'docs/visual');
 // The atmosphere-layers diagram: the editor's seed and the approved art.
 const ATMOSPHERE_SEEDS = path.join(ROOT, 'data-sources/atmosphere-layers');
+// The earth-interior diagram: the editor's seed and the approved master.
+const EARTH_SEEDS = path.join(ROOT, 'data-sources/earth-interior');
 // The latitude-longitude globe: the editor's seed, the pinned sources (its
 // imagery's credit among them) and the geometry pins.
 const LATLON_SEED = path.join(ROOT, 'data-sources/latitude-longitude/latitude-longitude.seed.json');
@@ -1575,6 +1579,94 @@ console.log('\n\n============ atmosphere-layers (diagram) ============');
   if (pending.length !== expectedPending) fail(`pending count is ${pending.length}, expected ${expectedPending} — reporting, not adjusting the expectation`);
   else ok(`pending count is ${pending.length}, as expected`);
 }
+
+console.log('\n\n============ earth-interior (diagram) ============');
+{
+  const id = 'earth-interior';
+  CHECKED_DIAGRAMS.add(id);
+  const dir = path.join(DIAGRAMS_DIR, id);
+  const seed = readJson(path.join(EARTH_SEEDS, 'earth-interior.seed.json'));
+  const descriptor = readJson(path.join(dir, 'descriptor.json'));
+  const data = readJson(path.join(dir, descriptor.data));
+  const view = descriptor.views.find((v) => v.type === 'cutaway');
+  const manifest = view ? readJson(path.join(dir, view.art)) : { layers: [], circles: {}, edges: {}, view: { files: {} } };
+  const layers = Object.values(seed.layers).sort((a, b) => a.order - b.order);
+  const ui = seed.ui;
+
+  // ---- the descriptor ---------------------------------------------------------
+  console.log('\n---- descriptor ----');
+  check(descriptor.id === id && descriptor.language === 'bn' && descriptor.section === 'misc', `descriptor: id ${descriptor.id}, language ${descriptor.language}, section ${descriptor.section}`);
+  check(descriptor.title?.bn === seed.titleBn && descriptor.title?.en === seed.titleEn, `title is the seed's: «${descriptor.title?.bn}» / ${descriptor.title?.en}`);
+  const modules = [...(fs.readFileSync(path.join(VISUAL_DIR, 'app.js'), 'utf8').match(/const VIEW_MODULES = \{([^}]*)\}/)?.[1] ?? '').matchAll(/^\s*'?([\w-]+)'?\s*:/gm)].map((m) => m[1]);
+  check(descriptor.views.length === 1 && Boolean(view) && modules.includes('cutaway'), `one view, of type cutaway, which docs/visual/app.js has a module for (${descriptor.views.map((v) => v.type).join(', ')})`);
+  check(descriptor.words?.picker === ui.pickerPlaceholderBn, `the picker's placeholder is the seed's: «${descriptor.words?.picker}»`);
+  check(descriptor.words?.scale === ui.scaleNoteBn, `the scale note is the seed's: «${descriptor.words?.scale}»`);
+  const rowsWanted = ui.rowOrder.map((key) => ({ key, label: ui.rowLabelsBn[key] }));
+  check(JSON.stringify(descriptor.words?.rows) === JSON.stringify(rowsWanted), `the card's rows are ui.rowOrder, labelled by ui.rowLabelsBn (${rowsWanted.map((r) => r.label).join(', ')})`);
+  // The words the view's code reads are exactly the descriptor's.
+  const asked = new Set([...fs.readFileSync(path.join(VISUAL_DIR, 'cutaway.js'), 'utf8').matchAll(/\bwords\??\.(\w+)/g)].map((m) => m[1]));
+  const given = new Set(Object.keys(descriptor.words ?? {}));
+  check([...asked].every((w) => given.has(w)) && [...given].every((w) => asked.has(w)), `the descriptor's words are exactly those cutaway.js reads (${[...asked].sort().join(', ')})`);
+
+  // ---- the data ---------------------------------------------------------------
+  console.log('\n---- data.json against earth-interior.seed.json ----');
+  check(JSON.stringify(data.layers.map((l) => l.id)) === JSON.stringify(layers.map((l) => l.id)), `the ${layers.length} layers, in the seed's order: ${data.layers.map((l) => l.id).join(', ')}`);
+  for (const l of layers) {
+    const got = data.layers.find((d) => d.id === l.id);
+    // A row missing from a layer's rows is not shown: it is not shipped either.
+    const want = Object.fromEntries(ui.rowOrder.filter((k) => l.rows[k] !== undefined).map((k) => [k, l.rows[k]]));
+    const same = Boolean(got) && got.nameBn === l.nameBn && JSON.stringify(got.rows) === JSON.stringify(want) && Object.keys(got).sort().join() === 'id,nameBn,rows';
+    check(same, `${l.id}: «${l.nameBn}», rows ${Object.keys(want).join(', ') || '(none)'} as the seed has them, nothing else shipped`);
+    for (const k of Object.keys(l.rows)) check(ui.rowOrder.includes(k), `${l.id}: its row ${k} is one ui.rowOrder places`);
+  }
+  // Every Bengali string shown is the seed's; the NCTB credit is its title and page.
+  const seedStrings = new Set();
+  const gather = (v, into) => (typeof v === 'string' ? into.push(v) : v && typeof v === 'object' ? Object.values(v).forEach((x) => gather(x, into)) : null);
+  const fromSeed = [];
+  gather(seed, fromSeed);
+  for (const v of fromSeed) seedStrings.add(v);
+  const shown = [];
+  gather(descriptor, shown);
+  gather(data, shown);
+  const nctb = seed.sources.nctb;
+  const usgs = seed.sources.usgs;
+  const nctbCredit = `${nctb.title}, p. ${nctb.page}`;
+  const foreign = shown.filter((v) => /[ঀ-৿]/.test(v) && !seedStrings.has(v) && v !== nctbCredit);
+  check(foreign.length === 0, `every Bengali string shown is the seed's${foreign.length ? `, not: ${foreign.join(' | ')}` : ''}`);
+  const wantCredits = [
+    { title: nctbCredit, by: nctb.publisher, url: nctb.url, lang: 'bn' },
+    { title: usgs.title, by: usgs.publisher, url: usgs.url },
+  ];
+  check(JSON.stringify(data.credits ?? []) === JSON.stringify(wantCredits), `ⓘ lists the NCTB book (p. ${nctb.page}) and USGS, and nothing for the art (${(data.credits ?? []).map((c) => c.by).join('; ')})`);
+
+  // ---- the art and its geometry -----------------------------------------------
+  console.log('\n---- the art and its geometry ----');
+  const pin = seed.art.files['earth-master.png'];
+  const master = fs.readFileSync(path.join(EARTH_SEEDS, 'art', 'earth-master.png'));
+  check(crypto.createHash('sha256').update(master).digest('hex') === pin.sha256, `the committed master is the one the seed pins (${pin.sha256.slice(0, 12)}…)`);
+  const caps = { '1x': 40 * 1024, '2x': 112 * 1024 };
+  for (const [k, f] of Object.entries(manifest.view.files)) {
+    const file = path.join(dir, f);
+    const bytes = fs.existsSync(file) ? fs.statSync(file).size : -1;
+    check(bytes > 0 && bytes <= caps[k], `${f}: ${bytes} bytes, cap ${caps[k]}`);
+  }
+  const shape = manifest.layers;
+  check(JSON.stringify(shape.map((l) => l.id)) === JSON.stringify(layers.map((l) => l.id)), "the manifest has a sector for each layer, in the seed's order");
+  const inside = (p, c) => Math.hypot(p[0] - c.cx, p[1] - c.cy) < c.r;
+  const { left, bottom, split } = manifest.edges;
+  check(bottom < split && split < left, `the cut's edges at ${bottom}° and ${left}°, the crusts split at ${split}°`);
+  for (const l of shape) {
+    const face = seed.layers[l.id].face;
+    const stretch = face === 'top' ? [split, left] : face === 'right' ? [bottom, split] : [bottom, left];
+    const outer = manifest.circles[l.outer];
+    const inner = l.inner ? manifest.circles[l.inner] : null;
+    check(Boolean(outer) && l.outer === l.id && (l.inner === null) === (l.id === 'inner-core'), `${l.id}: its own outer circle${inner ? `, outside ${l.inner}'s` : ', nothing inside it'}`);
+    check(l.from === stretch[0] && l.to === stretch[1], `${l.id}: ${l.from}° to ${l.to}°, ${face ? `the ${face} face` : 'the whole cut'}`);
+    check(Boolean(outer) && inside(l.anchor, outer) && (!inner || !inside(l.anchor, inner)), `${l.id}: its leader's anchor (${l.anchor.join(', ')}) lies in its band`);
+  }
+  for (let k = 1; k < shape.length; k++) check(shape[k].anchor[1] > shape[k - 1].anchor[1], `${shape[k].id}'s anchor lies below ${shape[k - 1].id}'s, so the leaders do not cross`);
+}
+
 
 /*
 |--------------------------------------------------------------------------

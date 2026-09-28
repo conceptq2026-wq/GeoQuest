@@ -42,6 +42,11 @@ rules and verification budget apply.
   label as it stands, and `order` must name every value that occurs.
 - A tap on overlapping points goes to the one **nearest the finger**, not the
   first the renderer lists.
+- **A tap is resolved once, on the view it landed on** (2026-09-28): every
+  tapped source's features under the finger are found first, then each
+  source's actions run in the descriptor's order. One handler per source let
+  the first source's instant camera jump, under reduced motion, put another
+  source's feature under the finger (ancient-janapadas: Samatata opened Banga).
 - **`recordFilter` hides records by a field value.** A control
   `{ "type": "recordFilter", "id": ..., "records": T, "field": F, "label": ...,
   "allLabel": ... }` draws the layerToggle's button and checkbox menu: a

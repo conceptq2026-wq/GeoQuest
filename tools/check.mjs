@@ -11,7 +11,8 @@
 // Edge with reduced motion: opens the home page and checks the item's card
 // is in its section; opens the item from that card; steps through every
 // picker item (‹ › and the dropdown's options) or every timeline dot, or a
-// diagram's every slab, and checks each card opens; taps every record drawn
+// diagram's every slab, or its picker items and tap zones (a thin zone's
+// depth checked against 44 px), and checks each card opens; taps every record drawn
 // on the map at a point where it alone is under the finger, and checks a card
 // opens; and reports console messages and any request to a host but ours.
 // Screenshots go to tools/.check/<id>/ as contact sheets, never to stdout. A
@@ -226,7 +227,7 @@ const SETTLED = `(() => {
   const visual = location.pathname.endsWith('/visual/index.html');
   const notice = document.getElementById('loadNotice');
   if (notice && (visual ? !notice.hidden : notice.classList.contains('visible'))) return 'load-notice';
-  if (visual) return !!document.querySelector('.layer-name') && !document.querySelector('.loading');
+  if (visual) return !!document.querySelector('.layer-name, .layer-label') && !document.querySelector('.loading');
   const m = window.__shell && window.__shell.map;
   return !!(m && m.loaded() && !m.isMoving() && m.areTilesLoaded());
 })()`;
@@ -530,7 +531,13 @@ async function useItem(browser, size, entry, base, origin, dir) {
   const placeholder = !opened && (await page.evaluate(`!!document.querySelector('p.wip')`));
   if (placeholder) summary.push('the «কাজ চলছে» page, nothing built yet');
   else if (!opened) {
-    if (entry.kind === 'diagram') await slabs(page, shoot, summary, fail);
+    if (entry.kind === 'diagram') {
+      const picker = await page.evaluate(`(() => { const p = document.getElementById('recordPicker'); return !!p && !p.hidden; })()`);
+      if (picker) {
+        await pickerSteps(page, shoot, summary, fail);
+        await zoneTaps(page, shoot, summary, fail);
+      } else await slabs(page, shoot, summary, fail);
+    }
     else {
       const sources = await page.evaluate(`(${tapFinder})()`);
       const camera = await page.evaluate(CAMERA);
@@ -635,6 +642,51 @@ async function slabs(page, shoot, summary, fail) {
     else fail(`slab ${name.text}: card ${card.open ? `«${card.title}»` : 'closed'}, after × ${after.open ? 'open' : 'closed'}`);
   }
   summary.push(`slabs ${good}/${count} cards`);
+}
+
+/**
+ * A diagram's tap zones (`.zone[data-key]`): each tapped at a point where it
+ * alone takes the tap, the card closed first; its card must open, titled as
+ * its name, with the picker on it. A zone's `data-depth` is how deep it is
+ * where its band is thinnest, in CSS px.
+ */
+async function zoneTaps(page, shoot, summary, fail) {
+  const keys = await page.evaluate(`[...document.querySelectorAll('.zone[data-key]')].map((z) => z.dataset.key)`);
+  let good = 0;
+  const depths = [];
+  for (const key of keys) {
+    const close = await page.evaluate(box('.card-close'));
+    if (close) {
+      await page.click(...close);
+      await waitCard(page);
+    }
+    const hit = await page.evaluate(`(() => {
+      const z = document.querySelector('.zone[data-key="${key}"]');
+      const r = z.getBoundingClientRect();
+      const hits = [];
+      for (let y = r.top + 2; y < r.bottom; y += 5) for (let x = r.left + 2; x < r.right; x += 5) if (document.elementFromPoint(x, y) === z) hits.push([x, y]);
+      if (!hits.length) return null;
+      const mx = hits.reduce((s, p) => s + p[0], 0) / hits.length;
+      const my = hits.reduce((s, p) => s + p[1], 0) / hits.length;
+      hits.sort((a, b) => Math.hypot(a[0] - mx, a[1] - my) - Math.hypot(b[0] - mx, b[1] - my));
+      return { at: hits[0], depth: Number(z.dataset.depth), name: document.querySelector('.layer-label[data-key="${key}"]')?.textContent.trim() };
+    })()`);
+    if (!hit) {
+      fail(`zone ${key}: no point where it takes the tap`);
+      continue;
+    }
+    depths.push([key, hit.depth]);
+    await page.click(...hit.at);
+    const card = await waitCard(page);
+    const value = await page.evaluate(`document.getElementById('recordPicker').value`);
+    if (card.open && card.title === hit.name && value === key) good++;
+    else fail(`zone ${key}: card ${card.open ? `«${card.title}»` : 'closed'}, picker ${value || '(placeholder)'}`);
+    await shoot('taps', `${hit.name}`, hit.at);
+  }
+  const shallow = depths.filter(([, d]) => d < 44);
+  const outer = depths.filter(([k]) => /crust/.test(k));
+  summary.push(`taps ${good}/${keys.length} cards; crust zones ${outer.map(([, d]) => d).join(' and ')} px deep`);
+  for (const [k, d] of shallow.filter(([k]) => /crust/.test(k))) fail(`zone ${k}: ${d} px deep, under 44`);
 }
 
 /** Every record drawn by a tapped source: brought into view, tapped where it alone is, a card. */

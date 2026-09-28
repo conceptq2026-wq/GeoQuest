@@ -1,8 +1,11 @@
 # earth-interior
 
 A diagram in বিবিধ (misc), «পৃথিবীর অভ্যন্তরীণ গঠন» / "Earth's Interior".
-It is work in progress (`tools/wip.json`). Step 1 is done (2026-09-28): its
-card, its two inputs and the sources. Nothing is built, and there is no seed.
+It is work in progress (`tools/wip.json`) until the user checks it locally.
+Step 1 (2026-09-28): its card, its two inputs and the sources. Step 2 (the
+same day): the seed, `data-sources/earth-interior/earth-interior.seed.json`
+(the editor's, approved; the build reads it and never writes it), and the
+diagram, built into `docs/diagrams/earth-interior/`.
 
 ## Inputs, approved by the user
 
@@ -39,7 +42,44 @@ fetched only on purpose.
   - It gives no density figures.
   - It never uses the term «নিফে».
 
-## Measured on the master (for the build, not final)
+## How it is built
+
+- **`tools/build-diagram-earth-interior-art.mjs`** refuses the master unless
+  both its SHA-256 and its decoded pixels' SHA-256 are the seed's pins
+  (`art.files`). It cuts the master out of its white background with the
+  atmosphere art's soft key (`tools/lib/diagram-art.mjs`, shared), trims it to
+  the globe, and writes `earth@1x.webp` (334×346, 27 KB) and `earth@2x.webp`
+  (80 KB), capped at 40 KB and 112 KB, into the untracked staging folder
+  `data-sources/earth-interior/build/`.
+- **`tools/build-diagram-earth-interior.mjs [out]`** (`--measure` prints and
+  writes nothing) measures the geometry on the master and writes
+  `descriptor.json`, `data.json` and `manifest.json`, and copies the art, into
+  `docs/diagrams/earth-interior/` (or `out`, as `tools/preview.mjs` gives it).
+  A second build writes the same bytes.
+  - The cut's two straight edges are lines fitted to where the cut meets the
+    globe's surface (left) and where the face meets the lower cut face's thin
+    sliver (bottom), within 4.8 px. Their corner is (555.6, 692.3), the left
+    edge at 89.9°, the bottom at −9.12°.
+  - Each band boundary is its own circle, fitted to where the colour changes
+    along rays from the corner (the inner core's edge, a disc fading into a
+    glow, where the green falls fastest), within 1.2 px RMS. A ray that grazes
+    a cut edge's sliver is left out.
+  - The two crusts share the outer band, split at 58.4°, where the painting's
+    brown slab gives way to its grey band. Each layer is an annular sector
+    between its two circles; its leader's anchor is its radial middle — on the
+    cut's bisector for the four inner layers — and the anchors run down the
+    picture in the layers' order, which the build and the validator hold.
+- **The view**, `docs/visual/cutaway.js` and `cutaway.css`, is loaded only for
+  a view of type `cutaway`. A tap on a layer lights its sector with a white
+  outline and a soft glow; the outermost layers' (the crusts') tap zones grow
+  outward until they are 44 CSS px deep. Names and leaders are placed by code;
+  the card docks under the picture in two columns, in `ui.rowOrder`; the
+  picker row is the map shell's (`docs/shared/picker.js`), at the foot as in
+  the mockup. The × has the English accessible name "Close": the seed has no
+  Bengali word for it.
+- **ⓘ** lists the NCTB book, p. ৪৮, and USGS. Nothing is credited for the art.
+
+## Measured on the master in step 1 (superseded by the build's numbers above)
 
 - **The bands are not concentric.** The boundary between the lower mantle and
   the outer core is a circle within 0.4 px, centred at (626, 634) with r 221.

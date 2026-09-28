@@ -1,0 +1,43 @@
+{
+  "id": "earth-interior",
+  "section": "misc",
+  "language": "bn",
+  "title": {
+    "en": "Earth's Interior",
+    "bn": "পৃথিবীর অভ্যন্তরীণ গঠন"
+  },
+  "data": "data.json",
+  "views": [
+    {
+      "id": "cutaway",
+      "type": "cutaway",
+      "art": "manifest.json"
+    }
+  ],
+  "words": {
+    "picker": "একটি স্তর বেছে নিন…",
+    "scale": "স্কেল অনুযায়ী নয়",
+    "rows": [
+      {
+        "key": "constituentsBn",
+        "label": "মূল উপাদান"
+      },
+      {
+        "key": "thicknessBn",
+        "label": "পুরুত্ব"
+      },
+      {
+        "key": "stateBn",
+        "label": "অবস্থা"
+      },
+      {
+        "key": "temperatureBn",
+        "label": "তাপমাত্রা"
+      },
+      {
+        "key": "termBn",
+        "label": "বইয়ের পরিভাষা"
+      }
+    ]
+  }
+}

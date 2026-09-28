@@ -1,0 +1,357 @@
+{
+  "_about": "Earth's interior — a diagram in বিবিধ. Written by the editor (Claude) on 2026-09-28 from the draft পৃথিবীর_অভ্যন্তর_খসড়া.xlsx as approved by the user the same day. User decisions: take the BOOK's values and names (NCTB «ভূগোল ও পরিবেশ» 9–10, 2026, p. ৪৮); temperature only for the two crusts (the book's 30 °C per km), none for the other layers; «নিফে» for both core layers (user-given; the book does not use it); mantle state «আধা-কঠিন» from USGS; the lower mantle's depth derived from the book's two figures; spelling «ঊর্ধ্ব» (the book prints «উর্ধ্ব»); the card label «পুরুত্ব». A row absent from a layer's `rows` is not shown on its card. The book is copyrighted: `states` holds its exact terms and figures, not whole sentences. The user may update any value later; apply it as given.",
+  "titleBn": "পৃথিবীর অভ্যন্তরীণ গঠন",
+  "titleEn": "Earth's Interior",
+  "ui": {
+    "rowLabelsBn": {
+      "constituentsBn": "মূল উপাদান",
+      "thicknessBn": "পুরুত্ব",
+      "stateBn": "অবস্থা",
+      "temperatureBn": "তাপমাত্রা",
+      "termBn": "বইয়ের পরিভাষা"
+    },
+    "rowOrder": [
+      "constituentsBn",
+      "thicknessBn",
+      "stateBn",
+      "temperatureBn",
+      "termBn"
+    ],
+    "pickerPlaceholderBn": "একটি স্তর বেছে নিন…",
+    "scaleNoteBn": "স্কেল অনুযায়ী নয়"
+  },
+  "sources": {
+    "nctb": {
+      "title": "ভূগোল ও পরিবেশ, নবম ও দশম শ্রেণি (Bangla version, 2026 edition, «২০২৬ শিক্ষাবর্ষের জন্য পরিমার্জিত»)",
+      "publisher": "National Curriculum and Textbook Board (NCTB)",
+      "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
+      "file": {
+        "url": "https://drive.egovcloud.gov.bd/index.php/s/4KF6LH72lUYwYBB/download",
+        "bytes": 68511711,
+        "sha256": "54143857fe880659c23f35469eb512d410ff8b8ee5fe75c4700cb28b33c8f79a"
+      },
+      "page": "৪৮"
+    },
+    "usgs": {
+      "title": "Inside the Earth (This Dynamic Earth)",
+      "publisher": "U.S. Geological Survey (public domain; page last modified 2025-07-11; read 2026-09-28)",
+      "url": "https://pubs.usgs.gov/gip/dynamic/inside.html",
+      "sha256": "e7b9c53aa0409ba3abf34cd573ddc1cddcd4126fe16d619387bd0b0716696f00"
+    },
+    "user": {
+      "title": "The user's decision",
+      "date": "2026-09-28"
+    }
+  },
+  "layers": {
+    "continental-crust": {
+      "id": "continental-crust",
+      "order": 1,
+      "nameBn": "মহাদেশীয় ভূত্বক",
+      "nameEn": "Continental crust",
+      "face": "top",
+      "rows": {
+        "constituentsBn": "সিলিকন (Si) ও অ্যালুমিনিয়াম (Al)",
+        "thicknessBn": "গড়ে ৩৫ কিমি পুরু",
+        "stateBn": "কঠিন",
+        "temperatureBn": "গভীরতায় প্রতি কিমিতে ৩০° সে. হারে বাড়ে",
+        "termBn": "সিয়াল (Sial)"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "nctb",
+            "where": "চিত্র ৪.১",
+            "states": "«মহাদেশীয় ভূত্বক»"
+          }
+        ],
+        "constituentsBn": [
+          {
+            "source": "nctb",
+            "where": "text",
+            "states": "সিয়াল: «সিলিকন (Si)» ও «অ্যালুমিনিয়াম (Al)»"
+          }
+        ],
+        "thicknessBn": [
+          {
+            "source": "nctb",
+            "where": "text",
+            "states": "মহাদেশের নিচে «গড়ে ৩৫ কিলোমিটার»; চিত্রে «৩০–৪০ কি. মি.»"
+          }
+        ],
+        "stateBn": [
+          {
+            "source": "nctb",
+            "where": "text",
+            "states": "পুরো ভূত্বক: শিলার «কঠিন বহিরাবরণ»"
+          }
+        ],
+        "temperatureBn": [
+          {
+            "source": "nctb",
+            "where": "text",
+            "states": "পুরো ভূত্বক: নিচের দিকে «প্রতি কিলোমিটারে ৩০° সেলসিয়াস»"
+          }
+        ],
+        "termBn": [
+          {
+            "source": "nctb",
+            "where": "text",
+            "states": "«সিয়াল (Sial) স্তর»"
+          }
+        ]
+      }
+    },
+    "oceanic-crust": {
+      "id": "oceanic-crust",
+      "order": 2,
+      "nameBn": "সমুদ্র তলদেশীয় ভূত্বক",
+      "nameEn": "Oceanic crust",
+      "face": "right",
+      "rows": {
+        "constituentsBn": "সিলিকন (Si) ও ম্যাগনেসিয়াম (Mg); ব্যাসল্ট শিলা",
+        "thicknessBn": "গড়ে মাত্র ৫ কিমি পুরু",
+        "stateBn": "কঠিন",
+        "temperatureBn": "গভীরতায় প্রতি কিমিতে ৩০° সে. হারে বাড়ে",
+        "termBn": "সিমা (Sima)"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "nctb",
+            "where": "চিত্র ৪.১",
+            "states": "«সমুদ্র তলদেশীয় ভূত্বক»"
+          }
+        ],
+        "constituentsBn": [
+          {
+            "source": "nctb",
+            "where": "text",
+            "states": "সিমা: «সিলিকন (Si)» ও «ম্যাগনেসিয়াম (Mg)»; «ব্যাসল্ট স্তর»"
+          }
+        ],
+        "thicknessBn": [
+          {
+            "source": "nctb",
+            "where": "text",
+            "states": "সমুদ্রতলের নিচে «গড়ে মাত্র ৫ কিলোমিটার»; চিত্রে «৫ কি. মি.»"
+          }
+        ],
+        "stateBn": [
+          {
+            "source": "nctb",
+            "where": "text",
+            "states": "পুরো ভূত্বক: «কঠিন বহিরাবরণ»"
+          }
+        ],
+        "temperatureBn": [
+          {
+            "source": "nctb",
+            "where": "text",
+            "states": "পুরো ভূত্বক: «প্রতি কিলোমিটারে ৩০° সেলসিয়াস»"
+          }
+        ],
+        "termBn": [
+          {
+            "source": "nctb",
+            "where": "text",
+            "states": "«সিমা (Sima)», «গভীর সমুদ্র তলদেশে»"
+          }
+        ]
+      }
+    },
+    "upper-mantle": {
+      "id": "upper-mantle",
+      "order": 3,
+      "nameBn": "ঊর্ধ্ব গুরুমণ্ডল",
+      "nameEn": "Upper mantle",
+      "rows": {
+        "constituentsBn": "লোহা ও ম্যাগনেসিয়াম সমৃদ্ধ সিলিকেট খনিজ",
+        "thicknessBn": "৭০০ কিমি গভীরতা পর্যন্ত",
+        "stateBn": "আধা-কঠিন"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "nctb",
+            "where": "text",
+            "states": "«(ক) উর্ধ্ব গুরুমন্ডল» — spelled «ঊর্ধ্ব গুরুমণ্ডল» by the user's decision (2026-09-28)"
+          }
+        ],
+        "constituentsBn": [
+          {
+            "source": "nctb",
+            "where": "text",
+            "states": "«লোহা ও ম্যাগনেসিয়াম সমৃদ্ধ সিলিকেট খনিজ»"
+          }
+        ],
+        "thicknessBn": [
+          {
+            "source": "nctb",
+            "where": "text",
+            "states": "«৭০০ কিলোমিটার পর্যন্ত»; চিত্রে «৭০০ কি. মি.»"
+          }
+        ],
+        "stateBn": [
+          {
+            "source": "usgs",
+            "states": "Below the crust is the mantle, a dense, hot layer of semi-solid rock approximately 2,900 km thick."
+          }
+        ]
+      }
+    },
+    "lower-mantle": {
+      "id": "lower-mantle",
+      "order": 4,
+      "nameBn": "নিম্ন গুরুমণ্ডল",
+      "nameEn": "Lower mantle",
+      "rows": {
+        "constituentsBn": "আয়রন অক্সাইড, ম্যাগনেসিয়াম অক্সাইড ও সিলিকন ডাইঅক্সাইড সমৃদ্ধ খনিজ",
+        "thicknessBn": "৭০০ থেকে ২,৮৮৫ কিমি গভীরতা",
+        "stateBn": "আধা-কঠিন"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "nctb",
+            "where": "text",
+            "states": "«(খ) নিম্ন গুরুমন্ডল»"
+          }
+        ],
+        "constituentsBn": [
+          {
+            "source": "nctb",
+            "where": "text",
+            "states": "«আয়রন অক্সাইড, ম্যাগনেসিয়াম অক্সাইড এবং সিলিকন ডাইঅক্সাইড সমৃদ্ধ খনিজ»"
+          }
+        ],
+        "thicknessBn": [
+          {
+            "source": "nctb",
+            "where": "text",
+            "states": "derived from the book's two figures (user's decision 2026-09-28): upper mantle «৭০০ কিলোমিটার পর্যন্ত»; whole mantle «প্রায় ২,৮৮৫ কিলোমিটার পর্যন্ত»"
+          }
+        ],
+        "stateBn": [
+          {
+            "source": "usgs",
+            "states": "Below the crust is the mantle, a dense, hot layer of semi-solid rock approximately 2,900 km thick."
+          }
+        ]
+      }
+    },
+    "outer-core": {
+      "id": "outer-core",
+      "order": 5,
+      "nameBn": "বহিঃকেন্দ্র",
+      "nameEn": "Outer core",
+      "rows": {
+        "constituentsBn": "প্রধানত নিকেল ও লোহা",
+        "thicknessBn": "প্রায় ২,২৭০ কিমি পুরু",
+        "stateBn": "তরল",
+        "termBn": "নিফে (Nife)"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "nctb",
+            "where": "চিত্র ৪.১",
+            "states": "«বহিঃকেন্দ্র»"
+          }
+        ],
+        "constituentsBn": [
+          {
+            "source": "nctb",
+            "where": "text",
+            "states": "কেন্দ্রমণ্ডল: «লোহা, নিকেল, পারদ ও সিসা», প্রধান «নিকেল ও লোহা»"
+          }
+        ],
+        "thicknessBn": [
+          {
+            "source": "nctb",
+            "where": "text",
+            "states": "«প্রায় ২,২৭০ কিলোমিটার পুরু»; চিত্রে «২২৭০ কি. মি.»"
+          }
+        ],
+        "stateBn": [
+          {
+            "source": "nctb",
+            "where": "text",
+            "states": "«তরল»"
+          }
+        ],
+        "termBn": [
+          {
+            "source": "user",
+            "states": "«নিফে» — given by the user (2026-09-28); the book does not use the term"
+          }
+        ]
+      }
+    },
+    "inner-core": {
+      "id": "inner-core",
+      "order": 6,
+      "nameBn": "অন্তঃকেন্দ্র",
+      "nameEn": "Inner core",
+      "rows": {
+        "constituentsBn": "প্রধানত নিকেল ও লোহা",
+        "thicknessBn": "১,২১৬ কিমি পুরু",
+        "stateBn": "কঠিন",
+        "termBn": "নিফে (Nife)"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "nctb",
+            "where": "চিত্র ৪.১",
+            "states": "«অন্তঃকেন্দ্র»"
+          }
+        ],
+        "constituentsBn": [
+          {
+            "source": "nctb",
+            "where": "text",
+            "states": "কেন্দ্রমণ্ডল: প্রধান «নিকেল ও লোহা»"
+          }
+        ],
+        "thicknessBn": [
+          {
+            "source": "nctb",
+            "where": "text",
+            "states": "«১,২১৬ কিলোমিটার পুরু»; চিত্রে «১২১৬ কি. মি.»"
+          }
+        ],
+        "stateBn": [
+          {
+            "source": "nctb",
+            "where": "text",
+            "states": "«কঠিন»"
+          }
+        ],
+        "termBn": [
+          {
+            "source": "user",
+            "states": "«নিফে» — given by the user (2026-09-28); the book does not use the term"
+          }
+        ]
+      }
+    }
+  },
+  "art": {
+    "note": "The approved master painting, made by the user (ConceptQ) with their own model: no licence note or credit is shipped or shown for it. The transfer re-encoded the PNG, so its pixels are pinned as well as the file.",
+    "files": {
+      "earth-master.png": {
+        "size": [
+          1254,
+          1254
+        ],
+        "sha256": "b499b205d62f2f090cd383bfbf0b6fb058c08bb92d79d230c96f19b136ecb33e",
+        "rgbPixelsSha256": "353e2163aadf7c20a21c29832778a5d6cc1d20d9f78bb220b6a1d2bbd8a17638"
+      }
+    },
+    "mockup": {
+      "file": "design/mockups/earth-interior.png",
+      "note": "approved; its 'Lower mantle' leader wrongly points at the orange band — must point at the deep red band"
+    }
+  }
+}

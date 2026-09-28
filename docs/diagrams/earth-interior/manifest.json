@@ -1,0 +1,134 @@
+{
+  "_about": "Built by tools/build-diagram-earth-interior.mjs; master px throughout. The art is the approved master cut out; the geometry is measured on it.",
+  "page": "#eef3f8",
+  "master": {
+    "width": 1254,
+    "height": 1254
+  },
+  "view": {
+    "x": 100.32,
+    "y": 81.51,
+    "width": 1047.09,
+    "height": 1084.71,
+    "layout": 0.319,
+    "files": {
+      "1x": "earth@1x.webp",
+      "2x": "earth@2x.webp"
+    }
+  },
+  "corner": [
+    555.64,
+    692.35
+  ],
+  "edges": {
+    "left": 89.9,
+    "bottom": -9.12,
+    "split": 58.38
+  },
+  "circles": {
+    "inner-core": {
+      "cx": 625.02,
+      "cy": 632.06,
+      "r": 91.72
+    },
+    "outer-core": {
+      "cx": 623.67,
+      "cy": 637.98,
+      "r": 225.38
+    },
+    "lower-mantle": {
+      "cx": 637.22,
+      "cy": 639.34,
+      "r": 351.4
+    },
+    "upper-mantle": {
+      "cx": 640.33,
+      "cy": 651.08,
+      "r": 448.43
+    },
+    "continental-crust": {
+      "cx": 615.14,
+      "cy": 639.5,
+      "r": 471.61
+    },
+    "oceanic-crust": {
+      "cx": 644.2,
+      "cy": 648.04,
+      "r": 467.81
+    }
+  },
+  "layers": [
+    {
+      "id": "continental-crust",
+      "outer": "continental-crust",
+      "inner": "upper-mantle",
+      "from": 58.38,
+      "to": 89.9,
+      "anchor": [
+        698.09,
+        190.94
+      ],
+      "thinnest": 22.11
+    },
+    {
+      "id": "oceanic-crust",
+      "outer": "oceanic-crust",
+      "inner": "upper-mantle",
+      "from": -9.12,
+      "to": 58.38,
+      "anchor": [
+        944.43,
+        305.23
+      ],
+      "thinnest": 22.42
+    },
+    {
+      "id": "upper-mantle",
+      "outer": "upper-mantle",
+      "inner": "lower-mantle",
+      "from": -9.12,
+      "to": 89.9,
+      "anchor": [
+        931.41,
+        372.65
+      ],
+      "thinnest": 86.73
+    },
+    {
+      "id": "lower-mantle",
+      "outer": "lower-mantle",
+      "inner": "outer-core",
+      "from": -9.12,
+      "to": 89.9,
+      "anchor": [
+        845.1,
+        446.08
+      ],
+      "thinnest": 125.59
+    },
+    {
+      "id": "outer-core",
+      "outer": "outer-core",
+      "inner": "inner-core",
+      "from": -9.12,
+      "to": 89.9,
+      "anchor": [
+        744.54,
+        531.63
+      ],
+      "thinnest": 128.55
+    },
+    {
+      "id": "inner-core",
+      "outer": "inner-core",
+      "inner": null,
+      "from": -9.12,
+      "to": 89.9,
+      "anchor": [
+        625.57,
+        632.85
+      ],
+      "thinnest": 117.59
+    }
+  ]
+}

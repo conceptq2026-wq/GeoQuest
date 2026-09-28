@@ -66,8 +66,9 @@ not built.
   in `index.html`, when the descriptor itself fails.
 - **Shared pieces move only when needed.** A piece of the map shell moves into
   `docs/shared/` only when the diagram shell needs it, and each move is proven
-  at the shell tier. None has moved: the diagram shell imports only
-  `docs/shared/resolver.js` and the font.
+  at the shell tier. One has moved (2026-09-28): the picker row,
+  `docs/shared/picker.js` and `picker.css`, which the map shell and
+  earth-interior's view share; atmosphere-layers loads neither.
 - **The home section বিবিধ (`misc`)**, with the English heading
   "Miscellaneous", came with its first entry, atmosphere-layers — an empty
   section would have shown "Coming soon": `misc` in the registry

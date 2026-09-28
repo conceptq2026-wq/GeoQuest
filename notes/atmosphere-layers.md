@@ -189,7 +189,9 @@ rules and verification budget apply.
      encoder's loss for each file; and each slab lit, as the page will draw
      it. The outputs are staged, untracked, in
      `data-sources/atmosphere-layers/build/`, from where the data build
-     copies them into the diagram's folder. Tier: tools.
+     copies them into the diagram's folder. Tier: tools. Its cutting and
+     saving moved into `tools/lib/diagram-art.mjs` (2026-09-28), shared with
+     earth-interior's art tool; the 46 files it writes stayed byte-identical.
   6. Done: `docs/visual/` with the 2D exploded view (see **The diagram
      shell, as built** and **The exploded view, as built**), tested locally
      against the uncommitted diagram and committed without it, once the user
