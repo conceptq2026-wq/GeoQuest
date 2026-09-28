@@ -93,6 +93,16 @@ directory indexes, so every URL names `index.html` explicitly. Neither shell's
 page asks for a favicon (`<link rel="icon" href="data:,">`), so a browser
 never asks the host's root for one, and no map logs a 404 for it.
 
+**Every script and stylesheet the shells load carries the current version**
+(the user's rule, 2026-09-29), so after a push no phone or app WebView keeps
+an old one beside a new page: each reference to a `.js`, `.mjs` or `.css` file
+under `docs/shell/`, `docs/visual/` or `docs/shared/` ends in `?v=<version>`,
+one short hash of the shells' code (`tools/lib/asset-version.mjs`). After any
+change there, run `node tools/stamp-assets.mjs`; `tools/verify.mjs` fails a
+reference without the current version. Data files, fonts and PMTiles carry
+none. The pages themselves are not versioned: a cached page loads its own
+assets, old but consistent, until it expires.
+
 The home page lists `docs/registry.json`, which is built, never written by
 hand: `notes/home-and-registry.md`.
 

@@ -10,6 +10,7 @@ import { pathToFileURL } from 'node:url';
 import { PMTiles } from 'pmtiles';
 import { DETAIL_AREAS } from './world.config.mjs';
 import { sourcesAt, scan, SURFACE, librarySurface, scanBuildTool } from './outbound.mjs';
+import { assetVersion, codeFiles, references } from './lib/asset-version.mjs';
 
 const require = createRequire(import.meta.url);
 const vtRequire = createRequire(require.resolve('vt-pbf'));
@@ -80,6 +81,24 @@ for (let i = 0; i < hormuz.layers.land.length; i++) {
   if (ringArea(biggest) < 0) outerOk = false;
 }
 check(outerOk, 'land outer rings are wound correctly (land will not render as sea)');
+
+// ---- cache-busting ----
+// Every script and stylesheet the shells load carries the current version of
+// their code (tools/lib/asset-version.mjs), so a phone or the app's WebView
+// never keeps an old one after a push; tools/stamp-assets.mjs writes it.
+{
+  const version = assetVersion(SERVED);
+  const stale = [];
+  let count = 0;
+  for (const file of codeFiles(SERVED))
+    for (const r of references(file, fs.readFileSync(file, 'utf8'))) {
+      count++;
+      const where = `${path.relative(SERVED, file).split(path.sep).join('/')}: ${r.ref}`;
+      if (r.v !== version) stale.push(`${where} ?v=${r.v ?? '(none)'}`);
+      if (!fs.existsSync(path.resolve(path.dirname(file), r.ref))) stale.push(`${where} (no such file)`);
+    }
+  check(count > 0 && stale.length === 0, `every shell script and stylesheet reference carries the current version, ?v=${version} (${count}); run node tools/stamp-assets.mjs after a shell change${stale.length ? ` — not ${stale.slice(0, 5).join('; ')}` : ''}`);
+}
 
 // ---- bangladesh.pmtiles ----
 // The shell's baseline reads these layers and fields from whichever archive a
