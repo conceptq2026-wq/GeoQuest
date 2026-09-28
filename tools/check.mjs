@@ -580,19 +580,21 @@ async function useItem(browser, size, entry, base, origin, dir) {
  * Null on any other page.
  */
 const FIT = `(() => {
-  const stage = document.querySelector('.cutaway .stage');
-  if (!stage) return null;
+  const stage = document.querySelector('.view-panel:not([hidden]) .stage');
+  if (!stage || !document.querySelector('[data-fit]')) return null;
   const s = stage.getBoundingClientRect();
   const within = (r) => r.left >= s.left - 0.5 && r.right <= s.right + 0.5 && r.top >= s.top - 0.5 && r.bottom <= s.bottom + 0.5;
   const under = (a, b) => a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
   const blocks = [document.querySelector('.picker-row'), document.querySelector('.card:not([hidden])')].filter(Boolean).map((e) => e.getBoundingClientRect());
-  const items = [['the globe', document.querySelector('.cutaway-art')], ['the scale note', document.querySelector('.scale-note')], ...[...document.querySelectorAll('.layer-label')].map((e) => [e.dataset.key, e]), ...[...document.querySelectorAll('.leaders line')].map((e, i) => ['leader ' + (i + 1), e])];
-  const bad = items.filter(([, e]) => e && e.getClientRects().length).filter(([, e]) => { const r = e.getBoundingClientRect(); return !within(r) || blocks.some((b) => under(r, b)); }).map(([name]) => name);
-  // Names never on each other, and never under the user's minimum: 15 px at 390 px wide, 14 px at 320.
-  const names = [...document.querySelectorAll('.layer-label')];
-  for (let i = 0; i < names.length; i++) for (let j = i + 1; j < names.length; j++) if (under(names[i].getBoundingClientRect(), names[j].getBoundingClientRect())) bad.push(names[i].dataset.key + ' on ' + names[j].dataset.key);
+  // Every element a view marks with data-fit stays on the stage, clear of the picker row and the card.
+  const items = [...document.querySelectorAll('[data-fit]')].map((e) => [e.getAttribute('data-fit'), e]);
+  const bad = items.filter(([, e]) => e.getClientRects().length).filter(([, e]) => { const r = e.getBoundingClientRect(); return !within(r) || blocks.some((b) => under(r, b)); }).map(([name]) => name);
+  // No words on each other, and names never under the user's minimum: 15 px at 390 px wide, 14 px at 320.
+  const words = [...document.querySelectorAll('.layer-label, .fit-text')].filter((e) => e.getClientRects().length);
+  const nameOf = (e) => e.getAttribute('data-fit') || e.dataset.key || e.textContent;
+  for (let i = 0; i < words.length; i++) for (let j = i + 1; j < words.length; j++) if (under(words[i].getBoundingClientRect(), words[j].getBoundingClientRect())) bad.push(nameOf(words[i]) + ' on ' + nameOf(words[j]));
   const least = innerWidth >= 390 ? 15 : 14;
-  for (const n of names) { const size = parseFloat(getComputedStyle(n).fontSize); if (size < least) bad.push(n.dataset.key + ' at ' + size + ' px'); }
+  for (const n of document.querySelectorAll('.layer-label')) { const size = parseFloat(getComputedStyle(n).fontSize); if (size < least) bad.push(n.dataset.key + ' at ' + size + ' px'); }
   return bad;
 })()`;
 
@@ -698,6 +700,7 @@ async function zoneTaps(page, shoot, summary, fail) {
   const keys = await page.evaluate(`[...document.querySelectorAll('.zone[data-key]')].map((z) => z.dataset.key)`);
   let good = 0;
   const depths = [];
+  const sizes = [];
   for (const key of keys) {
     const close = await page.evaluate(box('.card-close'));
     if (close) {
@@ -713,13 +716,15 @@ async function zoneTaps(page, shoot, summary, fail) {
       const mx = hits.reduce((s, p) => s + p[0], 0) / hits.length;
       const my = hits.reduce((s, p) => s + p[1], 0) / hits.length;
       hits.sort((a, b) => Math.hypot(a[0] - mx, a[1] - my) - Math.hypot(b[0] - mx, b[1] - my));
-      return { at: hits[0], depth: Number(z.dataset.depth), name: document.querySelector('.layer-label[data-key="${key}"]')?.textContent.trim() };
+      return { at: hits[0], depth: z.dataset.depth ? Number(z.dataset.depth) : null, size: Math.min(r.width, r.height), name: z.dataset.title || document.querySelector('.layer-label[data-key="${key}"]')?.textContent.trim() };
     })()`);
     if (!hit) {
       fail(`zone ${key}: no point where it takes the tap`);
       continue;
     }
     depths.push([key, hit.depth]);
+    if (hit.depth === null && hit.size < 44) fail(`zone ${key}: ${Math.round(hit.size)} px across, under 44`);
+    if (hit.depth === null) sizes.push(Math.round(hit.size));
     await page.click(...hit.at);
     const card = await waitCard(page);
     await fitCheck(page, `tap ${hit.name}`);
@@ -730,7 +735,7 @@ async function zoneTaps(page, shoot, summary, fail) {
   }
   const shallow = depths.filter(([, d]) => d < 44);
   const outer = depths.filter(([k]) => /crust/.test(k));
-  summary.push(`taps ${good}/${keys.length} cards; crust zones ${outer.map(([, d]) => d).join(' and ')} px deep`);
+  summary.push(`taps ${good}/${keys.length} cards; ${outer.length ? `crust zones ${outer.map(([, d]) => d).join(' and ')} px deep` : `tap zones ≥ ${Math.min(...sizes)} px`}`);
   for (const [k, d] of shallow.filter(([k]) => /crust/.test(k))) fail(`zone ${k}: ${d} px deep, under 44`);
 }
 

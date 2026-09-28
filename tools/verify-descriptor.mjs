@@ -23,6 +23,8 @@
 //                                  atmosphere.seed.json and the approved art
 //   earth-interior (a diagram)  checked against data-sources/earth-interior/
 //                               earth-interior.seed.json and the approved master
+//   seasons (a diagram)  checked against data-sources/seasons/seasons.seed.json
+//                        and the approved paintings
 //
 // A map under docs/maps/ or a diagram under docs/diagrams/ with no section
 // here fails, by its id: a new one is written into this file with its own
@@ -83,6 +85,9 @@ const ATMOSPHERE_SEEDS = path.join(ROOT, 'data-sources/atmosphere-layers');
 const EARTH_SEEDS = path.join(ROOT, 'data-sources/earth-interior');
 // The approved seed's SHA-256: the user's own edits come with the new value, and it is re-pinned then.
 const EARTH_SEED_SHA256 = '990b45a50ad3ccf8baffefcfa82a4cb1a4d8e5e2be02665be9b328fbc46a0b43';
+// The seasons diagram: the editor's seed, pinned, and the approved paintings.
+const SEASONS_SEEDS = path.join(ROOT, 'data-sources/seasons');
+const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa32509b451efb2';
 // The latitude-longitude globe: the editor's seed, the pinned sources (its
 // imagery's credit among them) and the geometry pins.
 const LATLON_SEED = path.join(ROOT, 'data-sources/latitude-longitude/latitude-longitude.seed.json');
@@ -1682,6 +1687,83 @@ console.log('\n\n============ earth-interior (diagram) ============');
   for (let k = 1; k < shape.length; k++) check(shape[k].anchor[1] > shape[k - 1].anchor[1], `${shape[k].id}'s anchor lies below ${shape[k - 1].id}'s, so the leaders do not cross`);
 }
 
+
+console.log('\n\n============ seasons (diagram) ============');
+{
+  const id = 'seasons';
+  CHECKED_DIAGRAMS.add(id);
+  const dir = path.join(DIAGRAMS_DIR, id);
+  const seedFile = path.join(SEASONS_SEEDS, 'seasons.seed.json');
+  const seed = readJson(seedFile);
+  const seedHash = crypto.createHash('sha256').update(fs.readFileSync(seedFile)).digest('hex');
+  check(seedHash === SEASONS_SEED_SHA256, `the seed is the approved one: SHA-256 ${seedHash.slice(0, 12)}… (pinned ${SEASONS_SEED_SHA256.slice(0, 12)}…)`);
+  const descriptor = readJson(path.join(dir, 'descriptor.json'));
+  const data = readJson(path.join(dir, descriptor.data));
+  const view = descriptor.views.find((v) => v.type === 'orbit');
+  const manifest = view ? readJson(path.join(dir, view.art)) : { sun: { files: {} }, earth: { files: {} } };
+  const ui = seed.ui;
+  const positions = Object.values(seed.positions).sort((a, b) => a.order - b.order);
+
+  // ---- the descriptor ---------------------------------------------------------
+  console.log('\n---- descriptor ----');
+  check(descriptor.id === id && descriptor.language === 'bn' && descriptor.section === 'misc', `descriptor: id ${descriptor.id}, language ${descriptor.language}, section ${descriptor.section}`);
+  check(descriptor.title?.bn === seed.titleBn && descriptor.title?.en === seed.titleEn, `title is the seed's: «${descriptor.title?.bn}» / ${descriptor.title?.en}`);
+  const modules = [...(fs.readFileSync(path.join(VISUAL_DIR, 'app.js'), 'utf8').match(/const VIEW_MODULES = \{([^}]*)\}/)?.[1] ?? '').matchAll(/^\s*'?([\w-]+)'?\s*:/gm)].map((m) => m[1]);
+  check(descriptor.views.length === 1 && Boolean(view) && modules.includes('orbit'), `one view, of type orbit, which docs/visual/app.js has a module for (${descriptor.views.map((v) => v.type).join(', ')})`);
+  const wantWords = { picker: ui.pickerPlaceholderBn, close: ui.closeBn, sun: ui.sunLabelBn, tilt: seed.geometry.axisAngleLabelBn, rows: ui.rowOrder.map((key) => ({ key, label: ui.rowLabelsBn[key] })) };
+  check(JSON.stringify(descriptor.words) === JSON.stringify(wantWords), `the words are the seed's: «${ui.pickerPlaceholderBn}», «${ui.closeBn}», «${ui.sunLabelBn}», «${seed.geometry.axisAngleLabelBn}», and the rows ${wantWords.rows.map((r) => r.label).join(', ')}`);
+  const asked = new Set([...fs.readFileSync(path.join(VISUAL_DIR, 'orbit.js'), 'utf8').matchAll(/\bwords\??\.(\w+)/g)].map((m) => m[1]));
+  const given = new Set(Object.keys(descriptor.words ?? {}));
+  check([...asked].every((w) => given.has(w)) && [...given].every((w) => asked.has(w)), `the descriptor's words are exactly those orbit.js reads (${[...asked].sort().join(', ')})`);
+
+  // ---- the data ---------------------------------------------------------------
+  console.log('\n---- data.json against seasons.seed.json ----');
+  const fillIn = (t, p) => t.replace(/\{(\w+)\}/g, (_, k) => p[k]);
+  check(JSON.stringify(data.positions.map((p) => p.id)) === JSON.stringify(positions.map((p) => p.id)), `the ${positions.length} positions, in the seed's order: ${data.positions.map((p) => p.id).join(', ')}`);
+  const book = { 'june-solstice': 'right', 'september-equinox': 'top', 'december-solstice': 'left', 'march-equinox': 'bottom' };
+  for (const p of positions) {
+    const got = data.positions.find((d) => d.id === p.id) ?? {};
+    const rows = Object.fromEntries(ui.rowOrder.filter((k) => p.rows[k] !== undefined).map((k) => [k, p.rows[k]]));
+    const want = { id: p.id, order: p.order, placement: p.placement, dateBn: p.dateBn, nameBn: p.nameBn, title: fillIn(ui.cardTitle, p), item: fillIn(ui.pickerItem, p), rows };
+    check(JSON.stringify(got) === JSON.stringify(want), `${p.id}: «${want.title}», rows ${Object.keys(rows).join(', ')}, as the seed has them, nothing else shipped`);
+    check(p.placement === book[p.id], `${p.id}: drawn ${p.placement}, where the book's fig. ২.১৯ has it`);
+    for (const [k, v] of Object.entries(p.rows)) check(typeof v === 'string' && ui.rowOrder.includes(k) && (p.sources?.[k]?.length ?? 0) > 0, `${p.id}.${k}: filled, placed by ui.rowOrder, and cited`);
+  }
+  check(data.geometry?.tiltDeg === seed.geometry.axisTiltFromVerticalDeg && data.geometry?.orbitDirection === seed.geometry.orbitDirection, `the axis tilted ${data.geometry?.tiltDeg}°, the orbit ${data.geometry?.orbitDirection}`);
+  const wantCredits = ui.creditsBn.map((line, i) => {
+    const source = seed.sources[['nctb', 'nasa', 'computed'][i]];
+    return { title: line, ...(source?.url ? { url: source.url } : {}), ...(/[ঀ-৿]/.test(line) ? { lang: 'bn' } : {}) };
+  });
+  check(JSON.stringify(data.credits) === JSON.stringify(wantCredits), `ⓘ shows ui.creditsBn (${ui.creditsBn.length} lines), NCTB and NASA linked, nothing for the art`);
+  // Every Bengali string shown is the seed's, or a template of its filled with its own words.
+  const gather = (v, into) => (typeof v === 'string' ? into.push(v) : v && typeof v === 'object' ? Object.values(v).forEach((x) => gather(x, into)) : null);
+  const fromSeed = [];
+  gather(seed, fromSeed);
+  const seedStrings = new Set(fromSeed);
+  for (const p of positions) seedStrings.add(fillIn(ui.cardTitle, p)).add(fillIn(ui.pickerItem, p));
+  const shown = [];
+  gather(descriptor, shown);
+  gather(data, shown);
+  const foreign = shown.filter((v) => /[ঀ-৿]/.test(v) && !seedStrings.has(v));
+  check(foreign.length === 0, `every Bengali string shown is the seed's${foreign.length ? `, not: ${foreign.join(' | ')}` : ''}`);
+
+  // ---- the art ------------------------------------------------------------------
+  console.log('\n---- the art ----');
+  for (const [name, pin] of Object.entries(seed.art.files)) {
+    const bytes = fs.readFileSync(path.join(SEASONS_SEEDS, 'art', name));
+    check(crypto.createHash('sha256').update(bytes).digest('hex') === pin.sha256, `${name}: the committed file is the one the seed pins (${pin.sha256.slice(0, 12)}…)`);
+  }
+  const caps = { sun: { '1x': 20 * 1024, '2x': 56 * 1024 }, earth: { '1x': 12 * 1024, '2x': 32 * 1024 } };
+  for (const part of ['sun', 'earth']) {
+    for (const [k, f] of Object.entries(manifest[part].files)) {
+      const file = path.join(dir, f);
+      const bytes = fs.existsSync(file) ? fs.statSync(file).size : -1;
+      check(bytes > 0 && bytes <= caps[part][k], `${f}: ${bytes} bytes, cap ${caps[part][k]}`);
+    }
+    const d = manifest[part].disc;
+    check(Boolean(d) && d.r > 0 && d.cx > 0 && d.cy > 0 && d.cx < manifest[part].width && d.cy < manifest[part].height, `${part}: its painted disc measured, r ${d?.r} px at (${d?.cx}, ${d?.cy}) in its ${manifest[part].width}×${manifest[part].height} file`);
+  }
+}
 
 /*
 |--------------------------------------------------------------------------

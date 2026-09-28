@@ -1,0 +1,368 @@
+{
+  "_about": "Seasons (ঋতু পরিবর্তন) — a diagram in বিবিধ. Written by the editor (Claude) on 2026-09-28 from ঋতু_পরিবর্তন_খসড়া.xlsx and the user's answers the same day: the book's values (NCTB «ভূগোল ও পরিবেশ» 9–10, 2026, pp. ২৪–২৮); the axis angle written «২৩.৫°»; Bangladesh's warmest and coldest month added (user), shown on the June and December cards, filled from the same book at the build step: «এপ্রিল» (p. ১৫৬) and «জানুয়ারি» (p. ১৫৯); the other three open questions take the editor's proposals (equinox cards say «দিনরাত্রি প্রায় সমান» for Bangladesh, no hours; Bangladesh's season = the northern season; positions as in the book's fig. ২.১৯: June right, September top, December left, March bottom, orbit anticlockwise, all axes parallel with the North Pole leaning toward the Sun on 21 June). The user may change any value later; apply it as given. The book is copyrighted: `states` holds its exact terms and figures, not whole sentences.",
+  "titleBn": "ঋতু পরিবর্তন",
+  "titleEn": "Seasons",
+  "geometry": {
+    "axisTiltFromVerticalDeg": 23.5,
+    "axisAngleLabelBn": "২৩.৫°",
+    "orbitDirection": "anticlockwise",
+    "northPoleLeans": "toward the Sun at june-solstice",
+    "sources": [
+      {
+        "source": "nctb",
+        "page": "২৪, ২৬",
+        "states": "«কক্ষপথের সঙ্গে ৬৬.৫° কোণে»; «একই দিকে»; «ঘড়ির কাঁটার বিপরীতে»; fig. ২.১৭ «২৩½°»"
+      },
+      {
+        "source": "nasa",
+        "states": "As Earth orbits the Sun, its tilted axis always points in the same direction."
+      },
+      {
+        "source": "user",
+        "states": "label «২৩.৫°» (2026-09-28)"
+      }
+    ]
+  },
+  "ui": {
+    "rowLabelsBn": {
+      "sunOverheadBn": "সূর্য লম্বভাবে কিরণ দেয়",
+      "northBn": "উত্তর গোলার্ধ",
+      "southBn": "দক্ষিণ গোলার্ধ",
+      "bangladeshBn": "বাংলাদেশ (উত্তর গোলার্ধ)",
+      "warmestMonthBn": "বাংলাদেশের উষ্ণতম মাস",
+      "coldestMonthBn": "বাংলাদেশের শীতলতম মাস"
+    },
+    "rowOrder": [
+      "sunOverheadBn",
+      "northBn",
+      "southBn",
+      "bangladeshBn",
+      "warmestMonthBn",
+      "coldestMonthBn"
+    ],
+    "cardTitle": "{dateBn} — {nameBn}",
+    "pickerItem": "{dateBn} — {nameBn}",
+    "pickerPlaceholderBn": "একটি তারিখ বেছে নিন…",
+    "closeBn": "বন্ধ করুন",
+    "sunLabelBn": "সূর্য",
+    "creditsBn": [
+      "NCTB «ভূগোল ও পরিবেশ» নবম-দশম (২০২৬), পৃষ্ঠা ২৪–২৮, ১৫৬, ১৫৯",
+      "NASA Space Place: What Causes the Seasons?",
+      "ঢাকার দিনের দৈর্ঘ্য: NOAA-র সূত্রে হিসাব"
+    ]
+  },
+  "sources": {
+    "nctb": {
+      "title": "ভূগোল ও পরিবেশ, নবম ও দশম শ্রেণি (Bangla version, 2026 edition)",
+      "publisher": "National Curriculum and Textbook Board (NCTB)",
+      "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
+      "file": {
+        "cached": "tools/.cache/earth-interior/bhugol-2026.pdf",
+        "bytes": 68511711,
+        "sha256": "54143857fe880659c23f35469eb512d410ff8b8ee5fe75c4700cb28b33c8f79a"
+      },
+      "pages": "২৪–২৮, ১৫৬, ১৫৯"
+    },
+    "nasa": {
+      "title": "What Causes the Seasons?",
+      "publisher": "NASA Space Place (public domain; read 2026-09-28)",
+      "url": "https://spaceplace.nasa.gov/seasons/en/",
+      "sha256": "308bc7958a7c093546233c8c8d531c680da6358f1190020894ceb09dcd3a99f1"
+    },
+    "computed": {
+      "title": "Day length in Dhaka, computed",
+      "method": "NOAA solar-position equations (as in the NOAA Solar Calculator); COD-AB capital point 23.723056 N, 90.408611 E; UTC+6; year 2026; sunrise/sunset at zenith 90.833° (refraction 0.567° + semi-diameter 0.266°); script tools/.cache/seasons/daylength.mjs"
+    },
+    "user": {
+      "title": "The user's decision",
+      "date": "2026-09-28"
+    }
+  },
+  "positions": {
+    "march-equinox": {
+      "id": "march-equinox",
+      "order": 1,
+      "placement": "bottom",
+      "dateBn": "২১ মার্চ",
+      "nameBn": "বাসন্ত বিষুব (মহাবিষুব)",
+      "rows": {
+        "sunOverheadBn": "নিরক্ষরেখার উপর",
+        "northBn": "বসন্তকাল; দিনরাত্রি সমান",
+        "southBn": "শরৎকাল; দিনরাত্রি সমান",
+        "bangladeshBn": "বসন্তকাল; দিনরাত্রি প্রায় সমান"
+      },
+      "sources": {
+        "dateBn": [
+          {
+            "source": "nctb",
+            "page": "২৪, ২৫, ২৮",
+            "states": "«২১এ মার্চ»"
+          }
+        ],
+        "nameBn": [
+          {
+            "source": "nctb",
+            "page": "২৫, ২৮",
+            "states": "«বাসন্ত বিষুব (Vernal equinox)»; «বাসন্ত বিষুব বা মহাবিষুব»"
+          }
+        ],
+        "sunOverheadBn": [
+          {
+            "source": "nctb",
+            "page": "২৪, ২৮",
+            "states": "«নিরক্ষরেখার উপর» «লম্বভাবে»"
+          }
+        ],
+        "northBn": [
+          {
+            "source": "nctb",
+            "page": "২৫, ২৮",
+            "states": "«বসন্তকাল»; «সর্বত্র দিবারাত্রি সমান»"
+          }
+        ],
+        "southBn": [
+          {
+            "source": "nctb",
+            "page": "২৫, ২৮",
+            "states": "«শরৎকাল»"
+          }
+        ],
+        "bangladeshBn": [
+          {
+            "source": "nctb",
+            "page": "২৫",
+            "states": "«বাংলাদেশের ভৌগোলিক অবস্থান উত্তর গোলার্ধে» → the northern season"
+          },
+          {
+            "source": "computed",
+            "states": "day 12 h 08 min, night 11 h 52 min → «প্রায় সমান» (user's decision: no hours on equinox cards)"
+          }
+        ]
+      }
+    },
+    "june-solstice": {
+      "id": "june-solstice",
+      "order": 2,
+      "placement": "right",
+      "dateBn": "২১ জুন",
+      "nameBn": "কর্কটসংক্রান্তি (উত্তর অয়নান্ত)",
+      "rows": {
+        "sunOverheadBn": "কর্কটক্রান্তি রেখার উপর (২৩.৫° উত্তর অক্ষাংশ)",
+        "northBn": "গ্রীষ্মকাল; দীর্ঘতম দিন, ক্ষুদ্রতম রাত",
+        "southBn": "শীতকাল; দীর্ঘতম রাত, ক্ষুদ্রতম দিন",
+        "bangladeshBn": "গ্রীষ্মকাল, গরম বেশি; দিন ১৩ ঘণ্টা ৩৬ মিনিট, রাত ১০ ঘণ্টা ২৪ মিনিট",
+        "warmestMonthBn": "এপ্রিল"
+      },
+      "sources": {
+        "dateBn": [
+          {
+            "source": "nctb",
+            "page": "২৪, ২৭",
+            "states": "«২১এ জুন»"
+          }
+        ],
+        "nameBn": [
+          {
+            "source": "nctb",
+            "page": "২৪",
+            "states": "«কর্কটসংক্রান্তি»; fig. ২.১৯ «উত্তর অয়নান্ত»"
+          }
+        ],
+        "sunOverheadBn": [
+          {
+            "source": "nctb",
+            "page": "২৪",
+            "states": "«২৩.৫° উত্তর অক্ষাংশে অর্থাৎ কর্কটক্রান্তির উপর»"
+          }
+        ],
+        "northBn": [
+          {
+            "source": "nctb",
+            "page": "২৪, ২৭",
+            "states": "«গ্রীষ্মকাল»; «দীর্ঘতম দিন ও ক্ষুদ্রতম রাত»"
+          }
+        ],
+        "southBn": [
+          {
+            "source": "nctb",
+            "page": "২৭",
+            "states": "«শীতকাল»; fig. ২.১৯ «দীর্ঘতম রাত্রি ক্ষুদ্রতম দিন»"
+          }
+        ],
+        "bangladeshBn": [
+          {
+            "source": "nctb",
+            "page": "২৫",
+            "states": "«উত্তর গোলার্ধে»; «জুন মাসের দিকে গরম বেশি»"
+          },
+          {
+            "source": "computed",
+            "states": "day 13 h 36 min (05:12–18:48), night 10 h 24 min"
+          }
+        ],
+        "warmestMonthBn": [
+          {
+            "source": "nctb",
+            "page": "১৫৬",
+            "states": "«এপ্রিল উষ্ণতম মাস»"
+          }
+        ]
+      }
+    },
+    "september-equinox": {
+      "id": "september-equinox",
+      "order": 3,
+      "placement": "top",
+      "dateBn": "২৩ সেপ্টেম্বর",
+      "nameBn": "শারদ বিষুব",
+      "rows": {
+        "sunOverheadBn": "নিরক্ষরেখার উপর",
+        "northBn": "শরৎকাল; দিনরাত্রি সমান",
+        "southBn": "বসন্তকাল; দিনরাত্রি সমান",
+        "bangladeshBn": "শরৎকাল; দিনরাত্রি প্রায় সমান"
+      },
+      "sources": {
+        "dateBn": [
+          {
+            "source": "nctb",
+            "page": "২৪, ২৫, ২৭",
+            "states": "«২৩এ সেপ্টেম্বর»"
+          }
+        ],
+        "nameBn": [
+          {
+            "source": "nctb",
+            "page": "২৫",
+            "states": "«শারদ বিষুব (Autumnal equinox)»"
+          }
+        ],
+        "sunOverheadBn": [
+          {
+            "source": "nctb",
+            "page": "২৪, ২৭",
+            "states": "«নিরক্ষরেখার উপর» «লম্বভাবে»"
+          }
+        ],
+        "northBn": [
+          {
+            "source": "nctb",
+            "page": "২৫, ২৭",
+            "states": "«শরৎকাল»; «সর্বত্র দিন ও রাত্রি সমান»"
+          }
+        ],
+        "southBn": [
+          {
+            "source": "nctb",
+            "page": "২৫, ২৭",
+            "states": "«বসন্তকাল»"
+          }
+        ],
+        "bangladeshBn": [
+          {
+            "source": "nctb",
+            "page": "২৫",
+            "states": "northern hemisphere → the northern season"
+          },
+          {
+            "source": "computed",
+            "states": "day 12 h 07 min, night 11 h 53 min → «প্রায় সমান»"
+          }
+        ]
+      }
+    },
+    "december-solstice": {
+      "id": "december-solstice",
+      "order": 4,
+      "placement": "left",
+      "dateBn": "২২ ডিসেম্বর",
+      "nameBn": "মকরসংক্রান্তি (দক্ষিণ অয়নান্ত)",
+      "rows": {
+        "sunOverheadBn": "মকরক্রান্তি রেখার উপর (২৩.৫° দক্ষিণ অক্ষাংশ)",
+        "northBn": "শীতকাল; দীর্ঘতম রাত, ক্ষুদ্রতম দিন",
+        "southBn": "গ্রীষ্মকাল; দীর্ঘতম দিন, ক্ষুদ্রতম রাত",
+        "bangladeshBn": "শীতকাল; দিন ১০ ঘণ্টা ৪০ মিনিট, রাত ১৩ ঘণ্টা ২০ মিনিট",
+        "coldestMonthBn": "জানুয়ারি"
+      },
+      "sources": {
+        "dateBn": [
+          {
+            "source": "nctb",
+            "page": "২৪, ২৫, ২৭",
+            "states": "«২২এ ডিসেম্বর» (fig. ২.২০ prints «২৩এ ডিসেম্বর»; the text, fig. ২.১৯ and the table say ২২)"
+          }
+        ],
+        "nameBn": [
+          {
+            "source": "nctb",
+            "page": "২৫",
+            "states": "«মকরসংক্রান্তি»; fig. ২.১৯ «দক্ষিণ অয়নান্ত»"
+          }
+        ],
+        "sunOverheadBn": [
+          {
+            "source": "nctb",
+            "page": "২৫",
+            "states": "«২৩.৫° দক্ষিণ অক্ষাংশ অর্থাৎ মকরক্রান্তির উপর»"
+          }
+        ],
+        "northBn": [
+          {
+            "source": "nctb",
+            "page": "২৭",
+            "states": "«শীতকাল»; fig. ২.১৯ «দীর্ঘতম রাত্রি ক্ষুদ্রতম দিন»"
+          }
+        ],
+        "southBn": [
+          {
+            "source": "nctb",
+            "page": "২৪, ২৭",
+            "states": "«গ্রীষ্মকাল»; «সবচেয়ে বড় দিন»"
+          }
+        ],
+        "bangladeshBn": [
+          {
+            "source": "nctb",
+            "page": "২৫",
+            "states": "northern hemisphere → the northern season"
+          },
+          {
+            "source": "computed",
+            "states": "day 10 h 40 min (06:37–17:17), night 13 h 20 min"
+          }
+        ],
+        "coldestMonthBn": [
+          {
+            "source": "nctb",
+            "page": "১৫৯",
+            "states": "«জানুয়ারি শীতলতম মাস»"
+          }
+        ]
+      }
+    }
+  },
+  "art": {
+    "note": "Made by the user (ConceptQ) with their own model: no licence note or credit. Only the Sun and one Earth are painted; the orbit, arrows, axes, the 23.5° mark, the night shadow and all labels are drawn by code. The Earth is NOT clipped to a circle (user, 2026-09-28): cut from white only; the night shadow follows the cut-out's own alpha mask. The transfer re-encoded the PNGs, so pixels are pinned too.",
+    "files": {
+      "sun.png": {
+        "size": [
+          1254,
+          1254
+        ],
+        "sha256": "be6cfe59e870c20a49c8e40b6e9204ce08d2dad57f3b8d712afc7263d0247668",
+        "rgbPixelsSha256": "e67eabe61aad45246787aebfa13256fa8c91bba3306617c9c16da66b03bfb149"
+      },
+      "earth.png": {
+        "size": [
+          1254,
+          1254
+        ],
+        "sha256": "61ba7dda402d06b9607bdc8b5f282bf23863c9c34d901a42ff280d25dd63e63f",
+        "rgbPixelsSha256": "08e7ad2b6231ae8b9a7b7bde75b502931745ddf8040b57d096f29980a217d6b7"
+      }
+    },
+    "mockup": {
+      "file": "design/mockups/seasons.png",
+      "note": "approved for the look; its errors: orbit arrows clockwise (must be anticlockwise), no day/night halves, positions mirrored against the book (use the book's layout)"
+    }
+  }
+}

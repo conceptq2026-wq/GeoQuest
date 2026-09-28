@@ -43,6 +43,7 @@ const dom = {
 const VIEW_MODULES = {
   exploded: () => import('./exploded.js'),
   cutaway: () => import('./cutaway.js'),
+  orbit: () => import('./orbit.js'),
 };
 
 const diagramId = new URLSearchParams(location.search).get('v');
@@ -129,10 +130,18 @@ async function start() {
     return a;
   }
 
+  // A credit with no link (a value computed for the diagram) reads as plain text.
+  function creditText(text, lang) {
+    const span = document.createElement('span');
+    if (lang) span.lang = lang;
+    span.textContent = text;
+    return span;
+  }
+
   const credits = [
     ...(data.credits ?? []).map((c) => {
-      const a = creditLink(c.url, c.title, c.lang);
-      a.append(` (${c.by})`);
+      const a = c.url ? creditLink(c.url, c.title, c.lang) : creditText(c.title, c.lang);
+      if (c.by) a.append(` (${c.by})`);
       return a;
     }),
     creditLink(resolver.url('glyphs', 'noto-sans-bengali/OFL.txt'), 'Noto Sans Bengali'),

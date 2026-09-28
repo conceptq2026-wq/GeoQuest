@@ -27,9 +27,7 @@
 | Every word shown is the descriptor's or the data's.
 */
 
-import { pickerRow } from '../shared/picker.js';
-
-const SVG = 'http://www.w3.org/2000/svg';
+import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js';
 const deg = Math.PI / 180;
 // CSS px: how deep, at least, a layer's tap zone reaches out from its inner edge.
 const TAP_MIN = 44;
@@ -49,32 +47,6 @@ const LABEL = { margin: 8, gap: 4, share: 0.3, minWidth: 96, toArt: 4, rim: 8, l
 const NOTE = { gap: 6, height: 18 };
 // The glow's softness, in CSS px.
 const GLOW = 4;
-
-function el(tag, className, lang) {
-  const node = document.createElement(tag);
-  if (className) node.className = className;
-  if (lang) node.lang = lang;
-  return node;
-}
-
-function svgEl(tag, attrs = {}) {
-  const node = document.createElementNS(SVG, tag);
-  for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v);
-  return node;
-}
-
-/** A stylesheet beside this page, once. */
-function stylesheet(href) {
-  if (document.querySelector(`link[rel="stylesheet"][href="${href}"]`)) return Promise.resolve();
-  return new Promise((resolve, reject) => {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = href;
-    link.addEventListener('load', resolve);
-    link.addEventListener('error', () => reject(new Error(`${href} did not load`)));
-    document.head.append(link);
-  });
-}
 
 export async function mount(panel, { descriptor, data, art, file }) {
   const words = descriptor.words ?? {};
@@ -139,6 +111,7 @@ export async function mount(panel, { descriptor, data, art, file }) {
   stage.append(content);
 
   const img = el('img', 'cutaway-art');
+  img.dataset.fit = 'the globe';
   img.alt = '';
   img.decoding = 'async';
   img.srcset = `${file(view.files['1x'])} 1x, ${file(view.files['2x'])} 2x`;
@@ -163,7 +136,7 @@ export async function mount(panel, { descriptor, data, art, file }) {
 
   const zoneOf = new Map();
   for (const l of layers) {
-    const path = svgEl('path', { class: 'zone', 'data-key': l.id });
+    const path = svgEl('path', { class: 'zone', 'data-key': l.id, 'data-title': l.nameBn });
     zones.append(path);
     zoneOf.set(l.id, path);
   }
@@ -176,85 +149,36 @@ export async function mount(panel, { descriptor, data, art, file }) {
     button.dataset.key = l.id;
     button.textContent = l.nameBn;
     button.setAttribute('aria-pressed', 'false');
+    button.dataset.fit = l.id;
     content.append(button);
     labels.set(l.id, button);
-    const line = svgEl('line', { class: 'leader' });
+    const line = svgEl('line', { class: 'leader', 'data-fit': `leader ${l.id}` });
     const dot = svgEl('circle', { class: 'anchor' });
     leaders.append(line, dot);
     lines.set(l.id, { line, dot });
   }
 
-  const note = el('p', 'scale-note', 'bn');
+  const note = el('p', 'scale-note fit-text', 'bn');
+  note.dataset.fit = 'the scale note';
   note.textContent = words.scale ?? '';
   note.hidden = !words.scale;
   content.append(note);
 
-  // The card, docked under the picture.
-  const card = el('section', 'card');
-  card.hidden = true;
-  const close = el('button', 'card-close');
-  close.type = 'button';
-  close.setAttribute('aria-label', words.close);
-  close.lang = 'bn';
-  close.textContent = '×';
-  const body = el('div', 'card-body');
-  const title = el('h2', 'card-title', 'bn');
-  title.id = 'cutaway-card-title';
-  card.setAttribute('aria-labelledby', title.id);
-  const rows = el('dl', 'card-rows');
-  body.append(title, rows);
-  card.append(close, body);
-
-  // The picker row, at the top, directly under the header: where every
-  // shell has it (the user's decision, 2026-09-28).
-  const bar = el('nav', 'picker-row cutaway-picker');
-  const prev = el('button', 'step-btn');
-  prev.type = 'button';
-  prev.id = 'prevRecord';
-  prev.setAttribute('aria-label', 'Previous');
-  prev.textContent = '‹';
-  prev.hidden = true;
-  const select = el('select', 'record-picker', 'bn');
-  select.id = 'recordPicker';
-  select.hidden = true;
-  const next = el('button', 'step-btn');
-  next.type = 'button';
-  next.id = 'nextRecord';
-  next.setAttribute('aria-label', 'Next');
-  next.textContent = '›';
-  next.hidden = true;
-  bar.append(prev, select, next);
-
-  panel.append(bar, stage, card);
+  // The card docked under the picture, and the picker row at the top (./parts.js).
+  const { card, close, fill } = dockedCard({ close: words.close, id: 'cutaway' });
 
   // ---- choosing ---------------------------------------------------------------------------
 
   let selected = null;
   let scale = 1; // CSS px per master px
 
-  const row = pickerRow({
-    select,
-    prev,
-    next,
+  const { bar, select, row } = pickerBar({
     placeholder: words.picker,
     items: layers.map((l) => ({ key: l.id, label: l.nameBn })),
     current: () => selected ?? undefined,
     choose: (key) => choose(key),
   });
-
-  function fillCard(layer) {
-    title.textContent = layer.nameBn;
-    rows.replaceChildren();
-    for (const { key, label } of words.rows ?? []) {
-      const value = layer.rows?.[key];
-      if (value === undefined || value === null) continue;
-      const dt = el('dt', null, 'bn');
-      dt.textContent = label;
-      const dd = el('dd', null, 'bn');
-      dd.textContent = value;
-      rows.append(dt, dd);
-    }
-  }
+  panel.append(bar, stage, card);
 
   function choose(key) {
     const layer = byId.get(key);
@@ -264,9 +188,8 @@ export async function mount(panel, { descriptor, data, art, file }) {
     litGlow.setAttribute('d', sector(key));
     lit.style.display = '';
     for (const [id, b] of labels) b.setAttribute('aria-pressed', String(id === key));
-    fillCard(layer);
+    fill(layer.nameBn, words.rows, layer.rows);
     card.hidden = false;
-    body.scrollTop = 0;
     select.value = key;
     row.sync();
     layout();

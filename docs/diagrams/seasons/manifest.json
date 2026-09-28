@@ -1,0 +1,30 @@
+{
+  "_about": "Built by tools/build-diagram-seasons.mjs from the art tool's staging folder. Sizes in the 1× files' px; each disc is the painted body's, measured on its cut-out.",
+  "page": "#eef3f8",
+  "sun": {
+    "width": 171,
+    "height": 169,
+    "disc": {
+      "cx": 85.394,
+      "cy": 83.959,
+      "r": 78.811
+    },
+    "files": {
+      "1x": "sun@1x.webp",
+      "2x": "sun@2x.webp"
+    }
+  },
+  "earth": {
+    "width": 101,
+    "height": 103,
+    "disc": {
+      "cx": 50.182,
+      "cy": 50.936,
+      "r": 50.03
+    },
+    "files": {
+      "1x": "earth@1x.webp",
+      "2x": "earth@2x.webp"
+    }
+  }
+}

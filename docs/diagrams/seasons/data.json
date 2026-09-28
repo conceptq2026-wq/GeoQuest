@@ -1,0 +1,86 @@
+{
+  "_about": "Built by tools/build-diagram-seasons.mjs from data-sources/seasons/seasons.seed.json; do not edit.",
+  "positions": [
+    {
+      "id": "march-equinox",
+      "order": 1,
+      "placement": "bottom",
+      "dateBn": "২১ মার্চ",
+      "nameBn": "বাসন্ত বিষুব (মহাবিষুব)",
+      "title": "২১ মার্চ — বাসন্ত বিষুব (মহাবিষুব)",
+      "item": "২১ মার্চ — বাসন্ত বিষুব (মহাবিষুব)",
+      "rows": {
+        "sunOverheadBn": "নিরক্ষরেখার উপর",
+        "northBn": "বসন্তকাল; দিনরাত্রি সমান",
+        "southBn": "শরৎকাল; দিনরাত্রি সমান",
+        "bangladeshBn": "বসন্তকাল; দিনরাত্রি প্রায় সমান"
+      }
+    },
+    {
+      "id": "june-solstice",
+      "order": 2,
+      "placement": "right",
+      "dateBn": "২১ জুন",
+      "nameBn": "কর্কটসংক্রান্তি (উত্তর অয়নান্ত)",
+      "title": "২১ জুন — কর্কটসংক্রান্তি (উত্তর অয়নান্ত)",
+      "item": "২১ জুন — কর্কটসংক্রান্তি (উত্তর অয়নান্ত)",
+      "rows": {
+        "sunOverheadBn": "কর্কটক্রান্তি রেখার উপর (২৩.৫° উত্তর অক্ষাংশ)",
+        "northBn": "গ্রীষ্মকাল; দীর্ঘতম দিন, ক্ষুদ্রতম রাত",
+        "southBn": "শীতকাল; দীর্ঘতম রাত, ক্ষুদ্রতম দিন",
+        "bangladeshBn": "গ্রীষ্মকাল, গরম বেশি; দিন ১৩ ঘণ্টা ৩৬ মিনিট, রাত ১০ ঘণ্টা ২৪ মিনিট",
+        "warmestMonthBn": "এপ্রিল"
+      }
+    },
+    {
+      "id": "september-equinox",
+      "order": 3,
+      "placement": "top",
+      "dateBn": "২৩ সেপ্টেম্বর",
+      "nameBn": "শারদ বিষুব",
+      "title": "২৩ সেপ্টেম্বর — শারদ বিষুব",
+      "item": "২৩ সেপ্টেম্বর — শারদ বিষুব",
+      "rows": {
+        "sunOverheadBn": "নিরক্ষরেখার উপর",
+        "northBn": "শরৎকাল; দিনরাত্রি সমান",
+        "southBn": "বসন্তকাল; দিনরাত্রি সমান",
+        "bangladeshBn": "শরৎকাল; দিনরাত্রি প্রায় সমান"
+      }
+    },
+    {
+      "id": "december-solstice",
+      "order": 4,
+      "placement": "left",
+      "dateBn": "২২ ডিসেম্বর",
+      "nameBn": "মকরসংক্রান্তি (দক্ষিণ অয়নান্ত)",
+      "title": "২২ ডিসেম্বর — মকরসংক্রান্তি (দক্ষিণ অয়নান্ত)",
+      "item": "২২ ডিসেম্বর — মকরসংক্রান্তি (দক্ষিণ অয়নান্ত)",
+      "rows": {
+        "sunOverheadBn": "মকরক্রান্তি রেখার উপর (২৩.৫° দক্ষিণ অক্ষাংশ)",
+        "northBn": "শীতকাল; দীর্ঘতম রাত, ক্ষুদ্রতম দিন",
+        "southBn": "গ্রীষ্মকাল; দীর্ঘতম দিন, ক্ষুদ্রতম রাত",
+        "bangladeshBn": "শীতকাল; দিন ১০ ঘণ্টা ৪০ মিনিট, রাত ১৩ ঘণ্টা ২০ মিনিট",
+        "coldestMonthBn": "জানুয়ারি"
+      }
+    }
+  ],
+  "geometry": {
+    "tiltDeg": 23.5,
+    "orbitDirection": "anticlockwise"
+  },
+  "credits": [
+    {
+      "title": "NCTB «ভূগোল ও পরিবেশ» নবম-দশম (২০২৬), পৃষ্ঠা ২৪–২৮, ১৫৬, ১৫৯",
+      "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
+      "lang": "bn"
+    },
+    {
+      "title": "NASA Space Place: What Causes the Seasons?",
+      "url": "https://spaceplace.nasa.gov/seasons/en/"
+    },
+    {
+      "title": "ঢাকার দিনের দৈর্ঘ্য: NOAA-র সূত্রে হিসাব",
+      "lang": "bn"
+    }
+  ]
+}

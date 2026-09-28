@@ -68,7 +68,10 @@ not built.
   `docs/shared/` only when the diagram shell needs it, and each move is proven
   at the shell tier. One has moved (2026-09-28): the picker row,
   `docs/shared/picker.js` and `picker.css`, which the map shell and
-  earth-interior's view share; atmosphere-layers loads neither.
+  earth-interior's view share; atmosphere-layers loads neither. The views
+  with a picker and a two-column card — cutaway (earth-interior) and orbit
+  (seasons) — build them from `docs/visual/parts.js`, and a credit with no
+  link (a value computed for the diagram) shows in ⓘ as plain text.
 - **The home section বিবিধ (`misc`)**, with the English heading
   "Miscellaneous", came with its first entry, atmosphere-layers — an empty
   section would have shown "Coming soon": `misc` in the registry

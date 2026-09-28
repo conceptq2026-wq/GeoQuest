@@ -1,0 +1,49 @@
+{
+  "id": "seasons",
+  "section": "misc",
+  "language": "bn",
+  "title": {
+    "en": "Seasons",
+    "bn": "ঋতু পরিবর্তন"
+  },
+  "data": "data.json",
+  "views": [
+    {
+      "id": "orbit",
+      "type": "orbit",
+      "art": "manifest.json"
+    }
+  ],
+  "words": {
+    "picker": "একটি তারিখ বেছে নিন…",
+    "close": "বন্ধ করুন",
+    "sun": "সূর্য",
+    "tilt": "২৩.৫°",
+    "rows": [
+      {
+        "key": "sunOverheadBn",
+        "label": "সূর্য লম্বভাবে কিরণ দেয়"
+      },
+      {
+        "key": "northBn",
+        "label": "উত্তর গোলার্ধ"
+      },
+      {
+        "key": "southBn",
+        "label": "দক্ষিণ গোলার্ধ"
+      },
+      {
+        "key": "bangladeshBn",
+        "label": "বাংলাদেশ (উত্তর গোলার্ধ)"
+      },
+      {
+        "key": "warmestMonthBn",
+        "label": "বাংলাদেশের উষ্ণতম মাস"
+      },
+      {
+        "key": "coldestMonthBn",
+        "label": "বাংলাদেশের শীতলতম মাস"
+      }
+    ]
+  }
+}

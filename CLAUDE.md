@@ -286,7 +286,9 @@ State which kind a task is when reporting it.
   `border-lines`, `org-headquarters`, `environment-treaties`. Geography:
   `deserts`, `lakes`, `forests`, `mountains`, `waterfalls` and
   `latitude-longitude`, all under `docs/maps/`.
-- Work in progress (`tools/wip.json`): none.
+- Work in progress (`tools/wip.json`): `seasons`, a diagram in misc,
+  «ঋতু পরিবর্তন» / "Seasons" — built, in `docs/diagrams/seasons/`, until the
+  user checks it locally (`notes/seasons.md`).
 - Two diagrams, under বিবিধ: `atmosphere-layers` and `earth-interior`, in
   `docs/diagrams/`.
 
