@@ -488,6 +488,10 @@
     padding: 10px 0 0;
   }
 
+  .has-timeline .info-row {
+    padding: 0 10px;
+  }
+
   .has-timeline .map-tabs {
     margin: 0 10px 8px;
   }

@@ -30,6 +30,9 @@ const CURVE_WIDTH = 36; // the temperature curve, from − to +
 const FINITE_SHARE = 0.78; // of that width, what the known temperatures span; an "up to" point stands at +
 const ARROW = 7; // the up-arrow's head
 const CAPTION_GAP = 5; // the curve's caption to the arrow's tip
+// ⓘ's tap zone hangs this far into the stage at its top right (style.css):
+// the curve's caption, in the right column, starts below it.
+const INFO_CLEAR = 26;
 const HINT_GAP = 8; // the stack's foot to the hint
 // A slab's name, per unit of the art's scale, never under MIN px nor over MAX.
 const NAME = { size: 15.5, min: 11, max: 16, pad: 4 };
@@ -114,6 +117,7 @@ export async function mount(panel, { descriptor, data, art, file }) {
   Object.assign(frame.style, { width: `${manifest.layout.width}px`, height: `${manifest.layout.height}px` });
 
   const view = el('img', 'art-view');
+  view.dataset.fit = 'the stack';
   view.alt = '';
   view.decoding = 'async';
   view.fetchPriority = 'high';
@@ -171,6 +175,7 @@ export async function mount(panel, { descriptor, data, art, file }) {
   curve.append(defs, line, ...stretches, arrow);
 
   const caption = el('p', 'curve-caption', 'bn');
+  caption.dataset.fit = 'the curve caption';
   caption.textContent = words.curve;
   const minus = el('span', 'curve-mark');
   minus.textContent = '−';
@@ -183,15 +188,18 @@ export async function mount(panel, { descriptor, data, art, file }) {
     if (!known(b.atKm)) return null;
     const tick = el('div', 'axis-tick');
     const label = el('span', 'axis-label', 'bn');
+    label.dataset.fit = `the axis at ${b.atKm}`;
     label.textContent = `${kmText(b.atKm)} ${words.unit}`;
     return { tick, label };
   });
   const scale = el('p', 'scale-caption', 'bn');
+  scale.dataset.fit = 'the scale caption';
   scale.textContent = words.scale;
 
   // ---- the names, real buttons, bottom to top
   const names = slabs.map((slab, n) => {
     const button = el('button', 'layer-name', 'bn');
+    button.dataset.fit = layers[n].id ?? `layer ${n}`;
     button.type = 'button';
     button.textContent = layers[n].nameBn;
     button.setAttribute('aria-pressed', 'false');
@@ -395,8 +403,8 @@ export async function mount(panel, { descriptor, data, art, file }) {
     const span = slabsRight - slabsLeft;
     let s = Math.min(1, (W - column - curveColumn) / span, (least - 2 * PAD) / (artFoot - artTop));
     // Short of room above the arrow for its caption: the top gives way to it.
-    const oyFor = (k) => Math.max(PAD - artTop * k, PAD + captionRoom - curveTop * k);
-    if (oyFor(s) + artFoot * s + PAD > least) s = Math.min(s, (least - 2 * PAD - captionRoom) / (artFoot - curveTop));
+    const oyFor = (k) => Math.max(PAD - artTop * k, INFO_CLEAR + captionRoom - curveTop * k);
+    if (oyFor(s) + artFoot * s + PAD > least) s = Math.min(s, (least - PAD - INFO_CLEAR - captionRoom) / (artFoot - curveTop));
     // The stack centred between the two columns.
     const stackLeft = column + (W - column - curveColumn - span * s) / 2;
     const next = { s, ox: stackLeft - slabsLeft * s, oy: oyFor(s), columns: `${column} ${curveColumn}` };

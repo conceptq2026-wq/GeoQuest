@@ -657,7 +657,7 @@ body {
   }
 
   .page-header {
-    align-items: stretch;
+    align-items: center;
     gap: 8px;
     margin-bottom: 8px;
   }
@@ -692,3 +692,96 @@ body {
   }
 }
 
+/*
+ * ⓘ — the credits: a row of its own directly above the map, under the picker
+ * row (app.js), the button right-aligned. Very small and faint — an 18 px
+ * icon at 0.35 opacity — until pressed or focused. Its tap zone is an
+ * invisible 44 px square hanging from the row's top down over the map's
+ * corner, never up over ›; the map's corner controls start below it. Open,
+ * the credits drop below it over the map's corner.
+ */
+.info-row {
+  position: relative;
+  z-index: 6;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: flex-end;
+  align-items: center;
+  height: 18px;
+  margin-top: -4px;
+}
+
+.info-row .maplibregl-ctrl-attrib.maplibregl-compact,
+.info-row .maplibregl-ctrl-attrib.maplibregl-compact-show {
+  position: absolute;
+  top: -2px;
+  right: -13px;
+  width: 44px;
+  height: 44px;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.info-row .maplibregl-ctrl-attrib-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  width: 44px;
+  height: 44px;
+  border-radius: 0;
+  background-color: transparent;
+  background-position: center 2px;
+  background-repeat: no-repeat;
+  background-size: 18px 18px;
+  opacity: 0.35;
+  list-style: none;
+  transition: opacity 120ms ease;
+}
+
+.info-row .maplibregl-ctrl-attrib-button::-webkit-details-marker {
+  display: none;
+}
+
+.info-row .maplibregl-ctrl-attrib-button:active,
+.info-row .maplibregl-ctrl-attrib-button:focus-visible,
+.info-row .maplibregl-compact-show .maplibregl-ctrl-attrib-button {
+  opacity: 1;
+  background-color: transparent;
+}
+
+.info-row .maplibregl-ctrl-attrib-button:focus-visible {
+  outline: 2px solid #0b5cad;
+  outline-offset: -8px;
+}
+
+.info-row .maplibregl-ctrl-attrib.maplibregl-compact-show .maplibregl-ctrl-attrib-inner {
+  position: absolute;
+  top: 38px;
+  right: 8px;
+  z-index: 30;
+  width: max-content;
+  max-width: min(320px, calc(100vw - 32px));
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 4px 14px rgba(19, 35, 58, 0.18);
+  color: #333333;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .info-row .maplibregl-ctrl-attrib-button {
+    transition: none;
+  }
+}
+
+/* The compass and the tilt button start below ⓘ's tap zone, which hangs over the map's corner. */
+.maplibregl-ctrl-top-right {
+  top: 16px;
+}

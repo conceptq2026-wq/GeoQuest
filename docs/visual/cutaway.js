@@ -44,6 +44,8 @@ const STAGE_MIN = 0.45;
 // column may reach RIM px over the picture — the painted globe's own rim,
 // right of its crust — and no further.
 const LABEL = { margin: 8, gap: 4, share: 0.3, minWidth: 96, toArt: 4, rim: 8, leaderGap: 3, dot: 2.5 };
+// ⓘ's tap zone hangs this far into the stage at its top right (docs/visual/style.css).
+const INFO_CLEAR = 26;
 const NOTE = { gap: 6, height: 18 };
 // The glow's softness, in CSS px.
 const GLOW = 4;
@@ -269,7 +271,8 @@ export async function mount(panel, { descriptor, data, art, file }) {
     if (overflow > 0) for (const p of placed) p.y -= overflow;
     for (let k = placed.length - 2; k >= 0; k--) placed[k].y = Math.min(placed[k].y, placed[k + 1].y - placed[k].h - LABEL.gap);
     for (const p of placed) {
-      p.y = Math.max(4, p.y);
+      // Clear of ⓘ's tap zone, which hangs over the stage's top right (INFO_CLEAR px).
+      p.y = Math.max(INFO_CLEAR, p.y);
       Object.assign(p.b.style, { left: `${column}px`, top: `${p.y}px` });
       // The leader: from the band's middle to the name, in the master's px.
       const [ax, ay] = shape.get(p.id).anchor;

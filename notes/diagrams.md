@@ -44,15 +44,16 @@ not built.
   that view's tab first opens — today `exploded.js`. `app.js` reads the
   descriptor and the diagram's data through the resolver, draws one tab per
   view the descriptor declares, and fills ⓘ. A descriptor with one view gets
-  no tab bar, and the header keeps ⓘ's own row, so the stage starts below it
-  (atmosphere-layers today, until its cross-section lands). A view that
+  no tab bar, and its header is hidden: the view starts the page. ⓘ has a
+  row of its own under the view's picker row, right-aligned, or at the view's
+  top where it has none (2026-09-28). A view that
   declares no `type` is not built yet: its tab is there and its panel stays
   empty; a type with no module throws. From the map shell, as it
   is there: the `?v=` id rule (the map shell's for `?map=`), no page zoom,
   the visually hidden `<h1>` filled from the descriptor's Bengali title;
-  Noto Sans Bengali from `docs/shared/fonts/`, preloaded; ⓘ drawn as
-  MapLibre's compact attribution control, collapsed until tapped, with the
-  Noto Sans Bengali credit; the load notice's look; the tab bar's roles,
+  Noto Sans Bengali from `docs/shared/fonts/`, preloaded; ⓘ collapsed until
+  tapped, with the Noto Sans Bengali credit, small and faint as the map
+  shell's (see CLAUDE.md, the map baseline); the load notice's look; the tab bar's roles,
   roving focus and arrow keys; the docked card's ×. The page's `<title>` is
   the Bengali title too, by the user's decision — the map shell's takes the
   English one first. ⓘ lists the sources the diagram's data cites, each

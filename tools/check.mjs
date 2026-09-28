@@ -535,6 +535,12 @@ async function useItem(browser, size, entry, base, origin, dir) {
     if (markers.dots !== markers.all) fail(`opening view: ${markers.all - markers.dots} photo markers are not dots`);
     if (markers.tap < 44) fail(`a photo marker's tap zone is ${markers.tap} px, under 44`);
   }
+  // ⓘ: in its row under the picker row, its tap zone clear of ‹ › and of the map's corner controls.
+  const info = await page.evaluate(`(() => { const z = document.querySelector('.info-row .attrib-button, .info-row .maplibregl-ctrl-attrib-button'); if (!z || !z.getClientRects().length) return null; const r = z.getBoundingClientRect(); const under = (a, b) => a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom; const hit = [document.getElementById('prevRecord'), document.getElementById('nextRecord'), ...document.querySelectorAll('.maplibregl-ctrl-top-right .maplibregl-ctrl')].filter((e) => e && e.getClientRects().length && under(r, e.getBoundingClientRect())).map((e) => e.id || e.className.split(' ').pop()); return { at: [Math.round(r.left), Math.round(r.top), Math.round(r.width)], hit, opacity: getComputedStyle(z).opacity }; })()`).catch(() => null);
+  if (info) {
+    summary.push(`ⓘ at (${info.at[0]}, ${info.at[1]}), ${info.at[2]} px zone, opacity ${info.opacity}`);
+    if (info.hit.length) fail(`ⓘ's tap zone on ${info.hit.join(', ')}`);
+  }
   const placeholder = !opened && (await page.evaluate(`!!document.querySelector('p.wip')`));
   if (placeholder) summary.push('the «কাজ চলছে» page, nothing built yet');
   else if (!opened) {
@@ -597,6 +603,12 @@ const FIT = `(() => {
   for (const c of [...document.querySelectorAll('[data-clear]')].filter((e) => e.getClientRects().length)) {
     const r = c.getBoundingClientRect();
     for (const o of [...document.querySelectorAll('[data-solid]'), ...words]) if (o !== c && under(r, o.getBoundingClientRect())) bad.push(c.getAttribute('data-fit') + ' on ' + (o.getAttribute('data-solid') || nameOf(o)));
+  }
+  // ⓘ's tap zone keeps off ‹ › and off everything the view marks to keep clear.
+  const info = document.querySelector('.info-row .attrib-button, .info-row .maplibregl-ctrl-attrib-button');
+  if (info && info.getClientRects().length) {
+    const z = info.getBoundingClientRect();
+    for (const o of [document.getElementById('prevRecord'), document.getElementById('nextRecord'), ...items.map(([, e]) => e)]) if (o && o.getClientRects().length && under(z, o.getBoundingClientRect())) bad.push('ⓘ on ' + (o.getAttribute('data-fit') || o.id));
   }
   const least = innerWidth >= 390 ? 15 : 14;
   for (const n of document.querySelectorAll('.layer-label')) { const size = parseFloat(getComputedStyle(n).fontSize); if (size < least) bad.push(n.dataset.key + ' at ' + size + ' px'); }
@@ -685,6 +697,7 @@ async function slabs(page, shoot, summary, fail) {
     const name = await page.evaluate(`(() => { const b = document.querySelectorAll('.layer-name')[${i}]; const r = b.getBoundingClientRect(); return { at: [r.left + r.width / 2, r.top + r.height / 2], text: b.textContent.trim() }; })()`);
     await page.click(...name.at);
     const card = await waitCard(page);
+    await fitCheck(page, name.text);
     await shoot('steps', name.text);
     const close = await page.evaluate(box('.card-close'));
     if (close) await page.click(...close);
@@ -693,6 +706,10 @@ async function slabs(page, shoot, summary, fail) {
     else fail(`slab ${name.text}: card ${card.open ? `«${card.title}»` : 'closed'}, after × ${after.open ? 'open' : 'closed'}`);
   }
   summary.push(`slabs ${good}/${count} cards`);
+  if (page.fit) {
+    summary.push(`layout clear in ${page.fit.views - page.fit.bad.length}/${page.fit.views} views`);
+    for (const b of page.fit.bad) fail(`layout — ${b}`);
+  }
 }
 
 /**

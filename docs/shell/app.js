@@ -2115,19 +2115,30 @@ class TiltControl {
 // every map but a globe, which a module holds north-up and upright.
 if (map.dragRotate.isEnabled()) map.addControl(new maplibregl.NavigationControl({ showZoom: false, showCompass: true, visualizePitch: false }), 'top-right');
 if (map.getMaxPitch() > 0) map.addControl(new TiltControl(), 'top-right');
-map.addControl(
-  new maplibregl.AttributionControl({
-    compact: true,
-    customAttribution: [
-      '<a href="https://maplibre.org/" target="_blank" rel="noopener noreferrer">MapLibre</a>',
-      `<a href="${resolver.url('glyphs', 'noto-sans-bengali/OFL.txt')}" target="_blank" rel="noopener noreferrer">Noto Sans Bengali</a>`,
-      ...(descriptor.attribution?.extra ?? []),
-    ],
-  }),
-  'top-right',
-);
+/*
+ * ⓘ — MapLibre's own compact attribution, its credits gathered from the
+ * sources as ever, but mounted in a row of its own directly above the map:
+ * under the picker row, or under the tabs where a map has them, right-aligned
+ * (the user's decision, 2026-09-28). Small and faint until pressed or
+ * focused, its tap zone an invisible 44 px, so it covers no label on the map
+ * and no card.
+ */
+const attribution = new maplibregl.AttributionControl({
+  compact: true,
+  customAttribution: [
+    '<a href="https://maplibre.org/" target="_blank" rel="noopener noreferrer">MapLibre</a>',
+    `<a href="${resolver.url('glyphs', 'noto-sans-bengali/OFL.txt')}" target="_blank" rel="noopener noreferrer">Noto Sans Bengali</a>`,
+    ...(descriptor.attribution?.extra ?? []),
+  ],
+});
+const infoRow = own.node(document.createElement('div'), 'the credits row');
+infoRow.className = 'info-row';
+infoRow.append(attribution.onAdd(map));
+dom.mapShell.before(infoRow);
+own.undo('the credits', () => attribution.onRemove());
 // The compact control opens expanded; it starts collapsed here.
-document.querySelector('.maplibregl-ctrl-attrib')?.classList.remove('maplibregl-compact-show');
+infoRow.querySelector('.maplibregl-ctrl-attrib')?.classList.remove('maplibregl-compact-show');
+infoRow.querySelector('.maplibregl-ctrl-attrib')?.removeAttribute('open');
 
 // The shell adds the basemap, so it is the only thing that can tell a basemap
 // failure from an overlay one. The copy is generic Bengali; a descriptor never

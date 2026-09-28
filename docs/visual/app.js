@@ -24,6 +24,7 @@
 import { resolver } from '../shared/resolver.js';
 
 const dom = {
+  header: document.querySelector('.visual-header'),
   title: document.getElementById('pageTitle'),
   tabs: document.getElementById('viewTabs'),
   panels: document.getElementById('panels'),
@@ -149,6 +150,17 @@ async function start() {
   credits.forEach((a, n) => dom.attribInner.append(...(n ? [' | ', a] : [a])));
   dom.attrib.hidden = false;
 
+  // ⓘ sits in a row of its own directly below the picker row, right-aligned —
+  // or at the top of a view that has none (the user's decision, 2026-09-28).
+  const infoRow = document.createElement('div');
+  infoRow.className = 'info-row';
+  infoRow.append(dom.attrib);
+  const placeInfo = (panel) => {
+    const bar = panel.querySelector(':scope > .picker-row');
+    if (bar) bar.after(infoRow);
+    else panel.prepend(infoRow);
+  };
+
   function setAttribOpen(open) {
     dom.attrib.classList.toggle('open', open);
     dom.attribInner.hidden = !open;
@@ -184,6 +196,8 @@ async function start() {
     return { view, tab, panel, art: n === 0 ? firstArt : null, mounted: null };
   });
   dom.tabs.hidden = views.length < 2;
+  // With one view the header holds nothing: the page starts with the view.
+  dom.header.hidden = views.length < 2;
 
   let active = null;
 
@@ -197,10 +211,13 @@ async function start() {
       v.tab.tabIndex = on ? 0 : -1;
       v.panel.hidden = !on;
     }
+    placeInfo(entry.panel);
     if (!entry.view.type) return Promise.resolve();
     entry.mounted ??= VIEW_MODULES[entry.view.type]()
       .then((module) => module.mount(entry.panel, { view: entry.view, descriptor, data, art: entry.art ?? (entry.view.art ? fetchJson(diagramFile(entry.view.art)) : null), file: diagramFile }))
       .then(async (mounted) => {
+        // Placed before the view lays itself out, under its picker row if it drew one.
+        placeInfo(entry.panel);
         await mounted.ready;
         return mounted;
       });

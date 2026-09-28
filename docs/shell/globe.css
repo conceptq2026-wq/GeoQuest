@@ -37,6 +37,10 @@
     padding: 0;
   }
 
+  .has-globe .info-row {
+    padding: 0 10px;
+  }
+
   .has-globe .page-header {
     padding: 10px 10px 0;
   }

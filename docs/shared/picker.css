@@ -7,35 +7,43 @@
 | 44 px. A long chosen name ends in … in the closed select; the open list
 | shows every name whole. Each shell lays out the row itself (the map
 | shell's .page-header) and loads this before its own stylesheet.
+|
+| The look is design/mockups/picker-row.png (the user's reference,
+| 2026-09-28): ‹ and › round, light blue, navy chevrons, no border; the
+| select a light-blue pill between them, no border, the chosen name centred,
+| bold and navy, a thin navy chevron at its right.
 |--------------------------------------------------------------------------
 */
 
-/* The select takes the width left between the arrows, down to none. */
+/* The select: a light-blue pill taking the width left between the arrows, down to none. */
 .record-picker {
   flex: 1 1 0;
   min-width: 0;
   min-height: 44px;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  padding: 12px 36px 12px 14px;
+  padding: 10px 38px;
 
-  border: 1px solid #c9d6e3;
-  border-radius: 12px;
+  border: 0;
+  border-radius: 999px;
 
-  background-color: #ffffff;
-  color: #13233a;
+  background-color: #e8f1fb;
+  color: #0a1f63;
 
   /* local, inline SVG chevron — no external icon request */
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%2313233a' fill-opacity='0.6' d='M5.5 7.5l4.5 4.5 4.5-4.5z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='none' stroke='%232c427b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 12px center;
+  background-position: right 14px center;
+  background-size: 16px 16px;
   appearance: none;
   -webkit-appearance: none;
 
   font-family: 'Noto Sans Bengali', Inter, system-ui, sans-serif;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 700;
+  text-align: center;
+  text-align-last: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   cursor: pointer;
 }
@@ -45,32 +53,55 @@
   outline-offset: 2px;
 }
 
+/* The open list shows every name whole, left-aligned, in the page's own colours. */
+.record-picker option,
+.record-picker optgroup {
+  color: #13233a;
+  background: #ffffff;
+  text-align: left;
+  font-weight: 600;
+}
+
 /*
- * Previous / next. Fixed width and never flexible beside the dropdown, so they
- * can never take width away from a Bengali name. On narrow phones they move to
- * their own row (see the 379px block) and share it evenly.
+ * Previous / next: round, 44 px, light blue, a navy chevron drawn in, no
+ * border. Fixed, never flexible beside the select, so they can never take
+ * width away from a name. The ‹ › characters stay for the accessible tree
+ * but are not drawn.
  */
 .step-btn {
-  flex: 0 0 auto;
+  flex: 0 0 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 44px;
+  height: 44px;
   min-width: 44px;
   min-height: 44px;
   padding: 0;
 
-  border: 1px solid #c9d6e3;
-  border-radius: 12px;
-  background: #ffffff;
-  color: #13233a;
+  border: 0;
+  border-radius: 50%;
+  background-color: #e8f1fb;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px 20px;
+  color: transparent;
 
-  font-size: 22px;
-  line-height: 1;
+  font-size: 0;
+  line-height: 0;
   cursor: pointer;
 }
 
+#prevRecord {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='none' stroke='%232c427b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M12 5l-5 5 5 5'/%3E%3C/svg%3E");
+}
+
+#nextRecord {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='none' stroke='%232c427b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M8 5l5 5-5 5'/%3E%3C/svg%3E");
+}
+
 .step-btn:active:not(:disabled) {
-  background: #f2f6fa;
+  background-color: #d5e5f7;
 }
 
 .step-btn:focus-visible {
