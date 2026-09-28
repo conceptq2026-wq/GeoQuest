@@ -132,6 +132,7 @@ const TYPES = {
   '.woff2': 'font/woff2',
   '.webp': 'image/webp',
   '.png': 'image/png',
+  '.svg': 'image/svg+xml',
   '.txt': 'text/plain; charset=utf-8',
   '.geojson': 'application/json; charset=utf-8',
   '.pmtiles': 'application/octet-stream',

@@ -1,0 +1,873 @@
+{
+  "schema": "geoquest/map-descriptor@1",
+  "id": "liberation-war-1971",
+  "section": "bangladesh",
+  "title": {
+    "bn": "মুক্তিযুদ্ধ ১৯৭১",
+    "en": "Liberation War 1971"
+  },
+  "basemap": "bangladesh",
+  "view": {
+    "fitBounds": [
+      88,
+      20.55,
+      92.75,
+      26.7
+    ]
+  },
+  "constraints": {
+    "maxZoom": 11
+  },
+  "lookups": {},
+  "images": {
+    "flag": {
+      "file": "./flag.svg",
+      "pixelRatio": 2
+    },
+    "anchor": {
+      "file": "./anchor.svg",
+      "pixelRatio": 2
+    },
+    "star": {
+      "file": "./star.svg",
+      "pixelRatio": 2
+    }
+  },
+  "records": {
+    "items": {
+      "file": "./records.json",
+      "fields": {
+        "tab": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "nameBn": {
+          "type": "text",
+          "required": true
+        },
+        "nameEn": {
+          "type": "text",
+          "display": false
+        },
+        "numberBn": {
+          "type": "text",
+          "display": false
+        },
+        "areaBn": {
+          "type": "text"
+        },
+        "hqBn": {
+          "type": "text"
+        },
+        "commandersBn": {
+          "type": "text"
+        },
+        "specialBn": {
+          "type": "text"
+        },
+        "noteBn": {
+          "type": "text"
+        },
+        "commanderBn": {
+          "type": "text"
+        },
+        "formedUnitsBn": {
+          "type": "text"
+        },
+        "foughtBn": {
+          "type": "text"
+        },
+        "battlesBn": {
+          "type": "text"
+        },
+        "dateTextBn": {
+          "type": "text"
+        },
+        "placeBn": {
+          "type": "text"
+        },
+        "statementBn": {
+          "type": "text"
+        },
+        "rankServiceBn": {
+          "type": "text"
+        },
+        "sectorBn": {
+          "type": "text"
+        },
+        "martyrdomBn": {
+          "type": "text"
+        },
+        "burialBn": {
+          "type": "text"
+        },
+        "hasArea": {
+          "type": "boolean",
+          "display": false
+        },
+        "hasPorts": {
+          "type": "boolean",
+          "display": false
+        },
+        "labelAt": {
+          "type": "point"
+        },
+        "hqAt": {
+          "type": "point"
+        },
+        "burialAt": {
+          "type": "point"
+        },
+        "siblings": {
+          "type": "refs",
+          "to": "items",
+          "display": false
+        },
+        "frame": {
+          "type": "bbox"
+        }
+      }
+    },
+    "tabs": {
+      "file": "./tabs.json",
+      "fields": {
+        "titleBn": {
+          "type": "text",
+          "required": true
+        },
+        "placeholderBn": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "noteBn": {
+          "type": "text",
+          "display": false
+        }
+      }
+    }
+  },
+  "sources": {
+    "areas": {
+      "records": "items",
+      "geometry": "./sectors.geojson",
+      "joinField": "id",
+      "expectGeometry": {
+        "hasArea": true
+      },
+      "state": [
+        "selected",
+        {
+          "name": "dimmed",
+          "fromSelection": {
+            "records": "items",
+            "listField": "siblings"
+          }
+        }
+      ],
+      "properties": [],
+      "attribution": "Sector outlines: traced from the sector map in NCTB «বাংলাদেশ ও বিশ্বপরিচয়», অষ্টম শ্রেণি (2026), p. ২৬, on districts from <a href=\"https://data.humdata.org/dataset/cod-ab-bgd\" target=\"_blank\" rel=\"noopener noreferrer\">Bangladesh – Subnational Administrative Boundaries</a> (BBS / OCHA FISS), <a href=\"http://creativecommons.org/licenses/by/3.0/igo/legalcode\" target=\"_blank\" rel=\"noopener noreferrer\">CC BY 3.0 IGO</a> — approximate."
+    },
+    "numbers": {
+      "records": "items",
+      "geometryFrom": "labelAt",
+      "state": [
+        "selected",
+        {
+          "name": "dimmed",
+          "fromSelection": {
+            "records": "items",
+            "listField": "siblings"
+          }
+        }
+      ],
+      "properties": [
+        "numberBn"
+      ]
+    },
+    "hq": {
+      "records": "items",
+      "geometryFrom": "hqAt",
+      "state": [
+        "selected",
+        {
+          "name": "dimmed",
+          "fromSelection": {
+            "records": "items",
+            "listField": "siblings"
+          }
+        }
+      ],
+      "properties": [],
+      "attribution": "<a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener noreferrer\">© OpenStreetMap contributors</a>"
+    },
+    "ports": {
+      "records": "items",
+      "geometry": "./ports.geojson",
+      "joinField": "id",
+      "expectGeometry": {
+        "hasPorts": true
+      },
+      "state": [
+        "selected",
+        {
+          "name": "dimmed",
+          "fromSelection": {
+            "records": "items",
+            "listField": "siblings"
+          }
+        }
+      ],
+      "properties": []
+    },
+    "places": {
+      "records": "items",
+      "geometry": "./places.geojson",
+      "joinField": "id",
+      "expectGeometry": {
+        "tab": "places"
+      },
+      "state": [
+        "selected"
+      ],
+      "properties": [],
+      "attribution": "<a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener noreferrer\">© OpenStreetMap contributors</a>"
+    },
+    "graves": {
+      "records": "items",
+      "geometryFrom": "burialAt",
+      "state": [
+        "selected"
+      ],
+      "properties": [],
+      "attribution": "<a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener noreferrer\">© OpenStreetMap contributors</a>"
+    }
+  },
+  "styles": {
+    "sector-fill": {
+      "paint": {
+        "fill-antialias": true
+      }
+    },
+    "sector-edge": {
+      "layout": {
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "#ffffff"
+      }
+    },
+    "number-disc": {
+      "paint": {
+        "circle-color": "#ffffff",
+        "circle-stroke-color": "#44587c",
+        "circle-stroke-width": 1.2
+      }
+    },
+    "number-text": {
+      "layout": {
+        "text-font": [
+          "Noto Sans Bengali"
+        ],
+        "text-size": 13,
+        "text-allow-overlap": true,
+        "text-ignore-placement": true
+      },
+      "paint": {
+        "text-color": "#1d2b4f"
+      }
+    },
+    "place-dot": {
+      "paint": {
+        "circle-color": "#d62828",
+        "circle-stroke-color": "#ffffff",
+        "circle-stroke-width": 2
+      }
+    },
+    "place-glow": {
+      "paint": {
+        "circle-color": "#d62828",
+        "circle-radius": 18,
+        "circle-blur": 0.85,
+        "circle-opacity": 0.5
+      }
+    },
+    "marker": {
+      "layout": {
+        "icon-allow-overlap": true,
+        "icon-ignore-placement": true
+      }
+    }
+  },
+  "layers": [
+    {
+      "id": "sector-fill",
+      "type": "fill",
+      "source": "areas",
+      "slot": "belowLabels",
+      "style": "sector-fill",
+      "paint": {
+        "fill-color": [
+          "case",
+          [
+            "==",
+            [
+              "get",
+              "selected"
+            ],
+            true
+          ],
+          [
+            "match",
+            [
+              "get",
+              "key"
+            ],
+            "sector-1",
+            "#d9535c",
+            "sector-2",
+            "#3f9c55",
+            "sector-3",
+            "#4a74c9",
+            "sector-4",
+            "#dd8527",
+            "sector-5",
+            "#8b5cc7",
+            "sector-6",
+            "#2c9fb1",
+            "sector-7",
+            "#c34f9b",
+            "sector-8",
+            "#8aa628",
+            "sector-9",
+            "#34897a",
+            "sector-11",
+            "#a07443",
+            "#d8dee8"
+          ],
+          [
+            "match",
+            [
+              "get",
+              "key"
+            ],
+            "sector-1",
+            "#f6c1c5",
+            "sector-2",
+            "#bfe3c6",
+            "sector-3",
+            "#c6d7f5",
+            "sector-4",
+            "#fbd7b0",
+            "sector-5",
+            "#dcc9ef",
+            "sector-6",
+            "#bfe9ef",
+            "sector-7",
+            "#f5c6e6",
+            "sector-8",
+            "#e3f0b8",
+            "sector-9",
+            "#bde0d9",
+            "sector-11",
+            "#e8d6bd",
+            "#d8dee8"
+          ]
+        ],
+        "fill-opacity": [
+          "case",
+          [
+            "==",
+            [
+              "get",
+              "selected"
+            ],
+            true
+          ],
+          0.82,
+          [
+            "==",
+            [
+              "get",
+              "dimmed"
+            ],
+            true
+          ],
+          0.28,
+          0.72
+        ]
+      }
+    },
+    {
+      "id": "sector-edge",
+      "type": "line",
+      "source": "areas",
+      "slot": "belowLabels",
+      "style": "sector-edge",
+      "paint": {
+        "line-width": [
+          "case",
+          [
+            "==",
+            [
+              "get",
+              "selected"
+            ],
+            true
+          ],
+          2.6,
+          1.3
+        ]
+      }
+    },
+    {
+      "id": "port-anchor",
+      "type": "symbol",
+      "source": "ports",
+      "slot": "aboveLabels",
+      "style": "marker",
+      "layout": {
+        "icon-image": "anchor",
+        "icon-size": [
+          "case",
+          [
+            "==",
+            [
+              "get",
+              "selected"
+            ],
+            true
+          ],
+          1,
+          0.8
+        ]
+      },
+      "paint": {
+        "icon-opacity": [
+          "case",
+          [
+            "==",
+            [
+              "get",
+              "dimmed"
+            ],
+            true
+          ],
+          0.45,
+          1
+        ]
+      }
+    },
+    {
+      "id": "hq-flag",
+      "type": "symbol",
+      "source": "hq",
+      "slot": "aboveLabels",
+      "style": "marker",
+      "layout": {
+        "icon-image": "flag",
+        "icon-anchor": "bottom-left",
+        "icon-size": [
+          "case",
+          [
+            "==",
+            [
+              "get",
+              "selected"
+            ],
+            true
+          ],
+          1.1,
+          0.85
+        ]
+      },
+      "paint": {
+        "icon-opacity": [
+          "case",
+          [
+            "==",
+            [
+              "get",
+              "dimmed"
+            ],
+            true
+          ],
+          0.45,
+          1
+        ]
+      }
+    },
+    {
+      "id": "number-disc",
+      "type": "circle",
+      "source": "numbers",
+      "slot": "aboveLabels",
+      "style": "number-disc",
+      "paint": {
+        "circle-radius": [
+          "case",
+          [
+            "==",
+            [
+              "get",
+              "selected"
+            ],
+            true
+          ],
+          13,
+          11
+        ],
+        "circle-opacity": [
+          "case",
+          [
+            "==",
+            [
+              "get",
+              "dimmed"
+            ],
+            true
+          ],
+          0.7,
+          1
+        ],
+        "circle-stroke-opacity": [
+          "case",
+          [
+            "==",
+            [
+              "get",
+              "dimmed"
+            ],
+            true
+          ],
+          0.7,
+          1
+        ]
+      }
+    },
+    {
+      "id": "number-text",
+      "type": "symbol",
+      "source": "numbers",
+      "slot": "aboveLabels",
+      "style": "number-text",
+      "layout": {
+        "text-field": [
+          "get",
+          "numberBn"
+        ]
+      },
+      "paint": {
+        "text-opacity": [
+          "case",
+          [
+            "==",
+            [
+              "get",
+              "dimmed"
+            ],
+            true
+          ],
+          0.7,
+          1
+        ]
+      }
+    },
+    {
+      "id": "place-glow",
+      "type": "circle",
+      "source": "places",
+      "slot": "aboveLabels",
+      "style": "place-glow",
+      "filter": [
+        "==",
+        [
+          "get",
+          "selected"
+        ],
+        true
+      ]
+    },
+    {
+      "id": "place-dot",
+      "type": "circle",
+      "source": "places",
+      "slot": "aboveLabels",
+      "style": "place-dot",
+      "paint": {
+        "circle-radius": [
+          "case",
+          [
+            "==",
+            [
+              "get",
+              "selected"
+            ],
+            true
+          ],
+          8.5,
+          6
+        ]
+      }
+    },
+    {
+      "id": "grave-star",
+      "type": "symbol",
+      "source": "graves",
+      "slot": "aboveLabels",
+      "style": "marker",
+      "layout": {
+        "icon-image": "star",
+        "icon-size": [
+          "case",
+          [
+            "==",
+            [
+              "get",
+              "selected"
+            ],
+            true
+          ],
+          1.1,
+          0.8
+        ],
+        "symbol-sort-key": [
+          "case",
+          [
+            "==",
+            [
+              "get",
+              "selected"
+            ],
+            true
+          ],
+          1,
+          0
+        ]
+      }
+    }
+  ],
+  "controls": [
+    {
+      "type": "picker",
+      "id": "items",
+      "from": "items",
+      "placeholder": "একটি সেক্টর বেছে নিন…",
+      "labelEn": "Choose a sector, force, place or Bir Sreshtho",
+      "label": {
+        "field": "nameBn"
+      },
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "on": "click",
+      "target": "source:areas",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
+    },
+    {
+      "on": "click",
+      "target": "source:numbers",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
+    },
+    {
+      "on": "click",
+      "target": "source:hq",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
+    },
+    {
+      "on": "click",
+      "target": "source:ports",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
+    },
+    {
+      "on": "click",
+      "target": "source:places",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
+    },
+    {
+      "on": "click",
+      "target": "source:graves",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
+    }
+  ],
+  "tabs": {
+    "records": "items",
+    "field": "tab",
+    "from": "tabs",
+    "label": {
+      "field": "titleBn"
+    },
+    "placeholder": {
+      "field": "placeholderBn"
+    },
+    "note": {
+      "field": "noteBn"
+    }
+  },
+  "sheet": {
+    "title": {
+      "field": "nameBn"
+    },
+    "rows": [
+      {
+        "label": "এলাকা",
+        "field": "areaBn"
+      },
+      {
+        "label": "সদর দপ্তর",
+        "field": "hqBn"
+      },
+      {
+        "label": "অধিনায়ক",
+        "field": "commandersBn"
+      },
+      {
+        "label": "বিশেষ তথ্য",
+        "field": "specialBn"
+      },
+      {
+        "field": "noteBn",
+        "stacked": true
+      },
+      {
+        "label": "অধিনায়ক",
+        "field": "commanderBn"
+      },
+      {
+        "label": "গঠন ও ব্যাটালিয়ন",
+        "field": "formedUnitsBn"
+      },
+      {
+        "label": "যেখানে যুদ্ধ করেছে",
+        "field": "foughtBn"
+      },
+      {
+        "field": "battlesBn",
+        "stacked": true
+      },
+      {
+        "label": "তারিখ",
+        "field": "dateTextBn"
+      },
+      {
+        "label": "স্থান",
+        "field": "placeBn"
+      },
+      {
+        "field": "statementBn",
+        "stacked": true
+      },
+      {
+        "label": "পদবি ও বাহিনী",
+        "field": "rankServiceBn"
+      },
+      {
+        "label": "সেক্টর",
+        "field": "sectorBn"
+      },
+      {
+        "label": "শহিদ হওয়ার স্থান ও তারিখ",
+        "field": "martyrdomBn"
+      },
+      {
+        "label": "সমাধিস্থল",
+        "field": "burialBn"
+      }
+    ]
+  },
+  "attribution": {
+    "extra": [
+      "<a href=\"https://nctb.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">NCTB «বাংলাদেশ ও বিশ্বপরিচয়» ৮ম ও ৯ম–১০ম, «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা» ৯ম–১০ম (২০২৬)</a>",
+      "<a href=\"https://www.banglapedia.org/\" target=\"_blank\" rel=\"noopener noreferrer\">বাংলাপিডিয়া</a>",
+      "<a href=\"https://bn.wikipedia.org/\" target=\"_blank\" rel=\"noopener noreferrer\">বাংলা ও ইংরেজি উইকিপিডিয়া</a>",
+      "<a href=\"https://molwa.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">মুক্তিযুদ্ধ বিষয়ক মন্ত্রণালয়</a>"
+    ]
+  }
+}

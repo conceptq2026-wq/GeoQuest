@@ -65,3 +65,30 @@
     font-size: 13px;
   }
 }
+
+/*
+ * The active tab's note, in the map's top-left corner: small, on a soft white
+ * card, clear of the corner controls on the right and of the ⓘ zone above.
+ */
+.map-tab-note {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  max-width: calc(100% - 84px);
+  margin: 0;
+  padding: 4px 9px;
+
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 1px 3px rgba(19, 33, 59, 0.18);
+  color: #3a4a66;
+
+  font-size: 12.5px;
+  line-height: 1.35;
+  pointer-events: none;
+}
+
+.map-tab-note[hidden] {
+  display: none;
+}

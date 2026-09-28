@@ -287,7 +287,11 @@ Marble: Next Generation, July, topography and bathymetry, 5400 × 2700
 second with NASA's terms quoted; the date line's and Bangladesh's outline's
 geometry hashes, as drawn, in `tools/latitude-longitude-pins.json`; and in
 the build, the districts COD-AB gives each line at the card's value, held
-to the seed's own count.
+to the seed's own count. liberation-war-1971: its OpenStreetMap points extract
+by checksum (`osmLiberationPoints` in `tools/sources.json`); the traced
+sectors' SHA-256 in `tools/build-liberation-war-1971.mjs`; and in
+`tools/build-liberation-sectors.mjs` the COD-AB zip's pin and the ten sectors
+tiling COD-AB — overlap and gap each under 0.5 km².
 
 When a pin moves, **stop and report the old and new values.** Never re-pin to
 make a build pass. A dropped `featurecla` once shifted a line by three points
@@ -314,8 +318,9 @@ State which kind a task is when reporting it.
   `deserts`, `lakes`, `forests`, `mountains`, `waterfalls` and
   `latitude-longitude`, all under `docs/maps/`.
 - Work in progress (`tools/wip.json`): `liberation-war-1971`, a Bangladesh
-  map, «মুক্তিযুদ্ধ ১৯৭১» / "Liberation War 1971" — its seed, sector trace and
-  sectors.geojson in `data-sources/liberation-war-1971/`, not yet built.
+  map, «মুক্তিযুদ্ধ ১৯৭১» / "Liberation War 1971" — built, in
+  `docs/maps/liberation-war-1971/`, until the user checks it locally
+  (`notes/liberation-war-1971.md`).
 - Three diagrams, under বিবিধ: `atmosphere-layers`, `earth-interior` and
   `seasons`, in `docs/diagrams/`.
 

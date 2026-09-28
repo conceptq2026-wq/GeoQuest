@@ -44,7 +44,7 @@ add actions (`actions`) — and installs once it is, with `map`, `runActions`,
 shown), `archive` and `geometry` (a source's geometry file). Everything it
 creates or changes goes through `own`, so teardown undoes it.
 
-- **`tabs: { records, field, from, label }`** divides one records table by a
+- **`tabs: { records, field, from, label, placeholder?, note? }`** divides one records table by a
   field, one part at a time: the tabs are the rows of `from`, in its order,
   titled by `label`. Only the active tab's records are on the map and in the
   timeline; a table they refer to (a shared city marker) stays only while an
@@ -52,7 +52,11 @@ creates or changes goes through `own`, so teardown undoes it.
   record in another tab opens that tab. A tab the student picks resets the
   camera to the map's own view; one opened by a selection keeps that
   selection's frame. The first tab is active on every load; nothing is kept.
-  Drawn as one rounded pill bar, the active tab a filled pill.
+  Drawn as one rounded pill bar, the active tab a filled pill. Two words may
+  change with the tab (2026-09-28), each a value spec on the tab's row:
+  `placeholder`, the picker's prompt, since what it offers changes; and
+  `note`, a short note in the map's top-left corner, shown only while that tab
+  is open. liberation-war-1971 uses both.
 - **`timeline: { records, at, label?, rowBy?, rowLabel?, colour?, state?, do }`**
   puts each record at its year (`at`) as a dot labelled above it — `label`
   (default the card's title) over the year, in the map's digits — one lane per

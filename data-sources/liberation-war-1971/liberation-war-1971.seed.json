@@ -4,85 +4,167 @@
  "titleEn": "Liberation War 1971",
  "ui": {
   "titleBn": "মুক্তিযুদ্ধ ১৯৭১",
+  "titleEn": "Liberation War 1971",
   "tabsBn": {
    "sectors": "সেক্টর",
    "forces": "ফোর্স",
    "places": "স্থান ও ঘটনা",
    "birSreshtho": "বীরশ্রেষ্ঠ"
   },
-  "sectorNoteBn": "সীমানা আনুমানিক, পাঠ্যবইয়ের মানচিত্র অনুসারে",
   "pickerPlaceholderBn": {
-   "sectors": null,
-   "forces": null,
-   "places": null,
-   "birSreshtho": null
+   "sectors": "একটি সেক্টর বেছে নিন…",
+   "forces": "একটি ফোর্স বেছে নিন…",
+   "places": "একটি স্থান বা ঘটনা বেছে নিন…",
+   "birSreshtho": "একজন বীরশ্রেষ্ঠ বেছে নিন…"
   },
   "labelsBn": {
    "sector": {
-    "area": null,
-    "hq": null,
-    "commanders": null,
-    "subSectors": null,
-    "troops": null,
-    "guerrillas": null,
-    "navalCommandos": null,
-    "ports": null,
-    "formedHere": null,
-    "onlyHqInside": null,
-    "commanderDied": null
+    "area": "এলাকা",
+    "hq": "সদর দপ্তর",
+    "commanders": "অধিনায়ক",
+    "special": "বিশেষ তথ্য"
    },
    "force": {
-    "commander": null,
-    "formed": null,
-    "units": null,
-    "areas": null,
-    "battles": null
+    "commander": "অধিনায়ক",
+    "formedUnits": "গঠন ও ব্যাটালিয়ন",
+    "fought": "যেখানে যুদ্ধ করেছে"
    },
    "place": {
-    "date": null,
-    "time": null,
-    "place": null,
-    "by": null,
-    "figures": null,
-    "designer": null,
-    "built": null,
-    "height": null
+    "date": "তারিখ",
+    "place": "স্থান"
    },
    "birSreshtho": {
-    "rank": null,
-    "service": null,
-    "sector": null,
-    "subSector": null,
-    "martyrdomPlace": null,
-    "martyrdomDate": null,
-    "burial": null,
-    "firstBurial": null,
-    "reburial": null,
-    "grave": null,
-    "memorial": null
+    "rankService": "পদবি ও বাহিনী",
+    "sector": "সেক্টর",
+    "martyrdom": "শহিদ হওয়ার স্থান ও তারিখ",
+    "burial": "সমাধিস্থল"
    }
+  },
+  "sectorNoteBn": "সীমানা আনুমানিক, পাঠ্যবইয়ের মানচিত্র অনুসারে",
+  "infoBn": "NCTB «বাংলাদেশ ও বিশ্বপরিচয়» ৮ম ও ৯ম–১০ম, «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা» ৯ম–১০ম (২০২৬); বাংলাপিডিয়া; বাংলা ও ইংরেজি উইকিপিডিয়া; bdnews24",
+  "infoCreditsBn": [
+   {
+    "text": "NCTB «বাংলাদেশ ও বিশ্বপরিচয়» ৮ম ও ৯ম–১০ম, «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা» ৯ম–১০ম (২০২৬)",
+    "url": "https://nctb.gov.bd/"
+   },
+   {
+    "text": "বাংলাপিডিয়া",
+    "url": "https://www.banglapedia.org/"
+   },
+   {
+    "text": "বাংলা ও ইংরেজি উইকিপিডিয়া",
+    "url": "https://bn.wikipedia.org/"
+   },
+   {
+    "text": "মুক্তিযুদ্ধ বিষয়ক মন্ত্রণালয়",
+    "url": "https://molwa.gov.bd/"
+   }
+  ],
+  "composeBn": {
+   "months": [
+    "জানুয়ারি",
+    "ফেব্রুয়ারি",
+    "মার্চ",
+    "এপ্রিল",
+    "মে",
+    "জুন",
+    "জুলাই",
+    "আগস্ট",
+    "সেপ্টেম্বর",
+    "অক্টোবর",
+    "নভেম্বর",
+    "ডিসেম্বর"
+   ],
+   "then": "পরে",
+   "and": "ও",
+   "since": "{date} থেকে",
+   "sector": "{n} নং সেক্টর",
+   "subSector": "{name} সাব-সেক্টর",
+   "subSectors": "{n}টি সাব-সেক্টর",
+   "troops": "{n} সৈন্য",
+   "guerrillas": "{n} গেরিলা",
+   "navalCommandos": "{n} জন নৌ-কমান্ডো",
+   "about": "প্রায় {n}",
+   "reburied": "{date} পুনঃসমাহিত",
+   "firstBuried": "প্রথমে {place}",
+   "ministry": "মন্ত্রণালয়",
+   "wikipedia": "উইকিপিডিয়া",
+   "enWikipedia": "ইংরেজি উইকিপিডিয়া",
+   "page": "পৃ. {page}"
   },
   "sources": {
    "titleBn": [
     {
-     "ref": "editor-2026-09-28",
-     "states": "tools/wip.json, the user’s name for the map"
+     "ref": "draft-2",
+     "states": "sheet «শব্দ ও লেবেল», row «ম্যাপের নাম»"
+    }
+   ],
+   "titleEn": [
+    {
+     "ref": "draft-2",
+     "states": "sheet «শব্দ ও লেবেল», row «ম্যাপের নাম»"
     }
    ],
    "tabsBn": [
     {
-     "ref": "editor-2026-09-28",
-     "states": "the user-approved draft’s «শব্দ ও লেবেল» sheet, as the step-2 prompt gives them"
+     "ref": "draft-2",
+     "states": "sheet «শব্দ ও লেবেল», row «ট্যাব»"
+    }
+   ],
+   "pickerPlaceholderBn": [
+    {
+     "ref": "draft-2",
+     "states": "sheet «শব্দ ও লেবেল», row «নেভিগেশন বার»"
+    }
+   ],
+   "labelsBn": [
+    {
+     "ref": "draft-2",
+     "states": "sheet «শব্দ ও লেবেল», row «সেক্টর কার্ড»"
+    },
+    {
+     "ref": "draft-2",
+     "states": "sheet «শব্দ ও লেবেল», row «ফোর্স কার্ড»"
+    },
+    {
+     "ref": "draft-2",
+     "states": "sheet «শব্দ ও লেবেল», row «স্থান ও ঘটনা কার্ড»"
+    },
+    {
+     "ref": "draft-2",
+     "states": "sheet «শব্দ ও লেবেল», row «বীরশ্রেষ্ঠ কার্ড»"
     }
    ],
    "sectorNoteBn": [
     {
+     "ref": "draft-2",
+     "states": "sheet «শব্দ ও লেবেল», row «ম্যাপের নোট»"
+    }
+   ],
+   "infoBn": [
+    {
+     "ref": "draft-2",
+     "states": "sheet «শব্দ ও লেবেল», row «ⓘ-তে উৎস»"
+    }
+   ],
+   "infoCreditsBn": [
+    {
+     "ref": "draft-2",
+     "states": "sheet «শব্দ ও লেবেল», row «ⓘ-তে উৎস»"
+    },
+    {
+     "ref": "M1-matiur",
+     "states": "the ministry’s own name, «মুক্তিযুদ্ধ বিষয়ক মন্ত্রণালয়», as its pages title themselves"
+    }
+   ],
+   "composeBn": [
+    {
      "ref": "editor-2026-09-28",
-     "states": "the user-approved draft’s «শব্দ ও লেবেল» sheet, as the step-2 prompt gives it"
+     "states": "the editor’s joining words, from the draft’s phrasing: «, পরে », «(… থেকে)», «… ও …», «৫টি সাব-সেক্টর», «প্রায় ৩৫ হাজার গেরিলা»; and the sources’ words: «নং সেক্টর», «সাব-সেক্টর», «সৈন্য», «নৌ-কমান্ডো», «পুনঃসমাহিত»"
     }
    ]
   },
-  "review": "Every null word here is in the user-approved draft’s «শব্দ ও লেবেল» sheet, which is not in the repo (it lives on the Claude project side). The prompt quotes only the four tabs and the sector note. The label keys are the card rows this seed carries; the user supplies the words."
+  "review": "ⓘ: the draft’s line names bdnews24, which no value on the map now comes from (the K Force article was not used), and predates the ministry, which many do; the map’s ⓘ lists the sources the values actually cite — for the user to approve. composeBn is the editor’s, for the user to approve."
  },
  "refs": {
   "B8": {
@@ -184,6 +266,15 @@
    "sha256": "acd35696275cfeb0fff93e67795ea149e054c315364573e4c57f0880bed03636",
    "read": "2026-09-28"
   },
+  "BP-muktibahini": {
+   "title": "মুক্তিবাহিনী",
+   "publisher": "বাংলাপিডিয়া (Asiatic Society of Bangladesh), read from the Internet Archive",
+   "url": "https://bn.banglapedia.org/index.php/মুক্তিবাহিনী",
+   "archived": "2021-06-21",
+   "file": "bp/bn-muktibahini.html",
+   "sha256": "23ee0e31bdb3f00d0a2d9cf76e02edf2ca2d6b1ff75a9dc7afc6b50e78ad5685",
+   "read": "2026-09-28"
+  },
   "BP-war": {
    "title": "মুক্তিযুদ্ধ (section «মুক্তিযুদ্ধের রণাঙ্গন (সেক্টর)»)",
    "publisher": "বাংলাপিডিয়া (Asiatic Society of Bangladesh), read from the Internet Archive; the live site answers «Hello World»",
@@ -214,6 +305,13 @@
   "editor-2026-09-28": {
    "title": "The user’s decision",
    "publisher": "editor-verified, 2026-09-28 (the step-2 prompt)",
+   "read": "2026-09-28"
+  },
+  "draft-2": {
+   "title": "user-approved-draft-2.xlsx — sheets «শব্দ ও লেবেল» and «স্থান ও ঘটনা»",
+   "publisher": "the user’s approval of the editor’s draft (editor-verified, 2026-09-28)",
+   "file": "tools/.cache/liberation-war-1971/user-approved-draft-2.xlsx",
+   "sha256": "fac5c88e067fdae95f65bd8fa318ff5e40349a0a85805dc3a5c0d353b79cd41a",
    "read": "2026-09-28"
   },
   "wbn-8386932": {
@@ -483,17 +581,6 @@
      ]
     },
     {
-     "key": "troops",
-     "value": 2100,
-     "sources": [
-      {
-       "ref": "M3",
-       "page": "pp. 10–11 (§15)",
-       "states": "«সেক্টর ট্রুপস্ ছিল ২১০০ সৈন্য»"
-      }
-     ]
-    },
-    {
      "key": "guerrillas",
      "value": 20000,
      "sources": [
@@ -510,7 +597,7 @@
      ]
     }
    ],
-   "review": "Ministry M3 p. 22: «মেজর জিয়াকে কোন সেক্টরের দায়িত্ব দেয়া হয়নি» — contradicts NCTB, which names him first; NCTB stands (the user’s decision). en Wikipedia ends Zia’s term \"May 5, 1971\". Rafiqul Islam is «ক্যাপ্টেন» in NCTB, «মেজর» in Banglapedia. The signed list’s p. 19 (sub-sectors, troops) cannot be read (non-embedded font), so §15 stands unopposed there.",
+   "review": "Ministry M3 p. 22: «মেজর জিয়াকে কোন সেক্টরের দায়িত্ব দেয়া হয়নি» — contradicts NCTB, which names him first; NCTB stands (the user’s decision). en Wikipedia ends Zia’s term \"May 5, 1971\". Rafiqul Islam is «ক্যাপ্টেন» in NCTB, «মেজর» in Banglapedia. The signed list’s p. 19 (sub-sectors, troops) cannot be read (non-embedded font), so §15 stands unopposed there. Troops: the ministry’s one readable figure, 2,100 (§15), is left out — the signed list’s page cannot be read, so nothing agrees with it (the user’s decision, step 3); its 20,000 guerrillas, the same in both lists, kept.",
    "number": 1,
    "sources": {
     "areaBn": [
@@ -740,11 +827,6 @@
      ]
     },
     {
-     "key": "troops",
-     "value": null,
-     "sources": []
-    },
-    {
      "key": "guerrillas",
      "value": 25000,
      "sources": [
@@ -772,7 +854,7 @@
      ]
     }
    ],
-   "review": "Commander name: B8 p. ২৬ prints «মেজর কে.এন শফিউল্লাহ», p. ২৭ «মেজর কে.এম. শফিউল্লাহ»; p. ২৭’s form is shown. NCTB gives Nuruzzaman no rank (Banglapedia «মেজর»). The ministry contradicts itself: sub-sectors «সাতটি» (§15) vs 10 (pp. 20–22) → bn Wikipedia’s ten; troops «৬৬৯৩» vs «প্রায় ২,৫০০» → no later source gives a number: pending. The ministry names only Shafiullah.",
+   "review": "Commander name: B8 p. ২৬ prints «মেজর কে.এন শফিউল্লাহ», p. ২৭ «মেজর কে.এম. শফিউল্লাহ»; p. ২৭’s form is shown. NCTB gives Nuruzzaman no rank (Banglapedia «মেজর»). Sub-sectors: the ministry contradicts itself («সাতটি», §15, vs 10, pp. 20–22) → bn Wikipedia’s ten. Troops and guerrillas (the user’s decision, step 3): a number only where the sources agree — the ministry’s troops («৬৬৯৩» vs «প্রায় ২,৫০০») left out; its 25,000 guerrillas, the same in both lists, kept. The ministry names only Shafiullah.",
    "number": 3,
    "sources": {
     "areaBn": [
@@ -809,10 +891,6 @@
        }
       ]
      }
-    },
-    {
-     "labelBn": "নাসিমপুর",
-     "point": null
     }
    ],
    "commanders": [
@@ -862,31 +940,9 @@
        "states": "6"
       }
      ]
-    },
-    {
-     "key": "troops",
-     "value": 4000,
-     "approx": true,
-     "sources": [
-      {
-       "ref": "BP-war",
-       "states": "«নিয়মিত বাহিনী ছিল প্রায় ৪ হাজার»"
-      }
-     ]
-    },
-    {
-     "key": "guerrillas",
-     "value": 9000,
-     "approx": true,
-     "sources": [
-      {
-       "ref": "BP-war",
-       "states": "«গেরিলার সংখ্যা ছিল প্রায় ৯ হাজার»"
-      }
-     ]
     }
    ],
-   "review": "The change to Capt. A Rab has no date in any source: the name only (the user’s decision), so Datta’s term shows no end; bn Wikipedia gives Datta «১০ এপ্রিল, ১৯৭১ হতে ৬ই এপ্ৰিল, ১৯৭২» with no successor. Nasimpur: OpenStreetMap has two «Masimpur» (node/3160367468, a village at 92.79689, 24.75825; node/12290580105, a hamlet at 92.76984, 24.87961), neither spelled as NCTB’s «নাসিমপুর» (Banglapedia «মাসিমপুর»): no point — for the user. Ministry contradicts itself on troops («৯৭৫» vs 2,000) and guerrillas («৯,০০০» vs 8,000) → Banglapedia.",
+   "review": "HQ: «প্রথমে আসামের করিমগঞ্জ পরে নাসিমপুর» as text; Karimganj has a point, Nasimpur none (the user’s decision, step 3: OpenStreetMap has two «Masimpur», neither spelled as NCTB’s «নাসিমপুর»). The change to Capt. A Rab has no date in any source: the name only (the user’s decision), so Datta’s term shows no end; bn Wikipedia gives Datta «১০ এপ্রিল, ১৯৭১ হতে ৬ই এপ্ৰিল, ১৯৭২» with no successor. Troops and guerrillas (the user’s decision, step 3): a number only where the sources agree — the ministry’s troops («৯৭৫» vs 2,000) and guerrillas («৯,০০০» vs 8,000) disagree: left out.",
    "number": 4,
    "sources": {
     "areaBn": [
@@ -961,29 +1017,9 @@
        "states": "6"
       }
      ]
-    },
-    {
-     "key": "troops",
-     "value": 800,
-     "sources": [
-      {
-       "ref": "BP-war",
-       "states": "«আটশত নিয়মিত সৈন্য»"
-      }
-     ]
-    },
-    {
-     "key": "guerrillas",
-     "value": 5000,
-     "sources": [
-      {
-       "ref": "BP-war",
-       "states": "«পাঁচ হাজার গেরিলা»"
-      }
-     ]
     }
    ],
-   "review": "Ministry contradicts itself on troops («১৯৩৬» vs 800) and guerrillas («৯,০০০» vs 7,000) → Banglapedia.",
+   "review": "Troops and guerrillas (the user’s decision, step 3): a number only where the sources agree — the ministry’s troops («১৯৩৬» vs 800) and guerrillas («৯,০০০» vs 7,000) disagree: left out.",
    "number": 5,
    "sources": {
     "areaBn": [
@@ -1005,6 +1041,7 @@
    }
   },
   "6": {
+   "noteBn": "বইয়ের লেখায় ঠাকুরগাঁও ৬ নং সেক্টরের বাইরে; মানচিত্রে বইয়ের মানচিত্র অনুসারে দেখানো।",
    "areaBn": "ঠাকুরগাঁও ও ব্রহ্মপুত্র নদের তীরবর্তী অঞ্চল ব্যতীত সমগ্র রংপুর",
    "hqBn": "লালমনিরহাটের বুড়িমারী",
    "hqPoints": [
@@ -1060,26 +1097,6 @@
      ]
     },
     {
-     "key": "troops",
-     "value": 2000,
-     "sources": [
-      {
-       "ref": "BP-war",
-       "states": "«২০০০ নিয়মিত সৈন্য»"
-      }
-     ]
-    },
-    {
-     "key": "guerrillas",
-     "value": 9000,
-     "sources": [
-      {
-       "ref": "BP-war",
-       "states": "«৯০০০ গণবাহিনী»"
-      }
-     ]
-    },
-    {
      "key": "onlyHqInside",
      "value": "একমাত্র সেক্টর যার হেড কোয়ার্টার ছিল বাংলাদেশের অভ্যন্তরে",
      "sources": [
@@ -1090,9 +1107,15 @@
      ]
     }
    ],
-   "review": "Ministry contradicts itself on troops («২৩১০» vs 1,200) and guerrillas («১১,০০০» vs 6,000) → Banglapedia, whose word is «গণবাহিনী» (B8 p. ২৭ equates «গণবাহিনী» with the irregular «এফ. এফ.»). The HQ statement is Banglapedia’s alone (the ministry and Wikipedia do not make it).",
+   "review": "Thakurgaon: the book’s text keeps it out of sector 6, its map draws it in; the map follows the map, with the note (the user’s decision, step 3). Troops and guerrillas (the user’s decision, step 3): a number only where the sources agree — the ministry’s troops («২৩১০» vs 1,200) and guerrillas («১১,০০০» vs 6,000) disagree: left out. The HQ statement is Banglapedia’s alone (the ministry and Wikipedia do not make it).",
    "number": 6,
    "sources": {
+    "noteBn": [
+     {
+      "ref": "editor-2026-09-28",
+      "states": "the user’s note (step 3): the book’s text puts Thakurgaon outside sector 6, its map inside; the map follows the book’s map"
+     }
+    ],
     "areaBn": [
      {
       "ref": "B8",
@@ -1112,6 +1135,7 @@
    }
   },
   "7": {
+   "noteBn": "বইয়ের লেখায় ঠাকুরগাঁও ৬ নং সেক্টরের বাইরে; মানচিত্রে বইয়ের মানচিত্র অনুসারে দেখানো।",
    "areaBn": "রাজশাহী, পাবনা, ব্রহ্মপুত্র নদের তীরবর্তী এলাকা ব্যতীত সমগ্র বগুড়া, দিনাজপুর জেলার দক্ষিণাঞ্চল ও রংপুরের অংশ বিশেষ এলাকা",
    "hqBn": "পশ্চিমবঙ্গের দক্ষিণ দিনাজপুর",
    "hqPoints": [
@@ -1181,26 +1205,6 @@
      ]
     },
     {
-     "key": "troops",
-     "value": 2500,
-     "sources": [
-      {
-       "ref": "BP-war",
-       "states": "«২৫০০ নিয়মিত»"
-      }
-     ]
-    },
-    {
-     "key": "guerrillas",
-     "value": 12500,
-     "sources": [
-      {
-       "ref": "BP-war",
-       "states": "«১২৫০০ গেরিলা»"
-      }
-     ]
-    },
-    {
      "key": "commanderDied",
      "value": "সেপ্টেম্বর মাসে সড়ক দুর্ঘটনায় মেজর নাজমুল হক নিহত",
      "sources": [
@@ -1212,9 +1216,15 @@
      ]
     }
    ],
-   "review": "The ministry gives only the month of the change («সেপ্টেম্বর»), which bn Wikipedia’s 27/28 September agrees with; en Wikipedia starts Nuruzzaman \"September 30\". Ministry contradicts itself on sub-sectors («নয়টি» vs 8), troops («২৩১০» vs 2,000), guerrillas («১২,৫০০» vs 10,000); bn Wikipedia’s table has nine rows, one unnamed, so it settles nothing → Banglapedia. NCTB gives Kazi Nuruzzaman no rank. Banglapedia adds a third commander, «সুবেদার মেজর এ. রব»; NCTB stands.",
+   "review": "The ministry gives only the month of the change («সেপ্টেম্বর»), which bn Wikipedia’s 27/28 September agrees with; en Wikipedia starts Nuruzzaman \"September 30\". Ministry contradicts itself on sub-sectors («নয়টি» vs 8), troops («২৩১০» vs 2,000), guerrillas («১২,৫০০» vs 10,000); bn Wikipedia’s table has nine rows, one unnamed, so it settles nothing → Banglapedia. NCTB gives Kazi Nuruzzaman no rank. Banglapedia adds a third commander, «সুবেদার মেজর এ. রব»; NCTB stands. Troops and guerrillas (the user’s decision, step 3): a number only where the sources agree — the ministry’s troops («২৩১০» vs 2,000) and guerrillas («১২,৫০০» vs 10,000) disagree: left out. Thakurgaon: the note, as on sector 6 (the user’s decision, step 3).",
    "number": 7,
    "sources": {
+    "noteBn": [
+     {
+      "ref": "editor-2026-09-28",
+      "states": "the user’s note (step 3): the book’s text puts Thakurgaon outside sector 6, its map inside; the map follows the book’s map"
+     }
+    ],
     "areaBn": [
      {
       "ref": "B8",
@@ -1317,29 +1327,9 @@
        "states": "7"
       }
      ]
-    },
-    {
-     "key": "troops",
-     "value": 3000,
-     "sources": [
-      {
-       "ref": "BP-war",
-       "states": "«৩০০০ ছিল নিয়মিত বাহিনী»"
-      }
-     ]
-    },
-    {
-     "key": "guerrillas",
-     "value": 25000,
-     "sources": [
-      {
-       "ref": "BP-war",
-       "states": "«২৫০০০ গেরিলা সৈন্য»"
-      }
-     ]
     }
    ],
-   "review": "The handover is the ministry’s «১৮ই আগস্ট» (it stands over bn Wikipedia’s 17 July end and 14 August start); the start (10 April) and Manzur’s end (6 April 1972) are bn Wikipedia’s. Ministry contradicts itself on troops («৩৩১১» vs 2,000) and guerrillas («৮,০০০» vs 7,000) → Banglapedia, whose 25,000 is three times either ministry figure.",
+   "review": "The handover is the ministry’s «১৮ই আগস্ট» (it stands over bn Wikipedia’s 17 July end and 14 August start); the start (10 April) and Manzur’s end (6 April 1972) are bn Wikipedia’s. Ministry contradicts itself on troops («৩৩১১» vs 2,000) and guerrillas («৮,০০০» vs 7,000) → Banglapedia, whose 25,000 is three times either ministry figure. Troops and guerrillas (the user’s decision, step 3): a number only where the sources agree — the ministry’s troops («৩৩১১» vs 2,000) and guerrillas («৮,০০০» vs 7,000) disagree: left out.",
    "number": 8,
    "sources": {
     "areaBn": [
@@ -1432,19 +1422,9 @@
        "states": "«টাকি», «হিঙ্গলগঞ্জ», «শমসেরনগর»"
       }
      ]
-    },
-    {
-     "key": "troops",
-     "value": null,
-     "sources": []
-    },
-    {
-     "key": "guerrillas",
-     "value": null,
-     "sources": []
     }
    ],
-   "review": "HQ: the user’s decision (2026-09-28), Banglapedia’s «বশিরহাটের নিকটবর্তী টাকিতে»; B8 p. ২৭ prints «আসামের করিমগঞ্জ», Sector 4’s first HQ. Ministry contradicts itself on sub-sectors («তিনটি» vs 8) → bn Wikipedia; troops («৩৩১১» vs 700) and guerrillas («৮,০০০» vs 10,000) — Banglapedia gives only «প্রায় বিশ হাজার মুক্তিযোদ্ধা», a total, not guerrillas: both pending. en Wikipedia starts Jalil \"July 17\". Banglapedia adds Manzur as a commander; NCTB stands.",
+   "review": "HQ: the user’s decision (2026-09-28), Banglapedia’s «বশিরহাটের নিকটবর্তী টাকিতে»; B8 p. ২৭ prints «আসামের করিমগঞ্জ», Sector 4’s first HQ. Ministry contradicts itself on sub-sectors («তিনটি» vs 8) → bn Wikipedia; troops («৩৩১১» vs 700) and guerrillas («৮,০০০» vs 10,000) — Banglapedia gives only «প্রায় বিশ হাজার মুক্তিযোদ্ধা», a total, not guerrillas: both pending. en Wikipedia starts Jalil \"July 17\". Banglapedia adds Manzur as a commander; NCTB stands. Bhola: wholly in sector 9 (the user’s decision, step 3: the book’s text says «সমগ্র বরিশাল», and Bhola was part of Barisal district in 1971), though the book’s map draws the estuary line through it. Troops and guerrillas (the user’s decision, step 3): a number only where the sources agree — the ministry’s troops («৩৩১১» vs 700) and guerrillas («৮,০০০» vs 10,000) disagree: left out.",
    "number": 9,
    "sources": {
     "areaBn": [
@@ -1600,43 +1580,22 @@
     },
     {
      "nameBn": "মেজর আবু তাহের",
-     "from": "1971-10-10",
-     "to": "1971-11-14",
      "sources": {
       "nameBn": [
        {
         "ref": "B8",
         "page": "২৭"
-       }
-      ],
-      "dates": [
-       {
-        "ref": "wbn-8386932",
-        "states": "column «দায়িত্বকাল»: «১০ অক্টোবর, ১৯৭১ হতে ২ নভেম্বর, ১৯৭১»"
-       },
-       {
-        "ref": "M3",
-        "page": "pp. 10–11 (§15)",
-        "states": "«মেজর আবু তাহের ১৪ নভেম্বর আহত হওয়ার পর»"
        }
       ]
      }
     },
     {
      "nameBn": "স্কোয়াড্রন লিডার এম হামিদুল্লাহ খান",
-     "from": null,
-     "to": "1972-04-06",
      "sources": {
       "nameBn": [
        {
         "ref": "B8",
         "page": "২৭"
-       }
-      ],
-      "dates": [
-       {
-        "ref": "wbn-8386932",
-        "states": "column «দায়িত্বকাল»: «২ নভেম্বর, ১৯৭১ হতে ৬ই এপ্ৰিল, ১৯৭২»"
        }
       ]
      }
@@ -1654,17 +1613,22 @@
      ]
     },
     {
-     "key": "troops",
-     "value": null,
-     "sources": []
-    },
-    {
-     "key": "guerrillas",
-     "value": null,
-     "sources": []
+     "key": "taherWounded",
+     "value": "মেজর আবু তাহের ১৪ নভেম্বর আহত হন",
+     "sources": [
+      {
+       "ref": "M3",
+       "page": "pp. 10–11 (§15)",
+       "states": "«মেজর আবু তাহের ১৪ নভেম্বর আহত হওয়ার পর এই সেক্টরের দায়িত্ব কাউকেও দেয়া হয়নি»"
+      },
+      {
+       "ref": "editor-2026-09-28",
+       "states": "the wording «মেজর আবু তাহের ১৪ নভেম্বর আহত হন» is the user’s (step 3)"
+      }
+     ]
     }
    ],
-   "review": "Taher’s end is the ministry’s «১৪ নভেম্বর» (over bn Wikipedia’s 2 November). Hamidullah’s start is pending — for the user: bn Wikipedia starts him on 2 November, before the ministry’s 14 November, and the ministry says «এই সেক্টরের দায়িত্ব কাউকেও দেয়া হয়নি», which contradicts NCTB (NCTB names him; NCTB stands for the name). Ministry contradicts itself on sub-sectors («সাতটি» vs 8) → bn Wikipedia; troops («২৩১০» vs «এক ব্যাটালিয়ন») and guerrillas («২৫,০০০» vs 20,000) — Banglapedia gives only «প্রায় ২৫ হাজার মুক্তিযোদ্ধা», a total: both pending.",
+   "review": "Taher and Hamidullah: names only, no dates (the user’s decision, step 3) — bn Wikipedia’s 10 October–2 November for Taher and 2 November for Hamidullah conflict with the ministry’s «১৪ নভেম্বর», and the ministry says «এই সেক্টরের দায়িত্ব কাউকেও দেয়া হয়নি», which contradicts NCTB (NCTB stands for the names). The wounding is on the card, in the user’s words. Troops and guerrillas (the user’s decision, step 3): a number only where the sources agree — the ministry’s troops («২৩১০» vs «এক ব্যাটালিয়ন») and guerrillas («২৫,০০০» vs 20,000) disagree: left out.",
    "number": 11,
    "sources": {
     "areaBn": [
@@ -1815,7 +1779,6 @@
   "k": {
    "nameBn": "কে ফোর্স",
    "commanderBn": "মেজর খালেদ মোশাররফ",
-   "formed": null,
    "unitsBn": [
     "৪ ইস্ট বেঙ্গল রেজিমেন্ট",
     "৯ ইস্ট বেঙ্গল রেজিমেন্ট",
@@ -1886,7 +1849,7 @@
      }
     ]
    },
-   "review": "Formed: pending. The ministry contradicts itself — «সেপ্টেম্বর ৭১ সনে» (§19) vs «১৪ই অক্টোবর» (§15); the next sources (bn and en Wikipedia, newspapers, Banglapedia) give no date. «বিলোনিয়ার যুদ্ধ» is in both K’s and S’s lists."
+   "review": "Formed: no date on the card (the user’s decision, step 3). The ministry contradicts itself — «সেপ্টেম্বর ৭১ সনে» (§19) vs «১৪ই অক্টোবর» (§15); the next sources (bn and en Wikipedia, newspapers, Banglapedia) give no date. «বিলোনিয়ার যুদ্ধ» is in both K’s and S’s lists."
   },
   "s": {
    "nameBn": "এস ফোর্স",
@@ -1963,7 +1926,7 @@
   "march-7-speech": {
    "order": 1,
    "nameEn": "The 7 March speech",
-   "nameBn": null,
+   "nameBn": "৭ই মার্চের ভাষণ",
    "date": "1971-03-07",
    "dateBn": "৭ই মার্চ",
    "placeBn": "রেসকোর্স ময়দান (বর্তমান সোহরাওয়ার্দী উদ্যান)",
@@ -1994,9 +1957,21 @@
       "page": "২১",
       "states": "«রেসকোর্স ময়দানে (বর্তমান সোহরাওয়ার্দী উদ্যান)»"
      }
+    ],
+    "nameBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «ঘটনা / স্থান»"
+     }
+    ],
+    "dateTextBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «তারিখ (বই)»"
+     }
     ]
    },
-   "review": "nameBn: the draft’s name (not in the repo)"
+   "dateTextBn": "৭ মার্চ ১৯৭১"
   },
   "first-flag": {
    "order": 2,
@@ -2053,8 +2028,16 @@
       "page": "২০",
       "states": "«ডাকসু ভিপি আ স ম আবদুর রবের নেতৃত্বে»"
      }
+    ],
+    "dateTextBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «তারিখ (বই)»"
+     }
     ]
-   }
+   },
+   "review": "The draft calls it «প্রথম পতাকা উত্তোলন»; the NCTB name stands (step 3).",
+   "dateTextBn": "২ মার্চ ১৯৭১, সকাল ১১টা"
   },
   "manifesto": {
    "order": 3,
@@ -2104,14 +2087,21 @@
       "page": "২০",
       "states": "«ছাত্রনেতা শাজাহান সিরাজ»"
      }
+    ],
+    "dateTextBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «তারিখ (বই)»"
+     }
     ]
    },
-   "review": "H910 spells «শাহজাহান সিরাজ»; B8 and B910 «শাজাহান সিরাজ»."
+   "review": "The draft calls it «স্বাধীনতার ইশতেহার পাঠ»; the NCTB name stands (step 3). H910 spells «শাহজাহান সিরাজ»; B8 and B910 «শাজাহান সিরাজ».",
+   "dateTextBn": "৩ মার্চ ১৯৭১"
   },
   "joydebpur": {
    "order": 4,
    "nameEn": "Joydebpur",
-   "nameBn": null,
+   "nameBn": "জয়দেবপুরে গুলিবর্ষণ",
    "date": "1971-03-19",
    "dateBn": "১৯শে মার্চ",
    "placeBn": "জয়দেবপুর",
@@ -2142,9 +2132,21 @@
       "page": "১৬৯",
       "states": "«জয়দেবপুরে»"
      }
+    ],
+    "nameBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «ঘটনা / স্থান»"
+     }
+    ],
+    "dateTextBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «তারিখ (বই)»"
+     }
     ]
    },
-   "review": "nameBn: the draft’s name (not in the repo)"
+   "dateTextBn": "১৯ মার্চ ১৯৭১"
   },
   "march-25": {
    "order": 5,
@@ -2222,14 +2224,28 @@
       "page": "২৩",
       "states": "«ঢাকায় ৭ থেকে ৮ হাজার»; «ঢাকা বিশ্ববিদ্যালয়ের ১০জন শিক্ষকসহ ৩০০ জন ছাত্র-ছাত্রী ও কর্মচারী»"
      }
+    ],
+    "dateTextBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «তারিখ (বই)»"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «স্থান (বই)»"
+     }
     ]
    },
-   "review": "H910 dates the start «রাত সাড়ে এগারোটার দিকে» and names Pilkhana «পিলখানার ইপিআর হেডকোয়ার্টার্স»."
+   "review": "The draft calls it «২৫ মার্চের গণহত্যা (অপারেশন সার্চলাইট)»; the NCTB name stands (step 3). H910 dates the start «রাত সাড়ে এগারোটার দিকে» and names Pilkhana «পিলখানার ইপিআর হেডকোয়ার্টার্স».",
+   "dateTextBn": "২৫ মার্চ ১৯৭১, রাত ১১.৩০",
+   "placeBn": "পিলখানা, রাজারবাগ পুলিশ লাইন্স, ঢাকা বিশ্ববিদ্যালয়"
   },
   "arrest": {
    "order": 6,
    "nameEn": "The arrest",
-   "nameBn": null,
+   "nameBn": "বঙ্গবন্ধুর গ্রেফতার",
    "date": "1971-03-26",
    "dateBn": "২৫শে মার্চ রাত দেড়টায় (২৬শে মার্চের প্রথম প্রহরে)",
    "placeBn": "ধানমন্ডি ৩২ নম্বর সড়কের বাসা",
@@ -2260,9 +2276,22 @@
       "page": "২৩",
       "states": "«ধানমন্ডি ৩২ নম্বর সড়কের বাসা থেকে»"
      }
+    ],
+    "nameBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «ঘটনা / স্থান»"
+     }
+    ],
+    "dateTextBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «তারিখ (বই)»"
+     }
     ]
    },
-   "review": "nameBn: the draft’s name (not in the repo). H910 «২৬শে মার্চ প্রথম প্রহরে»; Banglapedia «২৫ মার্চ রাতেই»."
+   "review": "H910 «২৬শে মার্চ প্রথম প্রহরে»; Banglapedia «২৫ মার্চ রাতেই».",
+   "dateTextBn": "২৫ মার্চ রাত দেড়টায় (২৬ মার্চের প্রথম প্রহরে)"
   },
   "kalurghat": {
    "order": 7,
@@ -2282,6 +2311,8 @@
    ],
    "placeBn": "চট্টগ্রামের কালুরঘাট বেতার কেন্দ্র",
    "byBn": "মেজর জিয়াউর রহমান",
+   "statementBn": "শহিদ প্রেসিডেন্ট জিয়াউর রহমান (তৎকালীন মেজর) মৃত্যুর ঝুঁকি নিয়ে ২৬শে মার্চ তারিখে চট্টগ্রামের কালুরঘাট বেতার কেন্দ্র থেকে স্বাধীনতা ঘোষণা করেন। এরপর তিনি ২৭শে মার্চ তারিখে শেখ মুজিবুর রহমানের পক্ষে আবারও স্বাধীনতার ঘোষণা দেন।",
+   "statementCiteBn": "বাংলাদেশ ও বিশ্বপরিচয়, অষ্টম শ্রেণি, পৃ. ২৪",
    "points": [
     {
      "point": {
@@ -2316,21 +2347,51 @@
       "page": "২৪"
      }
     ],
+    "statementBn": [
+     {
+      "ref": "B8",
+      "page": "২৪",
+      "states": "the book’s statement, whole, as the card gives it (the user’s decision, step 3)"
+     }
+    ],
+    "statementCiteBn": [
+     {
+      "ref": "B8",
+      "page": "২৪"
+     }
+    ],
     "byBn": [
      {
       "ref": "B8",
       "page": "২৪",
       "states": "caption «মেজর জিয়াউর রহমানের স্বাধীনতার ঘোষণা»; text «শহিদ প্রেসিডেন্ট জিয়াউর রহমান (তৎকালীন মেজর)»"
      }
+    ],
+    "dateTextBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «তারিখ (বই)»"
+     }
     ]
-   }
+   },
+   "review": "The draft calls it «কালুরঘাট বেতার কেন্দ্র থেকে স্বাধীনতার ঘোষণা পাঠ»; the NCTB name stands (step 3).",
+   "dateTextBn": "২৬ ও ২৭ মার্চ ১৯৭১"
   },
   "teliapara": {
    "order": 8,
    "nameEn": "Teliapara",
-   "nameBn": null,
+   "nameBn": "তেলিয়াপাড়া সভা ও ওসমানীর দায়িত্ব গ্রহণ",
    "date": "1971-04-04",
-   "dateBn": "এপ্রিল মাসের ৪ তারিখে",
+   "dates": [
+    {
+     "date": "1971-04-04",
+     "dateBn": "এপ্রিল মাসের ৪ তারিখে"
+    },
+    {
+     "date": "1971-04-12",
+     "dateBn": "১৯৭১ সালের ১২ এপ্রিল"
+    }
+   ],
    "placeBn": "হবিগঞ্জের তেলিয়াপাড়া",
    "points": [
     {
@@ -2346,10 +2407,14 @@
     }
    ],
    "sources": {
-    "dateBn": [
+    "dates": [
      {
       "ref": "BP-war",
-      "states": "«এপ্রিল মাসের ৪ তারিখে» at «তেলিয়াপাড়ায় অবস্থিত দ্বিতীয় ইস্ট বেঙ্গলের সদরদপ্তরে»"
+      "states": "the senior officers’ meeting, «এপ্রিল মাসের ৪ তারিখে» at «তেলিয়াপাড়ায় অবস্থিত দ্বিতীয় ইস্ট বেঙ্গলের সদরদপ্তরে»"
+     },
+     {
+      "ref": "BP-muktibahini",
+      "states": "Osmany takes command, «১৯৭১ সালের ১২ এপ্রিল», «তেলিয়াপাড়ায়»"
      }
     ],
     "placeBn": [
@@ -2358,14 +2423,27 @@
       "page": "২৬",
       "states": "Sector 3’s HQ"
      }
+    ],
+    "nameBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «ঘটনা / স্থান»"
+     }
+    ],
+    "dateTextBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «তারিখ (বই)»"
+     }
     ]
    },
-   "review": "nameBn: the draft’s name (not in the repo). NCTB names Teliapara only as Sector 3’s HQ and gives this meeting no date; the ministry and Wikipedia give none either, so the date is Banglapedia’s (last in the order). Banglapedia’s Mukti Bahini entry also puts Osmany taking command there «১৯৭১ সালের ১২ এপ্রিল»."
+   "review": "NCTB names Teliapara only as Sector 3’s HQ and gives this meeting no date; the ministry and Wikipedia give none either, so the date is Banglapedia’s (last in the order). Banglapedia’s Mukti Bahini entry also puts Osmany taking command there «১৯৭১ সালের ১২ এপ্রিল».",
+   "dateTextBn": "৪ ও ১২ এপ্রিল ১৯৭১"
   },
   "mujibnagar-oath": {
    "order": 9,
    "nameEn": "The Mujibnagar oath",
-   "nameBn": null,
+   "nameBn": "মুজিবনগর সরকারের শপথ",
    "date": "1971-04-17",
    "dateBn": "১৯৭১ সালের ১৭ই এপ্রিল",
    "placeBn": "মেহেরপুর জেলার বৈদ্যনাথতলার আম্রকানন",
@@ -2396,14 +2474,26 @@
       "page": "১৬–১৭",
       "states": "«মেহেরপুর জেলার বৈদ্যনাথতলার আম্রকাননে»"
      }
+    ],
+    "nameBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «ঘটনা / স্থান»"
+     }
+    ],
+    "dateTextBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «তারিখ (বই)»"
+     }
     ]
    },
-   "review": "nameBn: the draft’s name (not in the repo)"
+   "dateTextBn": "১৭ এপ্রিল ১৯৭১"
   },
   "chuknagar": {
    "order": 10,
    "nameEn": "Chuknagar",
-   "nameBn": null,
+   "nameBn": "চুকনগর গণহত্যা",
    "date": "1971-05-20",
    "dateBn": "২০ মে",
    "placeBn": "খুলনার ডুমুরিয়া উপজেলার চুকনগর",
@@ -2434,9 +2524,21 @@
       "page": "৩৩",
       "states": "«খুলনার ডুমুরিয়া উপজেলার চুকনগরে»"
      }
+    ],
+    "nameBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «ঘটনা / স্থান»"
+     }
+    ],
+    "dateTextBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «তারিখ (বই)»"
+     }
     ]
    },
-   "review": "nameBn: the draft’s name (not in the repo)"
+   "dateTextBn": "২০ মে ১৯৭১"
   },
   "operation-jackpot": {
    "order": 11,
@@ -2526,14 +2628,28 @@
       "ref": "B8",
       "page": "২৭–২৮"
      }
+    ],
+    "dateTextBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «তারিখ (বই)»"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «স্থান (বই)»"
+     }
     ]
    },
-   "review": "Banglapedia dates it «পাকিস্তানের স্বাধীনতা দিবসে (১৪ আগস্ট)» and names «দাউদকান্দি» for Chandpur; NCTB stands. The ministry agrees on 26 ships (M3 p. 13)."
+   "review": "Banglapedia dates it «পাকিস্তানের স্বাধীনতা দিবসে (১৪ আগস্ট)» and names «দাউদকান্দি» for Chandpur; NCTB stands. The ministry agrees on 26 ships (M3 p. 13).",
+   "dateTextBn": "১৫ আগস্ট রাত ১২টার পর (১৬ আগস্ট প্রথম প্রহর)",
+   "placeBn": "চট্টগ্রাম, মোংলা, চাঁদপুর ও নারায়ণগঞ্জ"
   },
   "intellectuals-rayerbazar": {
    "order": 12,
    "nameEn": "The intellectuals and Rayerbazar",
-   "nameBn": null,
+   "nameBn": "বুদ্ধিজীবী হত্যা ও রায়েরবাজার বধ্যভূমি",
    "date": "1971-12-14",
    "dateBn": "১৪ই ডিসেম্বর",
    "placeBn": "রায়েরবাজার বধ্যভূমি",
@@ -2562,14 +2678,27 @@
       "ref": "H910",
       "page": "১৮২"
      }
+    ],
+    "nameBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «ঘটনা / স্থান»"
+     }
+    ],
+    "dateTextBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «তারিখ (বই)»"
+     }
     ]
    },
-   "review": "nameBn: the draft’s name (not in the repo). B8 p. ৩৩: «১০ থেকে ১৪ ডিসেম্বরে»; H910 p. ১৮২: the site found «১৯৭১ সালের ১৮ই ডিসেম্বর»."
+   "review": "B8 p. ৩৩: «১০ থেকে ১৪ ডিসেম্বরে»; H910 p. ১৮২: the site found «১৯৭১ সালের ১৮ই ডিসেম্বর».",
+   "dateTextBn": "১৪ ডিসেম্বর ১৯৭১"
   },
   "surrender": {
    "order": 13,
    "nameEn": "The surrender",
-   "nameBn": null,
+   "nameBn": "পাকিস্তানি বাহিনীর আত্মসমর্পণ",
    "date": "1971-12-16",
    "dateBn": "১৯৭১ সালের ১৬ই ডিসেম্বর",
    "timeBn": "বিকেল ৪টা ৩১ মিনিটে",
@@ -2620,9 +2749,22 @@
       "ref": "H910",
       "page": "১৭৭–১৭৮"
      }
+    ],
+    "nameBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «ঘটনা / স্থান»"
+     }
+    ],
+    "dateTextBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «তারিখ (বই)»"
+     }
     ]
    },
-   "review": "nameBn: the draft’s name (not in the repo). The ministry (M3 p. 16) «বিকাল ৪টা ৩০ মিনিটে»; Banglapedia «বিকাল পাঁচটা এক মিনিটে». NCTB stands (4:31, the user’s decision)."
+   "review": "The ministry (M3 p. 16) «বিকাল ৪টা ৩০ মিনিটে»; Banglapedia «বিকাল পাঁচটা এক মিনিটে». NCTB stands (4:31, the user’s decision).",
+   "dateTextBn": "১৬ ডিসেম্বর ১৯৭১, বিকেল ৪টা ৩১ মিনিট"
   },
   "national-memorial": {
    "order": 14,
@@ -2678,8 +2820,15 @@
       "page": "১৮০",
       "states": "«১৯৭২» to «১৯৮২»"
      }
+    ],
+    "dateTextBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «তারিখ (বই)»"
+     }
     ]
-   }
+   },
+   "dateTextBn": "নির্মাণ ১৯৭২–১৯৮২"
   },
   "mujibnagar-memorial": {
    "order": 15,
@@ -2770,8 +2919,15 @@
       "ref": "H910",
       "page": "১৮১"
      }
+    ],
+    "dateTextBn": [
+     {
+      "ref": "draft-2",
+      "states": "sheet «স্থান ও ঘটনা», column «তারিখ (বই)»"
+     }
     ]
-   }
+   },
+   "dateTextBn": "নির্মাণ শেষ ১৯৭২"
   }
  },
  "birSreshtho": {

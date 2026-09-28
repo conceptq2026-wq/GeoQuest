@@ -136,6 +136,14 @@ rules and verification budget apply.
   source carries — each an https link that opens outside the WebView; the
   validator holds that shape. latitude-longitude's NASA credit is one.
 
+- **`images` names the pictures symbol layers draw** (2026-09-28):
+  `{ <id>: { file, pixelRatio } }`, each an SVG in the map's own folder with
+  its own width and height, fetched through the resolver like the map's other
+  files and drawn at `pixelRatio` pixels to the CSS pixel; a layer's
+  `icon-image` names one. The validator fails an icon-image that names no
+  declared image, and an image no layer draws. liberation-war-1971's flag,
+  anchor and star are the first.
+
 ## Records with no line geometry get a point marker
 
 A record that cannot be traced is marked with a point, the same treatment the

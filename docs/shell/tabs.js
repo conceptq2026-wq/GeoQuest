@@ -3,7 +3,7 @@
 | TABS — a shell module: one records table divided by a field, one part at a
 | time
 |
-|   tabs: { records, field, from, label }
+|   tabs: { records, field, from, label, placeholder?, note? }
 |
 | The tabs are the rows of `from`, in its order, each titled by `label` (a
 | value spec, as a card's title is); a row's key is a value of
@@ -16,6 +16,11 @@
 | picks opens on the map's own view, its whole world, rather than on the last
 | record's frame; one opened by a selection keeps that selection's frame. The
 | first tab is active on every load; nothing is kept.
+|
+| Two words may change with the tab, each a value spec on its row: the
+| picker's prompt (`placeholder`), since what it offers changes, and a short
+| note in the map's top-left corner (`note`) — a word about what that tab
+| draws, shown only while it is open and only where its row has one.
 |
 | Why a term of its own: recordFilter hides records by a field value too, but
 | any number of values at once, from a corner menu. Tabs show exactly one
@@ -30,6 +35,7 @@ let spec;
 let shell;
 let active;
 let bar;
+let note; // the active tab's note on the map, where the descriptor asks for one
 const buttons = new Map(); // tab key -> its button
 let reached = null; // table -> the keys an active record refers to; rebuilt on a change of tab
 
@@ -61,6 +67,13 @@ export async function mount(api) {
     buttons.set(key, button);
   }
   api.dom.mapShell.before(bar);
+  if (spec.note) {
+    note = api.own.node(document.createElement('p'), 'tab note');
+    note.className = 'map-tab-note';
+    note.hidden = true; // until the map is built and its words are set
+    note.lang = api.language ?? 'bn';
+    api.dom.mapShell.append(note);
+  }
   sync();
   api.hide(hidden);
 }
@@ -82,6 +95,7 @@ export function install(api) {
     toWorld();
     buttons.get(next).focus();
   });
+  words();
   api.onChange((what) => {
     if (what !== 'select') return;
     const key = api.selection.get(spec.records);
@@ -95,6 +109,19 @@ function open(tab) {
   reached = null;
   sync();
   shell.refilter();
+  words();
+}
+
+/** The picker's prompt and the note on the map, as the active tab's row gives them. */
+function words() {
+  const row = shell.records[spec.from][active];
+  const prompt = spec.placeholder ? shell.dom.picker.querySelector('option[value=""]') : null;
+  if (prompt) prompt.textContent = shell.valueOf(spec.placeholder, row) ?? '';
+  if (note) {
+    const text = shell.valueOf(spec.note, row);
+    note.textContent = text ?? '';
+    note.hidden = !text;
+  }
 }
 
 /*

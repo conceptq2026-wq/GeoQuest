@@ -75,6 +75,8 @@ const JANAPADA_SEEDS = path.join(ROOT, 'data-sources/ancient-janapadas');
 // The environment-treaties map: the editor's seed, the cities found for it, and
 // the values found for its nulls.
 const TREATY_SEEDS = path.join(ROOT, 'data-sources/environment-treaties');
+// The liberation-war-1971 map: the editor's seed and the traced sectors.
+const LIBERATION_SEEDS = path.join(ROOT, 'data-sources/liberation-war-1971');
 // Every authored diagram lives under here, one folder per diagram id, and the
 // diagram shell that opens them.
 const DIAGRAMS_DIR = path.join(ROOT, 'docs/diagrams');
@@ -621,6 +623,14 @@ function checkMap({ id, expectedPending }) {
     const t = descriptor.tabs;
     note(t.records, t.field);
     noteSpec(t.from, t.label);
+    // The picker's prompt and a note on the map, as the active tab's row gives them.
+    noteSpec(t.from, t.placeholder);
+    noteSpec(t.from, t.note);
+    check(Object.keys(t).every((k) => ['records', 'field', 'from', 'label', 'placeholder', 'note'].includes(k)), `tabs declares only records, field, from, label, placeholder and note (${Object.keys(t).join(', ')})`);
+    if (t.placeholder) {
+      const unprompted = Object.keys(tables[t.from] ?? {}).filter((k) => !tables[t.from][k][t.placeholder.field]);
+      check(Boolean(picker) && unprompted.length === 0, `tabs: every tab has its picker prompt (${t.placeholder.field})${unprompted.length ? ` — not ${unprompted.join(', ')}` : ''}`);
+    }
     const values = new Set(Object.values(tables[t.records] ?? {}).map((r) => r[t.field]));
     const tabKeys = Object.keys(tables[t.from] ?? {});
     const untabbed = [...values].filter((v) => !tabKeys.includes(v));
@@ -675,6 +685,26 @@ function checkMap({ id, expectedPending }) {
     }
     const bengali = [...new Set(shown)].filter((f) => /Bn$/.test(f));
     check(bengali.length === 0, `an English map shows no Bengali field (${new Set(shown).size} fields shown)${bengali.length ? ` — not ${bengali.join(', ')}` : ''}`);
+  }
+
+  // ---- images -----------------------------------------------------------------
+  // `images`: pictures symbol layers draw by name through icon-image, each an
+  // SVG in the map's folder with its own width and height, drawn at
+  // `pixelRatio`. Every icon-image a layer names is declared, and every
+  // declared image is drawn by some layer.
+  const images = descriptor.images ?? {};
+  const named = new Set();
+  for (const layer of descriptor.layers ?? []) {
+    const icon = layer.layout?.['icon-image'];
+    if (icon === undefined) continue;
+    check(typeof icon === 'string' && icon in images, `layer "${layer.id}": icon-image "${icon}" names a declared image`);
+    named.add(icon);
+  }
+  for (const [name, img] of Object.entries(images)) {
+    const file = path.join(dir, path.basename(img.file ?? ''));
+    const svg = fs.existsSync(file) ? fs.readFileSync(file, 'utf8') : '';
+    check(/\.svg$/.test(img.file ?? '') && /<svg[^>]*\swidth="\d+(\.\d+)?"[^>]*\sheight="\d+(\.\d+)?"/.test(svg) && (img.pixelRatio === undefined || img.pixelRatio > 0), `image "${name}": ${img.file} is an SVG in the map's folder with its own width and height${img.pixelRatio ? `, drawn at pixelRatio ${img.pixelRatio}` : ''}`);
+    check(named.has(name), `image "${name}" is drawn by a layer`);
   }
 
   // ---- credits the shell adds to ⓘ ------------------------------------------
@@ -1763,6 +1793,95 @@ console.log('\n\n============ seasons (diagram) ============');
     const d = manifest[part].disc;
     check(Boolean(d) && d.r > 0 && d.cx > 0 && d.cy > 0 && d.cx < manifest[part].width && d.cy < manifest[part].height, `${part}: its painted disc measured, r ${d?.r} px at (${d?.cx}, ${d?.cy}) in its ${manifest[part].width}×${manifest[part].height} file`);
   }
+}
+
+/*
+|--------------------------------------------------------------------------
+| LIBERATION-WAR-1971 — held to its seed and its traced sectors: the words
+| the user approved, the user's decisions, and what the map draws
+|--------------------------------------------------------------------------
+*/
+console.log('\n\n============ liberation-war-1971 ============');
+{
+  const dir = path.join(MAPS_DIR, 'liberation-war-1971');
+  const seed = readJson(path.join(LIBERATION_SEEDS, 'liberation-war-1971.seed.json'));
+  const traced = readJson(path.join(LIBERATION_SEEDS, 'sectors.geojson'));
+  const descriptor = readJson(path.join(dir, 'descriptor.json'));
+  const recs = readJson(path.join(dir, 'records.json'));
+  const tabs = readJson(path.join(dir, 'tabs.json'));
+  const areas = readJson(path.join(dir, 'sectors.geojson'));
+  const ui = seed.ui;
+  const TABS = ['sectors', 'forces', 'places', 'birSreshtho'];
+  const byTab = (t) => Object.entries(recs).filter(([, r]) => r.tab === t);
+
+  console.log('\n---- the seed ----');
+  const nulls = [];
+  const walk = (v, p) => {
+    if (v === null) nulls.push(p);
+    else if (Array.isArray(v)) v.forEach((x, i) => walk(x, `${p}[${i}]`));
+    else if (typeof v === 'object') for (const [k, x] of Object.entries(v)) if (!['sources', 'review', 'refs'].includes(k)) walk(x, `${p}.${k}`);
+  };
+  walk({ ui, sectors: seed.sectors, forces: seed.forces, places: seed.places, birSreshtho: seed.birSreshtho }, 'seed');
+  check(nulls.length === 0, `nothing in the seed is pending (${nulls.length})${nulls.length ? ` — ${nulls.join(', ')}` : ''}`);
+  // Every value a card shows keeps its source: each field in words, each date.
+  const cited = (v) => Array.isArray(v) && v.length > 0 && v.every((c) => c.ref in seed.refs);
+  const uncited = [];
+  for (const table of TABS)
+    for (const [k, r] of Object.entries(seed[table]))
+      for (const f of Object.keys(r).filter((f) => (/Bn$/.test(f) && f !== 'commandersNoteBn') || ['dates', 'sectors', 'formed'].includes(f)))
+        if (!cited(r.sources?.[f])) uncited.push(`${table}.${k}.${f}`);
+  check(uncited.length === 0, `every value the seed shows keeps its source (${uncited.length} without)${uncited.length ? ` — ${uncited.slice(0, 8).join(', ')}` : ''}`);
+  const specials = Object.entries(seed.sectors).flatMap(([n, s]) => (s.special ?? []).filter((i) => ['troops', 'guerrillas'].includes(i.key)).map((i) => [n, i]));
+  const lone = specials.filter(([, i]) => i.sources.length < 2);
+  check(lone.length === 0, `a troop or guerrilla number stands only where two sources give it (the user's decision): ${specials.map(([n, i]) => `${n} ${i.key} ${i.value}`).join(', ')}${lone.length ? ` — alone: ${lone.map(([n, i]) => `${n} ${i.key}`).join(', ')}` : ''}`);
+
+  console.log("\n---- the user's decisions ----");
+  const s9 = traced.features.find((f) => f.properties.sector === 9);
+  check(Boolean(s9?.properties.reassigned?.includes('Bhola')), 'Bhola is wholly in sector 9 (the book’s «সমগ্র বরিশাল»)');
+  const km2 = traced.features.reduce((t, f) => t + f.properties.areaKm2, 0);
+  check(traced.features.length === 10 && Math.abs(km2 - 145750) < 150, `the ten traced sectors cover COD-AB's land (${km2} km²; the sectors build measures their overlap and gap)`);
+  const THAKURGAON = 'বইয়ের লেখায় ঠাকুরগাঁও ৬ নং সেক্টরের বাইরে; মানচিত্রে বইয়ের মানচিত্র অনুসারে দেখানো।';
+  check(['6', '7'].every((n) => recs[`sector-${n}`]?.noteBn === THAKURGAON) && byTab('sectors').filter(([, r]) => r.noteBn).length === 2, 'sectors 6 and 7, and only they, carry the Thakurgaon note');
+  const k = seed.places.kalurghat;
+  check(recs.kalurghat?.statementBn === `${k.statementBn} (${k.statementCiteBn})` && k.sources.statementBn?.[0]?.ref === 'B8' && k.sources.statementBn[0].page === '২৪', 'Kalurghat: the book’s statement, B8 p. ২৪, with its page on the card');
+  check(seed.sectors['4'].hqPoints.length === 1 && recs['sector-4'].hqBn.includes('নাসিমপুর'), 'Nasimpur: in the HQ’s words, with no point');
+  const s11 = seed.sectors['11'].commanders;
+  check(s11.slice(1).every((c) => !('from' in c) && !('to' in c)) && seed.sectors['11'].special.some((i) => i.value === 'মেজর আবু তাহের ১৪ নভেম্বর আহত হন'), 'sector 11: no dates for Taher and Hamidullah; «মেজর আবু তাহের ১৪ নভেম্বর আহত হন»');
+  check(!('formed' in seed.forces.k) && !/[০-৯]{4}/.test(recs['force-k'].formedUnitsBn), 'K Force: no formation date');
+  const pointFields = Object.values(descriptor.sources).map((src) => src.geometryFrom).filter(Boolean);
+  check(byTab('forces').every(([, r]) => !r.frame && pointFields.every((f) => !(f in r))), 'the forces are cards only: no point, no frame; their battles are card text');
+
+  console.log('\n---- words ----');
+  const L = ui.labelsBn;
+  const rows = Object.fromEntries(descriptor.sheet.rows.filter((r) => r.label).map((r) => [r.field, r.label]));
+  const want = { areaBn: L.sector.area, hqBn: L.sector.hq, commandersBn: L.sector.commanders, specialBn: L.sector.special, commanderBn: L.force.commander, formedUnitsBn: L.force.formedUnits, foughtBn: L.force.fought, dateTextBn: L.place.date, placeBn: L.place.place, rankServiceBn: L.birSreshtho.rankService, sectorBn: L.birSreshtho.sector, martyrdomBn: L.birSreshtho.martyrdom, burialBn: L.birSreshtho.burial };
+  const badRows = Object.entries(want).filter(([f, l]) => rows[f] !== l);
+  check(badRows.length === 0 && Object.keys(rows).length === Object.keys(want).length, `every card label is the approved draft's (${Object.keys(want).length})${badRows.length ? ` — not ${badRows.map(([f]) => f).join(', ')}` : ''}`);
+  check(JSON.stringify(Object.keys(tabs)) === JSON.stringify(TABS) && TABS.every((t) => tabs[t].titleBn === ui.tabsBn[t] && tabs[t].placeholderBn === ui.pickerPlaceholderBn[t]), `tabs.json: the four tabs, their titles and picker prompts the approved draft's (${TABS.map((t) => tabs[t].titleBn).join(' · ')})`);
+  check(tabs.sectors.noteBn === ui.sectorNoteBn && TABS.slice(1).every((t) => !('noteBn' in tabs[t])), `the sectors tab's note, «${ui.sectorNoteBn}», on that tab only`);
+  check(descriptor.title.bn === ui.titleBn && descriptor.title.en === ui.titleEn, `the title is the approved draft's (${descriptor.title.bn} / ${descriptor.title.en})`);
+  const credits = ui.infoCreditsBn.map((c) => `<a href="${c.url}" target="_blank" rel="noopener noreferrer">${c.text}</a>`);
+  check(JSON.stringify(descriptor.attribution?.extra) === JSON.stringify(credits), `ⓘ lists the seed's sources (${ui.infoCreditsBn.map((c) => c.text).join('; ')})`);
+  const names = byTab('places').filter(([key, r]) => r.nameBn !== seed.places[key].nameBn);
+  check(names.length === 0 && byTab('places').length === 16, `the 16 places and events carry the seed's names — the NCTB's where it names one, else the approved draft's${names.length ? ` — not ${names.map(([key]) => key).join(', ')}` : ''}`);
+
+  console.log('\n---- the map ----');
+  check(TABS.map((t) => byTab(t).length).join('/') === '11/3/16/7', `records: sectors 11, forces 3, places 16, Bir Sreshtho 7 (${TABS.map((t) => byTab(t).length).join('/')})`);
+  const same =
+    areas.features.length === 10 &&
+    areas.features.every((f) => {
+      const t = traced.features.find((x) => `sector-${x.properties.sector}` === f.properties.id);
+      return t && JSON.stringify(t.geometry) === JSON.stringify(f.geometry);
+    });
+  check(same, "the map's ten sector areas are the traced outlines, unchanged");
+  const flags = byTab('sectors').filter(([, r]) => r.hqAt).map(([key]) => key);
+  check(flags.length === 10 && !flags.includes('sector-10'), `every sector but 10 has its HQ flag (${flags.length}), those in India included`);
+  const ports = readJson(path.join(dir, 'ports.geojson')).features;
+  check(ports.length === 4 && ports.every((f) => f.properties.id === 'sector-10') && !areas.features.some((f) => f.properties.id === 'sector-10'), 'sector 10: no area, and its four ports anchored');
+  check(byTab('birSreshtho').every(([, r]) => Array.isArray(r.burialAt)), 'every Bir Sreshtho has a star at the current burial place (7)');
+  const placeIds = new Set(readJson(path.join(dir, 'places.geojson')).features.map((f) => f.properties.id));
+  check(byTab('places').every(([key]) => placeIds.has(key)), 'every place and event has its red dot');
+  checkMap({ id: 'liberation-war-1971', expectedPending: 0 });
 }
 
 /*

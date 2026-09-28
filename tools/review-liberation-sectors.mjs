@@ -12,6 +12,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { CACHE, zipEntry } from './lib/geo.mjs';
+import { scanGeoref } from './lib/scan-georef.mjs';
 
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const ROOT = path.resolve(HERE, '..');
@@ -33,21 +34,9 @@ const zip = fs.readFileSync(path.join(CACHE, sources.codAbBangladesh.file));
 if (zip.length !== sources.codAbBangladesh.size || crypto.createHash('sha256').update(zip).digest('hex') !== sources.codAbBangladesh.sha256) throw new Error('COD-AB zip does not match its pin');
 const districts = zipEntry(zip, 'bgd_admin2.geojson').features;
 
-// The same fit as the build's equirectangular model: lon and lat each affine in
-// the scan's pixels, by least squares over the control points; inverted here.
-function lsq(rows, ys) {
-  const A = [[0, 0, 0], [0, 0, 0], [0, 0, 0]], b = [0, 0, 0];
-  rows.forEach((r, k) => { for (let i = 0; i < 3; i++) { b[i] += r[i] * ys[k]; for (let j = 0; j < 3; j++) A[i][j] += r[i] * r[j]; } });
-  for (let i = 0; i < 3; i++) { const p = A[i][i]; for (let j = i + 1; j < 3; j++) { const f = A[j][i] / p; for (let k = i; k < 3; k++) A[j][k] -= f * A[i][k]; b[j] -= f * b[i]; } }
-  const x = [0, 0, 0];
-  for (let i = 2; i >= 0; i--) x[i] = (b[i] - A[i].slice(i + 1).reduce((s, a, k) => s + a * x[i + 1 + k], 0)) / A[i][i];
-  return x;
-}
-const rows = trace.controlPoints.map((c) => [c.px[0], c.px[1], 1]);
-const X = lsq(rows, trace.controlPoints.map((c) => c.ll[0]));
-const Y = lsq(rows, trace.controlPoints.map((c) => c.ll[1]));
-const det = X[0] * Y[1] - X[1] * Y[0];
-const px = ([lon, lat]) => { const a = lon - X[2], b = lat - Y[2]; return [((Y[1] * a - X[1] * b) / det) * SCALE, ((-Y[0] * a + X[0] * b) / det) * SCALE]; };
+// The same fit as the build's equirectangular model, inverted to the scan's pixels.
+const { toPx } = scanGeoref(trace.controlPoints);
+const px = (ll) => toPx(ll).map((v) => v * SCALE);
 // A ring in screen space, keeping a vertex only once it is a pixel from the last kept one.
 const d = (rings) => rings.map((r) => {
   const kept = [];

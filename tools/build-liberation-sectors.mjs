@@ -595,17 +595,44 @@ for (const isl of islands) {
   (islandOf[n] ||= []).push({ ring: isl, district: d });
 }
 
-// ---- write ---------------------------------------------------------------------------------
+// ---- whole districts the user gives to one sector ---------------------------------------
+// The trace's `reassign` table: a COD-AB district that goes, whole, to one
+// sector whatever the traced lines cut — Bhola to 9 (the user's decision,
+// 2026-09-28: the book's text gives sector 9 «সমগ্র বরিশাল», and Bhola was
+// part of Barisal district in 1971). It is cut out of every sector and added
+// to its own, so the sectors still tile COD-AB.
 const round = (p) => [Number(p[0].toFixed(6)), Number(p[1].toFixed(6))];
 const clean = (r) => r.map(round).filter((p, i, arr) => i === 0 || p[0] !== arr[i - 1][0] || p[1] !== arr[i - 1][1]);
-const features = Object.keys(sectorFaces)
+const polyArea = (mp) => mp.reduce((s, poly) => s + Math.abs(signedArea(poly[0])) - poly.slice(1).reduce((h, r) => h + Math.abs(signedArea(r)), 0), 0);
+const sectorPolys = {};
+for (const n of Object.keys(sectorFaces)) sectorPolys[n] = [[clean(sectorFaces[n])], ...(islandOf[n] || []).map((i) => [clean(i.ring)])];
+const reassigned = {};
+for (const [district, to] of Object.entries(trace.reassign ?? {})) {
+  const f = a2.find((x) => x.properties.adm2_name === district);
+  if (!f) fail(`reassign: no COD-AB district named ${district}`);
+  if (!sectorPolys[to]) fail(`reassign: ${district} goes to sector ${to}, which has no area`);
+  const whole = parts(f.geometry).map((p) => p.map(clean));
+  let moved = 0;
+  for (const n of Object.keys(sectorPolys)) {
+    if (String(n) === String(to)) continue;
+    const taken = polygonClipping.intersection(sectorPolys[n], whole);
+    if (!taken.length) continue;
+    moved += polyArea(taken);
+    sectorPolys[n] = polygonClipping.difference(sectorPolys[n], whole);
+    sectorPolys[to] = polygonClipping.union(sectorPolys[to], taken);
+  }
+  (reassigned[to] ||= []).push(district);
+  report.push(`${district}: ${moved.toFixed(1)} km² moved to sector ${to}; the district is now wholly in it`);
+}
+
+// ---- write ---------------------------------------------------------------------------------
+const features = Object.keys(sectorPolys)
   .sort((x, y) => Number(x) - Number(y))
   .map((n) => {
-    const polysOut = [[clean(sectorFaces[n])], ...(islandOf[n] || []).map((i) => [clean(i.ring)])];
-    const areaKm2 = polysOut.reduce((s, p) => s + Math.abs(signedArea(p[0])), 0);
+    const polysOut = sectorPolys[n].map((poly) => poly.map(clean));
     return {
       type: 'Feature',
-      properties: { sector: Number(n), areaKm2: Math.round(areaKm2), islands: (islandOf[n] || []).map((i) => i.district) },
+      properties: { sector: Number(n), areaKm2: Math.round(polyArea(polysOut)), islands: (islandOf[n] || []).map((i) => i.district), ...(reassigned[n] ? { reassigned: reassigned[n] } : {}) },
       geometry: { type: 'MultiPolygon', coordinates: polysOut },
     };
   });
@@ -631,6 +658,15 @@ const country = Math.abs(signedArea(mainland)) + islands.reduce((s, r) => s + Ma
 console.log(`\nsectors: ${features.length}; land ${Math.round(total)} km² of COD-AB's ${Math.round(country)} km² (${((100 * total) / country).toFixed(3)}%)`);
 for (const f of features) console.log(`  sector ${String(f.properties.sector).padStart(2)}  ${String(f.properties.areaKm2).padStart(6)} km²${f.properties.islands.length ? `  + islands: ${f.properties.islands.join(', ')}` : ''}`);
 if (Math.abs(total - country) / country > 0.001) fail(`the sectors cover ${total} km², COD-AB ${country} km²`);
+// They tile COD-AB: no two overlap, and together they are COD-AB's land, before
+// simplification — measured, not assumed, since a district was moved whole.
+const keys = Object.keys(sectorPolys);
+let overlap = 0;
+for (let i = 0; i < keys.length; i++) for (let j = i + 1; j < keys.length; j++) overlap += polyArea(polygonClipping.intersection(sectorPolys[keys[i]], sectorPolys[keys[j]]));
+const land = [[mainland], ...islands.map((r) => [r])].map((p) => p.map(clean));
+const gap = polyArea(polygonClipping.xor(polygonClipping.union(...keys.map((k) => sectorPolys[k])), land));
+console.log(`  tiling: overlaps ${overlap.toFixed(3)} km², union vs COD-AB differs by ${gap.toFixed(3)} km²`);
+if (overlap > 0.5 || gap > 0.5) fail(`the sectors do not tile COD-AB: overlaps ${overlap.toFixed(3)} km², gap ${gap.toFixed(3)} km²`);
 for (const r of report) console.log(`  note: ${r}`);
 console.log(`wrote ${path.relative(ROOT, OUT)} — ${fs.statSync(OUT).size} bytes, sha256 ${sha256(fs.readFileSync(OUT)).slice(0, 16)}`);
 

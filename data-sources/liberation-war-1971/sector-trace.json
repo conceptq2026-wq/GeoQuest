@@ -71,5 +71,9 @@
     "Lakshmipur": 2,
     "Chattogram": 1,
     "Cox's Bazar": 1
+  },
+  "_reassign": "Whole COD-AB districts given to one sector whatever the traced lines cut, by the user’s decision. Bhola → 9 (2026-09-28): the book’s text gives sector 9 «সমগ্র বরিশাল ও পটুয়াখালী অঞ্চল», and Bhola was part of Barisal district in 1971; the book’s small map draws the estuary line through it.",
+  "reassign": {
+    "Bhola": 9
   }
 }

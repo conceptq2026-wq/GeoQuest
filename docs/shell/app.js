@@ -56,8 +56,8 @@ const own = {
     map.addSource(id, spec);
     remember('source', id, () => map.getSource(id) && map.removeSource(id));
   },
-  image(map, id, image) {
-    map.addImage(id, image);
+  image(map, id, image, options) {
+    map.addImage(id, image, options);
     remember('image', id, () => map.hasImage(id) && map.removeImage(id));
   },
   mapHandler(map, type, layerOrHandler, maybeHandler) {
@@ -640,6 +640,33 @@ const pristine = { layers: style.layers.map((l) => l.id), sources: Object.keys(s
 
 await new Promise((resolve) => map.once('load', resolve));
 pristine.images = map.listImages();
+
+/*
+ * IMAGES — `images: { <id>: { file, pixelRatio } }`: the pictures a map's
+ * symbol layers draw by name through `icon-image` — a flag, an anchor, a star.
+ * Each is an SVG in the map's own folder, fetched as its other files are, its
+ * own width and height drawn at `pixelRatio` pixels to the CSS pixel so it
+ * stays sharp; registered like a layer, so teardown removes it.
+ */
+for (const [id, spec] of Object.entries(descriptor.images ?? {})) {
+  const response = await fetch(mapFile(spec.file.replace(/^\.\//, '')));
+  if (!response.ok) throw new Error(`image "${id}": ${spec.file} -> ${response.status}`);
+  // Typed here, whatever the host calls it: an image decodes an SVG only as one.
+  const local = URL.createObjectURL(new Blob([await response.text()], { type: 'image/svg+xml' }));
+  try {
+    // Its load event, not decode(): decode() may wait for a page that is not
+    // being drawn, as a WebView's is before it shows, and the map would never open.
+    const image = await new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = () => reject(new Error(`image "${id}": ${spec.file} is not an image`));
+      img.src = local;
+    });
+    own.image(map, id, image, { pixelRatio: spec.pixelRatio ?? 1 });
+  } finally {
+    URL.revokeObjectURL(local);
+  }
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -2132,7 +2159,7 @@ const attribution = new maplibregl.AttributionControl({
   ],
 });
 const infoRow = own.node(document.createElement('div'), 'the credits row');
-infoRow.className = 'info-row';
+infoRow.className = 'info-credits'; // not info-row: the card's rows are
 infoRow.append(attribution.onAdd(map));
 dom.mapShell.before(infoRow);
 own.undo('the credits', () => attribution.onRemove());

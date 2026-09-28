@@ -700,7 +700,7 @@ body {
  * corner, never up over ›; the map's corner controls start below it. Open,
  * the credits drop below it over the map's corner.
  */
-.info-row {
+.info-credits {
   position: relative;
   z-index: 6;
   display: flex;
@@ -711,8 +711,8 @@ body {
   margin-top: -4px;
 }
 
-.info-row .maplibregl-ctrl-attrib.maplibregl-compact,
-.info-row .maplibregl-ctrl-attrib.maplibregl-compact-show {
+.info-credits .maplibregl-ctrl-attrib.maplibregl-compact,
+.info-credits .maplibregl-ctrl-attrib.maplibregl-compact-show {
   position: absolute;
   top: -2px;
   right: -13px;
@@ -726,7 +726,7 @@ body {
   box-shadow: none;
 }
 
-.info-row .maplibregl-ctrl-attrib-button {
+.info-credits .maplibregl-ctrl-attrib-button {
   position: absolute;
   top: 0;
   right: 0;
@@ -743,23 +743,23 @@ body {
   transition: opacity 120ms ease;
 }
 
-.info-row .maplibregl-ctrl-attrib-button::-webkit-details-marker {
+.info-credits .maplibregl-ctrl-attrib-button::-webkit-details-marker {
   display: none;
 }
 
-.info-row .maplibregl-ctrl-attrib-button:active,
-.info-row .maplibregl-ctrl-attrib-button:focus-visible,
-.info-row .maplibregl-compact-show .maplibregl-ctrl-attrib-button {
+.info-credits .maplibregl-ctrl-attrib-button:active,
+.info-credits .maplibregl-ctrl-attrib-button:focus-visible,
+.info-credits .maplibregl-compact-show .maplibregl-ctrl-attrib-button {
   opacity: 1;
   background-color: transparent;
 }
 
-.info-row .maplibregl-ctrl-attrib-button:focus-visible {
+.info-credits .maplibregl-ctrl-attrib-button:focus-visible {
   outline: 2px solid #0b5cad;
   outline-offset: -8px;
 }
 
-.info-row .maplibregl-ctrl-attrib.maplibregl-compact-show .maplibregl-ctrl-attrib-inner {
+.info-credits .maplibregl-ctrl-attrib.maplibregl-compact-show .maplibregl-ctrl-attrib-inner {
   position: absolute;
   top: 38px;
   right: 8px;
@@ -776,7 +776,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .info-row .maplibregl-ctrl-attrib-button {
+  .info-credits .maplibregl-ctrl-attrib-button {
     transition: none;
   }
 }

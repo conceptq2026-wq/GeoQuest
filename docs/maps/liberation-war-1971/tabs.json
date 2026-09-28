@@ -1,0 +1,19 @@
+{
+  "sectors": {
+    "titleBn": "সেক্টর",
+    "placeholderBn": "একটি সেক্টর বেছে নিন…",
+    "noteBn": "সীমানা আনুমানিক, পাঠ্যবইয়ের মানচিত্র অনুসারে"
+  },
+  "forces": {
+    "titleBn": "ফোর্স",
+    "placeholderBn": "একটি ফোর্স বেছে নিন…"
+  },
+  "places": {
+    "titleBn": "স্থান ও ঘটনা",
+    "placeholderBn": "একটি স্থান বা ঘটনা বেছে নিন…"
+  },
+  "birSreshtho": {
+    "titleBn": "বীরশ্রেষ্ঠ",
+    "placeholderBn": "একজন বীরশ্রেষ্ঠ বেছে নিন…"
+  }
+}
