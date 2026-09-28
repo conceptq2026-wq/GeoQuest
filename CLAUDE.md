@@ -282,9 +282,9 @@ State which kind a task is when reporting it.
   `border-lines`, `org-headquarters`, `environment-treaties`. Geography:
   `deserts`, `lakes`, `forests`, `mountains`, `waterfalls` and
   `latitude-longitude`, all under `docs/maps/`.
-- Work in progress (`tools/wip.json`): none. The list is empty, which
-  `tools/verify.mjs`, `tools/build-registry.mjs` and `tools/preview.mjs`
-  all take as it is.
+- Work in progress (`tools/wip.json`): `earth-interior`, a diagram in misc,
+  «পৃথিবীর অভ্যন্তরীণ গঠন» / "Earth's Interior" — its card, sources and
+  inputs only, nothing built (`notes/earth-interior.md`).
 - One diagram, under বিবিধ: `atmosphere-layers`, in `docs/diagrams/`.
 
 ## Index — notes, read only when working on that item

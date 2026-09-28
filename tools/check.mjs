@@ -14,7 +14,9 @@
 // diagram's every slab, and checks each card opens; taps every record drawn
 // on the map at a point where it alone is under the finger, and checks a card
 // opens; and reports console messages and any request to a host but ours.
-// Screenshots go to tools/.check/<id>/ as contact sheets, never to stdout.
+// Screenshots go to tools/.check/<id>/ as contact sheets, never to stdout. A
+// work-in-progress item with nothing built yet opens the preview's «কাজ চলছে»
+// page, and only its card and that page are checked.
 //
 // --baseline and --all open every registry entry at both sizes and keep, or
 // compare, its requests (with their Range headers), its console and its
@@ -219,6 +221,8 @@ async function launch() {
 /** True once the page's item is drawn and still: the map idle with its tiles in, or the diagram's picture decoded. */
 const SETTLED = `(() => {
   if (document.fonts.status !== 'loaded') return false;
+  // Work in progress with nothing built yet: the local preview's «কাজ চলছে» page.
+  if (document.querySelector('p.wip')) return 'wip';
   const visual = location.pathname.endsWith('/visual/index.html');
   const notice = document.getElementById('loadNotice');
   if (notice && (visual ? !notice.hidden : notice.classList.contains('visible'))) return 'load-notice';
@@ -523,7 +527,9 @@ async function useItem(browser, size, entry, base, origin, dir) {
   if (opened || !url.endsWith(pageOf(entry))) fail(`opening: ${opened ?? `at ${url}`}`);
   await shoot('steps', 'open');
 
-  if (!opened) {
+  const placeholder = !opened && (await page.evaluate(`!!document.querySelector('p.wip')`));
+  if (placeholder) summary.push('the «কাজ চলছে» page, nothing built yet');
+  else if (!opened) {
     if (entry.kind === 'diagram') await slabs(page, shoot, summary, fail);
     else {
       const sources = await page.evaluate(`(${tapFinder})()`);
