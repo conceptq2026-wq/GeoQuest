@@ -65,9 +65,17 @@ A diagram in বিবিধ (misc), «ঋতু পরিবর্তন» / "S
   - the night half, away from the Sun, masked by the Earth cut-out's own alpha;
   - each date, on a pill, under its Earth.
 
-  A tap on an Earth, its date or the picker row selects the position: a white
-  glow ring round the Earth, and the card docked at the foot, two columns,
-  × «বন্ধ করুন». Each Earth's round tap zone is at least 44 px (70 px at 390,
+  A tap on an Earth, its date or the picker row selects the position, and the
+  card docks at the foot, two columns, × «বন্ধ করুন». The selected Earth (the
+  user's decision, 2026-09-28, after a white glow proved hard to see on the
+  light page) is drawn 1.2× larger, with its axis, angle mark, equator and
+  night half scaled with it. It has a 3 px ring of the app's dark blue,
+  #0b3d91 (3.6 px once scaled), a soft glow in the same blue, and its date
+  darker and bold. The change runs for 180 ms, and is instant with reduced
+  motion. The layout leaves room for any Earth selected: «সূর্য» stands on
+  the Sun's disc, and September's date stands beside its Earth, not between
+  it and the Sun. `tools/check.mjs` holds the selected ring off the Sun's
+  disc and off every word. Each Earth's round tap zone is at least 44 px (70 px at 390,
   59 at 320). The picker row is at the top, as in every shell. The picture is
   fitted to the stage at its least (45% of the screen), so it fits between the
   row and the card whether the card is open or not.

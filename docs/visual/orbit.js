@@ -13,8 +13,11 @@
 | half, facing away from the Sun, masked by the Earth cut-out's own alpha;
 | each position's date under its Earth, and the Sun's name.
 |
-| A tap on an Earth, its date or the picker row selects the position: a
-| white glow ring round that Earth, and its card docked under the picture,
+| A tap on an Earth, its date or the picker row selects the position: that
+| Earth drawn SELECTED times larger — its axis, angle mark, equator and night
+| half with it — in a ring of the app's dark blue with a soft blue glow, its
+| date darker and bold (the user's decision), and its card docked under the
+| picture,
 | the descriptor's rows in two columns, a row the position has no value for
 | left out. A tap on the selected Earth again, on the picture away from the
 | Earths, on × or Escape closes it. Every Earth's tap zone is at least
@@ -43,6 +46,10 @@ const LABEL = { gap: 4, height: 24, half: 48 };
 const MARK = { reach: 1.3, text: 16 };
 // The night half: from this far across the disc, into this dark.
 const NIGHT = { from: 44, to: 58, colour: 'rgba(4, 14, 40, 0.62)' };
+// The selected Earth, and all drawn with it, scaled by this; its ring this far
+// outside the disc (before the scale).
+const SELECTED = 1.2;
+const RING = 5;
 
 export async function mount(panel, { descriptor, data, art, file }) {
   const words = descriptor.words ?? {};
@@ -81,10 +88,18 @@ export async function mount(panel, { descriptor, data, art, file }) {
   sunName.dataset.fit = 'the Sun\'s name';
   content.append(sunName);
 
-  // One Earth per position: the picture, its night half, its drawn lines, its ring, its tap zone, its date.
+  // The Sun's painted disc, as a box other things keep clear of (tools/check.mjs reads it).
+  const sunDisc = el('span', 'orbit-sun-disc');
+  sunDisc.dataset.solid = 'the Sun';
+  content.append(sunDisc);
+
+  // One Earth per position: a group — the picture, its night half, its drawn
+  // lines, its angle mark and its ring — scaled about the disc's centre when
+  // selected; then its tap zone and its date.
   const earthMask = `url("${file(manifest.earth.files['2x'])}")`;
   const earths = new Map();
   for (const p of positions) {
+    const body = el('div', 'orbit-body');
     const img = el('img', 'orbit-earth');
     img.alt = '';
     img.decoding = 'async';
@@ -105,6 +120,9 @@ export async function mount(panel, { descriptor, data, art, file }) {
     mark.dataset.fit = `the angle at ${p.id}`;
     const ring = el('div', 'orbit-ring');
     ring.hidden = true;
+    ring.dataset.fit = `the ring at ${p.id}`;
+    ring.dataset.clear = p.id;
+    body.append(img, night, lines, mark, ring);
     const zone = el('span', 'zone');
     zone.dataset.key = p.id;
     zone.dataset.title = p.title;
@@ -114,8 +132,8 @@ export async function mount(panel, { descriptor, data, art, file }) {
     label.dataset.fit = p.id;
     label.textContent = p.dateBn;
     label.setAttribute('aria-pressed', 'false');
-    content.append(img, night, lines, mark, ring, zone, label);
-    earths.set(p.id, { img, night, lines, equator, vertical, arc, axis, mark, ring, zone, label });
+    content.append(body, zone, label);
+    earths.set(p.id, { body, img, night, lines, equator, vertical, arc, axis, mark, ring, zone, label });
   }
 
   const { card, close, fill } = dockedCard({ close: words.close, id: 'orbit' });
@@ -137,6 +155,7 @@ export async function mount(panel, { descriptor, data, art, file }) {
     selected = key;
     for (const [id, e] of earths) {
       e.ring.hidden = id !== key;
+      e.body.classList.toggle('selected', id === key);
       e.label.setAttribute('aria-pressed', String(id === key));
     }
     fill(p.title, words.rows, p.rows);
@@ -152,6 +171,7 @@ export async function mount(panel, { descriptor, data, art, file }) {
     selected = null;
     for (const e of earths.values()) {
       e.ring.hidden = true;
+      e.body.classList.remove('selected');
       e.label.setAttribute('aria-pressed', 'false');
     }
     card.hidden = true;
@@ -184,8 +204,11 @@ export async function mount(panel, { descriptor, data, art, file }) {
     // The Earth, the orbit's width, then its height from what the stage leaves.
     const r = Math.max(EARTH.minR, W * EARTH.share);
     const rx = W / 2 - ORBIT.margin - Math.max(r, LABEL.half);
-    const above = MARK.reach * r + MARK.text; // the angle mark over the top Earth
-    const below = r + LABEL.gap + LABEL.height; // the date under the bottom Earth
+    // Room for any Earth selected: its angle mark over the top one, its ring and date under the bottom one.
+    const big = r * SELECTED;
+    const ringOut = (r + RING) * SELECTED;
+    const above = (MARK.reach * r + MARK.text) * SELECTED; // the upright line and the angle's figure over it
+    const below = ringOut + LABEL.gap + LABEL.height;
     const ry = Math.max(r * 2, Math.min(rx * ORBIT.flat, (floor - 2 * ORBIT.margin - above - below) / 2));
     const cx = W / 2;
     const cy = Math.max(ORBIT.margin + above + ry, (H - above - below - 2 * ry) / 2 + above + ry);
@@ -212,11 +235,17 @@ export async function mount(panel, { descriptor, data, art, file }) {
     }
 
     // The Sun, its painted disc on the centre, as large as the orbit leaves room for.
-    const sunScale = Math.min(ry - r - LABEL.gap - LABEL.height - 6, rx - r - 8) * 2 / manifest.sun.width;
+    // The Sun between the Earths, clear of any selected one: the top Earth's ring
+    // (its date stands beside it), the bottom Earth's angle mark, the side Earths' rings.
+    // Its name is on its disc.
+    const sunHalf = Math.min(ry - ringOut - 6, ry - above - 4, rx - ringOut - 8);
+    const sunScale = (sunHalf * 2) / manifest.sun.width;
     const sw = manifest.sun.width * sunScale;
     const sh = manifest.sun.height * sunScale;
     place(sun, cx - manifest.sun.disc.cx * sunScale, cy - manifest.sun.disc.cy * sunScale, sw, sh);
-    Object.assign(sunName.style, { left: `${cx}px`, top: `${cy + manifest.sun.disc.r * sunScale * 0.62}px` });
+    Object.assign(sunName.style, { left: `${cx}px`, top: `${cy}px` }); // on the Sun's disc
+    const discR = manifest.sun.disc.r * sunScale * 0.8; // the bright disc, inside the glow
+    place(sunDisc, cx - discR, cy - discR, discR * 2, discR * 2);
 
     // Each Earth: its disc's centre on the orbit.
     const e1 = r / manifest.earth.disc.r; // CSS px per 1× px of the Earth's file
@@ -227,37 +256,44 @@ export async function mount(panel, { descriptor, data, art, file }) {
       const a = ANGLE[p.placement];
       const x = cx + rx * Math.cos(a * deg);
       const y = cy - ry * Math.sin(a * deg);
-      const left = x - manifest.earth.disc.cx * e1;
-      const top = y - manifest.earth.disc.cy * e1;
-      place(e.img, left, top, ew, eh);
-      place(e.night, left, top, ew, eh);
+      const on = p.id === selected;
+      // The group: the picture's box, its disc's centre on the orbit; scaled about that centre when selected.
+      const dx = manifest.earth.disc.cx * e1;
+      const dy = manifest.earth.disc.cy * e1;
+      place(e.body, x - dx, y - dy, ew, eh);
+      e.body.style.transformOrigin = `${dx.toFixed(2)}px ${dy.toFixed(2)}px`;
+      place(e.img, 0, 0, ew, eh);
+      place(e.night, 0, 0, ew, eh);
       // The night half faces away from the Sun: its gradient runs from the Sun's side.
       const away = Math.atan2(x - cx, -(y - cy)) / deg;
       e.night.style.background = `linear-gradient(${away.toFixed(1)}deg, transparent ${NIGHT.from}%, ${NIGHT.colour} ${NIGHT.to}%)`;
 
-      // The lines, in the stage's px: the axis, tilted with its North Pole toward the Sun at June.
-      place(e.lines, 0, 0, W, H);
-      e.lines.setAttribute('viewBox', `0 0 ${W} ${H}`);
+      // The lines, in the group's px: the axis, tilted with its North Pole toward the Sun at June.
+      place(e.lines, 0, 0, ew, eh);
+      e.lines.setAttribute('viewBox', `0 0 ${ew.toFixed(2)} ${eh.toFixed(2)}`);
       const [nx, ny] = [-Math.sin(tilt * deg), -Math.cos(tilt * deg)]; // north: up, leaning left (the Sun lies left of June)
       const reach = r * MARK.reach;
-      for (const [k, v] of Object.entries({ x1: x - nx * reach, y1: y - ny * reach, x2: x + nx * reach, y2: y + ny * reach })) e.axis.setAttribute(k, v.toFixed(2));
-      for (const [k, v] of Object.entries({ x1: x, y1: y, x2: x, y2: y - reach })) e.vertical.setAttribute(k, v.toFixed(2));
+      for (const [k, v] of Object.entries({ x1: dx - nx * reach, y1: dy - ny * reach, x2: dx + nx * reach, y2: dy + ny * reach })) e.axis.setAttribute(k, v.toFixed(2));
+      for (const [k, v] of Object.entries({ x1: dx, y1: dy, x2: dx, y2: dy - reach })) e.vertical.setAttribute(k, v.toFixed(2));
       const arcR = r * 1.12;
-      const a1 = [x, y - arcR];
-      const a2 = [x + nx * arcR, y + ny * arcR];
+      const a1 = [dx, dy - arcR];
+      const a2 = [dx + nx * arcR, dy + ny * arcR];
       e.arc.setAttribute('d', `M ${a1[0].toFixed(2)} ${a1[1].toFixed(2)} A ${arcR.toFixed(2)} ${arcR.toFixed(2)} 0 0 0 ${a2[0].toFixed(2)} ${a2[1].toFixed(2)}`);
       // The equator: a thin ellipse across the disc, square to the axis.
-      for (const [k, v] of Object.entries({ cx: x, cy: y, rx: r * 0.98, ry: r * 0.16 })) e.equator.setAttribute(k, v.toFixed(2));
-      e.equator.setAttribute('transform', `rotate(${(-tilt).toFixed(2)} ${x.toFixed(2)} ${y.toFixed(2)})`);
+      for (const [k, v] of Object.entries({ cx: dx, cy: dy, rx: r * 0.98, ry: r * 0.16 })) e.equator.setAttribute(k, v.toFixed(2));
+      e.equator.setAttribute('transform', `rotate(${(-tilt).toFixed(2)} ${dx.toFixed(2)} ${dy.toFixed(2)})`);
       // The angle's figure beside the top of the upright line.
-      Object.assign(e.mark.style, { left: `${x + 4}px`, top: `${y - reach - MARK.text + 2}px` });
+      Object.assign(e.mark.style, { left: `${dx + 4}px`, top: `${dy - reach - MARK.text + 2}px` });
+      place(e.ring, dx - r - RING, dy - r - RING, (r + RING) * 2, (r + RING) * 2);
 
-      // The selected ring, the tap zone, the date.
-      const ringR = r + 5;
-      place(e.ring, x - ringR, y - ringR, ringR * 2, ringR * 2);
-      const tapR = Math.max(r + 4, TAP_MIN / 2);
+      // The tap zone and the date, outside the group: the date moves down under the larger Earth's ring.
+      const shown = on ? SELECTED : 1;
+      const tapR = Math.max(r * shown + 4, TAP_MIN / 2);
       place(e.zone, x - tapR, y - tapR, tapR * 2, tapR * 2);
-      Object.assign(e.label.style, { left: `${x}px`, top: `${y + r + LABEL.gap}px` });
+      // The date under its Earth — beside it, right, for the Earth over the Sun.
+      const out = on ? ringOut : r;
+      if (p.placement === 'top') Object.assign(e.label.style, { left: `${x + out + LABEL.gap}px`, top: `${y - LABEL.height / 2}px`, transform: 'none' });
+      else Object.assign(e.label.style, { left: `${x}px`, top: `${y + out + LABEL.gap}px` });
     }
   }
 

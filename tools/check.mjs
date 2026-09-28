@@ -593,6 +593,11 @@ const FIT = `(() => {
   const words = [...document.querySelectorAll('.layer-label, .fit-text')].filter((e) => e.getClientRects().length);
   const nameOf = (e) => e.getAttribute('data-fit') || e.dataset.key || e.textContent;
   for (let i = 0; i < words.length; i++) for (let j = i + 1; j < words.length; j++) if (under(words[i].getBoundingClientRect(), words[j].getBoundingClientRect())) bad.push(nameOf(words[i]) + ' on ' + nameOf(words[j]));
+  // An element marked data-clear (a selected ring) keeps off every data-solid one (the Sun) and every word.
+  for (const c of [...document.querySelectorAll('[data-clear]')].filter((e) => e.getClientRects().length)) {
+    const r = c.getBoundingClientRect();
+    for (const o of [...document.querySelectorAll('[data-solid]'), ...words]) if (o !== c && under(r, o.getBoundingClientRect())) bad.push(c.getAttribute('data-fit') + ' on ' + (o.getAttribute('data-solid') || nameOf(o)));
+  }
   const least = innerWidth >= 390 ? 15 : 14;
   for (const n of document.querySelectorAll('.layer-label')) { const size = parseFloat(getComputedStyle(n).fontSize); if (size < least) bad.push(n.dataset.key + ' at ' + size + ' px'); }
   return bad;
