@@ -32,7 +32,7 @@ body {
 
 .page-header {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 20px;
   margin-bottom: 12px;
@@ -475,54 +475,74 @@ body {
 }
 
 /*
- * PHOTO MARKER — a record drawn as a round photo. Shell look, identical on
- * every map: 56 px with a 2 px white ring, 72 px with a 2 px dark ring when
- * selected.
- * It sits above the selection pulse, which grows to show round it.
+ * PHOTO MARKER — a record drawn as a round photo, sized by zoom (app.js,
+ * markerLook): the button is its round tap zone, never under 44 px; the disc
+ * inside it is what shows, --pm-size px across — a 10 px dot in the plain
+ * marker's colour at the opening zoom, turning into the photo (--pm-photo is
+ * its opacity) as the map zooms in, 24 px and then up to 36 px. The ring and
+ * the shadow scale with the disc. The selected one is always the photo, 56 px,
+ * with a white ring and a soft shadow, above the others and the selection
+ * pulse, which is drawn round it.
  */
 .photo-marker {
   z-index: 2;
-  width: 56px;
-  height: 56px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
   padding: 0;
-  overflow: hidden;
-  border: 2px solid #ffffff;
+  border: 0;
   border-radius: 50%;
-  background: #e9d8b4;
-  box-shadow: 0 2px 8px rgba(19, 35, 58, 0.35);
+  background: none;
   cursor: pointer;
-  transition:
-    width 0.2s ease,
-    height 0.2s ease,
-    border-color 0.2s ease;
+  --disc: calc(var(--pm-size, 36) * 1px);
 }
 
-.photo-marker img {
+.photo-disc {
+  display: block;
+  box-sizing: border-box;
+  width: var(--disc);
+  height: var(--disc);
+  overflow: hidden;
+  border: max(1.5px, calc(var(--disc) / 28)) solid #ffffff;
+  border-radius: 50%;
+  background: #0b3d91;
+  box-shadow: 0 calc(var(--disc) / 28) calc(var(--disc) / 7) rgba(19, 35, 58, 0.35);
+}
+
+.photo-disc img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: var(--pm-photo, 1);
 }
 
 .photo-marker.selected {
   z-index: 3;
-  width: 72px;
-  height: 72px;
-  border-color: #0b3d91;
+  width: 56px;
+  height: 56px;
+  --disc: 56px;
 }
 
-/* No free photo: the straits point marker, property for property. */
+.photo-marker.selected img {
+  opacity: 1;
+}
+
+/* No free photo: the straits point marker, property for property, at every zoom. */
 .photo-marker.plain {
-  width: 16px;
-  height: 16px;
-  background: #0b3d91;
+  --disc: 16px;
+}
+
+.photo-marker.plain .photo-disc {
+  border-width: 2px;
   box-shadow: none;
 }
 
 .photo-marker.plain.selected {
-  width: 20px;
-  height: 20px;
-  border-color: #ffffff;
+  width: 44px;
+  height: 44px;
+  --disc: 20px;
 }
 
 .photo-marker:focus-visible {
@@ -534,9 +554,10 @@ body {
   z-index: 1;
 }
 
+/* Round the selected photo (56 px), as it was round the 72 px one: 1.5 times its width. */
 .selection-marker--photo .selection-marker-pulse {
-  width: 108px;
-  height: 108px;
+  width: 84px;
+  height: 84px;
 }
 
 .layers-control {

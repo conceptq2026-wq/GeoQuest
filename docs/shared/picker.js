@@ -10,10 +10,9 @@
 | (`shown`), in order, and stop at the ends. A disabled arrow is the only
 | position feedback there is, so wrapping silently would just look like a jump.
 |
-| The row keeps its one form while it fits. A name too wide for it would wrap
-| the row and leave one arrow alone, so a row that wraps goes fully stacked —
-| the name on its own row, the arrows sharing the next. The name is never
-| truncated.
+| The row is one line at every width: the select takes what the arrows
+| leave, and a long name ends in … while the list shows it whole
+| (docs/shared/picker.css; the user's decision, 2026-09-28).
 */
 
 /**
@@ -23,8 +22,8 @@
  *   current () => the key chosen now, or undefined
  *   choose  (key) => the student chose it
  *   listen  (element, type, handler) => registers a handler, so a shell can undo it
- * Returns { render, stack, sync }: `render` after what is shown changes,
- * `stack` after the row's width changes, `sync` after the choice changes.
+ * Returns { render, sync }: `render` after what is shown changes, `sync`
+ * after the choice changes.
  */
 export function pickerRow({ select, prev, next, placeholder, label, groups = [], items, shown = () => items.map((i) => i.key), current, choose, listen = (element, type, handler) => element.addEventListener(type, handler) }) {
   const groupOf = new Map(items.map((i) => [i.key, i.group]));
@@ -77,17 +76,6 @@ export function pickerRow({ select, prev, next, placeholder, label, groups = [],
     for (const og of optgroups.values()) if (og.children.length) select.appendChild(og);
     for (const option of loose) select.appendChild(option);
     select.value = current() ?? '';
-    stack();
-  }
-
-  function stack() {
-    const row = select.parentElement;
-    row.classList.remove('stacked');
-    if (prev.hidden) return;
-    // Wrapped means a whole row down, not the pixel a taller select sits apart.
-    const top = prev.offsetTop;
-    const apart = (el) => Math.abs(el.offsetTop - top) > prev.offsetHeight / 2;
-    if (apart(select) || apart(next)) row.classList.add('stacked');
   }
 
   function sync() {
@@ -116,10 +104,6 @@ export function pickerRow({ select, prev, next, placeholder, label, groups = [],
   listen(prev, 'click', () => step(-1));
   listen(next, 'click', () => step(1));
   sync();
-  // Measured once the arrows show, and again once the Bengali font has
-  // arrived, since the font sets how wide a name is.
-  stack();
-  document.fonts?.ready.then(() => stack());
 
-  return { render, stack, sync };
+  return { render, sync };
 }

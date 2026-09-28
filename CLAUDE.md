@@ -133,10 +133,11 @@ shared code, `docs/shared/picker.js` and `picker.css`, used by both shells,
 and it sits at the top in every shell, directly under the header, whatever a
 mockup draws (the user's decision, 2026-09-28).
 
-The row keeps that form while it fits. A name too wide for it — a long option
-in the picker — would wrap the row and leave one arrow alone, so a row that
-wraps goes fully stacked: the picker on its own row, ‹ › sharing the next, the
-same form a phone under 380 px always gets. The name is never truncated.
+The row is ONE line at every width (the user's decision, 2026-09-28, which
+replaced stacking it on narrow screens): the select takes all the width the
+arrows leave and grows or shrinks with the screen; ‹ and › keep a fixed 44 px.
+A long chosen name ends in … in the closed select only — the open list, the
+card and the map show every name whole.
 
 **One exception, the user's decision (2026-09-27): a map with a timeline has
 no picker row** — no `<select>` and no ‹ ›. The timeline is its selector, and

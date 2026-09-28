@@ -39,7 +39,9 @@ rules and verification budget apply.
   and ships with no `photo` field, never pending; the editor's seed still says
   null. Today that is tamralipta: no Wikidata item is an archaeological site
   at Tamluk. Nothing on this map is pending. A record with a photo is drawn
-  as a photo marker at that site, never at the area's centre, with its name
+  as a photo marker at that site (sized by zoom: `zooms` 5.8, 6.6 and 8, the
+  opening zoom being 5.58 at 390 px and 5.14 at 320; name offsets 0.68,
+  1.18 and 1.61 em, 2.18 em when selected), never at the area's centre, with its name
   under it, or above or beside it where that would collide; a record without
   one has no marker, and its name sits on its name point, or beside it. Names
   take those alternative anchors (`text-variable-anchor` with a

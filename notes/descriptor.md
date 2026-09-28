@@ -65,9 +65,17 @@ rules and verification budget apply.
   holds `{ marker, card, author, licence, licenceUrl, page }`: two files in
   the map's folder and the whole credit. `photoMarker: { field }` on a source
   whose points come from a record field (`geometryFrom`) draws each record as
-  a round photo — 56 px with a 2 px white ring and a soft shadow, 72 px with a
-  2 px `#0b3d91` ring when selected, the pulse behind it — and a tap runs that
-  source's click interaction. Two sites close together overlap at a wide
+  a round photo, sized by zoom (the user's decision, 2026-09-28), and a tap
+  runs that source's click interaction. `photoMarker.zooms: { dot, photo,
+  full }`, per map, sets the look: at and below `dot` — chosen so that the
+  opening view shows dots only — a 10 px dot in the plain marker's colour,
+  `#0b3d91`, with a white ring; zooming in, it turns smoothly into the photo,
+  24 px at `photo`, growing to 36 px at `full`. The selected one is always the
+  photo, 56 px, with a white ring and a soft shadow, above the rest, the pulse
+  round it. The ring, shadow, pulse and collision reserve scale with the size,
+  and a name's `text-radial-offset` on that source interpolates at the same
+  three zooms (the validator holds both). Every marker is a round tap zone of
+  at least 44 px, the disc drawn inside it. Two sites close together overlap at a wide
   zoom (Mahasthangarh and Paharpur on the janapada map): both markers stay at
   their real sites, the selected one draws on top, and a tap on the overlap
   goes to the site nearest the finger, not to the disc on top; a click with
@@ -88,15 +96,16 @@ rules and verification budget apply.
   circle in the collision index with invisible icons on its topmost layers,
   placed before any name: three centred rectangles that cover the circle and
   overreach it by at most 17% of the radius (one square would by 41%, and turn
-  away names that sit beside a photo), sized from the marker as the CSS draws
-  it. A name is placed round a photo as round another name, and one with
+  away names that sit beside a photo), sized as the marker's disc is drawn at
+  each zoom. A name is placed round a photo as round another name, and one with
   nowhere to go is dropped rather than drawn under a photo. The icons are
   never drawn and take no tap. Flat, they match the marker at every zoom;
   tilted, MapLibre scales symbols with perspective and the DOM markers not,
   so at the tilt button's 55° the reserve is 92–95% of the marker. A name
   under its own photo must sit outside that photo's reserve or it is pushed
-  off it: the janapada names clear it by 0.4 px, the geography maps' by 2.5 px
-  (6 px beside it).
+  off it: with the fixed 56 and 72 px markers the janapada names cleared it by
+  0.4 px, the geography maps' by 2.5 px (6 px beside it); the offsets by zoom
+  keep those gaps at each size (2026-09-28).
 - **Photos are light.** Every marker on a map loads when the map opens, so a
   marker file is at most 8 KB; a card photo loads only when its card opens,
   never at map load, and is at most 40 KB. The extractor steps WebP quality

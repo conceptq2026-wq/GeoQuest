@@ -528,6 +528,13 @@ async function useItem(browser, size, entry, base, origin, dir) {
   if (opened || !url.endsWith(pageOf(entry))) fail(`opening: ${opened ?? `at ${url}`}`);
   await shoot('steps', 'open');
 
+  // Photo markers by zoom: at the opening zoom every unselected one is a dot, its photo not shown.
+  const markers = await page.evaluate(`(() => { const all = [...document.querySelectorAll('.photo-marker:not(.plain):not(.selected)')]; if (!all.length) return null; const dot = (m) => m.querySelector('.photo-disc').getBoundingClientRect().width <= 11 && getComputedStyle(m.querySelector('img')).opacity === '0'; return { dots: all.filter(dot).length, all: all.length, tap: Math.min(...all.map((m) => m.getBoundingClientRect().width)) }; })()`).catch(() => null);
+  if (markers) {
+    summary.push(`opening view: ${markers.dots}/${markers.all} photo markers dots, tap zones ≥ ${Math.round(markers.tap)} px`);
+    if (markers.dots !== markers.all) fail(`opening view: ${markers.all - markers.dots} photo markers are not dots`);
+    if (markers.tap < 44) fail(`a photo marker's tap zone is ${markers.tap} px, under 44`);
+  }
   const placeholder = !opened && (await page.evaluate(`!!document.querySelector('p.wip')`));
   if (placeholder) summary.push('the «কাজ চলছে» page, nothing built yet');
   else if (!opened) {

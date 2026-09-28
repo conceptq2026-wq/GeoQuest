@@ -51,3 +51,7 @@ rules and verification budget apply.
   when selected, which put a name under its photo exactly where the fixed
   2.6 em and 3 em offsets did — measured in MapLibre's collision index, since
   a variable anchor lifts the text by an amount that depends on its size.
+  Since the markers are sized by zoom (2026-09-28: `zooms` 1.2, 2.2 and 4 on
+  all five, whose opening zoom is 0.61 at 390 px and 0.17 at 320), the
+  offsets keep those gaps at each size: 0.89, 1.45 and 1.93 em beside a 10,
+  24 and 36 px marker, 2.63 em under the selected 56 px one.

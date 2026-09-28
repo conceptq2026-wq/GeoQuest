@@ -358,23 +358,18 @@ export async function mount(panel, { descriptor, data, art, file }) {
     }
   }
 
-  window.addEventListener('resize', () => {
-    layout();
-    row.stack();
-  });
+  window.addEventListener('resize', () => layout());
 
   const ready = img.decode().then(async () => {
     await document.fonts?.ready;
     content.classList.remove('loading');
     layout();
-    row.stack();
   });
 
   return {
     ready,
     shown() {
       layout();
-      row.stack();
     },
   };
 }

@@ -334,6 +334,15 @@ function checkMap({ id, expectedPending }) {
     note(spec.records, spec.photoMarker.field);
     check(Boolean(spec.geometryFrom), `source "${name}": its photoMarker sits on a point taken from a record field`);
     check(isPhotoField(spec.records, spec.photoMarker.field), `source "${name}": photoMarker.field ${spec.records}.${spec.photoMarker.field} is a photo field`);
+    // By zoom: a dot up to zooms.dot, the photo from zooms.photo, full size at
+    // zooms.full; a name beside it is offset at the same zooms.
+    const z = spec.photoMarker.zooms;
+    check(Boolean(z) && [z.dot, z.photo, z.full].every(Number.isFinite) && z.dot < z.photo && z.photo < z.full, `source "${name}": photoMarker.zooms dot ${z?.dot} < photo ${z?.photo} < full ${z?.full}`);
+    for (const layer of descriptor.layers.filter((l) => l.source === name && l.layout?.['text-radial-offset'] !== undefined)) {
+      const off = layer.layout['text-radial-offset'];
+      const stops = Array.isArray(off) && off[0] === 'interpolate' && JSON.stringify(off[2]) === '["zoom"]' ? off.filter((_, i) => i >= 3 && i % 2 === 1) : null;
+      check(Boolean(z) && JSON.stringify(stops) === JSON.stringify([z.dot, z.photo, z.full]), `layer "${layer.id}": its names' offset follows the marker, at zooms ${stops ? stops.join(', ') : '(none)'}`);
+    }
     check(
       descriptor.interactions.some((i) => i.on === 'click' && i.target === `source:${name}`),
       `source "${name}": a tap on its photo marker has a click interaction to run`,

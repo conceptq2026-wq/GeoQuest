@@ -1237,11 +1237,55 @@ if (taps.length && !shell.tapsOwned)
 |--------------------------------------------------------------------------
 */
 
+/*
+ * By zoom (the user's decision, 2026-09-28): at the map's opening zoom and
+ * below — up to the source's `zooms.dot` — a record is a small dot, in the
+ * plain marker's colour with a white ring; zooming in it turns smoothly into
+ * a round photo, PHOTO px at `zooms.photo`, growing to FULL px at
+ * `zooms.full`. The selected one is always the round photo, SELECTED px,
+ * above the rest. Every one keeps a round tap zone of at least TAP px. The
+ * shell sets the size and the photo's opacity per source, as CSS variables
+ * on the map, on every zoom; the ring, the shadow, the pulse, the collision
+ * reserve and the names' offsets all follow the size.
+ */
+const MARKER = { dot: 10, photo: 24, full: 36, selected: 56, tap: 44 };
+
+/** A photo marker's look at zoom z: its disc's size in px and its photo's opacity. */
+function markerLook(z, { dot, photo, full }) {
+  if (z <= dot) return { size: MARKER.dot, photo: 0 };
+  if (z < photo) {
+    const t = (z - dot) / (photo - dot);
+    return { size: MARKER.dot + t * (MARKER.photo - MARKER.dot), photo: t };
+  }
+  const t = Math.min(1, (z - photo) / (full - photo));
+  return { size: MARKER.photo + t * (MARKER.full - MARKER.photo), photo: 1 };
+}
+
+const photoVar = (name, what) => `--pm-${what}-${name}`;
+function applyMarkerZoom() {
+  const z = map.getZoom();
+  const host = map.getCanvasContainer();
+  for (const [name, { spec }] of photoMarkers) {
+    const look = markerLook(z, spec.photoMarker.zooms);
+    host.style.setProperty(photoVar(name, 'size'), look.size.toFixed(2));
+    host.style.setProperty(photoVar(name, 'photo'), look.photo.toFixed(3));
+  }
+}
+
 for (const [name, spec] of Object.entries(sourceSpecs)) {
   if (!spec.photoMarker) continue;
+  const z = spec.photoMarker.zooms;
+  if (!(z?.dot < z?.photo && z?.photo < z?.full)) throw new Error(`source "${name}": photoMarker declares no zooms { dot < photo < full }`);
   const click = interactions.find((i) => i.on === 'click' && targetSource(i.target) === name);
   photoMarkers.set(name, { spec, click, byKey: new Map() });
   syncPhotoMarkers(name, derive(name, spec));
+}
+if (photoMarkers.size) {
+  applyMarkerZoom();
+  own.mapHandler(map, 'zoom', applyMarkerZoom);
+  own.undo('photo marker sizes', () => {
+    for (const name of photoMarkers.keys()) for (const what of ['size', 'photo']) map.getCanvasContainer().style.removeProperty(photoVar(name, what));
+  });
 }
 
 function syncPhotoMarkers(name, data) {
@@ -1262,12 +1306,18 @@ function syncPhotoMarkers(name, data) {
       // plain dot the straits map gives a passage.
       element.className = photo ? 'photo-marker' : 'photo-marker plain';
       element.setAttribute('aria-label', valueOf(sheetFor(spec.records)?.title, row) ?? key);
+      // The tap zone is the button; the disc inside it is what shows, sized by zoom.
+      element.style.setProperty('--pm-size', `var(${photoVar(name, 'size')})`);
+      element.style.setProperty('--pm-photo', `var(${photoVar(name, 'photo')})`);
+      const disc = document.createElement('span');
+      disc.className = 'photo-disc';
+      element.appendChild(disc);
       if (photo) {
         const img = document.createElement('img');
         img.src = mapFile(photo.marker);
         img.alt = '';
         img.decoding = 'async';
-        element.appendChild(img);
+        disc.appendChild(img);
       }
       own.domHandler(element, 'click', (event) => {
         event.stopPropagation();
@@ -1297,8 +1347,8 @@ function syncPhotoMarkers(name, data) {
  * A photo marker is DOM, drawn above the canvas, so MapLibre places names
  * without seeing it and a name could land under another record's photo. Each
  * marker's circle is therefore reserved in MapLibre's collision index, by
- * invisible icons at the marker's point sized from the marker as the shell's
- * CSS draws it, on the topmost layers so they are placed before any name.
+ * invisible icons at the marker's point sized as the marker's disc is drawn
+ * at each zoom, on the topmost layers so they are placed before any name.
  * Names then avoid a photo the way they avoid each other. The icons are always
  * placed (photos overlap one another, and each keeps its space) and never
  * drawn. They are not tap targets: nothing is bound to them, and a tap is
@@ -1326,16 +1376,14 @@ if (photoMarkers.size) {
     const height = Math.ceil(PHOTO_SPACE_PX * h);
     own.image(map, photoSpaceId(part), { width, height, data: new Uint8Array(width * height * 4) });
   }
-  const size = {
-    photo: markerSize('photo-marker'),
-    photoSelected: markerSize('photo-marker selected'),
-    plain: markerSize('photo-marker plain'),
-    plainSelected: markerSize('photo-marker plain selected'),
-  };
+  // A record with no photo keeps the plain dot, whatever the zoom, as the CSS draws it.
+  const plainSize = { plain: markerSize('photo-marker plain'), plainSelected: markerSize('photo-marker plain selected') };
   for (const [name, { spec }] of photoMarkers) {
     const table = records[spec.records];
     const plain = Object.keys(table).filter((key) => !table[key][spec.photoMarker.field]);
     const byKind = (photo, dot) => (plain.length ? ['match', ['get', 'key'], plain, dot / PHOTO_SPACE_PX, photo / PHOTO_SPACE_PX] : photo / PHOTO_SPACE_PX);
+    const at = (size) => ['case', ['==', ['get', 'selected'], true], byKind(MARKER.selected, plainSize.plainSelected), byKind(size, plainSize.plain)];
+    const { dot, photo, full } = spec.photoMarker.zooms;
     for (const [part] of PHOTO_SPACE) {
       own.layer(map, {
         id: photoSpaceLayerId(name, part),
@@ -1343,7 +1391,7 @@ if (photoMarkers.size) {
         source: name,
         layout: {
           'icon-image': photoSpaceId(part),
-          'icon-size': ['case', ['==', ['get', 'selected'], true], byKind(size.photoSelected, size.plainSelected), byKind(size.photo, size.plain)],
+          'icon-size': ['interpolate', ['linear'], ['zoom'], dot, at(MARKER.dot), photo, at(MARKER.photo), full, at(MARKER.full)],
           'icon-allow-overlap': true,
           'icon-padding': 0,
         },
@@ -1353,20 +1401,23 @@ if (photoMarkers.size) {
   }
 }
 
-/** A photo marker's width as the shell's CSS draws it, in px. */
+/** A photo marker's disc's width as the shell's CSS draws it, in px. */
 function markerSize(className) {
   const probe = document.createElement('button');
   probe.className = className;
   probe.style.visibility = 'hidden';
+  const disc = document.createElement('span');
+  disc.className = 'photo-disc';
+  probe.appendChild(disc);
   map.getCanvasContainer().appendChild(probe);
   try {
-    return probe.offsetWidth;
+    return disc.offsetWidth;
   } finally {
     probe.remove();
   }
 }
 
-/** The shown photo marker whose disc holds this point and whose site is nearest it. */
+/** The shown photo marker whose tap zone holds this point and whose site is nearest it. */
 function nearestPhoto(x, y) {
   let best = null;
   for (const entry of photoMarkers.values())
@@ -1394,7 +1445,7 @@ const row = picker ? buildPicker(picker) : null;
 /*
  * The picker row is shared with the diagram shell (../shared/picker.js): the
  * shown records, in author order under their groups, ‹ › stepping through
- * them, and the row stacking rather than wrapping. The map keeps the
+ * them, on one line at every width. The map keeps the
  * selection; the row reads it and runs the picker's actions on a choice.
  */
 function buildPicker(control) {
@@ -2089,7 +2140,6 @@ own.mapHandler(map, 'error', (event) => {
 
 own.domHandler(window, 'resize', () => {
   map.resize();
-  row?.stack();
 });
 
 if (hasSheet) setSheetOpen(false);

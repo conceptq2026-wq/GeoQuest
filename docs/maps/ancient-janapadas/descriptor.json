@@ -99,7 +99,12 @@
       ],
       "selectionMarker": true,
       "photoMarker": {
-        "field": "photo"
+        "field": "photo",
+        "zooms": {
+          "dot": 5.8,
+          "photo": 6.6,
+          "full": 8
+        }
       }
     }
   },
@@ -257,13 +262,43 @@
           14
         ],
         "text-radial-offset": [
-          "case",
+          "interpolate",
           [
-            "get",
-            "selected"
+            "linear"
           ],
-          2.65,
-          2.32
+          [
+            "zoom"
+          ],
+          5.8,
+          [
+            "case",
+            [
+              "get",
+              "selected"
+            ],
+            2.18,
+            0.68
+          ],
+          6.6,
+          [
+            "case",
+            [
+              "get",
+              "selected"
+            ],
+            2.18,
+            1.18
+          ],
+          8,
+          [
+            "case",
+            [
+              "get",
+              "selected"
+            ],
+            2.18,
+            1.61
+          ]
         ],
         "symbol-sort-key": [
           "case",
