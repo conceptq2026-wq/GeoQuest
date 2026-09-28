@@ -198,12 +198,16 @@ by map. **Nothing is guessed to fill a gap.**
 - **The NCTB book comes first** (the user's standing rule, 2026-09-28).
   - What the NCTB textbook gives always takes priority.
   - A value the book does not give is taken from, in this order:
-    1. Bengali Wikipedia, then English Wikipedia, each cited with its
+    1. for the Liberation War, the Ministry of Liberation War Affairs,
+       molwa.gov.bd (the user's addition, 2026-09-28), cited with its URL,
+       page title, date or document name and any gazette number;
+    2. Bengali Wikipedia, then English Wikipedia, each cited with its
        revision ID;
-    2. a Bangladeshi national newspaper (Prothom Alo, The Daily Star,
-       bdnews24, BSS and the like), cited with its URL, title and date.
-  - Banglapedia counts as a secondary source like these, not above them.
-  - Every value from them keeps its reference.
+    3. a Bangladeshi national newspaper (Prothom Alo, The Daily Star,
+       bdnews24, BSS and the like), cited with its URL, title and date;
+    4. Banglapedia, last.
+  - Every value from them keeps its reference. Where a later source differs
+    from an earlier one, the difference is recorded; the earlier one stands.
   - What none of them gives stays MISSING, never filled from memory.
 
 - **One authoritative source per claim, and stop there.** The source is chosen
