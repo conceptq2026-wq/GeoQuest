@@ -8,17 +8,16 @@
 //                     over the rest of the land, which is drawn plain — the
 //                     Bangladesh maps show Bangladesh only (2026-09-28)
 //   lakes             Natural Earth 1:10m
-//   rivers            OpenStreetMap (committed snapshot), named inside Bangladesh
+//   rivers            OpenStreetMap (committed snapshot), inside Bangladesh only
 //   river_labels      the two display names of the main channel, placed as points
 //   borders           Bangladesh's land border from OCHA COD-AB (the Bangladesh
-//                     Bureau of Statistics' line); every other border from
-//                     Natural Earth 1:10m, Bangladesh point of view
-//   admin             division and district lines of Bangladesh (OCHA COD-AB, `bd`),
-//                     district and state lines of West Bengal, Tripura and
-//                     Cachar (geoBoundaries India), Rakhine's state line
-//                     (Natural Earth admin-1)
-//   admin_labels      unit names — Bengali from tools/sources/bangladesh-names.json;
-//                     Bangladesh's carry `bd`, as do its border and its rivers
+//                     Bureau of Statistics' line), and no other
+//   admin             division and district lines of Bangladesh (OCHA COD-AB)
+//   admin_labels      Bangladesh's divisions and districts — Bengali from
+//                     tools/sources/bangladesh-names.json
+//                     Every feature of these, and of rivers, carries `bd`.
+//                     Nothing of a neighbour's is shipped but its land and its
+//                     country name (the user's decision, 2026-09-28).
 //   country_labels    the fields world.pmtiles carries, so the shell baseline
 //                     works on this archive unchanged
 import crypto from 'node:crypto';
@@ -29,7 +28,7 @@ import geojsonvt from 'geojson-vt';
 import vtpbf from 'vt-pbf';
 import mapshaper from 'mapshaper';
 import { writeArchive } from './lib/pmtiles-writer.mjs';
-import { CACHE, readSource, prepare, bangladeshLineClass, featureCollection, bboxPolygon, zipEntry } from './lib/geo.mjs';
+import { CACHE, readSource, prepare, featureCollection, bboxPolygon, zipEntry } from './lib/geo.mjs';
 import { bangladeshUnits, SegmentGrid, RAKHINE, POV, linesOf, ringsOf, bboxOf, lineKm, kmBetween, endKey } from './lib/bangladesh-units.mjs';
 import { COVERAGE, FRAME, DETAIL_AREAS, OVERVIEW_MIN_ZOOM, OVERVIEW_MAX_ZOOM, DETAIL_MIN_ZOOM, DETAIL_MAX_ZOOM } from './bangladesh.config.mjs';
 
@@ -66,8 +65,9 @@ const EXPECTED = {
   'Bangladesh districts': 64,
   'West Bengal districts': 23,
   'Tripura districts': 8,
-  // Natural Earth's lines inside COVERAGE other than Bangladesh's own.
-  'border classes': { 'International boundary (verify)': 5, 'Disputed (please verify)': 2 },
+  // What the archive names: Bangladesh's divisions and districts, and no
+  // neighbour's unit (2026-09-28).
+  'labels shipped': { division: 8, district: 64 },
   // The mainland stretch from the Sundarbans to the Naf, and the
   // Dahagram–Angarpota exclave, in km.
   'Bangladesh land border': { parts: 2, km: [4038, 29] },
@@ -128,7 +128,7 @@ const round = (fcIn, digits = 5) => JSON.parse(JSON.stringify(fcIn, (k, v) => (t
 */
 const {
   inCoverage, indiaUnits, pov, bd, neBangladeshParts, mainland, landBorderLines, borderGrid, landDetailAll,
-  others, myanmarAll, myanmarStates, units, unownedPieces, ownerOf,
+  myanmarAll, myanmarStates, units, unownedPieces, ownerOf,
 } = await bangladeshUnits({ bd0, gbIndia, landIn, countries, admin1, neLines, names });
 const focusIndia = (shapeName) => indiaUnits.get(shapeName)?.state;
 expect('West Bengal districts', [...indiaUnits.values()].filter((u) => u.state === 'West Bengal').length);
@@ -196,70 +196,21 @@ function ringArea(g) {
 | LINES
 |--------------------------------------------------------------------------
 |
-| Administrative lines are the edges each source shares between its own
-| units; an edge on a country's outside is never drawn, because the border
-| already is. Bangladesh's district lines end on its border exactly — COD-AB
-| draws both. Another source's line that overshoots a border is cut there;
-| one that stops short is carried straight on to it (at most 3 km). Natural
-| Earth's lines that met its old Bangladesh line — India and Myanmar's, at
-| the three-country point — are carried on to the new one the same way.
+| Administrative lines are Bangladesh's own, the edges its divisions and
+| districts share; an edge on its outside is never drawn, because the border
+| already is. They end on the border exactly — COD-AB draws both. The
+| neighbours' district and state lines, and Natural Earth's lines between
+| other countries, are not shipped: the Bangladesh maps show Bangladesh only
+| (the user's decision, 2026-09-28).
 */
-const neOthers = prepare(neLines, (p) => ({ class: bangladeshLineClass(p) }), (p) => bangladeshLineClass(p) !== null && ![p.ADM0_A3_L, p.ADM0_A3_R].includes('BGD'));
-const neInBox = await ms(`-i combine-files l.json b.json -target l -clip bbox=${COVERAGE} -erase source=b`, { 'l.json': neOthers, 'b.json': bd }, 'l');
-const borderClasses = {};
-for (const f of neInBox.features) borderClasses[f.properties.class] = (borderClasses[f.properties.class] || 0) + 1;
-expect('border classes', Object.fromEntries(Object.entries(borderClasses).sort(([a], [b]) => (a === 'International boundary (verify)' ? -1 : b === 'International boundary (verify)' ? 1 : a.localeCompare(b)))));
-
-function snapTo(lines, grid, maxKm) {
-  const degree = new Map();
-  const parts = lines.features.flatMap((f) => linesOf(f.geometry));
-  for (const c of parts) for (const p of [c[0], c[c.length - 1]]) degree.set(endKey(p), (degree.get(endKey(p)) || 0) + 1);
-  let extended = 0;
-  let longest = 0;
-  const extend = (c) => {
-    for (const end of [0, 1]) {
-      const p = end ? c[c.length - 1] : c[0];
-      if (degree.get(endKey(p)) !== 1) continue;
-      const hit = grid.nearest(p, maxKm);
-      if (!hit || hit.km < 0.001) continue;
-      if (end) c.push(hit.at);
-      else c.unshift(hit.at);
-      extended++;
-      longest = Math.max(longest, hit.km);
-    }
-    return c;
-  };
-  const features = lines.features.map((f) => ({
-    ...f,
-    geometry: f.geometry.type === 'LineString' ? { type: 'LineString', coordinates: extend([...f.geometry.coordinates]) } : { type: 'MultiLineString', coordinates: f.geometry.coordinates.map((c) => extend([...c])) },
-  }));
-  return { lines: fc(features), extended, longest };
-}
-// Natural Earth's own lines join the new border where they met the old one.
-const neSnap = snapTo(neInBox, borderGrid, 5);
-const allBorders = fc([...neSnap.lines.features, ...landBorder.features]);
-const allBorderGrid = new SegmentGrid(allBorders.features.flatMap((f) => linesOf(f.geometry)));
-
 const bdLines = await ms(`-i in.json -lines adm1_pcode -filter "TYPE != 'outer'" -each "level = TYPE == 'adm1_pcode' ? 'division' : 'district', bd = true" -filter-fields level,bd`, { 'in.json': bd2 });
-const indiaLines = await ms(
-  `-i combine-files d.json o.json -target d -each "grp = ${JSON.stringify(Object.fromEntries([...indiaUnits.values()].map((u) => [u.geoBoundaries, u.state]))).replace(/"/g, "'")}[shapeName] || 'other', key = grp == 'other' ? 'other' : shapeName" -dissolve key copy-fields=grp -lines grp -filter "TYPE != 'outer'" -each "level = TYPE == 'grp' ? 'state' : 'district'" -filter-fields level -erase source=o`,
-  { 'd.json': inCoverage, 'o.json': others('MMR', 'NPL', 'BTN', 'CHN') },
-  'd',
-);
-const myanmarLines = await ms(
-  `-i combine-files s.json o.json -target s -each "grp = adm1_code == '${RAKHINE}' ? 'rakhine' : 'other'" -dissolve grp -lines -filter "TYPE != 'outer'" -each "level='state'" -filter-fields level -erase source=o`,
-  { 's.json': myanmarAll, 'o.json': others('IND', 'NPL', 'BTN', 'CHN') },
-  's',
-);
-const indiaSnap = snapTo(indiaLines, allBorderGrid, 3);
-const myanmarSnap = snapTo(myanmarLines, allBorderGrid, 3);
-const admin = fc([...bdLines.features, ...indiaSnap.lines.features, ...myanmarSnap.lines.features]);
+const admin = bdLines;
 
 // No line may end near the border without ending on it. Near the border's two
 // ends — where it reaches the sea — a line ending on the coast is ending right.
 const termini = [mainland[0], mainland[mainland.length - 1]];
 const dangling = [];
-for (const [what, set] of [['Bangladesh', bdLines], ['India', indiaSnap.lines], ['Myanmar', myanmarSnap.lines], ['Natural Earth borders', neSnap.lines]]) {
+for (const [what, set] of [['Bangladesh', bdLines]]) {
   const degree = new Map();
   const parts = set.features.flatMap((f) => linesOf(f.geometry));
   for (const c of parts) for (const p of [c[0], c[c.length - 1]]) degree.set(endKey(p), (degree.get(endKey(p)) || 0) + 1);
@@ -271,7 +222,7 @@ for (const [what, set] of [['Bangladesh', bdLines], ['India', indiaSnap.lines], 
     }
 }
 if (dangling.length) throw new Error(`lines end near Bangladesh's border without meeting it:\n  ${dangling.join('\n  ')}`);
-console.log(`lines: Bangladesh ${bdLines.features.length} (end on its border), India ${indiaLines.features.length} (${indiaSnap.extended} ends carried to a border, longest ${indiaSnap.longest.toFixed(2)} km), Myanmar ${myanmarLines.features.length} (${myanmarSnap.extended}, longest ${myanmarSnap.longest.toFixed(2)} km), Natural Earth borders ${neSnap.extended} carried to Bangladesh's (longest ${neSnap.longest.toFixed(2)} km)`);
+console.log(`lines: Bangladesh ${bdLines.features.length}, each ending on its border or on another line`);
 
 /*
 |--------------------------------------------------------------------------
@@ -335,13 +286,11 @@ for (const f of riversIn.features) if (!riverNames[f.properties.river]) throw ne
 // only the units it covers. A river whose names table gives display labels
 // is named by those, at their places, not along its line.
 const riversNamed = await ms('-i combine-files r.json b.json -target r -clip source=b', { 'r.json': riversIn, 'b.json': bd }, 'r');
-const riversOutside = await ms(`-i combine-files r.json b.json -target r -clip bbox=${COVERAGE} -erase source=b`, { 'r.json': riversIn, 'b.json': bd }, 'r');
 const rivers = fc([
   ...riversNamed.features.map((f) => {
     const n = riverNames[f.properties.river];
     return { ...f, properties: { ...(n.displayLabels || !n.nameBn ? {} : { name_en: n.nameEn, name_bn: n.nameBn }), bd: true } };
   }),
-  ...riversOutside.features.map((f) => ({ ...f, properties: {} })),
 ]);
 // The display labels: each on the river, at the point nearest the town it is
 // placed by — on the channel itself, a stretch of 20 km or more, never on a
@@ -394,11 +343,9 @@ function coastOf(land, [w, s, e, n]) {
 |--------------------------------------------------------------------------
 |
 | Bangladesh: every division and district, Bengali from the National Portal.
-| Outside Bangladesh: only the units this basemap covers for the janapada
-| maps. A unit with no sourced Bengali name is not labelled — never in
-| English — and is listed below.
+| No neighbour's unit is named (2026-09-28). A unit with no sourced Bengali
+| name is not labelled — never in English — and is listed below.
 */
-const LISTED_WB = ['Maldah', 'Uttar Dinajpur', 'Dakshin Dinajpur', 'Murshidabad', 'Birbhum', 'Barddhaman', 'Paschim Barddhaman', 'Nadia', 'Bankura', 'Hugli', 'Haora', 'Purba Medinipur', 'Paschim Medinipur', 'Jhargram'];
 const unlabelled = [];
 const labels = [];
 const label = (pt, props, minZoom, maxZoom = 24) => {
@@ -415,23 +362,11 @@ for (const [f, p] of (await innerPoints(bd2)).map((p, i) => [bd2.features[i], p]
   if (!n) throw new Error(`${f.properties.adm2_pcode}: no name in ${path.basename(NAMES)}`);
   label(p.geometry.coordinates, { level: 'district', name_en: n.nameEn, name_bn: n.nameBn, bd: true }, 7);
 }
-const listed = inCoverage.features.filter((f) => LISTED_WB.includes(f.properties.shapeName) || f.properties.shapeName === 'Cachar');
-if (listed.length !== LISTED_WB.length + 1) throw new Error(`listed Indian units: ${listed.length} of ${LISTED_WB.length + 1} found`);
-for (const [f, p] of (await innerPoints(fc(listed))).map((p, i) => [listed[i], p])) {
-  const u = indiaUnits.get(f.properties.shapeName);
-  label(p.geometry.coordinates, { level: 'district', name_en: u.nameEn, ...(u.nameBn ? { name_bn: u.nameBn } : {}) }, 6);
-}
-// Tripura and Rakhine as whole states. Their Bengali names are Natural Earth's, the same field world.pmtiles uses for countries.
+// Tripura's extent, for the frame it must hold.
 const tripura = await ms(`-i in.json -filter "${JSON.stringify(Object.values(names.india).filter((u) => u.state === 'Tripura').map((u) => u.geoBoundaries)).replace(/"/g, "'")}.includes(shapeName)" -dissolve`, { 'in.json': inCoverage });
-const states = [
-  [tripura, admin1.features.find((f) => f.properties.adm1_code === 'IND-3301').properties],
-  [fc(myanmarStates.features.filter((f) => f.properties.adm1_code === RAKHINE)), admin1.features.find((f) => f.properties.adm1_code === RAKHINE).properties],
-];
-for (const [shape, p] of states) {
-  const [pt] = await innerPoints(shape);
-  label(pt.geometry.coordinates, { level: 'state', name_en: p.name_en, ...(p.name_bn ? { name_bn: p.name_bn } : {}) }, 5);
-}
 const adminLabels = fc(labels);
+expect('labels shipped', Object.fromEntries(['division', 'district'].map((level) => [level, labels.filter((f) => f.properties.level === level && f.properties.bd).length])));
+if (labels.some((f) => !f.properties.bd)) throw new Error("a label that is not Bangladesh's");
 
 // Countries: Natural Earth's own label point where it falls inside COVERAGE,
 // else a point inside the part of the country that does. A sliver under
@@ -498,7 +433,7 @@ const layersOverview = {
   coast: coastOf(landOverview, COVERAGE),
   rivers: prepare(await ms('-i in.json -simplify dp interval=250', { 'in.json': rivers }), (p) => p),
   admin: prepare(overviewLines.admin, (p) => p),
-  borders: prepare(fc([...neSnap.lines.features, ...overviewLines.border.features]), (p) => p),
+  borders: prepare(overviewLines.border, (p) => p),
   admin_labels: adminLabels,
   river_labels: fc(riverLabels),
   country_labels: fc(countryLabels),
@@ -513,7 +448,7 @@ const layersDetail = {
   coast: coastOf(landDetail, DETAIL_BOX),
   rivers: prepare(await ms(`-i in.json -clip bbox=${DETAIL_BOX} -simplify dp interval=20`, { 'in.json': rivers }), (p) => p),
   admin: prepare(detailLines.admin, (p) => p),
-  borders: prepare(fc([...(await clipDetail(neSnap.lines)).features, ...detailLines.border.features]), (p) => p),
+  borders: prepare(detailLines.border, (p) => p),
   admin_labels: fc(adminLabels.features.filter((f) => f.properties.detail)),
   river_labels: fc(riverLabels.filter((f) => f.properties.detail)),
 };

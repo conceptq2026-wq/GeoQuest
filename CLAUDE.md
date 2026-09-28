@@ -270,9 +270,9 @@ points by source — 65 Natural Earth, 16 OSM — in the validator.
 bangladesh.pmtiles: the COD-AB zip and the geoBoundaries India file (sha256),
 the Natural Earth admin-1 file (size and blob SHA), the two OSM extracts'
 checksums, all in `tools/sources.json`; and in `tools/build-bangladesh.mjs` the
-unit counts (8 divisions, 64 districts, West Bengal 23, Tripura 8), the
-classes of Natural Earth's lines inside the box other than Bangladesh's own (5
-international, 2 disputed — both at Doklam, between Bhutan and China),
+unit counts (8 divisions, 64 districts, West Bengal 23, Tripura 8), the labels
+it ships (Bangladesh's 8 divisions and 64 districts, and no neighbour's unit —
+`tools/verify.mjs` holds every line, name and river to Bangladesh's own),
 Bangladesh's land border as COD-AB draws it (2 parts: the 4,038 km mainland
 stretch and the 29 km Dahagram–Angarpota exclave), and that each box still
 holds its units with 0.3° to spare. ancient-janapadas:

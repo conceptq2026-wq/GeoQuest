@@ -32,8 +32,9 @@ rules and verification budget apply.
   Bangladesh's divisions and districts (by pcode), geoBoundaries India ADM2
   for West Bengal, Tripura (the union of its districts) and Cachar (by name,
   inside the box, each exactly once), Natural Earth admin-1 for Rakhine, and
-  Natural Earth's Bangladesh point-of-view lines for every international
-  border but one. Its units, Bangladesh's land border and the owner of each
+  Natural Earth's Bangladesh point-of-view lines. The neighbours' units and
+  lines decide only who owns the land along the border and where the land
+  border ends; none of their lines or names is shipped. Its units, Bangladesh's land border and the owner of each
   piece of land between them come from `tools/lib/bangladesh-units.mjs`,
   which the janapada build reads too.
 - **The one exception to "the point-of-view line wins": inside
@@ -59,20 +60,21 @@ rules and verification budget apply.
   - Nothing of a neighbour's is drawn but its land, plain: no West Bengal,
     Tripura, Cachar or Rakhine outline or name, and no other international
     line. Country names are the baseline's, and stay.
-  - The neighbours' lines and names are still in the archive, undrawn: the
-    build and its pins are unchanged.
+  - The neighbours' lines and names are not in the archive (the user's
+    decision, 2026-09-28): their district and state lines, their unit names,
+    their rivers and Natural Earth's lines between other countries were
+    stripped from the build. Every line, unit name and river the archive
+    ships carries `bd`, and `tools/verify.mjs` holds it so.
   - A map's own layers still draw there (a janapada area, an HQ flag in
     India).
-  - The `bangladesh` layer replaced `muted`: the archive went from 899,321 to
-    966,984 bytes.
+  - Size: 899,321 bytes before the change; 966,984 with the `bangladesh`
+    layer in place of `muted`; 862,774 with the neighbours stripped.
 - **bangladesh.pmtiles names.** Inside Bangladesh: every division, district
   and listed river. The main channel's record is NRCC entry 971,
   ব্রহ্মপুত্র-যমুনা; on the map it carries two display labels, ব্রহ্মপুত্র
   near Chilmari and যমুনা near Sirajganj (the user's decision, textbook usage)
-  — labels placed on the channel, not a split. Outside Bangladesh the archive
-  still carries the units the janapada seed uses, but the style draws none
-  (above). Bengali names come from
-  `tools/sources/bangladesh-names.json`, one official source each (National
-  Portal, each Indian district's own site, NRCC's river list). A unit with no
+  — labels placed on the channel, not a split. Outside Bangladesh: none (above).
+  Bengali names come from `tools/sources/bangladesh-names.json`, one official
+  source each (the National Portal, NRCC's river list). A unit with no
   sourced Bengali name is not labelled — never in English — and the build
-  lists it: today Cachar, whose official sites have none.
+  lists it: today none.

@@ -103,7 +103,9 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
   const dhaka = await tile(90.41, 23.81, 10);
   check(dhaka && ['detail_extent', 'land', 'admin', 'admin_labels', 'rivers'].every((k) => dhaka.layers[k]), 'bangladesh z10 tile at Dhaka has detail_extent, land, admin, admin_labels, rivers');
   const rakhine = await tile(93.5, 20.0, 6);
-  check(rakhine?.layers.land && rakhine?.layers.admin_labels, 'bangladesh z6 tile at Rakhine has land and a unit label');
+  // Its tile reaches Cox's Bazar: whatever lines and names it holds are Bangladesh's.
+  const own = (layer) => !layer || Array.from({ length: layer.length }, (_, i) => layer.feature(i).properties.bd).every((v) => v === true);
+  check(rakhine?.layers.land && own(rakhine.layers.admin_labels) && own(rakhine.layers.admin), "bangladesh z6 tile at Rakhine has land, and no line or name but Bangladesh's: Bangladesh maps show Bangladesh only");
   let wound = true;
   for (let i = 0; i < dhaka.layers.land.length; i++) {
     const rings = dhaka.layers.land.feature(i).loadGeometry();
@@ -117,6 +119,7 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
   // The main channel's two display names, and no unit label without a Bengali name.
   const riverLabels = [];
   const unitLabels = [];
+  const notBangladesh = new Set(); // a layer that ships a feature of a neighbour's
   for (let x = lon2x(85.5, 6); x <= lon2x(95.3, 6); x++)
     for (let y = lat2y(27.6, 6); y <= lat2y(17.0, 6); y++) {
       const t = await bd.getZxy(6, x, y);
@@ -124,9 +127,12 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
       const v = new VectorTile(new Pbf(new Uint8Array(t.data)));
       for (let i = 0; i < (v.layers.river_labels?.length ?? 0); i++) riverLabels.push(v.layers.river_labels.feature(i).properties.name_bn);
       for (let i = 0; i < (v.layers.admin_labels?.length ?? 0); i++) unitLabels.push(v.layers.admin_labels.feature(i).properties);
+      for (const layer of ['admin', 'admin_labels', 'borders', 'rivers']) for (let i = 0; i < (v.layers[layer]?.length ?? 0); i++) if (v.layers[layer].feature(i).properties.bd !== true) notBangladesh.add(layer);
     }
   check(JSON.stringify(riverLabels.sort()) === JSON.stringify(['ব্রহ্মপুত্র', 'যমুনা'].sort()), `bangladesh z6 river_labels are the main channel's two names (${riverLabels.join(', ')})`);
   check(unitLabels.length > 0 && unitLabels.every((p) => p.name_bn), `every bangladesh unit label has a Bengali name (${unitLabels.length} at z6)`);
+  // Bangladesh maps show Bangladesh only (2026-09-28): the lines, names and rivers are all its own.
+  check(notBangladesh.size === 0, `every bangladesh z6 line, unit name and river is Bangladesh's own (bd)${notBangladesh.size ? ` — not in ${[...notBangladesh].join(', ')}` : ''}`);
 }
 
 // ---- vendored libraries ----
