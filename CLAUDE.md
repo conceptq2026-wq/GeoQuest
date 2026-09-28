@@ -318,14 +318,11 @@ State which kind a task is when reporting it.
 
 ## Current state
 
-- Eleven maps. Bangladesh: `ancient-janapadas`. International: `straits`,
-  `border-lines`, `org-headquarters`, `environment-treaties`. Geography:
-  `deserts`, `lakes`, `forests`, `mountains`, `waterfalls` and
-  `latitude-longitude`, all under `docs/maps/`.
-- Work in progress (`tools/wip.json`): `liberation-war-1971`, a Bangladesh
-  map, «মুক্তিযুদ্ধ ১৯৭১» / "Liberation War 1971" — built, in
-  `docs/maps/liberation-war-1971/`, until the user checks it locally
-  (`notes/liberation-war-1971.md`).
+- Twelve maps. Bangladesh: `ancient-janapadas` and `liberation-war-1971`.
+  International: `straits`, `border-lines`, `org-headquarters`,
+  `environment-treaties`. Geography: `deserts`, `lakes`, `forests`,
+  `mountains`, `waterfalls` and `latitude-longitude`, all under `docs/maps/`.
+- Work in progress (`tools/wip.json`): none.
 - Three diagrams, under বিবিধ: `atmosphere-layers`, `earth-interior` and
   `seasons`, in `docs/diagrams/`.
 

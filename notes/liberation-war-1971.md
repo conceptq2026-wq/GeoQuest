@@ -5,9 +5,10 @@ Read it with `CLAUDE.md`, whose rules and verification budget apply.
 ## Current state
 
 - **liberation-war-1971**, «মুক্তিযুদ্ধ ১৯৭১» / "Liberation War 1971", a
-  Bangladesh map on the `bangladesh` basemap. It is built, in
-  `docs/maps/liberation-war-1971/`, and stays work in progress
-  (`tools/wip.json`) until the user checks it locally.
+  Bangladesh map on the `bangladesh` basemap, in `docs/maps/liberation-war-1971/`.
+  Finished: the user approved it (2026-09-29), and it is in the registry, in
+  the Bangladesh section. Like every Bangladesh map it shows Bangladesh only;
+  its HQ flags in India draw on the plain neighbour land.
 - **Four tabs**, one records table `items`, each record carrying its `tab`:
   «সেক্টর» (11), «ফোর্স» (3), «স্থান ও ঘটনা» (16), «বীরশ্রেষ্ঠ» (7). The
   picker row is at the top. Each tab has its own picker prompt, and the
