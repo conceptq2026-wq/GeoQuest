@@ -3,18 +3,22 @@
 // bangladesh.config.mjs; every input is pinned in sources.json.
 //
 //   land, coast       OpenStreetMap (committed snapshot, extract-bangladesh.mjs)
-//   muted             the land of every unit this basemap does not cover
+//   bangladesh        Bangladesh's own land (COD-AB), and the land between its
+//                     border and a neighbour's edge that is Bangladesh's; drawn
+//                     over the rest of the land, which is drawn plain — the
+//                     Bangladesh maps show Bangladesh only (2026-09-28)
 //   lakes             Natural Earth 1:10m
 //   rivers            OpenStreetMap (committed snapshot), named inside Bangladesh
 //   river_labels      the two display names of the main channel, placed as points
 //   borders           Bangladesh's land border from OCHA COD-AB (the Bangladesh
 //                     Bureau of Statistics' line); every other border from
 //                     Natural Earth 1:10m, Bangladesh point of view
-//   admin             division and district lines of Bangladesh (OCHA COD-AB),
+//   admin             division and district lines of Bangladesh (OCHA COD-AB, `bd`),
 //                     district and state lines of West Bengal, Tripura and
 //                     Cachar (geoBoundaries India), Rakhine's state line
 //                     (Natural Earth admin-1)
-//   admin_labels      unit names — Bengali from tools/sources/bangladesh-names.json
+//   admin_labels      unit names — Bengali from tools/sources/bangladesh-names.json;
+//                     Bangladesh's carry `bd`, as do its border and its rivers
 //   country_labels    the fields world.pmtiles carries, so the shell baseline
 //                     works on this archive unchanged
 import crypto from 'node:crypto';
@@ -129,26 +133,32 @@ const {
 const focusIndia = (shapeName) => indiaUnits.get(shapeName)?.state;
 expect('West Bengal districts', [...indiaUnits.values()].filter((u) => u.state === 'West Bengal').length);
 expect('Tripura districts', [...indiaUnits.values()].filter((u) => u.state === 'Tripura').length);
-const landBorder = fc(landBorderLines.map((c) => ({ type: 'Feature', properties: { class: BD_BORDER_CLASS }, geometry: { type: 'LineString', coordinates: c } })));
+const landBorder = fc(landBorderLines.map((c) => ({ type: 'Feature', properties: { class: BD_BORDER_CLASS, bd: true }, geometry: { type: 'LineString', coordinates: c } })));
 expect('Bangladesh land border', { parts: landBorderLines.length, km: landBorderLines.map((c) => Math.round(lineKm(c))) });
 
 /*
 |--------------------------------------------------------------------------
-| MUTED LAND, and where the sources disagree
+| BANGLADESH'S LAND, and where the sources disagree
 |--------------------------------------------------------------------------
 |
 | The land no unit owns goes to a unit as lib/bangladesh-units.mjs decides:
 | a piece on Bangladesh's border to the nearest unit across it, any other to
 | the nearest unit of the country whose point-of-view polygon holds it. Each
-| is muted or not with the unit it joins, so the muted land meets the border
-| exactly.
+| is Bangladesh's or not with the unit it joins, so Bangladesh's land meets
+| its border exactly.
 */
+// Bangladesh maps show Bangladesh only (the user's decision, 2026-09-28): the
+// `bangladesh` layer is Bangladesh's own land, which the style draws over the
+// rest of the land drawn plain, and every other feature of Bangladesh's — its
+// lines, its names, its border, its rivers — carries `bd`, which the style
+// draws alone. Nothing of a neighbour's is drawn but its land, plain.
+const shown = (unit) => unit.country === 'BGD';
 const seam = {};
-async function mutedLand(land, box, label) {
-  const inside = await ms(`-i combine-files l.json u.json -target l -clip bbox=${box} -clip source=u`, { 'l.json': land, 'u.json': fc(units.filter((u) => !u.properties.focus)) }, 'l');
+async function bangladeshLand(land, box, label) {
+  const inside = await ms(`-i combine-files l.json u.json -target l -clip bbox=${box} -clip source=u`, { 'l.json': land, 'u.json': fc(units.filter((u) => shown(u.properties))) }, 'l');
   const pieces = await unownedPieces(land, box);
-  const tally = { pieces: pieces.length, km2: 0, muted: 0, byCountry: {}, border: {}, borderPieces: 0, biggest: null };
-  const muted = [];
+  const tally = { pieces: pieces.length, km2: 0, own: 0, byCountry: {}, border: {}, borderPieces: 0, biggest: null };
+  const own = [];
   pieces.forEach(({ piece, point: pt }) => {
     const { unit, onBorder } = ownerOf({ piece, point: pt });
     const km2 = Math.abs(ringArea(piece.geometry));
@@ -159,11 +169,11 @@ async function mutedLand(land, box, label) {
       tally.border[unit.country] = (tally.border[unit.country] || 0) + km2;
       if (!tally.biggest || km2 > tally.biggest.km2) tally.biggest = { km2, at: pt };
     }
-    if (!unit.focus) muted.push(piece), (tally.muted += 1);
+    if (shown(unit)) own.push(piece), (tally.own += 1);
   });
   seam[label] = tally;
-  console.log(`  ${label}: ${tally.pieces} unowned pieces, ${tally.km2.toFixed(0)} km² — to ${Object.entries(tally.byCountry).map(([c, a]) => `${c} ${a.toFixed(0)}`).join(', ')} km²; ${tally.borderPieces} on Bangladesh's border; ${tally.muted} muted`);
-  return fc([...inside.features, ...muted].map((f) => ({ type: 'Feature', properties: {}, geometry: f.geometry })));
+  console.log(`  ${label}: ${tally.pieces} unowned pieces, ${tally.km2.toFixed(0)} km² — to ${Object.entries(tally.byCountry).map(([c, a]) => `${c} ${a.toFixed(0)}`).join(', ')} km²; ${tally.borderPieces} on Bangladesh's border; ${tally.own} Bangladesh's`);
+  return fc([...inside.features, ...own].map((f) => ({ type: 'Feature', properties: {}, geometry: f.geometry })));
 }
 function ringArea(g) {
   const R = 6371.0088;
@@ -230,7 +240,7 @@ const neSnap = snapTo(neInBox, borderGrid, 5);
 const allBorders = fc([...neSnap.lines.features, ...landBorder.features]);
 const allBorderGrid = new SegmentGrid(allBorders.features.flatMap((f) => linesOf(f.geometry)));
 
-const bdLines = await ms(`-i in.json -lines adm1_pcode -filter "TYPE != 'outer'" -each "level = TYPE == 'adm1_pcode' ? 'division' : 'district'" -filter-fields level`, { 'in.json': bd2 });
+const bdLines = await ms(`-i in.json -lines adm1_pcode -filter "TYPE != 'outer'" -each "level = TYPE == 'adm1_pcode' ? 'division' : 'district', bd = true" -filter-fields level,bd`, { 'in.json': bd2 });
 const indiaLines = await ms(
   `-i combine-files d.json o.json -target d -each "grp = ${JSON.stringify(Object.fromEntries([...indiaUnits.values()].map((u) => [u.geoBoundaries, u.state]))).replace(/"/g, "'")}[shapeName] || 'other', key = grp == 'other' ? 'other' : shapeName" -dissolve key copy-fields=grp -lines grp -filter "TYPE != 'outer'" -each "level = TYPE == 'grp' ? 'state' : 'district'" -filter-fields level -erase source=o`,
   { 'd.json': inCoverage, 'o.json': others('MMR', 'NPL', 'BTN', 'CHN') },
@@ -329,7 +339,7 @@ const riversOutside = await ms(`-i combine-files r.json b.json -target r -clip b
 const rivers = fc([
   ...riversNamed.features.map((f) => {
     const n = riverNames[f.properties.river];
-    return { ...f, properties: n.displayLabels || !n.nameBn ? {} : { name_en: n.nameEn, name_bn: n.nameBn } };
+    return { ...f, properties: { ...(n.displayLabels || !n.nameBn ? {} : { name_en: n.nameEn, name_bn: n.nameBn }), bd: true } };
   }),
   ...riversOutside.features.map((f) => ({ ...f, properties: {} })),
 ]);
@@ -398,12 +408,12 @@ const label = (pt, props, minZoom, maxZoom = 24) => {
 const innerPoints = async (fcIn) => (await ms('-i in.json -points inner', { 'in.json': fcIn })).features;
 for (const [f, p] of (await innerPoints(bd1)).map((p, i) => [bd1.features[i], p])) {
   const n = names.bangladesh[f.properties.adm1_pcode];
-  label(p.geometry.coordinates, { level: 'division', name_en: n.nameEn, name_bn: n.nameBn }, 5, 7);
+  label(p.geometry.coordinates, { level: 'division', name_en: n.nameEn, name_bn: n.nameBn, bd: true }, 5, 7);
 }
 for (const [f, p] of (await innerPoints(bd2)).map((p, i) => [bd2.features[i], p])) {
   const n = names.bangladesh[f.properties.adm2_pcode];
   if (!n) throw new Error(`${f.properties.adm2_pcode}: no name in ${path.basename(NAMES)}`);
-  label(p.geometry.coordinates, { level: 'district', name_en: n.nameEn, name_bn: n.nameBn }, 7);
+  label(p.geometry.coordinates, { level: 'district', name_en: n.nameEn, name_bn: n.nameBn, bd: true }, 7);
 }
 const listed = inCoverage.features.filter((f) => LISTED_WB.includes(f.properties.shapeName) || f.properties.shapeName === 'Cachar');
 if (listed.length !== LISTED_WB.length + 1) throw new Error(`listed Indian units: ${listed.length} of ${LISTED_WB.length + 1} found`);
@@ -479,11 +489,11 @@ async function simplifiedLines(interval, box) {
   const pick = (kind) => fc(out.features.filter((f) => f.properties.kind === kind).map(({ properties: { kind: _, ...p }, ...f }) => ({ ...f, properties: p })));
   return { admin: pick('admin'), border: pick('border') };
 }
-console.log('muted land:');
+console.log("Bangladesh's land:");
 const overviewLines = await simplifiedLines(250);
 const layersOverview = {
   land: prepare(landOverview, () => ({})),
-  muted: prepare(await mutedLand(landOverview, COVERAGE, 'overview'), () => ({})),
+  bangladesh: prepare(await bangladeshLand(landOverview, COVERAGE, 'overview'), () => ({})),
   lakes: prepare(lakes, () => ({})),
   coast: coastOf(landOverview, COVERAGE),
   rivers: prepare(await ms('-i in.json -simplify dp interval=250', { 'in.json': rivers }), (p) => p),
@@ -498,7 +508,7 @@ const detailLines = await simplifiedLines(20, DETAIL_BOX);
 const layersDetail = {
   detail_extent: fc(Object.entries(DETAIL_AREAS).map(([area, box]) => ({ ...bboxPolygon(box), properties: { area } }))),
   land: prepare(landDetail, () => ({})),
-  muted: prepare(await mutedLand(landDetail, DETAIL_BOX, 'detail'), () => ({})),
+  bangladesh: prepare(await bangladeshLand(landDetail, DETAIL_BOX, 'detail'), () => ({})),
   lakes: prepare(await clipDetail(lakes), () => ({})),
   coast: coastOf(landDetail, DETAIL_BOX),
   rivers: prepare(await ms(`-i in.json -clip bbox=${DETAIL_BOX} -simplify dp interval=20`, { 'in.json': rivers }), (p) => p),

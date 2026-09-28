@@ -50,13 +50,28 @@ rules and verification budget apply.
   district lines end on it exactly (COD-AB draws both), land between it and a
   neighbour's edge goes to the neighbour, and other land no source owns goes
   to the nearest unit of the country whose point-of-view polygon holds it.
-  Land outside the units it covers is muted.
+- **Bangladesh maps show Bangladesh only** (the user's decision, 2026-09-28).
+  - The archive's `bangladesh` layer is Bangladesh's own land. It is drawn in
+    the land colour over the rest of the land, which is drawn plain
+    (`BASEMAP_COLORS.plain`); the sea keeps its colour.
+  - Bangladesh's border, its division and district lines, its rivers and its
+    names carry `bd`, and the style draws those alone.
+  - Nothing of a neighbour's is drawn but its land, plain: no West Bengal,
+    Tripura, Cachar or Rakhine outline or name, and no other international
+    line. Country names are the baseline's, and stay.
+  - The neighbours' lines and names are still in the archive, undrawn: the
+    build and its pins are unchanged.
+  - A map's own layers still draw there (a janapada area, an HQ flag in
+    India).
+  - The `bangladesh` layer replaced `muted`: the archive went from 899,321 to
+    966,984 bytes.
 - **bangladesh.pmtiles names.** Inside Bangladesh: every division, district
   and listed river. The main channel's record is NRCC entry 971,
   ব্রহ্মপুত্র-যমুনা; on the map it carries two display labels, ব্রহ্মপুত্র
   near Chilmari and যমুনা near Sirajganj (the user's decision, textbook usage)
-  — labels placed on the channel, not a split. Outside Bangladesh: only the
-  units the janapada seed uses. Bengali names come from
+  — labels placed on the channel, not a split. Outside Bangladesh the archive
+  still carries the units the janapada seed uses, but the style draws none
+  (above). Bengali names come from
   `tools/sources/bangladesh-names.json`, one official source each (National
   Portal, each Indian district's own site, NRCC's river list). A unit with no
   sourced Bengali name is not labelled — never in English — and the build

@@ -155,6 +155,11 @@ card and the map show every name whole.
 no picker row** — no `<select>` and no ‹ ›. The timeline is its selector, and
 keyboard access runs through the timeline's dot buttons, in time order.
 
+**Bangladesh maps show Bangladesh only** (the user's decision, 2026-09-28): on
+bangladesh.pmtiles no Indian state or Myanmar region is drawn — no fill, no
+outline, no name; the neighbours' land is plain, the sea keeps its colour, and
+a map's own layers still draw over it: `notes/basemaps.md`.
+
 A globe map has no tilt button and keeps the picker row: `notes/globe.md`.
 One map, environment-treaties, is in English: `notes/environment-treaties.md`.
 

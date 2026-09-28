@@ -141,7 +141,7 @@ const motion = (ms) => (reduceMotion.matches ? 0 : ms);
 |--------------------------------------------------------------------------
 */
 
-const BASEMAP_COLORS = { sea: '#b9d9ee', land: '#f6f2e7', coast: '#7fa7c4', border: '#a0928a', muted: '#e6e2d6', admin: '#a89a8e', river: '#8fbde0' };
+const BASEMAP_COLORS = { sea: '#b9d9ee', land: '#f6f2e7', coast: '#7fa7c4', border: '#a0928a', plain: '#e3e3e0', admin: '#a89a8e', river: '#8fbde0' };
 const BASEMAP_SOURCES = { world: 'basemap', detail: 'basemap-detail' };
 const LABEL_FONT = ['Noto Sans Bengali'];
 
@@ -215,9 +215,11 @@ function worldStyle(archive, look) {
 }
 
 /*
- * A regional basemap: the region itself in the land colour, its neighbours
- * muted, administrative outlines, rivers, and the names of the units it
- * covers. Coast is a line layer of its own, cut free of the tile-box edges,
+ * A regional basemap, Bangladesh's: Bangladesh only (the user's decision,
+ * 2026-09-28). Its own land in the land colour on plain land and the sea;
+ * its border, its division and district lines, its rivers and its names —
+ * the features the archive marks `bd` — and nothing of a neighbour's but
+ * its land, plain. Coast is a line layer of its own, cut free of the tile-box edges,
  * so both sources can stroke it.
  *
  * Labels come last and are split by zoom rather than masked: a symbol hidden
@@ -235,8 +237,8 @@ function regionStyle(archive, meta) {
   const tiles = (minzoom, maxzoom) => ({ type: 'vector', tiles: [archive.tiles], minzoom, maxzoom, attribution });
   const detailFrom = meta.detailMinZoom;
   const layersOf = (source) => [
-    { id: `${source}-land`, type: 'fill', source, 'source-layer': 'land', paint: { 'fill-color': BASEMAP_COLORS.land } },
-    { id: `${source}-muted`, type: 'fill', source, 'source-layer': 'muted', paint: { 'fill-color': BASEMAP_COLORS.muted } },
+    { id: `${source}-land`, type: 'fill', source, 'source-layer': 'land', paint: { 'fill-color': BASEMAP_COLORS.plain } },
+    { id: `${source}-bangladesh`, type: 'fill', source, 'source-layer': 'bangladesh', paint: { 'fill-color': BASEMAP_COLORS.land } },
     { id: `${source}-lakes`, type: 'fill', source, 'source-layer': 'lakes', paint: { 'fill-color': BASEMAP_COLORS.sea } },
     { id: `${source}-lake-shore`, type: 'line', source, 'source-layer': 'lakes', paint: { 'line-color': BASEMAP_COLORS.coast, 'line-width': 0.7 } },
     { id: `${source}-coast`, type: 'line', source, 'source-layer': 'coast', paint: { 'line-color': BASEMAP_COLORS.coast, 'line-width': 0.9 } },
@@ -245,6 +247,7 @@ function regionStyle(archive, meta) {
       type: 'line',
       source,
       'source-layer': 'rivers',
+      filter: ['==', ['get', 'bd'], true],
       layout: { 'line-join': 'round', 'line-cap': 'round' },
       paint: { 'line-color': BASEMAP_COLORS.river, 'line-width': ['interpolate', ['linear'], ['zoom'], 5, 0.8, 8, 1.8, 10, 3] },
     },
@@ -253,7 +256,7 @@ function regionStyle(archive, meta) {
       type: 'line',
       source,
       'source-layer': 'admin',
-      filter: ['==', ['get', 'level'], 'district'],
+      filter: ['all', ['==', ['get', 'bd'], true], ['==', ['get', 'level'], 'district']],
       layout: { 'line-join': 'round' },
       paint: { 'line-color': BASEMAP_COLORS.admin, 'line-width': ['interpolate', ['linear'], ['zoom'], 5, 0.4, 9, 0.9], 'line-dasharray': [2, 1.5] },
     },
@@ -262,7 +265,7 @@ function regionStyle(archive, meta) {
       type: 'line',
       source,
       'source-layer': 'admin',
-      filter: ['!=', ['get', 'level'], 'district'],
+      filter: ['all', ['==', ['get', 'bd'], true], ['!=', ['get', 'level'], 'district']],
       layout: { 'line-join': 'round' },
       paint: { 'line-color': BASEMAP_COLORS.admin, 'line-width': ['interpolate', ['linear'], ['zoom'], 5, 0.8, 9, 1.5] },
     },
@@ -271,6 +274,7 @@ function regionStyle(archive, meta) {
       type: 'line',
       source,
       'source-layer': 'borders',
+      filter: ['==', ['get', 'bd'], true],
       layout: { 'line-join': 'round' },
       paint: { 'line-color': BASEMAP_COLORS.border, 'line-width': 1.2, 'line-dasharray': [3, 1.5] },
     },
@@ -303,7 +307,7 @@ function regionStyle(archive, meta) {
       type: 'symbol',
       source,
       'source-layer': 'admin_labels',
-      filter: ['all', ['<=', ['get', 'min_zoom'], ['zoom']], ['>', ['get', 'max_zoom'], ['zoom']], ...(only ? [only] : [])],
+      filter: ['all', ['==', ['get', 'bd'], true], ['<=', ['get', 'min_zoom'], ['zoom']], ['>', ['get', 'max_zoom'], ['zoom']], ...(only ? [only] : [])],
       layout: {
         'text-field': name,
         'text-font': LABEL_FONT,
