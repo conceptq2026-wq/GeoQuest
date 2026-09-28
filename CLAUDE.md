@@ -313,7 +313,9 @@ State which kind a task is when reporting it.
   `border-lines`, `org-headquarters`, `environment-treaties`. Geography:
   `deserts`, `lakes`, `forests`, `mountains`, `waterfalls` and
   `latitude-longitude`, all under `docs/maps/`.
-- Work in progress (`tools/wip.json`): none.
+- Work in progress (`tools/wip.json`): `liberation-war-1971`, a Bangladesh
+  map, «মুক্তিযুদ্ধ ১৯৭১» / "Liberation War 1971" — its seed, sector trace and
+  sectors.geojson in `data-sources/liberation-war-1971/`, not yet built.
 - Three diagrams, under বিবিধ: `atmosphere-layers`, `earth-interior` and
   `seasons`, in `docs/diagrams/`.
 

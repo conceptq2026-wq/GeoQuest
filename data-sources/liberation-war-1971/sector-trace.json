@@ -1,0 +1,75 @@
+{
+  "_about": "The sector outlines of liberation-war-1971, traced by the editor (Claude) on 2026-09-28 from the sector map in NCTB «বাংলাদেশ ও বিশ্বপরিচয়», অষ্টম শ্রেণি, 2026 edition, p. ২৬ («মুক্তিযুদ্ধকালীন সেক্টরের মানচিত্র»). The scan itself stays out of git (copyright); this file holds only what was read off it — control points, the sector lines and the label positions, in the scan's own pixels — and tools/build-liberation-sectors.mjs turns it into data-sources/liberation-war-1971/sectors.geojson. Pixel coordinates are continuous, origin at the image's top-left corner, x right, y down.",
+  "scan": {
+    "book": "NCTB «বাংলাদেশ ও বিশ্বপরিচয়», অষ্টম শ্রেণি, 2026",
+    "bookFile": "tools/.cache/liberation-war-1971/bgs8-2026.pdf",
+    "bookSha256": "23cbbce6831061254b563af83f55dd4032ea428b380f3d5e9e858306d4d34089",
+    "page": "২৬ (PDF page 31)",
+    "image": "the page's one embedded raster, 351×429 px, taken with pdfimages",
+    "imageSha256": "8bd9851dca6417b2bcf021691a50433157e3d31f4f6e709ed059d26c23443f43"
+  },
+  "controlPoints": [
+    { "id": "nTip", "what": "Bangladesh's northernmost point (Panchagarh): COD-AB admin0's highest-latitude vertex", "px": [30.0, 3.8], "ll": [88.4107, 26.6345] },
+    { "id": "lalmonirhatN", "what": "the tip of the Lalmonirhat (Patgram) panhandle: COD-AB Lalmonirhat's highest-latitude vertex", "px": [70.8, 15.2], "ll": [88.958, 26.4582] },
+    { "id": "kurigramN", "what": "Kurigram's northern tip: COD-AB Kurigram's highest-latitude vertex", "px": [123.5, 30.8], "ll": [89.6787, 26.2377] },
+    { "id": "westNW", "what": "the north-west's western tip (Thakurgaon): COD-AB admin0's westernmost vertex within 87.9–88.6°E, 25.5–26.3°N", "px": [5.0, 52.5], "ll": [88.0857, 25.9146] },
+    { "id": "kurigramCorner", "what": "the corner where the border with Assam turns into the border with Meghalaya, east of Rowmari (COD-AB admin0 vertex)", "px": [136.8, 97.8], "ll": [89.831, 25.296] },
+    { "id": "sylhetE", "what": "Sylhet's eastern tip: COD-AB admin0's easternmost vertex north of 24.3°N", "px": [333.3, 123.0], "ll": [92.4971, 24.9018] },
+    { "id": "khagrachhariN", "what": "Khagrachhari's northern tip: COD-AB Khagrachhari's highest-latitude vertex", "px": [294.3, 206.3], "ll": [91.9587, 23.7349] },
+    { "id": "beloniaTip", "what": "the southern tip of the Belonia bulge (the Indian salient into Feni): COD-AB admin0's lowest-latitude vertex near the bulge", "px": [251.5, 252.3], "ll": [91.3961, 23.056] },
+    { "id": "bandarbanPeak", "what": "the northern bend of the Myanmar border above the Naf (Bandarban): COD-AB admin0's highest-latitude vertex there", "px": [324.5, 363.5], "ll": [92.3793, 21.4812] }
+  ],
+  "junctions": {
+    "J6-7-11": [112.5, 106.5],
+    "J7-11-3": [128.3, 184.5],
+    "J7-3-8-2": [126.0, 199.5],
+    "J8-9-2": [177.0, 274.8],
+    "J11-5-4": [247.7, 124.0],
+    "J11-3-4": [247.9, 139.5]
+  },
+  "lines": {
+    "6|7": { "from": "border", "to": "J6-7-11", "px": [[66, 94.8], [71, 96], [73, 97], [78, 98], [83, 100], [88, 101], [93, 103], [98, 104], [103, 105], [108, 106], [112.5, 106.5]] },
+    "6|11": { "from": "border", "to": "J6-7-11", "px": [[139.5, 54.5], [134.5, 57.5], [131, 59.5], [128, 62], [125, 65], [122, 68.5], [120, 72], [118, 76], [116, 80], [114, 84.5], [113, 89], [112.3, 94], [112.5, 100], [112.5, 106.5]] },
+    "7|11": { "from": "J6-7-11", "to": "J7-11-3", "px": [[112.5, 106.5], [113, 110], [115, 114], [117, 118], [119, 122], [120, 127], [121, 132], [122, 137], [123, 141], [124, 146], [125, 150], [126, 155], [127, 160], [127.3, 165], [127.5, 170], [127.8, 175], [128, 180], [128.3, 184.5]] },
+    "7|3": { "from": "J7-11-3", "to": "J7-3-8-2", "px": [[128.3, 184.5], [127.5, 190], [127, 195], [126, 199.5]] },
+    "7|8": { "from": "border", "to": "J7-3-8-2", "px": [[46, 174], [50.5, 175.5], [57, 178.5], [68.5, 183], [80, 187], [91.5, 190.5], [103, 194], [114, 197], [126, 199.5]] },
+    "11|3": { "from": "J7-11-3", "to": "J11-3-4", "px": [[128.3, 184.5], [132.3, 182.9], [139.4, 179.3], [146.6, 175.7], [153.7, 171.4], [160.9, 167.1], [168, 162.9], [175.1, 159.3], [182.3, 157.1], [185.7, 155.7], [194.3, 153.6], [201.4, 151.4], [208.6, 149.3], [217.1, 146.7], [225.7, 144.7], [234.3, 142.1], [241.4, 140.2], [247.9, 139.5]] },
+    "11|5": { "from": "border", "to": "J11-5-4", "px": [[236.5, 100], [237.7, 104.3], [241, 110.7], [244.3, 117.3], [246.8, 123.2], [247.7, 124]] },
+    "11|4": { "from": "J11-5-4", "to": "J11-3-4", "px": [[247.7, 124], [247.7, 131], [247.9, 139.5]] },
+    "5|4": { "from": "J11-5-4", "to": "border", "px": [[247.7, 124], [254.3, 125.3], [264.3, 126.5], [276, 128.2], [286, 129.3], [292.7, 129.8], [302.7, 128.2], [312.7, 125.7], [322.7, 122.7], [329.3, 119.8], [334.3, 117.3], [339, 115]] },
+    "3|4": { "from": "J11-3-4", "to": "border", "px": [[247.9, 139.5], [252, 140.1], [258, 141], [266, 142.3], [267.7, 152.3], [269.3, 164], [270.2, 174], [271, 175.7], [272, 180]] },
+    "3|2": { "from": "J7-3-8-2", "to": "border", "px": [[126, 199.5], [144.7, 200], [163, 200.3], [166.3, 201.3], [184.7, 201.3], [203, 201.3], [211.3, 195.8], [219.7, 186.7], [228, 191.7], [234.7, 198.3], [238, 200.5], [242, 203]] },
+    "8|2": { "from": "J7-3-8-2", "to": "J8-9-2", "px": [[126, 199.5], [131.3, 205.3], [136.3, 211.2], [141.3, 217], [145.5, 222.8], [148.8, 227.8], [153, 233.7], [157.2, 239.5], [160.5, 245.3], [163.8, 251.2], [167.2, 257], [170.5, 262.8], [173.8, 270.3], [177, 274.8]] },
+    "8|9": { "from": "border", "to": "J8-9-2", "px": [[67, 288.5], [72.5, 287.8], [80, 286.7], [93.3, 285], [106.7, 283.3], [120, 281.7], [131.7, 280.7], [143.3, 279.2], [155, 277.8], [166.7, 276.7], [177, 274.8]] },
+    "2|9": { "from": "J8-9-2", "to": "sea", "px": [[177, 274.8], [186.7, 271.7], [195.8, 268.3], [200.5, 265.3], [203.3, 270], [205.8, 277.5], [209.2, 283.3], [212.5, 289.2], [215.8, 294.2], [215, 300], [213.3, 305], [212.5, 310], [212, 318], [211.5, 330], [211, 345]] },
+    "2|1": { "from": "border", "to": "sea", "px": [[261, 248], [257.5, 258.5], [256.3, 263.3], [255, 270], [255.8, 276.7], [257.5, 281.7], [260, 288.3], [263.3, 293.3], [266.7, 298.3], [269.2, 303.3], [270.8, 308.3], [271.7, 311.7], [272.5, 318]] }
+  },
+  "labels": {
+    "1": [307, 294],
+    "2": [199, 236],
+    "3": [200, 174],
+    "4": [288, 144],
+    "5": [287, 118],
+    "6": [74, 62],
+    "7": [82, 143],
+    "8": [105, 236],
+    "9": [126, 307],
+    "11": [178, 134]
+  },
+  "_islands": "COD-AB islands belong to the sector their district belongs to. The NCTB text (B8 p. ২৬) gives sector 1 «চট্টগ্রাম, পার্বত্য চট্টগ্রাম, কক্সবাজার ও নোয়াখালী জেলার মুহুরী নদীর পূর্বাংশ», sector 2 «নোয়াখালী জেলার অংশবিশেষ» (west of the Muhuri), sector 9 «সমগ্র বরিশাল ও পটুয়াখালী অঞ্চল, দৌলতপুর-সাতক্ষীরা সড়ক থেকে খুলনার দক্ষিণাঞ্চল»; Bhola was then part of Barisal district — the ministry's Mostafa Kamal page places Daulatkhan (Bhola) as «বরিশালের দৌলতখান থানার». The Dahagram–Angarpota exclave is Lalmonirhat's (Patgram), then Rangpur district: sector 6 («… সমগ্র রংপুর»).",
+  "islands": {
+    "Lalmonirhat": 6,
+    "Bhola": 9,
+    "Barguna": 9,
+    "Patuakhali": 9,
+    "Pirojpur": 9,
+    "Barishal": 9,
+    "Bagerhat": 9,
+    "Khulna": 9,
+    "Satkhira": 9,
+    "Noakhali": 2,
+    "Lakshmipur": 2,
+    "Chattogram": 1,
+    "Cox's Bazar": 1
+  }
+}

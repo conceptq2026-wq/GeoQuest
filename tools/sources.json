@@ -228,5 +228,11 @@
         "url": "https://www.nasa.gov/nasa-brand-center/images-and-media/"
       }
     }
+  },
+  "osmLiberationPoints": {
+    "_comment": "The OpenStreetMap elements liberation-war-1971 takes where its sources give no point of the place itself (sector HQs, places, a grave), each matched by name inside its COD-AB upazila or district (or a box round the Indian district its source names), by type, id and version, from tools/extract-liberation-points.mjs. Only a deliberate re-run changes it.",
+    "file": "tools/sources/osm-liberation-points.geojson",
+    "licence": "ODbL 1.0 — © OpenStreetMap contributors",
+    "sha256": "6dd1f24bae2c99c2399e8bcf115dd8f3a308a8eebac1757dcbd12ebd47c09c43"
   }
 }

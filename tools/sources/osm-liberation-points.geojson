@@ -1,0 +1,225 @@
+{
+ "type": "FeatureCollection",
+ "properties": {
+  "licence": "ODbL 1.0 — © OpenStreetMap contributors",
+  "fetched": "2026-09-28"
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "target": "hq-3-teliapara",
+    "osm": {
+     "type": "node",
+     "id": 12169803344,
+     "version": 1,
+     "timestamp": "2024-09-11T11:19:27Z"
+    },
+    "name": "Teliapara Bus Stop",
+    "nameEn": null,
+    "nameBn": null,
+    "altName": null,
+    "area": "Habiganj (COD-AB adm2, BD6036)"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.366041,
+     24.130425
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "target": "hq-5-banshtala",
+    "osm": {
+     "type": "node",
+     "id": 9843505110,
+     "version": 1,
+     "timestamp": "2022-06-24T08:36:10Z"
+    },
+    "name": "Banshtala",
+    "nameEn": null,
+    "nameBn": null,
+    "altName": null,
+    "area": "Dowarabazar (COD-AB adm3, BD60900033)"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.576087,
+     25.137476
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "target": "hq-6-burimari",
+    "osm": {
+     "type": "node",
+     "id": 9271966139,
+     "version": 2,
+     "timestamp": "2025-09-28T19:54:54Z"
+    },
+    "name": "বুড়িমারী",
+    "nameEn": "Burimari",
+    "nameBn": "বুড়িমারী",
+    "altName": null,
+    "area": "Patgram (COD-AB adm3, BD55520070)"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     88.940589,
+     26.394237
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "target": "hq-11-mahendraganj",
+    "osm": {
+     "type": "node",
+     "id": 5945043728,
+     "version": 1,
+     "timestamp": "2018-10-01T20:59:33Z"
+    },
+    "name": "Mahendraganj",
+    "nameEn": null,
+    "nameBn": null,
+    "altName": null,
+    "area": "South West Garo Hills, Meghalaya"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     89.851298,
+     25.303431
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "target": "place-arts-building",
+    "osm": {
+     "type": "way",
+     "id": 1152392502,
+     "version": 5,
+     "timestamp": "2024-02-15T04:34:51Z"
+    },
+    "name": "Arts Faculty",
+    "nameEn": null,
+    "nameBn": "কলাভবন",
+    "altName": null,
+    "area": "Dhaka South City Corporation (COD-AB adm3, BD30262000)"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     90.392792,
+     23.734232
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "target": "place-rajarbagh-police-lines",
+    "osm": {
+     "type": "way",
+     "id": 24475522,
+     "version": 21,
+     "timestamp": "2025-01-28T10:46:41Z"
+    },
+    "name": "রাজারবাগ পুলিশ লাইন্স",
+    "nameEn": "Rajarbagh Police Lines",
+    "nameBn": null,
+    "altName": null,
+    "area": "Dhaka South City Corporation (COD-AB adm3, BD30262000)"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     90.417025,
+     23.740427
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "target": "place-kalurghat-radio",
+    "osm": {
+     "type": "node",
+     "id": 4273252489,
+     "version": 1,
+     "timestamp": "2016-06-30T11:48:07Z"
+    },
+    "name": "Kalurghat Radio Centre",
+    "nameEn": null,
+    "nameBn": null,
+    "altName": null,
+    "area": "Chattogram (COD-AB adm2, BD2015)"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.850164,
+     22.375911
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "target": "place-rayerbazar-killing-field",
+    "osm": {
+     "type": "way",
+     "id": 1074764129,
+     "version": 1,
+     "timestamp": "2022-06-30T10:20:51Z"
+    },
+    "name": "শহীদ বুদ্ধিজীবী স্মৃতিসৌধ",
+    "nameEn": "Martyred Intellectuals Memorial",
+    "nameBn": "শহীদ বুদ্ধিজীবী স্মৃতিসৌধ",
+    "altName": "রায়েরবাজার বধ্যভূমি",
+    "area": "Dhaka (COD-AB adm2, BD3026)"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     90.357272,
+     23.750811
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "target": "grave-mostafa-kamal",
+    "osm": {
+     "type": "node",
+     "id": 9365730988,
+     "version": 1,
+     "timestamp": "2021-12-25T17:13:27Z"
+    },
+    "name": "বীরশ্রেষ্ঠ শহীদ সিপাহী মোহাম্মদ মোস্তফা কামাল এর সমাধি",
+    "nameEn": null,
+    "nameBn": null,
+    "altName": null,
+    "area": "Akhaura (COD-AB adm3, BD20120002)"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     91.199773,
+     23.836915
+    ]
+   }
+  }
+ ]
+}
