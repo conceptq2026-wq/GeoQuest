@@ -81,6 +81,8 @@ const VISUAL_DIR = path.join(ROOT, 'docs/visual');
 const ATMOSPHERE_SEEDS = path.join(ROOT, 'data-sources/atmosphere-layers');
 // The earth-interior diagram: the editor's seed and the approved master.
 const EARTH_SEEDS = path.join(ROOT, 'data-sources/earth-interior');
+// The approved seed's SHA-256: the user's own edits come with the new value, and it is re-pinned then.
+const EARTH_SEED_SHA256 = '990b45a50ad3ccf8baffefcfa82a4cb1a4d8e5e2be02665be9b328fbc46a0b43';
 // The latitude-longitude globe: the editor's seed, the pinned sources (its
 // imagery's credit among them) and the geometry pins.
 const LATLON_SEED = path.join(ROOT, 'data-sources/latitude-longitude/latitude-longitude.seed.json');
@@ -1585,7 +1587,10 @@ console.log('\n\n============ earth-interior (diagram) ============');
   const id = 'earth-interior';
   CHECKED_DIAGRAMS.add(id);
   const dir = path.join(DIAGRAMS_DIR, id);
-  const seed = readJson(path.join(EARTH_SEEDS, 'earth-interior.seed.json'));
+  const seedFile = path.join(EARTH_SEEDS, 'earth-interior.seed.json');
+  const seed = readJson(seedFile);
+  const seedHash = crypto.createHash('sha256').update(fs.readFileSync(seedFile)).digest('hex');
+  check(seedHash === EARTH_SEED_SHA256, `the seed is the approved one: SHA-256 ${seedHash.slice(0, 12)}… (pinned ${EARTH_SEED_SHA256.slice(0, 12)}…)`);
   const descriptor = readJson(path.join(dir, 'descriptor.json'));
   const data = readJson(path.join(dir, descriptor.data));
   const view = descriptor.views.find((v) => v.type === 'cutaway');
@@ -1601,6 +1606,7 @@ console.log('\n\n============ earth-interior (diagram) ============');
   check(descriptor.views.length === 1 && Boolean(view) && modules.includes('cutaway'), `one view, of type cutaway, which docs/visual/app.js has a module for (${descriptor.views.map((v) => v.type).join(', ')})`);
   check(descriptor.words?.picker === ui.pickerPlaceholderBn, `the picker's placeholder is the seed's: «${descriptor.words?.picker}»`);
   check(descriptor.words?.scale === ui.scaleNoteBn, `the scale note is the seed's: «${descriptor.words?.scale}»`);
+  check(descriptor.words?.close === ui.closeBn, `the ×'s accessible name is the seed's: «${descriptor.words?.close}»`);
   const rowsWanted = ui.rowOrder.map((key) => ({ key, label: ui.rowLabelsBn[key] }));
   check(JSON.stringify(descriptor.words?.rows) === JSON.stringify(rowsWanted), `the card's rows are ui.rowOrder, labelled by ui.rowLabelsBn (${rowsWanted.map((r) => r.label).join(', ')})`);
   // The words the view's code reads are exactly the descriptor's.
@@ -1630,14 +1636,14 @@ console.log('\n\n============ earth-interior (diagram) ============');
   gather(data, shown);
   const nctb = seed.sources.nctb;
   const usgs = seed.sources.usgs;
-  const nctbCredit = `${nctb.title}, p. ${nctb.page}`;
+  const nctbCredit = `${nctb.title}, ${ui.pageBn} ${nctb.page}`;
   const foreign = shown.filter((v) => /[ঀ-৿]/.test(v) && !seedStrings.has(v) && v !== nctbCredit);
   check(foreign.length === 0, `every Bengali string shown is the seed's${foreign.length ? `, not: ${foreign.join(' | ')}` : ''}`);
   const wantCredits = [
     { title: nctbCredit, by: nctb.publisher, url: nctb.url, lang: 'bn' },
     { title: usgs.title, by: usgs.publisher, url: usgs.url },
   ];
-  check(JSON.stringify(data.credits ?? []) === JSON.stringify(wantCredits), `ⓘ lists the NCTB book (p. ${nctb.page}) and USGS, and nothing for the art (${(data.credits ?? []).map((c) => c.by).join('; ')})`);
+  check(JSON.stringify(data.credits ?? []) === JSON.stringify(wantCredits), `ⓘ lists the NCTB book («${ui.pageBn} ${nctb.page}») and USGS, and nothing for the art (${(data.credits ?? []).map((c) => c.by).join('; ')})`);
 
   // ---- the art and its geometry -----------------------------------------------
   console.log('\n---- the art and its geometry ----');

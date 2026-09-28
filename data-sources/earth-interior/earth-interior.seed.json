@@ -1,5 +1,5 @@
 {
-  "_about": "Earth's interior — a diagram in বিবিধ. Written by the editor (Claude) on 2026-09-28 from the draft পৃথিবীর_অভ্যন্তর_খসড়া.xlsx as approved by the user the same day. User decisions: take the BOOK's values and names (NCTB «ভূগোল ও পরিবেশ» 9–10, 2026, p. ৪৮); temperature only for the two crusts (the book's 30 °C per km), none for the other layers; «নিফে» for both core layers (user-given; the book does not use it); mantle state «আধা-কঠিন» from USGS; the lower mantle's depth derived from the book's two figures; spelling «ঊর্ধ্ব» (the book prints «উর্ধ্ব»); the card label «পুরুত্ব». A row absent from a layer's `rows` is not shown on its card. The book is copyrighted: `states` holds its exact terms and figures, not whole sentences. The user may update any value later; apply it as given.",
+  "_about": "Earth's interior — a diagram in বিবিধ. Written by the editor (Claude) on 2026-09-28 from the draft পৃথিবীর_অভ্যন্তর_খসড়া.xlsx as approved by the user the same day. User decisions: take the BOOK's values and names (NCTB «ভূগোল ও পরিবেশ» 9–10, 2026, p. ৪৮); temperature only for the two crusts (the book's 30 °C per km), none for the other layers; «নিফে» for both core layers (user-given; the book does not use it); mantle state «আধা-কঠিন» from USGS; the lower mantle's depth derived from the book's two figures; spelling «ঊর্ধ্ব» (the book prints «উর্ধ্ব»); the card label «পুরুত্ব»; the × «বন্ধ করুন» and «পৃষ্ঠা ৪৮» in the ⓘ credit (user's decisions, 2026-09-28). A row absent from a layer's `rows` is not shown on its card. The book is copyrighted: `states` holds its exact terms and figures, not whole sentences. The user may update any value later; apply it as given.",
   "titleBn": "পৃথিবীর অভ্যন্তরীণ গঠন",
   "titleEn": "Earth's Interior",
   "ui": {
@@ -18,7 +18,9 @@
       "termBn"
     ],
     "pickerPlaceholderBn": "একটি স্তর বেছে নিন…",
-    "scaleNoteBn": "স্কেল অনুযায়ী নয়"
+    "scaleNoteBn": "স্কেল অনুযায়ী নয়",
+    "closeBn": "বন্ধ করুন",
+    "pageBn": "পৃষ্ঠা"
   },
   "sources": {
     "nctb": {

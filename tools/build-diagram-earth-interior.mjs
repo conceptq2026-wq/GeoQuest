@@ -73,6 +73,7 @@ if (sha256(master.data) !== pin.rgbPixelsSha256) fail(`${MASTER}'s pixels are no
 if (master.w !== pin.size[0] || master.h !== pin.size[1]) fail(`${MASTER} is ${master.w}×${master.h}, the seed pins ${pin.size.join('×')}`);
 
 const layers = Object.values(seed.layers).sort((a, b) => a.order - b.order);
+for (const word of ['pickerPlaceholderBn', 'scaleNoteBn', 'closeBn', 'pageBn']) if (!seed.ui?.[word]) fail(`the seed's ui has no ${word}`);
 const byId = Object.fromEntries(layers.map((l) => [l.id, l]));
 for (const id of [...CORE_TO_CRUST, 'continental-crust', 'oceanic-crust']) if (!byId[id]) fail(`the seed has no layer ${id}`);
 if (byId['continental-crust'].face !== 'top' || byId['oceanic-crust'].face !== 'right') fail('the seed puts the continental crust on the top face and the oceanic crust on the right; the geometry below assumes it');
@@ -386,6 +387,7 @@ const descriptor = {
   // Interface words are data: the seed's, and no others.
   words: {
     picker: ui.pickerPlaceholderBn,
+    close: ui.closeBn,
     scale: ui.scaleNoteBn,
     rows: ui.rowOrder.map((key) => ({ key, label: ui.rowLabelsBn[key] })),
   },
@@ -400,7 +402,7 @@ const shipped = {
   credits: Object.entries(seed.sources)
     .filter(([key]) => key !== 'user')
     .filter(([key]) => layers.some((l) => Object.values(l.sources ?? {}).some((list) => list.some((c) => c.source === key))))
-    .map(([key, s]) => credit(s, s.page ? `, p. ${s.page}` : '')),
+    .map(([key, s]) => credit(s, s.page ? `, ${ui.pageBn} ${s.page}` : '')),
 };
 for (const l of layers) for (const k of Object.keys(l.rows)) if (!ui.rowOrder.includes(k)) fail(`${l.id} has a row ${k} that ui.rowOrder does not place`);
 

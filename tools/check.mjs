@@ -534,8 +534,13 @@ async function useItem(browser, size, entry, base, origin, dir) {
     if (entry.kind === 'diagram') {
       const picker = await page.evaluate(`(() => { const p = document.getElementById('recordPicker'); return !!p && !p.hidden; })()`);
       if (picker) {
+        await fitCheck(page, 'no card');
         await pickerSteps(page, shoot, summary, fail);
         await zoneTaps(page, shoot, summary, fail);
+        if (page.fit) {
+          summary.push(`layout clear in ${page.fit.views - page.fit.bad.length}/${page.fit.views} views`);
+          for (const b of page.fit.bad) fail(`layout — ${b}`);
+        }
       } else await slabs(page, shoot, summary, fail);
     }
     else {
@@ -559,6 +564,37 @@ async function useItem(browser, size, entry, base, origin, dir) {
   if (failedReqs.length) fail(`failed: ${failedReqs.slice(0, 3).map((r) => `${r.url.replace(origin, '')} ${r.status}`).join(', ')}`);
   await page.close();
   return { size: t, failed, problems, summary, home, shots };
+}
+
+/*
+ * A cutaway diagram's layout: the globe, its scale note, every name and
+ * leader on the stage, none of them under the picker row or the card, no
+ * name on another, and none under 15 px at 390 px wide or 14 px at 320.
+ * Null on any other page.
+ */
+const FIT = `(() => {
+  const stage = document.querySelector('.cutaway .stage');
+  if (!stage) return null;
+  const s = stage.getBoundingClientRect();
+  const within = (r) => r.left >= s.left - 0.5 && r.right <= s.right + 0.5 && r.top >= s.top - 0.5 && r.bottom <= s.bottom + 0.5;
+  const under = (a, b) => a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
+  const blocks = [document.querySelector('.picker-row'), document.querySelector('.card:not([hidden])')].filter(Boolean).map((e) => e.getBoundingClientRect());
+  const items = [['the globe', document.querySelector('.cutaway-art')], ['the scale note', document.querySelector('.scale-note')], ...[...document.querySelectorAll('.layer-label')].map((e) => [e.dataset.key, e]), ...[...document.querySelectorAll('.leaders line')].map((e, i) => ['leader ' + (i + 1), e])];
+  const bad = items.filter(([, e]) => e && e.getClientRects().length).filter(([, e]) => { const r = e.getBoundingClientRect(); return !within(r) || blocks.some((b) => under(r, b)); }).map(([name]) => name);
+  // Names never on each other, and never under the user's minimum: 15 px at 390 px wide, 14 px at 320.
+  const names = [...document.querySelectorAll('.layer-label')];
+  for (let i = 0; i < names.length; i++) for (let j = i + 1; j < names.length; j++) if (under(names[i].getBoundingClientRect(), names[j].getBoundingClientRect())) bad.push(names[i].dataset.key + ' on ' + names[j].dataset.key);
+  const least = innerWidth >= 390 ? 15 : 14;
+  for (const n of names) { const size = parseFloat(getComputedStyle(n).fontSize); if (size < least) bad.push(n.dataset.key + ' at ' + size + ' px'); }
+  return bad;
+})()`;
+
+async function fitCheck(page, where) {
+  const bad = await page.evaluate(FIT);
+  if (!bad) return;
+  page.fit ??= { views: 0, bad: [] };
+  page.fit.views++;
+  if (bad.length) page.fit.bad.push(`${where}: ${bad.join(', ')}`);
 }
 
 async function waitCard(page) {
@@ -585,6 +621,7 @@ async function pickerSteps(page, shoot, summary, fail) {
       await page.click(...next);
     }
     const card = await waitCard(page);
+    await fitCheck(page, `› ${options[i][1]}`);
     const value = await page.evaluate(`document.getElementById('recordPicker').value`);
     if (value === options[i][0] && card.open && card.title) good++;
     else fail(`picker ${options[i][1]}: value ${value || '(placeholder)'}, card ${card.open ? `«${card.title}»` : 'closed'}`);
@@ -678,6 +715,7 @@ async function zoneTaps(page, shoot, summary, fail) {
     depths.push([key, hit.depth]);
     await page.click(...hit.at);
     const card = await waitCard(page);
+    await fitCheck(page, `tap ${hit.name}`);
     const value = await page.evaluate(`document.getElementById('recordPicker').value`);
     if (card.open && card.title === hit.name && value === key) good++;
     else fail(`zone ${key}: card ${card.open ? `«${card.title}»` : 'closed'}, picker ${value || '(placeholder)'}`);

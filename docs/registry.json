@@ -103,6 +103,15 @@
         "en": "Layers of the Atmosphere",
         "bn": "বায়ুমণ্ডলের স্তর"
       }
+    },
+    {
+      "id": "earth-interior",
+      "kind": "diagram",
+      "section": "misc",
+      "title": {
+        "en": "Earth's Interior",
+        "bn": "পৃথিবীর অভ্যন্তরীণ গঠন"
+      }
     }
   ]
 }

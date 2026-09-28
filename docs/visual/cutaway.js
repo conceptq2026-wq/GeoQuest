@@ -17,7 +17,9 @@
 | label left and value right, a row the layer has no value for left out.
 | A tap on the lit layer again, on the picture away from every layer, on ×
 | or Escape closes it. The picker row, [ ‹ ] [ the select ] [ › ], is the
-| map shell's own (../shared/picker.js); it stays with the selection.
+| map shell's own (../shared/picker.js), at the top as in every shell; it
+| stays with the selection. The picture fits whole between the row and the
+| card, open or closed, and no name or leader reaches under either.
 |
 | The thin crusts are a few px deep on a phone: their tap zones reach out
 | past the picture's cut edge until each is at least TAP_MIN deep.
@@ -37,7 +39,13 @@ const ART_SHARE = 0.8;
 // picture is sized to fit it there, so a card opening never shrinks it.
 const STAGE_MIN = 0.45;
 // The words round the picture, in CSS px.
-const LABEL = { margin: 8, gap: 4, share: 0.36, minWidth: 96, leaderGap: 3, dot: 2.5 };
+// The names, in CSS px: in a column at the right, beside the picture, which
+// shrinks to make room rather than the names ever growing smaller (the
+// user's rule: at least 15 px at 390 px wide, 14 px at 320, in cutaway.css).
+// A name wraps past SHARE of the stage's width, never under MIN_WIDTH; the
+// column may reach RIM px over the picture — the painted globe's own rim,
+// right of its crust — and no further.
+const LABEL = { margin: 8, gap: 4, share: 0.3, minWidth: 96, toArt: 4, rim: 8, leaderGap: 3, dot: 2.5 };
 const NOTE = { gap: 6, height: 18 };
 // The glow's softness, in CSS px.
 const GLOW = 4;
@@ -186,7 +194,8 @@ export async function mount(panel, { descriptor, data, art, file }) {
   card.hidden = true;
   const close = el('button', 'card-close');
   close.type = 'button';
-  close.setAttribute('aria-label', 'Close');
+  close.setAttribute('aria-label', words.close);
+  close.lang = 'bn';
   close.textContent = '×';
   const body = el('div', 'card-body');
   const title = el('h2', 'card-title', 'bn');
@@ -196,7 +205,8 @@ export async function mount(panel, { descriptor, data, art, file }) {
   body.append(title, rows);
   card.append(close, body);
 
-  // The picker row, at the foot, as the mockup has it.
+  // The picker row, at the top, directly under the header: where every
+  // shell has it (the user's decision, 2026-09-28).
   const bar = el('nav', 'picker-row cutaway-picker');
   const prev = el('button', 'step-btn');
   prev.type = 'button';
@@ -215,7 +225,7 @@ export async function mount(panel, { descriptor, data, art, file }) {
   next.hidden = true;
   bar.append(prev, select, next);
 
-  panel.append(stage, card, bar);
+  panel.append(bar, stage, card);
 
   // ---- choosing ---------------------------------------------------------------------------
 
@@ -291,11 +301,22 @@ export async function mount(panel, { descriptor, data, art, file }) {
     const W = stage.clientWidth;
     const H = stage.clientHeight;
     if (!W || !H) return;
+    // The names first: their column's width sets the picture's room.
+    const maxWidth = Math.max(LABEL.minWidth, W * LABEL.share);
+    let widest = 0;
+    for (const b of labels.values()) {
+      b.style.maxWidth = `${maxWidth}px`;
+      b.style.left = '0px';
+      widest = Math.max(widest, b.offsetWidth);
+    }
+    const column = W - LABEL.margin - widest;
+    const left = LABEL.margin;
+    // The picture's right edge is its box's; the globe's rim may lie under the column.
+    const room = column - LABEL.toArt + LABEL.rim - left;
     const floor = Math.min(H, window.innerHeight * STAGE_MIN);
-    scale = Math.min((W * ART_SHARE) / view.width, (floor - NOTE.gap - NOTE.height - 8) / view.height);
+    scale = Math.min((W * ART_SHARE) / view.width, room / view.width, (floor - NOTE.gap - NOTE.height - 8) / view.height);
     const artW = view.width * scale;
     const artH = view.height * scale;
-    const left = Math.max(4, W * 0.02);
     const top = Math.max(4, (H - artH - NOTE.gap - NOTE.height) / 2);
     const toCss = ([x, y]) => [left + (x - view.x) * scale, top + (y - view.y) * scale];
 
@@ -313,16 +334,8 @@ export async function mount(panel, { descriptor, data, art, file }) {
       zone.dataset.depth = ((s.thinnest + (outermost.has(l.id) ? grow : 0)) * scale).toFixed(1);
     }
 
-    // Names in a column at the right, in the layers' order, each at its
-    // anchor's height as far as they fit, pushed apart as little as they can.
-    const maxWidth = Math.max(LABEL.minWidth, W * LABEL.share);
-    let widest = 0;
-    for (const b of labels.values()) {
-      b.style.maxWidth = `${maxWidth}px`;
-      b.style.left = '0px';
-      widest = Math.max(widest, b.offsetWidth);
-    }
-    const column = W - LABEL.margin - widest;
+    // Names in the column, in the layers' order, each at its anchor's height
+    // as far as they fit, pushed apart as little as they can.
     const placed = layers.map((l) => {
       const b = labels.get(l.id);
       const [, ay] = toCss(shape.get(l.id).anchor);

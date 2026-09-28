@@ -1,11 +1,15 @@
 # earth-interior
 
 A diagram in বিবিধ (misc), «পৃথিবীর অভ্যন্তরীণ গঠন» / "Earth's Interior".
-It is work in progress (`tools/wip.json`) until the user checks it locally.
 Step 1 (2026-09-28): its card, its two inputs and the sources. Step 2 (the
 same day): the seed, `data-sources/earth-interior/earth-interior.seed.json`
 (the editor's, approved; the build reads it and never writes it), and the
-diagram, built into `docs/diagrams/earth-interior/`.
+diagram, built into `docs/diagrams/earth-interior/`. Step 3 (the same day,
+after the user checked it locally): the picker row moved to the top, the
+names made larger, two words added, and the diagram left the work in progress
+for the registry. The seed is pinned by its SHA-256 in
+`tools/verify-descriptor.mjs` (`990b45a5…`); an edit of the user's comes with
+its new value.
 
 ## Inputs, approved by the user
 
@@ -74,10 +78,14 @@ fetched only on purpose.
   outline and a soft glow; the outermost layers' (the crusts') tap zones grow
   outward until they are 44 CSS px deep. Names and leaders are placed by code;
   the card docks under the picture in two columns, in `ui.rowOrder`; the
-  picker row is the map shell's (`docs/shared/picker.js`), at the foot as in
-  the mockup. The × has the English accessible name "Close": the seed has no
-  Bengali word for it.
-- **ⓘ** lists the NCTB book, p. ৪৮, and USGS. Nothing is credited for the art.
+  picker row is the map shell's (`docs/shared/picker.js`), at the top,
+  directly under the header, as in every shell (the user's decision; the
+  mockup drew it at the foot). The names are at least 15 px at 390 px wide and
+  14 px at 320, semi-bold, on light pills, in a column at the right: the globe
+  shrinks to make room, never the names (the user's rule). The ×'s
+  accessible name is the seed's `ui.closeBn`, «বন্ধ করুন».
+- **ⓘ** lists the NCTB book, «পৃষ্ঠা ৪৮» (`ui.pageBn` and the source's page),
+  and USGS. Nothing is credited for the art.
 
 ## Measured on the master in step 1 (superseded by the build's numbers above)
 

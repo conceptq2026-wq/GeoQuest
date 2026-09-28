@@ -129,7 +129,9 @@ and one data source — never a restructure.**
 **This is shell chrome, not descriptor content, and it is enforced.** The shell
 owns the baseline layer ids and styles; a descriptor that declares one throws.
 A map cannot omit a baseline item by forgetting it. The picker row itself is
-shared code, `docs/shared/picker.js` and `picker.css`, used by both shells.
+shared code, `docs/shared/picker.js` and `picker.css`, used by both shells,
+and it sits at the top in every shell, directly under the header, whatever a
+mockup draws (the user's decision, 2026-09-28).
 
 The row keeps that form while it fits. A name too wide for it — a long option
 in the picker — would wrap the row and leave one arrow alone, so a row that
@@ -283,11 +285,9 @@ State which kind a task is when reporting it.
   `border-lines`, `org-headquarters`, `environment-treaties`. Geography:
   `deserts`, `lakes`, `forests`, `mountains`, `waterfalls` and
   `latitude-longitude`, all under `docs/maps/`.
-- Work in progress (`tools/wip.json`): `earth-interior`, a diagram in misc,
-  «পৃথিবীর অভ্যন্তরীণ গঠন» / "Earth's Interior" — built, in
-  `docs/diagrams/earth-interior/`, until the user checks it locally
-  (`notes/earth-interior.md`).
-- One diagram, under বিবিধ: `atmosphere-layers`, in `docs/diagrams/`.
+- Work in progress (`tools/wip.json`): none.
+- Two diagrams, under বিবিধ: `atmosphere-layers` and `earth-interior`, in
+  `docs/diagrams/`.
 
 ## Index — notes, read only when working on that item
 
