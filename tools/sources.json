@@ -70,6 +70,11 @@
         "size": 60564,
         "gitBlobSha1": "6745635fc1ccc8f8bb8d621d76d76581be1937e8",
         "sha256": "e0d96b65c4f08856096550db5e4507d2822f05fe1cc07aadb16ad5ccb3a948e7"
+      },
+      "ne_10m_rivers_lake_centerlines.geojson": {
+        "size": 7307743,
+        "gitBlobSha1": "61a0d7137a6ff1113cc259525e7479c63d5fec86",
+        "sha256": "bb854a900ecbd3b408df46d5e16e3e0f974ba55993f9d8b5c26e855273c0905a"
       }
     }
   },
