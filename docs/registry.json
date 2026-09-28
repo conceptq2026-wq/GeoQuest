@@ -112,6 +112,15 @@
         "en": "Earth's Interior",
         "bn": "পৃথিবীর অভ্যন্তরীণ গঠন"
       }
+    },
+    {
+      "id": "seasons",
+      "kind": "diagram",
+      "section": "misc",
+      "title": {
+        "en": "Seasons",
+        "bn": "ঋতু পরিবর্তন"
+      }
     }
   ]
 }

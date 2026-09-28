@@ -36,8 +36,12 @@ here, in `notes/`, in memory.
 - **Reports: 20 lines or fewer**, numbers first, then only problems and
   decisions for the user; no narration of the steps.
 - **After a push**: no live browser check, no screenshots — only
-  `node tools/check.mjs <id> --live` (the SHA-256 of the item's files, live
-  against committed). The user checks the live link on their phone.
+  `node tools/check.mjs <id> --live`: the SHA-256 of every file under `docs/`
+  that the push changed — `git diff` from the old origin/main to the new,
+  read from the ref's reflog (`origin/main@{1}..origin/main`), or from
+  `--since=<rev>` — and of `registry.json`, live against pushed; a file the
+  push deleted must be gone (404). The user checks the live link on their
+  phone.
 
 ## Two repos. Never confuse them.
 
@@ -80,7 +84,7 @@ shell/index.html?map=straits
 Not one folder per map. Each map's data lives in its own file so its source can
 later change from a local file to a fetch from the app's Gateway without
 touching anything else. A diagram is opened the same way by a second page,
-`visual/index.html?v=<id>` — built, with one diagram live (see
+`visual/index.html?v=<id>` — built, with three diagrams live (see
 **Interactive diagrams**).
 
 `docs/` is the served tree. **Invariant: the committed contents of `docs/` are
@@ -294,11 +298,9 @@ State which kind a task is when reporting it.
   `border-lines`, `org-headquarters`, `environment-treaties`. Geography:
   `deserts`, `lakes`, `forests`, `mountains`, `waterfalls` and
   `latitude-longitude`, all under `docs/maps/`.
-- Work in progress (`tools/wip.json`): `seasons`, a diagram in misc,
-  «ঋতু পরিবর্তন» / "Seasons" — built, in `docs/diagrams/seasons/`, until the
-  user checks it locally (`notes/seasons.md`).
-- Two diagrams, under বিবিধ: `atmosphere-layers` and `earth-interior`, in
-  `docs/diagrams/`.
+- Work in progress (`tools/wip.json`): none.
+- Three diagrams, under বিবিধ: `atmosphere-layers`, `earth-interior` and
+  `seasons`, in `docs/diagrams/`.
 
 ## Index — notes, read only when working on that item
 

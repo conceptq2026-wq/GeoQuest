@@ -1,7 +1,8 @@
 # seasons
 
-A diagram in বিবিধ (misc), «ঋতু পরিবর্তন» / "Seasons". It is work in progress
-(`tools/wip.json`) until the user checks it locally.
+A diagram in বিবিধ (misc), «ঋতু পরিবর্তন» / "Seasons". The user checked it
+locally and approved it on 2026-09-28; it left the work in progress
+(`tools/wip.json`) for the registry that day.
 
 ## Steps
 

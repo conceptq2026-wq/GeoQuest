@@ -4,7 +4,8 @@
 //   node tools/check.mjs <id>              the item, used as a student would
 //   node tools/check.mjs --baseline        every registry entry, stored
 //   node tools/check.mjs --all             every registry entry, against the stored baseline
-//   node tools/check.mjs <id> --live       the live site against the committed files
+//   node tools/check.mjs <id> --live       the live site against the pushed files
+//   node tools/check.mjs <id> --live --since=<rev>   … from <rev> rather than the last push
 //
 // <id> serves the local preview's copy of docs/ (tools/preview.mjs, so work
 // in progress is on its home page) and, at 390×844 and 320×640 in headless
@@ -24,10 +25,12 @@
 // camera once settled — a shell change's proof, as text; no pixels.
 //
 // --live makes no browser: it polls the live site, every 30 s for at most
-// 10 minutes, until it serves the committed registry.json, then compares the
-// SHA-256 of every committed file of the item, and of registry.json, with
-// the live files. The live address is DEPLOYMENT.md's, the one place it is
-// written.
+// 10 minutes, until it serves the pushed registry.json, then compares the
+// SHA-256 of EVERY file under docs/ that the push changed — the range from the
+// old origin/main to the new, read from the remote-tracking ref's reflog
+// (origin/main@{1}..origin/main), or from --since=<rev> — and of
+// registry.json, with the live files; a file the range deleted must be gone
+// (404). The live address is DEPLOYMENT.md's, the one place it is written.
 import { execFileSync, spawn } from 'node:child_process';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
@@ -73,13 +76,15 @@ const tag = ([w, h]) => `${w}x${h}`;
 // ---- arguments ------------------------------------------------------------------------
 
 const args = process.argv.slice(2);
-const flags = new Set(args.filter((a) => a.startsWith('--')));
+const since = args.find((a) => a.startsWith('--since='))?.slice('--since='.length);
+const flags = new Set(args.filter((a) => a.startsWith('--') && !a.startsWith('--since=')));
 const ids = args.filter((a) => !a.startsWith('--'));
 const usage = () => {
-  console.error('usage: node tools/check.mjs <id> | <id> --live | --baseline | --all');
+  console.error('usage: node tools/check.mjs <id> | <id> --live [--since=<rev>] | --baseline | --all');
   process.exit(2);
 };
 for (const f of flags) if (!['--baseline', '--all', '--live'].includes(f)) usage();
+if (since && !flags.has('--live')) usage();
 if (flags.has('--baseline') || flags.has('--all')) {
   if (ids.length || flags.size > 1) usage();
 } else if (ids.length !== 1 || !ID.test(ids[0])) usage();
@@ -962,14 +967,29 @@ async function live(id) {
   const hub = /Hub: `(https:\/\/[^`]+\/)`/.exec(fs.readFileSync(DEPLOYMENT, 'utf8'))?.[1];
   if (!hub) throw new Error('DEPLOYMENT.md names no hub URL');
   const git = (...a) => execFileSync('git', a, { cwd: ROOT, maxBuffer: 1 << 30 });
-  const folder = ['maps', 'diagrams'].map((f) => `docs/${f}/${id}/`).find((f) => git('ls-tree', '-r', '--name-only', 'HEAD', f).toString().trim());
-  if (!folder) {
-    console.log(`FAIL live ${id}: no committed folder docs/maps/${id}/ or docs/diagrams/${id}/`);
+  const rev = (r) => git('rev-parse', '--verify', r).toString().trim();
+  // The pushed range: the old origin/main and the new, from the ref's reflog, or from --since.
+  let from;
+  try {
+    from = rev(since ?? 'origin/main@{1}');
+  } catch {
+    console.log(`FAIL live: no ${since ? `revision ${since}` : 'previous origin/main in the reflog'}; name the range's start with --since=<rev>`);
     process.exitCode = 1;
     return;
   }
-  const files = ['docs/registry.json', ...git('ls-tree', '-r', '--name-only', 'HEAD', folder).toString().trim().split('\n')];
-  const want = new Map(files.map((f) => [f, sha256(git('show', `HEAD:${f}`))]));
+  const to = rev('origin/main');
+  const changed = git('diff', '--name-only', '--no-renames', from, to, '--', 'docs/').toString().trim().split('\n').filter(Boolean);
+  const files = [...new Set(['docs/registry.json', ...changed])];
+  const present = (f) => {
+    try {
+      git('cat-file', '-e', `${to}:${f}`);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+  // The pushed contents; a file the range deleted is to be gone.
+  const want = new Map(files.map((f) => [f, present(f) ? sha256(git('show', `${to}:${f}`)) : 'HTTP 404']));
   const fetchSha = async (f) => {
     try {
       const res = await fetch(`${hub}${f.slice('docs/'.length)}?check=${Date.now()}`, { cache: 'no-store', headers: { 'accept-encoding': 'identity' } });
@@ -987,17 +1007,20 @@ async function live(id) {
     polls++;
     registryLive = (await fetchSha('docs/registry.json')) === want.get('docs/registry.json');
     if (registryLive) {
-      const got = await Promise.all(files.map(async (f) => [f, await fetchSha(f)]));
+      const got = [];
+      // A few at a time, so a large push does not open hundreds of requests at once.
+      for (let i = 0; i < files.length; i += 8) got.push(...(await Promise.all(files.slice(i, i + 8).map(async (f) => [f, await fetchSha(f)]))));
       mismatches = got.filter(([f, sha]) => sha !== want.get(f)).map(([f, sha]) => `${f} (${sha.length === 64 ? sha.slice(0, 12) : sha})`);
       if (!mismatches.length) break;
     }
     if (Date.now() + 30000 > deadline) break;
     await sleep(30000);
   }
-  const head = git('rev-parse', '--short', 'HEAD').toString().trim();
-  if (!mismatches.length) console.log(`PASS live matches: ${files.length}/${files.length} (${folder} and registry.json at ${head}; ${polls} poll${polls > 1 ? 's' : ''}, ${seconds(t0)})`);
+  const range = `${from.slice(0, 7)}..${to.slice(0, 7)}`;
+  const mine = changed.filter((f) => f.startsWith(`docs/maps/${id}/`) || f.startsWith(`docs/diagrams/${id}/`)).length;
+  if (!mismatches.length) console.log(`PASS live matches: ${files.length}/${files.length} (the push ${range}: ${changed.length} files under docs/, ${mine} of them ${id}'s, and registry.json; ${polls} poll${polls > 1 ? 's' : ''}, ${seconds(t0)})`);
   else {
-    console.log(`FAIL live: ${registryLive ? `${mismatches.length} of ${files.length} differ` : 'registry.json still not the committed one'} after ${polls} polls, ${seconds(t0)}`);
+    console.log(`FAIL live: ${registryLive ? `${mismatches.length} of ${files.length} differ` : 'registry.json still not the pushed one'} (the push ${range}) after ${polls} polls, ${seconds(t0)}`);
     for (const m of (registryLive ? mismatches : []).slice(0, 8)) console.log(`  ${m}`);
   }
   process.exitCode = mismatches.length ? 1 : 0;
