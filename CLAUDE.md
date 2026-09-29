@@ -322,9 +322,9 @@ tiling COD-AB — overlap and gap each under 0.5 km². bangladesh-rivers: the
 seed's files — the common one and one per river system, merged by
 `tools/lib/rivers-seed.mjs` — each by SHA-256 in `tools/verify-descriptor.mjs`;
 the OSM pilot extract (`osmBangladeshRiversPilot`), each system's own extract
-(`osmBangladeshRivers<System>`: the Padma's and the Karnaphuli's so far) and the
-rivers snapshot by checksum in `tools/sources.json`; and the 26 lines' geometry
-hashes in
+(`osmBangladeshRivers<System>`, and one per later batch,
+`osmBangladeshRivers<System><Batch>`) and the rivers snapshot by checksum in
+`tools/sources.json`; and the 36 lines' geometry hashes in
 `tools/bangladesh-rivers-pins.json`. The shared district file,
 `docs/shared/bangladesh-districts.json` (COD-AB's 64 districts, the
 basemap's Bengali names), is rebuilt by `tools/build-bangladesh-districts.mjs`

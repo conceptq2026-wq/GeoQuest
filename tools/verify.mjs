@@ -196,7 +196,7 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
   const xyOf = (k, id) => frames[k].lines.find((x) => x.id === id).pieces.map((p) => parsePath(p.d).flat());
 
   // The pinned sources.
-  const systemPins = Object.keys(G.files.osmSystems ?? {}).map((sys) => riversSources[`osmBangladeshRivers${sys[0].toUpperCase()}${sys.slice(1)}`]);
+  const systemPins = Object.keys(G.files.osmSystems ?? {}).map((name) => riversSources[`osmBangladeshRivers${name.split('-').map((p) => p[0].toUpperCase() + p.slice(1)).join('')}`]);
   const osmFiles = [riversSources.osmBangladeshRivers, riversSources.osmBangladeshRiversPilot, ...systemPins].map((e) => JSON.parse(pinned(path.join(ROOT, e.file), e.sha256).toString('utf8')));
   const osmWays = new Map(); // the pilot extract, which carries node ids, wins where a way is in both
   for (const f of osmFiles.flatMap((o) => o.features)) osmWays.set(f.properties.osm_id, f);
@@ -228,7 +228,7 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
   // within 50 m of its parent line as drawn, or of a connector of at most 12 km that runs from that end to
   // the parent line; a line with neither is exempt, and the seed says why. The unjoined lines are the user's
   // decisions (2026-09-29): the Jamuna's three, and the Padma system's two over 12 km.
-  const EXEMPT = ['karatoya', 'atrai', 'banshi', 'madhumati', 'mahananda', 'karnaphuli', 'kasalong'];
+  const EXEMPT = ['karatoya', 'atrai', 'banshi', 'madhumati', 'mahananda', 'karnaphuli', 'kasalong', 'mathabhanga', 'bhairab', 'nabaganga2', 'nabaganga3', 'chitra2'];
   const NEAR_M = 50;
   // 10 km, then 12 km for the Dhaleshwari alone, then 12 km for every line (Stage 1, 2026-09-29).
   const CONNECTOR_MAX_M = 12000;
@@ -471,7 +471,7 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
   fs.rmSync(out, { recursive: true, force: true });
   const seamLine = /seam gap ([\d.]+) m at ([\d.]+)°E.*?jamuna→padma ([\d.]+) m; padma→meghna junction ([\d.]+) m/.exec(say);
   const pins = JSON.parse(fs.readFileSync(RIVERS_PINS, 'utf8'));
-  check(same && Object.keys(pins).length === 26, `the build reproduces the ${built.length} committed files byte for byte, and its ${Object.keys(pins).length} geometry pins hold${same ? '' : ` — ${say.split('\n').slice(0, 3).join(' | ')}`}`);
+  check(same && Object.keys(pins).length === 36, `the build reproduces the ${built.length} committed files byte for byte, and its ${Object.keys(pins).length} geometry pins hold${same ? '' : ` — ${say.split('\n').slice(0, 3).join(' | ')}`}`);
   check(Boolean(seamLine) && Number(seamLine[1]) <= G.main.seam.maxM && Number(seamLine[3]) <= 500 && Number(seamLine[4]) <= 3, `d. the seam is ${seamLine?.[1]} m at ${seamLine?.[2]}°E (limit ${G.main.seam.maxM} m); the Jamuna ends ${seamLine?.[3]} m from the Padma, which ends ${seamLine?.[4]} m from the Meghna`);
   console.log(`bangladesh-rivers: a. ${drawnMarkers} markers within ${round(worst.px, 2)} px / ${round(worst.m)} m; b. ${alone.length + viaConnector.length} joined (${alone.join(', ')} on their own; ${viaConnector.join(', ')} by a connector), ${exempt.length} unjoined (${exempt.join(', ')}); c. entry ${round(entrySrc)} m from the border (BWDB's point ${round(entryBwdb)} m); d. main connected, gaps ≤ 500 m${mainNote.length ? ` (and ${mainNote.join(', ')})` : ''}; e. ${drawnIds.size} lines, ${wayIds.size} ways, ${S.markers.length} markers traced; f. entry on the line and at the dash switch: ${entryF.join(', ')}; g. district names ${districtNote.join('')}`);
 }

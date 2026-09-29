@@ -182,6 +182,48 @@
       "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=5&Rivers=817",
       "sha256": "90697d12439b0a8a2f125cd239cf53af52ed225223d60fbfb592e1b61e8843ba"
     },
+    "bwdbSW76": {
+      "title": "মাথাভাঙ্গা (নদীর তথ্য, SW-76)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&Rivers=290",
+      "sha256": "759c45546c6d07f00e66cfb69cc0a39f9ba40625d6484194d18f30ed3c933288"
+    },
+    "bwdbSW10": {
+      "title": "কুমার (চুয়াডাঙ্গা-ঝিনাইদহ-কুষ্টিয়া-মাগুরা) (নদীর তথ্য, SW-10)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&Rivers=213",
+      "sha256": "263cce0b5f5e1c284a7ee2c97773352780b058359205049a557046ed3c9d325a"
+    },
+    "bwdbSW68": {
+      "title": "ভৈরব (নদীর তথ্য, SW-68)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&Rivers=282",
+      "sha256": "23bfa1bd5bf09d46a54db493acd1bd93926f2f4552b8be4693c437ffe210ef71"
+    },
+    "bwdbSW81": {
+      "title": "রূপসা (নদীর তথ্য, SW-81)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&Rivers=295",
+      "sha256": "5ababd609d7d839c5d958d74c59b71e11544a80d8da2af861b297ce67961f248"
+    },
+    "bwdbSW9": {
+      "title": "কপোতাক্ষ (নদীর তথ্য, SW-9)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&Rivers=212",
+      "sha256": "4c405b7716a6bc8369c3d92196456dbe2c2f8ab6a16ca8d91c38025f1735558d"
+    },
+    "bwdbSW45": {
+      "title": "নবগঙ্গা (নদীর তথ্য, SW-45)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&Rivers=253",
+      "sha256": "40556d5e35fd9994e56dcda487e95809e9aee9c7e45c207f90f74a76693f765d"
+    },
+    "bwdbSW34": {
+      "title": "চিত্রা (নদীর তথ্য, SW-34)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&Rivers=238",
+      "sha256": "d5019b5e260a96808a9d63162cc160654de9bb1c8cdaa578d18d3d4beeb2f40b"
+    },
     "bwdbEH3": {
       "title": "কর্ণফুলী (নদীর তথ্য, EH-3)",
       "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
@@ -296,6 +338,24 @@
       "publisher": "Banglapedia (English; last edited 2021-06-18; Internet Archive capture 2022-10-09; read 2026-09-29)",
       "url": "https://web.archive.org/web/20221009025246/https://en.banglapedia.org/index.php/Chittagong_Region_River_System",
       "sha256": "633c34da1e5cbc5f9a7021c2848d20b339ac60877195d053855868258a985c49"
+    },
+    "bnwKapotaksha": {
+      "title": "কপোতাক্ষ নদ",
+      "publisher": "Bengali Wikipedia (revision 8763165; read 2026-09-29)",
+      "url": "https://bn.wikipedia.org/w/index.php?oldid=8763165",
+      "sha256": "e4ba4d187d30291d8d1e1929621ec06d633552ca5b3266fb93f4423707828889"
+    },
+    "bnwNabaganga": {
+      "title": "নবগঙ্গা নদী",
+      "publisher": "Bengali Wikipedia (revision 8108936; read 2026-09-29)",
+      "url": "https://bn.wikipedia.org/w/index.php?oldid=8108936",
+      "sha256": "eb14f76c3bd7ffa985022c29c64c59fa6ebc59bb625f537dd0a1093c2a118311"
+    },
+    "bnwChitra": {
+      "title": "চিত্রা নদী",
+      "publisher": "Bengali Wikipedia (revision 8356385; read 2026-09-29)",
+      "url": "https://bn.wikipedia.org/w/index.php?oldid=8356385",
+      "sha256": "f0df78585b2eb9258c83b1f03096c8433c3cc3901a120db62a8359fe50251431"
     }
   },
   "countries": {
@@ -328,7 +388,8 @@
       "osmPilot": "tools/sources/osm-bangladesh-rivers-pilot.geojson",
       "osmSystems": {
         "padma": "tools/sources/osm-bangladesh-rivers-padma.geojson",
-        "karnaphuli": "tools/sources/osm-bangladesh-rivers-karnaphuli.geojson"
+        "karnaphuli": "tools/sources/osm-bangladesh-rivers-karnaphuli.geojson",
+        "padma-b2": "tools/sources/osm-bangladesh-rivers-padma-b2.geojson"
       }
     },
     "frames": {
@@ -443,7 +504,7 @@
     "_about": "Plain lines under ⓘ, in two headed blocks after the sources (`group`: notes, then conflicts; ui.creditGroupsBn names the three blocks), each in this order (the user's decisions, Prompt 40 Part B, 2026-09-29): the two lines on the drawn joins, in the user's words; where COD-AB puts the drawn lines' ends that a card's source words place otherwise; the Karatoya that is not drawn; then one line per source conflict, the card's (winning) value first — the source order is the books («ভূগোল ও পরিবেশ» before «বাংলাদেশ ও বিশ্বপরিচয়»), BWDB and JRCB, Bengali then English Wikipedia, newspapers, Banglapedia.",
     "lines": [
       {
-        "textBn": "নদীর সংযোগ-রেখা (ধরলা, তিস্তা, শীতলক্ষ্যা, ধলেশ্বরী, আড়িয়াল খাঁ, মহানন্দা, ভাগীরথী) আনুমানিক আঁকা।",
+        "textBn": "নদীর সংযোগ-রেখা (ধরলা, তিস্তা, শীতলক্ষ্যা, ধলেশ্বরী, আড়িয়াল খাঁ, মহানন্দা, ভাগীরথী, ভৈরব, কপোতাক্ষ, নবগঙ্গা, চিত্রা) আনুমানিক আঁকা।",
         "group": "notes",
         "sources": [
           {
@@ -455,6 +516,11 @@
             "source": "osm",
             "where": "the gaps the connectors bridge, in the pinned extracts",
             "states": "Arial Khan 6.6 km (between its two reaches); Mahananda 11.3 km (between its reaches); Bhagirathi 7.4 km (to the Ganges) and 0.4 km (between its reaches)"
+          },
+          {
+            "source": "osm",
+            "where": "the gaps the batch b2 connectors bridge, in the pinned extract",
+            "states": "Bhairab 0.3 km (between its reaches); Nabaganga 2.8 km and Chitra 10.7 km (to the Mathabhanga); Kapotaksha 0.13 km (a gap the Mathabhanga's simplified line opens)"
           }
         ]
       },
@@ -486,6 +552,22 @@
         ]
       },
       {
+        "textBn": "মাথাভাঙ্গার আঁকা রেখা পদ্মা থেকে প্রায় ১৩ কিলোমিটার দূরে শুরু হয়েছে; ভৈরবের আঁকা রেখা যশোর থেকে, নবগঙ্গার আঁকা রেখার মাঝে প্রায় ১৯ ও ২৩ কিলোমিটার এবং চিত্রার মাঝে প্রায় ৩০ কিলোমিটার নদীপথ আঁকা হয়নি; ডেটায় ওই অংশে নদীর নামসহ নদীপথ পাওয়া যায়নি।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "osm",
+            "where": "the batch b2 extract: the Mathabhanga's head and the Padma; the Bhairab (550203984) and the Mathabhanga; the Nabaganga's and Chitra's reaches",
+            "states": "12,669 m; 58.5 km (upstream only unnamed ways and an isolated 8.6 km stream); 18,551 and 22,717 m; 29,688 m"
+          },
+          {
+            "source": "user",
+            "where": "the rule",
+            "states": "gaps over 12 km stay unjoined, with a plain ⓘ line (2026-09-29)"
+          }
+        ]
+      },
+      {
         "textBn": "আঁকা রেখা ও বাংলাদেশের প্রশাসনিক সীমানার সরকারি ডেটা (COD-AB) অনুযায়ী দেওয়ানগঞ্জ এখন জামালপুর জেলায়; করতোয়ার আঁকা রেখা শুরু হয়েছে গাইবান্ধা জেলায়, বংশীর টাঙ্গাইল জেলায়।",
         "group": "notes",
         "sources": [
@@ -507,7 +589,7 @@
         ]
       },
       {
-        "textBn": "ডেটায় যতদূর নদীপথ পাওয়া গেছে ততদূর আঁকা হয়েছে, তাই কিছু নদীর আঁকা রেখা কার্ডে লেখা উৎপত্তিস্থল থেকে শুরু হয়নি (যেমন করতোয়া, আত্রাই, ধলেশ্বরী, বংশী, শীতলক্ষ্যা, পুরাতন ব্রহ্মপুত্র, মধুমতী, ভাগীরথী, কর্ণফুলী, হালদা)।",
+        "textBn": "ডেটায় যতদূর নদীপথ পাওয়া গেছে ততদূর আঁকা হয়েছে, তাই কিছু নদীর আঁকা রেখা কার্ডে লেখা উৎপত্তিস্থল থেকে শুরু হয়নি (যেমন করতোয়া, আত্রাই, ধলেশ্বরী, বংশী, শীতলক্ষ্যা, পুরাতন ব্রহ্মপুত্র, মধুমতী, ভাগীরথী, কুমার, ভৈরব, কপোতাক্ষ, কর্ণফুলী, হালদা)।",
         "group": "notes",
         "sources": [
           {
@@ -602,7 +684,28 @@
         ]
       },
       {
-        "textBn": "বানান: কার্ডে মহানন্দার গতিপথে পানি উন্নয়ন বোর্ডের বানান «তেঁতুলিয়া», যৌথ নদী কমিশনের তালিকায় ছাপা «তেতুঁলিয়া»; গড়াইয়ের পতিত স্থলে বইয়ের বানান «মধুমতী», পানি উন্নয়ন বোর্ড লেখে «মধুমতি»; কাসালং বানানটি «ভূগোল ও পরিবেশ»-এর, «বাংলাদেশ ও বিশ্বপরিচয়» লেখে «কাসালাং», পানি উন্নয়ন বোর্ড «কাচালং»।",
+        "textBn": "কুমারের আঁকা রেখা চুয়াডাঙ্গা জেলায় নবগঙ্গায় মিশেছে; মাগুরা পর্যন্ত কুমার নামে নদীপথ ডেটায় পাওয়া যায়নি।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "osm",
+            "where": "way 259726789 (Kumar, Q24765069) and the Nabaganga's way 259728660",
+            "states": "the Kumar ends on the Nabaganga's vertex 53; the Magura Kumar is a 3.9 km stub with only unnamed ways above it"
+          },
+          {
+            "source": "codab",
+            "where": "bgd_admin3: the upazila holding the drawn end",
+            "states": "Chuadanga Sadar, Chuadanga"
+          },
+          {
+            "source": "bwdbSW10",
+            "where": "§1.1 বর্ণনা [B2-G1]",
+            "states": "মাগুরা জেলার সদর উপজেলার মাগুরা পৌরসভায় নবগঙ্গা নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      {
+        "textBn": "বানান: কার্ডে মহানন্দার গতিপথে পানি উন্নয়ন বোর্ডের বানান «তেঁতুলিয়া», যৌথ নদী কমিশনের তালিকায় ছাপা «তেতুঁলিয়া»; গড়াইয়ের পতিত স্থলে বইয়ের বানান «মধুমতী», পানি উন্নয়ন বোর্ড লেখে «মধুমতি»; কাসালং বানানটি «ভূগোল ও পরিবেশ»-এর, «বাংলাদেশ ও বিশ্বপরিচয়» লেখে «কাসালাং», পানি উন্নয়ন বোর্ড «কাচালং»; কুমারের গতিপথে সেচ প্রকল্পের নাম পানি উন্নয়ন বোর্ডের বানানে «গঙ্গা-কপতাক্ষ», নদীর নাম «কপোতাক্ষ»।",
         "group": "notes",
         "sources": [
           {
@@ -644,6 +747,16 @@
             "source": "bwdbEH4",
             "where": "the heading [B5-G2]",
             "states": "কাচালং"
+          },
+          {
+            "source": "bwdbSW10",
+            "where": "§1.1 বর্ণনা [B2-G1]",
+            "states": "গঙ্গা-কপতাক্ষ সেচ প্রকল্প খালের সাথে"
+          },
+          {
+            "source": "bwdbSW9",
+            "where": "the heading [B2-G4]",
+            "states": "কপোতাক্ষ"
           }
         ]
       },
@@ -996,6 +1109,157 @@
             "source": "bwdbSW74",
             "where": "§1.1 বর্ণনা",
             "states": "নদীটি মাগুরা জেলার শ্রীপুর উপজেলার নাকোল ইউনিয়নের গড়াই নদী থেকে উৎপত্তি হয়ে"
+          }
+        ]
+      },
+      {
+        "textBn": "কুমার, ভৈরব, নবগঙ্গা ও চিত্রা: বই — কুমার ও ভৈরব পদ্মার প্রধান শাখানদী, নবগঙ্গা ও চিত্রা নিম্নগঙ্গার শাখা নদী; পানি উন্নয়ন বোর্ড — চারটিই মাথাভাঙ্গা নদী থেকে উৎপন্ন।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the পদ্মা paragraph [bgeo]",
+            "states": "কুমার, মাথাভাঙা, ভৈরব, গড়াই, মধুমতী, আড়িয়াল খাঁ ইত্যাদি পদ্মা নদীর প্রধান শাখানদী"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the পদ্মা paragraph [b910]",
+            "states": "পশ্চিম থেকে পূর্বে নিম্নগঙ্গায় অসংখ্য শাখা নদীর মধ্যে উল্লেখযোগ্য হচ্ছে- ভাগীরথী, হুগলি, মাথাভাঙ্গা, ইছামতী, ভৈরব, কুমার, কপোতাক্ষ, নবগঙ্গা, চিত্রা, মধুমতী, আড়িয়াল খাঁ ইত্যাদি"
+          },
+          {
+            "source": "bwdbSW10",
+            "where": "§1.1 বর্ণনা [B2-G1]",
+            "states": "মালিহাদ ইউনিয়নে মাথাভাঙ্গা নদী থেকে উৎপত্তি হয়ে"
+          },
+          {
+            "source": "bwdbSW68",
+            "where": "§1.1 বর্ণনা [B2-G3]",
+            "states": "দর্শনা পৌরসভায় মাথাভাঙ্গা নদী থেকে উৎপন্ন হয়ে"
+          },
+          {
+            "source": "bwdbSW45",
+            "where": "§1.1 বর্ণনা [B2-G5]",
+            "states": "সদর উপজেলার মাথাভাঙ্গা নদী থেকে উৎপন্ন হয়ে"
+          },
+          {
+            "source": "bwdbSW34",
+            "where": "§1.1 বর্ণনা [B2-G6]",
+            "states": "দামুরহুদা উপজেলায় মাথাভাঙ্গা নদী হতে উৎপন্ন হয়ে"
+          }
+        ]
+      },
+      {
+        "textBn": "কুমার: বইয়ের মানচিত্রে পদ্মা থেকে গড়াইয়ের পশ্চিমে বের হয়েছে, যা পানি উন্নয়ন বোর্ডের «কুমার (চুয়াডাঙ্গা-ঝিনাইদহ-কুষ্টিয়া-মাগুরা)»; পানি উন্নয়ন বোর্ডের পদ্মার বিবরণে শাখানদী «কুমার (ফরিদপুর-গোপালগঞ্জ)»।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩, চিত্র ১০.৩ [B2-M1]",
+            "states": "map label: কুমার, west of the গড়াই"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, চিত্র ৫.১ [B2-M2]",
+            "states": "map label: কুমার, west of the গড়াই"
+          },
+          {
+            "source": "bwdbSW10",
+            "where": "the heading [B2-G1]",
+            "states": "কুমার (চুয়াডাঙ্গা-ঝিনাইদহ-কুষ্টিয়া-মাগুরা)"
+          },
+          {
+            "source": "bwdbNC32",
+            "where": "§1.10 শাখানদী [B2-S2]",
+            "states": "কুমার (ফরিদপুর-গোপালগঞ্জ)"
+          }
+        ]
+      },
+      {
+        "textBn": "মাথাভাঙ্গা: পানি উন্নয়ন বোর্ড — কুষ্টিয়ার দৌলতপুরে পদ্মা থেকে উৎপত্তি, সীমানা বরাবর প্রায় ২৬ ও ১০ কিলোমিটার, চুয়াডাঙ্গার দামুড়হুদা দিয়ে ভারতে প্রবেশ; যৌথ নদী কমিশন — ভারতের মুর্শিদাবাদ জেলার জলঙ্গির নিকট গঙ্গা থেকে উৎপত্তি, সীমানা বরাবর ২১ কিলোমিটার, নদিয়া জেলার মাজদিয়ায় ইছামতিতে পতিত।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bwdbSW76",
+            "where": "§1.1 বর্ণনা; §1.4 [B2-G2]",
+            "states": "রামকৃষ্ণপুর ইউনিয়নের নিকট গঙ্গা/ পদ্মা নদী হতে উৎপন্ন হয়ে; প্রায় ২৬ কি.মি.; পুনরায় ১০ কি.মি.; পার কৃষ্ণপুর মদনা | দামুড়হুদা"
+          },
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, p. ১ row ৫ [B2-J1]",
+            "states": "ভারতের পশ্চিমবঙ্গের মুর্শিদাবাদ জেলার জলঙ্গির নিকট গঙ্গা নদী; সীমানা ২১; ইছামতি নদী ভারতের পশ্চিমবঙ্গের নদিয়া জেলার মাজদিয়া"
+          }
+        ]
+      },
+      {
+        "textBn": "ভৈরব: পানি উন্নয়ন বোর্ড — দর্শনায় মাথাভাঙ্গা থেকে উৎপত্তি, খুলনায় রূপসা নদীতে পতিত, আর রূপসা আলাদা নদী; যৌথ নদী কমিশন — «ভৈরব-কপোতাক্ষ» একটি নদী, ভারতের পশ্চিমবঙ্গের মাথাভাঙ্গা থেকে উৎপত্তি, শিবসা নদীতে পতিত; «বাংলাদেশ ও বিশ্বপরিচয়» — খুলনার দক্ষিণে «ভৈরব বা রূপসা নদী»।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bwdbSW68",
+            "where": "§1.1 বর্ণনা [B2-G3]",
+            "states": "দর্শনা পৌরসভায় মাথাভাঙ্গা নদী থেকে উৎপন্ন হয়ে; খুলনা জেলার সদর উপজেলায় রূপসা নদীতে পতিত হয়েছে"
+          },
+          {
+            "source": "bwdbSW81",
+            "where": "§1.1 বর্ণনা [B2-X11]",
+            "states": "খুলনা জেলার সদর উপজেলায় ভৈরব নদী থেকে উৎপত্তি হয়ে … কাজীবাছা নদীতে পতিত হয়েছে"
+          },
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, p. ১ row ৪ [B2-J1]",
+            "states": "ভৈরব-কপোতাক্ষ; ভারতের পশ্চিমবঙ্গের মাথাভাঙ্গা নদী; শিবসা নদী খুলনা"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬৩ [b910]",
+            "states": "খুলনার দক্ষিণে ভৈরব বা রূপসা নদী"
+          }
+        ]
+      },
+      {
+        "textBn": "কপোতাক্ষ: পানি উন্নয়ন বোর্ড — চৌগাছায় ভৈরব থেকে উৎপত্তি, কয়রায় আড়পাঙ্গাসিয়া নদীতে পতিত; যৌথ নদী কমিশন ও বাংলা উইকিপিডিয়া — মাথাভাঙ্গা থেকে উৎপত্তি, শিবসা নদীতে পতিত।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bwdbSW9",
+            "where": "§1.1 বর্ণনা [B2-G4]",
+            "states": "হাকিমপুর ইউনিয়নে ভৈরব নদী থেকে উৎপন্ন হয়ে; কয়রা উপজেলার দক্ষিণ বেদকাশি ইউনিয়নে আড়পাঙ্গাসিয়া (খুলনা) নদীতে পতিত হয়েছে"
+          },
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, p. ১ row ৪ [B2-J1]",
+            "states": "ভারতের পশ্চিমবঙ্গের মাথাভাঙ্গা নদী; শিবসা নদী খুলনা"
+          },
+          {
+            "source": "bnwKapotaksha",
+            "where": "the lead [B2-W2]",
+            "states": "উৎপত্তি চুয়াডাঙ্গা জেলার দর্শনার মাথাভাঙ্গা নদী থেকে; খুলনা জেলার পাইকগাছা উপজেলায় কাছে শিবসা নদীতে গিয়ে পতিত হয়েছে"
+          }
+        ]
+      },
+      {
+        "textBn": "নবগঙ্গা ও চিত্রার পতিত স্থল: পানি উন্নয়ন বোর্ড — দুটিই আতাই নদীতে (নবগঙ্গা দীঘলিয়ায়, চিত্রা অভয়নগরে); বাংলা উইকিপিডিয়া — নবগঙ্গা ভৈরবে, চিত্রা গাজীরহাটে নবগঙ্গায়।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bwdbSW45",
+            "where": "§1.1 বর্ণনা [B2-G5]",
+            "states": "দীঘলিয়া উপজেলার গাজীরহাট ইউনিয়নে আতাই নদীতে পতিত হয়েছে"
+          },
+          {
+            "source": "bwdbSW34",
+            "where": "§1.1 বর্ণনা [B2-G6]",
+            "states": "অভয়নগর উপজেলার সিদ্দিপাশা ইউনিয়নে আতাই নদীতে পতিত হয়েছে"
+          },
+          {
+            "source": "bnwNabaganga",
+            "where": "the course [B2-W3]",
+            "states": "দক্ষিণ দিকে প্রবাহিত হয়ে ভৈরব নদীতে পড়েছে"
+          },
+          {
+            "source": "bnwChitra",
+            "where": "the course [B2-W4]",
+            "states": "গাজীরহাটে নবগঙ্গা নদীর সাথে মিলেছে"
           }
         ]
       },

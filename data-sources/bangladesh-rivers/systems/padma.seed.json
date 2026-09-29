@@ -1,5 +1,5 @@
 {
-  "_about": "The Padma system, batch 1 (Stage 1, the user's approval of 2026-09-29): the Ganges–Padma from the frame's west edge to the Meghna, and the Gorai, Madhumati, Arial Khan, Mahananda and Bhagirathi. Geometry from the pinned rivers snapshot, the pilot extract and this system's own extract (tools/sources/osm-bangladesh-rivers-padma.geojson, the ways under geometry.extract); every chosen way carries a name, name:bn, name:en or wikidata tag for its river, or belongs to its waterway relation. Card values: the NCTB books first; where the books are silent, BWDB, then JRCB; where the two books disagree, the row stays null (pending) and ⓘ gives both (decision 2).",
+  "_about": "The Padma system, batch 1 (Stage 1, the user's approval of 2026-09-29): the Ganges–Padma from the frame's west edge to the Meghna, and the Gorai, Madhumati, Arial Khan, Mahananda and Bhagirathi. Geometry from the pinned rivers snapshot, the pilot extract and this system's own extract (tools/sources/osm-bangladesh-rivers-padma.geojson, the ways under geometry.extract); every chosen way carries a name, name:bn, name:en or wikidata tag for its river, or belongs to its waterway relation. Card values: the NCTB books first; where the books are silent, BWDB, then JRCB; where the two books disagree, the row stays null (pending) and ⓘ gives both (decision 2). Stage 2, batch b2: the south-west — Mathabhanga, Kumar, Bhairab, Kapotaksha, Nabaganga, Chitra — from the pinned extract osm-bangladesh-rivers-padma-b2.geojson (geometry.extractBatches.b2).",
   "id": "padma",
   "nameBn": "পদ্মা",
   "labelsBn": {
@@ -10,7 +10,13 @@
     "madhumati": "মধুমতী",
     "arialKhan": "আড়িয়াল খাঁ",
     "mahananda": "মহানন্দা",
-    "bhagirathi": "ভাগীরথী"
+    "bhagirathi": "ভাগীরথী",
+    "mathabhanga": "মাথাভাঙ্গা",
+    "kumar": "কুমার",
+    "bhairab": "ভৈরব",
+    "kapotaksha": "কপোতাক্ষ",
+    "nabaganga": "নবগঙ্গা",
+    "chitra": "চিত্রা"
   },
   "frames": {
     "bangladesh": {
@@ -25,7 +31,17 @@
         "mahananda2",
         "mahananda3",
         "bhagirathi",
-        "bhagirathi2"
+        "bhagirathi2",
+        "mathabhanga",
+        "kumar",
+        "bhairab",
+        "bhairab2",
+        "kapotaksha",
+        "nabaganga",
+        "nabaganga2",
+        "nabaganga3",
+        "chitra",
+        "chitra2"
       ],
       "markers": [
         "padmaJamunaConfluence",
@@ -95,6 +111,54 @@
           "near": [
             88.2,
             24.1
+          ]
+        },
+        {
+          "id": "mathabhanga",
+          "line": "mathabhanga",
+          "near": [
+            88.8,
+            23.85
+          ]
+        },
+        {
+          "id": "kumar",
+          "line": "kumar",
+          "near": [
+            88.97,
+            23.85
+          ]
+        },
+        {
+          "id": "bhairab",
+          "line": "bhairab2",
+          "near": [
+            89.47,
+            23
+          ]
+        },
+        {
+          "id": "kapotaksha",
+          "line": "kapotaksha",
+          "near": [
+            89.2,
+            22.9
+          ]
+        },
+        {
+          "id": "nabaganga",
+          "line": "nabaganga2",
+          "near": [
+            89.35,
+            23.45
+          ]
+        },
+        {
+          "id": "chitra",
+          "line": "chitra",
+          "near": [
+            89.1,
+            23.4
           ]
         }
       ]
@@ -319,6 +383,209 @@
           "parent": "bhagirathi"
         },
         "identified": "Twenty-nine ways of relation 1243337 (Hooghly, alt_name Bhagirathi), to the sea: 28 from the pinned rivers snapshot and 1352087403, tagged Bhagirathi / «ভাগীরথী», from this system's extract. Its head is 396 m from the reach above; the only link is the unnamed way 1352087404, outside the relation, so a connector bridges it."
+      },
+      "mathabhanga": {
+        "entity": "mathabhanga",
+        "role": "distributary",
+        "ways": [
+          44367137,
+          328158818,
+          658991229,
+          658991230,
+          619854487,
+          975084226
+        ],
+        "down": [
+          88.7101,
+          23.4046
+        ],
+        "join": {
+          "parent": "gangaPadma"
+        },
+        "exempt": "Unjoined: its drawn head is 12.7 km from the drawn Padma — over the 12 km a connector may bridge (the user's rule, 2026-09-29: gaps over 12 km stay unjoined); OSM's only continuation is the unnamed way 260101308, a dead end still 10.8 km short. BWDB (SW-76) has it leave the Ganges/Padma near Ramkrishnapur, Daulatpur, Kushtia (ⓘ).",
+        "identified": "Six ways tagged \"Mathabhanga River\", «মাথাভাঙ্গা» or Mathavanga (this batch's extract), every link sharing a node: along the border from above Daulatpur, through Kushtia and Chuadanga, back along the border to the node in India where the Churni and the Ichamati begin."
+      },
+      "kumar": {
+        "entity": "kumar",
+        "role": "distributary",
+        "ways": [
+          1238279157,
+          1238279158,
+          259726789
+        ],
+        "down": [
+          88.9054,
+          23.6134
+        ],
+        "join": {
+          "parent": "gangaPadma",
+          "node": 3295112156,
+          "source": "OSM node 3295112156, the last node of way 1238279157 as OSM draws it (the river's head), vertex 3 of the Padma's way 685060015"
+        },
+        "identified": "Three ways tagged «কুমার নদ» / Kumar Nod, wikidata Q24765069 (this batch's extract): the only Kumar that leaves the Padma, in Bheramara, Kushtia, west of the Gorai, as both books' maps draw it; it ends on the Nabaganga (way 259728660, vertex 53) in Chuadanga Sadar. OSM draws its ways from the Nabaganga up to the Padma; the `down` point orients the chain. Not drawn: the Magura Kumar stub (665251752, 3.9 km) and the Faridpur–Gopalganj Kumar (no line tagged Kumar)."
+      },
+      "bhairab": {
+        "entity": "bhairab",
+        "role": "distributary",
+        "ways": [
+          550203984
+        ],
+        "down": [
+          89.3847,
+          23.1199
+        ],
+        "join": {
+          "parent": "mathabhanga"
+        },
+        "exempt": "Unjoined: BWDB (SW-68) has it leave the Mathabhanga at Darshana, Damurhuda; the drawn line begins at Jashore, 58.5 km from the drawn Mathabhanga — over the 12 km a connector may bridge (the user's rule, 2026-09-29: gaps over 12 km stay unjoined). Upstream OSM has only unnamed ways (51.8 km) and an isolated 8.6 km stream tagged «ভৈরব নদ» on the Kapotaksha (571876379, 1423091514), 24.6 km away, not drawn (ⓘ).",
+        "identified": "Way 550203984, tagged \"Bhairab River\" (this batch's extract), the Jashore reach; OSM draws it westward, the `down` point orients it east, towards Khulna. Not drawn: the upper course from India into the Mathabhanga (530855149 … 530851722), which is BWDB's separate SW-70 «ভৈরব-কপোতাক্ষ», and the Bagerhat Bhairab (554944927, BWDB SW-69)."
+      },
+      "bhairab2": {
+        "entity": "bhairab",
+        "role": "distributary",
+        "ways": [
+          239063435
+        ],
+        "trims": {
+          "239063435": {
+            "fromNode": 5512957961
+          }
+        },
+        "down": [
+          89.5715,
+          22.8178
+        ],
+        "join": {
+          "parent": "bhairab"
+        },
+        "identified": "Way 239063435, tagged «ভৈরব নদ» (wikidata Q4900787, this batch's extract), from its vertex 391 (node 5512957961), 276 m from the Jashore reach, to node 5758405975, where «রূপসা নদী» begins at Khulna. The way's first 38 km (vertices 0–391) are an upper arm that the unnamed channel from the Chitra reaches; trimmed, not drawn."
+      },
+      "kapotaksha": {
+        "entity": "kapotaksha",
+        "role": "distributary",
+        "ways": [
+          1423094066,
+          1423094065,
+          1423091516,
+          541695931,
+          541695929,
+          543615801,
+          727379279,
+          727379280,
+          566535135,
+          577629714,
+          565238794,
+          558424432,
+          557271270,
+          727369396,
+          965447430,
+          660966564,
+          1423091515
+        ],
+        "down": [
+          89.4092,
+          22.5193
+        ],
+        "join": {
+          "parent": "mathabhanga",
+          "node": 13078580403,
+          "source": "OSM node 13078580403, the first node of way 1423094066, a node of the Mathabhanga's way 619854487"
+        },
+        "identified": "Seventeen ways, every link sharing a node (this batch's extract): 15 in relation 19475603 \"Kopotakkho River\" (wikidata Q6431146), and 1423094066 and 1423091515 tagged Kopotakkho / «কপোতাক্ষ নদ»; from the Mathabhanga to the Shibsa. Not drawn: a second channel tagged «কপোতাক্ষ নদ» (908102928 … 652172284), 12.1 km away, a branch."
+      },
+      "nabaganga": {
+        "entity": "nabaganga",
+        "role": "distributary",
+        "ways": [
+          259728660
+        ],
+        "down": [
+          89.0016,
+          23.5812
+        ],
+        "join": {
+          "parent": "mathabhanga"
+        },
+        "identified": "Way 259728660, tagged «নবগঙ্গা» / Nabagonga (this batch's extract): its head is 2.8 km from the Mathabhanga, reached in OSM only by canals tagged «Noboganga» (not drawn); a connector joins it (ⓘ)."
+      },
+      "nabaganga2": {
+        "entity": "nabaganga",
+        "role": "distributary",
+        "ways": [
+          547166490,
+          547166489,
+          665252173,
+          665252172,
+          249159949,
+          720421034,
+          720421033
+        ],
+        "trims": {
+          "547166490": {
+            "toNode": 5286893529
+          },
+          "665252173": {
+            "fromNode": 5286893461
+          }
+        },
+        "down": [
+          89.531,
+          23.2395
+        ],
+        "join": {
+          "parent": "nabaganga"
+        },
+        "exempt": "Unjoined: its head is 18.5 km from the reach above — over the 12 km a connector may bridge (the user's rule, 2026-09-29: gaps over 12 km stay unjoined); nothing tagged Nabaganga lies between (ⓘ).",
+        "identified": "Seven ways tagged Nabaganga/«নবগঙ্গা নদী» (this batch's extract). 547166490 is trimmed at node 5286893529, where 547166489 leaves it (its last 0.67 km runs on to a canal); 665252173 is trimmed from node 5286893461, where 547166489 meets it (its first 7.55 km come down from the Magura Kumar's mouth). Jhenaidah to Narail."
+      },
+      "nabaganga3": {
+        "entity": "nabaganga",
+        "role": "distributary",
+        "ways": [
+          239811380,
+          727387096
+        ],
+        "down": [
+          89.5733,
+          22.9492
+        ],
+        "join": {
+          "parent": "nabaganga2"
+        },
+        "exempt": "Unjoined: its head is 22.7 km from the reach above — over the 12 km a connector may bridge (the user's rule, 2026-09-29: gaps over 12 km stay unjoined); OSM links them only by unnamed ways. Its head is the drawn Madhumati's last node (ⓘ).",
+        "identified": "Ways 239811380 and 727387096, tagged «নবগঙ্গা নদী» (this batch's extract), from the Madhumati's end node 2475825893 to Dighalia, Khulna."
+      },
+      "chitra": {
+        "entity": "chitra",
+        "role": "distributary",
+        "ways": [
+          547222467
+        ],
+        "down": [
+          89.2441,
+          23.301
+        ],
+        "join": {
+          "parent": "mathabhanga"
+        },
+        "identified": "Way 547222467, tagged \"Chitra River\" (this batch's extract), Chuadanga to Bagharpara, Jashore. Its head is 10.7 km from the Mathabhanga, fed in OSM only by the unnamed 1408208510; a connector joins it (ⓘ)."
+      },
+      "chitra2": {
+        "entity": "chitra",
+        "role": "distributary",
+        "ways": [
+          986796027,
+          575195090
+        ],
+        "down": [
+          89.5604,
+          22.9828
+        ],
+        "join": {
+          "parent": "chitra"
+        },
+        "exempt": "Unjoined: its head is 29.7 km from the reach above — over the 12 km a connector may bridge (the user's rule, 2026-09-29: gaps over 12 km stay unjoined); only a water area and unnamed ways lie between (ⓘ).",
+        "identified": "Ways 986796027 and 575195090, tagged «চিত্রা নদী» (this batch's extract), from Narail to node 5519854747 on the Nabaganga, in Dighalia."
       }
     },
     "extract": {
@@ -346,6 +613,63 @@
       "bhagirathi": [
         1352087403
       ]
+    },
+    "extractBatches": {
+      "b2": {
+        "mathabhanga": [
+          44367137,
+          328158818,
+          658991229,
+          658991230,
+          619854487,
+          975084226
+        ],
+        "kumar": [
+          259726789,
+          1238279158,
+          1238279157
+        ],
+        "bhairab": [
+          550203984,
+          239063435
+        ],
+        "kapotaksha": [
+          1423094066,
+          1423094065,
+          1423091516,
+          541695931,
+          541695929,
+          543615801,
+          727379279,
+          727379280,
+          566535135,
+          577629714,
+          565238794,
+          558424432,
+          557271270,
+          727369396,
+          965447430,
+          660966564,
+          1423091515
+        ],
+        "nabaganga": [
+          259728660,
+          547166490,
+          547166489,
+          665252173,
+          665252172,
+          249159949,
+          720421034,
+          720421033,
+          239811380,
+          727387096
+        ],
+        "chitra": [
+          547222467,
+          986796027,
+          575195090
+        ]
+      }
     }
   },
   "markers": [
@@ -804,6 +1128,346 @@
         ]
       },
       "review": "B-GEO answers every row; BWDB's list has no ভাগীরথী or হুগলি entry and JRCB's table no row. The other name is null: B-GEO writes «ভাগীরথী (হুগলি নদী)», one river, while B910 lists «ভাগীরথী, হুগলি» as two (ⓘ). The drawn line (OSM relation 1243337, Hooghly, alt_name Bhagirathi) runs to the sea, as B-GEO has it; its head is 7.4 km from the Ganges line, near Jangipur, not at Dhulian (ⓘ)."
+    },
+    {
+      "id": "mathabhanga",
+      "role": "distributary",
+      "nameBn": "মাথাভাঙ্গা",
+      "values": {
+        "relation": "পদ্মার প্রধান শাখানদী",
+        "origin": "কুষ্টিয়া জেলার দৌলতপুর উপজেলার রামকৃষ্ণপুর ইউনিয়নের নিকট গঙ্গা/ পদ্মা নদী হতে",
+        "course": "বাংলাদেশ ও ভারতের আন্তর্জাতিক সীমানা বরাবর প্রায় ২৬ কি.মি. প্রবাহিত হয়। … পুনরায় ১০ কি.মি. বাংলাদেশ ও ভারতের আন্তর্জাতিক সীমানা দিয়ে প্রবাহিত হয়ে চুয়াডাঙ্গা জেলার দামুরহুদা উপজেলার পার কৃষ্ণপুর মদনা ইউনিয়ন দিয়ে ভারতে প্রবেশ করে",
+        "mouth": "ভারতে ইছামতি-কালিন্দি নদীতে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩, চিত্র ১০.৩ [bgeo]",
+            "states": "map label: মাথাভাঙ্গা"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২ [b910]",
+            "states": "মাথাভাঙ্গা"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the পদ্মা paragraph [bgeo]",
+            "states": "কুমার, মাথাভাঙা, ভৈরব, গড়াই, মধুমতী, আড়িয়াল খাঁ ইত্যাদি পদ্মা নদীর প্রধান শাখানদী"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the পদ্মা paragraph [b910]",
+            "states": "পশ্চিম থেকে পূর্বে নিম্নগঙ্গায় অসংখ্য শাখা নদীর মধ্যে উল্লেখযোগ্য হচ্ছে- ভাগীরথী, হুগলি, মাথাভাঙ্গা, ইছামতী, ভৈরব, কুমার, কপোতাক্ষ, নবগঙ্গা, চিত্রা, মধুমতী, আড়িয়াল খাঁ ইত্যাদি"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbSW76",
+            "where": "§1.1 বর্ণনা [B2-G2]",
+            "states": "নদীটি বাংলাদেশের কুষ্টিয়া জেলার দৌলতপুর উপজেলার রামকৃষ্ণপুর ইউনিয়নের নিকট গঙ্গা/ পদ্মা নদী হতে উৎপন্ন হয়ে"
+          }
+        ],
+        "course": [
+          {
+            "source": "bwdbSW76",
+            "where": "§1.1 বর্ণনা [B2-G2]",
+            "states": "বাংলাদেশ ও ভারতের আন্তর্জাতিক সীমানা বরাবর প্রায় ২৬ কি.মি. প্রবাহিত হয়। তারপর নদীটি বাংলাদশের ভেতর দিয়ে ১১০ কি.মি. প্রবাহিত হয়ে পুনরায় ১০ কি.মি. বাংলাদেশ ও ভারতের আন্তর্জাতিক সীমানা দিয়ে প্রবাহিত হয়ে চুয়াডাঙ্গা জেলার দামুরহুদা উপজেলার পার কৃষ্ণপুর মদনা ইউনিয়ন দিয়ে ভারতে প্রবেশ করে (the card elides the middle clause, whose «বাংলাদশের» it would otherwise repeat)"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bwdbSW76",
+            "where": "§1.1 বর্ণনা [B2-G2]",
+            "states": "ভারতে প্রবেশ করে ইছামতি-কালিন্দি নদীতে পতিত হয়"
+          }
+        ]
+      },
+      "review": "BWDB SW-76, the only Mathabhanga off the Padma; SW-198 «মাথাভাঙ্গা (খুলনা)» is a 3 km channel in Khulna, ruled out, so no bracket. JRCB row ৫ differs on the origin (India, near Jalangi), the border stretch (21 km) and the outfall place (Majdia, Nadia) — ⓘ. Other names: MISSING in every source, so the row is absent, as on the other branch cards. The course elides BWDB's middle clause («তারপর নদীটি বাংলাদশের ভেতর দিয়ে ১১০ কি.মি. প্রবাহিত হয়ে»), to show neither a silent correction nor the misspelling."
+    },
+    {
+      "id": "kumar",
+      "role": "distributary",
+      "nameBn": "কুমার (চুয়াডাঙ্গা)",
+      "values": {
+        "relation": "পদ্মার প্রধান শাখানদী",
+        "origin": "কুষ্টিয়া জেলার মিরপুর উপজেলার মালিহাদ ইউনিয়নে মাথাভাঙ্গা নদী থেকে",
+        "course": "নদীটির প্রবাহ আলমডাঙ্গা উপজেলার কুমারি ইউনিয়নে এসে গঙ্গা-কপতাক্ষ সেচ প্রকল্প খালের সাথে মিলিত হয়েছে এবং পুনরায় কালিদাসপুর ইউনিয়ন থেকে প্রবাহ শুরু হয়েছে",
+        "mouth": "মাগুরা জেলার সদর উপজেলার মাগুরা পৌরসভায় নবগঙ্গা নদীতে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪ [bgeo]",
+            "states": "কুমার"
+          },
+          {
+            "source": "bwdbSW10",
+            "where": "§1.1 «স্থানীয় নাম» [B2-G1]",
+            "states": "কুমার (চুয়াডাঙ্গা)"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the পদ্মা paragraph [bgeo]",
+            "states": "কুমার, মাথাভাঙা, ভৈরব, গড়াই, মধুমতী, আড়িয়াল খাঁ ইত্যাদি পদ্মা নদীর প্রধান শাখানদী"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the পদ্মা paragraph [b910]",
+            "states": "পশ্চিম থেকে পূর্বে নিম্নগঙ্গায় অসংখ্য শাখা নদীর মধ্যে উল্লেখযোগ্য হচ্ছে- ভাগীরথী, হুগলি, মাথাভাঙ্গা, ইছামতী, ভৈরব, কুমার, কপোতাক্ষ, নবগঙ্গা, চিত্রা, মধুমতী, আড়িয়াল খাঁ ইত্যাদি"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbSW10",
+            "where": "§1.1 বর্ণনা [B2-G1]",
+            "states": "নদীটি কুষ্টিয়া জেলার মিরপুর উপজেলার মালিহাদ ইউনিয়নে মাথাভাঙ্গা নদী থেকে উৎপত্তি হয়ে"
+          }
+        ],
+        "course": [
+          {
+            "source": "bwdbSW10",
+            "where": "§1.1 বর্ণনা [B2-G1]",
+            "states": "নদীটির প্রবাহ আলমডাঙ্গা উপজেলার কুমারি ইউনিয়নে এসে গঙ্গা-কপতাক্ষ সেচ প্রকল্প খালের সাথে মিলিত হয়েছে এবং পুনরায় কালিদাসপুর ইউনিয়ন থেকে প্রবাহ শুরু হয়েছে।"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bwdbSW10",
+            "where": "§1.1 বর্ণনা [B2-G1]",
+            "states": "মাগুরা জেলার সদর উপজেলার মাগুরা পৌরসভায় নবগঙ্গা নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "BWDB SW-10 «কুমার (চুয়াডাঙ্গা-ঝিনাইদহ-কুষ্টিয়া-মাগুরা)», matched by geometry and district: both books' maps draw the Kumar leaving the Padma west of the Gorai, as the drawn OSM Kumar does (Kushtia–Chuadanga). Ruled out: SW-11 (Faridpur–Gopalganj; BWDB's own Padma list names it — ⓘ), SW-12, SW-13, SW-205. The picker name carries SW-10's local name «কুমার (চুয়াডাঙ্গা)» (the user's rule on same-name rivers). BWDB has it leave the Mathabhanga (ⓘ). The drawn line ends on the Nabaganga in Chuadanga Sadar; OSM has no Kumar-tagged line on to Magura (ⓘ). BWDB spells the project «গঙ্গা-কপতাক্ষ» (ⓘ). Other names: MISSING."
+    },
+    {
+      "id": "bhairab",
+      "role": "distributary",
+      "nameBn": "ভৈরব (যশোর)",
+      "values": {
+        "relation": "পদ্মার প্রধান শাখানদী",
+        "alias": "রূপসা (খুলনার দক্ষিণে)",
+        "origin": "চুয়াডাঙ্গা জেলার দামুড়হুদা উপজেলার দর্শনা পৌরসভায় মাথাভাঙ্গা নদী থেকে",
+        "course": "যশোর জেলা শহর এ নদীর তীরে অবস্থিত",
+        "mouth": "খুলনা জেলার সদর উপজেলায় রূপসা নদীতে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪ [bgeo]",
+            "states": "ভৈরব"
+          },
+          {
+            "source": "bwdbSW68",
+            "where": "§1.1 বর্ণনা [B2-G3]",
+            "states": "যশোর জেলা শহর এ নদীর তীরে অবস্থিত।"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the পদ্মা paragraph [bgeo]",
+            "states": "কুমার, মাথাভাঙা, ভৈরব, গড়াই, মধুমতী, আড়িয়াল খাঁ ইত্যাদি পদ্মা নদীর প্রধান শাখানদী"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the পদ্মা paragraph [b910]",
+            "states": "পশ্চিম থেকে পূর্বে নিম্নগঙ্গায় অসংখ্য শাখা নদীর মধ্যে উল্লেখযোগ্য হচ্ছে- ভাগীরথী, হুগলি, মাথাভাঙ্গা, ইছামতী, ভৈরব, কুমার, কপোতাক্ষ, নবগঙ্গা, চিত্রা, মধুমতী, আড়িয়াল খাঁ ইত্যাদি"
+          }
+        ],
+        "alias": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬৩, the পশুর নদী paragraph [b910]",
+            "states": "খুলনার দক্ষিণে ভৈরব বা রূপসা নদী"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbSW68",
+            "where": "§1.1 বর্ণনা [B2-G3]",
+            "states": "বর্তমানে নদীটি চুয়াডাঙ্গা জেলার দামুড়হুদা উপজেলার দর্শনা পৌরসভায় মাথাভাঙ্গা নদী থেকে উৎপন্ন হয়ে"
+          }
+        ],
+        "course": [
+          {
+            "source": "bwdbSW68",
+            "where": "§1.1 বর্ণনা [B2-G3]",
+            "states": "যশোর জেলা শহর এ নদীর তীরে অবস্থিত।"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bwdbSW68",
+            "where": "§1.1 বর্ণনা [B2-G3]",
+            "states": "খুলনা জেলার সদর উপজেলায় রূপসা নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "BWDB SW-68 «ভৈরব», matched by district (Chuadanga–Jashore–Khulna, and both maps label it there). Ruled out: SW-69 «ভৈরব (বাগেরহাট)» and SW-70 «ভৈরব-কপোতাক্ষ» (India–Meherpur, into the Mathabhanga; on neither map). The picker name carries Jashore, from SW-68's own description (the user's rule on same-name rivers). JRCB row ৪ joins it with the Kapotaksha as one river into the Shibsa; B910's «ভৈরব বা রূপসা» against BWDB's separate SW-81 «রূপসা» (ⓘ). No entry row: SW-68 rises inside Bangladesh. The drawn line begins at Jashore (ⓘ)."
+    },
+    {
+      "id": "kapotaksha",
+      "role": "distributary",
+      "nameBn": "কপোতাক্ষ",
+      "values": {
+        "relation": "নিম্নগঙ্গার উল্লেখযোগ্য শাখা নদী",
+        "origin": "যশোর জেলার চৌগাছা উপজেলার হাকিমপুর ইউনিয়নে ভৈরব নদী থেকে",
+        "course": "যশোর জেলার ঝিকরগাছা উপজেলা, সাতক্ষীরা জেলার কলারোয়া ও তালা উপজেলা, খুলনা জেলার পাইকগাছা উপজেলা দিয়ে প্রবাহিত",
+        "mouth": "খুলনা জেলার কয়রা উপজেলার দক্ষিণ বেদকাশি ইউনিয়নে আড়পাঙ্গাসিয়া (খুলনা) নদীতে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩, চিত্র ১০.৩ [bgeo]",
+            "states": "map label: কপোতাক্ষ"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২ [b910]",
+            "states": "কপোতাক্ষ"
+          }
+        ],
+        "relation": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the পদ্মা paragraph [b910]",
+            "states": "পশ্চিম থেকে পূর্বে নিম্নগঙ্গায় অসংখ্য শাখা নদীর মধ্যে উল্লেখযোগ্য হচ্ছে- ভাগীরথী, হুগলি, মাথাভাঙ্গা, ইছামতী, ভৈরব, কুমার, কপোতাক্ষ, নবগঙ্গা, চিত্রা, মধুমতী, আড়িয়াল খাঁ ইত্যাদি"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbSW9",
+            "where": "§1.1 বর্ণনা [B2-G4]",
+            "states": "নদীটি যশোর জেলার চৌগাছা উপজেলার হাকিমপুর ইউনিয়নে ভৈরব নদী থেকে উৎপন্ন হয়ে"
+          }
+        ],
+        "course": [
+          {
+            "source": "bwdbSW9",
+            "where": "§1.1 বর্ণনা [B2-G4]",
+            "states": "যশোর জেলার ঝিকরগাছা উপজেলা, সাতক্ষীরা জেলার কলারোয়া ও তালা উপজেলা, খুলনা জেলার পাইকগাছা উপজেলা দিয়ে প্রবাহিত হয়ে"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bwdbSW9",
+            "where": "§1.1 বর্ণনা [B2-G4]",
+            "states": "খুলনা জেলার কয়রা উপজেলার দক্ষিণ বেদকাশি ইউনিয়নে আড়পাঙ্গাসিয়া (খুলনা) নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "BWDB SW-9, matched by district (Jashore–Satkhira–Khulna, the western river both maps label); SW-250 «কপোতাক্ষ (পাইকগাছা)» is a 9 km channel, ruled out, so no bracket. The relation is B910's list (B-GEO labels it only on its map). BWDB has it leave the Bhairab, JRCB and bn WP the Mathabhanga — as the drawn OSM line does; the mouth: BWDB the Arpangasia at Koyra, JRCB and bn WP the Shibsa, where the drawn line ends (ⓘ). Other names: MISSING."
+    },
+    {
+      "id": "nabaganga",
+      "role": "distributary",
+      "nameBn": "নবগঙ্গা",
+      "values": {
+        "relation": "নিম্নগঙ্গার উল্লেখযোগ্য শাখা নদী",
+        "origin": "চুয়াডাঙ্গা জেলার সদর উপজেলার মাথাভাঙ্গা নদী থেকে",
+        "course": "ঝিনাইদহ জেলা, মাগুরা জেলা, নড়াইল জেলা দিয়ে প্রবাহিত",
+        "mouth": "খুলনা জেলার দীঘলিয়া উপজেলার গাজীরহাট ইউনিয়নে আতাই নদীতে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩, চিত্র ১০.৩ [bgeo]",
+            "states": "map label: নবগঙ্গা"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২ [b910]",
+            "states": "নবগঙ্গা"
+          }
+        ],
+        "relation": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the পদ্মা paragraph [b910]",
+            "states": "পশ্চিম থেকে পূর্বে নিম্নগঙ্গায় অসংখ্য শাখা নদীর মধ্যে উল্লেখযোগ্য হচ্ছে- ভাগীরথী, হুগলি, মাথাভাঙ্গা, ইছামতী, ভৈরব, কুমার, কপোতাক্ষ, নবগঙ্গা, চিত্রা, মধুমতী, আড়িয়াল খাঁ ইত্যাদি"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbSW45",
+            "where": "§1.1 বর্ণনা [B2-G5]",
+            "states": "নদীটি চুয়াডাঙ্গা জেলার সদর উপজেলার মাথাভাঙ্গা নদী থেকে উৎপন্ন হয়ে"
+          }
+        ],
+        "course": [
+          {
+            "source": "bwdbSW45",
+            "where": "§1.1 বর্ণনা [B2-G5]",
+            "states": "ঝিনাইদহ জেলা, মাগুরা জেলা, নড়াইল জেলা দিয়ে প্রবাহিত হয়ে"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bwdbSW45",
+            "where": "§1.1 বর্ণনা [B2-G5]",
+            "states": "খুলনা জেলার দীঘলিয়া উপজেলার গাজীরহাট ইউনিয়নে আতাই নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "BWDB SW-45, the only entry of that name. The relation is B910's list; BWDB has it leave the Mathabhanga (ⓘ). The mouth: BWDB the Atai at Dighalia, where the drawn line ends; bn WP the Bhairab (ⓘ). Drawn in three reaches, 18.5 and 22.7 km apart (ⓘ). Other names: MISSING."
+    },
+    {
+      "id": "chitra",
+      "role": "distributary",
+      "nameBn": "চিত্রা (চুয়াডাঙ্গা)",
+      "values": {
+        "relation": "নিম্নগঙ্গার উল্লেখযোগ্য শাখা নদী",
+        "origin": "চুয়াডাঙ্গা জেলার দামুরহুদা উপজেলায় মাথাভাঙ্গা নদী হতে",
+        "course": null,
+        "mouth": "যশোর জেলার অভয়নগর উপজেলার সিদ্দিপাশা ইউনিয়নে আতাই নদীতে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২ [b910]",
+            "states": "চিত্রা"
+          },
+          {
+            "source": "bwdbSW34",
+            "where": "§1.1 [B2-G6]",
+            "states": "চিত্রা (চুয়াডাঙ্গা)"
+          }
+        ],
+        "relation": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the পদ্মা paragraph [b910]",
+            "states": "পশ্চিম থেকে পূর্বে নিম্নগঙ্গায় অসংখ্য শাখা নদীর মধ্যে উল্লেখযোগ্য হচ্ছে- ভাগীরথী, হুগলি, মাথাভাঙ্গা, ইছামতী, ভৈরব, কুমার, কপোতাক্ষ, নবগঙ্গা, চিত্রা, মধুমতী, আড়িয়াল খাঁ ইত্যাদি"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbSW34",
+            "where": "§1.1 বর্ণনা [B2-G6]",
+            "states": "নদীটি চুয়াডাঙ্গা জেলার দামুরহুদা উপজেলায় মাথাভাঙ্গা নদী হতে উৎপন্ন হয়ে"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bwdbSW34",
+            "where": "§1.1 বর্ণনা [B2-G6]",
+            "states": "যশোর জেলার অভয়নগর উপজেলার সিদ্দিপাশা ইউনিয়নে আতাই নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "BWDB SW-34, matched by district to the drawn OSM Chitra (Chuadanga–Jhenaidah–Jashore–Narail–Khulna); B910 names it between the Nabaganga and the Madhumati in its west-to-east list, and neither book draws it. Ruled out: SW-115 «চিত্রা (বাগেরহাট)» and SW-228 «তালেশ্বর». The picker name carries SW-34's «চিত্রা (চুয়াডাঙ্গা)». Course is null: BWDB gives none; bn WP's is weak (its lead contradicts itself). BWDB has it leave the Mathabhanga (ⓘ); the mouth: BWDB the Atai at Abhaynagar, bn WP the Nabaganga at Gazirhat, where the drawn line ends (ⓘ). Other names: MISSING."
     }
   ]
 }

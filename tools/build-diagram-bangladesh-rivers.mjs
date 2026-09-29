@@ -114,7 +114,8 @@ const osmFile = (entry, rel) => {
 const osmSnapshot = osmFile(sources.osmBangladeshRivers, G.files.osmSnapshot);
 const osmPilot = osmFile(sources.osmBangladeshRiversPilot, G.files.osmPilot);
 // Each system's own extract (tools/extract-bangladesh-rivers-system.mjs), pinned as osmBangladeshRivers<System>.
-const extractKey = (sys) => `osmBangladeshRivers${sys[0].toUpperCase()}${sys.slice(1)}`;
+// «padma» → osmBangladeshRiversPadma; «padma-b2» (a later batch's extract) → osmBangladeshRiversPadmaB2.
+const extractKey = (name) => `osmBangladeshRivers${name.split('-').map((p) => p[0].toUpperCase() + p.slice(1)).join('')}`;
 const systemExtracts = Object.entries(G.files.osmSystems ?? {}).map(([sys, rel]) => [sys, osmFile(sources[extractKey(sys)] ?? fail(`tools/sources.json pins no ${extractKey(sys)}`), rel)]);
 
 // The seed's country names are Natural Earth's NAME_BN, as the map baseline has them.
@@ -669,7 +670,8 @@ for (const s of systems) if (seed.entities.some((e) => e.system === s.id) && !s.
 
 // Every label is a name a card gives.
 const alias = seed.entities.filter((e) => e.role === 'main').flatMap((e) => String(e.values.alias ?? '').split('; ').map((s) => s.replace(/ \(.*\)$/, '')));
-const known = new Set([...seed.entities.map((e) => e.nameBn), ...seed.markers.map((m) => m.nameBn), ...seed.continuations.map((c) => c.nameBn), ...alias]);
+// A card's name, with or without its bracketed district (same-name rivers: «ভৈরব (যশোর)» is drawn «ভৈরব»).
+const known = new Set([...seed.entities.flatMap((e) => [e.nameBn, e.nameBn.replace(/ \(.*\)$/, '')]), ...seed.markers.map((m) => m.nameBn), ...seed.continuations.map((c) => c.nameBn), ...alias]);
 const labelTexts = Object.fromEntries(Object.entries(seed.labelsBn).filter(([k]) => !k.startsWith('_')));
 for (const [id, text] of Object.entries(labelTexts)) if (!known.has(text)) fail(`label ${id} «${text}» is not a name any card gives`);
 for (const f of Object.values(frames)) for (const l of f.file.labels) if (!(l.id in labelTexts)) fail(`label ${l.id} has no text in the seed`);

@@ -263,5 +263,13 @@
     "snapshot": "2026-09-29T11:21:51Z",
     "licence": "ODbL 1.0 — © OpenStreetMap contributors",
     "sha256": "61b86f2026839bd12ddda8a419eab7b59ea95b284733796ea1c6aed03c81aec4"
+  },
+  "osmBangladeshRiversPadmaB2": {
+    "_comment": "The OpenStreetMap ways the Rivers of Bangladesh picture's Padma system draws in Stage 2 batch b2 (the south-west: Mathabhanga, Kumar, Bhairab, Kapotaksha, Nabaganga, Chitra), each by way id, with node ids and tags, from tools/extract-bangladesh-rivers-system.mjs padma b2 (the way list is the Padma seed's geometry.extractBatches.b2). Every way carries a name, name:bn, name:en or wikidata tag naming its river (the user's rule, 2026-09-29). Only a deliberate re-run changes it.",
+    "file": "tools/sources/osm-bangladesh-rivers-padma-b2.geojson",
+    "fetched": "2026-09-29",
+    "snapshot": "2026-09-29T11:29:01Z",
+    "licence": "ODbL 1.0 — © OpenStreetMap contributors",
+    "sha256": "016d3bf63a1edf3f63142de757ebb8818ca0896e3a5d0adf827c794455f7a9a6"
   }
 }

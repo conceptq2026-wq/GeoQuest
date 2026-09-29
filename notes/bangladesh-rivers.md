@@ -28,8 +28,13 @@ finishes it. It is not in `docs/registry.json`.
     The Padma system: the Ganges–Padma (two main lines, `gangaPadma` from the
     frame's west edge, dashed outside Bangladesh, and `padma`, way 82854640,
     unchanged), the Gorai, Madhumati, Arial Khan and Bhagirathi
-    (distributaries) and the Mahananda (tributary, three reaches). The
-    Karnaphuli system (Stage 2, batch 5): the Karnaphuli (two main lines,
+    (distributaries) and the Mahananda (tributary, three reaches); from
+    Stage 2, batch 2, the south-west: the Mathabhanga, the Kumar (the OSM
+    Kumar that leaves the Padma, «কুমার (চুয়াডাঙ্গা)»), the Bhairab (its
+    Jashore–Khulna course, two reaches, «ভৈরব (যশোর)»), the Kapotaksha, the
+    Nabaganga (three reaches) and the Chitra (two reaches, «চিত্রা
+    (চুয়াডাঙ্গা)»), all distributaries. The Karnaphuli system (Stage 2,
+    batch 5): the Karnaphuli (two main lines,
     `karnaphuliUpper` from the border in Barkal into Kaptai Lake and
     `karnaphuli` from the lake's Kaptai arm to the sea, 14.6 km apart across
     the lake, which is not drawn), the Kasalong and the Halda (tributaries).
@@ -227,8 +232,12 @@ finishes it. It is not in `docs/registry.json`.
   tags; a way with no name, name:bn, name:en or wikidata tag is refused) into
   `tools/sources/osm-bangladesh-rivers-<system>.geojson`, pinned as
   `osmBangladeshRivers<System>`: the Padma's has 16 ways, snapshot
-  2026-09-29T09:49:40Z, SHA-256 `d15c0028…`. A way in two files must agree
-  within 1 m.
+  2026-09-29T09:49:40Z, SHA-256 `d15c0028…`; the Karnaphuli's 8 ways
+  (`61b86f20…`). A later batch of a system gets its own file, never a
+  re-fetch of an earlier one: `geometry.extractBatches.<batch>` → `…-<system>-<batch>.geojson`,
+  pinned as `osmBangladeshRivers<System><Batch>` (`tools/extract-bangladesh-rivers-system.mjs
+  <system> <batch>`): the Padma's b2, 41 ways (`016d3bf6…`). A way in two
+  files must agree within 1 m.
 - **Research,** outside git: `tools/.cache/bangladesh-rivers/`.
 
 ## How it is built
@@ -243,9 +252,9 @@ finishes it. It is not in `docs/registry.json`.
   units, one flat projection per frame that `tools/lib/rivers-frame.mjs`
   shares with the validator.
 - **The geometry pins,** one hash per line, in
-  `tools/bangladesh-rivers-pins.json` (26 lines: the pilot's 11, the Padma
-  system's 10 from Stage 1, the Karnaphuli system's 5 from Stage 2; no earlier
-  pin has moved). A build whose line moved stops and says so; it is never
+  `tools/bangladesh-rivers-pins.json` (36 lines: the pilot's 11, the Padma
+  system's 10 from Stage 1, from Stage 2 the Karnaphuli system's 5 (b5) and
+  the Padma south-west's 10 (b2); no earlier pin has moved). A build whose line moved stops and says so; it is never
   re-pinned to pass. A main river drawn as several lines must run end to end
   within 3 m (`gangaPadma→padma` 0.6 m), or a later piece joins the one
   before as a branch joins its parent (`join.parent`): by a connector up to
@@ -262,10 +271,10 @@ finishes it. It is not in `docs/registry.json`.
   two of its own), the frames, every branch card's four rows and the main
   card's «গতিপথ», ⓘ's plain lines each citing a listed source, the picker
   grouped by system, the pending list (the fields the seed holds as null,
-  listed by name in the validator; 12 after batch 5: the Jamuna's length; the
-  Padma's entry, course, length and distributaries; the Gorai's and
-  Madhumati's course; the Bhagirathi's other name; the Karnaphuli's length
-  and tributaries; the Kasalong's and Halda's course).
+  listed by name in the validator; 13 after batches 5 and 2: the Jamuna's
+  length; the Padma's entry, course, length and distributaries; the Gorai's,
+  Madhumati's and Chitra's course; the Bhagirathi's other name; the
+  Karnaphuli's length and tributaries; the Kasalong's and Halda's course).
 - **`node tools/verify.mjs`,** its bangladesh-rivers section, reading the pinned
   sources by checksum:
   - a. every marker, its source coordinate projected with the picture's own
@@ -274,8 +283,10 @@ finishes it. It is not in `docs/registry.json`.
     its parent line as drawn, or of a connector (one straight segment, at most
     12 km) that starts at that end and ends on the parent line; the list of
     connectors is printed. Karatoya, Atrai, Banshi, Madhumati, the
-    Mahananda's upper reach, the Karnaphuli's lower reach and the Kasalong
-    stay unjoined, each with its reason in the seed;
+    Mahananda's upper reach, the Mathabhanga, the Bhairab's Jashore reach,
+    the Nabaganga's two lower reaches, the Chitra's lower reach, the
+    Karnaphuli's lower reach and the Kasalong stay unjoined, each with its
+    reason in the seed;
   - c. the entry marker on COD-AB's border (500 m), and BWDB's point it was
     snapped from;
   - d. the main river one connected line, gaps 0 m, no duplicate segment, no

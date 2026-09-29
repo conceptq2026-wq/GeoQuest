@@ -98,9 +98,9 @@ const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa
 const BANGLADESH_RIVERS_SEEDS = path.join(ROOT, 'data-sources/bangladesh-rivers');
 // One pin per seed file: the common file and each system's (tools/lib/rivers-seed.mjs).
 const BANGLADESH_RIVERS_SEED_SHA256 = {
-  'bangladesh-rivers.seed.json': '6149b7847d950316fe6b89378e1407720386a9f2fde50194d6703670a14853b1',
+  'bangladesh-rivers.seed.json': 'd0f4af612a50906f2d99ecf4002e94ce75552c0d869a279d38de7414d8fa8853',
   'systems/jamuna.seed.json': 'e84123aea5bfbe78448f2555e16c43a94b13fbf8584a9f748949cfbcd7b2b0a8',
-  'systems/padma.seed.json': '0acdb09b460a12c90e77cb2151b44eaa9bb35d8e519f5648937490acbae8f5fe',
+  'systems/padma.seed.json': '6c25624eabb26e0bbc11913b84251a5704c632e8affaef80ee9ef4573e84a137',
   'systems/meghna.seed.json': 'faf14e3622fef05ee57ca9e4aac45340c8720ad82c5fcff4556b4f617fcb5f3f',
   'systems/karnaphuli.seed.json': '099bd0cfe66a36b9ae29270d7303dcba9097469698c7a29f1dfd8d0f152c8029',
 };
@@ -1864,7 +1864,7 @@ console.log('\n\n============ bangladesh-rivers (diagram) ============');
   const labels = Object.fromEntries(Object.entries(seed.labelsBn).filter(([k]) => !k.startsWith('_')));
   const countries = Object.fromEntries(Object.entries(seed.countries).filter(([k]) => !k.startsWith('_')));
   check(JSON.stringify(data.labels) === JSON.stringify(labels) && JSON.stringify(data.countries) === JSON.stringify(countries), `the ${Object.keys(labels).length} names on the lines and the ${Object.keys(countries).length} countries' are the seed's`);
-  const cardNames = new Set([...seed.entities.map((e) => e.nameBn), ...seed.markers.map((m) => m.nameBn), ...seed.continuations.map((c) => c.nameBn), ...seed.entities.filter((e) => e.role === 'main').flatMap((e) => String(e.values.alias ?? '').split('; ').map((s) => s.replace(/ \(.*\)$/, '')))]);
+  const cardNames = new Set([...seed.entities.flatMap((e) => [e.nameBn, e.nameBn.replace(/ \(.*\)$/, '')]), ...seed.markers.map((m) => m.nameBn), ...seed.continuations.map((c) => c.nameBn), ...seed.entities.filter((e) => e.role === 'main').flatMap((e) => String(e.values.alias ?? '').split('; ').map((s) => s.replace(/ \(.*\)$/, '')))]);
   const strayLabels = Object.entries(labels).filter(([, t]) => !cardNames.has(t));
   check(strayLabels.length === 0, `every name drawn on a line is a name a card gives${strayLabels.length ? ` — not ${strayLabels.map(([k]) => k).join(', ')}` : ''}`);
   const nullsInData = [];
@@ -1920,6 +1920,7 @@ console.log('\n\n============ bangladesh-rivers (diagram) ============');
     'gorai.values.course',
     'madhumati.values.course',
     'bhagirathi.values.alias',
+    'chitra.values.course',
     'karnaphuli.values.length',
     'karnaphuli.values.tributaries',
     'kasalong.values.course',

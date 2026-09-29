@@ -3,12 +3,13 @@
 // fetched by its way id, with the node ids that let a build trim a way at a
 // junction, and the tags that identify it.
 //
-//   node tools/extract-bangladesh-rivers-system.mjs <system>
+//   node tools/extract-bangladesh-rivers-system.mjs <system> [<batch>]
 //
-// The ways are the system seed's `geometry.extract` (group → ids), in
-// data-sources/bangladesh-rivers/systems/<system>.seed.json: one list, read by
-// this tool and by the build. Output: tools/sources/osm-bangladesh-rivers-<system>.geojson
-// (ODbL). Every way is read by id, never by search, so the file is exactly that
+// The ways are the system seed's `geometry.extract` (group → ids), or, for a later
+// batch, its `geometry.extractBatches.<batch>`, in
+// data-sources/bangladesh-rivers/systems/<system>.seed.json: one list, read by this
+// tool and by the build. Output: tools/sources/osm-bangladesh-rivers-<system>.geojson,
+// or …-<system>-<batch>.geojson (ODbL), so an earlier extract is never re-fetched. Every way is read by id, never by search, so the file is exactly that
 // list; a way carrying no name, name:bn, name:en or wikidata tag is refused (the
 // user's rule, 2026-09-29) unless the seed lists it under `evidence`. Re-run
 // only on purpose, then review the diff and update its checksum in sources.json.
@@ -23,12 +24,13 @@ const SYSTEMS = path.join(ROOT, 'data-sources', 'bangladesh-rivers', 'systems');
 const OUT_DIR = path.join(ROOT, 'tools', 'sources');
 const UA = { 'User-Agent': 'GeoQuest map build (educational maps)' };
 
-const system = process.argv[2];
-if (!/^[a-z]+$/.test(system ?? '')) throw new Error('usage: node tools/extract-bangladesh-rivers-system.mjs <system>');
+const [system, batch] = process.argv.slice(2);
+if (!/^[a-z]+$/.test(system ?? '') || (batch !== undefined && !/^[a-z0-9]+$/.test(batch))) throw new Error('usage: node tools/extract-bangladesh-rivers-system.mjs <system> [<batch>]');
 const seed = JSON.parse(fs.readFileSync(path.join(SYSTEMS, `${system}.seed.json`), 'utf8'));
-const WAYS = seed.geometry?.extract;
-if (!WAYS || !Object.keys(WAYS).length) throw new Error(`systems/${system}.seed.json lists no geometry.extract`);
-const OUT = path.join(OUT_DIR, `osm-bangladesh-rivers-${system}.geojson`);
+const WAYS = batch ? seed.geometry?.extractBatches?.[batch] : seed.geometry?.extract;
+if (!WAYS || !Object.keys(WAYS).length) throw new Error(`systems/${system}.seed.json lists no ${batch ? `geometry.extractBatches.${batch}` : 'geometry.extract'}`);
+const name = batch ? `${system}-${batch}` : system;
+const OUT = path.join(OUT_DIR, `osm-bangladesh-rivers-${name}.geojson`);
 
 const EP = ['https://overpass-api.de/api/interpreter', 'https://overpass.private.coffee/api/interpreter', 'https://overpass.kumi.systems/api/interpreter'];
 async function overpass(query) {
@@ -68,8 +70,8 @@ for (const f of features) if (f.properties.nodes.length !== f.geometry.coordinat
 
 const snapshot = res.osm3s?.timestamp_osm_base ?? null;
 const fetched = new Date().toISOString().slice(0, 10);
-const json = JSON.stringify({ type: 'FeatureCollection', properties: { licence: 'ODbL 1.0 — © OpenStreetMap contributors', system, fetched, snapshot }, features });
+const json = JSON.stringify({ type: 'FeatureCollection', properties: { licence: 'ODbL 1.0 — © OpenStreetMap contributors', system, ...(batch ? { batch } : {}), fetched, snapshot }, features });
 fs.writeFileSync(OUT, json);
 const buf = Buffer.from(json);
 console.log(`${features.length} ways, snapshot ${snapshot}, fetched ${fetched}, ${buf.length} bytes`);
-console.log(JSON.stringify({ _comment: `the OpenStreetMap ways the Rivers of Bangladesh picture's ${system} system draws beyond the other pinned files, by way id, with node ids and tags, from tools/extract-bangladesh-rivers-system.mjs ${system}`, file: path.relative(ROOT, OUT).replace(/\\/g, '/'), fetched, snapshot, licence: 'ODbL 1.0 — © OpenStreetMap contributors', sha256: crypto.createHash('sha256').update(buf).digest('hex') }, null, 2));
+console.log(JSON.stringify({ _comment: `the OpenStreetMap ways the Rivers of Bangladesh picture's ${system} system draws${batch ? ` in batch ${batch}` : ''} beyond the other pinned files, by way id, with node ids and tags, from tools/extract-bangladesh-rivers-system.mjs ${name.replace('-', ' ')}`, file: path.relative(ROOT, OUT).replace(/\\/g, '/'), fetched, snapshot, licence: 'ODbL 1.0 — © OpenStreetMap contributors', sha256: crypto.createHash('sha256').update(buf).digest('hex') }, null, 2));
