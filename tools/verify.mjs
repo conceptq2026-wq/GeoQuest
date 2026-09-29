@@ -608,6 +608,54 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
     const dev = /worst chain vertex ([\d.]+) m/.exec(sayM)?.[1];
     check(sameM && dev !== undefined && Number(dev) <= 15, `map: the build reproduces the ${builtM.length} committed files byte for byte; every chain vertex within ${dev} m of the drawn line (limit 15 m)${sameM ? '' : ` — ${sayM.split('\n').slice(0, 3).join(' | ')}`}`);
     console.log(`bangladesh-rivers-map: a. ${mapMarkerIds.length} markers at their coordinates; ${note.join('; ')}; c. entry ${round(cM, 3)} m from the border; d. main ${mainPieces.length} pieces, 0 gaps; f. entry ${round(fDash, 3)} / ${round(fSolid, 3)} m`);
+
+    // ---- parity (M4): the diagram and the map, from their built files, say the same (the user's check, 2026-09-30) ----
+    // Cards and picker groups, card rows word for word, markers' cards, ⓘ's lines but the items one product
+    // alone draws (the seed's `only`), line ids and roles, and the pending facts. A difference fails.
+    {
+      const dData = readJ(path.join(RIVERS_DIR, 'data.json'));
+      const dFrames = ['frame-whole.json', 'frame-bangladesh.json'].map((f) => readJ(path.join(RIVERS_DIR, f)));
+      const mDesc = mapGj('descriptor.json');
+      const mRivers = mapGj('rivers.json');
+      const mInfo = mapGj('info.json');
+      const rowOrder = S.ui.rowOrder;
+      const diffs = [];
+      // Cards and their groups, in the picker's order.
+      const dCards = dData.picker.map((q) => `${q.key}|${q.group}|${q.label}`);
+      const mCards = Object.entries(mRivers).map(([k, r]) => `${k}|${r.system}|${r.nameBn}`);
+      if (JSON.stringify(dCards) !== JSON.stringify(mCards)) diffs.push('cards or their groups');
+      const mGroups = mDesc.controls.find((c) => c.type === 'picker').groupBy.order.map((g) => `${g}|${mDesc.lookups.systems[g].nameBn}`);
+      if (JSON.stringify(dData.pickerGroups.map((g) => `${g.value}|${g.label}`)) !== JSON.stringify(mGroups)) diffs.push('picker groups');
+      // Rows, word for word: the diagram ships a card's shown rows; the map the same, and a null for each pending one.
+      let pendingD = 0;
+      let pendingM = 0;
+      for (const [k, r] of Object.entries(mRivers)) {
+        const shown = Object.fromEntries(rowOrder.filter((f) => f in r && r[f] !== null).map((f) => [f, r[f]]));
+        if (JSON.stringify(shown) !== JSON.stringify(dData.entities[k]?.values ?? null)) diffs.push(`rows of ${k}`);
+        pendingM += rowOrder.filter((f) => r[f] === null).length;
+      }
+      // Pending: a row the seed holds as null is shown by neither, and is the map's null.
+      for (const e of S.entities) for (const [f, v] of Object.entries(e.values)) if (v === null) (pendingD += !(f in (dData.entities[e.id]?.values ?? {})) ? 1 : 0);
+      if (pendingD !== pendingM) diffs.push(`pending ${pendingD} / ${pendingM}`);
+      // Markers' cards, for the markers both draw.
+      const mMarks = mapGj('marks.json');
+      for (const [k, m] of Object.entries(mMarks)) {
+        const d = dData.markers[k];
+        if (!d || d.name !== m.nameBn || d.kind !== m.kind || d.entity !== m.river || m[d.row] !== d.value) diffs.push(`marker ${k}`);
+      }
+      // ⓘ's lines, but the items the seed keeps to one product.
+      const onlyTexts = new Set(S.infoBn.lines.filter((l) => l.only).map((l) => l.textBn));
+      const dLines = dData.credits.filter((c) => c.group).map((c) => `${c.group}|${c.title}`).filter((t) => !onlyTexts.has(t.split('|').slice(1).join('|')));
+      const mLines = mInfo.lines.map((l) => `${l.group}|${l.text}`).filter((t) => !onlyTexts.has(t.split('|').slice(1).join('|')));
+      if (JSON.stringify(dLines) !== JSON.stringify(mLines)) diffs.push('ⓘ lines');
+      const flaggedD = dData.credits.filter((c) => c.group && onlyTexts.has(c.title)).length;
+      const flaggedM = mInfo.lines.filter((l) => onlyTexts.has(l.text)).length;
+      // Line ids and roles: every line either frame draws, and the map's, each with its card's role.
+      const dLineRoles = [...new Map(dFrames.flatMap((f) => f.lines.map((l) => [l.id, l.role]))).entries()].sort().map(([k, r]) => `${k}|${r}`);
+      const mLineRoles = [...new Map(features.map((f) => [f.properties.line, mRivers[f.properties.key].role])).entries()].sort().map(([k, r]) => `${k}|${r}`);
+      if (JSON.stringify(dLineRoles) !== JSON.stringify(mLineRoles)) diffs.push('line ids or roles');
+      check(diffs.length === 0, `parity: diagram and map — ${dCards.length} cards in ${mGroups.length} groups, their rows word for word, ${Object.keys(mMarks).length} markers' cards, ${dLines.length} ⓘ lines alike (the diagram's own ${flaggedD} and the map's own ${flaggedM} set aside by the seed's only), ${dLineRoles.length} line ids and roles, ${pendingD} pending facts${diffs.length ? ` — differ: ${diffs.join('; ')}` : ''}`);
+    }
   }
 }
 

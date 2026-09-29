@@ -42,6 +42,9 @@ rules and verification budget apply.
   label as it stands, and `order` must name every value that occurs.
 - A tap on overlapping points goes to the one **nearest the finger**, not the
   first the renderer lists.
+- **`minTextSize`** (2026-09-30): 14 or absent. With it the shell draws no text
+  on that map under 14 px (`notes/shell.md`); the validator holds the map's own
+  layers to it and `tools/check.mjs` scans the page and the style.
 - **`tapWidth`** on a tapped source (2026-09-30) sets its invisible hit
   layer's width in px: a line's tap band, a point's tap disc. Without it a
   line's band is 22 px and a point's disc 44 px, as before; the rivers map

@@ -17,6 +17,10 @@
 // depth checked against 44 px), and checks each card opens; taps every record drawn
 // on the map at a point where it alone is under the finger, and checks a card
 // opens; and reports console messages and any request to a host but ours.
+// On a map with view tabs (views) it also frames each picker group's first
+// record in every tab past the first and taps a tab a selection disables;
+// with minTextSize it scans the page and the style for smaller text; the zoom
+// each picker step's frame settles at goes to <size>-frames.txt.
 // Screenshots go to tools/.check/<id>/ as contact sheets, never to stdout. A
 // work-in-progress item with nothing built yet opens the preview's «কাজ চলছে»
 // page, and only its card and that page are checked.

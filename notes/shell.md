@@ -122,10 +122,24 @@ drawn now (`drawn`), and read a file of the map's own folder (`file`).
   copied in each time it opens), then the lines of `file` (`{ lines: [{ text,
   group }] }`, `group` "notes" or "conflicts") under their headings. 14 px
   text; the panel scrolls inside itself.
-- A capability is proved on a **test map outside `docs/`** first:
+- A capability may be proved on a **test map outside `docs/`** first:
   `tools/fixtures/<name>/`, never published, checked by
-  `node tools/check.mjs --fixture=tools/fixtures/<name>`; `shell-m1` holds
-  focus, legend, info, view tabs, the 44 px hit layer and the wide basemap.
+  `node tools/check.mjs --fixture=tools/fixtures/<name>`. M1's `shell-m1` was
+  removed in M4 (2026-09-30): the rivers map draws everything it held, under
+  `node tools/check.mjs bangladesh-rivers-map`.
+- **View tabs say more by `views`** (M3, 2026-09-30): `views: { <tab>: {
+  selectionFrame?, enabledBy?, disabledNote? } }`. `selectionFrame` names a
+  bbox field: while that tab is open the tabs module's action `fitTab` (run by
+  the picker and taps after `select`) frames the selection there, and picking
+  the tab frames it there too — the selection stays. `enabledBy` names a
+  boolean field: a selected record holding false disables the tab (greyed,
+  44 px, aria-disabled, a tap does nothing), and `disabledNote`, a value spec
+  on the tab's row, says why in ⓘ's row; a selection that disables the open
+  tab opens the first left. The module tells others the open tab
+  (`activeTab()`); focus's `idleByTab` rests a tab on a set of its own.
+- **`minTextSize: 14`** (M3): no text under 14 px on that map — every label's
+  size in its style floored (the basemap's, the baseline's, its own), the
+  shell's chrome under `[data-min-text]` in style.css. Other maps unchanged.
 
 ## Teardown is derived, not written
 
