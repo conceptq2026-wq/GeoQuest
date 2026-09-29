@@ -207,6 +207,30 @@
       "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=5&Rivers=809",
       "sha256": "2a3811a50c63d91936eb5613ae0b2322015fdd678197547469d7382980a84f8e"
     },
+    "bwdbNE66": {
+      "title": "মনু (নদীর তথ্য, NE-66)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=3&Rivers=471",
+      "sha256": "6f51633235561a1b17b18b5eda21c00e97a64e78e09e8192c7b02c1c7c74dcd4"
+    },
+    "bwdbSE4": {
+      "title": "গোমতী (নদীর তথ্য, SE-4)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=5&Rivers=804",
+      "sha256": "a0ad59851d338e185c498b0250b5d136fc733f53a6a7028d96f1a52d9c4ec943"
+    },
+    "bwdbNE22": {
+      "title": "খোয়াই (নদীর তথ্য, NE-22)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=3&Rivers=423",
+      "sha256": "c389c1bd921b15ebc9a192cb4479d6ce34175a1286892c9f4c4d24478ae3cb9a"
+    },
+    "bwdbNC47": {
+      "title": "বুড়িগঙ্গা (নদীর তথ্য, NC-47)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=2&Rivers=647",
+      "sha256": "4db641df653b5561bed0a373c20c3a25ab83e114f2453efa601b8d7816f61725"
+    },
     "bwdbSW76": {
       "title": "মাথাভাঙ্গা (নদীর তথ্য, SW-76)",
       "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
@@ -393,6 +417,18 @@
       "publisher": "Bengali Wikipedia (revision 9068298; read 2026-09-29)",
       "url": "https://bn.wikipedia.org/w/index.php?oldid=9068298",
       "sha256": "d86596de26f81ffc7862dcf964f8679b0c681b88a85aff0322d30b57ef98386e"
+    },
+    "bnwGumti": {
+      "title": "গোমতী নদী (কুমিল্লা)",
+      "publisher": "Bengali Wikipedia (revision 9087187; read 2026-09-29)",
+      "url": "https://bn.wikipedia.org/w/index.php?oldid=9087187",
+      "sha256": "4fcaed8b459ce06c42637cf35840bdb1e6212573b81118b1e1dc3ee0a2bbb351"
+    },
+    "bnwKhowai": {
+      "title": "খোয়াই নদী",
+      "publisher": "Bengali Wikipedia (revision 7058138; read 2026-09-29)",
+      "url": "https://bn.wikipedia.org/w/index.php?oldid=7058138",
+      "sha256": "304af173a6f41b4a5e9f6001c92a171c43bbf2ec8a8b7fbe8d80dfed333ea473"
     }
   },
   "countries": {
@@ -427,7 +463,9 @@
         "padma": "tools/sources/osm-bangladesh-rivers-padma.geojson",
         "karnaphuli": "tools/sources/osm-bangladesh-rivers-karnaphuli.geojson",
         "padma-b2": "tools/sources/osm-bangladesh-rivers-padma-b2.geojson",
-        "meghna-b3": "tools/sources/osm-bangladesh-rivers-meghna-b3.geojson"
+        "meghna-b3": "tools/sources/osm-bangladesh-rivers-meghna-b3.geojson",
+        "meghna-b4": "tools/sources/osm-bangladesh-rivers-meghna-b4.geojson",
+        "jamuna-b4": "tools/sources/osm-bangladesh-rivers-jamuna-b4.geojson"
       }
     },
     "frames": {
@@ -542,7 +580,7 @@
     "_about": "Plain lines under ⓘ, in two headed blocks after the sources (`group`: notes, then conflicts; ui.creditGroupsBn names the three blocks), each in this order (the user's decisions, Prompt 40 Part B, 2026-09-29): the two lines on the drawn joins, in the user's words; where COD-AB puts the drawn lines' ends that a card's source words place otherwise; the Karatoya that is not drawn; then one line per source conflict, the card's (winning) value first — the source order is the books («ভূগোল ও পরিবেশ» before «বাংলাদেশ ও বিশ্বপরিচয়»), BWDB and JRCB, Bengali then English Wikipedia, newspapers, Banglapedia.",
     "lines": [
       {
-        "textBn": "নদীর সংযোগ-রেখা (ধরলা, তিস্তা, শীতলক্ষ্যা, ধলেশ্বরী, আড়িয়াল খাঁ, মহানন্দা, ভাগীরথী, ভৈরব, কপোতাক্ষ, নবগঙ্গা, চিত্রা, সুরমা, কুশিয়ারা) আনুমানিক আঁকা।",
+        "textBn": "নদীর সংযোগ-রেখা (ধরলা, তিস্তা, শীতলক্ষ্যা, ধলেশ্বরী, আড়িয়াল খাঁ, মহানন্দা, ভাগীরথী, ভৈরব, কপোতাক্ষ, নবগঙ্গা, চিত্রা, সুরমা, কুশিয়ারা, মনু, গোমতী, খোয়াই) আনুমানিক আঁকা।",
         "group": "notes",
         "sources": [
           {
@@ -564,6 +602,11 @@
             "source": "osm",
             "where": "the gaps the batch b3 connectors bridge (the pinned snapshot)",
             "states": "Surma 10.2 km (from Nikli, where OSM's Ghorautra begins) and Kushiyara 9.8 km (from Austagram) to the Meghna's nearest point"
+          },
+          {
+            "source": "osm",
+            "where": "the gaps the batch b4 connectors bridge (the Meghna system's b4 extract)",
+            "states": "Manu 0.1 km (between its reaches); Gumti 12.0 km (to the Meghna); Khowai 7.2 km (to the Kushiyara)"
           }
         ]
       },
@@ -632,7 +675,7 @@
         ]
       },
       {
-        "textBn": "ডেটায় যতদূর নদীপথ পাওয়া গেছে ততদূর আঁকা হয়েছে, তাই কিছু নদীর আঁকা রেখা কার্ডে লেখা উৎপত্তিস্থল থেকে শুরু হয়নি (যেমন করতোয়া, আত্রাই, ধলেশ্বরী, বংশী, শীতলক্ষ্যা, পুরাতন ব্রহ্মপুত্র, মধুমতী, ভাগীরথী, কুমার, ভৈরব, কপোতাক্ষ, কর্ণফুলী, হালদা)।",
+        "textBn": "ডেটায় যতদূর নদীপথ পাওয়া গেছে ততদূর আঁকা হয়েছে, তাই কিছু নদীর আঁকা রেখা কার্ডে লেখা উৎপত্তিস্থল থেকে শুরু হয়নি (যেমন করতোয়া, আত্রাই, ধলেশ্বরী, বংশী, শীতলক্ষ্যা, পুরাতন ব্রহ্মপুত্র, মধুমতী, ভাগীরথী, কুমার, ভৈরব, কপোতাক্ষ, গোমতী, কর্ণফুলী, হালদা)।",
         "group": "notes",
         "sources": [
           {
@@ -760,6 +803,27 @@
             "source": "codab",
             "where": "bgd_admin3: the upazilas holding the drawn ends",
             "states": "Nikli, Kishoreganj; Austagram, Kishoreganj"
+          }
+        ]
+      },
+      {
+        "textBn": "বইয়ে নাম থাকলেও ছবিতে আঁকা হয়নি: বাউলাই, ধনু, বোয়ালখালী, রাঙখিয়াং ও চিংড়ি — ডেটায় এই নামে কোনো নদীপথ পাওয়া যায়নি।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "osm",
+            "where": "name searches over every waterway in the regions the books place them (osm-b4, osm-b5)",
+            "states": "no way or relation named Baulai, Dhanu, Boalkhali, Rankhiang or Chingri under any spelling"
+          },
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩, চিত্র ১০.৩; পৃ. ১৫৪ [bgeo]",
+            "states": "বাউলাই; ধনু; বোয়ালখালী; রাঙখিয়াং; চিংড়ি"
+          },
+          {
+            "source": "user",
+            "where": "the rule: a river with no usable pinned line is left out, never drawn from memory",
+            "states": "the user, 2026-09-29"
           }
         ]
       },
@@ -1635,6 +1699,90 @@
             "source": "user",
             "where": "decision 2: a length whose reach differs between sources stays hidden, as the Jamuna's and the Padma's",
             "states": "the user, 2026-09-29"
+          }
+        ]
+      },
+      {
+        "textBn": "মনুর পতিত স্থল: বই — মেঘনার উপনদী বা শাখা নদী; পানি উন্নয়ন বোর্ড ও যৌথ নদী কমিশন — মৌলভীবাজার সদর উপজেলায় কুশিয়ারা নদীতে পতিত।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "মনু, বাউলাই, তিতাস, গোমতী মেঘনার উপনদী"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the মেঘনা paragraph [b910]",
+            "states": "মনু, তিতাস, গোমতী, বাউলাই মেঘনার শাখা নদী"
+          },
+          {
+            "source": "bwdbNE66",
+            "where": "§1.1 বর্ণনা [B4-G2]",
+            "states": "একই জেলার সদর উপজেলার আখাইলকুড়া ইউনিয়নে কুশিয়ারা নদীতে পতিত হয়েছে"
+          },
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, p. ৬ row ৪১, পতিতমুখ [B4-J1]",
+            "states": "কুশিয়ারা নদী মৌলভী বাজার জেলার সদর উপজেলা"
+          }
+        ]
+      },
+      {
+        "textBn": "গোমতীর উৎপত্তি: যৌথ নদী কমিশন — ডামুর উত্তর-পূর্ব পর্বতমালা, ত্রিপুরা; বাংলা উইকিপিডিয়া — ত্রিপুরার ডুম্বুর হ্রদ এলাকা।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, p. ৭ row ৫০ [B4-J1]",
+            "states": "ডামুর উত্তর-পূর্ব পর্বতমালা, ত্রিপুরা, ভারত"
+          },
+          {
+            "source": "bnwGumti",
+            "where": "the lead [B4-W2]",
+            "states": "গোমতী নদী ভারতের ত্রিপুরা রাজ্যের উত্তর-পূর্ব পার্বত্য অঞ্চলের ডুম্বুর হ্রদ (Dumbur Lake) এলাকা থেকে উৎপন্ন হয়েছে।"
+          }
+        ]
+      },
+      {
+        "textBn": "বুড়িগঙ্গা: বই — ধলেশ্বরীর শাখানদী, মুন্সীগঞ্জের কাছে মিলিত জলধারা মেঘনায়; পানি উন্নয়ন বোর্ড — তুরাগ নদী থেকে উৎপন্ন, নারায়ণগঞ্জের বক্তাবলীতে ধলেশ্বরী নদীতে পতিত, আর ধলেশ্বরীর বিবরণে তার উপনদী।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪ [bgeo]",
+            "states": "ধলেশ্বরীর শাখানদী বুড়িগঙ্গা"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the মেঘনা paragraph [b910]",
+            "states": "মুন্সীগঞ্জের কাছে বুড়িগঙ্গা, ধলেশ্বরী ও শীতলক্ষ্যার মিলিত জলধারাই মেঘনায় এসে যুক্ত হয়েছে।"
+          },
+          {
+            "source": "bwdbNC47",
+            "where": "§1.1 বর্ণনা [B4-G5]",
+            "states": "তুরাগ নদী থেকে উৎপন্ন হয়ে নারায়ণগঞ্জ সদর উপজেলার বক্তাবলী ইউনিয়নের ধলেশ্বরী নদীতে পতিত হয়েছে"
+          },
+          {
+            "source": "bwdbNC27",
+            "where": "§1.9 উপনদী [B4-G13]",
+            "states": "উপনদী : বংশী, বুড়িগঙ্গা, …"
+          }
+        ]
+      },
+      {
+        "textBn": "খোয়াই: পানি উন্নয়ন বোর্ড — চুনারুঘাটের গাজীপুর ইউনিয়ন দিয়ে প্রবেশ, অষ্টগ্রামে কুশিয়ারা নদীতে পতিত; বাংলা উইকিপিডিয়া — সিলেট জেলার বাল্লা দিয়ে প্রবেশ, মেঘনা নদীতে পতিত।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bwdbNE22",
+            "where": "§1.1 বর্ণনা [B4-G6]",
+            "states": "হবিগঞ্জ জেলার চুনারুঘাট উপজেলার গাজীপুর ইউনিয়ন দিয়ে বাংলাদেশে প্রবেশ করে পরবর্তীতে কিশোরগঞ্জ জেলায় অষ্টগ্রাম উপজেলার খায়েরপুর-আবদুল্লাপুর ইউনিয়নে কুশিয়ারা নদীতে পতিত হয়েছে"
+          },
+          {
+            "source": "bnwKhowai",
+            "where": "the lead [B4-W4]",
+            "states": "সিলেট জেলার বাল্লা নামক স্থান দিয়ে বাংলাদেশে প্রবেশ করে; নদীটি হবিগঞ্জ জেলার পূর্বপ্রান্ত দিয়ে প্রবাহিত হয়ে মেঘনা নদীতে গিয়ে মিশেছে।"
           }
         ]
       }

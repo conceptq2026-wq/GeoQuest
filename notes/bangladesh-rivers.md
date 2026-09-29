@@ -48,8 +48,15 @@ finishes it. It is not in `docs/registry.json`.
     them) and the Titas («তিতাস (ব্রাহ্মণবাড়িয়া)»; the books make it the
     Meghna's tributary and distributary). The Surma and the Kushiyara join the
     Meghna by connectors (10.4 and 9.9 km). Left out: the Kalni (OSM has no
-    Kalni below Ajmiriganj, where it tags the stream Kushiyara). No grey
-    continuation remains.
+    Kalni below Ajmiriganj, where it tags the stream Kushiyara). Batch 4
+    adds the Manu and the Gumti (`disputed`, as the Titas; the Gumti's last
+    12.7 km are four unnamed members of its «Gomati» relation, and its end is
+    12.0 km from the Meghna, a connector), the Khowai (the Kushiyara's
+    tributary, in neither book: BWDB's card) and, in the Jamuna system, the
+    Buriganga (the Dhaleshwari's distributary, drawn from the Turag to the
+    Dhaleshwari as OSM and BWDB have it). Left out: the Baulai and the Dhanu
+    (no OSM way under any spelling). One ⓘ note names every river the books
+    give that is not drawn. No grey continuation remains.
 - **Line roles:** `main`, `tributary`, `distributary`, `continuation`,
   and `disputed` (Stage 2, the user's rule b): a river the two books give
   different roles is drawn violet (#7e57c2), neither role's colour, and the
@@ -246,7 +253,10 @@ finishes it. It is not in `docs/registry.json`.
   re-fetch of an earlier one: `geometry.extractBatches.<batch>` → `…-<system>-<batch>.geojson`,
   pinned as `osmBangladeshRivers<System><Batch>` (`tools/extract-bangladesh-rivers-system.mjs
   <system> <batch>`): the Padma's b2, 41 ways (`016d3bf6…`); the Meghna's
-  b3, 6 ways (`eb26c514…`). The extractor refuses an Overpass answer whose
+  b3, 6 ways (`eb26c514…`); the Meghna's b4, 29 ways (`fce48299…`; its
+  group «evidence» holds the four unnamed «Gomati» relation members, the one
+  group the tag rule exempts); the Jamuna's b4, the Buriganga's one way
+  (`d31d584f…`). The extractor refuses an Overpass answer whose
   data is more than two days old: a mirror once served a May snapshot with
   older way versions. A way in two
   files must agree within 1 m.
@@ -266,8 +276,9 @@ finishes it. It is not in `docs/registry.json`.
 - **The geometry pins,** one hash per line, in
   `tools/bangladesh-rivers-pins.json` (36 lines: the pilot's 11, the Padma
   system's 10 from Stage 1, from Stage 2 the Karnaphuli system's 5 (b5),
-  the Padma south-west's 10 (b2) and the Meghna core's 5 (b3; the pinned
-  `meghna` line changed role, not ways); no earlier pin has moved). A build whose line moved stops and says so; it is never
+  the Padma south-west's 10 (b2), the Meghna core's 5 (b3; the pinned
+  `meghna` line changed role, not ways) and batch 4's 5; 46 in all, no
+  earlier pin has moved). A build whose line moved stops and says so; it is never
   re-pinned to pass. A main river drawn as several lines must run end to end
   within 3 m (`gangaPadma→padma` 0.6 m), or a later piece joins the one
   before as a branch joins its parent (`join.parent`): by a connector up to
@@ -284,13 +295,15 @@ finishes it. It is not in `docs/registry.json`.
   two of its own), the frames, every branch card's four rows and the main
   card's «গতিপথ», ⓘ's plain lines each citing a listed source, the picker
   grouped by system, the pending list (the fields the seed holds as null,
-  listed by name in the validator; 26 after batches 5, 2 and 3: the
-  Jamuna's length; the Padma's entry, course, length and distributaries; the
-  Gorai's, Madhumati's and Chitra's course; the Bhagirathi's other name; the
-  Meghna's length, tributaries and distributaries; the Barak's relation,
-  entry, course and end; the Surma's relation and origin; the Kushiyara's
-  relation, other names and origin; the Titas's relation; the Karnaphuli's
-  length and tributaries; the Kasalong's and Halda's course).
+  listed by name in the validator; 32 after Stage 2: the Jamuna's length;
+  the Buriganga's course; the Padma's entry, course, length and
+  distributaries; the Gorai's, Madhumati's and Chitra's course; the
+  Bhagirathi's other name; the Meghna's length, tributaries and
+  distributaries; the Barak's relation, entry, course and end; the Surma's
+  relation and origin; the Kushiyara's relation, other names and origin; the
+  Titas's relation; the Manu's and Gumti's relation and course; the Khowai's
+  course; the Karnaphuli's length and tributaries; the Kasalong's and
+  Halda's course).
 - **`node tools/verify.mjs`,** its bangladesh-rivers section, reading the pinned
   sources by checksum:
   - a. every marker, its source coordinate projected with the picture's own

@@ -1,5 +1,5 @@
 {
-  "_about": "The Meghna system (Stage 2, batch b3): the Meghna — a card, drawn as two main lines, the new upper stretch from where OSM names it (near Austagram) to Bhairab and the pinned line on to 22.38°N — the Barak, Surma and Kushiyara, and the Titas; those four in the `disputed` role, because the two books give them different roles. Left out: the Kalni (OSM has no Kalni below Ajmiriganj, where it tags the stream Kushiyara; only two fragments in Sunamganj). Research: tools/.cache/bangladesh-rivers/research4-b3.md (quote ids B3-…) and osm-b3/ways.md.",
+  "_about": "The Meghna system (Stage 2, batch b3): the Meghna — a card, drawn as two main lines, the new upper stretch from where OSM names it (near Austagram) to Bhairab and the pinned line on to 22.38°N — the Barak, Surma and Kushiyara, and the Titas; those four in the `disputed` role, because the two books give them different roles. Left out: the Kalni (OSM has no Kalni below Ajmiriganj, where it tags the stream Kushiyara; only two fragments in Sunamganj). Research: tools/.cache/bangladesh-rivers/research4-b3.md (quote ids B3-…) and osm-b3/ways.md. Stage 2, batch b4: the Manu and the Gumti (`disputed`, as the Titas) and the Khowai (the Kushiyara's tributary, in neither book), from osm-bangladesh-rivers-meghna-b4.geojson. Left out: the Baulai and the Dhanu (no OSM way under any spelling).",
   "id": "meghna",
   "nameBn": "মেঘনা",
   "labelsBn": {
@@ -8,7 +8,10 @@
     "barak": "বরাক",
     "surma": "সুরমা",
     "kushiyara": "কুশিয়ারা",
-    "titas": "তিতাস"
+    "titas": "তিতাস",
+    "manu": "মনু",
+    "gumti": "গোমতী",
+    "khowai": "খোয়াই"
   },
   "frames": {
     "bangladesh": {
@@ -18,7 +21,11 @@
         "barak",
         "surma",
         "kushiyara",
-        "titas"
+        "titas",
+        "manu",
+        "manu2",
+        "gumti",
+        "khowai"
       ],
       "labels": [
         {
@@ -67,6 +74,30 @@
           "near": [
             91.13,
             24.05
+          ]
+        },
+        {
+          "id": "manu",
+          "line": "manu2",
+          "near": [
+            91.9,
+            24.4
+          ]
+        },
+        {
+          "id": "gumti",
+          "line": "gumti",
+          "near": [
+            91,
+            23.5
+          ]
+        },
+        {
+          "id": "khowai",
+          "line": "khowai",
+          "near": [
+            91.5,
+            24.1
           ]
         }
       ]
@@ -201,6 +232,96 @@
           "source": "OSM node 4242523054, the end of way 424888079 on the Meghna's way 685430035 (node 8), in Sarail"
         },
         "identified": "Three ways tagged \"Titas River\" (this batch's extract): from the Meghna at Sarail (424888079), on 484348101 from its node 2 (4770917200, where 424888079 meets it; its first 1 km, a spur, is trimmed), to 608406115's dead end near Brahmanbaria town. Not drawn: two side channels (608414930 and 174635641, the latter tagged «তিতাস নদী», Nabinagar–Akhaura), whose ends lie 7.3 and 10.4 km from anything drawn."
+      },
+      "manu": {
+        "entity": "manu",
+        "role": "disputed",
+        "ways": [
+          385125251,
+          226207289
+        ],
+        "down": [
+          92.0282,
+          24.1589
+        ],
+        "join": {
+          "parent": "manu2",
+          "end": "tail"
+        },
+        "identified": "Ways 385125251 and 226207289, tagged \"Manu\" (this batch's extract): from the head, where OSM's named Manu begins (unnamed above 23.84°N), to a node 116 m from the next reach; the only link is the unnamed 226207293 (0.1 km), so a connector bridges it."
+      },
+      "manu2": {
+        "entity": "manu",
+        "role": "disputed",
+        "ways": [
+          138303224,
+          138303225,
+          138303223,
+          1350748277,
+          226207288
+        ],
+        "down": [
+          91.7278,
+          24.5959
+        ],
+        "join": {
+          "parent": "kushiyara",
+          "end": "tail",
+          "node": 2355854687,
+          "source": "OSM node 2355854687, the last node of way 226207288, vertex 110 of the Kushiyara's way 45425289 (the pinned snapshot has the same vertex)"
+        },
+        "identified": "Five ways tagged \"Manu\" / \"Manu River\" (this batch's extract), the last four in relation 12567903, every link sharing a node, to the Kushiyara."
+      },
+      "gumti": {
+        "entity": "gumti",
+        "role": "disputed",
+        "ways": [
+          385231477,
+          666494987,
+          541015478,
+          167237546,
+          751313521,
+          751313522,
+          657221639,
+          657221638,
+          657547208,
+          658054205,
+          661947700,
+          727209047,
+          727209048,
+          666869552,
+          669298761,
+          669298760,
+          666869553
+        ],
+        "down": [
+          90.7015,
+          23.529
+        ],
+        "join": {
+          "parent": "meghna",
+          "end": "tail"
+        },
+        "identified": "Seventeen ways, every link sharing a node (this batch's extract): the first thirteen tagged \"Gomati River\", \"Gomti River\" / «গোমতি নদী» or «গোমতী নদী»; the last four (666869552, 669298761, 669298760, 666869553, 12.7 km) unnamed, chosen as members of relation 12567907 \"Gomati\", which holds the river's named ways (the user's rule allows relation membership; the relation's wikidata tag, Q477676, is the Indian Gomti — an OSM mis-tag). Its end is 11,959 m from the Meghna — under the 12 km a connector may bridge; OSM's only link, 661973291, is unnamed."
+      },
+      "khowai": {
+        "entity": "khowai",
+        "role": "tributary",
+        "ways": [
+          666494986,
+          385120916,
+          385120914,
+          666494985,
+          133807038
+        ],
+        "down": [
+          91.2298,
+          24.3466
+        ],
+        "join": {
+          "parent": "kushiyara"
+        },
+        "identified": "Five ways tagged \"Khowai\", \"Khowai River\" / «খোয়াই নদী» or \"River Khowai\" (this batch's extract), every link sharing a node. Its end joins nothing in OSM: 7.2 km from the Kushiyara's last vertex, so a connector joins it."
       }
     },
     "extractBatches": {
@@ -214,6 +335,45 @@
           424888079,
           484348101,
           608406115
+        ]
+      },
+      "b4": {
+        "manu": [
+          385125251,
+          226207289,
+          138303224,
+          138303225,
+          138303223,
+          1350748277,
+          226207288
+        ],
+        "gumti": [
+          385231477,
+          666494987,
+          541015478,
+          167237546,
+          751313521,
+          751313522,
+          657221639,
+          657221638,
+          657547208,
+          658054205,
+          661947700,
+          727209047,
+          727209048
+        ],
+        "evidence": [
+          666869552,
+          669298761,
+          669298760,
+          666869553
+        ],
+        "khowai": [
+          666494986,
+          385120916,
+          385120914,
+          666494985,
+          133807038
         ]
       }
     }
@@ -527,6 +687,152 @@
         ]
       },
       "review": "BWDB SE-9 «তিতাস (ব্রাহ্মণবাড়িয়া)», matched by the two book maps (the text gives no district); five other BWDB Titas entries ruled out. Relation null: B-GEO «উপনদী», B910 «শাখা নদী», BWDB SE-17 lists it as an «আন্তঃশাখা নদী» (ⓘ). BWDB's origin off the Meghna and mouth back into it take no side between the books. The drawn line runs from the Meghna at Sarail to a dead end near Brahmanbaria town; OSM has no continuous Titas on to Nabinagar (ⓘ)."
+    },
+    {
+      "id": "manu",
+      "role": "disputed",
+      "nameBn": "মনু",
+      "values": {
+        "relation": null,
+        "origin": "ভারত",
+        "entry": "মৌলভীবাজার জেলার কুলাউড়া উপজেলার শরীফপুর ইউনিয়ন",
+        "course": null,
+        "mouth": "মৌলভীবাজার জেলার মৌলভীবাজার সদর উপজেলার আখাইলকুড়া ইউনিয়নে কুশিয়ারা নদীতে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "মনু"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the মেঘনা paragraph [b910]",
+            "states": "মনু"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbNE66",
+            "where": "§1.1 বর্ণনা; §1.4 [B4-G2]",
+            "states": "মনু নদী ভারত হতে উৎপন্ন হয়ে; ভারত"
+          }
+        ],
+        "entry": [
+          {
+            "source": "bwdbNE66",
+            "where": "§1.1 বর্ণনা [B4-G2]",
+            "states": "মৌলভীবাজার জেলার কুলাউড়া উপজেলার শরীফপুর ইউনিয়ন দিয়ে বাংলাদেশে প্রবেশ করে"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bwdbNE66",
+            "where": "§1.1 বর্ণনা; §1.4 পতিতমুখ [B4-G2]",
+            "states": "একই জেলার সদর উপজেলার আখাইলকুড়া ইউনিয়নে কুশিয়ারা নদীতে পতিত হয়েছে; কুশিয়ারা | চানপুর (অংশ) | আখাইলকুড়া | মৌলভীবাজার সদর | মৌলভীবাজার | সিলেট"
+          }
+        ]
+      },
+      "review": "BWDB NE-66 (JRCB row ৪১). Relation null: B-GEO «মেঘনার উপনদী», B910 «মেঘনার শাখা নদী» (ⓘ); BWDB, JRCB and both maps have it fall into the Kushiyara (ⓘ). Origin: BWDB names only «ভারত»; JRCB's «ভারতের ত্রিপুরার পাহাড়» does not conflict (the editor may prefer it). Course null: BWDB's one sentence is origin, entry and mouth. Other names: MISSING."
+    },
+    {
+      "id": "gumti",
+      "role": "disputed",
+      "nameBn": "গোমতী",
+      "values": {
+        "relation": null,
+        "origin": "ডামুর উত্তর-পূর্ব পর্বতমালা, ত্রিপুরা, ভারত",
+        "entry": "কুমিল্লা জেলার আদর্শ সদর উপজেলার জগন্নাথপুর ইউনিয়ন",
+        "course": null,
+        "confluence": "কুমিল্লা জেলার দাউদকান্দি উপজেলার মেঘনা (আপার) নদীতে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "গোমতী"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the মেঘনা paragraph [b910]",
+            "states": "গোমতী"
+          }
+        ],
+        "origin": [
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, p. ৭ row ৫০, উৎপত্তিস্থল [B4-J1]",
+            "states": "ডামুর উত্তর-পূর্ব পর্বতমালা, ত্রিপুরা, ভারত"
+          }
+        ],
+        "entry": [
+          {
+            "source": "bwdbSE4",
+            "where": "§1.1 বর্ণনা [B4-G3]",
+            "states": "নদীটি কুমিল্লা জেলার আদর্শ সদর উপজেলার জগন্নাথপুর ইউনিয়ন দিয়ে বাংলাদেশে প্রবেশ করে"
+          }
+        ],
+        "confluence": [
+          {
+            "source": "bwdbSE4",
+            "where": "§1.1 বর্ণনা; §1.4 পতিতমুখ [B4-G3]",
+            "states": "একই জেলার দাউদকান্দি উপজেলার মেঘনা (আপার) নদীতে পতিত হয়েছে; মেঘনা (আপার) | উত্তর নছরদ্দি | ওয়ার্ড নং ০৮ | দাউদকান্দি | কুমিল্লা | চট্টগ্রাম"
+          }
+        ]
+      },
+      "review": "BWDB SE-4 (JRCB row ৫০). Relation null: B-GEO «মেঘনার উপনদী», B910 «মেঘনার শাখা নদী» (ⓘ); BWDB's Upper Meghna list and JRCB's outfall side with B-GEO. Origin from JRCB: BWDB states none. bn WP puts the source at the Dumbur lake (ⓘ). Course null: BWDB's one sentence is entry and mouth. The drawn line ends 12.0 km from the Meghna (a connector), using four unnamed ways of the «Gomati» relation."
+    },
+    {
+      "id": "khowai",
+      "role": "tributary",
+      "nameBn": "খোয়াই",
+      "values": {
+        "relation": "কুশিয়ারার উপনদী",
+        "origin": "ভারত",
+        "entry": "হবিগঞ্জ জেলার চুনারুঘাট উপজেলার গাজীপুর ইউনিয়ন",
+        "course": null,
+        "mouth": "কিশোরগঞ্জ জেলায় অষ্টগ্রাম উপজেলার খায়েরপুর-আবদুল্লাপুর ইউনিয়নে কুশিয়ারা নদীতে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bwdbNE22",
+            "where": "the heading [B4-G6]",
+            "states": "খোয়াই"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bwdbNE17",
+            "where": "§1.9 উপনদী [B4-G11]",
+            "states": "উপনদী : … খোয়াই, মনু, …"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbNE22",
+            "where": "§1.1 বর্ণনা [B4-G6]",
+            "states": "নদীটি ভারত হতে উৎপন্ন হয়ে"
+          }
+        ],
+        "entry": [
+          {
+            "source": "bwdbNE22",
+            "where": "§1.1 বর্ণনা [B4-G6]",
+            "states": "হবিগঞ্জ জেলার চুনারুঘাট উপজেলার গাজীপুর ইউনিয়ন দিয়ে বাংলাদেশে প্রবেশ করে"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bwdbNE22",
+            "where": "§1.1 বর্ণনা [B4-G6]",
+            "states": "কিশোরগঞ্জ জেলায় অষ্টগ্রাম উপজেলার খায়েরপুর-আবদুল্লাপুর ইউনিয়নে কুশিয়ারা নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "In neither book (text or map); the card is BWDB NE-22, then JRCB row ৪৪ (the Stage 1 decision 3: fewer fields, the same card). The relation is BWDB's Kushiyara list. Origin: BWDB «ভারত»; JRCB «ভারতের ত্রিপুরার পুর্বাঞ্চলের পাহাড়» (as printed) does not conflict. bn WP gives another entry (Balla, Sylhet) and mouth (the Meghna) — ⓘ. Course null. Other names: MISSING (bn WP's ancient name comes from an unreferenced legend)."
     }
   ]
 }

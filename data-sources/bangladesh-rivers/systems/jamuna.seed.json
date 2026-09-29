@@ -13,7 +13,8 @@
     "dhaleshwari": "ধলেশ্বরী",
     "banshi": "বংশী",
     "shitalakshya": "শীতলক্ষ্যা",
-    "oldBrahmaputra": "পুরাতন ব্রহ্মপুত্র নদ"
+    "oldBrahmaputra": "পুরাতন ব্রহ্মপুত্র নদ",
+    "buriganga": "বুড়িগঙ্গা"
   },
   "frames": {
     "whole": {
@@ -61,7 +62,8 @@
         "dhaleshwari",
         "banshi",
         "shitalakshya",
-        "oldBrahmaputra"
+        "oldBrahmaputra",
+        "buriganga"
       ],
       "markers": [
         "entry",
@@ -149,6 +151,14 @@
           "near": [
             90.5,
             24.6
+          ]
+        },
+        {
+          "id": "buriganga",
+          "line": "buriganga",
+          "near": [
+            90.4,
+            23.7
           ]
         }
       ]
@@ -402,6 +412,31 @@
         },
         "exempt": "The drawn line's upstream end is the OSM course of the river; no source plots the offtake — BWDB's NC-37 lists it near Fulchhari, Gaibandha (25.2616°N, 89.7172°E), which is not the book's Dewanganj — so there is no join point and no split marker.",
         "identified": "The river is drawn through way 255332935, named «Ariāl Khan River» in OSM (37.6 km) — a name mismatch identified by connectivity: it joins the Old Brahmaputra ways on both sides and runs on to BWDB's mouth. Ways 1262235705, 1262235706, 929230691, 136383902, 119373978, 622181033, 321520913 and 607637590 carry the snapshot's river property «oldBrahmaputra». Way 101999102 is unnamed (see the Shitalakshya); only its first six nodes are used here. The OSM loop named for the Old Brahmaputra (ways 337081762 and 756867297) is not drawn; way 928996321 duplicates 321520913 and is not drawn."
+      },
+      "buriganga": {
+        "entity": "buriganga",
+        "role": "distributary",
+        "ways": [
+          722862311
+        ],
+        "down": [
+          90.4497,
+          23.6266
+        ],
+        "join": {
+          "parent": "dhaleshwari",
+          "end": "tail",
+          "node": 1556433623,
+          "source": "OSM node 1556433623, the last node of way 722862311, the joint of the Dhaleshwari's ways 929186912 and 929186913"
+        },
+        "identified": "Way 722862311 (v9, edited 2026-09-27, when OSM merged 829191016 and 722862310 into it), tagged «বুড়িগঙ্গা নদী» / Buriganga River, wikidata Q2991464, relation 12566431 (Jamuna system's b4 extract): from the Turag at node 2619894539 to the Dhaleshwari. OSM has no Buriganga leaving the Dhaleshwari; the drawn line meets its parent at its lower end (join.end), as BWDB describes it. Not drawn: 13 short ways tagged Buriganga that branch off westward (643043084…643043093)."
+      }
+    },
+    "extractBatches": {
+      "b4": {
+        "buriganga": [
+          722862311
+        ]
       }
     }
   },
@@ -1263,6 +1298,53 @@
         ]
       },
       "review": "B-GEO's text calls this course the Brahmaputra itself; its map labels it «পুরাতন ব্রহ্মপুত্র নদ», and B910 says the Brahmaputra's main stream once flowed through Mymensingh. The relation row follows the map and the user's earlier decision, with BWDB's distributary list. BWDB (NC-37) gives the offtake at Pagalarchar, Erendabari, Fulchhari, Gaibandha (25.26155, 89.71722) and the outfall at Raipura, Narsingdi (both in ⓘ). BWDB's length is 288 km. It falls into the Meghna, so the row is «পতিত স্থল». Other names: none in any source (MISSING)."
+    },
+    {
+      "id": "buriganga",
+      "role": "distributary",
+      "nameBn": "বুড়িগঙ্গা",
+      "values": {
+        "relation": "ধলেশ্বরীর শাখানদী",
+        "origin": "ঢাকা জেলার সাভার উপজেলার আমিনবাজার ইউনিয়নের তুরাগ নদী থেকে",
+        "course": null,
+        "mouth": "মুন্সীগঞ্জের কাছে (বুড়িগঙ্গা, ধলেশ্বরী ও শীতলক্ষ্যার মিলিত জলধারা) মেঘনায়"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪ [bgeo]",
+            "states": "বুড়িগঙ্গা"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the যমুনা paragraph [bgeo]",
+            "states": "ধলেশ্বরীর শাখানদী বুড়িগঙ্গা"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২ [b910]",
+            "states": "ধলেশ্বরীর শাখা নদী– বুড়িগঙ্গা"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbNC47",
+            "where": "§1.1 বর্ণনা [B4-G5]",
+            "states": "বুড়িগঙ্গা নদীটি ঢাকা জেলার সাভার উপজেলার আমিনবাজার ইউনিয়নের তুরাগ নদী থেকে উৎপন্ন হয়ে"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the মেঘনা paragraph [b910]",
+            "states": "মুন্সীগঞ্জের কাছে বুড়িগঙ্গা, ধলেশ্বরী ও শীতলক্ষ্যার মিলিত জলধারাই মেঘনায় এসে যুক্ত হয়েছে।"
+          }
+        ]
+      },
+      "review": "BWDB NC-47. The books agree it is the Dhaleshwari's distributary; BWDB has it rise from the Turag, fall into the Dhaleshwari at Baktaboli, and lists it among the Dhaleshwari's «উপনদী» (ⓘ). The mouth is B910's combined flow into the Meghna, as on the Dhaleshwari's and Shitalakshya's cards. Course null: BWDB's one sentence is origin and mouth. Other names: MISSING. The drawn line runs from the Turag to the Dhaleshwari, as OSM and BWDB have it."
     }
   ]
 }

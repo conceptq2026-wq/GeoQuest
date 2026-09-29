@@ -279,5 +279,21 @@
     "snapshot": "2026-09-29T11:53:20Z",
     "licence": "ODbL 1.0 — © OpenStreetMap contributors",
     "sha256": "eb26c51441d495f3c41051b22179e24dc9753328d4b282007f231089904f0e6f"
+  },
+  "osmBangladeshRiversMeghnaB4": {
+    "_comment": "The OpenStreetMap ways the Rivers of Bangladesh picture's Meghna system draws in Stage 2 batch b4 — the Manu, the Gumti and the Khowai — each by way id, with node ids and tags, from tools/extract-bangladesh-rivers-system.mjs meghna b4 (the way list is the Meghna seed's geometry.extractBatches.b4). Every way carries a name, name:bn, name:en or wikidata tag naming its river, except the group «evidence»: four unnamed ways chosen as members of the Gumti's relation 12567907 «Gomati» (the user's rule allows relation membership). Only a deliberate re-run changes it.",
+    "file": "tools/sources/osm-bangladesh-rivers-meghna-b4.geojson",
+    "fetched": "2026-09-29",
+    "snapshot": "2026-09-29T11:56:21Z",
+    "licence": "ODbL 1.0 — © OpenStreetMap contributors",
+    "sha256": "fce482992e594d8a71a3200e59efab0bf7533546096e024ddd996101975a8386"
+  },
+  "osmBangladeshRiversJamunaB4": {
+    "_comment": "The OpenStreetMap way the Rivers of Bangladesh picture's Jamuna system draws in Stage 2 batch b4 — the Buriganga — by way id, with node ids and tags, from tools/extract-bangladesh-rivers-system.mjs jamuna b4 (the way list is the Jamuna seed's geometry.extractBatches.b4). Only a deliberate re-run changes it.",
+    "file": "tools/sources/osm-bangladesh-rivers-jamuna-b4.geojson",
+    "fetched": "2026-09-29",
+    "snapshot": "2026-09-29T12:01:27Z",
+    "licence": "ODbL 1.0 — © OpenStreetMap contributors",
+    "sha256": "d31d584fa0aaa4c575afd41ada5437442e0200fb251e68a2e3b5cdead94bdffc"
   }
 }

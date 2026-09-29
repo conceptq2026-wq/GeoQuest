@@ -98,10 +98,10 @@ const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa
 const BANGLADESH_RIVERS_SEEDS = path.join(ROOT, 'data-sources/bangladesh-rivers');
 // One pin per seed file: the common file and each system's (tools/lib/rivers-seed.mjs).
 const BANGLADESH_RIVERS_SEED_SHA256 = {
-  'bangladesh-rivers.seed.json': '7e16190208b155916be7ece947f5e69863da0532d80fc24f502602c4b1809905',
-  'systems/jamuna.seed.json': 'e84123aea5bfbe78448f2555e16c43a94b13fbf8584a9f748949cfbcd7b2b0a8',
+  'bangladesh-rivers.seed.json': '8c8269b4f4994c04660a19ebddcdf040453f5cdcddabf2ba3b4474b9e3d8472c',
+  'systems/jamuna.seed.json': '2cdb4cbdbf0f5fd9eadd7a86329770e83056e30ec5ae5c8441b77b18d716e3d8',
   'systems/padma.seed.json': '6c25624eabb26e0bbc11913b84251a5704c632e8affaef80ee9ef4573e84a137',
-  'systems/meghna.seed.json': '340c12d47ce0f83934910a27f9e1debd5318a5dac268755e67fbeff4f1dd60c2',
+  'systems/meghna.seed.json': '194545cc305d7c71954bb21022583d8ee411a307d3b76951871060e1641ae353',
   'systems/karnaphuli.seed.json': '099bd0cfe66a36b9ae29270d7303dcba9097469698c7a29f1dfd8d0f152c8029',
 };
 // The latitude-longitude globe: the editor's seed, the pinned sources (its
@@ -1913,6 +1913,7 @@ console.log('\n\n============ bangladesh-rivers (diagram) ============');
   // where the two books disagree, the row is null; a row no source gives is null.
   const WANT_PENDING = [
     'main.values.length',
+    'buriganga.values.course',
     'padma.values.entry',
     'padma.values.course',
     'padma.values.length',
@@ -1934,6 +1935,11 @@ console.log('\n\n============ bangladesh-rivers (diagram) ============');
     'kushiyara.values.alias',
     'kushiyara.values.origin',
     'titas.values.relation',
+    'manu.values.relation',
+    'manu.values.course',
+    'gumti.values.relation',
+    'gumti.values.course',
+    'khowai.values.course',
     'karnaphuli.values.length',
     'karnaphuli.values.tributaries',
     'kasalong.values.course',
