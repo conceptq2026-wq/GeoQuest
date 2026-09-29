@@ -23,6 +23,9 @@ const OUT = path.join(ROOT, 'docs/registry.json');
 // docs/ while its work continues, and stays out of the registry — so off the
 // live home page — until it leaves the list. Change here if it moves.
 const WIP = path.join(HERE, 'wip.json');
+// A card's words its descriptor does not give: a Bengali title of its own, an optional one-line caption
+// (the user's decision, 2026-09-30). Change here if it moves.
+const HOME_CARDS = path.join(HERE, 'home-cards.json');
 
 /*
  * The three BCS Preliminary subject divisions, in syllabus order, then বিবিধ
@@ -55,6 +58,7 @@ const KINDS = [
 
 const inProgress = new Set((JSON.parse(fs.readFileSync(WIP, 'utf8')).items ?? []).map((w) => `${w.kind === 'diagram' ? 'diagrams/' : ''}${w.id}`));
 
+const homeCards = fs.existsSync(HOME_CARDS) ? JSON.parse(fs.readFileSync(HOME_CARDS, 'utf8')).cards ?? {} : {};
 const problems = [];
 const entries = [];
 const leftOut = [];
@@ -74,7 +78,9 @@ for (const { kind, prefix, ids } of KINDS) {
     if (d.id !== id) problems.push(`${name}: descriptor says id "${d.id}", which is not its folder name`);
     if (!SECTIONS.includes(d.section)) problems.push(`${name}: section "${d.section}" is not one of ${SECTIONS.join(', ')}`);
     if (!d.title?.en || !d.title?.bn) problems.push(`${name}: title needs both en and bn`);
-    entries.push({ id: d.id, ...(kind ? { kind } : {}), section: d.section, title: { en: d.title?.en, bn: d.title?.bn } });
+    const card = homeCards[d.id];
+    if (card && (card.kind === 'diagram') !== (kind === 'diagram')) problems.push(`${name}: tools/home-cards.json calls it a ${card.kind}`);
+    entries.push({ id: d.id, ...(kind ? { kind } : {}), section: d.section, title: { en: d.title?.en, bn: card?.titleBn ?? d.title?.bn }, ...(card?.captionBn ? { caption: { bn: card.captionBn } } : {}) });
   }
 }
 
@@ -90,6 +96,11 @@ if (problems.length) {
   process.exit(1);
 }
 
+for (const id of Object.keys(homeCards)) if (!entries.some((e) => e.id === id)) problems.push(`tools/home-cards.json: ${id} is no finished map or diagram`);
+if (problems.length) {
+  console.error(`the registry cannot be generated:\n  ${problems.join('\n  ')}`);
+  process.exit(1);
+}
 // Section order first, then id, so the file is stable across runs and
 // reviewable as a diff.
 entries.sort((a, b) => SECTIONS.indexOf(a.section) - SECTIONS.indexOf(b.section) || (a.id < b.id ? -1 : 1));

@@ -1,0 +1,15 @@
+{
+  "_about": "Words for a home-page card that its descriptor does not give (the user's decision, 2026-09-30): a card's Bengali title where it differs from its page's (titleBn), and an optional one-line caption (captionBn). tools/build-registry.mjs merges them into docs/registry.json — title.bn replaced, caption { bn } added — and tools/verify.mjs holds every entry here to a finished map or diagram of the same kind, the caption to one line of Bengali. A card with no entry here is its descriptor's, with no caption.",
+  "cards": {
+    "bangladesh-rivers": {
+      "kind": "diagram",
+      "titleBn": "নদী ১",
+      "captionBn": "বাংলাদেশের নদ-নদীর সম্পর্ক এক নজরে (ছবি)"
+    },
+    "bangladesh-rivers-map": {
+      "kind": "map",
+      "titleBn": "নদী ২",
+      "captionBn": "ম্যাপে নদী বেছে শাখা-উপনদী ও গতিপথ দেখুন"
+    }
+  }
+}

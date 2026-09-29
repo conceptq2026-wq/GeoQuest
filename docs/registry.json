@@ -16,6 +16,29 @@
       }
     },
     {
+      "id": "bangladesh-rivers",
+      "kind": "diagram",
+      "section": "bangladesh",
+      "title": {
+        "en": "Rivers of Bangladesh",
+        "bn": "নদী ১"
+      },
+      "caption": {
+        "bn": "বাংলাদেশের নদ-নদীর সম্পর্ক এক নজরে (ছবি)"
+      }
+    },
+    {
+      "id": "bangladesh-rivers-map",
+      "section": "bangladesh",
+      "title": {
+        "en": "Rivers of Bangladesh (map)",
+        "bn": "নদী ২"
+      },
+      "caption": {
+        "bn": "ম্যাপে নদী বেছে শাখা-উপনদী ও গতিপথ দেখুন"
+      }
+    },
+    {
       "id": "liberation-war-1971",
       "section": "bangladesh",
       "title": {

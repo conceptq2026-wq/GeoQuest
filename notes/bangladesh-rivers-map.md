@@ -3,8 +3,9 @@
 The Rivers of Bangladesh seed drawn by the map shell (MapLibre), beside the SVG
 diagram `bangladesh-rivers`, which stays live and maintenance-only (the user's
 decision, Prompt 51 Part B, 2026-09-30); its four built files stay byte for
-byte what they were. Work in progress: in `tools/wip.json` only (the preview's
-cards «নদী ১», the diagram, and «নদী ২», this map), not in the registry. Built in
+byte what they were. Live since 2026-09-30, with the diagram: on the home
+page this map is «নদী ২», captioned «ম্যাপে নদী বেছে শাখা-উপনদী ও গতিপথ দেখুন»,
+and the diagram «নদী ১» (`tools/home-cards.json`). Built in
 stages: M1 the shell capabilities (`notes/shell.md`), M2 the Bangladesh view,
 M3 «পুরো পথ», M4 parity with the diagram — all done, 2026-09-30.
 

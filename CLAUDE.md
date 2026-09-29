@@ -101,7 +101,7 @@ shell/index.html?map=straits
 Not one folder per map. Each map's data lives in its own file so its source can
 later change from a local file to a fetch from the app's Gateway without
 touching anything else. A diagram is opened the same way by a second page,
-`visual/index.html?v=<id>` — built, with three diagrams live (see
+`visual/index.html?v=<id>` — built, with four diagrams live (see
 **Interactive diagrams**).
 
 `docs/` is the served tree. **Invariant: the committed contents of `docs/` are
@@ -121,7 +121,9 @@ none. The pages themselves are not versioned: a cached page loads its own
 assets, old but consistent, until it expires.
 
 The home page lists `docs/registry.json`, which is built, never written by
-hand: `notes/home-and-registry.md`.
+hand: `notes/home-and-registry.md`. A card's own words — a Bengali title
+that differs from its page's, an optional one-line caption — come from
+`tools/home-cards.json` (2026-09-30).
 
 ## Portability is the point
 
@@ -400,20 +402,18 @@ State which kind a task is when reporting it.
 
 ## Current state
 
-- Twelve maps. Bangladesh: `ancient-janapadas` and `liberation-war-1971`.
-  International: `straits`, `border-lines`, `org-headquarters`,
-  `environment-treaties`. Geography: `deserts`, `lakes`, `forests`,
-  `mountains`, `waterfalls` and `latitude-longitude`, all under `docs/maps/`.
-- Work in progress (`tools/wip.json`): `bangladesh-rivers`, a diagram in the
-  Bangladesh section drawn in code, built one river system at a time — the
-  Jamuna, the Padma, the Meghna and the south-east («দক্ষিণ পূর্বাঞ্চল», with the Karnaphuli) so far (`notes/bangladesh-rivers.md`); local preview
-  only, not in the registry. Beside it, `bangladesh-rivers-map`, the same
-  seed on the map shell, in `docs/maps/` (`notes/bangladesh-rivers-map.md`):
-  both tabs, «বাংলাদেশে» and «পুরো পথ» (M1–M4 done, 2026-09-30); the diagram
-  is kept, maintenance-only. On the preview's home page they are «নদী ১» and
-  «নদী ২» (`tools/wip.json`).
-- Three diagrams, under বিবিধ: `atmosphere-layers`, `earth-interior` and
-  `seasons`, in `docs/diagrams/`.
+- Thirteen maps. Bangladesh: `ancient-janapadas`, `liberation-war-1971` and
+  `bangladesh-rivers-map` («নদী ২»). International: `straits`,
+  `border-lines`, `org-headquarters`, `environment-treaties`. Geography:
+  `deserts`, `lakes`, `forests`, `mountains`, `waterfalls` and
+  `latitude-longitude`, all under `docs/maps/`.
+- Four diagrams, in `docs/diagrams/`: `bangladesh-rivers` («নদী ১») under
+  বাংলাদেশ, drawn in code from the rivers seed (`notes/bangladesh-rivers.md`),
+  maintenance-only beside the map of the same seed
+  (`notes/bangladesh-rivers-map.md`); `atmosphere-layers`, `earth-interior`
+  and `seasons` under বিবিধ. Both rivers products went live together
+  (2026-09-30), with the home page's first captions.
+- Work in progress (`tools/wip.json`): none.
 
 ## Index — notes, read only when working on that item
 

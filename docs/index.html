@@ -105,6 +105,14 @@
         color: #5b6878;
         font-size: 13px;
       }
+      /* An optional one-line caption (a registry entry's "caption"): a card without one is drawn as before. */
+      .card-caption {
+        display: block;
+        margin-top: 3px;
+        color: #3f4d5e;
+        font-size: 14px;
+        line-height: 1.35;
+      }
       .card-arrow {
         flex: 0 0 auto;
         color: #0b5cad;
@@ -181,6 +189,8 @@
                       el('span', { className: 'card-text' }, [
                         el('span', { className: 'card-title', textContent: m.title.en }),
                         el('span', { className: 'card-desc', lang: 'bn', textContent: m.title.bn }),
+                        // A caption, where the entry has one; absent, the card is exactly as it was.
+                        ...(m.caption?.bn ? [el('span', { className: 'card-caption', lang: 'bn', textContent: m.caption.bn })] : []),
                       ]),
                       el('span', { className: 'card-arrow', ariaHidden: 'true', textContent: '›' }),
                     ]),

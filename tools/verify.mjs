@@ -793,11 +793,23 @@ check(
 );
 // Each entry exactly as the generator writes it: { id, section, title } for a
 // map, with no new field, and "kind": "diagram" after the id for a diagram.
+// A card's own words (tools/home-cards.json, 2026-09-30): a Bengali title, an optional one-line caption.
+const homeCards = JSON.parse(fs.readFileSync(path.join(HERE, 'home-cards.json'), 'utf8')).cards ?? {};
 const drifted = registry.maps.filter((entry) => {
   const d = descriptors[keyOf(entry)];
   const kind = entry.kind ? { kind: entry.kind } : {};
-  return d && JSON.stringify(entry) !== JSON.stringify({ id: d.id, ...kind, section: d.section, title: { en: d.title?.en, bn: d.title?.bn } });
+  const card = homeCards[entry.id];
+  return d && JSON.stringify(entry) !== JSON.stringify({ id: d.id, ...kind, section: d.section, title: { en: d.title?.en, bn: card?.titleBn ?? d.title?.bn }, ...(card?.captionBn ? { caption: { bn: card.captionBn } } : {}) });
 });
+{
+  const bad = Object.entries(homeCards).filter(([id, c]) => {
+    const entry = registry.maps.find((e) => e.id === id);
+    const oneLine = (t) => typeof t === 'string' && /[ঀ-৿]/.test(t) && !/[\n\r]/.test(t) && t === t.trim() && t.length <= 60;
+    return !entry || (entry.kind === 'diagram') !== (c.kind === 'diagram') || Object.keys(c).some((k) => !['kind', 'titleBn', 'captionBn'].includes(k)) || (c.titleBn !== undefined && !oneLine(c.titleBn)) || (c.captionBn !== undefined && !oneLine(c.captionBn));
+  });
+  const captioned = registry.maps.filter((e) => e.caption);
+  check(bad.length === 0 && captioned.every((e) => homeCards[e.id]?.captionBn === e.caption.bn && Object.keys(e.caption).join() === 'bn'), `tools/home-cards.json: each of its ${Object.keys(homeCards).length} cards is a finished map or diagram of its kind, its title and caption one line of Bengali (≤ 60 characters); ${captioned.length} registry entries carry a caption, every one from it${bad.length ? ` — not: ${bad.map(([id]) => id).join(', ')}` : ''}`);
+}
 check(
   drifted.length === 0,
   `every registry entry matches its descriptor${drifted.length ? ` — ${drifted.map((e) => e.id).join(', ')} stale, re-run tools/build-registry.mjs` : ''}`,

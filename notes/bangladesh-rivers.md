@@ -4,9 +4,10 @@ A diagram in the Bangladesh section, «বাংলাদেশের নদ-ন
 Bangladesh": the country's rivers, one **river system** at a time — the
 Brahmaputra–Jamuna (the pilot) and, from Stage 1, the Padma — **a picture drawn
 in code**, not a tile map (the user's decision, Prompt 37, 2026-09-29). It
-**stays in the work in progress**
-(`tools/wip.json`, kind `diagram`) — local preview only — until the user
-finishes it. It is not in `docs/registry.json`.
+**stayed in the work in progress**
+(`tools/wip.json`) until 2026-09-30, when it went live with the map of the
+same seed: on the home page it is «নদী ১», captioned «বাংলাদেশের নদ-নদীর
+সম্পর্ক এক নজরে (ছবি)» (`tools/home-cards.json`).
 
 ## What is on it
 
