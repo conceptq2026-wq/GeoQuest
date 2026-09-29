@@ -255,5 +255,13 @@
     "snapshot": "2026-09-29T09:49:40Z",
     "licence": "ODbL 1.0 — © OpenStreetMap contributors",
     "sha256": "d15c00282a1c305cfcf9cf27100de45ba40a4538ad0025d8818ec932af094f1c"
+  },
+  "osmBangladeshRiversKarnaphuli": {
+    "_comment": "The OpenStreetMap ways the Rivers of Bangladesh picture's Karnaphuli system draws beyond the rivers snapshot — the Kasalong and the Halda — each by way id, with node ids and tags, from tools/extract-bangladesh-rivers-system.mjs karnaphuli (the way list is the system seed's geometry.extract). Every way carries a name, name:bn, name:en or wikidata tag naming its river (the user's rule, 2026-09-29). Only a deliberate re-run changes it.",
+    "file": "tools/sources/osm-bangladesh-rivers-karnaphuli.geojson",
+    "fetched": "2026-09-29",
+    "snapshot": "2026-09-29T11:21:51Z",
+    "licence": "ODbL 1.0 — © OpenStreetMap contributors",
+    "sha256": "61b86f2026839bd12ddda8a419eab7b59ea95b284733796ea1c6aed03c81aec4"
   }
 }

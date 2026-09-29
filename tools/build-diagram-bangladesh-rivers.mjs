@@ -200,17 +200,30 @@ const junction = Math.min(...lines.meghna.coords.map((p) => distM(p, padmaEnd)))
 if (junction > JUNCTION_M) fail(`the Padma ends ${round(junction)} m from the nearest Meghna vertex (limit ${JUNCTION_M} m)`);
 const mainToPadma = distM(mainCoords.at(-1), lines.padma.coords[0]);
 if (mainToPadma > JOIN_M) fail(`the Jamuna's end is ${round(mainToPadma)} m from the Padma's start (limit ${JOIN_M} m)`);
-// Another system's main river may be drawn as several lines, in the seed's order: each begins where the last ends.
+// Another system's main river may be drawn as several lines, in the seed's order: each begins where the
+// last ends — or, a piece of it, joins the last as a branch joins its parent (`join.parent`, by a connector
+// up to CONNECT_MAX_M, or unjoined with the seed's reason).
 const mainJoins = [];
 for (const e of seed.entities.filter((x) => x.role === 'main' && x.id !== 'main')) {
   const ids = Object.keys(G.lines).filter((id) => G.lines[id].entity === e.id);
   if (ids.some((id) => lines[id].role !== 'main')) fail(`${e.id}: every line of a main river's card is a main line`);
   for (let i = 1; i < ids.length; i++) {
     const gap = distM(lines[ids[i - 1]].coords.at(-1), lines[ids[i]].coords[0]);
-    if (gap > CHAIN_TOL_M) fail(`${e.id}: ${ids[i]} begins ${round(gap)} m from where ${ids[i - 1]} ends (limit ${CHAIN_TOL_M} m)`);
-    mainJoins.push(`${ids[i - 1]}→${ids[i]} ${round(gap, 1)} m`);
+    const piece = G.lines[ids[i]].join?.parent === ids[i - 1];
+    if (gap > CHAIN_TOL_M && !piece) fail(`${e.id}: ${ids[i]} begins ${round(gap)} m from where ${ids[i - 1]} ends (limit ${CHAIN_TOL_M} m), and is not a piece joined to it`);
+    mainJoins.push(`${ids[i - 1]}→${ids[i]} ${round(gap, 1)} m${piece ? ' (a piece)' : ''}`);
   }
 }
+// Which end of a line meets its parent: a tributary's mouth, a distributary's head, a main river's later piece's
+// head; a line whose role the books dispute says which (`join.end`), as its course, not its role, decides.
+const BRANCH_ROLES = new Set(['tributary', 'distributary', 'disputed']);
+const joinsParent = (l) => BRANCH_ROLES.has(l.role) || (l.role === 'main' && Boolean(l.spec?.join?.parent));
+const parentSideAtTail = (l) => {
+  const end = l.spec?.join?.end;
+  if (end !== undefined && end !== 'head' && end !== 'tail') fail(`${l.id}: join.end is «${end}», not head or tail`);
+  if (l.role === 'disputed' && !end) fail(`${l.id}: a line whose role the books dispute must say which end meets its parent (join.end)`);
+  return end ? end === 'tail' : l.role === 'tributary';
+};
 
 // The line hashes.
 const drawnHashes = Object.fromEntries(Object.keys(lines).map((id) => [id, hashLine(lines[id].coords)]));
@@ -321,6 +334,9 @@ if (sundarganj > SUNDARGANJ_M) fail(`the Teesta's mouth is ${round(sundarganj)} 
 // Its card and marker name only the district COD-AB agrees with (the user's policy, as for the entry).
 if (!admin3.features.some((f) => f.properties.adm2_name === 'Gaibandha' && inside(markerSeed.teestaConfluence.lonLat, indexed(f.geometry)))) fail("the Teesta's mouth is not in COD-AB's Gaibandha district, as its card says");
 upazilaChecks.push('teestaConfluence in Gaibandha district');
+// The Karnaphuli's mouth: its card names only the city, «চট্টগ্রাম শহরের কাছে»; COD-AB must agree on the district.
+if (!admin3.features.some((f) => f.properties.adm2_name === 'Chattogram' && inside(markerSeed.karnaphuliMouth.lonLat, indexed(f.geometry)))) fail("the Karnaphuli's mouth is not in COD-AB's Chattogram district");
+upazilaChecks.push('karnaphuliMouth in Chattogram district');
 // The entry marker stands where the drawn main line first crosses COD-AB's border
 // going downstream (the user's decision, 2026-09-29); BWDB's point is kept as snappedFrom.
 const entrySeed = markerSeed.entry;
@@ -355,7 +371,7 @@ const dewanganj = dewFractions.reduce((s, v) => s + v, 0) / dewFractions.length;
 
 // ---- the frames --------------------------------------------------------------------------------
 
-const roleRank = { continuation: 0, distributary: 1, tributary: 2, main: 3 };
+const roleRank = { continuation: 0, distributary: 1, disputed: 1.5, tributary: 2, main: 3 };
 const coordsOf = (id) => lines[id].coords;
 const cap = (coords, north) => clipLine(coords, [-180, -90, 180, north]);
 
@@ -446,10 +462,10 @@ function buildFrame(frameId, spec) {
   const connectors = [];
   for (const id of spec.lines) {
     const l = lines[id];
-    if (l.role !== 'tributary' && l.role !== 'distributary') continue;
+    if (!joinsParent(l)) continue;
     const parent = l.spec.join?.parent ?? 'main';
     if (!spec.lines.includes(parent)) continue;
-    const end = P.project(...(l.role === 'tributary' ? l.coords.at(-1) : l.coords[0]));
+    const end = P.project(...(parentSideAtTail(l) ? l.coords.at(-1) : l.coords[0]));
     // A line the seed leaves unjoined may end outside the picture; any other must end in it.
     if (!inRect(end)) {
       if (l.spec.exempt) continue;

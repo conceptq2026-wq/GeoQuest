@@ -96,8 +96,14 @@
   stroke: #e07b00;
   stroke-width: 2px;
 }
+/* A river whose role the two books give differently: neither a tributary's nor a distributary's colour. */
+.rivers .river-disputed .river-line {
+  stroke: #7e57c2;
+  stroke-width: 2px;
+}
 .rivers .river-tributary .river-halo,
-.rivers .river-distributary .river-halo {
+.rivers .river-distributary .river-halo,
+.rivers .river-disputed .river-halo {
   stroke-width: 3.9px;
 }
 .rivers .river-continuation .river-line {
@@ -204,6 +210,9 @@
 .rivers text.label-distributary {
   fill: #9a5000;
 }
+.rivers text.label-disputed {
+  fill: #5e35b1;
+}
 .rivers text.label-continuation {
   fill: #66768d;
 }
@@ -309,6 +318,10 @@
 }
 .rivers .legend-distributary {
   stroke: #e07b00;
+  stroke-width: 2px;
+}
+.rivers .legend-disputed {
+  stroke: #7e57c2;
   stroke-width: 2px;
 }
 

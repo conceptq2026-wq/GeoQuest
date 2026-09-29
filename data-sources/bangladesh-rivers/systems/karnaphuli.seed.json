@@ -1,0 +1,402 @@
+{
+  "_about": "The Karnaphuli system, batch 5 (Stage 2, the user's approval of 2026-09-29): the Karnaphuli (two main lines either side of Kaptai Lake, which is not drawn), the Kasalong and the Halda. Left out: the Boalkhali and the Rankhiang (no OSM way carries either name), and the Chingri (OSM's only candidate is the «চেঙ্গী», a different name: the user decides). Research: tools/.cache/bangladesh-rivers/research4-b5.md (quote ids B5-…) and osm-b5/ways.md.",
+  "id": "karnaphuli",
+  "nameBn": "কর্ণফুলী",
+  "geometry": {
+    "lines": {
+      "karnaphuliUpper": {
+        "entity": "karnaphuli",
+        "role": "main",
+        "split": "border",
+        "ways": [
+          661437161,
+          1426189152
+        ],
+        "down": [
+          92.2399,
+          22.6636
+        ],
+        "identified": "Ways 661437161 and 1426189152 from the pinned rivers snapshot (key karnaphuli), tagged «কর্ণফুলী নদী» / Karnafuli River, sharing node 8487775973: from the border in Barkal into Kaptai Lake, where it ends. Upstream, OSM continues as «Khawthlangtuipui» (ways 661437160, 530306794, Mizoram), a Mizo name the user has not yet ruled on; not drawn."
+      },
+      "karnaphuli": {
+        "entity": "karnaphuli",
+        "role": "main",
+        "ways": [
+          910356831,
+          910356830,
+          30668856,
+          653920402,
+          653920403
+        ],
+        "down": [
+          91.805,
+          22.2249
+        ],
+        "join": {
+          "parent": "karnaphuliUpper"
+        },
+        "exempt": "Unjoined: the lower reach begins in Kaptai Lake's Kaptai arm, 14.6 km from where the upper reach ends in the lake — over the 12 km a connector may bridge (the user's rule, 2026-09-29). Between them lies only the lake (relation 1626722): no waterway, relation, wikidata tag or name variant carries the stretch (osm-b5/ways.md), so it is left undrawn, with a plain ⓘ line.",
+        "identified": "Five ways from the pinned rivers snapshot, every link sharing a node, tagged «কর্ণফুলী নদী» / Karnaphuli River (wikidata Q766956 on 653920402), four of them in relation 15588738: from the Kaptai arm through the dam to the sea. Way 528438966, a braid whose two ends are nodes of 30668856, is not drawn."
+      },
+      "kasalong": {
+        "entity": "kasalong",
+        "role": "tributary",
+        "ways": [
+          687541579
+        ],
+        "down": [
+          92.2328,
+          23.0108
+        ],
+        "join": {
+          "parent": "karnaphuliUpper"
+        },
+        "exempt": "Unjoined: its drawn mouth is on Kaptai Lake's northern shore, in Langadu, 17.3 km from the drawn Karnaphuli — over the 12 km a connector may bridge (the user's rule, 2026-09-29) — with only the lake between (ⓘ).",
+        "identified": "OSM way 687541579 (this system's extract), tagged «kachalong River», the spelling of BWDB's name «কাচালং» (EH-4, local name «কাসালং»); the only such name in the area. Not drawn: 661447704 \"Sajek River\", which in OSM flows into the Tuiliampul."
+      },
+      "halda": {
+        "entity": "halda",
+        "role": "tributary",
+        "ways": [
+          257617740,
+          651892151
+        ],
+        "down": [
+          91.7636,
+          22.6864
+        ],
+        "join": {
+          "parent": "halda2"
+        },
+        "identified": "Ways 257617740 («হালদা নদী» / Halda River, Q2606655) and 651892151 (\"Halda River\"), sharing node 2631082544 (this system's extract). Its tail is 35 m from the next reach; the link is the unnamed way 651892129, not drawn. Above 91.7203°E, 22.7960°N OSM has only unnamed ways, so the line starts there."
+      },
+      "halda2": {
+        "entity": "halda",
+        "role": "tributary",
+        "ways": [
+          257617991,
+          650444530,
+          650444529,
+          257618058,
+          30667147
+        ],
+        "down": [
+          91.8935,
+          22.4029
+        ],
+        "join": {
+          "parent": "karnaphuli",
+          "node": 339164673,
+          "source": "OSM node 339164673, the last node of way 30667147, a node of the Karnaphuli's way 30668856"
+        },
+        "identified": "Five ways tagged Halda River / «হালদা নদী» (Q2606655 on 257618058 and 30667147), every link sharing a node (this system's extract), to the Karnaphuli."
+      }
+    },
+    "extract": {
+      "kasalong": [
+        687541579
+      ],
+      "halda": [
+        257617740,
+        651892151,
+        257617991,
+        650444530,
+        650444529,
+        257618058,
+        30667147
+      ]
+    }
+  },
+  "labelsBn": {
+    "karnaphuli": "কর্ণফুলী",
+    "karnaphuliUpper": "কর্ণফুলী",
+    "kasalong": "কাসালং",
+    "halda": "হালদা"
+  },
+  "frames": {
+    "bangladesh": {
+      "lines": [
+        "karnaphuliUpper",
+        "karnaphuli",
+        "kasalong",
+        "halda",
+        "halda2"
+      ],
+      "markers": [
+        "karnaphuliMouth"
+      ],
+      "labels": [
+        {
+          "id": "karnaphuli",
+          "line": "karnaphuli",
+          "near": [
+            92.02,
+            22.42
+          ]
+        },
+        {
+          "id": "karnaphuliUpper",
+          "line": "karnaphuliUpper",
+          "near": [
+            92.33,
+            22.83
+          ]
+        },
+        {
+          "id": "kasalong",
+          "line": "kasalong",
+          "near": [
+            92.13,
+            23.25
+          ]
+        },
+        {
+          "id": "halda",
+          "line": "halda2",
+          "near": [
+            91.8,
+            22.6
+          ]
+        }
+      ]
+    }
+  },
+  "markers": [
+    {
+      "id": "karnaphuliMouth",
+      "kind": "mouth",
+      "row": "mouth",
+      "entity": "karnaphuli",
+      "nameBn": "কর্ণফুলী",
+      "lonLat": [
+        91.80495,
+        22.22488
+      ],
+      "coordSource": {
+        "source": "osm",
+        "way": 653920403,
+        "vertex": 34,
+        "where": "the last vertex of way 653920403 in the pinned rivers snapshot, where the drawn Karnaphuli meets the sea; COD-AB puts it in Chattogram City Corporation, Chattogram"
+      },
+      "valueBn": "চট্টগ্রাম শহরের কাছে বঙ্গোপসাগরে পতিত",
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪ [bgeo]",
+            "states": "কর্ণফুলী"
+          }
+        ],
+        "valueBn": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২ [b910]",
+            "states": "চট্টগ্রাম শহরের খুব কাছ দিয়ে বঙ্গোপসাগরে পতিত হয়েছে"
+          },
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪ [bgeo]",
+            "states": "বঙ্গোপসাগরে পড়েছে"
+          },
+          {
+            "source": "codab",
+            "where": "bgd_admin3: the upazila holding the drawn mouth",
+            "states": "Chattogram City Corporation, Chattogram"
+          },
+          {
+            "source": "user",
+            "where": "decision 1: the cautious «…র কাছে»; BWDB's Anwara is another bank, so in ⓘ",
+            "states": "the user, 2026-09-29"
+          }
+        ]
+      }
+    }
+  ],
+  "entities": [
+    {
+      "id": "karnaphuli",
+      "role": "main",
+      "picker": true,
+      "nameBn": "কর্ণফুলী",
+      "values": {
+        "alias": "খাওৎলাং তুইপুই (মিজো ভাষায়); বোরগাং (চাকমা ভাষায়)",
+        "origin": "আসামের লুসাই পাহাড়",
+        "entry": "রাঙ্গামাটি জেলার বরকল উপজেলা",
+        "course": "রাঙামাটি ও চট্টগ্রাম অঞ্চলের মধ্য দিয়ে প্রবাহিত",
+        "length": null,
+        "tributaries": null,
+        "distributaries": "নাই",
+        "mouth": "চট্টগ্রাম শহরের কাছে বঙ্গোপসাগরে পতিত"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the কর্ণফুলী paragraph [bgeo]",
+            "states": "কর্ণফুলী"
+          }
+        ],
+        "alias": [
+          {
+            "source": "bnwKarnaphuli",
+            "where": "the lead [B5-W1]",
+            "states": "মিজো ভাষায় খাওৎলাং তুইপুই যার অর্থ \"পশ্চিম নদী\" এবং চাকমা ভাষায় বোরগাং, যার অর্থ \"বড় নদী\""
+          }
+        ],
+        "origin": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪ [bgeo]",
+            "states": "আসামের লুসাই পাহাড় থেকে উৎপন্ন হয়ে"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২ [b910]",
+            "states": "এর উৎপত্তিস্থল লুসাই পাহাড়ে"
+          }
+        ],
+        "entry": [
+          {
+            "source": "bwdbEH3",
+            "where": "§1.1 বর্ণনা; §1.4 উৎসমুখ/প্রবেশস্থল [B5-G1]",
+            "states": "বাংলাদেশ ও ভারতের আন্তর্জাতিক সীমানা বরাবর প্রায় ১৬ কি.মি. প্রবাহিত হয়ে রাঙ্গামাটি জেলার বরকল উপজেলা দিয়ে বাংলাদেশে প্রবেশ করে; ভারত | গুইছড়ি | ভূষণছড়া | বরকল | রাঙ্গামাটি | চট্টগ্রাম"
+          }
+        ],
+        "course": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪ [bgeo]",
+            "states": "রাঙামাটি ও চট্টগ্রাম অঞ্চলের মধ্য দিয়ে প্রবাহিত হয়ে বঙ্গোপসাগরে পড়েছে"
+          }
+        ],
+        "distributaries": [
+          {
+            "source": "bwdbEH3",
+            "where": "§1.10 শাখানদী [B5-G1]",
+            "states": "নাই"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২ [b910]",
+            "states": "চট্টগ্রাম শহরের খুব কাছ দিয়ে বঙ্গোপসাগরে পতিত হয়েছে"
+          },
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪ [bgeo]",
+            "states": "বঙ্গোপসাগরে পড়েছে"
+          },
+          {
+            "source": "user",
+            "where": "decision 1: the cautious «…র কাছে»",
+            "states": "the user, 2026-09-29"
+          }
+        ]
+      },
+      "review": "Length and tributaries are null: the two books disagree (B-GEO «প্রায় ২৭৪ কিলোমিটার» and «কাসালং, হালদা এবং বোয়ালখালী»; B910 «৩২০ কি.মি.» and «কাপ্তাই, হালদা, কাসালাং ও রাঙখিয়াং») — both in ⓘ; BWDB 145 km, bn WP 270/320, Banglapedia 131. Origin: B-GEO «আসামের লুসাই পাহাড়», B910 «লুসাই পাহাড়» (one place); BWDB «ভারতের মিজোরাম প্রদেশের লুসাই পাহাড়» (ⓘ). Entry: BWDB EH-3 (the books are silent; no JRC row); the drawn line begins in Barkal (COD-AB). Distributaries: BWDB «নাই»; Banglapedia \"Saylok' and Boalkhali\" (ⓘ). Mouth: B910's «চট্টগ্রাম শহরের খুব কাছ দিয়ে», in the cautious form (decision 1); BWDB puts it in Anwara upazila, the south bank, and COD-AB the drawn mouth in Chattogram City Corporation (ⓘ). Other names from bn Wikipedia (rev 8477041): the books and BWDB give none."
+    },
+    {
+      "id": "kasalong",
+      "role": "tributary",
+      "nameBn": "কাসালং",
+      "values": {
+        "relation": "কর্ণফুলীর প্রধান উপনদী",
+        "alias": "কাচালং",
+        "origin": "রাঙ্গামাটি জেলার বাঘাইছড়ি উপজেলার সাজেক ইউনিয়নে উঁচু পার্বত্য অঞ্চল",
+        "course": null,
+        "confluence": "রাঙ্গামাটি জেলার বাঘাইছড়ি উপজেলায় সরোয়াতলী ইউনিয়নের কাপ্তাই হ্রদে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪ [bgeo]",
+            "states": "কাসালং"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪ [bgeo]",
+            "states": "কর্ণফুলীর প্রধান উপনদী কাসালং, হালদা এবং বোয়ালখালী"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২–৬৩ [b910]",
+            "states": "কর্ণফুলীর প্রধান উপনদী হচ্ছে কাপ্তাই, হালদা, কাসালাং ও রাঙখিয়াং"
+          }
+        ],
+        "alias": [
+          {
+            "source": "bwdbEH4",
+            "where": "the heading; §1.1 «স্থানীয় নাম» [B5-G2]",
+            "states": "কাচালং; স্থানীয় নাম: কাসালং"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbEH4",
+            "where": "§1.1 বর্ণনা [B5-G2]",
+            "states": "রাঙ্গামাটি জেলার বাঘাইছড়ি উপজেলার সাজেক ইউনিয়নে উঁচু পার্বত্য অঞ্চল হতে কাচালং নদী উৎপত্তি হয়ে"
+          }
+        ],
+        "confluence": [
+          {
+            "source": "bwdbEH4",
+            "where": "§1.1 বর্ণনা [B5-G2]",
+            "states": "রাঙ্গামাটি জেলার বাঘাইছড়ি উপজেলায় সরোয়াতলী ইউনিয়নের কাপ্তাই হ্রদে পড়েছে"
+          }
+        ]
+      },
+      "review": "BWDB EH-4 «কাচালং» (local name «কাসালং»), matched by name and district. Course is null: BWDB's description gives only the origin and the lake. The books' spelling «কাসালং» (B-GEO) / «কাসালাং» (B910) and BWDB's «কাচালং» are in ⓘ's spelling line. bn WP (rev 9111869) puts the confluence at Kedarmara (ⓘ). The drawn mouth is on the lake shore in Langadu (COD-AB), 17.3 km from the drawn Karnaphuli; no marker."
+    },
+    {
+      "id": "halda",
+      "role": "tributary",
+      "nameBn": "হালদা",
+      "values": {
+        "relation": "কর্ণফুলীর প্রধান উপনদী",
+        "origin": "খাগড়াছড়ি জেলার গুইমারা উপজেলার হাফছড়ি ইউনিয়নে পাহাড়ী এলাকা",
+        "course": null,
+        "confluence": "চট্টগ্রাম জেলার রাউজান উপজেলার নোয়াপাড়া ইউনিয়ন"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪ [bgeo]",
+            "states": "হালদা"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪ [bgeo]",
+            "states": "কর্ণফুলীর প্রধান উপনদী কাসালং, হালদা এবং বোয়ালখালী"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২–৬৩ [b910]",
+            "states": "কর্ণফুলীর প্রধান উপনদী হচ্ছে কাপ্তাই, হালদা, কাসালাং ও রাঙখিয়াং"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbEH16",
+            "where": "§1.1 বর্ণনা [B5-G3]",
+            "states": "নদীটি খাগড়াছড়ি জেলার গুইমারা উপজেলার হাফছড়ি ইউনিয়নে পাহাড়ী এলাকা থেকে উৎপন্ন হয়ে"
+          }
+        ],
+        "confluence": [
+          {
+            "source": "bwdbEH16",
+            "where": "§1.1 বর্ণনা [B5-G3]",
+            "states": "চট্টগ্রাম জেলার রাউজান উপজেলার নোয়াপাড়া ইউনিয়নে কর্ণফুলী নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "BWDB EH-16, matched by district; NE-107 «হালদা (ছাতক)» is a stream in Sunamganj, ruled out. Course is null: BWDB gives only the origin and the mouth. bn WP (rev 8563718) and Banglapedia put the confluence at Kalurghat, and COD-AB puts the drawn mouth in Boalkhali upazila (ⓘ); no marker, so the row follows BWDB. The drawn line starts 20.7 km or more below the origin: OSM has only unnamed ways above it."
+    }
+  ]
+}

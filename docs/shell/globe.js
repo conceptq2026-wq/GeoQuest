@@ -66,7 +66,7 @@
 |--------------------------------------------------------------------------
 */
 
-import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=735dae5ee5';
+import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=3a73556efc';
 
 /*
  * MapLibre 6.9.0's globe seen flat-on (pitch 0): a sphere of radius
@@ -132,7 +132,7 @@ export async function mount(shellApi) {
   if (!rows) throw new Error(`globe: "${table}" is not a records table`);
   order = Object.keys(rows);
 
-  await stylesheet('./globe.css?v=735dae5ee5');
+  await stylesheet('./globe.css?v=3a73556efc');
   const page = api.dom.mapShell.parentElement;
   page.classList.add('has-globe');
   api.own.undo('the globe page layout', () => page.classList.remove('has-globe'));

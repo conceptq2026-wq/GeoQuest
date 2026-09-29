@@ -244,6 +244,18 @@ by map. **Nothing is guessed to fill a gap.**
   wrong for this product.
 - Where sources disagree, record both, show the more common one, and record the
   disagreement. Never silently pick.
+- **What is a conflict** (the user's decisions, 2026-09-29): a different place
+  or a different number. Two wordings of one place («দৌলতদিয়ার কাছে» /
+  «গোয়ালন্দে»; «চাঁদপুরের কাছে» / «চাঁদপুরে») are not one: the card keeps the
+  more cautious wording («…র কাছে») with the upazila in brackets, and ⓘ gives
+  the other. The NCTB book's value goes on the card and a differing government
+  value (BWDB, JRC) in ⓘ, both cited; **where the two NCTB books disagree with
+  each other, the field is `null` (hidden, pending) and ⓘ lists both** — a
+  river's role too: the relation row is hidden and the river is drawn in a
+  neutral style the legend explains. A spelling that differs between sources is
+  never corrected silently: the card keeps one source's and ⓘ notes the
+  other's. A same-name government entry is matched to a drawn feature only by
+  its geometry or district, else the field stays pending.
 - The user's own verification is recorded as editor-verified with a date, and
   stays distinguishable from a cited source.
 - Never invent Bengali content. An unsupplied Bengali field is `null`.
@@ -310,8 +322,9 @@ tiling COD-AB — overlap and gap each under 0.5 km². bangladesh-rivers: the
 seed's files — the common one and one per river system, merged by
 `tools/lib/rivers-seed.mjs` — each by SHA-256 in `tools/verify-descriptor.mjs`;
 the OSM pilot extract (`osmBangladeshRiversPilot`), each system's own extract
-(`osmBangladeshRivers<System>`, the Padma's so far) and the rivers snapshot by
-checksum in `tools/sources.json`; and the 21 lines' geometry hashes in
+(`osmBangladeshRivers<System>`: the Padma's and the Karnaphuli's so far) and the
+rivers snapshot by checksum in `tools/sources.json`; and the 26 lines' geometry
+hashes in
 `tools/bangladesh-rivers-pins.json`. The shared district file,
 `docs/shared/bangladesh-districts.json` (COD-AB's 64 districts, the
 basemap's Bengali names), is rebuilt by `tools/build-bangladesh-districts.mjs`
@@ -343,7 +356,7 @@ State which kind a task is when reporting it.
   `mountains`, `waterfalls` and `latitude-longitude`, all under `docs/maps/`.
 - Work in progress (`tools/wip.json`): `bangladesh-rivers`, a diagram in the
   Bangladesh section drawn in code, built one river system at a time — the
-  Jamuna and the Padma so far (`notes/bangladesh-rivers.md`); local preview
+  Jamuna, the Padma and the Karnaphuli so far (`notes/bangladesh-rivers.md`); local preview
   only, not in the registry.
 - Three diagrams, under বিবিধ: `atmosphere-layers`, `earth-interior` and
   `seasons`, in `docs/diagrams/`.

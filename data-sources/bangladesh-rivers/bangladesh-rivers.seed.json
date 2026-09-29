@@ -5,7 +5,8 @@
   "systems": [
     "jamuna",
     "padma",
-    "meghna"
+    "meghna",
+    "karnaphuli"
   ],
   "ui": {
     "tabsBn": {
@@ -175,6 +176,30 @@
       "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&Rivers=202",
       "sha256": "9e19d384095e829950b2d03915efc090d69a4ded4134435565cb24247fb7a5d4"
     },
+    "bwdbSE17": {
+      "title": "মেঘনা (আপার) (নদীর তথ্য, SE-17)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=5&Rivers=817",
+      "sha256": "90697d12439b0a8a2f125cd239cf53af52ed225223d60fbfb592e1b61e8843ba"
+    },
+    "bwdbEH3": {
+      "title": "কর্ণফুলী (নদীর তথ্য, EH-3)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=1&Rivers=703",
+      "sha256": "743d3cdd4f3f6fcd6368ccb78b0ceb71958fb850cab7cc58976489214a9363dd"
+    },
+    "bwdbEH4": {
+      "title": "কাচালং (নদীর তথ্য, EH-4)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=1&Rivers=704",
+      "sha256": "17c2d5319a3c495c13da1edfe8249a9bddfc6135732d2f0c73034e16c7713e83"
+    },
+    "bwdbEH16": {
+      "title": "হালদা (নদীর তথ্য, EH-16)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=1&Rivers=716",
+      "sha256": "281df292603bd7a546946615f44d58ed51e80779589ceba197807c18c020fb29"
+    },
     "jrcbG13": {
       "title": "বাংলাদেশ - ভারত এবং বাংলাদেশ -মিয়ানমারের মধ্যে প্রবাহিত ৫৭টি আন্তঃসীমান্ত নদীর তথ্যাদি",
       "publisher": "Joint Rivers Commission, Bangladesh (JRCB; page dated 2022-02-27; read 2026-09-28)",
@@ -247,6 +272,30 @@
     "user": {
       "title": "The user's decision",
       "date": "2026-09-29"
+    },
+    "bnwKarnaphuli": {
+      "title": "কর্ণফুলী নদী",
+      "publisher": "Bengali Wikipedia (revision 8477041; read 2026-09-29)",
+      "url": "https://bn.wikipedia.org/w/index.php?oldid=8477041",
+      "sha256": "b6c214608bb997ac83c0ea6f7209320e37902e7cc3b09ddddb9ad950e657eaa1"
+    },
+    "bnwHalda": {
+      "title": "হালদা নদী",
+      "publisher": "Bengali Wikipedia (revision 8563718; read 2026-09-29)",
+      "url": "https://bn.wikipedia.org/w/index.php?oldid=8563718",
+      "sha256": "fb1f7ed4577238fdcec1e063483a6e7fa7d6d9f7bc2d9f91b164a4db8719c083"
+    },
+    "bnwKachalong": {
+      "title": "কাচালং নদী",
+      "publisher": "Bengali Wikipedia (revision 9111869; read 2026-09-29)",
+      "url": "https://bn.wikipedia.org/w/index.php?oldid=9111869",
+      "sha256": "1a43ae692b4f5e12c2c9337042316bef96c316867554dde0fc06d54613ae754f"
+    },
+    "bpChittagongRivers": {
+      "title": "Chittagong Region River System",
+      "publisher": "Banglapedia (English; last edited 2021-06-18; Internet Archive capture 2022-10-09; read 2026-09-29)",
+      "url": "https://web.archive.org/web/20221009025246/https://en.banglapedia.org/index.php/Chittagong_Region_River_System",
+      "sha256": "633c34da1e5cbc5f9a7021c2848d20b339ac60877195d053855868258a985c49"
     }
   },
   "countries": {
@@ -278,7 +327,8 @@
       "osmSnapshot": "tools/sources/osm-bangladesh-rivers.geojson",
       "osmPilot": "tools/sources/osm-bangladesh-rivers-pilot.geojson",
       "osmSystems": {
-        "padma": "tools/sources/osm-bangladesh-rivers-padma.geojson"
+        "padma": "tools/sources/osm-bangladesh-rivers-padma.geojson",
+        "karnaphuli": "tools/sources/osm-bangladesh-rivers-karnaphuli.geojson"
       }
     },
     "frames": {
@@ -457,7 +507,7 @@
         ]
       },
       {
-        "textBn": "ডেটায় যতদূর নদীপথ পাওয়া গেছে ততদূর আঁকা হয়েছে, তাই কিছু নদীর আঁকা রেখা কার্ডে লেখা উৎপত্তিস্থল থেকে শুরু হয়নি (যেমন করতোয়া, আত্রাই, ধলেশ্বরী, বংশী, শীতলক্ষ্যা, পুরাতন ব্রহ্মপুত্র, মধুমতী, ভাগীরথী)।",
+        "textBn": "ডেটায় যতদূর নদীপথ পাওয়া গেছে ততদূর আঁকা হয়েছে, তাই কিছু নদীর আঁকা রেখা কার্ডে লেখা উৎপত্তিস্থল থেকে শুরু হয়নি (যেমন করতোয়া, আত্রাই, ধলেশ্বরী, বংশী, শীতলক্ষ্যা, পুরাতন ব্রহ্মপুত্র, মধুমতী, ভাগীরথী, কর্ণফুলী, হালদা)।",
         "group": "notes",
         "sources": [
           {
@@ -548,6 +598,73 @@
             "source": "bwdbSW74",
             "where": "§1.1 বর্ণনা",
             "states": "বাগেরহাট জেলার চিতলমারী উপজেলার কলাতলা ইউনিয়নের শোলদহ নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      {
+        "textBn": "বানান: কার্ডে মহানন্দার গতিপথে পানি উন্নয়ন বোর্ডের বানান «তেঁতুলিয়া», যৌথ নদী কমিশনের তালিকায় ছাপা «তেতুঁলিয়া»; গড়াইয়ের পতিত স্থলে বইয়ের বানান «মধুমতী», পানি উন্নয়ন বোর্ড লেখে «মধুমতি»; কাসালং বানানটি «ভূগোল ও পরিবেশ»-এর, «বাংলাদেশ ও বিশ্বপরিচয়» লেখে «কাসালাং», পানি উন্নয়ন বোর্ড «কাচালং»।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, p. ৩ row ১৪, বাংলাদেশ/ভারতে প্রবেশমুখ",
+            "states": "পঞ্চগড় জেলার তেতুঁলিয়া উপজেলা দিয়ে বাংলাদেশে প্রবেশ"
+          },
+          {
+            "source": "bwdbNW13",
+            "where": "§1.4 উৎসমুখ/প্রবেশস্থল",
+            "states": "তেঁতুলিয়া"
+          },
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "মধুমতী"
+          },
+          {
+            "source": "bwdbSW24",
+            "where": "§1.1 বর্ণনা",
+            "states": "মধুমতি নদীতে পতিত হয়েছে"
+          },
+          {
+            "source": "user",
+            "where": "decision 3: keep BWDB's spelling, note JRCB's; never correct a source silently",
+            "states": "the user, 2026-09-29"
+          },
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪ [bgeo]",
+            "states": "কাসালং"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬৩ [b910]",
+            "states": "কাসালাং"
+          },
+          {
+            "source": "bwdbEH4",
+            "where": "the heading [B5-G2]",
+            "states": "কাচালং"
+          }
+        ]
+      },
+      {
+        "textBn": "কর্ণফুলীর আঁকা রেখা কাপ্তাই হ্রদের ভেতরে প্রায় ১৫ কিলোমিটার আঁকা হয়নি, আর কাসালংয়ের আঁকা রেখা লংগদু উপজেলায় হ্রদের তীরে শেষ হয়েছে, কর্ণফুলী থেকে প্রায় ১৭ কিলোমিটার দূরে; হ্রদটি ছবিতে আঁকা নয়, আর ডেটায় হ্রদের ভেতরে নদীর নামসহ কোনো নদীপথ পাওয়া যায়নি।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "osm",
+            "where": "the pinned snapshot's Karnaphuli ways 1426189152 and 910356831, the Kasalong way 687541579, and Kaptai Lake (relation 1626722)",
+            "states": "14,605 m and 17,279 m; no waterway, relation, wikidata tag or name variant in the lake"
+          },
+          {
+            "source": "codab",
+            "where": "bgd_admin3: the upazila holding the Kasalong's drawn mouth",
+            "states": "Langadu, Rangamati"
+          },
+          {
+            "source": "user",
+            "where": "the rule",
+            "states": "gaps over 12 km stay unjoined, with a plain ⓘ line (2026-09-29)"
           }
         ]
       },
@@ -815,6 +932,58 @@
         ]
       },
       {
+        "textBn": "পদ্মা ও মেঘনার মিলন: «ভূগোল ও পরিবেশ» — চাঁদপুরের কাছে; «বাংলাদেশ ও বিশ্বপরিচয়» — চাঁদপুরে; পানি উন্নয়ন বোর্ড — চাঁদপুর সদর উপজেলা (পদ্মার বিবরণে), মতলব উত্তর উপজেলা (মেঘনা (আপার)-এর বিবরণে)।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "চাঁদপুরের কাছে মেঘনার সঙ্গে মিলিত হয়েছে"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২",
+            "states": "চাঁদপুরে এসে এ নদী মেঘনার সঙ্গে মিলিত হয়ে"
+          },
+          {
+            "source": "bwdbNC32",
+            "where": "§1.4 পতিতমুখ",
+            "states": "রাজরাজেশ্বর | চাঁদপুর সদর | চাঁদপুর"
+          },
+          {
+            "source": "bwdbSE17",
+            "where": "§1.4 পতিতমুখ",
+            "states": "মেঘনা (লোয়ার) | জয়পুর | জহিরাবাদ | মতলব উত্তর | চাঁদপুর | চট্টগ্রাম"
+          }
+        ]
+      },
+      {
+        "textBn": "পদ্মার দৈর্ঘ্য (কার্ডে দেখানো হয়নি, কোন অংশ «পদ্মা» তা উৎসভেদে আলাদা): দৌলতদিয়া থেকে চাঁদপুর পর্যন্ত ১২১ কিলোমিটার (পানি উন্নয়ন বোর্ড, «পদ্মা»); সীমান্তে চাঁপাইনবাবগঞ্জের শিবগঞ্জ থেকে দৌলতদিয়া পর্যন্ত ২৩০ কিলোমিটার (পানি উন্নয়ন বোর্ড, «গঙ্গা/ পদ্মা»; যৌথ নদী কমিশনের তালিকায় গঙ্গার বাংলাদেশ অংশ ২৩০ কিলোমিটার)।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bwdbNC32",
+            "where": "§1.4 উৎসমুখ/পতিতমুখ; §1.5 দৈর্ঘ্য",
+            "states": "দৌলতদিয়া | গোয়ালন্দ; রাজরাজেশ্বর | চাঁদপুর সদর; 121 কি.মি."
+          },
+          {
+            "source": "bwdbNW27",
+            "where": "§1.4 উৎসমুখ/পতিতমুখ; §1.5 দৈর্ঘ্য",
+            "states": "ভবানীপুর | মনাকষা | শিবগঞ্জ | চাঁপাইনবাবগঞ্জ; পদ্মা | উত্তর দৌলতদিয়া | দৌলতদিয়া | গোয়ালন্দ; 230 কি.মি."
+          },
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, p. ১ row ৬, দৈর্ঘ্য (বাংলাদেশ)",
+            "states": "২৩০"
+          },
+          {
+            "source": "user",
+            "where": "decision 2: the length stays hidden; ⓘ lists 121 and 230 km with their reaches",
+            "states": "the user, 2026-09-29"
+          }
+        ]
+      },
+      {
         "textBn": "মধুমতী: বই — পদ্মার প্রধান শাখানদী; পানি উন্নয়ন বোর্ড — গড়াই নদী থেকে উৎপত্তি।",
         "group": "conflicts",
         "sources": [
@@ -864,6 +1033,138 @@
             "source": "user",
             "where": "decision 2: where the two books disagree, the row stays hidden and ⓘ gives both",
             "states": "the user, 2026-09-29"
+          }
+        ]
+      },
+      {
+        "textBn": "কর্ণফুলীর দৈর্ঘ্য (কার্ডে দেখানো হয়নি): «ভূগোল ও পরিবেশ» — প্রায় ২৭৪ কিলোমিটার; «বাংলাদেশ ও বিশ্বপরিচয়» — ৩২০ কিলোমিটার।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪ [bgeo]",
+            "states": "প্রায় ২৭৪ কিলোমিটার"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২ [b910]",
+            "states": "৩২০ কি.মি."
+          },
+          {
+            "source": "user",
+            "where": "decision 2: where the two books disagree, the row stays hidden and ⓘ gives both",
+            "states": "the user, 2026-09-29"
+          }
+        ]
+      },
+      {
+        "textBn": "কর্ণফুলীর উপনদী (কার্ডে দেখানো হয়নি): «ভূগোল ও পরিবেশ» — কাসালং, হালদা ও বোয়ালখালী; «বাংলাদেশ ও বিশ্বপরিচয়» — কাপ্তাই, হালদা, কাসালাং ও রাঙখিয়াং।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪ [bgeo]",
+            "states": "কর্ণফুলীর প্রধান উপনদী কাসালং, হালদা এবং বোয়ালখালী"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২–৬৩ [b910]",
+            "states": "কর্ণফুলীর প্রধান উপনদী হচ্ছে কাপ্তাই, হালদা, কাসালাং ও রাঙখিয়াং"
+          },
+          {
+            "source": "user",
+            "where": "decision 2",
+            "states": "the user, 2026-09-29"
+          }
+        ]
+      },
+      {
+        "textBn": "কর্ণফুলীর উৎপত্তি: বই — আসামের লুসাই পাহাড়; পানি উন্নয়ন বোর্ড — ভারতের মিজোরাম প্রদেশের লুসাই পাহাড়।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪ [bgeo]",
+            "states": "আসামের লুসাই পাহাড় থেকে উৎপন্ন হয়ে"
+          },
+          {
+            "source": "bwdbEH3",
+            "where": "§1.1 বর্ণনা [B5-G1]",
+            "states": "নদীটি ভারতের মিজোরাম প্রদেশের লুসাই পাহাড় হতে উৎপন্ন হয়ে"
+          }
+        ]
+      },
+      {
+        "textBn": "কর্ণফুলীর মোহনা: «বাংলাদেশ ও বিশ্বপরিচয়» — চট্টগ্রাম শহরের খুব কাছ দিয়ে বঙ্গোপসাগরে; পানি উন্নয়ন বোর্ড — আনোয়ারা উপজেলায় বঙ্গোপসাগরে; বাংলাদেশের প্রশাসনিক সীমানার সরকারি ডেটা (COD-AB) অনুযায়ী আঁকা মোহনা চট্টগ্রাম সিটি কর্পোরেশনে।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২ [b910]",
+            "states": "চট্টগ্রাম শহরের খুব কাছ দিয়ে বঙ্গোপসাগরে পতিত হয়েছে"
+          },
+          {
+            "source": "bwdbEH3",
+            "where": "§1.1 বর্ণনা; §1.4 পতিতমুখ [B5-G1]",
+            "states": "আনোয়ারা উপজেলায় বঙ্গোপসাগরে পতিত হয়েছে; বঙ্গোপসাগর | মাঝেরচর | বৈরাগ | আনোয়ারা | চট্টগ্রাম | চট্টগ্রাম"
+          },
+          {
+            "source": "codab",
+            "where": "bgd_admin3: the upazila holding the drawn mouth",
+            "states": "Chattogram City Corporation, Chattogram"
+          }
+        ]
+      },
+      {
+        "textBn": "কর্ণফুলীর শাখা নদী: পানি উন্নয়ন বোর্ড — নাই; বাংলাপিডিয়া (ইংরেজি) — \"Saylok\" ও \"Boalkhali\"।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bwdbEH3",
+            "where": "§1.10 শাখানদী [B5-G1]",
+            "states": "নাই"
+          },
+          {
+            "source": "bpChittagongRivers",
+            "where": "the Karnafuli paragraph [B5-P2]",
+            "states": "Its major distributaries are Saylok' and Boalkhali."
+          }
+        ]
+      },
+      {
+        "textBn": "কাসালংয়ের মিলনস্থল: পানি উন্নয়ন বোর্ড — বাঘাইছড়ি উপজেলার সরোয়াতলী ইউনিয়নে কাপ্তাই হ্রদে; বাংলা উইকিপিডিয়া — কেদারমারাতে।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bwdbEH4",
+            "where": "§1.1 বর্ণনা [B5-G2]",
+            "states": "রাঙ্গামাটি জেলার বাঘাইছড়ি উপজেলায় সরোয়াতলী ইউনিয়নের কাপ্তাই হ্রদে পড়েছে"
+          },
+          {
+            "source": "bnwKachalong",
+            "where": "the course [B5-W3]",
+            "states": "রাঙ্গামাটি থেকে প্রায় ২০ কিমি উত্তরে কেদারমারাতে এসে কর্ণফুলী নদীতে (কাপ্তাই হ্রদ)"
+          }
+        ]
+      },
+      {
+        "textBn": "হালদার মিলনস্থল: পানি উন্নয়ন বোর্ড — রাউজান উপজেলার নোয়াপাড়া ইউনিয়ন; বাংলা উইকিপিডিয়া — কালুরঘাটের নিকটে; বাংলাদেশের প্রশাসনিক সীমানার সরকারি ডেটা (COD-AB) অনুযায়ী আঁকা মুখ বোয়ালখালী উপজেলায়।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bwdbEH16",
+            "where": "§1.1 বর্ণনা [B5-G3]",
+            "states": "চট্টগ্রাম জেলার রাউজান উপজেলার নোয়াপাড়া ইউনিয়নে কর্ণফুলী নদীতে পতিত হয়েছে"
+          },
+          {
+            "source": "bnwHalda",
+            "where": "the course [B5-W2]",
+            "states": "কালুরঘাটের নিকটে"
+          },
+          {
+            "source": "codab",
+            "where": "bgd_admin3: the upazila holding the drawn mouth",
+            "states": "Boalkhali, Chattogram"
           }
         ]
       }

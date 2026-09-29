@@ -436,7 +436,7 @@
         "node": 5952163207,
         "where": "the last node of way 82854640, where the drawn Padma meets the drawn Meghna; COD-AB puts it in Chandpur Sadar upazila, Chandpur"
       },
-      "valueBn": "চাঁদপুরের কাছে মেঘনার সঙ্গে মিলিত",
+      "valueBn": "চাঁদপুরের কাছে (চাঁদপুর সদর উপজেলা) মেঘনার সঙ্গে মিলিত",
       "sources": {
         "nameBn": [
           {
@@ -448,13 +448,23 @@
         "valueBn": [
           {
             "source": "bgeo",
-            "where": "পৃ. ১৫৪, the পদ্মা paragraph",
+            "where": "পৃ. ১৫৪",
             "states": "চাঁদপুরের কাছে মেঘনার সঙ্গে মিলিত হয়েছে"
           },
           {
-            "source": "b910",
-            "where": "পৃ. ৬২",
-            "states": "চাঁদপুরে এসে এ নদী মেঘনার সঙ্গে মিলিত হয়ে"
+            "source": "bwdbNC32",
+            "where": "§1.4 পতিতমুখ",
+            "states": "মেঘনা (লোয়ার) | রাজরাজেশ্বর | রাজরাজেশ্বর | চাঁদপুর সদর | চাঁদপুর | চট্টগ্রাম"
+          },
+          {
+            "source": "codab",
+            "where": "bgd_admin3: the upazila holding the drawn junction",
+            "states": "Chandpur Sadar, Chandpur"
+          },
+          {
+            "source": "user",
+            "where": "decision 1: the cautious wording with the upazila in brackets; the other wording in ⓘ",
+            "states": "the user, 2026-09-29"
           }
         ]
       }
@@ -475,7 +485,7 @@
         "tributaries": "মহানন্দা",
         "distributaries": null,
         "confluence": "দৌলতদিয়ার কাছে (গোয়ালন্দ উপজেলা)",
-        "mouth": "চাঁদপুরের কাছে মেঘনার সঙ্গে মিলিত"
+        "mouth": "চাঁদপুরের কাছে (চাঁদপুর সদর উপজেলা) মেঘনার সঙ্গে মিলিত"
       },
       "sources": {
         "nameBn": [
@@ -540,13 +550,23 @@
             "states": "চাঁদপুরের কাছে মেঘনার সঙ্গে মিলিত হয়েছে"
           },
           {
-            "source": "b910",
-            "where": "পৃ. ৬২",
-            "states": "চাঁদপুরে এসে এ নদী মেঘনার সঙ্গে মিলিত হয়ে"
+            "source": "bwdbNC32",
+            "where": "§1.4 পতিতমুখ",
+            "states": "মেঘনা (লোয়ার) | রাজরাজেশ্বর | রাজরাজেশ্বর | চাঁদপুর সদর | চাঁদপুর | চট্টগ্রাম"
+          },
+          {
+            "source": "codab",
+            "where": "bgd_admin3: the upazila holding the drawn junction",
+            "states": "Chandpur Sadar, Chandpur"
+          },
+          {
+            "source": "user",
+            "where": "decision 1: the cautious wording with the upazila in brackets; the other wording in ⓘ",
+            "states": "the user, 2026-09-29"
           }
         ]
       },
-      "review": "The card is the Ganges–Padma as B-GEO's «পদ্মা» paragraph describes it. Entry and course are null: the books disagree on where it enters Bangladesh (B-GEO: the north-west of Kushtia, after about 145 km along the border; B910: through Chapainawabganj) — both in ⓘ. Distributaries are null: B-GEO lists six «প্রধান শাখানদী» with the Gorai, B910 eleven of the «নিম্নগঙ্গা» without it (ⓘ). Length is null, as for the Jamuna: which stretch is «পদ্মা» differs even inside B-GEO; BWDB gives 121 km for NC-32 (Daulatdia–Chandpur) and 230 km for NW-27 (the border to Daulatdia), JRCB 230 km in Bangladesh (row ৬), bn Wikipedia (rev 9125110) 341 km. Tributaries: BWDB NW-27's list for the Ganges reach; NC-32 lists five small rivers of the lower reach (ইছামতি (মানিকগঞ্জ), ইলিশমারী, জয়পাড়া খাল, কাটাখালী (মুন্সিগঞ্জ), তালতলা), none drawn. Confluence: «দৌলতদিয়ার নিকট» (B-GEO) and «গোয়ালন্দের নিকট» (B910) name one place — Daulatdia is in Goalanda upazila (BWDB NC-32) — so the row is shown as on the Jamuna's card; the ⓘ line on the Jamuna–Ganges meeting gives both. Mouth: «চাঁদপুরের কাছে» (B-GEO) and «চাঁদপুরে» (B910) agree; BWDB's two entries put the junction in Chandpur Sadar (NC-32) and Matlab Uttar (SE-17). Other names: bn Wikipedia's «কীর্তিনাশা» and BWDB's local name «কুতুবপুর (মাদারীপুর অংশে)» are not on the card."
+      "review": "The card is the Ganges–Padma as B-GEO's «পদ্মা» paragraph describes it. Entry and course are null: the books disagree on where it enters Bangladesh (B-GEO: the north-west of Kushtia, after about 145 km along the border; B910: through Chapainawabganj) — both in ⓘ. Distributaries are null: B-GEO lists six «প্রধান শাখানদী» with the Gorai, B910 eleven of the «নিম্নগঙ্গা» without it (ⓘ). Length is null, as for the Jamuna: which stretch is «পদ্মা» differs even inside B-GEO; BWDB gives 121 km for NC-32 (Daulatdia–Chandpur) and 230 km for NW-27 (the border to Daulatdia), JRCB 230 km in Bangladesh (row ৬), bn Wikipedia (rev 9125110) 341 km. Tributaries: BWDB NW-27's list for the Ganges reach; NC-32 lists five small rivers of the lower reach (ইছামতি (মানিকগঞ্জ), ইলিশমারী, জয়পাড়া খাল, কাটাখালী (মুন্সিগঞ্জ), তালতলা), none drawn. Confluence: «দৌলতদিয়ার নিকট» (B-GEO) and «গোয়ালন্দের নিকট» (B910) name one place — Daulatdia is in Goalanda upazila (BWDB NC-32) — so the row is shown as on the Jamuna's card; the ⓘ line on the Jamuna–Ganges meeting gives both. Mouth (decision 1, 2026-09-29): «চাঁদপুরের কাছে» (B-GEO) and «চাঁদপুরে» (B910) are one place — the card keeps the cautious wording with BWDB NC-32's upazila, Chandpur Sadar, which COD-AB agrees holds the drawn junction, and ⓘ gives the other wording; BWDB's two entries put the junction in Chandpur Sadar (NC-32) and Matlab Uttar (SE-17). Other names: bn Wikipedia's «কীর্তিনাশা» and BWDB's local name «কুতুবপুর (মাদারীপুর অংশে)» are not on the card."
     },
     {
       "id": "gorai",

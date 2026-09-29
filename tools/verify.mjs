@@ -228,12 +228,13 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
   // within 50 m of its parent line as drawn, or of a connector of at most 12 km that runs from that end to
   // the parent line; a line with neither is exempt, and the seed says why. The unjoined lines are the user's
   // decisions (2026-09-29): the Jamuna's three, and the Padma system's two over 12 km.
-  const EXEMPT = ['karatoya', 'atrai', 'banshi', 'madhumati', 'mahananda'];
+  const EXEMPT = ['karatoya', 'atrai', 'banshi', 'madhumati', 'mahananda', 'karnaphuli', 'kasalong'];
   const NEAR_M = 50;
   // 10 km, then 12 km for the Dhaleshwari alone, then 12 km for every line (Stage 1, 2026-09-29).
   const CONNECTOR_MAX_M = 12000;
   const maxFor = () => CONNECTOR_MAX_M;
-  const branches = Object.entries(G.lines).filter(([, l]) => l.role === 'tributary' || l.role === 'distributary');
+  // A branch: a tributary, a distributary, a river whose role the books dispute, or a main river's later piece.
+  const branches = Object.entries(G.lines).filter(([, l]) => ['tributary', 'distributary', 'disputed'].includes(l.role) || (l.role === 'main' && l.join?.parent));
   const connectors = frames.bangladesh.connectors ?? [];
   const connectorOf = new Map();
   for (const c of connectors) {
@@ -248,7 +249,8 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
   const alone = [];
   for (const [id, spec] of branches) {
     const pieces = lineOf('bangladesh', id);
-    const end = spec.role === 'tributary' ? pieces.at(-1).at(-1) : pieces[0][0];
+    const atTail = spec.join?.end ? spec.join.end === 'tail' : spec.role === 'tributary';
+    const end = atTail ? pieces.at(-1).at(-1) : pieces[0][0];
     const parentId = spec.join?.parent ?? 'main';
     const parent = lineOf('bangladesh', parentId).flat();
     const toParent = nearestOnLine(end, parent).m;
@@ -337,7 +339,8 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
   for (const e of S.entities.filter((x) => x.role === 'main' && x.id !== 'main')) {
     const ids = frames.bangladesh.lines.filter((l) => l.entity === e.id).map((l) => l.id);
     const order = Object.keys(G.lines).filter((id) => ids.includes(id));
-    const gaps = order.slice(1).map((id, i) => distM(lineOf('bangladesh', order[i]).at(-1).at(-1), lineOf('bangladesh', id)[0][0]));
+    // A piece joined to the one before (join.parent) is held by b., with its connector or its reason.
+    const gaps = order.slice(1).flatMap((id, i) => (G.lines[id].join?.parent === order[i] ? [] : [distM(lineOf('bangladesh', order[i]).at(-1).at(-1), lineOf('bangladesh', id)[0][0])]));
     const roles = order.every((id) => G.lines[id].role === 'main');
     check(order.length >= 1 && roles && Math.max(0, ...gaps) <= 500, `d. ${e.id}: its main river is ${order.length} main line(s) end to end in the Bangladesh frame (${order.join(' → ')}), gaps ${gaps.map((g) => `${round(g)} m`).join(', ') || 'none'} (limit 500 m)`);
     mainNote.push(`${e.id} ${order.length} lines`);
@@ -468,7 +471,7 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
   fs.rmSync(out, { recursive: true, force: true });
   const seamLine = /seam gap ([\d.]+) m at ([\d.]+)°E.*?jamuna→padma ([\d.]+) m; padma→meghna junction ([\d.]+) m/.exec(say);
   const pins = JSON.parse(fs.readFileSync(RIVERS_PINS, 'utf8'));
-  check(same && Object.keys(pins).length === 21, `the build reproduces the ${built.length} committed files byte for byte, and its ${Object.keys(pins).length} geometry pins hold${same ? '' : ` — ${say.split('\n').slice(0, 3).join(' | ')}`}`);
+  check(same && Object.keys(pins).length === 26, `the build reproduces the ${built.length} committed files byte for byte, and its ${Object.keys(pins).length} geometry pins hold${same ? '' : ` — ${say.split('\n').slice(0, 3).join(' | ')}`}`);
   check(Boolean(seamLine) && Number(seamLine[1]) <= G.main.seam.maxM && Number(seamLine[3]) <= 500 && Number(seamLine[4]) <= 3, `d. the seam is ${seamLine?.[1]} m at ${seamLine?.[2]}°E (limit ${G.main.seam.maxM} m); the Jamuna ends ${seamLine?.[3]} m from the Padma, which ends ${seamLine?.[4]} m from the Meghna`);
   console.log(`bangladesh-rivers: a. ${drawnMarkers} markers within ${round(worst.px, 2)} px / ${round(worst.m)} m; b. ${alone.length + viaConnector.length} joined (${alone.join(', ')} on their own; ${viaConnector.join(', ')} by a connector), ${exempt.length} unjoined (${exempt.join(', ')}); c. entry ${round(entrySrc)} m from the border (BWDB's point ${round(entryBwdb)} m); d. main connected, gaps ≤ 500 m${mainNote.length ? ` (and ${mainNote.join(', ')})` : ''}; e. ${drawnIds.size} lines, ${wayIds.size} ways, ${S.markers.length} markers traced; f. entry on the line and at the dash switch: ${entryF.join(', ')}; g. district names ${districtNote.join('')}`);
 }

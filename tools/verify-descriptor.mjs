@@ -98,10 +98,11 @@ const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa
 const BANGLADESH_RIVERS_SEEDS = path.join(ROOT, 'data-sources/bangladesh-rivers');
 // One pin per seed file: the common file and each system's (tools/lib/rivers-seed.mjs).
 const BANGLADESH_RIVERS_SEED_SHA256 = {
-  'bangladesh-rivers.seed.json': '25d60c66659b8ae3b63587428dc64506e01023cd64fd3faf4ba1b16b9eba638f',
+  'bangladesh-rivers.seed.json': '6149b7847d950316fe6b89378e1407720386a9f2fde50194d6703670a14853b1',
   'systems/jamuna.seed.json': 'e84123aea5bfbe78448f2555e16c43a94b13fbf8584a9f748949cfbcd7b2b0a8',
-  'systems/padma.seed.json': '7627ac1da988c0c8ed67efbf956f2506ca8cde7241c564e6fac4ad53b802a551',
+  'systems/padma.seed.json': '0acdb09b460a12c90e77cb2151b44eaa9bb35d8e519f5648937490acbae8f5fe',
   'systems/meghna.seed.json': 'faf14e3622fef05ee57ca9e4aac45340c8720ad82c5fcff4556b4f617fcb5f3f',
+  'systems/karnaphuli.seed.json': '099bd0cfe66a36b9ae29270d7303dcba9097469698c7a29f1dfd8d0f152c8029',
 };
 // The latitude-longitude globe: the editor's seed, the pinned sources (its
 // imagery's credit among them) and the geometry pins.
@@ -1919,6 +1920,10 @@ console.log('\n\n============ bangladesh-rivers (diagram) ============');
     'gorai.values.course',
     'madhumati.values.course',
     'bhagirathi.values.alias',
+    'karnaphuli.values.length',
+    'karnaphuli.values.tributaries',
+    'kasalong.values.course',
+    'halda.values.course',
   ];
   check(pendingFields.join() === WANT_PENDING.join(), `the pending list is the ${WANT_PENDING.length} fields the seed holds as null, none shipped (${pendingFields.length})`);
   // Every branch's card: «সম্পর্ক», «উৎপত্তি», «গতিপথ», and «মিলনস্থল» or «পতিত স্থল» (Prompt 40, 2026-09-29); the main river's gains «গতিপথ».
@@ -1940,7 +1945,7 @@ console.log('\n\n============ bangladesh-rivers (diagram) ============');
     const kinds = new Set([...frame.lines.map((l) => (l.role === 'continuation' ? null : l.role)).filter(Boolean), ...frame.markers.map((m) => data.markers[m.id].kind)]);
     check([...kinds].every((k) => legendKinds.has(k)), `${view.id}: its legend words exist for every kind it draws (${[...kinds].join(', ')})`);
     const cons = frame.connectors ?? [];
-    check(cons.every((c) => drawn.includes(c.id) && drawn.includes(c.parent) && ['tributary', 'distributary'].includes(frame.lines.find((l) => l.id === c.id).role) && Number.isInteger(c.m)), `${view.id}: its ${cons.length} connector(s) join a drawn branch to a drawn parent, and carry their length (${cons.map((c) => `${c.id} ${c.m} m`).join(', ') || 'none'})`);
+    check(cons.every((c) => drawn.includes(c.id) && drawn.includes(c.parent) && ['tributary', 'distributary', 'disputed', 'main'].includes(frame.lines.find((l) => l.id === c.id).role) && Number.isInteger(c.m)), `${view.id}: its ${cons.length} connector(s) join a drawn branch to a drawn parent, and carry their length (${cons.map((c) => `${c.id} ${c.m} m`).join(', ') || 'none'})`);
     if (frame.districts) {
       const shared = readJson(path.join(ROOT, 'docs/shared', frame.districts.file));
       const known = new Map(shared.districts.map((d) => [d.pcode, d]));

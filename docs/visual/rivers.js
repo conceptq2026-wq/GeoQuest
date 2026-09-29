@@ -44,7 +44,7 @@
 | Every word shown is the descriptor's or the data's.
 */
 
-import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=735dae5ee5';
+import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=3a73556efc';
 
 const ZOOM_MAX = 6;
 // CSS px: a press that moves less than this is a tap; two taps within DOUBLE_MS and DOUBLE_PX are a double tap.
@@ -63,7 +63,7 @@ const WRAP_AT = 120;
 const MARK_CLEAR = 11;
 const NAME_PAD = 1.5;
 // Names are placed a marker's district first (it must show from the opening view; a river's name has many places to go), then the main river, its tributaries, its branches, the continuations, the countries, the other districts last.
-const RANK = { markerDistrict: -1, main: 0, tributary: 1, distributary: 2, continuation: 3, country: 4, district: 5 };
+const RANK = { markerDistrict: -1, main: 0, tributary: 1, disputed: 1.5, distributary: 2, continuation: 3, country: 4, district: 5 };
 
 // One picker row per tab, one standard set of ids: the tab in view holds them (tools/check.mjs and the shell read them).
 const instances = new Set();
@@ -105,7 +105,7 @@ export async function mount(panel, { view, descriptor, data, art, shared }) {
   const systemsHere = new Set([...frame.lines.map((l) => l.system), ...frame.markers.map((m) => m.system)]);
   let current = (data.systems ?? []).map((s) => s.id).find((s) => systemsHere.has(s)) ?? null;
   const markerSystem = new Map(frame.markers.map((m) => [m.id, m.system]));
-  await Promise.all([stylesheet('../shared/picker.css?v=735dae5ee5'), stylesheet('./rivers.css?v=735dae5ee5')]);
+  await Promise.all([stylesheet('../shared/picker.css?v=3a73556efc'), stylesheet('./rivers.css?v=3a73556efc')]);
 
   const fw = frame.projection.width;
   const fh = frame.projection.height;
@@ -721,7 +721,7 @@ export async function mount(panel, { view, descriptor, data, art, shared }) {
         }
         if (!best || cost < best.cost) best = { cost, rect, align: c.align };
       });
-      const givesWay = lit && l.line && !lit.has(l.line) && (l.role === 'tributary' || l.role === 'distributary');
+      const givesWay = lit && l.line && !lit.has(l.line) && (l.role === 'tributary' || l.role === 'distributary' || l.role === 'disputed');
       if (givesWay) {
         const r = best.rect;
         const padded = { l: r.l - NAME_PAD, t: r.t - NAME_PAD, r: r.r + NAME_PAD, b: r.b + NAME_PAD };
