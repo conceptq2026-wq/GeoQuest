@@ -21,7 +21,7 @@
 | keys.
 */
 
-import { resolver } from '../shared/resolver.js?v=7c714b79f5';
+import { resolver } from '../shared/resolver.js?v=651d0becab';
 
 const dom = {
   header: document.querySelector('.visual-header'),
@@ -42,10 +42,10 @@ const dom = {
 | with no module here is an error.
 */
 const VIEW_MODULES = {
-  exploded: () => import('./exploded.js?v=7c714b79f5'),
-  cutaway: () => import('./cutaway.js?v=7c714b79f5'),
-  orbit: () => import('./orbit.js?v=7c714b79f5'),
-  rivers: () => import('./rivers.js?v=7c714b79f5'),
+  exploded: () => import('./exploded.js?v=651d0becab'),
+  cutaway: () => import('./cutaway.js?v=651d0becab'),
+  orbit: () => import('./orbit.js?v=651d0becab'),
+  rivers: () => import('./rivers.js?v=651d0becab'),
 };
 
 const diagramId = new URLSearchParams(location.search).get('v');
@@ -140,15 +140,34 @@ async function start() {
     return span;
   }
 
-  const credits = [
-    ...(data.credits ?? []).map((c) => {
-      const a = c.url ? creditLink(c.url, c.title, c.lang) : creditText(c.title, c.lang);
-      if (c.by) a.append(` (${c.by})`);
-      return a;
-    }),
-    creditLink(resolver.url('glyphs', 'noto-sans-bengali/OFL.txt'), 'Noto Sans Bengali'),
-  ];
-  credits.forEach((a, n) => dom.attribInner.append(...(n ? [' | ', a] : [a])));
+  const creditOf = (c) => {
+    const a = c.url ? creditLink(c.url, c.title, c.lang) : creditText(c.title, c.lang);
+    if (c.by) a.append(` (${c.by})`);
+    return a;
+  };
+  const font = creditLink(resolver.url('glyphs', 'noto-sans-bengali/OFL.txt'), 'Noto Sans Bengali');
+  if (data.creditGroups) {
+    // Headed blocks, one item a line: the sources and the font, then each group the data names, in its order.
+    const blocks = [['sources', [...(data.credits ?? []).filter((c) => !c.group).map(creditOf), font]]];
+    for (const group of Object.keys(data.creditGroups)) if (group !== 'sources') blocks.push([group, (data.credits ?? []).filter((c) => c.group === group).map(creditOf)]);
+    for (const [group, items] of blocks) {
+      if (!items.length) continue;
+      const heading = document.createElement('div');
+      heading.className = 'attrib-heading';
+      heading.lang = 'bn';
+      heading.textContent = data.creditGroups[group];
+      dom.attribInner.append(heading);
+      for (const item of items) {
+        const line = document.createElement('div');
+        line.className = 'attrib-item';
+        line.append(item);
+        dom.attribInner.append(line);
+      }
+    }
+  } else {
+    const credits = [...(data.credits ?? []).map(creditOf), font];
+    credits.forEach((a, n) => dom.attribInner.append(...(n ? [' | ', a] : [a])));
+  }
   dom.attrib.hidden = false;
 
   // ⓘ sits in a row of its own directly below the picker row, right-aligned —
@@ -215,7 +234,7 @@ async function start() {
     placeInfo(entry.panel);
     if (!entry.view.type) return Promise.resolve();
     entry.mounted ??= VIEW_MODULES[entry.view.type]()
-      .then((module) => module.mount(entry.panel, { view: entry.view, descriptor, data, art: entry.art ?? (entry.view.art ? fetchJson(diagramFile(entry.view.art)) : null), file: diagramFile }))
+      .then((module) => module.mount(entry.panel, { view: entry.view, descriptor, data, art: entry.art ?? (entry.view.art ? fetchJson(diagramFile(entry.view.art)) : null), file: diagramFile, shared: (name) => fetchJson(resolver.url('sharedData', name)) }))
       .then(async (mounted) => {
         // Placed before the view lays itself out, under its picker row if it drew one.
         placeInfo(entry.panel);

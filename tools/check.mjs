@@ -493,7 +493,7 @@ async function checkItem(id) {
 async function useItem(browser, size, entry, base, origin, dir) {
   const page = await browser.open(size, origin);
   const t = tag(size);
-  const shots = { steps: [], taps: [] };
+  const shots = { steps: [], taps: [], views: [] };
   const problems = [];
   const summary = [];
   let failed = false;
@@ -843,6 +843,41 @@ async function riverSteps(page, shoot, summary, fail) {
     const marks = zones.filter(([k]) => k.startsWith('marker:')).length;
     parts.push(`«${tabs[i]}» ${sub[0] ?? 'picker ?'}, taps ${good}/${zones.length} (${zones.length - marks} lines, ${marks} markers${marks ? `, zones ≥ ${Math.round(least)} px` : ''})`);
   }
+  // A frame with an opening view (its reset control shows it): the opening, about 2×, and dragged south —
+  // each laid out clear and shot to the views sheet — then back to the opening with the reset control.
+  const resetAt = await page.evaluate(box('.view-panel:not([hidden]) .reset-view'));
+  if (resetAt) {
+    const closeAt = await page.evaluate(box('.view-panel:not([hidden]) .card:not([hidden]) .card-close'));
+    if (closeAt) {
+      await page.click(...closeAt);
+      await waitCard(page);
+    }
+    const STAGE = "document.querySelector('.view-panel:not([hidden]) .stage')";
+    const camera = `(() => { const g = document.querySelector('.view-panel:not([hidden]) .world').getAttribute('transform'); return g; })()`;
+    await sleep(400);
+    await page.click(...(await page.evaluate(box('.view-panel:not([hidden]) .reset-view'))));
+    await sleep(700);
+    const opening = await page.evaluate(camera);
+    await fitCheck(page, 'the opening view');
+    await shoot('views', 'the opening view');
+    await page.evaluate(`(() => { const s = ${STAGE}; const r = s.getBoundingClientRect(); s.dispatchEvent(new WheelEvent('wheel', { deltaY: ${-Math.log(2) / 0.0018}, clientX: r.left + r.width / 2, clientY: r.top + r.height / 2, bubbles: true, cancelable: true })); })()`);
+    await sleep(300);
+    await fitCheck(page, 'about 2×');
+    await shoot('views', 'about 2×');
+    await page.click(...(await page.evaluate(box('.view-panel:not([hidden]) .reset-view'))));
+    await sleep(300);
+    await page.evaluate(`(async () => { const s = ${STAGE}; const r = s.getBoundingClientRect(); const x = r.left + r.width / 2; let y = r.top + r.height * 0.85; const ev = (type) => s.dispatchEvent(new PointerEvent(type, { pointerId: 7, pointerType: 'touch', isPrimary: true, clientX: x, clientY: y, bubbles: true, cancelable: true, button: 0 })); ev('pointerdown'); for (let k = 0; k < 14; k++) { y -= r.height * 0.05; ev('pointermove'); await new Promise((q) => setTimeout(q, 16)); } ev('pointerup'); })()`);
+    await sleep(300);
+    const south = await page.evaluate(camera);
+    await fitCheck(page, 'panned south');
+    await shoot('views', 'panned south');
+    await page.click(...(await page.evaluate(box('.view-panel:not([hidden]) .reset-view'))));
+    await sleep(700);
+    const back = await page.evaluate(camera);
+    if (south === opening) fail('views — a drag did not pan the picture');
+    if (back !== opening) fail(`views — the reset control did not return to the opening view (${opening} → ${back})`);
+    parts.push('views: opening, about 2×, panned south, reset');
+  }
   // ⓘ open: on the screen, scrolled to its last line, and closed again by a second tap on ⓘ.
   const info = await page.evaluate(box('.info-row .attrib-button'));
   if (info) {
@@ -963,7 +998,7 @@ async function contactSheets(browser, dir, results, origin) {
           return `<figure><div class="img" style="width:${w * scale}px;height:${h * scale}px"><img src="${SHEETS}${path.relative(OUT, file).replaceAll('\\', '/')}" width="${w * scale}" height="${h * scale}">${dot}</div><figcaption>${caption.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c])}</figcaption></figure>`;
         })
         .join('');
-      const html = `<!doctype html><meta charset="utf-8"><style>body{margin:12px;font:12px system-ui,'Noto Sans Bengali',sans-serif;background:#fff;color:#222}h1{font-size:14px;margin:0 0 8px}main{display:flex;flex-wrap:wrap;gap:10px}figure{margin:0;width:${w * scale}px}.img{position:relative;outline:1px solid #ccc}img{display:block}i{position:absolute;width:10px;height:10px;border:2px solid #e0245e;border-radius:50%;background:rgba(224,36,94,.25)}figcaption{margin-top:3px;line-height:1.3;word-break:break-word}</style><h1>${path.basename(dir)} · ${r.size} · ${group === 'taps' ? 'taps' : 'home, open, and each step'} (${list.length})</h1><main>${tiles}</main>`;
+      const html = `<!doctype html><meta charset="utf-8"><style>body{margin:12px;font:12px system-ui,'Noto Sans Bengali',sans-serif;background:#fff;color:#222}h1{font-size:14px;margin:0 0 8px}main{display:flex;flex-wrap:wrap;gap:10px}figure{margin:0;width:${w * scale}px}.img{position:relative;outline:1px solid #ccc}img{display:block}i{position:absolute;width:10px;height:10px;border:2px solid #e0245e;border-radius:50%;background:rgba(224,36,94,.25)}figcaption{margin-top:3px;line-height:1.3;word-break:break-word}</style><h1>${path.basename(dir)} · ${r.size} · ${{ taps: 'taps', views: 'views: the opening, about 2×, panned south' }[group] ?? 'home, open, and each step'} (${list.length})</h1><main>${tiles}</main>`;
       const name = `${r.size}-${group}`;
       fs.writeFileSync(path.join(dir, `${name}.html`), html);
       await page.goto(`${origin}${SHEETS}${path.basename(dir)}/${name}.html`);

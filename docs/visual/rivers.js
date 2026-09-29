@@ -5,11 +5,15 @@
 |--------------------------------------------------------------------------
 |
 | Loaded only for a view of type `rivers` (bangladesh-rivers). Nothing here
-| is a tile map and nothing is fetched but the diagram's own JSON: the view's
-| `art` file (built by tools/build-diagram-bangladesh-rivers.mjs) holds the
-| land, Bangladesh, the boundaries, every line as SVG path data in the frame's
-| own units, the markers and the anchors of the names; the diagram's data
-| holds every word.
+| is a tile map and nothing is fetched but the diagram's own JSON and, for a
+| frame that asks, one shared file: the view's `art` file (built by
+| tools/build-diagram-bangladesh-rivers.mjs) holds the land, Bangladesh, the
+| boundaries, every line as SVG path data in the frame's own units, the
+| markers and the anchors of the names; the diagram's data holds every word. A
+| frame with `districts` also reads the shared district file (sharedData,
+| tools/build-bangladesh-districts.mjs): thin grey boundaries behind the
+| rivers, and grey names at the frame's anchors — a marker's district from the
+| opening view, the rest from zoomAll× — each dropped rather than overlapping.
 |
 | One <svg> fills the stage. The art sits in one group, moved and scaled as a
 | whole (1× is the whole frame fitting the stage; up to 6× from there — the
@@ -33,7 +37,7 @@
 | Every word shown is the descriptor's or the data's.
 */
 
-import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=7c714b79f5';
+import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=651d0becab';
 
 const ZOOM_MAX = 6;
 // CSS px: a press that moves less than this is a tap; two taps within DOUBLE_MS and DOUBLE_PX are a double tap.
@@ -51,8 +55,8 @@ const GAP = 7;
 const WRAP_AT = 120;
 const MARK_CLEAR = 11;
 const NAME_PAD = 1.5;
-// Names are placed main river first, then its tributaries, its branches, the continuations, the countries last.
-const RANK = { main: 0, tributary: 1, distributary: 2, continuation: 3, country: 4 };
+// Names are placed a marker's district first (it must show from the opening view; a river's name has many places to go), then the main river, its tributaries, its branches, the continuations, the countries, the other districts last.
+const RANK = { markerDistrict: -1, main: 0, tributary: 1, distributary: 2, continuation: 3, country: 4, district: 5 };
 
 // One picker row per tab, one standard set of ids: the tab in view holds them (tools/check.mjs and the shell read them).
 const instances = new Set();
@@ -87,10 +91,11 @@ function glyph(kind) {
   return svgEl('rect', { class: 'glyph glyph-mouth', x: -6, y: -6, width: 12, height: 12 });
 }
 
-export async function mount(panel, { view, descriptor, data, art }) {
+export async function mount(panel, { view, descriptor, data, art, shared }) {
   const words = descriptor.words;
   const frame = await art;
-  await Promise.all([stylesheet('../shared/picker.css?v=7c714b79f5'), stylesheet('./rivers.css?v=7c714b79f5')]);
+  const districts = frame.districts ? await shared(frame.districts.file) : null;
+  await Promise.all([stylesheet('../shared/picker.css?v=651d0becab'), stylesheet('./rivers.css?v=651d0becab')]);
 
   const fw = frame.projection.width;
   const fh = frame.projection.height;
@@ -98,6 +103,67 @@ export async function mount(panel, { view, descriptor, data, art }) {
   const zoomMax = open?.zoomMax ?? ZOOM_MAX;
   const uid = view.id;
   const cardTitle = (marker) => `${marker.name} — ${words.legend[marker.kind]}`;
+
+  /** Every district's rings in the frame's units, with a box, for keeping its name inside it. */
+  const shapes = new Map();
+  if (districts) {
+    const { lonMin, latMax, cosLat, scale } = frame.projection;
+    const arcPts = districts.arcs.map((arc) => {
+      let x = 0;
+      let y = 0;
+      const pts = [];
+      for (let k = 0; k < arc.length; k += 2) {
+        x += arc[k];
+        y += arc[k + 1];
+        pts.push([(x * districts.quantum - lonMin) * cosLat * scale, (latMax - y * districts.quantum) * scale]);
+      }
+      return pts;
+    });
+    for (const d of districts.districts) {
+      const rings = d.rings.map((ring) => ring.flatMap((r, j) => {
+        const pts = r < 0 ? arcPts[~r].slice().reverse() : arcPts[r];
+        return j ? pts.slice(1) : pts;
+      }));
+      const all = rings.flat();
+      shapes.set(d.pcode, { rings, box: [Math.min(...all.map((p) => p[0])), Math.min(...all.map((p) => p[1])), Math.max(...all.map((p) => p[0])), Math.max(...all.map((p) => p[1]))] });
+    }
+  }
+  const inShape = (pcode, x, y) => {
+    const s = shapes.get(pcode);
+    if (!s || x < s.box[0] || x > s.box[2] || y < s.box[1] || y > s.box[3]) return false;
+    let hit = false;
+    for (const ring of s.rings)
+      for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+        const [xi, yi] = ring[i];
+        const [xj, yj] = ring[j];
+        if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) hit = !hit;
+      }
+    return hit;
+  };
+
+  /** Every arc two districts share, as path data in the frame's units (Bangladesh's own outline is the frame's). */
+  function districtLines() {
+    const { lonMin, latMax, cosLat, scale } = frame.projection;
+    const uses = new Map();
+    for (const d of districts.districts) for (const ring of d.rings) for (const r of ring) {
+      const i = r < 0 ? ~r : r;
+      uses.set(i, (uses.get(i) ?? 0) + 1);
+    }
+    const parts = [];
+    districts.arcs.forEach((arc, i) => {
+      if (uses.get(i) !== 2) return;
+      let x = 0;
+      let y = 0;
+      const pts = [];
+      for (let k = 0; k < arc.length; k += 2) {
+        x += arc[k];
+        y += arc[k + 1];
+        pts.push([((x * districts.quantum - lonMin) * cosLat * scale).toFixed(1), ((latMax - y * districts.quantum) * scale).toFixed(1)]);
+      }
+      parts.push('M' + pts.map((p) => p.join(' ')).join('L'));
+    });
+    return parts.join('');
+  }
 
   // ---- the page ------------------------------------------------------------------------
 
@@ -119,6 +185,7 @@ export async function mount(panel, { view, descriptor, data, art }) {
     svgEl('rect', { class: 'sea', width: fw, height: fh }),
     svgEl('path', { class: 'land', d: frame.land }),
     svgEl('path', { class: 'bd-fill', d: frame.bangladesh.fill }),
+    ...(districts ? [svgEl('path', { class: 'district-lines', d: districtLines() })] : []),
     svgEl('path', { class: 'borders', d: frame.borders }),
     svgEl('path', { class: 'bd-border', d: frame.bangladesh.border }),
   );
@@ -192,11 +259,14 @@ export async function mount(panel, { view, descriptor, data, art }) {
   const labels = [
     ...frame.labels.map((l) => ({ id: l.id, text: data.labels[l.id], x: l.x, y: l.y, line: l.line, role: roleOf.get(l.line) })),
     ...frame.countries.map((c) => ({ id: c.id, text: data.countries[c.id], x: c.x, y: c.y, line: null, role: 'country' })),
+    ...(districts
+      ? frame.districts.labels.map((d) => ({ id: d.pcode, text: districts.districts.find((q) => q.pcode === d.pcode).bn, x: d.x, y: d.y, line: null, role: d.always ? 'markerDistrict' : 'district' }))
+      : []),
   ];
   const perLine = new Map();
   for (const l of labels) if (l.line) perLine.set(l.line, (perLine.get(l.line) ?? 0) + 1);
   for (const l of labels) {
-    l.node = svgEl('text', { class: `layer-label river-label label-${l.role}`, 'data-fit': `name ${l.id}` });
+    l.node = svgEl('text', { class: `layer-label ${l.role.endsWith('istrict') && l.line === null ? 'district-label' : 'river-label'} label-${l.role}`, 'data-fit': `name ${l.id}` });
     l.node.style.display = 'none';
     namesG.append(l.node);
     // A line with a single name may carry it on any stretch in view; a line with several keeps each where it was placed.
@@ -247,11 +317,7 @@ export async function mount(panel, { view, descriptor, data, art }) {
     const icon = svgEl('svg', { viewBox: '-12 -12 24 24', width: 22, height: 22, 'aria-hidden': 'true' });
     icon.append(svgEl('path', { d: 'M-8-3V-8H-3M3-8H8V-3M8 3V8H3M-3 8H-8V3', class: 'reset-corners' }), svgEl('circle', { r: 2.2, class: 'reset-dot' }));
     reset.append(icon);
-    reset.addEventListener('click', () => {
-      zoom = 1;
-      [cx, cy] = home();
-      layout();
-    });
+    reset.addEventListener('click', () => goHome());
     content.append(reset);
   }
 
@@ -406,6 +472,21 @@ export async function mount(panel, { view, descriptor, data, art }) {
     apply();
   }
 
+  /** The opening view: 1×, centred on the frame's view, moved only so the picture covers the stage where it can. */
+  function goHome() {
+    zoom = 1;
+    [cx, cy] = home();
+    layout();
+    if (!W || !H) return;
+    const ew = fw * m;
+    const eh = fh * m;
+    if (ew >= W) tx = clamp(tx, W - ew, 0);
+    if (eh >= H) ty = clamp(ty, H - eh, 0);
+    cx = (W / 2 - tx) / m;
+    cy = (H / 2 - ty) / m;
+    apply();
+  }
+
   const queue = () => {
     if (!frameQueued) frameQueued = requestAnimationFrame(() => {
       frameQueued = 0;
@@ -419,6 +500,8 @@ export async function mount(panel, { view, descriptor, data, art }) {
     const inside = [[b.x0, b.y0], [b.x1, b.y1]].every(([x, y]) => x * m + tx >= margin && x * m + tx <= W - margin && y * m + ty >= margin && y * m + ty <= H - margin);
     if (inside) return;
     const need = Math.min((W - 4 * margin) / (Math.max(b.x1 - b.x0, 60) * s0), (H - 4 * margin) / (Math.max(b.y1 - b.y0, 60) * s0));
+    // Bigger than the stage at 1×: a frame with an opening view shows that, as it was drawn to be read.
+    if (open && need <= 1) return goHome();
     zoom = clamp(need, 1, zoomMax);
     cx = (b.x0 + b.x1) / 2;
     cy = (b.y0 + b.y1) / 2;
@@ -508,6 +591,16 @@ export async function mount(panel, { view, descriptor, data, art }) {
     const { w, h } = l;
     const g = GAP;
     if (l.role === 'country') return [{ l: P.x - w / 2, t: P.y - h / 2, align: 'center' }];
+    if (l.role === 'district' || l.role === 'markerDistrict') {
+      const out = [{ l: P.x - w / 2, t: P.y - h / 2, align: 'center' }];
+      for (const r of [14, 28, 42, 58, 76])
+        for (let a = 0; a < 8; a++) {
+          const dx = Math.cos((a * Math.PI) / 4) * r * 1.4;
+          const dy = Math.sin((a * Math.PI) / 4) * r * 0.8;
+          out.push({ l: P.x + dx - w / 2, t: P.y + dy - h / 2, align: 'center' });
+        }
+      return out.filter((c) => inShape(l.id, (c.l + w / 2 - tx) / m, (c.t + h / 2 - ty) / m));
+    }
     const right = (dy = 0, gap = g) => ({ l: P.x + gap, t: P.y - h / 2 + dy, align: 'left' });
     const left = (dy = 0, gap = g) => ({ l: P.x - gap - w, t: P.y - h / 2 + dy, align: 'right' });
     const above = (dx = 0, gap = g) => ({ l: P.x - w / 2 + dx, t: P.y - gap - h, align: 'center' });
@@ -542,13 +635,27 @@ export async function mount(panel, { view, descriptor, data, art }) {
     }
     const placed = [];
     for (const l of labels) {
-      const anchor = anchorOf(l);
+      const anchor = l.role === 'district' && zoom < frame.districts.zoomAll - 0.05 ? null : anchorOf(l);
       if (!anchor) {
         l.node.style.display = 'none';
         continue;
       }
       let best = null;
-      candidates(anchor, anchor.dir, l).forEach((c, k) => {
+      const yields = l.role === 'country' || l.role === 'district' || l.role === 'markerDistrict';
+      if (yields) {
+        for (const c of candidates(anchor, anchor.dir, l)) {
+          if (c.l < EDGE || c.t < EDGE || c.l + l.w > W - EDGE || c.t + l.h > H - EDGE) continue;
+          const rect = { l: c.l, t: c.t, r: c.l + l.w, b: c.t + l.h };
+          const padded = { l: rect.l - NAME_PAD, t: rect.t - NAME_PAD, r: rect.r + NAME_PAD, b: rect.b + NAME_PAD };
+          if (blocks.some((o) => overlap(rect, o) > 0) || placed.some((o) => overlap(padded, o) > 0)) continue;
+          best = { cost: 0, rect, align: c.align };
+          break;
+        }
+        if (!best) {
+          l.node.style.display = 'none';
+          continue;
+        }
+      } else candidates(anchor, anchor.dir, l).forEach((c, k) => {
         const left = clamp(c.l, EDGE, Math.max(EDGE, W - EDGE - l.w));
         const top = clamp(c.t, EDGE, Math.max(EDGE, H - EDGE - l.h));
         const rect = { l: left, t: top, r: left + l.w, b: top + l.h };
@@ -560,11 +667,6 @@ export async function mount(panel, { view, descriptor, data, art }) {
         }
         if (!best || cost < best.cost) best = { cost, rect, align: c.align };
       });
-      // A country's name gives way to anything; a river's never does.
-      if (l.role === 'country' && best.cost >= 1) {
-        l.node.style.display = 'none';
-        continue;
-      }
       l.node.style.display = '';
       if (l.align !== best.align) {
         l.align = best.align;
@@ -691,7 +793,8 @@ export async function mount(panel, { view, descriptor, data, art }) {
     await document.fonts?.ready;
     ready = true;
     content.classList.remove('loading');
-    layout();
+    if (open) goHome();
+    else layout();
   })();
 
   return {

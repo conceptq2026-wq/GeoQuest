@@ -51,7 +51,7 @@ export async function mount(api) {
   if (untabbed.length) throw new Error(`tabs: ${spec.records}.${spec.field} takes ${untabbed.join(', ')}, which "${spec.from}" has no tab for`);
   active = keys[0];
 
-  await stylesheet(api, './tabs.css?v=7c714b79f5');
+  await stylesheet(api, './tabs.css?v=651d0becab');
   bar = api.own.node(document.createElement('div'), 'tabs');
   bar.className = 'map-tabs';
   bar.setAttribute('role', 'tablist');

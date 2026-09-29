@@ -283,6 +283,150 @@
       "d": "M964.1 996.5l-0.5 0"
     }
   ],
+  "districts": {
+    "file": "bangladesh-districts.json",
+    "zoomAll": 2,
+    "labels": [
+      {
+        "pcode": "BD5549",
+        "x": 652.4,
+        "y": 302.9,
+        "always": true
+      },
+      {
+        "pcode": "BD5532",
+        "x": 596.6,
+        "y": 674.8,
+        "always": true
+      },
+      {
+        "pcode": "BD3068",
+        "x": 997.8,
+        "y": 1027.5,
+        "always": true
+      },
+      {
+        "pcode": "BD3082",
+        "x": 561.7,
+        "y": 1203.9,
+        "always": true
+      },
+      {
+        "pcode": "BD3093",
+        "x": 746.6,
+        "y": 889.5,
+        "always": false
+      },
+      {
+        "pcode": "BD5010",
+        "x": 512.9,
+        "y": 763,
+        "always": false
+      },
+      {
+        "pcode": "BD4539",
+        "x": 680.3,
+        "y": 667.1,
+        "always": false
+      },
+      {
+        "pcode": "BD4561",
+        "x": 882.7,
+        "y": 770.6,
+        "always": false
+      },
+      {
+        "pcode": "BD5064",
+        "x": 303.5,
+        "y": 816.7,
+        "always": false
+      },
+      {
+        "pcode": "BD3056",
+        "x": 750.1,
+        "y": 1127.2,
+        "always": false
+      },
+      {
+        "pcode": "BD3033",
+        "x": 823.4,
+        "y": 1077.4,
+        "always": false
+      },
+      {
+        "pcode": "BD5088",
+        "x": 631.5,
+        "y": 1039,
+        "always": false
+      },
+      {
+        "pcode": "BD3026",
+        "x": 809.4,
+        "y": 1111.9,
+        "always": false
+      },
+      {
+        "pcode": "BD5527",
+        "x": 310.5,
+        "y": 456.3,
+        "always": false
+      },
+      {
+        "pcode": "BD3067",
+        "x": 983.9,
+        "y": 1188.6,
+        "always": false
+      },
+      {
+        "pcode": "BD5552",
+        "x": 537.3,
+        "y": 341.2,
+        "always": false
+      },
+      {
+        "pcode": "BD5585",
+        "x": 533.8,
+        "y": 467.8,
+        "always": false
+      },
+      {
+        "pcode": "BD3048",
+        "x": 1025.7,
+        "y": 1000.7,
+        "always": false
+      },
+      {
+        "pcode": "BD5069",
+        "x": 446.6,
+        "y": 927.8,
+        "always": false
+      },
+      {
+        "pcode": "BD5076",
+        "x": 603.6,
+        "y": 1088.9,
+        "always": false
+      },
+      {
+        "pcode": "BD5573",
+        "x": 359.4,
+        "y": 237.7,
+        "always": false
+      },
+      {
+        "pcode": "BD4589",
+        "x": 732.7,
+        "y": 736.1,
+        "always": false
+      },
+      {
+        "pcode": "BD3059",
+        "x": 914.1,
+        "y": 1299.7,
+        "always": false
+      }
+    ]
+  },
   "markers": [
     {
       "id": "entry",

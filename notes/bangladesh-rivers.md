@@ -95,14 +95,32 @@ finishes it. It is not in `docs/registry.json`.
   or ⓘ's tap zone is. Pinch and pan run 1×–6× on «পুরো পথ» and 1×–8× on
   «বাংলাদেশে», in this module only. River strokes (2026-09-29, 35 % thinner):
   main 2.9 px, tributary and distributary 2 px, continuation 1.3 px.
+- **Districts** (the «বাংলাদেশে» tab, the user's decisions of 2026-09-29):
+  thin light-grey boundaries (0.5 px) behind the rivers, drawn from the shared
+  `docs/shared/bangladesh-districts.json` (resolver kind `sharedData`, so a
+  device caches it once for every diagram that reads it); and a grey name, at
+  the river names' size, for each of the 23 districts the tappable lines run
+  through for at least 0.5 km — the four holding a marker (Kurigram,
+  Gaibandha, Rajbari, Narsingdi) from the opening view, the other 19 from 2×.
+  Each name's anchor, chosen by the build, lies inside its district near the
+  river and away from the markers and the rivers' names (`BUSY_KM`); at run
+  time a name sits on it or on a ring round it, its middle inside its
+  district, and one that cannot be placed clear of others is dropped at that
+  zoom. The marker districts' names are placed first, before the rivers'.
+  COD-AB has no Bengali names, so the names are the Bangladesh basemap's
+  (bangladesh.gov.bd, `tools/sources/bangladesh-names.json`). One ⓘ line says
+  the districts are today's, per COD-AB.
+- **ⓘ** is three headed blocks (`creditGroups` in the data; `group` on each
+  plain line): «সূত্র» (the sources and the font), «ছবি সম্পর্কে টীকা» (the
+  notes), «উৎসগুলোর অমিল» (the source conflicts), each item on its own line.
 
 ## Inputs, all pinned
 
 - **Editor's seed:** `data-sources/bangladesh-rivers/bangladesh-rivers.seed.json`
   — every word, its sources, the geometry recipe (way ids with trims, the joins,
   the frames, the label anchors) and a `review` of where sources differ. Its
-  SHA-256 is pinned in `tools/verify-descriptor.mjs`, now `2b3e3c57…02b3`
-  (`1c70b88a…` before the whole-Bangladesh frame; `08aff7d1…` before the Dewanganj notes and the Teesta district; `28856c9a…`
+  SHA-256 is pinned in `tools/verify-descriptor.mjs`, now `355c69af…46ad`
+  (`2b3e3c57…` before the districts and the ⓘ blocks; `1c70b88a…` before the whole-Bangladesh frame; `08aff7d1…` before the Dewanganj notes and the Teesta district; `28856c9a…`
   before the Prompt 40 cards; `c14c8bb4…` before the entry row lost «নাগেশ্বরী উপজেলা»; `95090aa6…`
   before the entry marker was snapped; `a6e2e386…` before the
   Teesta mouth's provenance was corrected). NCTB books
@@ -158,7 +176,11 @@ finishes it. It is not in `docs/registry.json`.
     way, node, vertex or — the entry — the way segment that crosses COD-AB's
     border; and the build reproduced byte for byte;
   - f. the entry marker within 500 m of the drawn main line, and of the
-    point where the line turns from dashed to solid, in both frames.
+    point where the line turns from dashed to solid, in both frames;
+  - g. every labelled district crossed by a drawn tappable line, every name's
+    anchor inside its district as COD-AB draws it, every district holding a
+    marker labelled from the opening view; and the shared district file
+    rebuilt by `tools/build-bangladesh-districts.mjs` byte for byte.
 - **`node tools/check.mjs bangladesh-rivers`** — its rivers branch, `riverSteps`,
   takes each tab in turn: the picker's entry, then every line and marker
   tapped at a point where its zone alone takes the tap, its card's heading the

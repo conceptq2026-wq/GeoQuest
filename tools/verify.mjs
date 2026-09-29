@@ -387,6 +387,58 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
   }
   check(bad.length === 0, `e. every drawn line and marker traces to a pinned id: ${drawnIds.size} lines, ${G.main.ne.length} Natural Earth lines and ${wayIds.size} OpenStreetMap ways, ${S.markers.length} markers — ${kinds.ne} a Natural Earth vertex, ${kinds.osm} an OSM node or vertex, ${kinds.crossing} where an OSM segment crosses COD-AB's border, ${kinds.bwdb} a BWDB table row${bad.length ? ` — not: ${bad.join('; ')}` : ''}`);
 
+  // 7g — the district names (the user's checks, 2026-09-29): every labelled district is crossed by a drawn,
+  // tappable line; every anchor lies inside its district as COD-AB draws it; every district holding a marker
+  // is labelled from the opening view. And the shared district file is its build's output, byte for byte.
+  const districtNote = [];
+  {
+    const fb = frames.bangladesh;
+    const admin2 = zipEntry(pinned(path.join(CACHE, codab.file), codab.sha256), 'bgd_admin2.geojson');
+    const box = (rings) => rings.flat().reduce((b, [x, y]) => [Math.min(b[0], x), Math.min(b[1], y), Math.max(b[2], x), Math.max(b[3], y)], [Infinity, Infinity, -Infinity, -Infinity]);
+    const inRing = (p, ring) => {
+      let hit = false;
+      for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) if (ring[i][1] > p[1] !== ring[j][1] > p[1] && p[0] < ((ring[j][0] - ring[i][0]) * (p[1] - ring[i][1])) / (ring[j][1] - ring[i][1]) + ring[i][0]) hit = !hit;
+      return hit;
+    };
+    const polys = new Map(admin2.features.map((f) => {
+      const rings = (f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates);
+      return [f.properties.adm2_pcode, { en: f.properties.adm2_name, rings, box: box(rings.flat()) }];
+    }));
+    const insideD = (p, d) => p[0] >= d.box[0] && p[0] <= d.box[2] && p[1] >= d.box[1] && p[1] <= d.box[3] && d.rings.some((poly) => poly.reduce((n, r) => n + (inRing(p, r) ? 1 : 0), 0) % 2 === 1);
+    const labels = fb.districts?.labels ?? [];
+    const tappable = fb.lines.filter((l) => l.role !== 'continuation').flatMap((l) => lineOf('bangladesh', l.id));
+    const samples = [];
+    for (const piece of tappable)
+      for (let i = 1; i < piece.length; i++) {
+        const n = Math.max(1, Math.ceil(distM(piece[i - 1], piece[i]) / 100));
+        for (let k = 0; k < n; k++) samples.push([piece[i - 1][0] + ((piece[i][0] - piece[i - 1][0]) * (k + 0.5)) / n, piece[i - 1][1] + ((piece[i][1] - piece[i - 1][1]) * (k + 0.5)) / n]);
+      }
+    const uncrossed = labels.filter((l) => !samples.some((p) => insideD(p, polys.get(l.pcode))));
+    check(labels.length > 0 && uncrossed.length === 0, `g. every labelled district (${labels.length}) is crossed by a drawn tappable line${uncrossed.length ? ` — not: ${uncrossed.map((l) => l.pcode).join(', ')}` : ''}`);
+    const outside = labels.filter((l) => !insideD(proj.bangladesh.invert(l.x, l.y), polys.get(l.pcode)));
+    check(outside.length === 0, `g. every district name's anchor lies inside its district as COD-AB draws it${outside.length ? ` — not: ${outside.map((l) => l.pcode).join(', ')}` : ''}`);
+    const markerDistricts = new Set();
+    let located = 0;
+    for (const m of fb.markers) {
+      const p = proj.bangladesh.invert(m.x, m.y);
+      let at = [...polys].find(([, d]) => insideD(p, d))?.[0];
+      if (!at) at = [...polys].map(([pc, d]) => [pc, Math.min(...d.rings.flat().map((r) => nearestOnLine(p, r).m))]).sort((a, b) => a[1] - b[1]).find(([, mm]) => mm <= 500)?.[0];
+      if (at) (markerDistricts.add(at), located++);
+    }
+    const missing = [...markerDistricts].filter((pc) => !labels.some((l) => l.pcode === pc && l.always));
+    check(located === fb.markers.length, `g. every marker lies in a COD-AB district, or on its edge (${located} of ${fb.markers.length}, in ${markerDistricts.size} districts)`);
+    check(missing.length === 0, `g. every district holding a marker is labelled from the opening view: ${[...markerDistricts].map((pc) => polys.get(pc).en).join(', ')}${missing.length ? ` — not: ${missing.join(', ')}` : ''}`);
+    districtNote.push(`${labels.filter((l) => l.always).length} from the opening view, ${labels.filter((l) => !l.always).length} from ${fb.districts?.zoomAll}×`);
+    const outD = fs.mkdtempSync(path.join(os.tmpdir(), 'districts-'));
+    const builtD = path.join(outD, 'bangladesh-districts.json');
+    try {
+      execFileSync(process.execPath, [path.join(HERE, 'build-bangladesh-districts.mjs'), builtD], { stdio: ['ignore', 'pipe', 'pipe'] });
+    } catch {}
+    const sameD = fs.existsSync(builtD) && fs.readFileSync(builtD).equals(fs.readFileSync(path.join(SERVED, 'shared', 'bangladesh-districts.json')));
+    fs.rmSync(outD, { recursive: true, force: true });
+    check(sameD, 'g. docs/shared/bangladesh-districts.json is tools/build-bangladesh-districts.mjs\'s output, byte for byte');
+  }
+
   // The build, re-run offline to a temp folder, is the committed diagram — and its own checks (chains within 3 m, seam, junctions, the geometry pins) held.
   const out = fs.mkdtempSync(path.join(os.tmpdir(), 'rivers-'));
   let say = '';
@@ -402,7 +454,7 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
   const pins = JSON.parse(fs.readFileSync(RIVERS_PINS, 'utf8'));
   check(same && Object.keys(pins).length === 11, `the build reproduces the ${built.length} committed files byte for byte, and its ${Object.keys(pins).length} geometry pins hold${same ? '' : ` — ${say.split('\n').slice(0, 3).join(' | ')}`}`);
   check(Boolean(seamLine) && Number(seamLine[1]) <= G.main.seam.maxM && Number(seamLine[3]) <= 500 && Number(seamLine[4]) <= 3, `d. the seam is ${seamLine?.[1]} m at ${seamLine?.[2]}°E (limit ${G.main.seam.maxM} m); the Jamuna ends ${seamLine?.[3]} m from the Padma, which ends ${seamLine?.[4]} m from the Meghna`);
-  console.log(`bangladesh-rivers: a. ${drawnMarkers} markers within ${round(worst.px, 2)} px / ${round(worst.m)} m; b. ${alone.length + viaConnector.length} joined (${alone.join(', ')} on their own; ${viaConnector.join(', ')} by a connector), ${exempt.length} unjoined (${exempt.join(', ')}); c. entry ${round(entrySrc)} m from the border (BWDB's point ${round(entryBwdb)} m); d. main connected, gaps ≤ 500 m; e. ${drawnIds.size} lines, ${wayIds.size} ways, ${S.markers.length} markers traced; f. entry on the line and at the dash switch: ${entryF.join(', ')}`);
+  console.log(`bangladesh-rivers: a. ${drawnMarkers} markers within ${round(worst.px, 2)} px / ${round(worst.m)} m; b. ${alone.length + viaConnector.length} joined (${alone.join(', ')} on their own; ${viaConnector.join(', ')} by a connector), ${exempt.length} unjoined (${exempt.join(', ')}); c. entry ${round(entrySrc)} m from the border (BWDB's point ${round(entryBwdb)} m); d. main connected, gaps ≤ 500 m; e. ${drawnIds.size} lines, ${wayIds.size} ways, ${S.markers.length} markers traced; f. entry on the line and at the dash switch: ${entryF.join(', ')}; g. district names ${districtNote.join('')}`);
 }
 
 // ---- vendored libraries ----

@@ -50,6 +50,13 @@
   stroke-width: 1.6px;
   stroke-linejoin: round;
 }
+/* The districts (a frame with `districts`): thin light-grey boundaries behind the rivers, from the shared file. */
+.rivers .district-lines {
+  fill: none;
+  stroke: #c2c8d0;
+  stroke-width: 0.5px;
+  stroke-linejoin: round;
+}
 .rivers .frame-edge {
   fill: none;
   stroke: #b9c9dc;
@@ -194,6 +201,9 @@
 }
 .rivers text.label-country {
   fill: #5e759d;
+}
+.rivers text.district-label {
+  fill: #7a828e;
 }
 @media (max-width: 389px) {
   .rivers text.layer-label {

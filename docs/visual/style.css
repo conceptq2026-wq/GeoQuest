@@ -222,6 +222,20 @@ body {
   text-decoration: none;
 }
 
+/* ⓘ in headed blocks (a diagram whose data groups its credits): bold headings, one item a line. */
+.attrib-heading {
+  margin: 8px 0 3px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+.attrib-heading:first-child {
+  margin-top: 2px;
+}
+.attrib-item + .attrib-item {
+  margin-top: 4px;
+}
+
 .attrib-inner a:hover {
   color: inherit;
   text-decoration: underline;

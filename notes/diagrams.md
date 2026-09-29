@@ -112,3 +112,9 @@ not built.
   - **Connectors:** a frame may carry `connectors` (id, parent, length, path
     data): straight segments the build adds from a branch's end to its parent,
     drawn in that river's group, with no tap zone (`notes/bangladesh-rivers.md`).
+  - **Shared files and ⓘ blocks:** a view's `mount` also gets `shared(name)`,
+    a fetch through the resolver's `sharedData` kind (a frame's `districts`
+    reads `bangladesh-districts.json` so). A diagram whose data has
+    `creditGroups` gets ⓘ as headed blocks — the ungrouped credits and the
+    font first, then each group — one item a line, headings bold at 14 px;
+    any other diagram keeps the one run of credits.

@@ -55,6 +55,8 @@ const CHAIN_TOL_M = 3;
 const SNAP_M = 0.05;
 // A tributary's or distributary's drawn end further than CONNECT_FROM_M from its drawn parent, and no
 // more than CONNECT_MAX_M, gets a straight connector to the parent's nearest point (the user's rule, 2026-09-29).
+// A district name's anchor is scored by its distance to its river (km) plus 2 for every km it comes within BUSY_KM of a marker or a river's name.
+const BUSY_KM = 30;
 const CONNECT_FROM_M = 50;
 const CONNECT_MAX_M = 10000;
 // The one exception, the user's decision (2026-09-29): the Dhaleshwari's head, 11.4 km out.
@@ -103,6 +105,7 @@ if (G.files.codab.zip !== codab.file) fail(`the seed reads ${G.files.codab.zip},
 const zip = pinnedBuffer(path.join(CACHE, codab.file), codab.size, { sha256: codab.sha256 });
 const admin0 = zipEntry(zip, G.files.codab.admin0);
 const admin3 = zipEntry(zip, G.files.codab.admin3);
+const admin2 = zipEntry(zip, G.files.codab.admin2);
 const osmFile = (entry, rel) => {
   if (entry.file !== rel) fail(`the seed reads ${rel}, tools/sources.json pins ${entry.file}`);
   return JSON.parse(pinnedBuffer(path.join(ROOT, entry.file), undefined, { sha256: entry.sha256 }).toString('utf8'));
@@ -427,6 +430,79 @@ function buildFrame(frameId, spec) {
     if (m > CONNECT_FROM_M && m <= (CONNECT_MAX_M_FOR[id] ?? CONNECT_MAX_M)) connectors.push({ id, parent, m: Math.round(m), d: pathData([a, b]) });
   }
 
+  // The districts: a grey name for each one the tappable lines run through for at least minKm in
+  // Bangladesh, at an anchor inside it near the river; those holding one of the frame's markers
+  // from the opening view, the rest from zoomAll×. The boundaries come from the shared file.
+  let districtsOut;
+  if (spec.districts) {
+    const ds = spec.districts;
+    const polys = admin2.features.map((f) => ({ pcode: f.properties.adm2_pcode, en: f.properties.adm2_name, idx: indexed(f.geometry), rings: polygonsOf(f.geometry).flat(), box: ringBox(polygonsOf(f.geometry).flat().flat()), center: [f.properties.center_lon, f.properties.center_lat] }));
+    const within = (p, d) => p[0] >= d.box[0] && p[0] <= d.box[2] && p[1] >= d.box[1] && p[1] <= d.box[3] && inside(p, d.idx);
+    const districtOf = (p) => polys.find((d) => within(p, d)) ?? null;
+    const tappable = spec.lines
+      .filter((id) => lines[id].role !== 'continuation')
+      .flatMap((id) => (id === 'main' ? mainPieces.filter((pc) => pc.inside).map((pc) => pc.coords) : [lines[id].coords]));
+    const km = new Map();
+    const runs = new Map(); // pcode → the longest stretch of points inside it
+    for (const coords of tappable) {
+      let cur = null;
+      for (let i = 1; i < coords.length; i++) {
+        const mid = [(coords[i - 1][0] + coords[i][0]) / 2, (coords[i - 1][1] + coords[i][1]) / 2];
+        const d = districtOf(mid);
+        if (d) km.set(d.pcode, (km.get(d.pcode) ?? 0) + distM(coords[i - 1], coords[i]) / 1000);
+        if (!d || cur?.pcode !== d.pcode) {
+          cur = d ? { pcode: d.pcode, pts: [coords[i - 1]] } : null;
+          if (cur) {
+            const all = runs.get(d.pcode) ?? [];
+            all.push(cur);
+            runs.set(d.pcode, all);
+          }
+        }
+        if (cur) cur.pts.push(coords[i]);
+      }
+    }
+    const always = new Set();
+    for (const id of spec.markers) {
+      const p = markerSeed[id].lonLat;
+      const d = districtOf(p) ?? polys.map((q) => [q, distToRings(p, q.rings)]).sort((a, b) => a[1] - b[1]).find(([, m]) => m <= JOIN_M)?.[0];
+      if (!d) fail(`${frameId}: marker ${id} is in no COD-AB district`);
+      always.add(d.pcode);
+    }
+    const chosen = [...km].filter(([, k]) => k >= ds.minKm).map(([pcode]) => pcode);
+    for (const pcode of always) if (!chosen.includes(pcode)) fail(`${frameId}: district ${pcode} holds a marker but the lines run through it for under ${ds.minKm} km`);
+    const lineSegs = tappable;
+    // Where the picture is already busy: the markers and the rivers' own names. A district's name keeps its distance.
+    const busy = [...spec.markers.map((id) => markerSeed[id].lonLat), ...spec.labels.map((lab) => nearestOnLine(lab.near, lines[lab.line].coords).pt)];
+    const crowd = (p) => busy.reduce((s, b) => s + Math.max(0, BUSY_KM - distM(p, b) / 1000) * 2, 0);
+    const toLines = (p) => Math.min(...lineSegs.map((c) => nearestOnLine(p, c).m));
+    const labelsOut = chosen
+      .map((pcode) => {
+        const d = polys.find((q) => q.pcode === pcode);
+        const run = runs.get(pcode).sort((a, b) => b.pts.length - a.pts.length)[0];
+        const river = run.pts[Math.floor(run.pts.length / 2)];
+        const simple = d.rings.map((r) => simplify(r, 0.002));
+        const simpleIdx = [{ rings: simple, boxes: simple.map(ringBox) }];
+        const step = 0.01;
+        const grid = [];
+        for (let x = Math.ceil(d.box[0] / step) * step; x <= d.box[2]; x += step) for (let y = Math.ceil(d.box[1] / step) * step; y <= d.box[3]; y += step) grid.push([Math.round(x * 1e4) / 1e4, Math.round(y * 1e4) / 1e4]);
+        const insideGrid = grid.filter((p) => inside(p, simpleIdx) && inside(p, d.idx)).map((p) => ({ p, edge: distToRings(p, simple), toRiver: distM(p, river) / 1000 + crowd(p) }));
+        let best = null;
+        for (const [edgeM, clearM] of [[3000, 1500], [2000, 1000], [1200, 600], [600, 0], [0, 0]]) {
+          const ok = insideGrid.filter((c) => c.edge >= edgeM).sort((a, b) => a.toRiver - b.toRiver);
+          best = ok.find((c) => clearM === 0 || toLines(c.p) >= clearM) ?? null;
+          if (best) break;
+        }
+        const anchor = best ? best.p : within(d.center, d) ? d.center : river;
+        if (!inside(anchor, d.idx)) fail(`${frameId}: no anchor inside ${pcode}`);
+        const [x, y] = P.project(anchor[0], anchor[1]).map((v) => round(v, 1));
+        if (!inRect([x, y])) fail(`${frameId}: the ${pcode} label's anchor is outside the frame`);
+        return { pcode, x, y, always: always.has(pcode), km: km.get(pcode), en: d.en, lonLat: anchor };
+      })
+      .sort((a, b) => Number(b.always) - Number(a.always) || b.km - a.km || a.pcode.localeCompare(b.pcode));
+    districtsOut = { file: ds.file, zoomAll: ds.zoomAll, labels: labelsOut.map(({ pcode, x, y, always: a }) => ({ pcode, x, y, always: a })) };
+    districtReport[frameId] = labelsOut;
+  }
+
   // The markers, at their recorded coordinates.
   const markers = spec.markers.map((id) => {
     const m = markerSeed[id] ?? fail(`${frameId}: the seed has no marker ${id}`);
@@ -476,12 +552,14 @@ function buildFrame(frameId, spec) {
     borders: borders.join(''),
     lines: frameLines,
     connectors,
+    ...(districtsOut ? { districts: districtsOut } : {}),
     markers,
     labels,
     countries: countryAnchors,
   };
   return { file, bounds, width, height, cosLat, scale };
 }
+const districtReport = {};
 const frames = { whole: buildFrame('whole', G.frames.whole), bangladesh: buildFrame('bangladesh', G.frames.bangladesh) };
 
 // ---- the words: every Bengali string is the seed's -----------------------------------------------
@@ -544,8 +622,10 @@ const data = {
     .filter(([key]) => key !== 'user' && cited.has(key))
     .map(([key, s]) => credit(s, s.page ? `, ${ui.pageBn} ${s.page}` : ''))
     // A note the seed gives a marker reads as plain text, with no link.
-    .concat(seed.markers.filter((m) => m.infoBn).map((m) => ({ title: m.infoBn, lang: 'bn' })))
-    .concat(seed.infoBn.lines.map((l) => ({ title: l.textBn, lang: 'bn' }))),
+    .concat(seed.markers.filter((m) => m.infoBn).map((m) => ({ title: m.infoBn, lang: 'bn', group: 'notes' })))
+    .concat(seed.infoBn.lines.map((l) => ({ title: l.textBn, lang: 'bn', group: l.group }))),
+  // ⓘ's three headed blocks: the sources (the credits with no group, and the font), the notes, the conflicts.
+  creditGroups: ui.creditGroupsBn,
 };
 
 const descriptor = {
@@ -583,6 +663,7 @@ say(`${ID}: ${Object.keys(lines).length} lines, ${usedWays.size} OSM ways (${[..
 for (const [id, l] of Object.entries(lines)) say(`  ${id.padEnd(15)} ${String(points(l.coords)).padStart(5)} pts ${String(round(lengthKm(l.coords))).padStart(7)} km  ${drawnHashes[id]}${l.gaps ? `  max gap ${Math.max(0, ...l.gaps)} m` : ''}`);
 say(`main: Natural Earth ${neChain.length} pts + OSM from vertex ${seam.vertex}; seam gap ${round(seamGapM)} m at ${round(osmMain.coords[seam.vertex][0], 3)}°E; ${mainPieces.length} pieces (${mainPieces.filter((p) => p.inside).length} in Bangladesh, ${round(mainPieces.filter((p) => p.inside).reduce((s, p) => s + lengthKm(p.coords), 0))} km); jamuna→padma ${round(mainToPadma)} m; padma→meghna junction ${round(junction, 2)} m`);
 say(`checks: ${upazilaChecks.join(', ')}; Teesta mouth ${round(sundarganj)} m from Sundarganj; entry ${round(entryToBorder)} m from the border (BWDB's point ${round(bwdbToBorder)} m, ${round(distM(entrySeed.snappedFrom.lonLat, crossing))} m from it); Dewanganj at ${round(dewanganj, 3)} of the main line`);
+for (const [k, list] of Object.entries(districtReport)) say(`districts, ${k}: ${list.filter((d) => d.always).map((d) => d.en).join(', ')} (from the opening view); ${list.filter((d) => !d.always).map((d) => d.en).join(', ')} (from 2×)`);
 for (const [k, f] of Object.entries(frames)) if (f.file.connectors.length) say(`connectors, ${k}: ${f.file.connectors.map((c) => `${c.id} → ${c.parent} ${c.m} m`).join(', ')} (from ${CONNECT_FROM_M} m to ${CONNECT_MAX_M / 1000} km; ${Object.entries(CONNECT_MAX_M_FOR).map(([id, m]) => `${id} ${m / 1000} km`).join(', ')})`);
 for (const [k, f] of Object.entries(frames)) say(`frame ${k}: viewBox 0 0 ${f.width} ${f.height}, lon ${f.bounds.lonMin}–${f.bounds.lonMax}, lat ${f.bounds.latMin}–${f.bounds.latMax}, scale ${round(f.scale, 2)} u/deg`);
 say(`pending: ${pending.length} (${pending.join(', ')})`);

@@ -95,7 +95,7 @@ const SEASONS_SEEDS = path.join(ROOT, 'data-sources/seasons');
 const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa32509b451efb2';
 // The bangladesh-rivers diagram: the editor's seed, pinned. Its geometry is pinned in tools/bangladesh-rivers-pins.json.
 const BANGLADESH_RIVERS_SEEDS = path.join(ROOT, 'data-sources/bangladesh-rivers');
-const BANGLADESH_RIVERS_SEED_SHA256 = '2b3e3c5706d3ee356ac62b77bc2b745152983a33c971ebb86c05768f550e02b3';
+const BANGLADESH_RIVERS_SEED_SHA256 = '355c69af65452c8fe39f093c97efd963e5fd0480468a3b7f1b5f4782924346ad';
 // The latitude-longitude globe: the editor's seed, the pinned sources (its
 // imagery's credit among them) and the geometry pins.
 const LATLON_SEED = path.join(ROOT, 'data-sources/latitude-longitude/latitude-longitude.seed.json');
@@ -1868,7 +1868,10 @@ console.log('\n\n============ bangladesh-rivers (diagram) ============');
   const wantCredits = Object.entries(seed.sources)
     .filter(([key]) => key !== 'user' && cited.has(key))
     .map(([, s]) => ({ title: s.title + (s.creditExtra ?? '') + (s.page ? `, ${ui.pageBn} ${s.page}` : ''), by: s.publisher, url: s.url, ...(/[ঀ-৿]/.test(s.title) ? { lang: 'bn' } : {}) }));
-  const notes = [...seed.markers.filter((m) => m.infoBn).map((m) => m.infoBn), ...seed.infoBn.lines.map((l) => l.textBn)].map((title) => ({ title, lang: 'bn' }));
+  const notes = [...seed.markers.filter((m) => m.infoBn).map((m) => ({ title: m.infoBn, lang: 'bn', group: 'notes' })), ...seed.infoBn.lines.map((l) => ({ title: l.textBn, lang: 'bn', group: l.group }))];
+  const groupsOk = JSON.stringify(data.creditGroups) === JSON.stringify(ui.creditGroupsBn) && Object.keys(ui.creditGroupsBn).join() === 'sources,notes,conflicts' && seed.infoBn.lines.every((l) => l.group === 'notes' || l.group === 'conflicts');
+  const firstConflict = seed.infoBn.lines.findIndex((l) => l.group === 'conflicts');
+  check(groupsOk && seed.infoBn.lines.slice(firstConflict).every((l) => l.group === 'conflicts'), `ⓘ's three headed blocks: «${ui.creditGroupsBn.sources}» (the sources and the font), «${ui.creditGroupsBn.notes}» (${notes.filter((n) => n.group === 'notes').length} lines), «${ui.creditGroupsBn.conflicts}» (${notes.filter((n) => n.group === 'conflicts').length} lines), each in the seed's order`);
   const unsourced = seed.infoBn.lines.filter((l) => !l.sources?.length || l.sources.some((s) => !(s.source in seed.sources)));
   check(unsourced.length === 0 && seed.infoBn.lines.length > 0, `ⓘ's ${seed.infoBn.lines.length} plain lines each cite a listed source${unsourced.length ? ` — not: ${unsourced.map((l) => l.textBn.slice(0, 20)).join(' | ')}` : ''}`);
   wantCredits.push(...notes);
@@ -1917,6 +1920,12 @@ console.log('\n\n============ bangladesh-rivers (diagram) ============');
     check([...kinds].every((k) => legendKinds.has(k)), `${view.id}: its legend words exist for every kind it draws (${[...kinds].join(', ')})`);
     const cons = frame.connectors ?? [];
     check(cons.every((c) => drawn.includes(c.id) && drawn.includes(c.parent) && ['tributary', 'distributary'].includes(frame.lines.find((l) => l.id === c.id).role) && Number.isInteger(c.m)), `${view.id}: its ${cons.length} connector(s) join a drawn branch to a drawn parent, and carry their length (${cons.map((c) => `${c.id} ${c.m} m`).join(', ') || 'none'})`);
+    if (frame.districts) {
+      const shared = readJson(path.join(ROOT, 'docs/shared', frame.districts.file));
+      const known = new Map(shared.districts.map((d) => [d.pcode, d]));
+      const bad = frame.districts.labels.filter((d) => !known.has(d.pcode) || !(d.x >= 0 && d.x <= frame.projection.width && d.y >= 0 && d.y <= frame.projection.height));
+      check(bad.length === 0 && frame.districts.labels.length > 0 && shared.districts.length === 64 && shared.districts.every((d) => /[ঀ-৿]/.test(d.bn)), `${view.id}: ${frame.districts.labels.length} district names (${frame.districts.labels.filter((d) => d.always).length} from the opening view), each a district of the shared ${frame.districts.file} (64, every one with its Bengali name), anchored inside the frame`);
+    }
     console.log(`     ${view.id}: viewBox 0 0 ${frame.projection.width} ${frame.projection.height}`);
   }
   const sizes = ['descriptor.json', descriptor.data, ...descriptor.views.map((v) => v.art)].map((f) => fs.statSync(path.join(dir, f)).size);

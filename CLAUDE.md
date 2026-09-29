@@ -310,7 +310,10 @@ tiling COD-AB — overlap and gap each under 0.5 km². bangladesh-rivers: the
 seed by SHA-256 in `tools/verify-descriptor.mjs`; the OSM pilot extract
 (`osmBangladeshRiversPilot` in `tools/sources.json`) and the rivers snapshot by
 checksum; and the eleven lines' geometry hashes in
-`tools/bangladesh-rivers-pins.json`.
+`tools/bangladesh-rivers-pins.json`. The shared district file,
+`docs/shared/bangladesh-districts.json` (COD-AB's 64 districts, the
+basemap's Bengali names), is rebuilt by `tools/build-bangladesh-districts.mjs`
+and compared byte for byte in `tools/verify.mjs`.
 
 When a pin moves, **stop and report the old and new values.** Never re-pin to
 make a build pass. A dropped `featurecla` once shifted a line by three points

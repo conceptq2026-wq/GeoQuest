@@ -30,7 +30,8 @@
     "pickerPlaceholderBn": "একটি নদী বেছে নিন…",
     "closeBn": "বন্ধ করুন",
     "resetBn": "শুরুর দৃশ্যে ফিরুন",
-    "pageBn": "পৃষ্ঠা"
+    "pageBn": "পৃষ্ঠা",
+    "creditGroupsBn": { "sources": "সূত্র", "notes": "ছবি সম্পর্কে টীকা", "conflicts": "উৎসগুলোর অমিল" }
   },
   "sources": {
     "bgeo": {
@@ -169,6 +170,11 @@
       "url": "https://web.archive.org/web/20260417215001id_/https://bn.banglapedia.org/index.php?title=ধলেশ্বরী_নদী",
       "sha256": "560d34d68193fe46d17f3d73b2e398d9fa2f4c36b83b5c259b6342bde83c4271"
     },
+    "bdPortal": {
+      "title": "বাংলাদেশ জাতীয় তথ্য বাতায়ন — জেলাসমূহ",
+      "publisher": "Government of Bangladesh (bangladesh.gov.bd; read 2026-09-26; the district names the Bangladesh basemap uses, tools/sources/bangladesh-names.json)",
+      "url": "https://bangladesh.gov.bd/views/district-list"
+    },
     "naturalEarth": {
       "title": "Natural Earth 10m rivers and lake centerlines, land, and country boundary lines; the country names are its NAME_BN",
       "publisher": "Natural Earth (public domain; v5.1.2)",
@@ -218,7 +224,7 @@
     "_about": "How every drawn line is assembled. NE = Natural Earth 10m rivers_lake_centerlines (identity is name + rivernum: the file has no id). OSM ways come from the pinned snapshot (tools/sources/osm-bangladesh-rivers.geojson: 157 ways) and the pinned pilot extract (tools/sources/osm-bangladesh-rivers-pilot.geojson: 45 ways, with node ids); a way in both must match within 1 m. A trim keeps the way from `fromNode` and/or up to `toNode` (inclusive). `down` is a [lon, lat] near the line's downstream end and only orients the chain.",
     "files": {
       "ne": { "rivers": "ne_10m_rivers_lake_centerlines.geojson", "land": "ne_10m_land.geojson", "boundaries": "ne_10m_admin_0_boundary_lines_land.geojson" },
-      "codab": { "zip": "bgd_admin_boundaries.geojson.zip", "admin0": "bgd_admin0.geojson", "admin3": "bgd_admin3.geojson" },
+      "codab": { "zip": "bgd_admin_boundaries.geojson.zip", "admin0": "bgd_admin0.geojson", "admin2": "bgd_admin2.geojson", "admin3": "bgd_admin3.geojson" },
       "osmSnapshot": "tools/sources/osm-bangladesh-rivers.geojson",
       "osmPilot": "tools/sources/osm-bangladesh-rivers-pilot.geojson"
     },
@@ -339,6 +345,8 @@
         },
         "_view": "The whole of Bangladesh (COD-AB) and the rivers; opened fitted to the stage width on 88.0–91.6°E, centred on 24.75°N (the Jamuna system), zoom 1× to 8×, panned freely but never with less than a quarter of the picture on the stage — the user's decisions, 2026-09-29. The width keeps the old frame's scale (about 384 u per degree), so the lines keep their detail.",
         "view": { "open": { "lonMin": 88.0, "lonMax": 91.6, "lat": 24.75 }, "zoomMax": 8, "keep": 0.25 },
+        "_districts": "Thin grey district boundaries from the shared file, drawn behind the rivers; a grey name for each district the tappable lines run through for at least minKm (COD-AB, Bangladesh only) — those holding a marker from the opening view, the rest from zoomAll× — each at an anchor inside its district near the river (the user's decisions, 2026-09-29).",
+        "districts": { "file": "bangladesh-districts.json", "minKm": 0.5, "zoomAll": 2 },
         "cosLatDeg": 24.5, "width": 1720,
         "lines": ["main", "dharla", "teesta", "karatoya", "atrai", "dhaleshwari", "banshi", "shitalakshya", "oldBrahmaputra", "padma", "meghna"],
         "markers": ["entry", "padmaConfluence", "dharlaConfluence", "teestaConfluence", "oldBrahmaputraMouth"],
@@ -727,29 +735,42 @@
     }
   ],
   "infoBn": {
-    "_about": "Plain lines under ⓘ, after the sources, in this order (the user's decisions, Prompt 40 Part B, 2026-09-29): the two lines on the drawn joins, in the user's words; where COD-AB puts the drawn lines' ends that a card's source words place otherwise; the Karatoya that is not drawn; then one line per source conflict, the card's (winning) value first — the source order is the books («ভূগোল ও পরিবেশ» before «বাংলাদেশ ও বিশ্বপরিচয়»), BWDB and JRCB, Bengali then English Wikipedia, newspapers, Banglapedia.",
+    "_about": "Plain lines under ⓘ, in two headed blocks after the sources (`group`: notes, then conflicts; ui.creditGroupsBn names the three blocks), each in this order (the user's decisions, Prompt 40 Part B, 2026-09-29): the two lines on the drawn joins, in the user's words; where COD-AB puts the drawn lines' ends that a card's source words place otherwise; the Karatoya that is not drawn; then one line per source conflict, the card's (winning) value first — the source order is the books («ভূগোল ও পরিবেশ» before «বাংলাদেশ ও বিশ্বপরিচয়»), BWDB and JRCB, Bengali then English Wikipedia, newspapers, Banglapedia.",
     "lines": [
       {
         "textBn": "নদীর সংযোগ-রেখা (ধরলা, তিস্তা, শীতলক্ষ্যা, ধলেশ্বরী) আনুমানিক আঁকা।",
+        "group": "notes",
         "sources": [
           { "source": "user", "where": "the wording", "states": "the user, 2026-09-29" }
         ]
       },
       {
         "textBn": "করতোয়া, আত্রাই ও বংশীর আঁকা রেখা মূল নদীর সাথে মেলানো হয়নি; ডেটায় নদীপথ ওই পর্যন্ত পাওয়া যায়নি।",
+        "group": "notes",
         "sources": [
           { "source": "user", "where": "the wording", "states": "the user, 2026-09-29" }
         ]
       },
       {
-        "textBn": "আঁকা রেখা, COD-AB অনুযায়ী: দেওয়ানগঞ্জ জামালপুর জেলায়; করতোয়ার আঁকা রেখা শুরু গাইবান্ধা জেলায়, বংশীর টাঙ্গাইল জেলায়।",
+        "textBn": "আঁকা রেখা ও বাংলাদেশের প্রশাসনিক সীমানার সরকারি ডেটা (COD-AB) অনুযায়ী দেওয়ানগঞ্জ এখন জামালপুর জেলায়; করতোয়ার আঁকা রেখা শুরু হয়েছে গাইবান্ধা জেলায়, বংশীর টাঙ্গাইল জেলায়।",
+        "group": "notes",
         "sources": [
           { "source": "codab", "where": "bgd_admin2/admin3: Dewanganj upazila; the districts the drawn lines begin in", "states": "Dewanganj, Jamalpur; Gaibandha; Tangail" },
-          { "source": "bgeo", "where": "পৃ. ১৫৪", "states": "দেওয়ানগঞ্জ" }
+          { "source": "bgeo", "where": "পৃ. ১৫৪", "states": "দেওয়ানগঞ্জ" },
+          { "source": "user", "where": "the wording", "states": "the user, 2026-09-29" }
+        ]
+      },
+      {
+        "textBn": "ডেটায় যতদূর নদীপথ পাওয়া গেছে ততদূর আঁকা হয়েছে, তাই কিছু নদীর আঁকা রেখা কার্ডে লেখা উৎপত্তিস্থল থেকে শুরু হয়নি (যেমন করতোয়া, আত্রাই, ধলেশ্বরী, বংশী, শীতলক্ষ্যা, পুরাতন ব্রহ্মপুত্র)।",
+        "group": "notes",
+        "sources": [
+          { "source": "user", "where": "the wording", "states": "the user, 2026-09-29" },
+          { "source": "osm", "where": "the drawn lines", "states": "the pinned ways end where the data ends" }
         ]
       },
       {
         "textBn": "তিস্তার মিলনস্থল: পানি উন্নয়ন বোর্ডের তথ্যে সুন্দরগঞ্জ উপজেলা (গাইবান্ধা)। ছবিতে চিহ্নটি বসানো হয়েছে আঁকা নদীরেখার মুখে; বাংলাদেশের প্রশাসনিক সীমানার সরকারি ডেটা (COD-AB) অনুযায়ী সেটি গাইবান্ধা জেলার গাইবান্ধা সদর উপজেলায় পড়ে।",
+        "group": "notes",
         "sources": [
           { "source": "bwdbNW52", "where": "§1.1 বর্ণনা", "states": "গাইবান্ধা জেলার সুন্দরগঞ্জ উপজেলায় ব্রহ্মপুত্র-যমুনা নদীতে পতিত হয়েছে" },
           { "source": "codab", "where": "bgd_admin3: the upazila holding the drawn marker", "states": "Gaibandha Sadar, Gaibandha" },
@@ -759,12 +780,23 @@
       },
       {
         "textBn": "আপার করতোয়া (পানি উন্নয়ন বোর্ড, NW-13; ছবিতে আঁকা নয়): ভারত থেকে পঞ্চগড় জেলার তেঁতুলিয়া উপজেলা দিয়ে প্রবেশ করে দেবীগঞ্জ উপজেলার সোনাহার মল্লিকাদহ ইউনিয়নে আত্রাই নদীতে পতিত।",
+        "group": "notes",
         "sources": [
           { "source": "bwdbNW13", "where": "§1.4 উৎসমুখ/প্রবেশস্থল; §1.1 বর্ণনা", "states": "ভারত | ভদ্রেশ্বর | ভজনপুর | তেঁতুলিয়া | পঞ্চগড়; দেবীগঞ্জ উপজেলার সোনাহার মল্লিকাদহ ইউনিয়নে আত্রাই নদীতে পতিত হয়েছে" }
         ]
       },
       {
+        "textBn": "ছবির জেলার নাম ও সীমানা বাংলাদেশের প্রশাসনিক সীমানার সরকারি ডেটা (COD-AB) অনুযায়ী বর্তমান জেলা; বই বা অন্য উৎসের বর্ণনার সাথে জেলার নাম আলাদা হতে পারে।",
+        "group": "notes",
+        "sources": [
+          { "source": "user", "where": "the wording", "states": "the user, 2026-09-29" },
+          { "source": "codab", "where": "bgd_admin2", "states": "the 64 districts" },
+          { "source": "bdPortal", "where": "the district list", "states": "the districts' Bengali names" }
+        ]
+      },
+      {
         "textBn": "ব্রহ্মপুত্রের উৎপত্তি: বই — মানস সরোবর; যৌথ নদী কমিশন — দক্ষিণ তিব্বতের কৈলাশ পর্বতমালা; বাংলা উইকিপিডিয়া — শিমায়াং-দাং হিমবাহ।",
+        "group": "conflicts",
         "sources": [
           { "source": "bgeo", "where": "পৃ. ১৫৪", "states": "মানস সরোবর" },
           { "source": "jrcbG13", "where": "the 57-rivers report, p. ১ row ৬, উৎপত্তিস্থল", "states": "দক্ষিণ তিব্বতের কৈলাশ পর্বতমালা" },
@@ -773,6 +805,7 @@
       },
       {
         "textBn": "যমুনা ও গঙ্গার মিলন: «ভূগোল ও পরিবেশ» — দৌলতদিয়ার কাছে; «বাংলাদেশ ও বিশ্বপরিচয়» — গোয়ালন্দের নিকট; পানি উন্নয়ন বোর্ড — গোয়ালন্দ উপজেলা (পদ্মার বিবরণে আরিচা)।",
+        "group": "conflicts",
         "sources": [
           { "source": "bgeo", "where": "পৃ. ১৫৪", "states": "দৌলতদিয়ার কাছে গঙ্গার সঙ্গে মিলিত হয়ে পদ্মা নাম ধারণ করে" },
           { "source": "b910", "where": "পৃ. ৬২", "states": "গোয়ালন্দের নিকট" },
@@ -782,6 +815,7 @@
       },
       {
         "textBn": "ব্রহ্মপুত্রের গতিপথ পরিবর্তন: «ভূগোল ও পরিবেশ» — এপ্রিল, ১৭৬২-এর ভূমিকম্প; «বাংলাদেশ ও বিশ্বপরিচয়» — ১৭৮৭ সালের ভূমিকম্পে যমুনার সৃষ্টি।",
+        "group": "conflicts",
         "sources": [
           { "source": "bgeo", "where": "পৃ. ২১৬, the earthquake table", "states": "এপ্রিল, ১৭৬২; ব্রহ্মপুত্র নদের গতিপথ পরিবর্তন" },
           { "source": "b910", "where": "পৃ. ৬২", "states": "১৭৮৭ সালে সংঘটিত ভূমিকম্পে ব্রহ্মপুত্রের তলদেশ উত্থিত; যমুনা নামে পরিচিত" }
@@ -789,6 +823,7 @@
       },
       {
         "textBn": "পুরাতন ব্রহ্মপুত্র: বই — দেওয়ানগঞ্জের কাছে থেকে ভৈরববাজারের দক্ষিণে মেঘনায়; পানি উন্নয়ন বোর্ড — উৎসমুখ ফুলছড়ি (গাইবান্ধা), পতিতমুখ রায়পুরা (নরসিংদী)।",
+        "group": "conflicts",
         "sources": [
           { "source": "bgeo", "where": "পৃ. ১৫৪", "states": "দেওয়ানগঞ্জের কাছে; ভৈরববাজারের দক্ষিণে মেঘনায় পতিত" },
           { "source": "bwdbNC37", "where": "§1.4 উৎসমুখ, পতিতমুখ", "states": "পাগলারচর | এরেণ্ডাবাড়ি | ফুলছড়ি | গাইবান্ধা; গৌরীপুর | মুসাপুর | রায়পুরা | নরসিংদী" }
@@ -796,6 +831,7 @@
       },
       {
         "textBn": "তিস্তা: পানি উন্নয়ন বোর্ড — সুন্দরগঞ্জে পতিত, উৎপত্তি চিতামু লেক; যৌথ নদী কমিশন — ফুলছড়িতে পতিত, উৎপত্তি চো লামু হ্রদ; বই — সিকিমের পার্বত্য অঞ্চল।",
+        "group": "conflicts",
         "sources": [
           { "source": "bwdbNW52", "where": "§1.1 বর্ণনা", "states": "সুন্দরগঞ্জ উপজেলায় … পতিত; হিমালয়ের সিকিমের চিতামু লেকে" },
           { "source": "jrcbG13", "where": "the 57-rivers report, p. ৪ row ২১", "states": "ব্রহ্মপুত্র নদ রংপুর জেলার ফুলছড়ি; হিমালয়ের চো লামু হ্রদ" },
@@ -804,6 +840,7 @@
       },
       {
         "textBn": "করতোয়া: পানি উন্নয়ন বোর্ড — করতোয়া (সিরাজগঞ্জ) নদীতে পতিত; বাংলা উইকিপিডিয়া — বাঙালি নদীতে।",
+        "group": "conflicts",
         "sources": [
           { "source": "bwdbNW14", "where": "§1.1 বর্ণনা", "states": "করতোয়া (সিরাজগঞ্জ) নদীতে পতিত হয়েছে" },
           { "source": "bnwKaratoyaLower", "where": "the mouth", "states": "খানপুর ইউনিয়ন পর্যন্ত প্রবাহিত হয়ে বাঙালি নদীতে নিপতিত হয়েছে" }
@@ -811,6 +848,7 @@
       },
       {
         "textBn": "আত্রাই: পানি উন্নয়ন বোর্ড — উৎপত্তি দেবীগঞ্জ (পঞ্চগড়), গুরুদাসপুরে গুমানী নদীতে পতিত; যৌথ নদী কমিশন — উৎপত্তি খানসামা (দিনাজপুর), বাঘাবাড়িতে হুড়াসাগর নদীতে।",
+        "group": "conflicts",
         "sources": [
           { "source": "bwdbNW2", "where": "§1.1 বর্ণনা", "states": "পঞ্চগড় জেলার দেবীগঞ্জ উপজেলার করতোয়া নদী থেকে; নাটোর জেলার গুরুদাসপুর উপজেলায় গুমানী নদীতে পতিত" },
           { "source": "jrcbG13", "where": "the 57-rivers report, the Atrai row", "states": "দিনাজপুর জেলার খানসামা উপজেলা, করতোয়া নদী; হুড়াসাগর নদী বাঘাবাড়ি" }
@@ -818,6 +856,7 @@
       },
       {
         "textBn": "ধলেশ্বরী: বই — মুন্সীগঞ্জের কাছে মেঘনায়; পানি উন্নয়ন বোর্ড — সোনারগাঁ উপজেলায় (নারায়ণগঞ্জ) মেঘনা (আপার) নদীতে, উৎপত্তি চৌহালী (সিরাজগঞ্জ); বাংলা উইকিপিডিয়া — টাঙ্গাইল জেলার উত্তর পশ্চিম প্রান্তে যমুনা থেকে; বাংলাপিডিয়া — ষাটনলের কাছে মেঘনায়।",
+        "group": "conflicts",
         "sources": [
           { "source": "b910", "where": "পৃ. ৬২", "states": "মুন্সীগঞ্জের কাছে … মেঘনায় এসে যুক্ত হয়েছে" },
           { "source": "bwdbNC27", "where": "§1.1 বর্ণনা", "states": "নারায়ণগঞ্জ জেলার সোনারগাঁ উপজেলায় মেঘনা (আপার) নদীতে পতিত হয়েছে; সিরাজগঞ্জ জেলার চৌহালী উপজেলার" },
@@ -827,6 +866,7 @@
       },
       {
         "textBn": "বংশী: বই — ব্রহ্মপুত্রের শাখানদী; পানি উন্নয়ন বোর্ড — বানার (আপার) নদী থেকে উৎপন্ন; বাংলা উইকিপিডিয়া — পুরাতন ব্রহ্মপুত্রের শাখানদী, আমিনবাজারে তুরাগ নদীর সাথে মিলিত।",
+        "group": "conflicts",
         "sources": [
           { "source": "bgeo", "where": "পৃ. ১৫৪", "states": "বংশী ও শীতলক্ষ্যা প্রধান শাখানদী" },
           { "source": "bwdbNC39", "where": "§1.1 বর্ণনা", "states": "বানার (আপার) নদী হতে উৎপন্ন হয়েছে" },
@@ -835,6 +875,7 @@
       },
       {
         "textBn": "শীতলক্ষ্যা: বই — মুন্সীগঞ্জের কাছে মেঘনায়; পানি উন্নয়ন বোর্ড — সোনারগাঁও উপজেলায় ধলেশ্বরী নদীতে পতিত, উৎপত্তি লেবুতলা (মনোহরদী); বাংলা উইকিপিডিয়া — টোক থেকে ভাটির দিকে পুরাতন ব্রহ্মপুত্র ও বানারের মিলিত প্রবাহ।",
+        "group": "conflicts",
         "sources": [
           { "source": "b910", "where": "পৃ. ৬২", "states": "মুন্সীগঞ্জের কাছে … মেঘনায় এসে যুক্ত হয়েছে" },
           { "source": "bwdbNC55", "where": "§1.1 বর্ণনা", "states": "নারায়ণগঞ্জ জেলার সোনারগাঁও উপজেলায় ধলেশ্বরী নদীতে পতিত হয়েছে; মনোহরদী উপজেলার লেবুতলা ইউনিয়নে" },
