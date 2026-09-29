@@ -95,7 +95,7 @@ const SEASONS_SEEDS = path.join(ROOT, 'data-sources/seasons');
 const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa32509b451efb2';
 // The bangladesh-rivers diagram: the editor's seed, pinned. Its geometry is pinned in tools/bangladesh-rivers-pins.json.
 const BANGLADESH_RIVERS_SEEDS = path.join(ROOT, 'data-sources/bangladesh-rivers');
-const BANGLADESH_RIVERS_SEED_SHA256 = 'c14c8bb4827df16440bf4835d3dbb8050bf2c9767cfa45d03d074d69110ddc5b';
+const BANGLADESH_RIVERS_SEED_SHA256 = '28856c9ad04aee51d7ccb21980ff05237edd55afa1b5e41a42a17677cee41391';
 // The latitude-longitude globe: the editor's seed, the pinned sources (its
 // imagery's credit among them) and the geometry pins.
 const LATLON_SEED = path.join(ROOT, 'data-sources/latitude-longitude/latitude-longitude.seed.json');
@@ -1872,7 +1872,12 @@ console.log('\n\n============ bangladesh-rivers (diagram) ============');
   wantCredits.push(...notes);
   check(JSON.stringify(data.credits) === JSON.stringify(wantCredits) && wantCredits.length >= 2, `ⓘ shows every source the data cites, plus Natural Earth, COD-AB and OpenStreetMap, and ${notes.length} note(s) the seed gives a marker, as plain text (${wantCredits.length}); the editor's own verification is not a credit`);
   const entrySeed = seed.markers.find((m) => m.id === 'entry');
-  check(/উলিপুর/.test(entrySeed.infoBn ?? '') && entrySeed.coordSource.upazila?.adm3 === 'Ulipur' && entrySeed.valueBn === 'কুড়িগ্রাম জেলা (নাগেশ্বরী উপজেলা)' && entrySeed.sources.infoBn?.length === 2, `the entry card keeps «${entrySeed.valueBn}»; ⓘ names the upazila COD-AB gives for the drawn crossing, ${entrySeed.coordSource.upazila?.adm3}, cited`);
+  const entryCards = [entrySeed.valueBn, entities.main.values.entry, data.markers.entry.value, data.entities.main.values.entry];
+  const infoCites = new Set((entrySeed.sources.infoBn ?? []).map((s) => s.source));
+  check(
+    entryCards.every((v) => v === 'কুড়িগ্রাম জেলা') && /নাগেশ্বরী/.test(entrySeed.infoBn ?? '') && /উলিপুর/.test(entrySeed.infoBn ?? '') && entrySeed.coordSource.upazila?.adm3 === 'Ulipur' && ['jrcbG13', 'bwdbNW76', 'codab'].every((s) => infoCites.has(s)),
+    `the entry row, on the main river's card and the marker's, is the book's «${entrySeed.valueBn}» alone; ⓘ gives JRCB's and BWDB's Nageshwari and the upazila COD-AB gives for the drawn crossing, ${entrySeed.coordSource.upazila?.adm3}, cited`,
+  );
   const osm = data.credits.find((c) => /OpenStreetMap/.test(c.title));
   check(Boolean(osm) && /^https:\/\/www\.openstreetmap\.org\/copyright$/.test(osm.url) && /ODbL/.test(osm.by), `ⓘ carries the OpenStreetMap credit as a plain link (${osm?.url}), with its licence (${osm?.by})`);
   const missingSources = [...cited].filter((k) => !(k in seed.sources));

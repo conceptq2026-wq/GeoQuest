@@ -1,5 +1,5 @@
 {
-  "_about": "Rivers of Bangladesh — a diagram in বাংলাদেশ, drawn in code (docs/visual/rivers.js) from pinned geometry. Written by the editor (Claude) on 2026-09-29 from the investigation reported for Prompt 37 Part A and the user's decisions of that day. NCTB first: the card text is the books' own wording (NCTB «ভূগোল ও পরিবেশ» 9–10, 2026, pp. ১৫৩–১৫৪, and «বাংলাদেশ ও বিশ্বপরিচয়» 9–10, 2026, pp. ৬১–৬৩); a value the books do not give is taken in the standing order — BWDB and JRCB (Bangladesh government bodies that own these facts), then Bengali Wikipedia. The books are copyrighted: `states` holds their exact terms and figures, not whole sentences. User decisions (2026-09-29): the pilot is the Brahmaputra–Jamuna system; the Jamuna line ends at the Padma confluence (the book); a thin grey non-tappable Padma and Meghna continuation to the sea; the length row stays empty (hidden, pending) because the books give 2,897 km without saying which part and JRCB, BWDB and the books differ; Dewanganj is written as the book has it plus the note «বর্তমানে জামালপুর জেলা»; the Teesta is the Brahmaputra's tributary, as the book has it; the Old Brahmaputra is drawn, as the book's distributary; the Karatoya's and Atrai's join points are MISSING, so their lines are drawn with no confluence marker; the entry is «কুড়িগ্রাম জেলা» (book) plus «নাগেশ্বরী উপজেলা» (JRCB and BWDB agree); the origin card shows the book's wording and the marker stands at the start of Natural Earth's line; names across the border from Bengali Wikipedia; picker entry «ব্রহ্মপুত্র–যমুনা»; past exam questions are not used; no decorations. `null` = unverified (hidden on the card, counted as pending); an absent key does not apply. A geometry line is one OpenStreetMap or Natural Earth feature chain; every way id, trim and downstream hint is listed, with how each unnamed way was identified.",
+  "_about": "Rivers of Bangladesh — a diagram in বাংলাদেশ, drawn in code (docs/visual/rivers.js) from pinned geometry. Written by the editor (Claude) on 2026-09-29 from the investigation reported for Prompt 37 Part A and the user's decisions of that day. NCTB first: the card text is the books' own wording (NCTB «ভূগোল ও পরিবেশ» 9–10, 2026, pp. ১৫৩–১৫৪, and «বাংলাদেশ ও বিশ্বপরিচয়» 9–10, 2026, pp. ৬১–৬৩); a value the books do not give is taken in the standing order — BWDB and JRCB (Bangladesh government bodies that own these facts), then Bengali Wikipedia. The books are copyrighted: `states` holds their exact terms and figures, not whole sentences. User decisions (2026-09-29): the pilot is the Brahmaputra–Jamuna system; the Jamuna line ends at the Padma confluence (the book); a thin grey non-tappable Padma and Meghna continuation to the sea; the length row stays empty (hidden, pending) because the books give 2,897 km without saying which part and JRCB, BWDB and the books differ; Dewanganj is written as the book has it plus the note «বর্তমানে জামালপুর জেলা»; the Teesta is the Brahmaputra's tributary, as the book has it; the Old Brahmaputra is drawn, as the book's distributary; the Karatoya's and Atrai's join points are MISSING, so their lines are drawn with no confluence marker; the entry is «কুড়িগ্রাম জেলা» (book) on the cards, and JRCB's and BWDB's «নাগেশ্বরী উপজেলা» in ⓘ's line beside where COD-AB puts the drawn crossing (the user's wording, 2026-09-29; it replaced «কুড়িগ্রাম জেলা (নাগেশ্বরী উপজেলা)» on the cards); the origin card shows the book's wording and the marker stands at the start of Natural Earth's line; names across the border from Bengali Wikipedia; picker entry «ব্রহ্মপুত্র–যমুনা»; past exam questions are not used; no decorations. `null` = unverified (hidden on the card, counted as pending); an absent key does not apply. A geometry line is one OpenStreetMap or Natural Earth feature chain; every way id, trim and downstream hint is listed, with how each unnamed way was identified.",
   "titleBn": "বাংলাদেশের নদ-নদী",
   "titleEn": "Rivers of Bangladesh",
   "ui": {
@@ -300,19 +300,20 @@
       "lonLat": [89.82718245, 25.73190801],
       "coordSource": { "source": "osm", "way": 232252698, "vertices": [47, 48], "upazila": { "adm3": "Ulipur", "adm2": "Kurigram" }, "where": "snapped (the user's decision, 2026-09-29): where the drawn main line first crosses COD-AB's border going downstream, on the segment between vertices 47 and 48 of way 232252698 in the pinned snapshot; COD-AB puts the crossing in Ulipur upazila, Kurigram district, not Nageshwari. Upstream of it the drawn channel (ways 910696546 and 232252698) runs 31 km along the line on the India side, 0.5–7.4 km east of the border" },
       "snappedFrom": { "lonLat": [89.88575019, 25.9447857], "source": "bwdbNW76", "where": "the entry (উৎসমুখ / প্রবেশস্থল) row: নারায়ণপুর, নাগেশ্বরী, কুড়িগ্রাম, রংপুর; the point is 67 m from the COD-AB border and lies in COD-AB's Nageshwari upazila, 6.9 km west of the drawn main line", "offsetM": 24386 },
-      "infoBn": "প্রবেশস্থলের চিহ্নটি বসানো হয়েছে যেখানে আঁকা নদীরেখা সীমান্ত পার হয়েছে; COD-AB অনুযায়ী স্থানটি কুড়িগ্রাম জেলার উলিপুর উপজেলায়।",
-      "valueBn": "কুড়িগ্রাম জেলা (নাগেশ্বরী উপজেলা)",
+      "infoBn": "প্রবেশস্থল: যৌথ নদী কমিশন ও পানি উন্নয়ন বোর্ডের তথ্যে নাগেশ্বরী উপজেলা (কুড়িগ্রাম)। ছবিতে চিহ্নটি বসানো হয়েছে যেখানে আঁকা নদীরেখা সীমান্ত পার হয়েছে; বাংলাদেশের প্রশাসনিক সীমানার সরকারি ডেটা (COD-AB) অনুযায়ী সেটি কুড়িগ্রাম জেলার উলিপুর উপজেলায় পড়ে।",
+      "valueBn": "কুড়িগ্রাম জেলা",
       "sources": {
         "nameBn": [{ "source": "bgeo", "where": "পৃ. ১৫৪", "states": "ব্রহ্মপুত্র নদ" }],
         "valueBn": [
           { "source": "bgeo", "where": "পৃ. ১৫৪", "states": "কুড়িগ্রাম জেলা" },
-          { "source": "b910", "where": "পৃ. ৬২", "states": "কুড়িগ্রাম জেলা" },
-          { "source": "jrcbG13", "where": "the Brahmaputra's entry", "states": "কুড়িগ্রাম জেলার নাগেশ্বরী উপজেলা" },
-          { "source": "bwdbNW76", "where": "the entry row", "states": "নাগেশ্বরী; কুড়িগ্রাম" }
+          { "source": "b910", "where": "পৃ. ৬২", "states": "কুড়িগ্রাম জেলা" }
         ],
         "infoBn": [
+          { "source": "jrcbG13", "where": "the Brahmaputra's entry", "states": "কুড়িগ্রাম জেলার নাগেশ্বরী উপজেলা" },
+          { "source": "bwdbNW76", "where": "the entry row", "states": "নাগেশ্বরী; কুড়িগ্রাম" },
           { "source": "codab", "where": "bgd_admin3: the upazila holding the drawn crossing", "states": "Ulipur, Kurigram" },
-          { "source": "jrcbG13", "where": "the Dharla's confluence", "states": "কুড়িগ্রাম জেলার উলিপুর উপজেলা" }
+          { "source": "jrcbG13", "where": "the Dharla's confluence", "states": "কুড়িগ্রাম জেলার উলিপুর উপজেলা" },
+          { "source": "user", "where": "the line's wording", "states": "editor-verified 2026-09-29" }
         ]
       }
     },
@@ -385,7 +386,7 @@
       "values": {
         "alias": "ইয়ার-লুং ৎসাং-পো (তিব্বত); শিয়াং (অরুণাচল প্রদেশ); দিহাং (আসাম)",
         "origin": "হিমালয় পর্বতের কৈলাস শৃঙ্গের নিকটে মানস সরোবর",
-        "entry": "কুড়িগ্রাম জেলা (নাগেশ্বরী উপজেলা)",
+        "entry": "কুড়িগ্রাম জেলা",
         "length": null,
         "tributaries": "ব্রহ্মপুত্র: ধরলা ও তিস্তা; যমুনা: করতোয়া ও আত্রাই",
         "distributaries": "ব্রহ্মপুত্র: পুরাতন ব্রহ্মপুত্র নদ, বংশী ও শীতলক্ষ্যা; যমুনা: ধলেশ্বরী (ধলেশ্বরীর শাখানদী বুড়িগঙ্গা)",
@@ -407,9 +408,7 @@
           { "source": "jrcbG9", "where": "the origin sentence", "states": "Chema-Yung-Dung glacier; Kailas range; southern Tibet (shown in ⓘ only)" }
         ],
         "entry": [
-          { "source": "bgeo", "where": "পৃ. ১৫৪", "states": "কুড়িগ্রাম জেলা" },
-          { "source": "jrcbG13", "where": "the Brahmaputra's entry", "states": "নাগেশ্বরী উপজেলা" },
-          { "source": "bwdbNW76", "where": "the entry row", "states": "নাগেশ্বরী" }
+          { "source": "bgeo", "where": "পৃ. ১৫৪", "states": "কুড়িগ্রাম জেলা" }
         ],
         "tributaries": [
           { "source": "bgeo", "where": "পৃ. ১৫৪", "states": "ধরলা ও তিস্তা; করতোয়া ও আত্রাই" },
@@ -572,5 +571,5 @@
       "sources": { "nameBn": [{ "source": "bgeo", "where": "পৃ. ১৫৪", "states": "মেঘনা ভৈরববাজারের দক্ষিণে পুরাতন ব্রহ্মপুত্রের সঙ্গে মিলিত" }] }
     }
   ],
-  "review": "Differences between sources, kept as found (the earlier source stands): Padma confluence — B-GEO «দৌলতদিয়ার কাছে», B910 «গোয়ালন্দের নিকট»; the 17th and 21st BCS used «গোয়ালন্দ». Length — books 2,897 km, JRCB 2,880 km, BWDB 230 km. Padma coordinates — BWDB NW-76 (23.80490447, 89.77304192), bn Wikipedia (revision 9042933) 23.8134629, 89.7722061, en Wikipedia (revision 1372145488) 23°47′46.7″N 89°45′45.8″E. Teesta confluence — JRCB «রংপুর জেলার ফুলছড়ি», COD-AB Gaibandha Sadar. Origin coordinate — Natural Earth's line start (82.4005°E, 30.4114°N), bn Wikipedia 30°23′N 82°0′E. Old Brahmaputra offtake — book Dewanganj, BWDB Fulchhari. Mixed OpenStreetMap snapshots: 2026-07-15 (rivers snapshot) and 2026-05-31 (pilot extract); their shared ways agree within 0.56 m. The Padma marker is 1.5 km from the OSM line's end, the entry marker stands where the drawn line crosses the COD-AB border (in Ulipur upazila), 24.4 km from BWDB's entry point in Nageshwari, which is 6.9 km from the drawn east channel — the card keeps «কুড়িগ্রাম জেলা (নাগেশ্বরী উপজেলা)» and ⓘ says where COD-AB puts the drawn crossing, the Dharla and Teesta mouths 2.5 and 3.0 km from the drawn Jamuna. The 49th special BCS wrote «ইয়ারলাং সাংপো» and the 42nd special BCS asked the Teesta as the Jamuna's tributary; past exam questions are not used, so neither changes a card."
+  "review": "Differences between sources, kept as found (the earlier source stands): Padma confluence — B-GEO «দৌলতদিয়ার কাছে», B910 «গোয়ালন্দের নিকট»; the 17th and 21st BCS used «গোয়ালন্দ». Length — books 2,897 km, JRCB 2,880 km, BWDB 230 km. Padma coordinates — BWDB NW-76 (23.80490447, 89.77304192), bn Wikipedia (revision 9042933) 23.8134629, 89.7722061, en Wikipedia (revision 1372145488) 23°47′46.7″N 89°45′45.8″E. Teesta confluence — JRCB «রংপুর জেলার ফুলছড়ি», COD-AB Gaibandha Sadar. Origin coordinate — Natural Earth's line start (82.4005°E, 30.4114°N), bn Wikipedia 30°23′N 82°0′E. Old Brahmaputra offtake — book Dewanganj, BWDB Fulchhari. Mixed OpenStreetMap snapshots: 2026-07-15 (rivers snapshot) and 2026-05-31 (pilot extract); their shared ways agree within 0.56 m. The Padma marker is 1.5 km from the OSM line's end, the entry marker stands where the drawn line crosses the COD-AB border (in Ulipur upazila), 24.4 km from BWDB's entry point in Nageshwari, which is 6.9 km from the drawn east channel — the cards give the book's «কুড়িগ্রাম জেলা» and ⓘ gives JRCB's and BWDB's Nageshwari and where COD-AB puts the drawn crossing, the Dharla and Teesta mouths 2.5 and 3.0 km from the drawn Jamuna. The 49th special BCS wrote «ইয়ারলাং সাংপো» and the 42nd special BCS asked the Teesta as the Jamuna's tributary; past exam questions are not used, so neither changes a card."
 }

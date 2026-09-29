@@ -30,9 +30,10 @@ finishes it. It is not in `docs/registry.json`.
   upstream of the crossing, OSM's channel (ways 910696546 and 232252698) runs
   31 km along the line on the India side, 0.5–7.4 km east of the border. The
   seed keeps BWDB's point as `snappedFrom`, with the offset. COD-AB puts the
-  crossing in Ulipur upazila, Kurigram: the card keeps «কুড়িগ্রাম জেলা
-  (নাগেশ্বরী উপজেলা)», and ⓘ carries one plain line saying where COD-AB puts
-  the drawn crossing (the marker's `infoBn`).
+  crossing in Ulipur upazila, Kurigram. The «প্রবেশস্থল» row, on the main
+  river's card and the marker's, is the book's «কুড়িগ্রাম জেলা» alone; ⓘ
+  carries one plain line, the user's wording (the marker's `infoBn`): JRCB's
+  and BWDB's Nageshwari, and that COD-AB puts the drawn crossing in Ulipur.
 - **The picker row** is the shell's, at the top, with one entry, the main river.
   A tap on a line or a marker opens its card; a marker's heading is composed
   «name — legend word». The legend lists only the kinds a tab draws. ⓘ carries
@@ -46,8 +47,9 @@ finishes it. It is not in `docs/registry.json`.
 - **Editor's seed:** `data-sources/bangladesh-rivers/bangladesh-rivers.seed.json`
   — every word, its sources, the geometry recipe (way ids with trims, the joins,
   the frames, the label anchors) and a `review` of where sources differ. Its
-  SHA-256 is pinned in `tools/verify-descriptor.mjs`, now `c14c8bb4…dc5b`
-  (`95090aa6…` before the entry marker was snapped; `a6e2e386…` before the
+  SHA-256 is pinned in `tools/verify-descriptor.mjs`, now `28856c9a…1391`
+  (`c14c8bb4…` before the entry row lost «নাগেশ্বরী উপজেলা»; `95090aa6…`
+  before the entry marker was snapped; `a6e2e386…` before the
   Teesta mouth's provenance was corrected). NCTB books
   first, then the source order in CLAUDE.md; past exam questions are not used.
 - **Geometry:** Natural Earth's rivers, land and boundary lines; COD-AB's
@@ -123,7 +125,8 @@ separate, approved change:
 
 - The Jamuna ends at the Padma confluence; no sea-mouth marker.
 - The entry marker sits on the drawn line at its border crossing, not at
-  BWDB's point; the card's text does not change with it.
+  BWDB's point. The cards give only the book's «কুড়িগ্রাম জেলা»; Nageshwari
+  (JRCB, BWDB) and Ulipur (COD-AB) are in ⓘ.
 - The Teesta is a tributary of the Brahmaputra, as the books have it.
 - No Old Brahmaputra offtake marker: the book (Dewanganj) and BWDB (Fulchhari)
   name different places.
