@@ -228,7 +228,10 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
   // within 50 m of its parent line as drawn, or of a connector of at most 12 km that runs from that end to
   // the parent line; a line with neither is exempt, and the seed says why. The unjoined lines are the user's
   // decisions (2026-09-29): the Jamuna's three, and the Padma system's two over 12 km.
-  const EXEMPT = ['karatoya', 'atrai', 'banshi', 'madhumati', 'mahananda', 'karnaphuli', 'kasalong', 'mathabhanga', 'bhairab', 'nabaganga2', 'nabaganga3', 'chitra2', 'tangon', 'sangu2', 'tetuliaBarishal', 'burishwar', 'mogra2'];
+  const EXEMPT = ['karatoya', 'atrai', 'banshi', 'madhumati', 'mahananda', 'karnaphuli', 'kasalong', 'mathabhanga', 'bhairab', 'nabaganga2', 'nabaganga3', 'chitra2', 'tangon', 'sangu2', 'tetuliaBarishal', 'burishwar', 'mogra2', 'harinbhanga'];
+  // Unjoined though nearer than 12 km, by the user's decision: the Harinbhanga (decision 5 after Stage 3 —
+  // BWDB has it rise from the Raimangal, which is not drawn; the Ichamati is 8.3 km off).
+  const UNJOINED_BY_DECISION = new Set(['harinbhanga']);
   const NEAR_M = 50;
   // 10 km, then 12 km for the Dhaleshwari alone, then 12 km for every line (Stage 1, 2026-09-29).
   const CONNECTOR_MAX_M = 12000;
@@ -270,7 +273,7 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
       check(con.parent === parentId && startGap <= NEAR_M && footGap <= NEAR_M, `b. ${id}: its end is ${round(toParent)} m from the ${parentId} line; its connector starts ${round(startGap)} m from that end and ends ${round(footGap)} m from the line (limit ${NEAR_M} m each)`);
       viaConnector.push(`${id} ${round(con.m / 1000, 2)} km`);
     } else {
-      check(typeof spec.exempt === 'string' && spec.exempt.length > 20 && toParent > maxFor(id), `b. ${id}: no connector — its end is ${round(toParent / 1000, 1)} km from the ${parentId} line, over ${maxFor(id) / 1000} km — and the seed says why it has no join point`);
+      check(typeof spec.exempt === 'string' && spec.exempt.length > 20 && (toParent > maxFor(id) || UNJOINED_BY_DECISION.has(id)), `b. ${id}: no connector — its end is ${round(toParent / 1000, 1)} km from the ${parentId} line, ${UNJOINED_BY_DECISION.has(id) ? "unjoined by the user's decision" : `over ${maxFor(id) / 1000} km`} — and the seed says why it has no join point`);
       exempt.push(id);
     }
   }

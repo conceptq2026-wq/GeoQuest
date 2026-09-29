@@ -786,7 +786,7 @@
       },
       "pashur": {
         "entity": "pashur",
-        "role": "distributary",
+        "role": "main",
         "ways": [
           632121003,
           908097764
@@ -804,7 +804,7 @@
       },
       "pashur2": {
         "entity": "pashur",
-        "role": "distributary",
+        "role": "main",
         "ways": [
           554520011
         ],
@@ -837,7 +837,8 @@
         "join": {
           "parent": "ichamati"
         },
-        "identified": "Two ways of OSM relation 12559141 «Hariabhanga», 96.9 km, from the Kalindi’s end in India to the sea; only 2.9 km lie inside COD-AB’s outline, the rest dashed. Its head is joined to the Ichamati by a connector (8.4 km): OSM links them by an unnamed channel (102147643, from the Ichamati’s way 102149753), and the Raimangal, from which BWDB has it rise, runs from the Ichamati’s end to it (ⓘ)."
+        "identified": "Two ways of OSM relation 12559141 «Hariabhanga», 96.9 km, from the Kalindi’s end in India to the sea; only 2.9 km lie inside COD-AB’s outline, the rest dashed.",
+        "exempt": "Unjoined (the user’s decision 5 after Stage 3): BWDB has it rise from the Raimangal, which is not drawn; its head is 8.3 km from the Ichamati, which OSM links to it only by an unnamed channel (102147643) — so no connector, though the gap is under 12 km (ⓘ)."
       },
       "ichamati": {
         "entity": "ichamati",
@@ -1716,7 +1717,7 @@
       "values": {
         "relation": "পদ্মার প্রধান শাখানদী",
         "origin": "কুষ্টিয়া জেলার দৌলতপুর উপজেলার রামকৃষ্ণপুর ইউনিয়নের নিকট গঙ্গা/ পদ্মা নদী হতে",
-        "course": "বাংলাদেশ ও ভারতের আন্তর্জাতিক সীমানা বরাবর প্রায় ২৬ কি.মি. প্রবাহিত হয়। … পুনরায় ১০ কি.মি. বাংলাদেশ ও ভারতের আন্তর্জাতিক সীমানা দিয়ে প্রবাহিত হয়ে চুয়াডাঙ্গা জেলার দামুরহুদা উপজেলার পার কৃষ্ণপুর মদনা ইউনিয়ন দিয়ে ভারতে প্রবেশ করে",
+        "course": "বাংলাদেশ ও ভারতের আন্তর্জাতিক সীমানা বরাবর প্রায় ২৬ কি.মি. প্রবাহিত হয়। … পুনরায় ১০ কি.মি. বাংলাদেশ ও ভারতের আন্তর্জাতিক সীমানা দিয়ে প্রবাহিত হয়ে চুয়াডাঙ্গা জেলার দামুড়হুদা উপজেলার পার কৃষ্ণপুর মদনা ইউনিয়ন দিয়ে ভারতে প্রবেশ করে",
         "mouth": "ভারতে ইছামতি-কালিন্দি নদীতে"
       },
       "sources": {
@@ -1771,13 +1772,13 @@
     {
       "id": "ichamati",
       "role": "distributary",
-      "nameBn": "ইছামতী (সাতক্ষীরা)",
+      "nameBn": "ইছামতী (চুয়াডাঙ্গা)",
       "values": {
         "relation": "নিম্নগঙ্গার শাখা নদী",
         "alias": "ইছামতি-কালিন্দি; সাহেবখালি/ ইছামতি/ কালিন্দি (স্থানীয় নাম)",
         "origin": "ভারতের পশ্চিমবঙ্গে মাথাভাঙ্গা নদী হতে",
         "entry": "চুয়াডাঙ্গা জেলার জীবননগর উপজেলার সীমান্ত ইউনিয়ন",
-        "course": "৩৮ কি.মি প্রবাহিত হয়ে ঝিনাইদহ জেলার মহেশপুর উপজেলার কাজীরবেড় ইউনিয়ন দিয়ে ভারতে প্রবেশ করে। পূনরায় নদীটি ভারতে ৫৯ কি.মি প্রবাহিত হয়ে যশোর জেলার পুটখালী ইউনিয়ন দিয়ে বাংলাদেশ প্রবেশ করে। বাংলাদেশের অংশে ২৮ কি.মি প্রবাহিত হয় সাতক্ষীরা জেলার চাঁদপুর ইউনিয়নের মধ্যে দিয়ে আবারও ভারতে প্রবেশ করে। এই ধাপে নদীটি ৬৫ কি.মি প্রবাহিত হয়ে সাতক্ষীরা জেলার সদর উপজেলার ভোমরা ইউনিয়নের মধ্যে দিয়ে বাংলাদেশে প্রবেশ করে প্রায় ৮৬ কি.মি ভারত-বাংলাদেশ সীমান্তবর্তী এলাকা দিয়ে প্রবাহিত হয়ে",
+        "course": "৩৮ কি.মি. প্রবাহিত হয়ে ঝিনাইদহ জেলার মহেশপুর উপজেলার কাজীরবেড় ইউনিয়ন দিয়ে ভারতে প্রবেশ করে। পূনরায় নদীটি ভারতে ৫৯ কি.মি. প্রবাহিত হয়ে যশোর জেলার পুটখালী ইউনিয়ন দিয়ে বাংলাদেশ প্রবেশ করে। বাংলাদেশের অংশে ২৮ কি.মি. প্রবাহিত হয় সাতক্ষীরা জেলার চাঁদপুর ইউনিয়নের মধ্যে দিয়ে আবারও ভারতে প্রবেশ করে। এই ধাপে নদীটি ৬৫ কি.মি. প্রবাহিত হয়ে সাতক্ষীরা জেলার সদর উপজেলার ভোমরা ইউনিয়নের মধ্যে দিয়ে বাংলাদেশে প্রবেশ করে প্রায় ৮৬ কি.মি. ভারত-বাংলাদেশ সীমান্তবর্তী এলাকা দিয়ে প্রবাহিত হয়ে",
         "mouth": "সাতক্ষীরা জেলার শ্যামনগর উপজেলায় রায়মঙ্গল নদীতে"
       },
       "sources": {
@@ -1836,7 +1837,7 @@
           }
         ]
       },
-      "review": "BWDB SW-7 «ইছামতি-কালিন্দি», matched by geometry and district: BWDB’s own Mathabhanga page (SW-76) has the Mathabhanga fall into the «ইছামতি-কালিন্দি» in India, and the drawn line begins on the Mathabhanga’s last node; it runs through Chuadanga, Jhenaidah, Jashore and Satkhira, as SW-7 says. Fifteen other BWDB entries carry the name (ⓘ); the picker’s bracket is Satkhira, where its long border stretch and its mouth are (SW-7). The book (B910) names it among the lower Ganges’ distributaries, next to the Mathabhanga; BWDB’s Padma page lists only NW-9 «ইছামতি (পাবনা)» among the Padma’s distributaries, another river. JRC differs on the origin’s place (Majdia, Nadia) and the entry (Maheshpur, Jhenaidah) — ⓘ. Length (BWDB 152 km, JRC 345) is not on a branch card."
+      "review": "BWDB SW-7 «ইছামতি-কালিন্দি», matched by geometry and district: BWDB’s own Mathabhanga page (SW-76) has the Mathabhanga fall into the «ইছামতি-কালিন্দি» in India, and the drawn line begins on the Mathabhanga’s last node; it runs through Chuadanga, Jhenaidah, Jashore and Satkhira, as SW-7 says. Fifteen other BWDB entries carry the name (ⓘ); the picker’s bracket is Chuadanga: SW-7 has it rise in India, so the bracket is the first district it flows through in Bangladesh, its entry at Jibannagar (the user’s convention after Stage 3). The book (B910) names it among the lower Ganges’ distributaries, next to the Mathabhanga; BWDB’s Padma page lists only NW-9 «ইছামতি (পাবনা)» among the Padma’s distributaries, another river. JRC differs on the origin’s place (Majdia, Nadia) and the entry (Maheshpur, Jhenaidah) — ⓘ. Length (BWDB 152 km, JRC 345) is not on a branch card."
     },
     {
       "id": "harinbhanga",
@@ -1901,7 +1902,7 @@
     {
       "id": "kumar",
       "role": "distributary",
-      "nameBn": "কুমার (চুয়াডাঙ্গা)",
+      "nameBn": "কুমার (কুষ্টিয়া)",
       "values": {
         "relation": "পদ্মার প্রধান শাখানদী",
         "origin": "কুষ্টিয়া জেলার মিরপুর উপজেলার মালিহাদ ইউনিয়নে মাথাভাঙ্গা নদী থেকে",
@@ -1960,10 +1961,10 @@
     {
       "id": "bhairab",
       "role": "distributary",
-      "nameBn": "ভৈরব (যশোর)",
+      "nameBn": "ভৈরব (চুয়াডাঙ্গা)",
       "values": {
         "relation": "পদ্মার প্রধান শাখানদী",
-        "alias": "রূপসা (খুলনার দক্ষিণে)",
+        "alias": null,
         "origin": "চুয়াডাঙ্গা জেলার দামুড়হুদা উপজেলার দর্শনা পৌরসভায় মাথাভাঙ্গা নদী থেকে",
         "course": "যশোর জেলা শহর এ নদীর তীরে অবস্থিত",
         "mouth": "খুলনা জেলার সদর উপজেলায় রূপসা নদীতে"
@@ -2022,7 +2023,7 @@
           }
         ]
       },
-      "review": "BWDB SW-68 «ভৈরব», matched by district (Chuadanga–Jashore–Khulna, and both maps label it there). Ruled out: SW-69 «ভৈরব (বাগেরহাট)» and SW-70 «ভৈরব-কপোতাক্ষ» (India–Meherpur, into the Mathabhanga; on neither map). The picker name carries Jashore, from SW-68's own description (the user's rule on same-name rivers). JRCB row ৪ joins it with the Kapotaksha as one river into the Shibsa; B910's «ভৈরব বা রূপসা» against BWDB's separate SW-81 «রূপসা» (ⓘ). No entry row: SW-68 rises inside Bangladesh. The drawn line begins at Jashore (ⓘ)."
+      "review": "BWDB SW-68 «ভৈরব», matched by district (Chuadanga–Jashore–Khulna, and both maps label it there). Ruled out: SW-69 «ভৈরব (বাগেরহাট)» and SW-70 «ভৈরব-কপোতাক্ষ» (India–Meherpur, into the Mathabhanga; on neither map). The picker name carries Jashore, from SW-68's own description (the user's rule on same-name rivers). JRCB row ৪ joins it with the Kapotaksha as one river into the Shibsa; B910's «ভৈরব বা রূপসা» against BWDB's separate SW-81 «রূপসা» (ⓘ). No entry row: SW-68 rises inside Bangladesh. The drawn line begins at Jashore (ⓘ). Other names now null (the user’s fix a after Stage 3): B910’s «রূপসা» is the Rupsa, which has its own card; ⓘ gives B910’s one river and BWDB’s two."
     },
     {
       "id": "rupsa",
@@ -2030,7 +2031,7 @@
       "nameBn": "রূপসা",
       "values": {
         "relation": "পদ্মার একটি শাখা নদী",
-        "alias": "ভৈরব",
+        "alias": null,
         "origin": "খুলনা জেলার সদর উপজেলায় ভৈরব নদী থেকে",
         "course": null,
         "mouth": "খুলনা জেলার বটিয়াঘাটা উপজেলায় জলমা ইউনিয়নের কাজীবাছা নদীতে"
@@ -2077,17 +2078,19 @@
           }
         ]
       },
-      "review": "BWDB SW-81, the only Rupsa. B910 names one river «ভৈরব বা রূপসা» (the Bhairab card’s other name, since Stage 2); BWDB keeps them apart, the Rupsa leaving the Bhairab in Khulna — drawn so, from the Bhairab’s end, and the card’s other name is the book’s (ⓘ). Relation from bn Wikipedia: no book or government page gives the Rupsa a role word (B-GEO makes the Bhairab a Padma distributary). Course null: BWDB gives only its upazila list. Length 10 km (BWDB; bn WP 9) is not on a branch card. OSM joins it straight to the Pashur; BWDB puts the Kazibachha between (ⓘ)."
+      "review": "BWDB SW-81, the only Rupsa. B910 names one river «ভৈরব বা রূপসা» (the Bhairab card’s other name, since Stage 2); BWDB keeps them apart, the Rupsa leaving the Bhairab in Khulna — drawn so, from the Bhairab’s end, and its other-name row is pending, since B910’s «ভৈরব» is the Bhairab, which has its own card (ⓘ). Relation from bn Wikipedia: no book or government page gives the Rupsa a role word (B-GEO makes the Bhairab a Padma distributary). Course null: BWDB gives only its upazila list. Length 10 km (BWDB; bn WP 9) is not on a branch card. OSM joins it straight to the Pashur; BWDB puts the Kazibachha between (ⓘ)."
     },
     {
       "id": "pashur",
-      "role": "distributary",
+      "role": "main",
       "nameBn": "পশুর",
       "values": {
-        "relation": null,
         "alias": "কুঙ্গা (স্থানীয় নাম)",
         "origin": "খুলনার দক্ষিণে ভৈরব বা রূপসা নদী",
         "course": "আরও দক্ষিণে প্রবাহিত হয়ে ত্রিকোনা ও দুবলা দ্বীপদ্বয়ের ডানদিক দিয়ে মংলা বন্দরের দক্ষিণে সুন্দরবনের ভিতর দিয়ে",
+        "length": "প্রায় ১৪২ কি.মি.",
+        "tributaries": "ভদ্রা (সুন্দরবন), ভোলা (মোংলা), ঢাংমারী, ধিংগার, হংসরাজ, ইছামতি-মইদারা, কুকুমারি, মোংলা, শিবসা",
+        "distributaries": "আমবাড়িয়া, বংরা, বেলমার, খুটিখালী, নীলকমল (সুন্দরবন), রাঙ্গাবালি, শ্যালা, তিস্তা (বাগেরহাট)",
         "mouth": "বঙ্গোপসাগরে"
       },
       "sources": {
@@ -2130,9 +2133,37 @@
             "where": "পৃ. ৬৩, the «পশুর নদী» paragraph [b910]",
             "states": "মংলা বন্দরের দক্ষিণে সুন্দরবনের ভিতর দিয়ে বঙ্গোপসাগরে পড়েছে"
           }
+        ],
+        "length": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬৩, the «পশুর নদী» paragraph [b910]",
+            "states": "প্রায় ১৪২ কি. মি. দীর্ঘ"
+          }
+        ],
+        "tributaries": [
+          {
+            "source": "bwdbSW51",
+            "where": "§1.9 উপনদী [B8-G1]",
+            "states": "উপনদী : ভদ্রা (সুন্দরবন), ভোলা (মোংলা), ঢাংমারী, ধিংগার, হংসরাজ, ইছামতি-মইদারা, কুকুমারি, মোংলা, শিবসা"
+          }
+        ],
+        "distributaries": [
+          {
+            "source": "bwdbSW51",
+            "where": "§1.10 শাখানদী [B8-G1]",
+            "states": "শাখানদী : আমবাড়িয়া, বংরা, বেলমার, খুটিখালী, নীলকমল (সুন্দরবন), রাঙ্গাবালি, শ্যালা, তিস্তা (বাগেরহাট)"
+          }
+        ],
+        "mainRiver": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬১, পরিচ্ছেদ ৫.১, first sentence [b910]",
+            "states": "বাংলাদেশের প্রধান নদীগুলো হচ্ছে- পদ্মা, মেঘনা, যমুনা, কর্ণফুলী, ব্রহ্মপুত্র, তিস্তা, পশুর, সাঙ্গু প্রভৃতি।"
+          }
         ]
       },
-      "review": "BWDB SW-51, the only Pashur (SW-50 «পুরাতন পশুর» and SW-269 «ঢাংমারী», other name «মরা পশুর», are other rivers). The book gives origin, course and mouth; BWDB the other name. Relation null: B910 names the Pashur among Bangladesh’s «প্রধান নদী» (a list, not a relation to a parent), and no source gives it a role word — the editor decides whether it should be a main card. Conflicts in ⓘ: its start (BWDB: from the Kazibachha at Dakop) and its length (B910 about 142 km, BWDB 98). Drawn in two pieces, 363 m apart (a connector)."
+      "review": "BWDB SW-51, the only Pashur (SW-50 «পুরাতন পশুর» and SW-269 «ঢাংমারী», other name «মরা পশুর», are other rivers). A main card (the user’s decision 3 after Stage 3): B910 পৃ. ৬১ lists it among Bangladesh’s main rivers, so it lights its own basin and carries no relation row; BWDB’s relation — the Kazibachha’s lower reach — is in ⓘ with its start and length. The book gives origin, course, length (about 142 km; BWDB 98) and mouth; BWDB the other name, tributaries and distributaries. Drawn in two pieces, 363 m apart (a connector), from the Rupsa’s end."
     },
     {
       "id": "kapotaksha",
@@ -2248,7 +2279,7 @@
       "nameBn": "চিত্রা (চুয়াডাঙ্গা)",
       "values": {
         "relation": "নিম্নগঙ্গার উল্লেখযোগ্য শাখা নদী",
-        "origin": "চুয়াডাঙ্গা জেলার দামুরহুদা উপজেলায় মাথাভাঙ্গা নদী হতে",
+        "origin": "চুয়াডাঙ্গা জেলার দামুড়হুদা উপজেলায় মাথাভাঙ্গা নদী হতে",
         "course": null,
         "mouth": "যশোর জেলার অভয়নগর উপজেলার সিদ্দিপাশা ইউনিয়নে আতাই নদীতে"
       },

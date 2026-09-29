@@ -304,9 +304,9 @@
     "licence": "ODbL 1.0 — © OpenStreetMap contributors",
     "sha256": "a7c5e7229104dc76d6746a672fdcdcfd5a4a0ae2a55b9f47c13bb35ce4aa1396"
   },
-  "osmBangladeshRiversSoutheast": {
-    "_comment": "The OpenStreetMap ways the Rivers of Bangladesh picture’s south-east group draws in Stage 3 batch b6 — the Feni, the Muhuri, the Sangu, the Matamuhuri and the Naf — each by way id, with node ids and tags, from tools/extract-bangladesh-rivers-system.mjs southeast (the way list is the group seed’s geometry.extract). Every way carries a name, name:bn, name:en or wikidata tag naming its river. Only a deliberate re-run changes it.",
-    "file": "tools/sources/osm-bangladesh-rivers-southeast.geojson",
+  "osmBangladeshRiversKarnaphuliB6": {
+    "_comment": "The OpenStreetMap ways the Rivers of Bangladesh picture’s south-east region draws in Stage 3 batch b6 — the Feni, the Muhuri, the Sangu, the Matamuhuri and the Naf — each by way id, with node ids and tags. Cut by tools/extract-bangladesh-rivers-system.mjs when those rivers had their own group (southeast); after the user’s decision to merge them with the Karnaphuli (B910 পৃ. ৬২), the way list is the Karnaphuli seed’s geometry.extractBatches.b6 and the file was renamed, bytes unchanged. Every way carries a name, name:bn, name:en or wikidata tag naming its river. Only a deliberate re-run changes it.",
+    "file": "tools/sources/osm-bangladesh-rivers-karnaphuli-b6.geojson",
     "fetched": "2026-09-29",
     "snapshot": "2026-09-29T14:10:51Z",
     "licence": "ODbL 1.0 — © OpenStreetMap contributors",

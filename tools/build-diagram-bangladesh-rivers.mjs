@@ -478,12 +478,11 @@ function buildFrame(frameId, spec) {
     if (!joinsParent(l)) continue;
     const parent = l.spec.join?.parent ?? 'main';
     if (!spec.lines.includes(parent)) continue;
+    // A line the seed leaves unjoined (\`exempt\`) gets no connector — over 12 km by the rule, or nearer by
+    // the user's decision (the Harinbhanga) — and may end outside the picture; any other must end in it.
+    if (l.spec.exempt) continue;
     const end = P.project(...(parentSideAtTail(l) ? l.coords.at(-1) : l.coords[0]));
-    // A line the seed leaves unjoined may end outside the picture; any other must end in it.
-    if (!inRect(end)) {
-      if (l.spec.exempt) continue;
-      fail(`${frameId}: ${id}'s parent-side end is outside the frame`);
-    }
+    if (!inRect(end)) fail(`${frameId}: ${id}'s parent-side end is outside the frame`);
     const q = (xy) => xy.map((v) => Math.round(v * 10) / 10);
     const [a, b] = [q(end), q(footOn(end, drawnPolys(parent)))];
     const m = distM(P.invert(...a), P.invert(...b));

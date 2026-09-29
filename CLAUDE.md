@@ -282,6 +282,13 @@ by map. **Nothing is guessed to fill a gap.**
   government bodies word one place differently (BWDB «ভারত», JRC «ভারতের
   ত্রিপুরার পাহাড়»), the first in the source order goes on the card, the
   other in ⓘ.
+- **Bengali text on cards and in ⓘ** (the user's conventions, 2026-09-29, for
+  every item): «কি.মি.» in card rows, «কিলোমিটার» in ⓘ sentences; place names
+  in the pinned Bengali admin list's spelling where a source differs only in
+  spelling (river names keep their source's); «OpenStreetMap-এর তথ্যে», never
+  «ডেটায়»; an other name that is a river with its own card is pending, both
+  views in ⓘ; a same-name river's picker bracket is the district of its origin
+  (else the district it flows through). Details: `notes/bangladesh-rivers.md`.
 - The user's own verification is recorded as editor-verified with a date, and
   stays distinguishable from a cited source.
 - Never invent Bengali content. An unsupplied Bengali field is `null`.
@@ -382,7 +389,7 @@ State which kind a task is when reporting it.
   `mountains`, `waterfalls` and `latitude-longitude`, all under `docs/maps/`.
 - Work in progress (`tools/wip.json`): `bangladesh-rivers`, a diagram in the
   Bangladesh section drawn in code, built one river system at a time — the
-  Jamuna, the Padma, the Meghna and the Karnaphuli systems and the south-east group so far (`notes/bangladesh-rivers.md`); local preview
+  Jamuna, the Padma, the Meghna and the south-east («দক্ষিণ পূর্বাঞ্চল», with the Karnaphuli) so far (`notes/bangladesh-rivers.md`); local preview
   only, not in the registry.
 - Three diagrams, under বিবিধ: `atmosphere-layers`, `earth-interior` and
   `seasons`, in `docs/diagrams/`.

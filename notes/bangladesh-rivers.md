@@ -30,8 +30,8 @@ finishes it. It is not in `docs/registry.json`.
     unchanged), the Gorai, Madhumati, Arial Khan and Bhagirathi
     (distributaries) and the Mahananda (tributary, three reaches); from
     Stage 2, batch 2, the south-west: the Mathabhanga, the Kumar (the OSM
-    Kumar that leaves the Padma, «কুমার (চুয়াডাঙ্গা)»), the Bhairab (its
-    Jashore–Khulna course, two reaches, «ভৈরব (যশোর)»), the Kapotaksha, the
+    Kumar that leaves the Padma, «কুমার (কুষ্টিয়া)» since Stage 3), the Bhairab (its
+    Jashore–Khulna course, two reaches, «ভৈরব (চুয়াডাঙ্গা)» since Stage 3), the Kapotaksha, the
     Nabaganga (three reaches) and the Chitra (two reaches, «চিত্রা
     (চুয়াডাঙ্গা)»), all distributaries. The Karnaphuli system (Stage 2,
     batch 5): the Karnaphuli (two main lines,
@@ -66,12 +66,14 @@ finishes it. It is not in `docs/registry.json`.
     India, unjoined: OSM names nothing on to the Mahananda in Malda), each
     dashed outside Bangladesh (`split: "border"`). Left out: the Nagar (two
     BWDB Nagars; B-GEO's text fits the border river NW-65, both books' maps
-    label NW-66, into the Atrai — the user decides), the Kulik (4.7 km of
+    label NW-66, into the Atrai — it stays out, the user checks the book), the Kulik (4.7 km of
     named way in Bangladesh) and the Tetulia of Dinajpur (no named way; not in
-    the books). Batch 6, a new group «দক্ষিণ-পূর্বাঞ্চল» (`southeast`; the name
-    is proposed, for the user's approval): rivers that each reach the sea,
-    grouped by region under the user's rule a of Stage 3, because none is
-    another's branch — the Feni (a main card; along the border, so drawn
+    the books). Batch 6, the rivers of the south-east that each reach the
+    sea, grouped by region under the user's rule a of Stage 3 — first as a
+    group of their own, then (the user's decision 2 after Stage 3) joined to
+    the Karnaphuli system, whose picker group is named as B910 পৃ. ৬২ names
+    the region, «দক্ষিণ পূর্বাঞ্চল» («দক্ষিণ পূর্বাঞ্চলের প্রধান নদী কর্ণফুলী»;
+    B910 পৃ. ৬৩ gives the four a paragraph headed only by their names) — the Feni (a main card; along the border, so drawn
     solid, not split) with its tributary the Muhuri (a shared node), the Sangu
     (four main pieces: 16.6 km unjoined, then connectors of 5.6 km and 733 m),
     the Matamuhuri (OSM names only its upper 58.7 km, in Alikadam) and the
@@ -93,12 +95,15 @@ finishes it. It is not in `docs/registry.json`.
     Batch 8, all in the Padma system: the Rupsa (from the Bhairab's end in
     Khulna to the Pashur's start, shared nodes; B910's «ভৈরব বা রূপসা» is its
     other name, BWDB keeps the two apart), the Pashur (two pieces, 363 m
-    apart, to the sea at Koyra), the Ichamati («ইছামতী (সাতক্ষীরা)», BWDB's
+    apart, to the sea at Koyra; since the user's decision 3 after Stage 3 a
+    main card of its own, B910 পৃ. ৬১ listing it among the main rivers), the
+    Ichamati («ইছামতী (চুয়াডাঙ্গা)», BWDB's
     «ইছামতি-কালিন্দি», matched by geometry: it begins on the Mathabhanga's
     last node, where BWDB's Mathabhanga ends; drawn solid, as the Feni, since
     split at the border it falls into some 130 pieces), the Harinbhanga
-    («হাড়িয়াভাঙ্গা»; mostly in India, dashed; joined to the Ichamati by an
-    8.4 km connector along OSM's unnamed link) and the Baral (from the Padma
+    («হাড়িয়াভাঙ্গা»; mostly in India, dashed; unjoined, the user's decision 5
+    after Stage 3, though the Ichamati is 8.3 km off: BWDB has it rise from
+    the Raimangal, which is not drawn) and the Baral (from the Padma
     near Charghat on to the Jamuna at Bera, as OSM names it; the drawn Atrai
     ends on it, its join unchanged). Left out: the Haringhata (no named way;
     drawing the Baleshwar in its place would substitute one river for
@@ -227,11 +232,55 @@ finishes it. It is not in `docs/registry.json`.
   5. Where BWDB and JRCB word one origin differently (the Manu and the
      Khowai: BWDB «ভারত», JRCB «ভারতের ত্রিপুরার পাহাড়» and «… পুর্বাঞ্চলের
      পাহাড়», as printed), BWDB's goes on the card and JRCB's in ⓘ.
-  6. Every bracketed picker name — «কুমার (চুয়াডাঙ্গা)», «চিত্রা (চুয়াডাঙ্গা)»,
-     «ভৈরব (যশোর)», «তিতাস (ব্রাহ্মণবাড়িয়া)», and each one after — has an ⓘ
-     line naming the other rivers of that name in BWDB's river list and which
-     one is drawn, cited to the list (`bwdbList`, the list page's JSON,
-     SHA-256 a8f58942…) and the drawn river's own BWDB page.
+  6. Every bracketed picker name has an ⓘ line naming the other rivers of
+     that name in BWDB's river list and which one is drawn, cited to the list
+     (`bwdbList`, the list page's JSON, SHA-256 a8f58942…) and the drawn
+     river's own BWDB page.
+- **After Stage 3's acceptance** (the user's decisions and fixes, 2026-09-29):
+  1. The Nagar stays out; the one not-drawn ⓘ note names it (B-GEO's text
+     points to NW-65, both book maps label NW-66). The user checks the book.
+  2. The south-east rivers and the Karnaphuli are one picker group,
+     «দক্ষিণ পূর্বাঞ্চল», B910 পৃ. ৬২'s region (above); the Karnaphuli system
+     keeps its id, the south-east group's file is gone, and its extract was
+     renamed `…-karnaphuli-b6.geojson` (bytes and SHA-256 unchanged). The
+     `basin` field is approved.
+  3. The Pashur is a main card (its own basin, no relation row); BWDB's
+     relation — the Kazibachha's lower reach — is in ⓘ.
+  4. «বুড়িচর» (B-GEO's map, where B910 has «বুড়িশ্বর»): no river or unit of
+     that name in BWDB's list, the pinned COD-AB layers (upazilas; no unions)
+     or Banglapedia, so the name is not adopted; ⓘ says so. The Mogra and
+     BWDB's «মগড়া» are spellings of one name, matched by geometry and
+     district; both spellings in ⓘ, both OSM pieces drawn.
+  5. The Harinbhanga is unjoined though the Ichamati is 8.3 km off: a line
+     with `exempt` never gets a connector (the build), and the validator
+     names it as unjoined by decision.
+  6. Border rivers — the Feni, the Naf, the Ichamati — are drawn solid outside
+     Bangladesh; one ⓘ line says so.
+  7. The Shahbazpur and the Haringhata stay out (no relabelling of the
+     Meghna, no substitution of the Baleshwar); the one not-drawn note names
+     them with the Baulai, Dhanu, Boalkhali, Rankhiang, Chingri, Lohalia,
+     Kulik and Nagar.
+  8. «বরিশাল নদী» keeps its single Banglapedia citation; the Tetulia's 18 km
+     drawn reach keeps its ⓘ line.
+  Text conventions (every card and ⓘ line, every stage):
+  a. An other name that is a river with its own card is pending, with both
+     views in ⓘ: the Bhairab's «রূপসা» and the Rupsa's «ভৈরব» (B910: one river
+     «ভৈরব বা রূপসা»; BWDB: two).
+  b. A picker bracket is the district where BWDB has the river originate; a
+     river rising outside Bangladesh or with no district origin takes the
+     (first) district it flows through: «কুমার (কুষ্টিয়া)», «চিত্রা
+     (চুয়াডাঙ্গা)», «ভৈরব (চুয়াডাঙ্গা)», «তিতাস (ব্রাহ্মণবাড়িয়া)», «পাগলা
+     (চাঁপাইনবাবগঞ্জ)», «তেতুলিয়া (বরিশাল)», «ইছামতী (চুয়াডাঙ্গা)».
+  c. «কি.মি.» in card rows, «কিলোমিটার» in ⓘ sentences; a long ⓘ line is split
+     into sentences.
+  d. Place names use the pinned Bengali admin list's spelling where a source
+     differs only in spelling (`tools/sources/bangladesh-names.json`, from
+     bangladesh.gov.bd: divisions and districts only — no pinned list holds
+     upazilas or unions, so those keep the source's spelling, except the
+     user's «দামুড়হুদা»). River names keep their source's spelling.
+  e. «OpenStreetMap-এর তথ্যে», never «ডেটায়»; «সরকারি প্রশাসনিক সীমানার তথ্য
+     (COD-AB)».
+  f. Kaptai: «কাপ্তাই একটি হ্রদ, এই ছবিতে হ্রদটি আঁকা নেই».
 - **Stage 4, the final stage** (collected here as decided):
   - the new tabs, and the «পুরো পথ» frame for the Padma;
   - in «পুরো পথ», the Karnaphuli's upstream in Mizoram, dashed, with an ⓘ
@@ -337,8 +386,9 @@ finishes it. It is not in `docs/registry.json`.
   b3, 6 ways (`eb26c514…`); the Meghna's b4, 29 ways (`fce48299…`; its
   group «evidence» holds the four unnamed «Gomati» relation members, the one
   group the tag rule exempts); the Jamuna's b4, the Buriganga's one way
-  (`d31d584f…`); the Padma's b7, 17 ways (`a7c5e722…`); the south-east
-  group's own, 33 ways (`670ba065…`); the Meghna's b9, 11 ways
+  (`d31d584f…`); the Padma's b7, 17 ways (`a7c5e722…`); the Karnaphuli's
+  b6, 33 ways (`670ba065…`; cut as the south-east group's own, renamed
+  when the groups merged); the Meghna's b9, 11 ways
   (`6b7c9702…`); the Padma's b9, 1 way (`8de7f900…`); the Padma's b8, 22
   ways (`b456037a…`). The extractor refuses an Overpass answer whose
   data is more than two days old: a mirror once served a May snapshot with
@@ -362,7 +412,7 @@ finishes it. It is not in `docs/registry.json`.
   system's 10 from Stage 1, from Stage 2 the Karnaphuli system's 5 (b5),
   the Padma south-west's 10 (b2), the Meghna core's 5 (b3; the pinned
   `meghna` line changed role, not ways) and batch 4's 5; from Stage 3 the
-  Mahananda's tributaries' 3 (b7), the south-east group's 8 (b6) and the
+  Mahananda's tributaries' 3 (b7), the south-east rivers' 8 (b6) and the
   estuary batch's 5 (b9) and the south-west coast's 6 (b8); 68 in all, no
   earlier pin has moved). A build whose line moved stops and says so; it is never
   re-pinned to pass. A main river drawn as several lines must run end to end
@@ -381,11 +431,12 @@ finishes it. It is not in `docs/registry.json`.
   two of its own), the frames, every branch card's four rows and the main
   card's «গতিপথ», ⓘ's plain lines each citing a listed source, the picker
   grouped by system, the pending list (the fields the seed holds as null,
-  listed by name in the validator; 46 after Stage 3 — Stage 2's 32, the
-  Pagla's, Kirtankhola's and Rupsa's course, the Muhuri's other names and
-  course, the Sangu's course, the Matamuhuri's entry, the Tetulia's
-  (Barishal) relation, other names and course, the Burishwar's relation and
-  course, the Harinbhanga's and the Pashur's relation: the Jamuna's length;
+  listed by name in the validator; 47 after Stage 3 — Stage 2's 32, the
+  Pagla's, Kirtankhola's and Rupsa's course, the Bhairab's and the Rupsa's
+  other names (fix a), the Muhuri's other names and course, the Sangu's
+  course, the Matamuhuri's entry, the Tetulia's (Barishal) relation, other
+  names and course, the Burishwar's relation and course, the Harinbhanga's
+  relation: the Jamuna's length;
   the Buriganga's course; the Padma's entry, course, length and
   distributaries; the Gorai's, Madhumati's and Chitra's course; the
   Bhagirathi's other name; the Meghna's length, tributaries and
