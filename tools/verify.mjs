@@ -11,6 +11,7 @@ import { createRequire } from 'node:module';
 import { pathToFileURL } from 'node:url';
 import { PMTiles } from 'pmtiles';
 import { DETAIL_AREAS } from './world.config.mjs';
+import { COVERAGE } from './bangladesh.config.mjs';
 import { sourcesAt, scan, SURFACE, librarySurface, scanBuildTool } from './outbound.mjs';
 import { assetVersion, codeFiles, references } from './lib/asset-version.mjs';
 import { CACHE, zipEntry } from './lib/geo.mjs';
@@ -36,6 +37,9 @@ const RIVERS_DIR = path.join(SERVED, 'diagrams/bangladesh-rivers');
 const RIVERS_SEED = path.join(DATA_SOURCES, 'bangladesh-rivers');
 const RIVERS_BUILD = path.join(HERE, 'build-diagram-bangladesh-rivers.mjs');
 const RIVERS_PINS = path.join(HERE, 'bangladesh-rivers-pins.json');
+// The same seed on the map shell, and the build that makes it.
+const RIVERS_MAP_DIR = path.join(SERVED, 'maps/bangladesh-rivers-map');
+const RIVERS_MAP_BUILD = path.join(HERE, 'build-bangladesh-rivers-map.mjs');
 const readJ = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
 // The vendored browser libraries, one folder per library and version.
 const VENDOR_DIR = path.join(SERVED, 'shared/vendor');
@@ -477,6 +481,127 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
   check(same && Object.keys(pins).length === 68, `the build reproduces the ${built.length} committed files byte for byte, and its ${Object.keys(pins).length} geometry pins hold${same ? '' : ` — ${say.split('\n').slice(0, 3).join(' | ')}`}`);
   check(Boolean(seamLine) && Number(seamLine[1]) <= G.main.seam.maxM && Number(seamLine[3]) <= 500 && Number(seamLine[4]) <= 3, `d. the seam is ${seamLine?.[1]} m at ${seamLine?.[2]}°E (limit ${G.main.seam.maxM} m); the Jamuna ends ${seamLine?.[3]} m from the Padma, which ends ${seamLine?.[4]} m from the Meghna`);
   console.log(`bangladesh-rivers: a. ${drawnMarkers} markers within ${round(worst.px, 2)} px / ${round(worst.m)} m; b. ${alone.length + viaConnector.length} joined (${alone.join(', ')} on their own; ${viaConnector.join(', ')} by a connector), ${exempt.length} unjoined (${exempt.join(', ')}); c. entry ${round(entrySrc)} m from the border (BWDB's point ${round(entryBwdb)} m); d. main connected, gaps ≤ 500 m${mainNote.length ? ` (and ${mainNote.join(', ')})` : ''}; e. ${drawnIds.size} lines, ${wayIds.size} ways, ${S.markers.length} markers traced; f. entry on the line and at the dash switch: ${entryF.join(', ')}; g. district names ${districtNote.join('')}`);
+
+  // ---- bangladesh-rivers-map: the same checks a–g in metres, on the map's own GeoJSON (2026-09-30) ----
+  // The diagram's are in its frame units (1 u ≈ 512 m in its Bangladesh frame, its lines simplified by up to
+  // 0.8 u); the map's lines are the chains within 15 m, so each limit here is the diagram's or tighter.
+  {
+    const mapGj = (f) => readJ(path.join(RIVERS_MAP_DIR, f));
+    const fb = G.frames.bangladesh;
+    const features = [...mapGj('lines-in.geojson').features.map((f) => ({ ...f, dashed: false })), ...mapGj('lines-out.geojson').features.map((f) => ({ ...f, dashed: true }))];
+    const mapCons = mapGj('connectors.geojson').features;
+    const mapMarks = mapGj('marks.json');
+    const drawnM = (id) => features.filter((f) => f.properties.line === id).map((f) => f.geometry.coordinates);
+    const toDrawn = (p, id) => Math.min(...drawnM(id).map((c) => nearestOnLine(p, c).m));
+    const ON_M = 0.5; // a point the build puts on a line or at a vertex: the 6-decimal rounding is 0.11 m
+    const note = [];
+
+    // a — every marker stands at its source coordinate exactly (the diagram: within 1 u and 500 m).
+    const aBad = fb.markers.filter((id) => !mapMarks[id] || distM(mapMarks[id].at, seedMarker[id].lonLat) > ON_M);
+    check(Object.keys(mapMarks).length === fb.markers.length && aBad.length === 0, `map a. the ${fb.markers.length} markers stand at their source coordinates (limit ${ON_M} m; the diagram's 1 u ≈ 512 m and 500 m)${aBad.length ? ` — not: ${aBad.join(', ')}` : ''}`);
+
+    // b — every branch's parent-side end: within 50 m of its parent as the map draws it, or joined by a connector of at
+    // most 12 km that starts at that end and ends on the parent (within ON_M each; the diagram's 50 m), or unjoined by decision.
+    const mapConOf = new Map(mapCons.map((c) => [c.properties.line, c]));
+    const bAlone = [];
+    const bVia = [];
+    const bExempt = [];
+    const bBad = [];
+    for (const [id, spec] of branches.filter(([bid]) => fb.lines.includes(bid))) {
+      const parentId = spec.join?.parent ?? 'main';
+      if (!fb.lines.includes(parentId)) continue;
+      const own = drawnM(id);
+      const atTail = spec.join?.end ? spec.join.end === 'tail' : spec.role === 'tributary';
+      const ends = own.map((c) => (atTail ? c.at(-1) : c[0]));
+      // The parent-side end: the drawn end nearest the parent, as a clipped line has more than one.
+      const end = ends.sort((p, q) => toDrawn(p, parentId) - toDrawn(q, parentId))[0];
+      const toParent = toDrawn(end, parentId);
+      const con = mapConOf.get(id);
+      if (toParent <= NEAR_M && !con) bAlone.push(`${id} ${round(toParent)} m`);
+      else if (con) {
+        const pts = con.geometry.coordinates;
+        const len = distM(pts[0], pts[1]);
+        const good = pts.length === 2 && con.properties.parent === parentId && len <= CONNECTOR_MAX_M && Math.abs(len - con.properties.m) <= 1 && distM(pts[0], end) <= ON_M && toDrawn(pts[1], parentId) <= ON_M;
+        (good ? bVia : bBad).push(`${id} ${round(len / 1000, 2)} km`);
+      } else if (typeof spec.exempt === 'string' && spec.exempt.length > 20 && (toParent > CONNECTOR_MAX_M || UNJOINED_BY_DECISION.has(id))) bExempt.push(id);
+      else bBad.push(`${id} ${round(toParent)} m, no connector`);
+    }
+    const wantExempt = EXEMPT.filter((id) => fb.lines.includes(id));
+    check(bBad.length === 0 && JSON.stringify([...bExempt].sort()) === JSON.stringify([...wantExempt].sort()), `map b. every branch meets its parent: ${bAlone.length} within ${NEAR_M} m, ${bVia.length} by a connector ≤ ${CONNECTOR_MAX_M / 1000} km whose ends lie within ${ON_M} m of the branch's end and the parent (the diagram's ${NEAR_M} m), ${bExempt.length} unjoined — the user's decisions, as in the diagram${bBad.length ? ` — not: ${bBad.join('; ')}` : ''}`);
+    note.push(`b. ${bAlone.length} within ${NEAR_M} m, ${bVia.length} connectors, ${bExempt.length} unjoined`);
+
+    // c — the entry marker on COD-AB's border at full precision (the diagram: 500 m, or 1 u of its drawn border).
+    const cM = Math.min(...bdRings.map((r) => nearestOnLine(mapMarks.entry.at, r).m));
+    check(cM <= ON_M, `map c. the entry marker is ${round(cM, 3)} m from COD-AB's border (limit ${ON_M} m; the diagram's 500 m or 1 u)`);
+
+    // d — the main river one connected line: its pieces end to end, no duplicate segment, no self-crossing, nothing
+    // outside the basemap's box (the diagram: gaps within 500 m).
+    const mainPieces = features.filter((f) => f.properties.line === 'main').map((f) => f.geometry.coordinates);
+    const starts = mainPieces.filter((c) => !mainPieces.some((o) => o !== c && distM(o.at(-1), c[0]) <= ON_M));
+    const segs = mainPieces.flatMap((c) => c.slice(1).map((p, i) => [c[i], p]));
+    const segKeys = segs.map(([a, b]) => [a, b].sort((p, q) => p[0] - q[0] || p[1] - q[1]).join('|'));
+    let dTangles = 0;
+    for (let i = 0; i < segs.length; i++) for (let j = i + 2; j < segs.length; j++) if (crosses(...segs[i], ...segs[j])) dTangles++;
+    const [bw, bs, be, bn] = COVERAGE;
+    const dOut = mainPieces.flat().filter(([x, y]) => x < bw || x > be || y < bs || y > bn).length;
+    // Its end: the one piece whose end begins no other.
+    const lastPieces = mainPieces.filter((c) => !mainPieces.some((o) => o !== c && distM(c.at(-1), o[0]) <= ON_M));
+    const dEnd = lastPieces.length === 1 ? distM(lastPieces[0].at(-1), seedMarker.padmaConfluence.lonLat) : Infinity;
+    check(starts.length === 1 && new Set(segKeys).size === segKeys.length && dTangles === 0 && dOut === 0 && dEnd <= 2000, `map d. the main line is ${mainPieces.length} pieces end to end within ${ON_M} m (the diagram's 500 m), ${segKeys.length - new Set(segKeys).size} duplicate segments, ${dTangles} self-crossings, ${dOut} points outside the box, ${round(dEnd)} m from the Padma-confluence coordinate (limit 2 km, as the diagram's)`);
+    // A line's head and tail as drawn: the piece start no other piece ends at, the piece end no other begins at
+    // (the files hold the solid pieces before the dashed, not in the line's order).
+    const headOf = (id) => drawnM(id).find((c, _, all) => !all.some((o) => o !== c && distM(o.at(-1), c[0]) <= ON_M))[0];
+    const tailOf = (id) => drawnM(id).find((c, _, all) => !all.some((o) => o !== c && distM(c.at(-1), o[0]) <= ON_M)).at(-1);
+    const mainGaps = [];
+    for (const e of S.entities.filter((x) => x.role === 'main' && x.id !== 'main')) {
+      const order = Object.keys(G.lines).filter((id) => G.lines[id].entity === e.id && fb.lines.includes(id));
+      for (let i = 1; i < order.length; i++) if (G.lines[order[i]].join?.parent !== order[i - 1]) mainGaps.push(distM(tailOf(order[i - 1]), headOf(order[i])));
+    }
+    check(Math.max(0, ...mainGaps) <= 3.5, `map d. every other main river drawn as several lines runs end to end: gaps ${mainGaps.map((g) => `${round(g, 2)} m`).join(', ') || 'none'} (limit 3.5 m: the chains' 3 m and the rounding; the diagram's 500 m)`);
+
+    // e — every drawn piece is a line of the seed's Bangladesh frame, on its own card; every marker one of the frame's.
+    const eBad = features.concat(mapCons).filter((f) => !fb.lines.includes(f.properties.line) || f.properties.key !== (f.properties.line === 'main' ? 'main' : G.lines[f.properties.line]?.entity));
+    const eMissing = fb.lines.filter((id) => !drawnM(id).length);
+    check(eBad.length === 0 && eMissing.length === 0 && Object.keys(mapMarks).every((id) => fb.markers.includes(id)), `map e. every piece (${features.length}) and connector (${mapCons.length}) is a line of the seed's Bangladesh frame on its own card, every one of its ${fb.lines.length} lines is drawn, and every marker is the frame's — each traced to the pinned ids by e. above`);
+
+    // f — the entry marker where the main line turns from dashed to solid (the diagram: within 500 m of each).
+    const entryAt = mapMarks.entry.at;
+    const fDash = Math.min(...features.filter((f) => f.properties.line === 'main' && f.dashed).map((f) => distM(f.geometry.coordinates.at(-1), entryAt)));
+    const fSolid = Math.min(...features.filter((f) => f.properties.line === 'main' && !f.dashed).map((f) => distM(f.geometry.coordinates[0], entryAt)));
+    check(fDash <= ON_M && fSolid <= ON_M, `map f. the entry marker is ${round(fDash, 3)} m from where the dashed main line ends and ${round(fSolid, 3)} m from where the solid one begins (limit ${ON_M} m each; the diagram's 500 m)`);
+
+    // g — every marker in a COD-AB district, or within 500 m of one (as the diagram's); the district names are the
+    // basemap's own (all 64, at 14 px, from z7), so the diagram's label checks have nothing to hold here.
+    const admin2 = zipEntry(pinned(path.join(CACHE, codab.file), codab.sha256), 'bgd_admin2.geojson');
+    const inRingG = (p, ring) => {
+      let hit = false;
+      for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) if (ring[i][1] > p[1] !== ring[j][1] > p[1] && p[0] < ((ring[j][0] - ring[i][0]) * (p[1] - ring[i][1])) / (ring[j][1] - ring[i][1]) + ring[i][0]) hit = !hit;
+      return hit;
+    };
+    const polysG = admin2.features.map((f) => (f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates));
+    const gOut = Object.entries(mapMarks).filter(([, m]) => !polysG.some((poly) => poly.some((rings) => rings.reduce((n, r) => n + (inRingG(m.at, r) ? 1 : 0), 0) % 2 === 1)) && Math.min(...polysG.flat(2).map((r) => nearestOnLine(m.at, r).m)) > 500).map(([k]) => k);
+    check(gOut.length === 0, `map g. every marker lies in a COD-AB district or within 500 m of one (${Object.keys(mapMarks).length}); the district names are the basemap's${gOut.length ? ` — not: ${gOut.join(', ')}` : ''}`);
+    // The names on the lines: each on its own river as the map draws it.
+    const names = mapGj('names.json');
+    const nameIds = fb.labels.filter((l) => toDrawn(names[l.id].at, l.line) > ON_M).map((l) => l.id);
+    check(nameIds.length === 0, `map: every name on a line (${fb.labels.length}) stands on its own river as drawn (limit ${ON_M} m)${nameIds.length ? ` — not: ${nameIds.join(', ')}` : ''}`);
+
+    // The build, re-run offline to a temp folder, is the committed map — its deviation check (every chain vertex
+    // within 15 m of the drawn line, every drawn vertex on the chain) and the 68 geometry pins held.
+    const outM = fs.mkdtempSync(path.join(os.tmpdir(), 'rivers-map-'));
+    let sayM = '';
+    try {
+      sayM = execFileSync(process.execPath, [RIVERS_MAP_BUILD, outM], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+    } catch (e) {
+      sayM = `${e.stderr ?? e.message}`;
+    }
+    const builtM = fs.readdirSync(RIVERS_MAP_DIR).sort();
+    const sameM = builtM.every((f) => fs.existsSync(path.join(outM, f)) && fs.readFileSync(path.join(outM, f)).equals(fs.readFileSync(path.join(RIVERS_MAP_DIR, f)))) && fs.readdirSync(outM).length === builtM.length;
+    fs.rmSync(outM, { recursive: true, force: true });
+    const dev = /worst chain vertex ([\d.]+) m/.exec(sayM)?.[1];
+    check(sameM && dev !== undefined && Number(dev) <= 15, `map: the build reproduces the ${builtM.length} committed files byte for byte; every chain vertex within ${dev} m of the drawn line (limit 15 m)${sameM ? '' : ` — ${sayM.split('\n').slice(0, 3).join(' | ')}`}`);
+    console.log(`bangladesh-rivers-map: a. ${fb.markers.length} markers at their coordinates; ${note.join('; ')}; c. entry ${round(cM, 3)} m from the border; d. main ${mainPieces.length} pieces, 0 gaps; f. entry ${round(fDash, 3)} / ${round(fSolid, 3)} m`);
+  }
 }
 
 // ---- vendored libraries ----

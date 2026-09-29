@@ -1,0 +1,101 @@
+{
+ "entry": {
+  "nameBn": "ব্রহ্মপুত্র",
+  "titleBn": "ব্রহ্মপুত্র — প্রবেশস্থল",
+  "kind": "entry",
+  "river": "main",
+  "at": [
+   89.82718245,
+   25.73190801
+  ],
+  "entry": "কুড়িগ্রাম জেলা"
+ },
+ "padmaConfluence": {
+  "nameBn": "যমুনা",
+  "titleBn": "যমুনা — মিলনস্থল",
+  "kind": "confluence",
+  "river": "main",
+  "at": [
+   89.77304192,
+   23.80490447
+  ],
+  "confluence": "দৌলতদিয়ার কাছে (গোয়ালন্দ উপজেলা)"
+ },
+ "dharlaConfluence": {
+  "nameBn": "ধরলা",
+  "titleBn": "ধরলা — মিলনস্থল",
+  "kind": "confluence",
+  "river": "dharla",
+  "at": [
+   89.7287321,
+   25.7263026
+  ],
+  "confluence": "কুড়িগ্রাম জেলার উলিপুর উপজেলা"
+ },
+ "teestaConfluence": {
+  "nameBn": "তিস্তা",
+  "titleBn": "তিস্তা — মিলনস্থল",
+  "kind": "confluence",
+  "river": "teesta",
+  "at": [
+   89.68155,
+   25.39858
+  ],
+  "confluence": "গাইবান্ধা জেলা"
+ },
+ "oldBrahmaputraMouth": {
+  "nameBn": "ব্রহ্মপুত্র",
+  "titleBn": "ব্রহ্মপুত্র — পতিত স্থল",
+  "kind": "mouth",
+  "river": "oldBrahmaputra",
+  "at": [
+   90.98054851,
+   24.0353495
+  ],
+  "mouth": "ভৈরববাজারের দক্ষিণে মেঘনায় পতিত"
+ },
+ "padmaJamunaConfluence": {
+  "nameBn": "পদ্মা",
+  "titleBn": "পদ্মা — মিলনস্থল",
+  "kind": "confluence",
+  "river": "padma",
+  "at": [
+   89.77304192,
+   23.80490447
+  ],
+  "confluence": "দৌলতদিয়ার কাছে (গোয়ালন্দ উপজেলা)"
+ },
+ "mahanandaConfluence": {
+  "nameBn": "মহানন্দা",
+  "titleBn": "মহানন্দা — মিলনস্থল",
+  "kind": "confluence",
+  "river": "mahananda",
+  "at": [
+   88.3034277,
+   24.4906245
+  ],
+  "confluence": "চাঁপাইনবাবগঞ্জ জেলার সদর উপজেলার দেবীনগর ইউনিয়ন"
+ },
+ "padmaMouth": {
+  "nameBn": "পদ্মা",
+  "titleBn": "পদ্মা — পতিত স্থল",
+  "kind": "mouth",
+  "river": "padma",
+  "at": [
+   90.6279801,
+   23.2318031
+  ],
+  "mouth": "চাঁদপুরের কাছে (চাঁদপুর সদর উপজেলা) মেঘনার সঙ্গে মিলিত"
+ },
+ "karnaphuliMouth": {
+  "nameBn": "কর্ণফুলী",
+  "titleBn": "কর্ণফুলী — পতিত স্থল",
+  "kind": "mouth",
+  "river": "karnaphuli",
+  "at": [
+   91.80495,
+   22.22488
+  ],
+  "mouth": "চট্টগ্রাম শহরের কাছে বঙ্গোপসাগরে পতিত"
+ }
+}

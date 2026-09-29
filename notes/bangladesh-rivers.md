@@ -420,7 +420,11 @@ finishes it. It is not in `docs/registry.json`.
   the same bytes. Each river is one chain of features, refused if it branches,
   loops or has a gap over 3 m. The frames are SVG path data in the frame's own
   units, one flat projection per frame that `tools/lib/rivers-frame.mjs`
-  shares with the validator.
+  shares with the validator. Since 2026-09-30 the reading, the chains, the
+  pins, the border split, the checks that need no frame and the words are
+  `tools/lib/rivers-core.mjs`, moved there verbatim and shared with the map
+  (`notes/bangladesh-rivers-map.md`); this build draws the frames from it and
+  still writes the same bytes.
 - **The geometry pins,** one hash per line, in
   `tools/bangladesh-rivers-pins.json` (36 lines: the pilot's 11, the Padma
   system's 10 from Stage 1, from Stage 2 the Karnaphuli system's 5 (b5),

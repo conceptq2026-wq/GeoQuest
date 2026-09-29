@@ -1,0 +1,497 @@
+{
+ "brahmaputra": {
+  "nameBn": "ব্রহ্মপুত্র",
+  "river": "main",
+  "role": "main",
+  "at": [
+   89.737359,
+   25.611247
+  ]
+ },
+ "jamuna": {
+  "nameBn": "যমুনা",
+  "river": "main",
+  "role": "main",
+  "at": [
+   89.7453,
+   24.42527
+  ]
+ },
+ "dharla": {
+  "nameBn": "ধরলা",
+  "river": "dharla",
+  "role": "tributary",
+  "at": [
+   89.600647,
+   25.856817
+  ]
+ },
+ "teesta": {
+  "nameBn": "তিস্তা",
+  "river": "teesta",
+  "role": "tributary",
+  "at": [
+   89.1289,
+   26.06164
+  ]
+ },
+ "karatoya": {
+  "nameBn": "করতোয়া",
+  "river": "karatoya",
+  "role": "tributary",
+  "at": [
+   89.295607,
+   25.150651
+  ]
+ },
+ "atrai": {
+  "nameBn": "আত্রাই",
+  "river": "atrai",
+  "role": "tributary",
+  "at": [
+   88.74478,
+   25.023777
+  ]
+ },
+ "dhaleshwari": {
+  "nameBn": "ধলেশ্বরী",
+  "river": "dhaleshwari",
+  "role": "distributary",
+  "at": [
+   90.215656,
+   23.708862
+  ]
+ },
+ "banshi": {
+  "nameBn": "বংশী",
+  "river": "banshi",
+  "role": "distributary",
+  "at": [
+   90.082167,
+   24.287379
+  ]
+ },
+ "shitalakshya": {
+  "nameBn": "শীতলক্ষ্যা",
+  "river": "shitalakshya",
+  "role": "distributary",
+  "at": [
+   90.513022,
+   23.747953
+  ]
+ },
+ "oldBrahmaputra": {
+  "nameBn": "পুরাতন ব্রহ্মপুত্র নদ",
+  "river": "oldBrahmaputra",
+  "role": "distributary",
+  "at": [
+   90.516386,
+   24.606876
+  ]
+ },
+ "buriganga": {
+  "nameBn": "বুড়িগঙ্গা",
+  "river": "buriganga",
+  "role": "distributary",
+  "at": [
+   90.404921,
+   23.706873
+  ]
+ },
+ "padma": {
+  "nameBn": "পদ্মা",
+  "river": "padma",
+  "role": "main",
+  "at": [
+   90.205322,
+   23.459435
+  ]
+ },
+ "padmaUpper": {
+  "nameBn": "পদ্মা",
+  "river": "padma",
+  "role": "main",
+  "at": [
+   88.74011,
+   24.24691
+  ]
+ },
+ "ganga": {
+  "nameBn": "গঙ্গা",
+  "river": "padma",
+  "role": "main",
+  "at": [
+   87.925664,
+   24.877093
+  ]
+ },
+ "gorai": {
+  "nameBn": "গড়াই",
+  "river": "gorai",
+  "role": "distributary",
+  "at": [
+   89.278452,
+   23.797331
+  ]
+ },
+ "madhumati": {
+  "nameBn": "মধুমতী",
+  "river": "madhumati",
+  "role": "distributary",
+  "at": [
+   89.619107,
+   23.299594
+  ]
+ },
+ "arialKhan": {
+  "nameBn": "আড়িয়াল খাঁ",
+  "river": "arialKhan",
+  "role": "distributary",
+  "at": [
+   90.315338,
+   22.989716
+  ]
+ },
+ "mahananda": {
+  "nameBn": "মহানন্দা",
+  "river": "mahananda",
+  "role": "tributary",
+  "at": [
+   88.260882,
+   24.755233
+  ]
+ },
+ "bhagirathi": {
+  "nameBn": "ভাগীরথী",
+  "river": "bhagirathi",
+  "role": "distributary",
+  "at": [
+   88.240539,
+   24.085873
+  ]
+ },
+ "mathabhanga": {
+  "nameBn": "মাথাভাঙ্গা",
+  "river": "mathabhanga",
+  "role": "distributary",
+  "at": [
+   88.858653,
+   23.83628
+  ]
+ },
+ "kumar": {
+  "nameBn": "কুমার",
+  "river": "kumar",
+  "role": "distributary",
+  "at": [
+   88.928742,
+   23.82608
+  ]
+ },
+ "bhairab": {
+  "nameBn": "ভৈরব",
+  "river": "bhairab",
+  "role": "distributary",
+  "at": [
+   89.463056,
+   22.998057
+  ]
+ },
+ "kapotaksha": {
+  "nameBn": "কপোতাক্ষ",
+  "river": "kapotaksha",
+  "role": "distributary",
+  "at": [
+   89.141533,
+   22.893243
+  ]
+ },
+ "nabaganga": {
+  "nameBn": "নবগঙ্গা",
+  "river": "nabaganga",
+  "role": "distributary",
+  "at": [
+   89.367825,
+   23.495238
+  ]
+ },
+ "chitra": {
+  "nameBn": "চিত্রা",
+  "river": "chitra",
+  "role": "distributary",
+  "at": [
+   89.11073,
+   23.420467
+  ]
+ },
+ "punarbhaba": {
+  "nameBn": "পুনর্ভবা",
+  "river": "punarbhaba",
+  "role": "tributary",
+  "at": [
+   88.612858,
+   25.742216
+  ]
+ },
+ "pagla": {
+  "nameBn": "পাগলা",
+  "river": "pagla",
+  "role": "tributary",
+  "at": [
+   88.142181,
+   24.685806
+  ]
+ },
+ "tangon": {
+  "nameBn": "ট্যাংগন",
+  "river": "tangon",
+  "role": "tributary",
+  "at": [
+   88.439254,
+   25.956693
+  ]
+ },
+ "kirtankhola": {
+  "nameBn": "কীর্তনখোলা",
+  "river": "kirtankhola",
+  "role": "distributary",
+  "at": [
+   90.386933,
+   22.722716
+  ]
+ },
+ "rupsa": {
+  "nameBn": "রূপসা",
+  "river": "rupsa",
+  "role": "distributary",
+  "at": [
+   89.583936,
+   22.780138
+  ]
+ },
+ "pashur": {
+  "nameBn": "পশুর",
+  "river": "pashur",
+  "role": "main",
+  "at": [
+   89.564657,
+   22.056357
+  ]
+ },
+ "harinbhanga": {
+  "nameBn": "হাড়িয়াভাঙ্গা",
+  "river": "harinbhanga",
+  "role": "distributary",
+  "at": [
+   89.038682,
+   21.820976
+  ]
+ },
+ "ichamati": {
+  "nameBn": "ইছামতী",
+  "river": "ichamati",
+  "role": "distributary",
+  "at": [
+   88.949355,
+   22.600686
+  ]
+ },
+ "baral": {
+  "nameBn": "বড়াল",
+  "river": "baral",
+  "role": "distributary",
+  "at": [
+   89.310252,
+   24.272998
+  ]
+ },
+ "meghna": {
+  "nameBn": "মেঘনা",
+  "river": "meghna",
+  "role": "main",
+  "at": [
+   90.776968,
+   22.762691
+  ]
+ },
+ "meghnaUpper": {
+  "nameBn": "মেঘনা",
+  "river": "meghna",
+  "role": "main",
+  "at": [
+   91.0354,
+   24.121149
+  ]
+ },
+ "barak": {
+  "nameBn": "বরাক",
+  "river": "barak",
+  "role": "disputed",
+  "at": [
+   92.637456,
+   24.851342
+  ]
+ },
+ "surma": {
+  "nameBn": "সুরমা",
+  "river": "surma",
+  "role": "disputed",
+  "at": [
+   91.71109,
+   24.96705
+  ]
+ },
+ "kushiyara": {
+  "nameBn": "কুশিয়ারা",
+  "river": "kushiyara",
+  "role": "disputed",
+  "at": [
+   91.757029,
+   24.612021
+  ]
+ },
+ "titas": {
+  "nameBn": "তিতাস",
+  "river": "titas",
+  "role": "disputed",
+  "at": [
+   91.141928,
+   24.028878
+  ]
+ },
+ "manu": {
+  "nameBn": "মনু",
+  "river": "manu",
+  "role": "disputed",
+  "at": [
+   91.938133,
+   24.427396
+  ]
+ },
+ "gumti": {
+  "nameBn": "গোমতী",
+  "river": "gumti",
+  "role": "disputed",
+  "at": [
+   91.060905,
+   23.555072
+  ]
+ },
+ "khowai": {
+  "nameBn": "খোয়াই",
+  "river": "khowai",
+  "role": "tributary",
+  "at": [
+   91.563243,
+   24.130249
+  ]
+ },
+ "tetuliaBarishal": {
+  "nameBn": "তেতুলিয়া",
+  "river": "tetuliaBarishal",
+  "role": "distributary",
+  "at": [
+   90.531065,
+   22.194137
+  ]
+ },
+ "burishwar": {
+  "nameBn": "বুড়িশ্বর",
+  "river": "burishwar",
+  "role": "distributary",
+  "at": [
+   90.213501,
+   22.25046
+  ]
+ },
+ "mogra": {
+  "nameBn": "মোগরা",
+  "river": "mogra",
+  "role": "tributary",
+  "at": [
+   90.918345,
+   24.763492
+  ]
+ },
+ "karnaphuli": {
+  "nameBn": "কর্ণফুলী",
+  "river": "karnaphuli",
+  "role": "main",
+  "at": [
+   92.01681,
+   22.42309
+  ]
+ },
+ "karnaphuliUpper": {
+  "nameBn": "কর্ণফুলী",
+  "river": "karnaphuli",
+  "role": "main",
+  "at": [
+   92.37511,
+   22.81084
+  ]
+ },
+ "kasalong": {
+  "nameBn": "কাসালং",
+  "river": "kasalong",
+  "role": "tributary",
+  "at": [
+   92.157225,
+   23.254863
+  ]
+ },
+ "halda": {
+  "nameBn": "হালদা",
+  "river": "halda",
+  "role": "tributary",
+  "at": [
+   91.811961,
+   22.609044
+  ]
+ },
+ "feni": {
+  "nameBn": "ফেনী",
+  "river": "feni",
+  "role": "main",
+  "at": [
+   91.788156,
+   23.2074
+  ]
+ },
+ "muhuri": {
+  "nameBn": "মুহুরী",
+  "river": "muhuri",
+  "role": "tributary",
+  "at": [
+   91.50889,
+   22.976608
+  ]
+ },
+ "sangu": {
+  "nameBn": "সাঙ্গু",
+  "river": "sangu",
+  "role": "main",
+  "at": [
+   92.346778,
+   21.941554
+  ]
+ },
+ "matamuhuri": {
+  "nameBn": "মাতামুহুরী",
+  "river": "matamuhuri",
+  "role": "main",
+  "at": [
+   92.417842,
+   21.515664
+  ]
+ },
+ "naf": {
+  "nameBn": "নাফ",
+  "river": "naf",
+  "role": "main",
+  "at": [
+   92.269995,
+   20.951464
+  ]
+ }
+}

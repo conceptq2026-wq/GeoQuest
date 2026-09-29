@@ -9,6 +9,15 @@
         "bn": "বাংলাদেশের নদ-নদী",
         "en": "Rivers of Bangladesh"
       }
+    },
+    {
+      "id": "bangladesh-rivers-map",
+      "kind": "map",
+      "section": "bangladesh",
+      "title": {
+        "bn": "বাংলাদেশের নদ-নদী",
+        "en": "Rivers of Bangladesh (map)"
+      }
     }
   ]
 }

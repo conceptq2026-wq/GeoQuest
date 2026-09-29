@@ -366,7 +366,10 @@ the OSM pilot extract (`osmBangladeshRiversPilot`), each system's own extract
 (`osmBangladeshRivers<System>`, and one per later batch,
 `osmBangladeshRivers<System><Batch>`) and the rivers snapshot by checksum in
 `tools/sources.json`; and the 68 lines' geometry hashes in
-`tools/bangladesh-rivers-pins.json`. The shared district file,
+`tools/bangladesh-rivers-pins.json`, held for both products by the shared
+build core, `tools/lib/rivers-core.mjs`. bangladesh-rivers-map: the same
+seed, pins and extracts, and its lines within 15 m of the pinned chains
+(checked vertex by vertex in its build). The shared district file,
 `docs/shared/bangladesh-districts.json` (COD-AB's 64 districts, the
 basemap's Bengali names), is rebuilt by `tools/build-bangladesh-districts.mjs`
 and compared byte for byte in `tools/verify.mjs`.
@@ -398,7 +401,9 @@ State which kind a task is when reporting it.
 - Work in progress (`tools/wip.json`): `bangladesh-rivers`, a diagram in the
   Bangladesh section drawn in code, built one river system at a time — the
   Jamuna, the Padma, the Meghna and the south-east («দক্ষিণ পূর্বাঞ্চল», with the Karnaphuli) so far (`notes/bangladesh-rivers.md`); local preview
-  only, not in the registry.
+  only, not in the registry. Beside it, `bangladesh-rivers-map`, the same
+  seed on the map shell, in `docs/maps/` (`notes/bangladesh-rivers-map.md`):
+  its Bangladesh view so far; the diagram is kept, maintenance-only.
 - Three diagrams, under বিবিধ: `atmosphere-layers`, `earth-interior` and
   `seasons`, in `docs/diagrams/`.
 

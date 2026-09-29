@@ -586,6 +586,20 @@ async function useItem(browser, size, entry, base, origin, dir) {
       const camera = await page.evaluate(CAMERA);
       const selector = await page.evaluate(`(() => { const p = document.getElementById('recordPicker'); return p && !p.hidden ? 'picker' : document.querySelector('.timeline-dot') ? 'timeline' : null; })()`);
       const tabs = await page.evaluate(`document.querySelectorAll('.map-tab').length`);
+      // Names at the opening: which of each symbol layer's point names MapLibre places, and of the rest which lie
+      // off screen and which it dropped in a collision — as text, never a failure: at a wide zoom that is MapLibre's call.
+      const named = await page.evaluate(`(() => { const s = window.__shell; if (!s) return []; const m = s.map; const b = m.getBounds(); const out = [];
+        for (const l of s.descriptor.layers ?? []) {
+          const tf = l.layout?.['text-field'];
+          if (l.type !== 'symbol' || !Array.isArray(tf) || tf[0] !== 'get' || !m.getLayer(l.id)) continue;
+          const all = new Map();
+          for (const f of m.querySourceFeatures(l.source)) if (f.geometry.type === 'Point') all.set(f.properties.key, { name: f.properties[tf[1]], at: f.geometry.coordinates });
+          const placed = new Set(m.queryRenderedFeatures({ layers: [l.id] }).map((f) => f.properties.key));
+          const missing = [...all].filter(([k]) => !placed.has(k)).map(([, v]) => '«' + v.name + '» (' + (b.contains(v.at) ? 'collision' : 'off screen') + ')');
+          out.push({ id: l.id, placed: [...all.keys()].filter((k) => placed.has(k)).length, all: all.size, missing });
+        }
+        return out; })()`).catch(() => []);
+      for (const n of named) summary.push(`names at the opening, ${n.id}: ${n.placed}/${n.all} placed${n.missing.length ? ` — not ${n.missing.join(', ')}` : ''}`);
       if (selector === 'picker') await pickerSteps(page, shoot, summary, fail);
       else if (selector === 'timeline') await timelineSteps(page, shoot, summary, fail, tabs);
       else fail('no picker and no timeline');

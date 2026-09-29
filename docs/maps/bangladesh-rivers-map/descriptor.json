@@ -1,0 +1,1053 @@
+{
+ "schema": "geoquest/map-descriptor@1",
+ "id": "bangladesh-rivers-map",
+ "section": "bangladesh",
+ "title": {
+  "bn": "বাংলাদেশের নদ-নদী",
+  "en": "Rivers of Bangladesh (map)"
+ },
+ "basemap": "bangladesh-wide",
+ "view": {
+  "fitBounds": [
+   88,
+   20.55,
+   92.7,
+   26.65
+  ]
+ },
+ "constraints": {
+  "maxZoom": 11
+ },
+ "lookups": {
+  "systems": {
+   "jamuna": {
+    "nameBn": "ব্রহ্মপুত্র–যমুনা"
+   },
+   "padma": {
+    "nameBn": "পদ্মা"
+   },
+   "meghna": {
+    "nameBn": "মেঘনা"
+   },
+   "karnaphuli": {
+    "nameBn": "দক্ষিণ পূর্বাঞ্চল"
+   }
+  }
+ },
+ "images": {
+  "entry": {
+   "file": "./entry.svg",
+   "pixelRatio": 1
+  },
+  "confluence": {
+   "file": "./confluence.svg",
+   "pixelRatio": 1
+  },
+  "mouth": {
+   "file": "./mouth.svg",
+   "pixelRatio": 1
+  }
+ },
+ "records": {
+  "rivers": {
+   "file": "./rivers.json",
+   "fields": {
+    "nameBn": {
+     "type": "text",
+     "required": true
+    },
+    "role": {
+     "type": "text",
+     "required": true,
+     "display": false
+    },
+    "system": {
+     "type": "text",
+     "required": true,
+     "display": false
+    },
+    "up": {
+     "type": "text",
+     "display": false
+    },
+    "solid": {
+     "type": "boolean",
+     "display": false
+    },
+    "dashed": {
+     "type": "boolean",
+     "display": false
+    },
+    "joined": {
+     "type": "boolean",
+     "display": false
+    },
+    "relation": {
+     "type": "text",
+     "verifiable": true
+    },
+    "parent": {
+     "type": "text",
+     "verifiable": true
+    },
+    "alias": {
+     "type": "text",
+     "verifiable": true
+    },
+    "origin": {
+     "type": "text",
+     "verifiable": true
+    },
+    "entry": {
+     "type": "text",
+     "verifiable": true
+    },
+    "course": {
+     "type": "text",
+     "verifiable": true
+    },
+    "length": {
+     "type": "text",
+     "verifiable": true
+    },
+    "tributaries": {
+     "type": "text",
+     "verifiable": true
+    },
+    "distributaries": {
+     "type": "text",
+     "verifiable": true
+    },
+    "confluence": {
+     "type": "text",
+     "verifiable": true
+    },
+    "mouth": {
+     "type": "text",
+     "verifiable": true
+    }
+   }
+  },
+  "marks": {
+   "file": "./marks.json",
+   "fields": {
+    "nameBn": {
+     "type": "text",
+     "required": true,
+     "display": false
+    },
+    "titleBn": {
+     "type": "text",
+     "required": true
+    },
+    "kind": {
+     "type": "text",
+     "required": true,
+     "display": false
+    },
+    "river": {
+     "type": "text",
+     "required": true,
+     "display": false
+    },
+    "at": {
+     "type": "point",
+     "required": true
+    },
+    "entry": {
+     "type": "text"
+    },
+    "confluence": {
+     "type": "text"
+    },
+    "mouth": {
+     "type": "text"
+    }
+   }
+  },
+  "names": {
+   "file": "./names.json",
+   "fields": {
+    "nameBn": {
+     "type": "text",
+     "required": true
+    },
+    "river": {
+     "type": "text",
+     "required": true,
+     "display": false
+    },
+    "role": {
+     "type": "text",
+     "required": true,
+     "display": false
+    },
+    "at": {
+     "type": "point",
+     "required": true
+    }
+   }
+  }
+ },
+ "sources": {
+  "connectors": {
+   "records": "rivers",
+   "geometry": "./connectors.geojson",
+   "joinField": "key",
+   "expectGeometry": {
+    "joined": true
+   },
+   "state": [
+    "selected"
+   ],
+   "properties": [
+    "role"
+   ]
+  },
+  "lines-out": {
+   "records": "rivers",
+   "geometry": "./lines-out.geojson",
+   "joinField": "key",
+   "expectGeometry": {
+    "dashed": true
+   },
+   "state": [
+    "selected"
+   ],
+   "properties": [
+    "role"
+   ],
+   "tapWidth": 44,
+   "attribution": "<a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener noreferrer\">© OpenStreetMap contributors</a>"
+  },
+  "lines-in": {
+   "records": "rivers",
+   "geometry": "./lines-in.geojson",
+   "joinField": "key",
+   "expectGeometry": {
+    "solid": true
+   },
+   "state": [
+    "selected"
+   ],
+   "properties": [
+    "role"
+   ],
+   "tapWidth": 44,
+   "attribution": "<a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener noreferrer\">© OpenStreetMap contributors</a>"
+  },
+  "names": {
+   "records": "names",
+   "geometryFrom": "at",
+   "properties": [
+    "nameBn",
+    "role"
+   ]
+  },
+  "marks": {
+   "records": "marks",
+   "geometryFrom": "at",
+   "state": [
+    "selected"
+   ],
+   "properties": [
+    "kind"
+   ],
+   "tapWidth": 44
+  }
+ },
+ "layers": [
+  {
+   "id": "connectors-halo",
+   "type": "line",
+   "source": "connectors",
+   "slot": "belowLabels",
+   "layout": {
+    "line-join": "round",
+    "line-cap": "round"
+   },
+   "paint": {
+    "line-color": [
+     "case",
+     [
+      "==",
+      [
+       "get",
+       "selected"
+      ],
+      true
+     ],
+     "#ffc933",
+     "#ffffff"
+    ],
+    "line-opacity": [
+     "case",
+     [
+      "==",
+      [
+       "get",
+       "selected"
+      ],
+      true
+     ],
+     1,
+     0.85
+    ],
+    "line-width": [
+     "case",
+     [
+      "==",
+      [
+       "get",
+       "selected"
+      ],
+      true
+     ],
+     7.8,
+     [
+      "match",
+      [
+       "get",
+       "role"
+      ],
+      "main",
+      4.9,
+      "tributary",
+      3.9,
+      "distributary",
+      3.9,
+      "disputed",
+      3.9,
+      3.9
+     ]
+    ]
+   }
+  },
+  {
+   "id": "connectors-line",
+   "type": "line",
+   "source": "connectors",
+   "slot": "belowLabels",
+   "layout": {
+    "line-join": "round",
+    "line-cap": "round"
+   },
+   "paint": {
+    "line-color": [
+     "match",
+     [
+      "get",
+      "role"
+     ],
+     "main",
+     "#0b3d91",
+     "tributary",
+     "#0f9d8a",
+     "distributary",
+     "#e07b00",
+     "disputed",
+     "#7e57c2",
+     "#a9b4c3"
+    ],
+    "line-width": [
+     "match",
+     [
+      "get",
+      "role"
+     ],
+     "main",
+     2.9,
+     "tributary",
+     2,
+     "distributary",
+     2,
+     "disputed",
+     2,
+     2
+    ]
+   }
+  },
+  {
+   "id": "lines-out-halo",
+   "type": "line",
+   "source": "lines-out",
+   "slot": "belowLabels",
+   "layout": {
+    "line-join": "round",
+    "line-cap": "round"
+   },
+   "paint": {
+    "line-color": [
+     "case",
+     [
+      "==",
+      [
+       "get",
+       "selected"
+      ],
+      true
+     ],
+     "#ffc933",
+     "#ffffff"
+    ],
+    "line-opacity": [
+     "case",
+     [
+      "==",
+      [
+       "get",
+       "selected"
+      ],
+      true
+     ],
+     1,
+     0.85
+    ],
+    "line-width": [
+     "case",
+     [
+      "==",
+      [
+       "get",
+       "selected"
+      ],
+      true
+     ],
+     7.8,
+     [
+      "match",
+      [
+       "get",
+       "role"
+      ],
+      "main",
+      4.9,
+      "tributary",
+      3.9,
+      "distributary",
+      3.9,
+      "disputed",
+      3.9,
+      3.9
+     ]
+    ]
+   }
+  },
+  {
+   "id": "lines-out-line",
+   "type": "line",
+   "source": "lines-out",
+   "slot": "belowLabels",
+   "layout": {
+    "line-join": "round",
+    "line-cap": "butt"
+   },
+   "paint": {
+    "line-color": [
+     "match",
+     [
+      "get",
+      "role"
+     ],
+     "main",
+     "#0b3d91",
+     "tributary",
+     "#0f9d8a",
+     "distributary",
+     "#e07b00",
+     "disputed",
+     "#7e57c2",
+     "#a9b4c3"
+    ],
+    "line-width": [
+     "match",
+     [
+      "get",
+      "role"
+     ],
+     "main",
+     2.9,
+     "tributary",
+     2,
+     "distributary",
+     2,
+     "disputed",
+     2,
+     2
+    ],
+    "line-dasharray": [
+     2,
+     1.35
+    ]
+   }
+  },
+  {
+   "id": "lines-in-halo",
+   "type": "line",
+   "source": "lines-in",
+   "slot": "belowLabels",
+   "layout": {
+    "line-join": "round",
+    "line-cap": "round"
+   },
+   "paint": {
+    "line-color": [
+     "case",
+     [
+      "==",
+      [
+       "get",
+       "selected"
+      ],
+      true
+     ],
+     "#ffc933",
+     "#ffffff"
+    ],
+    "line-opacity": [
+     "case",
+     [
+      "==",
+      [
+       "get",
+       "selected"
+      ],
+      true
+     ],
+     1,
+     0.85
+    ],
+    "line-width": [
+     "case",
+     [
+      "==",
+      [
+       "get",
+       "selected"
+      ],
+      true
+     ],
+     7.8,
+     [
+      "match",
+      [
+       "get",
+       "role"
+      ],
+      "main",
+      4.9,
+      "tributary",
+      3.9,
+      "distributary",
+      3.9,
+      "disputed",
+      3.9,
+      3.9
+     ]
+    ]
+   }
+  },
+  {
+   "id": "lines-in-line",
+   "type": "line",
+   "source": "lines-in",
+   "slot": "belowLabels",
+   "layout": {
+    "line-join": "round",
+    "line-cap": "round"
+   },
+   "paint": {
+    "line-color": [
+     "match",
+     [
+      "get",
+      "role"
+     ],
+     "main",
+     "#0b3d91",
+     "tributary",
+     "#0f9d8a",
+     "distributary",
+     "#e07b00",
+     "disputed",
+     "#7e57c2",
+     "#a9b4c3"
+    ],
+    "line-width": [
+     "match",
+     [
+      "get",
+      "role"
+     ],
+     "main",
+     2.9,
+     "tributary",
+     2,
+     "distributary",
+     2,
+     "disputed",
+     2,
+     2
+    ]
+   }
+  },
+  {
+   "id": "river-names",
+   "type": "symbol",
+   "source": "names",
+   "slot": "aboveLabels",
+   "layout": {
+    "text-field": [
+     "get",
+     "nameBn"
+    ],
+    "text-font": [
+     "Noto Sans Bengali"
+    ],
+    "text-size": 15,
+    "text-variable-anchor": [
+     "left",
+     "right",
+     "top",
+     "bottom"
+    ],
+    "text-radial-offset": 0.6,
+    "symbol-sort-key": [
+     "match",
+     [
+      "get",
+      "role"
+     ],
+     "main",
+     0,
+     "tributary",
+     1,
+     "distributary",
+     1,
+     "disputed",
+     1,
+     2
+    ]
+   },
+   "paint": {
+    "text-color": [
+     "match",
+     [
+      "get",
+      "role"
+     ],
+     "main",
+     "#0b3d91",
+     "tributary",
+     "#0a6e61",
+     "distributary",
+     "#9a5000",
+     "disputed",
+     "#5e35b1",
+     "#0b3d91"
+    ],
+    "text-halo-color": "#ffffff",
+    "text-halo-width": 1.8
+   }
+  },
+  {
+   "id": "marker-entry",
+   "type": "symbol",
+   "source": "marks",
+   "slot": "aboveLabels",
+   "filter": [
+    "==",
+    [
+     "get",
+     "kind"
+    ],
+    "entry"
+   ],
+   "layout": {
+    "icon-image": "entry",
+    "icon-allow-overlap": true,
+    "icon-ignore-placement": true
+   }
+  },
+  {
+   "id": "marker-confluence",
+   "type": "symbol",
+   "source": "marks",
+   "slot": "aboveLabels",
+   "filter": [
+    "==",
+    [
+     "get",
+     "kind"
+    ],
+    "confluence"
+   ],
+   "layout": {
+    "icon-image": "confluence",
+    "icon-allow-overlap": true,
+    "icon-ignore-placement": true
+   }
+  },
+  {
+   "id": "marker-mouth",
+   "type": "symbol",
+   "source": "marks",
+   "slot": "aboveLabels",
+   "filter": [
+    "==",
+    [
+     "get",
+     "kind"
+    ],
+    "mouth"
+   ],
+   "layout": {
+    "icon-image": "mouth",
+    "icon-allow-overlap": true,
+    "icon-ignore-placement": true
+   }
+  },
+  {
+   "id": "marker-ring",
+   "type": "circle",
+   "source": "marks",
+   "slot": "aboveLabels",
+   "filter": [
+    "==",
+    [
+     "get",
+     "selected"
+    ],
+    true
+   ],
+   "paint": {
+    "circle-radius": 13,
+    "circle-opacity": 0,
+    "circle-stroke-color": "#ffc933",
+    "circle-stroke-width": 3
+   }
+  }
+ ],
+ "controls": [
+  {
+   "type": "picker",
+   "id": "rivers",
+   "from": "rivers",
+   "placeholder": "একটি নদী বেছে নিন…",
+   "labelEn": "Choose a river",
+   "label": {
+    "field": "nameBn"
+   },
+   "groupBy": {
+    "field": "system",
+    "order": [
+     "jamuna",
+     "padma",
+     "meghna",
+     "karnaphuli"
+    ],
+    "lookup": "systems",
+    "take": "nameBn"
+   },
+   "do": [
+    {
+     "action": "select"
+    },
+    {
+     "action": "fitBounds",
+     "clear": [
+      "sheet"
+     ],
+     "duration": 1200
+    }
+   ]
+  }
+ ],
+ "interactions": [
+  {
+   "on": "click",
+   "target": "source:lines-in",
+   "do": [
+    {
+     "action": "select"
+    },
+    {
+     "action": "fitBounds",
+     "clear": [
+      "sheet"
+     ],
+     "duration": 1200
+    }
+   ]
+  },
+  {
+   "on": "click",
+   "target": "source:lines-out",
+   "do": [
+    {
+     "action": "select"
+    },
+    {
+     "action": "fitBounds",
+     "clear": [
+      "sheet"
+     ],
+     "duration": 1200
+    }
+   ]
+  },
+  {
+   "on": "click",
+   "target": "source:marks",
+   "do": [
+    {
+     "action": "select"
+    }
+   ]
+  }
+ ],
+ "sheets": {
+  "rivers": {
+   "title": {
+    "field": "nameBn"
+   },
+   "rows": [
+    {
+     "label": "সম্পর্ক",
+     "field": "relation"
+    },
+    {
+     "label": "মূল নদী",
+     "field": "parent"
+    },
+    {
+     "label": "অন্য নাম / ওপারের নাম",
+     "field": "alias"
+    },
+    {
+     "label": "উৎপত্তি",
+     "field": "origin"
+    },
+    {
+     "label": "প্রবেশস্থল",
+     "field": "entry"
+    },
+    {
+     "label": "গতিপথ",
+     "field": "course"
+    },
+    {
+     "label": "দৈর্ঘ্য",
+     "field": "length"
+    },
+    {
+     "label": "উপনদী",
+     "field": "tributaries"
+    },
+    {
+     "label": "শাখা নদী",
+     "field": "distributaries"
+    },
+    {
+     "label": "মিলনস্থল",
+     "field": "confluence"
+    },
+    {
+     "label": "পতিত স্থল",
+     "field": "mouth"
+    }
+   ]
+  },
+  "marks": {
+   "title": {
+    "field": "titleBn"
+   },
+   "rows": [
+    {
+     "label": "প্রবেশস্থল",
+     "field": "entry"
+    },
+    {
+     "label": "মিলনস্থল",
+     "field": "confluence"
+    },
+    {
+     "label": "পতিত স্থল",
+     "field": "mouth"
+    }
+   ]
+  }
+ },
+ "focus": {
+  "records": "rivers",
+  "idle": {
+   "field": "role",
+   "value": "main"
+  },
+  "parent": "up",
+  "also": [
+   {
+    "records": "marks",
+    "field": "river"
+   },
+   {
+    "records": "names",
+    "field": "river"
+   }
+  ]
+ },
+ "legend": {
+  "items": [
+   {
+    "kind": "main",
+    "label": "মূল নদী",
+    "line": {
+     "color": "#0b3d91",
+     "width": 2.9
+    }
+   },
+   {
+    "kind": "tributary",
+    "label": "উপনদী",
+    "line": {
+     "color": "#0f9d8a",
+     "width": 2
+    }
+   },
+   {
+    "kind": "distributary",
+    "label": "শাখা নদী",
+    "line": {
+     "color": "#e07b00",
+     "width": 2
+    }
+   },
+   {
+    "kind": "disputed",
+    "label": "সম্পর্ক নিয়ে বইয়ে ভিন্নমত",
+    "line": {
+     "color": "#7e57c2",
+     "width": 2
+    }
+   },
+   {
+    "kind": "entry",
+    "label": "প্রবেশস্থল",
+    "image": "entry"
+   },
+   {
+    "kind": "confluence",
+    "label": "মিলনস্থল",
+    "image": "confluence"
+   },
+   {
+    "kind": "mouth",
+    "label": "পতিত স্থল",
+    "image": "mouth"
+   }
+  ],
+  "kinds": [
+   {
+    "records": "rivers",
+    "field": "role"
+   },
+   {
+    "records": "marks",
+    "field": "kind"
+   }
+  ]
+ },
+ "info": {
+  "file": "./info.json",
+  "headings": {
+   "sources": "সূত্র",
+   "notes": "ছবি সম্পর্কে টীকা",
+   "conflicts": "উৎসগুলোর অমিল"
+  }
+ },
+ "attribution": {
+  "extra": [
+   "<a href=\"https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612\" target=\"_blank\" rel=\"noopener noreferrer\">ভূগোল ও পরিবেশ, নবম ও দশম শ্রেণি (Bangla version, 2026 edition, «২০২৬ শিক্ষাবর্ষের জন্য পরিমার্জিত»), পৃষ্ঠা ১৫৩–১৫৪, ২১৬ (National Curriculum and Textbook Board (NCTB))</a>",
+   "<a href=\"https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612\" target=\"_blank\" rel=\"noopener noreferrer\">বাংলাদেশ ও বিশ্বপরিচয়, নবম–দশম শ্রেণি (2026), পৃষ্ঠা ৬১–৬৩ (National Curriculum and Textbook Board (NCTB))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=2&amp;Rivers=144\" target=\"_blank\" rel=\"noopener noreferrer\">ব্রহ্মপুত্র-যমুনা (নদীর তথ্য, NW-76) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-28))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=2&amp;Rivers=637\" target=\"_blank\" rel=\"noopener noreferrer\">পুরাতন ব্রহ্মপুত্র (নদীর তথ্য, NC-37) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-28))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=4&amp;Rivers=43\" target=\"_blank\" rel=\"noopener noreferrer\">ধরলা (নদীর তথ্য, NW-59) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=4&amp;Rivers=129\" target=\"_blank\" rel=\"noopener noreferrer\">তিস্তা (নদীর তথ্য, NW-52) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=4&amp;Rivers=75\" target=\"_blank\" rel=\"noopener noreferrer\">করতোয়া (নদীর তথ্য, NW-14) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=4&amp;Rivers=24\" target=\"_blank\" rel=\"noopener noreferrer\">করতোয়া — আপার করতোয়া (নদীর তথ্য, NW-13) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=4&amp;Rivers=61\" target=\"_blank\" rel=\"noopener noreferrer\">আত্রাই (নদীর তথ্য, NW-2) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=2&amp;Rivers=627\" target=\"_blank\" rel=\"noopener noreferrer\">ধলেশ্বরী (নদীর তথ্য, NC-27) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=2&amp;Rivers=639\" target=\"_blank\" rel=\"noopener noreferrer\">বংশী (নদীর তথ্য, NC-39) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=2&amp;Rivers=655\" target=\"_blank\" rel=\"noopener noreferrer\">শীতলক্ষ্যা (নদীর তথ্য, NC-55) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=2&amp;Rivers=632\" target=\"_blank\" rel=\"noopener noreferrer\">পদ্মা (নদীর তথ্য, NC-32) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=4&amp;Rivers=149\" target=\"_blank\" rel=\"noopener noreferrer\">গঙ্গা/ পদ্মা (নদীর তথ্য, NW-27) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=4&amp;Rivers=132\" target=\"_blank\" rel=\"noopener noreferrer\">মহানন্দা (নবাবগঞ্জ) (নদীর তথ্য, NW-95) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&amp;Rivers=228\" target=\"_blank\" rel=\"noopener noreferrer\">গড়াই (নদীর তথ্য, SW-24) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&amp;Rivers=288\" target=\"_blank\" rel=\"noopener noreferrer\">মধুমতি (নদীর তথ্য, SW-74) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&amp;Rivers=202\" target=\"_blank\" rel=\"noopener noreferrer\">আড়িয়াল খাঁ (নদীর তথ্য, SW-2) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=5&amp;Rivers=817\" target=\"_blank\" rel=\"noopener noreferrer\">মেঘনা (আপার) (নদীর তথ্য, SE-17) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=5&amp;Rivers=818\" target=\"_blank\" rel=\"noopener noreferrer\">মেঘনা (লোয়ার) (নদীর তথ্য, SE-18) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=3&amp;Rivers=488\" target=\"_blank\" rel=\"noopener noreferrer\">সুরমা (নদীর তথ্য, NE-83) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=3&amp;Rivers=417\" target=\"_blank\" rel=\"noopener noreferrer\">কুশিয়ারা (নদীর তথ্য, NE-17) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=5&amp;Rivers=809\" target=\"_blank\" rel=\"noopener noreferrer\">তিতাস (ব্রাহ্মণবাড়িয়া) (নদীর তথ্য, SE-9) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=3&amp;Rivers=471\" target=\"_blank\" rel=\"noopener noreferrer\">মনু (নদীর তথ্য, NE-66) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=5&amp;Rivers=804\" target=\"_blank\" rel=\"noopener noreferrer\">গোমতী (নদীর তথ্য, SE-4) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=3&amp;Rivers=423\" target=\"_blank\" rel=\"noopener noreferrer\">খোয়াই (নদীর তথ্য, NE-22) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=2&amp;Rivers=647\" target=\"_blank\" rel=\"noopener noreferrer\">বুড়িগঙ্গা (নদীর তথ্য, NC-47) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&amp;Rivers=290\" target=\"_blank\" rel=\"noopener noreferrer\">মাথাভাঙ্গা (নদীর তথ্য, SW-76) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&amp;Rivers=213\" target=\"_blank\" rel=\"noopener noreferrer\">কুমার (চুয়াডাঙ্গা-ঝিনাইদহ-কুষ্টিয়া-মাগুরা) (নদীর তথ্য, SW-10) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&amp;Rivers=282\" target=\"_blank\" rel=\"noopener noreferrer\">ভৈরব (নদীর তথ্য, SW-68) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&amp;Rivers=295\" target=\"_blank\" rel=\"noopener noreferrer\">রূপসা (নদীর তথ্য, SW-81) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&amp;Rivers=212\" target=\"_blank\" rel=\"noopener noreferrer\">কপোতাক্ষ (নদীর তথ্য, SW-9) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&amp;Rivers=253\" target=\"_blank\" rel=\"noopener noreferrer\">নবগঙ্গা (নদীর তথ্য, SW-45) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&amp;Rivers=238\" target=\"_blank\" rel=\"noopener noreferrer\">চিত্রা (নদীর তথ্য, SW-34) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=1&amp;Rivers=703\" target=\"_blank\" rel=\"noopener noreferrer\">কর্ণফুলী (নদীর তথ্য, EH-3) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=1&amp;Rivers=704\" target=\"_blank\" rel=\"noopener noreferrer\">কাচালং (নদীর তথ্য, EH-4) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=1&amp;Rivers=716\" target=\"_blank\" rel=\"noopener noreferrer\">হালদা (নদীর তথ্য, EH-16) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://jrcb.gov.bd/pages/static-pages/6922dc0a933eb65569e0e1b5\" target=\"_blank\" rel=\"noopener noreferrer\">বাংলাদেশ - ভারত এবং বাংলাদেশ -মিয়ানমারের মধ্যে প্রবাহিত ৫৭টি আন্তঃসীমান্ত নদীর তথ্যাদি (Joint Rivers Commission, Bangladesh (JRCB; page dated 2022-02-27; read 2026-09-28))</a>",
+   "<a href=\"https://jrcb.gov.bd/pages/static-pages/6922dc94933eb65569e110c8\" target=\"_blank\" rel=\"noopener noreferrer\">ব্রহ্মপুত্র নদীর সংক্ষিপ্ত বিবরণ — উৎপত্তি: Chema-Yung-Dung glacier, Kailas range, southern Tibet (Joint Rivers Commission, Bangladesh (JRCB; page updated 2026-08-30; read 2026-09-28))</a>",
+   "<a href=\"https://bn.wikipedia.org/w/index.php?oldid=9099646\" target=\"_blank\" rel=\"noopener noreferrer\">ব্রহ্মপুত্র নদ (Bengali Wikipedia (revision 9099646; read 2026-09-28))</a>",
+   "<a href=\"https://bn.wikipedia.org/w/index.php?oldid=8169941\" target=\"_blank\" rel=\"noopener noreferrer\">করতোয়া নিম্ন নদী (Bengali Wikipedia (revision 8169941; read 2026-09-29))</a>",
+   "<a href=\"https://bn.wikipedia.org/w/index.php?oldid=7501350\" target=\"_blank\" rel=\"noopener noreferrer\">ধলেশ্বরী নদী (Bengali Wikipedia (revision 7501350; read 2026-09-29))</a>",
+   "<a href=\"https://bn.wikipedia.org/w/index.php?oldid=8132235\" target=\"_blank\" rel=\"noopener noreferrer\">বংশী নদী (Bengali Wikipedia (revision 8132235; read 2026-09-29))</a>",
+   "<a href=\"https://bn.wikipedia.org/w/index.php?oldid=8089581\" target=\"_blank\" rel=\"noopener noreferrer\">শীতলক্ষ্যা নদী (Bengali Wikipedia (revision 8089581; read 2026-09-29))</a>",
+   "<a href=\"https://web.archive.org/web/20260417215001id_/https://bn.banglapedia.org/index.php?title=ধলেশ্বরী_নদী\" target=\"_blank\" rel=\"noopener noreferrer\">ধলেশ্বরী নদী (Banglapedia, মেসবাহ-উস-সালেহীন (last edited 2015-01-20; Internet Archive capture 2026-04-17; read 2026-09-29))</a>",
+   "<a href=\"https://bangladesh.gov.bd/views/district-list\" target=\"_blank\" rel=\"noopener noreferrer\">বাংলাদেশ জাতীয় তথ্য বাতায়ন — জেলাসমূহ (Government of Bangladesh (bangladesh.gov.bd; read 2026-09-26; the district names the Bangladesh basemap uses, tools/sources/bangladesh-names.json))</a>",
+   "<a href=\"https://www.naturalearthdata.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Natural Earth 10m rivers and lake centerlines, land, and country boundary lines; the country names are its NAME_BN (Natural Earth (public domain; v5.1.2))</a>",
+   "<a href=\"https://data.humdata.org/dataset/401d3fae-4262-48c9-891f-461fd776d49b\" target=\"_blank\" rel=\"noopener noreferrer\">Bangladesh administrative boundaries (COD-AB, v03) (Bangladesh Bureau of Statistics / OCHA (CC BY-IGO 3.0; valid on 2023-05-21))</a>",
+   "<a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener noreferrer\">River courses and the Padma–Meghna junction, from OpenStreetMap (© OpenStreetMap contributors (ODbL 1.0; snapshots 2026-05-31, 2026-07-15 and 2026-09-29))</a>",
+   "<a href=\"https://bn.wikipedia.org/w/index.php?oldid=8477041\" target=\"_blank\" rel=\"noopener noreferrer\">কর্ণফুলী নদী (Bengali Wikipedia (revision 8477041; read 2026-09-29))</a>",
+   "<a href=\"https://bn.wikipedia.org/w/index.php?oldid=8563718\" target=\"_blank\" rel=\"noopener noreferrer\">হালদা নদী (Bengali Wikipedia (revision 8563718; read 2026-09-29))</a>",
+   "<a href=\"https://bn.wikipedia.org/w/index.php?oldid=9111869\" target=\"_blank\" rel=\"noopener noreferrer\">কাচালং নদী (Bengali Wikipedia (revision 9111869; read 2026-09-29))</a>",
+   "<a href=\"https://web.archive.org/web/20221009025246/https://en.banglapedia.org/index.php/Chittagong_Region_River_System\" target=\"_blank\" rel=\"noopener noreferrer\">Chittagong Region River System (Banglapedia (English; last edited 2021-06-18; Internet Archive capture 2022-10-09; read 2026-09-29))</a>",
+   "<a href=\"https://bn.wikipedia.org/w/index.php?oldid=8763165\" target=\"_blank\" rel=\"noopener noreferrer\">কপোতাক্ষ নদ (Bengali Wikipedia (revision 8763165; read 2026-09-29))</a>",
+   "<a href=\"https://bn.wikipedia.org/w/index.php?oldid=8108936\" target=\"_blank\" rel=\"noopener noreferrer\">নবগঙ্গা নদী (Bengali Wikipedia (revision 8108936; read 2026-09-29))</a>",
+   "<a href=\"https://bn.wikipedia.org/w/index.php?oldid=8356385\" target=\"_blank\" rel=\"noopener noreferrer\">চিত্রা নদী (Bengali Wikipedia (revision 8356385; read 2026-09-29))</a>",
+   "<a href=\"https://bn.wikipedia.org/w/index.php?oldid=9087187\" target=\"_blank\" rel=\"noopener noreferrer\">গোমতী নদী (কুমিল্লা) (Bengali Wikipedia (revision 9087187; read 2026-09-29))</a>",
+   "<a href=\"https://bn.wikipedia.org/w/index.php?oldid=7058138\" target=\"_blank\" rel=\"noopener noreferrer\">খোয়াই নদী (Bengali Wikipedia (revision 7058138; read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo\" target=\"_blank\" rel=\"noopener noreferrer\">List of Rivers (Bangladesh Water Development Board (BWDB), River Information Management System (BRIMS): the list page’s data, POST /RiverInfo/GetAllRiverInfo_In_IndexPage, 1,415 rivers (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=4&amp;Rivers=107\" target=\"_blank\" rel=\"noopener noreferrer\">পূনর্ভবা (নদীর তথ্য, NW-72) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=4&amp;Rivers=100\" target=\"_blank\" rel=\"noopener noreferrer\">পাগলা (নদীর তথ্য, NW-69) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=4&amp;Rivers=128\" target=\"_blank\" rel=\"noopener noreferrer\">টাংগন (নদীর তথ্য, NW-48) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=5&amp;Rivers=812\" target=\"_blank\" rel=\"noopener noreferrer\">ফেনী (নদীর তথ্য, SE-12) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=5&amp;Rivers=816\" target=\"_blank\" rel=\"noopener noreferrer\">মুহুরী (নদীর তথ্য, SE-16) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=1&amp;Rivers=715\" target=\"_blank\" rel=\"noopener noreferrer\">সাঙ্গু (নদীর তথ্য, EH-15) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=1&amp;Rivers=713\" target=\"_blank\" rel=\"noopener noreferrer\">মাতামুহুরী (নদীর তথ্য, EH-13) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=1&amp;Rivers=707\" target=\"_blank\" rel=\"noopener noreferrer\">নাফ (নদীর তথ্য, EH-7) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://bn.wikipedia.org/w/index.php?oldid=8620638\" target=\"_blank\" rel=\"noopener noreferrer\">মাতামুহুরী নদী (Bengali Wikipedia (revision 8620638; read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&amp;Rivers=244\" target=\"_blank\" rel=\"noopener noreferrer\">তেঁতুলিয়া (বরিশাল) (নদীর তথ্য, SW-39) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&amp;Rivers=266\" target=\"_blank\" rel=\"noopener noreferrer\">বুড়িশ্বর-পায়রা/ পায়রা (নদীর তথ্য, SW-57) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&amp;Rivers=225\" target=\"_blank\" rel=\"noopener noreferrer\">কীর্তনখোলা (নদীর তথ্য, SW-21) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=3&amp;Rivers=470\" target=\"_blank\" rel=\"noopener noreferrer\">মগড়া (নদীর তথ্য, NE-65) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=3&amp;Rivers=440\" target=\"_blank\" rel=\"noopener noreferrer\">ধনু (নদীর তথ্য, NE-38) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://web.archive.org/web/20241127204322/https://bn.banglapedia.org/index.php?title=কীর্তনখোলা_নদী\" target=\"_blank\" rel=\"noopener noreferrer\">কীর্তনখোলা নদী (Banglapedia (Bengali; oldid 1196, last edited 2014-05-04; Internet Archive capture 2024-11-27; read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&amp;Rivers=259\" target=\"_blank\" rel=\"noopener noreferrer\">পশুর (নদীর তথ্য, SW-51) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&amp;Rivers=312\" target=\"_blank\" rel=\"noopener noreferrer\">সয়া-হাড়িভাঙ্গা (নদীর তথ্য, SW-92) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&amp;Rivers=210\" target=\"_blank\" rel=\"noopener noreferrer\">ইছামতি-কালিন্দি (নদীর তথ্য, SW-7) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=4&amp;Rivers=138\" target=\"_blank\" rel=\"noopener noreferrer\">বড়াল (নদীর তথ্য, NW-134) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://bn.wikipedia.org/w/index.php?oldid=7982899\" target=\"_blank\" rel=\"noopener noreferrer\">রূপসা নদী (Bengali Wikipedia (revision 7982899; read 2026-09-29))</a>",
+   "<a href=\"https://web.archive.org/web/20220702010723/https://bn.banglapedia.org/index.php?title=বুড়ীশ্বর_নদী\" target=\"_blank\" rel=\"noopener noreferrer\">বুড়ীশ্বর নদী (Banglapedia (Bengali; oldid 9994, last edited 2014-05-05; Internet Archive capture 2022-07-02; read 2026-09-29))</a>",
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=4&amp;Rivers=108\" target=\"_blank\" rel=\"noopener noreferrer\">তেঁতুলিয়া (নদীর তথ্য, NW-103) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>"
+  ]
+ }
+}
