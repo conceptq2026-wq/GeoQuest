@@ -15,9 +15,9 @@
 |--------------------------------------------------------------------------
 */
 
-import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=b26ce42733';
-import { resolver } from '../shared/resolver.js?v=b26ce42733';
-import { pickerRow } from '../shared/picker.js?v=b26ce42733';
+import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=1d60c1381b';
+import { resolver } from '../shared/resolver.js?v=1d60c1381b';
+import { pickerRow } from '../shared/picker.js?v=1d60c1381b';
 
 /*
 |--------------------------------------------------------------------------
@@ -552,7 +552,7 @@ function pick(row, keys) {
 | run once everything else is built. `shell` is the one surface a module has.
 |--------------------------------------------------------------------------
 */
-const SHELL_MODULES = { tabs: './tabs.js?v=b26ce42733', timeline: './timeline.js?v=b26ce42733', globe: './globe.js?v=b26ce42733' };
+const SHELL_MODULES = { tabs: './tabs.js?v=1d60c1381b', timeline: './timeline.js?v=1d60c1381b', globe: './globe.js?v=1d60c1381b' };
 const hiders = []; // (table, key) => true takes a record off the map, the picker and ‹ ›
 const changeListeners = []; // (what) => …, after a selection ('select') or a change in what is shown ('filter')
 const changed = (what) => changeListeners.forEach((listener) => listener(what));

@@ -76,7 +76,10 @@ finishes it. It is not in `docs/registry.json`.
   are thin and grey (`.other`, the continuation's look), beneath the
   current one's, still tappable, with no markers; only their main river's
   names show, grey and placed as a continuation's. Choosing a main river
-  lights its whole system; a branch lights its own lines. So the Jamuna
+  lights its basin — every line whose parents lead to it (`basin`, built,
+  held by the validator): the whole system where the system has one main
+  river, that river and its branches in a group of rivers that each reach
+  the sea (Stage 3); a branch lights its own lines. So the Jamuna
   system looks as it did in the pilot, with the Padma system's lines grey.
 - **The main line** ends at the Padma confluence (the book): Natural Earth's
   line to OSM vertex 60, OSM from there. The seam is 39.7 m at 95.14°E; OSM's

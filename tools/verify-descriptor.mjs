@@ -1964,6 +1964,14 @@ console.log('\n\n============ bangladesh-rivers (diagram) ============');
     check(frame.labels.every((l) => l.id in data.labels && lineIds.includes(l.line)) && frame.countries.every((c) => c.id in data.countries), `${view.id}: every name it places has its text in data.json (${frame.labels.length} on lines, ${frame.countries.length} countries)`);
     const kinds = new Set([...frame.lines.map((l) => (l.role === 'continuation' ? null : l.role)).filter(Boolean), ...frame.markers.map((m) => data.markers[m.id].kind)]);
     check([...kinds].every((k) => legendKinds.has(k)), `${view.id}: its legend words exist for every kind it draws (${[...kinds].join(', ')})`);
+    // A line's basin is the main river it drains to, by its parents; choosing that river lights it.
+    const basinWant = (id, n = 0) => {
+      const l = id === 'main' ? { role: 'main' } : seed.geometry.lines[id];
+      if (!l || l.role === 'continuation' || n > lineIds.length) return undefined;
+      return l.role === 'main' ? (id === 'main' ? 'main' : l.entity) : basinWant(l.join?.parent ?? 'main', n + 1);
+    };
+    const badBasin = frame.lines.filter((l) => l.basin !== basinWant(l.id) || (l.basin !== undefined && data.entities[l.basin]?.role !== 'main'));
+    check(badBasin.length === 0, `${view.id}: every line's basin is the main river its parents lead to (${[...new Set(frame.lines.map((l) => l.basin))].join(', ')})${badBasin.length ? ` — not: ${badBasin.map((l) => l.id).join(', ')}` : ''}`);
     const cons = frame.connectors ?? [];
     check(cons.every((c) => drawn.includes(c.id) && drawn.includes(c.parent) && ['tributary', 'distributary', 'disputed', 'main'].includes(frame.lines.find((l) => l.id === c.id).role) && Number.isInteger(c.m)), `${view.id}: its ${cons.length} connector(s) join a drawn branch to a drawn parent, and carry their length (${cons.map((c) => `${c.id} ${c.m} m`).join(', ') || 'none'})`);
     if (frame.districts) {

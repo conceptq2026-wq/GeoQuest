@@ -225,6 +225,17 @@ const parentSideAtTail = (l) => {
   if (l.role === 'disputed' && !end) fail(`${l.id}: a line whose role the books dispute must say which end meets its parent (join.end)`);
   return end ? end === 'tail' : l.role === 'tributary';
 };
+// A line's basin: the card of the main river it drains to, by its parents (a branch's parent is the Jamuna
+// unless its join names another). Choosing a main river lights its basin — in a system of one main river,
+// the whole system; in a group of rivers that each reach the sea (Stage 3), that river and its branches.
+const basinOf = (id, seen = new Set()) => {
+  const l = lines[id];
+  if (!l || l.role === 'continuation') return null;
+  if (l.role === 'main') return id === 'main' ? 'main' : l.spec.entity;
+  if (seen.has(id)) fail(`${id}: its parents run in a loop`);
+  seen.add(id);
+  return basinOf(l.spec?.join?.parent ?? 'main', seen);
+};
 
 // The line hashes.
 const drawnHashes = Object.fromEntries(Object.keys(lines).map((id) => [id, hashLine(lines[id].coords)]));
@@ -439,7 +450,8 @@ function buildFrame(frameId, spec) {
       const trace = id === 'main' ? { ne: G.main.ne.map((n) => ({ name: n.name, rivernum: n.rivernum })), ways: G.main.ways } : { ways: l.spec.ways };
       const spec = id === 'main' ? G.main : l.spec;
       const card = spec.entity ?? (id === 'main' ? 'main' : null);
-      return { id, role: l.role, system: spec.system, ...(card ? { entity: card } : {}), pieces, ...trace };
+      const basin = basinOf(id);
+      return { id, role: l.role, system: spec.system, ...(card ? { entity: card } : {}), ...(basin ? { basin } : {}), pieces, ...trace };
     })
     .sort((a, b) => roleRank[a.role] - roleRank[b.role]);
 

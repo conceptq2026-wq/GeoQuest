@@ -38,13 +38,16 @@
 | the first the frame draws, until a card of another is chosen. Its lines are
 | drawn in full with their markers and names; every other system's lines are
 | thin and grey, without markers, named only by their main river. Choosing a
-| main river lights its whole system; choosing a branch lights that branch.
+| main river lights its basin (line.basin: the lines that drain to it — the
+| whole system where the system has one main river, that river and its
+| branches in a group of rivers that each reach the sea); choosing a branch
+| lights that branch.
 | The picker lists the cards the frame draws, grouped by system.
 |
 | Every word shown is the descriptor's or the data's.
 */
 
-import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=b26ce42733';
+import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=1d60c1381b';
 
 const ZOOM_MAX = 6;
 // CSS px: a press that moves less than this is a tap; two taps within DOUBLE_MS and DOUBLE_PX are a double tap.
@@ -105,7 +108,7 @@ export async function mount(panel, { view, descriptor, data, art, shared }) {
   const systemsHere = new Set([...frame.lines.map((l) => l.system), ...frame.markers.map((m) => m.system)]);
   let current = (data.systems ?? []).map((s) => s.id).find((s) => systemsHere.has(s)) ?? null;
   const markerSystem = new Map(frame.markers.map((m) => [m.id, m.system]));
-  await Promise.all([stylesheet('../shared/picker.css?v=b26ce42733'), stylesheet('./rivers.css?v=b26ce42733')]);
+  await Promise.all([stylesheet('../shared/picker.css?v=1d60c1381b'), stylesheet('./rivers.css?v=1d60c1381b')]);
 
   const fw = frame.projection.width;
   const fh = frame.projection.height;
@@ -405,8 +408,8 @@ export async function mount(panel, { view, descriptor, data, art, shared }) {
 
   function paint() {
     const card = sel?.kind === 'line' ? data.entities[sel.id] : null;
-    // A main river lights its whole system; a branch lights itself.
-    const lit = card ? frame.lines.filter((l) => (card.role === 'main' ? l.system === card.system && l.role !== 'continuation' : l.entity === sel.id)).map((l) => l.id) : [];
+    // A main river lights its basin (the lines that drain to it); a branch lights itself.
+    const lit = card ? frame.lines.filter((l) => (card.role === 'main' ? l.basin === sel.id : l.entity === sel.id)).map((l) => l.id) : [];
     svg.classList.toggle('has-lit', lit.length > 0);
     for (const [id, g] of riverG) {
       g.classList.toggle('lit', lit.includes(id));
