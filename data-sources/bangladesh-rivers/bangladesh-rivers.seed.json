@@ -29,6 +29,7 @@
     },
     "pickerPlaceholderBn": "একটি নদী বেছে নিন…",
     "closeBn": "বন্ধ করুন",
+    "resetBn": "শুরুর দৃশ্যে ফিরুন",
     "pageBn": "পৃষ্ঠা"
   },
   "sources": {
@@ -333,9 +334,12 @@
         "fit": {
           "lines": ["dharla", "teesta", "karatoya", "atrai", "dhaleshwari", "banshi", "shitalakshya", "oldBrahmaputra", "padma", "meghna"],
           "northCap": 26.75,
-          "margin": 0.12
+          "margin": 0.12,
+          "outline": true
         },
-        "cosLatDeg": 24.5, "width": 1000,
+        "_view": "The whole of Bangladesh (COD-AB) and the rivers; opened fitted to the stage width on 88.0–91.6°E, centred on 24.75°N (the Jamuna system), zoom 1× to 8×, panned freely but never with less than a quarter of the picture on the stage — the user's decisions, 2026-09-29. The width keeps the old frame's scale (about 384 u per degree), so the lines keep their detail.",
+        "view": { "open": { "lonMin": 88.0, "lonMax": 91.6, "lat": 24.75 }, "zoomMax": 8, "keep": 0.25 },
+        "cosLatDeg": 24.5, "width": 1720,
         "lines": ["main", "dharla", "teesta", "karatoya", "atrai", "dhaleshwari", "banshi", "shitalakshya", "oldBrahmaputra", "padma", "meghna"],
         "markers": ["entry", "padmaConfluence", "dharlaConfluence", "teestaConfluence", "oldBrahmaputraMouth"],
         "labels": [

@@ -90,7 +90,11 @@ not built.
     to 6×; a drag pans, two fingers pinch, the wheel and a double tap zoom. A
     press that moves under 8 px is a tap. Strokes keep their width in CSS px;
     markers and names are laid out over the picture in CSS px, names at least
-    15 px at 390 px wide and 14 at 320. No other view zooms.
+    15 px at 390 px wide and 14 at 320. No other view zooms. A frame with a
+    `view` (x0, x1, cy, zoomMax, keep, in frame units) opens fitted to the
+    stage's width on x0–x1 instead, zooms to zoomMax, pans in every direction
+    while `keep` of the picture stays on the stage, and gets a reset control
+    (`words.reset`, 44 px, bottom right).
   - **Taps.** A line's zone is a 26 px transparent stroke, a marker's a 44 px
     disc; a continuation has none. Each carries `data-key` (`line:<id>`,
     `marker:<id>`) and `data-title`, the heading its card must show. A tap on

@@ -14,7 +14,10 @@
 | One <svg> fills the stage. The art sits in one group, moved and scaled as a
 | whole (1× is the whole frame fitting the stage; up to 6× from there — the
 | user's decision, 2026-09-29, for this module only), every stroke a constant
-| width in CSS px. The markers and the names are laid out over it in CSS px,
+| width in CSS px. A frame with a `view` opens otherwise: 1× fits the stage's
+| width to view.x0–x1, centred on view.cy; it zooms to view.zoomMax, pans in
+| every direction as long as view.keep of the picture stays on the stage, and a
+| reset control in the stage's bottom-right corner returns to that opening. The markers and the names are laid out over it in CSS px,
 | at least 15 px at 390 px wide and 14 px at 320, semi-bold, each put beside
 | its anchor where no other name, marker, the legend or ⓘ's tap zone is.
 |
@@ -30,7 +33,7 @@
 | Every word shown is the descriptor's or the data's.
 */
 
-import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=4362e75737';
+import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=7c714b79f5';
 
 const ZOOM_MAX = 6;
 // CSS px: a press that moves less than this is a tap; two taps within DOUBLE_MS and DOUBLE_PX are a double tap.
@@ -87,10 +90,12 @@ function glyph(kind) {
 export async function mount(panel, { view, descriptor, data, art }) {
   const words = descriptor.words;
   const frame = await art;
-  await Promise.all([stylesheet('../shared/picker.css?v=4362e75737'), stylesheet('./rivers.css?v=4362e75737')]);
+  await Promise.all([stylesheet('../shared/picker.css?v=7c714b79f5'), stylesheet('./rivers.css?v=7c714b79f5')]);
 
   const fw = frame.projection.width;
   const fh = frame.projection.height;
+  const open = frame.view ?? null;
+  const zoomMax = open?.zoomMax ?? ZOOM_MAX;
   const uid = view.id;
   const cardTitle = (marker) => `${marker.name} — ${words.legend[marker.kind]}`;
 
@@ -232,6 +237,24 @@ export async function mount(panel, { view, descriptor, data, art }) {
   }
   content.append(legend);
 
+  let reset = null;
+  if (open) {
+    reset = el('button', 'reset-view');
+    reset.type = 'button';
+    reset.dataset.fit = 'the reset control';
+    reset.setAttribute('aria-label', words.reset);
+    reset.title = words.reset;
+    const icon = svgEl('svg', { viewBox: '-12 -12 24 24', width: 22, height: 22, 'aria-hidden': 'true' });
+    icon.append(svgEl('path', { d: 'M-8-3V-8H-3M3-8H8V-3M8 3V8H3M-3 8H-8V3', class: 'reset-corners' }), svgEl('circle', { r: 2.2, class: 'reset-dot' }));
+    reset.append(icon);
+    reset.addEventListener('click', () => {
+      zoom = 1;
+      [cx, cy] = home();
+      layout();
+    });
+    content.append(reset);
+  }
+
   // ---- the card and the picker row --------------------------------------------------------------
 
   const { card, close, fill } = dockedCard({ close: words.close, id: `rivers-${uid}` });
@@ -345,8 +368,9 @@ export async function mount(panel, { view, descriptor, data, art }) {
   let m = 1;
   let tx = 0;
   let ty = 0;
-  let cx = fw / 2; // the frame point at the stage's centre
-  let cy = fh / 2;
+  // The frame point at the stage's centre: the opening view's, or the frame's middle.
+  const home = () => (open ? [(open.x0 + open.x1) / 2, open.cy] : [fw / 2, fh / 2]);
+  let [cx, cy] = home();
   let ready = false;
   let measuredFor = null;
   let frameQueued = 0;
@@ -354,8 +378,16 @@ export async function mount(panel, { view, descriptor, data, art }) {
   function clampView() {
     const ew = fw * m;
     const eh = fh * m;
-    tx = ew <= W - 2 * PAD + 0.5 ? (W - ew) / 2 : clamp(tx, W - ew - PAD, PAD);
-    ty = eh <= H - 2 * PAD + 0.5 ? (H - eh) / 2 : clamp(ty, H - eh - PAD, PAD);
+    if (open) {
+      // Free in every direction, but a quarter of the picture (or of the stage, when the picture is bigger) stays on it.
+      const kx = open.keep * Math.min(W, ew);
+      const ky = open.keep * Math.min(H, eh);
+      tx = clamp(tx, kx - ew, W - kx);
+      ty = clamp(ty, ky - eh, H - ky);
+    } else {
+      tx = ew <= W - 2 * PAD + 0.5 ? (W - ew) / 2 : clamp(tx, W - ew - PAD, PAD);
+      ty = eh <= H - 2 * PAD + 0.5 ? (H - eh) / 2 : clamp(ty, H - eh - PAD, PAD);
+    }
     cx = (W / 2 - tx) / m;
     cy = (H / 2 - ty) / m;
   }
@@ -366,7 +398,7 @@ export async function mount(panel, { view, descriptor, data, art }) {
     if (!ready || !w || !h) return;
     W = w;
     H = h;
-    s0 = Math.min((W - 2 * PAD) / fw, (H - 2 * PAD) / fh);
+    s0 = open ? W / (open.x1 - open.x0) : Math.min((W - 2 * PAD) / fw, (H - 2 * PAD) / fh);
     m = s0 * zoom;
     tx = W / 2 - cx * m;
     ty = H / 2 - cy * m;
@@ -381,13 +413,13 @@ export async function mount(panel, { view, descriptor, data, art }) {
     });
   };
 
-  /** Fits the box (frame units) in view when it is not: as close as fits, at most ZOOM_MAX. */
+  /** Fits the box (frame units) in view when it is not: as close as fits, at most zoomMax. */
   function show(b) {
     const margin = 16;
     const inside = [[b.x0, b.y0], [b.x1, b.y1]].every(([x, y]) => x * m + tx >= margin && x * m + tx <= W - margin && y * m + ty >= margin && y * m + ty <= H - margin);
     if (inside) return;
     const need = Math.min((W - 4 * margin) / (Math.max(b.x1 - b.x0, 60) * s0), (H - 4 * margin) / (Math.max(b.y1 - b.y0, 60) * s0));
-    zoom = clamp(need, 1, ZOOM_MAX);
+    zoom = clamp(need, 1, zoomMax);
     cx = (b.x0 + b.x1) / 2;
     cy = (b.y0 + b.y1) / 2;
     layout();
@@ -502,6 +534,7 @@ export async function mount(panel, { view, descriptor, data, art }) {
     if (measuredFor === null || measuredFor !== parseFloat(fontKey())) measure();
     const blocks = [{ l: W - INFO_ZONE.w, t: 0, r: W, b: INFO_ZONE.h }];
     blocks.push({ l: legend.offsetLeft, t: legend.offsetTop, r: legend.offsetLeft + legend.offsetWidth, b: legend.offsetTop + legend.offsetHeight });
+    if (reset) blocks.push({ l: reset.offsetLeft, t: reset.offsetTop, r: reset.offsetLeft + reset.offsetWidth, b: reset.offsetTop + reset.offsetHeight });
     for (const [id, [x, y]] of markerPos) {
       const sx = tx + m * x;
       const sy = ty + m * y;
@@ -554,7 +587,7 @@ export async function mount(panel, { view, descriptor, data, art }) {
   };
 
   function zoomAt(x, y, factor) {
-    const next = clamp(m * factor, s0, s0 * ZOOM_MAX);
+    const next = clamp(m * factor, s0, s0 * zoomMax);
     const fx = (x - tx) / m;
     const fy = (y - ty) / m;
     m = next;
@@ -567,6 +600,7 @@ export async function mount(panel, { view, descriptor, data, art }) {
 
   stage.addEventListener('pointerdown', (event) => {
     if (event.pointerType === 'mouse' && event.button !== 0) return;
+    if (event.target.closest?.('.reset-view')) return;
     const p = local(event);
     pointers.set(event.pointerId, p);
     try {
@@ -590,7 +624,7 @@ export async function mount(panel, { view, descriptor, data, art }) {
       p.y = n.y;
       const [a, b] = [...pointers.values()];
       const c = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
-      m = clamp((pinch.m * Math.hypot(a.x - b.x, a.y - b.y)) / pinch.d, s0, s0 * ZOOM_MAX);
+      m = clamp((pinch.m * Math.hypot(a.x - b.x, a.y - b.y)) / pinch.d, s0, s0 * zoomMax);
       zoom = m / s0;
       tx = c.x - pinch.fx * m;
       ty = c.y - pinch.fy * m;
@@ -623,7 +657,7 @@ export async function mount(panel, { view, descriptor, data, art }) {
       if (tap) {
         if (lastTap && event.timeStamp - lastTap.t < DOUBLE_MS && Math.hypot(tap.x - lastTap.x, tap.y - lastTap.y) < DOUBLE_PX) {
           lastTap = null;
-          zoomAt(tap.x, tap.y, zoom >= ZOOM_MAX * 0.6 ? 1 / zoom : DOUBLE_ZOOM);
+          zoomAt(tap.x, tap.y, zoom >= zoomMax * 0.6 ? 1 / zoom : DOUBLE_ZOOM);
         } else {
           lastTap = { t: event.timeStamp, x: tap.x, y: tap.y };
           activate(tap.key);

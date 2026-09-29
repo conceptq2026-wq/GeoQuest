@@ -219,6 +219,48 @@
   border-radius: 10px;
   pointer-events: none;
 }
+/* ---- the reset control (a frame with a view only): a 44 px tap area in the stage's bottom-right corner ---- */
+.rivers .reset-view {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #13233a;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.rivers .reset-view svg {
+  box-sizing: content-box;
+  padding: 4px;
+  border: 1px solid var(--divider);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 1px 4px rgba(19, 35, 58, 0.18);
+}
+.rivers .reset-view .reset-corners {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.rivers .reset-view .reset-dot {
+  fill: currentColor;
+}
+.rivers .reset-view:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: -2px;
+  border-radius: 50%;
+}
 .rivers .legend-item {
   display: flex;
   align-items: center;

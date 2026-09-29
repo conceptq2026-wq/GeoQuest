@@ -95,7 +95,7 @@ const SEASONS_SEEDS = path.join(ROOT, 'data-sources/seasons');
 const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa32509b451efb2';
 // The bangladesh-rivers diagram: the editor's seed, pinned. Its geometry is pinned in tools/bangladesh-rivers-pins.json.
 const BANGLADESH_RIVERS_SEEDS = path.join(ROOT, 'data-sources/bangladesh-rivers');
-const BANGLADESH_RIVERS_SEED_SHA256 = '1c70b88a44e8e78caf2090fbde22c83d00a46a6a2af82a839c52b43367a495ec';
+const BANGLADESH_RIVERS_SEED_SHA256 = '2b3e3c5706d3ee356ac62b77bc2b745152983a33c971ebb86c05768f550e02b3';
 // The latitude-longitude globe: the editor's seed, the pinned sources (its
 // imagery's credit among them) and the geometry pins.
 const LATLON_SEED = path.join(ROOT, 'data-sources/latitude-longitude/latitude-longitude.seed.json');
@@ -1825,7 +1825,7 @@ console.log('\n\n============ bangladesh-rivers (diagram) ============');
     descriptor.views.length === 2 && wantViews.every(([vid, tab, art], i) => descriptor.views[i].id === vid && descriptor.views[i].tab === tab && descriptor.views[i].art === art && descriptor.views[i].type === 'rivers' && fs.existsSync(path.join(dir, art))) && modules.includes('rivers'),
     `two views of type rivers, tabs «${ui.tabsBn.whole}» and «${ui.tabsBn.bangladesh}», their frames present, and docs/visual/app.js has a module for rivers`,
   );
-  const wantWords = { picker: ui.pickerPlaceholderBn, close: ui.closeBn, rows: ui.rowOrder.map((key) => ({ key, label: ui.rowLabelsBn[key] })), legend: ui.legendBn };
+  const wantWords = { picker: ui.pickerPlaceholderBn, close: ui.closeBn, reset: ui.resetBn, rows: ui.rowOrder.map((key) => ({ key, label: ui.rowLabelsBn[key] })), legend: ui.legendBn };
   check(JSON.stringify(descriptor.words) === JSON.stringify(wantWords), `the words are the seed's: «${ui.pickerPlaceholderBn}», «${ui.closeBn}», the rows ${wantWords.rows.map((r) => r.label).join(', ')}, and the legend`);
   const asked = new Set([...fs.readFileSync(path.join(VISUAL_DIR, 'rivers.js'), 'utf8').matchAll(/\bwords\??\.(\w+)/g)].map((m) => m[1]));
   const given = new Set(Object.keys(descriptor.words ?? {}));

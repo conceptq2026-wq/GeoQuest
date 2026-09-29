@@ -13,8 +13,15 @@ finishes it. It is not in `docs/registry.json`.
   - «পুরো পথ» — the whole course, lon 82–96, lat 22–31, viewBox
     `0 0 1000 715.2`. The main river, its origin marker and its border-entry
     marker only; no tributary, no distributary.
-  - «বাংলাদেশে» — lon 88.47–91.33, lat 22.26–26.87, viewBox `0 0 1000 1771.4`,
-    its south edge cut below the Padma–Meghna's end at 22.38°N. The main river,
+  - «বাংলাদেশে» — lon 87.88–92.81, lat 20.47–26.87, viewBox `0 0 1720 2453.8`
+    (2026-09-29; it was 88.47–91.33 × 22.26–26.87, `0 0 1000 1771.4`): the
+    whole of Bangladesh as COD-AB draws it and the rivers, at the old scale
+    (about 384 u per degree). It opens fitted to the stage's width on
+    88.0–91.6°E, centred on 24.75°N (the frame's `view`), zooms 1× to 8×, pans
+    in every direction while a quarter of the picture stays on the stage, and
+    a reset control (44 px, the stage's bottom-right corner) returns to the
+    opening view. The Meghna's pinned line ends 1.5 km short of COD-AB's
+    coast at 22.38°N; no pinned way goes further. The main river,
     the Dharla, Teesta, Karatoya and Atrai (tributaries), the Dhaleshwari,
     Banshi, Shitalakshya and Old Brahmaputra (distributaries), the Padma and
     the Meghna as thin grey non-tappable continuations to the sea, and the
@@ -85,15 +92,17 @@ finishes it. It is not in `docs/registry.json`.
   every cited source and OpenStreetMap's credit, as plain links.
 - **Names on the picture** are at least 15 px at 390 px wide (14 at 320),
   semi-bold, put beside their anchors where no other name, marker, the legend
-  or ⓘ's tap zone is. Pinch and pan run 1×–6× in this module only.
+  or ⓘ's tap zone is. Pinch and pan run 1×–6× on «পুরো পথ» and 1×–8× on
+  «বাংলাদেশে», in this module only. River strokes (2026-09-29, 35 % thinner):
+  main 2.9 px, tributary and distributary 2 px, continuation 1.3 px.
 
 ## Inputs, all pinned
 
 - **Editor's seed:** `data-sources/bangladesh-rivers/bangladesh-rivers.seed.json`
   — every word, its sources, the geometry recipe (way ids with trims, the joins,
   the frames, the label anchors) and a `review` of where sources differ. Its
-  SHA-256 is pinned in `tools/verify-descriptor.mjs`, now `1c70b88a…95ec`
-  (`08aff7d1…` before the Dewanganj notes and the Teesta district; `28856c9a…`
+  SHA-256 is pinned in `tools/verify-descriptor.mjs`, now `2b3e3c57…02b3`
+  (`1c70b88a…` before the whole-Bangladesh frame; `08aff7d1…` before the Dewanganj notes and the Teesta district; `28856c9a…`
   before the Prompt 40 cards; `c14c8bb4…` before the entry row lost «নাগেশ্বরী উপজেলা»; `95090aa6…`
   before the entry marker was snapped; `a6e2e386…` before the
   Teesta mouth's provenance was corrected). NCTB books

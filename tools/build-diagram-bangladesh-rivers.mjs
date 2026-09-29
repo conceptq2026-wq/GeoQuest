@@ -336,6 +336,8 @@ function frameBounds(spec) {
   let lonMin = Infinity, lonMax = -Infinity, latMin = Infinity, latMax = -Infinity;
   for (const id of spec.fit.lines)
     for (const piece of cap(coordsOf(id), spec.fit.northCap)) for (const [lo, la] of piece) (lonMin = Math.min(lonMin, lo), lonMax = Math.max(lonMax, lo), latMin = Math.min(latMin, la), latMax = Math.max(latMax, la));
+  // With `outline`, the whole of Bangladesh as COD-AB draws it, besides the lines.
+  if (spec.fit.outline) for (const [lo, la] of outlineRings.flat()) (lonMin = Math.min(lonMin, lo), lonMax = Math.max(lonMax, lo), latMin = Math.min(latMin, la), latMax = Math.max(latMax, la));
   const m = spec.fit.margin;
   return { lonMin: Math.floor((lonMin - m) * 100) / 100, lonMax: Math.ceil((lonMax + m) * 100) / 100, latMin: Math.floor((latMin - m) * 100) / 100, latMax: Math.ceil((latMax + m) * 100) / 100 };
 }
@@ -454,11 +456,21 @@ function buildFrame(frameId, spec) {
   if ('brahmaputra' in fractions && 'jamuna' in fractions && !(fractions.brahmaputra < dewanganj && dewanganj < fractions.jamuna)) fail(`${frameId}: the Brahmaputra label (${round(fractions.brahmaputra, 3)}) and the Jamuna label (${round(fractions.jamuna, 3)}) do not fall either side of Dewanganj (${round(dewanganj, 3)})`);
   if ('yarlung' in fractions && !(fractions.yarlung < fractions.brahmaputra)) fail(`${frameId}: the Yarlung label is not upstream of the Brahmaputra label`);
 
+  // The opening view, in frame units: fitted to the stage width on open.lonMin–lonMax, centred on open.lat.
+  let view;
+  if (spec.view) {
+    const o = spec.view.open;
+    const [x0, cy] = P.project(o.lonMin, o.lat);
+    const [x1] = P.project(o.lonMax, o.lat);
+    if (!(x0 >= 0 && x1 <= width && cy >= 0 && cy <= height && x1 > x0)) fail(`${frameId}: the opening view is not inside the frame`);
+    view = { x0: round(x0, 1), x1: round(x1, 1), cy: round(cy, 1), zoomMax: spec.view.zoomMax, keep: spec.view.keep };
+  }
   const file = {
     _about: `Built by tools/build-diagram-${ID}.mjs from ${path.relative(ROOT, SEED).replace(/\\/g, '/')}; do not edit. Units u: x = (lon − lonMin)·cosLat·scale, y = (latMax − lat)·scale.`,
     id: frameId,
     projection: { lonMin: bounds.lonMin, latMax: bounds.latMax, cosLat, scale, width, height },
     bounds,
+    ...(view ? { view } : {}),
     land: land.filter(Boolean).join(''),
     bangladesh: { fill: bdFill.filter(Boolean).join(''), border: bdBorder.join('') },
     borders: borders.join(''),
@@ -549,6 +561,7 @@ const descriptor = {
   words: {
     picker: ui.pickerPlaceholderBn,
     close: ui.closeBn,
+    reset: ui.resetBn,
     rows: ui.rowOrder.map((key) => ({ key, label: ui.rowLabelsBn[key] })),
     legend: ui.legendBn,
   },
