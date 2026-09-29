@@ -746,6 +746,25 @@ const describe = (f) => `${relToRoot(f.file)}:${f.line} ${f.class} — ${f.rule}
   check(fetching > 0, `tools that make a request send tools/net.mjs's User-Agent (${fetching})`);
 }
 {
+  // Bengali text as shown (the user's rule, 2026-09-29): no space before «,», «;» or «।», and no doubled
+  // space, in any Bengali string of any served JSON file — every map's and diagram's data and words.
+  const BN = /[ঀ-৿]/;
+  const BAD = / [,;।]| {2}/;
+  const served = execFileSync('git', ['-C', ROOT, 'ls-files', '-z', 'docs'], { encoding: 'utf8' }).split('\0').filter((f) => f.endsWith('.json'));
+  const bad = [];
+  let strings = 0;
+  const walk = (v, file) => {
+    if (typeof v === 'string') {
+      if (!BN.test(v)) return;
+      strings++;
+      if (BAD.test(v)) bad.push(`${file}: «${v.slice(Math.max(0, v.search(BAD) - 20), v.search(BAD) + 12)}»`);
+    } else if (v && typeof v === 'object') for (const x of Object.values(v)) walk(x, file);
+  };
+  for (const f of served) walk(JSON.parse(fs.readFileSync(path.join(ROOT, f), 'utf8')), f);
+  for (const b of bad) check(false, `Bengali spacing: a space before , ; । or a doubled space — ${b}`);
+  if (!bad.length) check(true, `Bengali spacing: no space before , ; । and no doubled space in the ${strings} Bengali strings of the ${served.length} served JSON files`);
+}
+{
   // No tracked file holds an e-mail-address pattern. Text is read whole; in a
   // PNG or WebP only what is not compressed pixel data (a match there is a
   // chance run of bytes). An allowed match is demonstrably not a person's.

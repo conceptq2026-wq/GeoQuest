@@ -287,8 +287,16 @@ by map. **Nothing is guessed to fill a gap.**
   in the pinned Bengali admin list's spelling where a source differs only in
   spelling (river names keep their source's); «OpenStreetMap-এর তথ্যে», never
   «ডেটায়»; an other name that is a river with its own card is pending, both
-  views in ⓘ; a same-name river's picker bracket is the district of its origin
-  (else the district it flows through). Details: `notes/bangladesh-rivers.md`.
+  views in ⓘ; a same-name river's picker bracket is the bracket of BWDB's own
+  page name where it has one, else the district of origin, or of entry for a
+  river rising outside Bangladesh. **Editorial rule:** obvious typos and
+  spacing in quoted common words may be corrected; names — rivers, places —
+  never. A card row quoting a source is whole clauses, no «…» joining
+  sentences (an ellipsis only for an omitted list of place names); where no
+  whole clause fits, the row is pending and ⓘ carries the full quote. In card
+  rows a slash takes no spaces; a source title keeps BWDB's own spelling.
+  `tools/verify.mjs` fails a space before , ; । or a doubled space in any
+  shown Bengali string. Details: `notes/bangladesh-rivers.md`.
 - The user's own verification is recorded as editor-verified with a date, and
   stays distinguishable from a cited source.
 - Never invent Bengali content. An unsupplied Bengali field is `null`.

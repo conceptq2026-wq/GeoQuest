@@ -230,7 +230,7 @@ finishes it. It is not in `docs/registry.json`.
   3. The violet style's legend wording is «সম্পর্ক নিয়ে বইয়ে ভিন্নমত».
   4. The Kushiyara's other names stay pending.
   5. Where BWDB and JRCB word one origin differently (the Manu and the
-     Khowai: BWDB «ভারত», JRCB «ভারতের ত্রিপুরার পাহাড়» and «… পুর্বাঞ্চলের
+     Khowai: BWDB «ভারত», JRCB «ভারতের ত্রিপুরার পাহাড়» and «… পূর্বাঞ্চলের
      পাহাড়», as printed), BWDB's goes on the card and JRCB's in ⓘ.
   6. Every bracketed picker name has an ⓘ line naming the other rivers of
      that name in BWDB's river list and which one is drawn, cited to the list
@@ -268,11 +268,13 @@ finishes it. It is not in `docs/registry.json`.
   a. An other name that is a river with its own card is pending, with both
      views in ⓘ: the Bhairab's «রূপসা» and the Rupsa's «ভৈরব» (B910: one river
      «ভৈরব বা রূপসা»; BWDB: two).
-  b. A picker bracket is the district where BWDB has the river originate; a
-     river rising outside Bangladesh or with no district origin takes the
-     (first) district it flows through: «কুমার (কুষ্টিয়া)», «চিত্রা
-     (চুয়াডাঙ্গা)», «ভৈরব (চুয়াডাঙ্গা)», «তিতাস (ব্রাহ্মণবাড়িয়া)», «পাগলা
-     (চাঁপাইনবাবগঞ্জ)», «তেতুলিয়া (বরিশাল)», «ইছামতী (চুয়াডাঙ্গা)».
+  b. A picker bracket (corrected in the Task 1 pass): the bracket of BWDB's
+     own page name where it has one — «কুমার (চুয়াডাঙ্গা)» (SW-10's local
+     name), «চিত্রা (চুয়াডাঙ্গা)», «তিতাস (ব্রাহ্মণবাড়িয়া)», «তেতুলিয়া
+     (বরিশাল)»; else the district of origin — «ভৈরব (চুয়াডাঙ্গা)» (Darshana),
+     «তেঁতুলিয়া (দিনাজপুর)» (not drawn); or, for a river rising outside
+     Bangladesh, the district of entry — «ইছামতী (চুয়াডাঙ্গা)», «পাগলা
+     (চাঁপাইনবাবগঞ্জ)».
   c. «কি.মি.» in card rows, «কিলোমিটার» in ⓘ sentences; a long ⓘ line is split
      into sentences.
   d. Place names use the pinned Bengali admin list's spelling where a source
@@ -283,6 +285,16 @@ finishes it. It is not in `docs/registry.json`.
   e. «OpenStreetMap-এর তথ্যে», never «ডেটায়»; «সরকারি প্রশাসনিক সীমানার তথ্য
      (COD-AB)».
   f. Kaptai: «কাপ্তাই একটি হ্রদ, এই ছবিতে হ্রদটি আঁকা নেই».
+  g. Editorial rule (Task 1 pass): obvious typos and spacing in quoted common
+     words are corrected («বাংলাদশের», «পূনরায়», «বাংলাদেশ প্রবেশ করে»,
+     «প্রবাহিত হয় সাতক্ষীরা», «পুর্বাঞ্চলের», «পার্বত্যঞ্চল», «মধ্যদিয়ে», a
+     space before a comma); names never. Card rows quote whole clauses: the
+     Mathabhanga, Ichamati, Harinbhanga, Pashur, Mogra, Feni, Punarbhaba,
+     Tangon, Naf and Baral courses were rewritten; the Matamuhuri's course is
+     pending with BWDB's full sentence in ⓘ; the Harinbhanga's border
+     statement is B-GEO's whole sentence in ⓘ. The Tetulia of Dinajpur is in
+     the not-drawn note. `tools/verify.mjs` fails a space before , ; । or a
+     doubled space in any served Bengali string.
 - **Stage 4, the final stage** (collected here as decided):
   - the new tabs, and the «পুরো পথ» frame for the Padma;
   - in «পুরো পথ», the Karnaphuli's upstream in Mizoram, dashed, with an ⓘ
@@ -433,7 +445,8 @@ finishes it. It is not in `docs/registry.json`.
   two of its own), the frames, every branch card's four rows and the main
   card's «গতিপথ», ⓘ's plain lines each citing a listed source, the picker
   grouped by system, the pending list (the fields the seed holds as null,
-  listed by name in the validator; 47 after Stage 3 — Stage 2's 32, the
+  listed by name in the validator; 48 after Stage 3 and its Task 1 pass (the
+  Matamuhuri's course) — Stage 2's 32, the
   Pagla's, Kirtankhola's and Rupsa's course, the Bhairab's and the Rupsa's
   other names (fix a), the Muhuri's other names and course, the Sangu's
   course, the Matamuhuri's entry, the Tetulia's (Barishal) relation, other
