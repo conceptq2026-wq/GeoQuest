@@ -166,7 +166,7 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
 
 // ---- bangladesh-rivers ----
 // The picture is drawn in code from a seed and pinned sources: every marker
-// and line is held to the source it came from (the user's checks a–e,
+// and line is held to the source it came from (the user's checks a–f,
 // 2026-09-29). The frames are the drawn truth; the pinned sources are the
 // reference; the build is re-run to a temp folder and must equal the files
 // committed under docs/.
@@ -254,10 +254,12 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
   }
   check(JSON.stringify(exempt.sort()) === JSON.stringify([...EXEMPT].sort()), `b. the exempt lines are exactly karatoya and atrai (the user's) and dhaleshwari and banshi (no source plots their offtake): ${exempt.join(', ')}`);
 
-  // 7c — the border-entry marker lies on Bangladesh's border.
+  // 7c — the border-entry marker lies on Bangladesh's border; so does BWDB's entry point, from which it was snapped.
   const entry = seedMarker.entry;
   const entrySrc = Math.min(...bdRings.map((r) => nearestOnLine(entry.lonLat, r).m));
-  check(entrySrc <= 500, `c. the entry point, as BWDB gives it, is ${round(entrySrc)} m from COD-AB's border (limit 500 m)`);
+  const entryBwdb = Math.min(...bdRings.map((r) => nearestOnLine(entry.snappedFrom.lonLat, r).m));
+  check(entrySrc <= 500, `c. the entry marker's point is ${round(entrySrc)} m from COD-AB's border (limit 500 m)`);
+  check(entryBwdb <= 500, `c. BWDB's entry point, from which the marker was snapped ${round(distM(entry.snappedFrom.lonLat, entry.lonLat) / 1000, 1)} km along the border, is ${round(entryBwdb)} m from it (limit 500 m)`);
   for (const k of Object.keys(frames)) {
     const ring = parsePath(frames[k].bangladesh.border).map((r) => [...r, r[0]].map(([x, y]) => proj[k].invert(x, y)));
     const m = frames[k].markers.find((x) => x.id === 'entry');
@@ -265,12 +267,19 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
     const limit = Math.max(500, M_PER_U(k));
     check(d <= limit, `c. ${k}: the entry marker is ${round(d)} m (${round(d / M_PER_U(k), 2)} u) from the drawn border (limit ${round(limit)} m: 500 m, or 1 px where that is finer than the picture)`);
   }
-  {
-    const main = lineOf('bangladesh', 'main');
-    const all = main.flat();
-    const toMain = nearestOnLine(entry.lonLat, all).m;
-    const switchPt = main[0].at(-1);
-    console.log(`     entry marker: ${round(toMain / 1000, 1)} km from the drawn main line; ${round(distM(entry.lonLat, switchPt) / 1000, 1)} km from where the line turns from dashed to solid`);
+
+  // 7f — the border-entry marker lies on the drawn main line, where it turns from dashed (outside Bangladesh) to solid.
+  const entryF = [];
+  for (const k of Object.keys(frames)) {
+    const pieces = frames[k].lines.find((x) => x.id === 'main').pieces;
+    const turn = pieces.findIndex((p, i) => p.dash && pieces[i + 1] && !pieces[i + 1].dash);
+    const m = frames[k].markers.find((x) => x.id === 'entry');
+    const at = proj[k].invert(m.x, m.y);
+    const toLine = nearestOnLine(at, lineOf(k, 'main').flat()).m;
+    const switchPt = turn < 0 ? null : parsePath(pieces[turn].d).flat().at(-1);
+    const toSwitch = switchPt ? distM(at, proj[k].invert(...switchPt)) : Infinity;
+    check(toLine <= 500 && toSwitch <= 500, `f. ${k}: the entry marker is ${round(toLine)} m from the drawn main line and ${round(toSwitch)} m from where it turns from dashed to solid (limit 500 m each)`);
+    entryF.push(`${k} ${round(toLine)} / ${round(toSwitch)} m`);
   }
 
   // 7d — the main river is one connected line from its origin to the Padma confluence.
@@ -329,7 +338,7 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
     const hit = ne.features.filter((f) => f.properties.rivernum === n.rivernum && f.properties.name === n.name);
     if (hit.length !== 1 || !hit[0].geometry.coordinates[n.line]) bad.push(`Natural Earth ${n.name} (rivernum ${n.rivernum}, line ${n.line})`);
   }
-  const kinds = { ne: 0, osm: 0, bwdb: 0 };
+  const kinds = { ne: 0, osm: 0, crossing: 0, bwdb: 0 };
   for (const m of S.markers) {
     const c = m.coordSource;
     if (c.source === 'naturalEarth') {
@@ -337,6 +346,16 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
       const p = f?.geometry.coordinates[c.ne.line]?.[c.ne.vertex];
       if (!p || distM(p, m.lonLat) > 1) bad.push(`${m.id}: not Natural Earth ${c.ne.name} line ${c.ne.line} vertex ${c.ne.vertex}`);
       kinds.ne++;
+    } else if (c.source === 'osm' && c.vertices) {
+      // A crossing: a point on one segment of a main-line way that is also on COD-AB's border.
+      const w = osmWays.get(c.way);
+      const [a, b] = c.vertices;
+      const seg = w && b === a + 1 && w.geometry.coordinates[b] ? [w.geometry.coordinates[a], w.geometry.coordinates[b]] : null;
+      const onBorder = Math.min(...bdRings.map((r) => nearestOnLine(m.lonLat, r).m));
+      if (!seg || !G.main.ways.includes(c.way) || nearestOnLine(m.lonLat, seg).m > 1 || onBorder > 1) bad.push(`${m.id}: not where OSM way ${c.way}'s segment ${a}–${b} crosses COD-AB's border`);
+      const from = m.snappedFrom;
+      if (from && (!(from.source in S.sources) || !S.sources[from.source].url || !from.where)) bad.push(`${m.id}: snapped from ${from.source}, not a listed document`);
+      kinds.crossing++;
     } else if (c.source === 'osm') {
       const w = osmWays.get(c.way);
       const at = c.node !== undefined ? w?.properties.nodes?.indexOf(c.node) : c.vertex;
@@ -347,7 +366,7 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
       kinds.bwdb++;
     }
   }
-  check(bad.length === 0, `e. every drawn line and marker traces to a pinned id: ${drawnIds.size} lines, ${G.main.ne.length} Natural Earth lines and ${wayIds.size} OpenStreetMap ways, ${S.markers.length} markers — ${kinds.ne} a Natural Earth vertex, ${kinds.osm} an OSM node or vertex, ${kinds.bwdb} a BWDB table row${bad.length ? ` — not: ${bad.join('; ')}` : ''}`);
+  check(bad.length === 0, `e. every drawn line and marker traces to a pinned id: ${drawnIds.size} lines, ${G.main.ne.length} Natural Earth lines and ${wayIds.size} OpenStreetMap ways, ${S.markers.length} markers — ${kinds.ne} a Natural Earth vertex, ${kinds.osm} an OSM node or vertex, ${kinds.crossing} where an OSM segment crosses COD-AB's border, ${kinds.bwdb} a BWDB table row${bad.length ? ` — not: ${bad.join('; ')}` : ''}`);
 
   // The build, re-run offline to a temp folder, is the committed diagram — and its own checks (chains within 3 m, seam, junctions, the geometry pins) held.
   const out = fs.mkdtempSync(path.join(os.tmpdir(), 'rivers-'));
@@ -364,7 +383,7 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
   const pins = JSON.parse(fs.readFileSync(RIVERS_PINS, 'utf8'));
   check(same && Object.keys(pins).length === 11, `the build reproduces the ${built.length} committed files byte for byte, and its ${Object.keys(pins).length} geometry pins hold${same ? '' : ` — ${say.split('\n').slice(0, 3).join(' | ')}`}`);
   check(Boolean(seamLine) && Number(seamLine[1]) <= G.main.seam.maxM && Number(seamLine[3]) <= 500 && Number(seamLine[4]) <= 3, `d. the seam is ${seamLine?.[1]} m at ${seamLine?.[2]}°E (limit ${G.main.seam.maxM} m); the Jamuna ends ${seamLine?.[3]} m from the Padma, which ends ${seamLine?.[4]} m from the Meghna`);
-  console.log(`bangladesh-rivers: a. ${drawnMarkers} markers within ${round(worst.px, 2)} px / ${round(worst.m)} m; b. ${branches.length - exempt.length} joined (${viaJoin.join(', ')} via the join point; ${alone.join(', ')} with no join point, on their own), ${exempt.length} exempt (${exempt.join(', ')}); c. entry ${round(entrySrc)} m from the border; d. main connected, gaps ≤ 500 m; e. ${drawnIds.size} lines, ${wayIds.size} ways, ${S.markers.length} markers traced`);
+  console.log(`bangladesh-rivers: a. ${drawnMarkers} markers within ${round(worst.px, 2)} px / ${round(worst.m)} m; b. ${branches.length - exempt.length} joined (${viaJoin.join(', ')} via the join point; ${alone.join(', ')} with no join point, on their own), ${exempt.length} exempt (${exempt.join(', ')}); c. entry ${round(entrySrc)} m from the border (BWDB's point ${round(entryBwdb)} m); d. main connected, gaps ≤ 500 m; e. ${drawnIds.size} lines, ${wayIds.size} ways, ${S.markers.length} markers traced; f. entry on the line and at the dash switch: ${entryF.join(', ')}`);
 }
 
 // ---- vendored libraries ----

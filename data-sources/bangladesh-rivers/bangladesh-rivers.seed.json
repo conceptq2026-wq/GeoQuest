@@ -297,8 +297,10 @@
       "row": "entry",
       "entity": "main",
       "nameBn": "ব্রহ্মপুত্র",
-      "lonLat": [89.88575019, 25.9447857],
-      "coordSource": { "source": "bwdbNW76", "where": "the entry (উৎসমুখ / প্রবেশস্থল) row: নারায়ণপুর, নাগেশ্বরী, কুড়িগ্রাম, রংপুর; the point is 67 m from the COD-AB border and lies in COD-AB's Nageshwari upazila" },
+      "lonLat": [89.82718245, 25.73190801],
+      "coordSource": { "source": "osm", "way": 232252698, "vertices": [47, 48], "upazila": { "adm3": "Ulipur", "adm2": "Kurigram" }, "where": "snapped (the user's decision, 2026-09-29): where the drawn main line first crosses COD-AB's border going downstream, on the segment between vertices 47 and 48 of way 232252698 in the pinned snapshot; COD-AB puts the crossing in Ulipur upazila, Kurigram district, not Nageshwari. Upstream of it the drawn channel (ways 910696546 and 232252698) runs 31 km along the line on the India side, 0.5–7.4 km east of the border" },
+      "snappedFrom": { "lonLat": [89.88575019, 25.9447857], "source": "bwdbNW76", "where": "the entry (উৎসমুখ / প্রবেশস্থল) row: নারায়ণপুর, নাগেশ্বরী, কুড়িগ্রাম, রংপুর; the point is 67 m from the COD-AB border and lies in COD-AB's Nageshwari upazila, 6.9 km west of the drawn main line", "offsetM": 24386 },
+      "infoBn": "প্রবেশস্থলের চিহ্নটি বসানো হয়েছে যেখানে আঁকা নদীরেখা সীমান্ত পার হয়েছে; COD-AB অনুযায়ী স্থানটি কুড়িগ্রাম জেলার উলিপুর উপজেলায়।",
       "valueBn": "কুড়িগ্রাম জেলা (নাগেশ্বরী উপজেলা)",
       "sources": {
         "nameBn": [{ "source": "bgeo", "where": "পৃ. ১৫৪", "states": "ব্রহ্মপুত্র নদ" }],
@@ -307,6 +309,10 @@
           { "source": "b910", "where": "পৃ. ৬২", "states": "কুড়িগ্রাম জেলা" },
           { "source": "jrcbG13", "where": "the Brahmaputra's entry", "states": "কুড়িগ্রাম জেলার নাগেশ্বরী উপজেলা" },
           { "source": "bwdbNW76", "where": "the entry row", "states": "নাগেশ্বরী; কুড়িগ্রাম" }
+        ],
+        "infoBn": [
+          { "source": "codab", "where": "bgd_admin3: the upazila holding the drawn crossing", "states": "Ulipur, Kurigram" },
+          { "source": "jrcbG13", "where": "the Dharla's confluence", "states": "কুড়িগ্রাম জেলার উলিপুর উপজেলা" }
         ]
       }
     },
@@ -566,5 +572,5 @@
       "sources": { "nameBn": [{ "source": "bgeo", "where": "পৃ. ১৫৪", "states": "মেঘনা ভৈরববাজারের দক্ষিণে পুরাতন ব্রহ্মপুত্রের সঙ্গে মিলিত" }] }
     }
   ],
-  "review": "Differences between sources, kept as found (the earlier source stands): Padma confluence — B-GEO «দৌলতদিয়ার কাছে», B910 «গোয়ালন্দের নিকট»; the 17th and 21st BCS used «গোয়ালন্দ». Length — books 2,897 km, JRCB 2,880 km, BWDB 230 km. Padma coordinates — BWDB NW-76 (23.80490447, 89.77304192), bn Wikipedia (revision 9042933) 23.8134629, 89.7722061, en Wikipedia (revision 1372145488) 23°47′46.7″N 89°45′45.8″E. Teesta confluence — JRCB «রংপুর জেলার ফুলছড়ি», COD-AB Gaibandha Sadar. Origin coordinate — Natural Earth's line start (82.4005°E, 30.4114°N), bn Wikipedia 30°23′N 82°0′E. Old Brahmaputra offtake — book Dewanganj, BWDB Fulchhari. Mixed OpenStreetMap snapshots: 2026-07-15 (rivers snapshot) and 2026-05-31 (pilot extract); their shared ways agree within 0.56 m. The Padma marker is 1.5 km from the OSM line's end, the entry marker 6.9 km from the drawn line (the drawn east channel crosses the COD-AB border 24 km downstream), the Dharla and Teesta mouths 2.5 and 3.0 km from the drawn Jamuna. The 49th special BCS wrote «ইয়ারলাং সাংপো» and the 42nd special BCS asked the Teesta as the Jamuna's tributary; past exam questions are not used, so neither changes a card."
+  "review": "Differences between sources, kept as found (the earlier source stands): Padma confluence — B-GEO «দৌলতদিয়ার কাছে», B910 «গোয়ালন্দের নিকট»; the 17th and 21st BCS used «গোয়ালন্দ». Length — books 2,897 km, JRCB 2,880 km, BWDB 230 km. Padma coordinates — BWDB NW-76 (23.80490447, 89.77304192), bn Wikipedia (revision 9042933) 23.8134629, 89.7722061, en Wikipedia (revision 1372145488) 23°47′46.7″N 89°45′45.8″E. Teesta confluence — JRCB «রংপুর জেলার ফুলছড়ি», COD-AB Gaibandha Sadar. Origin coordinate — Natural Earth's line start (82.4005°E, 30.4114°N), bn Wikipedia 30°23′N 82°0′E. Old Brahmaputra offtake — book Dewanganj, BWDB Fulchhari. Mixed OpenStreetMap snapshots: 2026-07-15 (rivers snapshot) and 2026-05-31 (pilot extract); their shared ways agree within 0.56 m. The Padma marker is 1.5 km from the OSM line's end, the entry marker stands where the drawn line crosses the COD-AB border (in Ulipur upazila), 24.4 km from BWDB's entry point in Nageshwari, which is 6.9 km from the drawn east channel — the card keeps «কুড়িগ্রাম জেলা (নাগেশ্বরী উপজেলা)» and ⓘ says where COD-AB puts the drawn crossing, the Dharla and Teesta mouths 2.5 and 3.0 km from the drawn Jamuna. The 49th special BCS wrote «ইয়ারলাং সাংপো» and the 42nd special BCS asked the Teesta as the Jamuna's tributary; past exam questions are not used, so neither changes a card."
 }

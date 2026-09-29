@@ -51,11 +51,13 @@ const BLEED = 5;
 const MIN_LAND_AREA = 3;
 // The most any line's ends may miss each other, and every check's ground tolerance (metres).
 const CHAIN_TOL_M = 3;
+// The seed's entry point may miss the computed border crossing by this much (metres): its eight decimals.
+const SNAP_M = 0.05;
 const JOIN_M = 500;
 // The Padma–Meghna junction: the Padma's end must lie this near a Meghna vertex (metres).
 const JUNCTION_M = 3;
 // The Teesta's mouth may lie this far from Fulchhari upazila (metres): the OSM
-// mouth is 1.4 km outside it.
+// mouth is 1.8 km outside it.
 const FULCHHARI_M = 2000;
 
 const PRINT_PINS = process.argv.includes('--print-pins');
@@ -277,14 +279,36 @@ function inUpazila(markerId, name, district) {
   if (!inside(m.lonLat, indexed(upazila(name, district)))) fail(`${markerId}'s point is not in COD-AB's ${name} upazila (${district}), as the seed says`);
   upazilaChecks.push(`${markerId} in ${name}`);
 }
-inUpazila('entry', 'Nageshwari', 'Kurigram');
 inUpazila('padmaConfluence', 'Goalanda', 'Rajbari');
 inUpazila('dharlaConfluence', 'Ulipur', 'Kurigram');
 inUpazila('oldBrahmaputraMouth', 'Raipura', 'Narsingdi');
 const fulchhari = distToRings(markerSeed.teestaConfluence.lonLat, polygonsOf(upazila('Fulchhari', 'Gaibandha')).flat());
 if (fulchhari > FULCHHARI_M) fail(`the Teesta's mouth is ${round(fulchhari)} m from Fulchhari upazila (limit ${FULCHHARI_M} m)`);
-const entryToBorder = distToRings(markerSeed.entry.lonLat, outlineRings);
-if (entryToBorder > JOIN_M) fail(`the border-entry marker is ${round(entryToBorder)} m from Bangladesh's border (limit ${JOIN_M} m)`);
+// The entry marker stands where the drawn main line first crosses COD-AB's border
+// going downstream (the user's decision, 2026-09-29); BWDB's point is kept as snappedFrom.
+const entrySeed = markerSeed.entry;
+const firstIn = mainPieces.findIndex((p) => p.inside);
+if (firstIn < 1) fail('the main line does not run from outside Bangladesh into it');
+const crossing = mainPieces[firstIn].coords[0];
+const entrySnapM = distM(entrySeed.lonLat, crossing);
+if (entrySnapM > SNAP_M) fail(`the entry marker is ${round(entrySnapM, 3)} m from where the main line crosses COD-AB's border (${crossing.map((v) => v.toFixed(8)).join(', ')}); the seed must hold that point`);
+{
+  const c = entrySeed.coordSource;
+  const w = ways.get(c.way);
+  const [a, b] = c.vertices ?? [];
+  if (!G.main.ways.includes(c.way) || b !== a + 1 || !w?.coords[b] || nearestOnLine(crossing, [w.coords[a], w.coords[b]]).m > SNAP_M) fail(`the entry crossing is not on way ${c.way}'s segment ${a}–${b}, one of the main line's ways`);
+  const next = mainPieces[firstIn].coords[1];
+  const justIn = [crossing[0] + (next[0] - crossing[0]) * 1e-3, crossing[1] + (next[1] - crossing[1]) * 1e-3];
+  if (!inside(justIn, indexed(upazila(c.upazila.adm3, c.upazila.adm2)))) fail(`the drawn crossing is not in COD-AB's ${c.upazila.adm3} upazila (${c.upazila.adm2}), as the seed says`);
+  upazilaChecks.push(`entry crossing in ${c.upazila.adm3}`);
+  const from = entrySeed.snappedFrom;
+  if (!inside(from.lonLat, indexed(upazila('Nageshwari', 'Kurigram')))) fail("BWDB's entry point is not in COD-AB's Nageshwari upazila (Kurigram), as the seed says");
+  upazilaChecks.push('BWDB entry point in Nageshwari');
+  if (Math.round(distM(from.lonLat, crossing)) !== from.offsetM) fail(`BWDB's entry point is ${round(distM(from.lonLat, crossing))} m from the crossing; the seed records ${from.offsetM} m`);
+}
+const entryToBorder = distToRings(entrySeed.lonLat, outlineRings);
+const bwdbToBorder = distToRings(entrySeed.snappedFrom.lonLat, outlineRings);
+if (entryToBorder > JOIN_M || bwdbToBorder > JOIN_M) fail(`the border-entry marker is ${round(entryToBorder)} m, and BWDB's point ${round(bwdbToBorder)} m, from Bangladesh's border (limit ${JOIN_M} m)`);
 
 // The Brahmaputra is the name above Dewanganj, the Jamuna the name below it.
 const dewanganjIdx = indexed(upazila('Dewanganj', 'Jamalpur'));
@@ -367,7 +391,7 @@ function buildFrame(frameId, spec) {
     const [x, y] = P.project(m.lonLat[0], m.lonLat[1]).map((v) => round(v, 1));
     if (!inRect([x, y])) fail(`${frameId}: marker ${id} is outside the frame`);
     const src = { source: m.coordSource.source };
-    for (const k of ['ne', 'way', 'node', 'vertex']) if (m.coordSource[k] !== undefined) src[k] = m.coordSource[k];
+    for (const k of ['ne', 'way', 'node', 'vertex', 'vertices']) if (m.coordSource[k] !== undefined) src[k] = m.coordSource[k];
     return { id, kind: m.kind, x, y, lonLat: m.lonLat, src };
   });
 
@@ -436,6 +460,7 @@ for (const e of seed.entities) {
 const markers = {};
 for (const m of seed.markers) {
   if (!m.sources?.valueBn?.length || !m.sources?.nameBn?.length) fail(`marker ${m.id} carries no source for its name or its value`);
+  if (m.infoBn !== undefined && !m.sources?.infoBn?.length) fail(`marker ${m.id}: its ⓘ note carries no source`);
   if (!(m.entity in entitiesSeed) || !ui.rowOrder.includes(m.row) || !(m.kind in ui.legendBn)) fail(`marker ${m.id}: entity, row or kind is unknown`);
   markers[m.id] = { kind: m.kind, entity: m.entity, name: m.nameBn, row: m.row, value: m.valueBn };
 }
@@ -460,7 +485,9 @@ const data = {
   countries,
   credits: Object.entries(seed.sources)
     .filter(([key]) => key !== 'user' && cited.has(key))
-    .map(([key, s]) => credit(s, s.page ? `, ${ui.pageBn} ${s.page}` : '')),
+    .map(([key, s]) => credit(s, s.page ? `, ${ui.pageBn} ${s.page}` : ''))
+    // A note the seed gives a marker reads as plain text, with no link.
+    .concat(seed.markers.filter((m) => m.infoBn).map((m) => ({ title: m.infoBn, lang: 'bn' }))),
 };
 
 const descriptor = {
@@ -496,7 +523,7 @@ const points = (coords) => coords.length;
 say(`${ID}: ${Object.keys(lines).length} lines, ${usedWays.size} OSM ways (${[...usedWays].filter((id) => wayFrom.get(id) === 'pilot').length} pilot-only, ${[...usedWays].filter((id) => wayFrom.get(id) === 'snapshot').length} snapshot-only, ${[...usedWays].filter((id) => wayFrom.get(id) === 'both').length} in both), ${G.main.ne.length} Natural Earth lines, ${seed.markers.length} markers`);
 for (const [id, l] of Object.entries(lines)) say(`  ${id.padEnd(15)} ${String(points(l.coords)).padStart(5)} pts ${String(round(lengthKm(l.coords))).padStart(7)} km  ${drawnHashes[id]}${l.gaps ? `  max gap ${Math.max(0, ...l.gaps)} m` : ''}`);
 say(`main: Natural Earth ${neChain.length} pts + OSM from vertex ${seam.vertex}; seam gap ${round(seamGapM)} m at ${round(osmMain.coords[seam.vertex][0], 3)}°E; ${mainPieces.length} pieces (${mainPieces.filter((p) => p.inside).length} in Bangladesh, ${round(mainPieces.filter((p) => p.inside).reduce((s, p) => s + lengthKm(p.coords), 0))} km); jamuna→padma ${round(mainToPadma)} m; padma→meghna junction ${round(junction, 2)} m`);
-say(`checks: ${upazilaChecks.join(', ')}; Teesta mouth ${round(fulchhari)} m from Fulchhari; entry ${round(entryToBorder)} m from the border; Dewanganj at ${round(dewanganj, 3)} of the main line`);
+say(`checks: ${upazilaChecks.join(', ')}; Teesta mouth ${round(fulchhari)} m from Fulchhari; entry ${round(entryToBorder)} m from the border (BWDB's point ${round(bwdbToBorder)} m, ${round(distM(entrySeed.snappedFrom.lonLat, crossing))} m from it); Dewanganj at ${round(dewanganj, 3)} of the main line`);
 for (const [k, f] of Object.entries(frames)) say(`frame ${k}: viewBox 0 0 ${f.width} ${f.height}, lon ${f.bounds.lonMin}–${f.bounds.lonMax}, lat ${f.bounds.latMin}–${f.bounds.latMax}, scale ${round(f.scale, 2)} u/deg`);
 say(`pending: ${pending.length} (${pending.join(', ')})`);
 say(`wrote ${path.relative(ROOT, OUT) || OUT}: ${Object.entries(sizes).map(([n, b]) => `${n} ${b} B`).join(', ')}; data ${sizes['data.json'] + sizes['frame-whole.json'] + sizes['frame-bangladesh.json']} B`);

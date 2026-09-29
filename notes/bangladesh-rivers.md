@@ -23,6 +23,16 @@ finishes it. It is not in `docs/registry.json`.
   line to OSM vertex 60, OSM from there. The seam is 39.7 m at 95.14°E; OSM's
   Assam head is dropped. Piece 0 in the Bangladesh frame is dashed — it runs
   outside COD-AB's border — and piece 1 solid.
+- **The border-entry marker** stands where the drawn line first crosses
+  COD-AB's border, 25.7319°N 89.8272°E, on way 232252698 between vertices 47
+  and 48 — snapped there (the user's decision, 2026-09-29) from BWDB's point
+  in Nageshwari, 24.4 km north, which lies 6.9 km west of the drawn channel:
+  upstream of the crossing, OSM's channel (ways 910696546 and 232252698) runs
+  31 km along the line on the India side, 0.5–7.4 km east of the border. The
+  seed keeps BWDB's point as `snappedFrom`, with the offset. COD-AB puts the
+  crossing in Ulipur upazila, Kurigram: the card keeps «কুড়িগ্রাম জেলা
+  (নাগেশ্বরী উপজেলা)», and ⓘ carries one plain line saying where COD-AB puts
+  the drawn crossing (the marker's `infoBn`).
 - **The picker row** is the shell's, at the top, with one entry, the main river.
   A tap on a line or a marker opens its card; a marker's heading is composed
   «name — legend word». The legend lists only the kinds a tab draws. ⓘ carries
@@ -36,8 +46,9 @@ finishes it. It is not in `docs/registry.json`.
 - **Editor's seed:** `data-sources/bangladesh-rivers/bangladesh-rivers.seed.json`
   — every word, its sources, the geometry recipe (way ids with trims, the joins,
   the frames, the label anchors) and a `review` of where sources differ. Its
-  SHA-256 is pinned in `tools/verify-descriptor.mjs`, now `95090aa6…cc58`
-  (`a6e2e386…` before the Teesta mouth's provenance was corrected). NCTB books
+  SHA-256 is pinned in `tools/verify-descriptor.mjs`, now `c14c8bb4…dc5b`
+  (`95090aa6…` before the entry marker was snapped; `a6e2e386…` before the
+  Teesta mouth's provenance was corrected). NCTB books
   first, then the source order in CLAUDE.md; past exam questions are not used.
 - **Geometry:** Natural Earth's rivers, land and boundary lines; COD-AB's
   Bangladesh outline; the OSM rivers snapshot `osmBangladeshRivers` and the
@@ -79,11 +90,15 @@ finishes it. It is not in `docs/registry.json`.
     line or of its recorded join point. Karatoya, Atrai, Dhaleshwari and Banshi
     have no join point and are exempt, each with its reason in the seed; the
     Old Brahmaputra passes on its own at 0 m;
-  - c. the entry marker on COD-AB's border (500 m);
+  - c. the entry marker on COD-AB's border (500 m), and BWDB's point it was
+    snapped from;
   - d. the main river one connected line, gaps 0 m, no duplicate segment, no
     self-crossing, nothing outside the frame;
   - e. every drawn line and marker traced to an id in the pinned sources, by
-    way, node or vertex; and the build reproduced byte for byte.
+    way, node, vertex or — the entry — the way segment that crosses COD-AB's
+    border; and the build reproduced byte for byte;
+  - f. the entry marker within 500 m of the drawn main line, and of the
+    point where the line turns from dashed to solid, in both frames.
 - **`node tools/check.mjs bangladesh-rivers`** — its rivers branch, `riverSteps`,
   takes each tab in turn: the picker's entry, then every line and marker
   tapped at a point where its zone alone takes the tap, its card's heading the
@@ -107,6 +122,8 @@ separate, approved change:
 ## Decisions to keep
 
 - The Jamuna ends at the Padma confluence; no sea-mouth marker.
+- The entry marker sits on the drawn line at its border crossing, not at
+  BWDB's point; the card's text does not change with it.
 - The Teesta is a tributary of the Brahmaputra, as the books have it.
 - No Old Brahmaputra offtake marker: the book (Dewanganj) and BWDB (Fulchhari)
   name different places.
