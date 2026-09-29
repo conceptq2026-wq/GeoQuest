@@ -567,6 +567,11 @@
       "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
       "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=4&Rivers=108",
       "sha256": "1a587d93ad2d0be5fba480950ef97fba01b51e8a804baa4853afa70a531a3f46"
+    },
+    "naturalEarthLakes": {
+      "title": "Natural Earth 10m lakes (ne_10m_lakes): Kaptai Lake's outline",
+      "publisher": "Natural Earth (public domain; v5.1.2)",
+      "url": "https://www.naturalearthdata.com/"
     }
   },
   "countries": {
@@ -581,6 +586,34 @@
   "labelsBn": {
     "_about": "Names drawn on the lines. Each is a name a card gives (an entity's nameBn, an alias part, or a continuation's nameBn); the builder asserts it. The Siang/Dihang stretch is not labelled on the picture — no source says where one name ends and the other begins — and both names stay in the alias row."
   },
+  "_only": "An item with only: \"map\" is drawn by the map alone (tools/build-bangladesh-rivers-map.mjs), one with only: \"diagram\" by the diagram alone, and one without it by both; each build drops the other's and asserts that none reaches it (the user's decisions, 2026-09-30).",
+  "mapPlacesBn": [
+    {
+      "id": "kaptaiLake",
+      "only": "map",
+      "nameBn": "কাপ্তাই লেক",
+      "ne": {
+        "file": "ne_10m_lakes.geojson",
+        "ne_id": 1159125711
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩, চিত্র ১০.৩",
+            "states": "map label: কাপ্তাই লেক"
+          }
+        ],
+        "outline": [
+          {
+            "source": "naturalEarthLakes",
+            "where": "ne_10m_lakes.geojson, ne_id 1159125711",
+            "states": "Kaptai Lake, featurecla Reservoir: the outline this map draws"
+          }
+        ]
+      }
+    }
+  ],
   "geometry": {
     "_about": "How every drawn line is assembled. NE = Natural Earth 10m rivers_lake_centerlines (identity is name + rivernum: the file has no id). OSM ways come from the pinned snapshot (tools/sources/osm-bangladesh-rivers.geojson: 157 ways) and the pinned pilot extract (tools/sources/osm-bangladesh-rivers-pilot.geojson: 45 ways, with node ids); a way in both must match within 1 m. A trim keeps the way from `fromNode` and/or up to `toNode` (inclusive). `down` is a [lon, lat] near the line's downstream end and only orients the chain. The lines themselves, and each frame's lines, markers and labels, are in the systems' files (systems/<id>.seed.json), merged by tools/lib/rivers-seed.mjs.",
     "files": {
@@ -1124,6 +1157,7 @@
       {
         "textBn": "কর্ণফুলীর আঁকা রেখা কাপ্তাই হ্রদের ভেতরে প্রায় ১৫ কিলোমিটার আঁকা হয়নি, আর কাসালংয়ের আঁকা রেখা লংগদু উপজেলায় হ্রদের তীরে শেষ হয়েছে, কর্ণফুলী থেকে প্রায় ১৭ কিলোমিটার দূরে; হ্রদটি ছবিতে আঁকা নয়, আর OpenStreetMap-এর তথ্যে হ্রদের ভেতরে নদীর নামসহ কোনো নদীপথ পাওয়া যায়নি।",
         "group": "notes",
+        "only": "diagram",
         "sources": [
           {
             "source": "osm",
@@ -1143,8 +1177,41 @@
         ]
       },
       {
+        "textBn": "কর্ণফুলীর আঁকা রেখা কাপ্তাই হ্রদের ভেতরে প্রায় ১৫ কিলোমিটার আঁকা হয়নি, আর কাসালংয়ের আঁকা রেখা লংগদু উপজেলায় হ্রদের তীরে শেষ হয়েছে, কর্ণফুলী থেকে প্রায় ১৭ কিলোমিটার দূরে; হ্রদটি এই মানচিত্রে আঁকা আছে (সীমারেখা Natural Earth-এর ১:১ কোটি মাপের হ্রদের তথ্যে), আর OpenStreetMap-এর তথ্যে হ্রদের ভেতরে নদীর নামসহ কোনো নদীপথ পাওয়া যায়নি।",
+        "group": "notes",
+        "only": "map",
+        "sources": [
+          {
+            "source": "osm",
+            "where": "the pinned snapshot's Karnaphuli ways 1426189152 and 910356831, the Kasalong way 687541579, and Kaptai Lake (relation 1626722)",
+            "states": "14,605 m and 17,279 m; no waterway, relation, wikidata tag or name variant in the lake"
+          },
+          {
+            "source": "codab",
+            "where": "bgd_admin3: the upazila holding the Kasalong's drawn mouth",
+            "states": "Langadu, Rangamati"
+          },
+          {
+            "source": "user",
+            "where": "the rule",
+            "states": "gaps over 12 km stay unjoined, with a plain ⓘ line (2026-09-29)"
+          },
+          {
+            "source": "naturalEarthLakes",
+            "where": "ne_10m_lakes.geojson, ne_id 1159125711",
+            "states": "Kaptai Lake, featurecla Reservoir: the outline this map draws"
+          },
+          {
+            "source": "user",
+            "where": "decisions 1 and 2 after M2: the label and the map-only ⓘ variants",
+            "states": "the user, 2026-09-30"
+          }
+        ]
+      },
+      {
         "textBn": "কাপ্তাই: «বাংলাদেশ ও বিশ্বপরিচয়» কাপ্তাইকে কর্ণফুলীর উপনদী বলেছে; কাপ্তাই একটি হ্রদ, এই ছবিতে হ্রদটি আঁকা নেই।",
         "group": "notes",
+        "only": "diagram",
         "sources": [
           {
             "source": "b910",
@@ -1160,6 +1227,38 @@
             "source": "user",
             "where": "decision 4: no line and no tributary card, one ⓘ line",
             "states": "the user, 2026-09-29"
+          }
+        ]
+      },
+      {
+        "textBn": "কাপ্তাই: «বাংলাদেশ ও বিশ্বপরিচয়» কাপ্তাইকে কর্ণফুলীর উপনদী বলেছে; কাপ্তাই একটি হ্রদ, এই মানচিত্রে হ্রদটি আঁকা আছে (সীমারেখা Natural Earth-এর ১:১ কোটি মাপের হ্রদের তথ্যে), আর নামটি «ভূগোল ও পরিবেশ» বইয়ের মানচিত্রের (পৃষ্ঠা ১৫৩, চিত্র ১০.৩): «কাপ্তাই লেক»।",
+        "group": "notes",
+        "only": "map",
+        "sources": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২–৬৩",
+            "states": "কর্ণফুলীর প্রধান উপনদী হচ্ছে কাপ্তাই, হালদা, কাসালাং ও রাঙখিয়াং"
+          },
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩, চিত্র ১০.৩",
+            "states": "map label: কাপ্তাই লেক"
+          },
+          {
+            "source": "user",
+            "where": "decision 4: no line and no tributary card, one ⓘ line",
+            "states": "the user, 2026-09-29"
+          },
+          {
+            "source": "naturalEarthLakes",
+            "where": "ne_10m_lakes.geojson, ne_id 1159125711",
+            "states": "Kaptai Lake, featurecla Reservoir: the outline this map draws"
+          },
+          {
+            "source": "user",
+            "where": "decisions 1 and 2 after M2: the label and the map-only ⓘ variants",
+            "states": "the user, 2026-09-30"
           }
         ]
       },

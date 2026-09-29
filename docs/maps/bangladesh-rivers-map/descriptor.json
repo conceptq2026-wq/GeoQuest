@@ -82,6 +82,16 @@
      "type": "boolean",
      "display": false
     },
+    "ancestors": {
+     "type": "refs",
+     "to": "rivers",
+     "display": false
+    },
+    "ancestorNames": {
+     "type": "refs",
+     "to": "names",
+     "display": false
+    },
     "relation": {
      "type": "text",
      "verifiable": true
@@ -187,6 +197,19 @@
      "required": true
     }
    }
+  },
+  "places": {
+   "file": "./places.json",
+   "fields": {
+    "nameBn": {
+     "type": "text",
+     "required": true
+    },
+    "at": {
+     "type": "point",
+     "required": true
+    }
+   }
   }
  },
  "sources": {
@@ -198,7 +221,14 @@
     "joined": true
    },
    "state": [
-    "selected"
+    "selected",
+    {
+     "name": "context",
+     "fromSelection": {
+      "records": "rivers",
+      "listField": "ancestors"
+     }
+    }
    ],
    "properties": [
     "role"
@@ -212,7 +242,14 @@
     "dashed": true
    },
    "state": [
-    "selected"
+    "selected",
+    {
+     "name": "context",
+     "fromSelection": {
+      "records": "rivers",
+      "listField": "ancestors"
+     }
+    }
    ],
    "properties": [
     "role"
@@ -228,7 +265,14 @@
     "solid": true
    },
    "state": [
-    "selected"
+    "selected",
+    {
+     "name": "context",
+     "fromSelection": {
+      "records": "rivers",
+      "listField": "ancestors"
+     }
+    }
    ],
    "properties": [
     "role"
@@ -239,9 +283,25 @@
   "names": {
    "records": "names",
    "geometryFrom": "at",
+   "state": [
+    {
+     "name": "context",
+     "fromSelection": {
+      "records": "rivers",
+      "listField": "ancestorNames"
+     }
+    }
+   ],
    "properties": [
     "nameBn",
     "role"
+   ]
+  },
+  "places": {
+   "records": "places",
+   "geometryFrom": "at",
+   "properties": [
+    "nameBn"
    ]
   },
   "marks": {
@@ -291,7 +351,19 @@
       true
      ],
      1,
-     0.85
+     [
+      "case",
+      [
+       "==",
+       [
+        "get",
+        "context"
+       ],
+       true
+      ],
+      0.35,
+      0.85
+     ]
     ],
     "line-width": [
      "case",
@@ -333,6 +405,19 @@
     "line-cap": "round"
    },
    "paint": {
+    "line-opacity": [
+     "case",
+     [
+      "==",
+      [
+       "get",
+       "context"
+      ],
+      true
+     ],
+     0.45,
+     1
+    ],
     "line-color": [
      "match",
      [
@@ -401,7 +486,19 @@
       true
      ],
      1,
-     0.85
+     [
+      "case",
+      [
+       "==",
+       [
+        "get",
+        "context"
+       ],
+       true
+      ],
+      0.35,
+      0.85
+     ]
     ],
     "line-width": [
      "case",
@@ -443,6 +540,19 @@
     "line-cap": "butt"
    },
    "paint": {
+    "line-opacity": [
+     "case",
+     [
+      "==",
+      [
+       "get",
+       "context"
+      ],
+      true
+     ],
+     0.45,
+     1
+    ],
     "line-color": [
      "match",
      [
@@ -515,7 +625,19 @@
       true
      ],
      1,
-     0.85
+     [
+      "case",
+      [
+       "==",
+       [
+        "get",
+        "context"
+       ],
+       true
+      ],
+      0.35,
+      0.85
+     ]
     ],
     "line-width": [
      "case",
@@ -557,6 +679,19 @@
     "line-cap": "round"
    },
    "paint": {
+    "line-opacity": [
+     "case",
+     [
+      "==",
+      [
+       "get",
+       "context"
+      ],
+      true
+     ],
+     0.45,
+     1
+    ],
     "line-color": [
      "match",
      [
@@ -589,6 +724,27 @@
      2,
      2
     ]
+   }
+  },
+  {
+   "id": "place-names",
+   "type": "symbol",
+   "source": "places",
+   "slot": "aboveLabels",
+   "layout": {
+    "text-field": [
+     "get",
+     "nameBn"
+    ],
+    "text-font": [
+     "Noto Sans Bengali"
+    ],
+    "text-size": 15
+   },
+   "paint": {
+    "text-color": "#2f6c9e",
+    "text-halo-color": "#ffffff",
+    "text-halo-width": 1.6
    }
   },
   {
@@ -645,6 +801,19 @@
      "disputed",
      "#5e35b1",
      "#0b3d91"
+    ],
+    "text-opacity": [
+     "case",
+     [
+      "==",
+      [
+       "get",
+       "context"
+      ],
+      true
+     ],
+     0.6,
+     1
     ],
     "text-halo-color": "#ffffff",
     "text-halo-width": 1.8
@@ -1047,7 +1216,8 @@
    "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=4&amp;Rivers=138\" target=\"_blank\" rel=\"noopener noreferrer\">বড়াল (নদীর তথ্য, NW-134) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
    "<a href=\"https://bn.wikipedia.org/w/index.php?oldid=7982899\" target=\"_blank\" rel=\"noopener noreferrer\">রূপসা নদী (Bengali Wikipedia (revision 7982899; read 2026-09-29))</a>",
    "<a href=\"https://web.archive.org/web/20220702010723/https://bn.banglapedia.org/index.php?title=বুড়ীশ্বর_নদী\" target=\"_blank\" rel=\"noopener noreferrer\">বুড়ীশ্বর নদী (Banglapedia (Bengali; oldid 9994, last edited 2014-05-05; Internet Archive capture 2022-07-02; read 2026-09-29))</a>",
-   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=4&amp;Rivers=108\" target=\"_blank\" rel=\"noopener noreferrer\">তেঁতুলিয়া (নদীর তথ্য, NW-103) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>"
+   "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=4&amp;Rivers=108\" target=\"_blank\" rel=\"noopener noreferrer\">তেঁতুলিয়া (নদীর তথ্য, NW-103) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
+   "<a href=\"https://www.naturalearthdata.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Natural Earth 10m lakes (ne_10m_lakes): Kaptai Lake's outline (Natural Earth (public domain; v5.1.2))</a>"
   ]
  }
 }

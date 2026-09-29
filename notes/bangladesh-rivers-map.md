@@ -13,12 +13,14 @@ file), M3 «পুরো পথ», M4 parity with the diagram.
   50 cards in the picker, grouped by system. Basemap `bangladesh-wide`
   (`notes/basemaps.md`): the neighbours plain grey, no basemap river, the
   district names the basemap's own, at 14 px from z7.
-- **Focus** (`notes/shell.md`): at rest only the 9 main rivers and their names
-  and markers; a selection draws that river, its own branches, and the chain of
-  rivers it joins up to its main river — a branch of a branch keeps the branch
-  between it and its main river, so it is never drawn cut off (18 cards sit
-  below a branch). Everything else is hidden, not greyed; the picker still
-  lists all 50.
+- **Focus** (`notes/shell.md`; the user's decision, 2026-09-30): at rest only
+  the 9 main rivers and their names and markers; a selection draws that river,
+  all its descendants, and every ancestor up to its main river — no sibling —
+  so a branch of a branch is never drawn cut off (18 cards sit below a
+  branch). The ancestors are drawn lighter, for context: their lines at 0.45
+  of their opacity and their names at 0.6, through a `context` state read
+  from the selected card's `ancestors` and `ancestorNames` (the build writes
+  them). Everything else is hidden, not greyed; the picker still lists all 50.
 - Lines by role in the diagram's colours; dashed outside Bangladesh where the
   seed splits a line at COD-AB's border; a white halo, the selected river's
   lit. Markers: the diagram's glyphs, a ring when selected. Names beside
@@ -26,14 +28,19 @@ file), M3 «পুরো পথ», M4 parity with the diagram.
 - Cards: the seed's rows in `ui.rowOrder`; a null stays null in the records,
   so the shell hides it and the validator counts it — the same 48 the diagram
   leaves out. A marker's card is «name — kind» with its one row.
-- ⓘ: the seed's 81 credits as links, then its 40 notes and 50 conflicts under
-  the seed's headings, exactly as the diagram lists them.
-- **Kaptai Lake** is drawn by the basemap (Natural Earth's 10m lakes, pinned).
-  It has no name: the only Bengali name the seed cites is the NCTB book's map
-  label «কাপ্তাই লেক» (ভূগোল ও পরিবেশ, p. ১৫৩, fig. ১০.৩), held in an ⓘ line's
-  citation; a label needs a seed entry of its own, which moves the seed's pin —
-  the user's decision. Two ⓘ lines say the lake is not drawn «in this
-  picture»; true of the diagram, not of the map — the user's wording to come.
+- ⓘ: the seed's 82 credits as links (the diagram's 81 and Natural Earth's
+  lakes), then its 40 notes and 50 conflicts under the seed's headings, as the
+  diagram lists them but for the two lines about Kaptai Lake (below).
+- **Kaptai Lake** is drawn by the basemap (Natural Earth's 10m lakes, pinned)
+  and named «কাপ্তাই লেক», the NCTB book's map label (ভূগোল ও পরিবেশ, p. ১৫৩,
+  fig. ১০.৩; the user's decision, 2026-09-30): the seed's map-only place
+  `kaptaiLake` (`mapPlacesBn`), its Natural Earth feature by ne_id 1159125711,
+  its outline pinned in `tools/bangladesh-rivers-map-pins.json`. The name
+  stands at the point inside the lake farthest from its shore, 15 px, in the
+  basemap's water-name colour, its layer under the rivers' names so they win a
+  collision. The two ⓘ lines that say the lake is not drawn are the diagram's
+  (`only: "diagram"`); the map shows its own two in their place
+  (`only: "map"`), saying it is drawn and whence its outline and its name.
 
 ## How it is built
 
@@ -52,9 +59,13 @@ file), M3 «পুরো পথ», M4 parity with the diagram.
   diagram's Bangladesh frame has 24; the five it has more (shitalakshya,
   mahananda3, kapotaksha, punarbhaba, manu2, 65–156 m) end within 50 m of
   their parent at the map's precision, so they need none.
-- Nothing in the seed may carry `only` yet: the map-only flag (the user's
-  decision) is built with the first map-only river, with its own pins in
-  `tools/bangladesh-rivers-map-pins.json`.
+- **`only`** (the user's decisions, 2026-09-30): "map" keeps a seed item to
+  the map, "diagram" to the diagram; absent, both draw it. It may stand on a
+  card, a marker, a continuation, an ⓘ line, a line or a place, nowhere else
+  (`tools/lib/rivers-core.mjs` refuses it elsewhere). Each build reads the seed
+  less the other's items and asserts that none of their ids or texts reaches
+  its files; the validator holds both directions. The map's own lines, when
+  there are any, are pinned in the map pins file's `lines`.
 
 ## What is checked
 

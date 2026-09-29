@@ -21,11 +21,13 @@
 // hidden by the shell, counted as pending. Output is deterministic.
 //
 // No network, ever: the inputs are pinned files that the fetch tools filled.
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { COVERAGE } from './bangladesh.config.mjs';
 import { distM, nearestOnLine, clipLine } from './lib/rivers-frame.mjs';
-import { riversCore, SEED, CONNECT_FROM_M, CONNECT_MAX_M, UNJOINED_BY_DECISION } from './lib/rivers-core.mjs';
+import { CACHE } from './lib/geo.mjs';
+import { riversCore, itemsOnly, SEED, MAP_PINS, CONNECT_FROM_M, CONNECT_MAX_M, UNJOINED_BY_DECISION } from './lib/rivers-core.mjs';
 
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const ROOT = path.resolve(HERE, '..');
@@ -45,6 +47,11 @@ const DECIMALS = 6;
 const LINE = { main: { color: '#0b3d91', width: 2.9 }, tributary: { color: '#0f9d8a', width: 2 }, distributary: { color: '#e07b00', width: 2 }, disputed: { color: '#7e57c2', width: 2 } };
 const NAME_COLOR = { main: '#0b3d91', tributary: '#0a6e61', distributary: '#9a5000', disputed: '#5e35b1' };
 const LIT = '#ffc933';
+// A place's name on the water: the basemap's water-name colour. An ancestor of the selected river, drawn
+// for context: this much of its line's opacity, and of its name's.
+const WATER_NAME = '#2f6c9e';
+const CONTEXT_LINE = 0.45;
+const CONTEXT_NAME = 0.6;
 const OSM_CREDIT = '<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a>';
 
 const OUT = path.resolve(process.argv.slice(2).find((a) => !a.startsWith('--')) ?? DEFAULT_OUT);
@@ -58,15 +65,10 @@ const json = (v) => JSON.stringify(v, null, 1) + '\n';
 const geojson = (features) => `{"type":"FeatureCollection","features":[\n${features.map((f) => JSON.stringify(f)).join(',\n')}\n]}\n`;
 const say = (s) => console.log(s);
 
-const { seed, ui, G, lines, joinsParent, parentSideAtTail, borderPieces, markerSeed, outlineRings, labelTexts, pending, credit, cited } = riversCore({ id: ID });
+const { wholeSeed, seed, ui, G, lines, joinsParent, parentSideAtTail, borderPieces, markerSeed, outlineRings, labelTexts, pending, credit, cited } = riversCore({ id: ID, product: 'map' });
 const frame = G.frames.bangladesh;
 const entitySeed = Object.fromEntries(seed.entities.map((e) => [e.id, e]));
 
-// Until map-only content is built, both products draw the same seed: nothing may carry `only`.
-{
-  const flagged = [...seed.entities, ...seed.markers, ...seed.infoBn.lines, ...Object.values(G.lines)].filter((x) => x && typeof x === 'object' && 'only' in x);
-  if (flagged.length) fail(`${flagged.length} seed item(s) carry "only"; the map-only flag is not built yet`);
-}
 
 // ---- the lines: each piece cut at the box and simplified, in metres -----------------------------
 
@@ -197,6 +199,60 @@ for (const lab of frame.labels) {
   const eid = entityOf(lab.line);
   names[lab.id] = { nameBn: text, river: eid, role: l.role, at: fix(best.pt) };
 }
+// A branch's ancestors, up to its main river, and their names: drawn for context, lighter, while it is
+// selected. A main river has none (absent, not applicable).
+for (const [eid, row] of Object.entries(rivers)) {
+  if (!row.up) continue;
+  const chain = [];
+  for (let at = row.up; at; at = rivers[at].up) chain.push(at);
+  row.ancestors = chain;
+  row.ancestorNames = Object.keys(names).filter((k) => chain.includes(names[k].river));
+}
+
+// ---- the map's own places: a name on the water where a cited book gives one --------------------------
+// Each is a Natural Earth feature, by its ne_id in a file pinned in tools/sources.json, its geometry pinned in
+// MAP_PINS' `places`; its name stands at the point inside it farthest from its shore.
+const sourcesJson = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools/sources.json'), 'utf8'));
+const mapPins = fs.existsSync(MAP_PINS) ? JSON.parse(fs.readFileSync(MAP_PINS, 'utf8')) : {};
+const pinnedNe = (name) => {
+  const pin = sourcesJson.naturalEarth.files[name] ?? fail(`tools/sources.json pins no ${name}`);
+  const buf = fs.readFileSync(path.join(CACHE, name));
+  const blob = crypto.createHash('sha1').update(Buffer.concat([Buffer.from(`blob ${buf.length}\0`), buf])).digest('hex');
+  if (buf.length !== pin.size || blob !== pin.gitBlobSha1) fail(`${name} is not the pinned file (${buf.length} bytes, blob ${blob.slice(0, 8)}…)`);
+  return JSON.parse(buf.toString('utf8'));
+};
+const hashGeometry = (coords) => crypto.createHash('sha256').update(JSON.stringify(coords)).digest('hex').slice(0, 16);
+const inRing = (p, ring) => {
+  let hit = false;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) if (ring[i][1] > p[1] !== ring[j][1] > p[1] && p[0] < ((ring[j][0] - ring[i][0]) * (p[1] - ring[i][1])) / (ring[j][1] - ring[i][1]) + ring[i][0]) hit = !hit;
+  return hit;
+};
+const places = {};
+const placeReport = [];
+for (const pl of seed.mapPlacesBn ?? []) {
+  if (pl.only !== 'map') fail(`place ${pl.id} is not marked only: "map"; the diagram draws no places`);
+  const cites = [...(pl.sources?.nameBn ?? []), ...(pl.sources?.outline ?? [])];
+  if (!pl.sources?.nameBn?.length || !pl.sources?.outline?.length || cites.some((c) => !(c.source in seed.sources))) fail(`place ${pl.id}: its name and its outline each need a listed source`);
+  for (const c of cites) cited.add(c.source);
+  const hits = pinnedNe(pl.ne.file).features.filter((f) => f.properties.ne_id === pl.ne.ne_id);
+  if (hits.length !== 1 || hits[0].geometry.type !== 'Polygon') fail(`place ${pl.id}: ${pl.ne.file} has ${hits.length} features with ne_id ${pl.ne.ne_id}, not one polygon`);
+  const rings = hits[0].geometry.coordinates;
+  const h = hashGeometry(rings);
+  if (mapPins.places?.[pl.id] !== h) fail(`place ${pl.id}: geometry pin ${mapPins.places?.[pl.id] ?? '(none)'}, now ${h} — stop and report, never re-pin to pass`);
+  const [x0, y0, x1, y1] = rings[0].reduce((b, [x, y]) => [Math.min(b[0], x), Math.min(b[1], y), Math.max(b[2], x), Math.max(b[3], y)], [Infinity, Infinity, -Infinity, -Infinity]);
+  const step = Math.max(x1 - x0, y1 - y0) / 120;
+  let best = null;
+  for (let x = x0 + step / 2; x < x1; x += step)
+    for (let y = y0 + step / 2; y < y1; y += step) {
+      const p = [x, y];
+      if (!inRing(p, rings[0]) || rings.slice(1).some((r) => inRing(p, r))) continue;
+      const m = Math.min(...rings.map((r) => nearestOnLine(p, r).m));
+      if (!best || m > best.m) best = { p, m };
+    }
+  if (!best || !inBox(best.p)) fail(`place ${pl.id}: no point inside it for its name`);
+  places[pl.id] = { nameBn: pl.nameBn, at: fix(best.p) };
+  placeReport.push(`${pl.id} «${pl.nameBn}» at ${fix(best.p).join(', ')}, ${round(best.m)} m from its shore`);
+}
 
 // ---- ⓘ: the credits as links, the notes and the conflicts as plain lines --------------------------
 
@@ -230,6 +286,7 @@ const roles = [...new Set(Object.values(rivers).map((r) => r.role))];
 for (const r of roles) if (!LINE[r] || !ui.legendBn[r]) fail(`role ${r} has no colour or no legend word`);
 const byRole = (values, fallback) => ['match', ['get', 'role'], ...roles.flatMap((r) => [r, values[r]]), fallback];
 const lit = (yes, no) => ['case', ['==', ['get', 'selected'], true], yes, no];
+const ctx = (yes, no) => ['case', ['==', ['get', 'context'], true], yes, no];
 const lineLayers = (source, dashed) => [
   // A white halo under every line, the selected one's lit.
   {
@@ -238,7 +295,7 @@ const lineLayers = (source, dashed) => [
     source,
     slot: 'belowLabels',
     layout: { 'line-join': 'round', 'line-cap': 'round' },
-    paint: { 'line-color': lit(LIT, '#ffffff'), 'line-opacity': lit(1, 0.85), 'line-width': lit(7.8, byRole({ main: 4.9, tributary: 3.9, distributary: 3.9, disputed: 3.9 }, 3.9)) },
+    paint: { 'line-color': lit(LIT, '#ffffff'), 'line-opacity': lit(1, ctx(0.35, 0.85)), 'line-width': lit(7.8, byRole({ main: 4.9, tributary: 3.9, distributary: 3.9, disputed: 3.9 }, 3.9)) },
   },
   {
     id: `${source}-line`,
@@ -246,7 +303,7 @@ const lineLayers = (source, dashed) => [
     source,
     slot: 'belowLabels',
     layout: { 'line-join': 'round', 'line-cap': dashed ? 'butt' : 'round' },
-    paint: { 'line-color': byRole(Object.fromEntries(roles.map((r) => [r, LINE[r].color])), '#a9b4c3'), 'line-width': byRole(Object.fromEntries(roles.map((r) => [r, LINE[r].width])), 2), ...(dashed ? { 'line-dasharray': [2, 1.35] } : {}) },
+    paint: { 'line-opacity': ctx(CONTEXT_LINE, 1), 'line-color': byRole(Object.fromEntries(roles.map((r) => [r, LINE[r].color])), '#a9b4c3'), 'line-width': byRole(Object.fromEntries(roles.map((r) => [r, LINE[r].width])), 2), ...(dashed ? { 'line-dasharray': [2, 1.35] } : {}) },
   },
 ];
 const fitSelected = [{ action: 'select' }, { action: 'fitBounds', clear: ['sheet'], duration: 1200 }];
@@ -275,6 +332,8 @@ const descriptor = {
         solid: { type: 'boolean', display: false },
         dashed: { type: 'boolean', display: false },
         joined: { type: 'boolean', display: false },
+        ancestors: { type: 'refs', to: 'rivers', display: false },
+        ancestorNames: { type: 'refs', to: 'names', display: false },
         ...rowFields,
       },
     },
@@ -298,18 +357,35 @@ const descriptor = {
         at: { type: 'point', required: true },
       },
     },
+    places: {
+      file: './places.json',
+      fields: {
+        nameBn: { type: 'text', required: true },
+        at: { type: 'point', required: true },
+      },
+    },
   },
   sources: {
-    connectors: { records: 'rivers', geometry: './connectors.geojson', joinField: 'key', expectGeometry: { joined: true }, state: ['selected'], properties: ['role'] },
-    'lines-out': { records: 'rivers', geometry: './lines-out.geojson', joinField: 'key', expectGeometry: { dashed: true }, state: ['selected'], properties: ['role'], tapWidth: 44, attribution: OSM_CREDIT },
-    'lines-in': { records: 'rivers', geometry: './lines-in.geojson', joinField: 'key', expectGeometry: { solid: true }, state: ['selected'], properties: ['role'], tapWidth: 44, attribution: OSM_CREDIT },
-    names: { records: 'names', geometryFrom: 'at', properties: ['nameBn', 'role'] },
+    connectors: { records: 'rivers', geometry: './connectors.geojson', joinField: 'key', expectGeometry: { joined: true }, state: ['selected', { name: 'context', fromSelection: { records: 'rivers', listField: 'ancestors' } }], properties: ['role'] },
+    'lines-out': { records: 'rivers', geometry: './lines-out.geojson', joinField: 'key', expectGeometry: { dashed: true }, state: ['selected', { name: 'context', fromSelection: { records: 'rivers', listField: 'ancestors' } }], properties: ['role'], tapWidth: 44, attribution: OSM_CREDIT },
+    'lines-in': { records: 'rivers', geometry: './lines-in.geojson', joinField: 'key', expectGeometry: { solid: true }, state: ['selected', { name: 'context', fromSelection: { records: 'rivers', listField: 'ancestors' } }], properties: ['role'], tapWidth: 44, attribution: OSM_CREDIT },
+    names: { records: 'names', geometryFrom: 'at', state: [{ name: 'context', fromSelection: { records: 'rivers', listField: 'ancestorNames' } }], properties: ['nameBn', 'role'] },
+    places: { records: 'places', geometryFrom: 'at', properties: ['nameBn'] },
     marks: { records: 'marks', geometryFrom: 'at', state: ['selected'], properties: ['kind'], tapWidth: 44 },
   },
   layers: [
     ...lineLayers('connectors', false),
     ...lineLayers('lines-out', true),
     ...lineLayers('lines-in', false),
+    // A place's name on the water, at least 14 px; below the rivers' names, which are placed first.
+    {
+      id: 'place-names',
+      type: 'symbol',
+      source: 'places',
+      slot: 'aboveLabels',
+      layout: { 'text-field': ['get', 'nameBn'], 'text-font': ['Noto Sans Bengali'], 'text-size': 15 },
+      paint: { 'text-color': WATER_NAME, 'text-halo-color': '#ffffff', 'text-halo-width': 1.6 },
+    },
     {
       id: 'river-names',
       type: 'symbol',
@@ -324,7 +400,7 @@ const descriptor = {
         'text-radial-offset': 0.6,
         'symbol-sort-key': byRole({ main: 0, tributary: 1, distributary: 1, disputed: 1 }, 2),
       },
-      paint: { 'text-color': byRole(NAME_COLOR, '#0b3d91'), 'text-halo-color': '#ffffff', 'text-halo-width': 1.8 },
+      paint: { 'text-color': byRole(NAME_COLOR, '#0b3d91'), 'text-opacity': ctx(CONTEXT_NAME, 1), 'text-halo-color': '#ffffff', 'text-halo-width': 1.8 },
     },
     // One layer per kind, each drawing its own glyph; the selected marker ringed as the diagram rings it.
     ...kindsDrawn.map((k) => ({
@@ -382,12 +458,19 @@ const files = {
   'rivers.json': json(rivers),
   'marks.json': json(marks),
   'names.json': json(names),
+  'places.json': json(places),
   'info.json': json(info),
   'lines-in.geojson': geojson(pieces.filter((p) => !p.dashed).map((p) => feature(p.entity, p.line, p.coords))),
   'lines-out.geojson': geojson(pieces.filter((p) => p.dashed).map((p) => feature(p.entity, p.line, p.coords))),
   'connectors.geojson': geojson(connectors.map((c) => ({ ...feature(c.entity, c.line, c.coords), properties: { key: c.entity, line: c.line, parent: c.parent, m: c.m } }))),
   ...Object.fromEntries(kindsDrawn.map((k) => [`${k}.svg`, icon(k)])),
 };
+// Nothing the diagram alone draws reaches the map (the user's decision, 2026-09-30): no id of its cards,
+// markers, lines or places, and none of its Bengali texts, anywhere in the map's files.
+const diagramOnly = itemsOnly(wholeSeed, 'diagram');
+const shippedIds = [...Object.keys(rivers), ...Object.keys(marks), ...Object.keys(names), ...Object.keys(places), ...pieces.map((q) => q.line), ...connectors.map((c) => c.line)];
+const leaks = [...Object.values(files).flatMap((t) => [...diagramOnly.texts].filter((x) => t.includes(JSON.stringify(x)))), ...shippedIds.filter((k) => diagramOnly.ids.has(k))];
+if (leaks.length) fail(`diagram-only content reaches the map: ${leaks.join(' | ')}`);
 fs.mkdirSync(OUT, { recursive: true });
 for (const [name, text] of Object.entries(files)) fs.writeFileSync(path.join(OUT, name), text);
 
@@ -397,5 +480,7 @@ say(`${ID}: ${frame.lines.length} lines in ${pieces.length} pieces (${pieces.fil
 say(`simplified: ${chainVertices} chain vertices → ${drawnVertices} drawn (Douglas–Peucker ${SIMPLIFY_M} m); worst chain vertex ${round(worstDeviation.m, 2)} m from the drawn line (${worstDeviation.line}; limit ${MAX_DEVIATION_M} m); worst drawn vertex ${round(worstOnChain, 3)} m off its chain (limit ${ON_CHAIN_M} m)`);
 say(`connectors: ${connectors.map((c) => `${c.line} → ${c.parent} ${c.m} m`).join(', ') || 'none'} (from ${CONNECT_FROM_M} m to ${CONNECT_MAX_M / 1000} km)`);
 say(`focus: ${Object.values(rivers).filter((r) => !r.up).length} roots (${Object.keys(rivers).filter((k) => !rivers[k].up).join(', ')}); ${Object.values(rivers).filter((r) => r.up && rivers[r.up]?.up).length} cards below a branch`);
+say(`places: ${placeReport.join('; ') || 'none'}`);
+say(`diagram-only: ${diagramOnly.ids.size} ids and ${diagramOnly.texts.size} texts held back, none shipped; map-only drawn: ${Object.keys(places).length} place(s), ${info.lines.length - seed.infoBn.lines.filter((l) => !l.only).length - seed.markers.filter((m) => m.infoBn).length} ⓘ line(s)`);
 say(`pending: ${nPending}; ⓘ: ${extra.length} credits, ${info.lines.filter((l) => l.group === 'notes').length} notes, ${info.lines.filter((l) => l.group === 'conflicts').length} conflicts`);
 say(`wrote ${path.relative(ROOT, OUT) || OUT}: ${Object.entries(files).map(([n, t]) => `${n} ${Buffer.byteLength(t)} B`).join(', ')}`);

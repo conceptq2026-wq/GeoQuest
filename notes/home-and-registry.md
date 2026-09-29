@@ -17,8 +17,11 @@ rules and verification budget apply.
   under `docs/` while its work continues — `tools/build-registry.mjs` leaves
   every listed id out, and `tools/verify.mjs` holds the registry to the
   folders less the work in progress, fails an id in the list that the
-  registry has, and fails a folder whose descriptor's id, section or titles
-  differ from its entry in the list.
+  registry has, and fails a folder whose descriptor's id or section differs
+  from its entry in the list. The list's titles are the preview card's and
+  may differ from the descriptor's while the item is in progress (the user's
+  decision, 2026-09-30: «নদী ১» and «নদী ২» for the rivers diagram and map);
+  the live card takes the descriptor's.
 
 ## Structure — the home page
 

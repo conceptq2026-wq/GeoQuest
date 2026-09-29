@@ -424,7 +424,9 @@ finishes it. It is not in `docs/registry.json`.
   pins, the border split, the checks that need no frame and the words are
   `tools/lib/rivers-core.mjs`, moved there verbatim and shared with the map
   (`notes/bangladesh-rivers-map.md`); this build draws the frames from it and
-  still writes the same bytes.
+  still writes the same bytes. The seed's `only: "map"` items (Kaptai's name,
+  two ⓘ lines) never reach this diagram; the two ⓘ lines saying the lake is
+  not drawn carry `only: "diagram"` (2026-09-30).
 - **The geometry pins,** one hash per line, in
   `tools/bangladesh-rivers-pins.json` (36 lines: the pilot's 11, the Padma
   system's 10 from Stage 1, from Stage 2 the Karnaphuli system's 5 (b5),

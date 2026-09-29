@@ -603,6 +603,11 @@ async function useItem(browser, size, entry, base, origin, dir) {
       if (selector === 'picker') await pickerSteps(page, shoot, summary, fail);
       else if (selector === 'timeline') await timelineSteps(page, shoot, summary, fail, tabs);
       else fail('no picker and no timeline');
+      if (page.zooms?.length) {
+        fs.writeFileSync(path.join(dir, `${t}-frames.txt`), `record\tzoom its frame settles at\tname\n${page.zooms.join('\n')}\n`);
+        const zs = page.zooms.map((l) => Number(l.split('\t')[1]));
+        summary.push(`frames at zoom ${Math.min(...zs)}–${Math.max(...zs)} (${t}-frames.txt)`);
+      }
       await taps(page, shoot, summary, fail, sources, tabs, camera);
     }
   }
@@ -688,6 +693,9 @@ async function pickerSteps(page, shoot, summary, fail) {
     const card = await waitCard(page);
     await fitCheck(page, `› ${options[i][1]}`);
     const value = await page.evaluate(`document.getElementById('recordPicker').value`);
+    // On a map, the zoom its frame settles at: written to <size>-frames.txt, as text.
+    const zoom = await page.evaluate(`(async () => { const m = window.__shell?.map; if (!m) return null; for (let k = 0; k < 50 && m.isMoving(); k++) await new Promise((r) => setTimeout(r, 50)); return Math.round(m.getZoom() * 100) / 100; })()`).catch(() => null);
+    if (zoom !== null) (page.zooms ??= []).push(`${options[i][0]}\t${zoom}\t${options[i][1]}`);
     if (value === options[i][0] && card.open && card.title) good++;
     else fail(`picker ${options[i][1]}: value ${value || '(placeholder)'}, card ${card.open ? `«${card.title}»` : 'closed'}`);
     await shoot('steps', `› ${options[i][1]}`);

@@ -369,7 +369,11 @@ the OSM pilot extract (`osmBangladeshRiversPilot`), each system's own extract
 `tools/bangladesh-rivers-pins.json`, held for both products by the shared
 build core, `tools/lib/rivers-core.mjs`. bangladesh-rivers-map: the same
 seed, pins and extracts, and its lines within 15 m of the pinned chains
-(checked vertex by vertex in its build). The shared district file,
+(checked vertex by vertex in its build); what only the map draws is pinned
+apart, in `tools/bangladesh-rivers-map-pins.json` — Kaptai Lake's outline, as
+Natural Earth's 10m lakes file (pinned in `tools/sources.json`) has it. The
+seed's `only` ("map" or "diagram", 2026-09-30) keeps an item to one product;
+each build asserts that none of the other's reaches it. The shared district file,
 `docs/shared/bangladesh-districts.json` (COD-AB's 64 districts, the
 basemap's Bengali names), is rebuilt by `tools/build-bangladesh-districts.mjs`
 and compared byte for byte in `tools/verify.mjs`.
@@ -403,7 +407,8 @@ State which kind a task is when reporting it.
   Jamuna, the Padma, the Meghna and the south-east («দক্ষিণ পূর্বাঞ্চল», with the Karnaphuli) so far (`notes/bangladesh-rivers.md`); local preview
   only, not in the registry. Beside it, `bangladesh-rivers-map`, the same
   seed on the map shell, in `docs/maps/` (`notes/bangladesh-rivers-map.md`):
-  its Bangladesh view so far; the diagram is kept, maintenance-only.
+  its Bangladesh view so far; the diagram is kept, maintenance-only. On the
+  preview's home page they are «নদী ১» and «নদী ২» (`tools/wip.json`).
 - Three diagrams, under বিবিধ: `atmosphere-layers`, `earth-interior` and
   `seasons`, in `docs/diagrams/`.
 

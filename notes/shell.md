@@ -102,9 +102,11 @@ drawn now (`drawn`), and read a file of the map's own folder (`file`).
 - **`focus: { records, idle: { field, value }, parent, also?: [{ records, field }] }`**
   (2026-09-30) draws only what the selection is about — hidden, not greyed.
   With nothing selected, only the records of `records` whose `idle.field`
-  holds `idle.value` (the main rivers); with one selected, that record, the
-  records whose `parent` names it (its own branches) and its chain of parents
-  (the main river, as context). A table in `also` follows the record its
+  holds `idle.value` (the main rivers); with one selected, that record, all
+  its descendants (every generation, since 2026-09-30) and its chain of
+  parents up to its main river — no sibling. A map draws the parents in a
+  lighter context style through its own state (`fromSelection` on a refs
+  field of ancestors), as the rivers map does. A table in `also` follows the record its
   `field` names (a river's markers go with their river), and selecting one of
   its records puts the view on that record. Hidden on the map only, through
   `hideOnMap`: the picker and ‹ › still list every record.

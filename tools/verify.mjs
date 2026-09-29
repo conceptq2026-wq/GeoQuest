@@ -765,11 +765,12 @@ check(
   check(new Set(ids).size === ids.length, 'tools/wip.json lists each id once');
   const finished = ids.filter((id) => registry.maps.some((e) => e.id === id));
   check(finished.length === 0, `no work in progress is a finished map or diagram — in registry.json${finished.length ? ` — ${finished.join(', ')}` : ''}`);
-  // A folder already there is the item it is listed as: its kind, its section
-  // and its titles, so the preview's card and the live one will not differ.
+  // A folder already there is the item it is listed as: its kind and its section. Its titles may differ
+  // while it is in progress — the preview card's title is the list's (the user's decision, 2026-09-30:
+  // «নদী ১» and «নদী ২» for the rivers diagram and map); the live card takes the descriptor's.
   const drift = items.filter((w) => {
     const d = descriptors[w.kind === 'diagram' ? `diagram:${w.id}` : w.id];
-    return d && (d.id !== w.id || d.section !== w.section || d.title?.bn !== w.title.bn || d.title?.en !== w.title.en);
+    return d && (d.id !== w.id || d.section !== w.section);
   });
   const withFolder = items.filter((w) => descriptors[w.kind === 'diagram' ? `diagram:${w.id}` : w.id]).map((w) => w.id);
   check(drift.length === 0, `work in progress with a folder under docs/ matches its tools/wip.json entry (${withFolder.join(', ') || 'none'})${drift.length ? ` — not: ${drift.map((w) => w.id).join(', ')}` : ''}`);

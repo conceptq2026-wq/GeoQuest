@@ -6,9 +6,11 @@
 |
 | With nothing selected, the map draws only the records of `records` whose
 | `idle.field` holds `idle.value` (the main rivers). With a record selected,
-| it draws that record, the records whose `parent` field names it (its own
-| branches), and the chain of its parents up to the one with none (the main
-| river it belongs to, as context) — everything else is hidden, not greyed.
+| it draws that record, its descendants — every record whose chain of
+| `parent` fields leads to it (its branches, theirs, and so on) — and the
+| chain of its own parents up to the one with none (its main river, as
+| context; a map styles them through its own state) — nothing else, no
+| sibling; everything else is hidden, not greyed.
 | A table in `also` follows the records its `field` names (a river's markers
 | and labels go with their river); a selected record of such a table puts
 | the view on the record it names (a marker's card keeps its river drawn).
@@ -68,8 +70,12 @@ function drawnKeys() {
   if (selected === undefined || !table[selected]) {
     return new Set(Object.keys(table).filter((key) => table[key][spec.idle.field] === spec.idle.value));
   }
+  // Its descendants, every generation: a record joins once its parent has.
   const keys = new Set([selected]);
-  for (const [key, row] of Object.entries(table)) if (row[spec.parent] === selected) keys.add(key);
+  for (let grew = true; grew; ) {
+    grew = false;
+    for (const [key, row] of Object.entries(table)) if (!keys.has(key) && keys.has(row[spec.parent])) (keys.add(key), (grew = true));
+  }
   for (let at = table[selected][spec.parent], guard = 0; at != null && guard < 64; at = table[at]?.[spec.parent], guard++) keys.add(at);
   return keys;
 }

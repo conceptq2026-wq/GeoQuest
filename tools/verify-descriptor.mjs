@@ -98,7 +98,8 @@ const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa
 const BANGLADESH_RIVERS_SEEDS = path.join(ROOT, 'data-sources/bangladesh-rivers');
 // One pin per seed file: the common file and each system's (tools/lib/rivers-seed.mjs).
 const BANGLADESH_RIVERS_SEED_SHA256 = {
-  'bangladesh-rivers.seed.json': 'd0d9a6225051190e3096fe34b51ac08234c963fac31e2ecb0eeb0bc3ea465698',
+  // Re-pinned 2026-09-30 (was d0d9a622…): the map-only Kaptai label, the map's ⓘ variants and the lakes source.
+  'bangladesh-rivers.seed.json': '56b057b230649ad05c899248c270f2b9470c335c2069b52d6c3cdb16976871f0',
   'systems/jamuna.seed.json': 'c43cad5f93c46ee3d75a5959443637456845274be7c4276cc40def7d63c34795',
   'systems/padma.seed.json': 'be8e5d28a3533b941006423815f79c08e3eee2d31ac651bb4f44c0f428829f15',
   'systems/meghna.seed.json': 'a807af25804b71d7c0cd7636fc1f1cdaddacae13259085241d5f333bebaefe91',
@@ -1856,7 +1857,10 @@ console.log('\n\n============ bangladesh-rivers (diagram) ============');
   const id = 'bangladesh-rivers';
   CHECKED_DIAGRAMS.add(id);
   const dir = path.join(DIAGRAMS_DIR, id);
-  const { seed, files: seedFiles } = loadRiversSeed(BANGLADESH_RIVERS_SEEDS);
+  const { seed: wholeSeed, files: seedFiles } = loadRiversSeed(BANGLADESH_RIVERS_SEEDS);
+  // The diagram reads the seed less what only the map draws (only: "map", the user's decisions, 2026-09-30).
+  const notMap = (x) => x?.only !== 'map';
+  const seed = { ...wholeSeed, entities: wholeSeed.entities.filter(notMap), markers: wholeSeed.markers.filter(notMap), continuations: wholeSeed.continuations.filter(notMap), infoBn: { ...wholeSeed.infoBn, lines: wholeSeed.infoBn.lines.filter(notMap) } };
   for (const f of seedFiles) check(BANGLADESH_RIVERS_SEED_SHA256[f.file] === f.sha256, `the seed file ${f.file} is the approved one: SHA-256 ${f.sha256.slice(0, 12)}… (pinned ${(BANGLADESH_RIVERS_SEED_SHA256[f.file] ?? 'none').slice(0, 12)}…)`);
   check(Object.keys(BANGLADESH_RIVERS_SEED_SHA256).length === seedFiles.length, `every pinned seed file is one the seed lists (${seedFiles.length})`);
   const descriptor = readJson(path.join(dir, 'descriptor.json'));
@@ -1867,6 +1871,17 @@ console.log('\n\n============ bangladesh-rivers (diagram) ============');
   // ---- the descriptor ---------------------------------------------------------
   console.log('\n---- descriptor ----');
   check(descriptor.id === id && descriptor.language === 'bn' && descriptor.section === 'bangladesh', `descriptor: id ${descriptor.id}, language ${descriptor.language}, section ${descriptor.section}`);
+  {
+    // Nothing only the map draws reaches the diagram: none of its texts, no id of its cards, markers, lines or places.
+    const mapTexts = new Set([...wholeSeed.infoBn.lines, ...wholeSeed.entities, ...wholeSeed.markers, ...(wholeSeed.mapPlacesBn ?? [])].filter((x) => x.only === 'map').map((x) => x.textBn ?? x.nameBn));
+    const mapIds = new Set([...wholeSeed.entities, ...wholeSeed.markers, ...(wholeSeed.mapPlacesBn ?? [])].filter((x) => x.only === 'map').map((x) => x.id).concat(Object.entries(wholeSeed.geometry.lines).filter(([, l]) => l.only === 'map').map(([k]) => k)));
+    const shipped = [];
+    // Every string, and every key (a card's or a marker's id is a key of data.json).
+    const all = (v) => (typeof v === 'string' ? shipped.push(v) : v && typeof v === 'object' ? Object.entries(v).forEach(([k, x]) => (shipped.push(k), all(x))) : null);
+    all([descriptor, readJson(path.join(dir, descriptor.data)), ...descriptor.views.map((v) => readJson(path.join(dir, v.art)))]);
+    const leaked = [...new Set(shipped.filter((t) => mapTexts.has(t) || mapIds.has(t)))];
+    check(mapTexts.size > 0 && leaked.length === 0, `nothing only the map draws reaches the diagram (${mapTexts.size} texts and ${mapIds.size} ids held back)${leaked.length ? ` — shipped: ${leaked.join(' | ')}` : ''}`);
+  }
   check(descriptor.title?.bn === seed.titleBn && descriptor.title?.en === seed.titleEn, `title is the seed's: «${descriptor.title?.bn}» / ${descriptor.title?.en}`);
   const modules = [...(fs.readFileSync(path.join(VISUAL_DIR, 'app.js'), 'utf8').match(/const VIEW_MODULES = \{([\s\S]*?)\n\};?/)?.[1] ?? '').matchAll(/^\s*'?([\w-]+)'?\s*:/gm)].map((m) => m[1]);
   const wantViews = [['whole', ui.tabsBn.whole, 'frame-whole.json'], ['bangladesh', ui.tabsBn.bangladesh, 'frame-bangladesh.json']];
@@ -2055,7 +2070,10 @@ console.log('\n\n============ bangladesh-rivers-map ============');
 {
   const id = 'bangladesh-rivers-map';
   const dir = path.join(MAPS_DIR, id);
-  const { seed } = loadRiversSeed(BANGLADESH_RIVERS_SEEDS);
+  const { seed: wholeSeed } = loadRiversSeed(BANGLADESH_RIVERS_SEEDS);
+  // The map reads the seed less what only the diagram draws (only: "diagram", the user's decisions, 2026-09-30).
+  const notDiagram = (x) => x?.only !== 'diagram';
+  const seed = { ...wholeSeed, entities: wholeSeed.entities.filter(notDiagram), markers: wholeSeed.markers.filter(notDiagram), continuations: wholeSeed.continuations.filter(notDiagram), infoBn: { ...wholeSeed.infoBn, lines: wholeSeed.infoBn.lines.filter(notDiagram) }, mapPlacesBn: (wholeSeed.mapPlacesBn ?? []).filter(notDiagram) };
   const ui = seed.ui;
   const G = seed.geometry;
   const frame = G.frames.bangladesh;
@@ -2067,6 +2085,7 @@ console.log('\n\n============ bangladesh-rivers-map ============');
   const marks = readJson(path.join(dir, 'marks.json'));
   const names = readJson(path.join(dir, 'names.json'));
   const info = readJson(path.join(dir, 'info.json'));
+  const places = readJson(path.join(dir, 'places.json'));
 
   console.log('\n---- against the seed ----');
   check(descriptor.id === id && descriptor.section === 'bangladesh' && descriptor.basemap === 'bangladesh-wide' && descriptor.title?.bn === seed.titleBn, `descriptor: ${descriptor.id}, section ${descriptor.section}, basemap ${descriptor.basemap}, title «${descriptor.title?.bn}», the seed's`);
@@ -2098,7 +2117,7 @@ console.log('\n\n============ bangladesh-rivers-map ============');
   check(JSON.stringify(info.lines) === JSON.stringify(wantLines) && JSON.stringify(descriptor.info?.headings) === JSON.stringify(ui.creditGroupsBn), `ⓘ: «${ui.creditGroupsBn.sources}», «${ui.creditGroupsBn.notes}» (${wantLines.filter((l) => l.group === 'notes').length}) and «${ui.creditGroupsBn.conflicts}» (${wantLines.filter((l) => l.group === 'conflicts').length}), the seed's lines in its order`);
   const cited = new Set(['naturalEarth', 'codab', 'osm']);
   const collect = (v) => (Array.isArray(v) ? v.forEach(collect) : v && typeof v === 'object' ? Object.entries(v).forEach(([k, x]) => (k === 'source' && typeof x === 'string' ? cited.add(x) : collect(x))) : null);
-  collect([seed.entities, seed.markers, seed.continuations, seed.infoBn.lines]);
+  collect([seed.entities, seed.markers, seed.continuations, seed.infoBn.lines, seed.mapPlacesBn]);
   const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const wantExtra = Object.entries(seed.sources)
     .filter(([key]) => key !== 'user' && cited.has(key))
@@ -2108,9 +2127,30 @@ console.log('\n\n============ bangladesh-rivers-map ============');
   const rowsWant = ui.rowOrder.map((k) => ({ label: ui.rowLabelsBn[k], field: k }));
   check(pickerC?.placeholder === ui.pickerPlaceholderBn && JSON.stringify(descriptor.sheets?.rivers?.rows) === JSON.stringify(rowsWant) && Object.entries(descriptor.lookups.systems).every(([s, v]) => seed.systems.find((x) => x.id === s)?.nameBn === v.nameBn), `the picker's prompt «${ui.pickerPlaceholderBn}», the card's rows and the systems' names are the seed's`);
   check((descriptor.legend?.items ?? []).every((i) => ui.legendBn[i.kind] === i.label), `the legend's words are the seed's (${(descriptor.legend?.items ?? []).map((i) => i.label).join(', ')})`);
-  check(JSON.stringify(descriptor.focus) === JSON.stringify({ records: 'rivers', idle: { field: 'role', value: 'main' }, parent: 'up', also: [{ records: 'marks', field: 'river' }, { records: 'names', field: 'river' }] }), 'focus: the main rivers at rest; a selection draws its river, its branches and the rivers it joins, up to its main river');
-  const flagged = [...seed.entities, ...seed.markers, ...seed.infoBn.lines, ...Object.values(G.lines)].filter((x) => x && typeof x === 'object' && 'only' in x);
-  check(flagged.length === 0, `no seed item carries the map-only flag yet: both products draw the same seed (${flagged.length})`);
+  check(JSON.stringify(descriptor.focus) === JSON.stringify({ records: 'rivers', idle: { field: 'role', value: 'main' }, parent: 'up', also: [{ records: 'marks', field: 'river' }, { records: 'names', field: 'river' }] }), 'focus: the main rivers at rest; a selection draws its river, all its descendants and its ancestors up to its main river, no sibling');
+  // Ancestors, for the lighter context style: a branch's chain of parent cards up to its main river, and their names.
+  const badAnc = Object.entries(rivers).filter(([, r]) => {
+    const chain = [];
+    for (let at = r.up; at; at = rivers[at]?.up) chain.push(at);
+    const chainNames = Object.keys(names).filter((k) => chain.includes(names[k].river));
+    return r.up ? JSON.stringify(r.ancestors) !== JSON.stringify(chain) || JSON.stringify(r.ancestorNames) !== JSON.stringify(chainNames) : 'ancestors' in r || 'ancestorNames' in r;
+  });
+  const ctxSources = Object.entries(descriptor.sources).filter(([, sp]) => (sp.state ?? []).some((f) => f.name === 'context')).map(([k]) => k);
+  check(badAnc.length === 0 && JSON.stringify(ctxSources) === JSON.stringify(['connectors', 'lines-out', 'lines-in', 'names']), `every branch's ancestors are its chain of parent cards up to its main river, with their names — drawn for context in ${ctxSources.join(', ')}${badAnc.length ? ` — not ${badAnc.map(([k]) => k).join(', ')}` : ''}`);
+  // The map's own items: the places (a name on the water, from a cited book) and the ⓘ variants; nothing only the diagram draws.
+  const wantPlaces = seed.mapPlacesBn.filter((pl) => pl.only === 'map' && pl.sources?.nameBn?.length && pl.sources?.outline?.length);
+  check(JSON.stringify(Object.keys(places)) === JSON.stringify(wantPlaces.map((pl) => pl.id)) && wantPlaces.every((pl) => places[pl.id].nameBn === pl.nameBn && places[pl.id].at.length === 2), `the map's own places are the seed's map-only ones, each named as its cited source gives it: ${wantPlaces.map((pl) => `«${pl.nameBn}» (${pl.sources.nameBn.map((c) => `${c.source} ${c.where}`).join('; ')})`).join(', ')}`);
+  const placeLayer = descriptor.layers.find((l) => l.source === 'places');
+  const layerOrder = descriptor.layers.map((l) => l.id);
+  check(placeLayer?.layout?.['text-size'] >= 14 && layerOrder.indexOf(placeLayer.id) < layerOrder.indexOf('river-names'), `a place's name is ${placeLayer?.layout?.['text-size']} px (at least 14), placed after the rivers' names, which win a collision`);
+  const diagramTexts = new Set(wholeSeed.infoBn.lines.filter((l) => l.only === 'diagram').map((l) => l.textBn));
+  const mapTexts = wholeSeed.infoBn.lines.filter((l) => l.only === 'map').map((l) => l.textBn);
+  const infoTexts = new Set(info.lines.map((l) => l.text));
+  check(diagramTexts.size > 0 && [...diagramTexts].every((t) => !infoTexts.has(t)) && mapTexts.length > 0 && mapTexts.every((t) => infoTexts.has(t)), `ⓘ shows the map's own ${mapTexts.length} lines in place of the diagram's ${diagramTexts.size}, and none of the diagram's`);
+  const badFlags = [];
+  const walkFlags = (v, trail) => (Array.isArray(v) ? v.forEach((x, i) => walkFlags(x, `${trail}[${i}]`)) : v && typeof v === 'object' ? Object.entries(v).forEach(([k, x]) => (k === 'only' ? (/^(entities|markers|continuations|mapPlacesBn)\[\d+\]$|^infoBn\.lines\[\d+\]$|^geometry\.lines\.\w+$/.test(trail) && ['map', 'diagram'].includes(x) ? null : badFlags.push(trail)) : walkFlags(x, trail ? `${trail}.${k}` : k))) : null);
+  walkFlags(wholeSeed, '');
+  check(badFlags.length === 0, `"only" stands only on a card, marker, continuation, ⓘ line, line or place, as "map" or "diagram"${badFlags.length ? ` — not: ${badFlags.join(', ')}` : ''}`);
   // Every Bengali string shown is the seed's, or a marker's heading composed from two of its own.
   const seedStrings = new Set();
   const all = [];
@@ -2121,7 +2161,7 @@ console.log('\n\n============ bangladesh-rivers-map ============');
   const shown = [];
   const gatherShown = (v) => (typeof v === 'string' ? shown.push(v) : v && typeof v === 'object' ? Object.values(v).forEach(gatherShown) : null);
   gatherShown({ ...descriptor, attribution: null });
-  gatherShown([rivers, marks, names, info]);
+  gatherShown([rivers, marks, names, info, places]);
   const foreign = shown.filter((v) => /[ঀ-৿]/.test(v) && !seedStrings.has(v));
   check(foreign.length === 0, `every Bengali string shown is the seed's${foreign.length ? `, not: ${foreign.slice(0, 5).join(' | ')}` : ''}`);
 }

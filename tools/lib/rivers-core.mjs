@@ -49,20 +49,74 @@ export const hashLine = (coords) => sha256(Buffer.from(JSON.stringify(coords))).
 const round = (v, d = 1) => Math.round(v * 10 ** d) / 10 ** d;
 const json = (v) => JSON.stringify(v, null, 2) + '\n';
 
-/**
- * Everything both builds draw from, checked. `id` prefixes every failure;
- * `printPins` prints the line hashes and exits, as --print-pins does.
+/*
+ * One seed, two products (the user's decisions, 2026-09-30): an item with
+ * `only: "map"` is the map's alone, one with `only: "diagram"` the diagram's
+ * alone, one without it both's. `only` may stand on a card, a marker, a
+ * continuation, an ⓘ line, a line of `geometry.lines` or a map place — and
+ * nowhere else. Each product reads the seed with the other's items dropped;
+ * the map's own lines are pinned apart, in MAP_PINS.
  */
-export function riversCore({ id = 'bangladesh-rivers', printPins = false } = {}) {
+export const PRODUCTS = ['diagram', 'map'];
+export const MAP_PINS = path.join(ROOT, 'tools/bangladesh-rivers-map-pins.json');
+const FLAGGABLE = ['entities', 'markers', 'continuations', 'mapPlacesBn'];
+
+/** Every place in the seed an `only` stands, as a path; and whether each may. */
+export function onlyFlags(seed) {
+  const found = [];
+  const walk = (v, trail) => {
+    if (Array.isArray(v)) v.forEach((x, i) => walk(x, `${trail}[${i}]`));
+    else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) (k === 'only' ? found.push({ trail, value: x }) : walk(x, trail ? `${trail}.${k}` : k));
+  };
+  walk(seed, '');
+  const allowed = (t) => new RegExp(`^(${FLAGGABLE.join('|')})\\[\\d+\\]$|^infoBn\\.lines\\[\\d+\\]$|^geometry\\.lines\\.[A-Za-z0-9]+$`).test(t);
+  return found.map((f) => ({ ...f, ok: allowed(f.trail) && PRODUCTS.includes(f.value) }));
+}
+
+/** The ids and the Bengali texts of the items only one product draws: what the other must never ship. */
+export function itemsOnly(whole, product) {
+  const ids = new Set();
+  const texts = new Set();
+  const own = (x) => x?.only === product;
+  for (const k of FLAGGABLE) for (const x of whole[k] ?? []) if (own(x)) (ids.add(x.id), x.nameBn && texts.add(x.nameBn));
+  for (const l of whole.infoBn.lines) if (own(l)) texts.add(l.textBn);
+  for (const [lid, l] of Object.entries(whole.geometry.lines)) if (own(l)) ids.add(lid);
+  return { ids, texts };
+}
+
+/** The seed as one product reads it: the other product's items dropped. */
+export function seedFor(whole, product) {
+  const mine = (x) => !x?.only || x.only === product;
+  const lines = Object.fromEntries(Object.entries(whole.geometry.lines).filter(([, l]) => mine(l)));
+  const frames = Object.fromEntries(Object.entries(whole.geometry.frames).map(([k, f]) => [k, { ...f, lines: (f.lines ?? []).filter((id) => id === 'main' || id in lines) }]));
+  return {
+    ...whole,
+    ...Object.fromEntries(FLAGGABLE.map((k) => [k, (whole[k] ?? []).filter(mine)])),
+    infoBn: { ...whole.infoBn, lines: whole.infoBn.lines.filter(mine) },
+    geometry: { ...whole.geometry, lines, frames },
+  };
+}
+
+/**
+ * Everything both builds draw from, checked, for one product ("diagram" or
+ * "map"). `id` prefixes every failure; `printPins` prints the line hashes and
+ * exits, as --print-pins does.
+ */
+export function riversCore({ id = 'bangladesh-rivers', product, printPins = false } = {}) {
   const ID = id;
   const PRINT_PINS = printPins;
   const fail = (msg) => {
     throw new Error(`${ID}: ${msg}`);
   };
+  if (!PRODUCTS.includes(product)) fail(`riversCore needs product "diagram" or "map", not «${product}»`);
 
   // ---- the seed and the pinned inputs ---------------------------------------------------------
 
-  const { seed } = loadRiversSeed(SEED);
+  const { seed: wholeSeed } = loadRiversSeed(SEED);
+  const badFlags = onlyFlags(wholeSeed).filter((f) => !f.ok);
+  if (badFlags.length) fail(`"only" stands where it may not, or is neither "map" nor "diagram": ${badFlags.map((f) => `${f.trail} (${f.value})`).join(', ')}`);
+  const seed = seedFor(wholeSeed, product);
+  const otherOnly = new Set(Object.entries(wholeSeed.geometry.lines).filter(([, l]) => l.only && l.only !== product).map(([lid]) => lid));
   const sources = JSON.parse(fs.readFileSync(SOURCES, 'utf8'));
   const ui = seed.ui;
   const G = seed.geometry;
@@ -222,9 +276,12 @@ export function riversCore({ id = 'bangladesh-rivers', printPins = false } = {})
     console.log(json(drawnHashes));
     process.exit(0);
   }
-  const PINNED = fs.existsSync(PINS) ? JSON.parse(fs.readFileSync(PINS, 'utf8')) : {};
+  // The shared lines and the diagram's own are pinned in PINS; the map's own lines in MAP_PINS' `lines`.
+  const readPins = (file) => (fs.existsSync(file) ? JSON.parse(fs.readFileSync(file, 'utf8')) : {});
+  const shared = readPins(PINS);
+  const PINNED = product === 'map' ? { ...shared, ...(readPins(MAP_PINS).lines ?? {}) } : shared;
   const moved = Object.entries(drawnHashes).filter(([id, h]) => PINNED[id] !== h).map(([id, h]) => `${id}: pinned ${PINNED[id] ?? '(none)'}, now ${h}`);
-  const stale = Object.keys(PINNED).filter((id) => !(id in drawnHashes)).map((id) => `${id}: pinned but not drawn`);
+  const stale = Object.keys(PINNED).filter((id) => !(id in drawnHashes) && !otherOnly.has(id)).map((id) => `${id}: pinned but not drawn`);
   if (moved.length || stale.length) fail(`geometry pins do not hold — stop and report, never re-pin to pass:\n  ${[...moved, ...stale].join('\n  ')}`);
 
   // ---- Bangladesh: the outline, the upazilas ---------------------------------------------------
@@ -418,7 +475,7 @@ export function riversCore({ id = 'bangladesh-rivers', printPins = false } = {})
   const credit = (s, extra = '') => ({ title: s.title + (s.creditExtra ?? '') + extra, by: s.publisher, url: s.url, ...(/[ঀ-৿]/.test(s.title) ? { lang: 'bn' } : {}) });
 
   return {
-    seed, sources, ui, G, neLand, neBoundaries, admin0, admin2, admin3, countries,
+    wholeSeed, seed, sources, ui, G, neLand, neBoundaries, admin0, admin2, admin3, countries,
     ways, wayFrom, usedWays, neChain, seam, seamGapM, osmMain, mainCoords, lines,
     junction, mainToPadma, mainJoins, joinsParent, parentSideAtTail, basinOf, drawnHashes,
     outline, ringBox, polygonsOf, indexed, inside, outlineIdx, outlineRings, distToRings, upazila,

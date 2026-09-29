@@ -29,7 +29,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { bangladeshLineClass } from './lib/geo.mjs';
 import { projection, distM, nearestOnLine, lengthKm, fractionAlong, simplify, simplifyRing, clipRing, clipLine, pathData } from './lib/rivers-frame.mjs';
-import { riversCore, SEED, CONNECT_FROM_M, CONNECT_MAX_M, UNJOINED_BY_DECISION, JOIN_M } from './lib/rivers-core.mjs';
+import { riversCore, itemsOnly, SEED, CONNECT_FROM_M, CONNECT_MAX_M, UNJOINED_BY_DECISION, JOIN_M } from './lib/rivers-core.mjs';
 
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const ROOT = path.resolve(HERE, '..');
@@ -64,8 +64,8 @@ const {
   junction, mainToPadma, mainJoins, joinsParent, parentSideAtTail, basinOf, drawnHashes, outline, ringBox, polygonsOf,
   indexed, inside, outlineRings, distToRings, mainPieces, borderPieces, upazilaChecks, markerSeed, sundarganj, entrySeed,
   crossing, entryToBorder, bwdbToBorder, dewanganj, cited, pending, entities, markers, systems, picker, pickerGroups,
-  labelTexts, credit,
-} = riversCore({ id: ID, printPins: PRINT_PINS });
+  labelTexts, credit, wholeSeed,
+} = riversCore({ id: ID, product: 'diagram', printPins: PRINT_PINS });
 
 // ---- the frames --------------------------------------------------------------------------------
 
@@ -366,6 +366,16 @@ const descriptor = {
 // ---- write and report -------------------------------------------------------------------------------
 
 const files = { 'descriptor.json': descriptor, 'data.json': data, 'frame-whole.json': frames.whole.file, 'frame-bangladesh.json': frames.bangladesh.file };
+
+// Nothing the map alone draws reaches the diagram (the user's decision, 2026-09-30): no id of its cards,
+// markers, lines or places, and none of its Bengali texts, anywhere in the four files.
+const mapOnly = itemsOnly(wholeSeed, 'map');
+const shipped = [];
+const gather = (v) => (typeof v === 'string' ? shipped.push(v) : v && typeof v === 'object' ? Object.values(v).forEach(gather) : null);
+gather(files);
+const shippedIds = [...Object.keys(data.entities), ...Object.keys(data.markers), ...Object.values(frames).flatMap((f) => [...f.file.lines.map((l) => l.id), ...f.file.markers.map((m) => m.id), ...f.file.labels.map((l) => l.id)])];
+const leaks = [...shipped.filter((t) => mapOnly.texts.has(t)), ...shippedIds.filter((k) => mapOnly.ids.has(k))];
+if (leaks.length) fail(`map-only content reaches the diagram: ${leaks.join(' | ')}`);
 fs.mkdirSync(OUT, { recursive: true });
 const sizes = {};
 for (const [name, value] of Object.entries(files)) {
@@ -386,4 +396,5 @@ for (const [k, list] of Object.entries(districtReport)) say(`districts, ${k}: ${
 for (const [k, f] of Object.entries(frames)) if (f.file.connectors.length) say(`connectors, ${k}: ${f.file.connectors.map((c) => `${c.id} → ${c.parent} ${c.m} m`).join(', ')} (from ${CONNECT_FROM_M} m to ${CONNECT_MAX_M / 1000} km)`);
 for (const [k, f] of Object.entries(frames)) say(`frame ${k}: viewBox 0 0 ${f.width} ${f.height}, lon ${f.bounds.lonMin}–${f.bounds.lonMax}, lat ${f.bounds.latMin}–${f.bounds.latMax}, scale ${round(f.scale, 2)} u/deg`);
 say(`pending: ${pending.length} (${pending.join(', ')})`);
+say(`map-only: ${mapOnly.ids.size} ids and ${mapOnly.texts.size} texts held back, none shipped`);
 say(`wrote ${path.relative(ROOT, OUT) || OUT}: ${Object.entries(sizes).map(([n, b]) => `${n} ${b} B`).join(', ')}; data ${sizes['data.json'] + sizes['frame-whole.json'] + sizes['frame-bangladesh.json']} B`);
