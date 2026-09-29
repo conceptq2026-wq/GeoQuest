@@ -58,7 +58,18 @@ finishes it. It is not in `docs/registry.json`.
   বিশ্বপরিচয়»), BWDB and JRCB, Bengali then English Wikipedia, newspapers,
   Banglapedia — in its source's words; a card follows its source's words
   where they differ from the drawn line. The Karatoya card is BWDB's NW-14,
-  the river drawn. The Padma and the Meghna have no card.
+  the river drawn. The Padma and the Meghna have no card. Wherever a card
+  names «দেওয়ানগঞ্জ» with «ময়মনসিংহ জেলা» (the main river's and the Old
+  Brahmaputra's «গতিপথ», the Old Brahmaputra's «উৎপত্তি»), the note «(বর্তমানে
+  জামালপুর জেলা)» follows it.
+- **A marker's card names only what COD-AB agrees with** (the user's policy,
+  as for the entry): a marker's row keeps the part of its place — upazila or
+  district — that contains the drawn marker, and the source's full wording
+  goes to a plain ⓘ line with the drawn location. The Teesta's mouth, drawn in
+  Gaibandha Sadar, shows «গাইবান্ধা জেলা»; BWDB's Sundarganj is in ⓘ. The
+  build holds it (`teestaConfluence in Gaibandha district`). Rows with no
+  marker (the origins and mouths of the unjoined and distributary lines)
+  follow their sources.
 - **ⓘ,** after the cited sources and the entry line, carries the seed's
   `infoBn.lines` as plain text, each citing its sources: the two lines on the
   drawn joins (the user's words), where COD-AB puts what a source places
@@ -66,7 +77,8 @@ finishes it. It is not in `docs/registry.json`.
   beginning in Gaibandha and Tangail), the Karatoya from India (NW-13) that is
   not drawn, and one line per source conflict, the card's value first.
   Research for these cards: `tools/.cache/bangladesh-rivers/review2.csv` and
-  `quotes.md` §6.
+  `quotes.md` §6. Its Bengali lines are 14 px (`rivers.css`), not the
+  credits' 12 px; the panel scrolls within 60 % of the screen (`style.css`).
 - **The picker row** is the shell's, at the top, with one entry, the main river.
   A tap on a line or a marker opens its card; a marker's heading is composed
   «name — legend word». The legend lists only the kinds a tab draws. ⓘ carries
@@ -80,8 +92,9 @@ finishes it. It is not in `docs/registry.json`.
 - **Editor's seed:** `data-sources/bangladesh-rivers/bangladesh-rivers.seed.json`
   — every word, its sources, the geometry recipe (way ids with trims, the joins,
   the frames, the label anchors) and a `review` of where sources differ. Its
-  SHA-256 is pinned in `tools/verify-descriptor.mjs`, now `08aff7d1…89bb`
-  (`28856c9a…` before the Prompt 40 cards; `c14c8bb4…` before the entry row lost «নাগেশ্বরী উপজেলা»; `95090aa6…`
+  SHA-256 is pinned in `tools/verify-descriptor.mjs`, now `1c70b88a…95ec`
+  (`08aff7d1…` before the Dewanganj notes and the Teesta district; `28856c9a…`
+  before the Prompt 40 cards; `c14c8bb4…` before the entry row lost «নাগেশ্বরী উপজেলা»; `95090aa6…`
   before the entry marker was snapped; `a6e2e386…` before the
   Teesta mouth's provenance was corrected). NCTB books
   first, then the source order in CLAUDE.md; past exam questions are not used.
@@ -141,7 +154,8 @@ finishes it. It is not in `docs/registry.json`.
   takes each tab in turn: the picker's entry, then every line and marker
   tapped at a point where its zone alone takes the tap, its card's heading the
   zone's; a marker's zone 44 px across; the layout (names on the stage, clear
-  of each other, the picker row and the card) with no card and with each.
+  of each other, the picker row and the card) with no card and with each; and
+  ⓘ opened (a shot), on the screen, scrolled to its last line, closed again.
 
 ## Where decorations may go
 
@@ -164,8 +178,8 @@ separate, approved change:
   BWDB's point. The cards give only the book's «কুড়িগ্রাম জেলা»; Nageshwari
   (JRCB, BWDB) and Ulipur (COD-AB) are in ⓘ.
 - The Teesta is a tributary of the Brahmaputra, as the books have it; its
-  joining place is BWDB's Sundarganj (the marker, 679 m from it, follows),
-  and JRCB's Fulchhari is in ⓘ.
+  card and marker say «গাইবান্ধা জেলা», the district of the drawn mouth, and
+  BWDB's Sundarganj (679 m away) and JRCB's Fulchhari are in ⓘ.
 - No Old Brahmaputra offtake marker: the book (Dewanganj) and BWDB (Fulchhari)
   name different places.
 - «শিয়াং» and «দিহাং» are on the main river's card only, never on the picture.

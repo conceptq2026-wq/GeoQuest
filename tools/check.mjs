@@ -843,6 +843,19 @@ async function riverSteps(page, shoot, summary, fail) {
     const marks = zones.filter(([k]) => k.startsWith('marker:')).length;
     parts.push(`«${tabs[i]}» ${sub[0] ?? 'picker ?'}, taps ${good}/${zones.length} (${zones.length - marks} lines, ${marks} markers${marks ? `, zones ≥ ${Math.round(least)} px` : ''})`);
   }
+  // ⓘ open: on the screen, scrolled to its last line, and closed again by a second tap on ⓘ.
+  const info = await page.evaluate(box('.info-row .attrib-button'));
+  if (info) {
+    await page.click(...info);
+    await sleep(300);
+    await shoot('steps', 'ⓘ open');
+    const got = await page.evaluate(`(() => { const p = document.querySelector('.attrib-inner'); const r = p.getBoundingClientRect(); p.scrollTop = p.scrollHeight; const l = p.lastElementChild.getBoundingClientRect(); return { fits: r.left >= 0 && r.right <= innerWidth && r.bottom <= innerHeight, scrolls: p.scrollHeight > p.clientHeight, last: l.bottom <= r.bottom + 1 }; })()`);
+    await page.click(...info);
+    await sleep(200);
+    const closed = await page.evaluate(`!document.querySelector('.attrib').classList.contains('open')`);
+    if (!got.fits || !got.last || !closed) fail(`ⓘ panel — on screen ${got.fits}, last line reachable ${got.last}, closes ${closed}`);
+    parts.push(`ⓘ on screen, ${got.scrolls ? 'scrolls' : 'fits'} to its last line, closes`);
+  }
   summary.push(...parts);
 }
 

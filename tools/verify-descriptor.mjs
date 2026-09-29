@@ -95,7 +95,7 @@ const SEASONS_SEEDS = path.join(ROOT, 'data-sources/seasons');
 const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa32509b451efb2';
 // The bangladesh-rivers diagram: the editor's seed, pinned. Its geometry is pinned in tools/bangladesh-rivers-pins.json.
 const BANGLADESH_RIVERS_SEEDS = path.join(ROOT, 'data-sources/bangladesh-rivers');
-const BANGLADESH_RIVERS_SEED_SHA256 = '08aff7d1ca609094c5d1ed866488f2a44f324e71cf7b5972fac23536fcd089bb';
+const BANGLADESH_RIVERS_SEED_SHA256 = '1c70b88a44e8e78caf2090fbde22c83d00a46a6a2af82a839c52b43367a495ec';
 // The latitude-longitude globe: the editor's seed, the pinned sources (its
 // imagery's credit among them) and the geometry pins.
 const LATLON_SEED = path.join(ROOT, 'data-sources/latitude-longitude/latitude-longitude.seed.json');

@@ -251,3 +251,9 @@
   stroke: #e07b00;
   stroke-width: 3px;
 }
+
+/* ---- ⓘ: its Bengali lines at the diagrams' 14 px floor, not the credits' 12 px; the panel still scrolls (style.css) ---- */
+.rivers .attrib-inner [lang='bn'] {
+  font-size: 14px;
+  line-height: 1.5;
+}

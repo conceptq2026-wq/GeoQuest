@@ -290,6 +290,9 @@ inUpazila('dharlaConfluence', 'Ulipur', 'Kurigram');
 inUpazila('oldBrahmaputraMouth', 'Raipura', 'Narsingdi');
 const sundarganj = distToRings(markerSeed.teestaConfluence.lonLat, polygonsOf(upazila('Sundarganj', 'Gaibandha')).flat());
 if (sundarganj > SUNDARGANJ_M) fail(`the Teesta's mouth is ${round(sundarganj)} m from Sundarganj upazila (limit ${SUNDARGANJ_M} m)`);
+// Its card and marker name only the district COD-AB agrees with (the user's policy, as for the entry).
+if (!admin3.features.some((f) => f.properties.adm2_name === 'Gaibandha' && inside(markerSeed.teestaConfluence.lonLat, indexed(f.geometry)))) fail("the Teesta's mouth is not in COD-AB's Gaibandha district, as its card says");
+upazilaChecks.push('teestaConfluence in Gaibandha district');
 // The entry marker stands where the drawn main line first crosses COD-AB's border
 // going downstream (the user's decision, 2026-09-29); BWDB's point is kept as snappedFrom.
 const entrySeed = markerSeed.entry;

@@ -441,8 +441,8 @@
       "entity": "teesta",
       "nameBn": "তিস্তা",
       "lonLat": [89.68155, 25.39858],
-      "coordSource": { "source": "osm", "way": 232252699, "vertex": 197, "where": "the last vertex of way 232252699 in the pinned snapshot, which carries no node ids; COD-AB puts the point in Gaibandha Sadar upazila, 679 m from Sundarganj and 1.8 km from Fulchhari" },
-      "valueBn": "গাইবান্ধা জেলার সুন্দরগঞ্জ উপজেলা",
+      "coordSource": { "source": "osm", "way": 232252699, "vertex": 197, "where": "the last vertex of way 232252699 in the pinned snapshot, which carries no node ids; COD-AB puts the point in Gaibandha Sadar upazila, Gaibandha district, 679 m from Sundarganj and 1.8 km from Fulchhari" },
+      "valueBn": "গাইবান্ধা জেলা",
       "sources": {
         "nameBn": [{ "source": "bgeo", "where": "পৃ. ১৫৪", "states": "তিস্তা" }],
         "valueBn": [{ "source": "bwdbNW52", "where": "§1.1 বর্ণনা", "states": "গাইবান্ধা জেলার সুন্দরগঞ্জ উপজেলায় ব্রহ্মপুত্র-যমুনা নদীতে পতিত হয়েছে" }]
@@ -473,7 +473,7 @@
         "alias": "ইয়ার-লুং ৎসাং-পো (তিব্বত); শিয়াং (অরুণাচল প্রদেশ); দিহাং (আসাম)",
         "origin": "হিমালয় পর্বতের কৈলাস শৃঙ্গের নিকটে মানস সরোবর",
         "entry": "কুড়িগ্রাম জেলা",
-        "course": "তিব্বতের উপর দিয়ে পূর্ব দিকে ও পরে আসামের ভিতর দিয়ে পশ্চিম দিকে; কুড়িগ্রাম জেলার মধ্য দিয়ে বাংলাদেশে প্রবেশ করেছে; ময়মনসিংহ জেলার দেওয়ানগঞ্জের কাছে যমুনা নামে দক্ষিণে প্রবাহিত",
+        "course": "তিব্বতের উপর দিয়ে পূর্ব দিকে ও পরে আসামের ভিতর দিয়ে পশ্চিম দিকে; কুড়িগ্রাম জেলার মধ্য দিয়ে বাংলাদেশে প্রবেশ করেছে; ময়মনসিংহ জেলার দেওয়ানগঞ্জের কাছে (বর্তমানে জামালপুর জেলা) যমুনা নামে দক্ষিণে প্রবাহিত",
         "length": null,
         "tributaries": "ব্রহ্মপুত্র: ধরলা ও তিস্তা; যমুনা: করতোয়া ও আত্রাই",
         "distributaries": "ব্রহ্মপুত্র: পুরাতন ব্রহ্মপুত্র নদ, বংশী ও শীতলক্ষ্যা; যমুনা: ধলেশ্বরী (ধলেশ্বরীর শাখানদী বুড়িগঙ্গা)",
@@ -498,7 +498,8 @@
           { "source": "bgeo", "where": "পৃ. ১৫৪", "states": "কুড়িগ্রাম জেলা" }
         ],
         "course": [
-          { "source": "bgeo", "where": "পৃ. ১৫৪, the ব্রহ্মপুত্র and যমুনা paragraphs", "states": "তিব্বতের উপর দিয়ে পূর্ব দিকে ও পরে আসামের ভিতর দিয়ে পশ্চিম দিকে; কুড়িগ্রাম জেলার মধ্য দিয়ে বাংলাদেশে প্রবেশ করেছে; ময়মনসিংহ জেলার দেওয়ানগঞ্জের কাছে ব্রহ্মপুত্রের শাখা যমুনা নদী নামে দক্ষিণে প্রবাহিত হয়ে" }
+          { "source": "bgeo", "where": "পৃ. ১৫৪, the ব্রহ্মপুত্র and যমুনা paragraphs", "states": "তিব্বতের উপর দিয়ে পূর্ব দিকে ও পরে আসামের ভিতর দিয়ে পশ্চিম দিকে; কুড়িগ্রাম জেলার মধ্য দিয়ে বাংলাদেশে প্রবেশ করেছে; ময়মনসিংহ জেলার দেওয়ানগঞ্জের কাছে ব্রহ্মপুত্রের শাখা যমুনা নদী নামে দক্ষিণে প্রবাহিত হয়ে" },
+          { "source": "user", "where": "the note «বর্তমানে জামালপুর জেলা» after Dewanganj", "states": "the user, 2026-09-29" }
         ],
         "tributaries": [
           { "source": "bgeo", "where": "পৃ. ১৫৪", "states": "ধরলা ও তিস্তা; করতোয়া ও আত্রাই" },
@@ -553,7 +554,7 @@
         "relation": "ব্রহ্মপুত্রের প্রধান উপনদী",
         "origin": "সিকিমের পার্বত্য অঞ্চল",
         "course": "ভারতের জলপাইগুড়ি ও দার্জিলিং-এর মধ্য দিয়ে নীলফামারী জেলার ডিমলা উপজেলার পূর্ব ছাতনাই হয়ে বাংলাদেশে প্রবেশ করেছে",
-        "confluence": "গাইবান্ধা জেলার সুন্দরগঞ্জ উপজেলা"
+        "confluence": "গাইবান্ধা জেলা"
       },
       "sources": {
         "nameBn": [{ "source": "bgeo", "where": "পৃ. ১৫৪", "states": "তিস্তা" }],
@@ -565,7 +566,7 @@
         "course": [{ "source": "b910", "where": "পৃ. ৬৩, the «তিস্তা নদী» paragraph", "states": "ভারতের জলপাইগুড়ি ও দার্জিলিং-এর মধ্য দিয়ে নীলফামারী জেলার ডিমলা উপজেলার পূর্ব ছাতনাই হয়ে বাংলাদেশে প্রবেশ করেছে" }],
         "confluence": [{ "source": "bwdbNW52", "where": "§1.1 বর্ণনা", "states": "গাইবান্ধা জেলার সুন্দরগঞ্জ উপজেলায় ব্রহ্মপুত্র-যমুনা নদীতে পতিত হয়েছে" }]
       },
-      "review": "The books make the Teesta the Brahmaputra's tributary and the card follows them (the user's decision). The books give no joining place; BWDB, first in the order after them, gives Sundarganj, Gaibandha, and the card shows it (the user's rule, 2026-09-29); JRCB's «রংপুর জেলার ফুলছড়ি» is in ⓘ. COD-AB puts the OSM mouth in Gaibandha Sadar, 679 m from Sundarganj and 1.8 km from Fulchhari. Origin: the book «সিকিমের পার্বত্য অঞ্চল»; BWDB «চিতামু লেক» and JRCB «চো লামু হ্রদ» are in ⓘ."
+      "review": "The books make the Teesta the Brahmaputra's tributary and the card follows them (the user's decision). The books give no joining place; BWDB, first in the order after them, gives Sundarganj, Gaibandha, and the card shows it (the user's rule, 2026-09-29); JRCB's «রংপুর জেলার ফুলছড়ি» is in ⓘ. COD-AB puts the OSM mouth — the drawn marker — in Gaibandha Sadar, 679 m from Sundarganj and 1.8 km from Fulchhari, so the card and the marker keep only the district, «গাইবান্ধা জেলা», and BWDB's full wording is an ⓘ line with the drawn location (the user's policy, 2026-09-29, as for the entry). Origin: the book «সিকিমের পার্বত্য অঞ্চল»; BWDB «চিতামু লেক» and JRCB «চো লামু হ্রদ» are in ⓘ."
     },
     {
       "id": "karatoya",
@@ -683,7 +684,7 @@
       "values": {
         "relation": "ব্রহ্মপুত্রের শাখানদী",
         "origin": "ময়মনসিংহ জেলার দেওয়ানগঞ্জের কাছে (বর্তমানে জামালপুর জেলা)",
-        "course": "দেওয়ানগঞ্জের কাছে দক্ষিণ-পূর্বে বাঁক নিয়ে ময়মনসিংহ জেলার মধ্য দিয়ে প্রবাহিত",
+        "course": "দেওয়ানগঞ্জের কাছে (বর্তমানে জামালপুর জেলা) দক্ষিণ-পূর্বে বাঁক নিয়ে ময়মনসিংহ জেলার মধ্য দিয়ে প্রবাহিত",
         "mouth": "ভৈরববাজারের দক্ষিণে মেঘনায় পতিত"
       },
       "sources": {
@@ -700,7 +701,10 @@
           { "source": "bgeo", "where": "পৃ. ১৫৪", "states": "ময়মনসিংহ জেলার দেওয়ানগঞ্জের কাছে" },
           { "source": "user", "where": "the note «বর্তমানে জামালপুর জেলা»", "states": "editor-verified 2026-09-29" }
         ],
-        "course": [{ "source": "bgeo", "where": "পৃ. ১৫৪", "states": "দেওয়ানগঞ্জের কাছে দক্ষিণ-পূর্বে বাঁক নিয়ে ময়মনসিংহ জেলার মধ্য দিয়ে প্রবাহিত হয়ে" }],
+        "course": [
+          { "source": "bgeo", "where": "পৃ. ১৫৪", "states": "দেওয়ানগঞ্জের কাছে দক্ষিণ-পূর্বে বাঁক নিয়ে ময়মনসিংহ জেলার মধ্য দিয়ে প্রবাহিত হয়ে" },
+          { "source": "user", "where": "the note «বর্তমানে জামালপুর জেলা» after Dewanganj", "states": "the user, 2026-09-29" }
+        ],
         "mouth": [{ "source": "bgeo", "where": "পৃ. ১৫৪", "states": "ভৈরববাজারের দক্ষিণে মেঘনায় পতিত হয়েছে" }]
       },
       "review": "B-GEO's text calls this course the Brahmaputra itself; its map labels it «পুরাতন ব্রহ্মপুত্র নদ», and B910 says the Brahmaputra's main stream once flowed through Mymensingh. The relation row follows the map and the user's earlier decision, with BWDB's distributary list. BWDB (NC-37) gives the offtake at Pagalarchar, Erendabari, Fulchhari, Gaibandha (25.26155, 89.71722) and the outfall at Raipura, Narsingdi (both in ⓘ). BWDB's length is 288 km. It falls into the Meghna, so the row is «পতিত স্থল». Other names: none in any source (MISSING)."
@@ -738,6 +742,15 @@
         "sources": [
           { "source": "codab", "where": "bgd_admin2/admin3: Dewanganj upazila; the districts the drawn lines begin in", "states": "Dewanganj, Jamalpur; Gaibandha; Tangail" },
           { "source": "bgeo", "where": "পৃ. ১৫৪", "states": "দেওয়ানগঞ্জ" }
+        ]
+      },
+      {
+        "textBn": "তিস্তার মিলনস্থল: পানি উন্নয়ন বোর্ডের তথ্যে সুন্দরগঞ্জ উপজেলা (গাইবান্ধা)। ছবিতে চিহ্নটি বসানো হয়েছে আঁকা নদীরেখার মুখে; বাংলাদেশের প্রশাসনিক সীমানার সরকারি ডেটা (COD-AB) অনুযায়ী সেটি গাইবান্ধা জেলার গাইবান্ধা সদর উপজেলায় পড়ে।",
+        "sources": [
+          { "source": "bwdbNW52", "where": "§1.1 বর্ণনা", "states": "গাইবান্ধা জেলার সুন্দরগঞ্জ উপজেলায় ব্রহ্মপুত্র-যমুনা নদীতে পতিত হয়েছে" },
+          { "source": "codab", "where": "bgd_admin3: the upazila holding the drawn marker", "states": "Gaibandha Sadar, Gaibandha" },
+          { "source": "bwdbNW76", "where": "§1.7 table, the Bengali name", "states": "গাইবান্ধা সদর" },
+          { "source": "user", "where": "the policy and the entry line's wording", "states": "the user, 2026-09-29" }
         ]
       },
       {
@@ -826,5 +839,5 @@
       }
     ]
   },
-  "review": "Differences between sources, kept as found (the earlier source stands): Padma confluence — B-GEO «দৌলতদিয়ার কাছে», B910 «গোয়ালন্দের নিকট»; the 17th and 21st BCS used «গোয়ালন্দ». Length — books 2,897 km, JRCB 2,880 km, BWDB 230 km. Padma coordinates — BWDB NW-76 (23.80490447, 89.77304192), bn Wikipedia (revision 9042933) 23.8134629, 89.7722061, en Wikipedia (revision 1372145488) 23°47′46.7″N 89°45′45.8″E. Teesta confluence — BWDB «সুন্দরগঞ্জ» (on the card, since 2026-09-29), JRCB «রংপুর জেলার ফুলছড়ি», COD-AB Gaibandha Sadar. Every card row's conflicts are in `infoBn` and in tools/.cache/bangladesh-rivers/review2.csv. Origin coordinate — Natural Earth's line start (82.4005°E, 30.4114°N), bn Wikipedia 30°23′N 82°0′E. Old Brahmaputra offtake — book Dewanganj, BWDB Fulchhari. Mixed OpenStreetMap snapshots: 2026-07-15 (rivers snapshot) and 2026-05-31 (pilot extract); their shared ways agree within 0.56 m. The Padma marker is 1.5 km from the OSM line's end, the entry marker stands where the drawn line crosses the COD-AB border (in Ulipur upazila), 24.4 km from BWDB's entry point in Nageshwari, which is 6.9 km from the drawn east channel — the cards give the book's «কুড়িগ্রাম জেলা» and ⓘ gives JRCB's and BWDB's Nageshwari and where COD-AB puts the drawn crossing, the Dharla and Teesta mouths 2.5 and 3.0 km from the drawn Jamuna. The 49th special BCS wrote «ইয়ারলাং সাংপো» and the 42nd special BCS asked the Teesta as the Jamuna's tributary; past exam questions are not used, so neither changes a card."
+  "review": "Differences between sources, kept as found (the earlier source stands): Padma confluence — B-GEO «দৌলতদিয়ার কাছে», B910 «গোয়ালন্দের নিকট»; the 17th and 21st BCS used «গোয়ালন্দ». Length — books 2,897 km, JRCB 2,880 km, BWDB 230 km. Padma coordinates — BWDB NW-76 (23.80490447, 89.77304192), bn Wikipedia (revision 9042933) 23.8134629, 89.7722061, en Wikipedia (revision 1372145488) 23°47′46.7″N 89°45′45.8″E. Teesta confluence — BWDB «সুন্দরগঞ্জ» (its district, «গাইবান্ধা জেলা», on the card; the full wording in ⓘ), JRCB «রংপুর জেলার ফুলছড়ি», COD-AB Gaibandha Sadar. Every card row's conflicts are in `infoBn` and in tools/.cache/bangladesh-rivers/review2.csv. Origin coordinate — Natural Earth's line start (82.4005°E, 30.4114°N), bn Wikipedia 30°23′N 82°0′E. Old Brahmaputra offtake — book Dewanganj, BWDB Fulchhari. Mixed OpenStreetMap snapshots: 2026-07-15 (rivers snapshot) and 2026-05-31 (pilot extract); their shared ways agree within 0.56 m. The Padma marker is 1.5 km from the OSM line's end, the entry marker stands where the drawn line crosses the COD-AB border (in Ulipur upazila), 24.4 km from BWDB's entry point in Nageshwari, which is 6.9 km from the drawn east channel — the cards give the book's «কুড়িগ্রাম জেলা» and ⓘ gives JRCB's and BWDB's Nageshwari and where COD-AB puts the drawn crossing, the Dharla and Teesta mouths 2.5 and 3.0 km from the drawn Jamuna. The 49th special BCS wrote «ইয়ারলাং সাংপো» and the 42nd special BCS asked the Teesta as the Jamuna's tributary; past exam questions are not used, so neither changes a card."
 }
