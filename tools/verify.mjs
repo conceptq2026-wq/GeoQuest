@@ -225,16 +225,19 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
   // 7b — every tributary and distributary: its parent-side end (a tributary's mouth, a distributary's head)
   // within 50 m of its parent line as drawn, or of a connector of at most 10 km that runs from that end to
   // the parent line; a line with neither is exempt, and the seed says why.
-  const EXEMPT = ['karatoya', 'atrai', 'dhaleshwari', 'banshi'];
+  const EXEMPT = ['karatoya', 'atrai', 'banshi'];
   const NEAR_M = 50;
   const CONNECTOR_MAX_M = 10000;
+  // The allow-list, the user's decision (2026-09-29): the Dhaleshwari's connector alone may reach 12 km.
+  const CONNECTOR_ALLOW = { dhaleshwari: 12000 };
+  const maxFor = (id) => CONNECTOR_ALLOW[id] ?? CONNECTOR_MAX_M;
   const branches = Object.entries(G.lines).filter(([, l]) => l.role === 'tributary' || l.role === 'distributary');
   const connectors = frames.bangladesh.connectors ?? [];
   const connectorOf = new Map();
   for (const c of connectors) {
     const pts = parsePath(c.d).flat().map(([x, y]) => proj.bangladesh.invert(x, y));
     const len = distM(pts[0], pts.at(-1));
-    check(pts.length === 2 && len <= CONNECTOR_MAX_M && Math.abs(len - c.m) <= 1 && branches.some(([id]) => id === c.id) && !connectorOf.has(c.id), `b. connector ${c.id} → ${c.parent}: one straight segment, ${round(len)} m (it records ${c.m} m; limit ${CONNECTOR_MAX_M / 1000} km)`);
+    check(pts.length === 2 && len <= maxFor(c.id) && Math.abs(len - c.m) <= 1 && branches.some(([id]) => id === c.id) && !connectorOf.has(c.id), `b. connector ${c.id} → ${c.parent}: one straight segment, ${round(len)} m (it records ${c.m} m; limit ${maxFor(c.id) / 1000} km${c.id in CONNECTOR_ALLOW ? ', the allow-list' : ''})`);
     connectorOf.set(c.id, { ...c, pts });
   }
   check((frames.whole.connectors ?? []).length === 0, 'b. the whole-course frame draws no branch, so no connector');
@@ -263,11 +266,11 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
       check(con.parent === parentId && startGap <= NEAR_M && footGap <= NEAR_M, `b. ${id}: its end is ${round(toParent)} m from the ${parentId} line; its connector starts ${round(startGap)} m from that end and ends ${round(footGap)} m from the line (limit ${NEAR_M} m each)`);
       viaConnector.push(`${id} ${round(con.m / 1000, 2)} km`);
     } else {
-      check(typeof spec.exempt === 'string' && spec.exempt.length > 20 && toParent > CONNECTOR_MAX_M, `b. ${id}: no connector — its end is ${round(toParent / 1000, 1)} km from the ${parentId} line, over ${CONNECTOR_MAX_M / 1000} km — and the seed says why it has no join point`);
+      check(typeof spec.exempt === 'string' && spec.exempt.length > 20 && toParent > maxFor(id), `b. ${id}: no connector — its end is ${round(toParent / 1000, 1)} km from the ${parentId} line, over ${maxFor(id) / 1000} km — and the seed says why it has no join point`);
       exempt.push(id);
     }
   }
-  check(JSON.stringify([...exempt].sort()) === JSON.stringify([...EXEMPT].sort()), `b. the lines left unjoined are exactly karatoya and atrai (the user's) and dhaleshwari and banshi (no source plots their offtake): ${exempt.join(', ')}`);
+  check(JSON.stringify([...exempt].sort()) === JSON.stringify([...EXEMPT].sort()), `b. the lines left unjoined are exactly karatoya, atrai and banshi (the user's decision, 2026-09-29): ${exempt.join(', ')}`);
   console.log(`     connectors: ${connectors.map((c) => `${c.id} → ${c.parent} ${c.m} m`).join(', ') || 'none'}`);
 
   // 7c — the border-entry marker lies on Bangladesh's border; so does BWDB's entry point, from which it was snapped.
@@ -399,7 +402,7 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
   const pins = JSON.parse(fs.readFileSync(RIVERS_PINS, 'utf8'));
   check(same && Object.keys(pins).length === 11, `the build reproduces the ${built.length} committed files byte for byte, and its ${Object.keys(pins).length} geometry pins hold${same ? '' : ` — ${say.split('\n').slice(0, 3).join(' | ')}`}`);
   check(Boolean(seamLine) && Number(seamLine[1]) <= G.main.seam.maxM && Number(seamLine[3]) <= 500 && Number(seamLine[4]) <= 3, `d. the seam is ${seamLine?.[1]} m at ${seamLine?.[2]}°E (limit ${G.main.seam.maxM} m); the Jamuna ends ${seamLine?.[3]} m from the Padma, which ends ${seamLine?.[4]} m from the Meghna`);
-  console.log(`bangladesh-rivers: a. ${drawnMarkers} markers within ${round(worst.px, 2)} px / ${round(worst.m)} m; b. ${alone.length + viaConnector.length} joined (${alone.join(', ')} on their own; ${viaConnector.join(', ')} by a connector), ${exempt.length} unjoined, over 10 km (${exempt.join(', ')}); c. entry ${round(entrySrc)} m from the border (BWDB's point ${round(entryBwdb)} m); d. main connected, gaps ≤ 500 m; e. ${drawnIds.size} lines, ${wayIds.size} ways, ${S.markers.length} markers traced; f. entry on the line and at the dash switch: ${entryF.join(', ')}`);
+  console.log(`bangladesh-rivers: a. ${drawnMarkers} markers within ${round(worst.px, 2)} px / ${round(worst.m)} m; b. ${alone.length + viaConnector.length} joined (${alone.join(', ')} on their own; ${viaConnector.join(', ')} by a connector), ${exempt.length} unjoined (${exempt.join(', ')}); c. entry ${round(entrySrc)} m from the border (BWDB's point ${round(entryBwdb)} m); d. main connected, gaps ≤ 500 m; e. ${drawnIds.size} lines, ${wayIds.size} ways, ${S.markers.length} markers traced; f. entry on the line and at the dash switch: ${entryF.join(', ')}`);
 }
 
 // ---- vendored libraries ----

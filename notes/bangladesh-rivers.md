@@ -39,13 +39,34 @@ finishes it. It is not in `docs/registry.json`.
   its drawn parent, the build adds a straight connector from that end to the
   parent's nearest point — the Dharla (2,566 m) and the Teesta (3,005 m) to
   the main line, the Shitalakshya (145 m, a gap the Old Brahmaputra's
-  simplified line opens) to the Old Brahmaputra. They are `connectors` in the
-  frame (id, parent, length in m, path data), never part of the sourced
-  lines, drawn in the river's own group — its colour, width and highlight —
-  with no tap zone. The Karatoya (17.6 km), Atrai (47.0 km), Dhaleshwari
-  (11.4 km) and Banshi (31.0 km) are further than 10 km and stay unjoined;
-  the Dhaleshwari's mouth, 3.1 km from the drawn Meghna, is not a parent-side
-  end and has none.
+  simplified line opens) to the Old Brahmaputra, and the Dhaleshwari's head
+  (11,400 m) to the main line, the one entry on the allow-list (12 km, the
+  user's decision; `CONNECT_MAX_M_FOR` in the build, `CONNECTOR_ALLOW` in
+  `tools/verify.mjs`). They are `connectors` in the frame (id, parent,
+  length in m, path data), never part of the sourced lines, drawn in the
+  river's own group — its colour, width and highlight — with no tap zone.
+  The Karatoya (17.6 km), Atrai (47.0 km) and Banshi (31.0 km) stay unjoined
+  (the user's decision); the Dhaleshwari's mouth, 3.1 km from the drawn
+  Meghna, has no connector.
+- **The cards** (Prompt 40, the user's decisions of 2026-09-29): a tributary's
+  or distributary's card gives «সম্পর্ক», «উৎপত্তি», «গতিপথ», and «মিলনস্থল»
+  for a river that joins the main one or «পতিত স্থল» for one that falls into
+  another (the Karatoya, Atrai, Dhaleshwari, Banshi, Shitalakshya and Old
+  Brahmaputra); the Dhaleshwari keeps the book's «শাখা নদী» row (বুড়িগঙ্গা).
+  The main river's card keeps its rows and gains «গতিপথ». Each value is the
+  first in the source order — the books («ভূগোল ও পরিবেশ» before «বাংলাদেশ ও
+  বিশ্বপরিচয়»), BWDB and JRCB, Bengali then English Wikipedia, newspapers,
+  Banglapedia — in its source's words; a card follows its source's words
+  where they differ from the drawn line. The Karatoya card is BWDB's NW-14,
+  the river drawn. The Padma and the Meghna have no card.
+- **ⓘ,** after the cited sources and the entry line, carries the seed's
+  `infoBn.lines` as plain text, each citing its sources: the two lines on the
+  drawn joins (the user's words), where COD-AB puts what a source places
+  otherwise (Dewanganj in Jamalpur; the Karatoya's and Banshi's drawn lines
+  beginning in Gaibandha and Tangail), the Karatoya from India (NW-13) that is
+  not drawn, and one line per source conflict, the card's value first.
+  Research for these cards: `tools/.cache/bangladesh-rivers/review2.csv` and
+  `quotes.md` §6.
 - **The picker row** is the shell's, at the top, with one entry, the main river.
   A tap on a line or a marker opens its card; a marker's heading is composed
   «name — legend word». The legend lists only the kinds a tab draws. ⓘ carries
@@ -59,8 +80,8 @@ finishes it. It is not in `docs/registry.json`.
 - **Editor's seed:** `data-sources/bangladesh-rivers/bangladesh-rivers.seed.json`
   — every word, its sources, the geometry recipe (way ids with trims, the joins,
   the frames, the label anchors) and a `review` of where sources differ. Its
-  SHA-256 is pinned in `tools/verify-descriptor.mjs`, now `28856c9a…1391`
-  (`c14c8bb4…` before the entry row lost «নাগেশ্বরী উপজেলা»; `95090aa6…`
+  SHA-256 is pinned in `tools/verify-descriptor.mjs`, now `08aff7d1…89bb`
+  (`28856c9a…` before the Prompt 40 cards; `c14c8bb4…` before the entry row lost «নাগেশ্বরী উপজেলা»; `95090aa6…`
   before the entry marker was snapped; `a6e2e386…` before the
   Teesta mouth's provenance was corrected). NCTB books
   first, then the source order in CLAUDE.md; past exam questions are not used.
@@ -93,9 +114,9 @@ finishes it. It is not in `docs/registry.json`.
 
 - **`node tools/verify-descriptor.mjs`** — the descriptor, the data against the
   seed (every Bengali string shown is the seed's or a heading composed from
-  two of its own), the frames, the pending list (6: the main river's length,
-  Karatoya's and Atrai's confluences, and the origins of the Dhaleshwari,
-  Banshi and Shitalakshya).
+  two of its own), the frames, every branch card's four rows and the main
+  card's «গতিপথ», ⓘ's plain lines each citing a listed source, the pending
+  list (1: the main river's length).
 - **`node tools/verify.mjs`,** its bangladesh-rivers section, reading the pinned
   sources by checksum:
   - a. every marker, its source coordinate projected with the picture's own
@@ -103,8 +124,9 @@ finishes it. It is not in `docs/registry.json`.
   - b. every tributary and distributary: its parent-side end within 50 m of
     its parent line as drawn, or of a connector (one straight segment, at most
     10 km) that starts at that end and ends on the parent line; the list of
-    connectors is printed. Karatoya, Atrai, Dhaleshwari and Banshi are over
-    10 km and stay unjoined, each with its reason in the seed; the Old
+    connectors is printed; the Dhaleshwari alone may reach 12 km (the
+    allow-list). Karatoya, Atrai and Banshi stay unjoined, each with its reason
+    in the seed; the Old
     Brahmaputra passes on its own at 0 m;
   - c. the entry marker on COD-AB's border (500 m), and BWDB's point it was
     snapped from;
@@ -141,7 +163,9 @@ separate, approved change:
 - The entry marker sits on the drawn line at its border crossing, not at
   BWDB's point. The cards give only the book's «কুড়িগ্রাম জেলা»; Nageshwari
   (JRCB, BWDB) and Ulipur (COD-AB) are in ⓘ.
-- The Teesta is a tributary of the Brahmaputra, as the books have it.
+- The Teesta is a tributary of the Brahmaputra, as the books have it; its
+  joining place is BWDB's Sundarganj (the marker, 679 m from it, follows),
+  and JRCB's Fulchhari is in ⓘ.
 - No Old Brahmaputra offtake marker: the book (Dewanganj) and BWDB (Fulchhari)
   name different places.
 - «শিয়াং» and «দিহাং» are on the main river's card only, never on the picture.

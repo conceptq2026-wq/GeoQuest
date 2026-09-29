@@ -95,7 +95,7 @@ const SEASONS_SEEDS = path.join(ROOT, 'data-sources/seasons');
 const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa32509b451efb2';
 // The bangladesh-rivers diagram: the editor's seed, pinned. Its geometry is pinned in tools/bangladesh-rivers-pins.json.
 const BANGLADESH_RIVERS_SEEDS = path.join(ROOT, 'data-sources/bangladesh-rivers');
-const BANGLADESH_RIVERS_SEED_SHA256 = '28856c9ad04aee51d7ccb21980ff05237edd55afa1b5e41a42a17677cee41391';
+const BANGLADESH_RIVERS_SEED_SHA256 = '08aff7d1ca609094c5d1ed866488f2a44f324e71cf7b5972fac23536fcd089bb';
 // The latitude-longitude globe: the editor's seed, the pinned sources (its
 // imagery's credit among them) and the geometry pins.
 const LATLON_SEED = path.join(ROOT, 'data-sources/latitude-longitude/latitude-longitude.seed.json');
@@ -1864,11 +1864,13 @@ console.log('\n\n============ bangladesh-rivers (diagram) ============');
 
   const cited = new Set(['naturalEarth', 'codab', 'osm']);
   const collect = (v) => (Array.isArray(v) ? v.forEach(collect) : v && typeof v === 'object' ? Object.entries(v).forEach(([k, x]) => (k === 'source' && typeof x === 'string' ? cited.add(x) : collect(x))) : null);
-  collect([seed.entities, seed.markers, seed.continuations]);
+  collect([seed.entities, seed.markers, seed.continuations, seed.infoBn.lines]);
   const wantCredits = Object.entries(seed.sources)
     .filter(([key]) => key !== 'user' && cited.has(key))
     .map(([, s]) => ({ title: s.title + (s.creditExtra ?? '') + (s.page ? `, ${ui.pageBn} ${s.page}` : ''), by: s.publisher, url: s.url, ...(/[ঀ-৿]/.test(s.title) ? { lang: 'bn' } : {}) }));
-  const notes = seed.markers.filter((m) => m.infoBn).map((m) => ({ title: m.infoBn, lang: 'bn' }));
+  const notes = [...seed.markers.filter((m) => m.infoBn).map((m) => m.infoBn), ...seed.infoBn.lines.map((l) => l.textBn)].map((title) => ({ title, lang: 'bn' }));
+  const unsourced = seed.infoBn.lines.filter((l) => !l.sources?.length || l.sources.some((s) => !(s.source in seed.sources)));
+  check(unsourced.length === 0 && seed.infoBn.lines.length > 0, `ⓘ's ${seed.infoBn.lines.length} plain lines each cite a listed source${unsourced.length ? ` — not: ${unsourced.map((l) => l.textBn.slice(0, 20)).join(' | ')}` : ''}`);
   wantCredits.push(...notes);
   check(JSON.stringify(data.credits) === JSON.stringify(wantCredits) && wantCredits.length >= 2, `ⓘ shows every source the data cites, plus Natural Earth, COD-AB and OpenStreetMap, and ${notes.length} note(s) the seed gives a marker, as plain text (${wantCredits.length}); the editor's own verification is not a credit`);
   const entrySeed = seed.markers.find((m) => m.id === 'entry');
@@ -1894,7 +1896,10 @@ console.log('\n\n============ bangladesh-rivers (diagram) ============');
   const foreign = shown.filter((v) => /[ঀ-৿]/.test(v) && !seedStrings.has(v));
   check(foreign.length === 0, `every Bengali string shown is the seed's${foreign.length ? `, not: ${foreign.join(' | ')}` : ''}`);
   console.log(`pending: ${pendingFields.length} — ${pendingFields.join(', ')}`);
-  check(pendingFields.length === 6, `the pending list is the six fields the seed holds as null (${pendingFields.length})`);
+  check(pendingFields.length === 1, `the pending list is the one field the seed holds as null, the main river's length (${pendingFields.length})`);
+  // Every branch's card: «সম্পর্ক», «উৎপত্তি», «গতিপথ», and «মিলনস্থল» or «পতিত স্থল» (Prompt 40, 2026-09-29); the main river's gains «গতিপথ».
+  const shape = seed.entities.filter((e) => e.role !== 'main').filter((e) => !['relation', 'origin', 'course'].every((k) => k in e.values) || ('confluence' in e.values) === ('mouth' in e.values) || 'parent' in e.values);
+  check(shape.length === 0 && 'course' in entities.main.values, `every branch card has «${ui.rowLabelsBn.relation}», «${ui.rowLabelsBn.origin}», «${ui.rowLabelsBn.course}» and one of «${ui.rowLabelsBn.confluence}» / «${ui.rowLabelsBn.mouth}»; the main river's has «${ui.rowLabelsBn.course}»${shape.length ? ` — not: ${shape.map((e) => e.id).join(', ')}` : ''}`);
 
   // ---- the frames -------------------------------------------------------------
   console.log('\n---- the frames ----');

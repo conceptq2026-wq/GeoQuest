@@ -26,6 +26,10 @@
     "close": "বন্ধ করুন",
     "rows": [
       {
+        "key": "relation",
+        "label": "সম্পর্ক"
+      },
+      {
         "key": "parent",
         "label": "মূল নদী"
       },
@@ -40,6 +44,10 @@
       {
         "key": "entry",
         "label": "প্রবেশস্থল"
+      },
+      {
+        "key": "course",
+        "label": "গতিপথ"
       },
       {
         "key": "length",

@@ -57,12 +57,14 @@ const SNAP_M = 0.05;
 // more than CONNECT_MAX_M, gets a straight connector to the parent's nearest point (the user's rule, 2026-09-29).
 const CONNECT_FROM_M = 50;
 const CONNECT_MAX_M = 10000;
+// The one exception, the user's decision (2026-09-29): the Dhaleshwari's head, 11.4 km out.
+const CONNECT_MAX_M_FOR = { dhaleshwari: 12000 };
 const JOIN_M = 500;
 // The Padma–Meghna junction: the Padma's end must lie this near a Meghna vertex (metres).
 const JUNCTION_M = 3;
-// The Teesta's mouth may lie this far from Fulchhari upazila (metres): the OSM
-// mouth is 1.8 km outside it.
-const FULCHHARI_M = 2000;
+// The Teesta's mouth may lie this far from Sundarganj upazila, where BWDB puts it
+// (metres): the OSM mouth is 679 m outside it, in Gaibandha Sadar.
+const SUNDARGANJ_M = 1000;
 
 const PRINT_PINS = process.argv.includes('--print-pins');
 const OUT = path.resolve(process.argv.slice(2).find((a) => !a.startsWith('--')) ?? DEFAULT_OUT);
@@ -286,8 +288,8 @@ function inUpazila(markerId, name, district) {
 inUpazila('padmaConfluence', 'Goalanda', 'Rajbari');
 inUpazila('dharlaConfluence', 'Ulipur', 'Kurigram');
 inUpazila('oldBrahmaputraMouth', 'Raipura', 'Narsingdi');
-const fulchhari = distToRings(markerSeed.teestaConfluence.lonLat, polygonsOf(upazila('Fulchhari', 'Gaibandha')).flat());
-if (fulchhari > FULCHHARI_M) fail(`the Teesta's mouth is ${round(fulchhari)} m from Fulchhari upazila (limit ${FULCHHARI_M} m)`);
+const sundarganj = distToRings(markerSeed.teestaConfluence.lonLat, polygonsOf(upazila('Sundarganj', 'Gaibandha')).flat());
+if (sundarganj > SUNDARGANJ_M) fail(`the Teesta's mouth is ${round(sundarganj)} m from Sundarganj upazila (limit ${SUNDARGANJ_M} m)`);
 // The entry marker stands where the drawn main line first crosses COD-AB's border
 // going downstream (the user's decision, 2026-09-29); BWDB's point is kept as snappedFrom.
 const entrySeed = markerSeed.entry;
@@ -417,7 +419,7 @@ function buildFrame(frameId, spec) {
     const q = (xy) => xy.map((v) => Math.round(v * 10) / 10);
     const [a, b] = [q(end), q(footOn(end, drawnPolys(parent)))];
     const m = distM(P.invert(...a), P.invert(...b));
-    if (m > CONNECT_FROM_M && m <= CONNECT_MAX_M) connectors.push({ id, parent, m: Math.round(m), d: pathData([a, b]) });
+    if (m > CONNECT_FROM_M && m <= (CONNECT_MAX_M_FOR[id] ?? CONNECT_MAX_M)) connectors.push({ id, parent, m: Math.round(m), d: pathData([a, b]) });
   }
 
   // The markers, at their recorded coordinates.
@@ -480,6 +482,10 @@ const walkSources = (node, trail) => {
 for (const e of seed.entities) walkSources(e, e.id);
 for (const m of seed.markers) walkSources(m, `marker ${m.id}`);
 for (const c of seed.continuations) walkSources(c, c.id);
+for (const [i, l] of seed.infoBn.lines.entries()) {
+  if (!l.sources?.length) fail(`ⓘ line ${i + 1} carries no source`);
+  walkSources(l, `ⓘ line ${i + 1}`);
+}
 for (const s of cited) if (!(s in seed.sources)) fail(`the seed cites a source «${s}» that it does not list`);
 
 const rowValues = (values, who) => {
@@ -523,7 +529,8 @@ const data = {
     .filter(([key]) => key !== 'user' && cited.has(key))
     .map(([key, s]) => credit(s, s.page ? `, ${ui.pageBn} ${s.page}` : ''))
     // A note the seed gives a marker reads as plain text, with no link.
-    .concat(seed.markers.filter((m) => m.infoBn).map((m) => ({ title: m.infoBn, lang: 'bn' }))),
+    .concat(seed.markers.filter((m) => m.infoBn).map((m) => ({ title: m.infoBn, lang: 'bn' })))
+    .concat(seed.infoBn.lines.map((l) => ({ title: l.textBn, lang: 'bn' }))),
 };
 
 const descriptor = {
@@ -559,8 +566,8 @@ const points = (coords) => coords.length;
 say(`${ID}: ${Object.keys(lines).length} lines, ${usedWays.size} OSM ways (${[...usedWays].filter((id) => wayFrom.get(id) === 'pilot').length} pilot-only, ${[...usedWays].filter((id) => wayFrom.get(id) === 'snapshot').length} snapshot-only, ${[...usedWays].filter((id) => wayFrom.get(id) === 'both').length} in both), ${G.main.ne.length} Natural Earth lines, ${seed.markers.length} markers`);
 for (const [id, l] of Object.entries(lines)) say(`  ${id.padEnd(15)} ${String(points(l.coords)).padStart(5)} pts ${String(round(lengthKm(l.coords))).padStart(7)} km  ${drawnHashes[id]}${l.gaps ? `  max gap ${Math.max(0, ...l.gaps)} m` : ''}`);
 say(`main: Natural Earth ${neChain.length} pts + OSM from vertex ${seam.vertex}; seam gap ${round(seamGapM)} m at ${round(osmMain.coords[seam.vertex][0], 3)}°E; ${mainPieces.length} pieces (${mainPieces.filter((p) => p.inside).length} in Bangladesh, ${round(mainPieces.filter((p) => p.inside).reduce((s, p) => s + lengthKm(p.coords), 0))} km); jamuna→padma ${round(mainToPadma)} m; padma→meghna junction ${round(junction, 2)} m`);
-say(`checks: ${upazilaChecks.join(', ')}; Teesta mouth ${round(fulchhari)} m from Fulchhari; entry ${round(entryToBorder)} m from the border (BWDB's point ${round(bwdbToBorder)} m, ${round(distM(entrySeed.snappedFrom.lonLat, crossing))} m from it); Dewanganj at ${round(dewanganj, 3)} of the main line`);
-for (const [k, f] of Object.entries(frames)) if (f.file.connectors.length) say(`connectors, ${k}: ${f.file.connectors.map((c) => `${c.id} → ${c.parent} ${c.m} m`).join(', ')} (from ${CONNECT_FROM_M} m to ${CONNECT_MAX_M / 1000} km)`);
+say(`checks: ${upazilaChecks.join(', ')}; Teesta mouth ${round(sundarganj)} m from Sundarganj; entry ${round(entryToBorder)} m from the border (BWDB's point ${round(bwdbToBorder)} m, ${round(distM(entrySeed.snappedFrom.lonLat, crossing))} m from it); Dewanganj at ${round(dewanganj, 3)} of the main line`);
+for (const [k, f] of Object.entries(frames)) if (f.file.connectors.length) say(`connectors, ${k}: ${f.file.connectors.map((c) => `${c.id} → ${c.parent} ${c.m} m`).join(', ')} (from ${CONNECT_FROM_M} m to ${CONNECT_MAX_M / 1000} km; ${Object.entries(CONNECT_MAX_M_FOR).map(([id, m]) => `${id} ${m / 1000} km`).join(', ')})`);
 for (const [k, f] of Object.entries(frames)) say(`frame ${k}: viewBox 0 0 ${f.width} ${f.height}, lon ${f.bounds.lonMin}–${f.bounds.lonMax}, lat ${f.bounds.latMin}–${f.bounds.latMax}, scale ${round(f.scale, 2)} u/deg`);
 say(`pending: ${pending.length} (${pending.join(', ')})`);
 say(`wrote ${path.relative(ROOT, OUT) || OUT}: ${Object.entries(sizes).map(([n, b]) => `${n} ${b} B`).join(', ')}; data ${sizes['data.json'] + sizes['frame-whole.json'] + sizes['frame-bangladesh.json']} B`);
