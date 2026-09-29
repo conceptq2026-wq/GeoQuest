@@ -98,10 +98,10 @@ const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa
 const BANGLADESH_RIVERS_SEEDS = path.join(ROOT, 'data-sources/bangladesh-rivers');
 // One pin per seed file: the common file and each system's (tools/lib/rivers-seed.mjs).
 const BANGLADESH_RIVERS_SEED_SHA256 = {
-  'bangladesh-rivers.seed.json': 'd0f4af612a50906f2d99ecf4002e94ce75552c0d869a279d38de7414d8fa8853',
+  'bangladesh-rivers.seed.json': '7e16190208b155916be7ece947f5e69863da0532d80fc24f502602c4b1809905',
   'systems/jamuna.seed.json': 'e84123aea5bfbe78448f2555e16c43a94b13fbf8584a9f748949cfbcd7b2b0a8',
   'systems/padma.seed.json': '6c25624eabb26e0bbc11913b84251a5704c632e8affaef80ee9ef4573e84a137',
-  'systems/meghna.seed.json': 'faf14e3622fef05ee57ca9e4aac45340c8720ad82c5fcff4556b4f617fcb5f3f',
+  'systems/meghna.seed.json': '340c12d47ce0f83934910a27f9e1debd5318a5dac268755e67fbeff4f1dd60c2',
   'systems/karnaphuli.seed.json': '099bd0cfe66a36b9ae29270d7303dcba9097469698c7a29f1dfd8d0f152c8029',
 };
 // The latitude-longitude globe: the editor's seed, the pinned sources (its
@@ -1921,6 +1921,19 @@ console.log('\n\n============ bangladesh-rivers (diagram) ============');
     'madhumati.values.course',
     'bhagirathi.values.alias',
     'chitra.values.course',
+    'meghna.values.length',
+    'meghna.values.tributaries',
+    'meghna.values.distributaries',
+    'barak.values.relation',
+    'barak.values.entry',
+    'barak.values.course',
+    'barak.values.confluence',
+    'surma.values.relation',
+    'surma.values.origin',
+    'kushiyara.values.relation',
+    'kushiyara.values.alias',
+    'kushiyara.values.origin',
+    'titas.values.relation',
     'karnaphuli.values.length',
     'karnaphuli.values.tributaries',
     'kasalong.values.course',

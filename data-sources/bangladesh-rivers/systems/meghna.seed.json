@@ -1,14 +1,24 @@
 {
-  "_about": "The Meghna system. Until its cards arrive, only the grey Meghna continuation to the sea.",
+  "_about": "The Meghna system (Stage 2, batch b3): the Meghna — a card, drawn as two main lines, the new upper stretch from where OSM names it (near Austagram) to Bhairab and the pinned line on to 22.38°N — the Barak, Surma and Kushiyara, and the Titas; those four in the `disputed` role, because the two books give them different roles. Left out: the Kalni (OSM has no Kalni below Ajmiriganj, where it tags the stream Kushiyara; only two fragments in Sunamganj). Research: tools/.cache/bangladesh-rivers/research4-b3.md (quote ids B3-…) and osm-b3/ways.md.",
   "id": "meghna",
   "nameBn": "মেঘনা",
   "labelsBn": {
-    "meghna": "মেঘনা"
+    "meghna": "মেঘনা",
+    "meghnaUpper": "মেঘনা",
+    "barak": "বরাক",
+    "surma": "সুরমা",
+    "kushiyara": "কুশিয়ারা",
+    "titas": "তিতাস"
   },
   "frames": {
     "bangladesh": {
       "lines": [
-        "meghna"
+        "meghnaUpper",
+        "meghna",
+        "barak",
+        "surma",
+        "kushiyara",
+        "titas"
       ],
       "labels": [
         {
@@ -18,14 +28,70 @@
             91,
             22.8
           ]
+        },
+        {
+          "id": "meghnaUpper",
+          "line": "meghnaUpper",
+          "near": [
+            91.05,
+            24.15
+          ]
+        },
+        {
+          "id": "barak",
+          "line": "barak",
+          "near": [
+            92.65,
+            24.86
+          ]
+        },
+        {
+          "id": "surma",
+          "line": "surma",
+          "near": [
+            91.75,
+            24.97
+          ]
+        },
+        {
+          "id": "kushiyara",
+          "line": "kushiyara",
+          "near": [
+            91.75,
+            24.62
+          ]
+        },
+        {
+          "id": "titas",
+          "line": "titas",
+          "near": [
+            91.13,
+            24.05
+          ]
         }
       ]
     }
   },
   "geometry": {
     "lines": {
+      "meghnaUpper": {
+        "entity": "meghna",
+        "role": "main",
+        "ways": [
+          45425548,
+          1076997939,
+          1076997938,
+          685430035,
+          1076997922
+        ],
+        "down": [
+          90.9897,
+          24.0393
+        ],
+        "identified": "Five ways from the pinned rivers snapshot (key meghna), every link sharing a node, tagged «মেঘনা নদী» / Meghna River, all in relation 11130102 (Q1125242): from where OSM first names the Meghna (node 13911810185, on the unnamed Kushiyara-relation way 674084134, in Nasirnagar near Austagram) to node 3601495737 at Bhairab, the first node of way 1076997905, where the pinned line `meghna` begins. Not drawn: six side channels near Sonargaon/Gazaria, and 674084134 (unnamed)."
+      },
       "meghna": {
-        "role": "continuation",
+        "role": "main",
         "ways": [
           1076997905,
           288284425,
@@ -42,23 +108,425 @@
           91.2016,
           22.3835
         ],
-        "identified": "One chain of ten OSM ways named «মেঘনা নদী» (name:en «Meghna River») from the Meghna above Bhairab Bazar, where the Old Brahmaputra joins it (the book), past the Padma junction, to 22.3835°N. Ways 630320743 and 908091551 carry a name:bn tag reading «গঙ্গা নদী» in OSM; their name and position are the Meghna's. The picture stops at 22.38°N, above the estuary."
+        "identified": "One chain of ten OSM ways named «মেঘনা নদী» (name:en «Meghna River») from the Meghna above Bhairab Bazar, where the Old Brahmaputra joins it (the book), past the Padma junction, to 22.3835°N. Ways 630320743 and 908091551 carry a name:bn tag reading «গঙ্গা নদী» in OSM; their name and position are the Meghna's. The picture stops at 22.38°N, above the estuary. From Stage 2 (b3) a main line of the Meghna's card, no longer a grey continuation; its ways, and so its geometry pin, are unchanged.",
+        "entity": "meghna"
+      },
+      "barak": {
+        "entity": "barak",
+        "role": "disputed",
+        "split": "border",
+        "ways": [
+          168289364,
+          540997693,
+          44882516
+        ],
+        "down": [
+          92.4891,
+          24.8759
+        ],
+        "join": {
+          "parent": "kushiyara",
+          "end": "tail",
+          "node": 306476755,
+          "source": "OSM node 306476755, the last node of way 44882516, where the Surma and the Kushiyara both begin (Zakiganj)"
+        },
+        "identified": "Three ways tagged \"Barāk River\" / Barak River (relation 5904028, Q1709169; this batch's extract), from beyond the frame's east edge to node 306476755 at Zakiganj, where OSM's Surma and Kushiyara begin. All but the last node lie in India (COD-AB): drawn dashed. The relation continues upstream into Manipur, outside the frame; not drawn."
+      },
+      "surma": {
+        "entity": "surma",
+        "role": "disputed",
+        "ways": [
+          45424761,
+          45424770,
+          644709637,
+          644709634,
+          45425001,
+          753070500,
+          45425042
+        ],
+        "down": [
+          91.0084,
+          24.3711
+        ],
+        "join": {
+          "parent": "meghnaUpper",
+          "end": "tail"
+        },
+        "identified": "Seven ways from the pinned rivers snapshot (key surma), every link sharing a node, all in relation 5904030 (Q2985860) as main_stream: from the Barak's end node at Zakiganj to Nikli, where OSM's Ghorautra begins; no stretch below is named Surma. A connector (10.2 km) joins its end to the Meghna (ⓘ). 644709637 is kept as pinned (current OSM differs by at most 6 m)."
+      },
+      "kushiyara": {
+        "entity": "kushiyara",
+        "role": "disputed",
+        "ways": [
+          45425107,
+          45425290,
+          45425289,
+          138303222,
+          671138435,
+          671138439,
+          674084137,
+          671138440
+        ],
+        "down": [
+          91.1588,
+          24.3408
+        ],
+        "join": {
+          "parent": "meghnaUpper",
+          "end": "tail"
+        },
+        "identified": "Eight ways from the pinned rivers snapshot (key kushiyara), every link sharing a node, all in relation 5904029 (Q3347200) as main_stream: from the Barak's end node at Zakiganj to Austagram. A connector (9.8 km) joins its end to the Meghna (ⓘ); OSM's only link, the unnamed relation member 674084134, runs on 13.3 km beside the Meghna as a second channel, so it is not drawn."
+      },
+      "titas": {
+        "entity": "titas",
+        "role": "disputed",
+        "ways": [
+          424888079,
+          484348101,
+          608406115
+        ],
+        "trims": {
+          "484348101": {
+            "fromNode": 4770917200
+          }
+        },
+        "down": [
+          91.1566,
+          23.94
+        ],
+        "join": {
+          "parent": "meghnaUpper",
+          "end": "head",
+          "node": 4242523054,
+          "source": "OSM node 4242523054, the end of way 424888079 on the Meghna's way 685430035 (node 8), in Sarail"
+        },
+        "identified": "Three ways tagged \"Titas River\" (this batch's extract): from the Meghna at Sarail (424888079), on 484348101 from its node 2 (4770917200, where 424888079 meets it; its first 1 km, a spur, is trimmed), to 608406115's dead end near Brahmanbaria town. Not drawn: two side channels (608414930 and 174635641, the latter tagged «তিতাস নদী», Nabinagar–Akhaura), whose ends lie 7.3 and 10.4 km from anything drawn."
+      }
+    },
+    "extractBatches": {
+      "b3": {
+        "barak": [
+          168289364,
+          540997693,
+          44882516
+        ],
+        "titas": [
+          424888079,
+          484348101,
+          608406115
+        ]
       }
     }
   },
-  "continuations": [
+  "continuations": [],
+  "entities": [
     {
       "id": "meghna",
+      "role": "main",
+      "picker": true,
       "nameBn": "মেঘনা",
+      "values": {
+        "alias": "মেমানিয়া (স্থানীয় নাম)",
+        "origin": "আসামের বরাক নদী (নাগা ও মণিপুর অঞ্চল)",
+        "entry": "সিলেট জেলা",
+        "course": "ভৈরববাজারের দক্ষিণে পুরাতন ব্রহ্মপুত্রের সঙ্গে মিলিত হয়ে দক্ষিণ-পশ্চিমে প্রবাহিত; চাঁদপুরের কাছে পদ্মার সঙ্গে মিলিত",
+        "length": null,
+        "tributaries": null,
+        "distributaries": null,
+        "confluence": "আজমিরীগঞ্জের কাছে সুরমা, কুশিয়ারা ও কালনীর মিলিত প্রবাহ কালনী নামে দক্ষিণে কিছুদূর প্রবাহিত হয়ে মেঘনা নাম ধারণ করেছে",
+        "mouth": "বঙ্গোপসাগরে"
+      },
       "sources": {
         "nameBn": [
           {
             "source": "bgeo",
-            "where": "পৃ. ১৫৪",
-            "states": "মেঘনা ভৈরববাজারের দক্ষিণে পুরাতন ব্রহ্মপুত্রের সঙ্গে মিলিত"
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "মেঘনা"
+          }
+        ],
+        "alias": [
+          {
+            "source": "bwdbSE18",
+            "where": "§1.1 «স্থানীয় নাম» [B3-G2]",
+            "states": "স্থানীয় নাম: মেমানিয়া"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "আসামের বরাক নদী নাগা ও মণিপুর অঞ্চল থেকে উৎপন্ন হয়ে"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the মেঘনা paragraph [b910]",
+            "states": "আসামের বরাক নদী নাগা-মণিপুর অঞ্চলে উৎপত্তি হয়ে"
+          }
+        ],
+        "entry": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "আসামের বরাক নদী … বাংলাদেশের সিলেট জেলায় প্রবেশ করেছে"
+          }
+        ],
+        "course": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "মেঘনা ভৈরববাজারের দক্ষিণে পুরাতন ব্রহ্মপুত্রের সঙ্গে মিলিত হয়ে দক্ষিণ-পশ্চিমে প্রবাহিত হয়েছে … চাঁদপুরের কাছে পদ্মার সঙ্গে মিলিত হয়ে"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the মেঘনা paragraph [b910]",
+            "states": "এটি ভৈরব বাজার অতিক্রম করে পুরাতন ব্রহ্মপুত্রের সঙ্গে মিলিত হয়েছে"
+          }
+        ],
+        "confluence": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "আজমিরীগঞ্জের কাছে উত্তর সিলেটের সুরমা, দক্ষিণ সিলেটের কুশিয়ারা নদী এবং হবিগঞ্জের কালনী নদী একসঙ্গে মিলিত হয়েছে"
+          },
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "কালনী, সুরমা ও কুশিয়ারার মিলিত প্রবাহ কালনী নামে দক্ষিণে কিছুদূর প্রবাহিত হয়ে মেঘনা নাম ধারণ করেছে"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the মেঘনা paragraph [b910]",
+            "states": "এই মিলিত ধারা সুনামগঞ্জ জেলার আজমিরিগঞ্জের কাছে কালনী নামে দক্ষিণ–পশ্চিমদিকে অগ্রসর হয়ে মেঘনা নাম ধারণ করেছে"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "চাঁদপুরের কাছে পদ্মার সঙ্গে মিলিত হয়ে মেঘনা নামে বঙ্গোপসাগরে পতিত হয়েছে"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the মেঘনা paragraph [b910]",
+            "states": "এটি পতিত হয়েছে বঙ্গোপসাগরে"
           }
         ]
-      }
+      },
+      "review": "The card is the Meghna as both books' «মেঘনা» paragraphs give it, from the Barak in Assam. Tributaries and distributaries are null: the same four rivers (Manu, Baulai, Titas, Gumti) are «উপনদী» in B-GEO and «শাখা নদী» in B910 (ⓘ). Length is null, as the Jamuna's and the Padma's: BWDB gives two reaches, SE-17 «মেঘনা (আপার)» 156 km and SE-18 «মেঘনা (লোয়ার)» 65 km, never summed; en WP 140 and 130 km (ⓘ). Where the name begins: both books below Ajmiriganj, after the Kalni; BWDB starts SE-17 at Lakhai, Habiganj (ⓘ). BWDB's reach names «মেঘনা (আপার)» and «মেঘনা (লোয়ার)» are not on the card; SE-18's local name «মেমানিয়া» is. The drawn line begins where OSM first names the Meghna, near Austagram, and ends 1.5 km short of COD-AB's coast."
+    },
+    {
+      "id": "barak",
+      "role": "disputed",
+      "nameBn": "বরাক",
+      "values": {
+        "relation": null,
+        "origin": "আসামের নাগা ও মণিপুর অঞ্চল",
+        "entry": null,
+        "course": null,
+        "confluence": null
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "আসামের বরাক নদী"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "আসামের বরাক নদী নাগা ও মণিপুর অঞ্চল থেকে উৎপন্ন হয়ে"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the মেঘনা paragraph [b910]",
+            "states": "আসামের বরাক নদী নাগা-মণিপুর অঞ্চলে উৎপত্তি হয়ে"
+          }
+        ]
+      },
+      "review": "Both books open the Meghna paragraph with the Barak, its source river in Assam. Relation, entry and end are null: B-GEO has it divide into the Surma and the Kushiyara before entering Sylhet, B910 has it join Sylhet's Surma and Kushiyara (ⓘ); BWDB, JRCB's Kushiyara brief and OSM draw a fork at Zakiganj. Course: MISSING (the books give only «আসামের»). JRCB puts its source in «মিজোরাম, মনিপুর» (ⓘ). No BWDB entry: NE-96 «শাখা বরাক» is a small river in Nabiganj, ruled out."
+    },
+    {
+      "id": "surma",
+      "role": "disputed",
+      "nameBn": "সুরমা",
+      "values": {
+        "relation": null,
+        "alias": "পানডিয়া (স্থানীয় নাম)",
+        "origin": null,
+        "entry": "সিলেট জেলা (জকিগঞ্জ উপজেলা)",
+        "course": "পশ্চিম দিকে সিলেট, ছাতক, সুনামগঞ্জ শহরের পাশ দিয়ে প্রবাহিত",
+        "confluence": "আজমিরীগঞ্জের কাছে কুশিয়ারা ও কালনীর সঙ্গে মিলিত"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "উত্তরের শাখা সুরমা"
+          }
+        ],
+        "alias": [
+          {
+            "source": "bwdbNE83",
+            "where": "§1.1 «স্থানীয় নাম» [B3-G3]",
+            "states": "স্থানীয় নাম: পানডিয়া"
+          }
+        ],
+        "entry": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫০ [bgeo]",
+            "states": "সুরমা ও কুশিয়ারা নদী উত্তর-পূর্ব দিক থেকে দেশের অভ্যন্তরে প্রবেশ করে"
+          },
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "… বাংলাদেশের সিলেট জেলায় প্রবেশ করেছে"
+          },
+          {
+            "source": "bwdbNE83",
+            "where": "§1.1 বর্ণনা [B3-G3]",
+            "states": "সিলেট জেলার জকিগঞ্জ উপজেলা দিয়ে বাংলাদেশে প্রবেশ করে"
+          },
+          {
+            "source": "user",
+            "where": "decision 1: one place, the book's wording with the upazila in brackets",
+            "states": "the user, 2026-09-29"
+          }
+        ],
+        "course": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "… সুরমা পশ্চিম দিকে সিলেট, ছাতক, সুনামগঞ্জ শহরের পাশ দিয়ে প্রবাহিত হয়েছে"
+          }
+        ],
+        "confluence": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "আজমিরীগঞ্জের কাছে উত্তর সিলেটের সুরমা, দক্ষিণ সিলেটের কুশিয়ারা নদী এবং হবিগঞ্জের কালনী নদী একসঙ্গে মিলিত হয়েছে"
+          }
+        ]
+      },
+      "review": "BWDB NE-83 (JRCB row ৩৭). Relation and origin are null: they carry the Barak's split, which B910 gives as a join (ⓘ). Where it ends: the books near Ajmiriganj; BWDB into the Baulai at Jamalganj; JRCB into the Upper Meghna, Kishoreganj (ⓘ). The drawn line ends at Nikli, where OSM's Ghorautra begins; a 10.2 km connector joins it to the Meghna."
+    },
+    {
+      "id": "kushiyara",
+      "role": "disputed",
+      "nameBn": "কুশিয়ারা",
+      "values": {
+        "relation": null,
+        "alias": null,
+        "origin": null,
+        "entry": "সিলেট জেলা (জকিগঞ্জ উপজেলা)",
+        "course": "বাংলাদেশ ও ভারতের আন্তর্জাতিক সীমানা বরাবর প্রায় ৩৯ কি.মি. প্রবাহিত হয়",
+        "confluence": "আজমিরীগঞ্জের কাছে সুরমা ও কালনীর সঙ্গে মিলিত"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "দক্ষিণ সিলেটের কুশিয়ারা নদী"
+          }
+        ],
+        "entry": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫০ [bgeo]",
+            "states": "সুরমা ও কুশিয়ারা নদী উত্তর-পূর্ব দিক থেকে দেশের অভ্যন্তরে প্রবেশ করে"
+          },
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "… বাংলাদেশের সিলেট জেলায় প্রবেশ করেছে"
+          },
+          {
+            "source": "bwdbNE17",
+            "where": "§1.1 বর্ণনা [B3-G4]",
+            "states": "সিলেট জেলার জকিগঞ্জ উপজেলা দিয়ে বাংলাদেশে প্রবেশ করে"
+          },
+          {
+            "source": "user",
+            "where": "decision 1: one place, the book's wording with the upazila in brackets",
+            "states": "the user, 2026-09-29"
+          }
+        ],
+        "course": [
+          {
+            "source": "bwdbNE17",
+            "where": "§1.1 বর্ণনা [B3-G4]",
+            "states": "বাংলাদেশ ও ভারতের আন্তর্জাতিক সীমানা বরাবর প্রায় ৩৯ কি.মি. প্রবাহিত হয়। (the card stops here: the next clause spells «বাংলাদশের»)"
+          }
+        ],
+        "confluence": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "আজমিরীগঞ্জের কাছে উত্তর সিলেটের সুরমা, দক্ষিণ সিলেটের কুশিয়ারা নদী এবং হবিগঞ্জের কালনী নদী একসঙ্গে মিলিত হয়েছে"
+          }
+        ]
+      },
+      "review": "BWDB NE-17 (JRCB row ৩৮). Relation and origin are null, as the Surma's. Other names are null: BWDB's local names «মেঘনা (আপার)/কালনী (কিশোরগঞ্জ)/ইসাপুর লুপকাট/সুরিয়া/নাগদারা» include two the books use for the river below the Kushiyara — the editor decides. The course is BWDB's first course clause (the books give only «দক্ষিণ সিলেটের»). Where it ends: the books near Ajmiriganj; BWDB into the Upper Meghna at Kalma, Austagram; JRCB's brief at Bhairab (ⓘ). The drawn line ends at Austagram; a 9.8 km connector joins it to the Meghna."
+    },
+    {
+      "id": "titas",
+      "role": "disputed",
+      "nameBn": "তিতাস (ব্রাহ্মণবাড়িয়া)",
+      "values": {
+        "relation": null,
+        "alias": "বাগাদিয়া, সুনহাইর, সুনাহীর (স্থানীয় নাম)",
+        "origin": "ব্রাহ্মণবাড়িয়া জেলার সরাইল উপজেলার চুন্টা ইউনিয়নে মেঘনা (আপার) নদী থেকে",
+        "course": "একই জেলার মধ্যে দিয়ে প্রবাহিত",
+        "confluence": "নবীনগর উপজেলার পশ্চিম নবীনগর ইউনিয়নে পুনরায় মেঘনা (আপার) নদীতে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "তিতাস"
+          },
+          {
+            "source": "bwdbSE9",
+            "where": "the heading [B3-G6]",
+            "states": "তিতাস (ব্রাহ্মণবাড়িয়া)"
+          }
+        ],
+        "alias": [
+          {
+            "source": "bwdbSE9",
+            "where": "§1.1 «স্থানীয় নাম» [B3-G6]",
+            "states": "স্থানীয় নাম: তিতাস/বাগাদিয়া/সুনহাইর/সুনাহীর"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbSE9",
+            "where": "§1.1 বর্ণনা [B3-G6]",
+            "states": "নদীটি ব্রাহ্মণবাড়িয়া জেলার সরাইল উপজেলার চুন্টা ইউনিয়নে মেঘনা (আপার) নদী থেকে উৎপন্ন হয়েছে।"
+          }
+        ],
+        "course": [
+          {
+            "source": "bwdbSE9",
+            "where": "§1.1 বর্ণনা [B3-G6]",
+            "states": "এরপর নদীটি একই জেলার মধ্যে দিয়ে প্রবাহিত হয়ে"
+          }
+        ],
+        "confluence": [
+          {
+            "source": "bwdbSE9",
+            "where": "§1.1 বর্ণনা [B3-G6]",
+            "states": "নবীনগর উপজেলার পশ্চিম নবীনগর ইউনিয়নে পুনরায় মেঘনা (আপার) নদীতে পতিত হয়েছে।"
+          }
+        ]
+      },
+      "review": "BWDB SE-9 «তিতাস (ব্রাহ্মণবাড়িয়া)», matched by the two book maps (the text gives no district); five other BWDB Titas entries ruled out. Relation null: B-GEO «উপনদী», B910 «শাখা নদী», BWDB SE-17 lists it as an «আন্তঃশাখা নদী» (ⓘ). BWDB's origin off the Meghna and mouth back into it take no side between the books. The drawn line runs from the Meghna at Sarail to a dead end near Brahmanbaria town; OSM has no continuous Titas on to Nabinagar (ⓘ)."
     }
   ]
 }

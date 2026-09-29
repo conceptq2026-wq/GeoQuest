@@ -39,7 +39,12 @@ async function overpass(query) {
       try {
         const res = await fetch(url, { method: 'POST', headers: { ...UA, 'Content-Type': 'application/x-www-form-urlencoded' }, body: 'data=' + encodeURIComponent(query), signal: AbortSignal.timeout(120_000) });
         const t = await res.text();
-        if (res.ok && t.startsWith('{')) return JSON.parse(t);
+        if (!res.ok || !t.startsWith('{')) continue;
+        const j = JSON.parse(t);
+        // A mirror may serve months-old data (Stage 2, b3: a May snapshot with older way versions); refuse it.
+        const age = Date.now() - Date.parse(j.osm3s?.timestamp_osm_base ?? 0);
+        if (!(age < 2 * 86400e3)) { console.error(`${url}: data from ${j.osm3s?.timestamp_osm_base}, too old; trying another`); continue; }
+        return j;
       } catch {}
     }
     await new Promise((r) => setTimeout(r, round * 10_000));

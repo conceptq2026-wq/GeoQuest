@@ -43,6 +43,7 @@
       "main": "মূল নদী",
       "tributary": "উপনদী",
       "distributary": "শাখা নদী",
+      "disputed": "উপনদী/শাখা নদী (বইয়ে ভিন্নমত)",
       "origin": "উৎপত্তি",
       "entry": "প্রবেশস্থল",
       "confluence": "মিলনস্থল",
@@ -182,6 +183,30 @@
       "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=5&Rivers=817",
       "sha256": "90697d12439b0a8a2f125cd239cf53af52ed225223d60fbfb592e1b61e8843ba"
     },
+    "bwdbSE18": {
+      "title": "মেঘনা (লোয়ার) (নদীর তথ্য, SE-18)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=5&Rivers=818",
+      "sha256": "52cdf8dba11c160473d66a1f50ce52325a25051ec19fd291ef47e79a6a34d8f9"
+    },
+    "bwdbNE83": {
+      "title": "সুরমা (নদীর তথ্য, NE-83)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=3&Rivers=488",
+      "sha256": "cf5fcb782ea9ebd8756b1e6d7047dda8936b7c754ff36d9c97338e647390a9e0"
+    },
+    "bwdbNE17": {
+      "title": "কুশিয়ারা (নদীর তথ্য, NE-17)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=3&Rivers=417",
+      "sha256": "2cd7e39b8090c473cb8624a425d790ba0129b10280e27a29af273919ac55d644"
+    },
+    "bwdbSE9": {
+      "title": "তিতাস (ব্রাহ্মণবাড়িয়া) (নদীর তথ্য, SE-9)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=5&Rivers=809",
+      "sha256": "2a3811a50c63d91936eb5613ae0b2322015fdd678197547469d7382980a84f8e"
+    },
     "bwdbSW76": {
       "title": "মাথাভাঙ্গা (নদীর তথ্য, SW-76)",
       "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
@@ -254,6 +279,12 @@
       "url": "https://jrcb.gov.bd/pages/static-pages/6922dc94933eb65569e110c8",
       "sha256": "1ed79611b56dc6e4cb386e437ebd765387322e1d069e86219357e2873e239353",
       "creditExtra": " — উৎপত্তি: Chema-Yung-Dung glacier, Kailas range, southern Tibet"
+    },
+    "jrcbKushiyara": {
+      "title": "কুশিয়ারা নদীর সংক্ষিপ্ত বিবরণ",
+      "publisher": "Joint Rivers Commission, Bangladesh (JRCB; page updated 2026-08-30; read 2026-09-29)",
+      "url": "https://jrcb.gov.bd/pages/static-pages/6922e01f933eb65569e2595a",
+      "sha256": "426d851864f77cb154550f8f7f180d5b20d8d30e8134d985fa3e71ecd6454ebd"
     },
     "bnwBrahmaputra": {
       "title": "ব্রহ্মপুত্র নদ",
@@ -356,6 +387,12 @@
       "publisher": "Bengali Wikipedia (revision 8356385; read 2026-09-29)",
       "url": "https://bn.wikipedia.org/w/index.php?oldid=8356385",
       "sha256": "f0df78585b2eb9258c83b1f03096c8433c3cc3901a120db62a8359fe50251431"
+    },
+    "bnwMeghna": {
+      "title": "মেঘনা নদী",
+      "publisher": "Bengali Wikipedia (revision 9068298; read 2026-09-29)",
+      "url": "https://bn.wikipedia.org/w/index.php?oldid=9068298",
+      "sha256": "d86596de26f81ffc7862dcf964f8679b0c681b88a85aff0322d30b57ef98386e"
     }
   },
   "countries": {
@@ -389,7 +426,8 @@
       "osmSystems": {
         "padma": "tools/sources/osm-bangladesh-rivers-padma.geojson",
         "karnaphuli": "tools/sources/osm-bangladesh-rivers-karnaphuli.geojson",
-        "padma-b2": "tools/sources/osm-bangladesh-rivers-padma-b2.geojson"
+        "padma-b2": "tools/sources/osm-bangladesh-rivers-padma-b2.geojson",
+        "meghna-b3": "tools/sources/osm-bangladesh-rivers-meghna-b3.geojson"
       }
     },
     "frames": {
@@ -504,7 +542,7 @@
     "_about": "Plain lines under ⓘ, in two headed blocks after the sources (`group`: notes, then conflicts; ui.creditGroupsBn names the three blocks), each in this order (the user's decisions, Prompt 40 Part B, 2026-09-29): the two lines on the drawn joins, in the user's words; where COD-AB puts the drawn lines' ends that a card's source words place otherwise; the Karatoya that is not drawn; then one line per source conflict, the card's (winning) value first — the source order is the books («ভূগোল ও পরিবেশ» before «বাংলাদেশ ও বিশ্বপরিচয়»), BWDB and JRCB, Bengali then English Wikipedia, newspapers, Banglapedia.",
     "lines": [
       {
-        "textBn": "নদীর সংযোগ-রেখা (ধরলা, তিস্তা, শীতলক্ষ্যা, ধলেশ্বরী, আড়িয়াল খাঁ, মহানন্দা, ভাগীরথী, ভৈরব, কপোতাক্ষ, নবগঙ্গা, চিত্রা) আনুমানিক আঁকা।",
+        "textBn": "নদীর সংযোগ-রেখা (ধরলা, তিস্তা, শীতলক্ষ্যা, ধলেশ্বরী, আড়িয়াল খাঁ, মহানন্দা, ভাগীরথী, ভৈরব, কপোতাক্ষ, নবগঙ্গা, চিত্রা, সুরমা, কুশিয়ারা) আনুমানিক আঁকা।",
         "group": "notes",
         "sources": [
           {
@@ -521,6 +559,11 @@
             "source": "osm",
             "where": "the gaps the batch b2 connectors bridge, in the pinned extract",
             "states": "Bhairab 0.3 km (between its reaches); Nabaganga 2.8 km and Chitra 10.7 km (to the Mathabhanga); Kapotaksha 0.13 km (a gap the Mathabhanga's simplified line opens)"
+          },
+          {
+            "source": "osm",
+            "where": "the gaps the batch b3 connectors bridge (the pinned snapshot)",
+            "states": "Surma 10.2 km (from Nikli, where OSM's Ghorautra begins) and Kushiyara 9.8 km (from Austagram) to the Meghna's nearest point"
           }
         ]
       },
@@ -701,6 +744,22 @@
             "source": "bwdbSW10",
             "where": "§1.1 বর্ণনা [B2-G1]",
             "states": "মাগুরা জেলার সদর উপজেলার মাগুরা পৌরসভায় নবগঙ্গা নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      {
+        "textBn": "সুরমার আঁকা রেখা কিশোরগঞ্জের নিকলীতে, কুশিয়ারার অষ্টগ্রামে শেষ হয়েছে; ডেটায় আজমিরীগঞ্জের নিচের অংশ কুশিয়ারা নামে আছে, কালনী নামে নেই, তাই কালনী ছবিতে আঁকা হয়নি। তিতাসের আঁকা রেখা ব্রাহ্মণবাড়িয়া শহরের কাছে শেষ; নবীনগর পর্যন্ত তিতাস নামে একটানা নদীপথ ডেটায় পাওয়া যায়নি।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "osm",
+            "where": "the pinned snapshot's Surma (45425042) and Kushiyara (671138440) ends; the Titas ways 608406115, 608414930, 174635641; the Kalni fragments 670731757, 653438999",
+            "states": "no stretch below Nikli is named Surma; the reach below Ajmiriganj is tagged Kushiyara; no Kalni in Habiganj or Kishoreganj; no continuous Titas to Nabinagar"
+          },
+          {
+            "source": "codab",
+            "where": "bgd_admin3: the upazilas holding the drawn ends",
+            "states": "Nikli, Kishoreganj; Austagram, Kishoreganj"
           }
         ]
       },
@@ -1429,6 +1488,153 @@
             "source": "codab",
             "where": "bgd_admin3: the upazila holding the drawn mouth",
             "states": "Boalkhali, Chattogram"
+          }
+        ]
+      },
+      {
+        "textBn": "বরাক, সুরমা ও কুশিয়ারা (সম্পর্ক কার্ডে দেখানো হয়নি): «ভূগোল ও পরিবেশ» — বরাক সুরমা ও কুশিয়ারা নামে বিভক্ত হয়ে সিলেট জেলায় প্রবেশ করেছে; «বাংলাদেশ ও বিশ্বপরিচয়» — বরাক সিলেটের সুরমা ও কুশিয়ারা নদীর সাথে মিলিত হয়েছে।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "আসামের বরাক নদী নাগা ও মণিপুর অঞ্চল থেকে উৎপন্ন হয়ে সুরমা ও কুশিয়ারা নামে বিভক্ত হয়ে বাংলাদেশের সিলেট জেলায় প্রবেশ করেছে"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the মেঘনা paragraph [b910]",
+            "states": "সিলেটের সুরমা ও কুশিয়ারা নদীর সাথে মিলিত হয়েছে"
+          },
+          {
+            "source": "user",
+            "where": "decision 2 and rule b: where the two books disagree, the row stays hidden and ⓘ gives both",
+            "states": "the user, 2026-09-29"
+          }
+        ]
+      },
+      {
+        "textBn": "মনু, বাউলাই, তিতাস ও গোমতী (সম্পর্ক কার্ডে দেখানো হয়নি): «ভূগোল ও পরিবেশ» — মেঘনার উপনদী; «বাংলাদেশ ও বিশ্বপরিচয়» — মেঘনার শাখা নদী; পানি উন্নয়ন বোর্ডের মেঘনা (আপার)-এর বিবরণে তিতাস আন্তঃশাখা নদী।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "মনু, বাউলাই, তিতাস, গোমতী মেঘনার উপনদী"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the মেঘনা paragraph [b910]",
+            "states": "মনু, তিতাস, গোমতী, বাউলাই মেঘনার শাখা নদী"
+          },
+          {
+            "source": "bwdbSE17",
+            "where": "§1.11 আন্তঃশাখা নদী [B3-G1]",
+            "states": "তিতাস (ব্রাহ্মণবাড়িয়া), তিতাস (নরসিংদী সদর-বাঞ্ছারামপুর)"
+          },
+          {
+            "source": "user",
+            "where": "decision 2 and rule b: where the two books disagree, the row stays hidden and ⓘ gives both",
+            "states": "the user, 2026-09-29"
+          }
+        ]
+      },
+      {
+        "textBn": "বরাকের উৎপত্তি: বই — নাগা ও মণিপুর অঞ্চল; যৌথ নদী কমিশন — ভারতের মিজোরাম, মনিপুর পাহাড় এলাকা।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "নাগা ও মণিপুর অঞ্চল থেকে উৎপন্ন হয়ে"
+          },
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, p. ৫ row ৩৭ and p. ৬ row ৩৮, উৎপত্তিস্থল [B3-J1]",
+            "states": "ভারতের মিজোরাম, মনিপুর পাহাড় এলাকা বরাক নদী"
+          }
+        ]
+      },
+      {
+        "textBn": "সুরমা ও কুশিয়ারার শেষ: বই — আজমিরীগঞ্জের কাছে একসঙ্গে মিলিত; পানি উন্নয়ন বোর্ড — সুরমা জামালগঞ্জে বাউলাই নদীতে, কুশিয়ারা অষ্টগ্রামের কলমা ইউনিয়নে মেঘনা (আপার) নদীতে; যৌথ নদী কমিশন — দুটিই কিশোরগঞ্জ জেলায় আপার মেঘনায়।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "আজমিরীগঞ্জের কাছে উত্তর সিলেটের সুরমা, দক্ষিণ সিলেটের কুশিয়ারা নদী এবং হবিগঞ্জের কালনী নদী একসঙ্গে মিলিত হয়েছে"
+          },
+          {
+            "source": "bwdbNE83",
+            "where": "§1.1 বর্ণনা [B3-G3]",
+            "states": "সুনামগঞ্জ জেলার জামালগঞ্জ উপজেলার সদর ইউনিয়নে বৌলাই/ বাউলাই/ বলুয়া নদীতে পতিত হয়েছে।"
+          },
+          {
+            "source": "bwdbNE17",
+            "where": "§1.1 বর্ণনা [B3-G4]",
+            "states": "কিশোরগঞ্জ জেলার অষ্টগ্রাম উপজেলার কলমা ইউনিয়ন দিয়ে মেঘনা (আপার) নদীতে পতিত হয়েছে।"
+          },
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, rows ৩৭–৩৮, পতিতমুখ [B3-J1]",
+            "states": "আপার মেঘনা নদী কিশোরগঞ্জ জেলা"
+          }
+        ]
+      },
+      {
+        "textBn": "আজমিরীগঞ্জ: «বাংলাদেশ ও বিশ্বপরিচয়» — সুনামগঞ্জ জেলায়; পানি উন্নয়ন বোর্ড ও বাংলাদেশের প্রশাসনিক সীমানার সরকারি ডেটা (COD-AB) — হবিগঞ্জ জেলায়।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the মেঘনা paragraph [b910]",
+            "states": "সুনামগঞ্জ জেলার আজমিরিগঞ্জের কাছে"
+          },
+          {
+            "source": "bwdbNE17",
+            "where": "§1.7 প্রবাহিত গতিপথ এলাকা [B3-G4]",
+            "states": "আজমিরীগঞ্জ … | হবিগঞ্জ"
+          },
+          {
+            "source": "codab",
+            "where": "bgd_admin3",
+            "states": "Ajmiriganj, Habiganj"
+          }
+        ]
+      },
+      {
+        "textBn": "মেঘনা নামের শুরু: বই — আজমিরীগঞ্জের নিচে কালনী নামে কিছুদূর প্রবাহিত হয়ে; পানি উন্নয়ন বোর্ড — মেঘনা (আপার) হবিগঞ্জ জেলার লাখাই থেকে যাত্রা শুরু করে।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "কালনী, সুরমা ও কুশিয়ারার মিলিত প্রবাহ কালনী নামে দক্ষিণে কিছুদূর প্রবাহিত হয়ে মেঘনা নাম ধারণ করেছে"
+          },
+          {
+            "source": "bwdbSE17",
+            "where": "§1.1 বর্ণনা; §1.4 উৎসমুখ [B3-G1]",
+            "states": "লাখাই ইউনিয়ন থেকে যাত্রা শুরু করে; কুশিয়ারা | শিবপুর | লাখাই | লাখাই | হবিগঞ্জ | সিলেট"
+          }
+        ]
+      },
+      {
+        "textBn": "মেঘনার দৈর্ঘ্য (কার্ডে দেখানো হয়নি, বই দৈর্ঘ্য দেয়নি): পানি উন্নয়ন বোর্ড — মেঘনা (আপার) ১৫৬ কিলোমিটার, মেঘনা (লোয়ার) ৬৫ কিলোমিটার, দুই অংশ আলাদা।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bwdbSE17",
+            "where": "§1.5 দৈর্ঘ্য [B3-G1]",
+            "states": "156 কি.মি."
+          },
+          {
+            "source": "bwdbSE18",
+            "where": "§1.5 দৈর্ঘ্য [B3-G2]",
+            "states": "65 কি.মি."
+          },
+          {
+            "source": "user",
+            "where": "decision 2: a length whose reach differs between sources stays hidden, as the Jamuna's and the Padma's",
+            "states": "the user, 2026-09-29"
           }
         ]
       }

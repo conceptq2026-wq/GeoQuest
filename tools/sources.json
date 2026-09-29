@@ -271,5 +271,13 @@
     "snapshot": "2026-09-29T11:29:01Z",
     "licence": "ODbL 1.0 — © OpenStreetMap contributors",
     "sha256": "016d3bf63a1edf3f63142de757ebb8818ca0896e3a5d0adf827c794455f7a9a6"
+  },
+  "osmBangladeshRiversMeghnaB3": {
+    "_comment": "The OpenStreetMap ways the Rivers of Bangladesh picture's Meghna system draws in Stage 2 batch b3 beyond the rivers snapshot — the Barak and the Titas — each by way id, with node ids and tags, from tools/extract-bangladesh-rivers-system.mjs meghna b3 (the way list is the Meghna seed's geometry.extractBatches.b3). Every way carries a name, name:bn, name:en or wikidata tag naming its river (the user's rule, 2026-09-29). Only a deliberate re-run changes it.",
+    "file": "tools/sources/osm-bangladesh-rivers-meghna-b3.geojson",
+    "fetched": "2026-09-29",
+    "snapshot": "2026-09-29T11:53:20Z",
+    "licence": "ODbL 1.0 — © OpenStreetMap contributors",
+    "sha256": "eb26c51441d495f3c41051b22179e24dc9753328d4b282007f231089904f0e6f"
   }
 }
