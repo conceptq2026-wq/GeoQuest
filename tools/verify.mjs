@@ -759,6 +759,10 @@ const describe = (f) => `${relToRoot(f.file)}:${f.line} ${f.class} — ${f.rule}
     // 1.2.840.113549.1.9.1, in the CA's "Division" certificate) — an
     // organisation's certificate contact, not a person's.
     { file: /^design\/mockups\/(atmosphere-layers-exploded|globe-latitude-longitude)\.png$/, match: /^\w{2}@trufo\.ai\d?$/ },
+    // GitHub's no-reply commit identity for the repo owner, written in CLAUDE.md's
+    // rule on commit identity: an address GitHub does not deliver, the one the
+    // user chose instead of a personal address (2026-09-29).
+    { file: /^CLAUDE\.md$/, match: /^319420647\+conceptq2026-wq@users\.noreply\.github\.com$/ },
   ];
   const textOf = (buf, file) => {
     const skip = (parts) => parts.map((b) => b.toString('latin1')).join('\n');

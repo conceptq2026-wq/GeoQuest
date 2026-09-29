@@ -62,6 +62,10 @@ const BUSY_KM = 30;
 // 2026-09-29: 10 km, then 12 km for the Dhaleshwari, then "gaps over 12 km stay unjoined" for every line).
 const CONNECT_FROM_M = 50;
 const CONNECT_MAX_M = 12000;
+// Lines left unjoined by the user's decision though nearer than CONNECT_MAX_M: the Harinbhanga (decision 5
+// after Stage 3 — BWDB has it rise from the Raimangal, which is not drawn; the Ichamati is 8.3 km off).
+// tools/verify.mjs holds the same list.
+const UNJOINED_BY_DECISION = new Set(['harinbhanga']);
 const JOIN_M = 500;
 // The Padma–Meghna junction: the Padma's end must lie this near a Meghna vertex (metres).
 const JUNCTION_M = 3;
@@ -478,11 +482,14 @@ function buildFrame(frameId, spec) {
     if (!joinsParent(l)) continue;
     const parent = l.spec.join?.parent ?? 'main';
     if (!spec.lines.includes(parent)) continue;
-    // A line the seed leaves unjoined (\`exempt\`) gets no connector — over 12 km by the rule, or nearer by
-    // the user's decision (the Harinbhanga) — and may end outside the picture; any other must end in it.
-    if (l.spec.exempt) continue;
+    // Unjoined by the user's decision though nearer than 12 km: no connector.
+    if (UNJOINED_BY_DECISION.has(id)) continue;
     const end = P.project(...(parentSideAtTail(l) ? l.coords.at(-1) : l.coords[0]));
-    if (!inRect(end)) fail(`${frameId}: ${id}'s parent-side end is outside the frame`);
+    // A line the seed leaves unjoined may end outside the picture; any other must end in it.
+    if (!inRect(end)) {
+      if (l.spec.exempt) continue;
+      fail(`${frameId}: ${id}'s parent-side end is outside the frame`);
+    }
     const q = (xy) => xy.map((v) => Math.round(v * 10) / 10);
     const [a, b] = [q(end), q(footOn(end, drawnPolys(parent)))];
     const m = distM(P.invert(...a), P.invert(...b));

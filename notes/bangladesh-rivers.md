@@ -251,9 +251,11 @@ finishes it. It is not in `docs/registry.json`.
      or Banglapedia, so the name is not adopted; ⓘ says so. The Mogra and
      BWDB's «মগড়া» are spellings of one name, matched by geometry and
      district; both spellings in ⓘ, both OSM pieces drawn.
-  5. The Harinbhanga is unjoined though the Ichamati is 8.3 km off: a line
-     with `exempt` never gets a connector (the build), and the validator
-     names it as unjoined by decision.
+  5. The Harinbhanga is unjoined though the Ichamati is 8.3 km off: the
+     build and the validator each hold the one list of lines unjoined by the
+     user's decision (`UNJOINED_BY_DECISION`), which get no connector. (`exempt`
+     alone means no join point, with a connector where one is under 12 km —
+     the Dhaleshwari.)
   6. Border rivers — the Feni, the Naf, the Ichamati — are drawn solid outside
      Bangladesh; one ⓘ line says so.
   7. The Shahbazpur and the Haringhata stay out (no relabelling of the
