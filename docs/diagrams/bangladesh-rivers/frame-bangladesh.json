@@ -250,6 +250,26 @@
       ]
     }
   ],
+  "connectors": [
+    {
+      "id": "dharla",
+      "parent": "main",
+      "m": 2566,
+      "d": "M440.1 439.5l6.2 6.4"
+    },
+    {
+      "id": "teesta",
+      "parent": "main",
+      "m": 3005,
+      "d": "M423.6 565.4l10.1-2.7"
+    },
+    {
+      "id": "shitalakshya",
+      "parent": "oldBrahmaputra",
+      "m": 145,
+      "d": "M759.9 998.7l-0.5 0"
+    }
+  ],
   "markers": [
     {
       "id": "entry",

@@ -34,6 +34,18 @@ finishes it. It is not in `docs/registry.json`.
   river's card and the marker's, is the book's «কুড়িগ্রাম জেলা» alone; ⓘ
   carries one plain line, the user's wording (the marker's `infoBn`): JRCB's
   and BWDB's Nageshwari, and that COD-AB puts the drawn crossing in Ulipur.
+- **Connectors** (the user's rule, 2026-09-29): where a tributary's mouth or a
+  distributary's head, as drawn, lies more than 50 m and at most 10 km from
+  its drawn parent, the build adds a straight connector from that end to the
+  parent's nearest point — the Dharla (2,566 m) and the Teesta (3,005 m) to
+  the main line, the Shitalakshya (145 m, a gap the Old Brahmaputra's
+  simplified line opens) to the Old Brahmaputra. They are `connectors` in the
+  frame (id, parent, length in m, path data), never part of the sourced
+  lines, drawn in the river's own group — its colour, width and highlight —
+  with no tap zone. The Karatoya (17.6 km), Atrai (47.0 km), Dhaleshwari
+  (11.4 km) and Banshi (31.0 km) are further than 10 km and stay unjoined;
+  the Dhaleshwari's mouth, 3.1 km from the drawn Meghna, is not a parent-side
+  end and has none.
 - **The picker row** is the shell's, at the top, with one entry, the main river.
   A tap on a line or a marker opens its card; a marker's heading is composed
   «name — legend word». The legend lists only the kinds a tab draws. ⓘ carries
@@ -88,10 +100,12 @@ finishes it. It is not in `docs/registry.json`.
   sources by checksum:
   - a. every marker, its source coordinate projected with the picture's own
     projection: within 1 px at the frame's scale and 500 m on the ground;
-  - b. every tributary and distributary: one end within 500 m of its parent
-    line or of its recorded join point. Karatoya, Atrai, Dhaleshwari and Banshi
-    have no join point and are exempt, each with its reason in the seed; the
-    Old Brahmaputra passes on its own at 0 m;
+  - b. every tributary and distributary: its parent-side end within 50 m of
+    its parent line as drawn, or of a connector (one straight segment, at most
+    10 km) that starts at that end and ends on the parent line; the list of
+    connectors is printed. Karatoya, Atrai, Dhaleshwari and Banshi are over
+    10 km and stay unjoined, each with its reason in the seed; the Old
+    Brahmaputra passes on its own at 0 m;
   - c. the entry marker on COD-AB's border (500 m), and BWDB's point it was
     snapped from;
   - d. the main river one connected line, gaps 0 m, no duplicate segment, no

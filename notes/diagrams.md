@@ -104,3 +104,6 @@ not built.
     picker, then every zone tapped where it alone takes the tap, with the layout
     check with no card and with each card. Its `CARD` and `FIT` read the card of
     the tab in view.
+  - **Connectors:** a frame may carry `connectors` (id, parent, length, path
+    data): straight segments the build adds from a branch's end to its parent,
+    drawn in that river's group, with no tap zone (`notes/bangladesh-rivers.md`).

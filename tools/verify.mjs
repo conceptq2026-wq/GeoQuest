@@ -222,37 +222,53 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
       drawnMarkers++;
     }
 
-  // 7b — every tributary and distributary has an end at its parent line or its recorded join point.
+  // 7b — every tributary and distributary: its parent-side end (a tributary's mouth, a distributary's head)
+  // within 50 m of its parent line as drawn, or of a connector of at most 10 km that runs from that end to
+  // the parent line; a line with neither is exempt, and the seed says why.
   const EXEMPT = ['karatoya', 'atrai', 'dhaleshwari', 'banshi'];
+  const NEAR_M = 50;
+  const CONNECTOR_MAX_M = 10000;
   const branches = Object.entries(G.lines).filter(([, l]) => l.role === 'tributary' || l.role === 'distributary');
-  const viaJoin = [];
+  const connectors = frames.bangladesh.connectors ?? [];
+  const connectorOf = new Map();
+  for (const c of connectors) {
+    const pts = parsePath(c.d).flat().map(([x, y]) => proj.bangladesh.invert(x, y));
+    const len = distM(pts[0], pts.at(-1));
+    check(pts.length === 2 && len <= CONNECTOR_MAX_M && Math.abs(len - c.m) <= 1 && branches.some(([id]) => id === c.id) && !connectorOf.has(c.id), `b. connector ${c.id} → ${c.parent}: one straight segment, ${round(len)} m (it records ${c.m} m; limit ${CONNECTOR_MAX_M / 1000} km)`);
+    connectorOf.set(c.id, { ...c, pts });
+  }
+  check((frames.whole.connectors ?? []).length === 0, 'b. the whole-course frame draws no branch, so no connector');
+  const viaConnector = [];
   const exempt = [];
   const alone = [];
   for (const [id, spec] of branches) {
-    const pts = lineOf('bangladesh', id).flat();
-    const ends = [pts[0], pts.at(-1)];
-    const parentId = spec.join?.parent ?? (id === 'shitalakshya' ? 'oldBrahmaputra' : 'main');
+    const pieces = lineOf('bangladesh', id);
+    const end = spec.role === 'tributary' ? pieces.at(-1).at(-1) : pieces[0][0];
+    const parentId = spec.join?.parent ?? 'main';
     const parent = lineOf('bangladesh', parentId).flat();
-    const toParent = Math.min(...ends.map((e) => nearestOnLine(e, parent).m));
-    const toJoin = spec.join?.point ? Math.min(...ends.map((e) => distM(e, spec.join.point))) : null;
-    if (spec.join?.point) {
+    const toParent = nearestOnLine(end, parent).m;
+    const con = connectorOf.get(id);
+    if (spec.join?.point || spec.join?.node !== undefined) {
       const j = spec.join;
       const w = j.node !== undefined ? spec.ways.map((x) => osmWays.get(x)).find((x) => x?.properties.nodes?.includes(j.node)) : osmWays.get(j.way);
       const p = w && (j.node !== undefined ? w.geometry.coordinates[w.properties.nodes.indexOf(j.node)] : w.geometry.coordinates[j.vertex]);
-      check(Boolean(p) && spec.ways.includes(w.properties.osm_id) && distM(p, j.point) <= 2, `b. ${id}: the recorded join point is ${j.node !== undefined ? `node ${j.node}` : `vertex ${j.vertex}`} of way ${w?.properties.osm_id}, one of the line's own ways, within 2 m of the point`);
+      check(Boolean(p) && spec.ways.includes(w.properties.osm_id) && (!j.point || distM(p, j.point) <= 2), `b. ${id}: the recorded join point is ${j.node !== undefined ? `node ${j.node}` : `vertex ${j.vertex}`} of way ${w?.properties.osm_id}, one of the line's own ways${j.point ? ', within 2 m of the point' : ''}`);
     }
-    if (spec.join) {
-      check(toParent <= 500 || (toJoin !== null && toJoin <= 500), `b. ${id}: an end is ${round(toParent)} m from the ${parentId} line${toJoin === null ? '' : `, ${round(toJoin)} m from its recorded join point`}`);
-      if (toParent > 500) viaJoin.push(`${id} ${round(toParent / 1000, 1)} km`);
-    } else if (toParent <= 500) {
-      check(true, `b. ${id}: no join point recorded, but an end is ${round(toParent)} m from the ${parentId} line, so it passes on its own`);
+    if (toParent <= NEAR_M) {
+      check(!con, `b. ${id}: its end is ${round(toParent)} m from the ${parentId} line (limit ${NEAR_M} m), with no connector`);
       alone.push(`${id} ${round(toParent)} m`);
+    } else if (con) {
+      const startGap = distM(con.pts[0], end);
+      const footGap = nearestOnLine(con.pts.at(-1), parent).m;
+      check(con.parent === parentId && startGap <= NEAR_M && footGap <= NEAR_M, `b. ${id}: its end is ${round(toParent)} m from the ${parentId} line; its connector starts ${round(startGap)} m from that end and ends ${round(footGap)} m from the line (limit ${NEAR_M} m each)`);
+      viaConnector.push(`${id} ${round(con.m / 1000, 2)} km`);
     } else {
-      check(typeof spec.exempt === 'string' && spec.exempt.length > 20, `b. ${id}: no join point recorded, and the seed says why — exempt (nearest end ${round(toParent / 1000, 1)} km from the ${parentId} line)`);
+      check(typeof spec.exempt === 'string' && spec.exempt.length > 20 && toParent > CONNECTOR_MAX_M, `b. ${id}: no connector — its end is ${round(toParent / 1000, 1)} km from the ${parentId} line, over ${CONNECTOR_MAX_M / 1000} km — and the seed says why it has no join point`);
       exempt.push(id);
     }
   }
-  check(JSON.stringify(exempt.sort()) === JSON.stringify([...EXEMPT].sort()), `b. the exempt lines are exactly karatoya and atrai (the user's) and dhaleshwari and banshi (no source plots their offtake): ${exempt.join(', ')}`);
+  check(JSON.stringify([...exempt].sort()) === JSON.stringify([...EXEMPT].sort()), `b. the lines left unjoined are exactly karatoya and atrai (the user's) and dhaleshwari and banshi (no source plots their offtake): ${exempt.join(', ')}`);
+  console.log(`     connectors: ${connectors.map((c) => `${c.id} → ${c.parent} ${c.m} m`).join(', ') || 'none'}`);
 
   // 7c — the border-entry marker lies on Bangladesh's border; so does BWDB's entry point, from which it was snapped.
   const entry = seedMarker.entry;
@@ -383,7 +399,7 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
   const pins = JSON.parse(fs.readFileSync(RIVERS_PINS, 'utf8'));
   check(same && Object.keys(pins).length === 11, `the build reproduces the ${built.length} committed files byte for byte, and its ${Object.keys(pins).length} geometry pins hold${same ? '' : ` — ${say.split('\n').slice(0, 3).join(' | ')}`}`);
   check(Boolean(seamLine) && Number(seamLine[1]) <= G.main.seam.maxM && Number(seamLine[3]) <= 500 && Number(seamLine[4]) <= 3, `d. the seam is ${seamLine?.[1]} m at ${seamLine?.[2]}°E (limit ${G.main.seam.maxM} m); the Jamuna ends ${seamLine?.[3]} m from the Padma, which ends ${seamLine?.[4]} m from the Meghna`);
-  console.log(`bangladesh-rivers: a. ${drawnMarkers} markers within ${round(worst.px, 2)} px / ${round(worst.m)} m; b. ${branches.length - exempt.length} joined (${viaJoin.join(', ')} via the join point; ${alone.join(', ')} with no join point, on their own), ${exempt.length} exempt (${exempt.join(', ')}); c. entry ${round(entrySrc)} m from the border (BWDB's point ${round(entryBwdb)} m); d. main connected, gaps ≤ 500 m; e. ${drawnIds.size} lines, ${wayIds.size} ways, ${S.markers.length} markers traced; f. entry on the line and at the dash switch: ${entryF.join(', ')}`);
+  console.log(`bangladesh-rivers: a. ${drawnMarkers} markers within ${round(worst.px, 2)} px / ${round(worst.m)} m; b. ${alone.length + viaConnector.length} joined (${alone.join(', ')} on their own; ${viaConnector.join(', ')} by a connector), ${exempt.length} unjoined, over 10 km (${exempt.join(', ')}); c. entry ${round(entrySrc)} m from the border (BWDB's point ${round(entryBwdb)} m); d. main connected, gaps ≤ 500 m; e. ${drawnIds.size} lines, ${wayIds.size} ways, ${S.markers.length} markers traced; f. entry on the line and at the dash switch: ${entryF.join(', ')}`);
 }
 
 // ---- vendored libraries ----

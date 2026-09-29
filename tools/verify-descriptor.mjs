@@ -1910,6 +1910,8 @@ console.log('\n\n============ bangladesh-rivers (diagram) ============');
     check(frame.labels.every((l) => l.id in data.labels && lineIds.includes(l.line)) && frame.countries.every((c) => c.id in data.countries), `${view.id}: every name it places has its text in data.json (${frame.labels.length} on lines, ${frame.countries.length} countries)`);
     const kinds = new Set([...frame.lines.map((l) => (l.role === 'continuation' ? null : l.role)).filter(Boolean), ...frame.markers.map((m) => data.markers[m.id].kind)]);
     check([...kinds].every((k) => legendKinds.has(k)), `${view.id}: its legend words exist for every kind it draws (${[...kinds].join(', ')})`);
+    const cons = frame.connectors ?? [];
+    check(cons.every((c) => drawn.includes(c.id) && drawn.includes(c.parent) && ['tributary', 'distributary'].includes(frame.lines.find((l) => l.id === c.id).role) && Number.isInteger(c.m)), `${view.id}: its ${cons.length} connector(s) join a drawn branch to a drawn parent, and carry their length (${cons.map((c) => `${c.id} ${c.m} m`).join(', ') || 'none'})`);
     console.log(`     ${view.id}: viewBox 0 0 ${frame.projection.width} ${frame.projection.height}`);
   }
   const sizes = ['descriptor.json', descriptor.data, ...descriptor.views.map((v) => v.art)].map((f) => fs.statSync(path.join(dir, f)).size);

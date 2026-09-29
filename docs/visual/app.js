@@ -21,7 +21,7 @@
 | keys.
 */
 
-import { resolver } from '../shared/resolver.js?v=25d9e1cee5';
+import { resolver } from '../shared/resolver.js?v=0c6723562a';
 
 const dom = {
   header: document.querySelector('.visual-header'),
@@ -42,10 +42,10 @@ const dom = {
 | with no module here is an error.
 */
 const VIEW_MODULES = {
-  exploded: () => import('./exploded.js?v=25d9e1cee5'),
-  cutaway: () => import('./cutaway.js?v=25d9e1cee5'),
-  orbit: () => import('./orbit.js?v=25d9e1cee5'),
-  rivers: () => import('./rivers.js?v=25d9e1cee5'),
+  exploded: () => import('./exploded.js?v=0c6723562a'),
+  cutaway: () => import('./cutaway.js?v=0c6723562a'),
+  orbit: () => import('./orbit.js?v=0c6723562a'),
+  rivers: () => import('./rivers.js?v=0c6723562a'),
 };
 
 const diagramId = new URLSearchParams(location.search).get('v');

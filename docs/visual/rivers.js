@@ -30,7 +30,7 @@
 | Every word shown is the descriptor's or the data's.
 */
 
-import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=25d9e1cee5';
+import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=0c6723562a';
 
 const ZOOM_MAX = 6;
 // CSS px: a press that moves less than this is a tap; two taps within DOUBLE_MS and DOUBLE_PX are a double tap.
@@ -87,7 +87,7 @@ function glyph(kind) {
 export async function mount(panel, { view, descriptor, data, art }) {
   const words = descriptor.words;
   const frame = await art;
-  await Promise.all([stylesheet('../shared/picker.css?v=25d9e1cee5'), stylesheet('./rivers.css?v=25d9e1cee5')]);
+  await Promise.all([stylesheet('../shared/picker.css?v=0c6723562a'), stylesheet('./rivers.css?v=0c6723562a')]);
 
   const fw = frame.projection.width;
   const fh = frame.projection.height;
@@ -138,6 +138,10 @@ export async function mount(panel, { view, descriptor, data, art }) {
     const g = svgEl('g', { class: `river river-${line.role}` });
     for (const piece of line.pieces) {
       g.append(svgEl('path', { class: 'river-halo', d: piece.d }), svgEl('path', { class: piece.dash ? 'river-line dash' : 'river-line', d: piece.d }));
+    }
+    // A connector joins a branch's end to its parent: the river's own colour and width, but no tap zone.
+    for (const c of (frame.connectors ?? []).filter((x) => x.id === line.id)) {
+      g.append(svgEl('path', { class: 'river-halo', d: c.d }), svgEl('path', { class: 'river-line connector', d: c.d }));
     }
     linesG.append(g);
     riverG.set(line.id, g);

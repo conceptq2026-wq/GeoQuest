@@ -53,6 +53,10 @@ const MIN_LAND_AREA = 3;
 const CHAIN_TOL_M = 3;
 // The seed's entry point may miss the computed border crossing by this much (metres): its eight decimals.
 const SNAP_M = 0.05;
+// A tributary's or distributary's drawn end further than CONNECT_FROM_M from its drawn parent, and no
+// more than CONNECT_MAX_M, gets a straight connector to the parent's nearest point (the user's rule, 2026-09-29).
+const CONNECT_FROM_M = 50;
+const CONNECT_MAX_M = 10000;
 const JOIN_M = 500;
 // The Padma–Meghna junction: the Padma's end must lie this near a Meghna vertex (metres).
 const JUNCTION_M = 3;
@@ -385,6 +389,37 @@ function buildFrame(frameId, spec) {
     })
     .sort((a, b) => roleRank[a.role] - roleRank[b.role]);
 
+  // The connectors: from a branch's parent-side end (a tributary's mouth, a distributary's head) to the
+  // nearest point of its parent as drawn. Kept apart from the sourced lines, never merged into them.
+  const drawnPolys = (id) => (id === 'main' ? mainPieces.map((pc) => pc.coords) : [lines[id].coords]).flatMap((c) => clipLine(proj(c), RECT).map((pc) => simplify(pc, tol.river)));
+  const footOn = (p, polys) => {
+    let best = null;
+    for (const poly of polys)
+      for (let i = 1; i < poly.length; i++) {
+        const [a, b] = [poly[i - 1], poly[i]];
+        const dx = b[0] - a[0], dy = b[1] - a[1];
+        const len2 = dx * dx + dy * dy;
+        const s = len2 ? Math.max(0, Math.min(1, ((p[0] - a[0]) * dx + (p[1] - a[1]) * dy) / len2)) : 0;
+        const q = [a[0] + s * dx, a[1] + s * dy];
+        const d = Math.hypot(q[0] - p[0], q[1] - p[1]);
+        if (!best || d < best.d) best = { q, d };
+      }
+    return best.q;
+  };
+  const connectors = [];
+  for (const id of spec.lines) {
+    const l = lines[id];
+    if (l.role !== 'tributary' && l.role !== 'distributary') continue;
+    const parent = l.spec.join?.parent ?? 'main';
+    if (!spec.lines.includes(parent)) continue;
+    const end = P.project(...(l.role === 'tributary' ? l.coords.at(-1) : l.coords[0]));
+    if (!inRect(end)) fail(`${frameId}: ${id}'s parent-side end is outside the frame`);
+    const q = (xy) => xy.map((v) => Math.round(v * 10) / 10);
+    const [a, b] = [q(end), q(footOn(end, drawnPolys(parent)))];
+    const m = distM(P.invert(...a), P.invert(...b));
+    if (m > CONNECT_FROM_M && m <= CONNECT_MAX_M) connectors.push({ id, parent, m: Math.round(m), d: pathData([a, b]) });
+  }
+
   // The markers, at their recorded coordinates.
   const markers = spec.markers.map((id) => {
     const m = markerSeed[id] ?? fail(`${frameId}: the seed has no marker ${id}`);
@@ -423,6 +458,7 @@ function buildFrame(frameId, spec) {
     bangladesh: { fill: bdFill.filter(Boolean).join(''), border: bdBorder.join('') },
     borders: borders.join(''),
     lines: frameLines,
+    connectors,
     markers,
     labels,
     countries: countryAnchors,
@@ -524,6 +560,7 @@ say(`${ID}: ${Object.keys(lines).length} lines, ${usedWays.size} OSM ways (${[..
 for (const [id, l] of Object.entries(lines)) say(`  ${id.padEnd(15)} ${String(points(l.coords)).padStart(5)} pts ${String(round(lengthKm(l.coords))).padStart(7)} km  ${drawnHashes[id]}${l.gaps ? `  max gap ${Math.max(0, ...l.gaps)} m` : ''}`);
 say(`main: Natural Earth ${neChain.length} pts + OSM from vertex ${seam.vertex}; seam gap ${round(seamGapM)} m at ${round(osmMain.coords[seam.vertex][0], 3)}°E; ${mainPieces.length} pieces (${mainPieces.filter((p) => p.inside).length} in Bangladesh, ${round(mainPieces.filter((p) => p.inside).reduce((s, p) => s + lengthKm(p.coords), 0))} km); jamuna→padma ${round(mainToPadma)} m; padma→meghna junction ${round(junction, 2)} m`);
 say(`checks: ${upazilaChecks.join(', ')}; Teesta mouth ${round(fulchhari)} m from Fulchhari; entry ${round(entryToBorder)} m from the border (BWDB's point ${round(bwdbToBorder)} m, ${round(distM(entrySeed.snappedFrom.lonLat, crossing))} m from it); Dewanganj at ${round(dewanganj, 3)} of the main line`);
+for (const [k, f] of Object.entries(frames)) if (f.file.connectors.length) say(`connectors, ${k}: ${f.file.connectors.map((c) => `${c.id} → ${c.parent} ${c.m} m`).join(', ')} (from ${CONNECT_FROM_M} m to ${CONNECT_MAX_M / 1000} km)`);
 for (const [k, f] of Object.entries(frames)) say(`frame ${k}: viewBox 0 0 ${f.width} ${f.height}, lon ${f.bounds.lonMin}–${f.bounds.lonMax}, lat ${f.bounds.latMin}–${f.bounds.latMax}, scale ${round(f.scale, 2)} u/deg`);
 say(`pending: ${pending.length} (${pending.join(', ')})`);
 say(`wrote ${path.relative(ROOT, OUT) || OUT}: ${Object.entries(sizes).map(([n, b]) => `${n} ${b} B`).join(', ')}; data ${sizes['data.json'] + sizes['frame-whole.json'] + sizes['frame-bangladesh.json']} B`);
