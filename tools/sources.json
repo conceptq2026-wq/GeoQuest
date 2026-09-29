@@ -247,5 +247,13 @@
     "snapshot": "2026-05-31T22:37:44Z",
     "licence": "ODbL 1.0 — © OpenStreetMap contributors",
     "sha256": "69d60a24117e52685a24f460a874eb83cddffc1164293690fc436eb4688bcd0f"
+  },
+  "osmBangladeshRiversPadma": {
+    "_comment": "The OpenStreetMap ways the Rivers of Bangladesh picture's Padma system draws beyond the rivers snapshot and the pilot extract — the Gorai, the Arial Khan, the Mahananda and one Bhagirathi way — each by way id, with node ids and tags, from tools/extract-bangladesh-rivers-system.mjs padma (the way list is the system seed's geometry.extract). Every way carries a name, name:bn, name:en or wikidata tag naming its river (the user's rule, 2026-09-29). Only a deliberate re-run changes it.",
+    "file": "tools/sources/osm-bangladesh-rivers-padma.geojson",
+    "fetched": "2026-09-29",
+    "snapshot": "2026-09-29T09:49:40Z",
+    "licence": "ODbL 1.0 — © OpenStreetMap contributors",
+    "sha256": "d15c00282a1c305cfcf9cf27100de45ba40a4538ad0025d8818ec932af094f1c"
   }
 }
