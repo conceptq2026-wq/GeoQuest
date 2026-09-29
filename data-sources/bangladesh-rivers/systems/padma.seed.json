@@ -19,7 +19,8 @@
     "chitra": "চিত্রা",
     "punarbhaba": "পুনর্ভবা",
     "pagla": "পাগলা",
-    "tangon": "ট্যাংগন"
+    "tangon": "ট্যাংগন",
+    "kirtankhola": "কীর্তনখোলা"
   },
   "frames": {
     "bangladesh": {
@@ -47,7 +48,8 @@
         "chitra2",
         "punarbhaba",
         "pagla",
-        "tangon"
+        "tangon",
+        "kirtankhola"
       ],
       "markers": [
         "padmaJamunaConfluence",
@@ -189,6 +191,14 @@
           "near": [
             88.45,
             25.95
+          ]
+        },
+        {
+          "id": "kirtankhola",
+          "line": "kirtankhola",
+          "near": [
+            90.38,
+            22.72
           ]
         }
       ]
@@ -683,6 +693,28 @@
         },
         "exempt": "Unjoined (the user’s rule, 2026-09-29: gaps over 12 km stay unjoined): the named line ends just inside India; OSM carries the river on to the Mahananda in Malda only as 89 km of unnamed ways (and a 10.9 km «Tangan» piece, not drawn), so there is no join point, connector or confluence marker (ⓘ).",
         "identified": "Four ways tagged Tangon / Tangan (this batch’s extract), from Thakurgaon Sadar to just across the border beyond Pirganj. Not drawn: the side branch 1044134227; the isolated «Tangan» way 248090801 in India, 21.7 km below."
+      },
+      "kirtankhola": {
+        "entity": "kirtankhola",
+        "role": "distributary",
+        "ways": [
+          631213767
+        ],
+        "trims": {
+          "631213767": {
+            "fromNode": 5960758946
+          }
+        },
+        "down": [
+          90.3236,
+          22.6627
+        ],
+        "join": {
+          "parent": "arialKhan2",
+          "node": 5960758946,
+          "source": "OSM node 5960758946, the last node of the Arial Khan’s way 631200493, vertex 11 of way 631213767"
+        },
+        "identified": "Way 631213767 tagged Kirtankhola (this batch’s extract), trimmed at the Arial Khan’s last node (its first 5.3 km run above the Arial Khan’s end, where BWDB has the Kirtankhola leave it), to Barishal city, where OSM’s «সুগন্ধা» begins."
       }
     },
     "extract": {
@@ -790,6 +822,11 @@
           1133039927,
           1133039928,
           387078868
+        ]
+      },
+      "b9": {
+        "kirtankhola": [
+          631213767
         ]
       }
     }
@@ -1146,6 +1183,61 @@
         ]
       },
       "review": "BWDB SW-2 (riverId 202), matched by district: its offtake is the Padma in Sadarpur, Faridpur, where the drawn head is (COD-AB), and its mouth is in Barishal Sadar, where the drawn line ends. Ruled out: SW-2_1 (from the Kirtinasha at Kazirhat) and NC-3 (Kishoreganj–Narsingdi). No marker at the mouth: the Kalabadar is not drawn."
+    },
+    {
+      "id": "kirtankhola",
+      "role": "distributary",
+      "nameBn": "কীর্তনখোলা",
+      "values": {
+        "relation": "আড়িয়াল খাঁর শাখানদী",
+        "alias": "বরিশাল নদী",
+        "origin": "বরিশাল জেলার সদর উপজেলার চরবাড়িয়া ইউনিয়নে আড়িয়াল খাঁ নদী থেকে",
+        "course": null,
+        "mouth": "ঝালকাঠি জেলার নলছিটি উপজেলার নলছিটি পৌরসভায় সুগন্ধা (ঝালকাঠি) নদীতে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬৫, the «যাতায়াত» paragraph [b910]",
+            "states": "কীর্তনখোলা"
+          },
+          {
+            "source": "bwdbSW21",
+            "where": "the heading [B9-G5]",
+            "states": "কীর্তনখোলা"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bwdbSW2",
+            "where": "§1.10 শাখানদী [B9-G10]",
+            "states": "শাখানদী : কীর্তনখোলা, কুমার (লোয়ার), কুমার (আপার), পালরদি, সন্ধ্যা , সুগন্ধা (বরিশাল)"
+          }
+        ],
+        "alias": [
+          {
+            "source": "bpKirtankhola",
+            "where": "the second paragraph [B9-P3]",
+            "states": "এ প্রাচীন নদীটি বর্তমানে বরিশাল নদী নামে পরিচিত।"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbSW21",
+            "where": "§1.1 বর্ণনা; §1.4 উৎসমুখ [B9-G5]",
+            "states": "নদীটি বরিশাল জেলার সদর উপজেলার চরবাড়িয়া ইউনিয়নে আড়িয়াল খাঁ নদী থেকে উৎপন্ন হয়ে"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bwdbSW21",
+            "where": "§1.1 বর্ণনা; §1.4 পতিতমুখ [B9-G5]",
+            "states": "ঝালকাঠি জেলার নলছিটি উপজেলার নলছিটি পৌরসভায় সুগন্ধা (ঝালকাঠি) নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "BWDB SW-21, the only Kirtankhola; named in B910’s river-transport list only, on neither book map. It joins the Padma system as the Arial Khan’s distributary (BWDB SW-2 §1.10; bn WP agrees). Other name from Banglapedia, the only source that gives one. Course null: BWDB’s one sentence is origin and mouth. Length 26 km (BWDB; bn WP and Banglapedia 160, or about 21 from Sayestabad to Nalchity) is not on a branch card. The drawn line ends in Barishal city, where OSM names the river «সুগন্ধা» (ⓘ)."
     },
     {
       "id": "mahananda",

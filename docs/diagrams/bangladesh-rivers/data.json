@@ -99,6 +99,11 @@
       "group": "padma"
     },
     {
+      "key": "kirtankhola",
+      "label": "কীর্তনখোলা",
+      "group": "padma"
+    },
+    {
       "key": "mahananda",
       "label": "মহানন্দা",
       "group": "padma"
@@ -191,6 +196,21 @@
     {
       "key": "khowai",
       "label": "খোয়াই",
+      "group": "meghna"
+    },
+    {
+      "key": "tetuliaBarishal",
+      "label": "তেতুলিয়া (বরিশাল)",
+      "group": "meghna"
+    },
+    {
+      "key": "burishwar",
+      "label": "বুড়িশ্বর",
+      "group": "meghna"
+    },
+    {
+      "key": "mogra",
+      "label": "মোগরা",
       "group": "meghna"
     },
     {
@@ -414,6 +434,17 @@
         "mouth": "বরিশাল জেলার সদর উপজেলার শায়েস্তাবাদ ইউনিয়নে কালাবাদর নদীতে"
       }
     },
+    "kirtankhola": {
+      "role": "distributary",
+      "system": "padma",
+      "name": "কীর্তনখোলা",
+      "values": {
+        "relation": "আড়িয়াল খাঁর শাখানদী",
+        "alias": "বরিশাল নদী",
+        "origin": "বরিশাল জেলার সদর উপজেলার চরবাড়িয়া ইউনিয়নে আড়িয়াল খাঁ নদী থেকে",
+        "mouth": "ঝালকাঠি জেলার নলছিটি উপজেলার নলছিটি পৌরসভায় সুগন্ধা (ঝালকাঠি) নদীতে"
+      }
+    },
     "mahananda": {
       "role": "tributary",
       "system": "padma",
@@ -620,6 +651,36 @@
         "mouth": "কিশোরগঞ্জ জেলায় অষ্টগ্রাম উপজেলার খায়েরপুর-আবদুল্লাপুর ইউনিয়নে কুশিয়ারা নদীতে"
       }
     },
+    "tetuliaBarishal": {
+      "role": "distributary",
+      "system": "meghna",
+      "name": "তেতুলিয়া (বরিশাল)",
+      "values": {
+        "origin": "বরিশাল জেলার মেহেন্দিগঞ্জ উপজেলার আলিমাবাদ ইউনিয়নে ইলিশা নদী থেকে",
+        "mouth": "পটুয়াখালী জেলার গলাচিপা উপজেলার পানপট্টি ইউনিয়নের আগুনমুখা নদীতে"
+      }
+    },
+    "burishwar": {
+      "role": "distributary",
+      "system": "meghna",
+      "name": "বুড়িশ্বর",
+      "values": {
+        "alias": "বুড়িশ্বর-পায়রা/ পায়রা/লেবুখালী/রাজাগঞ্জ (স্থানীয় নাম)",
+        "origin": "পটুয়াখালী জেলার দুমকী উপজেলার মুরাদিয়া ইউনিয়নে কারখানা নদী হতে",
+        "mouth": "বরগুনা জেলার সদর উপজেলার এম. বালিয়াতলী ইউনিয়ন দিয়ে বঙ্গোপসাগরে"
+      }
+    },
+    "mogra": {
+      "role": "tributary",
+      "system": "meghna",
+      "name": "মোগরা",
+      "values": {
+        "relation": "ধনুর উপনদী",
+        "origin": "নেত্রকোণা জেলার সদর উপজেলার চল্লিশা ইউনিয়নে ধলাই (ময়মনসিংহ) নদী থেকে",
+        "course": "লক্ষীগঞ্জ ইউনিয়নে পূর্বধলা উপজেলার গোহালাকান্দা ইউনিয়নের নিম্নাঞ্চল থেকে আগত আরেকটি শাখার সাথে মিলিত হয়েছে",
+        "confluence": "কিশোরগঞ্জ জেলার ইটনা উপজেলার বাদলা ইউনিয়নে উজান ধনু নদীতে"
+      }
+    },
     "karnaphuli": {
       "role": "main",
       "system": "karnaphuli",
@@ -824,6 +885,7 @@
     "punarbhaba": "পুনর্ভবা",
     "pagla": "পাগলা",
     "tangon": "ট্যাংগন",
+    "kirtankhola": "কীর্তনখোলা",
     "meghna": "মেঘনা",
     "meghnaUpper": "মেঘনা",
     "barak": "বরাক",
@@ -833,6 +895,9 @@
     "manu": "মনু",
     "gumti": "গোমতী",
     "khowai": "খোয়াই",
+    "tetuliaBarishal": "তেতুলিয়া",
+    "burishwar": "বুড়িশ্বর",
+    "mogra": "মোগরা",
     "karnaphuli": "কর্ণফুলী",
     "karnaphuliUpper": "কর্ণফুলী",
     "kasalong": "কাসালং",
@@ -1256,12 +1321,48 @@
       "lang": "bn"
     },
     {
+      "title": "তেঁতুলিয়া (বরিশাল) (নদীর তথ্য, SW-39)",
+      "by": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&Rivers=244",
+      "lang": "bn"
+    },
+    {
+      "title": "বুড়িশ্বর-পায়রা/ পায়রা (নদীর তথ্য, SW-57)",
+      "by": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&Rivers=266",
+      "lang": "bn"
+    },
+    {
+      "title": "কীর্তনখোলা (নদীর তথ্য, SW-21)",
+      "by": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&Rivers=225",
+      "lang": "bn"
+    },
+    {
+      "title": "মগড়া (নদীর তথ্য, NE-65)",
+      "by": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=3&Rivers=470",
+      "lang": "bn"
+    },
+    {
+      "title": "ধনু (নদীর তথ্য, NE-38)",
+      "by": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=3&Rivers=440",
+      "lang": "bn"
+    },
+    {
+      "title": "কীর্তনখোলা নদী",
+      "by": "Banglapedia (Bengali; oldid 1196, last edited 2014-05-04; Internet Archive capture 2024-11-27; read 2026-09-29)",
+      "url": "https://web.archive.org/web/20241127204322/https://bn.banglapedia.org/index.php?title=কীর্তনখোলা_নদী",
+      "lang": "bn"
+    },
+    {
       "title": "প্রবেশস্থল: যৌথ নদী কমিশন ও পানি উন্নয়ন বোর্ডের তথ্যে নাগেশ্বরী উপজেলা (কুড়িগ্রাম)। ছবিতে চিহ্নটি বসানো হয়েছে যেখানে আঁকা নদীরেখা সীমান্ত পার হয়েছে; বাংলাদেশের প্রশাসনিক সীমানার সরকারি ডেটা (COD-AB) অনুযায়ী সেটি কুড়িগ্রাম জেলার উলিপুর উপজেলায় পড়ে।",
       "lang": "bn",
       "group": "notes"
     },
     {
-      "title": "নদীর সংযোগ-রেখা (ধরলা, তিস্তা, শীতলক্ষ্যা, ধলেশ্বরী, আড়িয়াল খাঁ, মহানন্দা, ভাগীরথী, ভৈরব, কপোতাক্ষ, নবগঙ্গা, চিত্রা, সুরমা, কুশিয়ারা, মনু, গোমতী, খোয়াই, সাঙ্গু) আনুমানিক আঁকা।",
+      "title": "নদীর সংযোগ-রেখা (ধরলা, তিস্তা, শীতলক্ষ্যা, ধলেশ্বরী, আড়িয়াল খাঁ, মহানন্দা, ভাগীরথী, ভৈরব, কপোতাক্ষ, নবগঙ্গা, চিত্রা, সুরমা, কুশিয়ারা, মনু, গোমতী, খোয়াই, সাঙ্গু, মোগরা) আনুমানিক আঁকা।",
       "lang": "bn",
       "group": "notes"
     },
@@ -1402,6 +1503,31 @@
     },
     {
       "title": "সাঙ্গুর আঁকা রেখার মাঝে প্রায় ১৭ কিলোমিটার নদীপথ আঁকা হয়নি; মাতামুহুরীর আঁকা রেখা বান্দরবান জেলায় শেষ হয়েছে। ডেটায় ওই অংশে নদীর নামসহ নদীপথ পাওয়া যায়নি।",
+      "lang": "bn",
+      "group": "notes"
+    },
+    {
+      "title": "তেতুলিয়া (বরিশাল): পানি উন্নয়ন বোর্ডের নদী-তালিকায় এই নামে আরেকটি নদী আছে — «তেঁতুলিয়া», দিনাজপুর অঞ্চলের। ছবিতে আঁকা হয়েছে তালিকার «তেঁতুলিয়া (বরিশাল)»; কার্ডে নামের বানান বইয়ের মানচিত্রের।",
+      "lang": "bn",
+      "group": "notes"
+    },
+    {
+      "title": "তেতুলিয়ার আঁকা রেখা শুধু গলাচিপার কাছের প্রায় ১৮ কিলোমিটার; ভোলার পশ্চিমের বাকি অংশ ডেটায় নামসহ পাওয়া যায়নি, তাই মেঘনার সাথে মেলানো হয়নি। বুড়িশ্বর ও মোগরার আঁকা রেখাও মূল নদীর সাথে মেলানো হয়নি: যে নদী থেকে বুড়িশ্বরের উৎপত্তি (কারখানা) আর যে নদীতে মোগরা পড়েছে (ধনু), দুটিই ছবিতে আঁকা নয়।",
+      "lang": "bn",
+      "group": "notes"
+    },
+    {
+      "title": "কীর্তনখোলার আঁকা রেখা বরিশাল শহরে শেষ হয়েছে; ডেটায় তার ভাটির অংশ সুগন্ধা নামে, তাই নলছিটি পর্যন্ত আঁকা হয়নি।",
+      "lang": "bn",
+      "group": "notes"
+    },
+    {
+      "title": "বানান: কার্ডে বইয়ের «মোগরা»; পানি উন্নয়ন বোর্ড লেখে «মগড়া»।",
+      "lang": "bn",
+      "group": "notes"
+    },
+    {
+      "title": "বইয়ের মানচিত্রে নাম থাকলেও ছবিতে আঁকা হয়নি: শাহবাজপুর (ডেটায় ভোলার পূর্বের প্রবাহটি মেঘনা নামে, যা ছবিতে মেঘনা হিসেবেই আঁকা) ও লোহালিয়া (ডেটায় এই নামে নদীপথ পাওয়া যায়নি)।",
       "lang": "bn",
       "group": "notes"
     },

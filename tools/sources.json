@@ -311,5 +311,21 @@
     "snapshot": "2026-09-29T14:10:51Z",
     "licence": "ODbL 1.0 — © OpenStreetMap contributors",
     "sha256": "670ba0656c350f3dfb82aa4d0fc6598dbfa542e50e9cf0b005648189936081ec"
+  },
+  "osmBangladeshRiversMeghnaB9": {
+    "_comment": "The OpenStreetMap ways the Rivers of Bangladesh picture’s Meghna system draws in Stage 3 batch b9 — the Tetulia (Barishal), the Burishwar and the Mogra — each by way id, with node ids and tags, from tools/extract-bangladesh-rivers-system.mjs meghna b9 (the way list is the Meghna seed’s geometry.extractBatches.b9). Every way carries a name, name:bn, name:en or wikidata tag naming its river. Only a deliberate re-run changes it.",
+    "file": "tools/sources/osm-bangladesh-rivers-meghna-b9.geojson",
+    "fetched": "2026-09-29",
+    "snapshot": "2026-09-29T14:16:51Z",
+    "licence": "ODbL 1.0 — © OpenStreetMap contributors",
+    "sha256": "6b7c970238af1b1b50bb05fd5ca81cbb3556d193ee50e3f26e6fb6b2b8b9c672"
+  },
+  "osmBangladeshRiversPadmaB9": {
+    "_comment": "The OpenStreetMap way the Rivers of Bangladesh picture’s Padma system draws in Stage 3 batch b9 — the Kirtankhola — by way id, with node ids and tags, from tools/extract-bangladesh-rivers-system.mjs padma b9 (the way list is the Padma seed’s geometry.extractBatches.b9). The way carries its river’s name. Only a deliberate re-run changes it.",
+    "file": "tools/sources/osm-bangladesh-rivers-padma-b9.geojson",
+    "fetched": "2026-09-29",
+    "snapshot": "2026-09-29T14:20:59Z",
+    "licence": "ODbL 1.0 — © OpenStreetMap contributors",
+    "sha256": "8de7f9003c67cb240305cde395100861565dab1e7f94b0c4e866c64ade6a17ca"
   }
 }

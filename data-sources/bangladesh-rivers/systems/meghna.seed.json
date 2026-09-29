@@ -11,7 +11,10 @@
     "titas": "তিতাস",
     "manu": "মনু",
     "gumti": "গোমতী",
-    "khowai": "খোয়াই"
+    "khowai": "খোয়াই",
+    "tetuliaBarishal": "তেতুলিয়া",
+    "burishwar": "বুড়িশ্বর",
+    "mogra": "মোগরা"
   },
   "frames": {
     "bangladesh": {
@@ -25,7 +28,11 @@
         "manu",
         "manu2",
         "gumti",
-        "khowai"
+        "khowai",
+        "tetuliaBarishal",
+        "burishwar",
+        "mogra",
+        "mogra2"
       ],
       "labels": [
         {
@@ -98,6 +105,30 @@
           "near": [
             91.5,
             24.1
+          ]
+        },
+        {
+          "id": "tetuliaBarishal",
+          "line": "tetuliaBarishal",
+          "near": [
+            90.54,
+            22.19
+          ]
+        },
+        {
+          "id": "burishwar",
+          "line": "burishwar",
+          "near": [
+            90.2,
+            22.25
+          ]
+        },
+        {
+          "id": "mogra",
+          "line": "mogra2",
+          "near": [
+            90.88,
+            24.75
           ]
         }
       ]
@@ -322,6 +353,76 @@
           "parent": "kushiyara"
         },
         "identified": "Five ways tagged \"Khowai\", \"Khowai River\" / «খোয়াই নদী» or \"River Khowai\" (this batch's extract), every link sharing a node. Its end joins nothing in OSM: 7.2 km from the Kushiyara's last vertex, so a connector joins it."
+      },
+      "tetuliaBarishal": {
+        "entity": "tetuliaBarishal",
+        "role": "distributary",
+        "ways": [
+          648635415
+        ],
+        "down": [
+          90.4853,
+          22.1248
+        ],
+        "join": {
+          "parent": "meghna"
+        },
+        "exempt": "Unjoined: OSM names only the lowest 18.1 km (Dashmina to Galachipa); the channel west of Bhola above it, about 87 km, is unnamed (689525464 → 631835220; no relation, no wikidata tag, none of BWDB’s other names), so its head is 48 km from the Meghna, over the 12 km a connector may bridge (ⓘ).",
+        "identified": "Way 648635415 (wikidata Q21745974, this batch’s extract), drawn seaward-first in OSM and oriented by `down`; it ends 900 m from the coastline at Galachipa, where unnamed ways continue."
+      },
+      "burishwar": {
+        "entity": "burishwar",
+        "role": "distributary",
+        "ways": [
+          332673593
+        ],
+        "down": [
+          90.0621,
+          21.9731
+        ],
+        "join": {
+          "parent": "tetuliaBarishal"
+        },
+        "exempt": "Unjoined: BWDB has it rise from the Karkhana (a distributary of the Tetulia), which is not drawn; the named line’s head in Dumki is 35.5 km from the drawn Tetulia and 28.5 km from the Arial Khan.",
+        "identified": "Way 332673593, tagged Payra (this batch’s extract), from Dumki to the sea in Barguna Sadar, 4 m from the coastline. BWDB’s own list names the river «বুড়িশ্বর-পায়রা/ পায়রা», one river under both names. Not drawn: the unnamed 57.6 km above (620113200)."
+      },
+      "mogra": {
+        "entity": "mogra",
+        "role": "tributary",
+        "ways": [
+          619736821,
+          611056888
+        ],
+        "down": [
+          90.7513,
+          24.8276
+        ],
+        "join": {
+          "parent": "mogra2"
+        },
+        "identified": "Two ways tagged Mogra River (this batch’s extract), from the end of the «Dholai River» at Purbadhala to Netrokona Sadar: the upper piece, as BWDB’s Mogra rises from the Dhalai. Its tail is 9.9 km from the lower piece (a connector)."
+      },
+      "mogra2": {
+        "entity": "mogra",
+        "role": "tributary",
+        "ways": [
+          232673996,
+          625242053,
+          622950340,
+          623989281,
+          623989282,
+          622950338,
+          237377854
+        ],
+        "down": [
+          90.9638,
+          24.5863
+        ],
+        "join": {
+          "parent": "meghnaUpper"
+        },
+        "exempt": "Unjoined: it ends in the Dhanu at Itna (BWDB NE-65), and the Dhanu is not drawn; the nearest drawn line, the Surma, is 11.9 km away, but the Mogra does not flow into it, so no connector is drawn.",
+        "identified": "Seven ways tagged Magra River / Mogra River / «মগরা নদী» (this batch’s extract), every link sharing a node, from Barhatta by Madan to Itna, ending on OSM’s «Dalai River». Not drawn: a looping «Magra River» side channel (352905053 … 700022094)."
       }
     },
     "extractBatches": {
@@ -374,6 +475,25 @@
           385120914,
           666494985,
           133807038
+        ]
+      },
+      "b9": {
+        "tetuliaBarishal": [
+          648635415
+        ],
+        "burishwar": [
+          332673593
+        ],
+        "mogra": [
+          619736821,
+          611056888,
+          232673996,
+          625242053,
+          622950340,
+          623989281,
+          623989282,
+          622950338,
+          237377854
         ]
       }
     }
@@ -833,6 +953,149 @@
         ]
       },
       "review": "In neither book (text or map); the card is BWDB NE-22, then JRCB row ৪৪ (the Stage 1 decision 3: fewer fields, the same card). The relation is BWDB's Kushiyara list. Origin: BWDB «ভারত»; JRCB «ভারতের ত্রিপুরার পুর্বাঞ্চলের পাহাড়» (as printed) does not conflict. bn WP gives another entry (Balla, Sylhet) and mouth (the Meghna) — ⓘ. Course null. Other names: MISSING (bn WP's ancient name comes from an unreferenced legend)."
+    },
+    {
+      "id": "tetuliaBarishal",
+      "role": "distributary",
+      "nameBn": "তেতুলিয়া (বরিশাল)",
+      "values": {
+        "relation": null,
+        "alias": null,
+        "origin": "বরিশাল জেলার মেহেন্দিগঞ্জ উপজেলার আলিমাবাদ ইউনিয়নে ইলিশা নদী থেকে",
+        "course": null,
+        "mouth": "পটুয়াখালী জেলার গলাচিপা উপজেলার পানপট্টি ইউনিয়নের আগুনমুখা নদীতে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, চিত্র ৫.১ [b910]",
+            "states": "map label: তেতুলিয়া"
+          },
+          {
+            "source": "bwdbSW39",
+            "where": "the heading [B9-G1]",
+            "states": "তেঁতুলিয়া (বরিশাল)"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbSW39",
+            "where": "§1.1 বর্ণনা; §1.4 উৎসমুখ [B9-G1]",
+            "states": "নদীটি বরিশাল জেলার মেহেন্দিগঞ্জ উপজেলার আলিমাবাদ ইউনিয়নে ইলিশা নদী থেকে উৎপত্তি হয়ে"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bwdbSW39",
+            "where": "§1.1 বর্ণনা; §1.4 পতিতমুখ [B9-G1]",
+            "states": "পটুয়াখালী জেলার গলাচিপা উপজেলার পানপট্টি ইউনিয়নের আগুনমুখা নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "BWDB SW-39 «তেঁতুলিয়া (বরিশাল)», matched by district; NW-103 «তেঁতুলিয়া» (Dinajpur) is another river, none of whose facts are used. The card keeps B910’s spelling «তেতুলিয়া» (its map label), with BWDB’s bracket; ⓘ gives BWDB’s spelling. Relation null: no source uses a role word; BWDB SE-18 calls the Lower Meghna’s western stream along Bhola the «তেঁতুলিয়া চ্যানেল», and SW-39 has it rise from the Ilisha. Course null: BWDB’s one sentence is origin and mouth. Other names null («ইলিশা», BWDB’s local name, is also a separate BWDB river, SW-255) — pending. Length 94 km (BWDB; bn WP 131) is not on a branch card. Only the lowest 18.1 km is drawn (ⓘ)."
+    },
+    {
+      "id": "burishwar",
+      "role": "distributary",
+      "nameBn": "বুড়িশ্বর",
+      "values": {
+        "relation": null,
+        "alias": "বুড়িশ্বর-পায়রা/ পায়রা/লেবুখালী/রাজাগঞ্জ (স্থানীয় নাম)",
+        "origin": "পটুয়াখালী জেলার দুমকী উপজেলার মুরাদিয়া ইউনিয়নে কারখানা নদী হতে",
+        "course": null,
+        "mouth": "বরগুনা জেলার সদর উপজেলার এম. বালিয়াতলী ইউনিয়ন দিয়ে বঙ্গোপসাগরে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, চিত্র ৫.১ [b910]",
+            "states": "map label: বুড়িশ্বর"
+          },
+          {
+            "source": "bwdbSW57",
+            "where": "the heading [B9-G4]",
+            "states": "বুড়িশ্বর-পায়রা/ পায়রা"
+          }
+        ],
+        "alias": [
+          {
+            "source": "bwdbSW57",
+            "where": "§1.1 স্থানীয় নাম [B9-G4]",
+            "states": "স্থানীয় নাম: বুড়িশ্বর-পায়রা/ পায়রা/লেবুখালী/রাজাগঞ্জ"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbSW57",
+            "where": "§1.1 বর্ণনা; §1.4 উৎসমুখ [B9-G4]",
+            "states": "নদীটি পটুয়াখালী জেলার দুমকী উপজেলার মুরাদিয়া ইউনিয়নে কারখানা নদী হতে উৎপন্ন হয়ে"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bwdbSW57",
+            "where": "§1.1 বর্ণনা; §1.4 পতিতমুখ [B9-G4]",
+            "states": "বরগুনা জেলার সদর উপজেলার এম. বালিয়াতলী ইউনিয়ন দিয়ে বঙ্গোপসাগরে পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "BWDB SW-57 «বুড়িশ্বর-পায়রা/ পায়রা», the list’s own name holding «বুড়িশ্বর» (no swap). The name is B910’s map label; B-GEO’s map has «বুড়িচর» at about the same place — a river’s name or a char’s, the editor decides. Relation null: no BWDB page gives a role (Banglapedia calls it the Arial Khan’s lower reach, recorded only). Course null: BWDB’s one sentence is origin and mouth. Length 90 km (BWDB, bn WP; Banglapedia 158) is not on a branch card."
+    },
+    {
+      "id": "mogra",
+      "role": "tributary",
+      "nameBn": "মোগরা",
+      "values": {
+        "relation": "ধনুর উপনদী",
+        "origin": "নেত্রকোণা জেলার সদর উপজেলার চল্লিশা ইউনিয়নে ধলাই (ময়মনসিংহ) নদী থেকে",
+        "course": "লক্ষীগঞ্জ ইউনিয়নে পূর্বধলা উপজেলার গোহালাকান্দা ইউনিয়নের নিম্নাঞ্চল থেকে আগত আরেকটি শাখার সাথে মিলিত হয়েছে",
+        "confluence": "কিশোরগঞ্জ জেলার ইটনা উপজেলার বাদলা ইউনিয়নে উজান ধনু নদীতে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩, চিত্র ১০.৩ [bgeo]",
+            "states": "map label: মোগরা"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, চিত্র ৫.১ [b910]",
+            "states": "map label: মোগরা"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bwdbNE38",
+            "where": "§1.9 উপনদী [B9-G11]",
+            "states": "উপনদী : চেরাপুর, কাঠালজান, মগড়া, মরা (খালিয়াজুরী), মরা ধনু, মরা সুরমা, নাগচিন্নি, নরসুন্দা, পিয়াইন (সুনামগঞ্জ-নেত্রকোণা)"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbNE65",
+            "where": "§1.1 বর্ণনা; §1.4 উৎসমুখ [B9-G6]",
+            "states": "নেত্রকোণা জেলার সদর উপজেলার চল্লিশা ইউনিয়নে ধলাই (ময়মনসিংহ) নদী থেকে মগড়া নদীটির মূল শাখাটি উৎপন্ন হয়েছে"
+          }
+        ],
+        "course": [
+          {
+            "source": "bwdbNE65",
+            "where": "§1.1 বর্ণনা [B9-G6]",
+            "states": "এবং লক্ষীগঞ্জ ইউনিয়নে পূর্বধলা উপজেলার গোহালাকান্দা ইউনিয়নের নিম্নাঞ্চল থেকে আগত আরেকটি শাখার সাথে মিলিত হয়েছে"
+          }
+        ],
+        "confluence": [
+          {
+            "source": "bwdbNE65",
+            "where": "§1.1 বর্ণনা; §1.4 পতিতমুখ [B9-G6]",
+            "states": "এরপর নদীটি কিশোরগঞ্জ জেলার ইটনা উপজেলার বাদলা ইউনিয়নে উজান ধনু নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "Both books label «মোগরা» on their maps in the north-east haor, flowing into the Dhanu; BWDB NE-65 «মগড়া» (English \"Mogra\"), the only entry, is matched by geometry: it rises from the Dhalai in Netrokona and falls into the Ujan Dhanu at Itna, as the two drawn pieces do. The card keeps the books’ spelling; ⓘ gives BWDB’s. scale-plan.csv filed it under the south-west coast, which no source supports. Relation from BWDB’s Dhanu tributary list (NE-38 §1.9). Other names: MISSING (bn WP says it is also called «ধলাই» in places, recorded only). Length 111 km (BWDB) is not on a branch card."
     }
   ]
 }

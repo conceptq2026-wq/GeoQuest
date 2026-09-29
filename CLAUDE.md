@@ -343,7 +343,7 @@ seed's files — the common one and one per river system, merged by
 the OSM pilot extract (`osmBangladeshRiversPilot`), each system's own extract
 (`osmBangladeshRivers<System>`, and one per later batch,
 `osmBangladeshRivers<System><Batch>`) and the rivers snapshot by checksum in
-`tools/sources.json`; and the 57 lines' geometry hashes in
+`tools/sources.json`; and the 62 lines' geometry hashes in
 `tools/bangladesh-rivers-pins.json`. The shared district file,
 `docs/shared/bangladesh-districts.json` (COD-AB's 64 districts, the
 basemap's Bengali names), is rebuilt by `tools/build-bangladesh-districts.mjs`

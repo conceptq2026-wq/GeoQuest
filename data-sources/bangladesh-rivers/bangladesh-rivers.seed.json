@@ -490,6 +490,42 @@
       "publisher": "Bengali Wikipedia (revision 8620638; read 2026-09-29)",
       "url": "https://bn.wikipedia.org/w/index.php?oldid=8620638",
       "sha256": "6a477582ed3d1b717588431e65179b031644342e94796bd2f7adf6419888e852"
+    },
+    "bwdbSW39": {
+      "title": "তেঁতুলিয়া (বরিশাল) (নদীর তথ্য, SW-39)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&Rivers=244",
+      "sha256": "5cb5549403796572f459ca388ba33ca4941556e3e11952bd61abcc531019ce5d"
+    },
+    "bwdbSW57": {
+      "title": "বুড়িশ্বর-পায়রা/ পায়রা (নদীর তথ্য, SW-57)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&Rivers=266",
+      "sha256": "9438e4bb3cfb53a113150e978c62c9aecf6e640d4373ecdcd13585ccf826d19b"
+    },
+    "bwdbSW21": {
+      "title": "কীর্তনখোলা (নদীর তথ্য, SW-21)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&Rivers=225",
+      "sha256": "cab89438bd98a804cb555f489cf7f0dc03410e92557f281bc24116c84017d586"
+    },
+    "bwdbNE65": {
+      "title": "মগড়া (নদীর তথ্য, NE-65)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=3&Rivers=470",
+      "sha256": "9d9cd38f3e053cc2f79a915a2d4a8e74b9263ba54d97fd369cb0cbe7ed8a7ce3"
+    },
+    "bwdbNE38": {
+      "title": "ধনু (নদীর তথ্য, NE-38)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=3&Rivers=440",
+      "sha256": "115a8d924e514e4c1596808539c4daa35fe2f35ec5f547f4195607c7988bef60"
+    },
+    "bpKirtankhola": {
+      "title": "কীর্তনখোলা নদী",
+      "publisher": "Banglapedia (Bengali; oldid 1196, last edited 2014-05-04; Internet Archive capture 2024-11-27; read 2026-09-29)",
+      "url": "https://web.archive.org/web/20241127204322/https://bn.banglapedia.org/index.php?title=কীর্তনখোলা_নদী",
+      "sha256": "f0e0662e9cf299e277d248c0563f68547c2988f80d15be1196ce63edf6a529c9"
     }
   },
   "countries": {
@@ -528,7 +564,9 @@
         "meghna-b4": "tools/sources/osm-bangladesh-rivers-meghna-b4.geojson",
         "jamuna-b4": "tools/sources/osm-bangladesh-rivers-jamuna-b4.geojson",
         "padma-b7": "tools/sources/osm-bangladesh-rivers-padma-b7.geojson",
-        "southeast": "tools/sources/osm-bangladesh-rivers-southeast.geojson"
+        "southeast": "tools/sources/osm-bangladesh-rivers-southeast.geojson",
+        "meghna-b9": "tools/sources/osm-bangladesh-rivers-meghna-b9.geojson",
+        "padma-b9": "tools/sources/osm-bangladesh-rivers-padma-b9.geojson"
       }
     },
     "frames": {
@@ -643,7 +681,7 @@
     "_about": "Plain lines under ⓘ, in two headed blocks after the sources (`group`: notes, then conflicts; ui.creditGroupsBn names the three blocks), each in this order (the user's decisions, Prompt 40 Part B, 2026-09-29): the two lines on the drawn joins, in the user's words; where COD-AB puts the drawn lines' ends that a card's source words place otherwise; the Karatoya that is not drawn; then one line per source conflict, the card's (winning) value first — the source order is the books («ভূগোল ও পরিবেশ» before «বাংলাদেশ ও বিশ্বপরিচয়»), BWDB and JRCB, Bengali then English Wikipedia, newspapers, Banglapedia.",
     "lines": [
       {
-        "textBn": "নদীর সংযোগ-রেখা (ধরলা, তিস্তা, শীতলক্ষ্যা, ধলেশ্বরী, আড়িয়াল খাঁ, মহানন্দা, ভাগীরথী, ভৈরব, কপোতাক্ষ, নবগঙ্গা, চিত্রা, সুরমা, কুশিয়ারা, মনু, গোমতী, খোয়াই, সাঙ্গু) আনুমানিক আঁকা।",
+        "textBn": "নদীর সংযোগ-রেখা (ধরলা, তিস্তা, শীতলক্ষ্যা, ধলেশ্বরী, আড়িয়াল খাঁ, মহানন্দা, ভাগীরথী, ভৈরব, কপোতাক্ষ, নবগঙ্গা, চিত্রা, সুরমা, কুশিয়ারা, মনু, গোমতী, খোয়াই, সাঙ্গু, মোগরা) আনুমানিক আঁকা।",
         "group": "notes",
         "sources": [
           {
@@ -675,6 +713,11 @@
             "source": "osm",
             "where": "the gaps this system’s connectors bridge: the Sangu’s second to third piece 5.6 km, third to fourth 733 m",
             "states": "no named way in either gap"
+          },
+          {
+            "source": "osm",
+            "where": "the gap the batch b9 connector bridges: the Mogra’s upper piece to its lower, 9.9 km",
+            "states": "no named way between"
           }
         ]
       },
@@ -1282,6 +1325,126 @@
           {
             "source": "user",
             "where": "the rule: gaps over 12 km stay unjoined; unnamed ways are not drawn",
+            "states": "the user, 2026-09-29"
+          }
+        ]
+      },
+      {
+        "textBn": "তেতুলিয়া (বরিশাল): পানি উন্নয়ন বোর্ডের নদী-তালিকায় এই নামে আরেকটি নদী আছে — «তেঁতুলিয়া», দিনাজপুর অঞ্চলের। ছবিতে আঁকা হয়েছে তালিকার «তেঁতুলিয়া (বরিশাল)»; কার্ডে নামের বানান বইয়ের মানচিত্রের।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "bwdbList",
+            "where": "NW-103 and SW-39, riverNameBn",
+            "states": "তেঁতুলিয়া; তেঁতুলিয়া (বরিশাল)"
+          },
+          {
+            "source": "bwdbSW39",
+            "where": "the heading [B9-G1]",
+            "states": "তেঁতুলিয়া (বরিশাল)"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, চিত্র ৫.১ [b910]",
+            "states": "map label: তেতুলিয়া"
+          },
+          {
+            "source": "user",
+            "where": "the rule: a spelling is never corrected silently; the card keeps one source’s, ⓘ notes the other’s",
+            "states": "the user, 2026-09-29"
+          }
+        ]
+      },
+      {
+        "textBn": "তেতুলিয়ার আঁকা রেখা শুধু গলাচিপার কাছের প্রায় ১৮ কিলোমিটার; ভোলার পশ্চিমের বাকি অংশ ডেটায় নামসহ পাওয়া যায়নি, তাই মেঘনার সাথে মেলানো হয়নি। বুড়িশ্বর ও মোগরার আঁকা রেখাও মূল নদীর সাথে মেলানো হয়নি: যে নদী থেকে বুড়িশ্বরের উৎপত্তি (কারখানা) আর যে নদীতে মোগরা পড়েছে (ধনু), দুটিই ছবিতে আঁকা নয়।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "osm",
+            "where": "the batch b9 extract: the Tetulia’s way 648635415 and the unnamed ways 689525464 → 631835220 above it; the Burishwar’s way 332673593; the Mogra’s way 237377854 ending on «Dalai River» 521266547",
+            "states": "no name, relation or wikidata tag on the channel west of Bhola above 22.25°N"
+          },
+          {
+            "source": "bwdbSW57",
+            "where": "§1.1 বর্ণনা [B9-G4]",
+            "states": "কারখানা নদী হতে উৎপন্ন হয়ে"
+          },
+          {
+            "source": "bwdbNE65",
+            "where": "§1.1 বর্ণনা [B9-G6]",
+            "states": "উজান ধনু নদীতে পতিত হয়েছে"
+          },
+          {
+            "source": "user",
+            "where": "the rule: gaps over 12 km stay unjoined",
+            "states": "the user, 2026-09-29"
+          }
+        ]
+      },
+      {
+        "textBn": "কীর্তনখোলার আঁকা রেখা বরিশাল শহরে শেষ হয়েছে; ডেটায় তার ভাটির অংশ সুগন্ধা নামে, তাই নলছিটি পর্যন্ত আঁকা হয়নি।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "osm",
+            "where": "the batch b9 extract: way 631213767 ends on node 5960810278, where «সুগন্ধা» 865403991 begins",
+            "states": "Barishal city"
+          },
+          {
+            "source": "bwdbSW21",
+            "where": "§1.1 বর্ণনা [B9-G5]",
+            "states": "ঝালকাঠি জেলার নলছিটি উপজেলার নলছিটি পৌরসভায় সুগন্ধা (ঝালকাঠি) নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      {
+        "textBn": "বানান: কার্ডে বইয়ের «মোগরা»; পানি উন্নয়ন বোর্ড লেখে «মগড়া»।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩, চিত্র ১০.৩ [bgeo]",
+            "states": "map label: মোগরা"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, চিত্র ৫.১ [b910]",
+            "states": "map label: মোগরা"
+          },
+          {
+            "source": "bwdbNE65",
+            "where": "the heading [B9-G6]",
+            "states": "মগড়া"
+          },
+          {
+            "source": "user",
+            "where": "the rule: a spelling is never corrected silently",
+            "states": "the user, 2026-09-29"
+          }
+        ]
+      },
+      {
+        "textBn": "বইয়ের মানচিত্রে নাম থাকলেও ছবিতে আঁকা হয়নি: শাহবাজপুর (ডেটায় ভোলার পূর্বের প্রবাহটি মেঘনা নামে, যা ছবিতে মেঘনা হিসেবেই আঁকা) ও লোহালিয়া (ডেটায় এই নামে নদীপথ পাওয়া যায়নি)।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩, চিত্র ১০.৩ [bgeo]",
+            "states": "map labels: শাহবাজপুর; লোহালিয়া"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, চিত্র ৫.১ [b910]",
+            "states": "map label: শাহবাজপুর"
+          },
+          {
+            "source": "osm",
+            "where": "the batch b9 research: a frame-wide name search",
+            "states": "no way, relation, area or node named Shahbazpur or Lohalia; the channel east of Bhola is OSM’s named Meghna"
+          },
+          {
+            "source": "user",
+            "where": "the rule: a river with no usable pinned line is left out",
             "states": "the user, 2026-09-29"
           }
         ]
