@@ -56,7 +56,7 @@
   stroke-width: 1px;
 }
 
-/* ---- the rivers ---- */
+/* ---- the rivers: 35 % thinner than the first pilot (2026-09-29); the main river 1.45× a branch ---- */
 
 .rivers .river-halo {
   fill: none;
@@ -72,33 +72,33 @@
 }
 .rivers .river-main .river-line {
   stroke: #0b3d91;
-  stroke-width: 4.5px;
+  stroke-width: 2.9px;
 }
 .rivers .river-main .river-halo {
-  stroke-width: 7.5px;
+  stroke-width: 4.9px;
 }
 .rivers .river-main .river-line.dash {
-  stroke-dasharray: 9 6;
+  stroke-dasharray: 5.9 3.9;
   stroke-linecap: butt;
 }
 .rivers .river-tributary .river-line {
   stroke: #0f9d8a;
-  stroke-width: 3px;
+  stroke-width: 2px;
 }
 .rivers .river-distributary .river-line {
   stroke: #e07b00;
-  stroke-width: 3px;
+  stroke-width: 2px;
 }
 .rivers .river-tributary .river-halo,
 .rivers .river-distributary .river-halo {
-  stroke-width: 6px;
+  stroke-width: 3.9px;
 }
 .rivers .river-continuation .river-line {
   stroke: #a9b4c3;
-  stroke-width: 2px;
+  stroke-width: 1.3px;
 }
 .rivers .river-continuation .river-halo {
-  stroke-width: 4px;
+  stroke-width: 2.6px;
 }
 .rivers .river-continuation {
   pointer-events: none;
@@ -111,7 +111,7 @@
 .rivers .river.lit .river-halo {
   stroke: #ffc933;
   stroke-opacity: 1;
-  stroke-width: 12px;
+  stroke-width: 7.8px;
 }
 
 /* ---- taps: a line's zone is a transparent stroke; a marker's is a 44 px disc ---- */
@@ -241,15 +241,15 @@
 }
 .rivers .legend-main {
   stroke: #0b3d91;
-  stroke-width: 4.5px;
+  stroke-width: 2.9px;
 }
 .rivers .legend-tributary {
   stroke: #0f9d8a;
-  stroke-width: 3px;
+  stroke-width: 2px;
 }
 .rivers .legend-distributary {
   stroke: #e07b00;
-  stroke-width: 3px;
+  stroke-width: 2px;
 }
 
 /* ---- ⓘ: its Bengali lines at the diagrams' 14 px floor, not the credits' 12 px; the panel still scrolls (style.css) ---- */

@@ -27,7 +27,7 @@
 | Every word shown is the descriptor's or the data's.
 */
 
-import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=2120da1993';
+import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=4362e75737';
 const deg = Math.PI / 180;
 // CSS px: how deep, at least, a layer's tap zone reaches out from its inner edge.
 const TAP_MIN = 44;
@@ -53,7 +53,7 @@ const GLOW = 4;
 export async function mount(panel, { descriptor, data, art, file }) {
   const words = descriptor.words ?? {};
   const manifest = await art;
-  await Promise.all([stylesheet('../shared/picker.css?v=2120da1993'), stylesheet('./cutaway.css?v=2120da1993')]);
+  await Promise.all([stylesheet('../shared/picker.css?v=4362e75737'), stylesheet('./cutaway.css?v=4362e75737')]);
 
   const layers = data.layers;
   const byId = new Map(layers.map((l) => [l.id, l]));
