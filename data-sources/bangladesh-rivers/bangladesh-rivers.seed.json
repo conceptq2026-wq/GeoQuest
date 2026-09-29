@@ -435,6 +435,24 @@
       "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (BRIMS): the list page’s data, POST /RiverInfo/GetAllRiverInfo_In_IndexPage, 1,415 rivers (read 2026-09-29)",
       "url": "https://nodi.bwdb.gov.bd/RiverInfo",
       "sha256": "a8f589420035aa1152db9f39825685cc8f3bb55b4cdd7878a682a579492169b2"
+    },
+    "bwdbNW72": {
+      "title": "পূনর্ভবা (নদীর তথ্য, NW-72)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=4&Rivers=107",
+      "sha256": "bf5020d6812ae42150454f974132d7216cafe60afc3e14e8ddf38354ae581693"
+    },
+    "bwdbNW69": {
+      "title": "পাগলা (নদীর তথ্য, NW-69)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=4&Rivers=100",
+      "sha256": "2f8e833654973ae51d2503cb3f0825005e9242fe1600ff7a7452fd773bd1826c"
+    },
+    "bwdbNW48": {
+      "title": "টাংগন (নদীর তথ্য, NW-48)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=4&Rivers=128",
+      "sha256": "57089f611e3b836c7892d87e583dcd988db06ce7b1b4f6cae6d8c5127c6bcb08"
     }
   },
   "countries": {
@@ -471,7 +489,8 @@
         "padma-b2": "tools/sources/osm-bangladesh-rivers-padma-b2.geojson",
         "meghna-b3": "tools/sources/osm-bangladesh-rivers-meghna-b3.geojson",
         "meghna-b4": "tools/sources/osm-bangladesh-rivers-meghna-b4.geojson",
-        "jamuna-b4": "tools/sources/osm-bangladesh-rivers-jamuna-b4.geojson"
+        "jamuna-b4": "tools/sources/osm-bangladesh-rivers-jamuna-b4.geojson",
+        "padma-b7": "tools/sources/osm-bangladesh-rivers-padma-b7.geojson"
       }
     },
     "frames": {
@@ -681,7 +700,7 @@
         ]
       },
       {
-        "textBn": "ডেটায় যতদূর নদীপথ পাওয়া গেছে ততদূর আঁকা হয়েছে, তাই কিছু নদীর আঁকা রেখা কার্ডে লেখা উৎপত্তিস্থল থেকে শুরু হয়নি (যেমন করতোয়া, আত্রাই, ধলেশ্বরী, বংশী, শীতলক্ষ্যা, পুরাতন ব্রহ্মপুত্র, মধুমতী, ভাগীরথী, কুমার, ভৈরব, কপোতাক্ষ, গোমতী, কর্ণফুলী, হালদা)।",
+        "textBn": "ডেটায় যতদূর নদীপথ পাওয়া গেছে ততদূর আঁকা হয়েছে, তাই কিছু নদীর আঁকা রেখা কার্ডে লেখা উৎপত্তিস্থল থেকে শুরু হয়নি (যেমন করতোয়া, আত্রাই, ধলেশ্বরী, বংশী, শীতলক্ষ্যা, পুরাতন ব্রহ্মপুত্র, মধুমতী, ভাগীরথী, কুমার, ভৈরব, কপোতাক্ষ, গোমতী, কর্ণফুলী, হালদা, ট্যাংগন)।",
         "group": "notes",
         "sources": [
           {
@@ -1048,6 +1067,121 @@
             "source": "bwdbSE9",
             "where": "the heading [B3-G6]",
             "states": "তিতাস (ব্রাহ্মণবাড়িয়া)"
+          }
+        ]
+      },
+      {
+        "textBn": "বানান: কার্ডে বইয়ের «পুনর্ভবা» ও «ট্যাংগন»; পানি উন্নয়ন বোর্ড লেখে «পূনর্ভবা» ও «টাংগন», যৌথ নদী কমিশনের সারণি «টাঙ্গন»।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the line after the পদ্মা distributaries [bgeo]",
+            "states": "পুনর্ভবা, নাগর, পাগলা, কুলিক ও ট্যাংগন মহানন্দার উপনদী"
+          },
+          {
+            "source": "bwdbNW72",
+            "where": "the heading [B7-G1]",
+            "states": "পূনর্ভবা"
+          },
+          {
+            "source": "bwdbNW48",
+            "where": "the heading [B7-G6]",
+            "states": "টাংগন"
+          },
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, row ১১, the table’s name [B7-J1]",
+            "states": "টাঙ্গন"
+          },
+          {
+            "source": "user",
+            "where": "decision 3 of Stage 1: never correct a source silently",
+            "states": "the user, 2026-09-29"
+          }
+        ]
+      },
+      {
+        "textBn": "পাগলা (চাঁপাইনবাবগঞ্জ): পানি উন্নয়ন বোর্ডের নদী-তালিকায় পাগলা নামে আরেকটি নদী আছে — পাগলা (ব্রাহ্মণবাড়িয়া)। ছবিতে আঁকা হয়েছে তালিকার «পাগলা», যা চাঁপাইনবাবগঞ্জ জেলায় মহানন্দায় পড়েছে।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "bwdbList",
+            "where": "SE-37, riverNameBn",
+            "states": "পাগলা (ব্রাহ্মণবাড়িয়া)"
+          },
+          {
+            "source": "bwdbList",
+            "where": "NW-69, riverNameBn",
+            "states": "পাগলা"
+          },
+          {
+            "source": "bwdbNW69",
+            "where": "§1.1 বর্ণনা [B7-G4]",
+            "states": "সদর উপজেলার সুন্দরপুর ইউনিয়নে মহানন্দা (নবাবগঞ্জ) নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      {
+        "textBn": "পাগলার উৎপত্তি: কার্ডে পানি উন্নয়ন বোর্ডের তথ্য, «ভারত»; যৌথ নদী কমিশনের তালিকায় «ভারতের মালদা জেলার দক্ষিণ-পশ্চিমে গঙ্গা নদী»।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "bwdbNW69",
+            "where": "§1.1 বর্ণনা [B7-G4]",
+            "states": "নদীটি ভারত থেকে উৎপত্তি হয়ে"
+          },
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, row ৭, col ৩ উৎপত্তিস্থল [B7-J1]",
+            "states": "ভারতের মালদা জেলার দক্ষিণ-পশ্চিমে গঙ্গা নদী"
+          },
+          {
+            "source": "user",
+            "where": "decision 5 of Stage 3: BWDB’s wording on the card, JRC’s in ⓘ",
+            "states": "the user, 2026-09-29"
+          }
+        ]
+      },
+      {
+        "textBn": "ট্যাংগনের আঁকা রেখা সীমান্ত পেরিয়ে ভারতে শেষ হয়েছে; মহানন্দা পর্যন্ত তার নদীপথ ডেটায় নামসহ পাওয়া যায়নি, তাই মহানন্দার সাথে মেলানো হয়নি।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "osm",
+            "where": "the batch b7 extract: the Tangon’s last way 248096312, and the unnamed ways below it",
+            "states": "about 89 km of unnamed river ways to the Mahananda (way 751664755), and one 10.9 km «Tangan» way on the way"
+          },
+          {
+            "source": "user",
+            "where": "the rule: gaps over 12 km stay unjoined",
+            "states": "the user, 2026-09-29"
+          }
+        ]
+      },
+      {
+        "textBn": "বইয়ে মহানন্দার উপনদী হিসেবে নাম থাকলেও ছবিতে আঁকা হয়নি: নাগর (একই নামের দুটি নদীর কোনটি, তা স্থির হয়নি) ও কুলিক (ডেটায় বাংলাদেশে এর নামসহ নদীপথ প্রায় ৫ কিলোমিটার)।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the line after the পদ্মা distributaries [bgeo]",
+            "states": "পুনর্ভবা, নাগর, পাগলা, কুলিক ও ট্যাংগন মহানন্দার উপনদী"
+          },
+          {
+            "source": "bwdbList",
+            "where": "NW-65 and NW-66, riverNameBn",
+            "states": "নাগর; নাগর"
+          },
+          {
+            "source": "osm",
+            "where": "the batch b7 research: the Kulik’s named ways",
+            "states": "way 556252387, 4.7 km in Bangladesh; way 252281148 «Kuliki», 30.9 km in India"
+          },
+          {
+            "source": "user",
+            "where": "the rule: a river with no usable pinned line is left out; same-name rivers are matched by geometry or district only",
+            "states": "the user, 2026-09-29"
           }
         ]
       },
@@ -1909,6 +2043,38 @@
             "source": "bnwKhowai",
             "where": "the lead [B4-W4]",
             "states": "সিলেট জেলার বাল্লা নামক স্থান দিয়ে বাংলাদেশে প্রবেশ করে; নদীটি হবিগঞ্জ জেলার পূর্বপ্রান্ত দিয়ে প্রবাহিত হয়ে মেঘনা নদীতে গিয়ে মিশেছে।"
+          }
+        ]
+      },
+      {
+        "textBn": "পুনর্ভবা: পানি উন্নয়ন বোর্ড — দিনাজপুরের বীরগঞ্জ উপজেলায় উৎপত্তি, দিনাজপুর সদর উপজেলা দিয়ে ভারতে প্রবেশ; যৌথ নদী কমিশন — ঠাকুরগাঁওয়ের বালিয়াডাঙ্গী উপজেলার জলাভূমিতে উৎপত্তি, বিরল (দিনাজপুর) দিয়ে ভারতে প্রবেশ।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bwdbNW72",
+            "where": "§1.1 বর্ণনা [B7-G1]",
+            "states": "দিনাজপুর জেলার বীরগঞ্জ উপজেলার শিবরামপুর ইউনিয়নের নিম্নাঞ্চল থেকে উৎপন্ন হয়ে ৮৬ কি.মি. প্রবাহিত হয়ে দিনাজপুর সদর উপজেলা দিয়ে ভারতে প্রবেশ করে"
+          },
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, row ৯, উৎপত্তিস্থল and ভারতে প্রবেশ [B7-J1]",
+            "states": "ঠাকুরগাঁও জেলার বালিয়াডাঙ্গী উপজেলায় জলাভূমি; বিরল, দিনাজপুর দিয়ে ভারতে প্রবেশ"
+          }
+        ]
+      },
+      {
+        "textBn": "ট্যাংগনের উৎপত্তি: পানি উন্নয়ন বোর্ড — পঞ্চগড় সদর উপজেলার গরিনাবাড়ী ইউনিয়নে বহিতা নদী থেকে; যৌথ নদী কমিশন — পঞ্চগড় জেলার মাগুরা ইউনিয়নের নিম্নাঞ্চল।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bwdbNW48",
+            "where": "§1.1 বর্ণনা [B7-G6]",
+            "states": "নদীটি পঞ্চগড় জেলার সদর উপজেলার গরিনাবাড়ী ইউনিয়নে বহিতা নদী থেকে উৎপত্তি হয়ে"
+          },
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, row ১১, উৎপত্তিস্থল [B7-J1]",
+            "states": "বাংলাদেশের পঞ্চগড় জেলার মাগুরা ইউনিয়ন এর নিম্নাঞ্চল"
           }
         ]
       }

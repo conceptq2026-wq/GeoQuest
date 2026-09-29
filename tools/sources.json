@@ -295,5 +295,13 @@
     "snapshot": "2026-09-29T12:01:27Z",
     "licence": "ODbL 1.0 — © OpenStreetMap contributors",
     "sha256": "d31d584fa0aaa4c575afd41ada5437442e0200fb251e68a2e3b5cdead94bdffc"
+  },
+  "osmBangladeshRiversPadmaB7": {
+    "_comment": "The OpenStreetMap ways the Rivers of Bangladesh picture’s Padma system draws in Stage 3 batch b7 — the Punarbhaba, the Pagla and the Tangon, the Mahananda’s tributaries — each by way id, with node ids and tags, from tools/extract-bangladesh-rivers-system.mjs padma b7 (the way list is the Padma seed’s geometry.extractBatches.b7). Every way carries a name, name:bn, name:en or wikidata tag naming its river. Only a deliberate re-run changes it.",
+    "file": "tools/sources/osm-bangladesh-rivers-padma-b7.geojson",
+    "fetched": "2026-09-29",
+    "snapshot": "2026-09-29T13:54:35Z",
+    "licence": "ODbL 1.0 — © OpenStreetMap contributors",
+    "sha256": "a7c5e7229104dc76d6746a672fdcdcfd5a4a0ae2a55b9f47c13bb35ce4aa1396"
   }
 }

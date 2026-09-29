@@ -58,6 +58,17 @@ finishes it. It is not in `docs/registry.json`.
     Dhaleshwari as OSM and BWDB have it). Left out: the Baulai and the Dhanu
     (no OSM way under any spelling). One ⓘ note names every river the books
     give that is not drawn. No grey continuation remains.
+    Stage 3, batch 7 (the Padma system, the Mahananda's tributaries B-GEO
+    names): the Punarbhaba (from Birganj through India to the Mahananda at
+    Rohanpur, a shared node), the Pagla («পাগলা (চাঁপাইনবাবগঞ্জ)»; from the
+    Ganga in India to the Mahananda in Chapainawabganj Sadar) and the Tangon
+    («ট্যাংগন», the book's spelling; from Thakurgaon Sadar to just inside
+    India, unjoined: OSM names nothing on to the Mahananda in Malda), each
+    dashed outside Bangladesh (`split: "border"`). Left out: the Nagar (two
+    BWDB Nagars; B-GEO's text fits the border river NW-65, both books' maps
+    label NW-66, into the Atrai — the user decides), the Kulik (4.7 km of
+    named way in Bangladesh) and the Tetulia of Dinajpur (no named way; not in
+    the books).
 - **The legend** lists the kinds the current system draws — its line roles
   and its markers' kinds — so it shrinks to what the lit colours mean (at
   320 px with a card open the stage is under 300 px tall).
@@ -292,7 +303,7 @@ finishes it. It is not in `docs/registry.json`.
   b3, 6 ways (`eb26c514…`); the Meghna's b4, 29 ways (`fce48299…`; its
   group «evidence» holds the four unnamed «Gomati» relation members, the one
   group the tag rule exempts); the Jamuna's b4, the Buriganga's one way
-  (`d31d584f…`). The extractor refuses an Overpass answer whose
+  (`d31d584f…`); the Padma's b7, 17 ways (`a7c5e722…`). The extractor refuses an Overpass answer whose
   data is more than two days old: a mirror once served a May snapshot with
   older way versions. A way in two
   files must agree within 1 m.
@@ -313,8 +324,8 @@ finishes it. It is not in `docs/registry.json`.
   `tools/bangladesh-rivers-pins.json` (36 lines: the pilot's 11, the Padma
   system's 10 from Stage 1, from Stage 2 the Karnaphuli system's 5 (b5),
   the Padma south-west's 10 (b2), the Meghna core's 5 (b3; the pinned
-  `meghna` line changed role, not ways) and batch 4's 5; 46 in all, no
-  earlier pin has moved). A build whose line moved stops and says so; it is never
+  `meghna` line changed role, not ways) and batch 4's 5; from Stage 3 the
+  Mahananda's tributaries' 3 (b7); 49 in all, no earlier pin has moved). A build whose line moved stops and says so; it is never
   re-pinned to pass. A main river drawn as several lines must run end to end
   within 3 m (`gangaPadma→padma` 0.6 m), or a later piece joins the one
   before as a branch joins its parent (`join.parent`): by a connector up to
@@ -331,7 +342,8 @@ finishes it. It is not in `docs/registry.json`.
   two of its own), the frames, every branch card's four rows and the main
   card's «গতিপথ», ⓘ's plain lines each citing a listed source, the picker
   grouped by system, the pending list (the fields the seed holds as null,
-  listed by name in the validator; 32 after Stage 2: the Jamuna's length;
+  listed by name in the validator; 33 after Stage 3's b7 — Stage 2's 32 and
+  the Pagla's course: the Jamuna's length;
   the Buriganga's course; the Padma's entry, course, length and
   distributaries; the Gorai's, Madhumati's and Chitra's course; the
   Bhagirathi's other name; the Meghna's length, tributaries and

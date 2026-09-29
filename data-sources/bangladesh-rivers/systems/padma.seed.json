@@ -16,7 +16,10 @@
     "bhairab": "ভৈরব",
     "kapotaksha": "কপোতাক্ষ",
     "nabaganga": "নবগঙ্গা",
-    "chitra": "চিত্রা"
+    "chitra": "চিত্রা",
+    "punarbhaba": "পুনর্ভবা",
+    "pagla": "পাগলা",
+    "tangon": "ট্যাংগন"
   },
   "frames": {
     "bangladesh": {
@@ -41,7 +44,10 @@
         "nabaganga2",
         "nabaganga3",
         "chitra",
-        "chitra2"
+        "chitra2",
+        "punarbhaba",
+        "pagla",
+        "tangon"
       ],
       "markers": [
         "padmaJamunaConfluence",
@@ -159,6 +165,30 @@
           "near": [
             89.1,
             23.4
+          ]
+        },
+        {
+          "id": "punarbhaba",
+          "line": "punarbhaba",
+          "near": [
+            88.62,
+            25.75
+          ]
+        },
+        {
+          "id": "pagla",
+          "line": "pagla",
+          "near": [
+            88.12,
+            24.7
+          ]
+        },
+        {
+          "id": "tangon",
+          "line": "tangon",
+          "near": [
+            88.45,
+            25.95
           ]
         }
       ]
@@ -586,6 +616,73 @@
         },
         "exempt": "Unjoined: its head is 29.7 km from the reach above — over the 12 km a connector may bridge (the user's rule, 2026-09-29: gaps over 12 km stay unjoined); only a water area and unnamed ways lie between (ⓘ).",
         "identified": "Ways 986796027 and 575195090, tagged «চিত্রা নদী» (this batch's extract), from Narail to node 5519854747 on the Nabaganga, in Dighalia."
+      },
+      "punarbhaba": {
+        "entity": "punarbhaba",
+        "role": "tributary",
+        "split": "border",
+        "ways": [
+          301613378,
+          532051858,
+          535262735,
+          535260298,
+          537057165,
+          133297833,
+          133297832,
+          133297831,
+          537135329,
+          531174986
+        ],
+        "down": [
+          88.3041,
+          24.8286
+        ],
+        "join": {
+          "parent": "mahananda3",
+          "node": 5156476536,
+          "source": "OSM node 5156476536, the last node of way 531174986, a node of the Mahananda’s way 239809734"
+        },
+        "identified": "Ten ways, every link sharing a node (this batch’s extract), tagged Punarbhaba / Punarbhaba River / Punarbhava river (wikidata Q3349842 on 537057165 and 133297831), from Birganj (Dinajpur) through India to the Mahananda at Rohanpur (Gomastapur). Not drawn: about 10 km of unnamed ways above the head, and the side branch 542488589."
+      },
+      "pagla": {
+        "entity": "pagla",
+        "role": "tributary",
+        "split": "border",
+        "ways": [
+          1133039927,
+          1133039928,
+          387078868
+        ],
+        "down": [
+          88.226,
+          24.5688
+        ],
+        "join": {
+          "parent": "mahananda3",
+          "node": 7725464400,
+          "source": "OSM node 7725464400, the last node of way 387078868, a node of the Mahananda’s way 239809734"
+        },
+        "identified": "Three ways tagged Pagla (this batch’s extract), from the Ganga in India (node 3904188768 of way 134518612) to the Mahananda in Chapainawabganj Sadar. Not drawn: the Murshidabad «Pāgla Nadī» (1069716280, 1069716310), another river."
+      },
+      "tangon": {
+        "entity": "tangon",
+        "role": "tributary",
+        "split": "border",
+        "ways": [
+          175792581,
+          548672138,
+          530534397,
+          248096312
+        ],
+        "down": [
+          88.4314,
+          25.6544
+        ],
+        "join": {
+          "parent": "mahananda2"
+        },
+        "exempt": "Unjoined (the user’s rule, 2026-09-29: gaps over 12 km stay unjoined): the named line ends just inside India; OSM carries the river on to the Mahananda in Malda only as 89 km of unnamed ways (and a 10.9 km «Tangan» piece, not drawn), so there is no join point, connector or confluence marker (ⓘ).",
+        "identified": "Four ways tagged Tangon / Tangan (this batch’s extract), from Thakurgaon Sadar to just across the border beyond Pirganj. Not drawn: the side branch 1044134227; the isolated «Tangan» way 248090801 in India, 21.7 km below."
       }
     },
     "extract": {
@@ -668,6 +765,31 @@
           547222467,
           986796027,
           575195090
+        ]
+      },
+      "b7": {
+        "punarbhaba": [
+          301613378,
+          532051858,
+          535262735,
+          535260298,
+          537057165,
+          133297833,
+          133297832,
+          133297831,
+          537135329,
+          531174986
+        ],
+        "tangon": [
+          175792581,
+          548672138,
+          530534397,
+          248096312
+        ],
+        "pagla": [
+          1133039927,
+          1133039928,
+          387078868
         ]
       }
     }
@@ -1078,6 +1200,167 @@
         ]
       },
       "review": "Transboundary: origin and course are JRCB's (row ১৪), which describes the whole river; BWDB splits it into NW-94 «মহানন্দা (পঞ্চগড়)» (the Tetulia reach, matched to the drawn upper reach by district) and NW-95 «মহানন্দা (নবাবগঞ্জ)» (Bholahat to the Padma, matched to the lower reaches), and says only «ভারত হতে উৎপন্ন». The confluence is BWDB's NW-95, as for the Teesta (BWDB before JRCB); JRCB's «গঙ্গা নদী গোদাগাড়ী ঘাট» is in ⓘ. The drawn confluence is in COD-AB's Chapainawabganj Sadar. bn Wikipedia (rev 9125110) makes the Punarbhaba a Padma tributary; B-GEO and JRCB make it the Mahananda's."
+    },
+    {
+      "id": "punarbhaba",
+      "role": "tributary",
+      "nameBn": "পুনর্ভবা",
+      "values": {
+        "relation": "মহানন্দার উপনদী",
+        "origin": "দিনাজপুর জেলার বীরগঞ্জ উপজেলার শিবরামপুর ইউনিয়নের নিম্নাঞ্চল",
+        "entry": "নওগাঁ জেলার সাপাহার উপজেলা",
+        "course": "৮৬ কি.মি. প্রবাহিত হয়ে দিনাজপুর সদর উপজেলা দিয়ে ভারতে প্রবেশ করে। ভারতের মধ্য দিয়ে প্রায় ৫১ কি.মি. প্রবাহিত হয়ে নদীটি পুনরায় নওগাঁ জেলার সাপাহার উপজেলা দিয়ে বাংলাদেশে প্রবেশ করে",
+        "confluence": "চাঁপাইনবাবগঞ্জ জেলার গোমস্তাপুর উপজেলার রহনপুর পৌরসভার নিকট মহানন্দা (নবাবগঞ্জ) নদীতে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the line after the পদ্মা distributaries [bgeo]",
+            "states": "পুনর্ভবা, নাগর, পাগলা, কুলিক ও ট্যাংগন মহানন্দার উপনদী"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the line after the পদ্মা distributaries [bgeo]",
+            "states": "পুনর্ভবা, নাগর, পাগলা, কুলিক ও ট্যাংগন মহানন্দার উপনদী"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbNW72",
+            "where": "§1.1 বর্ণনা [B7-G1]",
+            "states": "নদীটি দিনাজপুর জেলার বীরগঞ্জ উপজেলার শিবরামপুর ইউনিয়নের নিম্নাঞ্চল থেকে উৎপন্ন হয়ে"
+          }
+        ],
+        "entry": [
+          {
+            "source": "bwdbNW72",
+            "where": "§1.1 বর্ণনা [B7-G1]",
+            "states": "ভারতের মধ্য দিয়ে প্রায় ৫১ কি.মি. প্রবাহিত হয়ে নদীটি পুনরায় নওগাঁ জেলার সাপাহার উপজেলা দিয়ে বাংলাদেশে প্রবেশ করে"
+          }
+        ],
+        "course": [
+          {
+            "source": "bwdbNW72",
+            "where": "§1.1 বর্ণনা [B7-G1]",
+            "states": "উৎপন্ন হয়ে ৮৬ কি.মি. প্রবাহিত হয়ে দিনাজপুর সদর উপজেলা দিয়ে ভারতে প্রবেশ করে। ভারতের মধ্য দিয়ে প্রায় ৫১ কি.মি. প্রবাহিত হয়ে নদীটি পুনরায় নওগাঁ জেলার সাপাহার উপজেলা দিয়ে বাংলাদেশে প্রবেশ করে"
+          }
+        ],
+        "confluence": [
+          {
+            "source": "bwdbNW72",
+            "where": "§1.1 বর্ণনা [B7-G1]",
+            "states": "চাঁপাইনবাবগঞ্জ জেলার গোমস্তাপুর উপজেলার রহনপুর পৌরসভার নিকট মহানন্দা (নবাবগঞ্জ) নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "BWDB NW-72 «পূনর্ভবা», the only entry of the name (the book’s spelling on the card; BWDB’s in ⓘ). JRC row ৯ differs on the source (Baliadangi, Thakurgaon) and where it leaves for India (Biral) — ⓘ. Lengths (BWDB 168 km; JRC 150 in Bangladesh) are not on a branch card. Other names: MISSING in every source, so the row is absent, as on the other branch cards. The drawn line starts in Birganj and meets the Mahananda at a shared node in Gomastapur, as BWDB has it."
+    },
+    {
+      "id": "pagla",
+      "role": "tributary",
+      "nameBn": "পাগলা (চাঁপাইনবাবগঞ্জ)",
+      "values": {
+        "relation": "মহানন্দার উপনদী",
+        "origin": "ভারত",
+        "entry": "চাঁপাইনবাবগঞ্জ জেলার শিবগঞ্জ উপজেলার শাহবাজপুর ইউনিয়ন",
+        "course": null,
+        "confluence": "চাঁপাইনবাবগঞ্জ জেলার সদর উপজেলার সুন্দরপুর ইউনিয়নে মহানন্দা (নবাবগঞ্জ) নদীতে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the line after the পদ্মা distributaries [bgeo]",
+            "states": "পুনর্ভবা, নাগর, পাগলা, কুলিক ও ট্যাংগন মহানন্দার উপনদী"
+          },
+          {
+            "source": "bwdbNW69",
+            "where": "the heading [B7-G4]",
+            "states": "পাগলা"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the line after the পদ্মা distributaries [bgeo]",
+            "states": "পুনর্ভবা, নাগর, পাগলা, কুলিক ও ট্যাংগন মহানন্দার উপনদী"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbNW69",
+            "where": "§1.1 বর্ণনা [B7-G4]",
+            "states": "নদীটি ভারত থেকে উৎপত্তি হয়ে"
+          }
+        ],
+        "entry": [
+          {
+            "source": "bwdbNW69",
+            "where": "§1.1 বর্ণনা [B7-G4]",
+            "states": "বাংলাদেশের চাঁপাইনবাবগঞ্জ জেলার শিবগঞ্জ উপজেলার শাহবাজপুর ইউনিয়ন দিয়ে প্রবেশ করে"
+          }
+        ],
+        "confluence": [
+          {
+            "source": "bwdbNW69",
+            "where": "§1.1 বর্ণনা [B7-G4]",
+            "states": "সদর উপজেলার সুন্দরপুর ইউনিয়নে মহানন্দা (নবাবগঞ্জ) নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "BWDB NW-69 «পাগলা», matched by district (Chapainawabganj); SE-37 «পাগলা (ব্রাহ্মণবাড়িয়া)» ruled out, so the picker name carries the district (ⓘ names the other). Origin: BWDB’s «ভারত» on the card, JRC row ৭’s «ভারতের মালদা জেলার দক্ষিণ-পশ্চিমে গঙ্গা নদী» in ⓘ (decision 5 of Stage 3). Course null: BWDB’s one sentence is origin, entry and mouth. Other names: MISSING. The drawn line leaves the Ganga in India and meets the Mahananda at a shared node in Chapainawabganj Sadar."
+    },
+    {
+      "id": "tangon",
+      "role": "tributary",
+      "nameBn": "ট্যাংগন",
+      "values": {
+        "relation": "মহানন্দার উপনদী",
+        "origin": "পঞ্চগড় জেলার সদর উপজেলার গরিনাবাড়ী ইউনিয়নে বহিতা নদী থেকে",
+        "course": "ঠাকুরগাঁও জেলার পীরগঞ্জ উপজেলার বৈরচুনা ইউনিয়ন দিয়ে ভারতে প্রবেশ করেছে",
+        "confluence": "মহানন্দা নদী মালদা জেলার ইংলিশ বাজারের দক্ষিণ-পূর্বে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the line after the পদ্মা distributaries [bgeo]",
+            "states": "পুনর্ভবা, নাগর, পাগলা, কুলিক ও ট্যাংগন মহানন্দার উপনদী"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the line after the পদ্মা distributaries [bgeo]",
+            "states": "পুনর্ভবা, নাগর, পাগলা, কুলিক ও ট্যাংগন মহানন্দার উপনদী"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbNW48",
+            "where": "§1.1 বর্ণনা [B7-G6]",
+            "states": "নদীটি পঞ্চগড় জেলার সদর উপজেলার গরিনাবাড়ী ইউনিয়নে বহিতা নদী থেকে উৎপত্তি হয়ে"
+          }
+        ],
+        "course": [
+          {
+            "source": "bwdbNW48",
+            "where": "§1.1 বর্ণনা [B7-G6]",
+            "states": "ঠাকুরগাঁও জেলার পীরগঞ্জ উপজেলার বৈরচুনা ইউনিয়ন দিয়ে ভারতে প্রবেশ করেছে"
+          }
+        ],
+        "confluence": [
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, row ১১, col ৫ পতিতমুখ [B7-J1]",
+            "states": "মহানন্দা নদী মালদা জেলার ইংলিশ বাজারের দক্ষিণ-পূর্বে"
+          }
+        ]
+      },
+      "review": "BWDB NW-48 «টাংগন», the only entry of the name; the card keeps B-GEO’s spelling «ট্যাংগন» (ⓘ gives BWDB’s and JRC’s). Entry absent: it rises in Bangladesh and flows out. Confluence from JRC row ১১ (BWDB gives only «ভারত»). JRC’s source (Magura union) differs from BWDB’s (Garinabari) — ⓘ. bn Wikipedia and Banglapedia make it a Punarbhaba tributary; recorded here only (the book stands). Banglapedia’s «টংগন, ট্যাঙ্গন» are spellings, not other names: the row is absent. The drawn line starts in Thakurgaon Sadar and ends just inside India, unjoined."
     },
     {
       "id": "bhagirathi",
