@@ -1,0 +1,75 @@
+{
+  "id": "bangladesh-rivers",
+  "section": "bangladesh",
+  "language": "bn",
+  "title": {
+    "en": "Rivers of Bangladesh",
+    "bn": "বাংলাদেশের নদ-নদী"
+  },
+  "data": "data.json",
+  "views": [
+    {
+      "id": "whole",
+      "type": "rivers",
+      "tab": "পুরো পথ",
+      "art": "frame-whole.json"
+    },
+    {
+      "id": "bangladesh",
+      "type": "rivers",
+      "tab": "বাংলাদেশে",
+      "art": "frame-bangladesh.json"
+    }
+  ],
+  "words": {
+    "picker": "একটি নদী বেছে নিন…",
+    "close": "বন্ধ করুন",
+    "rows": [
+      {
+        "key": "parent",
+        "label": "মূল নদী"
+      },
+      {
+        "key": "alias",
+        "label": "অন্য নাম / ওপারের নাম"
+      },
+      {
+        "key": "origin",
+        "label": "উৎপত্তি"
+      },
+      {
+        "key": "entry",
+        "label": "প্রবেশস্থল"
+      },
+      {
+        "key": "length",
+        "label": "দৈর্ঘ্য"
+      },
+      {
+        "key": "tributaries",
+        "label": "উপনদী"
+      },
+      {
+        "key": "distributaries",
+        "label": "শাখা নদী"
+      },
+      {
+        "key": "confluence",
+        "label": "মিলনস্থল"
+      },
+      {
+        "key": "mouth",
+        "label": "পতিত স্থল"
+      }
+    ],
+    "legend": {
+      "main": "মূল নদী",
+      "tributary": "উপনদী",
+      "distributary": "শাখা নদী",
+      "origin": "উৎপত্তি",
+      "entry": "প্রবেশস্থল",
+      "confluence": "মিলনস্থল",
+      "mouth": "পতিত স্থল"
+    }
+  }
+}

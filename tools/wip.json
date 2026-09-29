@@ -3,7 +3,7 @@
   "items": [
     {
       "id": "bangladesh-rivers",
-      "kind": "map",
+      "kind": "diagram",
       "section": "bangladesh",
       "title": {
         "bn": "বাংলাদেশের নদ-নদী",

@@ -1,0 +1,666 @@
+/*
+|--------------------------------------------------------------------------
+| THE RIVERS VIEW — a river system drawn in code, on a picture that pans and
+| zooms, its lines and markers tappable.
+|--------------------------------------------------------------------------
+|
+| Loaded only for a view of type `rivers` (bangladesh-rivers). Nothing here
+| is a tile map and nothing is fetched but the diagram's own JSON: the view's
+| `art` file (built by tools/build-diagram-bangladesh-rivers.mjs) holds the
+| land, Bangladesh, the boundaries, every line as SVG path data in the frame's
+| own units, the markers and the anchors of the names; the diagram's data
+| holds every word.
+|
+| One <svg> fills the stage. The art sits in one group, moved and scaled as a
+| whole (1× is the whole frame fitting the stage; up to 6× from there — the
+| user's decision, 2026-09-29, for this module only), every stroke a constant
+| width in CSS px. The markers and the names are laid out over it in CSS px,
+| at least 15 px at 390 px wide and 14 px at 320, semi-bold, each put beside
+| its anchor where no other name, marker, the legend or ⓘ's tap zone is.
+|
+| A tap on a line or a marker lights it and docks its card under the picture:
+| the rows the descriptor lists, a row with no value left out. The
+| continuations (the Padma and the Meghna to the sea) are thin, grey and not
+| tappable. A tap on the lit one again, on the picture away from every line,
+| on × or Escape closes it. The picker row, [ ‹ ] [ the select ] [ › ], is
+| the shell's own (../shared/picker.js) at the top; it lists the rivers the
+| data names and follows the selection. A tap is a press that moves under 8
+| px; a drag pans, two fingers pinch, the wheel and a double tap zoom.
+|
+| Every word shown is the descriptor's or the data's.
+*/
+
+import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=25d9e1cee5';
+
+const ZOOM_MAX = 6;
+// CSS px: a press that moves less than this is a tap; two taps within DOUBLE_MS and DOUBLE_PX are a double tap.
+const SLOP = 8;
+const DOUBLE_MS = 320;
+const DOUBLE_PX = 30;
+const DOUBLE_ZOOM = 2.5;
+// The stage's edge, and ⓘ's tap zone hanging over its top right (docs/visual/style.css), in CSS px.
+const EDGE = 4;
+// Room kept round the frame at 1×, and the furthest it may be dragged off the stage's edge, in CSS px.
+const PAD = 10;
+const INFO_ZONE = { w: 44, h: 26 };
+// A name sits this far from its anchor; a name wider than WRAP_AT breaks at a space; a marker keeps this half-size clear.
+const GAP = 7;
+const WRAP_AT = 120;
+const MARK_CLEAR = 11;
+const NAME_PAD = 1.5;
+// Names are placed main river first, then its tributaries, its branches, the continuations, the countries last.
+const RANK = { main: 0, tributary: 1, distributary: 2, continuation: 3, country: 4 };
+
+// One picker row per tab, one standard set of ids: the tab in view holds them (tools/check.mjs and the shell read them).
+const instances = new Set();
+
+const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+const overlap = (a, b) => Math.max(0, Math.min(a.r, b.r) - Math.max(a.l, b.l)) * Math.max(0, Math.min(a.b, b.b) - Math.max(a.t, b.t));
+
+/** The points of path data written as `M x y l dx dy …`, one array per subpath. */
+function pieces(d) {
+  const out = [];
+  for (const sub of d.split(/(?=M)/)) {
+    const n = sub.match(/-?\d*\.?\d+/g)?.map(Number);
+    if (!n || n.length < 4) continue;
+    let x = n[0];
+    let y = n[1];
+    const pts = [[x, y]];
+    for (let i = 2; i + 1 < n.length; i += 2) {
+      x += n[i];
+      y += n[i + 1];
+      pts.push([x, y]);
+    }
+    out.push(pts);
+  }
+  return out;
+}
+
+/** A marker's shape, centred on 0,0. */
+function glyph(kind) {
+  if (kind === 'origin') return svgEl('path', { class: 'glyph glyph-origin', d: 'M0-7.5L7 5.5H-7Z' });
+  if (kind === 'entry') return svgEl('path', { class: 'glyph glyph-entry', d: 'M0-8.5L8.5 0 0 8.5-8.5 0Z' });
+  if (kind === 'confluence') return svgEl('circle', { class: 'glyph glyph-confluence', r: 6 });
+  return svgEl('rect', { class: 'glyph glyph-mouth', x: -6, y: -6, width: 12, height: 12 });
+}
+
+export async function mount(panel, { view, descriptor, data, art }) {
+  const words = descriptor.words;
+  const frame = await art;
+  await Promise.all([stylesheet('../shared/picker.css?v=25d9e1cee5'), stylesheet('./rivers.css?v=25d9e1cee5')]);
+
+  const fw = frame.projection.width;
+  const fh = frame.projection.height;
+  const uid = view.id;
+  const cardTitle = (marker) => `${marker.name} — ${words.legend[marker.kind]}`;
+
+  // ---- the page ------------------------------------------------------------------------
+
+  panel.classList.add('rivers');
+  const stage = el('div', 'stage');
+  const content = el('div', 'stage-content loading');
+  stage.append(content);
+
+  const svg = svgEl('svg', { class: 'rivers-svg', role: 'group', 'aria-label': descriptor.title.bn });
+  const clipId = `rivers-clip-${uid}`;
+  const defs = svgEl('defs');
+  const clip = svgEl('clipPath', { id: clipId });
+  clip.append(svgEl('rect', { width: fw, height: fh }));
+  defs.append(clip);
+
+  const world = svgEl('g', { class: 'world' });
+  const ground = svgEl('g', { 'clip-path': `url(#${clipId})` });
+  ground.append(
+    svgEl('rect', { class: 'sea', width: fw, height: fh }),
+    svgEl('path', { class: 'land', d: frame.land }),
+    svgEl('path', { class: 'bd-fill', d: frame.bangladesh.fill }),
+    svgEl('path', { class: 'borders', d: frame.borders }),
+    svgEl('path', { class: 'bd-border', d: frame.bangladesh.border }),
+  );
+  const linesG = svgEl('g', { class: 'lines' });
+  const zonesG = svgEl('g', { class: 'zones' });
+  world.append(ground, linesG, zonesG, svgEl('rect', { class: 'frame-edge', width: fw, height: fh }));
+
+  const overlay = svgEl('g', { class: 'overlay' });
+  const markersG = svgEl('g', { class: 'markers' });
+  const namesG = svgEl('g', { class: 'names', 'aria-hidden': 'true' });
+  overlay.append(markersG, namesG);
+  svg.append(defs, world, overlay);
+  content.append(svg);
+
+  // ---- the lines -------------------------------------------------------------------------
+
+  const roleOf = new Map(frame.lines.map((l) => [l.id, l.role]));
+  const polyOf = new Map();
+  const riverG = new Map();
+  const drawOrder = [];
+  for (const line of frame.lines) {
+    const g = svgEl('g', { class: `river river-${line.role}` });
+    for (const piece of line.pieces) {
+      g.append(svgEl('path', { class: 'river-halo', d: piece.d }), svgEl('path', { class: piece.dash ? 'river-line dash' : 'river-line', d: piece.d }));
+    }
+    linesG.append(g);
+    riverG.set(line.id, g);
+    drawOrder.push(g);
+    polyOf.set(line.id, line.pieces.flatMap((p) => pieces(p.d)));
+  }
+
+  // Tap zones: a line's own name, a marker's own card; a continuation has neither.
+  const zoneOf = new Map();
+  const titleOf = new Map();
+  const zoneFor = (node, key, title) => {
+    node.dataset.key = key;
+    node.dataset.title = title;
+    node.setAttribute('role', 'button');
+    node.setAttribute('tabindex', '0');
+    node.setAttribute('aria-label', title);
+    zoneOf.set(key, node);
+    titleOf.set(key, title);
+  };
+  // The main river's zone lies lowest, so a branch beside it takes its own taps.
+  for (const line of [...frame.lines].reverse()) {
+    const entity = data.entities[line.id];
+    if (!entity || line.role === 'continuation') continue;
+    const zone = svgEl('path', { class: 'zone', d: line.pieces.map((p) => p.d).join('') });
+    zoneFor(zone, `line:${line.id}`, entity.name);
+    zonesG.append(zone);
+  }
+
+  const markerG = new Map();
+  const markerPos = new Map(frame.markers.map((m) => [m.id, [m.x, m.y]]));
+  for (const m of frame.markers) {
+    const info = data.markers[m.id];
+    const g = svgEl('g', { class: `marker marker-${m.kind}` });
+    const zone = svgEl('circle', { class: 'zone', r: 22 });
+    zoneFor(zone, `marker:${m.id}`, cardTitle(info));
+    g.append(svgEl('circle', { class: 'mark-halo', r: 15 }), svgEl('circle', { class: 'mark-ring', r: 15 }), glyph(m.kind), zone);
+    markersG.append(g);
+    markerG.set(m.id, g);
+  }
+
+  // ---- the names ---------------------------------------------------------------------------
+
+  const labels = [
+    ...frame.labels.map((l) => ({ id: l.id, text: data.labels[l.id], x: l.x, y: l.y, line: l.line, role: roleOf.get(l.line) })),
+    ...frame.countries.map((c) => ({ id: c.id, text: data.countries[c.id], x: c.x, y: c.y, line: null, role: 'country' })),
+  ];
+  const perLine = new Map();
+  for (const l of labels) if (l.line) perLine.set(l.line, (perLine.get(l.line) ?? 0) + 1);
+  for (const l of labels) {
+    l.node = svgEl('text', { class: `layer-label river-label label-${l.role}`, 'data-fit': `name ${l.id}` });
+    l.node.style.display = 'none';
+    namesG.append(l.node);
+    // A line with a single name may carry it on any stretch in view; a line with several keeps each where it was placed.
+    l.moves = l.line !== null && perLine.get(l.line) === 1;
+    if (l.line) {
+      const flat = polyOf.get(l.line).flatMap((pts, p) => pts.map(([x, y], i) => ({ x, y, p, i })));
+      l.flat = flat;
+      let best = 0;
+      let bestD = Infinity;
+      flat.forEach((q, k) => {
+        const dd = Math.hypot(q.x - l.x, q.y - l.y);
+        if (dd < bestD) {
+          bestD = dd;
+          best = k;
+        }
+      });
+      l.at = best;
+    }
+  }
+  labels.sort((a, b) => RANK[a.role] - RANK[b.role]);
+
+  // ---- the legend, at the stage's bottom left ------------------------------------------------
+
+  const lineRoles = new Set(frame.lines.filter((l) => l.role !== 'continuation').map((l) => l.role));
+  const markerKinds = new Set(frame.markers.map((m) => m.kind));
+  const legend = el('ul', 'legend fit-text');
+  legend.dataset.fit = 'the legend';
+  for (const [kind, word] of Object.entries(words.legend)) {
+    if (!lineRoles.has(kind) && !markerKinds.has(kind)) continue;
+    const item = el('li', 'legend-item');
+    const icon = svgEl('svg', { class: 'legend-icon', viewBox: '-14 -8 28 16', width: 28, height: 16, 'aria-hidden': 'true' });
+    if (lineRoles.has(kind)) icon.append(svgEl('line', { class: `legend-line legend-${kind}`, x1: -12, y1: 0, x2: 12, y2: 0 }));
+    else icon.append(glyph(kind));
+    const text = el('span', 'legend-text', 'bn');
+    text.textContent = word;
+    item.append(icon, text);
+    legend.append(item);
+  }
+  content.append(legend);
+
+  // ---- the card and the picker row --------------------------------------------------------------
+
+  const { card, close, fill } = dockedCard({ close: words.close, id: `rivers-${uid}` });
+  let sel = null;
+  const pickerKeys = new Set(data.picker.map((p) => p.key));
+  const pickerKey = () => (sel?.kind === 'line' && pickerKeys.has(sel.id) ? sel.id : undefined);
+  const { bar, select, row } = pickerBar({
+    placeholder: words.picker,
+    items: data.picker.map((p) => ({ key: p.key, label: p.label })),
+    current: pickerKey,
+    choose: (key) => choose(key, true),
+  });
+  const self = {
+    ids(standard) {
+      const [prev, sel2, next] = bar.children;
+      prev.id = standard ? 'prevRecord' : `prevRecord-${uid}`;
+      sel2.id = standard ? 'recordPicker' : `recordPicker-${uid}`;
+      next.id = standard ? 'nextRecord' : `nextRecord-${uid}`;
+    },
+  };
+  instances.add(self);
+  const claimIds = () => {
+    for (const inst of instances) inst.ids(inst === self);
+  };
+  claimIds();
+  panel.append(bar, stage, card);
+
+  // ---- choosing --------------------------------------------------------------------------------
+
+  function boundsOf(kind, id) {
+    if (kind === 'marker') {
+      const [x, y] = markerPos.get(id);
+      return { x0: x, y0: y, x1: x, y1: y };
+    }
+    const b = { x0: Infinity, y0: Infinity, x1: -Infinity, y1: -Infinity };
+    for (const pts of polyOf.get(id)) {
+      for (const [x, y] of pts) {
+        b.x0 = Math.min(b.x0, x);
+        b.y0 = Math.min(b.y0, y);
+        b.x1 = Math.max(b.x1, x);
+        b.y1 = Math.max(b.y1, y);
+      }
+    }
+    return b;
+  }
+
+  function paint() {
+    const line = sel?.kind === 'line' ? sel.id : null;
+    svg.classList.toggle('has-lit', line !== null);
+    for (const [id, g] of riverG) g.classList.toggle('lit', id === line);
+    for (const [id, g] of markerG) g.classList.toggle('lit', sel?.kind === 'marker' && sel.id === id);
+    for (const [key, z] of zoneOf) z.setAttribute('aria-pressed', String(sel !== null && key === `${sel.kind}:${sel.id}`));
+    for (const g of drawOrder) linesG.append(g);
+    if (line !== null) linesG.append(riverG.get(line));
+  }
+
+  function choose(key, reveal = false) {
+    const [kind, id] = key.includes(':') ? key.split(':') : ['line', key];
+    if (kind === 'line' ? !data.entities[id] : !data.markers[id]) return;
+    sel = { kind, id };
+    if (kind === 'line') fill(data.entities[id].name, words.rows, data.entities[id].values);
+    else {
+      const marker = data.markers[id];
+      fill(cardTitle(marker), words.rows, { [marker.row]: marker.value });
+    }
+    card.hidden = false;
+    select.value = pickerKey() ?? '';
+    row.sync();
+    paint();
+    layout();
+    if (reveal) show(boundsOf(kind, id));
+  }
+
+  function clear(returnFocus) {
+    if (sel === null) return;
+    const was = `${sel.kind}:${sel.id}`;
+    sel = null;
+    card.hidden = true;
+    select.value = '';
+    row.sync();
+    paint();
+    layout();
+    if (returnFocus) zoneOf.get(was)?.focus();
+  }
+
+  const activate = (key) => {
+    if (!key) return clear(false);
+    if (sel !== null && key === `${sel.kind}:${sel.id}`) return clear(false);
+    const [kind, id] = key.split(':');
+    return choose(`${kind}:${id}`);
+  };
+
+  close.addEventListener('click', () => clear(true));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && sel !== null && !panel.hidden) clear(true);
+  });
+  stage.addEventListener('keydown', (event) => {
+    const zone = event.target.closest?.('.zone');
+    if (zone && (event.key === 'Enter' || event.key === ' ')) {
+      event.preventDefault();
+      activate(zone.dataset.key);
+    }
+  });
+
+  // ---- the view: where the frame lies in the stage, in CSS px -----------------------------------
+
+  let W = 0;
+  let H = 0;
+  let s0 = 1; // CSS px per frame unit with the whole frame in view
+  let zoom = 1;
+  let m = 1;
+  let tx = 0;
+  let ty = 0;
+  let cx = fw / 2; // the frame point at the stage's centre
+  let cy = fh / 2;
+  let ready = false;
+  let measuredFor = null;
+  let frameQueued = 0;
+
+  function clampView() {
+    const ew = fw * m;
+    const eh = fh * m;
+    tx = ew <= W - 2 * PAD + 0.5 ? (W - ew) / 2 : clamp(tx, W - ew - PAD, PAD);
+    ty = eh <= H - 2 * PAD + 0.5 ? (H - eh) / 2 : clamp(ty, H - eh - PAD, PAD);
+    cx = (W / 2 - tx) / m;
+    cy = (H / 2 - ty) / m;
+  }
+
+  function layout() {
+    const w = stage.clientWidth;
+    const h = stage.clientHeight;
+    if (!ready || !w || !h) return;
+    W = w;
+    H = h;
+    s0 = Math.min((W - 2 * PAD) / fw, (H - 2 * PAD) / fh);
+    m = s0 * zoom;
+    tx = W / 2 - cx * m;
+    ty = H / 2 - cy * m;
+    clampView();
+    apply();
+  }
+
+  const queue = () => {
+    if (!frameQueued) frameQueued = requestAnimationFrame(() => {
+      frameQueued = 0;
+      apply();
+    });
+  };
+
+  /** Fits the box (frame units) in view when it is not: as close as fits, at most ZOOM_MAX. */
+  function show(b) {
+    const margin = 16;
+    const inside = [[b.x0, b.y0], [b.x1, b.y1]].every(([x, y]) => x * m + tx >= margin && x * m + tx <= W - margin && y * m + ty >= margin && y * m + ty <= H - margin);
+    if (inside) return;
+    const need = Math.min((W - 4 * margin) / (Math.max(b.x1 - b.x0, 60) * s0), (H - 4 * margin) / (Math.max(b.y1 - b.y0, 60) * s0));
+    zoom = clamp(need, 1, ZOOM_MAX);
+    cx = (b.x0 + b.x1) / 2;
+    cy = (b.y0 + b.y1) / 2;
+    layout();
+  }
+
+  // ---- drawing at the current view ------------------------------------------------------------------
+
+  const fixed = (v) => v.toFixed(2);
+
+  function apply() {
+    world.setAttribute('transform', `matrix(${m.toFixed(5)} 0 0 ${m.toFixed(5)} ${fixed(tx)} ${fixed(ty)})`);
+    for (const [id, g] of markerG) {
+      const [x, y] = markerPos.get(id);
+      g.setAttribute('transform', `translate(${fixed(tx + m * x)} ${fixed(ty + m * y)})`);
+    }
+    placeNames();
+  }
+
+  const fontKey = () => getComputedStyle(labels[0].node).fontSize;
+
+  function measure() {
+    const size = parseFloat(fontKey());
+    for (const l of labels) {
+      l.node.style.display = '';
+      l.node.replaceChildren();
+      l.node.setAttribute('transform', 'translate(0 0)');
+      const one = svgEl('tspan', { x: 0 });
+      one.textContent = l.text;
+      l.node.append(one);
+      let lines = [l.text];
+      if (l.node.getComputedTextLength() > WRAP_AT && l.text.includes(' ')) {
+        const spaces = [...l.text].map((ch, i) => (ch === ' ' ? i : -1)).filter((i) => i >= 0);
+        const at = spaces.reduce((a, b) => (Math.abs(b - l.text.length / 2) < Math.abs(a - l.text.length / 2) ? b : a));
+        lines = [l.text.slice(0, at), l.text.slice(at + 1)];
+      }
+      l.node.replaceChildren(...lines.map((t, i) => {
+        const span = svgEl('tspan', { x: 0, dy: i === 0 ? 0 : size * 1.3 });
+        span.textContent = t;
+        return span;
+      }));
+      const box = l.node.getBBox();
+      l.w = box.width;
+      l.h = box.height;
+      l.bx = box.x;
+      l.by = box.y;
+      l.spans = [...l.node.children];
+      l.lineW = l.spans.map((s) => s.getComputedTextLength());
+      l.align = null;
+      l.node.style.display = 'none';
+    }
+    measuredFor = size;
+  }
+
+  const inView = (x, y, inset) => x >= inset && x <= W - inset && y >= inset && y <= H - inset;
+
+  /** The anchor of a name on the screen and the way its line runs there, or null when it is not in view. */
+  function anchorOf(l) {
+    const ax = tx + m * l.x;
+    const ay = ty + m * l.y;
+    let at = l.at;
+    if (!inView(ax, ay, EDGE + 6)) {
+      if (!l.moves) return null;
+      let bestD = Infinity;
+      at = -1;
+      l.flat.forEach((q, k) => {
+        const sx = tx + m * q.x;
+        const sy = ty + m * q.y;
+        if (!inView(sx, sy, EDGE + 12)) return;
+        const dd = Math.hypot(sx - ax, sy - ay);
+        if (dd < bestD) {
+          bestD = dd;
+          at = k;
+        }
+      });
+      if (at < 0) return null;
+    }
+    if (!l.line) return { x: ax, y: ay, dir: [1, 0] };
+    const q = l.flat[at];
+    const pts = polyOf.get(l.line)[q.p];
+    const a = pts[Math.max(0, q.i - 3)];
+    const b = pts[Math.min(pts.length - 1, q.i + 3)];
+    return { x: tx + m * q.x, y: ty + m * q.y, dir: [b[0] - a[0], b[1] - a[1]] };
+  }
+
+  function candidates(P, dir, l) {
+    const { w, h } = l;
+    const g = GAP;
+    if (l.role === 'country') return [{ l: P.x - w / 2, t: P.y - h / 2, align: 'center' }];
+    const right = (dy = 0, gap = g) => ({ l: P.x + gap, t: P.y - h / 2 + dy, align: 'left' });
+    const left = (dy = 0, gap = g) => ({ l: P.x - gap - w, t: P.y - h / 2 + dy, align: 'right' });
+    const above = (dx = 0, gap = g) => ({ l: P.x - w / 2 + dx, t: P.y - gap - h, align: 'center' });
+    const below = (dx = 0, gap = g) => ({ l: P.x - w / 2 + dx, t: P.y + gap, align: 'center' });
+    const upright = Math.abs(dir[1]) > Math.abs(dir[0]);
+    const near = upright ? [right(), left(), above(), below()] : [above(), below(), right(), left()];
+    const corners = [
+      { l: P.x + g, t: P.y - g - h, align: 'left' },
+      { l: P.x - g - w, t: P.y - g - h, align: 'right' },
+      { l: P.x + g, t: P.y + g, align: 'left' },
+      { l: P.x - g - w, t: P.y + g, align: 'right' },
+    ];
+    const slid = upright ? [right(-h * 0.7), right(h * 0.7), left(-h * 0.7), left(h * 0.7)] : [above(-w * 0.6), above(w * 0.6), below(-w * 0.6), below(w * 0.6)];
+    const far = upright
+      ? [right(0, g * 3), left(0, g * 3), right(-h * 1.3), right(h * 1.3), left(-h * 1.3), left(h * 1.3)]
+      : [above(0, g * 3), below(0, g * 3), above(-w * 1.1), above(w * 1.1), below(-w * 1.1), below(w * 1.1)];
+    // A short, narrow picture leaves room at the stage's sides: further out, level with the anchor or a line above or below.
+    const wide = [];
+    for (const gap of [g * 3, g * 6, g * 10, g * 14]) for (const dy of [0, -h * 0.9, h * 0.9, -h * 1.8, h * 1.8]) wide.push(right(dy, gap), left(dy, gap));
+    return [...near, ...corners, ...slid, ...far, ...wide, { l: P.x - w / 2, t: P.y - h / 2, align: 'center' }];
+  }
+
+  function placeNames() {
+    if (measuredFor === null || measuredFor !== parseFloat(fontKey())) measure();
+    const blocks = [{ l: W - INFO_ZONE.w, t: 0, r: W, b: INFO_ZONE.h }];
+    blocks.push({ l: legend.offsetLeft, t: legend.offsetTop, r: legend.offsetLeft + legend.offsetWidth, b: legend.offsetTop + legend.offsetHeight });
+    for (const [id, [x, y]] of markerPos) {
+      const sx = tx + m * x;
+      const sy = ty + m * y;
+      if (sx > -MARK_CLEAR && sx < W + MARK_CLEAR && sy > -MARK_CLEAR && sy < H + MARK_CLEAR) blocks.push({ l: sx - MARK_CLEAR, t: sy - MARK_CLEAR, r: sx + MARK_CLEAR, b: sy + MARK_CLEAR });
+    }
+    const placed = [];
+    for (const l of labels) {
+      const anchor = anchorOf(l);
+      if (!anchor) {
+        l.node.style.display = 'none';
+        continue;
+      }
+      let best = null;
+      candidates(anchor, anchor.dir, l).forEach((c, k) => {
+        const left = clamp(c.l, EDGE, Math.max(EDGE, W - EDGE - l.w));
+        const top = clamp(c.t, EDGE, Math.max(EDGE, H - EDGE - l.h));
+        const rect = { l: left, t: top, r: left + l.w, b: top + l.h };
+        let cost = Math.abs(left - c.l) * 4 + Math.abs(top - c.t) * 4 + k * 0.5;
+        for (const o of blocks) cost += overlap(rect, o);
+        for (const o of placed) {
+          const hit = overlap({ l: rect.l - NAME_PAD, t: rect.t - NAME_PAD, r: rect.r + NAME_PAD, b: rect.b + NAME_PAD }, o);
+          if (hit > 0) cost += 100 + hit;
+        }
+        if (!best || cost < best.cost) best = { cost, rect, align: c.align };
+      });
+      // A country's name gives way to anything; a river's never does.
+      if (l.role === 'country' && best.cost >= 1) {
+        l.node.style.display = 'none';
+        continue;
+      }
+      l.node.style.display = '';
+      if (l.align !== best.align) {
+        l.align = best.align;
+        l.spans.forEach((s, i) => s.setAttribute('x', fixed(best.align === 'center' ? (l.w - l.lineW[i]) / 2 : best.align === 'right' ? l.w - l.lineW[i] : 0)));
+      }
+      l.node.setAttribute('transform', `translate(${fixed(best.rect.l - l.bx)} ${fixed(best.rect.t - l.by)})`);
+      placed.push(best.rect);
+    }
+  }
+
+  // ---- panning and zooming: one finger or the mouse pans, two fingers pinch, the wheel and a double tap zoom ----
+
+  const pointers = new Map();
+  let press = null;
+  let pinch = null;
+  let lastTap = null;
+  const local = (event) => {
+    const r = stage.getBoundingClientRect();
+    return { x: event.clientX - r.left, y: event.clientY - r.top };
+  };
+
+  function zoomAt(x, y, factor) {
+    const next = clamp(m * factor, s0, s0 * ZOOM_MAX);
+    const fx = (x - tx) / m;
+    const fy = (y - ty) / m;
+    m = next;
+    zoom = m / s0;
+    tx = x - fx * m;
+    ty = y - fy * m;
+    clampView();
+    queue();
+  }
+
+  stage.addEventListener('pointerdown', (event) => {
+    if (event.pointerType === 'mouse' && event.button !== 0) return;
+    const p = local(event);
+    pointers.set(event.pointerId, p);
+    try {
+      stage.setPointerCapture(event.pointerId);
+    } catch {}
+    if (pointers.size === 1) press = { id: event.pointerId, x: p.x, y: p.y, moved: false, key: event.target.closest?.('[data-key]')?.dataset.key ?? null };
+    else {
+      press = null;
+      const [a, b] = [...pointers.values()];
+      const c = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+      pinch = { d: Math.max(1, Math.hypot(a.x - b.x, a.y - b.y)), m, fx: (c.x - tx) / m, fy: (c.y - ty) / m };
+    }
+  });
+
+  stage.addEventListener('pointermove', (event) => {
+    const p = pointers.get(event.pointerId);
+    if (!p) return;
+    const n = local(event);
+    if (pointers.size >= 2 && pinch) {
+      p.x = n.x;
+      p.y = n.y;
+      const [a, b] = [...pointers.values()];
+      const c = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+      m = clamp((pinch.m * Math.hypot(a.x - b.x, a.y - b.y)) / pinch.d, s0, s0 * ZOOM_MAX);
+      zoom = m / s0;
+      tx = c.x - pinch.fx * m;
+      ty = c.y - pinch.fy * m;
+      clampView();
+      queue();
+      return;
+    }
+    if (press?.id === event.pointerId && !press.moved) {
+      if (Math.hypot(n.x - press.x, n.y - press.y) < SLOP) {
+        p.x = n.x;
+        p.y = n.y;
+        return;
+      }
+      press.moved = true;
+    }
+    tx += n.x - p.x;
+    ty += n.y - p.y;
+    p.x = n.x;
+    p.y = n.y;
+    clampView();
+    queue();
+  });
+
+  function release(event) {
+    if (!pointers.has(event.pointerId)) return;
+    pointers.delete(event.pointerId);
+    if (press?.id === event.pointerId) {
+      const tap = event.type === 'pointerup' && !press.moved ? press : null;
+      press = null;
+      if (tap) {
+        if (lastTap && event.timeStamp - lastTap.t < DOUBLE_MS && Math.hypot(tap.x - lastTap.x, tap.y - lastTap.y) < DOUBLE_PX) {
+          lastTap = null;
+          zoomAt(tap.x, tap.y, zoom >= ZOOM_MAX * 0.6 ? 1 / zoom : DOUBLE_ZOOM);
+        } else {
+          lastTap = { t: event.timeStamp, x: tap.x, y: tap.y };
+          activate(tap.key);
+        }
+      }
+    }
+    if (pointers.size < 2) pinch = null;
+  }
+  stage.addEventListener('pointerup', release);
+  stage.addEventListener('pointercancel', release);
+
+  stage.addEventListener(
+    'wheel',
+    (event) => {
+      event.preventDefault();
+      const p = local(event);
+      zoomAt(p.x, p.y, Math.exp(-event.deltaY * (event.ctrlKey ? 0.01 : 0.0018)));
+    },
+    { passive: false },
+  );
+
+  new ResizeObserver(() => layout()).observe(stage);
+
+  // ---- ready: once the names' font is in, so their widths are true -------------------------------------------
+
+  const sample = labels.map((l) => l.text).join('');
+  const done = (async () => {
+    try {
+      await Promise.all([document.fonts.load("600 15px 'Noto Sans Bengali'", sample), document.fonts.load("600 14px 'Noto Sans Bengali'", sample)]);
+    } catch {}
+    await document.fonts?.ready;
+    ready = true;
+    content.classList.remove('loading');
+    layout();
+  })();
+
+  return {
+    ready: done,
+    shown() {
+      claimIds();
+      layout();
+    },
+  };
+}

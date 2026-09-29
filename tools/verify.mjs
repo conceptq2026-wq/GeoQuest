@@ -5,12 +5,16 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import os from 'node:os';
+import { execFileSync } from 'node:child_process';
 import { createRequire } from 'node:module';
 import { pathToFileURL } from 'node:url';
 import { PMTiles } from 'pmtiles';
 import { DETAIL_AREAS } from './world.config.mjs';
 import { sourcesAt, scan, SURFACE, librarySurface, scanBuildTool } from './outbound.mjs';
 import { assetVersion, codeFiles, references } from './lib/asset-version.mjs';
+import { CACHE, zipEntry } from './lib/geo.mjs';
+import { projection, distM, nearestOnLine, parsePath } from './lib/rivers-frame.mjs';
 
 const require = createRequire(import.meta.url);
 const vtRequire = createRequire(require.resolve('vt-pbf'));
@@ -26,6 +30,12 @@ const SERVED = path.join(ROOT, 'docs');
 const STRAITS_DIR = path.join(SERVED, 'international/straits');
 // Data kept out of the served tree because no map draws it.
 const DATA_SOURCES = path.join(ROOT, 'data-sources');
+// The Rivers of Bangladesh diagram: the built files, the seed, the build tool and its geometry pins. Change here if they move.
+const RIVERS_DIR = path.join(SERVED, 'diagrams/bangladesh-rivers');
+const RIVERS_SEED = path.join(DATA_SOURCES, 'bangladesh-rivers/bangladesh-rivers.seed.json');
+const RIVERS_BUILD = path.join(HERE, 'build-diagram-bangladesh-rivers.mjs');
+const RIVERS_PINS = path.join(HERE, 'bangladesh-rivers-pins.json');
+const readJ = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
 // The vendored browser libraries, one folder per library and version.
 const VENDOR_DIR = path.join(SERVED, 'shared/vendor');
 // Build tools, which make no network call at all — maps' and diagrams' alike:
@@ -152,6 +162,209 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
   check(unitLabels.length > 0 && unitLabels.every((p) => p.name_bn), `every bangladesh unit label has a Bengali name (${unitLabels.length} at z6)`);
   // Bangladesh maps show Bangladesh only (2026-09-28): the lines, names and rivers are all its own.
   check(notBangladesh.size === 0, `every bangladesh z6 line, unit name and river is Bangladesh's own (bd)${notBangladesh.size ? ` — not in ${[...notBangladesh].join(', ')}` : ''}`);
+}
+
+// ---- bangladesh-rivers ----
+// The picture is drawn in code from a seed and pinned sources: every marker
+// and line is held to the source it came from (the user's checks a–e,
+// 2026-09-29). The frames are the drawn truth; the pinned sources are the
+// reference; the build is re-run to a temp folder and must equal the files
+// committed under docs/.
+{
+  const S = readJ(RIVERS_SEED);
+  const G = S.geometry;
+  const riversSources = readJ(path.join(HERE, 'sources.json'));
+  const frames = {
+    whole: readJ(path.join(RIVERS_DIR, 'frame-whole.json')),
+    bangladesh: readJ(path.join(RIVERS_DIR, 'frame-bangladesh.json')),
+  };
+  const proj = Object.fromEntries(Object.entries(frames).map(([k, f]) => [k, projection(f.projection)]));
+  const M_PER_U = (k) => 111194.93 / frames[k].projection.scale; // one u on the ground, north–south
+  const round = (v, d = 1) => Math.round(v * 10 ** d) / 10 ** d;
+  const sha256 = (buf) => crypto.createHash('sha256').update(buf).digest('hex');
+  const pinned = (file, want) => {
+    const buf = fs.readFileSync(file);
+    if (sha256(buf) !== want) throw new Error(`${path.basename(file)} is not the pinned file (sha256 ${sha256(buf).slice(0, 12)}…, pinned ${want.slice(0, 12)}…)`);
+    return buf;
+  };
+  // A drawn line, as [lon, lat] points in order, from the pieces of its path data.
+  const lineOf = (k, id) => {
+    const l = frames[k].lines.find((x) => x.id === id);
+    return l ? l.pieces.map((p) => parsePath(p.d).flat().map(([x, y]) => proj[k].invert(x, y))) : null;
+  };
+  const xyOf = (k, id) => frames[k].lines.find((x) => x.id === id).pieces.map((p) => parsePath(p.d).flat());
+
+  // The pinned sources.
+  const osmFiles = [riversSources.osmBangladeshRivers, riversSources.osmBangladeshRiversPilot].map((e) => JSON.parse(pinned(path.join(ROOT, e.file), e.sha256).toString('utf8')));
+  const osmWays = new Map(); // the pilot extract, which carries node ids, wins where a way is in both
+  for (const f of osmFiles.flatMap((o) => o.features)) osmWays.set(f.properties.osm_id, f);
+  const neEntry = riversSources.naturalEarth.files['ne_10m_rivers_lake_centerlines.geojson'];
+  const ne = JSON.parse(pinned(path.join(CACHE, 'ne_10m_rivers_lake_centerlines.geojson'), neEntry.sha256).toString('utf8'));
+  const codab = riversSources.codAbBangladesh;
+  const admin0 = zipEntry(pinned(path.join(CACHE, codab.file), codab.sha256), 'bgd_admin0.geojson');
+  const bdRings = admin0.features[0].geometry.coordinates.flat();
+  check(osmWays.size > 0 && ne.features.length > 0 && bdRings.length > 0, `the pinned sources read back by their checksums: ${osmWays.size} OpenStreetMap ways, ${ne.features.length} Natural Earth rivers, COD-AB's ${bdRings.length} border rings`);
+
+  // 7a — every marker: its source coordinate, projected by the picture's own projection, is where it is drawn.
+  const seedMarker = Object.fromEntries(S.markers.map((m) => [m.id, m]));
+  const worst = { px: 0, m: 0 };
+  let drawnMarkers = 0;
+  for (const [k, f] of Object.entries(frames))
+    for (const m of f.markers) {
+      const src = seedMarker[m.id];
+      const [x, y] = proj[k].project(...src.lonLat);
+      const px = Math.max(Math.abs(x - m.x), Math.abs(y - m.y));
+      const gm = distM(proj[k].invert(m.x, m.y), src.lonLat);
+      const same = m.lonLat[0] === src.lonLat[0] && m.lonLat[1] === src.lonLat[1];
+      check(same && px <= 1 && gm <= 500, `a. ${k}: ${m.id} is drawn ${round(px, 2)} px and ${round(gm)} m from its source coordinate (${src.lonLat.join(', ')})`);
+      worst.px = Math.max(worst.px, px);
+      worst.m = Math.max(worst.m, gm);
+      drawnMarkers++;
+    }
+
+  // 7b — every tributary and distributary has an end at its parent line or its recorded join point.
+  const EXEMPT = ['karatoya', 'atrai', 'dhaleshwari', 'banshi'];
+  const branches = Object.entries(G.lines).filter(([, l]) => l.role === 'tributary' || l.role === 'distributary');
+  const viaJoin = [];
+  const exempt = [];
+  const alone = [];
+  for (const [id, spec] of branches) {
+    const pts = lineOf('bangladesh', id).flat();
+    const ends = [pts[0], pts.at(-1)];
+    const parentId = spec.join?.parent ?? (id === 'shitalakshya' ? 'oldBrahmaputra' : 'main');
+    const parent = lineOf('bangladesh', parentId).flat();
+    const toParent = Math.min(...ends.map((e) => nearestOnLine(e, parent).m));
+    const toJoin = spec.join?.point ? Math.min(...ends.map((e) => distM(e, spec.join.point))) : null;
+    if (spec.join?.point) {
+      const j = spec.join;
+      const w = j.node !== undefined ? spec.ways.map((x) => osmWays.get(x)).find((x) => x?.properties.nodes?.includes(j.node)) : osmWays.get(j.way);
+      const p = w && (j.node !== undefined ? w.geometry.coordinates[w.properties.nodes.indexOf(j.node)] : w.geometry.coordinates[j.vertex]);
+      check(Boolean(p) && spec.ways.includes(w.properties.osm_id) && distM(p, j.point) <= 2, `b. ${id}: the recorded join point is ${j.node !== undefined ? `node ${j.node}` : `vertex ${j.vertex}`} of way ${w?.properties.osm_id}, one of the line's own ways, within 2 m of the point`);
+    }
+    if (spec.join) {
+      check(toParent <= 500 || (toJoin !== null && toJoin <= 500), `b. ${id}: an end is ${round(toParent)} m from the ${parentId} line${toJoin === null ? '' : `, ${round(toJoin)} m from its recorded join point`}`);
+      if (toParent > 500) viaJoin.push(`${id} ${round(toParent / 1000, 1)} km`);
+    } else if (toParent <= 500) {
+      check(true, `b. ${id}: no join point recorded, but an end is ${round(toParent)} m from the ${parentId} line, so it passes on its own`);
+      alone.push(`${id} ${round(toParent)} m`);
+    } else {
+      check(typeof spec.exempt === 'string' && spec.exempt.length > 20, `b. ${id}: no join point recorded, and the seed says why — exempt (nearest end ${round(toParent / 1000, 1)} km from the ${parentId} line)`);
+      exempt.push(id);
+    }
+  }
+  check(JSON.stringify(exempt.sort()) === JSON.stringify([...EXEMPT].sort()), `b. the exempt lines are exactly karatoya and atrai (the user's) and dhaleshwari and banshi (no source plots their offtake): ${exempt.join(', ')}`);
+
+  // 7c — the border-entry marker lies on Bangladesh's border.
+  const entry = seedMarker.entry;
+  const entrySrc = Math.min(...bdRings.map((r) => nearestOnLine(entry.lonLat, r).m));
+  check(entrySrc <= 500, `c. the entry point, as BWDB gives it, is ${round(entrySrc)} m from COD-AB's border (limit 500 m)`);
+  for (const k of Object.keys(frames)) {
+    const ring = parsePath(frames[k].bangladesh.border).map((r) => [...r, r[0]].map(([x, y]) => proj[k].invert(x, y)));
+    const m = frames[k].markers.find((x) => x.id === 'entry');
+    const d = Math.min(...ring.map((r) => nearestOnLine(proj[k].invert(m.x, m.y), r).m));
+    const limit = Math.max(500, M_PER_U(k));
+    check(d <= limit, `c. ${k}: the entry marker is ${round(d)} m (${round(d / M_PER_U(k), 2)} u) from the drawn border (limit ${round(limit)} m: 500 m, or 1 px where that is finer than the picture)`);
+  }
+  {
+    const main = lineOf('bangladesh', 'main');
+    const all = main.flat();
+    const toMain = nearestOnLine(entry.lonLat, all).m;
+    const switchPt = main[0].at(-1);
+    console.log(`     entry marker: ${round(toMain / 1000, 1)} km from the drawn main line; ${round(distM(entry.lonLat, switchPt) / 1000, 1)} km from where the line turns from dashed to solid`);
+  }
+
+  // 7d — the main river is one connected line from its origin to the Padma confluence.
+  const crosses = (a, b, c, d) => {
+    const o = (p, q, r) => (q[0] - p[0]) * (r[1] - p[1]) - (q[1] - p[1]) * (r[0] - p[0]);
+    return o(a, b, c) * o(a, b, d) < 0 && o(c, d, a) * o(c, d, b) < 0;
+  };
+  for (const k of Object.keys(frames)) {
+    const pieces = lineOf(k, 'main');
+    const xy = xyOf(k, 'main').flat();
+    const gaps = pieces.slice(1).map((p, i) => distM(pieces[i].at(-1), p[0]));
+    const seen = new Set();
+    let dup = 0;
+    const segs = [];
+    xyOf(k, 'main').forEach((piece) => {
+      for (let i = 1; i < piece.length; i++) {
+        const [a, b] = [piece[i - 1], piece[i]];
+        const key = [a, b].sort((p, q) => p[0] - q[0] || p[1] - q[1]).map((p) => p.join(',')).join('|');
+        if (seen.has(key)) dup++;
+        seen.add(key);
+        segs.push([a, b]);
+      }
+    });
+    let tangles = 0;
+    for (let i = 0; i < segs.length; i++)
+      for (let j = i + 2; j < segs.length; j++) if (crosses(...segs[i], ...segs[j])) tangles++;
+    const { width, height } = frames[k].projection;
+    const outside = xy.filter(([x, y]) => x < -0.05 || x > width + 0.05 || y < -0.05 || y > height + 0.05).length;
+    check(pieces.length >= 1 && Math.max(0, ...gaps) <= 500 && dup === 0 && tangles === 0 && outside === 0, `d. ${k}: the main line is ${pieces.length} piece(s) end to end, gaps ${gaps.length ? gaps.map((g) => `${round(g)} m`).join(', ') : 'none'} (limit 500 m), ${dup} duplicate segments, ${tangles} self-crossings, ${outside} points outside the frame (${segs.length} segments)`);
+  }
+  {
+    const whole = lineOf('whole', 'main').flat();
+    const origin = seedMarker.origin.lonLat;
+    const padma = seedMarker.padmaConfluence.lonLat;
+    const a = distM(whole[0], origin);
+    const b = distM(whole.at(-1), padma);
+    const tol = Math.max(500, M_PER_U('whole'));
+    check(a <= tol, `d. the main line begins ${round(a)} m from the origin marker's source coordinate (limit ${round(tol)} m: 1 px at that scale)`);
+    check(b <= 2000, `d. the main line ends ${round(b)} m from the Padma-confluence coordinate BWDB gives (the seed records 1.5 km; limit 2 km)`);
+    const exp = G.main.seam.expectVertex;
+    check(Number.isInteger(exp) && exp > 0, `d. the Natural Earth → OpenStreetMap seam is pinned at way ${G.main.ways[0]} vertex ${exp}; the rebuild below re-measures it`);
+    const notDrawn = [...G.main.identified.split('not drawn:')[1].matchAll(/\d{6,}/g)].map((m) => Number(m[0]));
+    check(notDrawn.length === 9 && notDrawn.every((w) => osmWays.has(w) && !G.main.ways.includes(w)), `d. one channel only: the nine side channels, bars and duplicates the seed names are pinned and none is in the main line's ways (${G.main.ways.length} ways)`);
+  }
+
+  // 7e — every drawn line and marker traces to an id in the pinned sources.
+  const drawnIds = new Set(Object.values(frames).flatMap((f) => f.lines.map((l) => l.id)));
+  const wayIds = new Set();
+  const bad = [];
+  for (const id of drawnIds) {
+    const spec = id === 'main' ? G.main : G.lines[id];
+    if (!spec) { bad.push(`${id}: no entry in the seed`); continue; }
+    for (const w of spec.ways) (osmWays.has(w) ? wayIds.add(w) : bad.push(`${id}: way ${w}`));
+  }
+  for (const n of G.main.ne) {
+    const hit = ne.features.filter((f) => f.properties.rivernum === n.rivernum && f.properties.name === n.name);
+    if (hit.length !== 1 || !hit[0].geometry.coordinates[n.line]) bad.push(`Natural Earth ${n.name} (rivernum ${n.rivernum}, line ${n.line})`);
+  }
+  const kinds = { ne: 0, osm: 0, bwdb: 0 };
+  for (const m of S.markers) {
+    const c = m.coordSource;
+    if (c.source === 'naturalEarth') {
+      const f = ne.features.find((x) => x.properties.rivernum === c.ne.rivernum && x.properties.name === c.ne.name);
+      const p = f?.geometry.coordinates[c.ne.line]?.[c.ne.vertex];
+      if (!p || distM(p, m.lonLat) > 1) bad.push(`${m.id}: not Natural Earth ${c.ne.name} line ${c.ne.line} vertex ${c.ne.vertex}`);
+      kinds.ne++;
+    } else if (c.source === 'osm') {
+      const w = osmWays.get(c.way);
+      const at = c.node !== undefined ? w?.properties.nodes?.indexOf(c.node) : c.vertex;
+      if (!w || at === undefined || at < 0 || distM(w.geometry.coordinates[at] ?? [0, 0], m.lonLat) > 2) bad.push(`${m.id}: not OSM way ${c.way} ${c.node !== undefined ? `node ${c.node}` : `vertex ${c.vertex}`}`);
+      kinds.osm++;
+    } else {
+      if (!(c.source in S.sources) || !S.sources[c.source].url || !c.where) bad.push(`${m.id}: source ${c.source} is not a listed document`);
+      kinds.bwdb++;
+    }
+  }
+  check(bad.length === 0, `e. every drawn line and marker traces to a pinned id: ${drawnIds.size} lines, ${G.main.ne.length} Natural Earth lines and ${wayIds.size} OpenStreetMap ways, ${S.markers.length} markers — ${kinds.ne} a Natural Earth vertex, ${kinds.osm} an OSM node or vertex, ${kinds.bwdb} a BWDB table row${bad.length ? ` — not: ${bad.join('; ')}` : ''}`);
+
+  // The build, re-run offline to a temp folder, is the committed diagram — and its own checks (chains within 3 m, seam, junctions, the geometry pins) held.
+  const out = fs.mkdtempSync(path.join(os.tmpdir(), 'rivers-'));
+  let say = '';
+  try {
+    say = execFileSync(process.execPath, [RIVERS_BUILD, out], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+  } catch (e) {
+    say = `${e.stderr ?? e.message}`;
+  }
+  const built = ['descriptor.json', 'data.json', 'frame-whole.json', 'frame-bangladesh.json'];
+  const same = built.every((f) => fs.existsSync(path.join(out, f)) && fs.readFileSync(path.join(out, f)).equals(fs.readFileSync(path.join(RIVERS_DIR, f))));
+  fs.rmSync(out, { recursive: true, force: true });
+  const seamLine = /seam gap ([\d.]+) m at ([\d.]+)°E.*?jamuna→padma ([\d.]+) m; padma→meghna junction ([\d.]+) m/.exec(say);
+  const pins = JSON.parse(fs.readFileSync(RIVERS_PINS, 'utf8'));
+  check(same && Object.keys(pins).length === 11, `the build reproduces the ${built.length} committed files byte for byte, and its ${Object.keys(pins).length} geometry pins hold${same ? '' : ` — ${say.split('\n').slice(0, 3).join(' | ')}`}`);
+  check(Boolean(seamLine) && Number(seamLine[1]) <= G.main.seam.maxM && Number(seamLine[3]) <= 500 && Number(seamLine[4]) <= 3, `d. the seam is ${seamLine?.[1]} m at ${seamLine?.[2]}°E (limit ${G.main.seam.maxM} m); the Jamuna ends ${seamLine?.[3]} m from the Padma, which ends ${seamLine?.[4]} m from the Meghna`);
+  console.log(`bangladesh-rivers: a. ${drawnMarkers} markers within ${round(worst.px, 2)} px / ${round(worst.m)} m; b. ${branches.length - exempt.length} joined (${viaJoin.join(', ')} via the join point; ${alone.join(', ')} with no join point, on their own), ${exempt.length} exempt (${exempt.join(', ')}); c. entry ${round(entrySrc)} m from the border; d. main connected, gaps ≤ 500 m; e. ${drawnIds.size} lines, ${wayIds.size} ways, ${S.markers.length} markers traced`);
 }
 
 // ---- vendored libraries ----

@@ -1,0 +1,253 @@
+/* The rivers view (rivers.js): a picture drawn in code, panned and zoomed under the finger. Every rule is scoped to .rivers. */
+
+.rivers .stage {
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  background: var(--page);
+}
+.rivers .stage:active {
+  cursor: grabbing;
+}
+
+.rivers .rivers-svg {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---- the ground: strokes keep their width in screen px however far the picture is zoomed ---- */
+
+.rivers .world path,
+.rivers .world rect {
+  vector-effect: non-scaling-stroke;
+}
+.rivers .sea {
+  fill: #d6e8f5;
+}
+.rivers .land {
+  fill: #f6f3ea;
+}
+.rivers .bd-fill {
+  fill: #e3f0d6;
+}
+.rivers .borders {
+  fill: none;
+  stroke: #9fb0c6;
+  stroke-width: 1px;
+  stroke-dasharray: 5 4;
+  stroke-linejoin: round;
+}
+.rivers .bd-border {
+  fill: none;
+  stroke: #45618c;
+  stroke-width: 1.6px;
+  stroke-linejoin: round;
+}
+.rivers .frame-edge {
+  fill: none;
+  stroke: #b9c9dc;
+  stroke-width: 1px;
+}
+
+/* ---- the rivers ---- */
+
+.rivers .river-halo {
+  fill: none;
+  stroke: #fff;
+  stroke-opacity: 0.85;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.rivers .river-line {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.rivers .river-main .river-line {
+  stroke: #0b3d91;
+  stroke-width: 4.5px;
+}
+.rivers .river-main .river-halo {
+  stroke-width: 7.5px;
+}
+.rivers .river-main .river-line.dash {
+  stroke-dasharray: 9 6;
+  stroke-linecap: butt;
+}
+.rivers .river-tributary .river-line {
+  stroke: #0f9d8a;
+  stroke-width: 3px;
+}
+.rivers .river-distributary .river-line {
+  stroke: #e07b00;
+  stroke-width: 3px;
+}
+.rivers .river-tributary .river-halo,
+.rivers .river-distributary .river-halo {
+  stroke-width: 6px;
+}
+.rivers .river-continuation .river-line {
+  stroke: #a9b4c3;
+  stroke-width: 2px;
+}
+.rivers .river-continuation .river-halo {
+  stroke-width: 4px;
+}
+.rivers .river-continuation {
+  pointer-events: none;
+}
+
+.rivers .has-lit .river:not(.lit),
+.rivers .has-lit .marker:not(.lit) {
+  opacity: 0.4;
+}
+.rivers .river.lit .river-halo {
+  stroke: #ffc933;
+  stroke-opacity: 1;
+  stroke-width: 12px;
+}
+
+/* ---- taps: a line's zone is a transparent stroke; a marker's is a 44 px disc ---- */
+
+.rivers .zone {
+  cursor: pointer;
+  outline: none;
+}
+.rivers .zones .zone {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 26px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: stroke;
+}
+.rivers .zones .zone:focus-visible {
+  stroke: rgba(11, 92, 173, 0.25);
+}
+.rivers .marker .zone {
+  fill: transparent;
+  stroke: none;
+  pointer-events: all;
+}
+.rivers .marker .zone:focus-visible {
+  stroke: var(--focus);
+  stroke-width: 2px;
+}
+
+/* ---- markers, in CSS px over the picture ---- */
+
+.rivers .mark-halo {
+  fill: rgba(255, 255, 255, 0.72);
+  pointer-events: none;
+}
+.rivers .mark-ring {
+  fill: none;
+  stroke: #ffc933;
+  stroke-width: 3.5px;
+  opacity: 0;
+  pointer-events: none;
+}
+.rivers .marker.lit .mark-ring {
+  opacity: 1;
+}
+.rivers .glyph {
+  fill: #0b3d91;
+  stroke: #fff;
+  stroke-width: 1.5px;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+.rivers .glyph-confluence {
+  fill: #fff;
+  stroke: #0b3d91;
+  stroke-width: 3px;
+}
+
+/* ---- names on the picture: at least 15 px (14 under 390), semi-bold, a light halo over lines and land ---- */
+
+.rivers text.layer-label {
+  font: 600 15px/1.35 'Noto Sans Bengali', system-ui, sans-serif;
+  fill: #0b3d91;
+  stroke: #fff;
+  stroke-width: 3.5px;
+  stroke-linejoin: round;
+  paint-order: stroke fill;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.rivers text.label-tributary {
+  fill: #0a6e61;
+}
+.rivers text.label-distributary {
+  fill: #9a5000;
+}
+.rivers text.label-continuation {
+  fill: #66768d;
+}
+.rivers text.label-country {
+  fill: #5e759d;
+}
+@media (max-width: 389px) {
+  .rivers text.layer-label {
+    font-size: 14px;
+  }
+}
+
+/* ---- the legend, bottom left ---- */
+
+.rivers .legend {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  margin: 0;
+  padding: 5px 9px 5px 6px;
+  list-style: none;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--divider);
+  border-radius: 10px;
+  pointer-events: none;
+}
+.rivers .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font: 600 14px/1.3 'Noto Sans Bengali', system-ui, sans-serif;
+  color: var(--ink);
+}
+.rivers .legend-icon {
+  flex: none;
+  overflow: visible;
+}
+.rivers .legend-icon .glyph {
+  stroke-width: 1.2px;
+}
+.rivers .legend-icon .glyph-confluence {
+  stroke-width: 2.5px;
+}
+.rivers .legend-line {
+  stroke-linecap: round;
+}
+.rivers .legend-main {
+  stroke: #0b3d91;
+  stroke-width: 4.5px;
+}
+.rivers .legend-tributary {
+  stroke: #0f9d8a;
+  stroke-width: 3px;
+}
+.rivers .legend-distributary {
+  stroke: #e07b00;
+  stroke-width: 3px;
+}

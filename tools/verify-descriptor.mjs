@@ -25,6 +25,9 @@
 //                               earth-interior.seed.json and the approved master
 //   seasons (a diagram)  checked against data-sources/seasons/seasons.seed.json
 //                        and the approved paintings
+//   bangladesh-rivers (a diagram)  checked against data-sources/bangladesh-rivers/
+//                                  bangladesh-rivers.seed.json; its geometry, against the
+//                                  pinned sources, by tools/verify.mjs
 //
 // A map under docs/maps/ or a diagram under docs/diagrams/ with no section
 // here fails, by its id: a new one is written into this file with its own
@@ -90,6 +93,9 @@ const EARTH_SEED_SHA256 = '990b45a50ad3ccf8baffefcfa82a4cb1a4d8e5e2be02665be9b32
 // The seasons diagram: the editor's seed, pinned, and the approved paintings.
 const SEASONS_SEEDS = path.join(ROOT, 'data-sources/seasons');
 const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa32509b451efb2';
+// The bangladesh-rivers diagram: the editor's seed, pinned. Its geometry is pinned in tools/bangladesh-rivers-pins.json.
+const BANGLADESH_RIVERS_SEEDS = path.join(ROOT, 'data-sources/bangladesh-rivers');
+const BANGLADESH_RIVERS_SEED_SHA256 = '95090aa6e1f87cc049c43e19f7ad435c7077e25a238d3a55943c1f3b3b16cc58';
 // The latitude-longitude globe: the editor's seed, the pinned sources (its
 // imagery's credit among them) and the geometry pins.
 const LATLON_SEED = path.join(ROOT, 'data-sources/latitude-longitude/latitude-longitude.seed.json');
@@ -1793,6 +1799,112 @@ console.log('\n\n============ seasons (diagram) ============');
     const d = manifest[part].disc;
     check(Boolean(d) && d.r > 0 && d.cx > 0 && d.cy > 0 && d.cx < manifest[part].width && d.cy < manifest[part].height, `${part}: its painted disc measured, r ${d?.r} px at (${d?.cx}, ${d?.cy}) in its ${manifest[part].width}×${manifest[part].height} file`);
   }
+}
+
+console.log('\n\n============ bangladesh-rivers (diagram) ============');
+{
+  const id = 'bangladesh-rivers';
+  CHECKED_DIAGRAMS.add(id);
+  const dir = path.join(DIAGRAMS_DIR, id);
+  const seedFile = path.join(BANGLADESH_RIVERS_SEEDS, 'bangladesh-rivers.seed.json');
+  const seed = readJson(seedFile);
+  const seedHash = crypto.createHash('sha256').update(fs.readFileSync(seedFile)).digest('hex');
+  check(seedHash === BANGLADESH_RIVERS_SEED_SHA256, `the seed is the approved one: SHA-256 ${seedHash.slice(0, 12)}… (pinned ${BANGLADESH_RIVERS_SEED_SHA256.slice(0, 12)}…)`);
+  const descriptor = readJson(path.join(dir, 'descriptor.json'));
+  const data = readJson(path.join(dir, descriptor.data));
+  const ui = seed.ui;
+  const gather = (v, into) => (typeof v === 'string' ? into.push(v) : v && typeof v === 'object' ? Object.values(v).forEach((x) => gather(x, into)) : null);
+
+  // ---- the descriptor ---------------------------------------------------------
+  console.log('\n---- descriptor ----');
+  check(descriptor.id === id && descriptor.language === 'bn' && descriptor.section === 'bangladesh', `descriptor: id ${descriptor.id}, language ${descriptor.language}, section ${descriptor.section}`);
+  check(descriptor.title?.bn === seed.titleBn && descriptor.title?.en === seed.titleEn, `title is the seed's: «${descriptor.title?.bn}» / ${descriptor.title?.en}`);
+  const modules = [...(fs.readFileSync(path.join(VISUAL_DIR, 'app.js'), 'utf8').match(/const VIEW_MODULES = \{([\s\S]*?)\n\};?/)?.[1] ?? '').matchAll(/^\s*'?([\w-]+)'?\s*:/gm)].map((m) => m[1]);
+  const wantViews = [['whole', ui.tabsBn.whole, 'frame-whole.json'], ['bangladesh', ui.tabsBn.bangladesh, 'frame-bangladesh.json']];
+  check(
+    descriptor.views.length === 2 && wantViews.every(([vid, tab, art], i) => descriptor.views[i].id === vid && descriptor.views[i].tab === tab && descriptor.views[i].art === art && descriptor.views[i].type === 'rivers' && fs.existsSync(path.join(dir, art))) && modules.includes('rivers'),
+    `two views of type rivers, tabs «${ui.tabsBn.whole}» and «${ui.tabsBn.bangladesh}», their frames present, and docs/visual/app.js has a module for rivers`,
+  );
+  const wantWords = { picker: ui.pickerPlaceholderBn, close: ui.closeBn, rows: ui.rowOrder.map((key) => ({ key, label: ui.rowLabelsBn[key] })), legend: ui.legendBn };
+  check(JSON.stringify(descriptor.words) === JSON.stringify(wantWords), `the words are the seed's: «${ui.pickerPlaceholderBn}», «${ui.closeBn}», the rows ${wantWords.rows.map((r) => r.label).join(', ')}, and the legend`);
+  const asked = new Set([...fs.readFileSync(path.join(VISUAL_DIR, 'rivers.js'), 'utf8').matchAll(/\bwords\??\.(\w+)/g)].map((m) => m[1]));
+  const given = new Set(Object.keys(descriptor.words ?? {}));
+  check([...asked].every((w) => given.has(w)) && [...given].every((w) => asked.has(w)), `the descriptor's words are exactly those rivers.js reads (${[...asked].sort().join(', ')})`);
+
+  // ---- the data ---------------------------------------------------------------
+  console.log('\n---- data.json against bangladesh-rivers.seed.json ----');
+  const entities = Object.fromEntries(seed.entities.map((e) => [e.id, e]));
+  check(JSON.stringify(Object.keys(data.entities)) === JSON.stringify(seed.entities.map((e) => e.id)), `the ${seed.entities.length} lines, in the seed's order: ${Object.keys(data.entities).join(', ')}`);
+  const pendingFields = [];
+  for (const e of seed.entities) {
+    const rows = Object.fromEntries(ui.rowOrder.filter((k) => e.values[k] !== undefined && e.values[k] !== null).map((k) => [k, e.values[k]]));
+    const want = { role: e.role, name: e.nameBn, values: rows };
+    check(JSON.stringify(data.entities[e.id]) === JSON.stringify(want), `${e.id}: «${e.nameBn}», rows ${Object.keys(rows).join(', ')}, as the seed has them in ui.rowOrder, nothing else shipped`);
+    for (const [k, v] of Object.entries(e.values)) {
+      if (v === null) pendingFields.push(`${e.id}.values.${k}`);
+      else check(typeof v === 'string' && ui.rowOrder.includes(k) && (e.sources?.[k]?.length ?? 0) > 0, `${e.id}.${k}: filled, placed by ui.rowOrder, and cited`);
+    }
+  }
+  check(Object.keys(data.markers).join() === seed.markers.map((m) => m.id).join(), `the ${seed.markers.length} markers, in the seed's order: ${Object.keys(data.markers).join(', ')}`);
+  for (const m of seed.markers) {
+    const want = { kind: m.kind, entity: m.entity, name: m.nameBn, row: m.row, value: m.valueBn };
+    check(JSON.stringify(data.markers[m.id]) === JSON.stringify(want) && m.kind in ui.legendBn && m.row in ui.rowLabelsBn && m.entity in entities && (m.sources?.valueBn?.length ?? 0) > 0 && (m.sources?.nameBn?.length ?? 0) > 0, `${m.id}: «${m.nameBn}» — ${ui.legendBn[m.kind]}, its value the seed's and cited`);
+  }
+  check(JSON.stringify(data.picker) === JSON.stringify(seed.entities.filter((e) => e.picker).map((e) => ({ key: e.id, label: e.nameBn }))) && data.picker.length === 1, `the picker holds the one entry the pilot has: ${data.picker.map((p) => `${p.key} «${p.label}»`).join(', ')}`);
+  const labels = Object.fromEntries(Object.entries(seed.labelsBn).filter(([k]) => !k.startsWith('_')));
+  const countries = Object.fromEntries(Object.entries(seed.countries).filter(([k]) => !k.startsWith('_')));
+  check(JSON.stringify(data.labels) === JSON.stringify(labels) && JSON.stringify(data.countries) === JSON.stringify(countries), `the ${Object.keys(labels).length} names on the lines and the ${Object.keys(countries).length} countries' are the seed's`);
+  const cardNames = new Set([...seed.entities.map((e) => e.nameBn), ...seed.markers.map((m) => m.nameBn), ...seed.continuations.map((c) => c.nameBn), ...String(entities.main.values.alias).split('; ').map((s) => s.replace(/ \(.*\)$/, ''))]);
+  const strayLabels = Object.entries(labels).filter(([, t]) => !cardNames.has(t));
+  check(strayLabels.length === 0, `every name drawn on a line is a name a card gives${strayLabels.length ? ` — not ${strayLabels.map(([k]) => k).join(', ')}` : ''}`);
+  const nullsInData = [];
+  const seek = (v, p) => (v === null ? nullsInData.push(p) : v && typeof v === 'object' ? Object.entries(v).forEach(([k, x]) => seek(x, `${p}.${k}`)) : null);
+  seek({ descriptor, data }, 'file');
+  check(nullsInData.length === 0, `no null is shipped: an unverified value is left out, never shown (${nullsInData.length})`);
+
+  const cited = new Set(['naturalEarth', 'codab', 'osm']);
+  const collect = (v) => (Array.isArray(v) ? v.forEach(collect) : v && typeof v === 'object' ? Object.entries(v).forEach(([k, x]) => (k === 'source' && typeof x === 'string' ? cited.add(x) : collect(x))) : null);
+  collect([seed.entities, seed.markers, seed.continuations]);
+  const wantCredits = Object.entries(seed.sources)
+    .filter(([key]) => key !== 'user' && cited.has(key))
+    .map(([, s]) => ({ title: s.title + (s.creditExtra ?? '') + (s.page ? `, ${ui.pageBn} ${s.page}` : ''), by: s.publisher, url: s.url, ...(/[ঀ-৿]/.test(s.title) ? { lang: 'bn' } : {}) }));
+  check(JSON.stringify(data.credits) === JSON.stringify(wantCredits) && wantCredits.length >= 2, `ⓘ shows every source the data cites, plus Natural Earth, COD-AB and OpenStreetMap (${wantCredits.length}); the editor's own verification is not a credit`);
+  const osm = data.credits.find((c) => /OpenStreetMap/.test(c.title));
+  check(Boolean(osm) && /^https:\/\/www\.openstreetmap\.org\/copyright$/.test(osm.url) && /ODbL/.test(osm.by), `ⓘ carries the OpenStreetMap credit as a plain link (${osm?.url}), with its licence (${osm?.by})`);
+  const missingSources = [...cited].filter((k) => !(k in seed.sources));
+  check(missingSources.length === 0, `every source the data cites is listed in the seed${missingSources.length ? ` — not ${missingSources.join(', ')}` : ''}`);
+  // Every Bengali string shown is the seed's, or a heading the picture composes from two of its own.
+  const seedStrings = new Set();
+  const fromSeed = [];
+  gather(seed, fromSeed);
+  fromSeed.forEach((s) => seedStrings.add(s));
+  for (const m of seed.markers) seedStrings.add(`${m.nameBn} — ${ui.legendBn[m.kind]}`);
+  const shown = [];
+  gather(descriptor, shown);
+  gather({ ...data, credits: [] }, shown);
+  const foreign = shown.filter((v) => /[ঀ-৿]/.test(v) && !seedStrings.has(v));
+  check(foreign.length === 0, `every Bengali string shown is the seed's${foreign.length ? `, not: ${foreign.join(' | ')}` : ''}`);
+  console.log(`pending: ${pendingFields.length} — ${pendingFields.join(', ')}`);
+  check(pendingFields.length === 6, `the pending list is the six fields the seed holds as null (${pendingFields.length})`);
+
+  // ---- the frames -------------------------------------------------------------
+  console.log('\n---- the frames ----');
+  const lineIds = ['main', ...Object.keys(seed.geometry.lines)];
+  const legendKinds = new Set(Object.keys(ui.legendBn));
+  for (const view of descriptor.views) {
+    const frame = readJson(path.join(dir, view.art));
+    const want = seed.geometry.frames[view.id];
+    const drawn = frame.lines.map((l) => l.id);
+    const wantLines = want.lines ?? want.fit?.lines;
+    check(drawn.length > 0 && drawn.every((l) => lineIds.includes(l)) && wantLines.every((l) => drawn.includes(l)), `${view.id}: draws the lines the seed names for it (${drawn.length}): ${drawn.join(', ')}`);
+    check(frame.markers.map((m) => m.id).join() === want.markers.join() && frame.markers.every((m) => m.id in data.markers), `${view.id}: draws the markers the seed names for it (${frame.markers.length}): ${want.markers.join(', ')}`);
+    check(frame.labels.every((l) => l.id in data.labels && lineIds.includes(l.line)) && frame.countries.every((c) => c.id in data.countries), `${view.id}: every name it places has its text in data.json (${frame.labels.length} on lines, ${frame.countries.length} countries)`);
+    const kinds = new Set([...frame.lines.map((l) => (l.role === 'continuation' ? null : l.role)).filter(Boolean), ...frame.markers.map((m) => data.markers[m.id].kind)]);
+    check([...kinds].every((k) => legendKinds.has(k)), `${view.id}: its legend words exist for every kind it draws (${[...kinds].join(', ')})`);
+    console.log(`     ${view.id}: viewBox 0 0 ${frame.projection.width} ${frame.projection.height}`);
+  }
+  const sizes = ['descriptor.json', descriptor.data, ...descriptor.views.map((v) => v.art)].map((f) => fs.statSync(path.join(dir, f)).size);
+  console.log(`payload: ${sizes.reduce((a, b) => a + b, 0)} bytes (descriptor ${sizes[0]}, data ${sizes[1]}, frames ${sizes[2]} + ${sizes[3]})`);
 }
 
 /*

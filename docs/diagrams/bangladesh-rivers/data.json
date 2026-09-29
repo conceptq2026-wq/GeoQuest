@@ -1,0 +1,211 @@
+{
+  "_about": "Built by tools/build-diagram-bangladesh-rivers.mjs from data-sources/bangladesh-rivers/bangladesh-rivers.seed.json; do not edit.",
+  "picker": [
+    {
+      "key": "main",
+      "label": "ব্রহ্মপুত্র–যমুনা"
+    }
+  ],
+  "entities": {
+    "main": {
+      "role": "main",
+      "name": "ব্রহ্মপুত্র–যমুনা",
+      "values": {
+        "alias": "ইয়ার-লুং ৎসাং-পো (তিব্বত); শিয়াং (অরুণাচল প্রদেশ); দিহাং (আসাম)",
+        "origin": "হিমালয় পর্বতের কৈলাস শৃঙ্গের নিকটে মানস সরোবর",
+        "entry": "কুড়িগ্রাম জেলা (নাগেশ্বরী উপজেলা)",
+        "tributaries": "ব্রহ্মপুত্র: ধরলা ও তিস্তা; যমুনা: করতোয়া ও আত্রাই",
+        "distributaries": "ব্রহ্মপুত্র: পুরাতন ব্রহ্মপুত্র নদ, বংশী ও শীতলক্ষ্যা; যমুনা: ধলেশ্বরী (ধলেশ্বরীর শাখানদী বুড়িগঙ্গা)",
+        "confluence": "দৌলতদিয়ার কাছে (গোয়ালন্দ উপজেলা)",
+        "mouth": "ব্রহ্মপুত্র: ভৈরববাজারের দক্ষিণে মেঘনায় পতিত"
+      }
+    },
+    "dharla": {
+      "role": "tributary",
+      "name": "ধরলা",
+      "values": {
+        "parent": "ব্রহ্মপুত্র",
+        "confluence": "কুড়িগ্রাম জেলার উলিপুর উপজেলা"
+      }
+    },
+    "teesta": {
+      "role": "tributary",
+      "name": "তিস্তা",
+      "values": {
+        "parent": "ব্রহ্মপুত্র",
+        "confluence": "ফুলছড়ি"
+      }
+    },
+    "karatoya": {
+      "role": "tributary",
+      "name": "করতোয়া",
+      "values": {
+        "parent": "যমুনা"
+      }
+    },
+    "atrai": {
+      "role": "tributary",
+      "name": "আত্রাই",
+      "values": {
+        "parent": "যমুনা"
+      }
+    },
+    "dhaleshwari": {
+      "role": "distributary",
+      "name": "ধলেশ্বরী",
+      "values": {
+        "parent": "যমুনা",
+        "distributaries": "বুড়িগঙ্গা"
+      }
+    },
+    "banshi": {
+      "role": "distributary",
+      "name": "বংশী",
+      "values": {
+        "parent": "ব্রহ্মপুত্র"
+      }
+    },
+    "shitalakshya": {
+      "role": "distributary",
+      "name": "শীতলক্ষ্যা",
+      "values": {
+        "parent": "ব্রহ্মপুত্র"
+      }
+    },
+    "oldBrahmaputra": {
+      "role": "distributary",
+      "name": "পুরাতন ব্রহ্মপুত্র নদ",
+      "values": {
+        "parent": "ব্রহ্মপুত্র",
+        "origin": "ময়মনসিংহ জেলার দেওয়ানগঞ্জের কাছে (বর্তমানে জামালপুর জেলা)",
+        "confluence": "ভৈরববাজারের দক্ষিণে (মেঘনার সঙ্গে)"
+      }
+    }
+  },
+  "markers": {
+    "origin": {
+      "kind": "origin",
+      "entity": "main",
+      "name": "ব্রহ্মপুত্র",
+      "row": "origin",
+      "value": "হিমালয় পর্বতের কৈলাস শৃঙ্গের নিকটে মানস সরোবর"
+    },
+    "entry": {
+      "kind": "entry",
+      "entity": "main",
+      "name": "ব্রহ্মপুত্র",
+      "row": "entry",
+      "value": "কুড়িগ্রাম জেলা (নাগেশ্বরী উপজেলা)"
+    },
+    "padmaConfluence": {
+      "kind": "confluence",
+      "entity": "main",
+      "name": "যমুনা",
+      "row": "confluence",
+      "value": "দৌলতদিয়ার কাছে (গোয়ালন্দ উপজেলা)"
+    },
+    "dharlaConfluence": {
+      "kind": "confluence",
+      "entity": "dharla",
+      "name": "ধরলা",
+      "row": "confluence",
+      "value": "কুড়িগ্রাম জেলার উলিপুর উপজেলা"
+    },
+    "teestaConfluence": {
+      "kind": "confluence",
+      "entity": "teesta",
+      "name": "তিস্তা",
+      "row": "confluence",
+      "value": "ফুলছড়ি"
+    },
+    "oldBrahmaputraMouth": {
+      "kind": "mouth",
+      "entity": "oldBrahmaputra",
+      "name": "ব্রহ্মপুত্র",
+      "row": "mouth",
+      "value": "ভৈরববাজারের দক্ষিণে মেঘনায় পতিত"
+    }
+  },
+  "labels": {
+    "yarlung": "ইয়ার-লুং ৎসাং-পো",
+    "brahmaputra": "ব্রহ্মপুত্র",
+    "jamuna": "যমুনা",
+    "dharla": "ধরলা",
+    "teesta": "তিস্তা",
+    "karatoya": "করতোয়া",
+    "atrai": "আত্রাই",
+    "dhaleshwari": "ধলেশ্বরী",
+    "banshi": "বংশী",
+    "shitalakshya": "শীতলক্ষ্যা",
+    "oldBrahmaputra": "পুরাতন ব্রহ্মপুত্র নদ",
+    "padma": "পদ্মা",
+    "meghna": "মেঘনা"
+  },
+  "countries": {
+    "BGD": "বাংলাদেশ",
+    "IND": "ভারত",
+    "CHN": "গণচীন",
+    "NPL": "নেপাল",
+    "BTN": "ভুটান",
+    "MMR": "মিয়ানমার"
+  },
+  "credits": [
+    {
+      "title": "ভূগোল ও পরিবেশ, নবম ও দশম শ্রেণি (Bangla version, 2026 edition, «২০২৬ শিক্ষাবর্ষের জন্য পরিমার্জিত»), পৃষ্ঠা ১৫৩–১৫৪",
+      "by": "National Curriculum and Textbook Board (NCTB)",
+      "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
+      "lang": "bn"
+    },
+    {
+      "title": "বাংলাদেশ ও বিশ্বপরিচয়, নবম–দশম শ্রেণি (2026), পৃষ্ঠা ৬১–৬৩",
+      "by": "National Curriculum and Textbook Board (NCTB)",
+      "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
+      "lang": "bn"
+    },
+    {
+      "title": "ব্রহ্মপুত্র-যমুনা (নদীর তথ্য, NW-76)",
+      "by": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-28)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=2&Rivers=144",
+      "lang": "bn"
+    },
+    {
+      "title": "পুরাতন ব্রহ্মপুত্র (নদীর তথ্য, NC-37)",
+      "by": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-28)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=2&Rivers=637",
+      "lang": "bn"
+    },
+    {
+      "title": "বাংলাদেশ - ভারত এবং বাংলাদেশ -মিয়ানমারের মধ্যে প্রবাহিত ৫৭টি আন্তঃসীমান্ত নদীর তথ্যাদি",
+      "by": "Joint Rivers Commission, Bangladesh (JRCB; page dated 2022-02-27; read 2026-09-28)",
+      "url": "https://jrcb.gov.bd/pages/static-pages/6922dc0a933eb65569e0e1b5",
+      "lang": "bn"
+    },
+    {
+      "title": "ব্রহ্মপুত্র নদীর সংক্ষিপ্ত বিবরণ — উৎপত্তি: Chema-Yung-Dung glacier, Kailas range, southern Tibet",
+      "by": "Joint Rivers Commission, Bangladesh (JRCB; page updated 2026-08-30; read 2026-09-28)",
+      "url": "https://jrcb.gov.bd/pages/static-pages/6922dc94933eb65569e110c8",
+      "lang": "bn"
+    },
+    {
+      "title": "ব্রহ্মপুত্র নদ",
+      "by": "Bengali Wikipedia (revision 9099646; read 2026-09-28)",
+      "url": "https://bn.wikipedia.org/w/index.php?oldid=9099646",
+      "lang": "bn"
+    },
+    {
+      "title": "Natural Earth 10m rivers and lake centerlines, land, and country boundary lines; the country names are its NAME_BN",
+      "by": "Natural Earth (public domain; v5.1.2)",
+      "url": "https://www.naturalearthdata.com/"
+    },
+    {
+      "title": "Bangladesh administrative boundaries (COD-AB, v03)",
+      "by": "Bangladesh Bureau of Statistics / OCHA (CC BY-IGO 3.0; valid on 2023-05-21)",
+      "url": "https://data.humdata.org/dataset/401d3fae-4262-48c9-891f-461fd776d49b"
+    },
+    {
+      "title": "River courses and the Padma–Meghna continuation, from OpenStreetMap",
+      "by": "© OpenStreetMap contributors (ODbL 1.0; snapshots 2026-05-31 and 2026-07-15)",
+      "url": "https://www.openstreetmap.org/copyright"
+    }
+  ]
+}

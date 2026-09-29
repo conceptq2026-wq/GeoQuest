@@ -78,3 +78,29 @@ not built.
   section would have shown "Coming soon": `misc` in the registry
   generator's and the validator's `SECTIONS`, after the three syllabus
   sections, and both names in the home page's `SECTION_NAMES`.
+- **The rivers view (2026-09-29).** `docs/visual/rivers.js` and `rivers.css`,
+  loaded only for a view of type `rivers` — one line in `VIEW_MODULES` — by
+  bangladesh-rivers (local, in the work in progress: `notes/bangladesh-rivers.md`).
+  The user approved this shell change with the module:
+  - **A picture drawn in code.** One `<svg>` fills the stage; the view's `art`
+    file holds the land, the outline, the lines as path data and the markers'
+    and names' anchors, all in the frame's own units. Nothing is fetched but the
+    diagram's own JSON, through the resolver.
+  - **Pan and zoom, this module only.** 1× (the whole frame fitting the stage)
+    to 6×; a drag pans, two fingers pinch, the wheel and a double tap zoom. A
+    press that moves under 8 px is a tap. Strokes keep their width in CSS px;
+    markers and names are laid out over the picture in CSS px, names at least
+    15 px at 390 px wide and 14 at 320. No other view zooms.
+  - **Taps.** A line's zone is a 26 px transparent stroke, a marker's a 44 px
+    disc; a continuation has none. Each carries `data-key` (`line:<id>`,
+    `marker:<id>`) and `data-title`, the heading its card must show. A tap on
+    the lit one again, on the picture away from every line, on × or Escape
+    closes the card.
+  - **Two tabs, one set of standard ids.** Each tab builds its own picker row;
+    the tab in view holds `prevRecord`, `recordPicker` and `nextRecord`, the
+    other's carry a suffix, so the shell and `tools/check.mjs` read the same ids
+    whatever the tab. The picker lists only the rivers the data names.
+  - **`tools/check.mjs`** has a rivers branch, `riverSteps`: tab by tab, the
+    picker, then every zone tapped where it alone takes the tap, with the layout
+    check with no card and with each card. Its `CARD` and `FIT` read the card of
+    the tab in view.

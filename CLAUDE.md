@@ -306,7 +306,11 @@ to the seed's own count. liberation-war-1971: its OpenStreetMap points extract
 by checksum (`osmLiberationPoints` in `tools/sources.json`); the traced
 sectors' SHA-256 in `tools/build-liberation-war-1971.mjs`; and in
 `tools/build-liberation-sectors.mjs` the COD-AB zip's pin and the ten sectors
-tiling COD-AB — overlap and gap each under 0.5 km².
+tiling COD-AB — overlap and gap each under 0.5 km². bangladesh-rivers: the
+seed by SHA-256 in `tools/verify-descriptor.mjs`; the OSM pilot extract
+(`osmBangladeshRiversPilot` in `tools/sources.json`) and the rivers snapshot by
+checksum; and the eleven lines' geometry hashes in
+`tools/bangladesh-rivers-pins.json`.
 
 When a pin moves, **stop and report the old and new values.** Never re-pin to
 make a build pass. A dropped `featurecla` once shifted a line by three points
@@ -332,7 +336,9 @@ State which kind a task is when reporting it.
   International: `straits`, `border-lines`, `org-headquarters`,
   `environment-treaties`. Geography: `deserts`, `lakes`, `forests`,
   `mountains`, `waterfalls` and `latitude-longitude`, all under `docs/maps/`.
-- Work in progress (`tools/wip.json`): none.
+- Work in progress (`tools/wip.json`): `bangladesh-rivers`, a diagram in the
+  Bangladesh section drawn in code (`notes/bangladesh-rivers.md`); local
+  preview only, not in the registry.
 - Three diagrams, under বিবিধ: `atmosphere-layers`, `earth-interior` and
   `seasons`, in `docs/diagrams/`.
 

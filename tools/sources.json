@@ -239,5 +239,13 @@
     "file": "tools/sources/osm-liberation-points.geojson",
     "licence": "ODbL 1.0 — © OpenStreetMap contributors",
     "sha256": "6dd1f24bae2c99c2399e8bcf115dd8f3a308a8eebac1757dcbd12ebd47c09c43"
+  },
+  "osmBangladeshRiversPilot": {
+    "_comment": "The OpenStreetMap ways the Rivers of Bangladesh picture draws beyond the rivers snapshot (osmBangladeshRivers): the Padma and Meghna continuation, the Old Brahmaputra's connecting ways, Teesta and Karatoya ways the snapshot lacks, and the Dharla, Atrai, Dhaleshwari, Banshi and Shitalakshya courses — each by way id, with node ids and tags, from tools/extract-bangladesh-rivers-pilot.mjs. Only a deliberate re-run changes it.",
+    "file": "tools/sources/osm-bangladesh-rivers-pilot.geojson",
+    "fetched": "2026-09-28",
+    "snapshot": "2026-05-31T22:37:44Z",
+    "licence": "ODbL 1.0 — © OpenStreetMap contributors",
+    "sha256": "69d60a24117e52685a24f460a874eb83cddffc1164293690fc436eb4688bcd0f"
   }
 }

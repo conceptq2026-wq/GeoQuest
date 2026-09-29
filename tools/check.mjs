@@ -275,7 +275,7 @@ const CARD = `(() => {
     const open = !sheet.hidden && !sheet.inert && getComputedStyle(sheet).display !== 'none' && sheet.getBoundingClientRect().height > 0;
     return { open, title: open ? document.getElementById('infoTitle').textContent.trim() : null };
   }
-  const card = document.querySelector('.card');
+  const card = document.querySelector('.view-panel:not([hidden]) .card') ?? document.querySelector('.card');
   const open = !!card && !card.hidden;
   return { open, title: open ? card.querySelector('.card-title').textContent.trim() : null };
 })()`;
@@ -551,7 +551,9 @@ async function useItem(browser, size, entry, base, origin, dir) {
   else if (!opened) {
     if (entry.kind === 'diagram') {
       const picker = await page.evaluate(`(() => { const p = document.getElementById('recordPicker'); return !!p && !p.hidden; })()`);
-      if (picker) {
+      const rivers = await page.evaluate(`!!document.querySelector('.rivers .rivers-svg')`);
+      if (picker && rivers) await riverSteps(page, shoot, summary, fail);
+      else if (picker) {
         await fitCheck(page, 'no card');
         await pickerSteps(page, shoot, summary, fail);
         await zoneTaps(page, shoot, summary, fail);
@@ -560,6 +562,10 @@ async function useItem(browser, size, entry, base, origin, dir) {
           for (const b of page.fit.bad) fail(`layout — ${b}`);
         }
       } else await slabs(page, shoot, summary, fail);
+      if (picker && rivers && page.fit) {
+        summary.push(`layout clear in ${page.fit.views - page.fit.bad.length}/${page.fit.views} views`);
+        for (const b of page.fit.bad) fail(`layout — ${b}`);
+      }
     }
     else {
       const sources = await page.evaluate(`(${tapFinder})()`);
@@ -596,7 +602,7 @@ const FIT = `(() => {
   const s = stage.getBoundingClientRect();
   const within = (r) => r.left >= s.left - 0.5 && r.right <= s.right + 0.5 && r.top >= s.top - 0.5 && r.bottom <= s.bottom + 0.5;
   const under = (a, b) => a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
-  const blocks = [document.querySelector('.picker-row'), document.querySelector('.card:not([hidden])')].filter(Boolean).map((e) => e.getBoundingClientRect());
+  const blocks = [document.querySelector('.picker-row'), document.querySelector('.view-panel:not([hidden]) .card:not([hidden])') ?? document.querySelector('.card:not([hidden])')].filter(Boolean).map((e) => e.getBoundingClientRect());
   // Every element a view marks with data-fit stays on the stage, clear of the picker row and the card.
   const items = [...document.querySelectorAll('[data-fit]')].map((e) => [e.getAttribute('data-fit'), e]);
   const bad = items.filter(([, e]) => e.getClientRects().length).filter(([, e]) => { const r = e.getBoundingClientRect(); return !within(r) || blocks.some((b) => under(r, b)); }).map(([name]) => name);
@@ -764,6 +770,80 @@ async function zoneTaps(page, shoot, summary, fail) {
   const outer = depths.filter(([k]) => /crust/.test(k));
   summary.push(`taps ${good}/${keys.length} cards; ${outer.length ? `crust zones ${outer.map(([, d]) => d).join(' and ')} px deep` : `tap zones ≥ ${Math.min(...sizes)} px`}`);
   for (const [k, d] of shallow.filter(([k]) => /crust/.test(k))) fail(`zone ${k}: ${d} px deep, under 44`);
+}
+
+/*
+ * The rivers picture (docs/visual/rivers.js), tab by tab: the tab shown, the
+ * picker's one entry, then every line and every marker tapped where its zone
+ * alone takes the tap — each must open its own card, its heading the zone's —
+ * with the layout checked (names on the stage, clear of each other, the picker
+ * row and the card; none under 15 px, 14 at 320) with no card and with each.
+ * A marker's zone must be 44 px across; a line's is a stroke, not measured.
+ */
+async function riverSteps(page, shoot, summary, fail) {
+  const tabs = await page.evaluate(`[...document.querySelectorAll('.view-tab')].map((t) => t.textContent.trim())`);
+  const view = '.view-panel:not([hidden])';
+  const parts = [];
+  for (let i = 0; i < tabs.length; i++) {
+    if (i > 0) {
+      const at = await page.evaluate(`(() => { const r = document.querySelectorAll('.view-tab')[${i}].getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; })()`);
+      await page.click(...at);
+      const problem = await settle(page);
+      if (problem) fail(`tab «${tabs[i]}»: ${problem}`);
+    }
+    await fitCheck(page, `«${tabs[i]}» no card`);
+    await shoot('steps', `tab «${tabs[i]}»`);
+    const zones = await page.evaluate(`[...document.querySelectorAll('${view} .zone[data-key]')].map((z) => [z.dataset.key, z.dataset.title])`);
+    let good = 0;
+    let least = Infinity;
+    for (const [key, title] of zones) {
+      const close = await page.evaluate(box(`${view} .card:not([hidden]) .card-close`));
+      if (close) {
+        await page.click(...close);
+        await waitCard(page);
+      }
+      await sleep(400); // a second tap within 320 ms and 30 px is a double tap: a zoom
+      const hit = await page.evaluate(`(() => {
+        const z = document.querySelector('${view} .zone[data-key="${key}"]');
+        const r = z.getBoundingClientRect();
+        const zonesAt = (x, y) => document.elementsFromPoint(x, y).filter((e) => e.classList.contains('zone')).length;
+        const hits = [];
+        for (let y = r.top + 2; y < r.bottom; y += 4) for (let x = r.left + 2; x < r.right; x += 4) if (document.elementFromPoint(x, y) === z) hits.push([x, y, zonesAt(x, y)]);
+        if (!hits.length) return null;
+        const alone = hits.filter((h) => h[2] === 1);
+        const pool = alone.length ? alone : hits;
+        const mx = pool.reduce((s, p) => s + p[0], 0) / pool.length;
+        const my = pool.reduce((s, p) => s + p[1], 0) / pool.length;
+        pool.sort((a, b) => Math.hypot(a[0] - mx, a[1] - my) - Math.hypot(b[0] - mx, b[1] - my));
+        return { at: pool[0].slice(0, 2), alone: alone.length > 0, size: Math.min(r.width, r.height) };
+      })()`);
+      if (!hit) {
+        fail(`«${tabs[i]}» zone ${key}: no point where it takes the tap`);
+        continue;
+      }
+      if (!hit.alone && !key.startsWith('marker:')) fail(`«${tabs[i]}» zone ${key}: no point where it is the only zone under the finger`);
+      if (key.startsWith('marker:')) {
+        least = Math.min(least, hit.size);
+        if (hit.size < 43.5) fail(`zone ${key}: ${Math.round(hit.size)} px across, under 44`);
+      }
+      await page.click(...hit.at);
+      const card = await waitCard(page);
+      await fitCheck(page, `tap ${title}`);
+      if (card.open && card.title === title) good++;
+      else fail(`«${tabs[i]}» zone ${key}: card ${card.open ? `«${card.title}»` : 'closed'}, wanted «${title}»`);
+      await shoot('taps', title, hit.at);
+    }
+    const close = await page.evaluate(box(`${view} .card:not([hidden]) .card-close`));
+    if (close) {
+      await page.click(...close);
+      await waitCard(page);
+    }
+    const sub = [];
+    await pickerSteps(page, shoot, sub, fail);
+    const marks = zones.filter(([k]) => k.startsWith('marker:')).length;
+    parts.push(`«${tabs[i]}» ${sub[0] ?? 'picker ?'}, taps ${good}/${zones.length} (${zones.length - marks} lines, ${marks} markers${marks ? `, zones ≥ ${Math.round(least)} px` : ''})`);
+  }
+  summary.push(...parts);
 }
 
 /** Every record drawn by a tapped source: brought into view, tapped where it alone is, a card. */
