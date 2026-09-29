@@ -31,7 +31,7 @@ not supported with filters"*, and the same for layout properties. So selection
 state is written into the features and the source is re-derived with `setData`.
 That is the mechanism. Do not reintroduce feature-state for selection.
 
-## Shell modules: tabs, timeline and globe
+## Shell modules: tabs, timeline, globe, focus, legend and info
 
 A shell feature that not every map needs is a module of its own, loaded only
 for a map whose descriptor declares its term (`SHELL_MODULES` in `app.js`), so
@@ -42,7 +42,10 @@ map's style and options (`build.style`, `build.options`), take the map's taps
 add actions (`actions`) — and installs once it is, with `map`, `runActions`,
 `refilter`, `deselect`, `onChange` (after a selection, or a change in what is
 shown), `archive` and `geometry` (a source's geometry file). Everything it
-creates or changes goes through `own`, so teardown undoes it.
+creates or changes goes through `own`, so teardown undoes it. Since
+2026-09-30 it may also hide records from the map alone (`hideOnMap`: the
+picker and ‹ › still list them, unlike `hide`), ask whether a record is
+drawn now (`drawn`), and read a file of the map's own folder (`file`).
 
 - **`tabs: { records, field, from, label, placeholder?, note? }`** divides one records table by a
   field, one part at a time: the tabs are the rows of `from`, in its order,
@@ -57,6 +60,11 @@ creates or changes goes through `own`, so teardown undoes it.
   `placeholder`, the picker's prompt, since what it offers changes; and
   `note`, a short note in the map's top-left corner, shown only while that tab
   is open. liberation-war-1971 uses both.
+  **View tabs** (2026-09-30): a `tabs` with no `records` divides nothing —
+  every record stays drawn and listed — and each tab may name a `frame`, a
+  value spec on its row giving `[west, south, east, north]`; a tab the student
+  picks puts the camera on that frame, or on the map's own view without one.
+  The first use is the rivers map's «বাংলাদেশে» / «পুরো পথ».
 - **`timeline: { records, at, label?, rowBy?, rowLabel?, colour?, state?, do }`**
   puts each record at its year (`at`) as a dot labelled above it — `label`
   (default the card's title) over the year, in the map's digits — one lane per
@@ -91,6 +99,31 @@ creates or changes goes through `own`, so teardown undoes it.
   down to one row (122 px), then the card, down to its title; each scrolls
   inside itself when short of room.
 - The timeline is the map's selector: see the baseline exception above.
+- **`focus: { records, idle: { field, value }, parent, also?: [{ records, field }] }`**
+  (2026-09-30) draws only what the selection is about — hidden, not greyed.
+  With nothing selected, only the records of `records` whose `idle.field`
+  holds `idle.value` (the main rivers); with one selected, that record, the
+  records whose `parent` names it (its own branches) and its chain of parents
+  (the main river, as context). A table in `also` follows the record its
+  `field` names (a river's markers go with their river), and selecting one of
+  its records puts the view on that record. Hidden on the map only, through
+  `hideOnMap`: the picker and ‹ › still list every record.
+- **`legend: { items: [{ kind, label, line? | image? }], kinds: [{ records, field }] }`**
+  (2026-09-30) lists, in the map's bottom-left corner at 14 px, what its
+  colours and marks mean: one row per item, a stroke (`line: { color, width?,
+  dash? }`) or one of the map's `images`, then its label. A row shows only
+  while some record drawn now carries its `kind` in one of the `kinds`
+  fields, so it follows focus and tabs; with nothing to show, it is gone.
+- **`info: { file, headings: { sources, notes, conflicts } }`** (2026-09-30)
+  keeps ⓘ exactly where every map has it — its row, its icon, its 44 px zone —
+  and, opened, shows three headed blocks: the map's credits (MapLibre's own,
+  copied in each time it opens), then the lines of `file` (`{ lines: [{ text,
+  group }] }`, `group` "notes" or "conflicts") under their headings. 14 px
+  text; the panel scrolls inside itself.
+- A capability is proved on a **test map outside `docs/`** first:
+  `tools/fixtures/<name>/`, never published, checked by
+  `node tools/check.mjs --fixture=tools/fixtures/<name>`; `shell-m1` holds
+  focus, legend, info, view tabs, the 44 px hit layer and the wide basemap.
 
 ## Teardown is derived, not written
 

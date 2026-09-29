@@ -3,7 +3,7 @@
 | TABS — a shell module: one records table divided by a field, one part at a
 | time
 |
-|   tabs: { records, field, from, label, placeholder?, note? }
+|   tabs: { records, field, from, label, placeholder?, note?, frame? }
 |
 | The tabs are the rows of `from`, in its order, each titled by `label` (a
 | value spec, as a card's title is); a row's key is a value of
@@ -27,6 +27,12 @@
 | value, never none and never all, and are how the map is read, so they sit
 | above it. The hiding itself is the shell's, the record filter's mechanism.
 |
+| Views, not parts (2026-09-30): a `tabs` with no `records` divides nothing —
+| every record stays on the map in every tab — and each tab is a view of the
+| one map: `frame`, a value spec on the tab's row (a bbox field), is where the
+| tab opens, in place of the map's own view. A tab the student picks goes to
+| its frame; nothing else changes. The rivers map's «বাংলাদেশে» and «পুরো পথ».
+|
 | Loaded only for a map whose descriptor declares `tabs`.
 |--------------------------------------------------------------------------
 */
@@ -44,14 +50,14 @@ export async function mount(api) {
   shell = api;
   spec = api.descriptor.tabs;
   const tabs = api.records[spec.from];
-  const table = api.records[spec.records];
-  if (!tabs || !table) throw new Error(`tabs: "${spec.records}" and "${spec.from}" must both be records tables`);
+  const table = spec.records === undefined ? null : api.records[spec.records];
+  if (!tabs || (spec.records !== undefined && !table)) throw new Error(`tabs: "${spec.records}" and "${spec.from}" must both be records tables`);
   const keys = Object.keys(tabs);
-  const untabbed = [...new Set(Object.values(table).map((row) => row[spec.field]))].filter((v) => !keys.includes(v));
+  const untabbed = table ? [...new Set(Object.values(table).map((row) => row[spec.field]))].filter((v) => !keys.includes(v)) : [];
   if (untabbed.length) throw new Error(`tabs: ${spec.records}.${spec.field} takes ${untabbed.join(', ')}, which "${spec.from}" has no tab for`);
   active = keys[0];
 
-  await stylesheet(api, './tabs.css?v=1d60c1381b');
+  await stylesheet(api, './tabs.css?v=4dbc90b9b6');
   bar = api.own.node(document.createElement('div'), 'tabs');
   bar.className = 'map-tabs';
   bar.setAttribute('role', 'tablist');
@@ -75,7 +81,7 @@ export async function mount(api) {
     api.dom.mapShell.append(note);
   }
   sync();
-  api.hide(hidden);
+  if (table) api.hide(hidden);
 }
 
 /** Once the map is built: taps on the bar, and a selection in another tab opening it. */
@@ -97,7 +103,7 @@ export function install(api) {
   });
   words();
   api.onChange((what) => {
-    if (what !== 'select') return;
+    if (what !== 'select' || spec.records === undefined) return;
     const key = api.selection.get(spec.records);
     const tab = key === undefined ? undefined : api.records[spec.records][key]?.[spec.field];
     if (tab !== undefined && tab !== active) open(tab);
@@ -130,7 +136,8 @@ function words() {
  * is fitted as it now stands, its card gone with the selection.
  */
 function toWorld() {
-  const view = shell.descriptor.view?.fitBounds;
+  const frame = spec.frame ? shell.valueOf(spec.frame, shell.records[spec.from][active]) : null;
+  const view = frame ?? shell.descriptor.view?.fitBounds;
   if (!view || !shell.map) return;
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
   shell.map.fitBounds([[view[0], view[1]], [view[2], view[3]]], { bearing: shell.map.getBearing(), duration: still ? 0 : 900, essential: true });

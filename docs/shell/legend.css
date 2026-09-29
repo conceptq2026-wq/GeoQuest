@@ -1,0 +1,53 @@
+/* The legend (legend.js): the map's bottom-left corner, above the map, under the card. */
+.map-legend {
+  position: absolute;
+  left: 8px;
+  bottom: 28px;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: calc(100% - 96px);
+  margin: 0;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 2px 8px rgba(19, 35, 58, 0.14);
+  color: #13233a;
+  font-family: 'Noto Sans Bengali', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.35;
+  list-style: none;
+  pointer-events: none;
+}
+
+.map-legend[hidden],
+.map-legend-item[hidden] {
+  display: none;
+}
+
+.map-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.map-legend-sample {
+  display: inline-flex;
+  flex: 0 0 26px;
+  justify-content: center;
+  align-items: center;
+  width: 26px;
+  height: 16px;
+}
+
+.map-legend-line {
+  display: block;
+  width: 26px;
+  height: 0;
+}
+
+.map-legend-image {
+  width: 16px;
+  height: 16px;
+}

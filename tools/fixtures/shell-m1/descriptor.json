@@ -1,0 +1,518 @@
+{
+ "schema": "geoquest/map-descriptor@1",
+ "id": "shell-m1",
+ "section": "bangladesh",
+ "title": {
+  "bn": "পরীক্ষা মানচিত্র (শেল)",
+  "en": "Shell test M1 (never published)"
+ },
+ "basemap": "bangladesh-wide",
+ "view": {
+  "fitBounds": [
+   88,
+   20.6,
+   92.7,
+   26.6
+  ]
+ },
+ "constraints": {
+  "minZoom": 3.5,
+  "maxZoom": 11,
+  "maxBounds": [
+   80.5,
+   16,
+   97.5,
+   32
+  ]
+ },
+ "lookups": {
+  "systems": {
+   "s1": {
+    "nameBn": "ব্যবস্থা ১"
+   },
+   "s2": {
+    "nameBn": "ব্যবস্থা ২"
+   }
+  }
+ },
+ "images": {
+  "origin": {
+   "file": "./origin.svg",
+   "pixelRatio": 2
+  },
+  "entry": {
+   "file": "./entry.svg",
+   "pixelRatio": 2
+  },
+  "confluence": {
+   "file": "./confluence.svg",
+   "pixelRatio": 2
+  },
+  "mouth": {
+   "file": "./mouth.svg",
+   "pixelRatio": 2
+  }
+ },
+ "records": {
+  "rivers": {
+   "file": "./rivers.json",
+   "fields": {
+    "nameBn": {
+     "type": "text",
+     "required": true
+    },
+    "role": {
+     "type": "text",
+     "display": false
+    },
+    "parent": {
+     "type": "text",
+     "display": false
+    },
+    "system": {
+     "type": "text",
+     "display": false
+    }
+   }
+  },
+  "marks": {
+   "file": "./marks.json",
+   "fields": {
+    "nameBn": {
+     "type": "text",
+     "required": true
+    },
+    "kind": {
+     "type": "text",
+     "display": false
+    },
+    "river": {
+     "type": "text",
+     "display": false
+    },
+    "at": {
+     "type": "point"
+    }
+   }
+  },
+  "views": {
+   "file": "./views.json",
+   "fields": {
+    "titleBn": {
+     "type": "text",
+     "required": true
+    },
+    "frame": {
+     "type": "bbox"
+    }
+   }
+  }
+ },
+ "sources": {
+  "rivers-outside": {
+   "records": "rivers",
+   "geometry": "./rivers-outside.geojson",
+   "joinField": "key",
+   "state": [
+    "selected"
+   ],
+   "properties": [
+    "role"
+   ],
+   "tapWidth": 44
+  },
+  "rivers-inside": {
+   "records": "rivers",
+   "geometry": "./rivers-inside.geojson",
+   "joinField": "key",
+   "state": [
+    "selected"
+   ],
+   "properties": [
+    "nameBn",
+    "role"
+   ],
+   "tapWidth": 44
+  },
+  "marks": {
+   "records": "marks",
+   "geometryFrom": "at",
+   "state": [
+    "selected"
+   ],
+   "properties": [
+    "kind",
+    "nameBn"
+   ]
+  }
+ },
+ "layers": [
+  {
+   "id": "river-outside",
+   "type": "line",
+   "source": "rivers-outside",
+   "slot": "belowLabels",
+   "layout": {
+    "line-join": "round",
+    "line-cap": "round"
+   },
+   "paint": {
+    "line-color": [
+     "match",
+     [
+      "get",
+      "role"
+     ],
+     "main",
+     "#1f5fbf",
+     "tributary",
+     "#2e8b57",
+     "distributary",
+     "#c77c1e",
+     "disputed",
+     "#7e57c2",
+     "#9aa3ad"
+    ],
+    "line-width": [
+     "match",
+     [
+      "get",
+      "role"
+     ],
+     "main",
+     4,
+     2.6
+    ],
+    "line-dasharray": [
+     2,
+     1.5
+    ]
+   }
+  },
+  {
+   "id": "river-inside",
+   "type": "line",
+   "source": "rivers-inside",
+   "slot": "belowLabels",
+   "layout": {
+    "line-join": "round",
+    "line-cap": "round"
+   },
+   "paint": {
+    "line-color": [
+     "match",
+     [
+      "get",
+      "role"
+     ],
+     "main",
+     "#1f5fbf",
+     "tributary",
+     "#2e8b57",
+     "distributary",
+     "#c77c1e",
+     "disputed",
+     "#7e57c2",
+     "#9aa3ad"
+    ],
+    "line-width": [
+     "match",
+     [
+      "get",
+      "role"
+     ],
+     "main",
+     4,
+     2.6
+    ]
+   }
+  },
+  {
+   "id": "river-names",
+   "type": "symbol",
+   "source": "rivers-inside",
+   "slot": "aboveLabels",
+   "filter": [
+    "any",
+    [
+     "==",
+     [
+      "get",
+      "role"
+     ],
+     "main"
+    ],
+    [
+     ">=",
+     [
+      "zoom"
+     ],
+     6
+    ]
+   ],
+   "layout": {
+    "symbol-placement": "line",
+    "text-field": [
+     "get",
+     "nameBn"
+    ],
+    "text-font": [
+     "Noto Sans Bengali"
+    ],
+    "text-size": [
+     "match",
+     [
+      "get",
+      "role"
+     ],
+     "main",
+     16,
+     14
+    ],
+    "symbol-sort-key": [
+     "match",
+     [
+      "get",
+      "role"
+     ],
+     "main",
+     0,
+     1
+    ],
+    "text-max-angle": 35,
+    "symbol-spacing": 400
+   },
+   "paint": {
+    "text-color": [
+     "match",
+     [
+      "get",
+      "role"
+     ],
+     "main",
+     "#1f5fbf",
+     "tributary",
+     "#2e8b57",
+     "distributary",
+     "#c77c1e",
+     "disputed",
+     "#7e57c2",
+     "#9aa3ad"
+    ],
+    "text-halo-color": "#ffffff",
+    "text-halo-width": 1.8
+   }
+  },
+  {
+   "id": "mark-icons",
+   "type": "symbol",
+   "source": "marks",
+   "slot": "aboveLabels",
+   "layout": {
+    "icon-image": [
+     "get",
+     "kind"
+    ],
+    "icon-allow-overlap": true,
+    "icon-ignore-placement": true,
+    "icon-size": [
+     "case",
+     [
+      "==",
+      [
+       "get",
+       "selected"
+      ],
+      true
+     ],
+     1.3,
+     1
+    ]
+   }
+  }
+ ],
+ "controls": [
+  {
+   "type": "picker",
+   "id": "rivers",
+   "from": "rivers",
+   "placeholder": "একটি নদী বেছে নিন…",
+   "labelEn": "Choose a river",
+   "label": {
+    "field": "nameBn"
+   },
+   "groupBy": {
+    "field": "system",
+    "order": [
+     "s1",
+     "s2"
+    ],
+    "lookup": "systems",
+    "take": "nameBn"
+   },
+   "do": [
+    {
+     "action": "select"
+    },
+    {
+     "action": "fitBounds",
+     "clear": [
+      "sheet"
+     ],
+     "duration": 1200
+    }
+   ]
+  }
+ ],
+ "interactions": [
+  {
+   "on": "click",
+   "target": "source:rivers-inside",
+   "do": [
+    {
+     "action": "select"
+    },
+    {
+     "action": "fitBounds",
+     "clear": [
+      "sheet"
+     ],
+     "duration": 1200
+    }
+   ]
+  },
+  {
+   "on": "click",
+   "target": "source:rivers-outside",
+   "do": [
+    {
+     "action": "select"
+    },
+    {
+     "action": "fitBounds",
+     "clear": [
+      "sheet"
+     ],
+     "duration": 1200
+    }
+   ]
+  },
+  {
+   "on": "click",
+   "target": "source:marks",
+   "do": [
+    {
+     "action": "select"
+    }
+   ]
+  }
+ ],
+ "sheets": {
+  "rivers": {
+   "title": {
+    "field": "nameBn"
+   },
+   "rows": []
+  },
+  "marks": {
+   "title": {
+    "field": "nameBn"
+   },
+   "rows": []
+  }
+ },
+ "tabs": {
+  "from": "views",
+  "label": {
+   "field": "titleBn"
+  },
+  "frame": {
+   "field": "frame"
+  }
+ },
+ "focus": {
+  "records": "rivers",
+  "idle": {
+   "field": "role",
+   "value": "main"
+  },
+  "parent": "parent",
+  "also": [
+   {
+    "records": "marks",
+    "field": "river"
+   }
+  ]
+ },
+ "legend": {
+  "items": [
+   {
+    "kind": "main",
+    "label": "মূল নদী",
+    "line": {
+     "color": "#1f5fbf",
+     "width": 4
+    }
+   },
+   {
+    "kind": "tributary",
+    "label": "উপনদী",
+    "line": {
+     "color": "#2e8b57"
+    }
+   },
+   {
+    "kind": "distributary",
+    "label": "শাখা নদী",
+    "line": {
+     "color": "#c77c1e"
+    }
+   },
+   {
+    "kind": "disputed",
+    "label": "সম্পর্ক নিয়ে ভিন্নমত",
+    "line": {
+     "color": "#7e57c2"
+    }
+   },
+   {
+    "kind": "origin",
+    "label": "উৎপত্তি",
+    "image": "origin"
+   },
+   {
+    "kind": "entry",
+    "label": "প্রবেশ",
+    "image": "entry"
+   },
+   {
+    "kind": "confluence",
+    "label": "মিলন",
+    "image": "confluence"
+   },
+   {
+    "kind": "mouth",
+    "label": "মোহনা",
+    "image": "mouth"
+   }
+  ],
+  "kinds": [
+   {
+    "records": "rivers",
+    "field": "role"
+   },
+   {
+    "records": "marks",
+    "field": "kind"
+   }
+  ]
+ },
+ "info": {
+  "file": "./info.json",
+  "headings": {
+   "sources": "উৎস",
+   "notes": "টীকা",
+   "conflicts": "ভিন্নমত"
+  }
+ }
+}

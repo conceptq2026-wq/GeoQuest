@@ -2,6 +2,7 @@
 // progress on its home page.
 //
 //   node tools/preview.mjs [--build <diagram-id>]... [port]
+//   (tools/check.mjs --fixture=<dir> mounts a test map from outside docs/ into the copy: makeSite's `fixtures`)
 //
 // Copies docs/ into a temporary folder outside the repo and serves the copy at
 // http://127.0.0.1:<port>/ (8765 by default) until stopped. Nothing is written
@@ -43,7 +44,7 @@ const TOOL_OUTPUT = { stdio: 'inherit' };
  * The copy of docs/ with the work in progress on its home page, made afresh
  * in `site`: returns the folder and the ids that answer «কাজ চলছে».
  */
-export function makeSite({ site = PREVIEW, rebuild = [], quiet = false } = {}) {
+export function makeSite({ site = PREVIEW, rebuild = [], quiet = false, fixtures = [] } = {}) {
   fs.rmSync(site, { recursive: true, force: true, maxRetries: 5, retryDelay: 200 });
   fs.cpSync(DOCS, site, { recursive: true });
 
@@ -71,6 +72,17 @@ export function makeSite({ site = PREVIEW, rebuild = [], quiet = false } = {}) {
     if (!fs.existsSync(path.join(out, 'descriptor.json'))) placeholders.set(`${folder}/${item.id}`, item);
     registry.maps.push({ id: item.id, ...(item.kind === 'diagram' ? { kind: 'diagram' } : {}), section: item.section, title: { en: item.title.en, bn: item.title.bn } });
     if (!quiet) console.log(`work in progress: ${item.kind} ${item.id} (${item.section}) — ${placeholders.has(`${folder}/${item.id}`) ? 'nothing yet, «কাজ চলছে»' : 'built into the copy'}`);
+  }
+  // A test map kept outside docs/ (tools/check.mjs --fixture=<dir>): copied into the copy only, as a map
+  // of its folder's name, listed on the copy's home page from its own descriptor. Never published.
+  for (const dir of fixtures) {
+    const id = path.basename(dir);
+    if (!ID.test(id)) throw new Error(`fixture ${dir}: "${id}" is not an id`);
+    const out = path.join(site, 'maps', id);
+    if (fs.existsSync(out)) throw new Error(`fixture ${id}: docs/ has a map by that name`);
+    fs.cpSync(dir, out, { recursive: true });
+    const d = JSON.parse(fs.readFileSync(path.join(out, 'descriptor.json'), 'utf8'));
+    registry.maps.push({ id, section: d.section, title: { en: d.title.en, bn: d.title.bn } });
   }
   // The generator's order: the syllabus sections, then id.
   registry.maps.sort((a, b) => registry.sections.indexOf(a.section) - registry.sections.indexOf(b.section) || (a.id < b.id ? -1 : 1));

@@ -1,0 +1,59 @@
+/*
+ * ⓘ in headed blocks (info.js). The row, the icon and its 44 px tap zone are
+ * style.css's; only the opened panel changes: MapLibre's own credits list is
+ * hidden and the panel shows them under a heading, then the notes and the
+ * conflicts under theirs. 14 px text; scrolls inside itself.
+ */
+.info-credits.has-info-blocks .maplibregl-ctrl-attrib.maplibregl-compact-show .maplibregl-ctrl-attrib-inner {
+  display: none;
+}
+
+.info-credits .info-panel {
+  display: none;
+}
+
+.info-credits.has-info-blocks .maplibregl-ctrl-attrib.maplibregl-compact-show .info-panel {
+  position: absolute;
+  top: 38px;
+  right: 8px;
+  z-index: 30;
+  display: block;
+  box-sizing: border-box;
+  width: min(360px, calc(100vw - 32px));
+  max-height: min(70vh, calc(100dvh - 180px));
+  overflow-y: auto;
+  padding: 8px 12px 10px;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 4px 14px rgba(19, 35, 58, 0.18);
+  color: #333333;
+  font-family: 'Noto Sans Bengali', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: left;
+  overscroll-behavior: contain;
+}
+
+.info-panel .info-heading {
+  margin: 8px 0 4px;
+  color: #13233a;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.info-panel .info-heading:first-child {
+  margin-top: 0;
+}
+
+.info-panel .info-sources a {
+  color: #0b5cad;
+}
+
+.info-panel .info-lines {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.info-panel .info-lines li + li {
+  margin-top: 4px;
+}

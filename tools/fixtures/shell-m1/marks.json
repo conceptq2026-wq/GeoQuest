@@ -1,0 +1,47 @@
+{
+ "aOrigin": {
+  "nameBn": "উৎস ক",
+  "kind": "origin",
+  "river": "a",
+  "at": [
+   84.5,
+   29.3
+  ]
+ },
+ "aEntry": {
+  "nameBn": "প্রবেশ ক",
+  "kind": "entry",
+  "river": "a",
+  "at": [
+   89.6,
+   26.3
+  ]
+ },
+ "cMeet": {
+  "nameBn": "মিলন গ",
+  "kind": "confluence",
+  "river": "c",
+  "at": [
+   89.75,
+   25.2
+  ]
+ },
+ "aMouth": {
+  "nameBn": "মোহনা ক",
+  "kind": "mouth",
+  "river": "a",
+  "at": [
+   90.6,
+   22.8
+  ]
+ },
+ "bEntry": {
+  "nameBn": "প্রবেশ খ",
+  "kind": "entry",
+  "river": "b",
+  "at": [
+   91.9,
+   24.9
+  ]
+ }
+}

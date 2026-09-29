@@ -15,6 +15,16 @@ rules and verification budget apply.
   over a mask — so both keep the source ids `basemap` / `basemap-detail` and
   the baseline reads either unchanged. A cross-basemap switch is a full
   re-initialise.
+- **`bangladesh-wide`** (2026-09-30) is both archives in one style, for a map
+  that follows Bangladesh's rivers upstream: world.pmtiles for everything,
+  its land plain grey with country borders and names only; over it, inside
+  bangladesh.pmtiles' `maxBounds`, a sea-coloured box and the Bangladesh
+  archive drawn plain — the same grey for the neighbours' land, no river
+  lines and no river names (a map draws its own), districts named at 14 px.
+  The seam at the box's north edge, 27.6°N, shows no line: the land is one
+  colour on both sides. Its frame and bounds are the archive's metadata's
+  unless the descriptor gives its own (`fitBounds`, `constraints.maxBounds`),
+  as a map reaching upstream beyond the box must.
 - **bangladesh.pmtiles** is a *bounded* basemap: its own metadata carries the
   frame a map opens on (Bangladesh, West Bengal, Tripura) and the bounds it
   cannot pan past (those plus Cachar and Rakhine); a descriptor's own

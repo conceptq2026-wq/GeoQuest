@@ -15,9 +15,9 @@
 |--------------------------------------------------------------------------
 */
 
-import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=1d60c1381b';
-import { resolver } from '../shared/resolver.js?v=1d60c1381b';
-import { pickerRow } from '../shared/picker.js?v=1d60c1381b';
+import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=4dbc90b9b6';
+import { resolver } from '../shared/resolver.js?v=4dbc90b9b6';
+import { pickerRow } from '../shared/picker.js?v=4dbc90b9b6';
 
 /*
 |--------------------------------------------------------------------------
@@ -157,6 +157,9 @@ const BASEMAPS = {
   // water and land, thin solid borders, and no coastline stroke.
   'world-light': { archive: 'world.pmtiles', style: (archive) => worldStyle(archive, WORLD_LIGHT), bounded: false },
   bangladesh: { archive: 'bangladesh.pmtiles', style: regionStyle, bounded: true },
+  // Bangladesh's archive over the world's, for a map that also draws what lies
+  // beyond Bangladesh's box (the rivers' whole courses): see wideStyle.
+  'bangladesh-wide': { archive: 'bangladesh.pmtiles', also: 'world.pmtiles', style: wideStyle, bounded: true },
 };
 const WORLD_LIGHT = { colors: { sea: '#bae3fd', land: '#f7f4e5', coast: '#bae3fd', border: '#cdd5d9' }, strokes: false, border: { 'line-width': 0.7 } };
 
@@ -228,6 +231,27 @@ function worldStyle(archive, look) {
  * above it they draw only outside the detail areas (`detail` is false).
  */
 function regionStyle(archive, meta) {
+  const { tiles, layersOf, labelsOf, outsideDetail, detailFrom } = regionParts(archive, meta);
+  return {
+    version: 8,
+    metadata: { slots: ['belowLabels', 'aboveLabels', 'top'] },
+    sources: {
+      [BASEMAP_SOURCES.world]: tiles(0, meta.overviewMaxZoom),
+      [BASEMAP_SOURCES.detail]: tiles(detailFrom, meta.detailMaxZoom),
+    },
+    layers: [
+      { id: 'basemap-bg', type: 'background', paint: { 'background-color': BASEMAP_COLORS.sea } },
+      ...layersOf(BASEMAP_SOURCES.world),
+      { id: 'basemap-detail-mask', type: 'fill', source: BASEMAP_SOURCES.detail, 'source-layer': 'detail_extent', paint: { 'fill-color': BASEMAP_COLORS.sea } },
+      ...layersOf(BASEMAP_SOURCES.detail),
+      ...labelsOf(BASEMAP_SOURCES.world, outsideDetail),
+      ...labelsOf(BASEMAP_SOURCES.detail, null),
+    ],
+  };
+}
+
+/** The region's sources and layers, by source id: regionStyle's, and wideStyle's over the world. */
+function regionParts(archive, meta) {
   const attribution = [
     credit('https://www.openstreetmap.org/copyright', '© OpenStreetMap contributors'),
     credit('https://data.humdata.org/dataset/cod-ab-bgd', 'BBS / OCHA (CC BY-IGO)'),
@@ -319,20 +343,63 @@ function regionStyle(archive, meta) {
     },
   ];
 
+  return { tiles, layersOf, labelsOf, outsideDetail, detailFrom };
+}
+
+/*
+ * Bangladesh's archive over the world's (`bangladesh-wide`), for a map whose
+ * frames reach past Bangladesh's box — the rivers' whole courses, to Tibet.
+ * The world archive draws everywhere, underneath: land plain, lakes, the
+ * international borders and, as the baseline's source, the country names — no
+ * state or province of any country, so the Bangladesh-only rule holds beyond
+ * the box as well. Over it, a sea-coloured mask the size of Bangladesh's
+ * archive (its own `maxBounds`, inline, no request) hides the world's coarser
+ * layers inside the box, and the Bangladesh archive draws there as on its own
+ * map — but without its own rivers and river names, which a map of rivers
+ * draws itself, and with district names at 14 px and division names at 15.
+ * North of 27.6°N and past the box's other edges only the world archive is
+ * asked for; its overview tiles reach z6, which the whole-course frames open
+ * on. Both land fills are the region's plain colour, so the box's edge does
+ * not show across land.
+ */
+function wideStyle(archive, meta, also) {
+  const { tiles, layersOf, labelsOf, outsideDetail, detailFrom } = regionParts(archive, meta);
+  const plainNoRivers = (source) => layersOf(source).filter((l) => l['source-layer'] !== 'rivers');
+  const labels = (source, only) =>
+    labelsOf(source, only)
+      .filter((l) => l['source-layer'] !== 'rivers' && l['source-layer'] !== 'river_labels')
+      .map((l) => (l['source-layer'] === 'admin_labels' ? { ...l, layout: { ...l.layout, 'text-size': ['match', ['get', 'level'], 'district', 14, 15] } } : l));
+  const world = 'basemap';
+  const bd = 'basemap-bd';
+  const bdDetail = 'basemap-bd-detail';
+  const [w, s, e, n] = meta.maxBounds;
+  const worldTiles = {
+    type: 'vector',
+    tiles: [also.tiles],
+    minzoom: 0,
+    maxzoom: 6,
+    attribution: credit('https://www.naturalearthdata.com/', 'Natural Earth'),
+  };
   return {
     version: 8,
     metadata: { slots: ['belowLabels', 'aboveLabels', 'top'] },
     sources: {
-      [BASEMAP_SOURCES.world]: tiles(0, meta.overviewMaxZoom),
-      [BASEMAP_SOURCES.detail]: tiles(detailFrom, meta.detailMaxZoom),
+      [world]: worldTiles,
+      [bd]: tiles(0, meta.overviewMaxZoom),
+      [bdDetail]: tiles(detailFrom, meta.detailMaxZoom),
+      'basemap-bd-box': { type: 'geojson', data: { type: 'Feature', properties: {}, geometry: { type: 'Polygon', coordinates: [[[w, s], [e, s], [e, n], [w, n], [w, s]]] } } },
     },
     layers: [
       { id: 'basemap-bg', type: 'background', paint: { 'background-color': BASEMAP_COLORS.sea } },
-      ...layersOf(BASEMAP_SOURCES.world),
-      { id: 'basemap-detail-mask', type: 'fill', source: BASEMAP_SOURCES.detail, 'source-layer': 'detail_extent', paint: { 'fill-color': BASEMAP_COLORS.sea } },
-      ...layersOf(BASEMAP_SOURCES.detail),
-      ...labelsOf(BASEMAP_SOURCES.world, outsideDetail),
-      ...labelsOf(BASEMAP_SOURCES.detail, null),
+      { id: 'basemap-world-land', type: 'fill', source: world, 'source-layer': 'land', paint: { 'fill-color': BASEMAP_COLORS.plain } },
+      { id: 'basemap-world-lakes', type: 'fill', source: world, 'source-layer': 'lakes', paint: { 'fill-color': BASEMAP_COLORS.sea } },
+      { id: 'basemap-world-borders', type: 'line', source: world, 'source-layer': 'borders', layout: { 'line-join': 'round' }, paint: { 'line-color': BASEMAP_COLORS.border, 'line-width': 1, 'line-dasharray': [3, 1.5] } },
+      { id: 'basemap-bd-box', type: 'fill', source: 'basemap-bd-box', minzoom: 3, paint: { 'fill-color': BASEMAP_COLORS.sea } },
+      ...plainNoRivers(bd),
+      { id: 'basemap-detail-mask', type: 'fill', source: bdDetail, 'source-layer': 'detail_extent', paint: { 'fill-color': BASEMAP_COLORS.sea } },
+      ...plainNoRivers(bdDetail),
+      ...labels(bd, outsideDetail),
+      ...labels(bdDetail, null),
     ],
   };
 }
@@ -493,8 +560,8 @@ function dependsOn(sourceSpec) {
 /** A source's features, with its declared state written into each one. */
 function derive(name, spec) {
   const all = deriveAll(name, spec);
-  if (!spec.records || isBaselineSource(name) || ((!recordFilter || filteredOut.size === 0) && !hiders.length)) return all;
-  return { ...all, features: all.features.filter((f) => onMap(spec.records, f.properties.key)) };
+  if (!spec.records || isBaselineSource(name) || ((!recordFilter || filteredOut.size === 0) && !hiders.length && !mapHiders.length)) return all;
+  return { ...all, features: all.features.filter((f) => onMap(spec.records, f.properties.key) && !offMap(spec.records, f.properties.key)) };
 }
 
 function deriveAll(name, spec) {
@@ -552,8 +619,18 @@ function pick(row, keys) {
 | run once everything else is built. `shell` is the one surface a module has.
 |--------------------------------------------------------------------------
 */
-const SHELL_MODULES = { tabs: './tabs.js?v=1d60c1381b', timeline: './timeline.js?v=1d60c1381b', globe: './globe.js?v=1d60c1381b' };
+const SHELL_MODULES = {
+  tabs: './tabs.js?v=4dbc90b9b6',
+  timeline: './timeline.js?v=4dbc90b9b6',
+  globe: './globe.js?v=4dbc90b9b6',
+  focus: './focus.js?v=4dbc90b9b6',
+  legend: './legend.js?v=4dbc90b9b6',
+  info: './info.js?v=4dbc90b9b6',
+};
 const hiders = []; // (table, key) => true takes a record off the map, the picker and ‹ ›
+// (table, key) => true takes a record off the map only: the picker and ‹ › still list it (the focus module).
+const mapHiders = [];
+const offMap = (table, key) => mapHiders.some((hide) => hide(table, key));
 const changeListeners = []; // (what) => …, after a selection ('select') or a change in what is shown ('filter')
 const changed = (what) => changeListeners.forEach((listener) => listener(what));
 const moduleActions = {}; // action name -> (action, context) => …, what a module adds to select and fitBounds
@@ -575,6 +652,9 @@ const shell = {
   selection,
   shown: onMap,
   hide: (hider) => hiders.push(hider),
+  hideOnMap: (hider) => mapHiders.push(hider),
+  drawn: (table, key) => onMap(table, key) && !offMap(table, key),
+  file: (name) => mapFile(name.replace(/^\.\//, '')),
   build: { style: {}, options: {} },
   tapsOwned: false,
   actions: moduleActions,
@@ -610,7 +690,10 @@ remember('protocol', 'pmtiles', () => maplibregl.removeProtocol('pmtiles'));
 // Only a bounded basemap is asked for its metadata; the world archive needs
 // none, and its requests stay exactly what they were.
 const region = basemap.bounded ? (await tileArchive.getMetadata()).geoquest : null;
-const style = basemap.style(archive, region);
+// A basemap drawn from two archives (`also`, under the first) registers the second on the same protocol.
+const alsoArchive = basemap.also ? resolver.pmtilesSource(basemap.also) : null;
+if (alsoArchive) protocol.add(new window.pmtiles.PMTiles(alsoArchive.archive));
+const style = basemap.style(archive, region, alsoArchive);
 const SLOTS = style.metadata.slots;
 
 const view = descriptor.view ?? {};
@@ -918,10 +1001,11 @@ function geometryKind(name, spec) {
   return 'point';
 }
 
-function hitLayerPaint(kind) {
-  if (kind === 'line') return { type: 'line', paint: { 'line-width': 22, 'line-color': '#000000', 'line-opacity': 0 } };
+// A source may widen its target (`tapWidth`, px): a thin river is a hard line to hit with a finger.
+function hitLayerPaint(kind, width) {
+  if (kind === 'line') return { type: 'line', paint: { 'line-width': width ?? 22, 'line-color': '#000000', 'line-opacity': 0 } };
   if (kind === 'fill') return { type: 'fill', paint: { 'fill-color': '#000000', 'fill-opacity': 0 } };
-  return { type: 'circle', paint: { 'circle-radius': 22, 'circle-color': '#000000', 'circle-opacity': 0 } };
+  return { type: 'circle', paint: { 'circle-radius': (width ?? 44) / 2, 'circle-color': '#000000', 'circle-opacity': 0 } };
 }
 
 /*
@@ -944,7 +1028,7 @@ function hitLayerBefore(source) {
 for (const source of interactionSources) {
   own.layer(
     map,
-    { id: hitLayerId(source), source, ...hitLayerPaint(geometryKind(source, sourceSpecs[source])) },
+    { id: hitLayerId(source), source, ...hitLayerPaint(geometryKind(source, sourceSpecs[source]), sourceSpecs[source].tapWidth) },
     hitLayerBefore(source),
   );
 }
@@ -2174,7 +2258,7 @@ infoRow.querySelector('.maplibregl-ctrl-attrib')?.removeAttribute('open');
 // The shell adds the basemap, so it is the only thing that can tell a basemap
 // failure from an overlay one. The copy is generic Bengali; a descriptor never
 // writes it.
-const basemapSourceIds = new Set(Object.values(BASEMAP_SOURCES));
+const basemapSourceIds = new Set([...Object.values(BASEMAP_SOURCES), ...Object.keys(style.sources).filter((id) => style.sources[id].type === 'vector')]);
 own.mapHandler(map, 'error', (event) => {
   console.error('Map error:', event?.error);
   if (event && basemapSourceIds.has(event.sourceId)) dom.loadNotice.classList.add('visible');
@@ -2259,4 +2343,15 @@ Object.assign(shell, {
 for (const module of modules) module.install?.(shell);
 
 // The only surface the shell exposes, for the harness and for switchMap later.
-window.__shell = { map, teardown, assertNoLeaks, registrySize: () => registry.length, descriptor };
+window.__shell = {
+  map,
+  teardown,
+  assertNoLeaks,
+  registrySize: () => registry.length,
+  descriptor,
+  // For the harness on a focus map (tools/check.mjs): every key a source can draw, whatever is hidden now,
+  // the records, and a way back to nothing selected.
+  records,
+  keysOf: (source) => [...new Set((deriveAll(source, sourceSpecs[source]).features ?? []).map((f) => f.properties?.key).filter((k) => k !== undefined))],
+  deselect: clearSelection,
+};

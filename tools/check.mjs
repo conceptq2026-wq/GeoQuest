@@ -2,6 +2,7 @@
 // closes on exit.
 //
 //   node tools/check.mjs <id>              the item, used as a student would
+//   node tools/check.mjs --fixture=<dir>   a test map outside docs/, served as a map of its own
 //   node tools/check.mjs --baseline        every registry entry, stored
 //   node tools/check.mjs --all             every registry entry, against the stored baseline
 //   node tools/check.mjs <id> --live       the live site against the pushed files
@@ -19,6 +20,11 @@
 // Screenshots go to tools/.check/<id>/ as contact sheets, never to stdout. A
 // work-in-progress item with nothing built yet opens the preview's «কাজ চলছে»
 // page, and only its card and that page are checked.
+//
+// --fixture=<dir> proves a shell capability on a test map kept outside docs/
+// (tools/fixtures/<name>/: a descriptor and its files, never published): the
+// preview copies it in as maps/<name>/ with a registry entry of its own, and
+// it is checked as an <id> is, with its sheets in tools/.check/<name>/.
 //
 // --baseline and --all open every registry entry at both sizes and keep, or
 // compare, its requests (with their Range headers), its console and its
@@ -78,10 +84,12 @@ const tag = ([w, h]) => `${w}x${h}`;
 
 const args = process.argv.slice(2);
 const since = args.find((a) => a.startsWith('--since='))?.slice('--since='.length);
-const flags = new Set(args.filter((a) => a.startsWith('--') && !a.startsWith('--since=')));
-const ids = args.filter((a) => !a.startsWith('--'));
+// --fixture=<dir>: a test map kept outside docs/ (tools/fixtures/), mounted into the served copy only.
+const fixture = args.find((a) => a.startsWith('--fixture='))?.slice('--fixture='.length);
+const flags = new Set(args.filter((a) => a.startsWith('--') && !a.startsWith('--since=') && !a.startsWith('--fixture=')));
+const ids = fixture ? [path.basename(fixture)] : args.filter((a) => !a.startsWith('--'));
 const usage = () => {
-  console.error('usage: node tools/check.mjs <id> | <id> --live [--since=<rev>] | --baseline | --all');
+  console.error('usage: node tools/check.mjs <id> | --fixture=<dir> | <id> --live [--since=<rev>] | --baseline | --all');
   process.exit(2);
 };
 for (const f of flags) if (!['--baseline', '--all', '--live'].includes(f)) usage();
@@ -94,6 +102,10 @@ if (flags.has('--baseline') || flags.has('--all')) {
 
 const readJson = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
 function entryOf(id) {
+  if (fixture) {
+    const d = readJson(path.join(fixture, 'descriptor.json'));
+    return { id, kind: 'map', section: d.section, title: d.title, wip: true, fixture: true };
+  }
   const listed = readJson(path.join(DOCS, 'registry.json')).maps.find((m) => m.id === id);
   if (listed) return { ...listed, kind: listed.kind ?? 'map', wip: false };
   const wip = (readJson(WIP).items ?? []).find((m) => m.id === id);
@@ -441,7 +453,8 @@ function tapFinder() {
     for (const s of sources) for (const f of (await map.getSource(s).getData()).features) if (f.properties?.selected === true) out.push(`${s}:${f.properties.key}`);
     return out;
   }
-  window.__check = { sources, features, find, bring, reset, selected, pickerTable, namesOf: async (s, k) => namesOf(await featureOf(s, k)) };
+  // A focus map's sources change with the selection: `forget` drops what was read of them.
+  window.__check = { sources, features, find, bring, reset, selected, pickerTable, namesOf: async (s, k) => namesOf(await featureOf(s, k)), forget: () => cache.clear() };
   return sources;
 }
 
@@ -458,7 +471,7 @@ async function checkItem(id) {
   fs.rmSync(dir, { recursive: true, force: true });
   fs.mkdirSync(path.join(dir, 'shots'), { recursive: true });
 
-  const made = makeSite({ site: SITE_COPY, quiet: true });
+  const made = makeSite({ site: SITE_COPY, quiet: true, fixtures: fixture ? [path.resolve(fixture)] : [] });
   const server = await serveSite({ ...made, prefix: PREFIX, extra: { [SHEETS]: OUT } });
   const origin = `http://127.0.0.1:${server.address().port}`;
   const base = origin + PREFIX;
@@ -948,15 +961,34 @@ async function taps(page, shoot, summary, fail, sources, tabs, camera) {
       const at = await page.evaluate(`(() => { const b = document.querySelectorAll('.map-tab')[${t}]; const r = b.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; })()`);
       await page.click(...at);
       await settle(page, 10000);
+      // Each tab as it opens, on its own frame (a view tab's, or the map's own).
+      const name = await page.evaluate(`document.querySelectorAll('.map-tab')[${t}].textContent.trim()`);
+      await shoot('views', `tab «${name}»`);
     }
     for (const source of sources) {
-      const keys = await page.evaluate(`window.__check.features(${JSON.stringify(source)})`);
+      // A focus map draws only what the selection is about: every key the source can draw is tapped, each
+      // after the picker has put its river (a branch's parent, a marker's owner) in view, or with nothing
+      // selected for a record drawn at rest — as a student reaches it.
+      const focus = await page.evaluate('!!window.__shell.descriptor.focus');
+      const keys = await page.evaluate(focus ? `window.__shell.keysOf(${JSON.stringify(source)})` : `window.__check.features(${JSON.stringify(source)})`);
       for (const key of keys) {
         total++;
         // A card with a × is closed first, so the tap has something to open.
         const close = (await page.evaluate(box('.globe-card-close'))) ?? (await page.evaluate(box('.timeline-card-close')));
         if (close) {
           await page.click(...close);
+          await settle(page, 10000);
+        }
+        if (focus) {
+          await page.evaluate(`(() => {
+            const s = window.__shell; const f = s.descriptor.focus; const table = s.descriptor.sources[${JSON.stringify(source)}].records;
+            const also = (f.also ?? []).find((a) => a.records === table);
+            const via = table === f.records ? s.records[table][${JSON.stringify(key)}]?.[f.parent] : also ? s.records[table][${JSON.stringify(key)}]?.[also.field] : null;
+            s.deselect();
+            const picker = document.getElementById('recordPicker');
+            if (via != null && picker && !picker.hidden) { picker.value = via; picker.dispatchEvent(new Event('change', { bubbles: true })); }
+            window.__check.forget();
+          })()`);
           await settle(page, 10000);
         }
         // Each record from the map's opening camera, so no record's view carries over to the next.
