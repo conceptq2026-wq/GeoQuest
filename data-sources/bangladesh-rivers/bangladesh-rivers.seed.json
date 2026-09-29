@@ -43,7 +43,7 @@
       "main": "মূল নদী",
       "tributary": "উপনদী",
       "distributary": "শাখা নদী",
-      "disputed": "উপনদী/শাখা নদী (বইয়ে ভিন্নমত)",
+      "disputed": "সম্পর্ক নিয়ে বইয়ে ভিন্নমত",
       "origin": "উৎপত্তি",
       "entry": "প্রবেশস্থল",
       "confluence": "মিলনস্থল",
@@ -429,6 +429,12 @@
       "publisher": "Bengali Wikipedia (revision 7058138; read 2026-09-29)",
       "url": "https://bn.wikipedia.org/w/index.php?oldid=7058138",
       "sha256": "304af173a6f41b4a5e9f6001c92a171c43bbf2ec8a8b7fbe8d80dfed333ea473"
+    },
+    "bwdbList": {
+      "title": "List of Rivers",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (BRIMS): the list page’s data, POST /RiverInfo/GetAllRiverInfo_In_IndexPage, 1,415 rivers (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo",
+      "sha256": "a8f589420035aa1152db9f39825685cc8f3bb55b4cdd7878a682a579492169b2"
     }
   },
   "countries": {
@@ -824,6 +830,16 @@
             "source": "user",
             "where": "the rule: a river with no usable pinned line is left out, never drawn from memory",
             "states": "the user, 2026-09-29"
+          },
+          {
+            "source": "bwdbList",
+            "where": "riverNameBn and riverOtherNameBn of all 1,415 rows [B5-G5]",
+            "states": "no চিংড়ি form; EH-5 «চেঙ্গী», other name «চেঙে»"
+          },
+          {
+            "source": "user",
+            "where": "decision 1: the Chingri is drawn only if the BWDB list or an NCTB book states that it and the Chengi are one river, then under that source’s name; no swap by inference",
+            "states": "the user, 2026-09-29"
           }
         ]
       },
@@ -922,6 +938,116 @@
             "source": "user",
             "where": "decision 4: no line and no tributary card, one ⓘ line",
             "states": "the user, 2026-09-29"
+          }
+        ]
+      },
+      {
+        "textBn": "মনু ও খোয়াইয়ের উৎপত্তি: কার্ডে পানি উন্নয়ন বোর্ডের তথ্য, «ভারত»; যৌথ নদী কমিশনের তালিকায় মনু — «ভারতের ত্রিপুরার পাহাড়», খোয়াই — «ভারতের ত্রিপুরার পুর্বাঞ্চলের পাহাড়»।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "bwdbNE66",
+            "where": "§1.1 বর্ণনা; §1.4 [B4-G2]",
+            "states": "মনু নদী ভারত হতে উৎপন্ন হয়ে; ভারত"
+          },
+          {
+            "source": "bwdbNE22",
+            "where": "§1.1 বর্ণনা; §1.4 [B4-G6]",
+            "states": "নদীটি ভারত হতে উৎপন্ন হয়ে; ভারত"
+          },
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, row ৪১, col ৩ উৎপত্তিস্থল [B4-J1]",
+            "states": "ভারতের ত্রিপুরার পাহাড়"
+          },
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, row ৪৪, col ৩ উৎপত্তিস্থল [B4-J1]",
+            "states": "ভারতের ত্রিপুরার পুর্বাঞ্চলের পাহাড়"
+          },
+          {
+            "source": "user",
+            "where": "decision 5: BWDB’s «ভারত» on the card, JRC’s wording in ⓘ as printed",
+            "states": "the user, 2026-09-29"
+          }
+        ]
+      },
+      {
+        "textBn": "কুমার (চুয়াডাঙ্গা): পানি উন্নয়ন বোর্ডের নদী-তালিকায় কুমার নামে আরও চারটি নদী আছে — কুমার (ফরিদপুর-গোপালগঞ্জ), কুমার (আপার), কুমার (লোয়ার) ও কুমার/ মুচিখা। ছবিতে আঁকা হয়েছে তালিকার «কুমার (চুয়াডাঙ্গা-ঝিনাইদহ-কুষ্টিয়া-মাগুরা)», যার স্থানীয় নাম কুমার (চুয়াডাঙ্গা)।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "bwdbList",
+            "where": "riverNameBn of SW-11, SW-12, SW-13, SW-318",
+            "states": "কুমার (ফরিদপুর-গোপালগঞ্জ); কুমার (আপার); কুমার (লোয়ার); কুমার/ মুচিখা"
+          },
+          {
+            "source": "bwdbList",
+            "where": "SW-10, riverNameBn and riverOtherNameBn",
+            "states": "কুমার (চুয়াডাঙ্গা-ঝিনাইদহ-কুষ্টিয়া-মাগুরা); কুমার (চুয়াডাঙ্গা)"
+          },
+          {
+            "source": "bwdbSW10",
+            "where": "§1.1 «স্থানীয় নাম» [B2-G1]",
+            "states": "কুমার (চুয়াডাঙ্গা)"
+          }
+        ]
+      },
+      {
+        "textBn": "চিত্রা (চুয়াডাঙ্গা): পানি উন্নয়ন বোর্ডের নদী-তালিকায় চিত্রা নামে আরও দুটি নদী আছে — চিত্রা (বাগেরহাট), আর তালেশ্বর, যার অন্য নাম চিত্রা/ ভাষা। ছবিতে আঁকা হয়েছে তালিকার «চিত্রা», যার নদী-পাতায় নাম চিত্রা (চুয়াডাঙ্গা)।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "bwdbList",
+            "where": "SW-115 riverNameBn; SW-228 riverNameBn and riverOtherNameBn",
+            "states": "চিত্রা (বাগেরহাট); তালেশ্বর — চিত্রা/ ভাষা"
+          },
+          {
+            "source": "bwdbList",
+            "where": "SW-34, riverNameBn",
+            "states": "চিত্রা"
+          },
+          {
+            "source": "bwdbSW34",
+            "where": "§1.1 [B2-G6]",
+            "states": "চিত্রা (চুয়াডাঙ্গা)"
+          }
+        ]
+      },
+      {
+        "textBn": "ভৈরব (যশোর): পানি উন্নয়ন বোর্ডের নদী-তালিকায় ভৈরব নামে আরেকটি নদী আছে — ভৈরব (বাগেরহাট)। ছবিতে আঁকা হয়েছে তালিকার «ভৈরব», যার তীরে যশোর জেলা শহর।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "bwdbList",
+            "where": "SW-69, riverNameBn",
+            "states": "ভৈরব (বাগেরহাট)"
+          },
+          {
+            "source": "bwdbList",
+            "where": "SW-68, riverNameBn",
+            "states": "ভৈরব"
+          },
+          {
+            "source": "bwdbSW68",
+            "where": "§1.1 বর্ণনা [B2-G3]",
+            "states": "যশোর জেলা শহর এ নদীর তীরে অবস্থিত।"
+          }
+        ]
+      },
+      {
+        "textBn": "তিতাস (ব্রাহ্মণবাড়িয়া): পানি উন্নয়ন বোর্ডের নদী-তালিকায় তিতাস নামে আরও পাঁচটি নদী আছে — তিতাস (হোমনা), তিতাস (লালপুর মৌজা-কুমিল্লা), তিতাস (লোয়ার), তিতাস (নরসিংদী সদর-বাঞ্ছারামপুর) ও তিতাস (শাখা)। ছবিতে আঁকা হয়েছে তালিকার «তিতাস (ব্রাহ্মণবাড়িয়া)»।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "bwdbList",
+            "where": "riverNameBn of SE-58, SE-72, SE-45, SE-10, SE-76",
+            "states": "তিতাস (হোমনা); তিতাস (লালপুর মৌজা-কুমিল্লা); তিতাস (লোয়ার); তিতাস (নরসিংদী সদর-বাঞ্ছারামপুর); তিতাস (শাখা)"
+          },
+          {
+            "source": "bwdbSE9",
+            "where": "the heading [B3-G6]",
+            "states": "তিতাস (ব্রাহ্মণবাড়িয়া)"
           }
         ]
       },

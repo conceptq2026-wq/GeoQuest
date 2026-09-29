@@ -39,8 +39,9 @@ finishes it. It is not in `docs/registry.json`.
     `karnaphuli` from the lake's Kaptai arm to the sea, 14.6 km apart across
     the lake, which is not drawn), the Kasalong and the Halda (tributaries).
     Left out: the Boalkhali and the Rankhiang (no OSM way carries either
-    name) and the Chingri (OSM's only candidate is the «চেঙ্গী»; the user
-    decides). The Meghna system (Stage 2, batch 3): the Meghna (a card; two
+    name) and the Chingri (OSM's only candidate is the «চেঙ্গী», and no
+    cited source says the two are one river: the user's decision 1 of Stage
+    3, below). The Meghna system (Stage 2, batch 3): the Meghna (a card; two
     main lines, `meghnaUpper` from where OSM first names it, near Austagram,
     to Bhairab, and the pinned `meghna` on to 22.38°N, which was the grey
     continuation), and in the `disputed` style the Barak (dashed, in India),
@@ -63,8 +64,8 @@ finishes it. It is not in `docs/registry.json`.
 - **Line roles:** `main`, `tributary`, `distributary`, `continuation`,
   and `disputed` (Stage 2, the user's rule b): a river the two books give
   different roles is drawn violet (#7e57c2), neither role's colour, and the
-  legend names it «উপনদী/শাখা নদী (বইয়ে ভিন্নমত)» (proposed wording, for the
-  user's approval); its «সম্পর্ক» row is null and ⓘ gives both books' words. Which end of a line meets its parent is its mouth for a
+  legend names it «সম্পর্ক নিয়ে বইয়ে ভিন্নমত» (the user's wording, Stage 3
+  decision 3); its «সম্পর্ক» row is null and ⓘ gives both books' words. Which end of a line meets its parent is its mouth for a
   tributary, its head for a distributary or for a main river's later piece;
   a `disputed` line says which (`join.end`), as its course decides.
 - **River systems** (Stage 1, the user's decisions of 2026-09-29): the data
@@ -164,6 +165,31 @@ finishes it. It is not in `docs/registry.json`.
      the picker, from the cited sources; a BWDB entry is matched by geometry or
      district only.
   6. The new tabs and the Padma's «পুরো পথ» frame come in the final stage.
+- **Rules from Stage 3's decisions** (the user's, 2026-09-29):
+  1. No swap by inference. A river is drawn under another name only when a
+     cited source — the BWDB list or an NCTB book — states the two are one
+     river, and then under that source's name with that citation; an
+     encyclopaedia saying so is not enough. So the Chingri stays out (BWDB's
+     list has only EH-5 «চেঙ্গী», other name «চেঙে»; bn Wikipedia's
+     «চেঙ্গি নদী বা চিংড়ি নদী» does not count), and ⓘ names it as not drawn.
+  2. What lies outside the Bangladesh frame is not drawn in it: the
+     Karnaphuli's upstream in Mizoram waits for Stage 4 (below).
+  3. The violet style's legend wording is «সম্পর্ক নিয়ে বইয়ে ভিন্নমত».
+  4. The Kushiyara's other names stay pending.
+  5. Where BWDB and JRCB word one origin differently (the Manu and the
+     Khowai: BWDB «ভারত», JRCB «ভারতের ত্রিপুরার পাহাড়» and «… পুর্বাঞ্চলের
+     পাহাড়», as printed), BWDB's goes on the card and JRCB's in ⓘ.
+  6. Every bracketed picker name — «কুমার (চুয়াডাঙ্গা)», «চিত্রা (চুয়াডাঙ্গা)»,
+     «ভৈরব (যশোর)», «তিতাস (ব্রাহ্মণবাড়িয়া)», and each one after — has an ⓘ
+     line naming the other rivers of that name in BWDB's river list and which
+     one is drawn, cited to the list (`bwdbList`, the list page's JSON,
+     SHA-256 a8f58942…) and the drawn river's own BWDB page.
+- **Stage 4, the final stage** (collected here as decided):
+  - the new tabs, and the «পুরো পথ» frame for the Padma;
+  - in «পুরো পথ», the Karnaphuli's upstream in Mizoram, dashed, with an ⓘ
+    line citing Bengali Wikipedia that the Khawthlangtuipui is the
+    Karnaphuli's upstream (the user's decision 2 of Stage 3); never in the
+    Bangladesh frame.
 - **Kaptai** (decision 4): no line and no card; one ⓘ note that B910 names it
   a Karnaphuli tributary while our maps show it as a lake.
 - **A marker's card names only what COD-AB agrees with** (the user's policy,

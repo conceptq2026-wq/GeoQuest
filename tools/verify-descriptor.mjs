@@ -98,7 +98,7 @@ const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa
 const BANGLADESH_RIVERS_SEEDS = path.join(ROOT, 'data-sources/bangladesh-rivers');
 // One pin per seed file: the common file and each system's (tools/lib/rivers-seed.mjs).
 const BANGLADESH_RIVERS_SEED_SHA256 = {
-  'bangladesh-rivers.seed.json': '8c8269b4f4994c04660a19ebddcdf040453f5cdcddabf2ba3b4474b9e3d8472c',
+  'bangladesh-rivers.seed.json': 'dfa055b7cc5b288ff6c318eb946fc533d2ed7fac87a1f425077b95cf2f07cd15',
   'systems/jamuna.seed.json': '2cdb4cbdbf0f5fd9eadd7a86329770e83056e30ec5ae5c8441b77b18d716e3d8',
   'systems/padma.seed.json': '6c25624eabb26e0bbc11913b84251a5704c632e8affaef80ee9ef4573e84a137',
   'systems/meghna.seed.json': '194545cc305d7c71954bb21022583d8ee411a307d3b76951871060e1641ae353',

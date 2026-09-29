@@ -265,7 +265,16 @@ by map. **Nothing is guessed to fill a gap.**
   neutral style the legend explains. A spelling that differs between sources is
   never corrected silently: the card keeps one source's and ⓘ notes the
   other's. A same-name government entry is matched to a drawn feature only by
-  its geometry or district, else the field stays pending.
+  its geometry or district, else the field stays pending; a picker name
+  bracketed to tell same-name rivers apart gets an ⓘ line naming the others in
+  the government's list and which one is drawn, cited.
+- **No swap by inference** (the user's decision, 2026-09-29): a feature is
+  drawn under another name only when a cited source — the government's list
+  or an NCTB book — states the two are one; an encyclopaedia saying so is not
+  enough. Otherwise it stays out and ⓘ names it as not drawn. Where two
+  government bodies word one place differently (BWDB «ভারত», JRC «ভারতের
+  ত্রিপুরার পাহাড়»), the first in the source order goes on the card, the
+  other in ⓘ.
 - The user's own verification is recorded as editor-verified with a date, and
   stays distinguishable from a cited source.
 - Never invent Bengali content. An unsupplied Bengali field is `null`.
