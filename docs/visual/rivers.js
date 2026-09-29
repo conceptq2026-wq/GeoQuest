@@ -30,7 +30,7 @@
 | Every word shown is the descriptor's or the data's.
 */
 
-import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=0c6723562a';
+import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=2120da1993';
 
 const ZOOM_MAX = 6;
 // CSS px: a press that moves less than this is a tap; two taps within DOUBLE_MS and DOUBLE_PX are a double tap.
@@ -87,7 +87,7 @@ function glyph(kind) {
 export async function mount(panel, { view, descriptor, data, art }) {
   const words = descriptor.words;
   const frame = await art;
-  await Promise.all([stylesheet('../shared/picker.css?v=0c6723562a'), stylesheet('./rivers.css?v=0c6723562a')]);
+  await Promise.all([stylesheet('../shared/picker.css?v=2120da1993'), stylesheet('./rivers.css?v=2120da1993')]);
 
   const fw = frame.projection.width;
   const fh = frame.projection.height;
