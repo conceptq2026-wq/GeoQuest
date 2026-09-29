@@ -76,6 +76,13 @@ BCS / government exam prep.
   include any e-mail address in any request, file or note."
   `tools/verify.mjs` fails a fetching tool without that UA, and any tracked
   file holding an e-mail-address pattern outside its commented allow-list.
+- **Commits use the no-reply identity** (the user's rule, 2026-09-29): the
+  repo-local `git config` sets `user.name` conceptq2026-wq and `user.email`
+  `319420647+conceptq2026-wq@users.noreply.github.com` (the id read from
+  GitHub's public API, never guessed). The user's personal e-mail never
+  appears in commit metadata — author or committer. Unpushed commits that
+  carry it are rewritten (a backup branch first, the tree proved identical);
+  pushed commits are never rewritten or force-pushed.
 
 ## Pinned, do not bump
 
