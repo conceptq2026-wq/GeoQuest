@@ -526,6 +526,36 @@
       "publisher": "Banglapedia (Bengali; oldid 1196, last edited 2014-05-04; Internet Archive capture 2024-11-27; read 2026-09-29)",
       "url": "https://web.archive.org/web/20241127204322/https://bn.banglapedia.org/index.php?title=কীর্তনখোলা_নদী",
       "sha256": "f0e0662e9cf299e277d248c0563f68547c2988f80d15be1196ce63edf6a529c9"
+    },
+    "bwdbSW51": {
+      "title": "পশুর (নদীর তথ্য, SW-51)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&Rivers=259",
+      "sha256": "07d54643c83e859c341f5d57e1decbe5609529fd8181816b09171bc387e3e91d"
+    },
+    "bwdbSW92": {
+      "title": "সয়া-হাড়িভাঙ্গা (নদীর তথ্য, SW-92)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&Rivers=312",
+      "sha256": "ae2f3f258a5f6e371976e74f669b68b5bf65582c4663b9de78fcdb0025834a1e"
+    },
+    "bwdbSW7": {
+      "title": "ইছামতি-কালিন্দি (নদীর তথ্য, SW-7)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&Rivers=210",
+      "sha256": "05a624abdb03e89f1bccc04bf237fb7c445e2ac02ae6b31aa86fd85dc3191f48"
+    },
+    "bwdbNW134": {
+      "title": "বড়াল (নদীর তথ্য, NW-134)",
+      "publisher": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=4&Rivers=138",
+      "sha256": "6ae46eee57c78cd782ad5a254ec5b71df3a100a184559e516a65cab4749fe83d"
+    },
+    "bnwRupsa": {
+      "title": "রূপসা নদী",
+      "publisher": "Bengali Wikipedia (revision 7982899; read 2026-09-29)",
+      "url": "https://bn.wikipedia.org/w/index.php?oldid=7982899",
+      "sha256": "3e5d311d75f70c3e614497a25ebeb06eeb44fa642e929248cf16c5acbbfa93b0"
     }
   },
   "countries": {
@@ -566,7 +596,8 @@
         "padma-b7": "tools/sources/osm-bangladesh-rivers-padma-b7.geojson",
         "southeast": "tools/sources/osm-bangladesh-rivers-southeast.geojson",
         "meghna-b9": "tools/sources/osm-bangladesh-rivers-meghna-b9.geojson",
-        "padma-b9": "tools/sources/osm-bangladesh-rivers-padma-b9.geojson"
+        "padma-b9": "tools/sources/osm-bangladesh-rivers-padma-b9.geojson",
+        "padma-b8": "tools/sources/osm-bangladesh-rivers-padma-b8.geojson"
       }
     },
     "frames": {
@@ -681,7 +712,7 @@
     "_about": "Plain lines under ⓘ, in two headed blocks after the sources (`group`: notes, then conflicts; ui.creditGroupsBn names the three blocks), each in this order (the user's decisions, Prompt 40 Part B, 2026-09-29): the two lines on the drawn joins, in the user's words; where COD-AB puts the drawn lines' ends that a card's source words place otherwise; the Karatoya that is not drawn; then one line per source conflict, the card's (winning) value first — the source order is the books («ভূগোল ও পরিবেশ» before «বাংলাদেশ ও বিশ্বপরিচয়»), BWDB and JRCB, Bengali then English Wikipedia, newspapers, Banglapedia.",
     "lines": [
       {
-        "textBn": "নদীর সংযোগ-রেখা (ধরলা, তিস্তা, শীতলক্ষ্যা, ধলেশ্বরী, আড়িয়াল খাঁ, মহানন্দা, ভাগীরথী, ভৈরব, কপোতাক্ষ, নবগঙ্গা, চিত্রা, সুরমা, কুশিয়ারা, মনু, গোমতী, খোয়াই, সাঙ্গু, মোগরা) আনুমানিক আঁকা।",
+        "textBn": "নদীর সংযোগ-রেখা (ধরলা, তিস্তা, শীতলক্ষ্যা, ধলেশ্বরী, আড়িয়াল খাঁ, মহানন্দা, ভাগীরথী, ভৈরব, কপোতাক্ষ, নবগঙ্গা, চিত্রা, সুরমা, কুশিয়ারা, মনু, গোমতী, খোয়াই, সাঙ্গু, মোগরা, পশুর, হাড়িয়াভাঙ্গা) আনুমানিক আঁকা।",
         "group": "notes",
         "sources": [
           {
@@ -718,6 +749,11 @@
             "source": "osm",
             "where": "the gap the batch b9 connector bridges: the Mogra’s upper piece to its lower, 9.9 km",
             "states": "no named way between"
+          },
+          {
+            "source": "osm",
+            "where": "the gaps the batch b8 connectors bridge: the Pashur’s two pieces, 363 m; the Harinbhanga’s head to the Ichamati, 8.4 km",
+            "states": "an unnamed 0.4 km way; the unnamed channel 102147643"
           }
         ]
       },
@@ -786,7 +822,7 @@
         ]
       },
       {
-        "textBn": "ডেটায় যতদূর নদীপথ পাওয়া গেছে ততদূর আঁকা হয়েছে, তাই কিছু নদীর আঁকা রেখা কার্ডে লেখা উৎপত্তিস্থল থেকে শুরু হয়নি (যেমন করতোয়া, আত্রাই, ধলেশ্বরী, বংশী, শীতলক্ষ্যা, পুরাতন ব্রহ্মপুত্র, মধুমতী, ভাগীরথী, কুমার, ভৈরব, কপোতাক্ষ, গোমতী, কর্ণফুলী, হালদা, ট্যাংগন, ফেনী, সাঙ্গু, মাতামুহুরী)।",
+        "textBn": "ডেটায় যতদূর নদীপথ পাওয়া গেছে ততদূর আঁকা হয়েছে, তাই কিছু নদীর আঁকা রেখা কার্ডে লেখা উৎপত্তিস্থল থেকে শুরু হয়নি (যেমন করতোয়া, আত্রাই, ধলেশ্বরী, বংশী, শীতলক্ষ্যা, পুরাতন ব্রহ্মপুত্র, মধুমতী, ভাগীরথী, কুমার, ভৈরব, কপোতাক্ষ, গোমতী, কর্ণফুলী, হালদা, ট্যাংগন, ফেনী, সাঙ্গু, মাতামুহুরী, হাড়িয়াভাঙ্গা)।",
         "group": "notes",
         "sources": [
           {
@@ -1445,6 +1481,95 @@
           {
             "source": "user",
             "where": "the rule: a river with no usable pinned line is left out",
+            "states": "the user, 2026-09-29"
+          }
+        ]
+      },
+      {
+        "textBn": "ইছামতী (সাতক্ষীরা): পানি উন্নয়ন বোর্ডের নদী-তালিকায় ইছামতি নামে আরও অনেক নদী আছে — বগুড়া, ঢাকা, দিনাজপুর, খুলনা, মানিকগঞ্জ, ময়মনসিংহ, পাবনা, রাঙ্গামাটি, সিরাজদিখান ও সিরাজগঞ্জের ইছামতি, আর ইছামতি-মইদারা, ইছামতি-মরা বাঙালী, ইছামতি/ নাচনিয়া, মরা ইছামতি ও বেলাই (অন্য নাম ইছামতি)। ছবিতে আঁকা হয়েছে তালিকার «ইছামতি-কালিন্দি», যাতে মাথাভাঙ্গা পড়েছে।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "bwdbList",
+            "where": "riverNameBn and riverOtherNameBn of NW-10, NC-71, NW-8, SW-260, NC-4, NE-185, NW-9, EH-1, NC-5, NW-11, SW-196, NW-132, NW-232, NW-158, SW-227",
+            "states": "ইছামতি (বগুড়া); ইছামতি (ঢাকা); ইছামতি (দিনাজপুর); ইছামতি (খুলনা); ইছামতি (মানিকগঞ্জ); ইছামতি (ময়মনসিংহ); ইছামতি (পাবনা); ইছামতি (রাঙ্গামাটি); ইছামতি (সিরাজদিখান); ইছামতি (সিরাজগঞ্জ); ইছামতি-মইদারা; ইছামতি-মরা বাঙালী; ইছামতি/ নাচনিয়া (ইচ্ছামতি); মরা ইছামতি; বেলাই — ইছামতি"
+          },
+          {
+            "source": "bwdbList",
+            "where": "SW-7, riverNameBn",
+            "states": "ইছামতি-কালিন্দি"
+          },
+          {
+            "source": "bwdbSW76",
+            "where": "§1.1 বর্ণনা [B2-G2]",
+            "states": "ভারতে প্রবেশ করে ইছামতি-কালিন্দি নদীতে পতিত হয়"
+          }
+        ]
+      },
+      {
+        "textBn": "ইছামতীর উৎপত্তি: কার্ডে পানি উন্নয়ন বোর্ডের তথ্য; যৌথ নদী কমিশনের তালিকায় «ভারতের পশ্চিমবঙ্গের নদিয়া জেলার মাঝদিয়ার নিকটে মাথাভাঙ্গা নদী»।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "bwdbSW7",
+            "where": "§1.1 বর্ণনা [B8-G4]",
+            "states": "নদীটি ভারতের পশ্চিমবঙ্গে মাথাভাঙ্গা নদী হতে উৎপন্ন হয়ে"
+          },
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, row ২, উৎপত্তিস্থল [B8-J1]",
+            "states": "ভারতের পশ্চিমবঙ্গের নদিয়া জেলার মাঝদিয়ার নিকটে মাথাভাঙ্গা নদী"
+          },
+          {
+            "source": "user",
+            "where": "decision 5 of Stage 3: BWDB’s wording on the card, JRC’s in ⓘ",
+            "states": "the user, 2026-09-29"
+          }
+        ]
+      },
+      {
+        "textBn": "রূপসা: «বাংলাদেশ ও বিশ্বপরিচয়» লেখে «ভৈরব বা রূপসা», একই নদী; পানি উন্নয়ন বোর্ডের তালিকায় ভৈরব ও রূপসা আলাদা নদী — রূপসা খুলনায় ভৈরব থেকে বেরিয়ে কাজীবাছা নদীতে পড়েছে, কাজীবাছা পশুরে। ছবিতে রূপসা আঁকা হয়েছে ভৈরবের শেষ থেকে পশুরের শুরু পর্যন্ত, ডেটায় যেমন।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬৩, the «পশুর নদী» paragraph [b910]",
+            "states": "খুলনার দক্ষিণে ভৈরব বা রূপসা নদী"
+          },
+          {
+            "source": "bwdbSW81",
+            "where": "§1.1 বর্ণনা [B8-G2]",
+            "states": "নদীটি খুলনা জেলার সদর উপজেলায় ভৈরব নদী থেকে উৎপত্তি হয়ে একই জেলার বটিয়াঘাটা উপজেলায় জলমা ইউনিয়নের কাজীবাছা নদীতে পতিত হয়েছে"
+          },
+          {
+            "source": "osm",
+            "where": "the batch b8 extract: way 607668051",
+            "states": "from the Bhairab’s last node to the Pashur’s first, both shared"
+          }
+        ]
+      },
+      {
+        "textBn": "হাড়িয়াভাঙ্গার আঁকা রেখার বেশির ভাগ ভারতে (ভাঙা রেখা)। পানি উন্নয়ন বোর্ডের তথ্যে এর উৎপত্তি রায়মঙ্গল নদী থেকে; রায়মঙ্গল ছবিতে আঁকা নয়, তাই সংযোগ-রেখাটি ইছামতীর সাথে, ডেটায় যেখানে একটি নামহীন নদীপথ দুটিকে জুড়েছে। হরিণঘাটা বইয়ের মানচিত্রে থাকলেও ছবিতে আঁকা হয়নি: ডেটায় এই নামে কোনো নদীপথ নেই।",
+        "group": "notes",
+        "sources": [
+          {
+            "source": "osm",
+            "where": "the batch b8 extract: relation 12559141’s ways 126774195 and 126774196; the research’s name search",
+            "states": "2.9 of 96.9 km inside COD-AB; the unnamed 102147643 runs from the Ichamati’s way 102149753 to the Harinbhanga’s head; the only «Haringhata» in OSM is a mangrove forest (relation 18578529)"
+          },
+          {
+            "source": "bwdbSW92",
+            "where": "§1.1 বর্ণনা [B8-G3]",
+            "states": "রায়মঙ্গল নদী হতে উৎপত্তি হয়ে"
+          },
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩, চিত্র ১০.৩ [bgeo]",
+            "states": "map label: হরিণঘাটা"
+          },
+          {
+            "source": "user",
+            "where": "the rule: a river with no usable pinned line is left out; outside Bangladesh only the dashed line",
             "states": "the user, 2026-09-29"
           }
         ]
@@ -2418,6 +2543,38 @@
             "source": "jrcbG13",
             "where": "the 57-rivers report, row ৫৭ [B6-J1]",
             "states": "কক্সবাজার জেলার উখিয়া উপজেলা; ৬৩"
+          }
+        ]
+      },
+      {
+        "textBn": "পশুর: বই — খুলনার দক্ষিণে ভৈরব বা রূপসা নদী থেকে, দৈর্ঘ্য প্রায় ১৪২ কি.মি.; পানি উন্নয়ন বোর্ড — খুলনা জেলার দাকোপ উপজেলায় কাজীবাছা নদী থেকে উৎপত্তি, দৈর্ঘ্য ৯৮ কি.মি.।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬৩, the «পশুর নদী» paragraph [b910]",
+            "states": "খুলনার দক্ষিণে ভৈরব বা রূপসা নদী … প্রায় ১৪২ কি. মি. দীর্ঘ"
+          },
+          {
+            "source": "bwdbSW51",
+            "where": "§1.1 বর্ণনা; §1.5 দৈর্ঘ্য [B8-G1]",
+            "states": "পশুর নদীটি খুলনা জেলার দাকোপ উপজেলার কাজীবাছা নদী থেকে উৎপত্তি হয়েছে; 98 কি.মি."
+          }
+        ]
+      },
+      {
+        "textBn": "ইছামতীর প্রবেশস্থল: পানি উন্নয়ন বোর্ড — চুয়াডাঙ্গা জেলার জীবননগর উপজেলা; যৌথ নদী কমিশন — ঝিনাইদহ জেলার মহেশপুর উপজেলা।",
+        "group": "conflicts",
+        "sources": [
+          {
+            "source": "bwdbSW7",
+            "where": "§1.1 বর্ণনা [B8-G4]",
+            "states": "চুয়াডাঙ্গা জেলার জীবননগর উপজেলার সীমান্ত ইউনিয়ন দিয়ে বাংলাদেশে প্রবেশ করে"
+          },
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, row ২, বাংলাদেশে প্রবেশমুখ [B8-J1]",
+            "states": "ঝিনাইদহ জেলার মহেশপুর উপজেলা"
           }
         ]
       }

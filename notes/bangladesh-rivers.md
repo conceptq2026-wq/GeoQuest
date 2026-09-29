@@ -90,6 +90,19 @@ finishes it. It is not in `docs/registry.json`.
     Arial Khan's last node and ending in Barishal city, where OSM's name
     becomes «সুগন্ধা». Left out: the Shahbazpur (OSM draws the channel east of
     Bhola as the Meghna, already drawn) and the Lohalia (no named way).
+    Batch 8, all in the Padma system: the Rupsa (from the Bhairab's end in
+    Khulna to the Pashur's start, shared nodes; B910's «ভৈরব বা রূপসা» is its
+    other name, BWDB keeps the two apart), the Pashur (two pieces, 363 m
+    apart, to the sea at Koyra), the Ichamati («ইছামতী (সাতক্ষীরা)», BWDB's
+    «ইছামতি-কালিন্দি», matched by geometry: it begins on the Mathabhanga's
+    last node, where BWDB's Mathabhanga ends; drawn solid, as the Feni, since
+    split at the border it falls into some 130 pieces), the Harinbhanga
+    («হাড়িয়াভাঙ্গা»; mostly in India, dashed; joined to the Ichamati by an
+    8.4 km connector along OSM's unnamed link) and the Baral (from the Padma
+    near Charghat on to the Jamuna at Bera, as OSM names it; the drawn Atrai
+    ends on it, its join unchanged). Left out: the Haringhata (no named way;
+    drawing the Baleshwar in its place would substitute one river for
+    another).
 - **The legend** lists the kinds the current system draws — its line roles
   and its markers' kinds — so it shrinks to what the lit colours mean (at
   320 px with a card open the stage is under 300 px tall).
@@ -326,7 +339,8 @@ finishes it. It is not in `docs/registry.json`.
   group the tag rule exempts); the Jamuna's b4, the Buriganga's one way
   (`d31d584f…`); the Padma's b7, 17 ways (`a7c5e722…`); the south-east
   group's own, 33 ways (`670ba065…`); the Meghna's b9, 11 ways
-  (`6b7c9702…`); the Padma's b9, 1 way (`8de7f900…`). The extractor refuses an Overpass answer whose
+  (`6b7c9702…`); the Padma's b9, 1 way (`8de7f900…`); the Padma's b8, 22
+  ways (`b456037a…`). The extractor refuses an Overpass answer whose
   data is more than two days old: a mirror once served a May snapshot with
   older way versions. A way in two
   files must agree within 1 m.
@@ -349,7 +363,8 @@ finishes it. It is not in `docs/registry.json`.
   the Padma south-west's 10 (b2), the Meghna core's 5 (b3; the pinned
   `meghna` line changed role, not ways) and batch 4's 5; from Stage 3 the
   Mahananda's tributaries' 3 (b7), the south-east group's 8 (b6) and the
-  estuary batch's 5 (b9); 62 in all, no earlier pin has moved). A build whose line moved stops and says so; it is never
+  estuary batch's 5 (b9) and the south-west coast's 6 (b8); 68 in all, no
+  earlier pin has moved). A build whose line moved stops and says so; it is never
   re-pinned to pass. A main river drawn as several lines must run end to end
   within 3 m (`gangaPadma→padma` 0.6 m), or a later piece joins the one
   before as a branch joins its parent (`join.parent`): by a connector up to
@@ -366,11 +381,11 @@ finishes it. It is not in `docs/registry.json`.
   two of its own), the frames, every branch card's four rows and the main
   card's «গতিপথ», ⓘ's plain lines each citing a listed source, the picker
   grouped by system, the pending list (the fields the seed holds as null,
-  listed by name in the validator; 43 after Stage 3's b6, b7 and b9 —
-  Stage 2's 32, the Pagla's and the Kirtankhola's course, the Muhuri's other
-  names and course, the Sangu's course, the Matamuhuri's entry, the Tetulia's
+  listed by name in the validator; 46 after Stage 3 — Stage 2's 32, the
+  Pagla's, Kirtankhola's and Rupsa's course, the Muhuri's other names and
+  course, the Sangu's course, the Matamuhuri's entry, the Tetulia's
   (Barishal) relation, other names and course, the Burishwar's relation and
-  course: the Jamuna's length;
+  course, the Harinbhanga's and the Pashur's relation: the Jamuna's length;
   the Buriganga's course; the Padma's entry, course, length and
   distributaries; the Gorai's, Madhumati's and Chitra's course; the
   Bhagirathi's other name; the Meghna's length, tributaries and

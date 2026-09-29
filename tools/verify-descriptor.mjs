@@ -98,9 +98,9 @@ const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa
 const BANGLADESH_RIVERS_SEEDS = path.join(ROOT, 'data-sources/bangladesh-rivers');
 // One pin per seed file: the common file and each system's (tools/lib/rivers-seed.mjs).
 const BANGLADESH_RIVERS_SEED_SHA256 = {
-  'bangladesh-rivers.seed.json': 'bfc65efff5a0d80f2738d19d10281e93e36150ed3946648b67ec8d866f601961',
+  'bangladesh-rivers.seed.json': '944e62ac2e47ac69e45b9ad6a218c6bec87b41ccd4584eb8641baf78e9017db1',
   'systems/jamuna.seed.json': '2cdb4cbdbf0f5fd9eadd7a86329770e83056e30ec5ae5c8441b77b18d716e3d8',
-  'systems/padma.seed.json': 'e55950b90fec4acc2689d6509976583c1180e2d264a2c7a2c3ab23cb5a4cde08',
+  'systems/padma.seed.json': '2741135f9994b03501ab061ae34ba5c808baa00e37ff409d4abc56cd3d0570e6',
   'systems/meghna.seed.json': 'af441be19620e24fb3bf3dfcf6ebeb27f395b7184b791f5b3280f27bcc06a497',
   'systems/karnaphuli.seed.json': '099bd0cfe66a36b9ae29270d7303dcba9097469698c7a29f1dfd8d0f152c8029',
   'systems/southeast.seed.json': 'f36d4b05b65ad675cc80b9a63bfe21fae4afd0df52af4c3a24e78e90e46e4d39',
@@ -1924,6 +1924,9 @@ console.log('\n\n============ bangladesh-rivers (diagram) ============');
     'kirtankhola.values.course',
     'pagla.values.course',
     'bhagirathi.values.alias',
+    'harinbhanga.values.relation',
+    'rupsa.values.course',
+    'pashur.values.relation',
     'chitra.values.course',
     'meghna.values.length',
     'meghna.values.tributaries',

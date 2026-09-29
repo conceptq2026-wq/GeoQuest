@@ -20,7 +20,12 @@
     "punarbhaba": "পুনর্ভবা",
     "pagla": "পাগলা",
     "tangon": "ট্যাংগন",
-    "kirtankhola": "কীর্তনখোলা"
+    "kirtankhola": "কীর্তনখোলা",
+    "rupsa": "রূপসা",
+    "pashur": "পশুর",
+    "harinbhanga": "হাড়িয়াভাঙ্গা",
+    "ichamati": "ইছামতী",
+    "baral": "বড়াল"
   },
   "frames": {
     "bangladesh": {
@@ -49,7 +54,13 @@
         "punarbhaba",
         "pagla",
         "tangon",
-        "kirtankhola"
+        "kirtankhola",
+        "rupsa",
+        "pashur",
+        "pashur2",
+        "harinbhanga",
+        "ichamati",
+        "baral"
       ],
       "markers": [
         "padmaJamunaConfluence",
@@ -199,6 +210,46 @@
           "near": [
             90.38,
             22.72
+          ]
+        },
+        {
+          "id": "rupsa",
+          "line": "rupsa",
+          "near": [
+            89.56,
+            22.78
+          ]
+        },
+        {
+          "id": "pashur",
+          "line": "pashur2",
+          "near": [
+            89.58,
+            22.05
+          ]
+        },
+        {
+          "id": "harinbhanga",
+          "line": "harinbhanga",
+          "near": [
+            89.1,
+            21.8
+          ]
+        },
+        {
+          "id": "ichamati",
+          "line": "ichamati",
+          "near": [
+            88.95,
+            22.6
+          ]
+        },
+        {
+          "id": "baral",
+          "line": "baral",
+          "near": [
+            89.2,
+            24.25
           ]
         }
       ]
@@ -715,6 +766,126 @@
           "source": "OSM node 5960758946, the last node of the Arial Khan’s way 631200493, vertex 11 of way 631213767"
         },
         "identified": "Way 631213767 tagged Kirtankhola (this batch’s extract), trimmed at the Arial Khan’s last node (its first 5.3 km run above the Arial Khan’s end, where BWDB has the Kirtankhola leave it), to Barishal city, where OSM’s «সুগন্ধা» begins."
+      },
+      "rupsa": {
+        "entity": "rupsa",
+        "role": "distributary",
+        "ways": [
+          607668051
+        ],
+        "down": [
+          89.5258,
+          22.7387
+        ],
+        "join": {
+          "parent": "bhairab2",
+          "node": 5758405975,
+          "source": "OSM node 5758405975, the last node of the Bhairab’s way 239063435 (after its trim) and the first of way 607668051"
+        },
+        "identified": "Way 607668051 tagged Rupsa (this batch’s extract), 12.8 km, from the Bhairab’s end in Khulna to the Pashur’s first node (shared)."
+      },
+      "pashur": {
+        "entity": "pashur",
+        "role": "distributary",
+        "ways": [
+          632121003,
+          908097764
+        ],
+        "down": [
+          89.6301,
+          22.3496
+        ],
+        "join": {
+          "parent": "rupsa",
+          "node": 5968543395,
+          "source": "OSM node 5968543395, the Rupsa’s last node and the first node of way 632121003"
+        },
+        "identified": "Two ways tagged Pashur / Passur (this batch’s extract), 46.4 km from the Rupsa’s end past Mongla: the upper piece."
+      },
+      "pashur2": {
+        "entity": "pashur",
+        "role": "distributary",
+        "ways": [
+          554520011
+        ],
+        "trims": {
+          "554520011": {
+            "fromNode": 5351291226
+          }
+        },
+        "down": [
+          89.4823,
+          21.7359
+        ],
+        "join": {
+          "parent": "pashur"
+        },
+        "identified": "Way 554520011 tagged Pashur, trimmed at node 5351291226 (drawn whole it would begin 978 m off and double back), to the coast in Khulna: the lower piece, 363 m below the upper (a connector; OSM crosses the gap with an unnamed 0.4 km way)."
+      },
+      "harinbhanga": {
+        "entity": "harinbhanga",
+        "role": "distributary",
+        "split": "border",
+        "ways": [
+          126774195,
+          126774196
+        ],
+        "down": [
+          89.1265,
+          21.6287
+        ],
+        "join": {
+          "parent": "ichamati"
+        },
+        "identified": "Two ways of OSM relation 12559141 «Hariabhanga», 96.9 km, from the Kalindi’s end in India to the sea; only 2.9 km lie inside COD-AB’s outline, the rest dashed. Its head is joined to the Ichamati by a connector (8.4 km): OSM links them by an unnamed channel (102147643, from the Ichamati’s way 102149753), and the Raimangal, from which BWDB has it rise, runs from the Ichamati’s end to it (ⓘ)."
+      },
+      "ichamati": {
+        "entity": "ichamati",
+        "role": "distributary",
+        "ways": [
+          751739332,
+          145750052,
+          752305853,
+          398406274,
+          551360609,
+          807949528,
+          907212974,
+          155164843,
+          686261115,
+          283881286,
+          102149972,
+          102149753,
+          682309725
+        ],
+        "down": [
+          89.0527,
+          22.1157
+        ],
+        "join": {
+          "parent": "mathabhanga",
+          "node": 3349810944,
+          "source": "OSM node 3349810944, the last node of the Mathabhanga’s way 975084226 (in India) and the first of way 751739332"
+        },
+        "identified": "The twelve ways of OSM relation 12317401 «Ichamati» and way 682309725 (wikidata: the border Ichamati), 293.2 km (88.4 km inside Bangladesh), from the Mathabhanga’s end in India along and across the border to Satkhira, where OSM’s Raimangal ends. Chosen by geometry and district (Jhenaidah, Jashore, Satkhira); eleven other Ichamati ways (Pabna, Bogura/Sirajganj, Dhaka, Narayanganj) refused; OSM’s only «Kalindi» (975006613) is a separate channel wholly in India. Drawn solid, as the Feni: it runs along and across the border so often that splitting it at COD-AB’s border cuts it into some 130 alternating pieces."
+      },
+      "baral": {
+        "entity": "baral",
+        "role": "distributary",
+        "ways": [
+          161860530,
+          929214029,
+          62113458
+        ],
+        "down": [
+          89.6564,
+          24.0538
+        ],
+        "join": {
+          "parent": "gangaPadma",
+          "node": 964039993,
+          "source": "OSM node 964039993, the first node of way 161860530, vertex 204 of the Padma’s way 82854638 (0.26 m from the pinned snapshot’s vertex)"
+        },
+        "identified": "Three ways tagged Baral (two also «নন্দকুজা নদী»), 162.7 km, from the Padma near Charghat to the Jamuna (node 5343603137, 0.49 m from the drawn main line’s vertex 443). The drawn Atrai ends on it (node 1673485638); its join is unchanged."
       }
     },
     "extract": {
@@ -827,6 +998,40 @@
       "b9": {
         "kirtankhola": [
           631213767
+        ]
+      },
+      "b8": {
+        "pashur": [
+          632121003,
+          908097764,
+          554520011
+        ],
+        "rupsa": [
+          607668051
+        ],
+        "harinbhanga": [
+          126774195,
+          126774196
+        ],
+        "ichamati": [
+          751739332,
+          145750052,
+          752305853,
+          398406274,
+          551360609,
+          807949528,
+          907212974,
+          155164843,
+          686261115,
+          283881286,
+          102149972,
+          102149753,
+          682309725
+        ],
+        "baral": [
+          161860530,
+          929214029,
+          62113458
         ]
       }
     }
@@ -1564,6 +1769,136 @@
       "review": "BWDB SW-76, the only Mathabhanga off the Padma; SW-198 «মাথাভাঙ্গা (খুলনা)» is a 3 km channel in Khulna, ruled out, so no bracket. JRCB row ৫ differs on the origin (India, near Jalangi), the border stretch (21 km) and the outfall place (Majdia, Nadia) — ⓘ. Other names: MISSING in every source, so the row is absent, as on the other branch cards. The course elides BWDB's middle clause («তারপর নদীটি বাংলাদশের ভেতর দিয়ে ১১০ কি.মি. প্রবাহিত হয়ে»), to show neither a silent correction nor the misspelling."
     },
     {
+      "id": "ichamati",
+      "role": "distributary",
+      "nameBn": "ইছামতী (সাতক্ষীরা)",
+      "values": {
+        "relation": "নিম্নগঙ্গার শাখা নদী",
+        "alias": "ইছামতি-কালিন্দি; সাহেবখালি/ ইছামতি/ কালিন্দি (স্থানীয় নাম)",
+        "origin": "ভারতের পশ্চিমবঙ্গে মাথাভাঙ্গা নদী হতে",
+        "entry": "চুয়াডাঙ্গা জেলার জীবননগর উপজেলার সীমান্ত ইউনিয়ন",
+        "course": "৩৮ কি.মি প্রবাহিত হয়ে ঝিনাইদহ জেলার মহেশপুর উপজেলার কাজীরবেড় ইউনিয়ন দিয়ে ভারতে প্রবেশ করে। পূনরায় নদীটি ভারতে ৫৯ কি.মি প্রবাহিত হয়ে যশোর জেলার পুটখালী ইউনিয়ন দিয়ে বাংলাদেশ প্রবেশ করে। বাংলাদেশের অংশে ২৮ কি.মি প্রবাহিত হয় সাতক্ষীরা জেলার চাঁদপুর ইউনিয়নের মধ্যে দিয়ে আবারও ভারতে প্রবেশ করে। এই ধাপে নদীটি ৬৫ কি.মি প্রবাহিত হয়ে সাতক্ষীরা জেলার সদর উপজেলার ভোমরা ইউনিয়নের মধ্যে দিয়ে বাংলাদেশে প্রবেশ করে প্রায় ৮৬ কি.মি ভারত-বাংলাদেশ সীমান্তবর্তী এলাকা দিয়ে প্রবাহিত হয়ে",
+        "mouth": "সাতক্ষীরা জেলার শ্যামনগর উপজেলায় রায়মঙ্গল নদীতে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the পদ্মা paragraph [b910]",
+            "states": "ইছামতী"
+          },
+          {
+            "source": "bwdbSW7",
+            "where": "the heading [B8-G4]",
+            "states": "ইছামতি-কালিন্দি"
+          }
+        ],
+        "relation": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the পদ্মা paragraph [b910]",
+            "states": "পশ্চিম থেকে পূর্বে নিম্নগঙ্গায় অসংখ্য শাখা নদীর মধ্যে উল্লেখযোগ্য হচ্ছে- ভাগীরথী, হুগলি, মাথাভাঙ্গা, ইছামতী, ভৈরব, কুমার, কপোতাক্ষ, নবগঙ্গা, চিত্রা, মধুমতী, আড়িয়াল খাঁ ইত্যাদি"
+          }
+        ],
+        "alias": [
+          {
+            "source": "bwdbSW7",
+            "where": "the heading; §1.1 স্থানীয় নাম [B8-G4]",
+            "states": "নদীর নাম: ইছামতি-কালিন্দি … স্থানীয় নাম: সাহেবখালি/ ইছামতি/ কালিন্দি"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbSW7",
+            "where": "§1.1 বর্ণনা [B8-G4]",
+            "states": "নদীটি ভারতের পশ্চিমবঙ্গে মাথাভাঙ্গা নদী হতে উৎপন্ন হয়ে"
+          }
+        ],
+        "entry": [
+          {
+            "source": "bwdbSW7",
+            "where": "§1.1 বর্ণনা; §1.4 উৎসমুখ/ প্রবেশস্থল [B8-G4]",
+            "states": "১৬ কি.মি প্রবাহিত হয়ে চুয়াডাঙ্গা জেলার জীবননগর উপজেলার সীমান্ত ইউনিয়ন দিয়ে বাংলাদেশে প্রবেশ করে"
+          }
+        ],
+        "course": [
+          {
+            "source": "bwdbSW7",
+            "where": "§1.1 বর্ণনা [B8-G4]",
+            "states": "৩৮ কি.মি প্রবাহিত হয়ে ঝিনাইদহ জেলার মহেশপুর উপজেলার কাজীরবেড় ইউনিয়ন দিয়ে ভারতে প্রবেশ করে। পূনরায় নদীটি ভারতে ৫৯ কি.মি প্রবাহিত হয়ে যশোর জেলার পুটখালী ইউনিয়ন দিয়ে বাংলাদেশ প্রবেশ করে। বাংলাদেশের অংশে ২৮ কি.মি প্রবাহিত হয় সাতক্ষীরা জেলার চাঁদপুর ইউনিয়নের মধ্যে দিয়ে আবারও ভারতে প্রবেশ করে। এই ধাপে নদীটি ৬৫ কি.মি প্রবাহিত হয়ে সাতক্ষীরা জেলার সদর উপজেলার ভোমরা ইউনিয়নের মধ্যে দিয়ে বাংলাদেশে প্রবেশ করে প্রায় ৮৬ কি.মি ভারত-বাংলাদেশ সীমান্তবর্তী এলাকা দিয়ে প্রবাহিত হয়ে"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bwdbSW7",
+            "where": "§1.1 বর্ণনা; §1.4 পতিতমুখ [B8-G4]",
+            "states": "একই জেলার শ্যামনগর উপজেলায় এসে রায়মঙ্গল নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "BWDB SW-7 «ইছামতি-কালিন্দি», matched by geometry and district: BWDB’s own Mathabhanga page (SW-76) has the Mathabhanga fall into the «ইছামতি-কালিন্দি» in India, and the drawn line begins on the Mathabhanga’s last node; it runs through Chuadanga, Jhenaidah, Jashore and Satkhira, as SW-7 says. Fifteen other BWDB entries carry the name (ⓘ); the picker’s bracket is Satkhira, where its long border stretch and its mouth are (SW-7). The book (B910) names it among the lower Ganges’ distributaries, next to the Mathabhanga; BWDB’s Padma page lists only NW-9 «ইছামতি (পাবনা)» among the Padma’s distributaries, another river. JRC differs on the origin’s place (Majdia, Nadia) and the entry (Maheshpur, Jhenaidah) — ⓘ. Length (BWDB 152 km, JRC 345) is not on a branch card."
+    },
+    {
+      "id": "harinbhanga",
+      "role": "distributary",
+      "nameBn": "হাড়িয়াভাঙ্গা",
+      "values": {
+        "relation": null,
+        "alias": "সয়া-হাড়িভাঙ্গা; সয়া/ হাড়িভাঙ্গা/ হরিণভাঙ্গা (স্থানীয় নাম)",
+        "origin": "সাতক্ষীরা জেলার শ্যামনগর উপজেলার সাতক্ষীরা রেঞ্জ ইউনিয়নে রায়মঙ্গল নদী হতে",
+        "course": "বাংলাদেশের দক্ষিণ-পশ্চিমে ভারতের সীমানায়; সুন্দরবনের মধ্য দিয়ে প্রবাহিত হয়ে",
+        "mouth": "বঙ্গোপসাগরে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৪৯, «সীমানা» paragraph [bgeo]",
+            "states": "হাড়িয়াভাঙ্গা নদী"
+          },
+          {
+            "source": "bwdbSW92",
+            "where": "the heading; §1.1 স্থানীয় নাম [B8-G3]",
+            "states": "সয়া-হাড়িভাঙ্গা; স্থানীয় নাম: সয়া/ হাড়িভাঙ্গা/ হাড়িয়াভাঙ্গা/ হরিণভাঙ্গা"
+          }
+        ],
+        "alias": [
+          {
+            "source": "bwdbSW92",
+            "where": "the heading; §1.1 স্থানীয় নাম [B8-G3]",
+            "states": "নদীর নাম: সয়া-হাড়িভাঙ্গা … স্থানীয় নাম: সয়া/ হাড়িভাঙ্গা/ হাড়িয়াভাঙ্গা/ হরিণভাঙ্গা"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbSW92",
+            "where": "§1.1 বর্ণনা; §1.4 উৎসমুখ [B8-G3]",
+            "states": "নদীটি সাতক্ষীরা জেলার শ্যামনগর উপজেলার সাতক্ষীরা রেঞ্জ ইউনিয়নে রায়মঙ্গল নদী হতে উৎপত্তি হয়ে"
+          }
+        ],
+        "course": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৪৯, «সীমানা» paragraph [bgeo]",
+            "states": "বাংলাদেশের দক্ষিণ-পশ্চিমে হাড়িয়াভাঙ্গা নদী এবং দক্ষিণ-পূর্বে নাফ নদী ভারত ও মিয়ানমারের সীমানায় অবস্থিত"
+          },
+          {
+            "source": "bwdbSW92",
+            "where": "§1.1 বর্ণনা [B8-G3]",
+            "states": "সুন্দরবনের মধ্য দিয়ে প্রবাহিত হয়ে একই ইউনিয়ন দিয়ে বঙ্গোপসাগরে পতিত হয়েছে"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bwdbSW92",
+            "where": "§1.1 বর্ণনা; §1.4 পতিতমুখ [B8-G3]",
+            "states": "একই ইউনিয়ন দিয়ে বঙ্গোপসাগরে পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "BWDB SW-92 «সয়া-হাড়িভাঙ্গা», whose own local names include B-GEO’s «হাড়িয়াভাঙ্গা» (the list names them as one river: no swap). B-GEO calls it the border river with India in the south-west; that is the card’s course, with BWDB’s Sundarbans. Relation null: no role word in any source (BWDB lists it among the Raimangal’s distributaries, SW-83 §1.10, recorded only). Length 31 km (BWDB; bn WP 38) is not on a branch card. OSM’s named line is 96.9 km, most of it in India (dashed); it is not joined (ⓘ)."
+    },
+    {
       "id": "kumar",
       "role": "distributary",
       "nameBn": "কুমার (চুয়াডাঙ্গা)",
@@ -1688,6 +2023,116 @@
         ]
       },
       "review": "BWDB SW-68 «ভৈরব», matched by district (Chuadanga–Jashore–Khulna, and both maps label it there). Ruled out: SW-69 «ভৈরব (বাগেরহাট)» and SW-70 «ভৈরব-কপোতাক্ষ» (India–Meherpur, into the Mathabhanga; on neither map). The picker name carries Jashore, from SW-68's own description (the user's rule on same-name rivers). JRCB row ৪ joins it with the Kapotaksha as one river into the Shibsa; B910's «ভৈরব বা রূপসা» against BWDB's separate SW-81 «রূপসা» (ⓘ). No entry row: SW-68 rises inside Bangladesh. The drawn line begins at Jashore (ⓘ)."
+    },
+    {
+      "id": "rupsa",
+      "role": "distributary",
+      "nameBn": "রূপসা",
+      "values": {
+        "relation": "পদ্মার একটি শাখা নদী",
+        "alias": "ভৈরব",
+        "origin": "খুলনা জেলার সদর উপজেলায় ভৈরব নদী থেকে",
+        "course": null,
+        "mouth": "খুলনা জেলার বটিয়াঘাটা উপজেলায় জলমা ইউনিয়নের কাজীবাছা নদীতে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬৩, the «পশুর নদী» paragraph [b910]",
+            "states": "খুলনার দক্ষিণে ভৈরব বা রূপসা নদী"
+          },
+          {
+            "source": "bwdbSW81",
+            "where": "the heading [B8-G2]",
+            "states": "রূপসা"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bnwRupsa",
+            "where": "the lead [B8-W2]",
+            "states": "নদীটি পদ্মার একটি শাখা নদী।"
+          }
+        ],
+        "alias": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬৩, the «পশুর নদী» paragraph [b910]",
+            "states": "খুলনার দক্ষিণে ভৈরব বা রূপসা নদী"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbSW81",
+            "where": "§1.1 বর্ণনা; §1.4 উৎসমুখ [B8-G2]",
+            "states": "নদীটি খুলনা জেলার সদর উপজেলায় ভৈরব নদী থেকে উৎপত্তি হয়ে"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bwdbSW81",
+            "where": "§1.1 বর্ণনা; §1.4 পতিতমুখ [B8-G2]",
+            "states": "একই জেলার বটিয়াঘাটা উপজেলায় জলমা ইউনিয়নের কাজীবাছা নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "BWDB SW-81, the only Rupsa. B910 names one river «ভৈরব বা রূপসা» (the Bhairab card’s other name, since Stage 2); BWDB keeps them apart, the Rupsa leaving the Bhairab in Khulna — drawn so, from the Bhairab’s end, and the card’s other name is the book’s (ⓘ). Relation from bn Wikipedia: no book or government page gives the Rupsa a role word (B-GEO makes the Bhairab a Padma distributary). Course null: BWDB gives only its upazila list. Length 10 km (BWDB; bn WP 9) is not on a branch card. OSM joins it straight to the Pashur; BWDB puts the Kazibachha between (ⓘ)."
+    },
+    {
+      "id": "pashur",
+      "role": "distributary",
+      "nameBn": "পশুর",
+      "values": {
+        "relation": null,
+        "alias": "কুঙ্গা (স্থানীয় নাম)",
+        "origin": "খুলনার দক্ষিণে ভৈরব বা রূপসা নদী",
+        "course": "আরও দক্ষিণে প্রবাহিত হয়ে ত্রিকোনা ও দুবলা দ্বীপদ্বয়ের ডানদিক দিয়ে মংলা বন্দরের দক্ষিণে সুন্দরবনের ভিতর দিয়ে",
+        "mouth": "বঙ্গোপসাগরে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬৩, the «পশুর নদী» paragraph [b910]",
+            "states": "পশুর নদী"
+          },
+          {
+            "source": "bwdbSW51",
+            "where": "the heading [B8-G1]",
+            "states": "পশুর"
+          }
+        ],
+        "alias": [
+          {
+            "source": "bwdbSW51",
+            "where": "§1.1 স্থানীয় নাম [B8-G1]",
+            "states": "স্থানীয় নাম: কুঙ্গা"
+          }
+        ],
+        "origin": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬৩, the «পশুর নদী» paragraph [b910]",
+            "states": "খুলনার দক্ষিণে ভৈরব বা রূপসা নদী"
+          }
+        ],
+        "course": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬৩, the «পশুর নদী» paragraph [b910]",
+            "states": "এটি আরও দক্ষিণে প্রবাহিত হয়ে ত্রিকোনা ও দুবলা দ্বীপদ্বয়ের ডানদিক দিয়ে মংলা বন্দরের দক্ষিণে সুন্দরবনের ভিতর দিয়ে বঙ্গোপসাগরে পড়েছে"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬৩, the «পশুর নদী» paragraph [b910]",
+            "states": "মংলা বন্দরের দক্ষিণে সুন্দরবনের ভিতর দিয়ে বঙ্গোপসাগরে পড়েছে"
+          }
+        ]
+      },
+      "review": "BWDB SW-51, the only Pashur (SW-50 «পুরাতন পশুর» and SW-269 «ঢাংমারী», other name «মরা পশুর», are other rivers). The book gives origin, course and mouth; BWDB the other name. Relation null: B910 names the Pashur among Bangladesh’s «প্রধান নদী» (a list, not a relation to a parent), and no source gives it a role word — the editor decides whether it should be a main card. Conflicts in ⓘ: its start (BWDB: from the Kazibachha at Dakop) and its length (B910 about 142 km, BWDB 98). Drawn in two pieces, 363 m apart (a connector)."
     },
     {
       "id": "kapotaksha",
@@ -1843,6 +2288,65 @@
         ]
       },
       "review": "BWDB SW-34, matched by district to the drawn OSM Chitra (Chuadanga–Jhenaidah–Jashore–Narail–Khulna); B910 names it between the Nabaganga and the Madhumati in its west-to-east list, and neither book draws it. Ruled out: SW-115 «চিত্রা (বাগেরহাট)» and SW-228 «তালেশ্বর». The picker name carries SW-34's «চিত্রা (চুয়াডাঙ্গা)». Course is null: BWDB gives none; bn WP's is weak (its lead contradicts itself). BWDB has it leave the Mathabhanga (ⓘ); the mouth: BWDB the Atai at Abhaynagar, bn WP the Nabaganga at Gazirhat, where the drawn line ends (ⓘ). Other names: MISSING."
+    },
+    {
+      "id": "baral",
+      "role": "distributary",
+      "nameBn": "বড়াল",
+      "values": {
+        "relation": "গঙ্গা/ পদ্মার শাখানদী",
+        "origin": "রাজশাহী জেলার চারঘাট উপজেলায় গঙ্গা/পদ্মা নদী থেকে",
+        "course": "আড়ানী , চারঘাট ও বাগাতিপাড়া পৌরসভার মধ্যদিয়ে এই নদী প্রবাহিত হয়েছে",
+        "mouth": "সিরাজগঞ্জ জেলার শাহজাদপুর উপজেলার রূপবাটি ইউনিয়নে হুড়াসাগর/ হুরাসাগর নদীতে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩, চিত্র ১০.৩ [bgeo]",
+            "states": "map label: বড়াল"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, চিত্র ৫.১ [b910]",
+            "states": "map label: বড়াল"
+          },
+          {
+            "source": "bwdbNW134",
+            "where": "the heading [B8-G5]",
+            "states": "বড়াল"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bwdbNW27",
+            "where": "§1.10 শাখানদী [B8-G7]",
+            "states": "শাখানদী : বাদাই, বড়াল, চন্দনা-বারাশিয়া, গড়াই, হড়াই, হিসনা, ইছামতি (পাবনা), মাথাভাঙ্গা, নারদ , পুরাতন কুমার"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbNW134",
+            "where": "§1.1 বর্ণনা [B8-G5]",
+            "states": "নদীটির উপরের অংশ বড়াল আপার নামে রাজশাহী জেলার চারঘাট উপজেলায় গঙ্গা/পদ্মা নদী থেকে উৎপন্ন হয়ে"
+          }
+        ],
+        "course": [
+          {
+            "source": "bwdbNW134",
+            "where": "§1.1 বর্ণনা [B8-G5]",
+            "states": "আড়ানী , চারঘাট ও বাগাতিপাড়া পৌরসভার মধ্যদিয়ে এই নদী প্রবাহিত হয়েছে।"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bwdbNW134",
+            "where": "§1.1 বর্ণনা; §1.4 পতিতমুখ [B8-G5]",
+            "states": "সিরাজগঞ্জ জেলার শাহজাদপুর উপজেলার রূপবাটি ইউনিয়নে হুড়াসাগর/ হুরাসাগর নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "BWDB NW-134, the only Baral (NW-121 «মরা বড়াল» and NW-291 «কাটাখালী (বড়াল)» are other rivers). Both books label it on their maps only. Relation from BWDB’s Padma distributary list (NW-27 §1.10). Origin from BWDB’s description, which bn and en Wikipedia share; BWDB’s own §1.4 table puts the offtake at Banwarinagar (Faridpur, Pabna) — a source at odds with itself, recorded here. «বড়াল আপার» and «বড়াল লোয়ার» are BWDB’s names for its two parts, not other names (row absent). The drawn line runs on past BWDB’s mouth, down the Hurasagar to the Jamuna, as OSM names it; the drawn Atrai ends on it (its join unchanged, the user’s decision of 2026-09-29). Length 151 km (BWDB) is not on a branch card."
     }
   ]
 }

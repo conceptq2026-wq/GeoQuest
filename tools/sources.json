@@ -327,5 +327,13 @@
     "snapshot": "2026-09-29T14:20:59Z",
     "licence": "ODbL 1.0 — © OpenStreetMap contributors",
     "sha256": "8de7f9003c67cb240305cde395100861565dab1e7f94b0c4e866c64ade6a17ca"
+  },
+  "osmBangladeshRiversPadmaB8": {
+    "_comment": "The OpenStreetMap ways the Rivers of Bangladesh picture’s Padma system draws in Stage 3 batch b8 — the Pashur, the Rupsa, the Harinbhanga, the Ichamati and the Baral — each by way id, with node ids and tags, from tools/extract-bangladesh-rivers-system.mjs padma b8 (the way list is the Padma seed’s geometry.extractBatches.b8). Every way carries a name, name:bn, name:en or wikidata tag naming its river, or is a member of its river’s relation (the Ichamati’s 12317401, the Harinbhanga’s 12559141). Only a deliberate re-run changes it.",
+    "file": "tools/sources/osm-bangladesh-rivers-padma-b8.geojson",
+    "fetched": "2026-09-29",
+    "snapshot": "2026-09-29T14:34:21Z",
+    "licence": "ODbL 1.0 — © OpenStreetMap contributors",
+    "sha256": "b456037a54a36ef125c3bc3ffdf40409cc6e7927fe5d8150da0cb7ef1e27911a"
   }
 }
