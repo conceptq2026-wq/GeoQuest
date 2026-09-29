@@ -793,7 +793,8 @@ async function riverSteps(page, shoot, summary, fail) {
     }
     await fitCheck(page, `«${tabs[i]}» no card`);
     await shoot('steps', `tab «${tabs[i]}»`);
-    const zones = await page.evaluate(`[...document.querySelectorAll('${view} .zone[data-key]')].map((z) => [z.dataset.key, z.dataset.title])`);
+    // One system at a time, its lines before its markers: a line's tap makes its system current, and only the current system's markers show. A card drawn as two lines is tapped once.
+    const zones = await page.evaluate(`(() => { const all = [...document.querySelectorAll('${view} .zone[data-key]')].map((z) => [z.dataset.key, z.dataset.title, z.dataset.system || '']); const seen = new Set(); const uniq = all.filter(([k]) => !seen.has(k) && seen.add(k)); const order = [...new Set(uniq.map((z) => z[2]))]; return uniq.sort((a, b) => order.indexOf(a[2]) - order.indexOf(b[2]) || Number(a[0].startsWith('marker:')) - Number(b[0].startsWith('marker:'))); })()`);
     let good = 0;
     let least = Infinity;
     for (const [key, title] of zones) {

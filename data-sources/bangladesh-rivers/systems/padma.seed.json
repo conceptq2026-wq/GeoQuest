@@ -1,0 +1,789 @@
+{
+  "_about": "The Padma system, batch 1 (Stage 1, the user's approval of 2026-09-29): the Ganges–Padma from the frame's west edge to the Meghna, and the Gorai, Madhumati, Arial Khan, Mahananda and Bhagirathi. Geometry from the pinned rivers snapshot, the pilot extract and this system's own extract (tools/sources/osm-bangladesh-rivers-padma.geojson, the ways under geometry.extract); every chosen way carries a name, name:bn, name:en or wikidata tag for its river, or belongs to its waterway relation. Card values: the NCTB books first; where the books are silent, BWDB, then JRCB; where the two books disagree, the row stays null (pending) and ⓘ gives both (decision 2).",
+  "id": "padma",
+  "nameBn": "পদ্মা",
+  "labelsBn": {
+    "padma": "পদ্মা",
+    "padmaUpper": "পদ্মা",
+    "ganga": "গঙ্গা",
+    "gorai": "গড়াই",
+    "madhumati": "মধুমতী",
+    "arialKhan": "আড়িয়াল খাঁ",
+    "mahananda": "মহানন্দা",
+    "bhagirathi": "ভাগীরথী"
+  },
+  "frames": {
+    "bangladesh": {
+      "lines": [
+        "gangaPadma",
+        "padma",
+        "gorai",
+        "madhumati",
+        "arialKhan",
+        "arialKhan2",
+        "mahananda",
+        "mahananda2",
+        "mahananda3",
+        "bhagirathi",
+        "bhagirathi2"
+      ],
+      "markers": [
+        "padmaJamunaConfluence",
+        "mahanandaConfluence",
+        "padmaMouth"
+      ],
+      "labels": [
+        {
+          "id": "padma",
+          "line": "padma",
+          "near": [
+            90.2,
+            23.55
+          ]
+        },
+        {
+          "id": "padmaUpper",
+          "line": "gangaPadma",
+          "near": [
+            88.8,
+            24.25
+          ]
+        },
+        {
+          "id": "ganga",
+          "line": "gangaPadma",
+          "near": [
+            88,
+            24.85
+          ]
+        },
+        {
+          "id": "gorai",
+          "line": "gorai",
+          "near": [
+            89.3,
+            23.8
+          ]
+        },
+        {
+          "id": "madhumati",
+          "line": "madhumati",
+          "near": [
+            89.62,
+            23.3
+          ]
+        },
+        {
+          "id": "arialKhan",
+          "line": "arialKhan",
+          "near": [
+            90.32,
+            22.98
+          ]
+        },
+        {
+          "id": "mahananda",
+          "line": "mahananda3",
+          "near": [
+            88.25,
+            24.75
+          ]
+        },
+        {
+          "id": "bhagirathi",
+          "line": "bhagirathi",
+          "near": [
+            88.2,
+            24.1
+          ]
+        }
+      ]
+    }
+  },
+  "geometry": {
+    "lines": {
+      "gangaPadma": {
+        "entity": "padma",
+        "role": "main",
+        "split": "border",
+        "ways": [
+          134518612,
+          1030338943,
+          82854638,
+          684940531,
+          685058530,
+          288288167,
+          685060015,
+          1077285677,
+          1077285678,
+          206506485,
+          383266789
+        ],
+        "down": [
+          89.7743,
+          23.7918
+        ],
+        "identified": "One chain of eleven ways from the pinned rivers snapshot, every link sharing a node: 134518612 and 1030338943 tagged Ganga / «গঙ্গা নদী» / Ganges (relation 1236345, main_stream), the rest «পদ্মা নদী» / Padma River. 1030338943 is the snapshot's version 2, which reaches 88.0350°E; the newer way 1563083730 overlaps it by 1.2 km and is not drawn. The chain ends on the node where way 82854640 (the line `padma`) begins. Drawn dashed outside Bangladesh, as COD-AB draws the border. Not drawn: 1077525067 and 1077525068, unnamed side streams near the barrage."
+      },
+      "padma": {
+        "entity": "padma",
+        "role": "main",
+        "ways": [
+          82854640
+        ],
+        "down": [
+          90.628,
+          23.2318
+        ],
+        "identified": "OSM way 82854640, named «পদ্মা নদী» (name:en «Padma River»; its name:bn tag reads «গঙ্গা নদী»), from the Jamuna–Ganges confluence to the Meghna. Its end must lie within 3 m of a vertex of the Meghna chain."
+      },
+      "gorai": {
+        "entity": "gorai",
+        "role": "distributary",
+        "ways": [
+          26002882
+        ],
+        "down": [
+          89.4884,
+          23.594
+        ],
+        "join": {
+          "parent": "gangaPadma",
+          "node": 964039681,
+          "source": "OSM node 964039681, the first node of way 26002882, shared with the Padma at the joint of ways 1077285677 and 1077285678"
+        },
+        "identified": "OSM way 26002882, tagged «গড়াই-মধুমতি নদী» / Gorai-Madhumati River, wikidata Q5584370 (this system's extract). Its tail is 12.2 km from the Madhumati's drawn head; the course between is unnamed in OpenStreetMap and is not drawn (ⓘ)."
+      },
+      "madhumati": {
+        "entity": "madhumati",
+        "role": "distributary",
+        "ways": [
+          288288169
+        ],
+        "down": [
+          89.6861,
+          23.0932
+        ],
+        "join": {
+          "parent": "gorai"
+        },
+        "exempt": "Unjoined: BWDB (SW-74) has it leave the Gorai at Nakol, Sreepur, Magura, but the drawn line's head is 12.2 km from the Gorai's drawn end — over the 12 km a connector may bridge (the user's rule, 2026-09-29) — and the course between is unnamed in OpenStreetMap, so there is no join point or connector (ⓘ).",
+        "identified": "OSM way 288288169 from the pinned rivers snapshot, named Madhumati. No way is tagged Madhumati below 23.09°N; the first named river further south, the Baleshwar (way 539853761), starts 72.9 km away, so the line ends at 23.09°N (ⓘ)."
+      },
+      "arialKhan": {
+        "entity": "arialKhan",
+        "role": "distributary",
+        "ways": [
+          716026823,
+          1472200998
+        ],
+        "down": [
+          90.3538,
+          22.8742
+        ],
+        "join": {
+          "parent": "padma",
+          "node": 8426427885,
+          "source": "OSM node 8426427885, the first node of way 716026823, on the Padma (way 82854640)"
+        },
+        "identified": "Ways 716026823 and 1472200998, both tagged «আড়িয়াল খাঁ নদ» / Arial Khan River (this system's extract), sharing node 6752057964."
+      },
+      "arialKhan2": {
+        "entity": "arialKhan",
+        "role": "distributary",
+        "ways": [
+          631200493
+        ],
+        "down": [
+          90.42,
+          22.7464
+        ],
+        "join": {
+          "parent": "arialKhan"
+        },
+        "identified": "Way 631200493, tagged «আড়িয়াল খাঁ» (this system's extract): the Arial Khan below a 6.6 km stretch that OpenStreetMap leaves unnamed; a connector joins its head to the reach above (ⓘ). Its end is in COD-AB's Barishal Sadar upazila, as BWDB's mouth."
+      },
+      "mahananda": {
+        "entity": "mahananda",
+        "role": "tributary",
+        "ways": [
+          69233359,
+          546192374,
+          583039974,
+          583039973,
+          583039975,
+          134079134,
+          45309519,
+          155331892
+        ],
+        "down": [
+          87.8016,
+          25.8523
+        ],
+        "join": {
+          "parent": "mahananda2"
+        },
+        "exempt": "Unjoined: the drawn upper reach leaves the picture to the west, in India, and ends 76.6 km from the next reach tagged Mahananda — over the 12 km a connector may bridge (the user's rule, 2026-09-29) — so there is no join point or connector (ⓘ).",
+        "identified": "Eight ways, every link sharing a node, all tagged «Mahananda River» (this system's extract): the reach through Tetulia, Panchagarh, that JRCB and BWDB (NW-94) describe. Not drawn: way 751664755, tagged «Bangladesh - India» and a member of the Mahananda relation only."
+      },
+      "mahananda2": {
+        "entity": "mahananda",
+        "role": "tributary",
+        "ways": [
+          390239445,
+          1229513554
+        ],
+        "down": [
+          88.1826,
+          24.9553
+        ],
+        "join": {
+          "parent": "mahananda3"
+        },
+        "identified": "Ways 390239445 and 1229513554, tagged «Mahananda» (this system's extract). Its tail is 11.3 km from the next reach; the way between, 239809732, is tagged «Bangladesh - India» and is not a relation member, so it is not drawn and a connector bridges the gap (ⓘ)."
+      },
+      "mahananda3": {
+        "entity": "mahananda",
+        "role": "tributary",
+        "ways": [
+          239809734
+        ],
+        "down": [
+          88.3034,
+          24.4906
+        ],
+        "join": {
+          "parent": "gangaPadma",
+          "node": 6386667953,
+          "source": "OSM node 6386667953, the last node of way 239809734, which lies on the Padma (way 82854638)"
+        },
+        "identified": "Way 239809734, tagged «Mahananda» (this system's extract): from Bholahat to the Padma, the reach BWDB's NW-95 describes."
+      },
+      "bhagirathi": {
+        "entity": "bhagirathi",
+        "role": "distributary",
+        "ways": [
+          219195720,
+          219195715,
+          326058547,
+          28056068
+        ],
+        "down": [
+          88.2335,
+          23.7892
+        ],
+        "join": {
+          "parent": "gangaPadma"
+        },
+        "identified": "Four ways of relation 1243337 (Hooghly, alt_name Bhagirathi, wikidata Q739687), from the pinned rivers snapshot, every link sharing a node. Its head is 7.4 km from the Ganges line; OpenStreetMap's links there are an unnamed channel (206506486) and the Farakka Feeder Canal (82854636), neither drawn, so a connector joins it (ⓘ)."
+      },
+      "bhagirathi2": {
+        "entity": "bhagirathi",
+        "role": "distributary",
+        "ways": [
+          693325859,
+          164568703,
+          1352688469,
+          693325882,
+          165022243,
+          1352087403,
+          165022242,
+          44963722,
+          1160534766,
+          44604952,
+          693325872,
+          1167396356,
+          1112044350,
+          755637339,
+          1112044352,
+          1112041656,
+          1112041657,
+          1112041659,
+          1112041658,
+          1112281966,
+          1112281968,
+          1232880605,
+          197696274,
+          948606671,
+          948606670,
+          206506489,
+          948606681,
+          948606669,
+          907172927
+        ],
+        "down": [
+          88.0215,
+          21.7869
+        ],
+        "join": {
+          "parent": "bhagirathi"
+        },
+        "identified": "Twenty-nine ways of relation 1243337 (Hooghly, alt_name Bhagirathi), to the sea: 28 from the pinned rivers snapshot and 1352087403, tagged Bhagirathi / «ভাগীরথী», from this system's extract. Its head is 396 m from the reach above; the only link is the unnamed way 1352087404, outside the relation, so a connector bridges it."
+      }
+    },
+    "extract": {
+      "gorai": [
+        26002882
+      ],
+      "arialKhan": [
+        716026823,
+        1472200998,
+        631200493
+      ],
+      "mahananda": [
+        69233359,
+        546192374,
+        583039974,
+        583039973,
+        583039975,
+        134079134,
+        45309519,
+        155331892,
+        390239445,
+        1229513554,
+        239809734
+      ],
+      "bhagirathi": [
+        1352087403
+      ]
+    }
+  },
+  "markers": [
+    {
+      "id": "padmaJamunaConfluence",
+      "kind": "confluence",
+      "row": "confluence",
+      "entity": "padma",
+      "nameBn": "পদ্মা",
+      "lonLat": [
+        89.77304192,
+        23.80490447
+      ],
+      "coordSource": {
+        "source": "bwdbNW76",
+        "where": "the outfall (পতিতমুখ) row: পদ্মা, দৌলতদিয়া, গোয়ালন্দ, রাজবাড়ী — the same point as the Jamuna's confluence marker; it is in COD-AB's Goalanda upazila"
+      },
+      "valueBn": "দৌলতদিয়ার কাছে (গোয়ালন্দ উপজেলা)",
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "গঙ্গা ও যমুনার মিলিত ধারা পদ্মা"
+          }
+        ],
+        "valueBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the যমুনা paragraph",
+            "states": "দৌলতদিয়ার কাছে গঙ্গার সঙ্গে মিলিত হয়ে পদ্মা নাম ধারণ করে"
+          },
+          {
+            "source": "bwdbNC32",
+            "where": "§1.4 উৎসমুখ/ প্রবেশস্থল",
+            "states": "গঙ্গা/ পদ্মা | জামালপুর | দৌলতদিয়া | গোয়ালন্দ | রাজবাড়ী | ঢাকা"
+          }
+        ]
+      }
+    },
+    {
+      "id": "mahanandaConfluence",
+      "kind": "confluence",
+      "row": "confluence",
+      "entity": "mahananda",
+      "nameBn": "মহানন্দা",
+      "lonLat": [
+        88.3034277,
+        24.4906245
+      ],
+      "coordSource": {
+        "source": "osm",
+        "way": 239809734,
+        "node": 6386667953,
+        "where": "the last node of way 239809734, on the drawn Padma (way 82854638); COD-AB puts it in Chapainawabganj Sadar upazila, as BWDB's outfall row"
+      },
+      "valueBn": "চাঁপাইনবাবগঞ্জ জেলার সদর উপজেলার দেবীনগর ইউনিয়ন",
+      "sources": {
+        "nameBn": [
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, p. ৩ row ১৪",
+            "states": "মহানন্দা"
+          }
+        ],
+        "valueBn": [
+          {
+            "source": "bwdbNW95",
+            "where": "§1.1 বর্ণনা; §1.4 পতিতমুখ",
+            "states": "চাঁপাইনবাবগঞ্জ জেলার সদর উপজেলার দেবীনগর ইউনিয়নে গঙ্গা/ পদ্মা নদীতে পতিত হয়েছে; গঙ্গা/ পদ্মা | অনুপনগর (অংশ) | দেবীনগর | চাঁপাইনবাবগঞ্জ সদর | চাঁপাইনবাবগঞ্জ | রাজশাহী"
+          }
+        ]
+      }
+    },
+    {
+      "id": "padmaMouth",
+      "kind": "mouth",
+      "row": "mouth",
+      "entity": "padma",
+      "nameBn": "পদ্মা",
+      "lonLat": [
+        90.6279801,
+        23.2318031
+      ],
+      "coordSource": {
+        "source": "osm",
+        "way": 82854640,
+        "node": 5952163207,
+        "where": "the last node of way 82854640, where the drawn Padma meets the drawn Meghna; COD-AB puts it in Chandpur Sadar upazila, Chandpur"
+      },
+      "valueBn": "চাঁদপুরের কাছে মেঘনার সঙ্গে মিলিত",
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "পদ্মা"
+          }
+        ],
+        "valueBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the পদ্মা paragraph",
+            "states": "চাঁদপুরের কাছে মেঘনার সঙ্গে মিলিত হয়েছে"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২",
+            "states": "চাঁদপুরে এসে এ নদী মেঘনার সঙ্গে মিলিত হয়ে"
+          }
+        ]
+      }
+    }
+  ],
+  "entities": [
+    {
+      "id": "padma",
+      "role": "main",
+      "picker": true,
+      "nameBn": "পদ্মা",
+      "values": {
+        "alias": "গঙ্গা (ভারতে)",
+        "origin": "হিমালয়ের গঙ্গোত্রী হিমবাহ",
+        "entry": null,
+        "course": null,
+        "length": null,
+        "tributaries": "মহানন্দা",
+        "distributaries": null,
+        "confluence": "দৌলতদিয়ার কাছে (গোয়ালন্দ উপজেলা)",
+        "mouth": "চাঁদপুরের কাছে মেঘনার সঙ্গে মিলিত"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩–১৫৪, the পদ্মা paragraph",
+            "states": "পদ্মা"
+          }
+        ],
+        "alias": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩",
+            "states": "ভারতে এই নদীর নাম গঙ্গা"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬১",
+            "states": "পদ্মা নদী ভারত ও ভারতের উত্তরবঙ্গে গঙ্গা এবং বাংলাদেশে পদ্মা নামে পরিচিত"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩",
+            "states": "গঙ্গা নদী হিমালয়ের গঙ্গোত্রী হিমবাহ থেকে উৎপত্তি লাভ করেছে"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬১",
+            "states": "এর উৎপত্তিস্থল মধ্য হিমালয়ের গাঙ্গোত্রী হিমবাহে"
+          }
+        ],
+        "tributaries": [
+          {
+            "source": "bwdbNW27",
+            "where": "§1.9 উপনদী",
+            "states": "মহানন্দা (নবাবগঞ্জ)"
+          }
+        ],
+        "confluence": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩, the পদ্মা paragraph; পৃ. ১৫৪, the যমুনা paragraph",
+            "states": "দৌলতদিয়ার নিকট যমুনা নদীর সঙ্গে মিলিত হয়েছে; দৌলতদিয়ার কাছে গঙ্গার সঙ্গে মিলিত হয়ে"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২",
+            "states": "গোয়ালন্দের নিকট ব্রহ্মপুত্রের প্রধান ধারা যমুনার সঙ্গে মিলিত হয়েছে"
+          },
+          {
+            "source": "bwdbNC32",
+            "where": "§1.4 উৎসমুখ/ প্রবেশস্থল",
+            "states": "দৌলতদিয়া | গোয়ালন্দ | রাজবাড়ী"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "চাঁদপুরের কাছে মেঘনার সঙ্গে মিলিত হয়েছে"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২",
+            "states": "চাঁদপুরে এসে এ নদী মেঘনার সঙ্গে মিলিত হয়ে"
+          }
+        ]
+      },
+      "review": "The card is the Ganges–Padma as B-GEO's «পদ্মা» paragraph describes it. Entry and course are null: the books disagree on where it enters Bangladesh (B-GEO: the north-west of Kushtia, after about 145 km along the border; B910: through Chapainawabganj) — both in ⓘ. Distributaries are null: B-GEO lists six «প্রধান শাখানদী» with the Gorai, B910 eleven of the «নিম্নগঙ্গা» without it (ⓘ). Length is null, as for the Jamuna: which stretch is «পদ্মা» differs even inside B-GEO; BWDB gives 121 km for NC-32 (Daulatdia–Chandpur) and 230 km for NW-27 (the border to Daulatdia), JRCB 230 km in Bangladesh (row ৬), bn Wikipedia (rev 9125110) 341 km. Tributaries: BWDB NW-27's list for the Ganges reach; NC-32 lists five small rivers of the lower reach (ইছামতি (মানিকগঞ্জ), ইলিশমারী, জয়পাড়া খাল, কাটাখালী (মুন্সিগঞ্জ), তালতলা), none drawn. Confluence: «দৌলতদিয়ার নিকট» (B-GEO) and «গোয়ালন্দের নিকট» (B910) name one place — Daulatdia is in Goalanda upazila (BWDB NC-32) — so the row is shown as on the Jamuna's card; the ⓘ line on the Jamuna–Ganges meeting gives both. Mouth: «চাঁদপুরের কাছে» (B-GEO) and «চাঁদপুরে» (B910) agree; BWDB's two entries put the junction in Chandpur Sadar (NC-32) and Matlab Uttar (SE-17). Other names: bn Wikipedia's «কীর্তিনাশা» and BWDB's local name «কুতুবপুর (মাদারীপুর অংশে)» are not on the card."
+    },
+    {
+      "id": "gorai",
+      "role": "distributary",
+      "nameBn": "গড়াই",
+      "values": {
+        "relation": "পদ্মার প্রধান শাখানদী",
+        "origin": "কুষ্টিয়া জেলার কুষ্টিয়া সদর উপজেলায় হাটশ হরিপুর ইউনিয়নে গঙ্গা/পদ্মা নদী হতে",
+        "course": null,
+        "mouth": "মাগুরা জেলার শ্রীপুর উপজেলায় নাকোল ইউনিয়নে মধুমতী নদীতে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "গড়াই"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "কুমার, মাথাভাঙা, ভৈরব, গড়াই, মধুমতী, আড়িয়াল খাঁ ইত্যাদি পদ্মা নদীর প্রধান শাখানদী"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbSW24",
+            "where": "§1.1 বর্ণনা",
+            "states": "নদীটি কুষ্টিয়া জেলার কুষ্টিয়া সদর উপজেলায় হাটশ হরিপুর ইউনিয়নে গঙ্গা/পদ্মা নদী হতে উৎপন্ন হয়ে"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bwdbSW24",
+            "where": "§1.1 বর্ণনা",
+            "states": "মাগুরা জেলার শ্রীপুর উপজেলায় নাকোল ইউনিয়নে মধুমতি নদীতে পতিত হয়েছে (the river's name spelt as the book spells it, «মধুমতী»)"
+          }
+        ]
+      },
+      "review": "BWDB SW-24 (riverId 228), matched by district: its offtake is the Ganges/Padma in Kushtia Sadar, where the drawn line's head is (COD-AB). Ruled out: NW-349 and NW-25 (Natore, off the Musakhan) and NE-106 (Sunamganj). Course is null: BWDB's description gives only the origin and the mouth, and its §1.7 district list is in page order, not downstream. BWDB calls it «গঙ্গার অন্যতম একটি শাখা নদী»; NW-27 «গঙ্গা/ পদ্মা নদীর ডান তীরের সর্ববৃহৎ শাখা নদী» — wording only."
+    },
+    {
+      "id": "madhumati",
+      "role": "distributary",
+      "nameBn": "মধুমতী",
+      "values": {
+        "relation": "পদ্মার প্রধান শাখানদী",
+        "origin": "মাগুরা জেলার শ্রীপুর উপজেলার নাকোল ইউনিয়নের গড়াই নদী থেকে",
+        "course": null,
+        "mouth": "বাগেরহাট জেলার চিতলমারী উপজেলার কলাতলা ইউনিয়নের শোলদহ নদীতে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "মধুমতী"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "কুমার, মাথাভাঙা, ভৈরব, গড়াই, মধুমতী, আড়িয়াল খাঁ ইত্যাদি পদ্মা নদীর প্রধান শাখানদী"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbSW74",
+            "where": "§1.1 বর্ণনা",
+            "states": "নদীটি মাগুরা জেলার শ্রীপুর উপজেলার নাকোল ইউনিয়নের গড়াই নদী থেকে উৎপত্তি হয়ে"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bwdbSW74",
+            "where": "§1.1 বর্ণনা",
+            "states": "বাগেরহাট জেলার চিতলমারী উপজেলার কলাতলা ইউনিয়নের শোলদহ নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "BWDB SW-74 «মধুমতি» (riverId 288), matched by district: its offtake is SW-24's outfall at Nakol, Sreepur, Magura. Ruled out: SW-215 «শৈলদহ মধুমতী», a small river in Bagerhat. The book makes it the Padma's distributary; BWDB has it leave the Gorai (ⓘ). Course is null: BWDB's description gives only the origin and the mouth. The drawn line ends at 23.09°N in Narail (COD-AB), short of the mouth (ⓘ). The name is the book's spelling, «মধুমতী»; BWDB spells «মধুমতি»."
+    },
+    {
+      "id": "arialKhan",
+      "role": "distributary",
+      "nameBn": "আড়িয়াল খাঁ",
+      "values": {
+        "relation": "পদ্মার প্রধান শাখানদী",
+        "origin": "ফরিদপুর জেলার সদরপুর উপজেলার চর নাছিরপুর ইউনিয়নের পদ্মা নদী থেকে",
+        "course": "মাদারীপুর জেলা দিয়ে প্রবাহিত",
+        "mouth": "বরিশাল জেলার সদর উপজেলার শায়েস্তাবাদ ইউনিয়নে কালাবাদর নদীতে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "আড়িয়াল খাঁ"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "কুমার, মাথাভাঙা, ভৈরব, গড়াই, মধুমতী, আড়িয়াল খাঁ ইত্যাদি পদ্মা নদীর প্রধান শাখানদী"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbSW2",
+            "where": "§1.1 বর্ণনা",
+            "states": "নদীটি ফরিদপুর জেলার সদরপুর উপজেলার চর নাছিরপুর ইউনিয়নের পদ্মা নদী থেকে উৎপন্ন হয়ে"
+          }
+        ],
+        "course": [
+          {
+            "source": "bwdbSW2",
+            "where": "§1.1 বর্ণনা",
+            "states": "মাদারীপুর জেলা দিয়ে প্রবাহিত হয়ে"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bwdbSW2",
+            "where": "§1.1 বর্ণনা",
+            "states": "বরিশাল জেলার সদর উপজেলার শায়েস্তাবাদ ইউনিয়নে কালাবাদর নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "BWDB SW-2 (riverId 202), matched by district: its offtake is the Padma in Sadarpur, Faridpur, where the drawn head is (COD-AB), and its mouth is in Barishal Sadar, where the drawn line ends. Ruled out: SW-2_1 (from the Kirtinasha at Kazirhat) and NC-3 (Kishoreganj–Narsingdi). No marker at the mouth: the Kalabadar is not drawn."
+    },
+    {
+      "id": "mahananda",
+      "role": "tributary",
+      "nameBn": "মহানন্দা",
+      "values": {
+        "relation": "গঙ্গা/পদ্মার উপনদী",
+        "origin": "ভারতের হিমালয় এর পাহাড়ী অঞ্চল",
+        "course": "পঞ্চগড় জেলার তেঁতুলিয়া উপজেলা দিয়ে বাংলাদেশে প্রবেশ। পশ্চিমবঙ্গের উত্তর দিনাজপুর দিয়ে ভারতে প্রবেশ। চাঁপাইনবাবগঞ্জের ভোলাহাট উপজেলায় বাংলাদেশে প্রবেশ।",
+        "confluence": "চাঁপাইনবাবগঞ্জ জেলার সদর উপজেলার দেবীনগর ইউনিয়ন"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, p. ৩ row ১৪",
+            "states": "মহানন্দা"
+          },
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "মহানন্দার উপনদী"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bwdbNW27",
+            "where": "§1.9 উপনদী",
+            "states": "মহানন্দা (নবাবগঞ্জ)"
+          }
+        ],
+        "origin": [
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, p. ৩ row ১৪, উৎপত্তিস্থল",
+            "states": "ভারতের হিমালয় এর পাহাড়ী অঞ্চল"
+          }
+        ],
+        "course": [
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, p. ৩ row ১৪, বাংলাদেশ/ভারতে প্রবেশমুখ",
+            "states": "পঞ্চগড় জেলার তেতুঁলিয়া উপজেলা দিয়ে বাংলাদেশে প্রবেশ। পশ্চিমবঙ্গের উত্তর দিনাজপুর দিয়ে ভারতে প্রবেশ। চাঁপাইনবাবগঞ্জের ভোলাহাট উপজেলায় বাংলাদেশে প্রবেশ (the upazila spelt «তেঁতুলিয়া», as BWDB spells it)"
+          }
+        ],
+        "confluence": [
+          {
+            "source": "bwdbNW95",
+            "where": "§1.1 বর্ণনা",
+            "states": "চাঁপাইনবাবগঞ্জ জেলার সদর উপজেলার দেবীনগর ইউনিয়নে গঙ্গা/ পদ্মা নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "Transboundary: origin and course are JRCB's (row ১৪), which describes the whole river; BWDB splits it into NW-94 «মহানন্দা (পঞ্চগড়)» (the Tetulia reach, matched to the drawn upper reach by district) and NW-95 «মহানন্দা (নবাবগঞ্জ)» (Bholahat to the Padma, matched to the lower reaches), and says only «ভারত হতে উৎপন্ন». The confluence is BWDB's NW-95, as for the Teesta (BWDB before JRCB); JRCB's «গঙ্গা নদী গোদাগাড়ী ঘাট» is in ⓘ. The drawn confluence is in COD-AB's Chapainawabganj Sadar. bn Wikipedia (rev 9125110) makes the Punarbhaba a Padma tributary; B-GEO and JRCB make it the Mahananda's."
+    },
+    {
+      "id": "bhagirathi",
+      "role": "distributary",
+      "nameBn": "ভাগীরথী",
+      "values": {
+        "relation": "গঙ্গার একটি শাখা",
+        "alias": null,
+        "origin": "পশ্চিমবঙ্গের মুর্শিদাবাদ জেলার ধুলিয়ান নামক স্থানে",
+        "course": "পশ্চিমবঙ্গের মধ্য দিয়ে",
+        "mouth": "বঙ্গোপসাগরে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩",
+            "states": "ভাগীরথী (হুগলি নদী)"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩, the পদ্মা paragraph («এর» is the Ganges)",
+            "states": "ভাগীরথী (হুগলি নদী) নামে এর একটি শাখা বের হয়ে"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩",
+            "states": "পশ্চিমবঙ্গের মুর্শিদাবাদ জেলার ধুলিয়ান নামক স্থানে ভাগীরথী (হুগলি নদী) নামে এর একটি শাখা বের হয়ে"
+          }
+        ],
+        "course": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩",
+            "states": "পশ্চিমবঙ্গের মধ্য দিয়ে বঙ্গোপসাগরে পড়েছে"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩",
+            "states": "বঙ্গোপসাগরে পড়েছে"
+          }
+        ]
+      },
+      "review": "B-GEO answers every row; BWDB's list has no ভাগীরথী or হুগলি entry and JRCB's table no row. The other name is null: B-GEO writes «ভাগীরথী (হুগলি নদী)», one river, while B910 lists «ভাগীরথী, হুগলি» as two (ⓘ). The drawn line (OSM relation 1243337, Hooghly, alt_name Bhagirathi) runs to the sea, as B-GEO has it; its head is 7.4 km from the Ganges line, near Jangipur, not at Dhulian (ⓘ)."
+    }
+  ]
+}

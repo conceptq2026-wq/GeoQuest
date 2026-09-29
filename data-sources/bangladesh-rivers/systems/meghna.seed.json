@@ -1,0 +1,64 @@
+{
+  "_about": "The Meghna system. Until its cards arrive, only the grey Meghna continuation to the sea.",
+  "id": "meghna",
+  "nameBn": "মেঘনা",
+  "labelsBn": {
+    "meghna": "মেঘনা"
+  },
+  "frames": {
+    "bangladesh": {
+      "lines": [
+        "meghna"
+      ],
+      "labels": [
+        {
+          "id": "meghna",
+          "line": "meghna",
+          "near": [
+            91,
+            22.8
+          ]
+        }
+      ]
+    }
+  },
+  "geometry": {
+    "lines": {
+      "meghna": {
+        "role": "continuation",
+        "ways": [
+          1076997905,
+          288284425,
+          1076997923,
+          684920517,
+          684819155,
+          684921446,
+          288284422,
+          288284424,
+          630320743,
+          908091551
+        ],
+        "down": [
+          91.2016,
+          22.3835
+        ],
+        "identified": "One chain of ten OSM ways named «মেঘনা নদী» (name:en «Meghna River») from the Meghna above Bhairab Bazar, where the Old Brahmaputra joins it (the book), past the Padma junction, to 22.3835°N. Ways 630320743 and 908091551 carry a name:bn tag reading «গঙ্গা নদী» in OSM; their name and position are the Meghna's. The picture stops at 22.38°N, above the estuary."
+      }
+    }
+  },
+  "continuations": [
+    {
+      "id": "meghna",
+      "nameBn": "মেঘনা",
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "মেঘনা ভৈরববাজারের দক্ষিণে পুরাতন ব্রহ্মপুত্রের সঙ্গে মিলিত"
+          }
+        ]
+      }
+    }
+  ]
+}

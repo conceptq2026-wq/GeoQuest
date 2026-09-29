@@ -103,7 +103,9 @@ not built.
   - **Two tabs, one set of standard ids.** Each tab builds its own picker row;
     the tab in view holds `prevRecord`, `recordPicker` and `nextRecord`, the
     other's carry a suffix, so the shell and `tools/check.mjs` read the same ids
-    whatever the tab. The picker lists only the rivers the data names.
+    whatever the tab. The picker lists only the rivers the tab draws, grouped
+    by river system (`<optgroup>`, through `pickerBar`'s `groups`) where the
+    tab draws two or more systems.
   - **`tools/check.mjs`** has a rivers branch, `riverSteps`: tab by tab, the
     picker, then every zone tapped where it alone takes the tap, with the layout
     check with no card and with each card, then ⓘ opened once (a shot; on the

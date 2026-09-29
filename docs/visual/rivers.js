@@ -34,10 +34,17 @@
 | data names and follows the selection. A tap is a press that moves under 8
 | px; a drag pans, two fingers pinch, the wheel and a double tap zoom.
 |
+| Several river systems share one picture (data.systems). One is current:
+| the first the frame draws, until a card of another is chosen. Its lines are
+| drawn in full with their markers and names; every other system's lines are
+| thin and grey, without markers, named only by their main river. Choosing a
+| main river lights its whole system; choosing a branch lights that branch.
+| The picker lists the cards the frame draws, grouped by system.
+|
 | Every word shown is the descriptor's or the data's.
 */
 
-import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=651d0becab';
+import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=735dae5ee5';
 
 const ZOOM_MAX = 6;
 // CSS px: a press that moves less than this is a tap; two taps within DOUBLE_MS and DOUBLE_PX are a double tap.
@@ -95,7 +102,10 @@ export async function mount(panel, { view, descriptor, data, art, shared }) {
   const words = descriptor.words;
   const frame = await art;
   const districts = frame.districts ? await shared(frame.districts.file) : null;
-  await Promise.all([stylesheet('../shared/picker.css?v=651d0becab'), stylesheet('./rivers.css?v=651d0becab')]);
+  const systemsHere = new Set([...frame.lines.map((l) => l.system), ...frame.markers.map((m) => m.system)]);
+  let current = (data.systems ?? []).map((s) => s.id).find((s) => systemsHere.has(s)) ?? null;
+  const markerSystem = new Map(frame.markers.map((m) => [m.id, m.system]));
+  await Promise.all([stylesheet('../shared/picker.css?v=735dae5ee5'), stylesheet('./rivers.css?v=735dae5ee5')]);
 
   const fw = frame.projection.width;
   const fh = frame.projection.height;
@@ -207,7 +217,7 @@ export async function mount(panel, { view, descriptor, data, art, shared }) {
   const riverG = new Map();
   const drawOrder = [];
   for (const line of frame.lines) {
-    const g = svgEl('g', { class: `river river-${line.role}` });
+    const g = svgEl('g', { class: `river river-${line.role}`, 'data-system': line.system ?? '' });
     for (const piece of line.pieces) {
       g.append(svgEl('path', { class: 'river-halo', d: piece.d }), svgEl('path', { class: piece.dash ? 'river-line dash' : 'river-line', d: piece.d }));
     }
@@ -235,10 +245,11 @@ export async function mount(panel, { view, descriptor, data, art, shared }) {
   };
   // The main river's zone lies lowest, so a branch beside it takes its own taps.
   for (const line of [...frame.lines].reverse()) {
-    const entity = data.entities[line.id];
+    const entity = line.entity ? data.entities[line.entity] : null;
     if (!entity || line.role === 'continuation') continue;
     const zone = svgEl('path', { class: 'zone', d: line.pieces.map((p) => p.d).join('') });
-    zoneFor(zone, `line:${line.id}`, entity.name);
+    zoneFor(zone, `line:${line.entity}`, entity.name);
+    zone.dataset.system = line.system ?? '';
     zonesG.append(zone);
   }
 
@@ -246,9 +257,10 @@ export async function mount(panel, { view, descriptor, data, art, shared }) {
   const markerPos = new Map(frame.markers.map((m) => [m.id, [m.x, m.y]]));
   for (const m of frame.markers) {
     const info = data.markers[m.id];
-    const g = svgEl('g', { class: `marker marker-${m.kind}` });
+    const g = svgEl('g', { class: `marker marker-${m.kind}`, 'data-system': m.system ?? '' });
     const zone = svgEl('circle', { class: 'zone', r: 22 });
     zoneFor(zone, `marker:${m.id}`, cardTitle(info));
+    zone.dataset.system = m.system ?? '';
     g.append(svgEl('circle', { class: 'mark-halo', r: 15 }), svgEl('circle', { class: 'mark-ring', r: 15 }), glyph(m.kind), zone);
     markersG.append(g);
     markerG.set(m.id, g);
@@ -257,10 +269,10 @@ export async function mount(panel, { view, descriptor, data, art, shared }) {
   // ---- the names ---------------------------------------------------------------------------
 
   const labels = [
-    ...frame.labels.map((l) => ({ id: l.id, text: data.labels[l.id], x: l.x, y: l.y, line: l.line, role: roleOf.get(l.line) })),
+    ...frame.labels.map((l) => ({ id: l.id, text: data.labels[l.id], x: l.x, y: l.y, line: l.line, role: roleOf.get(l.line), lineRole: roleOf.get(l.line), system: frame.lines.find((q) => q.id === l.line)?.system })),
     ...frame.countries.map((c) => ({ id: c.id, text: data.countries[c.id], x: c.x, y: c.y, line: null, role: 'country' })),
     ...(districts
-      ? frame.districts.labels.map((d) => ({ id: d.pcode, text: districts.districts.find((q) => q.pcode === d.pcode).bn, x: d.x, y: d.y, line: null, role: d.always ? 'markerDistrict' : 'district' }))
+      ? frame.districts.labels.map((d) => ({ id: d.pcode, text: districts.districts.find((q) => q.pcode === d.pcode).bn, x: d.x, y: d.y, line: null, role: 'district', standing: d.systems }))
       : []),
   ];
   const perLine = new Map();
@@ -286,7 +298,23 @@ export async function mount(panel, { view, descriptor, data, art, shared }) {
       l.at = best;
     }
   }
-  labels.sort((a, b) => RANK[a.role] - RANK[b.role]);
+  /**
+   * The names in placing order, for the current system: a district's role is its standing in it;
+   * another system's river name is placed and drawn like a continuation's, grey; a lit branch's
+   * names come straight after the main river's.
+   */
+  function ordered(lit) {
+    for (const l of labels) {
+      if (l.standing) l.role = l.standing[current] === 'always' ? 'markerDistrict' : 'district';
+      else if (l.lineRole) {
+        const role = l.system && l.system !== current ? 'continuation' : l.lineRole;
+        if (role !== l.role) l.node.setAttribute('class', `layer-label river-label label-${role}`);
+        l.role = role;
+      }
+    }
+    const rank = (l) => (lit?.has(l.line) && l.role !== 'main' ? 0.5 : RANK[l.role]);
+    return [...labels].sort((a, b) => rank(a) - rank(b));
+  }
 
   // ---- the legend, at the stage's bottom left ------------------------------------------------
 
@@ -325,11 +353,18 @@ export async function mount(panel, { view, descriptor, data, art, shared }) {
 
   const { card, close, fill } = dockedCard({ close: words.close, id: `rivers-${uid}` });
   let sel = null;
-  const pickerKeys = new Set(data.picker.map((p) => p.key));
+  const drawnCards = new Set(frame.lines.map((l) => l.entity).filter(Boolean));
+  // Copies: a tab with one group drops it from its own items, never from the data another tab reads.
+  const pickerItems = data.picker.filter((p) => drawnCards.has(p.key)).map((p) => ({ ...p }));
+  const groupsHere = (data.pickerGroups ?? []).filter((g) => pickerItems.some((p) => p.group === g.value));
+  const pickerGroups = groupsHere.length > 1 ? groupsHere : [];
+  if (!pickerGroups.length) for (const p of pickerItems) delete p.group;
+  const pickerKeys = new Set(pickerItems.map((p) => p.key));
   const pickerKey = () => (sel?.kind === 'line' && pickerKeys.has(sel.id) ? sel.id : undefined);
   const { bar, select, row } = pickerBar({
     placeholder: words.picker,
-    items: data.picker.map((p) => ({ key: p.key, label: p.label })),
+    items: pickerItems.map((p) => ({ key: p.key, label: p.label, group: p.group })),
+    groups: pickerGroups,
     current: pickerKey,
     choose: (key) => choose(key, true),
   });
@@ -356,7 +391,7 @@ export async function mount(panel, { view, descriptor, data, art, shared }) {
       return { x0: x, y0: y, x1: x, y1: y };
     }
     const b = { x0: Infinity, y0: Infinity, x1: -Infinity, y1: -Infinity };
-    for (const pts of polyOf.get(id)) {
+    for (const pts of frame.lines.filter((l) => l.entity === id).flatMap((l) => polyOf.get(l.id))) {
       for (const [x, y] of pts) {
         b.x0 = Math.min(b.x0, x);
         b.y0 = Math.min(b.y0, y);
@@ -368,19 +403,31 @@ export async function mount(panel, { view, descriptor, data, art, shared }) {
   }
 
   function paint() {
-    const line = sel?.kind === 'line' ? sel.id : null;
-    svg.classList.toggle('has-lit', line !== null);
-    for (const [id, g] of riverG) g.classList.toggle('lit', id === line);
-    for (const [id, g] of markerG) g.classList.toggle('lit', sel?.kind === 'marker' && sel.id === id);
+    const card = sel?.kind === 'line' ? data.entities[sel.id] : null;
+    // A main river lights its whole system; a branch lights itself.
+    const lit = card ? frame.lines.filter((l) => (card.role === 'main' ? l.system === card.system && l.role !== 'continuation' : l.entity === sel.id)).map((l) => l.id) : [];
+    svg.classList.toggle('has-lit', lit.length > 0);
+    for (const [id, g] of riverG) {
+      g.classList.toggle('lit', lit.includes(id));
+      const line = frame.lines.find((l) => l.id === id);
+      g.classList.toggle('other', line.role !== 'continuation' && line.system !== current);
+    }
+    for (const [id, g] of markerG) {
+      g.classList.toggle('lit', sel?.kind === 'marker' && sel.id === id);
+      g.style.display = markerSystem.get(id) === current ? '' : 'none';
+    }
     for (const [key, z] of zoneOf) z.setAttribute('aria-pressed', String(sel !== null && key === `${sel.kind}:${sel.id}`));
-    for (const g of drawOrder) linesG.append(g);
-    if (line !== null) linesG.append(riverG.get(line));
+    // Another system's lines lie beneath the current one's.
+    for (const g of drawOrder) if (g.classList.contains('other')) linesG.append(g);
+    for (const g of drawOrder) if (!g.classList.contains('other')) linesG.append(g);
+    for (const id of lit) linesG.append(riverG.get(id));
   }
 
   function choose(key, reveal = false) {
     const [kind, id] = key.includes(':') ? key.split(':') : ['line', key];
     if (kind === 'line' ? !data.entities[id] : !data.markers[id]) return;
     sel = { kind, id };
+    current = (kind === 'line' ? data.entities[id].system : markerSystem.get(id)) ?? current;
     if (kind === 'line') fill(data.entities[id].name, words.rows, data.entities[id].values);
     else {
       const marker = data.markers[id];
@@ -629,13 +676,20 @@ export async function mount(panel, { view, descriptor, data, art, shared }) {
     blocks.push({ l: legend.offsetLeft, t: legend.offsetTop, r: legend.offsetLeft + legend.offsetWidth, b: legend.offsetTop + legend.offsetHeight });
     if (reset) blocks.push({ l: reset.offsetLeft, t: reset.offsetTop, r: reset.offsetLeft + reset.offsetWidth, b: reset.offsetTop + reset.offsetHeight });
     for (const [id, [x, y]] of markerPos) {
+      if (markerSystem.get(id) !== current) continue; // another system's marker is hidden
       const sx = tx + m * x;
       const sy = ty + m * y;
       if (sx > -MARK_CLEAR && sx < W + MARK_CLEAR && sy > -MARK_CLEAR && sy < H + MARK_CLEAR) blocks.push({ l: sx - MARK_CLEAR, t: sy - MARK_CLEAR, r: sx + MARK_CLEAR, b: sy + MARK_CLEAR });
     }
     const placed = [];
-    for (const l of labels) {
-      const anchor = l.role === 'district' && zoom < frame.districts.zoomAll - 0.05 ? null : anchorOf(l);
+    // With a branch's card open, the names of the system's other branches give way: one that
+    // finds no spot clear of the other names and the controls is not drawn (names never overlap).
+    const litCard = sel?.kind === 'line' && data.entities[sel.id]?.role !== 'main' ? sel.id : null;
+    const lit = litCard ? new Set(frame.lines.filter((q) => q.entity === litCard).map((q) => q.id)) : null;
+    for (const l of ordered(lit)) {
+      const hiddenHere =
+        (l.standing && !l.standing[current]) || (l.role === 'district' && zoom < frame.districts.zoomAll - 0.05) || (l.line && l.system && l.system !== current && l.lineRole !== 'main' && l.lineRole !== 'continuation');
+      const anchor = hiddenHere ? null : anchorOf(l);
       if (!anchor) {
         l.node.style.display = 'none';
         continue;
@@ -667,6 +721,15 @@ export async function mount(panel, { view, descriptor, data, art, shared }) {
         }
         if (!best || cost < best.cost) best = { cost, rect, align: c.align };
       });
+      const givesWay = lit && l.line && !lit.has(l.line) && (l.role === 'tributary' || l.role === 'distributary');
+      if (givesWay) {
+        const r = best.rect;
+        const padded = { l: r.l - NAME_PAD, t: r.t - NAME_PAD, r: r.r + NAME_PAD, b: r.b + NAME_PAD };
+        if (blocks.some((o) => overlap(r, o) > 0) || placed.some((o) => overlap(padded, o) > 0)) {
+          l.node.style.display = 'none';
+          continue;
+        }
+      }
       l.node.style.display = '';
       if (l.align !== best.align) {
         l.align = best.align;
@@ -793,6 +856,7 @@ export async function mount(panel, { view, descriptor, data, art, shared }) {
     await document.fonts?.ready;
     ready = true;
     content.classList.remove('loading');
+    paint();
     if (open) goHome();
     else layout();
   })();

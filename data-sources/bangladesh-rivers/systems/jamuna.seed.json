@@ -1,0 +1,1268 @@
+{
+  "_about": "The Brahmaputra–Jamuna system: the pilot (Prompt 37 onwards). Its eleven drawn lines' geometry hashes are pinned in tools/bangladesh-rivers-pins.json; its name here is the picker entry's («ব্রহ্মপুত্র–যমুনা», editor-verified 2026-09-29).",
+  "id": "jamuna",
+  "nameBn": "ব্রহ্মপুত্র–যমুনা",
+  "labelsBn": {
+    "yarlung": "ইয়ার-লুং ৎসাং-পো",
+    "brahmaputra": "ব্রহ্মপুত্র",
+    "jamuna": "যমুনা",
+    "dharla": "ধরলা",
+    "teesta": "তিস্তা",
+    "karatoya": "করতোয়া",
+    "atrai": "আত্রাই",
+    "dhaleshwari": "ধলেশ্বরী",
+    "banshi": "বংশী",
+    "shitalakshya": "শীতলক্ষ্যা",
+    "oldBrahmaputra": "পুরাতন ব্রহ্মপুত্র নদ"
+  },
+  "frames": {
+    "whole": {
+      "lines": [
+        "main"
+      ],
+      "markers": [
+        "origin",
+        "entry"
+      ],
+      "labels": [
+        {
+          "id": "yarlung",
+          "line": "main",
+          "near": [
+            85.6,
+            29.25
+          ]
+        },
+        {
+          "id": "brahmaputra",
+          "line": "main",
+          "near": [
+            92.4,
+            26.53
+          ]
+        },
+        {
+          "id": "jamuna",
+          "line": "main",
+          "near": [
+            89.72,
+            24.5
+          ]
+        }
+      ]
+    },
+    "bangladesh": {
+      "lines": [
+        "main",
+        "dharla",
+        "teesta",
+        "karatoya",
+        "atrai",
+        "dhaleshwari",
+        "banshi",
+        "shitalakshya",
+        "oldBrahmaputra"
+      ],
+      "markers": [
+        "entry",
+        "padmaConfluence",
+        "dharlaConfluence",
+        "teestaConfluence",
+        "oldBrahmaputraMouth"
+      ],
+      "labels": [
+        {
+          "id": "brahmaputra",
+          "line": "main",
+          "near": [
+            89.75,
+            25.6
+          ]
+        },
+        {
+          "id": "jamuna",
+          "line": "main",
+          "near": [
+            89.72,
+            24.4
+          ]
+        },
+        {
+          "id": "dharla",
+          "line": "dharla",
+          "near": [
+            89.6,
+            25.85
+          ]
+        },
+        {
+          "id": "teesta",
+          "line": "teesta",
+          "near": [
+            89.3,
+            26.1
+          ]
+        },
+        {
+          "id": "karatoya",
+          "line": "karatoya",
+          "near": [
+            89.3,
+            25.5
+          ]
+        },
+        {
+          "id": "atrai",
+          "line": "atrai",
+          "near": [
+            88.8,
+            25
+          ]
+        },
+        {
+          "id": "dhaleshwari",
+          "line": "dhaleshwari",
+          "near": [
+            90.2,
+            23.7
+          ]
+        },
+        {
+          "id": "banshi",
+          "line": "banshi",
+          "near": [
+            90.09,
+            24.3
+          ]
+        },
+        {
+          "id": "shitalakshya",
+          "line": "shitalakshya",
+          "near": [
+            90.55,
+            23.75
+          ]
+        },
+        {
+          "id": "oldBrahmaputra",
+          "line": "oldBrahmaputra",
+          "near": [
+            90.5,
+            24.6
+          ]
+        }
+      ]
+    }
+  },
+  "geometry": {
+    "main": {
+      "_about": "The Brahmaputra–Jamuna from its origin to the Padma confluence. NE gives Maquan (\"Damqogkanbab\") → Yarlung (\"Brahmaputra\") → Dihang → Brahmaputra (line 0) as one chain (each begins where the last ends); OSM gives the Assam channel and the Jamuna. The seam: the first vertex of the OSM chain within `maxM` of the NE line is cut in — NE is cut at the foot point and the OSM head before that vertex is dropped. `expectVertex` pins which vertex it is (way 169984534, index 60, about 95.16°E, a gap of about 40 m).",
+      "ne": [
+        {
+          "rivernum": 31,
+          "name": "Maquan",
+          "nameEn": "Damqogkanbab",
+          "line": 0
+        },
+        {
+          "rivernum": 42,
+          "name": "Yarlung",
+          "nameEn": "Brahmaputra",
+          "line": 0
+        },
+        {
+          "rivernum": 47,
+          "name": "Dihang",
+          "nameEn": "Dihang",
+          "line": 0
+        },
+        {
+          "rivernum": 51,
+          "name": "Brahmaputra",
+          "nameEn": "Brahmaputra",
+          "line": 0
+        }
+      ],
+      "seam": {
+        "maxM": 50,
+        "expectVertex": 60
+      },
+      "ways": [
+        169984534,
+        157701252,
+        1533995089,
+        367136354,
+        444994352,
+        910696547,
+        910696546,
+        232252698,
+        232252697
+      ],
+      "down": [
+        89.7743,
+        23.7918
+      ],
+      "identified": "Every way is Brahmaputra or Jamuna by the pinned snapshot's `river` property or by connectivity from way 169984534 to the Padma way 82854640; nine ways that touch the chain but are side channels, bars or duplicates are not drawn: 553617232, 438859570, 445528867, 484881097, 484881099, 517236673, 520967009, 520967011, 1291355485."
+    },
+    "lines": {
+      "dharla": {
+        "entity": "dharla",
+        "role": "tributary",
+        "ways": [
+          27916059,
+          97822950,
+          169849859,
+          97817505,
+          97817513,
+          28801794
+        ],
+        "down": [
+          89.7287,
+          25.7263
+        ],
+        "join": {
+          "parent": "main",
+          "node": 3153363369,
+          "point": [
+            89.7287321,
+            25.7263026
+          ],
+          "source": "the line's own mouth node in OpenStreetMap; the parent line is 2.5 km away (the drawn Jamuna keeps its east channel)"
+        },
+        "identified": "OSM relation 12420354. Way 97817505 is named «Jaldhaka» with alt name «Dharla» (the Dharla's upper course in OSM); way 28801794 is «Dharla». The four ways between are unnamed links joined by connectivity."
+      },
+      "teesta": {
+        "entity": "teesta",
+        "role": "tributary",
+        "ways": [
+          232252699,
+          826826931,
+          129649032,
+          1410444323,
+          630325518,
+          44851542,
+          1410444322,
+          1305890093,
+          133298976,
+          1458456928,
+          27915772,
+          126757761,
+          126757764,
+          126757759,
+          134410516,
+          126757765,
+          1214968883,
+          1214968882,
+          1382107976
+        ],
+        "down": [
+          89.6815,
+          25.3986
+        ],
+        "join": {
+          "parent": "main",
+          "way": 232252699,
+          "vertex": 197,
+          "point": [
+            89.68155,
+            25.39858
+          ],
+          "source": "the line's own mouth: the last vertex of way 232252699 in the pinned snapshot, which carries no node ids; the parent line is 3.0 km away"
+        },
+        "identified": "OSM relation 13577352. Way 1410444322 (2.6 km, from the pinned snapshot) closes a gap the pilot ways leave; its twins 1410444321 and 1410446800 are parallel channels and are not drawn."
+      },
+      "karatoya": {
+        "entity": "karatoya",
+        "role": "tributary",
+        "ways": [
+          243696543,
+          370557796,
+          370585411,
+          1364689860,
+          1364689859,
+          398317969,
+          370553035
+        ],
+        "down": [
+          89.4739,
+          24.6306
+        ],
+        "exempt": "Unjoined (the user's decision, 2026-09-29): BWDB's NW-14 ends in the Karatoya (Sirajganj), which is not drawn, and the drawn line's mouth is 17.6 km from the main line — over the 12 km a connector may bridge — so there is no join point, connector or confluence marker.",
+        "identified": "OSM relation 15284114, whose ways are chained by connectivity; ways 243696543, 370557796, 370585411, 1364689860 and 1364689859 carry the snapshot's river property «karatoya»; ways 398317969 and 370553035 (pilot extract) carry no name tag at all and are identified by relation membership and connectivity."
+      },
+      "atrai": {
+        "entity": "atrai",
+        "role": "tributary",
+        "ways": [
+          583374581,
+          537492274,
+          154887673,
+          154887677,
+          198715293
+        ],
+        "down": [
+          89.254,
+          24.373
+        ],
+        "exempt": "Unjoined (the user's decision, 2026-09-29): BWDB's NW-2 ends in the Gumani at Gurudaspur, which is not drawn; the line ends at the Boral node, 47 km from the main line — over the 12 km a connector may bridge — so there is no join point, connector or confluence marker.",
+        "identified": "Way 583374581 is named «Atrai»; 537492274 «আত্রাই» (alt «কাঁকড়া নদী»); 154887677 «Atrai River» (name:bn «আত্রেই», alt «আত্রাই»); 198715293 «আত্রাই নদী». Way 154887673 is tagged «Bangladesh - India» (boundary=administrative, waterway=river): the river stretch that is the border, identified by connectivity between 537492274 and 154887677."
+      },
+      "dhaleshwari": {
+        "entity": "dhaleshwari",
+        "role": "distributary",
+        "ways": [
+          1080194377,
+          929186911,
+          142214393,
+          929186912,
+          929186913
+        ],
+        "down": [
+          90.551,
+          23.564
+        ],
+        "exempt": "No join point: BWDB (NC-27) names the offtake — Sadia Chandpur, Chauhali, Sirajganj — but the OSM line's upstream end is a dead end at 89.8332°E, 24.1667°N, 11.4 km from the drawn main line. A connector joins it to the main line's nearest point, under the 12 km a connector may bridge (the user allowed it for this line on 2026-09-29, and for every line from Stage 1); no offtake marker is drawn.",
+        "identified": "Ways 929186911, 929186912 and 929186913 are named «ধলেশ্বরী নদী». Way 1080194377 is unnamed (its upstream end is at 89.8332°E, 24.1667°N), identified by connectivity to 929186911. Way 142214393 is the «কালিগঙ্গা নদী» (Kaliganga) link that joins the Dhaleshwari's two named reaches; it is drawn because the chain passes through it."
+      },
+      "banshi": {
+        "entity": "banshi",
+        "role": "distributary",
+        "ways": [
+          230302821,
+          231316206,
+          908263643,
+          723745215,
+          723940307,
+          723745214,
+          469003425,
+          1110536188,
+          48492816
+        ],
+        "down": [
+          90.2646,
+          23.759
+        ],
+        "trims": {
+          "48492816": {
+            "fromNode": 4014547455
+          },
+          "469003425": {
+            "toNode": 10159521988
+          },
+          "723745215": {
+            "fromNode": 2626912655
+          }
+        },
+        "exempt": "Unjoined (the user's decision, 2026-09-29): BWDB (NC-39) has it leave the Banar (Upper) at Sharifpur, Jamalpur, which is not drawn; the drawn OSM line begins in Tangail, 31 km from the main line — over the 12 km a connector may bridge.",
+        "identified": "Relation 12333389 gives ways 230302821, 231316206 and 908263643 (named «বংশী নদী» / «ঝিনাই নদী ও বংশী নদী»); the chain continues on 723745215 from node 2626912655, then 723940307, 723745214 and 469003425 to node 10159521988, then the unnamed link 1110536188 (identified by connectivity: it joins Banshi-named ways at both ends), then 48492816 from node 4014547455 to its end at node 5603596558 (23.7590°N, 90.2646°E). Not drawn: the head of 723745215 (a parallel branch), the rest of 469003425 and of 48492816, 853723186, the Turag continuation, relation 16282715 and 586516375."
+      },
+      "shitalakshya": {
+        "entity": "shitalakshya",
+        "role": "distributary",
+        "ways": [
+          101999102,
+          928996328,
+          928996331
+        ],
+        "down": [
+          90.5512,
+          23.5687
+        ],
+        "join": {
+          "parent": "oldBrahmaputra",
+          "node": 2598627333,
+          "source": "OSM node 2598627333, the first node of way 101999102, where the line leaves the Old Brahmaputra"
+        },
+        "identified": "Way 101999102 is unnamed: identified by connectivity only — its nodes 0–242 run from node 2598627333 to node 2605105550 (23.9271°N, 90.6126°E) and it continues into 928996328 (ends node 2612916070, 23.7207°N, 90.5003°E) and 928996331 (ends 23.5687°N, 90.5512°E). Evidence: OSM way 30670081, a river polygon (natural=water, water=river) named «শীতলক্ষ্যা নদী», spans 23.5679–23.7975°N along the two lower ways, and all 851 of its vertices lie within 1 km of the chain. The Old Brahmaputra and this line share way 101999102's first six nodes (0.85 km, nodes 2598627333 to 2598627326)."
+      },
+      "oldBrahmaputra": {
+        "entity": "oldBrahmaputra",
+        "role": "distributary",
+        "ways": [
+          1262235705,
+          1262235706,
+          929230691,
+          136383902,
+          119373978,
+          622181033,
+          321520913,
+          101999102,
+          255332935,
+          607637590
+        ],
+        "down": [
+          90.9862,
+          24.036
+        ],
+        "trims": {
+          "101999102": {
+            "fromNode": 2598627333,
+            "toNode": 2598627326
+          }
+        },
+        "exempt": "The drawn line's upstream end is the OSM course of the river; no source plots the offtake — BWDB's NC-37 lists it near Fulchhari, Gaibandha (25.2616°N, 89.7172°E), which is not the book's Dewanganj — so there is no join point and no split marker.",
+        "identified": "The river is drawn through way 255332935, named «Ariāl Khan River» in OSM (37.6 km) — a name mismatch identified by connectivity: it joins the Old Brahmaputra ways on both sides and runs on to BWDB's mouth. Ways 1262235705, 1262235706, 929230691, 136383902, 119373978, 622181033, 321520913 and 607637590 carry the snapshot's river property «oldBrahmaputra». Way 101999102 is unnamed (see the Shitalakshya); only its first six nodes are used here. The OSM loop named for the Old Brahmaputra (ways 337081762 and 756867297) is not drawn; way 928996321 duplicates 321520913 and is not drawn."
+      }
+    }
+  },
+  "markers": [
+    {
+      "id": "origin",
+      "kind": "origin",
+      "row": "origin",
+      "entity": "main",
+      "nameBn": "ব্রহ্মপুত্র",
+      "lonLat": [
+        82.400483,
+        30.411444
+      ],
+      "coordSource": {
+        "source": "naturalEarth",
+        "ne": {
+          "rivernum": 31,
+          "name": "Maquan",
+          "line": 0,
+          "vertex": 0
+        },
+        "where": "the start of the Maquan / \"Damqogkanbab\" line (rivernum 31, line 0). Bengali Wikipedia (revision 9099646) gives 30°23′N 82°0′E, about 0.4° west; both are in the Kailas–Manasarovar region and the book gives no coordinate"
+      },
+      "valueBn": "হিমালয় পর্বতের কৈলাস শৃঙ্গের নিকটে মানস সরোবর",
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "ব্রহ্মপুত্র নদ"
+          }
+        ],
+        "valueBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "কৈলাস শৃঙ্গ; মানস সরোবর; হিমালয় পর্বত"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২",
+            "states": "মানস সরোবর; তিব্বত"
+          }
+        ]
+      }
+    },
+    {
+      "id": "entry",
+      "kind": "entry",
+      "row": "entry",
+      "entity": "main",
+      "nameBn": "ব্রহ্মপুত্র",
+      "lonLat": [
+        89.82718245,
+        25.73190801
+      ],
+      "coordSource": {
+        "source": "osm",
+        "way": 232252698,
+        "vertices": [
+          47,
+          48
+        ],
+        "upazila": {
+          "adm3": "Ulipur",
+          "adm2": "Kurigram"
+        },
+        "where": "snapped (the user's decision, 2026-09-29): where the drawn main line first crosses COD-AB's border going downstream, on the segment between vertices 47 and 48 of way 232252698 in the pinned snapshot; COD-AB puts the crossing in Ulipur upazila, Kurigram district, not Nageshwari. Upstream of it the drawn channel (ways 910696546 and 232252698) runs 31 km along the line on the India side, 0.5–7.4 km east of the border"
+      },
+      "snappedFrom": {
+        "lonLat": [
+          89.88575019,
+          25.9447857
+        ],
+        "source": "bwdbNW76",
+        "where": "the entry (উৎসমুখ / প্রবেশস্থল) row: নারায়ণপুর, নাগেশ্বরী, কুড়িগ্রাম, রংপুর; the point is 67 m from the COD-AB border and lies in COD-AB's Nageshwari upazila, 6.9 km west of the drawn main line",
+        "offsetM": 24386
+      },
+      "infoBn": "প্রবেশস্থল: যৌথ নদী কমিশন ও পানি উন্নয়ন বোর্ডের তথ্যে নাগেশ্বরী উপজেলা (কুড়িগ্রাম)। ছবিতে চিহ্নটি বসানো হয়েছে যেখানে আঁকা নদীরেখা সীমান্ত পার হয়েছে; বাংলাদেশের প্রশাসনিক সীমানার সরকারি ডেটা (COD-AB) অনুযায়ী সেটি কুড়িগ্রাম জেলার উলিপুর উপজেলায় পড়ে।",
+      "valueBn": "কুড়িগ্রাম জেলা",
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "ব্রহ্মপুত্র নদ"
+          }
+        ],
+        "valueBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "কুড়িগ্রাম জেলা"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২",
+            "states": "কুড়িগ্রাম জেলা"
+          }
+        ],
+        "infoBn": [
+          {
+            "source": "jrcbG13",
+            "where": "the Brahmaputra's entry",
+            "states": "কুড়িগ্রাম জেলার নাগেশ্বরী উপজেলা"
+          },
+          {
+            "source": "bwdbNW76",
+            "where": "the entry row",
+            "states": "নাগেশ্বরী; কুড়িগ্রাম"
+          },
+          {
+            "source": "codab",
+            "where": "bgd_admin3: the upazila holding the drawn crossing",
+            "states": "Ulipur, Kurigram"
+          },
+          {
+            "source": "jrcbG13",
+            "where": "the Dharla's confluence",
+            "states": "কুড়িগ্রাম জেলার উলিপুর উপজেলা"
+          },
+          {
+            "source": "user",
+            "where": "the line's wording",
+            "states": "editor-verified 2026-09-29"
+          }
+        ]
+      }
+    },
+    {
+      "id": "padmaConfluence",
+      "kind": "confluence",
+      "row": "confluence",
+      "entity": "main",
+      "nameBn": "যমুনা",
+      "lonLat": [
+        89.77304192,
+        23.80490447
+      ],
+      "coordSource": {
+        "source": "bwdbNW76",
+        "where": "the outfall (পতিতমুখ) row: পদ্মা, দৌলতদিয়া, গোয়ালন্দ, রাজবাড়ী; the point is in COD-AB's Goalanda upazila and 1.5 km from the OSM line's end"
+      },
+      "valueBn": "দৌলতদিয়ার কাছে (গোয়ালন্দ উপজেলা)",
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "যমুনা"
+          }
+        ],
+        "valueBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "দৌলতদিয়ার কাছে; পদ্মা"
+          },
+          {
+            "source": "bwdbNW76",
+            "where": "the outfall row",
+            "states": "গোয়ালন্দ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dharlaConfluence",
+      "kind": "confluence",
+      "row": "confluence",
+      "entity": "dharla",
+      "nameBn": "ধরলা",
+      "lonLat": [
+        89.7287321,
+        25.7263026
+      ],
+      "coordSource": {
+        "source": "osm",
+        "way": 28801794,
+        "node": 3153363369,
+        "where": "node 3153363369, the last node of way 28801794; the point is in COD-AB's Ulipur upazila"
+      },
+      "valueBn": "কুড়িগ্রাম জেলার উলিপুর উপজেলা",
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "ধরলা"
+          }
+        ],
+        "valueBn": [
+          {
+            "source": "jrcbG13",
+            "where": "the Dharla's confluence",
+            "states": "কুড়িগ্রাম জেলার উলিপুর উপজেলা"
+          }
+        ]
+      }
+    },
+    {
+      "id": "teestaConfluence",
+      "kind": "confluence",
+      "row": "confluence",
+      "entity": "teesta",
+      "nameBn": "তিস্তা",
+      "lonLat": [
+        89.68155,
+        25.39858
+      ],
+      "coordSource": {
+        "source": "osm",
+        "way": 232252699,
+        "vertex": 197,
+        "where": "the last vertex of way 232252699 in the pinned snapshot, which carries no node ids; COD-AB puts the point in Gaibandha Sadar upazila, Gaibandha district, 679 m from Sundarganj and 1.8 km from Fulchhari"
+      },
+      "valueBn": "গাইবান্ধা জেলা",
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "তিস্তা"
+          }
+        ],
+        "valueBn": [
+          {
+            "source": "bwdbNW52",
+            "where": "§1.1 বর্ণনা",
+            "states": "গাইবান্ধা জেলার সুন্দরগঞ্জ উপজেলায় ব্রহ্মপুত্র-যমুনা নদীতে পতিত হয়েছে"
+          }
+        ]
+      }
+    },
+    {
+      "id": "oldBrahmaputraMouth",
+      "kind": "mouth",
+      "row": "mouth",
+      "entity": "oldBrahmaputra",
+      "nameBn": "ব্রহ্মপুত্র",
+      "lonLat": [
+        90.98054851,
+        24.0353495
+      ],
+      "coordSource": {
+        "source": "bwdbNC37",
+        "where": "the outfall (পতিতমুখ) row: মেঘনা (আপার), গৌরীপুর, মুসাপুর, রায়পুরা, নরসিংদী; the point is in COD-AB's Raipura upazila"
+      },
+      "valueBn": "ভৈরববাজারের দক্ষিণে মেঘনায় পতিত",
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "ব্রহ্মপুত্র"
+          }
+        ],
+        "valueBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "ভৈরববাজারের দক্ষিণে; মেঘনায় পতিত"
+          }
+        ]
+      }
+    }
+  ],
+  "entities": [
+    {
+      "id": "main",
+      "role": "main",
+      "picker": true,
+      "nameBn": "ব্রহ্মপুত্র–যমুনা",
+      "values": {
+        "alias": "ইয়ার-লুং ৎসাং-পো (তিব্বত); শিয়াং (অরুণাচল প্রদেশ); দিহাং (আসাম)",
+        "origin": "হিমালয় পর্বতের কৈলাস শৃঙ্গের নিকটে মানস সরোবর",
+        "entry": "কুড়িগ্রাম জেলা",
+        "course": "তিব্বতের উপর দিয়ে পূর্ব দিকে ও পরে আসামের ভিতর দিয়ে পশ্চিম দিকে; কুড়িগ্রাম জেলার মধ্য দিয়ে বাংলাদেশে প্রবেশ করেছে; ময়মনসিংহ জেলার দেওয়ানগঞ্জের কাছে (বর্তমানে জামালপুর জেলা) যমুনা নামে দক্ষিণে প্রবাহিত",
+        "length": null,
+        "tributaries": "ব্রহ্মপুত্র: ধরলা ও তিস্তা; যমুনা: করতোয়া ও আত্রাই",
+        "distributaries": "ব্রহ্মপুত্র: পুরাতন ব্রহ্মপুত্র নদ, বংশী ও শীতলক্ষ্যা; যমুনা: ধলেশ্বরী (ধলেশ্বরীর শাখানদী বুড়িগঙ্গা)",
+        "confluence": "দৌলতদিয়ার কাছে (গোয়ালন্দ উপজেলা)",
+        "mouth": "ব্রহ্মপুত্র: ভৈরববাজারের দক্ষিণে মেঘনায় পতিত"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "ব্রহ্মপুত্র; যমুনা"
+          },
+          {
+            "source": "user",
+            "where": "the picker entry «ব্রহ্মপুত্র–যমুনা»",
+            "states": "editor-verified 2026-09-29"
+          }
+        ],
+        "alias": [
+          {
+            "source": "bnwBrahmaputra",
+            "where": "the article's names for the river along its course",
+            "states": "ইয়ার-লুং ৎসাং-পো; শিয়াং; দিহাং; অরুণাচল প্রদেশ"
+          },
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "তিব্বত; আসাম"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "কৈলাস শৃঙ্গ; মানস সরোবর; হিমালয় পর্বত"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২",
+            "states": "মানস সরোবর; তিব্বত"
+          },
+          {
+            "source": "jrcbG9",
+            "where": "the origin sentence",
+            "states": "Chema-Yung-Dung glacier; Kailas range; southern Tibet (shown in ⓘ only)"
+          }
+        ],
+        "entry": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "কুড়িগ্রাম জেলা"
+          }
+        ],
+        "course": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the ব্রহ্মপুত্র and যমুনা paragraphs",
+            "states": "তিব্বতের উপর দিয়ে পূর্ব দিকে ও পরে আসামের ভিতর দিয়ে পশ্চিম দিকে; কুড়িগ্রাম জেলার মধ্য দিয়ে বাংলাদেশে প্রবেশ করেছে; ময়মনসিংহ জেলার দেওয়ানগঞ্জের কাছে ব্রহ্মপুত্রের শাখা যমুনা নদী নামে দক্ষিণে প্রবাহিত হয়ে"
+          },
+          {
+            "source": "user",
+            "where": "the note «বর্তমানে জামালপুর জেলা» after Dewanganj",
+            "states": "the user, 2026-09-29"
+          }
+        ],
+        "tributaries": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "ধরলা ও তিস্তা; করতোয়া ও আত্রাই"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২",
+            "states": "ধরলা ও তিস্তা; করতোয়া ও আত্রাই"
+          }
+        ],
+        "distributaries": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "বংশী ও শীতলক্ষ্যা; ধলেশ্বরী; বুড়িগঙ্গা"
+          },
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩, চিত্র ১০.৩",
+            "states": "map label: পুরাতন ব্রহ্মপুত্র নদ"
+          },
+          {
+            "source": "user",
+            "where": "the Old Brahmaputra is the book's distributary",
+            "states": "editor-verified 2026-09-29"
+          }
+        ],
+        "confluence": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "দৌলতদিয়ার কাছে"
+          },
+          {
+            "source": "bwdbNW76",
+            "where": "the outfall row",
+            "states": "গোয়ালন্দ"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "ভৈরববাজারের দক্ষিণে মেঘনায় পতিত"
+          }
+        ]
+      },
+      "review": "Length: the books give 2,897 km (B910 p. ৬২) without saying which part of the river; JRCB gives 2,880 km (China 1,625, India 918, Bangladesh 337) and BWDB 230 km for its Jamuna reach — the row stays empty, as the user decided. «দৌলতদিয়ার কাছে» (B-GEO) and «গোয়ালন্দের নিকট» (B910) name the Padma confluence differently; B-GEO stands. The Padma marker is BWDB NW-76's point (23.80490, 89.77304); Bengali Wikipedia (revision 9042933) gives 23.8134629, 89.7722061 and English Wikipedia 23°47′46.7″N 89°45′45.8″E; BWDB stands as the body that owns the fact. The name across the border: Bengali Wikipedia «ইয়ার-লুং ৎসাং-পো», BWDB's Bengali page «পারলাং সাংপো», the 49th special BCS «ইয়ারলাং সাংপো» — Wikipedia's form is drawn and the others are logged. The alias row's «দিহাং (আসাম)» and «শিয়াং (অরুণাচল প্রদেশ)» follow Bengali Wikipedia; the book names only Tibet and Assam."
+    },
+    {
+      "id": "dharla",
+      "role": "tributary",
+      "nameBn": "ধরলা",
+      "values": {
+        "relation": "ব্রহ্মপুত্রের প্রধান উপনদী",
+        "origin": "পূর্ব হিমালয়ের দক্ষিণ সিক্কিম (ভারত)",
+        "course": "জলপাইগুড়ি ও কুচবিহার জেলা দিয়ে বাংলাদেশে প্রবেশ করে নদীটি ধরলা নাম ধারণ করে। নদীটি লালমনিরহাট জেলার সদর উপজেলার মোগলহাট ইউনিয়ন দিয়ে বাংলাদেশে প্রবেশ করে।",
+        "confluence": "কুড়িগ্রাম জেলার উলিপুর উপজেলা"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "ধরলা"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the ব্রহ্মপুত্র paragraph",
+            "states": "ধরলা ও তিস্তা ব্রহ্মপুত্রের প্রধান উপনদী"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২",
+            "states": "ধরলা ও তিস্তা ব্রহ্মপুত্রের উপনদী"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbNW59",
+            "where": "§1.1 বর্ণনা",
+            "states": "জলঢাকা নদীটি পূর্ব হিমালয়ের দক্ষিণ সিক্কিম থেকে উৎপত্তি লাভ করেছে"
+          },
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, p. ৪ row ২২, উৎপত্তিস্থল",
+            "states": "ভারতের দক্ষিণ সিকিম (হিমালয়ের পূর্বাঞ্চল) হতে"
+          }
+        ],
+        "course": [
+          {
+            "source": "bwdbNW59",
+            "where": "§1.1 বর্ণনা, sentences 3–4",
+            "states": "জলপাইগুড়ি ও কুচবিহার জেলা দিয়ে বাংলাদেশে প্রবেশ করে নদীটি ধরলা নাম ধারণ করে। নদীটি লালমনিরহাট জেলার সদর উপজেলার মোগলহাট ইউনিয়ন দিয়ে বাংলাদেশে প্রবেশ করে।"
+          }
+        ],
+        "confluence": [
+          {
+            "source": "jrcbG13",
+            "where": "the Dharla's confluence",
+            "states": "কুড়িগ্রাম জেলার উলিপুর উপজেলা"
+          },
+          {
+            "source": "bwdbNW59",
+            "where": "§1.1 বর্ণনা",
+            "states": "কুড়িগ্রাম জেলার উলীপুর উপজেলার বেরুবাড়ী ইউনিয়নে এসে ব্রহ্মপুত্র-যমুনা নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "No source conflict on the card's rows. The origin's place is BWDB's words and its country JRCB's («ভারতের দক্ষিণ সিকিম»). BWDB's course goes on: another channel enters at Sreerampur, Patgram, and leaves again at Jongra after 38 km."
+    },
+    {
+      "id": "teesta",
+      "role": "tributary",
+      "nameBn": "তিস্তা",
+      "values": {
+        "relation": "ব্রহ্মপুত্রের প্রধান উপনদী",
+        "origin": "সিকিমের পার্বত্য অঞ্চল",
+        "course": "ভারতের জলপাইগুড়ি ও দার্জিলিং-এর মধ্য দিয়ে নীলফামারী জেলার ডিমলা উপজেলার পূর্ব ছাতনাই হয়ে বাংলাদেশে প্রবেশ করেছে",
+        "confluence": "গাইবান্ধা জেলা"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "তিস্তা"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the ব্রহ্মপুত্র paragraph",
+            "states": "ধরলা ও তিস্তা ব্রহ্মপুত্রের প্রধান উপনদী"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২",
+            "states": "ধরলা ও তিস্তা ব্রহ্মপুত্রের উপনদী"
+          }
+        ],
+        "origin": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬৩, the «তিস্তা নদী» paragraph",
+            "states": "সিকিমের পার্বত্য অঞ্চল থেকে উৎপত্তি হয়ে"
+          }
+        ],
+        "course": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬৩, the «তিস্তা নদী» paragraph",
+            "states": "ভারতের জলপাইগুড়ি ও দার্জিলিং-এর মধ্য দিয়ে নীলফামারী জেলার ডিমলা উপজেলার পূর্ব ছাতনাই হয়ে বাংলাদেশে প্রবেশ করেছে"
+          }
+        ],
+        "confluence": [
+          {
+            "source": "bwdbNW52",
+            "where": "§1.1 বর্ণনা",
+            "states": "গাইবান্ধা জেলার সুন্দরগঞ্জ উপজেলায় ব্রহ্মপুত্র-যমুনা নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "The books make the Teesta the Brahmaputra's tributary and the card follows them (the user's decision). The books give no joining place; BWDB, first in the order after them, gives Sundarganj, Gaibandha, and the card shows it (the user's rule, 2026-09-29); JRCB's «রংপুর জেলার ফুলছড়ি» is in ⓘ. COD-AB puts the OSM mouth — the drawn marker — in Gaibandha Sadar, 679 m from Sundarganj and 1.8 km from Fulchhari, so the card and the marker keep only the district, «গাইবান্ধা জেলা», and BWDB's full wording is an ⓘ line with the drawn location (the user's policy, 2026-09-29, as for the entry). Origin: the book «সিকিমের পার্বত্য অঞ্চল»; BWDB «চিতামু লেক» and JRCB «চো লামু হ্রদ» are in ⓘ."
+    },
+    {
+      "id": "karatoya",
+      "role": "tributary",
+      "nameBn": "করতোয়া",
+      "values": {
+        "relation": "যমুনার প্রধান উপনদী",
+        "origin": "রংপুর জেলার মিঠাপুকুর উপজেলার মিলনপুর ইউনিয়নে যমুনেশ্বরী নদী থেকে",
+        "course": "এই নদী ক্রমান্বয়ে মিঠাপুকুর, নবাবগঞ্জ, পীরগঞ্জ, ঘোড়াঘাট, পলাশবাড়ী, গোবিন্দগঞ্জ, শিবগঞ্জ, বগুড়া সদর, শাজাহানপুর ও শেরপুর উপজেলায় পৌঁছেছে।",
+        "mouth": "বগুড়া জেলার শেরপুর উপজেলার খানপুর ইউনিয়নে করতোয়া (সিরাজগঞ্জ) নদীতে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "করতোয়া"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the যমুনা paragraph",
+            "states": "করতোয়া ও আত্রাই যমুনার প্রধান উপনদী"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২",
+            "states": "করতোয়া ও আত্রাই হলো যমুনার উপনদী"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbNW14",
+            "where": "§1.1 বর্ণনা",
+            "states": "নদীটি রংপুর জেলার মিঠাপুকুর উপজেলার মিলনপুর ইউনিয়নে যমুনেশ্বরী নদী থেকে উৎপন্ন হয়ে"
+          }
+        ],
+        "course": [
+          {
+            "source": "bnwKaratoyaLower",
+            "where": "the course paragraph",
+            "states": "এই নদী ক্রমান্বয়ে মিঠাপুকুর, নবাবগঞ্জ, পীরগঞ্জ, ঘোড়াঘাট, পলাশবাড়ী, গোবিন্দগঞ্জ, শিবগঞ্জ, বগুড়া সদর, শাজাহানপুর ও শেরপুর উপজেলায় পৌঁছেছে।"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bwdbNW14",
+            "where": "§1.1 বর্ণনা",
+            "states": "বগুড়া জেলার শেরপুর উপজেলার খানপুর ইউনিয়নে করতোয়া (সিরাজগঞ্জ) নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "The card is BWDB's NW-14, the river the drawn line follows (the user's decision, 2026-09-29); NW-13, the Karatoya from India that ends in the Atrai, is in ⓘ only. BWDB gives NW-14's course only as its origin and mouth and lists its upazilas by district, not in order; Bengali Wikipedia's «করতোয়া নিম্ন নদী» (the same river: the same origin) gives the order, so the course row is its. The mouth: BWDB the Karatoya (Sirajganj), Bengali Wikipedia the Bangali (in ⓘ). It falls into another river, so the row is «পতিত স্থল» and there is no «মিলনস্থল»: the join with the Jamuna that was pending is not a fact about this river. The drawn line begins in Gaibandha (COD-AB), not in Rangpur (in ⓘ)."
+    },
+    {
+      "id": "atrai",
+      "role": "tributary",
+      "nameBn": "আত্রাই",
+      "values": {
+        "relation": "যমুনার প্রধান উপনদী",
+        "origin": "পঞ্চগড় জেলার দেবীগঞ্জ উপজেলার করতোয়া নদী থেকে",
+        "course": "নদীটি উৎস হতে ৭৫ কি.মি. প্রবাহিত হয়ে দিনাজপুর জেলার সদর উপজেলার শংকরপুর ইউনিয়ন দিয়ে ভারতে প্রবেশ করে প্রায় ৪৪ কি.মি. প্রবাহিত হয়ে পুনরায় নওগাঁ জেলার ধামুরহাট উপজেলার আলমপুর ইউনিয়ন দিয়ে বাংলাদেশে প্রবেশ করে",
+        "mouth": "নাটোর জেলার গুরুদাসপুর উপজেলায় গুমানী নদীতে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "আত্রাই"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the যমুনা paragraph",
+            "states": "করতোয়া ও আত্রাই যমুনার প্রধান উপনদী"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২",
+            "states": "করতোয়া ও আত্রাই হলো যমুনার উপনদী"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbNW2",
+            "where": "§1.1 বর্ণনা",
+            "states": "সর্পিলাকার এই নদীটি পঞ্চগড় জেলার দেবীগঞ্জ উপজেলার করতোয়া নদী থেকে উৎপন্ন হয়েছে।"
+          }
+        ],
+        "course": [
+          {
+            "source": "bwdbNW2",
+            "where": "§1.1 বর্ণনা",
+            "states": "নদীটি উৎস হতে ৭৫ কি.মি. প্রবাহিত হয়ে দিনাজপুর জেলার সদর উপজেলার শংকরপুর ইউনিয়ন দিয়ে ভারতে প্রবেশ করে প্রায় ৪৪ কি.মি. প্রবাহিত হয়ে পুনরায় নওগাঁ জেলার ধামুরহাট উপজেলার আলমপুর ইউনিয়ন দিয়ে বাংলাদেশে প্রবেশ করে এবং নাটোর জেলার গুরুদাসপুর উপজেলায় গুমানী নদীতে পতিত হয়েছে।"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bwdbNW2",
+            "where": "§1.1 বর্ণনা",
+            "states": "নাটোর জেলার গুরুদাসপুর উপজেলায় গুমানী নদীতে পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "BWDB (NW-2) stands; JRCB gives the origin at Khansama, Dinajpur, and the mouth in the Hurasagar at Baghabari (both in ⓘ). It falls into another river, so the row is «পতিত স্থল» and there is no «মিলনস্থল»; no source gives a join with the Jamuna itself."
+    },
+    {
+      "id": "dhaleshwari",
+      "role": "distributary",
+      "nameBn": "ধলেশ্বরী",
+      "values": {
+        "relation": "যমুনার শাখানদী",
+        "origin": "সিরাজগঞ্জ জেলার চৌহালী উপজেলার সদিয়া চাঁদপুর ইউনিয়নে ব্রহ্মপুত্র/যমুনা নদী থেকে",
+        "course": "টাঙ্গাইল, মানিকগঞ্জ ও ঢাকা জেলার মধ্যদিয়ে প্রবাহিত",
+        "distributaries": "বুড়িগঙ্গা",
+        "mouth": "মুন্সীগঞ্জের কাছে (বুড়িগঙ্গা, ধলেশ্বরী ও শীতলক্ষ্যার মিলিত জলধারা) মেঘনায়"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "ধলেশ্বরী"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the যমুনা paragraph",
+            "states": "ধলেশ্বরী এর শাখানদী"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২",
+            "states": "যমুনার শাখা নদী ধলেশ্বরী"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbNC27",
+            "where": "§1.1 বর্ণনা",
+            "states": "নদীটি সিরাজগঞ্জ জেলার চৌহালী উপজেলার সদিয়া চাঁদপুর ইউনিয়নে ব্রহ্মপুত্র/যমুনা নদী থেকে উৎপত্তি হয়ে"
+          }
+        ],
+        "course": [
+          {
+            "source": "bwdbNC27",
+            "where": "§1.1 বর্ণনা",
+            "states": "টাঙ্গাইল, মানিকগঞ্জ ও ঢাকা জেলার মধ্যদিয়ে প্রবাহিত হয়ে"
+          }
+        ],
+        "distributaries": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "ধলেশ্বরীর শাখানদী বুড়িগঙ্গা"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২",
+            "states": "ধলেশ্বরীর শাখা নদী–বুড়িগঙ্গা"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the «মেঘনা» paragraph",
+            "states": "মুন্সীগঞ্জের কাছে বুড়িগঙ্গা, ধলেশ্বরী ও শীতলক্ষ্যার মিলিত জলধারাই মেঘনায় এসে যুক্ত হয়েছে"
+          }
+        ]
+      },
+      "review": "The mouth is the book's (B910); BWDB gives Sonargaon, Narayanganj, into the Meghna (Upper), and Banglapedia near Shaitnol (both in ⓘ). The origin is BWDB's; Bengali Wikipedia gives the northwest tip of Tangail (in ⓘ). Bengali Wikipedia's claim that part of it flows through Assam is uncited and not used. Other names: none in any source (MISSING)."
+    },
+    {
+      "id": "banshi",
+      "role": "distributary",
+      "nameBn": "বংশী",
+      "values": {
+        "relation": "ব্রহ্মপুত্রের প্রধান শাখানদী",
+        "origin": "জামালপুর জেলার সদর উপজেলার শরীফপুর ইউনিয়নে বানার (আপার) নদী হতে",
+        "course": "নদীটি জামালপুর, টাঙ্গাইল, গাজীপুর জেলা দিয়ে প্রবাহিত",
+        "mouth": "ঢাকা জেলার ধামরাই উপজেলার কুল্লা ইউনিয়নে ধলেশ্বরী নদীতে"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "বংশী"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the ব্রহ্মপুত্র paragraph",
+            "states": "বংশী ও শীতলক্ষ্যা প্রধান শাখানদী"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbNC39",
+            "where": "§1.1 বর্ণনা",
+            "states": "নদীটি জামালপুর জেলার সদর উপজেলার শরীফপুর ইউনিয়নে বানার (আপার) নদী হতে উৎপন্ন হয়েছে।"
+          }
+        ],
+        "course": [
+          {
+            "source": "bwdbNC39",
+            "where": "§1.1 বর্ণনা",
+            "states": "নদীটি জামালপুর, টাঙ্গাইল, গাজীপুর জেলা দিয়ে প্রবাহিত হয়ে"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bwdbNC39",
+            "where": "§1.1 বর্ণনা",
+            "states": "ঢাকা জেলার ধামরাই উপজেলার কুল্লা ইউনিয়নে ধলেশ্বরী নদীতে পতিত হয়েছে।"
+          }
+        ]
+      },
+      "review": "The book makes it the Brahmaputra's distributary; BWDB has it leave the Banar (Upper) and Bengali Wikipedia the Old Brahmaputra, with its mouth in the Turag at Aminbazar (all in ⓘ). The drawn line begins in Tangail (COD-AB), not in Jamalpur (in ⓘ)."
+    },
+    {
+      "id": "shitalakshya",
+      "role": "distributary",
+      "nameBn": "শীতলক্ষ্যা",
+      "values": {
+        "relation": "ব্রহ্মপুত্রের প্রধান শাখানদী",
+        "origin": "নরসিংদী জেলার মনোহরদী উপজেলার লেবুতলা ইউনিয়নে পুরাতন ব্রহ্মপুত্র নদ থেকে",
+        "course": "গাজীপুর ও নারায়ণগঞ্জ জেলার মধ্য দিয়ে প্রবাহিত",
+        "mouth": "মুন্সীগঞ্জের কাছে (বুড়িগঙ্গা, ধলেশ্বরী ও শীতলক্ষ্যার মিলিত জলধারা) মেঘনায়"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "শীতলক্ষ্যা"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the ব্রহ্মপুত্র paragraph",
+            "states": "বংশী ও শীতলক্ষ্যা প্রধান শাখানদী"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bwdbNC55",
+            "where": "§1.1 বর্ণনা",
+            "states": "নদীটি নরসিংদী জেলার মনোহরদী উপজেলার লেবুতলা ইউনিয়নে পুরাতন ব্রহ্মপুত্র নদ থেকে উৎপন্ন হয়েছে।"
+          }
+        ],
+        "course": [
+          {
+            "source": "bwdbNC55",
+            "where": "§1.1 বর্ণনা",
+            "states": "এরপর গাজীপুর ও নারায়ণগঞ্জ জেলার মধ্য দিয়ে প্রবাহিত হয়ে"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the «মেঘনা» paragraph",
+            "states": "মুন্সীগঞ্জের কাছে বুড়িগঙ্গা, ধলেশ্বরী ও শীতলক্ষ্যার মিলিত জলধারাই মেঘনায় এসে যুক্ত হয়েছে"
+          }
+        ]
+      },
+      "review": "The mouth is the book's (B910); BWDB gives Sonargaon, into the Dhaleshwari (in ⓘ). The origin is BWDB's; Bengali Wikipedia gives «টোক থেকে ভাটির দিকে» (in ⓘ). B910 p. ৬৪ also has «শীতলক্ষ্যার তীরে নারায়ণগঞ্জ», which agrees with the course and is not a course of its own. Another name (Bengali Wikipedia) «লক্ষ্যা নদী» is not on the card, which has no such row."
+    },
+    {
+      "id": "oldBrahmaputra",
+      "role": "distributary",
+      "nameBn": "পুরাতন ব্রহ্মপুত্র নদ",
+      "values": {
+        "relation": "ব্রহ্মপুত্রের শাখানদী",
+        "origin": "ময়মনসিংহ জেলার দেওয়ানগঞ্জের কাছে (বর্তমানে জামালপুর জেলা)",
+        "course": "দেওয়ানগঞ্জের কাছে (বর্তমানে জামালপুর জেলা) দক্ষিণ-পূর্বে বাঁক নিয়ে ময়মনসিংহ জেলার মধ্য দিয়ে প্রবাহিত",
+        "mouth": "ভৈরববাজারের দক্ষিণে মেঘনায় পতিত"
+      },
+      "sources": {
+        "nameBn": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩, চিত্র ১০.৩",
+            "states": "map label: পুরাতন ব্রহ্মপুত্র নদ"
+          },
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "পুরাতন ব্রহ্মপুত্র"
+          }
+        ],
+        "relation": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩, চিত্র ১০.৩",
+            "states": "map label: পুরাতন ব্রহ্মপুত্র নদ"
+          },
+          {
+            "source": "bwdbNW76",
+            "where": "§1.10 শাখানদী",
+            "states": "পুরাতন ব্রহ্মপুত্র"
+          },
+          {
+            "source": "user",
+            "where": "the Old Brahmaputra is the book's distributary",
+            "states": "editor-verified 2026-09-29"
+          }
+        ],
+        "origin": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "ময়মনসিংহ জেলার দেওয়ানগঞ্জের কাছে"
+          },
+          {
+            "source": "user",
+            "where": "the note «বর্তমানে জামালপুর জেলা»",
+            "states": "editor-verified 2026-09-29"
+          }
+        ],
+        "course": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "দেওয়ানগঞ্জের কাছে দক্ষিণ-পূর্বে বাঁক নিয়ে ময়মনসিংহ জেলার মধ্য দিয়ে প্রবাহিত হয়ে"
+          },
+          {
+            "source": "user",
+            "where": "the note «বর্তমানে জামালপুর জেলা» after Dewanganj",
+            "states": "the user, 2026-09-29"
+          }
+        ],
+        "mouth": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪",
+            "states": "ভৈরববাজারের দক্ষিণে মেঘনায় পতিত হয়েছে"
+          }
+        ]
+      },
+      "review": "B-GEO's text calls this course the Brahmaputra itself; its map labels it «পুরাতন ব্রহ্মপুত্র নদ», and B910 says the Brahmaputra's main stream once flowed through Mymensingh. The relation row follows the map and the user's earlier decision, with BWDB's distributary list. BWDB (NC-37) gives the offtake at Pagalarchar, Erendabari, Fulchhari, Gaibandha (25.26155, 89.71722) and the outfall at Raipura, Narsingdi (both in ⓘ). BWDB's length is 288 km. It falls into the Meghna, so the row is «পতিত স্থল». Other names: none in any source (MISSING)."
+    }
+  ]
+}

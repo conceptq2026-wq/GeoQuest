@@ -1,14 +1,112 @@
 {
-  "_about": "Built by tools/build-diagram-bangladesh-rivers.mjs from data-sources/bangladesh-rivers/bangladesh-rivers.seed.json; do not edit.",
+  "_about": "Built by tools/build-diagram-bangladesh-rivers.mjs from the seed in data-sources/bangladesh-rivers/; do not edit.",
+  "systems": [
+    {
+      "id": "jamuna",
+      "name": "ব্রহ্মপুত্র–যমুনা",
+      "main": "main"
+    },
+    {
+      "id": "padma",
+      "name": "পদ্মা",
+      "main": "padma"
+    },
+    {
+      "id": "meghna",
+      "name": "মেঘনা"
+    }
+  ],
   "picker": [
     {
       "key": "main",
+      "label": "ব্রহ্মপুত্র–যমুনা",
+      "group": "jamuna"
+    },
+    {
+      "key": "dharla",
+      "label": "ধরলা",
+      "group": "jamuna"
+    },
+    {
+      "key": "teesta",
+      "label": "তিস্তা",
+      "group": "jamuna"
+    },
+    {
+      "key": "karatoya",
+      "label": "করতোয়া",
+      "group": "jamuna"
+    },
+    {
+      "key": "atrai",
+      "label": "আত্রাই",
+      "group": "jamuna"
+    },
+    {
+      "key": "dhaleshwari",
+      "label": "ধলেশ্বরী",
+      "group": "jamuna"
+    },
+    {
+      "key": "banshi",
+      "label": "বংশী",
+      "group": "jamuna"
+    },
+    {
+      "key": "shitalakshya",
+      "label": "শীতলক্ষ্যা",
+      "group": "jamuna"
+    },
+    {
+      "key": "oldBrahmaputra",
+      "label": "পুরাতন ব্রহ্মপুত্র নদ",
+      "group": "jamuna"
+    },
+    {
+      "key": "padma",
+      "label": "পদ্মা",
+      "group": "padma"
+    },
+    {
+      "key": "gorai",
+      "label": "গড়াই",
+      "group": "padma"
+    },
+    {
+      "key": "madhumati",
+      "label": "মধুমতী",
+      "group": "padma"
+    },
+    {
+      "key": "arialKhan",
+      "label": "আড়িয়াল খাঁ",
+      "group": "padma"
+    },
+    {
+      "key": "mahananda",
+      "label": "মহানন্দা",
+      "group": "padma"
+    },
+    {
+      "key": "bhagirathi",
+      "label": "ভাগীরথী",
+      "group": "padma"
+    }
+  ],
+  "pickerGroups": [
+    {
+      "value": "jamuna",
       "label": "ব্রহ্মপুত্র–যমুনা"
+    },
+    {
+      "value": "padma",
+      "label": "পদ্মা"
     }
   ],
   "entities": {
     "main": {
       "role": "main",
+      "system": "jamuna",
       "name": "ব্রহ্মপুত্র–যমুনা",
       "values": {
         "alias": "ইয়ার-লুং ৎসাং-পো (তিব্বত); শিয়াং (অরুণাচল প্রদেশ); দিহাং (আসাম)",
@@ -23,6 +121,7 @@
     },
     "dharla": {
       "role": "tributary",
+      "system": "jamuna",
       "name": "ধরলা",
       "values": {
         "relation": "ব্রহ্মপুত্রের প্রধান উপনদী",
@@ -33,6 +132,7 @@
     },
     "teesta": {
       "role": "tributary",
+      "system": "jamuna",
       "name": "তিস্তা",
       "values": {
         "relation": "ব্রহ্মপুত্রের প্রধান উপনদী",
@@ -43,6 +143,7 @@
     },
     "karatoya": {
       "role": "tributary",
+      "system": "jamuna",
       "name": "করতোয়া",
       "values": {
         "relation": "যমুনার প্রধান উপনদী",
@@ -53,6 +154,7 @@
     },
     "atrai": {
       "role": "tributary",
+      "system": "jamuna",
       "name": "আত্রাই",
       "values": {
         "relation": "যমুনার প্রধান উপনদী",
@@ -63,6 +165,7 @@
     },
     "dhaleshwari": {
       "role": "distributary",
+      "system": "jamuna",
       "name": "ধলেশ্বরী",
       "values": {
         "relation": "যমুনার শাখানদী",
@@ -74,6 +177,7 @@
     },
     "banshi": {
       "role": "distributary",
+      "system": "jamuna",
       "name": "বংশী",
       "values": {
         "relation": "ব্রহ্মপুত্রের প্রধান শাখানদী",
@@ -84,6 +188,7 @@
     },
     "shitalakshya": {
       "role": "distributary",
+      "system": "jamuna",
       "name": "শীতলক্ষ্যা",
       "values": {
         "relation": "ব্রহ্মপুত্রের প্রধান শাখানদী",
@@ -94,12 +199,78 @@
     },
     "oldBrahmaputra": {
       "role": "distributary",
+      "system": "jamuna",
       "name": "পুরাতন ব্রহ্মপুত্র নদ",
       "values": {
         "relation": "ব্রহ্মপুত্রের শাখানদী",
         "origin": "ময়মনসিংহ জেলার দেওয়ানগঞ্জের কাছে (বর্তমানে জামালপুর জেলা)",
         "course": "দেওয়ানগঞ্জের কাছে (বর্তমানে জামালপুর জেলা) দক্ষিণ-পূর্বে বাঁক নিয়ে ময়মনসিংহ জেলার মধ্য দিয়ে প্রবাহিত",
         "mouth": "ভৈরববাজারের দক্ষিণে মেঘনায় পতিত"
+      }
+    },
+    "padma": {
+      "role": "main",
+      "system": "padma",
+      "name": "পদ্মা",
+      "values": {
+        "alias": "গঙ্গা (ভারতে)",
+        "origin": "হিমালয়ের গঙ্গোত্রী হিমবাহ",
+        "tributaries": "মহানন্দা",
+        "confluence": "দৌলতদিয়ার কাছে (গোয়ালন্দ উপজেলা)",
+        "mouth": "চাঁদপুরের কাছে মেঘনার সঙ্গে মিলিত"
+      }
+    },
+    "gorai": {
+      "role": "distributary",
+      "system": "padma",
+      "name": "গড়াই",
+      "values": {
+        "relation": "পদ্মার প্রধান শাখানদী",
+        "origin": "কুষ্টিয়া জেলার কুষ্টিয়া সদর উপজেলায় হাটশ হরিপুর ইউনিয়নে গঙ্গা/পদ্মা নদী হতে",
+        "mouth": "মাগুরা জেলার শ্রীপুর উপজেলায় নাকোল ইউনিয়নে মধুমতী নদীতে"
+      }
+    },
+    "madhumati": {
+      "role": "distributary",
+      "system": "padma",
+      "name": "মধুমতী",
+      "values": {
+        "relation": "পদ্মার প্রধান শাখানদী",
+        "origin": "মাগুরা জেলার শ্রীপুর উপজেলার নাকোল ইউনিয়নের গড়াই নদী থেকে",
+        "mouth": "বাগেরহাট জেলার চিতলমারী উপজেলার কলাতলা ইউনিয়নের শোলদহ নদীতে"
+      }
+    },
+    "arialKhan": {
+      "role": "distributary",
+      "system": "padma",
+      "name": "আড়িয়াল খাঁ",
+      "values": {
+        "relation": "পদ্মার প্রধান শাখানদী",
+        "origin": "ফরিদপুর জেলার সদরপুর উপজেলার চর নাছিরপুর ইউনিয়নের পদ্মা নদী থেকে",
+        "course": "মাদারীপুর জেলা দিয়ে প্রবাহিত",
+        "mouth": "বরিশাল জেলার সদর উপজেলার শায়েস্তাবাদ ইউনিয়নে কালাবাদর নদীতে"
+      }
+    },
+    "mahananda": {
+      "role": "tributary",
+      "system": "padma",
+      "name": "মহানন্দা",
+      "values": {
+        "relation": "গঙ্গা/পদ্মার উপনদী",
+        "origin": "ভারতের হিমালয় এর পাহাড়ী অঞ্চল",
+        "course": "পঞ্চগড় জেলার তেঁতুলিয়া উপজেলা দিয়ে বাংলাদেশে প্রবেশ। পশ্চিমবঙ্গের উত্তর দিনাজপুর দিয়ে ভারতে প্রবেশ। চাঁপাইনবাবগঞ্জের ভোলাহাট উপজেলায় বাংলাদেশে প্রবেশ।",
+        "confluence": "চাঁপাইনবাবগঞ্জ জেলার সদর উপজেলার দেবীনগর ইউনিয়ন"
+      }
+    },
+    "bhagirathi": {
+      "role": "distributary",
+      "system": "padma",
+      "name": "ভাগীরথী",
+      "values": {
+        "relation": "গঙ্গার একটি শাখা",
+        "origin": "পশ্চিমবঙ্গের মুর্শিদাবাদ জেলার ধুলিয়ান নামক স্থানে",
+        "course": "পশ্চিমবঙ্গের মধ্য দিয়ে",
+        "mouth": "বঙ্গোপসাগরে"
       }
     }
   },
@@ -145,6 +316,27 @@
       "name": "ব্রহ্মপুত্র",
       "row": "mouth",
       "value": "ভৈরববাজারের দক্ষিণে মেঘনায় পতিত"
+    },
+    "padmaJamunaConfluence": {
+      "kind": "confluence",
+      "entity": "padma",
+      "name": "পদ্মা",
+      "row": "confluence",
+      "value": "দৌলতদিয়ার কাছে (গোয়ালন্দ উপজেলা)"
+    },
+    "mahanandaConfluence": {
+      "kind": "confluence",
+      "entity": "mahananda",
+      "name": "মহানন্দা",
+      "row": "confluence",
+      "value": "চাঁপাইনবাবগঞ্জ জেলার সদর উপজেলার দেবীনগর ইউনিয়ন"
+    },
+    "padmaMouth": {
+      "kind": "mouth",
+      "entity": "padma",
+      "name": "পদ্মা",
+      "row": "mouth",
+      "value": "চাঁদপুরের কাছে মেঘনার সঙ্গে মিলিত"
     }
   },
   "labels": {
@@ -160,6 +352,13 @@
     "shitalakshya": "শীতলক্ষ্যা",
     "oldBrahmaputra": "পুরাতন ব্রহ্মপুত্র নদ",
     "padma": "পদ্মা",
+    "padmaUpper": "পদ্মা",
+    "ganga": "গঙ্গা",
+    "gorai": "গড়াই",
+    "madhumati": "মধুমতী",
+    "arialKhan": "আড়িয়াল খাঁ",
+    "mahananda": "মহানন্দা",
+    "bhagirathi": "ভাগীরথী",
     "meghna": "মেঘনা"
   },
   "countries": {
@@ -250,6 +449,36 @@
       "lang": "bn"
     },
     {
+      "title": "গঙ্গা/ পদ্মা (নদীর তথ্য, NW-27)",
+      "by": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=4&Rivers=149",
+      "lang": "bn"
+    },
+    {
+      "title": "মহানন্দা (নবাবগঞ্জ) (নদীর তথ্য, NW-95)",
+      "by": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=4&Rivers=132",
+      "lang": "bn"
+    },
+    {
+      "title": "গড়াই (নদীর তথ্য, SW-24)",
+      "by": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&Rivers=228",
+      "lang": "bn"
+    },
+    {
+      "title": "মধুমতি (নদীর তথ্য, SW-74)",
+      "by": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&Rivers=288",
+      "lang": "bn"
+    },
+    {
+      "title": "আড়িয়াল খাঁ (নদীর তথ্য, SW-2)",
+      "by": "Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29)",
+      "url": "https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=6&Rivers=202",
+      "lang": "bn"
+    },
+    {
       "title": "বাংলাদেশ - ভারত এবং বাংলাদেশ -মিয়ানমারের মধ্যে প্রবাহিত ৫৭টি আন্তঃসীমান্ত নদীর তথ্যাদি",
       "by": "Joint Rivers Commission, Bangladesh (JRCB; page dated 2022-02-27; read 2026-09-28)",
       "url": "https://jrcb.gov.bd/pages/static-pages/6922dc0a933eb65569e0e1b5",
@@ -314,8 +543,8 @@
       "url": "https://data.humdata.org/dataset/401d3fae-4262-48c9-891f-461fd776d49b"
     },
     {
-      "title": "River courses and the Padma–Meghna continuation, from OpenStreetMap",
-      "by": "© OpenStreetMap contributors (ODbL 1.0; snapshots 2026-05-31 and 2026-07-15)",
+      "title": "River courses and the Padma–Meghna junction, from OpenStreetMap",
+      "by": "© OpenStreetMap contributors (ODbL 1.0; snapshots 2026-05-31, 2026-07-15 and 2026-09-29)",
       "url": "https://www.openstreetmap.org/copyright"
     },
     {
@@ -324,7 +553,7 @@
       "group": "notes"
     },
     {
-      "title": "নদীর সংযোগ-রেখা (ধরলা, তিস্তা, শীতলক্ষ্যা, ধলেশ্বরী) আনুমানিক আঁকা।",
+      "title": "নদীর সংযোগ-রেখা (ধরলা, তিস্তা, শীতলক্ষ্যা, ধলেশ্বরী, আড়িয়াল খাঁ, মহানন্দা, ভাগীরথী) আনুমানিক আঁকা।",
       "lang": "bn",
       "group": "notes"
     },
@@ -334,12 +563,17 @@
       "group": "notes"
     },
     {
+      "title": "গড়াই ও মধুমতীর আঁকা রেখার মাঝে প্রায় ১২ কিলোমিটার এবং ভারতে মহানন্দার আঁকা রেখার মাঝে প্রায় ৭৭ কিলোমিটার নদীপথ আঁকা হয়নি; ডেটায় ওই অংশে নদীর নামসহ নদীপথ পাওয়া যায়নি।",
+      "lang": "bn",
+      "group": "notes"
+    },
+    {
       "title": "আঁকা রেখা ও বাংলাদেশের প্রশাসনিক সীমানার সরকারি ডেটা (COD-AB) অনুযায়ী দেওয়ানগঞ্জ এখন জামালপুর জেলায়; করতোয়ার আঁকা রেখা শুরু হয়েছে গাইবান্ধা জেলায়, বংশীর টাঙ্গাইল জেলায়।",
       "lang": "bn",
       "group": "notes"
     },
     {
-      "title": "ডেটায় যতদূর নদীপথ পাওয়া গেছে ততদূর আঁকা হয়েছে, তাই কিছু নদীর আঁকা রেখা কার্ডে লেখা উৎপত্তিস্থল থেকে শুরু হয়নি (যেমন করতোয়া, আত্রাই, ধলেশ্বরী, বংশী, শীতলক্ষ্যা, পুরাতন ব্রহ্মপুত্র)।",
+      "title": "ডেটায় যতদূর নদীপথ পাওয়া গেছে ততদূর আঁকা হয়েছে, তাই কিছু নদীর আঁকা রেখা কার্ডে লেখা উৎপত্তিস্থল থেকে শুরু হয়নি (যেমন করতোয়া, আত্রাই, ধলেশ্বরী, বংশী, শীতলক্ষ্যা, পুরাতন ব্রহ্মপুত্র, মধুমতী, ভাগীরথী)।",
       "lang": "bn",
       "group": "notes"
     },
@@ -355,6 +589,16 @@
     },
     {
       "title": "ছবির জেলার নাম ও সীমানা বাংলাদেশের প্রশাসনিক সীমানার সরকারি ডেটা (COD-AB) অনুযায়ী বর্তমান জেলা; বই বা অন্য উৎসের বর্ণনার সাথে জেলার নাম আলাদা হতে পারে।",
+      "lang": "bn",
+      "group": "notes"
+    },
+    {
+      "title": "মধুমতীর আঁকা রেখা নড়াইল জেলায় শেষ হয়েছে; তার ভাটির অংশ ডেটায় মধুমতী নামে পাওয়া যায়নি।",
+      "lang": "bn",
+      "group": "notes"
+    },
+    {
+      "title": "কাপ্তাই: «বাংলাদেশ ও বিশ্বপরিচয়» কাপ্তাইকে কর্ণফুলীর উপনদী হিসেবে উল্লেখ করেছে; আমাদের মানচিত্রে কাপ্তাই হ্রদ হিসেবে দেখানো হয়েছে।",
       "lang": "bn",
       "group": "notes"
     },
@@ -405,6 +649,31 @@
     },
     {
       "title": "শীতলক্ষ্যা: বই — মুন্সীগঞ্জের কাছে মেঘনায়; পানি উন্নয়ন বোর্ড — সোনারগাঁও উপজেলায় ধলেশ্বরী নদীতে পতিত, উৎপত্তি লেবুতলা (মনোহরদী); বাংলা উইকিপিডিয়া — টোক থেকে ভাটির দিকে পুরাতন ব্রহ্মপুত্র ও বানারের মিলিত প্রবাহ।",
+      "lang": "bn",
+      "group": "conflicts"
+    },
+    {
+      "title": "পদ্মার প্রবেশস্থল ও গতিপথ: «ভূগোল ও পরিবেশ» — প্রায় ১৪৫ কিলোমিটার পশ্চিমবঙ্গ ও বাংলাদেশের সীমানা বরাবর এসে কুষ্টিয়ার উত্তর-পশ্চিম প্রান্তে বাংলাদেশে প্রবেশ; «বাংলাদেশ ও বিশ্বপরিচয়» — রাজশাহী অঞ্চলের চাঁপাইনবাবগঞ্জ জেলা দিয়ে পদ্মা নামে বাংলাদেশে প্রবেশ।",
+      "lang": "bn",
+      "group": "conflicts"
+    },
+    {
+      "title": "পদ্মার শাখানদী: «ভূগোল ও পরিবেশ» — কুমার, মাথাভাঙা, ভৈরব, গড়াই, মধুমতী, আড়িয়াল খাঁ ইত্যাদি; «বাংলাদেশ ও বিশ্বপরিচয়» — নিম্নগঙ্গার শাখানদী ভাগীরথী, হুগলি, মাথাভাঙ্গা, ইছামতী, ভৈরব, কুমার, কপোতাক্ষ, নবগঙ্গা, চিত্রা, মধুমতী, আড়িয়াল খাঁ ইত্যাদি।",
+      "lang": "bn",
+      "group": "conflicts"
+    },
+    {
+      "title": "মধুমতী: বই — পদ্মার প্রধান শাখানদী; পানি উন্নয়ন বোর্ড — গড়াই নদী থেকে উৎপত্তি।",
+      "lang": "bn",
+      "group": "conflicts"
+    },
+    {
+      "title": "মহানন্দার মিলনস্থল: পানি উন্নয়ন বোর্ড — চাঁপাইনবাবগঞ্জ সদর উপজেলার দেবীনগর ইউনিয়ন; যৌথ নদী কমিশন — গোদাগাড়ী ঘাট।",
+      "lang": "bn",
+      "group": "conflicts"
+    },
+    {
+      "title": "ভাগীরথী ও হুগলি: «ভূগোল ও পরিবেশ» — ভাগীরথী (হুগলি নদী), একই নদী; «বাংলাদেশ ও বিশ্বপরিচয়» — শাখানদীর তালিকায় ভাগীরথী ও হুগলি আলাদা।",
       "lang": "bn",
       "group": "conflicts"
     }

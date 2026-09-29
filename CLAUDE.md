@@ -307,9 +307,11 @@ by checksum (`osmLiberationPoints` in `tools/sources.json`); the traced
 sectors' SHA-256 in `tools/build-liberation-war-1971.mjs`; and in
 `tools/build-liberation-sectors.mjs` the COD-AB zip's pin and the ten sectors
 tiling COD-AB — overlap and gap each under 0.5 km². bangladesh-rivers: the
-seed by SHA-256 in `tools/verify-descriptor.mjs`; the OSM pilot extract
-(`osmBangladeshRiversPilot` in `tools/sources.json`) and the rivers snapshot by
-checksum; and the eleven lines' geometry hashes in
+seed's files — the common one and one per river system, merged by
+`tools/lib/rivers-seed.mjs` — each by SHA-256 in `tools/verify-descriptor.mjs`;
+the OSM pilot extract (`osmBangladeshRiversPilot`), each system's own extract
+(`osmBangladeshRivers<System>`, the Padma's so far) and the rivers snapshot by
+checksum in `tools/sources.json`; and the 21 lines' geometry hashes in
 `tools/bangladesh-rivers-pins.json`. The shared district file,
 `docs/shared/bangladesh-districts.json` (COD-AB's 64 districts, the
 basemap's Bengali names), is rebuilt by `tools/build-bangladesh-districts.mjs`
@@ -340,8 +342,9 @@ State which kind a task is when reporting it.
   `environment-treaties`. Geography: `deserts`, `lakes`, `forests`,
   `mountains`, `waterfalls` and `latitude-longitude`, all under `docs/maps/`.
 - Work in progress (`tools/wip.json`): `bangladesh-rivers`, a diagram in the
-  Bangladesh section drawn in code (`notes/bangladesh-rivers.md`); local
-  preview only, not in the registry.
+  Bangladesh section drawn in code, built one river system at a time — the
+  Jamuna and the Padma so far (`notes/bangladesh-rivers.md`); local preview
+  only, not in the registry.
 - Three diagrams, under বিবিধ: `atmosphere-layers`, `earth-interior` and
   `seasons`, in `docs/diagrams/`.
 

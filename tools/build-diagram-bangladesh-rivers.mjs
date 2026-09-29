@@ -30,11 +30,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { CACHE, zipEntry, bangladeshLineClass } from './lib/geo.mjs';
 import { projection, distM, nearestOnLine, lengthKm, fractionAlong, simplify, simplifyRing, clipRing, clipLine, chainWays, pathData } from './lib/rivers-frame.mjs';
+import { loadRiversSeed } from './lib/rivers-seed.mjs';
 
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const ROOT = path.resolve(HERE, '..');
 // The seed, the pins and where the diagram goes. Change here if one moves.
-const SEED = path.join(ROOT, 'data-sources/bangladesh-rivers/bangladesh-rivers.seed.json');
+// The seed: a common file and one file per river system (tools/lib/rivers-seed.mjs merges them).
+const SEED = path.join(ROOT, 'data-sources/bangladesh-rivers');
 const SOURCES = path.join(HERE, 'sources.json');
 const PINS = path.join(HERE, 'bangladesh-rivers-pins.json');
 const COUNTRY_NAMES = path.join(HERE, 'country-names-bn.json');
@@ -53,14 +55,13 @@ const MIN_LAND_AREA = 3;
 const CHAIN_TOL_M = 3;
 // The seed's entry point may miss the computed border crossing by this much (metres): its eight decimals.
 const SNAP_M = 0.05;
-// A tributary's or distributary's drawn end further than CONNECT_FROM_M from its drawn parent, and no
-// more than CONNECT_MAX_M, gets a straight connector to the parent's nearest point (the user's rule, 2026-09-29).
 // A district name's anchor is scored by its distance to its river (km) plus 2 for every km it comes within BUSY_KM of a marker or a river's name.
 const BUSY_KM = 30;
+// A tributary's or distributary's drawn end further than CONNECT_FROM_M from its drawn parent, and no
+// more than CONNECT_MAX_M, gets a straight connector to the parent's nearest point (the user's rule,
+// 2026-09-29: 10 km, then 12 km for the Dhaleshwari, then "gaps over 12 km stay unjoined" for every line).
 const CONNECT_FROM_M = 50;
-const CONNECT_MAX_M = 10000;
-// The one exception, the user's decision (2026-09-29): the Dhaleshwari's head, 11.4 km out.
-const CONNECT_MAX_M_FOR = { dhaleshwari: 12000 };
+const CONNECT_MAX_M = 12000;
 const JOIN_M = 500;
 // The Padma–Meghna junction: the Padma's end must lie this near a Meghna vertex (metres).
 const JUNCTION_M = 3;
@@ -82,7 +83,7 @@ const say = (s) => console.log(s);
 
 // ---- the seed and the pinned inputs ---------------------------------------------------------
 
-const seed = JSON.parse(fs.readFileSync(SEED, 'utf8'));
+const { seed } = loadRiversSeed(SEED);
 const sources = JSON.parse(fs.readFileSync(SOURCES, 'utf8'));
 const ui = seed.ui;
 const G = seed.geometry;
@@ -112,6 +113,9 @@ const osmFile = (entry, rel) => {
 };
 const osmSnapshot = osmFile(sources.osmBangladeshRivers, G.files.osmSnapshot);
 const osmPilot = osmFile(sources.osmBangladeshRiversPilot, G.files.osmPilot);
+// Each system's own extract (tools/extract-bangladesh-rivers-system.mjs), pinned as osmBangladeshRivers<System>.
+const extractKey = (sys) => `osmBangladeshRivers${sys[0].toUpperCase()}${sys.slice(1)}`;
+const systemExtracts = Object.entries(G.files.osmSystems ?? {}).map(([sys, rel]) => [sys, osmFile(sources[extractKey(sys)] ?? fail(`tools/sources.json pins no ${extractKey(sys)}`), rel)]);
 
 // The seed's country names are Natural Earth's NAME_BN, as the map baseline has them.
 const countryTable = JSON.parse(fs.readFileSync(COUNTRY_NAMES, 'utf8'));
@@ -123,18 +127,23 @@ for (const [code, name] of Object.entries(countries)) if (countryTable[code] !==
 const ways = new Map();
 for (const f of osmSnapshot.features) ways.set(f.properties.osm_id, { id: f.properties.osm_id, coords: f.geometry.coordinates });
 const wayFrom = new Map([...ways.keys()].map((id) => [id, 'snapshot']));
-for (const f of osmPilot.features) {
-  const id = f.properties.osm_id;
-  const w = { id, coords: f.geometry.coordinates, nodes: f.properties.nodes };
-  const other = ways.get(id);
-  if (other) {
-    if (other.coords.length !== w.coords.length) fail(`way ${id} has ${other.coords.length} points in the snapshot and ${w.coords.length} in the pilot extract`);
-    const worst = Math.max(...w.coords.map((p, i) => distM(p, other.coords[i])));
-    if (worst > 1) fail(`way ${id}: the snapshot and the pilot extract differ by ${round(worst, 2)} m (limit 1 m)`);
-    wayFrom.set(id, 'both');
-  } else wayFrom.set(id, 'pilot');
-  ways.set(id, w);
-}
+// A way in two files must agree within 1 m; the later file, which carries node ids, wins.
+const addExtract = (features, label) => {
+  for (const f of features) {
+    const id = f.properties.osm_id;
+    const w = { id, coords: f.geometry.coordinates, nodes: f.properties.nodes };
+    const other = ways.get(id);
+    if (other) {
+      if (other.coords.length !== w.coords.length) fail(`way ${id} has ${other.coords.length} points in the ${wayFrom.get(id)} and ${w.coords.length} in the ${label} extract`);
+      const worst = Math.max(...w.coords.map((p, i) => distM(p, other.coords[i])));
+      if (worst > 1) fail(`way ${id}: the ${wayFrom.get(id)} and the ${label} extract differ by ${round(worst, 2)} m (limit 1 m)`);
+      wayFrom.set(id, wayFrom.get(id) === 'snapshot' && label === 'pilot' ? 'both' : `${wayFrom.get(id)}+${label}`);
+    } else wayFrom.set(id, label);
+    ways.set(id, w);
+  }
+};
+addExtract(osmPilot.features, 'pilot');
+for (const [sys, file] of systemExtracts) addExtract(file.features, sys);
 const usedWays = new Set();
 const trim = (w, t) => {
   if (!t) return w;
@@ -191,6 +200,17 @@ const junction = Math.min(...lines.meghna.coords.map((p) => distM(p, padmaEnd)))
 if (junction > JUNCTION_M) fail(`the Padma ends ${round(junction)} m from the nearest Meghna vertex (limit ${JUNCTION_M} m)`);
 const mainToPadma = distM(mainCoords.at(-1), lines.padma.coords[0]);
 if (mainToPadma > JOIN_M) fail(`the Jamuna's end is ${round(mainToPadma)} m from the Padma's start (limit ${JOIN_M} m)`);
+// Another system's main river may be drawn as several lines, in the seed's order: each begins where the last ends.
+const mainJoins = [];
+for (const e of seed.entities.filter((x) => x.role === 'main' && x.id !== 'main')) {
+  const ids = Object.keys(G.lines).filter((id) => G.lines[id].entity === e.id);
+  if (ids.some((id) => lines[id].role !== 'main')) fail(`${e.id}: every line of a main river's card is a main line`);
+  for (let i = 1; i < ids.length; i++) {
+    const gap = distM(lines[ids[i - 1]].coords.at(-1), lines[ids[i]].coords[0]);
+    if (gap > CHAIN_TOL_M) fail(`${e.id}: ${ids[i]} begins ${round(gap)} m from where ${ids[i - 1]} ends (limit ${CHAIN_TOL_M} m)`);
+    mainJoins.push(`${ids[i - 1]}→${ids[i]} ${round(gap, 1)} m`);
+  }
+}
 
 // The line hashes.
 const drawnHashes = Object.fromEntries(Object.keys(lines).map((id) => [id, hashLine(lines[id].coords)]));
@@ -278,6 +298,8 @@ function splitAtBorder(line) {
   return pieces;
 }
 const mainPieces = splitAtBorder(mainCoords);
+// Every line drawn dashed outside Bangladesh: the Jamuna's main line, and any line whose seed says `split: "border"`.
+const borderPieces = new Map([['main', mainPieces], ...Object.entries(lines).filter(([id, l]) => id !== 'main' && l.spec?.split === 'border').map(([id, l]) => [id, splitAtBorder(l.coords)])]);
 
 // ---- the checks that need no frame ---------------------------------------------------------------
 
@@ -291,6 +313,9 @@ function inUpazila(markerId, name, district) {
 inUpazila('padmaConfluence', 'Goalanda', 'Rajbari');
 inUpazila('dharlaConfluence', 'Ulipur', 'Kurigram');
 inUpazila('oldBrahmaputraMouth', 'Raipura', 'Narsingdi');
+inUpazila('padmaJamunaConfluence', 'Goalanda', 'Rajbari');
+inUpazila('padmaMouth', 'Chandpur Sadar', 'Chandpur');
+inUpazila('mahanandaConfluence', 'Chapainawabganj Sadar', 'Chapainababganj');
 const sundarganj = distToRings(markerSeed.teestaConfluence.lonLat, polygonsOf(upazila('Sundarganj', 'Gaibandha')).flat());
 if (sundarganj > SUNDARGANJ_M) fail(`the Teesta's mouth is ${round(sundarganj)} m from Sundarganj upazila (limit ${SUNDARGANJ_M} m)`);
 // Its card and marker name only the district COD-AB agrees with (the user's policy, as for the entry).
@@ -392,16 +417,18 @@ function buildFrame(frameId, spec) {
   const frameLines = spec.lines
     .map((id) => {
       const l = lines[id];
-      const pieces = id === 'main' ? mainPieces.flatMap((pc) => drawn(pc.coords).map((d) => (pc.inside ? { d } : { d, dash: true }))) : drawn(l.coords).map((d) => ({ d }));
+      const pieces = borderPieces.has(id) ? borderPieces.get(id).flatMap((pc) => drawn(pc.coords).map((d) => (pc.inside ? { d } : { d, dash: true }))) : drawn(l.coords).map((d) => ({ d }));
       if (!pieces.length) fail(`${frameId}: ${id} is not in the frame`);
       const trace = id === 'main' ? { ne: G.main.ne.map((n) => ({ name: n.name, rivernum: n.rivernum })), ways: G.main.ways } : { ways: l.spec.ways };
-      return { id, role: l.role, pieces, ...trace };
+      const spec = id === 'main' ? G.main : l.spec;
+      const card = spec.entity ?? (id === 'main' ? 'main' : null);
+      return { id, role: l.role, system: spec.system, ...(card ? { entity: card } : {}), pieces, ...trace };
     })
     .sort((a, b) => roleRank[a.role] - roleRank[b.role]);
 
   // The connectors: from a branch's parent-side end (a tributary's mouth, a distributary's head) to the
   // nearest point of its parent as drawn. Kept apart from the sourced lines, never merged into them.
-  const drawnPolys = (id) => (id === 'main' ? mainPieces.map((pc) => pc.coords) : [lines[id].coords]).flatMap((c) => clipLine(proj(c), RECT).map((pc) => simplify(pc, tol.river)));
+  const drawnPolys = (id) => (borderPieces.has(id) ? borderPieces.get(id).map((pc) => pc.coords) : [lines[id].coords]).flatMap((c) => clipLine(proj(c), RECT).map((pc) => simplify(pc, tol.river)));
   const footOn = (p, polys) => {
     let best = null;
     for (const poly of polys)
@@ -423,11 +450,15 @@ function buildFrame(frameId, spec) {
     const parent = l.spec.join?.parent ?? 'main';
     if (!spec.lines.includes(parent)) continue;
     const end = P.project(...(l.role === 'tributary' ? l.coords.at(-1) : l.coords[0]));
-    if (!inRect(end)) fail(`${frameId}: ${id}'s parent-side end is outside the frame`);
+    // A line the seed leaves unjoined may end outside the picture; any other must end in it.
+    if (!inRect(end)) {
+      if (l.spec.exempt) continue;
+      fail(`${frameId}: ${id}'s parent-side end is outside the frame`);
+    }
     const q = (xy) => xy.map((v) => Math.round(v * 10) / 10);
     const [a, b] = [q(end), q(footOn(end, drawnPolys(parent)))];
     const m = distM(P.invert(...a), P.invert(...b));
-    if (m > CONNECT_FROM_M && m <= (CONNECT_MAX_M_FOR[id] ?? CONNECT_MAX_M)) connectors.push({ id, parent, m: Math.round(m), d: pathData([a, b]) });
+    if (m > CONNECT_FROM_M && m <= CONNECT_MAX_M) connectors.push({ id, parent, m: Math.round(m), d: pathData([a, b]) });
   }
 
   // The districts: a grey name for each one the tappable lines run through for at least minKm in
@@ -439,17 +470,23 @@ function buildFrame(frameId, spec) {
     const polys = admin2.features.map((f) => ({ pcode: f.properties.adm2_pcode, en: f.properties.adm2_name, idx: indexed(f.geometry), rings: polygonsOf(f.geometry).flat(), box: ringBox(polygonsOf(f.geometry).flat().flat()), center: [f.properties.center_lon, f.properties.center_lat] }));
     const within = (p, d) => p[0] >= d.box[0] && p[0] <= d.box[2] && p[1] >= d.box[1] && p[1] <= d.box[3] && inside(p, d.idx);
     const districtOf = (p) => polys.find((d) => within(p, d)) ?? null;
-    const tappable = spec.lines
+    const systemOf = (id) => (id === 'main' ? G.main.system : lines[id].spec.system);
+    const tappableBy = spec.lines
       .filter((id) => lines[id].role !== 'continuation')
-      .flatMap((id) => (id === 'main' ? mainPieces.filter((pc) => pc.inside).map((pc) => pc.coords) : [lines[id].coords]));
+      .flatMap((id) => (borderPieces.has(id) ? borderPieces.get(id).filter((pc) => pc.inside).map((pc) => pc.coords) : [lines[id].coords]).map((coords) => ({ coords, system: systemOf(id) })));
+    const tappable = tappableBy.map((t) => t.coords);
     const km = new Map();
+    const kmBy = new Map(); // "system|pcode" → km
     const runs = new Map(); // pcode → the longest stretch of points inside it
-    for (const coords of tappable) {
+    for (const { coords, system } of tappableBy) {
       let cur = null;
       for (let i = 1; i < coords.length; i++) {
         const mid = [(coords[i - 1][0] + coords[i][0]) / 2, (coords[i - 1][1] + coords[i][1]) / 2];
         const d = districtOf(mid);
-        if (d) km.set(d.pcode, (km.get(d.pcode) ?? 0) + distM(coords[i - 1], coords[i]) / 1000);
+        if (d) {
+          km.set(d.pcode, (km.get(d.pcode) ?? 0) + distM(coords[i - 1], coords[i]) / 1000);
+          kmBy.set(`${system}|${d.pcode}`, (kmBy.get(`${system}|${d.pcode}`) ?? 0) + distM(coords[i - 1], coords[i]) / 1000);
+        }
         if (!d || cur?.pcode !== d.pcode) {
           cur = d ? { pcode: d.pcode, pts: [coords[i - 1]] } : null;
           if (cur) {
@@ -462,13 +499,16 @@ function buildFrame(frameId, spec) {
       }
     }
     const always = new Set();
+    const alwaysBy = new Set(); // "system|pcode"
     for (const id of spec.markers) {
       const p = markerSeed[id].lonLat;
       const d = districtOf(p) ?? polys.map((q) => [q, distToRings(p, q.rings)]).sort((a, b) => a[1] - b[1]).find(([, m]) => m <= JOIN_M)?.[0];
       if (!d) fail(`${frameId}: marker ${id} is in no COD-AB district`);
       always.add(d.pcode);
+      alwaysBy.add(`${markerSeed[id].system}|${d.pcode}`);
     }
     const chosen = [...km].filter(([, k]) => k >= ds.minKm).map(([pcode]) => pcode);
+    for (const key of alwaysBy) if ((kmBy.get(key) ?? 0) < ds.minKm) fail(`${frameId}: ${key} holds a marker but its system's lines run through it for under ${ds.minKm} km`);
     for (const pcode of always) if (!chosen.includes(pcode)) fail(`${frameId}: district ${pcode} holds a marker but the lines run through it for under ${ds.minKm} km`);
     const lineSegs = tappable;
     // Where the picture is already busy: the markers and the rivers' own names. A district's name keeps its distance.
@@ -496,10 +536,12 @@ function buildFrame(frameId, spec) {
         if (!inside(anchor, d.idx)) fail(`${frameId}: no anchor inside ${pcode}`);
         const [x, y] = P.project(anchor[0], anchor[1]).map((v) => round(v, 1));
         if (!inRect([x, y])) fail(`${frameId}: the ${pcode} label's anchor is outside the frame`);
-        return { pcode, x, y, always: always.has(pcode), km: km.get(pcode), en: d.en, lonLat: anchor };
+        // Per system: named from the opening view where the district holds one of its markers, from zoomAll× where its lines run through it.
+        const systems = Object.fromEntries(seed.systems.map((s) => s.id).filter((s) => (kmBy.get(`${s}|${pcode}`) ?? 0) >= ds.minKm).map((s) => [s, alwaysBy.has(`${s}|${pcode}`) ? 'always' : 'zoom']));
+        return { pcode, x, y, always: always.has(pcode), systems, km: km.get(pcode), en: d.en, lonLat: anchor };
       })
       .sort((a, b) => Number(b.always) - Number(a.always) || b.km - a.km || a.pcode.localeCompare(b.pcode));
-    districtsOut = { file: ds.file, zoomAll: ds.zoomAll, labels: labelsOut.map(({ pcode, x, y, always: a }) => ({ pcode, x, y, always: a })) };
+    districtsOut = { file: ds.file, zoomAll: ds.zoomAll, labels: labelsOut.map(({ pcode, x, y, systems }) => ({ pcode, x, y, systems })) };
     districtReport[frameId] = labelsOut;
   }
 
@@ -510,7 +552,7 @@ function buildFrame(frameId, spec) {
     if (!inRect([x, y])) fail(`${frameId}: marker ${id} is outside the frame`);
     const src = { source: m.coordSource.source };
     for (const k of ['ne', 'way', 'node', 'vertex', 'vertices']) if (m.coordSource[k] !== undefined) src[k] = m.coordSource[k];
-    return { id, kind: m.kind, x, y, lonLat: m.lonLat, src };
+    return { id, kind: m.kind, system: m.system, x, y, lonLat: m.lonLat, src };
   });
 
   // The labels, at the nearest point of their lines to the seed's hint.
@@ -542,7 +584,7 @@ function buildFrame(frameId, spec) {
     view = { x0: round(x0, 1), x1: round(x1, 1), cy: round(cy, 1), zoomMax: spec.view.zoomMax, keep: spec.view.keep };
   }
   const file = {
-    _about: `Built by tools/build-diagram-${ID}.mjs from ${path.relative(ROOT, SEED).replace(/\\/g, '/')}; do not edit. Units u: x = (lon − lonMin)·cosLat·scale, y = (latMax − lat)·scale.`,
+    _about: `Built by tools/build-diagram-${ID}.mjs from the seed in ${path.relative(ROOT, SEED).replace(/\\/g, '/')}/; do not edit. Units u: x = (lon − lonMin)·cosLat·scale, y = (latMax − lat)·scale.`,
     id: frameId,
     projection: { lonMin: bounds.lonMin, latMax: bounds.latMax, cosLat, scale, width, height },
     bounds,
@@ -590,7 +632,7 @@ for (const e of seed.entities) {
   for (const [k, v] of Object.entries(e.values)) if (v !== null && !e.sources?.[k]?.length) fail(`${e.id}: the ${k} value carries no source`);
   if (!e.sources?.nameBn?.length) fail(`${e.id}: the name carries no source`);
   if (!(e.id in lines)) fail(`entity ${e.id} has no line`);
-  entities[e.id] = { role: e.role, name: e.nameBn, values: rowValues(e.values, e.id) };
+  entities[e.id] = { role: e.role, system: e.system, name: e.nameBn, values: rowValues(e.values, e.id) };
 }
 const markers = {};
 for (const m of seed.markers) {
@@ -599,11 +641,18 @@ for (const m of seed.markers) {
   if (!(m.entity in entitiesSeed) || !ui.rowOrder.includes(m.row) || !(m.kind in ui.legendBn)) fail(`marker ${m.id}: entity, row or kind is unknown`);
   markers[m.id] = { kind: m.kind, entity: m.entity, name: m.nameBn, row: m.row, value: m.valueBn };
 }
-const picker = seed.entities.filter((e) => e.picker).map((e) => ({ key: e.id, label: e.nameBn }));
-if (picker.length !== 1) fail('the pilot has one picker entry');
+// The picker: every card, grouped by its system, in the systems' order and each system's own; a system with no card has no group.
+// A system's main river's card, where it has one; a system with no card yet ships no main (never a null).
+const systems = seed.systems.map((s) => {
+  const main = seed.entities.find((e) => e.system === s.id && e.role === 'main')?.id;
+  return { id: s.id, name: s.nameBn, ...(main ? { main } : {}) };
+});
+const picker = seed.systems.flatMap((s) => seed.entities.filter((e) => e.system === s.id).map((e) => ({ key: e.id, label: e.nameBn, group: s.id })));
+const pickerGroups = systems.filter((s) => picker.some((p) => p.group === s.id)).map((s) => ({ value: s.id, label: s.name }));
+for (const s of systems) if (seed.entities.some((e) => e.system === s.id) && !s.main) fail(`system ${s.id} has cards but no main river`);
 
 // Every label is a name a card gives.
-const alias = String(entitiesSeed.main.values.alias ?? '').split('; ').map((s) => s.replace(/ \(.*\)$/, ''));
+const alias = seed.entities.filter((e) => e.role === 'main').flatMap((e) => String(e.values.alias ?? '').split('; ').map((s) => s.replace(/ \(.*\)$/, '')));
 const known = new Set([...seed.entities.map((e) => e.nameBn), ...seed.markers.map((m) => m.nameBn), ...seed.continuations.map((c) => c.nameBn), ...alias]);
 const labelTexts = Object.fromEntries(Object.entries(seed.labelsBn).filter(([k]) => !k.startsWith('_')));
 for (const [id, text] of Object.entries(labelTexts)) if (!known.has(text)) fail(`label ${id} «${text}» is not a name any card gives`);
@@ -612,8 +661,10 @@ for (const c of seed.continuations) if (!lines[c.id] || lines[c.id].role !== 'co
 
 const credit = (s, extra = '') => ({ title: s.title + (s.creditExtra ?? '') + extra, by: s.publisher, url: s.url, ...(/[ঀ-৿]/.test(s.title) ? { lang: 'bn' } : {}) });
 const data = {
-  _about: `Built by tools/build-diagram-${ID}.mjs from ${path.relative(ROOT, SEED).replace(/\\/g, '/')}; do not edit.`,
+  _about: `Built by tools/build-diagram-${ID}.mjs from the seed in ${path.relative(ROOT, SEED).replace(/\\/g, '/')}/; do not edit.`,
+  systems,
   picker,
+  pickerGroups,
   entities,
   markers,
   labels: labelTexts,
@@ -659,12 +710,15 @@ for (const [name, value] of Object.entries(files)) {
 }
 
 const points = (coords) => coords.length;
-say(`${ID}: ${Object.keys(lines).length} lines, ${usedWays.size} OSM ways (${[...usedWays].filter((id) => wayFrom.get(id) === 'pilot').length} pilot-only, ${[...usedWays].filter((id) => wayFrom.get(id) === 'snapshot').length} snapshot-only, ${[...usedWays].filter((id) => wayFrom.get(id) === 'both').length} in both), ${G.main.ne.length} Natural Earth lines, ${seed.markers.length} markers`);
+const byFile = {};
+for (const id of usedWays) byFile[wayFrom.get(id)] = (byFile[wayFrom.get(id)] ?? 0) + 1;
+say(`${ID}: ${Object.keys(lines).length} lines, ${usedWays.size} OSM ways (${Object.entries(byFile).map(([k, n]) => `${n} ${k === 'both' ? 'in snapshot and pilot' : k}`).join(', ')}), ${G.main.ne.length} Natural Earth lines, ${seed.markers.length} markers`);
 for (const [id, l] of Object.entries(lines)) say(`  ${id.padEnd(15)} ${String(points(l.coords)).padStart(5)} pts ${String(round(lengthKm(l.coords))).padStart(7)} km  ${drawnHashes[id]}${l.gaps ? `  max gap ${Math.max(0, ...l.gaps)} m` : ''}`);
 say(`main: Natural Earth ${neChain.length} pts + OSM from vertex ${seam.vertex}; seam gap ${round(seamGapM)} m at ${round(osmMain.coords[seam.vertex][0], 3)}°E; ${mainPieces.length} pieces (${mainPieces.filter((p) => p.inside).length} in Bangladesh, ${round(mainPieces.filter((p) => p.inside).reduce((s, p) => s + lengthKm(p.coords), 0))} km); jamuna→padma ${round(mainToPadma)} m; padma→meghna junction ${round(junction, 2)} m`);
+if (mainJoins.length) say(`other main rivers, end to end: ${mainJoins.join(', ')}`);
 say(`checks: ${upazilaChecks.join(', ')}; Teesta mouth ${round(sundarganj)} m from Sundarganj; entry ${round(entryToBorder)} m from the border (BWDB's point ${round(bwdbToBorder)} m, ${round(distM(entrySeed.snappedFrom.lonLat, crossing))} m from it); Dewanganj at ${round(dewanganj, 3)} of the main line`);
 for (const [k, list] of Object.entries(districtReport)) say(`districts, ${k}: ${list.filter((d) => d.always).map((d) => d.en).join(', ')} (from the opening view); ${list.filter((d) => !d.always).map((d) => d.en).join(', ')} (from 2×)`);
-for (const [k, f] of Object.entries(frames)) if (f.file.connectors.length) say(`connectors, ${k}: ${f.file.connectors.map((c) => `${c.id} → ${c.parent} ${c.m} m`).join(', ')} (from ${CONNECT_FROM_M} m to ${CONNECT_MAX_M / 1000} km; ${Object.entries(CONNECT_MAX_M_FOR).map(([id, m]) => `${id} ${m / 1000} km`).join(', ')})`);
+for (const [k, f] of Object.entries(frames)) if (f.file.connectors.length) say(`connectors, ${k}: ${f.file.connectors.map((c) => `${c.id} → ${c.parent} ${c.m} m`).join(', ')} (from ${CONNECT_FROM_M} m to ${CONNECT_MAX_M / 1000} km)`);
 for (const [k, f] of Object.entries(frames)) say(`frame ${k}: viewBox 0 0 ${f.width} ${f.height}, lon ${f.bounds.lonMin}–${f.bounds.lonMax}, lat ${f.bounds.latMin}–${f.bounds.latMax}, scale ${round(f.scale, 2)} u/deg`);
 say(`pending: ${pending.length} (${pending.join(', ')})`);
 say(`wrote ${path.relative(ROOT, OUT) || OUT}: ${Object.entries(sizes).map(([n, b]) => `${n} ${b} B`).join(', ')}; data ${sizes['data.json'] + sizes['frame-whole.json'] + sizes['frame-bangladesh.json']} B`);

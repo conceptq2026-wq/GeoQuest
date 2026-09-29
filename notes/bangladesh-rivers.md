@@ -1,9 +1,10 @@
 # bangladesh-rivers
 
 A diagram in the Bangladesh section, «বাংলাদেশের নদ-নদী» / "Rivers of
-Bangladesh": the Brahmaputra–Jamuna, its tributaries and its distributaries,
-**a picture drawn in code**, not a tile map (the user's decision, Prompt 37,
-2026-09-29). It is a pilot and **stays in the work in progress**
+Bangladesh": the country's rivers, one **river system** at a time — the
+Brahmaputra–Jamuna (the pilot) and, from Stage 1, the Padma — **a picture drawn
+in code**, not a tile map (the user's decision, Prompt 37, 2026-09-29). It
+**stays in the work in progress**
 (`tools/wip.json`, kind `diagram`) — local preview only — until the user
 finishes it. It is not in `docs/registry.json`.
 
@@ -21,11 +22,24 @@ finishes it. It is not in `docs/registry.json`.
     in every direction while a quarter of the picture stays on the stage, and
     a reset control (44 px, the stage's bottom-right corner) returns to the
     opening view. The Meghna's pinned line ends 1.5 km short of COD-AB's
-    coast at 22.38°N; no pinned way goes further. The main river,
-    the Dharla, Teesta, Karatoya and Atrai (tributaries), the Dhaleshwari,
-    Banshi, Shitalakshya and Old Brahmaputra (distributaries), the Padma and
-    the Meghna as thin grey non-tappable continuations to the sea, and the
-    markers.
+    coast at 22.38°N; no pinned way goes further. The Jamuna system: the main
+    river, the Dharla, Teesta, Karatoya and Atrai (tributaries), the
+    Dhaleshwari, Banshi, Shitalakshya and Old Brahmaputra (distributaries).
+    The Padma system: the Ganges–Padma (two main lines, `gangaPadma` from the
+    frame's west edge, dashed outside Bangladesh, and `padma`, way 82854640,
+    unchanged), the Gorai, Madhumati, Arial Khan and Bhagirathi
+    (distributaries) and the Mahananda (tributary, three reaches). The Meghna
+    is the one thin grey non-tappable continuation to the sea.
+- **River systems** (Stage 1, the user's decisions of 2026-09-29): the data
+  lists `systems`; every frame line and marker carries its `system`, every
+  line its card (`entity`; one card may have several lines). One system is
+  current — the first the frame draws, until a card of another is chosen.
+  Its lines, markers and names are drawn in full; every other system's lines
+  are thin and grey (`.other`, the continuation's look), beneath the
+  current one's, still tappable, with no markers; only their main river's
+  names show, grey and placed as a continuation's. Choosing a main river
+  lights its whole system; a branch lights its own lines. So the Jamuna
+  system looks as it did in the pilot, with the Padma system's lines grey.
 - **The main line** ends at the Padma confluence (the book): Natural Earth's
   line to OSM vertex 60, OSM from there. The seam is 39.7 m at 95.14°E; OSM's
   Assam head is dropped. Piece 0 in the Bangladesh frame is dashed — it runs
@@ -41,20 +55,27 @@ finishes it. It is not in `docs/registry.json`.
   river's card and the marker's, is the book's «কুড়িগ্রাম জেলা» alone; ⓘ
   carries one plain line, the user's wording (the marker's `infoBn`): JRCB's
   and BWDB's Nageshwari, and that COD-AB puts the drawn crossing in Ulipur.
-- **Connectors** (the user's rule, 2026-09-29): where a tributary's mouth or a
-  distributary's head, as drawn, lies more than 50 m and at most 10 km from
-  its drawn parent, the build adds a straight connector from that end to the
-  parent's nearest point — the Dharla (2,566 m) and the Teesta (3,005 m) to
-  the main line, the Shitalakshya (145 m, a gap the Old Brahmaputra's
-  simplified line opens) to the Old Brahmaputra, and the Dhaleshwari's head
-  (11,400 m) to the main line, the one entry on the allow-list (12 km, the
-  user's decision; `CONNECT_MAX_M_FOR` in the build, `CONNECTOR_ALLOW` in
-  `tools/verify.mjs`). They are `connectors` in the frame (id, parent,
+- **Connectors** (the user's rules, 2026-09-29: 10 km, then 12 km for the
+  Dhaleshwari alone, then from Stage 1 "gaps over 12 km stay unjoined" for
+  every line): where a tributary's mouth or a distributary's head, as drawn,
+  lies more than 50 m and at most 12 km from its drawn parent (`join.parent`;
+  the reach above, where a river is drawn in reaches), the build adds a
+  straight connector from that end to the parent's nearest point — the
+  Dharla (2,573 m) and the Teesta (3,011 m) to the main line, the
+  Shitalakshya (145 m, a gap the Old Brahmaputra's simplified line opens),
+  the Dhaleshwari's head (11,385 m); the Arial Khan's lower reach (6,636 m),
+  the Mahananda's middle reach (11,285 m) and its last reach (92 m, a gap the
+  simplified Padma opens), the Bhagirathi to the Ganges (7,393 m) and between
+  its reaches (407 m). They are `connectors` in the frame (id, parent,
   length in m, path data), never part of the sourced lines, drawn in the
   river's own group — its colour, width and highlight — with no tap zone.
-  The Karatoya (17.6 km), Atrai (47.0 km) and Banshi (31.0 km) stay unjoined
-  (the user's decision); the Dhaleshwari's mouth, 3.1 km from the drawn
-  Meghna, has no connector.
+  Unjoined, each with its reason in the seed (`exempt`): the Karatoya
+  (17.6 km), Atrai (47.0 km), Banshi (31.0 km), the Madhumati (12.2 km from
+  the Gorai; the course between is unnamed in OSM) and the Mahananda's upper
+  reach (76.6 km, leaving the picture in India); an unjoined line may end
+  outside the frame. The Dhaleshwari's mouth, 3.1 km from the drawn Meghna,
+  has no connector. One ⓘ line names the connected rivers; one each gives
+  the Jamuna's and the Padma's unjoined gaps.
 - **The cards** (Prompt 40, the user's decisions of 2026-09-29): a tributary's
   or distributary's card gives «সম্পর্ক», «উৎপত্তি», «গতিপথ», and «মিলনস্থল»
   for a river that joins the main one or «পতিত স্থল» for one that falls into
@@ -65,10 +86,30 @@ finishes it. It is not in `docs/registry.json`.
   বিশ্বপরিচয়»), BWDB and JRCB, Bengali then English Wikipedia, newspapers,
   Banglapedia — in its source's words; a card follows its source's words
   where they differ from the drawn line. The Karatoya card is BWDB's NW-14,
-  the river drawn. The Padma and the Meghna have no card. Wherever a card
+  the river drawn. The Meghna has no card yet. Wherever a card
   names «দেওয়ানগঞ্জ» with «ময়মনসিংহ জেলা» (the main river's and the Old
   Brahmaputra's «গতিপথ», the Old Brahmaputra's «উৎপত্তি»), the note «(বর্তমানে
   জামালপুর জেলা)» follows it.
+- **The Padma system's cards** (Stage 1 decisions 2, 3 and 8): the NCTB book's
+  value first; a differing BWDB or JRCB value in ⓘ with both citations;
+  **where the two books disagree, the row is null (pending) and ⓘ gives both**
+  — the Padma's «প্রবেশস্থল» and «গতিপথ» (Kushtia vs Chapainawabganj), its
+  «শাখা নদী», and the Bhagirathi's other name (one river «ভাগীরথী (হুগলি
+  নদী)» vs two). The Padma's length is null, as the Jamuna's: which stretch
+  is «পদ্মা» differs even inside B-GEO (BWDB 121 km Daulatdia–Chandpur,
+  230 km for the Ganges reach). Where the books are silent, BWDB stands, then
+  JRCB: the Gorai (SW-24), Madhumati (SW-74) and Arial Khan (SW-2), each
+  matched by district; the Mahananda's origin and course are JRCB's (row ১৪,
+  the whole river), its confluence BWDB's NW-95 (Debinagar; JRCB's Godagari
+  in ⓘ). A BWDB entry is matched to a drawn river only by geometry or
+  district. River names follow the book's spelling («মধুমতী», not BWDB's
+  «মধুমতি»); the Mahananda's course spells the upazila «তেঁতুলিয়া», as BWDB
+  does, where JRCB printed «তেতুঁলিয়া». The Padma's «মিলনস্থল» is the Jamuna
+  card's value, «দৌলতদিয়ার কাছে (গোয়ালন্দ উপজেলা)»: Daulatdia lies in
+  Goalanda upazila, so the books' «দৌলতদিয়ার নিকট» and «গোয়ালন্দের নিকট» are
+  read as one place.
+- **Kaptai** (decision 4): no line and no card; one ⓘ note that B910 names it
+  a Karnaphuli tributary while our maps show it as a lake.
 - **A marker's card names only what COD-AB agrees with** (the user's policy,
   as for the entry): a marker's row keeps the part of its place — upazila or
   district — that contains the drawn marker, and the source's full wording
@@ -86,22 +127,31 @@ finishes it. It is not in `docs/registry.json`.
   Research for these cards: `tools/.cache/bangladesh-rivers/review2.csv` and
   `quotes.md` §6. Its Bengali lines are 14 px (`rivers.css`), not the
   credits' 12 px; the panel scrolls within 60 % of the screen (`style.css`).
-- **The picker row** is the shell's, at the top, with one entry, the main river.
+- **The picker row** is the shell's, at the top, one line: a native select of
+  the cards the tab draws, grouped by system (`<optgroup>`) where there are
+  two or more; ⓘ in its own row under it.
   A tap on a line or a marker opens its card; a marker's heading is composed
   «name — legend word». The legend lists only the kinds a tab draws. ⓘ carries
   every cited source and OpenStreetMap's credit, as plain links.
 - **Names on the picture** are at least 15 px at 390 px wide (14 at 320),
   semi-bold, put beside their anchors where no other name, marker, the legend
-  or ⓘ's tap zone is. Pinch and pan run 1×–6× on «পুরো পথ» and 1×–8× on
+  or ⓘ's tap zone is. A hidden marker (another system's) blocks nothing. With
+  a branch's card open, its names are placed straight after the main river's,
+  and a name of another branch of the system that finds no clear spot is not
+  drawn (Stage 1: at 320 px a card leaves half the stage, and names never
+  overlap nor shrink); the main rivers' names and the lit river's always are. Pinch and pan run 1×–6× on «পুরো পথ» and 1×–8× on
   «বাংলাদেশে», in this module only. River strokes (2026-09-29, 35 % thinner):
   main 2.9 px, tributary and distributary 2 px, continuation 1.3 px.
 - **Districts** (the «বাংলাদেশে» tab, the user's decisions of 2026-09-29):
   thin light-grey boundaries (0.5 px) behind the rivers, drawn from the shared
   `docs/shared/bangladesh-districts.json` (resolver kind `sharedData`, so a
   device caches it once for every diagram that reads it); and a grey name, at
-  the river names' size, for each of the 23 districts the tappable lines run
-  through for at least 0.5 km — the four holding a marker (Kurigram,
-  Gaibandha, Rajbari, Narsingdi) from the opening view, the other 19 from 2×.
+  the river names' size, for each district a system's tappable lines run
+  through for at least 0.5 km, standing per system (`systems` on each label:
+  `always` or `zoom`) — those holding the system's marker from the opening
+  view (the Jamuna's Kurigram, Gaibandha, Rajbari, Narsingdi; the Padma's
+  Rajbari, Chapainawabganj, Chandpur), the rest from 2×; a district no line
+  of the current system crosses is not named.
   Each name's anchor, chosen by the build, lies inside its district near the
   river and away from the markers and the rivers' names (`BUSY_KM`); at run
   time a name sits on it or on a ring round it, its middle inside its
@@ -116,10 +166,18 @@ finishes it. It is not in `docs/registry.json`.
 
 ## Inputs, all pinned
 
-- **Editor's seed:** `data-sources/bangladesh-rivers/bangladesh-rivers.seed.json`
-  — every word, its sources, the geometry recipe (way ids with trims, the joins,
-  the frames, the label anchors) and a `review` of where sources differ. Its
-  SHA-256 is pinned in `tools/verify-descriptor.mjs`, now `355c69af…46ad`
+- **Editor's seed,** split per system (Stage 1): the common file
+  `data-sources/bangladesh-rivers/bangladesh-rivers.seed.json` (the page's
+  words, the sources, the countries, the frames' specs, ⓘ's lines, the
+  `review`) and one file per system, `systems/<id>.seed.json` (its lines
+  with way ids, trims and joins, its markers, cards, names and label anchors,
+  its frame lists, and `geometry.extract`), merged by
+  `tools/lib/rivers-seed.mjs`, which refuses a duplicate id and anything but
+  one Jamuna main recipe. Systems are keyed by stable ids (`jamuna`,
+  `padma`, `meghna`). Each file's SHA-256 is pinned in
+  `tools/verify-descriptor.mjs`: common `25d60c66…`, jamuna `e84123ae…`,
+  padma `7627ac1d…`, meghna `faf14e36…`. Before the split, the one file was
+  `355c69af…46ad`
   (`2b3e3c57…` before the districts and the ⓘ blocks; `1c70b88a…` before the whole-Bangladesh frame; `08aff7d1…` before the Dewanganj notes and the Teesta district; `28856c9a…`
   before the Prompt 40 cards; `c14c8bb4…` before the entry row lost «নাগেশ্বরী উপজেলা»; `95090aa6…`
   before the entry marker was snapped; `a6e2e386…` before the
@@ -131,21 +189,32 @@ finishes it. It is not in `docs/registry.json`.
   tags, snapshot 2026-05-31, ODbL) — all in `tools/sources.json`. The pilot
   extract is `tools/sources/osm-bangladesh-rivers-pilot.geojson`, cut by
   `tools/extract-bangladesh-rivers-pilot.mjs` from the way ids the seed
-  records, and only a deliberate re-run changes it.
+  records, and only a deliberate re-run changes it. Each later system has its
+  own extract, cut by `tools/extract-bangladesh-rivers-system.mjs <system>`
+  from the system seed's `geometry.extract` (by way id, with node ids and
+  tags; a way with no name, name:bn, name:en or wikidata tag is refused) into
+  `tools/sources/osm-bangladesh-rivers-<system>.geojson`, pinned as
+  `osmBangladeshRivers<System>`: the Padma's has 16 ways, snapshot
+  2026-09-29T09:49:40Z, SHA-256 `d15c0028…`. A way in two files must agree
+  within 1 m.
 - **Research,** outside git: `tools/.cache/bangladesh-rivers/`.
 
 ## How it is built
 
 - **`tools/build-diagram-bangladesh-rivers.mjs [out]`** writes `descriptor.json`,
   `data.json`, `frame-whole.json` and `frame-bangladesh.json` into
-  `docs/diagrams/bangladesh-rivers/` (85 KB together); a second build writes
+  `docs/diagrams/bangladesh-rivers/` (172 KB together: data 41 KB, the
+  Bangladesh frame 103 KB) — one data file, and one frame per tab, loaded
+  when the tab opens; a second build writes
   the same bytes. Each river is one chain of features, refused if it branches,
   loops or has a gap over 3 m. The frames are SVG path data in the frame's own
   units, one flat projection per frame that `tools/lib/rivers-frame.mjs`
   shares with the validator.
 - **The geometry pins,** one hash per line, in
-  `tools/bangladesh-rivers-pins.json` (11 lines). A build whose line moved
-  stops and says so; it is never re-pinned to pass.
+  `tools/bangladesh-rivers-pins.json` (21 lines: the pilot's 11, unchanged
+  by Stage 1, and the Padma system's 10 new ones). A build whose line moved
+  stops and says so; it is never re-pinned to pass. A main river drawn as
+  several lines must run end to end within 3 m (`gangaPadma→padma` 0.6 m).
 - **The view,** `docs/visual/rivers.js` and `rivers.css`, is loaded only for a
   view of type `rivers` (one line in `VIEW_MODULES`). It reads only the
   diagram's own JSON through the resolver.
@@ -155,23 +224,24 @@ finishes it. It is not in `docs/registry.json`.
 - **`node tools/verify-descriptor.mjs`** — the descriptor, the data against the
   seed (every Bengali string shown is the seed's or a heading composed from
   two of its own), the frames, every branch card's four rows and the main
-  card's «গতিপথ», ⓘ's plain lines each citing a listed source, the pending
-  list (1: the main river's length).
+  card's «গতিপথ», ⓘ's plain lines each citing a listed source, the picker
+  grouped by system, the pending list (8: the Jamuna's length; the Padma's
+  entry, course, length and distributaries; the Gorai's and Madhumati's
+  course; the Bhagirathi's other name).
 - **`node tools/verify.mjs`,** its bangladesh-rivers section, reading the pinned
   sources by checksum:
   - a. every marker, its source coordinate projected with the picture's own
     projection: within 1 px at the frame's scale and 500 m on the ground;
   - b. every tributary and distributary: its parent-side end within 50 m of
     its parent line as drawn, or of a connector (one straight segment, at most
-    10 km) that starts at that end and ends on the parent line; the list of
-    connectors is printed; the Dhaleshwari alone may reach 12 km (the
-    allow-list). Karatoya, Atrai and Banshi stay unjoined, each with its reason
-    in the seed; the Old
-    Brahmaputra passes on its own at 0 m;
+    12 km) that starts at that end and ends on the parent line; the list of
+    connectors is printed. Karatoya, Atrai, Banshi, Madhumati and the
+    Mahananda's upper reach stay unjoined, each with its reason in the seed;
   - c. the entry marker on COD-AB's border (500 m), and BWDB's point it was
     snapped from;
   - d. the main river one connected line, gaps 0 m, no duplicate segment, no
-    self-crossing, nothing outside the frame;
+    self-crossing, nothing outside the frame; every other system's main river
+    its main lines end to end in the Bangladesh frame (500 m);
   - e. every drawn line and marker traced to an id in the pinned sources, by
     way, node, vertex or — the entry — the way segment that crosses COD-AB's
     border; and the build reproduced byte for byte;
@@ -179,7 +249,8 @@ finishes it. It is not in `docs/registry.json`.
     point where the line turns from dashed to solid, in both frames;
   - g. every labelled district crossed by a drawn tappable line, every name's
     anchor inside its district as COD-AB draws it, every district holding a
-    marker labelled from the opening view; and the shared district file
+    system's marker labelled from the opening view when that system is
+    current; and the shared district file
     rebuilt by `tools/build-bangladesh-districts.mjs` byte for byte.
 - **`node tools/check.mjs bangladesh-rivers`** — its rivers branch, `riverSteps`,
   takes each tab in turn: the picker's entry, then every line and marker
@@ -216,3 +287,12 @@ separate, approved change:
 - «শিয়াং» and «দিহাং» are on the main river's card only, never on the picture.
 - The origin marker is Natural Earth's line start (82.40°E); Bengali Wikipedia
   gives 82°0′E, and both are recorded.
+- The Padma system's markers: the Jamuna meeting (the Jamuna marker's point,
+  in Goalanda), the Mahananda confluence (the drawn mouth, in Chapainawabganj
+  Sadar, as BWDB) and the Padma's mouth (the drawn junction with the Meghna,
+  in Chandpur Sadar). No marker where the receiving river is not drawn (the
+  Arial Khan's Kalabadar, the Madhumati's Sholdaha) or where the drawn line
+  stops short (the Gorai, the Madhumati).
+- «পুরো পথ» stays the Jamuna's until the three new tabs and a per-system
+  whole-course frame are built (decision 1); the Padma's Ganges is pinned only
+  from the Bangladesh frame's west edge.

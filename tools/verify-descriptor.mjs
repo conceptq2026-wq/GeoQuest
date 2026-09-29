@@ -39,6 +39,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import zlib from 'node:zlib';
 import { pathToFileURL } from 'node:url';
+import { loadRiversSeed } from './lib/rivers-seed.mjs';
 
 // ---- where things are -------------------------------------------------------
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
@@ -95,7 +96,13 @@ const SEASONS_SEEDS = path.join(ROOT, 'data-sources/seasons');
 const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa32509b451efb2';
 // The bangladesh-rivers diagram: the editor's seed, pinned. Its geometry is pinned in tools/bangladesh-rivers-pins.json.
 const BANGLADESH_RIVERS_SEEDS = path.join(ROOT, 'data-sources/bangladesh-rivers');
-const BANGLADESH_RIVERS_SEED_SHA256 = '355c69af65452c8fe39f093c97efd963e5fd0480468a3b7f1b5f4782924346ad';
+// One pin per seed file: the common file and each system's (tools/lib/rivers-seed.mjs).
+const BANGLADESH_RIVERS_SEED_SHA256 = {
+  'bangladesh-rivers.seed.json': '25d60c66659b8ae3b63587428dc64506e01023cd64fd3faf4ba1b16b9eba638f',
+  'systems/jamuna.seed.json': 'e84123aea5bfbe78448f2555e16c43a94b13fbf8584a9f748949cfbcd7b2b0a8',
+  'systems/padma.seed.json': '7627ac1da988c0c8ed67efbf956f2506ca8cde7241c564e6fac4ad53b802a551',
+  'systems/meghna.seed.json': 'faf14e3622fef05ee57ca9e4aac45340c8720ad82c5fcff4556b4f617fcb5f3f',
+};
 // The latitude-longitude globe: the editor's seed, the pinned sources (its
 // imagery's credit among them) and the geometry pins.
 const LATLON_SEED = path.join(ROOT, 'data-sources/latitude-longitude/latitude-longitude.seed.json');
@@ -1806,10 +1813,9 @@ console.log('\n\n============ bangladesh-rivers (diagram) ============');
   const id = 'bangladesh-rivers';
   CHECKED_DIAGRAMS.add(id);
   const dir = path.join(DIAGRAMS_DIR, id);
-  const seedFile = path.join(BANGLADESH_RIVERS_SEEDS, 'bangladesh-rivers.seed.json');
-  const seed = readJson(seedFile);
-  const seedHash = crypto.createHash('sha256').update(fs.readFileSync(seedFile)).digest('hex');
-  check(seedHash === BANGLADESH_RIVERS_SEED_SHA256, `the seed is the approved one: SHA-256 ${seedHash.slice(0, 12)}… (pinned ${BANGLADESH_RIVERS_SEED_SHA256.slice(0, 12)}…)`);
+  const { seed, files: seedFiles } = loadRiversSeed(BANGLADESH_RIVERS_SEEDS);
+  for (const f of seedFiles) check(BANGLADESH_RIVERS_SEED_SHA256[f.file] === f.sha256, `the seed file ${f.file} is the approved one: SHA-256 ${f.sha256.slice(0, 12)}… (pinned ${(BANGLADESH_RIVERS_SEED_SHA256[f.file] ?? 'none').slice(0, 12)}…)`);
+  check(Object.keys(BANGLADESH_RIVERS_SEED_SHA256).length === seedFiles.length, `every pinned seed file is one the seed lists (${seedFiles.length})`);
   const descriptor = readJson(path.join(dir, 'descriptor.json'));
   const data = readJson(path.join(dir, descriptor.data));
   const ui = seed.ui;
@@ -1838,7 +1844,7 @@ console.log('\n\n============ bangladesh-rivers (diagram) ============');
   const pendingFields = [];
   for (const e of seed.entities) {
     const rows = Object.fromEntries(ui.rowOrder.filter((k) => e.values[k] !== undefined && e.values[k] !== null).map((k) => [k, e.values[k]]));
-    const want = { role: e.role, name: e.nameBn, values: rows };
+    const want = { role: e.role, system: e.system, name: e.nameBn, values: rows };
     check(JSON.stringify(data.entities[e.id]) === JSON.stringify(want), `${e.id}: «${e.nameBn}», rows ${Object.keys(rows).join(', ')}, as the seed has them in ui.rowOrder, nothing else shipped`);
     for (const [k, v] of Object.entries(e.values)) {
       if (v === null) pendingFields.push(`${e.id}.values.${k}`);
@@ -1850,11 +1856,14 @@ console.log('\n\n============ bangladesh-rivers (diagram) ============');
     const want = { kind: m.kind, entity: m.entity, name: m.nameBn, row: m.row, value: m.valueBn };
     check(JSON.stringify(data.markers[m.id]) === JSON.stringify(want) && m.kind in ui.legendBn && m.row in ui.rowLabelsBn && m.entity in entities && (m.sources?.valueBn?.length ?? 0) > 0 && (m.sources?.nameBn?.length ?? 0) > 0, `${m.id}: «${m.nameBn}» — ${ui.legendBn[m.kind]}, its value the seed's and cited`);
   }
-  check(JSON.stringify(data.picker) === JSON.stringify(seed.entities.filter((e) => e.picker).map((e) => ({ key: e.id, label: e.nameBn }))) && data.picker.length === 1, `the picker holds the one entry the pilot has: ${data.picker.map((p) => `${p.key} «${p.label}»`).join(', ')}`);
+  const wantPicker = seed.systems.flatMap((s) => seed.entities.filter((e) => e.system === s.id).map((e) => ({ key: e.id, label: e.nameBn, group: s.id })));
+  const wantGroups = seed.systems.filter((s) => wantPicker.some((p) => p.group === s.id)).map((s) => ({ value: s.id, label: s.nameBn }));
+  check(JSON.stringify(data.picker) === JSON.stringify(wantPicker) && JSON.stringify(data.pickerGroups) === JSON.stringify(wantGroups), `the picker lists every card, grouped by system (${wantGroups.map((g) => `«${g.label}» ${wantPicker.filter((p) => p.group === g.value).length}`).join(', ')})`);
+  check(JSON.stringify(data.systems) === JSON.stringify(seed.systems.map((s) => { const main = seed.entities.find((e) => e.system === s.id && e.role === 'main')?.id; return { id: s.id, name: s.nameBn, ...(main ? { main } : {}) }; })), `the systems, in the seed's order, each with its main river's card: ${data.systems.map((s) => `${s.id} (${s.main ?? 'no card yet'})`).join(', ')}`);
   const labels = Object.fromEntries(Object.entries(seed.labelsBn).filter(([k]) => !k.startsWith('_')));
   const countries = Object.fromEntries(Object.entries(seed.countries).filter(([k]) => !k.startsWith('_')));
   check(JSON.stringify(data.labels) === JSON.stringify(labels) && JSON.stringify(data.countries) === JSON.stringify(countries), `the ${Object.keys(labels).length} names on the lines and the ${Object.keys(countries).length} countries' are the seed's`);
-  const cardNames = new Set([...seed.entities.map((e) => e.nameBn), ...seed.markers.map((m) => m.nameBn), ...seed.continuations.map((c) => c.nameBn), ...String(entities.main.values.alias).split('; ').map((s) => s.replace(/ \(.*\)$/, ''))]);
+  const cardNames = new Set([...seed.entities.map((e) => e.nameBn), ...seed.markers.map((m) => m.nameBn), ...seed.continuations.map((c) => c.nameBn), ...seed.entities.filter((e) => e.role === 'main').flatMap((e) => String(e.values.alias ?? '').split('; ').map((s) => s.replace(/ \(.*\)$/, '')))]);
   const strayLabels = Object.entries(labels).filter(([, t]) => !cardNames.has(t));
   check(strayLabels.length === 0, `every name drawn on a line is a name a card gives${strayLabels.length ? ` — not ${strayLabels.map(([k]) => k).join(', ')}` : ''}`);
   const nullsInData = [];
@@ -1899,10 +1908,22 @@ console.log('\n\n============ bangladesh-rivers (diagram) ============');
   const foreign = shown.filter((v) => /[ঀ-৿]/.test(v) && !seedStrings.has(v));
   check(foreign.length === 0, `every Bengali string shown is the seed's${foreign.length ? `, not: ${foreign.join(' | ')}` : ''}`);
   console.log(`pending: ${pendingFields.length} — ${pendingFields.join(', ')}`);
-  check(pendingFields.length === 1, `the pending list is the one field the seed holds as null, the main river's length (${pendingFields.length})`);
+  // The pending list, as the user left it (the Jamuna's length) and as Stage 1's decisions make it (2026-09-29):
+  // where the two books disagree, the row is null; a row no source gives is null.
+  const WANT_PENDING = [
+    'main.values.length',
+    'padma.values.entry',
+    'padma.values.course',
+    'padma.values.length',
+    'padma.values.distributaries',
+    'gorai.values.course',
+    'madhumati.values.course',
+    'bhagirathi.values.alias',
+  ];
+  check(pendingFields.join() === WANT_PENDING.join(), `the pending list is the ${WANT_PENDING.length} fields the seed holds as null, none shipped (${pendingFields.length})`);
   // Every branch's card: «সম্পর্ক», «উৎপত্তি», «গতিপথ», and «মিলনস্থল» or «পতিত স্থল» (Prompt 40, 2026-09-29); the main river's gains «গতিপথ».
   const shape = seed.entities.filter((e) => e.role !== 'main').filter((e) => !['relation', 'origin', 'course'].every((k) => k in e.values) || ('confluence' in e.values) === ('mouth' in e.values) || 'parent' in e.values);
-  check(shape.length === 0 && 'course' in entities.main.values, `every branch card has «${ui.rowLabelsBn.relation}», «${ui.rowLabelsBn.origin}», «${ui.rowLabelsBn.course}» and one of «${ui.rowLabelsBn.confluence}» / «${ui.rowLabelsBn.mouth}»; the main river's has «${ui.rowLabelsBn.course}»${shape.length ? ` — not: ${shape.map((e) => e.id).join(', ')}` : ''}`);
+  check(shape.length === 0 && seed.entities.filter((e) => e.role === 'main').every((e) => 'course' in e.values), `every branch card has «${ui.rowLabelsBn.relation}», «${ui.rowLabelsBn.origin}», «${ui.rowLabelsBn.course}» and one of «${ui.rowLabelsBn.confluence}» / «${ui.rowLabelsBn.mouth}»; every main river's has «${ui.rowLabelsBn.course}»${shape.length ? ` — not: ${shape.map((e) => e.id).join(', ')}` : ''}`);
 
   // ---- the frames -------------------------------------------------------------
   console.log('\n---- the frames ----');
@@ -1924,7 +1945,7 @@ console.log('\n\n============ bangladesh-rivers (diagram) ============');
       const shared = readJson(path.join(ROOT, 'docs/shared', frame.districts.file));
       const known = new Map(shared.districts.map((d) => [d.pcode, d]));
       const bad = frame.districts.labels.filter((d) => !known.has(d.pcode) || !(d.x >= 0 && d.x <= frame.projection.width && d.y >= 0 && d.y <= frame.projection.height));
-      check(bad.length === 0 && frame.districts.labels.length > 0 && shared.districts.length === 64 && shared.districts.every((d) => /[ঀ-৿]/.test(d.bn)), `${view.id}: ${frame.districts.labels.length} district names (${frame.districts.labels.filter((d) => d.always).length} from the opening view), each a district of the shared ${frame.districts.file} (64, every one with its Bengali name), anchored inside the frame`);
+      check(bad.length === 0 && frame.districts.labels.length > 0 && shared.districts.length === 64 && shared.districts.every((d) => /[ঀ-৿]/.test(d.bn)), `${view.id}: ${frame.districts.labels.length} district names (${frame.districts.labels.filter((d) => Object.values(d.systems).includes('always')).length} from the opening view in some system), each a district of the shared ${frame.districts.file} (64, every one with its Bengali name), anchored inside the frame`);
     }
     console.log(`     ${view.id}: viewBox 0 0 ${frame.projection.width} ${frame.projection.height}`);
   }

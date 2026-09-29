@@ -15,6 +15,7 @@ import { sourcesAt, scan, SURFACE, librarySurface, scanBuildTool } from './outbo
 import { assetVersion, codeFiles, references } from './lib/asset-version.mjs';
 import { CACHE, zipEntry } from './lib/geo.mjs';
 import { projection, distM, nearestOnLine, parsePath } from './lib/rivers-frame.mjs';
+import { loadRiversSeed } from './lib/rivers-seed.mjs';
 
 const require = createRequire(import.meta.url);
 const vtRequire = createRequire(require.resolve('vt-pbf'));
@@ -32,7 +33,7 @@ const STRAITS_DIR = path.join(SERVED, 'international/straits');
 const DATA_SOURCES = path.join(ROOT, 'data-sources');
 // The Rivers of Bangladesh diagram: the built files, the seed, the build tool and its geometry pins. Change here if they move.
 const RIVERS_DIR = path.join(SERVED, 'diagrams/bangladesh-rivers');
-const RIVERS_SEED = path.join(DATA_SOURCES, 'bangladesh-rivers/bangladesh-rivers.seed.json');
+const RIVERS_SEED = path.join(DATA_SOURCES, 'bangladesh-rivers');
 const RIVERS_BUILD = path.join(HERE, 'build-diagram-bangladesh-rivers.mjs');
 const RIVERS_PINS = path.join(HERE, 'bangladesh-rivers-pins.json');
 const readJ = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
@@ -171,7 +172,7 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
 // reference; the build is re-run to a temp folder and must equal the files
 // committed under docs/.
 {
-  const S = readJ(RIVERS_SEED);
+  const S = loadRiversSeed(RIVERS_SEED).seed;
   const G = S.geometry;
   const riversSources = readJ(path.join(HERE, 'sources.json'));
   const frames = {
@@ -195,7 +196,8 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
   const xyOf = (k, id) => frames[k].lines.find((x) => x.id === id).pieces.map((p) => parsePath(p.d).flat());
 
   // The pinned sources.
-  const osmFiles = [riversSources.osmBangladeshRivers, riversSources.osmBangladeshRiversPilot].map((e) => JSON.parse(pinned(path.join(ROOT, e.file), e.sha256).toString('utf8')));
+  const systemPins = Object.keys(G.files.osmSystems ?? {}).map((sys) => riversSources[`osmBangladeshRivers${sys[0].toUpperCase()}${sys.slice(1)}`]);
+  const osmFiles = [riversSources.osmBangladeshRivers, riversSources.osmBangladeshRiversPilot, ...systemPins].map((e) => JSON.parse(pinned(path.join(ROOT, e.file), e.sha256).toString('utf8')));
   const osmWays = new Map(); // the pilot extract, which carries node ids, wins where a way is in both
   for (const f of osmFiles.flatMap((o) => o.features)) osmWays.set(f.properties.osm_id, f);
   const neEntry = riversSources.naturalEarth.files['ne_10m_rivers_lake_centerlines.geojson'];
@@ -223,21 +225,21 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
     }
 
   // 7b — every tributary and distributary: its parent-side end (a tributary's mouth, a distributary's head)
-  // within 50 m of its parent line as drawn, or of a connector of at most 10 km that runs from that end to
-  // the parent line; a line with neither is exempt, and the seed says why.
-  const EXEMPT = ['karatoya', 'atrai', 'banshi'];
+  // within 50 m of its parent line as drawn, or of a connector of at most 12 km that runs from that end to
+  // the parent line; a line with neither is exempt, and the seed says why. The unjoined lines are the user's
+  // decisions (2026-09-29): the Jamuna's three, and the Padma system's two over 12 km.
+  const EXEMPT = ['karatoya', 'atrai', 'banshi', 'madhumati', 'mahananda'];
   const NEAR_M = 50;
-  const CONNECTOR_MAX_M = 10000;
-  // The allow-list, the user's decision (2026-09-29): the Dhaleshwari's connector alone may reach 12 km.
-  const CONNECTOR_ALLOW = { dhaleshwari: 12000 };
-  const maxFor = (id) => CONNECTOR_ALLOW[id] ?? CONNECTOR_MAX_M;
+  // 10 km, then 12 km for the Dhaleshwari alone, then 12 km for every line (Stage 1, 2026-09-29).
+  const CONNECTOR_MAX_M = 12000;
+  const maxFor = () => CONNECTOR_MAX_M;
   const branches = Object.entries(G.lines).filter(([, l]) => l.role === 'tributary' || l.role === 'distributary');
   const connectors = frames.bangladesh.connectors ?? [];
   const connectorOf = new Map();
   for (const c of connectors) {
     const pts = parsePath(c.d).flat().map(([x, y]) => proj.bangladesh.invert(x, y));
     const len = distM(pts[0], pts.at(-1));
-    check(pts.length === 2 && len <= maxFor(c.id) && Math.abs(len - c.m) <= 1 && branches.some(([id]) => id === c.id) && !connectorOf.has(c.id), `b. connector ${c.id} → ${c.parent}: one straight segment, ${round(len)} m (it records ${c.m} m; limit ${maxFor(c.id) / 1000} km${c.id in CONNECTOR_ALLOW ? ', the allow-list' : ''})`);
+    check(pts.length === 2 && len <= maxFor(c.id) && Math.abs(len - c.m) <= 1 && branches.some(([id]) => id === c.id) && !connectorOf.has(c.id), `b. connector ${c.id} → ${c.parent}: one straight segment, ${round(len)} m (it records ${c.m} m; limit ${maxFor(c.id) / 1000} km)`);
     connectorOf.set(c.id, { ...c, pts });
   }
   check((frames.whole.connectors ?? []).length === 0, 'b. the whole-course frame draws no branch, so no connector');
@@ -270,7 +272,7 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
       exempt.push(id);
     }
   }
-  check(JSON.stringify([...exempt].sort()) === JSON.stringify([...EXEMPT].sort()), `b. the lines left unjoined are exactly karatoya, atrai and banshi (the user's decision, 2026-09-29): ${exempt.join(', ')}`);
+  check(JSON.stringify([...exempt].sort()) === JSON.stringify([...EXEMPT].sort()), `b. the lines left unjoined are exactly ${EXEMPT.join(', ')} (the user's decisions, 2026-09-29): ${exempt.join(', ')}`);
   console.log(`     connectors: ${connectors.map((c) => `${c.id} → ${c.parent} ${c.m} m`).join(', ') || 'none'}`);
 
   // 7c — the border-entry marker lies on Bangladesh's border; so does BWDB's entry point, from which it was snapped.
@@ -328,6 +330,17 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
     const { width, height } = frames[k].projection;
     const outside = xy.filter(([x, y]) => x < -0.05 || x > width + 0.05 || y < -0.05 || y > height + 0.05).length;
     check(pieces.length >= 1 && Math.max(0, ...gaps) <= 500 && dup === 0 && tangles === 0 && outside === 0, `d. ${k}: the main line is ${pieces.length} piece(s) end to end, gaps ${gaps.length ? gaps.map((g) => `${round(g)} m`).join(', ') : 'none'} (limit 500 m), ${dup} duplicate segments, ${tangles} self-crossings, ${outside} points outside the frame (${segs.length} segments)`);
+  }
+  // Another system's main river, drawn as several main lines: in the Bangladesh frame, each begins
+  // within 500 m of where the last ends, as drawn.
+  const mainNote = [];
+  for (const e of S.entities.filter((x) => x.role === 'main' && x.id !== 'main')) {
+    const ids = frames.bangladesh.lines.filter((l) => l.entity === e.id).map((l) => l.id);
+    const order = Object.keys(G.lines).filter((id) => ids.includes(id));
+    const gaps = order.slice(1).map((id, i) => distM(lineOf('bangladesh', order[i]).at(-1).at(-1), lineOf('bangladesh', id)[0][0]));
+    const roles = order.every((id) => G.lines[id].role === 'main');
+    check(order.length >= 1 && roles && Math.max(0, ...gaps) <= 500, `d. ${e.id}: its main river is ${order.length} main line(s) end to end in the Bangladesh frame (${order.join(' → ')}), gaps ${gaps.map((g) => `${round(g)} m`).join(', ') || 'none'} (limit 500 m)`);
+    mainNote.push(`${e.id} ${order.length} lines`);
   }
   {
     const whole = lineOf('whole', 'main').flat();
@@ -417,18 +430,21 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
     check(labels.length > 0 && uncrossed.length === 0, `g. every labelled district (${labels.length}) is crossed by a drawn tappable line${uncrossed.length ? ` — not: ${uncrossed.map((l) => l.pcode).join(', ')}` : ''}`);
     const outside = labels.filter((l) => !insideD(proj.bangladesh.invert(l.x, l.y), polys.get(l.pcode)));
     check(outside.length === 0, `g. every district name's anchor lies inside its district as COD-AB draws it${outside.length ? ` — not: ${outside.map((l) => l.pcode).join(', ')}` : ''}`);
-    const markerDistricts = new Set();
+    const markerDistricts = new Set(); // "system|pcode"
     let located = 0;
     for (const m of fb.markers) {
       const p = proj.bangladesh.invert(m.x, m.y);
       let at = [...polys].find(([, d]) => insideD(p, d))?.[0];
       if (!at) at = [...polys].map(([pc, d]) => [pc, Math.min(...d.rings.flat().map((r) => nearestOnLine(p, r).m))]).sort((a, b) => a[1] - b[1]).find(([, mm]) => mm <= 500)?.[0];
-      if (at) (markerDistricts.add(at), located++);
+      if (at) (markerDistricts.add(`${m.system}|${at}`), located++);
     }
-    const missing = [...markerDistricts].filter((pc) => !labels.some((l) => l.pcode === pc && l.always));
+    const missing = [...markerDistricts].filter((key) => {
+      const [s, pc] = key.split('|');
+      return !labels.some((l) => l.pcode === pc && l.systems?.[s] === 'always');
+    });
     check(located === fb.markers.length, `g. every marker lies in a COD-AB district, or on its edge (${located} of ${fb.markers.length}, in ${markerDistricts.size} districts)`);
-    check(missing.length === 0, `g. every district holding a marker is labelled from the opening view: ${[...markerDistricts].map((pc) => polys.get(pc).en).join(', ')}${missing.length ? ` — not: ${missing.join(', ')}` : ''}`);
-    districtNote.push(`${labels.filter((l) => l.always).length} from the opening view, ${labels.filter((l) => !l.always).length} from ${fb.districts?.zoomAll}×`);
+    check(missing.length === 0, `g. every district holding a system's marker is labelled from the opening view when that system is current: ${[...markerDistricts].map((key) => `${key.split('|')[0]} ${polys.get(key.split('|')[1]).en}`).join(', ')}${missing.length ? ` — not: ${missing.join(', ')}` : ''}`);
+    districtNote.push(`${labels.filter((l) => Object.values(l.systems).includes('always')).length} from the opening view, ${labels.filter((l) => !Object.values(l.systems).includes('always')).length} from ${fb.districts?.zoomAll}×`);
     const outD = fs.mkdtempSync(path.join(os.tmpdir(), 'districts-'));
     const builtD = path.join(outD, 'bangladesh-districts.json');
     try {
@@ -452,9 +468,9 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
   fs.rmSync(out, { recursive: true, force: true });
   const seamLine = /seam gap ([\d.]+) m at ([\d.]+)°E.*?jamuna→padma ([\d.]+) m; padma→meghna junction ([\d.]+) m/.exec(say);
   const pins = JSON.parse(fs.readFileSync(RIVERS_PINS, 'utf8'));
-  check(same && Object.keys(pins).length === 11, `the build reproduces the ${built.length} committed files byte for byte, and its ${Object.keys(pins).length} geometry pins hold${same ? '' : ` — ${say.split('\n').slice(0, 3).join(' | ')}`}`);
+  check(same && Object.keys(pins).length === 21, `the build reproduces the ${built.length} committed files byte for byte, and its ${Object.keys(pins).length} geometry pins hold${same ? '' : ` — ${say.split('\n').slice(0, 3).join(' | ')}`}`);
   check(Boolean(seamLine) && Number(seamLine[1]) <= G.main.seam.maxM && Number(seamLine[3]) <= 500 && Number(seamLine[4]) <= 3, `d. the seam is ${seamLine?.[1]} m at ${seamLine?.[2]}°E (limit ${G.main.seam.maxM} m); the Jamuna ends ${seamLine?.[3]} m from the Padma, which ends ${seamLine?.[4]} m from the Meghna`);
-  console.log(`bangladesh-rivers: a. ${drawnMarkers} markers within ${round(worst.px, 2)} px / ${round(worst.m)} m; b. ${alone.length + viaConnector.length} joined (${alone.join(', ')} on their own; ${viaConnector.join(', ')} by a connector), ${exempt.length} unjoined (${exempt.join(', ')}); c. entry ${round(entrySrc)} m from the border (BWDB's point ${round(entryBwdb)} m); d. main connected, gaps ≤ 500 m; e. ${drawnIds.size} lines, ${wayIds.size} ways, ${S.markers.length} markers traced; f. entry on the line and at the dash switch: ${entryF.join(', ')}; g. district names ${districtNote.join('')}`);
+  console.log(`bangladesh-rivers: a. ${drawnMarkers} markers within ${round(worst.px, 2)} px / ${round(worst.m)} m; b. ${alone.length + viaConnector.length} joined (${alone.join(', ')} on their own; ${viaConnector.join(', ')} by a connector), ${exempt.length} unjoined (${exempt.join(', ')}); c. entry ${round(entrySrc)} m from the border (BWDB's point ${round(entryBwdb)} m); d. main connected, gaps ≤ 500 m${mainNote.length ? ` (and ${mainNote.join(', ')})` : ''}; e. ${drawnIds.size} lines, ${wayIds.size} ways, ${S.markers.length} markers traced; f. entry on the line and at the dash switch: ${entryF.join(', ')}; g. district names ${districtNote.join('')}`);
 }
 
 // ---- vendored libraries ----

@@ -110,6 +110,14 @@
 .rivers .river-continuation {
   pointer-events: none;
 }
+/* Another system than the current one: thin and grey, like a continuation, but still tappable. */
+.rivers .river.other .river-line {
+  stroke: #a9b4c3;
+  stroke-width: 1.3px;
+}
+.rivers .river.other .river-halo {
+  stroke-width: 2.6px;
+}
 
 .rivers .has-lit .river:not(.lit),
 .rivers .has-lit .marker:not(.lit) {
