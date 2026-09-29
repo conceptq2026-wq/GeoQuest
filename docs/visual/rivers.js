@@ -44,7 +44,7 @@
 | Every word shown is the descriptor's or the data's.
 */
 
-import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=3a73556efc';
+import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=b26ce42733';
 
 const ZOOM_MAX = 6;
 // CSS px: a press that moves less than this is a tap; two taps within DOUBLE_MS and DOUBLE_PX are a double tap.
@@ -105,7 +105,7 @@ export async function mount(panel, { view, descriptor, data, art, shared }) {
   const systemsHere = new Set([...frame.lines.map((l) => l.system), ...frame.markers.map((m) => m.system)]);
   let current = (data.systems ?? []).map((s) => s.id).find((s) => systemsHere.has(s)) ?? null;
   const markerSystem = new Map(frame.markers.map((m) => [m.id, m.system]));
-  await Promise.all([stylesheet('../shared/picker.css?v=3a73556efc'), stylesheet('./rivers.css?v=3a73556efc')]);
+  await Promise.all([stylesheet('../shared/picker.css?v=b26ce42733'), stylesheet('./rivers.css?v=b26ce42733')]);
 
   const fw = frame.projection.width;
   const fh = frame.projection.height;
@@ -269,7 +269,7 @@ export async function mount(panel, { view, descriptor, data, art, shared }) {
   // ---- the names ---------------------------------------------------------------------------
 
   const labels = [
-    ...frame.labels.map((l) => ({ id: l.id, text: data.labels[l.id], x: l.x, y: l.y, line: l.line, role: roleOf.get(l.line), lineRole: roleOf.get(l.line), system: frame.lines.find((q) => q.id === l.line)?.system })),
+    ...frame.labels.map((l) => ({ id: l.id, text: data.labels[l.id], x: l.x, y: l.y, line: l.line, role: roleOf.get(l.line), lineRole: roleOf.get(l.line), system: frame.lines.find((q) => q.id === l.line)?.system, card: frame.lines.find((q) => q.id === l.line)?.entity ?? l.line })),
     ...frame.countries.map((c) => ({ id: c.id, text: data.countries[c.id], x: c.x, y: c.y, line: null, role: 'country' })),
     ...(districts
       ? frame.districts.labels.map((d) => ({ id: d.pcode, text: districts.districts.find((q) => q.pcode === d.pcode).bn, x: d.x, y: d.y, line: null, role: 'district', standing: d.systems }))
@@ -325,6 +325,7 @@ export async function mount(panel, { view, descriptor, data, art, shared }) {
   for (const [kind, word] of Object.entries(words.legend)) {
     if (!lineRoles.has(kind) && !markerKinds.has(kind)) continue;
     const item = el('li', 'legend-item');
+    item.dataset.kind = kind;
     const icon = svgEl('svg', { class: 'legend-icon', viewBox: '-14 -8 28 16', width: 28, height: 16, 'aria-hidden': 'true' });
     if (lineRoles.has(kind)) icon.append(svgEl('line', { class: `legend-line legend-${kind}`, x1: -12, y1: 0, x2: 12, y2: 0 }));
     else icon.append(glyph(kind));
@@ -417,6 +418,9 @@ export async function mount(panel, { view, descriptor, data, art, shared }) {
       g.style.display = markerSystem.get(id) === current ? '' : 'none';
     }
     for (const [key, z] of zoneOf) z.setAttribute('aria-pressed', String(sel !== null && key === `${sel.kind}:${sel.id}`));
+    // The legend lists the kinds the current system draws: another system's lines are grey, its markers hidden.
+    const kindsHere = new Set([...frame.lines.filter((l) => l.system === current && l.role !== 'continuation').map((l) => l.role), ...frame.markers.filter((q) => q.system === current).map((q) => q.kind)]);
+    for (const item of legend.children) item.style.display = kindsHere.has(item.dataset.kind) ? '' : 'none';
     // Another system's lines lie beneath the current one's.
     for (const g of drawOrder) if (g.classList.contains('other')) linesG.append(g);
     for (const g of drawOrder) if (!g.classList.contains('other')) linesG.append(g);
@@ -682,8 +686,10 @@ export async function mount(panel, { view, descriptor, data, art, shared }) {
       if (sx > -MARK_CLEAR && sx < W + MARK_CLEAR && sy > -MARK_CLEAR && sy < H + MARK_CLEAR) blocks.push({ l: sx - MARK_CLEAR, t: sy - MARK_CLEAR, r: sx + MARK_CLEAR, b: sy + MARK_CLEAR });
     }
     const placed = [];
-    // With a branch's card open, the names of the system's other branches give way: one that
-    // finds no spot clear of the other names and the controls is not drawn (names never overlap).
+    // Every river name gives way: one that finds no spot clear of the other names and the controls is
+    // not drawn at that view (names never overlap and never shrink; zooming in brings it back). The
+    // current system's main river's names are placed first, then, with a branch's card open, that
+    // branch's, then the other branches, then the other systems' grey names.
     const litCard = sel?.kind === 'line' && data.entities[sel.id]?.role !== 'main' ? sel.id : null;
     const lit = litCard ? new Set(frame.lines.filter((q) => q.entity === litCard).map((q) => q.id)) : null;
     for (const l of ordered(lit)) {
@@ -714,15 +720,17 @@ export async function mount(panel, { view, descriptor, data, art, shared }) {
         const top = clamp(c.t, EDGE, Math.max(EDGE, H - EDGE - l.h));
         const rect = { l: left, t: top, r: left + l.w, b: top + l.h };
         let cost = Math.abs(left - c.l) * 4 + Math.abs(top - c.t) * 4 + k * 0.5;
-        for (const o of blocks) cost += overlap(rect, o);
+        for (const o of blocks) {
+          const hit = overlap(rect, o);
+          if (hit > 0) cost += 100 + hit;
+        }
         for (const o of placed) {
           const hit = overlap({ l: rect.l - NAME_PAD, t: rect.t - NAME_PAD, r: rect.r + NAME_PAD, b: rect.b + NAME_PAD }, o);
           if (hit > 0) cost += 100 + hit;
         }
         if (!best || cost < best.cost) best = { cost, rect, align: c.align };
       });
-      const givesWay = lit && l.line && !lit.has(l.line) && (l.role === 'tributary' || l.role === 'distributary' || l.role === 'disputed');
-      if (givesWay) {
+      if (l.line) {
         const r = best.rect;
         const padded = { l: r.l - NAME_PAD, t: r.t - NAME_PAD, r: r.r + NAME_PAD, b: r.b + NAME_PAD };
         if (blocks.some((o) => overlap(r, o) > 0) || placed.some((o) => overlap(padded, o) > 0)) {
@@ -735,7 +743,9 @@ export async function mount(panel, { view, descriptor, data, art, shared }) {
         l.align = best.align;
         l.spans.forEach((s, i) => s.setAttribute('x', fixed(best.align === 'center' ? (l.w - l.lineW[i]) / 2 : best.align === 'right' ? l.w - l.lineW[i] : 0)));
       }
-      l.node.setAttribute('transform', `translate(${fixed(best.rect.l - l.bx)} ${fixed(best.rect.t - l.by)})`);
+      // Placed by its box as drawn: aligning the spans can shift it by the gap between a line's box and its advance.
+      const bb = l.node.getBBox();
+      l.node.setAttribute('transform', `translate(${fixed(best.rect.l - bb.x)} ${fixed(best.rect.t - bb.y)})`);
       placed.push(best.rect);
     }
   }

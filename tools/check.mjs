@@ -505,7 +505,7 @@ async function useItem(browser, size, entry, base, origin, dir) {
   const shoot = async (group, caption, at) => {
     const file = path.join(dir, 'shots', `${t}-${String(++n).padStart(3, '0')}.png`);
     await page.shoot(file);
-    shots[group].push({ file, caption, at });
+    (shots[group] ??= []).push({ file, caption, at });
   };
 
   // The home page: the card, in its section; then the item, opened from it.
@@ -797,14 +797,14 @@ async function riverSteps(page, shoot, summary, fail) {
     const zones = await page.evaluate(`(() => { const all = [...document.querySelectorAll('${view} .zone[data-key]')].map((z) => [z.dataset.key, z.dataset.title, z.dataset.system || '']); const seen = new Set(); const uniq = all.filter(([k]) => !seen.has(k) && seen.add(k)); const order = [...new Set(uniq.map((z) => z[2]))]; return uniq.sort((a, b) => order.indexOf(a[2]) - order.indexOf(b[2]) || Number(a[0].startsWith('marker:')) - Number(b[0].startsWith('marker:'))); })()`);
     let good = 0;
     let least = Infinity;
-    for (const [key, title] of zones) {
+    for (const [key, title, system] of zones) {
       const close = await page.evaluate(box(`${view} .card:not([hidden]) .card-close`));
       if (close) {
         await page.click(...close);
         await waitCard(page);
       }
       await sleep(400); // a second tap within 320 ms and 30 px is a double tap: a zoom
-      const hit = await page.evaluate(`(() => {
+      const findHit = () => page.evaluate(`(() => {
         const z = document.querySelector('${view} .zone[data-key="${key}"]');
         const r = z.getBoundingClientRect();
         const zonesAt = (x, y) => document.elementsFromPoint(x, y).filter((e) => e.classList.contains('zone')).length;
@@ -818,6 +818,45 @@ async function riverSteps(page, shoot, summary, fail) {
         pool.sort((a, b) => Math.hypot(a[0] - mx, a[1] - my) - Math.hypot(b[0] - mx, b[1] - my));
         return { at: pool[0].slice(0, 2), alone: alone.length > 0, size: Math.min(r.width, r.height) };
       })()`);
+      let hit = await findHit();
+      if (!hit || (!hit.alone && !key.startsWith('marker:'))) {
+        // Frame its river first: the picker's entry for a line's card, or, for a marker, the card named in its heading.
+        const river = key.startsWith('line:') ? key.slice(5) : null;
+        const name = title.split(' — ')[0];
+        const framed = await page.evaluate(`(() => {
+          const s = document.getElementById('recordPicker');
+          const opts = [...s.options].filter((o) => o.value);
+          const o = ${JSON.stringify(river)} ? opts.find((x) => x.value === ${JSON.stringify(river)}) : opts.find((x) => x.textContent === ${JSON.stringify(name)}) ?? opts.find((x) => x.textContent.includes(${JSON.stringify(name)}));
+          if (!o) return false;
+          s.value = o.value;
+          s.dispatchEvent(new Event('change', { bubbles: true }));
+          return true;
+        })()`);
+        if (framed) {
+          await waitCard(page);
+          const shut = await page.evaluate(box(`${view} .card:not([hidden]) .card-close`));
+          if (shut) {
+            await page.click(...shut);
+            await waitCard(page);
+          }
+          await sleep(400);
+          hit = await findHit();
+        }
+        // Still covered by its neighbours: zoom in about 2× on the zone's middle (the wheel), up to three times.
+        for (let zoomed = 0; zoomed < 3 && (!hit || (!hit.alone && !key.startsWith('marker:'))); zoomed++) {
+          await page.evaluate(`(() => {
+            const z = document.querySelector('${view} .zone[data-key="${key}"]');
+            const stage = document.querySelector('${view} .stage');
+            const r = z.getBoundingClientRect();
+            const s = stage.getBoundingClientRect();
+            const x = Math.min(Math.max(r.left + r.width / 2, s.left + 10), s.right - 10);
+            const y = Math.min(Math.max(r.top + r.height / 2, s.top + 10), s.bottom - 10);
+            stage.dispatchEvent(new WheelEvent('wheel', { clientX: x, clientY: y, deltaY: -385, bubbles: true, cancelable: true }));
+          })()`);
+          await sleep(500);
+          hit = await findHit();
+        }
+      }
       if (!hit) {
         fail(`«${tabs[i]}» zone ${key}: no point where it takes the tap`);
         continue;
@@ -832,7 +871,8 @@ async function riverSteps(page, shoot, summary, fail) {
       await fitCheck(page, `tap ${title}`);
       if (card.open && card.title === title) good++;
       else fail(`«${tabs[i]}» zone ${key}: card ${card.open ? `«${card.title}»` : 'closed'}, wanted «${title}»`);
-      await shoot('taps', title, hit.at);
+      // A picture of several river systems: one taps sheet per system (taps-<system>).
+      await shoot(system ? `taps-${system}` : 'taps', title, hit.at);
     }
     const close = await page.evaluate(box(`${view} .card:not([hidden]) .card-close`));
     if (close) {
@@ -999,7 +1039,7 @@ async function contactSheets(browser, dir, results, origin) {
           return `<figure><div class="img" style="width:${w * scale}px;height:${h * scale}px"><img src="${SHEETS}${path.relative(OUT, file).replaceAll('\\', '/')}" width="${w * scale}" height="${h * scale}">${dot}</div><figcaption>${caption.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c])}</figcaption></figure>`;
         })
         .join('');
-      const html = `<!doctype html><meta charset="utf-8"><style>body{margin:12px;font:12px system-ui,'Noto Sans Bengali',sans-serif;background:#fff;color:#222}h1{font-size:14px;margin:0 0 8px}main{display:flex;flex-wrap:wrap;gap:10px}figure{margin:0;width:${w * scale}px}.img{position:relative;outline:1px solid #ccc}img{display:block}i{position:absolute;width:10px;height:10px;border:2px solid #e0245e;border-radius:50%;background:rgba(224,36,94,.25)}figcaption{margin-top:3px;line-height:1.3;word-break:break-word}</style><h1>${path.basename(dir)} · ${r.size} · ${{ taps: 'taps', views: 'views: the opening, about 2×, panned south' }[group] ?? 'home, open, and each step'} (${list.length})</h1><main>${tiles}</main>`;
+      const html = `<!doctype html><meta charset="utf-8"><style>body{margin:12px;font:12px system-ui,'Noto Sans Bengali',sans-serif;background:#fff;color:#222}h1{font-size:14px;margin:0 0 8px}main{display:flex;flex-wrap:wrap;gap:10px}figure{margin:0;width:${w * scale}px}.img{position:relative;outline:1px solid #ccc}img{display:block}i{position:absolute;width:10px;height:10px;border:2px solid #e0245e;border-radius:50%;background:rgba(224,36,94,.25)}figcaption{margin-top:3px;line-height:1.3;word-break:break-word}</style><h1>${path.basename(dir)} · ${r.size} · ${group.startsWith('taps-') ? `taps, the ${group.slice(5)} system` : { taps: 'taps', views: 'views: the opening, about 2×, panned south' }[group] ?? 'home, open, and each step'} (${list.length})</h1><main>${tiles}</main>`;
       const name = `${r.size}-${group}`;
       fs.writeFileSync(path.join(dir, `${name}.html`), html);
       await page.goto(`${origin}${SHEETS}${path.basename(dir)}/${name}.html`);

@@ -57,6 +57,9 @@ finishes it. It is not in `docs/registry.json`.
     Dhaleshwari as OSM and BWDB have it). Left out: the Baulai and the Dhanu
     (no OSM way under any spelling). One ⓘ note names every river the books
     give that is not drawn. No grey continuation remains.
+- **The legend** lists the kinds the current system draws — its line roles
+  and its markers' kinds — so it shrinks to what the lit colours mean (at
+  320 px with a card open the stage is under 300 px tall).
 - **Line roles:** `main`, `tributary`, `distributary`, `continuation`,
   and `disputed` (Stage 2, the user's rule b): a river the two books give
   different roles is drawn violet (#7e57c2), neither role's colour, and the
@@ -188,11 +191,15 @@ finishes it. It is not in `docs/registry.json`.
   every cited source and OpenStreetMap's credit, as plain links.
 - **Names on the picture** are at least 15 px at 390 px wide (14 at 320),
   semi-bold, put beside their anchors where no other name, marker, the legend
-  or ⓘ's tap zone is. A hidden marker (another system's) blocks nothing. With
-  a branch's card open, its names are placed straight after the main river's,
-  and a name of another branch of the system that finds no clear spot is not
-  drawn (Stage 1: at 320 px a card leaves half the stage, and names never
-  overlap nor shrink); the main rivers' names and the lit river's always are. Pinch and pan run 1×–6× on «পুরো পথ» and 1×–8× on
+  or ⓘ's tap zone is. A hidden marker (another system's) blocks nothing.
+  Every river name gives way (Stage 2, with 46 lines): one that finds no spot
+  clear of the other names, the legend, the reset control and ⓘ's zone is not
+  drawn at that view, and zooming in brings it back — names never overlap and
+  never shrink (the user's label rule). The placing order decides who gets
+  the room: the current system's main river first, then the lit branch (a
+  card open), the other branches, the other systems' grey names, countries,
+  districts. A name is positioned by its box as drawn, after its lines are
+  aligned. Pinch and pan run 1×–6× on «পুরো পথ» and 1×–8× on
   «বাংলাদেশে», in this module only. River strokes (2026-09-29, 35 % thinner):
   main 2.9 px, tributary and distributary 2 px, continuation 1.3 px.
 - **Districts** (the «বাংলাদেশে» tab, the user's decisions of 2026-09-29):
@@ -337,6 +344,10 @@ finishes it. It is not in `docs/registry.json`.
   zone's; a marker's zone 44 px across; the layout (names on the stage, clear
   of each other, the picker row and the card) with no card and with each; and
   ⓘ opened (a shot), on the screen, scrolled to its last line, closed again.
+  Zones are tapped one system at a time; a zone off the view, or never alone
+  under the finger there, is first framed by choosing its river in the
+  picker, then zoomed in about its middle (the wheel, up to three times), as a
+  user would. The taps sheets are one per system (`<size>-taps-<system>.png`).
 
 ## Where decorations may go
 
