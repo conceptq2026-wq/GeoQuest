@@ -24,13 +24,14 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
+import { UA } from './net.mjs';
 
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const ROOT = path.resolve(HERE, '..');
 // The editor's seed, read and never written, and the file this writes. Change here if they move.
 const SEED = path.join(ROOT, 'data-sources/environment-treaties/treaties.seed.json');
 const OUT = path.join(ROOT, 'data-sources/environment-treaties/cities.seed.json');
-const UA = { 'User-Agent': 'GeoQuest-map-build/1.0 (https://github.com/conceptq2026-wq/GeoQuest)', Accept: 'application/json' };
+const HEADERS = { 'User-Agent': UA, Accept: 'application/json' };
 const TABLES = ['conventions', 'treaties', 'summits', 'cops'];
 
 /*
@@ -60,7 +61,7 @@ for (const table of TABLES)
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 async function json(url) {
   for (let attempt = 1; ; attempt++) {
-    const res = await fetch(url, { headers: UA });
+    const res = await fetch(url, { headers: HEADERS });
     if (res.ok) return res.json();
     if (attempt >= 4) throw new Error(`${url} -> ${res.status}`);
     await sleep(3000 * attempt);

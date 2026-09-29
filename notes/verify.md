@@ -37,3 +37,15 @@ reading the code, holds it:
     local module it imports — fails on a network module (`http`, `https`,
     `net`, `dns`, `undici` and the like), a `fetch()`, a socket, or a child
     process that runs `curl` or `wget`.
+  - No e-mail address (the user's rule, 2026-09-29):
+    - a tool under `tools/` that calls `fetch()` — a call, not a mention in
+      a comment or a string — imports `UA` from `tools/net.mjs` and sends it
+      as its User-Agent; no tool writes a User-Agent out;
+    - no tracked file holds an e-mail-address pattern
+      (`[\w.+-]+@[\w-]+\.[\w.]+`). Text is read whole; in a PNG or a WebP
+      every chunk but the compressed pixel data (`IDAT`; `VP8 `, `VP8L`,
+      `ALPH`, `ANMF`), where a match is a chance run of bytes. A failure
+      names the file, never the match. The allow-list, each entry with its
+      reason in the code: an image file name's density suffix
+      (`troposphere@2x.webp`), and the certificate authority's
+      `emailAddress` in the C2PA credentials of two mockups.

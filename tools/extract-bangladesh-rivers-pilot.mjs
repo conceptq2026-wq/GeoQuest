@@ -11,12 +11,13 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
+import { UA } from './net.mjs';
 
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const ROOT = path.resolve(HERE, '..');
 // Where the extract goes. Change here if it moves.
 const OUT = path.join(ROOT, 'tools', 'sources', 'osm-bangladesh-rivers-pilot.geojson');
-const UA = { 'User-Agent': 'GeoQuest map build (educational maps)' };
+const HEADERS = { 'User-Agent': UA };
 
 // The ways, by group. A way in `evidence` is not drawn: it is what identifies
 // an unnamed drawn way (the Shitalakshya's Bengali-named river polygon).
@@ -38,7 +39,7 @@ async function overpass(query) {
   for (let round = 1; round <= 3; round++) {
     for (const url of EP) {
       try {
-        const res = await fetch(url, { method: 'POST', headers: { ...UA, 'Content-Type': 'application/x-www-form-urlencoded' }, body: 'data=' + encodeURIComponent(query), signal: AbortSignal.timeout(120_000) });
+        const res = await fetch(url, { method: 'POST', headers: { ...HEADERS, 'Content-Type': 'application/x-www-form-urlencoded' }, body: 'data=' + encodeURIComponent(query), signal: AbortSignal.timeout(120_000) });
         const t = await res.text();
         if (res.ok && t.startsWith('{')) return JSON.parse(t);
       } catch {}

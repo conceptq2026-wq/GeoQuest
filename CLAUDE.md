@@ -66,6 +66,16 @@ BCS / government exam prep.
 - **Every new map or diagram goes on the home page first** — the local
   preview's, from `tools/wip.json`, before any work; the live one only when
   finished (the user's standing rule): `notes/home-and-registry.md`.
+- **No e-mail address, ever** (the user's rule, 2026-09-29): the user's
+  address never appears in an HTTP request (User-Agent, any header, URL,
+  payload), a script, a note, a commit or a sub-agent prompt. Where a
+  service asks for contact details in the User-Agent (Wikimedia does), send
+  exactly `GeoQuest-research/1.0 (https://github.com/conceptq2026-wq/GeoQuest)`
+  — defined once, as `UA` in `tools/net.mjs`, which every tool that makes a
+  request imports. Every sub-agent prompt carries that UA line and: "Never
+  include any e-mail address in any request, file or note."
+  `tools/verify.mjs` fails a fetching tool without that UA, and any tracked
+  file holding an e-mail-address pattern outside its commented allow-list.
 
 ## Pinned, do not bump
 

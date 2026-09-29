@@ -9,6 +9,7 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
+import { UA } from './net.mjs';
 
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const ROOT = path.resolve(HERE, '..');
@@ -16,7 +17,7 @@ const ROOT = path.resolve(HERE, '..');
 const SEEDS = ['deserts', 'lakes', 'forests', 'mountains', 'waterfalls'].map((m) => path.join(ROOT, 'data-sources', m, `${m}.seed.json`));
 const OUT_WIKIDATA = path.join(ROOT, 'tools', 'sources', 'wikidata-points.json');
 const OUT_OSM = path.join(ROOT, 'tools', 'sources', 'osm-waterfalls.geojson');
-const UA = { 'User-Agent': 'GeoQuest map build (educational maps)' };
+const HEADERS = { 'User-Agent': UA };
 
 /*
  * Each waterfall node is taken by its id AND only if it lies inside a box
@@ -46,7 +47,7 @@ const qids = [...wanted.wikidata.keys()];
 const points = {};
 for (let i = 0; i < qids.length; i += 45) {
   const u = `https://www.wikidata.org/w/api.php?action=wbgetentities&ids=${qids.slice(i, i + 45).join('|')}&props=claims|labels&languages=en&format=json`;
-  const j = await (await fetch(u, { headers: UA })).json();
+  const j = await (await fetch(u, { headers: HEADERS })).json();
   for (const [q, e] of Object.entries(j.entities)) {
     const v = e.claims?.P625?.[0]?.mainsnak?.datavalue?.value;
     if (!v) throw new Error(`${q} (${wanted.wikidata.get(q)}) has no P625`);
@@ -62,7 +63,7 @@ async function overpass(query) {
   for (let round = 1; round <= 4; round++) {
     for (const url of EP) {
       try {
-        const res = await fetch(url, { method: 'POST', headers: { ...UA, 'Content-Type': 'application/x-www-form-urlencoded' }, body: 'data=' + encodeURIComponent(query), signal: AbortSignal.timeout(90_000) });
+        const res = await fetch(url, { method: 'POST', headers: { ...HEADERS, 'Content-Type': 'application/x-www-form-urlencoded' }, body: 'data=' + encodeURIComponent(query), signal: AbortSignal.timeout(90_000) });
         const t = await res.text();
         if (res.ok && t.startsWith('{')) return JSON.parse(t);
       } catch {}

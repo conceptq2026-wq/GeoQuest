@@ -21,6 +21,7 @@ import path from 'node:path';
 import mapshaper from 'mapshaper';
 import { CACHE } from './lib/geo.mjs';
 import { COVERAGE, DETAIL_AREAS } from './bangladesh.config.mjs';
+import { UA } from './net.mjs';
 
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const ROOT = path.resolve(HERE, '..');
@@ -77,7 +78,7 @@ async function overpass(query) {
       try {
         const res = await fetch(url, {
           method: 'POST',
-          headers: { 'User-Agent': 'GeoQuest-map-build/1.0 (https://github.com/conceptq2026-wq/GeoQuest)', 'Content-Type': 'application/x-www-form-urlencoded' },
+          headers: { 'User-Agent': UA, 'Content-Type': 'application/x-www-form-urlencoded' },
           body: 'data=' + encodeURIComponent(query),
           signal: AbortSignal.timeout(700_000),
         });

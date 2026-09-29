@@ -14,6 +14,7 @@ import crypto from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
+import { UA } from './net.mjs';
 
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const ROOT = path.resolve(HERE, '..');
@@ -41,7 +42,6 @@ const QUALITY = { marker: 82, card: 78 };
 const MAX_BYTES = { marker: 8 * 1024, card: 40 * 1024 };
 const QUALITY_FLOOR = 12;
 // Wikimedia asks a tool to name itself and a way to reach its maintainers.
-const UA = 'GeoQuest-map-build/1.0 (https://github.com/conceptq2026-wq/GeoQuest)';
 
 const [map, ...onlyIds] = process.argv.slice(2);
 if (!MAPS[map]) throw new Error(`usage: node tools/extract-commons-photos.mjs <${Object.keys(MAPS).join('|')}>`);

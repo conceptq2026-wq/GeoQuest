@@ -3,6 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { UA } from './net.mjs';
 
 const here = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const cache = path.join(here, '.cache');
@@ -14,7 +15,7 @@ const gitBlobSha1 = (buf) => crypto.createHash('sha1').update(`blob ${buf.length
 const sha256 = (buf) => crypto.createHash('sha256').update(buf).digest('hex');
 
 async function download(url) {
-  const res = await fetch(url);
+  const res = await fetch(url, { headers: { 'User-Agent': UA } });
   if (!res.ok) throw new Error(`${url}: HTTP ${res.status}`);
   return Buffer.from(await res.arrayBuffer());
 }

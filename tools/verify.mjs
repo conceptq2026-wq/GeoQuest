@@ -723,6 +723,77 @@ const describe = (f) => `${relToRoot(f.file)}:${f.line} ${f.class} — ${f.rule}
   for (const f of found) check(false, `${relToRoot(f.file)}:${f.line} ${f.rule}: ${f.what}${f.via ? ` (imported by ${f.via})` : ''} — a build tool makes no network call`);
   if (!found.length) check(true, `build tools (tools/build-*.mjs, maps' and diagrams') make no network call (${tools.length}); only tools/fetch-sources.mjs downloads`);
 }
+{
+  // No e-mail address anywhere (the user's rule, 2026-09-29): every tool that
+  // makes a request sends tools/net.mjs's UA, and no other User-Agent.
+  const netTools = fs.readdirSync(HERE).filter((f) => f.endsWith('.mjs') && f !== 'net.mjs').sort();
+  let fetching = 0;
+  for (const f of netTools) {
+    const code = fs.readFileSync(path.join(HERE, f), 'utf8');
+    if (/User-Agent'\s*:\s*['"`]/.test(code)) check(false, `tools/${f}: a User-Agent written out — send UA from tools/net.mjs`);
+    // A call, not a mention: comments and quoted strings are set aside first.
+    const calls = code
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/(^|[^:\\'"`])\/\/[^\n]*/gm, '$1')
+      .replace(/'[^'\n]*'|"[^"\n]*"/g, "''");
+    if (!/(?<![\w$.])fetch\s*\(/.test(calls)) continue;
+    fetching++;
+    if (!/^import \{ UA \} from '\.\/net\.mjs';$/m.test(code) || !/'User-Agent'\s*:\s*UA\b/.test(code)) check(false, `tools/${f}: fetches without tools/net.mjs's UA`);
+  }
+  check(fetching > 0, `tools that make a request send tools/net.mjs's User-Agent (${fetching})`);
+}
+{
+  // No tracked file holds an e-mail-address pattern. Text is read whole; in a
+  // PNG or WebP only what is not compressed pixel data (a match there is a
+  // chance run of bytes). An allowed match is demonstrably not a person's.
+  const EMAIL = /[\w.+-]+@[\w-]+\.[\w.]+/g;
+  const ALLOWED = [
+    // An image file name's pixel-density suffix (troposphere@2x.webp), in the
+    // diagrams' manifests, their notes and the resolver's test.
+    { match: /^[\w.-]+@[1-9]x\.(webp|png|avif|jpe?g)$/ },
+    // The C2PA content credentials the image generator embedded in these two
+    // mockups: its certificate authority's emailAddress attribute (X.509, OID
+    // 1.2.840.113549.1.9.1, in the CA's "Division" certificate) — an
+    // organisation's certificate contact, not a person's.
+    { file: /^design\/mockups\/(atmosphere-layers-exploded|globe-latitude-longitude)\.png$/, match: /^\w{2}@trufo\.ai\d?$/ },
+  ];
+  const textOf = (buf, file) => {
+    const skip = (parts) => parts.map((b) => b.toString('latin1')).join('\n');
+    if (/\.png$/i.test(file) && buf.readUInt32BE(0) === 0x89504e47) {
+      const parts = [];
+      for (let at = 8; at + 12 <= buf.length; ) {
+        const len = buf.readUInt32BE(at);
+        const type = buf.toString('latin1', at + 4, at + 8);
+        if (type !== 'IDAT') parts.push(buf.subarray(at + 8, at + 8 + len));
+        at += 12 + len;
+      }
+      return skip(parts);
+    }
+    if (/\.webp$/i.test(file) && buf.toString('latin1', 0, 4) === 'RIFF' && buf.toString('latin1', 8, 12) === 'WEBP') {
+      const parts = [];
+      for (let at = 12; at + 8 <= buf.length; ) {
+        const type = buf.toString('latin1', at, at + 4);
+        const len = buf.readUInt32LE(at + 4);
+        if (!['VP8 ', 'VP8L', 'ALPH', 'ANMF'].includes(type)) parts.push(buf.subarray(at + 8, at + 8 + len));
+        at += 8 + len + (len % 2);
+      }
+      return skip(parts);
+    }
+    return buf.toString('latin1');
+  };
+  const tracked = execFileSync('git', ['-C', ROOT, 'ls-files', '-z'], { encoding: 'utf8' }).split('\0').filter(Boolean);
+  let hits = 0;
+  let allowed = 0;
+  for (const file of tracked) {
+    const full = path.join(ROOT, file);
+    if (!fs.existsSync(full)) continue;
+    for (const m of textOf(fs.readFileSync(full), file).match(EMAIL) ?? []) {
+      if (ALLOWED.some((a) => (!a.file || a.file.test(file)) && a.match.test(m))) allowed++;
+      else hits++, check(false, `${file}: an e-mail-address pattern (not printed) — remove it, or allow-list it with why it is not a person's`);
+    }
+  }
+  if (!hits) check(true, `no e-mail address in the ${tracked.length} tracked files (${allowed} allowed matches: image file names and a certificate authority's)`);
+}
 
 if (failures) {
   console.error(`\n${failures} check(s) failed.`);

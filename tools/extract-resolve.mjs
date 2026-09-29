@@ -13,6 +13,7 @@ import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import mapshaper from 'mapshaper';
+import { UA } from './net.mjs';
 
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const ROOT = path.resolve(HERE, '..');
@@ -93,7 +94,7 @@ export const TAKE = {
 
 const zip = path.join(CACHE, pin.file);
 if (!fs.existsSync(zip)) {
-  const buf = Buffer.from(await (await fetch(pin.url)).arrayBuffer());
+  const buf = Buffer.from(await (await fetch(pin.url, { headers: { 'User-Agent': UA } })).arrayBuffer());
   fs.writeFileSync(zip, buf);
 }
 const sha = crypto.createHash('sha256').update(fs.readFileSync(zip)).digest('hex');

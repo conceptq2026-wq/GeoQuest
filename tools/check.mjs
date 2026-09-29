@@ -38,6 +38,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { makeSite, serveSite } from './preview.mjs';
+import { UA } from './net.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, '..');
@@ -1161,7 +1162,7 @@ async function live(id) {
   const want = new Map(files.map((f) => [f, present(f) ? sha256(git('show', `${to}:${f}`)) : 'HTTP 404']));
   const fetchSha = async (f) => {
     try {
-      const res = await fetch(`${hub}${f.slice('docs/'.length)}?check=${Date.now()}`, { cache: 'no-store', headers: { 'accept-encoding': 'identity' } });
+      const res = await fetch(`${hub}${f.slice('docs/'.length)}?check=${Date.now()}`, { cache: 'no-store', headers: { 'accept-encoding': 'identity', 'User-Agent': UA } });
       if (!res.ok) return `HTTP ${res.status}`;
       return sha256(Buffer.from(await res.arrayBuffer()));
     } catch (error) {

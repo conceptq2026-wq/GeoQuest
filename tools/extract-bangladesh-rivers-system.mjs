@@ -16,13 +16,14 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
+import { UA } from './net.mjs';
 
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const ROOT = path.resolve(HERE, '..');
 // Where the systems' seeds are, and where an extract goes. Change here if one moves.
 const SYSTEMS = path.join(ROOT, 'data-sources', 'bangladesh-rivers', 'systems');
 const OUT_DIR = path.join(ROOT, 'tools', 'sources');
-const UA = { 'User-Agent': 'GeoQuest map build (educational maps)' };
+const HEADERS = { 'User-Agent': UA };
 
 const [system, batch] = process.argv.slice(2);
 if (!/^[a-z]+$/.test(system ?? '') || (batch !== undefined && !/^[a-z0-9]+$/.test(batch))) throw new Error('usage: node tools/extract-bangladesh-rivers-system.mjs <system> [<batch>]');
@@ -37,7 +38,7 @@ async function overpass(query) {
   for (let round = 1; round <= 3; round++) {
     for (const url of EP) {
       try {
-        const res = await fetch(url, { method: 'POST', headers: { ...UA, 'Content-Type': 'application/x-www-form-urlencoded' }, body: 'data=' + encodeURIComponent(query), signal: AbortSignal.timeout(120_000) });
+        const res = await fetch(url, { method: 'POST', headers: { ...HEADERS, 'Content-Type': 'application/x-www-form-urlencoded' }, body: 'data=' + encodeURIComponent(query), signal: AbortSignal.timeout(120_000) });
         const t = await res.text();
         if (!res.ok || !t.startsWith('{')) continue;
         const j = JSON.parse(t);

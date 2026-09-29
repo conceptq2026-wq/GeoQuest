@@ -12,13 +12,14 @@ import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { CACHE, zipEntry } from './lib/geo.mjs';
+import { UA } from './net.mjs';
 
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const ROOT = path.resolve(HERE, '..');
 // Where the extract goes, and the pinned COD-AB it checks areas against. Change here if they move.
 const OUT = path.join(ROOT, 'tools', 'sources', 'osm-liberation-points.geojson');
 const SOURCES = path.join(HERE, 'sources.json');
-const UA = { 'User-Agent': 'GeoQuest map build (educational maps)' };
+const HEADERS = { 'User-Agent': UA };
 
 /*
  * Each target: the name to match (a regular expression over name, name:en,
@@ -80,7 +81,7 @@ async function overpass(query) {
   for (let round = 1; round <= 3; round++) {
     for (const url of EP) {
       try {
-        const res = await fetch(url, { method: 'POST', headers: { ...UA, 'Content-Type': 'application/x-www-form-urlencoded' }, body: 'data=' + encodeURIComponent(query), signal: AbortSignal.timeout(90_000) });
+        const res = await fetch(url, { method: 'POST', headers: { ...HEADERS, 'Content-Type': 'application/x-www-form-urlencoded' }, body: 'data=' + encodeURIComponent(query), signal: AbortSignal.timeout(90_000) });
         const t = await res.text();
         if (res.ok && t.startsWith('{')) return JSON.parse(t);
       } catch {}
@@ -116,7 +117,7 @@ if (only || process.argv.includes('--search')) {
 // centre).
 async function element(type, id) {
   const url = `https://api.openstreetmap.org/api/0.6/${type}/${id}${type === 'node' ? '' : '/full'}.json`;
-  const res = await fetch(url, { headers: UA, signal: AbortSignal.timeout(60_000) });
+  const res = await fetch(url, { headers: HEADERS, signal: AbortSignal.timeout(60_000) });
   if (!res.ok) throw new Error(`${url}: HTTP ${res.status}`);
   const els = (await res.json()).elements;
   const el = els.find((e) => e.type === type && String(e.id) === String(id));
