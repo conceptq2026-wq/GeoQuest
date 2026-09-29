@@ -15,9 +15,9 @@
 |--------------------------------------------------------------------------
 */
 
-import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=d0d01eaa64';
-import { resolver } from '../shared/resolver.js?v=d0d01eaa64';
-import { pickerRow } from '../shared/picker.js?v=d0d01eaa64';
+import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=59adf41b77';
+import { resolver } from '../shared/resolver.js?v=59adf41b77';
+import { pickerRow } from '../shared/picker.js?v=59adf41b77';
 
 /*
 |--------------------------------------------------------------------------
@@ -431,6 +431,28 @@ const descriptor = await fetchJson(mapFile('descriptor.json'));
  * the shared table has in Bengali only and so are left off an English map.
  */
 const LANGUAGE = descriptor.language ?? 'bn';
+
+/*
+ * A map that asks for it (`minTextSize: 14`, the rivers map, 2026-09-30)
+ * shows no text under that size: every label's size on the map is floored —
+ * the basemap's, the baseline's and its own; a number, or each output of a
+ * zoom interpolate or step, a match or a case — and the shell's chrome follows
+ * (style.css, under [data-min-text]). Every other map is drawn as before.
+ */
+const MIN_TEXT = descriptor.minTextSize;
+if (MIN_TEXT !== undefined && MIN_TEXT !== 14) throw new Error(`minTextSize is 14 or absent, not ${MIN_TEXT}`);
+if (MIN_TEXT) document.documentElement.dataset.minText = String(MIN_TEXT);
+function floorTextSize(size, min) {
+  if (typeof size === 'number') return Math.max(size, min);
+  if (!Array.isArray(size)) return size;
+  const outputs = (items, odd) => items.map((v, i) => (i % 2 === odd ? floorTextSize(v, min) : v));
+  if (size[0] === 'interpolate') return [...size.slice(0, 3), ...outputs(size.slice(3), 1)];
+  if (size[0] === 'step') return [...size.slice(0, 2), floorTextSize(size[2], min), ...outputs(size.slice(3), 1)];
+  if (size[0] === 'match') return [...size.slice(0, 2), ...outputs(size.slice(2, -1), 1), floorTextSize(size.at(-1), min)];
+  if (size[0] === 'case') return [size[0], ...outputs(size.slice(1, -1), 1), floorTextSize(size.at(-1), min)];
+  throw new Error(`minTextSize: a text-size of form «${size[0]}» cannot be floored`);
+}
+const floorLayer = (layer) => (MIN_TEXT && layer.type === 'symbol' && layer.layout?.['text-size'] !== undefined ? { ...layer, layout: { ...layer.layout, 'text-size': floorTextSize(layer.layout['text-size'], MIN_TEXT) } } : layer);
 if (!['bn', 'en'].includes(LANGUAGE)) throw new Error(`language "${LANGUAGE}" is neither bn nor en`);
 const LOAD_NOTICE = { en: ['The map could not be loaded', 'Check the connection and reload the page.'] };
 if (LANGUAGE !== 'bn') {
@@ -620,12 +642,12 @@ function pick(row, keys) {
 |--------------------------------------------------------------------------
 */
 const SHELL_MODULES = {
-  tabs: './tabs.js?v=d0d01eaa64',
-  timeline: './timeline.js?v=d0d01eaa64',
-  globe: './globe.js?v=d0d01eaa64',
-  focus: './focus.js?v=d0d01eaa64',
-  legend: './legend.js?v=d0d01eaa64',
-  info: './info.js?v=d0d01eaa64',
+  tabs: './tabs.js?v=59adf41b77',
+  timeline: './timeline.js?v=59adf41b77',
+  globe: './globe.js?v=59adf41b77',
+  focus: './focus.js?v=59adf41b77',
+  legend: './legend.js?v=59adf41b77',
+  info: './info.js?v=59adf41b77',
 };
 const hiders = []; // (table, key) => true takes a record off the map, the picker and ‹ ›
 // (table, key) => true takes a record off the map only: the picker and ‹ › still list it (the focus module).
@@ -705,6 +727,7 @@ const map = new maplibregl.Map({
   transformRequest: (url, resourceType) => resolver.transformRequest(url, resourceType),
   style: {
     ...style,
+    layers: style.layers.map(floorLayer),
     // Bengali is shaped by the browser from a bundled font; see the resolver.
     'font-faces': { 'Noto Sans Bengali': 'noto-sans-bengali/NotoSansBengali-Regular.woff2' },
     ...shell.build.style,
@@ -943,7 +966,7 @@ bySlot.set('aboveLabels', [...baseline.plain, ...bySlot.get('aboveLabels'), ...b
 for (const slot of SLOTS) {
   for (const layer of bySlot.get(slot)) {
     const token = styles[layer.style] ?? {};
-    const spec = {
+    const spec = floorLayer({
       id: layer.id,
       type: layer.type,
       source: resolveSource(layer.source),
@@ -955,7 +978,7 @@ for (const slot of SLOTS) {
       // win, because that is where expressions over properties and state live.
       layout: { ...(token.layout ?? {}), ...(layer.layout ?? {}) },
       paint: { ...(token.paint ?? {}), ...(layer.paint ?? {}) },
-    };
+    });
     // Baseline labels are the page's, not the map's: unregistered, so a map
     // switch rebuilds around them rather than taking them with it.
     if (baselineIds.has(layer.id)) map.addLayer(spec);
@@ -2354,4 +2377,6 @@ window.__shell = {
   records,
   keysOf: (source) => [...new Set((deriveAll(source, sourceSpecs[source]).features ?? []).map((f) => f.properties?.key).filter((k) => k !== undefined))],
   deselect: clearSelection,
+  // Drawn on the map now: shown, and hidden by no module (a focus map's rest set, a tab's).
+  drawn: (table, key) => shell.drawn(table, key),
 };

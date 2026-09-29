@@ -609,6 +609,8 @@ async function useItem(browser, size, entry, base, origin, dir) {
         summary.push(`frames at zoom ${Math.min(...zs)}–${Math.max(...zs)} (${t}-frames.txt)`);
       }
       await taps(page, shoot, summary, fail, sources, tabs, camera);
+      if (await page.evaluate(`Boolean(window.__shell?.descriptor?.tabs?.views)`)) await viewTabs(page, shoot, summary, fail);
+      if (await page.evaluate(`Boolean(window.__shell?.descriptor?.minTextSize)`)) await textFloor(page, summary, fail);
     }
   }
 
@@ -671,6 +673,91 @@ async function waitCard(page) {
   await sleep(60);
   await settle(page, 10000);
   return page.evaluate(CARD);
+}
+
+/*
+ * View tabs (the rivers map, M3): each picker group's first record in every tab past the first — framed there,
+ * the selection kept — and a tap on a tab a selection disables: nothing changes, and ⓘ's row says why.
+ * Every tab a 44 px tap zone.
+ */
+async function viewTabs(page, shoot, summary, fail) {
+  const tabs = await page.evaluate(`[...document.querySelectorAll('.map-tab')].map((b) => [b.dataset.tab, b.textContent.trim()])`);
+  const firsts = await page.evaluate(`[...document.getElementById('recordPicker').querySelectorAll('optgroup')].map((g) => [g.querySelector('option').value, g.querySelector('option').textContent])`);
+  const options = await page.evaluate(`[...document.getElementById('recordPicker').options].filter((o) => o.value).map((o) => [o.value, o.textContent])`);
+  const choose = async (value) => {
+    await page.evaluate(`(() => { const s = document.getElementById('recordPicker'); s.value = ${JSON.stringify(value)}; s.dispatchEvent(new Event('change', { bubbles: true })); })()`);
+    await waitCard(page);
+  };
+  const tapTab = async (key) => {
+    const at = await page.evaluate(`(() => { const b = document.querySelector('.map-tab[data-tab="${key}"]'); const r = b.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2, r.height]; })()`);
+    await page.click(at[0], at[1]);
+    await sleep(60);
+    await settle(page, 10000);
+    return at[2];
+  };
+  const state = () => page.evaluate(`({ active: document.querySelector('.map-tab.active')?.dataset.tab, disabled: [...document.querySelectorAll('.map-tab[aria-disabled="true"]')].map((b) => b.dataset.tab), note: (() => { const n = document.querySelector('.tab-disabled-note'); return n && !n.hidden && n.getClientRects().length ? n.textContent : null; })(), selected: document.getElementById('recordPicker').value, zoom: Math.round(window.__shell.map.getZoom() * 100) / 100 })`);
+  const heights = await page.evaluate(`[...document.querySelectorAll('.map-tab')].map((b) => Math.round(b.getBoundingClientRect().height))`);
+  if (Math.min(...heights) < 44) fail(`view tabs: a tab is ${Math.min(...heights)} px tall, under 44`);
+  let framed = 0;
+  const zooms = [];
+  for (const [tab, name] of tabs.slice(1)) {
+    for (const [value, label] of firsts) {
+      await choose(value);
+      const before = await state();
+      if (before.disabled.includes(tab)) {
+        await shoot('views', `«${name}» disabled — ${label}`);
+        continue;
+      }
+      await tapTab(tab);
+      const after = await state();
+      if (after.active !== tab || after.selected !== value) fail(`view tabs: «${name}» with ${label} — tab ${after.active}, selection ${after.selected || '(none)'}`);
+      else framed++;
+      zooms.push(`${label} z${after.zoom}`);
+      await shoot('views', `«${name}» — ${label}, z${after.zoom}`);
+      await tapTab(tabs[0][0]);
+    }
+  }
+  // A selection that disables a tab: the first; a tap on it changes nothing, and ⓘ's row says why.
+  let tapped = null;
+  for (const [value, label] of options) {
+    await choose(value);
+    const st = await state();
+    if (!st.disabled.length) continue;
+    const key = st.disabled[0];
+    await tapTab(key);
+    const after = await state();
+    if (after.active !== st.active || after.selected !== value || !after.disabled.includes(key) || !after.note) fail(`view tabs: a tap on the disabled «${key}» with ${label} — tab ${after.active}, selection ${after.selected}, note ${after.note ?? 'none'}`);
+    await shoot('views', `«${tabs.find((t) => t[0] === key)[1]}» disabled, tapped — ${label}: ${after.note}`);
+    tapped = `${label}: tapped, nothing changed, «${after.note}»`;
+    break;
+  }
+  if (!tapped) fail('view tabs: no selection disables a tab, so none was tapped');
+  await page.evaluate(`window.__shell.deselect()`);
+  summary.push(`view tabs ${heights.join('/')} px: ${framed}/${firsts.length * (tabs.length - 1)} framed (${zooms.join(', ')}); disabled ${tapped ?? 'none'}`);
+}
+
+/* With minTextSize: no visible text on the page under it (a card open), and no label in the map's style drawn under it. */
+async function textFloor(page, summary, fail) {
+  const first = await page.evaluate(`[...document.getElementById('recordPicker').options].find((o) => o.value)?.value`);
+  await page.evaluate(`(() => { const s = document.getElementById('recordPicker'); s.value = ${JSON.stringify(first)}; s.dispatchEvent(new Event('change', { bubbles: true })); })()`);
+  await waitCard(page);
+  const got = await page.evaluate(`(() => {
+    const min = window.__shell.descriptor.minTextSize;
+    const small = new Set();
+    for (const el of document.querySelectorAll('body *')) {
+      if (!el.getClientRects().length || !([...el.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim()))) continue;
+      const size = parseFloat(getComputedStyle(el).fontSize);
+      // A size of 0 hides a glyph drawn another way (‹ ›): no text is shown.
+      if (size > 0 && size < min) small.add((el.className && typeof el.className === 'string' ? el.className.split(' ')[0] : el.tagName.toLowerCase()) + ' ' + size);
+    }
+    const outs = (v) => (typeof v === 'number' ? [v] : !Array.isArray(v) ? [] : v[0] === 'interpolate' ? v.slice(3).filter((_, i) => i % 2 === 1).flatMap(outs) : v[0] === 'step' ? [v[2], ...v.slice(3).filter((_, i) => i % 2 === 1)].flatMap(outs) : v[0] === 'match' ? [...v.slice(2, -1).filter((_, i) => i % 2 === 1), v.at(-1)].flatMap(outs) : v[0] === 'case' ? [...v.slice(1, -1).filter((_, i) => i % 2 === 1), v.at(-1)].flatMap(outs) : []);
+    const layers = window.__shell.map.getStyle().layers.filter((l) => l.type === 'symbol' && l.layout?.['text-field'] !== undefined);
+    const labels = layers.filter((l) => Math.min(...outs(l.layout['text-size'] ?? 16)) < min).map((l) => l.id);
+    return { min, page: [...small], layers: layers.length, labels };
+  })()`);
+  await page.evaluate(`window.__shell.deselect()`);
+  if (got.page.length || got.labels.length) fail(`text under ${got.min} px: ${[...got.page, ...got.labels].join(', ')}`);
+  summary.push(`text ≥ ${got.min} px: page and ${got.layers} label layers`);
 }
 
 /** ‹ › and the dropdown: › from the placeholder through every option, then the ends. */
@@ -1009,6 +1096,8 @@ async function taps(page, shoot, summary, fail, sources, tabs, camera) {
             s.deselect();
             const picker = document.getElementById('recordPicker');
             if (via != null && picker && !picker.hidden) { picker.value = via; picker.dispatchEvent(new Event('change', { bubbles: true })); }
+            // A record with no parent that this view does not draw at rest (a tab resting on a set of its own): chosen itself.
+            else if (table === f.records && !s.drawn(table, ${JSON.stringify(key)}) && picker && !picker.hidden) { picker.value = ${JSON.stringify(key)}; picker.dispatchEvent(new Event('change', { bubbles: true })); }
             window.__check.forget();
           })()`);
           await settle(page, 10000);

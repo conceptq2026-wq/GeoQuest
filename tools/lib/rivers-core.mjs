@@ -53,13 +53,14 @@ const json = (v) => JSON.stringify(v, null, 2) + '\n';
  * One seed, two products (the user's decisions, 2026-09-30): an item with
  * `only: "map"` is the map's alone, one with `only: "diagram"` the diagram's
  * alone, one without it both's. `only` may stand on a card, a marker, a
- * continuation, an ⓘ line, a line of `geometry.lines` or a map place — and
+ * continuation, an ⓘ line, a line of `geometry.lines`, a map place or a
+ * card of the map's upstream rule (`mapUpstreamReached`) — and
  * nowhere else. Each product reads the seed with the other's items dropped;
  * the map's own lines are pinned apart, in MAP_PINS.
  */
 export const PRODUCTS = ['diagram', 'map'];
 export const MAP_PINS = path.join(ROOT, 'tools/bangladesh-rivers-map-pins.json');
-const FLAGGABLE = ['entities', 'markers', 'continuations', 'mapPlacesBn'];
+const FLAGGABLE = ['entities', 'markers', 'continuations', 'mapPlacesBn', 'mapUpstreamReached'];
 
 /** Every place in the seed an `only` stands, as a path; and whether each may. */
 export function onlyFlags(seed) {
@@ -78,8 +79,10 @@ export function itemsOnly(whole, product) {
   const ids = new Set();
   const texts = new Set();
   const own = (x) => x?.only === product;
-  for (const k of FLAGGABLE) for (const x of whole[k] ?? []) if (own(x)) (ids.add(x.id), x.nameBn && texts.add(x.nameBn));
+  for (const k of FLAGGABLE) for (const x of whole[k] ?? []) if (own(x)) (x.id !== undefined && ids.add(x.id), x.nameBn && texts.add(x.nameBn));
   for (const l of whole.infoBn.lines) if (own(l)) texts.add(l.textBn);
+  // The words only the map shows (ui.mapOnlyBn): the map's own, as a map-only item's are.
+  if (product === 'map') for (const [k, v] of Object.entries(whole.ui?.mapOnlyBn ?? {})) if (!k.startsWith('_')) texts.add(v);
   for (const [lid, l] of Object.entries(whole.geometry.lines)) if (own(l)) ids.add(lid);
   return { ids, texts };
 }

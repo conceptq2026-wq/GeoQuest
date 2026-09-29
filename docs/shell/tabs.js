@@ -33,6 +33,21 @@
 | tab opens, in place of the map's own view. A tab the student picks goes to
 | its frame; nothing else changes. The rivers map's «বাংলাদেশে» and «পুরো পথ».
 |
+| A view tab may say more, by its key in `views` (2026-09-30):
+|
+|   views: { <tab>: { selectionFrame?, enabledBy?, disabledNote? } }
+|
+| `selectionFrame` names a bbox field of the selected record: while that tab
+| is open, the `fitTab` action (a descriptor's picker and taps run it after
+| `select`) frames the record there, and picking the tab with a record
+| selected frames it there too — the selection stays. `enabledBy` names a
+| boolean field: a selected record holding false disables the tab — greyed,
+| still in the bar with its tap zone, aria-disabled; a tap on it does nothing
+| — and the tab's `disabledNote` (a value spec on its row) says why, in ⓘ's
+| row. A selection that disables the open tab opens the first one left.
+| With nothing selected every tab is enabled. The tabs module tells other
+| modules the open tab (`activeTab()`): focus rests on a set per tab.
+|
 | Loaded only for a map whose descriptor declares `tabs`.
 |--------------------------------------------------------------------------
 */
@@ -44,6 +59,8 @@ let bar;
 let note; // the active tab's note on the map, where the descriptor asks for one
 const buttons = new Map(); // tab key -> its button
 let reached = null; // table -> the keys an active record refers to; rebuilt on a change of tab
+const disabled = new Set(); // view tabs a selection has disabled
+let disabledNote = null; // why, in ⓘ's row
 
 /** Before the map is built: the bar takes its room, and the first tab hides the rest. */
 export async function mount(api) {
@@ -56,10 +73,15 @@ export async function mount(api) {
   const untabbed = table ? [...new Set(Object.values(table).map((row) => row[spec.field]))].filter((v) => !keys.includes(v)) : [];
   if (untabbed.length) throw new Error(`tabs: ${spec.records}.${spec.field} takes ${untabbed.join(', ')}, which "${spec.from}" has no tab for`);
   active = keys[0];
+  for (const k of Object.keys(spec.views ?? {})) if (!keys.includes(k)) throw new Error(`tabs: views names "${k}", which "${spec.from}" has no tab for`);
+  if (spec.views && table) throw new Error('tabs: views are for view tabs, which divide no records table');
+  // Other modules read the open tab; the descriptor's picker and taps frame a selection by it.
+  api.activeTab = () => active;
+  api.actions.fitTab = (action, context) => fitSelection(action, context);
 
-  await stylesheet(api, './tabs.css?v=d0d01eaa64');
+  await stylesheet(api, './tabs.css?v=59adf41b77');
   bar = api.own.node(document.createElement('div'), 'tabs');
-  bar.className = 'map-tabs';
+  bar.className = table ? 'map-tabs' : 'map-tabs view-tabs';
   bar.setAttribute('role', 'tablist');
   for (const key of keys) {
     const button = document.createElement('button');
@@ -88,26 +110,81 @@ export async function mount(api) {
 export function install(api) {
   api.own.domHandler(bar, 'click', (event) => {
     const button = event.target.closest('.map-tab');
-    if (!button || button.dataset.tab === active) return;
+    if (!button || button.dataset.tab === active || disabled.has(button.dataset.tab)) return;
     open(button.dataset.tab);
-    toWorld();
+    frame();
   });
   // Arrow keys move along the bar, as a tab list's should.
   api.own.domHandler(bar, 'keydown', (event) => {
     if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
-    const keys = [...buttons.keys()];
+    const keys = [...buttons.keys()].filter((k) => k === active || !disabled.has(k));
     const next = keys[(keys.indexOf(active) + (event.key === 'ArrowRight' ? 1 : keys.length - 1)) % keys.length];
+    if (next === active) return;
     open(next);
-    toWorld();
+    frame();
     buttons.get(next).focus();
   });
   words();
+  if (spec.views) {
+    const row = document.querySelector('.info-credits');
+    if (row) {
+      disabledNote = api.own.node(document.createElement('p'), 'disabled tab note');
+      disabledNote.className = 'tab-disabled-note';
+      disabledNote.lang = api.language ?? 'bn';
+      disabledNote.hidden = true;
+      row.prepend(disabledNote);
+    }
+  }
   api.onChange((what) => {
-    if (what !== 'select' || spec.records === undefined) return;
+    if (what !== 'select') return;
+    if (spec.views) {
+      enable();
+      // The open tab disabled by this selection: the first tab left takes it, framed there.
+      if (disabled.has(active)) {
+        open([...buttons.keys()].find((k) => !disabled.has(k)));
+        queueMicrotask(frame);
+      }
+      return;
+    }
+    if (spec.records === undefined) return;
     const key = api.selection.get(spec.records);
     const tab = key === undefined ? undefined : api.records[spec.records][key]?.[spec.field];
     if (tab !== undefined && tab !== active) open(tab);
   });
+}
+
+/** The selected record, from whichever table holds the one selection. */
+function selected() {
+  for (const [table, key] of shell.selection) if (key !== undefined) return { table, key, row: shell.records[table]?.[key] };
+  return null;
+}
+
+/** Each view tab enabled or not by the selected record; the note says why where one is not. */
+function enable() {
+  const sel = selected();
+  disabled.clear();
+  for (const [key, view] of Object.entries(spec.views ?? {})) if (view.enabledBy && sel?.row?.[view.enabledBy] === false) disabled.add(key);
+  sync();
+  if (disabledNote) {
+    const first = [...disabled][0];
+    const text = first ? shell.valueOf(spec.views[first].disabledNote, shell.records[spec.from][first]) : null;
+    disabledNote.textContent = text ?? '';
+    disabledNote.hidden = !text;
+  }
+}
+
+/** The open tab's view of the selection, or of its world with nothing selected. */
+function frame() {
+  const sel = selected();
+  if (sel && spec.views) fitSelection({ action: 'fitTab', clear: ['sheet'], duration: 900 }, { table: sel.table, key: sel.key });
+  else toWorld();
+}
+
+/** fitTab: the selected record framed by the open tab's field for it, else by its own geometry. */
+function fitSelection(action, context) {
+  const field = spec.views?.[active]?.selectionFrame;
+  const row = context.table ? shell.records[context.table]?.[context.key] : null;
+  shell.runActions([{ action: 'fitBounds', ...(field && row?.[field] ? { field } : {}), clear: action.clear, duration: action.duration }], context);
 }
 
 function open(tab) {
@@ -149,6 +226,10 @@ function sync() {
     button.classList.toggle('active', on);
     button.setAttribute('aria-selected', String(on));
     button.tabIndex = on ? 0 : -1;
+    const off = disabled.has(key);
+    button.classList.toggle('disabled', off);
+    if (off) button.setAttribute('aria-disabled', 'true');
+    else button.removeAttribute('aria-disabled');
   }
 }
 

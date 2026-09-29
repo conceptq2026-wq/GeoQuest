@@ -92,3 +92,33 @@
 .map-tab-note[hidden] {
   display: none;
 }
+
+/*
+ * View tabs (a map's views of itself, the rivers map's «বাংলাদেশে» / «পুরো পথ»):
+ * each tab a full 44 px tap zone, at every width. A tab the selection has
+ * disabled stays in the bar, greyed, and takes no tap; a short note in ⓘ's
+ * row, left of the icon, says why.
+ */
+.map-tabs.view-tabs .map-tab {
+  min-height: 44px;
+  font-size: 14px;
+}
+
+.map-tabs.view-tabs .map-tab.disabled {
+  color: #a3adbd;
+  cursor: default;
+}
+
+.info-credits .tab-disabled-note {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0 52px 0 2px;
+  color: #5b6472;
+  font-size: 14px;
+  line-height: 1.25;
+  text-align: left;
+}
+
+.info-credits .tab-disabled-note[hidden] {
+  display: none;
+}

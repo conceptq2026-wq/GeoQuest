@@ -11,7 +11,6 @@ import { createRequire } from 'node:module';
 import { pathToFileURL } from 'node:url';
 import { PMTiles } from 'pmtiles';
 import { DETAIL_AREAS } from './world.config.mjs';
-import { COVERAGE } from './bangladesh.config.mjs';
 import { sourcesAt, scan, SURFACE, librarySurface, scanBuildTool } from './outbound.mjs';
 import { assetVersion, codeFiles, references } from './lib/asset-version.mjs';
 import { CACHE, zipEntry } from './lib/geo.mjs';
@@ -487,6 +486,16 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
   // 0.8 u); the map's lines are the chains within 15 m, so each limit here is the diagram's or tighter.
   {
     const mapGj = (f) => readJ(path.join(RIVERS_MAP_DIR, f));
+    // The build, run once, first: the committed map is its output (checked at the end), and d. reads its count.
+    // The build, re-run offline to a temp folder, is the committed map — its deviation check (every chain vertex
+    // within 15 m of the drawn line, every drawn vertex on the chain) and the 68 geometry pins held.
+    const outM = fs.mkdtempSync(path.join(os.tmpdir(), 'rivers-map-'));
+    let sayM = '';
+    try {
+      sayM = execFileSync(process.execPath, [RIVERS_MAP_BUILD, outM], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+    } catch (e) {
+      sayM = `${e.stderr ?? e.message}`;
+    }
     const fb = G.frames.bangladesh;
     const features = [...mapGj('lines-in.geojson').features.map((f) => ({ ...f, dashed: false })), ...mapGj('lines-out.geojson').features.map((f) => ({ ...f, dashed: true }))];
     const mapCons = mapGj('connectors.geojson').features;
@@ -497,8 +506,10 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
     const note = [];
 
     // a — every marker stands at its source coordinate exactly (the diagram: within 1 u and 500 m).
-    const aBad = fb.markers.filter((id) => !mapMarks[id] || distM(mapMarks[id].at, seedMarker[id].lonLat) > ON_M);
-    check(Object.keys(mapMarks).length === fb.markers.length && aBad.length === 0, `map a. the ${fb.markers.length} markers stand at their source coordinates (limit ${ON_M} m; the diagram's 1 u ≈ 512 m and 500 m)${aBad.length ? ` — not: ${aBad.join(', ')}` : ''}`);
+    // The Bangladesh frame's markers and the whole-course frame's it lacks (the origin, M3).
+    const mapMarkerIds = [...fb.markers, ...G.frames.whole.markers.filter((k) => !fb.markers.includes(k))];
+    const aBad = mapMarkerIds.filter((id) => !mapMarks[id] || distM(mapMarks[id].at, seedMarker[id].lonLat) > ON_M);
+    check(Object.keys(mapMarks).length === mapMarkerIds.length && aBad.length === 0, `map a. the ${mapMarkerIds.length} markers stand at their source coordinates (limit ${ON_M} m; the diagram's 1 u ≈ 512 m and 500 m)${aBad.length ? ` — not: ${aBad.join(', ')}` : ''}`);
 
     // b — every branch's parent-side end: within 50 m of its parent as the map draws it, or joined by a connector of at
     // most 12 km that starts at that end and ends on the parent (within ON_M each; the diagram's 50 m), or unjoined by decision.
@@ -542,12 +553,16 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
     const segKeys = segs.map(([a, b]) => [a, b].sort((p, q) => p[0] - q[0] || p[1] - q[1]).join('|'));
     let dTangles = 0;
     for (let i = 0; i < segs.length; i++) for (let j = i + 2; j < segs.length; j++) if (crosses(...segs[i], ...segs[j])) dTangles++;
-    const [bw, bs, be, bn] = COVERAGE;
+    // The map's own bounds: since M3 it draws every line whole, to the origin.
+    const [bw, bs, be, bn] = mapGj('descriptor.json').constraints.maxBounds;
+    // The pinned chain's own crossings, as the build counts them (re-run below): the drawn line may have those, no more.
+    const chainCrossings = Number(/pinned chain (\d+)/.exec(sayM)?.[1] ?? NaN);
+    const dOrigin = distM(mainPieces.flat().sort((q, r) => distM(q, seedMarker.origin.lonLat) - distM(r, seedMarker.origin.lonLat))[0], seedMarker.origin.lonLat);
     const dOut = mainPieces.flat().filter(([x, y]) => x < bw || x > be || y < bs || y > bn).length;
     // Its end: the one piece whose end begins no other.
     const lastPieces = mainPieces.filter((c) => !mainPieces.some((o) => o !== c && distM(c.at(-1), o[0]) <= ON_M));
     const dEnd = lastPieces.length === 1 ? distM(lastPieces[0].at(-1), seedMarker.padmaConfluence.lonLat) : Infinity;
-    check(starts.length === 1 && new Set(segKeys).size === segKeys.length && dTangles === 0 && dOut === 0 && dEnd <= 2000, `map d. the main line is ${mainPieces.length} pieces end to end within ${ON_M} m (the diagram's 500 m), ${segKeys.length - new Set(segKeys).size} duplicate segments, ${dTangles} self-crossings, ${dOut} points outside the box, ${round(dEnd)} m from the Padma-confluence coordinate (limit 2 km, as the diagram's)`);
+    check(starts.length === 1 && new Set(segKeys).size === segKeys.length && dTangles === chainCrossings && dOut === 0 && dEnd <= 2000 && dOrigin <= ON_M, `map d. from ${round(dOrigin, 3)} m of the origin marker (limit ${ON_M} m; the diagram's 1 u), the main line is ${mainPieces.length} pieces end to end within ${ON_M} m (the diagram's 500 m), ${segKeys.length - new Set(segKeys).size} duplicate segments, ${dTangles} self-crossings (its pinned chain's own: ${chainCrossings}), ${dOut} points outside the map's bounds, ${round(dEnd)} m from the Padma-confluence coordinate (limit 2 km, as the diagram's)`);
     // A line's head and tail as drawn: the piece start no other piece ends at, the piece end no other begins at
     // (the files hold the solid pieces before the dashed, not in the line's order).
     const headOf = (id) => drawnM(id).find((c, _, all) => !all.some((o) => o !== c && distM(o.at(-1), c[0]) <= ON_M))[0];
@@ -562,7 +577,7 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
     // e — every drawn piece is a line of the seed's Bangladesh frame, on its own card; every marker one of the frame's.
     const eBad = features.concat(mapCons).filter((f) => !fb.lines.includes(f.properties.line) || f.properties.key !== (f.properties.line === 'main' ? 'main' : G.lines[f.properties.line]?.entity));
     const eMissing = fb.lines.filter((id) => !drawnM(id).length);
-    check(eBad.length === 0 && eMissing.length === 0 && Object.keys(mapMarks).every((id) => fb.markers.includes(id)), `map e. every piece (${features.length}) and connector (${mapCons.length}) is a line of the seed's Bangladesh frame on its own card, every one of its ${fb.lines.length} lines is drawn, and every marker is the frame's — each traced to the pinned ids by e. above`);
+    check(eBad.length === 0 && eMissing.length === 0 && Object.keys(mapMarks).every((id) => mapMarkerIds.includes(id)), `map e. every piece (${features.length}) and connector (${mapCons.length}) is a line of the seed's Bangladesh frame on its own card, every one of its ${fb.lines.length} lines is drawn, and every marker is the frame's — each traced to the pinned ids by e. above`);
 
     // f — the entry marker where the main line turns from dashed to solid (the diagram: within 500 m of each).
     const entryAt = mapMarks.entry.at;
@@ -579,28 +594,20 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
       return hit;
     };
     const polysG = admin2.features.map((f) => (f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates));
-    const gOut = Object.entries(mapMarks).filter(([, m]) => !polysG.some((poly) => poly.some((rings) => rings.reduce((n, r) => n + (inRingG(m.at, r) ? 1 : 0), 0) % 2 === 1)) && Math.min(...polysG.flat(2).map((r) => nearestOnLine(m.at, r).m)) > 500).map(([k]) => k);
-    check(gOut.length === 0, `map g. every marker lies in a COD-AB district or within 500 m of one (${Object.keys(mapMarks).length}); the district names are the basemap's${gOut.length ? ` — not: ${gOut.join(', ')}` : ''}`);
+    // The Bangladesh frame's markers, as the diagram's g. holds them; the origin, in Tibet, is in no district.
+    const gOut = Object.entries(mapMarks).filter(([k]) => fb.markers.includes(k)).filter(([, m]) => !polysG.some((poly) => poly.some((rings) => rings.reduce((n, r) => n + (inRingG(m.at, r) ? 1 : 0), 0) % 2 === 1)) && Math.min(...polysG.flat(2).map((r) => nearestOnLine(m.at, r).m)) > 500).map(([k]) => k);
+    check(gOut.length === 0, `map g. every marker of the Bangladesh frame lies in a COD-AB district or within 500 m of one (${fb.markers.length}); the district names are the basemap's${gOut.length ? ` — not: ${gOut.join(', ')}` : ''}`);
     // The names on the lines: each on its own river as the map draws it.
     const names = mapGj('names.json');
     const nameIds = fb.labels.filter((l) => toDrawn(names[l.id].at, l.line) > ON_M).map((l) => l.id);
     check(nameIds.length === 0, `map: every name on a line (${fb.labels.length}) stands on its own river as drawn (limit ${ON_M} m)${nameIds.length ? ` — not: ${nameIds.join(', ')}` : ''}`);
 
-    // The build, re-run offline to a temp folder, is the committed map — its deviation check (every chain vertex
-    // within 15 m of the drawn line, every drawn vertex on the chain) and the 68 geometry pins held.
-    const outM = fs.mkdtempSync(path.join(os.tmpdir(), 'rivers-map-'));
-    let sayM = '';
-    try {
-      sayM = execFileSync(process.execPath, [RIVERS_MAP_BUILD, outM], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
-    } catch (e) {
-      sayM = `${e.stderr ?? e.message}`;
-    }
     const builtM = fs.readdirSync(RIVERS_MAP_DIR).sort();
     const sameM = builtM.every((f) => fs.existsSync(path.join(outM, f)) && fs.readFileSync(path.join(outM, f)).equals(fs.readFileSync(path.join(RIVERS_MAP_DIR, f)))) && fs.readdirSync(outM).length === builtM.length;
     fs.rmSync(outM, { recursive: true, force: true });
     const dev = /worst chain vertex ([\d.]+) m/.exec(sayM)?.[1];
     check(sameM && dev !== undefined && Number(dev) <= 15, `map: the build reproduces the ${builtM.length} committed files byte for byte; every chain vertex within ${dev} m of the drawn line (limit 15 m)${sameM ? '' : ` — ${sayM.split('\n').slice(0, 3).join(' | ')}`}`);
-    console.log(`bangladesh-rivers-map: a. ${fb.markers.length} markers at their coordinates; ${note.join('; ')}; c. entry ${round(cM, 3)} m from the border; d. main ${mainPieces.length} pieces, 0 gaps; f. entry ${round(fDash, 3)} / ${round(fSolid, 3)} m`);
+    console.log(`bangladesh-rivers-map: a. ${mapMarkerIds.length} markers at their coordinates; ${note.join('; ')}; c. entry ${round(cM, 3)} m from the border; d. main ${mainPieces.length} pieces, 0 gaps; f. entry ${round(fDash, 3)} / ${round(fSolid, 3)} m`);
   }
 }
 

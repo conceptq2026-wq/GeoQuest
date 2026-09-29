@@ -16,8 +16,15 @@
   ]
  },
  "constraints": {
-  "maxZoom": 11
+  "maxZoom": 11,
+  "maxBounds": [
+   80.5,
+   19,
+   97,
+   32
+  ]
  },
+ "minTextSize": 14,
  "lookups": {
   "systems": {
    "jamuna": {
@@ -45,6 +52,10 @@
   },
   "mouth": {
    "file": "./mouth.svg",
+   "pixelRatio": 1
+  },
+  "origin": {
+   "file": "./origin.svg",
    "pixelRatio": 1
   }
  },
@@ -90,6 +101,26 @@
     "ancestorNames": {
      "type": "refs",
      "to": "names",
+     "display": false
+    },
+    "frameBd": {
+     "type": "bbox",
+     "display": false
+    },
+    "frameWhole": {
+     "type": "bbox",
+     "display": false
+    },
+    "outsideSet": {
+     "type": "boolean",
+     "display": false
+    },
+    "restWhole": {
+     "type": "boolean",
+     "display": false
+    },
+    "dashedKind": {
+     "type": "text",
      "display": false
     },
     "relation": {
@@ -164,6 +195,21 @@
      "type": "point",
      "required": true
     },
+    "frameBd": {
+     "type": "bbox",
+     "display": false
+    },
+    "frameWhole": {
+     "type": "bbox",
+     "display": false
+    },
+    "outsideSet": {
+     "type": "boolean",
+     "display": false
+    },
+    "origin": {
+     "type": "text"
+    },
     "entry": {
      "type": "text"
     },
@@ -195,6 +241,22 @@
     "at": {
      "type": "point",
      "required": true
+    }
+   }
+  },
+  "views": {
+   "file": "./views.json",
+   "fields": {
+    "titleBn": {
+     "type": "text",
+     "required": true
+    },
+    "frame": {
+     "type": "bbox",
+     "required": true
+    },
+    "disabledBn": {
+     "type": "text"
     }
    }
   },
@@ -877,6 +939,25 @@
    }
   },
   {
+   "id": "marker-origin",
+   "type": "symbol",
+   "source": "marks",
+   "slot": "aboveLabels",
+   "filter": [
+    "==",
+    [
+     "get",
+     "kind"
+    ],
+    "origin"
+   ],
+   "layout": {
+    "icon-image": "origin",
+    "icon-allow-overlap": true,
+    "icon-ignore-placement": true
+   }
+  },
+  {
    "id": "marker-ring",
    "type": "circle",
    "source": "marks",
@@ -923,7 +1004,7 @@
      "action": "select"
     },
     {
-     "action": "fitBounds",
+     "action": "fitTab",
      "clear": [
       "sheet"
      ],
@@ -941,7 +1022,7 @@
      "action": "select"
     },
     {
-     "action": "fitBounds",
+     "action": "fitTab",
      "clear": [
       "sheet"
      ],
@@ -957,7 +1038,7 @@
      "action": "select"
     },
     {
-     "action": "fitBounds",
+     "action": "fitTab",
      "clear": [
       "sheet"
      ],
@@ -1033,6 +1114,10 @@
    },
    "rows": [
     {
+     "label": "উৎপত্তি",
+     "field": "origin"
+    },
+    {
      "label": "প্রবেশস্থল",
      "field": "entry"
     },
@@ -1047,11 +1132,38 @@
    ]
   }
  },
+ "tabs": {
+  "from": "views",
+  "label": {
+   "field": "titleBn"
+  },
+  "frame": {
+   "field": "frame"
+  },
+  "views": {
+   "bd": {
+    "selectionFrame": "frameBd"
+   },
+   "whole": {
+    "selectionFrame": "frameWhole",
+    "enabledBy": "outsideSet",
+    "disabledNote": {
+     "field": "disabledBn"
+    }
+   }
+  }
+ },
  "focus": {
   "records": "rivers",
   "idle": {
    "field": "role",
    "value": "main"
+  },
+  "idleByTab": {
+   "whole": {
+    "field": "restWhole",
+    "value": true
+   }
   },
   "parent": "up",
   "also": [
@@ -1100,6 +1212,15 @@
     }
    },
    {
+    "kind": "outside",
+    "label": "বাংলাদেশের বাইরে",
+    "line": {
+     "color": "#0b3d91",
+     "width": 2.9,
+     "dash": true
+    }
+   },
+   {
     "kind": "entry",
     "label": "প্রবেশস্থল",
     "image": "entry"
@@ -1113,12 +1234,21 @@
     "kind": "mouth",
     "label": "পতিত স্থল",
     "image": "mouth"
+   },
+   {
+    "kind": "origin",
+    "label": "উৎপত্তি",
+    "image": "origin"
    }
   ],
   "kinds": [
    {
     "records": "rivers",
     "field": "role"
+   },
+   {
+    "records": "rivers",
+    "field": "dashedKind"
    },
    {
     "records": "marks",
@@ -1217,7 +1347,9 @@
    "<a href=\"https://bn.wikipedia.org/w/index.php?oldid=7982899\" target=\"_blank\" rel=\"noopener noreferrer\">রূপসা নদী (Bengali Wikipedia (revision 7982899; read 2026-09-29))</a>",
    "<a href=\"https://web.archive.org/web/20220702010723/https://bn.banglapedia.org/index.php?title=বুড়ীশ্বর_নদী\" target=\"_blank\" rel=\"noopener noreferrer\">বুড়ীশ্বর নদী (Banglapedia (Bengali; oldid 9994, last edited 2014-05-05; Internet Archive capture 2022-07-02; read 2026-09-29))</a>",
    "<a href=\"https://nodi.bwdb.gov.bd/RiverInfo/RiverDetails?HZone=4&amp;Rivers=108\" target=\"_blank\" rel=\"noopener noreferrer\">তেঁতুলিয়া (নদীর তথ্য, NW-103) (Bangladesh Water Development Board (BWDB), River Information Management System (read 2026-09-29))</a>",
-   "<a href=\"https://www.naturalearthdata.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Natural Earth 10m lakes (ne_10m_lakes): Kaptai Lake's outline (Natural Earth (public domain; v5.1.2))</a>"
+   "<a href=\"https://www.naturalearthdata.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Natural Earth 10m lakes (ne_10m_lakes): Kaptai Lake's outline (Natural Earth (public domain; v5.1.2))</a>",
+   "<a href=\"https://www.naturalearthdata.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Natural Earth 10m admin-1 states and provinces (ne_10m_admin_1_states_provinces) (Natural Earth (public domain; v5.1.2))</a>",
+   "<a href=\"https://www.naturalearthdata.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Natural Earth 10m geography regions (ne_10m_geography_regions_polys) (Natural Earth (public domain; v5.1.2))</a>"
   ]
  }
 }

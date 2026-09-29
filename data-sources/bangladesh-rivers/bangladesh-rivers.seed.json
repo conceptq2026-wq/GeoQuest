@@ -57,6 +57,12 @@
       "sources": "সূত্র",
       "notes": "ছবি সম্পর্কে টীকা",
       "conflicts": "উৎসগুলোর অমিল"
+    },
+    "mapOnlyBn": {
+      "_about": "Words only the map shows (2026-09-30): the note in ⓘ’s row when «পুরো পথ» is disabled, the legend’s word for a dashed reach, and the sentence of the upstream rule (the user’s words), which each in-part ⓘ line takes after its card’s name.",
+      "wholeDisabled": "এই নদীর বাংলাদেশের বাইরের কোনো অংশ এই মানচিত্রে আঁকা নেই।",
+      "outside": "বাংলাদেশের বাইরে",
+      "upstreamInPart": "এই নদীর উজানের পুরো অংশ এই মানচিত্রে আঁকা হয়নি।"
     }
   },
   "sources": {
@@ -572,6 +578,16 @@
       "title": "Natural Earth 10m lakes (ne_10m_lakes): Kaptai Lake's outline",
       "publisher": "Natural Earth (public domain; v5.1.2)",
       "url": "https://www.naturalearthdata.com/"
+    },
+    "naturalEarthAdmin1": {
+      "title": "Natural Earth 10m admin-1 states and provinces (ne_10m_admin_1_states_provinces)",
+      "publisher": "Natural Earth (public domain; v5.1.2)",
+      "url": "https://www.naturalearthdata.com/"
+    },
+    "naturalEarthRegions": {
+      "title": "Natural Earth 10m geography regions (ne_10m_geography_regions_polys)",
+      "publisher": "Natural Earth (public domain; v5.1.2)",
+      "url": "https://www.naturalearthdata.com/"
     }
   },
   "countries": {
@@ -612,6 +628,141 @@
           }
         ]
       }
+    }
+  ],
+  "_mapUpstream": "The upstream rule (M3, 2026-09-30): a card whose origin row names a place outside Bangladesh and whose drawn chain does not reach it gets a map-only ⓘ line «<name>: এই নদীর উজানের পুরো অংশ এই মানচিত্রে আঁকা হয়নি।» (infoBn.lines with `card` and `evidence`); one whose chain begins outside Bangladesh but reaches the origin the seed states, or whose origin is in Bangladesh, is listed in mapUpstreamReached. Evidence, re-checked by tools/build-bangladesh-rivers-map.mjs against the pinned files: origin-point, head-joins, in / not-in a pinned polygon, starts-inside (COD-AB), seed-note (the line's own `identified`), origin-in-part, origin-in-bangladesh (a district of the pinned Bengali list in the origin row).",
+  "mapUpstreamReached": [
+    {
+      "card": "main",
+      "evidence": [
+        {
+          "kind": "origin-point",
+          "marker": "origin"
+        }
+      ],
+      "only": "map"
+    },
+    {
+      "card": "ichamati",
+      "evidence": [
+        {
+          "kind": "head-joins",
+          "card": "mathabhanga"
+        }
+      ],
+      "only": "map"
+    },
+    {
+      "card": "teesta",
+      "evidence": [
+        {
+          "kind": "in",
+          "file": "ne_10m_admin_1_states_provinces.geojson",
+          "key": "adm1_code",
+          "value": "IND-3259"
+        }
+      ],
+      "only": "map"
+    },
+    {
+      "card": "pagla",
+      "evidence": [
+        {
+          "kind": "in",
+          "file": "ne_10m_admin_1_states_provinces.geojson",
+          "key": "adm0_a3",
+          "value": "IND"
+        }
+      ],
+      "only": "map"
+    },
+    {
+      "card": "khowai",
+      "evidence": [
+        {
+          "kind": "in",
+          "file": "ne_10m_admin_1_states_provinces.geojson",
+          "key": "adm0_a3",
+          "value": "IND"
+        }
+      ],
+      "only": "map"
+    },
+    {
+      "card": "gumti",
+      "evidence": [
+        {
+          "kind": "in",
+          "file": "ne_10m_admin_1_states_provinces.geojson",
+          "key": "adm1_code",
+          "value": "IND-3301"
+        }
+      ],
+      "only": "map"
+    },
+    {
+      "card": "muhuri",
+      "evidence": [
+        {
+          "kind": "in",
+          "file": "geoBoundaries-IND-ADM2.geojson",
+          "key": "shapeName",
+          "value": "South Tripura"
+        }
+      ],
+      "only": "map"
+    },
+    {
+      "card": "bhagirathi",
+      "evidence": [
+        {
+          "kind": "in",
+          "file": "geoBoundaries-IND-ADM2.geojson",
+          "key": "shapeName",
+          "value": "Murshidabad"
+        }
+      ],
+      "only": "map"
+    },
+    {
+      "card": "mathabhanga",
+      "evidence": [
+        {
+          "kind": "origin-in-bangladesh",
+          "district": "কুষ্টিয়া"
+        }
+      ],
+      "only": "map"
+    },
+    {
+      "card": "kapotaksha",
+      "evidence": [
+        {
+          "kind": "origin-in-bangladesh",
+          "district": "যশোর"
+        }
+      ],
+      "only": "map"
+    },
+    {
+      "card": "harinbhanga",
+      "evidence": [
+        {
+          "kind": "origin-in-bangladesh",
+          "district": "সাতক্ষীরা"
+        }
+      ],
+      "only": "map"
+    },
+    {
+      "card": "baral",
+      "evidence": [
+        {
+          "kind": "origin-in-bangladesh",
+          "district": "রাজশাহী"
+        }
+      ],
+      "only": "map"
     }
   ],
   "geometry": {
@@ -1767,6 +1918,397 @@
             "source": "user",
             "where": "Task 1 after Stage 3: a row that cannot be a whole clause moves to ⓘ with its full quote",
             "states": "the user, 2026-09-29"
+          }
+        ]
+      },
+      {
+        "textBn": "ধরলা: এই নদীর উজানের পুরো অংশ এই মানচিত্রে আঁকা হয়নি।",
+        "group": "notes",
+        "only": "map",
+        "card": "dharla",
+        "evidence": [
+          {
+            "kind": "not-in",
+            "file": "ne_10m_admin_1_states_provinces.geojson",
+            "key": "adm1_code",
+            "value": "IND-3259"
+          }
+        ],
+        "sources": [
+          {
+            "source": "bwdbNW59",
+            "where": "§1.1 বর্ণনা",
+            "states": "জলঢাকা নদীটি পূর্ব হিমালয়ের দক্ষিণ সিক্কিম থেকে উৎপত্তি লাভ করেছে"
+          },
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, p. ৪ row ২২, উৎপত্তিস্থল",
+            "states": "ভারতের দক্ষিণ সিকিম (হিমালয়ের পূর্বাঞ্চল) হতে"
+          },
+          {
+            "source": "osm",
+            "where": "the pinned line dharla: its upstream end at 88.873794, 26.699325",
+            "states": "the drawn chain begins here"
+          },
+          {
+            "source": "naturalEarthAdmin1",
+            "where": "ne_10m_admin_1_states_provinces.geojson, adm1_code IND-3259",
+            "states": "the upstream end lies outside Sikkim (IND-3259), where the origin row puts the origin"
+          },
+          {
+            "source": "user",
+            "where": "M3 item 4: a map-only ⓘ line for every river whose outside course is drawn only in part",
+            "states": "the user, 2026-09-30"
+          }
+        ]
+      },
+      {
+        "textBn": "পদ্মা: এই নদীর উজানের পুরো অংশ এই মানচিত্রে আঁকা হয়নি।",
+        "group": "notes",
+        "only": "map",
+        "card": "padma",
+        "evidence": [
+          {
+            "kind": "not-in",
+            "file": "ne_10m_geography_regions_polys.geojson",
+            "key": "NAME",
+            "value": "HIMALAYAS"
+          }
+        ],
+        "sources": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৩",
+            "states": "গঙ্গা নদী হিমালয়ের গঙ্গোত্রী হিমবাহ থেকে উৎপত্তি লাভ করেছে"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬১",
+            "states": "এর উৎপত্তিস্থল মধ্য হিমালয়ের গাঙ্গোত্রী হিমবাহে"
+          },
+          {
+            "source": "osm",
+            "where": "the pinned line gangaPadma: its upstream end at 87.87264, 25.06068",
+            "states": "the drawn chain begins here"
+          },
+          {
+            "source": "naturalEarthRegions",
+            "where": "ne_10m_geography_regions_polys.geojson, NAME HIMALAYAS",
+            "states": "the upstream end lies outside HIMALAYAS, where the origin row puts the origin"
+          },
+          {
+            "source": "user",
+            "where": "M3 item 4: a map-only ⓘ line for every river whose outside course is drawn only in part",
+            "states": "the user, 2026-09-30"
+          }
+        ]
+      },
+      {
+        "textBn": "মহানন্দা: এই নদীর উজানের পুরো অংশ এই মানচিত্রে আঁকা হয়নি।",
+        "group": "notes",
+        "only": "map",
+        "card": "mahananda",
+        "evidence": [
+          {
+            "kind": "not-in",
+            "file": "ne_10m_geography_regions_polys.geojson",
+            "key": "NAME",
+            "value": "HIMALAYAS"
+          }
+        ],
+        "sources": [
+          {
+            "source": "jrcbG13",
+            "where": "the 57-rivers report, p. ৩ row ১৪, উৎপত্তিস্থল",
+            "states": "ভারতের হিমালয় এর পাহাড়ী অঞ্চল"
+          },
+          {
+            "source": "osm",
+            "where": "the pinned line mahananda: its upstream end at 88.362229, 26.866619",
+            "states": "the drawn chain begins here"
+          },
+          {
+            "source": "naturalEarthRegions",
+            "where": "ne_10m_geography_regions_polys.geojson, NAME HIMALAYAS",
+            "states": "the upstream end lies outside HIMALAYAS, where the origin row puts the origin"
+          },
+          {
+            "source": "user",
+            "where": "M3 item 4: a map-only ⓘ line for every river whose outside course is drawn only in part",
+            "states": "the user, 2026-09-30"
+          }
+        ]
+      },
+      {
+        "textBn": "বরাক: এই নদীর উজানের পুরো অংশ এই মানচিত্রে আঁকা হয়নি।",
+        "group": "notes",
+        "only": "map",
+        "card": "barak",
+        "evidence": [
+          {
+            "kind": "not-in",
+            "file": "ne_10m_admin_1_states_provinces.geojson",
+            "key": "adm1_code",
+            "value": "IND-2478"
+          },
+          {
+            "kind": "not-in",
+            "file": "ne_10m_admin_1_states_provinces.geojson",
+            "key": "adm1_code",
+            "value": "IND-2479"
+          },
+          {
+            "kind": "seed-note",
+            "line": "barak",
+            "quote": "The relation continues upstream into Manipur, outside the frame; not drawn."
+          }
+        ],
+        "sources": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "আসামের বরাক নদী নাগা ও মণিপুর অঞ্চল থেকে উৎপন্ন হয়ে"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the মেঘনা paragraph [b910]",
+            "states": "আসামের বরাক নদী নাগা-মণিপুর অঞ্চলে উৎপত্তি হয়ে"
+          },
+          {
+            "source": "osm",
+            "where": "the pinned line barak: its upstream end at 92.909129, 24.751138",
+            "states": "the drawn chain begins here"
+          },
+          {
+            "source": "naturalEarthAdmin1",
+            "where": "ne_10m_admin_1_states_provinces.geojson, adm1_code IND-2478",
+            "states": "the upstream end lies outside Manipur (IND-2478), where the origin row puts the origin"
+          },
+          {
+            "source": "naturalEarthAdmin1",
+            "where": "ne_10m_admin_1_states_provinces.geojson, adm1_code IND-2479",
+            "states": "the upstream end lies outside Nagaland (IND-2479), where the origin row puts the origin"
+          },
+          {
+            "source": "osm",
+            "where": "the seed’s note on line barak",
+            "states": "The relation continues upstream into Manipur, outside the frame; not drawn."
+          },
+          {
+            "source": "user",
+            "where": "M3 item 4: a map-only ⓘ line for every river whose outside course is drawn only in part",
+            "states": "the user, 2026-09-30"
+          }
+        ]
+      },
+      {
+        "textBn": "মনু: এই নদীর উজানের পুরো অংশ এই মানচিত্রে আঁকা হয়নি।",
+        "group": "notes",
+        "only": "map",
+        "card": "manu",
+        "evidence": [
+          {
+            "kind": "seed-note",
+            "line": "manu",
+            "quote": "unnamed above 23.84°N"
+          }
+        ],
+        "sources": [
+          {
+            "source": "bwdbNE66",
+            "where": "§1.1 বর্ণনা; §1.4 [B4-G2]",
+            "states": "মনু নদী ভারত হতে উৎপন্ন হয়ে; ভারত"
+          },
+          {
+            "source": "osm",
+            "where": "the seed’s note on line manu",
+            "states": "unnamed above 23.84°N"
+          },
+          {
+            "source": "user",
+            "where": "M3 item 4: a map-only ⓘ line for every river whose outside course is drawn only in part",
+            "states": "the user, 2026-09-30"
+          }
+        ]
+      },
+      {
+        "textBn": "নাফ: এই নদীর উজানের পুরো অংশ এই মানচিত্রে আঁকা হয়নি।",
+        "group": "notes",
+        "only": "map",
+        "card": "naf",
+        "evidence": [
+          {
+            "kind": "seed-note",
+            "line": "naf",
+            "quote": "Not drawn: the relation’s head way 527726617"
+          }
+        ],
+        "sources": [
+          {
+            "source": "bwdbEH7",
+            "where": "§1.1 বর্ণনা [B6-G1]",
+            "states": "নদীটি মায়ানমারের উত্তরের পার্বত্যঞ্চল হতে উৎপত্তি হয়ে"
+          },
+          {
+            "source": "osm",
+            "where": "the seed’s note on line naf",
+            "states": "Not drawn: the relation’s head way 527726617"
+          },
+          {
+            "source": "user",
+            "where": "M3 item 4: a map-only ⓘ line for every river whose outside course is drawn only in part",
+            "states": "the user, 2026-09-30"
+          }
+        ]
+      },
+      {
+        "textBn": "মেঘনা: এই নদীর উজানের পুরো অংশ এই মানচিত্রে আঁকা হয়নি।",
+        "group": "notes",
+        "only": "map",
+        "card": "meghna",
+        "evidence": [
+          {
+            "kind": "starts-inside"
+          },
+          {
+            "kind": "origin-in-part",
+            "card": "barak"
+          }
+        ],
+        "sources": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪, the মেঘনা paragraph [bgeo]",
+            "states": "আসামের বরাক নদী নাগা ও মণিপুর অঞ্চল থেকে উৎপন্ন হয়ে"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২, the মেঘনা paragraph [b910]",
+            "states": "আসামের বরাক নদী নাগা-মণিপুর অঞ্চলে উৎপত্তি হয়ে"
+          },
+          {
+            "source": "osm",
+            "where": "the pinned line meghnaUpper: its upstream end at 91.11834, 24.24121",
+            "states": "the drawn chain begins here"
+          },
+          {
+            "source": "codab",
+            "where": "bgd_admin0: Bangladesh’s outline",
+            "states": "the upstream end lies inside Bangladesh; the origin row names a place outside it"
+          },
+          {
+            "source": "user",
+            "where": "the origin row names the barak, itself drawn in part (this rule)",
+            "states": "the user, 2026-09-30"
+          },
+          {
+            "source": "user",
+            "where": "M3 item 4: a map-only ⓘ line for every river whose outside course is drawn only in part",
+            "states": "the user, 2026-09-30"
+          }
+        ]
+      },
+      {
+        "textBn": "কর্ণফুলী: এই নদীর উজানের পুরো অংশ এই মানচিত্রে আঁকা হয়নি।",
+        "group": "notes",
+        "only": "map",
+        "card": "karnaphuli",
+        "evidence": [
+          {
+            "kind": "starts-inside"
+          }
+        ],
+        "sources": [
+          {
+            "source": "bgeo",
+            "where": "পৃ. ১৫৪ [bgeo]",
+            "states": "আসামের লুসাই পাহাড় থেকে উৎপন্ন হয়ে"
+          },
+          {
+            "source": "b910",
+            "where": "পৃ. ৬২ [b910]",
+            "states": "এর উৎপত্তিস্থল লুসাই পাহাড়ে"
+          },
+          {
+            "source": "osm",
+            "where": "the pinned line karnaphuliUpper: its upstream end at 92.37614, 22.92875",
+            "states": "the drawn chain begins here"
+          },
+          {
+            "source": "codab",
+            "where": "bgd_admin0: Bangladesh’s outline",
+            "states": "the upstream end lies inside Bangladesh; the origin row names a place outside it"
+          },
+          {
+            "source": "user",
+            "where": "M3 item 4: a map-only ⓘ line for every river whose outside course is drawn only in part",
+            "states": "the user, 2026-09-30"
+          }
+        ]
+      },
+      {
+        "textBn": "ফেনী: এই নদীর উজানের পুরো অংশ এই মানচিত্রে আঁকা হয়নি।",
+        "group": "notes",
+        "only": "map",
+        "card": "feni",
+        "evidence": [
+          {
+            "kind": "starts-inside"
+          }
+        ],
+        "sources": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬৩, the paragraph «সাঙ্গু–ফেনী, নাফ, মাতামুহুরী» [b910]",
+            "states": "পার্বত্য ত্রিপুরায় উৎপত্তি হয়ে"
+          },
+          {
+            "source": "osm",
+            "where": "the pinned line feni: its upstream end at 91.783792, 23.325228",
+            "states": "the drawn chain begins here"
+          },
+          {
+            "source": "codab",
+            "where": "bgd_admin0: Bangladesh’s outline",
+            "states": "the upstream end lies inside Bangladesh; the origin row names a place outside it"
+          },
+          {
+            "source": "user",
+            "where": "M3 item 4: a map-only ⓘ line for every river whose outside course is drawn only in part",
+            "states": "the user, 2026-09-30"
+          }
+        ]
+      },
+      {
+        "textBn": "সাঙ্গু: এই নদীর উজানের পুরো অংশ এই মানচিত্রে আঁকা হয়নি।",
+        "group": "notes",
+        "only": "map",
+        "card": "sangu",
+        "evidence": [
+          {
+            "kind": "starts-inside"
+          }
+        ],
+        "sources": [
+          {
+            "source": "b910",
+            "where": "পৃ. ৬৩, the paragraph «সাঙ্গু–ফেনী, নাফ, মাতামুহুরী» [b910]",
+            "states": "সাঙ্গু নদী উত্তর আরাকান পাহাড় থেকে নির্গত হয়ে"
+          },
+          {
+            "source": "osm",
+            "where": "the pinned line sangu: its upstream end at 92.607447, 21.272505",
+            "states": "the drawn chain begins here"
+          },
+          {
+            "source": "codab",
+            "where": "bgd_admin0: Bangladesh’s outline",
+            "states": "the upstream end lies inside Bangladesh; the origin row names a place outside it"
+          },
+          {
+            "source": "user",
+            "where": "M3 item 4: a map-only ⓘ line for every river whose outside course is drawn only in part",
+            "states": "the user, 2026-09-30"
           }
         ]
       },

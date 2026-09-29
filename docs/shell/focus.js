@@ -2,7 +2,8 @@
 |--------------------------------------------------------------------------
 | FOCUS — a shell module: the map draws only what the selection is about
 |
-|   focus: { records, idle: { field, value }, parent, also?: [{ records, field }] }
+|   focus: { records, idle: { field, value }, idleByTab?: { <tab>: { field, value } },
+|            parent, also?: [{ records, field }] }
 |
 | With nothing selected, the map draws only the records of `records` whose
 | `idle.field` holds `idle.value` (the main rivers). With a record selected,
@@ -14,6 +15,10 @@
 | A table in `also` follows the records its `field` names (a river's markers
 | and labels go with their river); a selected record of such a table puts
 | the view on the record it names (a marker's card keeps its river drawn).
+|
+| With view tabs (the tabs module), a tab may rest on a set of its own:
+| `idleByTab[<tab>]` replaces `idle` while that tab is open — the rivers
+| map's «পুরো পথ» rests on the main rivers with a reach outside Bangladesh.
 |
 | Hidden on the map only: the picker and ‹ › still list every record, so any
 | river can be chosen from any view. The hiding is the shell's own mechanism
@@ -34,6 +39,7 @@ export function mount(api) {
   const table = api.records[spec.records];
   if (!table) throw new Error(`focus: "${spec.records}" is not a records table`);
   if (!spec.idle?.field || !spec.parent) throw new Error('focus: idle.field and parent are required');
+  for (const [tab, idle] of Object.entries(spec.idleByTab ?? {})) if (!idle?.field) throw new Error(`focus: idleByTab.${tab} needs a field`);
   for (const [key, row] of Object.entries(table)) {
     const parent = row[spec.parent];
     if (parent != null && !table[parent]) throw new Error(`focus: ${spec.records}.${key}.${spec.parent} names "${parent}", which is not a record`);
@@ -68,7 +74,8 @@ function drawnKeys() {
   const table = shell.records[spec.records];
   const selected = focusKey();
   if (selected === undefined || !table[selected]) {
-    return new Set(Object.keys(table).filter((key) => table[key][spec.idle.field] === spec.idle.value));
+    const idle = spec.idleByTab?.[shell.activeTab?.()] ?? spec.idle;
+    return new Set(Object.keys(table).filter((key) => table[key][idle.field] === idle.value));
   }
   // Its descendants, every generation: a record joins once its parent has.
   const keys = new Set([selected]);
@@ -80,14 +87,14 @@ function drawnKeys() {
   return keys;
 }
 
-let cache = null; // the drawn keys, for one selection
+let cache = null; // the drawn keys, for one selection in one tab
 let cachedFor;
 
 function hidden(table, key) {
-  const selected = focusKey();
-  if (!cache || cachedFor !== selected) {
+  const now = `${shell.activeTab?.() ?? ''}|${focusKey() ?? ''}`;
+  if (!cache || cachedFor !== now) {
     cache = drawnKeys();
-    cachedFor = selected;
+    cachedFor = now;
   }
   if (table === spec.records) return !cache.has(key);
   const field = also.get(table);

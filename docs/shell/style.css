@@ -785,3 +785,37 @@ body {
 .maplibregl-ctrl-top-right {
   top: 16px;
 }
+
+/*
+ * A map that declares minTextSize: 14 (the rivers map, 2026-09-30) shows no
+ * chrome text under 14 px (app.js floors the map's labels). The card's label
+ * column widens so a 14 px label wraps less.
+ */
+[data-min-text='14'] .info-row,
+[data-min-text='14'] .info-kicker,
+[data-min-text='14'] .info-kicker[lang='bn'],
+[data-min-text='14'] .info-subtitle,
+[data-min-text='14'] .info-credit,
+[data-min-text='14'] .info-cell .info-label,
+[data-min-text='14'] .info-link,
+[data-min-text='14'] .ctrl-btn,
+[data-min-text='14'] .maplibregl-ctrl-group button.ctrl-btn,
+[data-min-text='14'] .layers-toggle-btn,
+[data-min-text='14'] .layers-menu,
+[data-min-text='14'] .filter-menu,
+[data-min-text='14'] .load-notice,
+[data-min-text='14'] .map-tab,
+[data-min-text='14'] .map-tab-note,
+[data-min-text='14'] .info-credits .maplibregl-ctrl-attrib.maplibregl-compact-show .maplibregl-ctrl-attrib-inner {
+  font-size: 14px;
+}
+
+[data-min-text='14'] .info-row {
+  grid-template-columns: 96px 1fr;
+}
+
+/* ⓘ's row grows when a line of text stands in it (the tabs module's note on a disabled tab). */
+.info-credits:has(.tab-disabled-note:not([hidden])) {
+  height: auto;
+  min-height: 18px;
+}
