@@ -1,0 +1,283 @@
+{
+  "schema": "geoquest/map-descriptor@1",
+  "id": "world-revolutions",
+  "section": "international",
+  "title": {
+    "bn": "বিশ্বের বিপ্লব ও গণঅভ্যুত্থান",
+    "en": "Revolutions and Uprisings of the World"
+  },
+  "basemap": "world",
+  "view": {
+    "fitBounds": [-110, -20, 125, 64]
+  },
+  "constraints": {
+    "minZoom": 0,
+    "maxZoom": 11
+  },
+  "minTextSize": 14,
+  "lookups": {},
+  "images": {
+    "dot": {
+      "file": "./dot.svg",
+      "pixelRatio": 2
+    },
+    "ring": {
+      "file": "./ring.svg",
+      "pixelRatio": 2
+    }
+  },
+  "records": {
+    "items": {
+      "file": "./records.json",
+      "fields": {
+        "tab": { "type": "text", "required": true, "display": false },
+        "nameBn": { "type": "text", "required": true },
+        "nameEn": { "type": "text", "required": true, "display": false },
+        "centuryBn": { "type": "text", "required": true, "display": false },
+        "akaBn": { "type": "text" },
+        "kindBn": { "type": "text" },
+        "whenBn": { "type": "text", "verifiable": true },
+        "placeBn": { "type": "text", "verifiable": true },
+        "groupBn": { "type": "text" },
+        "noPointBn": { "type": "text" },
+        "marker": { "type": "text", "display": false },
+        "at": { "type": "point" },
+        "soloAt": { "type": "point" },
+        "place": { "type": "refs", "to": "places" },
+        "frame": { "type": "bbox" }
+      }
+    },
+    "places": {
+      "file": "./places.json",
+      "fields": {
+        "nameBn": { "type": "text", "required": true },
+        "tab": { "type": "text", "required": true, "display": false },
+        "marker": { "type": "text", "required": true, "display": false },
+        "count": { "type": "number", "required": true, "display": false },
+        "records": { "type": "refs", "to": "items", "required": true },
+        "at": { "type": "point", "required": true },
+        "frame": { "type": "bbox", "required": true }
+      }
+    },
+    "tabs": {
+      "file": "./tabs.json",
+      "fields": {
+        "titleBn": { "type": "text", "required": true },
+        "placeholderBn": { "type": "text", "required": true }
+      }
+    }
+  },
+  "sources": {
+    "solo": {
+      "records": "items",
+      "geometryFrom": "soloAt",
+      "properties": ["marker", "tab"],
+      "state": ["selected"],
+      "attribution": "Points: <a href=\"https://www.naturalearthdata.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Natural Earth</a>; in Bangladesh, <a href=\"https://data.humdata.org/dataset/cod-ab-bgd\" target=\"_blank\" rel=\"noopener noreferrer\">Bangladesh – Subnational Administrative Boundaries</a> (BBS / OCHA FISS), <a href=\"http://creativecommons.org/licenses/by/3.0/igo/legalcode\" target=\"_blank\" rel=\"noopener noreferrer\">CC BY 3.0 IGO</a>"
+    },
+    "places": {
+      "records": "places",
+      "geometryFrom": "at",
+      "properties": ["marker", "tab"],
+      "state": [
+        "selected",
+        {
+          "name": "active",
+          "fromSelection": {
+            "records": "items",
+            "listField": "place"
+          }
+        }
+      ]
+    }
+  },
+  "styles": {
+    "marker": {
+      "layout": {
+        "icon-allow-overlap": true,
+        "icon-ignore-placement": true
+      }
+    },
+    "marker-glow": {
+      "paint": {
+        "circle-color": "#c62828",
+        "circle-radius": 19,
+        "circle-blur": 0.85,
+        "circle-opacity": 0.55
+      }
+    }
+  },
+  "layers": [
+    {
+      "id": "solo-glow",
+      "type": "circle",
+      "source": "solo",
+      "slot": "belowLabels",
+      "style": "marker-glow",
+      "filter": ["==", ["get", "selected"], true]
+    },
+    {
+      "id": "place-glow",
+      "type": "circle",
+      "source": "places",
+      "slot": "belowLabels",
+      "style": "marker-glow",
+      "filter": ["any", ["==", ["get", "selected"], true], ["==", ["get", "active"], true]]
+    },
+    {
+      "id": "solo-ring",
+      "type": "symbol",
+      "source": "solo",
+      "slot": "belowLabels",
+      "style": "marker",
+      "filter": ["==", ["get", "marker"], "ring"],
+      "layout": {
+        "icon-image": "ring",
+        "icon-size": ["case", ["==", ["get", "selected"], true], 1.45, 1]
+      }
+    },
+    {
+      "id": "place-ring",
+      "type": "symbol",
+      "source": "places",
+      "slot": "belowLabels",
+      "style": "marker",
+      "filter": ["==", ["get", "marker"], "ring"],
+      "layout": {
+        "icon-image": "ring",
+        "icon-size": ["case", ["any", ["==", ["get", "selected"], true], ["==", ["get", "active"], true]], 1.45, 1]
+      }
+    },
+    {
+      "id": "solo-dot",
+      "type": "symbol",
+      "source": "solo",
+      "slot": "aboveLabels",
+      "style": "marker",
+      "filter": ["==", ["get", "marker"], "dot"],
+      "layout": {
+        "icon-image": "dot",
+        "icon-size": ["case", ["==", ["get", "selected"], true], 1.45, 1]
+      }
+    },
+    {
+      "id": "place-dot",
+      "type": "symbol",
+      "source": "places",
+      "slot": "aboveLabels",
+      "style": "marker",
+      "filter": ["==", ["get", "marker"], "dot"],
+      "layout": {
+        "icon-image": "dot",
+        "icon-size": ["case", ["any", ["==", ["get", "selected"], true], ["==", ["get", "active"], true]], 1.45, 1]
+      }
+    }
+  ],
+  "controls": [
+    {
+      "type": "picker",
+      "id": "items",
+      "from": "items",
+      "placeholder": "একটি ঘটনা বেছে নিন…",
+      "labelEn": "Choose a revolution or an uprising",
+      "label": {
+        "field": "nameBn"
+      },
+      "groupBy": {
+        "field": "centuryBn",
+        "order": ["একাদশ শতক", "সপ্তদশ শতক", "অষ্টাদশ শতক", "ঊনবিংশ শতক", "বিংশ শতক", "একবিংশ শতক", "সময় নির্দিষ্ট নয়"]
+      },
+      "do": [
+        { "action": "select" },
+        { "action": "fitBounds", "clear": ["sheet"], "duration": 1800, "field": "frame" }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "on": "click",
+      "target": "source:solo",
+      "do": [
+        { "action": "select" },
+        { "action": "fitBounds", "clear": ["sheet"], "duration": 1800, "field": "frame" }
+      ]
+    },
+    {
+      "on": "click",
+      "target": "source:places",
+      "do": [
+        { "action": "select" },
+        { "action": "fitBounds", "clear": ["sheet"], "duration": 1800, "field": "frame" }
+      ]
+    }
+  ],
+  "tabs": {
+    "records": "items",
+    "field": "tab",
+    "from": "tabs",
+    "label": {
+      "field": "titleBn"
+    },
+    "placeholder": {
+      "field": "placeholderBn"
+    }
+  },
+  "sheets": {
+    "items": {
+      "title": {
+        "field": "nameBn"
+      },
+      "rows": [
+        { "label": "অন্য নাম", "field": "akaBn" },
+        { "label": "ধরন", "field": "kindBn" },
+        { "label": "সময়", "field": "whenBn" },
+        { "label": "স্থান", "field": "placeBn" },
+        { "field": "groupBn", "stacked": true },
+        { "field": "noPointBn", "stacked": true }
+      ]
+    },
+    "places": {
+      "title": {
+        "field": "nameBn"
+      },
+      "rows": [
+        {
+          "referencedBy": {
+            "records": "items",
+            "listField": "place"
+          },
+          "item": {
+            "field": "nameBn"
+          },
+          "do": [
+            { "action": "select" },
+            { "action": "fitBounds", "clear": ["sheet"], "duration": 1800, "field": "frame" }
+          ]
+        }
+      ]
+    }
+  },
+  "legend": {
+    "items": [
+      { "kind": "dot", "label": "বিন্দু: সূত্রে নির্দিষ্ট স্থান", "image": "dot" },
+      { "kind": "ring", "label": "বৃত্ত: সূত্রে শুধু দেশ বা অঞ্চল", "image": "ring" }
+    ],
+    "kinds": [
+      { "records": "items", "field": "marker" },
+      { "records": "places", "field": "marker" }
+    ]
+  },
+  "info": {
+    "file": "./info.json",
+    "headings": {
+      "sources": "সূত্র",
+      "notes": "প্রতিটি ঘটনার সূত্র ও টীকা",
+      "conflicts": "উৎসগুলোর অমিল"
+    }
+  },
+  "attribution": {
+    "extra": [
+      "<a href=\"https://bn.wikipedia.org/\" target=\"_blank\" rel=\"noopener noreferrer\">বাংলা ও ইংরেজি উইকিপিডিয়া</a>"
+    ]
+  }
+}

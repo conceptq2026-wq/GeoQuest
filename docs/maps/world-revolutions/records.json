@@ -1,0 +1,1054 @@
+{
+  "kaivarta-rebellion": {
+    "tab": "uprising",
+    "nameBn": "কৈবর্ত বিদ্রোহ",
+    "nameEn": "Varendra rebellion",
+    "centuryBn": "একাদশ শতক",
+    "whenBn": "আনুমানিক ১০৭৫",
+    "placeBn": "বাংলার উত্তরাংশের বরেন্দ্র এলাকা",
+    "akaBn": "বরেন্দ্র বিদ্রোহ",
+    "marker": "ring",
+    "at": [
+      88.72386,
+      25.64259
+    ],
+    "soloAt": [
+      88.72386,
+      25.64259
+    ],
+    "frame": [
+      86.124,
+      22.643,
+      91.324,
+      28.643
+    ]
+  },
+  "british-agricultural-revolution": {
+    "tab": "nonpolitical",
+    "nameBn": "ব্রিটিশ কৃষি বিপ্লব",
+    "nameEn": "British Agricultural Revolution",
+    "centuryBn": "সপ্তদশ শতক",
+    "whenBn": "১৭শ শতকের মাঝামাঝি – ১৯শ শতকের শেষের দিক",
+    "placeBn": "ব্রিটেন",
+    "akaBn": "দ্বিতীয় কৃষি বিপ্লব"
+  },
+  "glorious-revolution": {
+    "tab": "revolution",
+    "nameBn": "গৌরবময় বিপ্লব",
+    "nameEn": "Glorious Revolution",
+    "centuryBn": "সপ্তদশ শতক",
+    "whenBn": "১৬৮৮–১৬৮৯",
+    "placeBn": "ব্রিটিশ দ্বীপপুঞ্জ",
+    "akaBn": "১৬৮৮ সালের বিপ্লব",
+    "noPointBn": "নির্দিষ্ট বিন্দু নেই"
+  },
+  "fakir-sannyasi-rebellion": {
+    "tab": "uprising",
+    "nameBn": "ফকির ও সন্ন্যাসী বিদ্রোহ",
+    "nameEn": "Sannyasi rebellion",
+    "centuryBn": "অষ্টাদশ শতক",
+    "whenBn": "১৭৬০–১৮০০",
+    "placeBn": "বাংলা",
+    "akaBn": "ফকির-সন্ন্যাসী আন্দোলন, ফকির-সন্ন্যাসী বিদ্রোহ",
+    "noPointBn": "নির্দিষ্ট বিন্দু নেই"
+  },
+  "industrial-revolution": {
+    "tab": "nonpolitical",
+    "nameBn": "শিল্প বিপ্লব",
+    "nameEn": "Industrial Revolution",
+    "centuryBn": "অষ্টাদশ শতক",
+    "whenBn": "প্রায় ১৭৬০–১৮৪০",
+    "placeBn": "গ্রেট ব্রিটেন, ইউরোপ মহাদেশ ও মার্কিন যুক্তরাষ্ট্র",
+    "akaBn": "প্রথম শিল্প বিপ্লব"
+  },
+  "moamoria-rebellion": {
+    "tab": "uprising",
+    "nameBn": "মোয়ামরীয়া বিদ্রোহ",
+    "nameEn": "Moamoria rebellion",
+    "centuryBn": "অষ্টাদশ শতক",
+    "whenBn": "১৭৬৯–১৮০৫",
+    "placeBn": "আসাম",
+    "marker": "ring",
+    "at": [
+      92.9929,
+      26.3302
+    ],
+    "soloAt": [
+      92.9929,
+      26.3302
+    ],
+    "frame": [
+      90.393,
+      23.33,
+      95.593,
+      29.33
+    ]
+  },
+  "american-revolution": {
+    "tab": "revolution",
+    "nameBn": "মার্কিন বিপ্লব",
+    "nameEn": "American Revolution",
+    "centuryBn": "অষ্টাদশ শতক",
+    "whenBn": "২২ মার্চ ১৭৭৫ – ১৪ জানুয়ারি ১৭৮৪",
+    "placeBn": "তেরো উপনিবেশ",
+    "akaBn": "আমেরিকান বিপ্লব",
+    "marker": "ring",
+    "at": [
+      -97.4826,
+      39.53848
+    ],
+    "soloAt": [
+      -97.4826,
+      39.53848
+    ],
+    "frame": [
+      -100.083,
+      36.538,
+      -94.883,
+      42.538
+    ]
+  },
+  "chakma-rebellion": {
+    "tab": "uprising",
+    "nameBn": "চাকমা বিদ্রোহ",
+    "nameEn": "Chakma rebellion",
+    "centuryBn": "অষ্টাদশ শতক",
+    "whenBn": "১৭৭৬–১৭৮৭",
+    "placeBn": "পার্বত্য অঞ্চল",
+    "akaBn": "কার্পাস বিদ্রোহ",
+    "noPointBn": "নির্দিষ্ট বিন্দু নেই"
+  },
+  "french-revolution": {
+    "tab": "revolution",
+    "nameBn": "ফরাসি বিপ্লব",
+    "nameEn": "French Revolution",
+    "centuryBn": "অষ্টাদশ শতক",
+    "whenBn": "১৭৮৯",
+    "placeBn": "ফ্রান্স",
+    "marker": "ring",
+    "at": [
+      2.55227,
+      46.69611
+    ],
+    "place": [
+      "revolution-fra"
+    ],
+    "frame": [
+      -0.048,
+      43.696,
+      5.152,
+      49.696
+    ]
+  },
+  "haitian-revolution": {
+    "tab": "revolution",
+    "nameBn": "হাইতীয় বিপ্লব",
+    "nameEn": "Haitian Revolution",
+    "centuryBn": "অষ্টাদশ শতক",
+    "whenBn": "১৭৯১–১৮০৪",
+    "placeBn": "সেন্ট-ডোমিঙ্গ (এখন হাইতি)",
+    "marker": "ring",
+    "at": [
+      -72.22405,
+      19.26378
+    ],
+    "soloAt": [
+      -72.22405,
+      19.26378
+    ],
+    "frame": [
+      -74.824,
+      16.264,
+      -69.624,
+      22.264
+    ]
+  },
+  "july-revolution-1830": {
+    "tab": "revolution",
+    "nameBn": "জুলাই বিপ্লব (ফ্রান্স)",
+    "nameEn": "July Revolution",
+    "centuryBn": "ঊনবিংশ শতক",
+    "whenBn": "২৬–২৯ জুলাই ১৮৩০",
+    "placeBn": "ফ্রান্স",
+    "marker": "ring",
+    "at": [
+      2.55227,
+      46.69611
+    ],
+    "place": [
+      "revolution-fra"
+    ],
+    "frame": [
+      -0.048,
+      43.696,
+      5.152,
+      49.696
+    ]
+  },
+  "santal-rebellion": {
+    "tab": "uprising",
+    "nameBn": "সাঁওতাল বিদ্রোহ",
+    "nameEn": "Santhal rebellion",
+    "centuryBn": "ঊনবিংশ শতক",
+    "whenBn": "৩০ জুন ১৮৫৫ – ৩ জানুয়ারি ১৮৫৬",
+    "placeBn": "সাঁওতাল পরগনা, ঝাড়খন্ড",
+    "akaBn": "সাঁওতাল হুল",
+    "marker": "ring",
+    "at": [
+      85.0584,
+      23.5221
+    ],
+    "soloAt": [
+      85.0584,
+      23.5221
+    ],
+    "frame": [
+      82.458,
+      20.522,
+      87.658,
+      26.522
+    ]
+  },
+  "sepoy-mutiny": {
+    "tab": "uprising",
+    "nameBn": "সিপাহি বিদ্রোহ",
+    "nameEn": "Indian Rebellion of 1857",
+    "centuryBn": "ঊনবিংশ শতক",
+    "whenBn": "২৯ মার্চ ১৮৫৭ – জুলাই ১৮৫৮",
+    "placeBn": "সূচনা পশ্চিমবঙ্গের ব্যারাকপুরে",
+    "akaBn": "ভারতের প্রথম স্বাধীনতা যুদ্ধ, সৈনিক বিদ্রোহ, সিপাহী বিপ্লব",
+    "marker": "ring",
+    "at": [
+      87.7289,
+      23.0523
+    ],
+    "soloAt": [
+      87.7289,
+      23.0523
+    ],
+    "frame": [
+      85.129,
+      20.052,
+      90.329,
+      26.052
+    ]
+  },
+  "second-industrial-revolution": {
+    "tab": "nonpolitical",
+    "nameBn": "দ্বিতীয় শিল্প বিপ্লব",
+    "nameEn": "Second Industrial Revolution",
+    "centuryBn": "ঊনবিংশ শতক",
+    "whenBn": "১৮৭০ থেকে",
+    "placeBn": null
+  },
+  "green-revolution": {
+    "tab": "nonpolitical",
+    "nameBn": "সবুজ বিপ্লব",
+    "nameEn": "Green Revolution",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "২০শ শতকের শুরু – ১৯৮০-এর দশকের শেষ",
+    "placeBn": null,
+    "akaBn": "তৃতীয় কৃষি বিপ্লব"
+  },
+  "digital-revolution": {
+    "tab": "nonpolitical",
+    "nameBn": "ডিজিটাল বিপ্লব",
+    "nameEn": "Digital Revolution",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "১৯৮০-র দশকের শুরু থেকে",
+    "placeBn": "সারা বিশ্ব",
+    "akaBn": "তৃতীয় শিল্প বিপ্লব"
+  },
+  "young-turk-revolution": {
+    "tab": "revolution",
+    "nameBn": "তরুণ তুর্কি বিপ্লব",
+    "nameEn": "Young Turk Revolution",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "১৯০৮",
+    "placeBn": "উসমানীয় সাম্রাজ্য",
+    "noPointBn": "নির্দিষ্ট বিন্দু নেই"
+  },
+  "xinhai-revolution": {
+    "tab": "revolution",
+    "nameBn": "১৯১১ বিপ্লব",
+    "nameEn": "1911 Revolution",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "১৯১১–১৯১২",
+    "placeBn": "চীন",
+    "akaBn": "চীন বিপ্লব, সিনহাই বিপ্লব",
+    "marker": "ring",
+    "at": [
+      106.33729,
+      32.49818
+    ],
+    "place": [
+      "revolution-chn"
+    ],
+    "frame": [
+      103.737,
+      29.498,
+      108.937,
+      35.498
+    ]
+  },
+  "russian-revolution": {
+    "tab": "revolution",
+    "nameBn": "রুশ বিপ্লব",
+    "nameEn": "Russian Revolution",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "১৯১৭",
+    "placeBn": "পেট্রোগ্রাড",
+    "akaBn": "অক্টোবর বিপ্লব, বলশেভিক বিপ্লব",
+    "marker": "dot",
+    "at": [
+      30.31407,
+      59.94096
+    ],
+    "soloAt": [
+      30.31407,
+      59.94096
+    ],
+    "frame": [
+      27.714,
+      56.941,
+      32.914,
+      62.941
+    ]
+  },
+  "alsace-lorraine-1918": {
+    "tab": "uprising",
+    "nameBn": "১৯১৮-এর নভেম্বরে আলজাস-লরেনে বিদ্রোহ",
+    "nameEn": "November 1918 insurgency in Alsace–Lorraine",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "নভেম্বর ১৯১৮",
+    "placeBn": "আলসেস-লরেন অঞ্চল",
+    "marker": "dot",
+    "at": [
+      7.75001,
+      48.57997
+    ],
+    "soloAt": [
+      7.75001,
+      48.57997
+    ],
+    "frame": [
+      5.15,
+      45.58,
+      10.35,
+      51.58
+    ]
+  },
+  "chechen-ingush-1940": {
+    "tab": "uprising",
+    "nameBn": "১৯৪০–১৯৪৪ সালের চেচেন-ইঙ্গুশ বিদ্রোহ",
+    "nameEn": "1940–1944 insurgency in Chechnya",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "২০ ডিসেম্বর ১৯৪০ – ১৫ ডিসেম্বর ১৯৪৪",
+    "placeBn": "চেচেন-ইঙ্গুশ সোভিয়েত প্রজাতন্ত্র",
+    "marker": "ring",
+    "at": [
+      45.757,
+      43.2153
+    ],
+    "soloAt": [
+      45.757,
+      43.2153
+    ],
+    "frame": [
+      43.157,
+      40.215,
+      48.357,
+      46.215
+    ]
+  },
+  "august-revolution": {
+    "tab": "revolution",
+    "nameBn": "আগস্ট বিপ্লব",
+    "nameEn": "August Revolution",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "১৩ আগস্ট – ২ সেপ্টেম্বর ১৯৪৫",
+    "placeBn": "ভিয়েতনাম",
+    "akaBn": "আগস্ট সাধারণ বিদ্রোহ",
+    "marker": "ring",
+    "at": [
+      105.38729,
+      21.71542
+    ],
+    "soloAt": [
+      105.38729,
+      21.71542
+    ],
+    "frame": [
+      102.787,
+      18.715,
+      107.987,
+      24.715
+    ]
+  },
+  "indonesian-national-revolution": {
+    "tab": "revolution",
+    "nameBn": "ইন্দোনেশীয় জাতীয় বিপ্লব",
+    "nameEn": "Indonesian National Revolution",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "১৯৪৫–১৯৪৯",
+    "placeBn": "ইন্দোনেশিয়া",
+    "akaBn": "ইন্দোনেশিয়ার স্বাধীনতা যুদ্ধ",
+    "marker": "ring",
+    "at": [
+      101.89295,
+      -0.9544
+    ],
+    "soloAt": [
+      101.89295,
+      -0.9544
+    ],
+    "frame": [
+      99.293,
+      -3.954,
+      104.493,
+      2.046
+    ]
+  },
+  "nachole-rebellion": {
+    "tab": "uprising",
+    "nameBn": "নাচোল বিদ্রোহ",
+    "nameEn": "Nachole Uprising",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "১৯৪৯–১৯৫০",
+    "placeBn": "নাচোল উপজেলা, চাঁপাইনবাবগঞ্জ",
+    "marker": "dot",
+    "at": [
+      88.37128,
+      24.73631
+    ],
+    "soloAt": [
+      88.37128,
+      24.73631
+    ],
+    "frame": [
+      85.771,
+      21.736,
+      90.971,
+      27.736
+    ]
+  },
+  "nepalese-revolution-1951": {
+    "tab": "revolution",
+    "nameBn": "১৯৫১ সালের নেপালি বিপ্লব",
+    "nameEn": "1950–1951 Nepalese revolution",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "৬ নভেম্বর ১৯৫০ – ১৭ ফেব্রুয়ারি ১৯৫১",
+    "placeBn": "নেপাল অধিরাজ্য",
+    "akaBn": "নেপাল গণতান্ত্রিক আন্দোলন",
+    "marker": "ring",
+    "at": [
+      83.63991,
+      28.29792
+    ],
+    "soloAt": [
+      83.63991,
+      28.29792
+    ],
+    "frame": [
+      81.04,
+      25.298,
+      86.24,
+      31.298
+    ]
+  },
+  "mau-mau-rebellion": {
+    "tab": "uprising",
+    "nameBn": "মাউ মাউ বিদ্রোহ",
+    "nameEn": "Mau Mau rebellion",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "১৯৫২–১৯৬০",
+    "placeBn": "কেনিয়া",
+    "marker": "ring",
+    "at": [
+      37.90763,
+      0.54904
+    ],
+    "soloAt": [
+      37.90763,
+      0.54904
+    ],
+    "frame": [
+      35.308,
+      -2.451,
+      40.508,
+      3.549
+    ]
+  },
+  "cuban-revolution": {
+    "tab": "revolution",
+    "nameBn": "কিউবা বিপ্লব",
+    "nameEn": "Cuban Revolution",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "২৬ জুলাই ১৯৫৩ – ১ জানুয়ারি ১৯৫৯",
+    "placeBn": "কিউবা",
+    "marker": "ring",
+    "at": [
+      -77.97585,
+      21.33402
+    ],
+    "soloAt": [
+      -77.97585,
+      21.33402
+    ],
+    "frame": [
+      -80.576,
+      18.334,
+      -75.376,
+      24.334
+    ]
+  },
+  "14-july-revolution": {
+    "tab": "revolution",
+    "nameBn": "১৪ জুলাই বিপ্লব",
+    "nameEn": "14 July Revolution",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "১৪ জুলাই ১৯৫৮",
+    "placeBn": "ইরাক",
+    "akaBn": "১৯৫৮ ইরাকি অভ্যুত্থান",
+    "marker": "ring",
+    "at": [
+      43.26181,
+      33.09403
+    ],
+    "place": [
+      "revolution-irq"
+    ],
+    "frame": [
+      40.662,
+      30.094,
+      45.862,
+      36.094
+    ]
+  },
+  "nicaraguan-revolution": {
+    "tab": "revolution",
+    "nameBn": "নিকারাগুয়ান বিপ্লব",
+    "nameEn": "Nicaraguan Revolution",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "১৯৬১–১৯৯০",
+    "placeBn": "নিকারাগুয়া",
+    "marker": "ring",
+    "at": [
+      -85.06935,
+      12.6707
+    ],
+    "soloAt": [
+      -85.06935,
+      12.6707
+    ],
+    "frame": [
+      -87.669,
+      9.671,
+      -82.469,
+      15.671
+    ]
+  },
+  "ramadan-revolution": {
+    "tab": "revolution",
+    "nameBn": "রমজান বিপ্লব",
+    "nameEn": "Ramadan Revolution",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "৮–১০ ফেব্রুয়ারি ১৯৬৩",
+    "placeBn": "ইরাক",
+    "akaBn": "৮ ফেব্রুয়ারি বিপ্লব, ফেব্রুয়ারি ১৯৬৩ ইরাক অভ্যুত্থান",
+    "marker": "ring",
+    "at": [
+      43.26181,
+      33.09403
+    ],
+    "place": [
+      "revolution-irq"
+    ],
+    "frame": [
+      40.662,
+      30.094,
+      45.862,
+      36.094
+    ]
+  },
+  "zanzibar-revolution": {
+    "tab": "revolution",
+    "nameBn": "জাঞ্জিবার বিপ্লব",
+    "nameEn": "Zanzibar Revolution",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "১২ জানুয়ারি ১৯৬৪",
+    "placeBn": "জাঞ্জিবার সালতানাত",
+    "marker": "dot",
+    "at": [
+      39.20003,
+      -6.16
+    ],
+    "soloAt": [
+      39.20003,
+      -6.16
+    ],
+    "frame": [
+      36.6,
+      -9.16,
+      41.8,
+      -3.16
+    ]
+  },
+  "cultural-revolution": {
+    "tab": "revolution",
+    "nameBn": "সাংস্কৃতিক বিপ্লব",
+    "nameEn": "Cultural Revolution",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "১৯৬৬–১৯৭৬",
+    "placeBn": "গণপ্রজাতন্ত্রী চীন",
+    "akaBn": "মহান প্রলেতারীয় সাংস্কৃতিক বিপ্লব",
+    "marker": "ring",
+    "at": [
+      106.33729,
+      32.49818
+    ],
+    "place": [
+      "revolution-chn"
+    ],
+    "frame": [
+      103.737,
+      29.498,
+      108.937,
+      35.498
+    ]
+  },
+  "17-july-revolution": {
+    "tab": "revolution",
+    "nameBn": "১৭ জুলাই বিপ্লব",
+    "nameEn": "17 July Revolution",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "১৭ জুলাই ১৯৬৮",
+    "placeBn": "ইরাক",
+    "marker": "ring",
+    "at": [
+      43.26181,
+      33.09403
+    ],
+    "place": [
+      "revolution-irq"
+    ],
+    "frame": [
+      40.662,
+      30.094,
+      45.862,
+      36.094
+    ]
+  },
+  "mass-uprising-1969": {
+    "tab": "uprising",
+    "nameBn": "উনসত্তরের গণঅভ্যুত্থান",
+    "nameEn": "1969 East Pakistan mass uprising",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "১৯৬৯",
+    "placeBn": "পূর্ব পাকিস্তান",
+    "akaBn": "১৯৬৯ সালের গণঅভ্যুত্থান, আইয়ুববিরোধী গণঅভ্যুত্থান",
+    "marker": "ring",
+    "at": [
+      89.68496,
+      24.21496
+    ],
+    "place": [
+      "uprising-bgd"
+    ],
+    "frame": [
+      87.085,
+      21.215,
+      92.285,
+      27.215
+    ]
+  },
+  "iranian-revolution": {
+    "tab": "revolution",
+    "nameBn": "ইরানি বিপ্লব",
+    "nameEn": "Iranian Revolution",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "জানুয়ারি ১৯৭৮ – ফেব্রুয়ারি ১৯৭৯",
+    "placeBn": "ইরান",
+    "akaBn": "ইসলামি বিপ্লব, ১৯৭৯ সালের বিপ্লব",
+    "marker": "ring",
+    "at": [
+      54.93149,
+      32.16622
+    ],
+    "soloAt": [
+      54.93149,
+      32.16622
+    ],
+    "frame": [
+      52.331,
+      29.166,
+      57.531,
+      35.166
+    ]
+  },
+  "saur-revolution": {
+    "tab": "revolution",
+    "nameBn": "সাওর বিপ্লব",
+    "nameEn": "Saur Revolution",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "২৭–২৮ এপ্রিল ১৯৭৮",
+    "placeBn": "আফগানিস্তান",
+    "marker": "ring",
+    "at": [
+      66.49659,
+      34.16426
+    ],
+    "soloAt": [
+      66.49659,
+      34.16426
+    ],
+    "frame": [
+      63.897,
+      31.164,
+      69.097,
+      37.164
+    ]
+  },
+  "contras": {
+    "tab": "uprising",
+    "nameBn": "কন্ট্রা",
+    "nameEn": "Contras",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "১৯৭৯–১৯৯০",
+    "placeBn": "নিকারাগুয়া",
+    "kindBn": "বিদ্রোহী দল",
+    "marker": "ring",
+    "at": [
+      -85.06935,
+      12.6707
+    ],
+    "soloAt": [
+      -85.06935,
+      12.6707
+    ],
+    "frame": [
+      -87.669,
+      9.671,
+      -82.469,
+      15.671
+    ]
+  },
+  "velvet-revolution": {
+    "tab": "revolution",
+    "nameBn": "মখমল বিপ্লব",
+    "nameEn": "Velvet Revolution",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "১৭–২৮ নভেম্বর ১৯৮৯",
+    "placeBn": "প্রাগ, তৎকালীন চেকোস্লোভাকিয়া",
+    "akaBn": "ভেলভেট বিপ্লব, মৃদু বিপ্লব",
+    "marker": "dot",
+    "at": [
+      14.46403,
+      50.08528
+    ],
+    "soloAt": [
+      14.46403,
+      50.08528
+    ],
+    "frame": [
+      11.864,
+      47.085,
+      17.064,
+      53.085
+    ]
+  },
+  "mass-uprising-1990": {
+    "tab": "uprising",
+    "nameBn": "নব্বইয়ের গণঅভ্যুত্থান",
+    "nameEn": "1990 Bangladesh mass uprising",
+    "centuryBn": "বিংশ শতক",
+    "whenBn": "১৯৯০",
+    "placeBn": "ঢাকা, বাংলাদেশ",
+    "akaBn": "১৯৯০ সালের গণঅভ্যুত্থান, নব্বইয়ের স্বৈরাচারবিরোধী আন্দোলন",
+    "marker": "dot",
+    "at": [
+      90.40663,
+      23.72501
+    ],
+    "soloAt": [
+      90.40663,
+      23.72501
+    ],
+    "frame": [
+      87.807,
+      20.725,
+      93.007,
+      26.725
+    ]
+  },
+  "rose-revolution": {
+    "tab": "revolution",
+    "nameBn": "গোলাপ বিপ্লব",
+    "nameEn": "Rose Revolution",
+    "centuryBn": "একবিংশ শতক",
+    "whenBn": "নভেম্বর ২০০৩",
+    "placeBn": "জর্জিয়া",
+    "akaBn": "রোজ বিপ্লব",
+    "marker": "ring",
+    "at": [
+      43.73572,
+      41.87009
+    ],
+    "soloAt": [
+      43.73572,
+      41.87009
+    ],
+    "frame": [
+      41.136,
+      38.87,
+      46.336,
+      44.87
+    ]
+  },
+  "orange-revolution": {
+    "tab": "revolution",
+    "nameBn": "কমলা বিপ্লব",
+    "nameEn": "Orange Revolution",
+    "centuryBn": "একবিংশ শতক",
+    "whenBn": "নভেম্বর ২০০৪ – জানুয়ারি ২০০৫",
+    "placeBn": "কিয়েভ, ইউক্রেন",
+    "marker": "dot",
+    "at": [
+      30.51468,
+      50.43531
+    ],
+    "soloAt": [
+      30.51468,
+      50.43531
+    ],
+    "frame": [
+      27.915,
+      47.435,
+      33.115,
+      53.435
+    ]
+  },
+  "tulip-revolution": {
+    "tab": "revolution",
+    "nameBn": "টিউলিপ বিপ্লব",
+    "nameEn": "Tulip Revolution",
+    "centuryBn": "একবিংশ শতক",
+    "whenBn": "২০০৫",
+    "placeBn": "কিরগিজস্তান",
+    "marker": "ring",
+    "at": [
+      74.53264,
+      41.66854
+    ],
+    "soloAt": [
+      74.53264,
+      41.66854
+    ],
+    "frame": [
+      71.933,
+      38.669,
+      77.133,
+      44.669
+    ]
+  },
+  "cedar-revolution": {
+    "tab": "revolution",
+    "nameBn": "সিডার বিপ্লব",
+    "nameEn": "Cedar Revolution",
+    "centuryBn": "একবিংশ শতক",
+    "whenBn": "২০০৫",
+    "placeBn": "লেবানন",
+    "marker": "ring",
+    "at": [
+      35.99289,
+      34.13337
+    ],
+    "soloAt": [
+      35.99289,
+      34.13337
+    ],
+    "frame": [
+      33.393,
+      31.133,
+      38.593,
+      37.133
+    ]
+  },
+  "saffron-revolution": {
+    "tab": "revolution",
+    "nameBn": "জাফরান বিপ্লব",
+    "nameEn": "Saffron Revolution",
+    "centuryBn": "একবিংশ শতক",
+    "whenBn": "আগস্ট–অক্টোবর ২০০৭",
+    "placeBn": "মিয়ানমার",
+    "marker": "ring",
+    "at": [
+      95.8045,
+      21.57385
+    ],
+    "soloAt": [
+      95.8045,
+      21.57385
+    ],
+    "frame": [
+      93.204,
+      18.574,
+      98.404,
+      24.574
+    ]
+  },
+  "jasmine-revolution": {
+    "tab": "revolution",
+    "nameBn": "জেসমিন বিপ্লব",
+    "nameEn": "Tunisian revolution",
+    "centuryBn": "একবিংশ শতক",
+    "whenBn": "২০১০–২০১১",
+    "placeBn": "তিউনিসিয়া",
+    "akaBn": "তিউনিসিয়ান বিপ্লব, মর্যাদার তিউনিসিয়ান বিপ্লব, জুঁই বিপ্লব",
+    "groupBn": "আরব বসন্তের অংশ",
+    "marker": "ring",
+    "at": [
+      9.00788,
+      33.68726
+    ],
+    "soloAt": [
+      9.00788,
+      33.68726
+    ],
+    "frame": [
+      6.408,
+      30.687,
+      11.608,
+      36.687
+    ]
+  },
+  "egypt-2011": {
+    "tab": "revolution",
+    "nameBn": "মিশর",
+    "nameEn": "2011 Egyptian revolution",
+    "centuryBn": "একবিংশ শতক",
+    "whenBn": "২৫ জানুয়ারি – ১১ ফেব্রুয়ারি ২০১১",
+    "placeBn": "মিশর",
+    "groupBn": "আরব বসন্তের অংশ",
+    "marker": "ring",
+    "at": [
+      29.44584,
+      26.18617
+    ],
+    "soloAt": [
+      29.44584,
+      26.18617
+    ],
+    "frame": [
+      26.846,
+      23.186,
+      32.046,
+      29.186
+    ]
+  },
+  "libya-2011": {
+    "tab": "revolution",
+    "nameBn": "লিবিয়া",
+    "nameEn": "Libyan civil war (2011)",
+    "centuryBn": "একবিংশ শতক",
+    "whenBn": "১৫ ফেব্রুয়ারি – ২৩ অক্টোবর ২০১১",
+    "placeBn": "লিবিয়া",
+    "groupBn": "আরব বসন্তের অংশ",
+    "marker": "ring",
+    "at": [
+      18.01102,
+      26.63894
+    ],
+    "soloAt": [
+      18.01102,
+      26.63894
+    ],
+    "frame": [
+      15.411,
+      23.639,
+      20.611,
+      29.639
+    ]
+  },
+  "syria-2011": {
+    "tab": "revolution",
+    "nameBn": "সিরিয়া",
+    "nameEn": "Syrian revolution",
+    "centuryBn": "একবিংশ শতক",
+    "whenBn": "২০১১–২০২৪",
+    "placeBn": "সিরিয়া",
+    "groupBn": "আরব বসন্তের অংশ",
+    "marker": "ring",
+    "at": [
+      38.27778,
+      35.00664
+    ],
+    "soloAt": [
+      38.27778,
+      35.00664
+    ],
+    "frame": [
+      35.678,
+      32.007,
+      40.878,
+      38.007
+    ]
+  },
+  "july-uprising-2024": {
+    "tab": "uprising",
+    "nameBn": "জুলাই গণঅভ্যুত্থান",
+    "nameEn": "July Uprising",
+    "centuryBn": "একবিংশ শতক",
+    "whenBn": "৫ জুন – ৫ আগস্ট ২০২৪",
+    "placeBn": "বাংলাদেশ",
+    "akaBn": "জুলাই বিপ্লব, ছাত্র–জনতার অভ্যুত্থান, চব্বিশের গণঅভ্যুত্থান",
+    "marker": "ring",
+    "at": [
+      89.68496,
+      24.21496
+    ],
+    "place": [
+      "uprising-bgd"
+    ],
+    "frame": [
+      87.085,
+      21.215,
+      92.285,
+      27.215
+    ]
+  },
+  "fourth-industrial-revolution": {
+    "tab": "nonpolitical",
+    "nameBn": "চতুর্থ শিল্প বিপ্লব",
+    "nameEn": "Fourth Industrial Revolution",
+    "centuryBn": "সময় নির্দিষ্ট নয়",
+    "whenBn": "চলমান",
+    "placeBn": null,
+    "akaBn": "ইন্ডাস্ট্রি ৪.০"
+  },
+  "chinta-biplob": {
+    "tab": "nonpolitical",
+    "nameBn": "চিন্তাবিপ্লব",
+    "nameEn": "Revolution of thought (as the exam names it)",
+    "centuryBn": "সময় নির্দিষ্ট নয়",
+    "whenBn": null,
+    "placeBn": null
+  },
+  "neolithic-revolution": {
+    "tab": "nonpolitical",
+    "nameBn": "নব্যপ্রস্তর যুগীয় বিপ্লব",
+    "nameEn": "Neolithic Revolution",
+    "centuryBn": "সময় নির্দিষ্ট নয়",
+    "whenBn": null,
+    "placeBn": null,
+    "akaBn": "প্রথম কৃষি বিপ্লব, কৃষি বিপ্লব"
+  },
+  "scientific-revolution": {
+    "tab": "nonpolitical",
+    "nameBn": "বৈজ্ঞানিক বিপ্লব",
+    "nameEn": "Scientific Revolution",
+    "centuryBn": "সময় নির্দিষ্ট নয়",
+    "whenBn": "রেনেসাঁ পর্বের শেষের দিক থেকে ১৮ শতকের শেষের দিক পর্যন্ত",
+    "placeBn": "ইউরোপ"
+  }
+}

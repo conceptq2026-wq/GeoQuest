@@ -1,0 +1,3873 @@
+{
+ "_about": "The editor's seed for docs/maps/world-revolutions/, read by tools/build-world-revolutions.mjs and never written by it. The shortlist the user approved on 2026-10-01 (tools/.cache/world-revolutions/shortlist.md), Stage 1: names, other names, time and place, each cited — a Wikipedia article at a pinned revision, a past exam question on two independent sites, or a Bengali country name from the pinned Natural Earth file. A null is pending: no source in the order (NCTB, government, Wikipedia bn then en, newspapers, Banglapedia) gives it. Leaders, causes and results come in Stage 4. A point names a pinned file and a key; the build takes the coordinates from the file.",
+ "tabs": [
+  {
+   "id": "revolution",
+   "titleBn": "বিপ্লব",
+   "placeholderBn": "একটি বিপ্লব বেছে নিন…"
+  },
+  {
+   "id": "uprising",
+   "titleBn": "গণঅভ্যুত্থান ও বিদ্রোহ",
+   "placeholderBn": "একটি গণঅভ্যুত্থান বা বিদ্রোহ বেছে নিন…"
+  },
+  {
+   "id": "nonpolitical",
+   "titleBn": "অ-রাজনৈতিক বিপ্লব",
+   "placeholderBn": "একটি অ-রাজনৈতিক বিপ্লব বেছে নিন…"
+  }
+ ],
+ "groups": {
+  "arab-spring": {
+   "nameBn": "আরব বসন্ত",
+   "memberBn": "আরব বসন্তের অংশ"
+  }
+ },
+ "noPoint": {
+  "glorious-revolution": "Its sources name the British Isles, and no single present-day place.",
+  "young-turk-revolution": "Its sources name the Ottoman Empire and Ottoman Rumeli; none states a present-day place.",
+  "fakir-sannyasi-rebellion": "Its source names Bengal as a whole, over forty years.",
+  "chakma-rebellion": "Its source names the hill region where the Chakma live, which is no present-day administrative unit."
+ },
+ "refs": {
+  "bnwp:french": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"ফরাসি বিপ্লব\", revision 8985061",
+   "titleBn": "বাংলা উইকিপিডিয়া, «ফরাসি বিপ্লব» (সংস্করণ ৮৯৮৫০৬১)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AB%E0%A6%B0%E0%A6%BE%E0%A6%B8%E0%A6%BF_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=8985061",
+   "read": "2026-10-01"
+  },
+  "bnwp:russian": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"রুশ বিপ্লব\", revision 7877275",
+   "titleBn": "বাংলা উইকিপিডিয়া, «রুশ বিপ্লব» (সংস্করণ ৭৮৭৭২৭৫)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%B0%E0%A7%81%E0%A6%B6_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=7877275",
+   "read": "2026-10-01"
+  },
+  "enwp:russian": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"Russian Revolution\", revision 1371936873",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “Russian Revolution” (সংস্করণ ১৩৭১৯৩৬৮৭৩)",
+   "url": "https://en.wikipedia.org/w/index.php?title=Russian_Revolution&oldid=1371936873",
+   "read": "2026-10-01"
+  },
+  "bnwp:october": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"অক্টোবর বিপ্লব\", revision 9027639",
+   "titleBn": "বাংলা উইকিপিডিয়া, «অক্টোবর বিপ্লব» (সংস্করণ ৯০২৭৬৩৯)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%85%E0%A6%95%E0%A7%8D%E0%A6%9F%E0%A7%8B%E0%A6%AC%E0%A6%B0_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=9027639",
+   "read": "2026-10-01"
+  },
+  "enwp:october": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"October Revolution\", revision 1377443365",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “October Revolution” (সংস্করণ ১৩৭৭৪৪৩৩৬৫)",
+   "url": "https://en.wikipedia.org/w/index.php?title=October_Revolution&oldid=1377443365",
+   "read": "2026-10-01"
+  },
+  "bnwp:february": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"ফেব্রুয়ারি বিপ্লব\", revision 8193443",
+   "titleBn": "বাংলা উইকিপিডিয়া, «ফেব্রুয়ারি বিপ্লব» (সংস্করণ ৮১৯৩৪৪৩)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AB%E0%A7%87%E0%A6%AC%E0%A7%8D%E0%A6%B0%E0%A7%81%E0%A6%AF%E0%A6%BC%E0%A6%BE%E0%A6%B0%E0%A6%BF_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=8193443",
+   "read": "2026-10-01"
+  },
+  "bnwp:iranian": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"ইরানি বিপ্লব\", revision 8520357",
+   "titleBn": "বাংলা উইকিপিডিয়া, «ইরানি বিপ্লব» (সংস্করণ ৮৫২০৩৫৭)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%87%E0%A6%B0%E0%A6%BE%E0%A6%A8%E0%A6%BF_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=8520357",
+   "read": "2026-10-01"
+  },
+  "bnwp:orange": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"কমলা বিপ্লব\", revision 8739977",
+   "titleBn": "বাংলা উইকিপিডিয়া, «কমলা বিপ্লব» (সংস্করণ ৮৭৩৯৯৭৭)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%95%E0%A6%AE%E0%A6%B2%E0%A6%BE_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=8739977",
+   "read": "2026-10-01"
+  },
+  "bnwp:rose": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"গোলাপ বিপ্লব\", revision 9183902",
+   "titleBn": "বাংলা উইকিপিডিয়া, «গোলাপ বিপ্লব» (সংস্করণ ৯১৮৩৯০২)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%97%E0%A7%8B%E0%A6%B2%E0%A6%BE%E0%A6%AA_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=9183902",
+   "read": "2026-10-01"
+  },
+  "bnwp:cultural": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"সাংস্কৃতিক বিপ্লব\", revision 9072052",
+   "titleBn": "বাংলা উইকিপিডিয়া, «সাংস্কৃতিক বিপ্লব» (সংস্করণ ৯০৭২০৫২)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%B8%E0%A6%BE%E0%A6%82%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A7%83%E0%A6%A4%E0%A6%BF%E0%A6%95_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=9072052",
+   "read": "2026-10-01"
+  },
+  "bnwp:velvet": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"মখমল বিপ্লব\", revision 8938348",
+   "titleBn": "বাংলা উইকিপিডিয়া, «মখমল বিপ্লব» (সংস্করণ ৮৯৩৮৩৪৮)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AE%E0%A6%96%E0%A6%AE%E0%A6%B2_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=8938348",
+   "read": "2026-10-01"
+  },
+  "enwp:velvet": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"Velvet Revolution\", revision 1368470823",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “Velvet Revolution” (সংস্করণ ১৩৬৮৪৭০৮২৩)",
+   "url": "https://en.wikipedia.org/w/index.php?title=Velvet_Revolution&oldid=1368470823",
+   "read": "2026-10-01"
+  },
+  "bnwp:china1911": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"১৯১১ বিপ্লব\", revision 6790617",
+   "titleBn": "বাংলা উইকিপিডিয়া, «১৯১১ বিপ্লব» (সংস্করণ ৬৭৯০৬১৭)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A7%A7%E0%A7%AF%E0%A7%A7%E0%A7%A7_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=6790617",
+   "read": "2026-10-01"
+  },
+  "enwp:china1911": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"1911 Revolution\", revision 1377614191",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “1911 Revolution” (সংস্করণ ১৩৭৭৬১৪১৯১)",
+   "url": "https://en.wikipedia.org/w/index.php?title=1911_Revolution&oldid=1377614191",
+   "read": "2026-10-01"
+  },
+  "bnwp:glorious": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"গৌরবময় বিপ্লব\", revision 9094742",
+   "titleBn": "বাংলা উইকিপিডিয়া, «গৌরবময় বিপ্লব» (সংস্করণ ৯০৯৪৭৪২)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%97%E0%A7%8C%E0%A6%B0%E0%A6%AC%E0%A6%AE%E0%A6%AF%E0%A6%BC_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=9094742",
+   "read": "2026-10-01"
+  },
+  "bnwp:cuban": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"কিউবা বিপ্লব\", revision 9013771",
+   "titleBn": "বাংলা উইকিপিডিয়া, «কিউবা বিপ্লব» (সংস্করণ ৯০১৩৭৭১)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%95%E0%A6%BF%E0%A6%89%E0%A6%AC%E0%A6%BE_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=9013771",
+   "read": "2026-10-01"
+  },
+  "bnwp:saur": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"সাওর বিপ্লব\", revision 8926389",
+   "titleBn": "বাংলা উইকিপিডিয়া, «সাওর বিপ্লব» (সংস্করণ ৮৯২৬৩৮৯)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%B8%E0%A6%BE%E0%A6%93%E0%A6%B0_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=8926389",
+   "read": "2026-10-01"
+  },
+  "bnwp:july1830": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"জুলাই বিপ্লব (ফ্রান্স)\", revision 8382775",
+   "titleBn": "বাংলা উইকিপিডিয়া, «জুলাই বিপ্লব (ফ্রান্স)» (সংস্করণ ৮৩৮২৭৭৫)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%9C%E0%A7%81%E0%A6%B2%E0%A6%BE%E0%A6%87_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC_(%E0%A6%AB%E0%A7%8D%E0%A6%B0%E0%A6%BE%E0%A6%A8%E0%A7%8D%E0%A6%B8)&oldid=8382775",
+   "read": "2026-10-01"
+  },
+  "bnwp:american": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"মার্কিন বিপ্লব\", revision 9096404",
+   "titleBn": "বাংলা উইকিপিডিয়া, «মার্কিন বিপ্লব» (সংস্করণ ৯০৯৬৪০৪)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AE%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%95%E0%A6%BF%E0%A6%A8_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=9096404",
+   "read": "2026-10-01"
+  },
+  "enwp:american": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"American Revolution\", revision 1377542847",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “American Revolution” (সংস্করণ ১৩৭৭৫৪২৮৪৭)",
+   "url": "https://en.wikipedia.org/w/index.php?title=American_Revolution&oldid=1377542847",
+   "read": "2026-10-01"
+  },
+  "bnwp:haitian": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"হাইতীয় বিপ্লব\", revision 8101774",
+   "titleBn": "বাংলা উইকিপিডিয়া, «হাইতীয় বিপ্লব» (সংস্করণ ৮১০১৭৭৪)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%B9%E0%A6%BE%E0%A6%87%E0%A6%A4%E0%A7%80%E0%A6%AF%E0%A6%BC_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=8101774",
+   "read": "2026-10-01"
+  },
+  "bnwp:youngturk": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"তরুণ তুর্কি বিপ্লব\", revision 8358498",
+   "titleBn": "বাংলা উইকিপিডিয়া, «তরুণ তুর্কি বিপ্লব» (সংস্করণ ৮৩৫৮৪৯৮)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%A4%E0%A6%B0%E0%A7%81%E0%A6%A3_%E0%A6%A4%E0%A7%81%E0%A6%B0%E0%A7%8D%E0%A6%95%E0%A6%BF_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=8358498",
+   "read": "2026-10-01"
+  },
+  "bnwp:august1945": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"আগস্ট বিপ্লব\", revision 8600986",
+   "titleBn": "বাংলা উইকিপিডিয়া, «আগস্ট বিপ্লব» (সংস্করণ ৮৬০০৯৮৬)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%86%E0%A6%97%E0%A6%B8%E0%A7%8D%E0%A6%9F_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=8600986",
+   "read": "2026-10-01"
+  },
+  "enwp:august1945": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"August Revolution\", revision 1374471962",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “August Revolution” (সংস্করণ ১৩৭৪৪৭১৯৬২)",
+   "url": "https://en.wikipedia.org/w/index.php?title=August_Revolution&oldid=1374471962",
+   "read": "2026-10-01"
+  },
+  "bnwp:indonesia": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"ইন্দোনেশীয় জাতীয় বিপ্লব\", revision 8517477",
+   "titleBn": "বাংলা উইকিপিডিয়া, «ইন্দোনেশীয় জাতীয় বিপ্লব» (সংস্করণ ৮৫১৭৪৭৭)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%87%E0%A6%A8%E0%A7%8D%E0%A6%A6%E0%A7%8B%E0%A6%A8%E0%A7%87%E0%A6%B6%E0%A7%80%E0%A6%AF%E0%A6%BC_%E0%A6%9C%E0%A6%BE%E0%A6%A4%E0%A7%80%E0%A6%AF%E0%A6%BC_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=8517477",
+   "read": "2026-10-01"
+  },
+  "enwp:indonesia": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"Indonesian National Revolution\", revision 1376853638",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “Indonesian National Revolution” (সংস্করণ ১৩৭৬৮৫৩৬৩৮)",
+   "url": "https://en.wikipedia.org/w/index.php?title=Indonesian_National_Revolution&oldid=1376853638",
+   "read": "2026-10-01"
+  },
+  "bnwp:zanzibar": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"জাঞ্জিবার বিপ্লব\", revision 6737384",
+   "titleBn": "বাংলা উইকিপিডিয়া, «জাঞ্জিবার বিপ্লব» (সংস্করণ ৬৭৩৭৩৮৪)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%9C%E0%A6%BE%E0%A6%9E%E0%A7%8D%E0%A6%9C%E0%A6%BF%E0%A6%AC%E0%A6%BE%E0%A6%B0_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=6737384",
+   "read": "2026-10-01"
+  },
+  "enwp:zanzibar": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"Zanzibar Revolution\", revision 1375266442",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “Zanzibar Revolution” (সংস্করণ ১৩৭৫২৬৬৪৪২)",
+   "url": "https://en.wikipedia.org/w/index.php?title=Zanzibar_Revolution&oldid=1375266442",
+   "read": "2026-10-01"
+  },
+  "bnwp:iraq1958": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"১৪ জুলাই বিপ্লব\", revision 8160012",
+   "titleBn": "বাংলা উইকিপিডিয়া, «১৪ জুলাই বিপ্লব» (সংস্করণ ৮১৬০০১২)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A7%A7%E0%A7%AA_%E0%A6%9C%E0%A7%81%E0%A6%B2%E0%A6%BE%E0%A6%87_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=8160012",
+   "read": "2026-10-01"
+  },
+  "bnwp:iraq1963": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"রমজান বিপ্লব\", revision 8008955",
+   "titleBn": "বাংলা উইকিপিডিয়া, «রমজান বিপ্লব» (সংস্করণ ৮০০৮৯৫৫)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%B0%E0%A6%AE%E0%A6%9C%E0%A6%BE%E0%A6%A8_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=8008955",
+   "read": "2026-10-01"
+  },
+  "bnwp:iraq1968": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"১৭ জুলাই বিপ্লব\", revision 8005295",
+   "titleBn": "বাংলা উইকিপিডিয়া, «১৭ জুলাই বিপ্লব» (সংস্করণ ৮০০৫২৯৫)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A7%A7%E0%A7%AD_%E0%A6%9C%E0%A7%81%E0%A6%B2%E0%A6%BE%E0%A6%87_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=8005295",
+   "read": "2026-10-01"
+  },
+  "bnwp:nepal1951": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"১৯৫১ সালের নেপালি বিপ্লব\", revision 9094402",
+   "titleBn": "বাংলা উইকিপিডিয়া, «১৯৫১ সালের নেপালি বিপ্লব» (সংস্করণ ৯০৯৪৪০২)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A7%A7%E0%A7%AF%E0%A7%AB%E0%A7%A7_%E0%A6%B8%E0%A6%BE%E0%A6%B2%E0%A7%87%E0%A6%B0_%E0%A6%A8%E0%A7%87%E0%A6%AA%E0%A6%BE%E0%A6%B2%E0%A6%BF_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=9094402",
+   "read": "2026-10-01"
+  },
+  "enwp:nepal1951": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"1950–1951 Nepalese revolution\", revision 1376631425",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “1950–1951 Nepalese revolution” (সংস্করণ ১৩৭৬৬৩১৪২৫)",
+   "url": "https://en.wikipedia.org/w/index.php?title=1950%E2%80%931951_Nepalese_revolution&oldid=1376631425",
+   "read": "2026-10-01"
+  },
+  "bnwp:saffron": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"জাফরান বিপ্লব\", revision 7898186",
+   "titleBn": "বাংলা উইকিপিডিয়া, «জাফরান বিপ্লব» (সংস্করণ ৭৮৯৮১৮৬)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%9C%E0%A6%BE%E0%A6%AB%E0%A6%B0%E0%A6%BE%E0%A6%A8_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=7898186",
+   "read": "2026-10-01"
+  },
+  "enwp:saffron": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"Saffron Revolution\", revision 1376960445",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “Saffron Revolution” (সংস্করণ ১৩৭৬৯৬০৪৪৫)",
+   "url": "https://en.wikipedia.org/w/index.php?title=Saffron_Revolution&oldid=1376960445",
+   "read": "2026-10-01"
+  },
+  "enwp:tulip": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"Tulip Revolution\", revision 1372025111",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “Tulip Revolution” (সংস্করণ ১৩৭২০২৫১১১)",
+   "url": "https://en.wikipedia.org/w/index.php?title=Tulip_Revolution&oldid=1372025111",
+   "read": "2026-10-01"
+  },
+  "enwp:cedar": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"Cedar Revolution\", revision 1371725607",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “Cedar Revolution” (সংস্করণ ১৩৭১৭২৫৬০৭)",
+   "url": "https://en.wikipedia.org/w/index.php?title=Cedar_Revolution&oldid=1371725607",
+   "read": "2026-10-01"
+  },
+  "enwp:nicaragua": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"Nicaraguan Revolution\", revision 1374251997",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “Nicaraguan Revolution” (সংস্করণ ১৩৭৪২৫১৯৯৭)",
+   "url": "https://en.wikipedia.org/w/index.php?title=Nicaraguan_Revolution&oldid=1374251997",
+   "read": "2026-10-01"
+  },
+  "bnwp:jasmine": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"জেসমিন বিপ্লব\", revision 8865976",
+   "titleBn": "বাংলা উইকিপিডিয়া, «জেসমিন বিপ্লব» (সংস্করণ ৮৮৬৫৯৭৬)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%9C%E0%A7%87%E0%A6%B8%E0%A6%AE%E0%A6%BF%E0%A6%A8_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=8865976",
+   "read": "2026-10-01"
+  },
+  "enwp:jasmine": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"Tunisian revolution\", revision 1371335462",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “Tunisian revolution” (সংস্করণ ১৩৭১৩৩৫৪৬২)",
+   "url": "https://en.wikipedia.org/w/index.php?title=Tunisian_revolution&oldid=1371335462",
+   "read": "2026-10-01"
+  },
+  "enwp:egypt2011": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"2011 Egyptian revolution\", revision 1376336155",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “2011 Egyptian revolution” (সংস্করণ ১৩৭৬৩৩৬১৫৫)",
+   "url": "https://en.wikipedia.org/w/index.php?title=2011_Egyptian_revolution&oldid=1376336155",
+   "read": "2026-10-01"
+  },
+  "enwp:libya2011": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"Libyan civil war (2011)\", revision 1377207445",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “Libyan civil war (2011)” (সংস্করণ ১৩৭৭২০৭৪৪৫)",
+   "url": "https://en.wikipedia.org/w/index.php?title=Libyan_civil_war_(2011)&oldid=1377207445",
+   "read": "2026-10-01"
+  },
+  "enwp:syria": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"Syrian revolution\", revision 1376655795",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “Syrian revolution” (সংস্করণ ১৩৭৬৬৫৫৭৯৫)",
+   "url": "https://en.wikipedia.org/w/index.php?title=Syrian_revolution&oldid=1376655795",
+   "read": "2026-10-01"
+  },
+  "bnwp:bd2024": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"জুলাই গণঅভ্যুত্থান\", revision 9162636",
+   "titleBn": "বাংলা উইকিপিডিয়া, «জুলাই গণঅভ্যুত্থান» (সংস্করণ ৯১৬২৬৩৬)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%9C%E0%A7%81%E0%A6%B2%E0%A6%BE%E0%A6%87_%E0%A6%97%E0%A6%A3%E0%A6%85%E0%A6%AD%E0%A7%8D%E0%A6%AF%E0%A7%81%E0%A6%A4%E0%A7%8D%E0%A6%A5%E0%A6%BE%E0%A6%A8&oldid=9162636",
+   "read": "2026-10-01"
+  },
+  "bnwp:sepoy": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"সিপাহি বিদ্রোহ\", revision 9143935",
+   "titleBn": "বাংলা উইকিপিডিয়া, «সিপাহি বিদ্রোহ» (সংস্করণ ৯১৪৩৯৩৫)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%B8%E0%A6%BF%E0%A6%AA%E0%A6%BE%E0%A6%B9%E0%A6%BF_%E0%A6%AC%E0%A6%BF%E0%A6%A6%E0%A7%8D%E0%A6%B0%E0%A7%8B%E0%A6%B9&oldid=9143935",
+   "read": "2026-10-01"
+  },
+  "enwp:sepoy": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"Indian Rebellion of 1857\", revision 1377649380",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “Indian Rebellion of 1857” (সংস্করণ ১৩৭৭৬৪৯৩৮০)",
+   "url": "https://en.wikipedia.org/w/index.php?title=Indian_Rebellion_of_1857&oldid=1377649380",
+   "read": "2026-10-01"
+  },
+  "bnwp:fakir": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"ফকির-সন্ন্যাসী বিদ্রোহ\", revision 8601641",
+   "titleBn": "বাংলা উইকিপিডিয়া, «ফকির-সন্ন্যাসী বিদ্রোহ» (সংস্করণ ৮৬০১৬৪১)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AB%E0%A6%95%E0%A6%BF%E0%A6%B0-%E0%A6%B8%E0%A6%A8%E0%A7%8D%E0%A6%A8%E0%A7%8D%E0%A6%AF%E0%A6%BE%E0%A6%B8%E0%A7%80_%E0%A6%AC%E0%A6%BF%E0%A6%A6%E0%A7%8D%E0%A6%B0%E0%A7%8B%E0%A6%B9&oldid=8601641",
+   "read": "2026-10-01"
+  },
+  "enwp:maumau": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"Mau Mau rebellion\", revision 1377511905",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “Mau Mau rebellion” (সংস্করণ ১৩৭৭৫১১৯০৫)",
+   "url": "https://en.wikipedia.org/w/index.php?title=Mau_Mau_rebellion&oldid=1377511905",
+   "read": "2026-10-01"
+  },
+  "enwp:contras": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"Contras\", revision 1376506352",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “Contras” (সংস্করণ ১৩৭৬৫০৬৩৫২)",
+   "url": "https://en.wikipedia.org/w/index.php?title=Contras&oldid=1376506352",
+   "read": "2026-10-01"
+  },
+  "bnwp:nachole": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"নাচোল বিদ্রোহ\", revision 7934659",
+   "titleBn": "বাংলা উইকিপিডিয়া, «নাচোল বিদ্রোহ» (সংস্করণ ৭৯৩৪৬৫৯)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%A8%E0%A6%BE%E0%A6%9A%E0%A7%8B%E0%A6%B2_%E0%A6%AC%E0%A6%BF%E0%A6%A6%E0%A7%8D%E0%A6%B0%E0%A7%8B%E0%A6%B9&oldid=7934659",
+   "read": "2026-10-01"
+  },
+  "bnwp:santal": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"সাঁওতাল বিদ্রোহ\", revision 8960235",
+   "titleBn": "বাংলা উইকিপিডিয়া, «সাঁওতাল বিদ্রোহ» (সংস্করণ ৮৯৬০২৩৫)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%B8%E0%A6%BE%E0%A6%81%E0%A6%93%E0%A6%A4%E0%A6%BE%E0%A6%B2_%E0%A6%AC%E0%A6%BF%E0%A6%A6%E0%A7%8D%E0%A6%B0%E0%A7%8B%E0%A6%B9&oldid=8960235",
+   "read": "2026-10-01"
+  },
+  "bnwp:kaivarta": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"বরেন্দ্র বিদ্রোহ\", revision 8929514",
+   "titleBn": "বাংলা উইকিপিডিয়া, «বরেন্দ্র বিদ্রোহ» (সংস্করণ ৮৯২৯৫১৪)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AC%E0%A6%B0%E0%A7%87%E0%A6%A8%E0%A7%8D%E0%A6%A6%E0%A7%8D%E0%A6%B0_%E0%A6%AC%E0%A6%BF%E0%A6%A6%E0%A7%8D%E0%A6%B0%E0%A7%8B%E0%A6%B9&oldid=8929514",
+   "read": "2026-10-01"
+  },
+  "enwp:kaivarta": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"Varendra rebellion\", revision 1370749097",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “Varendra rebellion” (সংস্করণ ১৩৭০৭৪৯০৯৭)",
+   "url": "https://en.wikipedia.org/w/index.php?title=Varendra_rebellion&oldid=1370749097",
+   "read": "2026-10-01"
+  },
+  "bnwp:chakma": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"চাকমা বিদ্রোহ\", revision 9161422",
+   "titleBn": "বাংলা উইকিপিডিয়া, «চাকমা বিদ্রোহ» (সংস্করণ ৯১৬১৪২২)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%9A%E0%A6%BE%E0%A6%95%E0%A6%AE%E0%A6%BE_%E0%A6%AC%E0%A6%BF%E0%A6%A6%E0%A7%8D%E0%A6%B0%E0%A7%8B%E0%A6%B9&oldid=9161422",
+   "read": "2026-10-01"
+  },
+  "bnwp:moamoria": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"মোয়ামরীয়া বিদ্রোহ\", revision 8978600",
+   "titleBn": "বাংলা উইকিপিডিয়া, «মোয়ামরীয়া বিদ্রোহ» (সংস্করণ ৮৯৭৮৬০০)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AE%E0%A7%8B%E0%A6%AF%E0%A6%BC%E0%A6%BE%E0%A6%AE%E0%A6%B0%E0%A7%80%E0%A6%AF%E0%A6%BC%E0%A6%BE_%E0%A6%AC%E0%A6%BF%E0%A6%A6%E0%A7%8D%E0%A6%B0%E0%A7%8B%E0%A6%B9&oldid=8978600",
+   "read": "2026-10-01"
+  },
+  "bnwp:alsace1918": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"১৯১৮-এর নভেম্বরে আলজাস-লরেনে বিদ্রোহ\", revision 9069510",
+   "titleBn": "বাংলা উইকিপিডিয়া, «১৯১৮-এর নভেম্বরে আলজাস-লরেনে বিদ্রোহ» (সংস্করণ ৯০৬৯৫১০)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A7%A7%E0%A7%AF%E0%A7%A7%E0%A7%AE-%E0%A6%8F%E0%A6%B0_%E0%A6%A8%E0%A6%AD%E0%A7%87%E0%A6%AE%E0%A7%8D%E0%A6%AC%E0%A6%B0%E0%A7%87_%E0%A6%86%E0%A6%B2%E0%A6%9C%E0%A6%BE%E0%A6%B8-%E0%A6%B2%E0%A6%B0%E0%A7%87%E0%A6%A8%E0%A7%87_%E0%A6%AC%E0%A6%BF%E0%A6%A6%E0%A7%8D%E0%A6%B0%E0%A7%8B%E0%A6%B9&oldid=9069510",
+   "read": "2026-10-01"
+  },
+  "enwp:alsace1918": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"November 1918 insurgency in Alsace–Lorraine\", revision 1377258918",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “November 1918 insurgency in Alsace–Lorraine” (সংস্করণ ১৩৭৭২৫৮৯১৮)",
+   "url": "https://en.wikipedia.org/w/index.php?title=November_1918_insurgency_in_Alsace%E2%80%93Lorraine&oldid=1377258918",
+   "read": "2026-10-01"
+  },
+  "bnwp:chechen1940": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"১৯৪০–১৯৪৪ সালের চেচেন-ইঙ্গুশ বিদ্রোহ\", revision 8983583",
+   "titleBn": "বাংলা উইকিপিডিয়া, «১৯৪০–১৯৪৪ সালের চেচেন-ইঙ্গুশ বিদ্রোহ» (সংস্করণ ৮৯৮৩৫৮৩)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A7%A7%E0%A7%AF%E0%A7%AA%E0%A7%A6%E2%80%93%E0%A7%A7%E0%A7%AF%E0%A7%AA%E0%A7%AA_%E0%A6%B8%E0%A6%BE%E0%A6%B2%E0%A7%87%E0%A6%B0_%E0%A6%9A%E0%A7%87%E0%A6%9A%E0%A7%87%E0%A6%A8-%E0%A6%87%E0%A6%99%E0%A7%8D%E0%A6%97%E0%A7%81%E0%A6%B6_%E0%A6%AC%E0%A6%BF%E0%A6%A6%E0%A7%8D%E0%A6%B0%E0%A7%8B%E0%A6%B9&oldid=8983583",
+   "read": "2026-10-01"
+  },
+  "enwp:chechen1940": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"1940–1944 insurgency in Chechnya\", revision 1370279204",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “1940–1944 insurgency in Chechnya” (সংস্করণ ১৩৭০২৭৯২০৪)",
+   "url": "https://en.wikipedia.org/w/index.php?title=1940%E2%80%931944_insurgency_in_Chechnya&oldid=1370279204",
+   "read": "2026-10-01"
+  },
+  "bnwp:bd1990": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"নব্বইয়ের স্বৈরাচারবিরোধী আন্দোলন\", revision 8936245",
+   "titleBn": "বাংলা উইকিপিডিয়া, «নব্বইয়ের স্বৈরাচারবিরোধী আন্দোলন» (সংস্করণ ৮৯৩৬২৪৫)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%A8%E0%A6%AC%E0%A7%8D%E0%A6%AC%E0%A6%87%E0%A6%AF%E0%A6%BC%E0%A7%87%E0%A6%B0_%E0%A6%B8%E0%A7%8D%E0%A6%AC%E0%A7%88%E0%A6%B0%E0%A6%BE%E0%A6%9A%E0%A6%BE%E0%A6%B0%E0%A6%AC%E0%A6%BF%E0%A6%B0%E0%A7%8B%E0%A6%A7%E0%A7%80_%E0%A6%86%E0%A6%A8%E0%A7%8D%E0%A6%A6%E0%A7%8B%E0%A6%B2%E0%A6%A8&oldid=8936245",
+   "read": "2026-10-01"
+  },
+  "bnwp:industrial": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"শিল্প বিপ্লব\", revision 9075208",
+   "titleBn": "বাংলা উইকিপিডিয়া, «শিল্প বিপ্লব» (সংস্করণ ৯০৭৫২০৮)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%B6%E0%A6%BF%E0%A6%B2%E0%A7%8D%E0%A6%AA_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=9075208",
+   "read": "2026-10-01"
+  },
+  "bnwp:fourth_ind": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"চতুর্থ শিল্প বিপ্লব\", revision 9017191",
+   "titleBn": "বাংলা উইকিপিডিয়া, «চতুর্থ শিল্প বিপ্লব» (সংস্করণ ৯০১৭১৯১)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%9A%E0%A6%A4%E0%A7%81%E0%A6%B0%E0%A7%8D%E0%A6%A5_%E0%A6%B6%E0%A6%BF%E0%A6%B2%E0%A7%8D%E0%A6%AA_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=9017191",
+   "read": "2026-10-01"
+  },
+  "bnwp:green": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"সবুজ বিপ্লব\", revision 8007781",
+   "titleBn": "বাংলা উইকিপিডিয়া, «সবুজ বিপ্লব» (সংস্করণ ৮০০৭৭৮১)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%B8%E0%A6%AC%E0%A7%81%E0%A6%9C_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=8007781",
+   "read": "2026-10-01"
+  },
+  "bnwp:agri_uk": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"ব্রিটিশ কৃষি বিপ্লব\", revision 8913115",
+   "titleBn": "বাংলা উইকিপিডিয়া, «ব্রিটিশ কৃষি বিপ্লব» (সংস্করণ ৮৯১৩১১৫)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AC%E0%A7%8D%E0%A6%B0%E0%A6%BF%E0%A6%9F%E0%A6%BF%E0%A6%B6_%E0%A6%95%E0%A7%83%E0%A6%B7%E0%A6%BF_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=8913115",
+   "read": "2026-10-01"
+  },
+  "bnwp:neolithic": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"নব্যপ্রস্তর যুগীয় বিপ্লব\", revision 8524320",
+   "titleBn": "বাংলা উইকিপিডিয়া, «নব্যপ্রস্তর যুগীয় বিপ্লব» (সংস্করণ ৮৫২৪৩২০)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%A8%E0%A6%AC%E0%A7%8D%E0%A6%AF%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A6%B8%E0%A7%8D%E0%A6%A4%E0%A6%B0_%E0%A6%AF%E0%A7%81%E0%A6%97%E0%A7%80%E0%A6%AF%E0%A6%BC_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=8524320",
+   "read": "2026-10-01"
+  },
+  "bnwp:scientific": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"বৈজ্ঞানিক বিপ্লব\", revision 7125262",
+   "titleBn": "বাংলা উইকিপিডিয়া, «বৈজ্ঞানিক বিপ্লব» (সংস্করণ ৭১২৫২৬২)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AC%E0%A7%88%E0%A6%9C%E0%A7%8D%E0%A6%9E%E0%A6%BE%E0%A6%A8%E0%A6%BF%E0%A6%95_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=7125262",
+   "read": "2026-10-01"
+  },
+  "bnwp:digital": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"ডিজিটাল বিপ্লব\", revision 8950767",
+   "titleBn": "বাংলা উইকিপিডিয়া, «ডিজিটাল বিপ্লব» (সংস্করণ ৮৯৫০৭৬৭)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%A1%E0%A6%BF%E0%A6%9C%E0%A6%BF%E0%A6%9F%E0%A6%BE%E0%A6%B2_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=8950767",
+   "read": "2026-10-01"
+  },
+  "enwp:second_ind": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"Second Industrial Revolution\", revision 1377204844",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “Second Industrial Revolution” (সংস্করণ ১৩৭৭২০৪৮৪৪)",
+   "url": "https://en.wikipedia.org/w/index.php?title=Second_Industrial_Revolution&oldid=1377204844",
+   "read": "2026-10-01"
+  },
+  "bnwp:cat:দ্বিতীয় শিল্প বিপ্লব": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"বিষয়শ্রেণী:দ্বিতীয় শিল্প বিপ্লব\", revision 6821104",
+   "titleBn": "বাংলা উইকিপিডিয়া, «বিষয়শ্রেণী:দ্বিতীয় শিল্প বিপ্লব» (সংস্করণ ৬৮২১১০৪)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AC%E0%A6%BF%E0%A6%B7%E0%A6%AF%E0%A6%BC%E0%A6%B6%E0%A7%8D%E0%A6%B0%E0%A7%87%E0%A6%A3%E0%A7%80%3A%E0%A6%A6%E0%A7%8D%E0%A6%AC%E0%A6%BF%E0%A6%A4%E0%A7%80%E0%A6%AF%E0%A6%BC_%E0%A6%B6%E0%A6%BF%E0%A6%B2%E0%A7%8D%E0%A6%AA_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=6821104",
+   "read": "2026-10-01"
+  },
+  "bnwp:cat:নিকারাগুয়ান বিপ্লব": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"বিষয়শ্রেণী:নিকারাগুয়ান বিপ্লব\", revision 8036464",
+   "titleBn": "বাংলা উইকিপিডিয়া, «বিষয়শ্রেণী:নিকারাগুয়ান বিপ্লব» (সংস্করণ ৮০৩৬৪৬৪)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AC%E0%A6%BF%E0%A6%B7%E0%A6%AF%E0%A6%BC%E0%A6%B6%E0%A7%8D%E0%A6%B0%E0%A7%87%E0%A6%A3%E0%A7%80%3A%E0%A6%A8%E0%A6%BF%E0%A6%95%E0%A6%BE%E0%A6%B0%E0%A6%BE%E0%A6%97%E0%A7%81%E0%A6%AF%E0%A6%BC%E0%A6%BE%E0%A6%A8_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=8036464",
+   "read": "2026-10-01"
+  },
+  "bnwp:21-october": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"২১ অক্টোবর\", revision 9132975",
+   "titleBn": "বাংলা উইকিপিডিয়া, «২১ অক্টোবর» (সংস্করণ ৯১৩২৯৭৫)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A7%A8%E0%A7%A7_%E0%A6%85%E0%A6%95%E0%A7%8D%E0%A6%9F%E0%A7%8B%E0%A6%AC%E0%A6%B0&oldid=9132975",
+   "read": "2026-10-01"
+  },
+  "ne:admin0": {
+   "kind": "natural-earth",
+   "title": "Natural Earth v5.1.2, ne_10m_admin_0_countries_bdg (NAME_BN), pinned in tools/sources.json",
+   "titleBn": "Natural Earth-এর দেশের তালিকার বাংলা নাম",
+   "url": "https://www.naturalearthdata.com/",
+   "read": "2026-10-01"
+  },
+  "nctb:H910-৪২": {
+   "kind": "nctb",
+   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (2026), p. ৪২",
+   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬), পৃষ্ঠা ৪২",
+   "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
+   "file": "itihas-2026.pdf",
+   "sha256": "0e0521c3ddcdd61e1414e0aec431570a80f661d7f31d4bae0260e20ea4583e5b",
+   "read": "2026-10-01"
+  },
+  "nctb:H910-১০৯": {
+   "kind": "nctb",
+   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (2026), p. ১০৯",
+   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬), পৃষ্ঠা ১০৯",
+   "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
+   "file": "itihas-2026.pdf",
+   "sha256": "0e0521c3ddcdd61e1414e0aec431570a80f661d7f31d4bae0260e20ea4583e5b",
+   "read": "2026-10-01"
+  },
+  "nctb:H910-১১৩": {
+   "kind": "nctb",
+   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (2026), p. ১১৩",
+   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬), পৃষ্ঠা ১১৩",
+   "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
+   "file": "itihas-2026.pdf",
+   "sha256": "0e0521c3ddcdd61e1414e0aec431570a80f661d7f31d4bae0260e20ea4583e5b",
+   "read": "2026-10-01"
+  },
+  "nctb:H910-১২৩": {
+   "kind": "nctb",
+   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (2026), p. ১২৩",
+   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬), পৃষ্ঠা ১২৩",
+   "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
+   "file": "itihas-2026.pdf",
+   "sha256": "0e0521c3ddcdd61e1414e0aec431570a80f661d7f31d4bae0260e20ea4583e5b",
+   "read": "2026-10-01"
+  },
+  "nctb:H910-১৬০": {
+   "kind": "nctb",
+   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (2026), p. ১৬০",
+   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬), পৃষ্ঠা ১৬০",
+   "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
+   "file": "itihas-2026.pdf",
+   "sha256": "0e0521c3ddcdd61e1414e0aec431570a80f661d7f31d4bae0260e20ea4583e5b",
+   "read": "2026-10-01"
+  },
+  "nctb:H910-১৬১": {
+   "kind": "nctb",
+   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (2026), p. ১৬১",
+   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬), পৃষ্ঠা ১৬১",
+   "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
+   "file": "itihas-2026.pdf",
+   "sha256": "0e0521c3ddcdd61e1414e0aec431570a80f661d7f31d4bae0260e20ea4583e5b",
+   "read": "2026-10-01"
+  },
+  "nctb:H910-১৮৩": {
+   "kind": "nctb",
+   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (2026), p. ১৮৩",
+   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬), পৃষ্ঠা ১৮৩",
+   "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
+   "file": "itihas-2026.pdf",
+   "sha256": "0e0521c3ddcdd61e1414e0aec431570a80f661d7f31d4bae0260e20ea4583e5b",
+   "read": "2026-10-01"
+  },
+  "nctb:H910-১৮৪": {
+   "kind": "nctb",
+   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (2026), p. ১৮৪",
+   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬), পৃষ্ঠা ১৮৪",
+   "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
+   "file": "itihas-2026.pdf",
+   "sha256": "0e0521c3ddcdd61e1414e0aec431570a80f661d7f31d4bae0260e20ea4583e5b",
+   "read": "2026-10-01"
+  },
+  "nctb:H910-১৮৫": {
+   "kind": "nctb",
+   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (2026), p. ১৮৫",
+   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬), পৃষ্ঠা ১৮৫",
+   "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
+   "file": "itihas-2026.pdf",
+   "sha256": "0e0521c3ddcdd61e1414e0aec431570a80f661d7f31d4bae0260e20ea4583e5b",
+   "read": "2026-10-01"
+  },
+  "exam:24bcs-cb": {
+   "kind": "exam",
+   "title": "Chakri Bangla: https://www.chakribangla.com/bcs-question-solution/24-bcs.html",
+   "titleBn": "চাকরি বাংলা, ২৪তম বিসিএস (প্রশ্ন ৮৪)",
+   "url": "https://www.chakribangla.com/bcs-question-solution/24-bcs.html",
+   "read": "2026-10-01"
+  },
+  "exam:10bcs-am": {
+   "kind": "exam",
+   "title": "Active MCQ: https://activemcq.com/dynamic-post/10th-bcs-question-and-solution/",
+   "titleBn": "Active MCQ, ১০ম বিসিএস (প্রশ্ন ১০)",
+   "url": "https://activemcq.com/dynamic-post/10th-bcs-question-and-solution/",
+   "read": "2026-10-01"
+  },
+  "exam:44bcs-cb": {
+   "kind": "exam",
+   "title": "Chakri Bangla: https://www.chakribangla.com/bcs-question-solution/44-bcs.html",
+   "titleBn": "চাকরি বাংলা, ৪৪তম বিসিএস",
+   "url": "https://www.chakribangla.com/bcs-question-solution/44-bcs.html",
+   "read": "2026-10-01"
+  },
+  "exam:44bcs-bs": {
+   "kind": "exam",
+   "title": "BCS Study: https://www.bcsstudy.com/question/44th-bcs-question-and-solution/",
+   "titleBn": "BCS Study, ৪৪তম বিসিএস",
+   "url": "https://www.bcsstudy.com/question/44th-bcs-question-and-solution/",
+   "read": "2026-10-01"
+  },
+  "exam:tulip-me": {
+   "kind": "exam",
+   "title": "MyExaminer: https://myexaminer.net/Argues/view/2750545922",
+   "titleBn": "MyExaminer, প্রশ্নব্যাংক",
+   "url": "https://myexaminer.net/Argues/view/2750545922",
+   "read": "2026-10-01"
+  },
+  "exam:tulip-ch": {
+   "kind": "exam",
+   "title": "Chorcha: https://chorcha.net/question/XJKkkhRZCv",
+   "titleBn": "Chorcha, প্রশ্নব্যাংক",
+   "url": "https://chorcha.net/question/XJKkkhRZCv",
+   "read": "2026-10-01"
+  },
+  "exam:cedar-me": {
+   "kind": "exam",
+   "title": "MyExaminer: https://myexaminer.net/Argues/view/400490499",
+   "titleBn": "MyExaminer, প্রশ্নব্যাংক",
+   "url": "https://myexaminer.net/Argues/view/400490499",
+   "read": "2026-10-01"
+  },
+  "exam:studypress": {
+   "kind": "exam",
+   "title": "Studypress: https://studypress.org/single-blog/25",
+   "titleBn": "Studypress, প্রশ্নব্যাংক",
+   "url": "https://studypress.org/single-blog/25",
+   "read": "2026-10-01"
+  },
+  "exam:jui-me": {
+   "kind": "exam",
+   "title": "MyExaminer: https://myexaminer.net/Argues/view/990052357",
+   "titleBn": "MyExaminer, প্রশ্নব্যাংক",
+   "url": "https://myexaminer.net/Argues/view/990052357",
+   "read": "2026-10-01"
+  },
+  "exam:49bcs-bb": {
+   "kind": "exam",
+   "title": "Biddabari: https://biddabari.com/bcs-question-bank/49th-bcs-question-solution",
+   "titleBn": "বিদ্যাবাড়ি, ৪৯তম বিশেষ বিসিএস (প্রশ্ন ৬৪)",
+   "url": "https://biddabari.com/bcs-question-bank/49th-bcs-question-solution",
+   "read": "2026-10-01"
+  },
+  "exam:sepoy-sa": {
+   "kind": "exam",
+   "title": "Satt Academy: https://sattacademy.com/all-mcq/সিপাহী-বিদ্রোহ-১৮৫৭",
+   "titleBn": "স্যাট একাডেমি, «সিপাহী বিদ্রোহ ১৮৫৭»",
+   "url": "https://sattacademy.com/all-mcq/সিপাহী-বিদ্রোহ-১৮৫৭",
+   "read": "2026-10-01"
+  },
+  "exam:sepoy-biplob-me": {
+   "kind": "exam",
+   "title": "MyExaminer: https://myexaminer.net/Argues/view/2303918081",
+   "titleBn": "MyExaminer, প্রশ্নব্যাংক",
+   "url": "https://myexaminer.net/Argues/view/2303918081",
+   "read": "2026-10-01"
+  },
+  "exam:fakir-cb": {
+   "kind": "exam",
+   "title": "Chakri Bangla: https://www.chakribangla.com/primary-teacher-exam-question-solution/2019-primary-teacher-exam-question-solution/2019-primary-teacher-4th-phase.html",
+   "titleBn": "চাকরি বাংলা, প্রাথমিক সহকারী শিক্ষক ২০১৯ (৪র্থ ধাপ)",
+   "url": "https://www.chakribangla.com/primary-teacher-exam-question-solution/2019-primary-teacher-exam-question-solution/2019-primary-teacher-4th-phase.html",
+   "read": "2026-10-01"
+  },
+  "exam:fakir-me": {
+   "kind": "exam",
+   "title": "MyExaminer: https://myexaminer.net/Argues/view/3242131457",
+   "titleBn": "MyExaminer, প্রাথমিক সহকারী শিক্ষক ২০১৯ (৪র্থ পর্যায়)",
+   "url": "https://myexaminer.net/Argues/view/3242131457",
+   "read": "2026-10-01"
+  },
+  "exam:17bcs-me": {
+   "kind": "exam",
+   "title": "MyExaminer: https://myexaminer.net/Argues/view/1455226880",
+   "titleBn": "MyExaminer, ১৭তম বিসিএস (প্রশ্ন ৫৩)",
+   "url": "https://myexaminer.net/Argues/view/1455226880",
+   "read": "2026-10-01"
+  },
+  "exam:42bcs-cb": {
+   "kind": "exam",
+   "title": "Chakri Bangla: https://www.chakribangla.com/bcs-question-solution/42-bcs-special-general-part.html",
+   "titleBn": "চাকরি বাংলা, ৪২তম বিশেষ বিসিএস (প্রশ্ন ৬৮)",
+   "url": "https://www.chakribangla.com/bcs-question-solution/42-bcs-special-general-part.html",
+   "read": "2026-10-01"
+  },
+  "exam:42bcs-bissoy": {
+   "kind": "exam",
+   "title": "Bissoy: https://www.bissoy.com/mcq/63117",
+   "titleBn": "Bissoy, ৪২তম বিশেষ বিসিএস",
+   "url": "https://www.bissoy.com/mcq/63117",
+   "read": "2026-10-01"
+  },
+  "exam:42bcs-bs": {
+   "kind": "exam",
+   "title": "BCS Study: https://www.bcsstudy.com/question/42th-bcs-question-and-solution/",
+   "titleBn": "BCS Study, ৪২তম বিসিএস",
+   "url": "https://www.bcsstudy.com/question/42th-bcs-question-and-solution/",
+   "read": "2026-10-01"
+  },
+  "exam:green-bs": {
+   "kind": "exam",
+   "title": "BCS Study: https://www.bcsstudy.com/question/govt-high-school-question-solution-2008/",
+   "titleBn": "BCS Study, সরকারি মাধ্যমিক বিদ্যালয় সহকারী শিক্ষক ২০০৮",
+   "url": "https://www.bcsstudy.com/question/govt-high-school-question-solution-2008/",
+   "read": "2026-10-01"
+  },
+  "exam:industrial-sa": {
+   "kind": "exam",
+   "title": "Satt Academy: https://sattacademy.com/all-mcq/শিল্প-বিপ্লব",
+   "titleBn": "স্যাট একাডেমি, «শিল্প বিপ্লব» (২৬টি পরীক্ষা)",
+   "url": "https://sattacademy.com/all-mcq/শিল্প-বিপ্লব",
+   "read": "2026-10-01"
+  }
+ },
+ "events": [
+  {
+   "id": "french-revolution",
+   "tab": "revolution",
+   "nameBn": "ফরাসি বিপ্লব",
+   "nameEn": "French Revolution",
+   "whenBn": "১৭৮৯",
+   "from": 1789,
+   "placeBn": "ফ্রান্স",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "nctb:H910-১১৩",
+      "states": "«ফরাসি বিপ্লব (১৭৮৯ সালে)»"
+     },
+     {
+      "ref": "bnwp:french",
+      "states": "ফরাসি বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "nctb:H910-১১৩",
+      "states": "«ফরাসি বিপ্লব (১৭৮৯ সালে)»"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:french",
+      "states": "[[ফ্রান্স]]",
+      "where": "infobox"
+     }
+    ],
+    "point": [
+     {
+      "ref": "bnwp:french",
+      "states": "[[ফ্রান্স]]",
+      "where": "infobox"
+     }
+    ]
+   },
+   "conflicts": [
+    {
+     "field": "whenBn",
+     "others": [
+      {
+       "valueBn": "১৭৮৯–১৭৯৯",
+       "cite": [
+        {
+         "ref": "bnwp:french",
+         "states": "ফরাসি বিপ্লব ( ফরাসি: Révolution Française; ১৭৮৯–১৭৯৯ )"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "FRA"
+   }
+  },
+  {
+   "id": "russian-revolution",
+   "tab": "revolution",
+   "nameBn": "রুশ বিপ্লব",
+   "nameEn": "Russian Revolution",
+   "whenBn": "১৯১৭",
+   "from": 1917,
+   "placeBn": "পেট্রোগ্রাড",
+   "aka": [
+    {
+     "textBn": "অক্টোবর বিপ্লব",
+     "cite": [
+      {
+       "ref": "bnwp:russian",
+       "states": "রুশ বিপ্লব হচ্ছে বলশেভিক বিপ্লব এবং অক্টোবর বিপ্লবের সমন্বিত রূপ"
+      }
+     ]
+    },
+    {
+     "textBn": "বলশেভিক বিপ্লব",
+     "cite": [
+      {
+       "ref": "bnwp:russian",
+       "states": "রুশ বিপ্লব হচ্ছে বলশেভিক বিপ্লব এবং অক্টোবর বিপ্লবের সমন্বিত রূপ"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:russian",
+      "states": "রুশ বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:russian",
+      "states": "১৬ মার্চ ১৯১৭",
+      "where": "infobox"
+     },
+     {
+      "ref": "bnwp:russian",
+      "states": "৮ নভেম্বর ১৯১৭",
+      "where": "infobox"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:october",
+      "states": "[[সেইন্ট পিটার্সবার্গ|পেট্রোগ্রাড]]",
+      "where": "infobox"
+     },
+     {
+      "ref": "bnwp:february",
+      "states": "পেট্রোগ্রাদ",
+      "where": "infobox"
+     }
+    ],
+    "point": [
+     {
+      "ref": "bnwp:october",
+      "states": "[[সেইন্ট পিটার্সবার্গ|পেট্রোগ্রাড]]",
+      "where": "infobox"
+     }
+    ]
+   },
+   "conflicts": [
+    {
+     "field": "whenBn",
+     "others": [
+      {
+       "valueBn": "৮ মার্চ ১৯১৭ – ২৫ অক্টোবর ১৯২২",
+       "cite": [
+        {
+         "ref": "enwp:russian",
+         "states": "8 March 1917 – 25 October 1922",
+         "where": "infobox"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "notesBn": [
+    "এই নিবন্ধের তথ্যছকে স্থান «রুশ সাম্রাজ্য»; মার্কারটি «অক্টোবর বিপ্লব» নিবন্ধের স্থান পেট্রোগ্রাডে, যার সংযোগ «সেইন্ট পিটার্সবার্গ» নিবন্ধে। «ফেব্রুয়ারি বিপ্লব» নিবন্ধে বানান «পেট্রোগ্রাদ»।"
+   ],
+   "point": {
+    "marker": "dot",
+    "source": "NE-pp",
+    "name": "St.  Petersburg",
+    "adm0": "RUS",
+    "matchAs": "Saint Petersburg",
+    "historical": true,
+    "match": [
+     {
+      "ref": "bnwp:october",
+      "states": "[[সেইন্ট পিটার্সবার্গ|পেট্রোগ্রাড]]",
+      "where": "infobox"
+     },
+     {
+      "ref": "enwp:october",
+      "states": "[[Saint Petersburg|Petrograd]]",
+      "where": "infobox"
+     }
+    ]
+   }
+  },
+  {
+   "id": "iranian-revolution",
+   "tab": "revolution",
+   "nameBn": "ইরানি বিপ্লব",
+   "nameEn": "Iranian Revolution",
+   "whenBn": "জানুয়ারি ১৯৭৮ – ফেব্রুয়ারি ১৯৭৯",
+   "from": 1978,
+   "placeBn": "ইরান",
+   "aka": [
+    {
+     "textBn": "ইসলামি বিপ্লব",
+     "cite": [
+      {
+       "ref": "bnwp:iranian",
+       "states": "ইরানি বিপ্লব (যা ইসলামি বিপ্লব বা ১৯৭৯ সালের বিপ্লব নামেও পরিচিত)"
+      }
+     ]
+    },
+    {
+     "textBn": "১৯৭৯ সালের বিপ্লব",
+     "cite": [
+      {
+       "ref": "bnwp:iranian",
+       "states": "ইরানি বিপ্লব (যা ইসলামি বিপ্লব বা ১৯৭৯ সালের বিপ্লব নামেও পরিচিত)"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:iranian",
+      "states": "ইরানি বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:iranian",
+      "states": "|জানুয়ারি ১৯৭৮]] – [[১৯৭৯#ঘটনার তালিকা#ফেব্রুয়ারি|ফেব্রুয়ারি ১৯৭৯]]",
+      "where": "infobox"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:iranian",
+      "states": "[[ইরান]]",
+      "where": "infobox"
+     }
+    ],
+    "point": [
+     {
+      "ref": "bnwp:iranian",
+      "states": "[[ইরান]]",
+      "where": "infobox"
+     }
+    ]
+   },
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "IRN"
+   }
+  },
+  {
+   "id": "orange-revolution",
+   "tab": "revolution",
+   "nameBn": "কমলা বিপ্লব",
+   "nameEn": "Orange Revolution",
+   "whenBn": "নভেম্বর ২০০৪ – জানুয়ারি ২০০৫",
+   "from": 2004,
+   "placeBn": "কিয়েভ, ইউক্রেন",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:orange",
+      "states": "কমলা বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:orange",
+      "states": "কমলা বিপ্লব ছিল ২০০৪ সালের নভেম্বরের শেষের দিক থেকে ২০০৫ সালের জানুয়ারি পর্যন্ত ইউক্রেনে"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:orange",
+      "states": "ইউক্রেনের রাজধানী কিয়েভ ছিল আন্দোলনের নাগরিক প্রতিরোধ অভিযানের কেন্দ্রবিন্দু"
+     }
+    ],
+    "point": [
+     {
+      "ref": "bnwp:orange",
+      "states": "ইউক্রেনের রাজধানী কিয়েভ ছিল আন্দোলনের নাগরিক প্রতিরোধ অভিযানের কেন্দ্রবিন্দু"
+     }
+    ]
+   },
+   "point": {
+    "marker": "dot",
+    "source": "NE-pp",
+    "name": "Kyiv",
+    "adm0": "UKR"
+   }
+  },
+  {
+   "id": "rose-revolution",
+   "tab": "revolution",
+   "nameBn": "গোলাপ বিপ্লব",
+   "nameEn": "Rose Revolution",
+   "whenBn": "নভেম্বর ২০০৩",
+   "from": 2003,
+   "placeBn": "জর্জিয়া",
+   "aka": [
+    {
+     "textBn": "রোজ বিপ্লব",
+     "cite": [
+      {
+       "ref": "bnwp:rose",
+       "states": "গোলাপ বিপ্লব বা রোজ বিপ্লব ছিল ২০০৩ সালের নভেম্বরে জর্জিয়ায়"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:rose",
+      "states": "গোলাপ বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:rose",
+      "states": "গোলাপ বিপ্লব বা রোজ বিপ্লব ছিল ২০০৩ সালের নভেম্বরে জর্জিয়ায়"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:rose",
+      "states": "গোলাপ বিপ্লব বা রোজ বিপ্লব ছিল ২০০৩ সালের নভেম্বরে জর্জিয়ায়"
+     }
+    ],
+    "point": [
+     {
+      "ref": "bnwp:rose",
+      "states": "গোলাপ বিপ্লব বা রোজ বিপ্লব ছিল ২০০৩ সালের নভেম্বরে জর্জিয়ায়"
+     }
+    ]
+   },
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "GEO"
+   }
+  },
+  {
+   "id": "cultural-revolution",
+   "tab": "revolution",
+   "nameBn": "সাংস্কৃতিক বিপ্লব",
+   "nameEn": "Cultural Revolution",
+   "whenBn": "১৯৬৬–১৯৭৬",
+   "from": 1966,
+   "placeBn": "গণপ্রজাতন্ত্রী চীন",
+   "aka": [
+    {
+     "textBn": "মহান প্রলেতারীয় সাংস্কৃতিক বিপ্লব",
+     "cite": [
+      {
+       "ref": "bnwp:cultural",
+       "states": "সাংস্কৃতিক বিপ্লব, আনুষ্ঠানিক নাম মহান প্রলেতারীয় সাংস্কৃতিক বিপ্লব"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:cultural",
+      "states": "সাংস্কৃতিক বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:cultural",
+      "states": "১৯৬৬ সালে মাও সেতুং দ্বারা সূচিত গণপ্রজাতন্ত্রী চীনের (গণচীন) একটি সামাজিক-রাজনৈতিক আন্দোলন ছিল যা ১৯৭৬ সালে তাঁর মৃত্যুর আগ পর্যন্ত স্থায়ী ছিল"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:cultural",
+      "states": "[[গণপ্রজাতন্ত্রী চীন]]",
+      "where": "infobox"
+     }
+    ],
+    "point": [
+     {
+      "ref": "bnwp:cultural",
+      "states": "[[গণপ্রজাতন্ত্রী চীন]]",
+      "where": "infobox"
+     }
+    ]
+   },
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "CHN"
+   }
+  },
+  {
+   "id": "velvet-revolution",
+   "tab": "revolution",
+   "nameBn": "মখমল বিপ্লব",
+   "nameEn": "Velvet Revolution",
+   "whenBn": "১৭–২৮ নভেম্বর ১৯৮৯",
+   "from": 1989,
+   "placeBn": "প্রাগ, তৎকালীন চেকোস্লোভাকিয়া",
+   "aka": [
+    {
+     "textBn": "ভেলভেট বিপ্লব",
+     "cite": [
+      {
+       "ref": "bnwp:velvet",
+       "states": "মখমল বিপ্লব, ভেলভেট বিপ্লব বা মৃদু বিপ্লব"
+      }
+     ]
+    },
+    {
+     "textBn": "মৃদু বিপ্লব",
+     "cite": [
+      {
+       "ref": "bnwp:velvet",
+       "states": "মখমল বিপ্লব, ভেলভেট বিপ্লব বা মৃদু বিপ্লব"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:velvet",
+      "states": "মখমল বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:velvet",
+      "states": "যা ১৭ নভেম্বর থেকে ২৮ নভেম্বর ১৯৮৯ পর্যন্ত সংঘটিত হয়েছিল"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:velvet",
+      "states": "ছিল তৎকালীন চেকোস্লোভাকিয়ায় ক্ষমতার একটি অহিংস রূপান্তর"
+     },
+     {
+      "ref": "bnwp:velvet",
+      "states": "প্রাগে একটি ছাত্র বিক্ষোভ দমন করে দাঙ্গা পুলিশ"
+     }
+    ],
+    "point": [
+     {
+      "ref": "bnwp:velvet",
+      "states": "প্রাগে একটি ছাত্র বিক্ষোভ দমন করে দাঙ্গা পুলিশ"
+     }
+    ]
+   },
+   "conflicts": [
+    {
+     "field": "whenBn",
+     "others": [
+      {
+       "valueBn": "১৭ নভেম্বর – ২৯ ডিসেম্বর ১৯৮৯ (মূল পর্ব ১৭–২৮ নভেম্বর)",
+       "cite": [
+        {
+         "ref": "enwp:velvet",
+         "states": "17 November – 29 December 1989{{Clear}}'''Main phase:''' 17 – 28 November 1989",
+         "where": "infobox"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "point": {
+    "marker": "dot",
+    "source": "NE-pp",
+    "name": "Prague",
+    "adm0": "CZE"
+   }
+  },
+  {
+   "id": "xinhai-revolution",
+   "tab": "revolution",
+   "nameBn": "১৯১১ বিপ্লব",
+   "nameEn": "1911 Revolution",
+   "whenBn": "১৯১১–১৯১২",
+   "from": 1911,
+   "placeBn": "চীন",
+   "aka": [
+    {
+     "textBn": "চীন বিপ্লব",
+     "cite": [
+      {
+       "ref": "bnwp:china1911",
+       "states": "১৯১১ বিপ্লব, যা চীন বিপ্লব বা সিনহাই বিপ্লব নামেও পরিচিত"
+      }
+     ]
+    },
+    {
+     "textBn": "সিনহাই বিপ্লব",
+     "cite": [
+      {
+       "ref": "bnwp:china1911",
+       "states": "১৯১১ বিপ্লব, যা চীন বিপ্লব বা সিনহাই বিপ্লব নামেও পরিচিত"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:china1911",
+      "states": "১৯১১ বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "enwp:china1911",
+      "states": "{{Start date|1911|10|10|df=y}}{{snd}}{{End date|1912|2|12|df=y}}",
+      "where": "infobox"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:china1911",
+      "states": "চীনের সাম্রাজ্যিক বংশের পরিসমাপ্তি ঘটায়"
+     },
+     {
+      "ref": "enwp:china1911",
+      "states": "China",
+      "where": "infobox"
+     }
+    ],
+    "point": [
+     {
+      "ref": "enwp:china1911",
+      "states": "China",
+      "where": "infobox"
+     }
+    ]
+   },
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "CHN"
+   }
+  },
+  {
+   "id": "glorious-revolution",
+   "tab": "revolution",
+   "nameBn": "গৌরবময় বিপ্লব",
+   "nameEn": "Glorious Revolution",
+   "whenBn": "১৬৮৮–১৬৮৯",
+   "from": 1688,
+   "placeBn": "ব্রিটিশ দ্বীপপুঞ্জ",
+   "aka": [
+    {
+     "textBn": "১৬৮৮ সালের বিপ্লব",
+     "cite": [
+      {
+       "ref": "bnwp:glorious",
+       "states": "যা ১৬৮৮ সালের বিপ্লব নামেও পরিচিত"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:glorious",
+      "states": "গৌরবময় বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:glorious",
+      "states": "১৬৮৮-১৬৮৯",
+      "where": "infobox"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:glorious",
+      "states": "[[ব্রিটিশ দ্বীপপুঞ্জ]]",
+      "where": "infobox"
+     }
+    ]
+   },
+   "point": null
+  },
+  {
+   "id": "cuban-revolution",
+   "tab": "revolution",
+   "nameBn": "কিউবা বিপ্লব",
+   "nameEn": "Cuban Revolution",
+   "whenBn": "২৬ জুলাই ১৯৫৩ – ১ জানুয়ারি ১৯৫৯",
+   "from": 1953,
+   "placeBn": "কিউবা",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:cuban",
+      "states": "কিউবা বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:cuban",
+      "states": "২৬শে জুলাই, ১৯৫৩ - ১লা জানুয়ারি, ১৯৫৯",
+      "where": "infobox"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:cuban",
+      "states": "[[কিউবা]]",
+      "where": "infobox"
+     }
+    ],
+    "point": [
+     {
+      "ref": "bnwp:cuban",
+      "states": "[[কিউবা]]",
+      "where": "infobox"
+     }
+    ]
+   },
+   "notesBn": [
+    "নিবন্ধের শিরোনাম «কিউবা বিপ্লব», ভূমিকায় বানান «কিউবার বিপ্লব»।"
+   ],
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "CUB"
+   }
+  },
+  {
+   "id": "saur-revolution",
+   "tab": "revolution",
+   "nameBn": "সাওর বিপ্লব",
+   "nameEn": "Saur Revolution",
+   "whenBn": "২৭–২৮ এপ্রিল ১৯৭৮",
+   "from": 1978,
+   "placeBn": "আফগানিস্তান",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:saur",
+      "states": "সাওর বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:saur",
+      "states": "২৭-২৮ এপ্রিল ১৯৭৮",
+      "where": "infobox"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:saur",
+      "states": "[[আফগানিস্তান]]",
+      "where": "infobox"
+     }
+    ],
+    "point": [
+     {
+      "ref": "bnwp:saur",
+      "states": "[[আফগানিস্তান]]",
+      "where": "infobox"
+     }
+    ]
+   },
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "AFG"
+   }
+  },
+  {
+   "id": "july-revolution-1830",
+   "tab": "revolution",
+   "nameBn": "জুলাই বিপ্লব (ফ্রান্স)",
+   "nameEn": "July Revolution",
+   "whenBn": "২৬–২৯ জুলাই ১৮৩০",
+   "from": 1830,
+   "placeBn": "ফ্রান্স",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:july1830",
+      "states": "জুলাই বিপ্লব (ফ্রান্স)",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:july1830",
+      "states": "২৬–২৯ জুলাই ১৮৩০",
+      "where": "infobox"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:july1830",
+      "states": "[[ফ্রান্স]]",
+      "where": "infobox"
+     }
+    ],
+    "point": [
+     {
+      "ref": "bnwp:july1830",
+      "states": "[[ফ্রান্স]]",
+      "where": "infobox"
+     }
+    ]
+   },
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "FRA"
+   }
+  },
+  {
+   "id": "american-revolution",
+   "tab": "revolution",
+   "nameBn": "মার্কিন বিপ্লব",
+   "nameEn": "American Revolution",
+   "whenBn": "২২ মার্চ ১৭৭৫ – ১৪ জানুয়ারি ১৭৮৪",
+   "from": 1775,
+   "placeBn": "তেরো উপনিবেশ",
+   "aka": [
+    {
+     "textBn": "আমেরিকান বিপ্লব",
+     "cite": [
+      {
+       "ref": "bnwp:american",
+       "states": "মার্কিন বিপ্লব, যা আমেরিকান বিপ্লব নামেও পরিচিত"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:american",
+      "states": "মার্কিন বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:american",
+      "states": "২২ মার্চ ১৭৭৫ – ১৪ জানুয়ারি ১৭৮৪",
+      "where": "infobox"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:american",
+      "states": "[[তেরো উপনিবেশ]]",
+      "where": "infobox"
+     }
+    ],
+    "point": [
+     {
+      "ref": "enwp:american",
+      "states": "United States<br />(1776–ca.1800)",
+      "where": "infobox"
+     }
+    ]
+   },
+   "conflicts": [
+    {
+     "field": "whenBn",
+     "others": [
+      {
+       "valueBn": "১৭৬৫ থেকে ১৭৯১ (একই নিবন্ধের ভূমিকা)",
+       "cite": [
+        {
+         "ref": "bnwp:american",
+         "states": "ব্রিটিশ আমেরিকায় ১৭৬৫ এবং ১৭৯১ সালের মধ্যে ঘটে"
+        }
+       ]
+      },
+      {
+       "valueBn": "১৭৬৫–১৭৮৩",
+       "cite": [
+        {
+         "ref": "enwp:american",
+         "states": "1765 to 1783",
+         "where": "infobox"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "USA",
+    "historical": true,
+    "match": [
+     {
+      "ref": "enwp:american",
+      "states": "United States<br />(1776–ca.1800)",
+      "where": "infobox"
+     }
+    ]
+   }
+  },
+  {
+   "id": "haitian-revolution",
+   "tab": "revolution",
+   "nameBn": "হাইতীয় বিপ্লব",
+   "nameEn": "Haitian Revolution",
+   "whenBn": "১৭৯১–১৮০৪",
+   "from": 1791,
+   "placeBn": "সেন্ট-ডোমিঙ্গ (এখন হাইতি)",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:haitian",
+      "states": "হাইতীয় বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:haitian",
+      "states": "এই বিপ্লব ঘটেছিল ১৭৯১ থেকে ১৮০৪ খ্রিস্টাব্দের মধ্যে"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:haitian",
+      "states": "এই বিপ্লব সংগঠিত হয়েছিলো সেন্ট-ডোমিঙ্গে, যা এখন হাইতির সার্বভৌম একটি রাষ্ট্র"
+     }
+    ],
+    "point": [
+     {
+      "ref": "bnwp:haitian",
+      "states": "এই বিপ্লব সংগঠিত হয়েছিলো সেন্ট-ডোমিঙ্গে, যা এখন হাইতির সার্বভৌম একটি রাষ্ট্র"
+     }
+    ]
+   },
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "HTI",
+    "historical": true,
+    "match": [
+     {
+      "ref": "bnwp:haitian",
+      "states": "এই বিপ্লব সংগঠিত হয়েছিলো সেন্ট-ডোমিঙ্গে, যা এখন হাইতির সার্বভৌম একটি রাষ্ট্র"
+     }
+    ]
+   }
+  },
+  {
+   "id": "young-turk-revolution",
+   "tab": "revolution",
+   "nameBn": "তরুণ তুর্কি বিপ্লব",
+   "nameEn": "Young Turk Revolution",
+   "whenBn": "১৯০৮",
+   "from": 1908,
+   "placeBn": "উসমানীয় সাম্রাজ্য",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:youngturk",
+      "states": "তরুণ তুর্কি বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:youngturk",
+      "states": "তরুণ তুর্কি বিপ্লব ১৯০৮ সালে সংঘটিত হয়"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:youngturk",
+      "states": "[[উসমানীয় সাম্রাজ্য]]",
+      "where": "infobox"
+     }
+    ]
+   },
+   "point": null
+  },
+  {
+   "id": "august-revolution",
+   "tab": "revolution",
+   "nameBn": "আগস্ট বিপ্লব",
+   "nameEn": "August Revolution",
+   "whenBn": "১৩ আগস্ট – ২ সেপ্টেম্বর ১৯৪৫",
+   "from": 1945,
+   "placeBn": "ভিয়েতনাম",
+   "aka": [
+    {
+     "textBn": "আগস্ট সাধারণ বিদ্রোহ",
+     "cite": [
+      {
+       "ref": "bnwp:august1945",
+       "states": "আগস্ট বিপ্লব বা আগস্ট সাধারণ বিদ্রোহ"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:august1945",
+      "states": "আগস্ট বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:august1945",
+      "states": "১৩ আগস্ট থেকে ২ সেপ্টেম্বর ১৯৪৫ সাল পর্যন্ত"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "enwp:august1945",
+      "states": "[[Empire of Vietnam|Vietnam]]",
+      "where": "infobox"
+     },
+     {
+      "ref": "ne:admin0",
+      "states": "VNM: NAME_BN «ভিয়েতনাম»",
+      "check": {
+       "adm0": "VNM",
+       "nameBn": "ভিয়েতনাম"
+      }
+     }
+    ],
+    "point": [
+     {
+      "ref": "enwp:august1945",
+      "states": "[[Empire of Vietnam|Vietnam]]",
+      "where": "infobox"
+     }
+    ]
+   },
+   "conflicts": [
+    {
+     "field": "whenBn",
+     "others": [
+      {
+       "valueBn": "১৬–৩০ আগস্ট ১৯৪৫",
+       "cite": [
+        {
+         "ref": "enwp:august1945",
+         "states": "16 August – 30 August 1945",
+         "where": "infobox"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "VNM",
+    "historical": true,
+    "match": [
+     {
+      "ref": "enwp:august1945",
+      "states": "[[Empire of Vietnam|Vietnam]]",
+      "where": "infobox"
+     }
+    ]
+   }
+  },
+  {
+   "id": "indonesian-national-revolution",
+   "tab": "revolution",
+   "nameBn": "ইন্দোনেশীয় জাতীয় বিপ্লব",
+   "nameEn": "Indonesian National Revolution",
+   "whenBn": "১৯৪৫–১৯৪৯",
+   "from": 1945,
+   "placeBn": "ইন্দোনেশিয়া",
+   "aka": [
+    {
+     "textBn": "ইন্দোনেশিয়ার স্বাধীনতা যুদ্ধ",
+     "cite": [
+      {
+       "ref": "bnwp:indonesia",
+       "states": "ইন্দোনেশীয় জাতীয় বিপ্লব অথবা ইন্দোনেশিয়ার স্বাধীনতা যুদ্ধ"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:indonesia",
+      "states": "ইন্দোনেশীয় জাতীয় বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:indonesia",
+      "states": "২৯ সেপ্টেম্বর ৪৫ – ২৭ ডিসেম্বর ১৯৪৯",
+      "where": "infobox"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:indonesia",
+      "states": "[[ইন্দোনেশিয়া]]",
+      "where": "infobox"
+     }
+    ],
+    "point": [
+     {
+      "ref": "bnwp:indonesia",
+      "states": "[[ইন্দোনেশিয়া]]",
+      "where": "infobox"
+     }
+    ]
+   },
+   "conflicts": [
+    {
+     "field": "whenBn",
+     "others": [
+      {
+       "valueBn": "শুরু ১৭ আগস্ট ১৯৪৫ (বাংলা তথ্যছকে ২৯ সেপ্টেম্বর)",
+       "cite": [
+        {
+         "ref": "enwp:indonesia",
+         "states": "{{start and end dates|1945|8|17|1949|12|27|df=yes}}",
+         "where": "infobox"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "IDN"
+   }
+  },
+  {
+   "id": "zanzibar-revolution",
+   "tab": "revolution",
+   "nameBn": "জাঞ্জিবার বিপ্লব",
+   "nameEn": "Zanzibar Revolution",
+   "whenBn": "১২ জানুয়ারি ১৯৬৪",
+   "from": 1964,
+   "placeBn": "জাঞ্জিবার সালতানাত",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:zanzibar",
+      "states": "জাঞ্জিবার বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:zanzibar",
+      "states": "[[১২ জানুয়ারি]] [[১৯৬৪]]",
+      "where": "infobox"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:zanzibar",
+      "states": "[[জাঞ্জিবার সালতানাত]]",
+      "where": "infobox"
+     }
+    ],
+    "point": [
+     {
+      "ref": "enwp:zanzibar",
+      "states": "the insurgents proceeded to Zanzibar Town, where they overthrew the Sultan and his government"
+     }
+    ]
+   },
+   "notesBn": [
+    "মার্কারটি জাঞ্জিবার শহরে: ইংরেজি উইকিপিডিয়ায় বিদ্রোহীরা Zanzibar Town-এ গিয়ে সুলতানকে উৎখাত করে; বিন্দুটি Natural Earth-এর «Zanzibar» (তানজানিয়া)।"
+   ],
+   "point": {
+    "marker": "dot",
+    "source": "NE-pp",
+    "name": "Zanzibar",
+    "adm0": "TZA",
+    "historical": true,
+    "match": [
+     {
+      "ref": "enwp:zanzibar",
+      "states": "the insurgents proceeded to Zanzibar Town, where they overthrew the Sultan and his government"
+     },
+     {
+      "ref": "bnwp:zanzibar",
+      "states": "জাঞ্জিবার সালতানাত তানজানিয়ার পূর্ব উপকূলবর্তী কয়েকটি দ্বীপ দ্বারা গঠিত রাষ্ট্র"
+     }
+    ]
+   }
+  },
+  {
+   "id": "14-july-revolution",
+   "tab": "revolution",
+   "nameBn": "১৪ জুলাই বিপ্লব",
+   "nameEn": "14 July Revolution",
+   "whenBn": "১৪ জুলাই ১৯৫৮",
+   "from": 1958,
+   "placeBn": "ইরাক",
+   "aka": [
+    {
+     "textBn": "১৯৫৮ ইরাকি অভ্যুত্থান",
+     "cite": [
+      {
+       "ref": "bnwp:iraq1958",
+       "states": "১৪ জুলাই বিপ্লব বা ১৯৫৮ ইরাকি অভ্যুত্থান"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:iraq1958",
+      "states": "১৪ জুলাই বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:iraq1958",
+      "states": "১৪ জুলাই ১৯৫৮",
+      "where": "infobox"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:iraq1958",
+      "states": "[[ইরাক]]",
+      "where": "infobox"
+     }
+    ],
+    "point": [
+     {
+      "ref": "bnwp:iraq1958",
+      "states": "[[ইরাক]]",
+      "where": "infobox"
+     }
+    ]
+   },
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "IRQ"
+   }
+  },
+  {
+   "id": "ramadan-revolution",
+   "tab": "revolution",
+   "nameBn": "রমজান বিপ্লব",
+   "nameEn": "Ramadan Revolution",
+   "whenBn": "৮–১০ ফেব্রুয়ারি ১৯৬৩",
+   "from": 1963,
+   "placeBn": "ইরাক",
+   "aka": [
+    {
+     "textBn": "৮ ফেব্রুয়ারি বিপ্লব",
+     "cite": [
+      {
+       "ref": "bnwp:iraq1963",
+       "states": "রমজান বিপ্লব (৮ ফেব্রুয়ারি বিপ্লব বা ফেব্রুয়ারি ১৯৬৩ ইরাক অভ্যুত্থান বলেও পরিচিত)"
+      }
+     ]
+    },
+    {
+     "textBn": "ফেব্রুয়ারি ১৯৬৩ ইরাক অভ্যুত্থান",
+     "cite": [
+      {
+       "ref": "bnwp:iraq1963",
+       "states": "রমজান বিপ্লব (৮ ফেব্রুয়ারি বিপ্লব বা ফেব্রুয়ারি ১৯৬৩ ইরাক অভ্যুত্থান বলেও পরিচিত)"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:iraq1963",
+      "states": "রমজান বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:iraq1963",
+      "states": "৮-১০ ফেব্রুয়ারি ১৯৬৩",
+      "where": "infobox"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:iraq1963",
+      "states": "যা ১৯৬৩ সালে ইরাকে সংঘটিত হয়"
+     }
+    ],
+    "point": [
+     {
+      "ref": "bnwp:iraq1963",
+      "states": "যা ১৯৬৩ সালে ইরাকে সংঘটিত হয়"
+     }
+    ]
+   },
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "IRQ"
+   }
+  },
+  {
+   "id": "17-july-revolution",
+   "tab": "revolution",
+   "nameBn": "১৭ জুলাই বিপ্লব",
+   "nameEn": "17 July Revolution",
+   "whenBn": "১৭ জুলাই ১৯৬৮",
+   "from": 1968,
+   "placeBn": "ইরাক",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:iraq1968",
+      "states": "১৭ জুলাই বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:iraq1968",
+      "states": "১৭ জুলাই ১৯৬৮",
+      "where": "infobox"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:iraq1968",
+      "states": "[[ইরাক]]",
+      "where": "infobox"
+     }
+    ],
+    "point": [
+     {
+      "ref": "bnwp:iraq1968",
+      "states": "[[ইরাক]]",
+      "where": "infobox"
+     }
+    ]
+   },
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "IRQ"
+   }
+  },
+  {
+   "id": "nepalese-revolution-1951",
+   "tab": "revolution",
+   "nameBn": "১৯৫১ সালের নেপালি বিপ্লব",
+   "nameEn": "1950–1951 Nepalese revolution",
+   "whenBn": "৬ নভেম্বর ১৯৫০ – ১৭ ফেব্রুয়ারি ১৯৫১",
+   "from": 1950,
+   "placeBn": "নেপাল অধিরাজ্য",
+   "aka": [
+    {
+     "textBn": "নেপাল গণতান্ত্রিক আন্দোলন",
+     "cite": [
+      {
+       "ref": "bnwp:nepal1951",
+       "states": "নেপাল গণতান্ত্রিক আন্দোলন নামেও পরিচিত"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:nepal1951",
+      "states": "১৯৫১ সালের নেপালি বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:nepal1951",
+      "states": "৬ নভেম্বর ১৯৫০ —১৭ ফেব্রুয়ারি ১৯৫১",
+      "where": "infobox"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:nepal1951",
+      "states": "[[নেপাল অধিরাজ্য]]",
+      "where": "infobox"
+     }
+    ],
+    "point": [
+     {
+      "ref": "enwp:nepal1951",
+      "states": "was a revolution in the Kingdom of Nepal that brought an end to Rana rule of Nepal"
+     }
+    ]
+   },
+   "conflicts": [
+    {
+     "field": "whenBn",
+     "others": [
+      {
+       "valueBn": "৬ নভেম্বর ১৯৫০ – ১৮ ফেব্রুয়ারি ১৯৫১",
+       "cite": [
+        {
+         "ref": "enwp:nepal1951",
+         "states": "6 November 1950 – 18 Feb 1951",
+         "where": "infobox"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "NPL",
+    "historical": true,
+    "match": [
+     {
+      "ref": "enwp:nepal1951",
+      "states": "was a revolution in the Kingdom of Nepal that brought an end to Rana rule of Nepal"
+     },
+     {
+      "ref": "bnwp:nepal1951",
+      "states": "নেপালে রাণা শাসনের অবসান ঘটিয়ে"
+     }
+    ]
+   }
+  },
+  {
+   "id": "saffron-revolution",
+   "tab": "revolution",
+   "nameBn": "জাফরান বিপ্লব",
+   "nameEn": "Saffron Revolution",
+   "whenBn": "আগস্ট–অক্টোবর ২০০৭",
+   "from": 2007,
+   "placeBn": "মিয়ানমার",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:saffron",
+      "states": "জাফরান বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:saffron",
+      "states": "যা ২০০৭ সালের আগস্ট, সেপ্টেম্বর এবং অক্টোবর মাসে মিয়ানমার-এ সংঘটিত হয়"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:saffron",
+      "states": "যা ২০০৭ সালের আগস্ট, সেপ্টেম্বর এবং অক্টোবর মাসে মিয়ানমার-এ সংঘটিত হয়"
+     }
+    ],
+    "point": [
+     {
+      "ref": "bnwp:saffron",
+      "states": "যা ২০০৭ সালের আগস্ট, সেপ্টেম্বর এবং অক্টোবর মাসে মিয়ানমার-এ সংঘটিত হয়"
+     }
+    ]
+   },
+   "conflicts": [
+    {
+     "field": "whenBn",
+     "others": [
+      {
+       "valueBn": "১৫ আগস্ট ২০০৭ – ২৬ সেপ্টেম্বর ২০০৮",
+       "cite": [
+        {
+         "ref": "enwp:saffron",
+         "states": "15 August 2007 – 26 September 2008",
+         "where": "infobox"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "MMR"
+   }
+  },
+  {
+   "id": "tulip-revolution",
+   "tab": "revolution",
+   "nameBn": "টিউলিপ বিপ্লব",
+   "nameEn": "Tulip Revolution",
+   "whenBn": "২০০৫",
+   "from": 2005,
+   "placeBn": "কিরগিজস্তান",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "exam:tulip-me",
+      "states": "'টিউলিপ বিপ্লব' সংঘটিত হয় কোন দেশে?"
+     },
+     {
+      "ref": "exam:tulip-ch",
+      "states": "«টিউলিপ বিপ্লব সংঘটিত হয়?»"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "enwp:tulip",
+      "states": "22 March – 11 April 2005",
+      "where": "infobox"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "enwp:tulip",
+      "states": "[[Kyrgyzstan]]",
+      "where": "infobox"
+     },
+     {
+      "ref": "ne:admin0",
+      "states": "KGZ: NAME_BN «কিরগিজস্তান»",
+      "check": {
+       "adm0": "KGZ",
+       "nameBn": "কিরগিজস্তান"
+      }
+     }
+    ],
+    "point": [
+     {
+      "ref": "enwp:tulip",
+      "states": "[[Kyrgyzstan]]",
+      "where": "infobox"
+     }
+    ]
+   },
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "KGZ"
+   }
+  },
+  {
+   "id": "cedar-revolution",
+   "tab": "revolution",
+   "nameBn": "সিডার বিপ্লব",
+   "nameEn": "Cedar Revolution",
+   "whenBn": "২০০৫",
+   "from": 2005,
+   "placeBn": "লেবানন",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "exam:cedar-me",
+      "states": "'সিডার বিপ্লব' সংঘটিত হয় কোন দেশে?"
+     },
+     {
+      "ref": "exam:studypress",
+      "states": "«সিডার বিপ্লব সংগঠিত হয় –লেবানন (২০০৫)»"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "enwp:cedar",
+      "states": "27 April 2005",
+      "where": "infobox"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "enwp:cedar",
+      "states": "[[Lebanon]] (especially in the capital [[Beirut]])",
+      "where": "infobox"
+     },
+     {
+      "ref": "ne:admin0",
+      "states": "LBN: NAME_BN «লেবানন»",
+      "check": {
+       "adm0": "LBN",
+       "nameBn": "লেবানন"
+      }
+     }
+    ],
+    "point": [
+     {
+      "ref": "enwp:cedar",
+      "states": "[[Lebanon]] (especially in the capital [[Beirut]])",
+      "where": "infobox"
+     }
+    ]
+   },
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "LBN"
+   }
+  },
+  {
+   "id": "nicaraguan-revolution",
+   "tab": "revolution",
+   "nameBn": "নিকারাগুয়ান বিপ্লব",
+   "nameEn": "Nicaraguan Revolution",
+   "whenBn": "১৯৬১–১৯৯০",
+   "from": 1961,
+   "placeBn": "নিকারাগুয়া",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:cat:নিকারাগুয়ান বিপ্লব",
+      "states": "বিষয়শ্রেণী:নিকারাগুয়ান বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "enwp:nicaragua",
+      "states": "19 July 1961 – 25 April 1990",
+      "where": "infobox"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "enwp:nicaragua",
+      "states": "[[Nicaragua]]",
+      "where": "infobox"
+     },
+     {
+      "ref": "ne:admin0",
+      "states": "NIC: NAME_BN «নিকারাগুয়া»",
+      "check": {
+       "adm0": "NIC",
+       "nameBn": "নিকারাগুয়া"
+      }
+     }
+    ],
+    "point": [
+     {
+      "ref": "enwp:nicaragua",
+      "states": "[[Nicaragua]]",
+      "where": "infobox"
+     }
+    ]
+   },
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "NIC"
+   }
+  },
+  {
+   "id": "jasmine-revolution",
+   "tab": "revolution",
+   "group": "arab-spring",
+   "nameBn": "জেসমিন বিপ্লব",
+   "nameEn": "Tunisian revolution",
+   "whenBn": "২০১০–২০১১",
+   "from": 2010,
+   "placeBn": "তিউনিসিয়া",
+   "aka": [
+    {
+     "textBn": "তিউনিসিয়ান বিপ্লব",
+     "cite": [
+      {
+       "ref": "bnwp:jasmine",
+       "states": "তিউনিসিয়ান বিপ্লব যাকে জেসমিন বিপ্লব এবং মর্যাদার তিউনিসিয়ান বিপ্লবও বলা হয়"
+      }
+     ]
+    },
+    {
+     "textBn": "মর্যাদার তিউনিসিয়ান বিপ্লব",
+     "cite": [
+      {
+       "ref": "bnwp:jasmine",
+       "states": "তিউনিসিয়ান বিপ্লব যাকে জেসমিন বিপ্লব এবং মর্যাদার তিউনিসিয়ান বিপ্লবও বলা হয়"
+      }
+     ]
+    },
+    {
+     "textBn": "জুঁই বিপ্লব",
+     "cite": [
+      {
+       "ref": "exam:jui-me",
+       "states": "তিউনিসিয়ায় সংঘটিত গণ-অভ্যুত্থান যা আরব বসন্তের সূত্রপাত করেছিল, তা কী নামে পরিচিত?"
+      },
+      {
+       "ref": "exam:studypress",
+       "states": "«জুঁই (জেসমিন ) বিপ্লব কোথায় সংগঠিত হয় – তিউনিসিয়ায় (২০১১)»"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:jasmine",
+      "states": "জেসমিন বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "enwp:jasmine",
+      "states": "17 December 2010 – 14 January 2011",
+      "where": "infobox"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:jasmine",
+      "states": "তিউনিসিয়ার রাস্তায় সংঘটিত একাধিক বিক্ষোভ"
+     }
+    ],
+    "point": [
+     {
+      "ref": "bnwp:jasmine",
+      "states": "তিউনিসিয়ার রাস্তায় সংঘটিত একাধিক বিক্ষোভ"
+     }
+    ]
+   },
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "TUN"
+   }
+  },
+  {
+   "id": "egypt-2011",
+   "tab": "revolution",
+   "group": "arab-spring",
+   "nameBn": "মিশর",
+   "nameEn": "2011 Egyptian revolution",
+   "whenBn": "২৫ জানুয়ারি – ১১ ফেব্রুয়ারি ২০১১",
+   "from": 2011,
+   "placeBn": "মিশর",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "ne:admin0",
+      "states": "EGY: NAME_BN «মিশর»",
+      "check": {
+       "adm0": "EGY",
+       "nameBn": "মিশর"
+      }
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "enwp:egypt2011",
+      "states": "{{Start date|df=yes|2011|01|25}} – 11 February 2011",
+      "where": "infobox"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "enwp:egypt2011",
+      "states": "{{flag|Egypt}}",
+      "where": "infobox"
+     },
+     {
+      "ref": "ne:admin0",
+      "states": "EGY: NAME_BN «মিশর»",
+      "check": {
+       "adm0": "EGY",
+       "nameBn": "মিশর"
+      }
+     }
+    ],
+    "point": [
+     {
+      "ref": "enwp:egypt2011",
+      "states": "{{flag|Egypt}}",
+      "where": "infobox"
+     }
+    ]
+   },
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "EGY"
+   }
+  },
+  {
+   "id": "libya-2011",
+   "tab": "revolution",
+   "group": "arab-spring",
+   "nameBn": "লিবিয়া",
+   "nameEn": "Libyan civil war (2011)",
+   "whenBn": "১৫ ফেব্রুয়ারি – ২৩ অক্টোবর ২০১১",
+   "from": 2011,
+   "placeBn": "লিবিয়া",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "ne:admin0",
+      "states": "LBY: NAME_BN «লিবিয়া»",
+      "check": {
+       "adm0": "LBY",
+       "nameBn": "লিবিয়া"
+      }
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "enwp:libya2011",
+      "states": "15 February 2011 – 23 October 2011",
+      "where": "infobox"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "enwp:libya2011",
+      "states": "[[Libya]]",
+      "where": "infobox"
+     },
+     {
+      "ref": "ne:admin0",
+      "states": "LBY: NAME_BN «লিবিয়া»",
+      "check": {
+       "adm0": "LBY",
+       "nameBn": "লিবিয়া"
+      }
+     }
+    ],
+    "point": [
+     {
+      "ref": "enwp:libya2011",
+      "states": "[[Libya]]",
+      "where": "infobox"
+     }
+    ]
+   },
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "LBY"
+   }
+  },
+  {
+   "id": "syria-2011",
+   "tab": "revolution",
+   "group": "arab-spring",
+   "nameBn": "সিরিয়া",
+   "nameEn": "Syrian revolution",
+   "whenBn": "২০১১–২০২৪",
+   "from": 2011,
+   "placeBn": "সিরিয়া",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "ne:admin0",
+      "states": "SYR: NAME_BN «সিরিয়া»",
+      "check": {
+       "adm0": "SYR",
+       "nameBn": "সিরিয়া"
+      }
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "enwp:syria",
+      "states": "lasting from 2011 to 2024 as part of the greater Arab Spring"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "enwp:syria",
+      "states": "a series of mass protests and civilian uprisings throughout Syria"
+     },
+     {
+      "ref": "ne:admin0",
+      "states": "SYR: NAME_BN «সিরিয়া»",
+      "check": {
+       "adm0": "SYR",
+       "nameBn": "সিরিয়া"
+      }
+     }
+    ],
+    "point": [
+     {
+      "ref": "enwp:syria",
+      "states": "a series of mass protests and civilian uprisings throughout Syria"
+     }
+    ]
+   },
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "SYR",
+    "historical": true,
+    "match": [
+     {
+      "ref": "enwp:syria",
+      "states": "a series of mass protests and civilian uprisings throughout Syria"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mass-uprising-1969",
+   "tab": "uprising",
+   "nameBn": "উনসত্তরের গণঅভ্যুত্থান",
+   "nameEn": "1969 East Pakistan mass uprising",
+   "whenBn": "১৯৬৯",
+   "from": 1969,
+   "placeBn": "পূর্ব পাকিস্তান",
+   "aka": [
+    {
+     "textBn": "১৯৬৯ সালের গণঅভ্যুত্থান",
+     "cite": [
+      {
+       "ref": "nctb:H910-১৬১",
+       "states": "«১৯৬৯ সালের গণঅভ্যুত্থান» (heading, book ১৬১ / PDF 166)"
+      }
+     ]
+    },
+    {
+     "textBn": "আইয়ুববিরোধী গণঅভ্যুত্থান",
+     "cite": [
+      {
+       "ref": "nctb:H910-১৬১",
+       "states": "«আইয়ুববিরোধী গণঅভ্যুত্থান» (book ১৬৩ / PDF 168)"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "nctb:H910-১৬১",
+      "states": "«পাকিস্তানের প্রেসিডেন্ট আইয়ুব খানের স্বৈরশাসনের বিরুদ্ধে গড়ে ওঠে এক দুর্বার আন্দোলন, যা উনসত্তরের গণঅভ্যুত্থান হিসেবে পরিচিত।»"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "nctb:H910-১৬০",
+      "states": "«ধীরে ধীরে পূর্ব পাকিস্তানের গণবিক্ষোভ ১৯৬৯ সালে এসে গণঅভ্যুত্থানে রূপান্তরিত হয়।»"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "nctb:H910-১৬০",
+      "states": "«ধীরে ধীরে পূর্ব পাকিস্তানের গণবিক্ষোভ ১৯৬৯ সালে এসে গণঅভ্যুত্থানে রূপান্তরিত হয়।»"
+     }
+    ],
+    "point": [
+     {
+      "ref": "nctb:H910-১৬০",
+      "states": "«ধীরে ধীরে পূর্ব পাকিস্তানের গণবিক্ষোভ ১৯৬৯ সালে এসে গণঅভ্যুত্থানে রূপান্তরিত হয়।»"
+     }
+    ]
+   },
+   "notesBn": [
+    "নামের বানান NCTB বইয়ের «উনসত্তরের»; বাংলা উইকিপিডিয়ার শিরোনাম ও পরীক্ষার প্রশ্নে «ঊনসত্তরের»।",
+    "NCTB বইয়ে আন্দোলনের শুরু ১৯৬৮ সালের নভেম্বরে, আর ২৫ মার্চ আইয়ুব খান ক্ষমতা হস্তান্তর করেন; বাংলা উইকিপিডিয়ার তথ্যছকে জানুয়ারি–মার্চ ১৯৬৯।"
+   ],
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "BGD",
+    "historical": true,
+    "match": [
+     {
+      "ref": "bnwp:nachole",
+      "states": "তৎকালীন পূর্ব পাকিস্তানের (বর্তমান বাংলাদেশ)"
+     }
+    ]
+   }
+  },
+  {
+   "id": "july-uprising-2024",
+   "tab": "uprising",
+   "nameBn": "জুলাই গণঅভ্যুত্থান",
+   "nameEn": "July Uprising",
+   "whenBn": "৫ জুন – ৫ আগস্ট ২০২৪",
+   "from": 2024,
+   "placeBn": "বাংলাদেশ",
+   "aka": [
+    {
+     "textBn": "জুলাই বিপ্লব",
+     "cite": [
+      {
+       "ref": "nctb:H910-১৮৪",
+       "states": "«এটাকে 'জুলাই বিপ্লব' নামেও অভিহিত করা হয়।»"
+      },
+      {
+       "ref": "exam:49bcs-bb",
+       "states": "বাংলাদেশের জুলাই বিপ্লবের শহিদ আবু সাঈদ কোন বিশ্ববিদ্যালয়ের ছাত্র ছিলেন?"
+      }
+     ]
+    },
+    {
+     "textBn": "ছাত্র–জনতার অভ্যুত্থান",
+     "cite": [
+      {
+       "ref": "bnwp:bd2024",
+       "states": "জুলাই গণঅভ্যুত্থান, বা ছাত্র–জনতার অভ্যুত্থান অথবা চব্বিশের গণঅভ্যুত্থান"
+      }
+     ]
+    },
+    {
+     "textBn": "চব্বিশের গণঅভ্যুত্থান",
+     "cite": [
+      {
+       "ref": "bnwp:bd2024",
+       "states": "জুলাই গণঅভ্যুত্থান, বা ছাত্র–জনতার অভ্যুত্থান অথবা চব্বিশের গণঅভ্যুত্থান"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "nctb:H910-১৮৪",
+      "states": "তা 'জুলাই গণঅভ্যুত্থান' নামে পরিচিত।»"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "nctb:H910-১৮৫",
+      "states": "«সরকারি চাকরিতে কোটা পুনর্বহালের প্রতিবাদে ২০২৪ সালের ৫ জুন থেকে জুলাই গণঅভ্যুত্থানের সূচনা হয়।»"
+     },
+     {
+      "ref": "bnwp:bd2024",
+      "states": "৪–৫ আগস্ট ২০২৪",
+      "where": "infobox"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "nctb:H910-১৮৪",
+      "states": "«বাংলাদেশে ২০২৪ সালের জুলাই-আগস্ট মাসে ফ্যাসিস্ট শেখ হাসিনা সরকারের বিরুদ্ধে ছাত্র-জনতার যে গণআন্দোলন সংঘটিত হয়"
+     }
+    ],
+    "point": [
+     {
+      "ref": "bnwp:bd2024",
+      "states": "[[বাংলাদেশ]]",
+      "where": "infobox"
+     }
+    ]
+   },
+   "conflicts": [
+    {
+     "field": "whenBn",
+     "others": [
+      {
+       "valueBn": "শুরু ৬ জুন ২০২৪",
+       "cite": [
+        {
+         "ref": "bnwp:bd2024",
+         "states": "৬ জুন – ৩ আগস্ট ২০২৪",
+         "where": "infobox"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "BGD"
+   }
+  },
+  {
+   "id": "sepoy-mutiny",
+   "tab": "uprising",
+   "nameBn": "সিপাহি বিদ্রোহ",
+   "nameEn": "Indian Rebellion of 1857",
+   "whenBn": "২৯ মার্চ ১৮৫৭ – জুলাই ১৮৫৮",
+   "from": 1857,
+   "placeBn": "সূচনা পশ্চিমবঙ্গের ব্যারাকপুরে",
+   "aka": [
+    {
+     "textBn": "ভারতের প্রথম স্বাধীনতা যুদ্ধ",
+     "cite": [
+      {
+       "ref": "nctb:H910-১১৩",
+       "states": "«শেষ পর্যন্ত ১৮৫৭ সালে সিপাহি বিদ্রোহ বা ভারতের প্রথম স্বাধীনতা যুদ্ধের আগুন জ্বলে উঠলে ইংরেজ সরকার ভীত-সন্ত্রস্ত হয়ে ওঠে।»"
+      }
+     ]
+    },
+    {
+     "textBn": "সৈনিক বিদ্রোহ",
+     "cite": [
+      {
+       "ref": "bnwp:sepoy",
+       "states": "সিপাহি বিদ্রোহ বা সৈনিক বিদ্রোহ"
+      }
+     ]
+    },
+    {
+     "textBn": "সিপাহী বিপ্লব",
+     "cite": [
+      {
+       "ref": "exam:sepoy-biplob-me",
+       "states": "«'সিপাহী বিপ্লব' কত সালে সংঘটিত হয় ?»"
+      },
+      {
+       "ref": "exam:sepoy-sa",
+       "states": "সিপাহি বিপ্লব এর সঙ্গে সম্পৃক্ত পার্ক"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "nctb:H910-১১৩",
+      "states": "«শেষ পর্যন্ত ১৮৫৭ সালে সিপাহি বিদ্রোহ বা ভারতের প্রথম স্বাধীনতা যুদ্ধের আগুন জ্বলে উঠলে ইংরেজ সরকার ভীত-সন্ত্রস্ত হয়ে ওঠে।»"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "nctb:H910-১২৩",
+      "states": "«১৮৫৭ সালের ২৯শে মার্চ বন্দুকের গুলি ছুড়ে বিদ্রোহের সূচনা করেন মঙ্গল পাণ্ডে নামে এক সিপাহি।»"
+     },
+     {
+      "ref": "nctb:H910-১২৩",
+      "states": "«১৮৫৮ সালের জুলাইয়ের মধ্যে সব আন্দোলন শেষ হয়ে যায়।»"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "nctb:H910-১২৩",
+      "states": "«স্বাধীনতা সংগ্রাম : বিদ্রোহের আগুন প্রথমে জ্বলে ওঠে পশ্চিমবঙ্গের ব্যারাকপুরে।»"
+     }
+    ],
+    "point": [
+     {
+      "ref": "nctb:H910-১২৩",
+      "states": "«স্বাধীনতা সংগ্রাম : বিদ্রোহের আগুন প্রথমে জ্বলে ওঠে পশ্চিমবঙ্গের ব্যারাকপুরে।»"
+     }
+    ]
+   },
+   "conflicts": [
+    {
+     "field": "whenBn",
+     "others": [
+      {
+       "valueBn": "শুরু ১০ মে ১৮৫৭",
+       "cite": [
+        {
+         "ref": "bnwp:sepoy",
+         "states": "১৮৫৭ সালের ১০ মে অধুনা পশ্চিমবঙ্গের ব্যারাকপুরে"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "field": "placeBn",
+     "others": [
+      {
+       "valueBn": "সূচনা মিরাটে",
+       "cite": [
+        {
+         "ref": "enwp:sepoy",
+         "states": "The rebellion began on 10 May 1857 as a mutiny of sepoys of the company's garrison in Meerut"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "notesBn": [
+    "নামের বানান NCTB বই ও বাংলা উইকিপিডিয়ার «সিপাহি»; পরীক্ষার প্রশ্নে «সিপাহী»।",
+    "বৃত্তটি পশ্চিমবঙ্গে: ব্যারাকপুরের বিন্দু কোনো পিন করা ফাইলে নেই; সূত্রে নাম আছে রাজ্যটির, পশ্চিমবঙ্গ।"
+   ],
+   "point": {
+    "marker": "ring",
+    "source": "NE-1",
+    "name": "West Bengal",
+    "adm0": "IND"
+   }
+  },
+  {
+   "id": "fakir-sannyasi-rebellion",
+   "tab": "uprising",
+   "nameBn": "ফকির ও সন্ন্যাসী বিদ্রোহ",
+   "nameEn": "Sannyasi rebellion",
+   "whenBn": "১৭৬০–১৮০০",
+   "from": 1760,
+   "placeBn": "বাংলা",
+   "aka": [
+    {
+     "textBn": "ফকির-সন্ন্যাসী আন্দোলন",
+     "cite": [
+      {
+       "ref": "nctb:H910-১০৯",
+       "states": "«বাংলার ফকির-সন্ন্যাসী আন্দোলন ছিল একটি ব্রিটিশবিরোধী আন্দোলন।»"
+      }
+     ]
+    },
+    {
+     "textBn": "ফকির-সন্ন্যাসী বিদ্রোহ",
+     "cite": [
+      {
+       "ref": "bnwp:fakir",
+       "states": "ফকির-সন্ন্যাসী বিদ্রোহ",
+       "where": "title"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "exam:fakir-cb",
+      "states": "ফকির ও সন্ন্যাসী বিদ্রোহ"
+     },
+     {
+      "ref": "exam:fakir-me",
+      "states": "ফকির ও সন্ন্যাসী বিদ্রোহ"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "nctb:H910-১০৯",
+      "states": "«১৭৬০ সালে পশ্চিমবঙ্গের বর্ধমান জেলায় সন্ন্যাসীরা ইংরেজদের বিরুদ্ধে প্রথম বিদ্রোহ শুরু করে।»"
+     },
+     {
+      "ref": "nctb:H910-১০৯",
+      "states": "«১৮০০ সালে তাঁরা চূড়ান্তভাবে পরাজিত হন।»"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "nctb:H910-১০৯",
+      "states": "«বাংলার ফকির-সন্ন্যাসী আন্দোলন ছিল একটি ব্রিটিশবিরোধী আন্দোলন।»"
+     }
+    ]
+   },
+   "notesBn": [
+    "বিন্দু নেই: NCTB বইয়ে একক কোনো স্থান নেই; প্রথম বিদ্রোহ ১৭৬০ সালে বর্ধমান জেলায়, আর ১৭৭৭–১৭৮৬ সালে রংপুর, রাজশাহী, দিনাজপুর ও ময়মনসিংহ জেলায় সংঘর্ষ।"
+   ],
+   "point": null
+  },
+  {
+   "id": "mau-mau-rebellion",
+   "tab": "uprising",
+   "nameBn": "মাউ মাউ বিদ্রোহ",
+   "nameEn": "Mau Mau rebellion",
+   "whenBn": "১৯৫২–১৯৬০",
+   "from": 1952,
+   "placeBn": "কেনিয়া",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:21-october",
+      "states": "কেনিয়ায়]] মাউ মাউ বিদ্রোহ পরাজিত হয়"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "enwp:maumau",
+      "states": "The Mau Mau rebellion (1952–1960)"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "enwp:maumau",
+      "states": "was an armed conflict in the British Colony of Kenya"
+     },
+     {
+      "ref": "ne:admin0",
+      "states": "KEN: NAME_BN «কেনিয়া»",
+      "check": {
+       "adm0": "KEN",
+       "nameBn": "কেনিয়া"
+      }
+     }
+    ],
+    "point": [
+     {
+      "ref": "enwp:maumau",
+      "states": "was an armed conflict in the British Colony of Kenya"
+     }
+    ]
+   },
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "KEN",
+    "historical": true,
+    "match": [
+     {
+      "ref": "enwp:maumau",
+      "states": "the rebellion survived until after Kenya's independence from Britain"
+     }
+    ]
+   }
+  },
+  {
+   "id": "contras",
+   "tab": "uprising",
+   "kind": "rebel-group",
+   "nameBn": "কন্ট্রা",
+   "nameEn": "Contras",
+   "whenBn": "১৯৭৯–১৯৯০",
+   "from": 1979,
+   "placeBn": "নিকারাগুয়া",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "exam:24bcs-cb",
+      "states": "«নিকারাগুয়ার ‘কন্ট্রা’ বিদ্রোহীরা কোন দেশের সমর্থনপুষ্ট ছিল?»"
+     },
+     {
+      "ref": "exam:10bcs-am",
+      "states": "«নিকারাগুয়ার কন্ট্রা বিদ্রোহীরা কোন দেশের সমর্থনপুষ্ট ছিল?»"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "enwp:contras",
+      "states": "The insurgency against the Sandinista government lasted from 1979 until 1990"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "exam:24bcs-cb",
+      "states": "«নিকারাগুয়ার ‘কন্ট্রা’ বিদ্রোহীরা কোন দেশের সমর্থনপুষ্ট ছিল?»"
+     }
+    ],
+    "point": [
+     {
+      "ref": "exam:24bcs-cb",
+      "states": "«নিকারাগুয়ার ‘কন্ট্রা’ বিদ্রোহীরা কোন দেশের সমর্থনপুষ্ট ছিল?»"
+     }
+    ]
+   },
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "NIC"
+   }
+  },
+  {
+   "id": "nachole-rebellion",
+   "tab": "uprising",
+   "nameBn": "নাচোল বিদ্রোহ",
+   "nameEn": "Nachole Uprising",
+   "whenBn": "১৯৪৯–১৯৫০",
+   "from": 1949,
+   "placeBn": "নাচোল উপজেলা, চাঁপাইনবাবগঞ্জ",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:nachole",
+      "states": "নাচোল বিদ্রোহ",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:nachole",
+      "states": "নাচোল বিদ্রোহ (১৯৪৯-১৯৫০)"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:nachole",
+      "states": "চাঁপাইনবাবগঞ্জ জেলার নাচোল উপজেলায় একটি কৃষক বিদ্রোহ"
+     }
+    ],
+    "point": [
+     {
+      "ref": "bnwp:nachole",
+      "states": "চাঁপাইনবাবগঞ্জ জেলার নাচোল উপজেলায় একটি কৃষক বিদ্রোহ"
+     }
+    ]
+   },
+   "point": {
+    "marker": "dot",
+    "source": "COD-AB",
+    "level": 3,
+    "pcode": "BD507056",
+    "name": "Nachole"
+   }
+  },
+  {
+   "id": "santal-rebellion",
+   "tab": "uprising",
+   "nameBn": "সাঁওতাল বিদ্রোহ",
+   "nameEn": "Santhal rebellion",
+   "whenBn": "৩০ জুন ১৮৫৫ – ৩ জানুয়ারি ১৮৫৬",
+   "from": 1855,
+   "placeBn": "সাঁওতাল পরগনা, ঝাড়খন্ড",
+   "aka": [
+    {
+     "textBn": "সাঁওতাল হুল",
+     "cite": [
+      {
+       "ref": "bnwp:santal",
+       "states": "সাঁওতাল বিদ্রোহ বা সাঁওতাল হুল"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:santal",
+      "states": "সাঁওতাল বিদ্রোহ",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:santal",
+      "states": "{{start and end dates|১৮৫৫|৬|৩০|১৮৫৬|১|৩}}",
+      "where": "infobox"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:santal",
+      "states": "[[সাঁওতাল পরগনা বিভাগ|সাঁওতাল পরগনা]], [[ঝাড়খন্ড]]",
+      "where": "infobox"
+     }
+    ],
+    "point": [
+     {
+      "ref": "bnwp:santal",
+      "states": "[[সাঁওতাল পরগনা বিভাগ|সাঁওতাল পরগনা]], [[ঝাড়খন্ড]]",
+      "where": "infobox"
+     }
+    ]
+   },
+   "point": {
+    "marker": "ring",
+    "source": "NE-1",
+    "name": "Jharkhand",
+    "adm0": "IND"
+   }
+  },
+  {
+   "id": "kaivarta-rebellion",
+   "tab": "uprising",
+   "nameBn": "কৈবর্ত বিদ্রোহ",
+   "nameEn": "Varendra rebellion",
+   "whenBn": "আনুমানিক ১০৭৫",
+   "from": 1075,
+   "placeBn": "বাংলার উত্তরাংশের বরেন্দ্র এলাকা",
+   "aka": [
+    {
+     "textBn": "বরেন্দ্র বিদ্রোহ",
+     "cite": [
+      {
+       "ref": "bnwp:kaivarta",
+       "states": "বরেন্দ্র বিদ্রোহ বা কৈবর্ত বিদ্রোহ"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "nctb:H910-৪২",
+      "states": "«ইতিহাসে এ বিদ্রোহ 'কৈবর্ত বিদ্রোহ' নামে পরিচিত।»"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:kaivarta",
+      "states": "১০৭৫ খ্রিষ্ট্রাব্দ(আনুমানিক)",
+      "where": "infobox"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "nctb:H910-৪২",
+      "states": "«দ্বিতীয় মহীপালের সময় বাংলার উত্তরাংশের বরেন্দ্র এলাকার সামন্তবর্গ প্রকাশ্যে বিদ্রোহ ঘোষণা করে।»"
+     }
+    ],
+    "point": [
+     {
+      "ref": "bnwp:kaivarta",
+      "states": "[[বরেন্দ্র]], [[দিনাজপুর]]",
+      "where": "infobox"
+     }
+    ]
+   },
+   "conflicts": [
+    {
+     "field": "whenBn",
+     "others": [
+      {
+       "valueBn": "১০৭৫–১০৮২",
+       "cite": [
+        {
+         "ref": "enwp:kaivarta",
+         "states": "1075 - 1082 CE",
+         "where": "infobox"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "notesBn": [
+    "NCTB বইয়ে বিদ্রোহের সাল নেই; সময় বাংলা উইকিপিডিয়ার।",
+    "বৃত্তটি দিনাজপুর জেলায়: বাংলা উইকিপিডিয়ার তথ্যছকে স্থান «বরেন্দ্র, দিনাজপুর»।"
+   ],
+   "point": {
+    "marker": "ring",
+    "source": "COD-AB",
+    "level": 2,
+    "pcode": "BD5527",
+    "name": "Dinajpur"
+   }
+  },
+  {
+   "id": "chakma-rebellion",
+   "tab": "uprising",
+   "nameBn": "চাকমা বিদ্রোহ",
+   "nameEn": "Chakma rebellion",
+   "whenBn": "১৭৭৬–১৭৮৭",
+   "from": 1776,
+   "placeBn": "পার্বত্য অঞ্চল",
+   "aka": [
+    {
+     "textBn": "কার্পাস বিদ্রোহ",
+     "cite": [
+      {
+       "ref": "bnwp:chakma",
+       "states": "চাকমা বিদ্রোহ বা কার্পাস বিদ্রোহ"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:chakma",
+      "states": "চাকমা বিদ্রোহ",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:chakma",
+      "states": "১৭৭৬ থেকে ১৭৮৭ সালের মধ্যে চারবার ভিন্ন নেতৃতে এই বিদ্রোহ সংগঠিত হয়"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:chakma",
+      "states": "পার্বত্য অঞ্চলে বসবাসকারী চাকমা জাতিগোষ্ঠীর বিদ্রোহ"
+     }
+    ]
+   },
+   "conflicts": [
+    {
+     "field": "whenBn",
+     "others": [
+      {
+       "valueBn": "১৭৬৯ (১৭তম বিসিএসের প্রশ্নের ব্যাখ্যা)",
+       "cite": [
+        {
+         "ref": "exam:17bcs-me",
+         "states": "MyExaminer: জান বখস খাঁ (ব্যাখ্যায় “1769 সালে”)"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "notesBn": [
+    "১৭তম বিসিএসে নেতার নাম জিজ্ঞাসা করা হয়; উত্তর সাইটভেদে ভিন্ন: জান বখশ খাঁ (চাকরি বাংলা), জান বখস খাঁ (MyExaminer), জুম্মা খান (Active MCQ)। বাংলা উইকিপিডিয়ার ভূমিকায় নেতার নাম নেই।"
+   ],
+   "point": null
+  },
+  {
+   "id": "moamoria-rebellion",
+   "tab": "uprising",
+   "nameBn": "মোয়ামরীয়া বিদ্রোহ",
+   "nameEn": "Moamoria rebellion",
+   "whenBn": "১৭৬৯–১৮০৫",
+   "from": 1769,
+   "placeBn": "আসাম",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:moamoria",
+      "states": "মোয়ামরীয়া বিদ্রোহ",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:moamoria",
+      "states": "মোয়ামরীয়া বিদ্রোহ (১৭৬৯–১৮০৫)"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:moamoria",
+      "states": "[[আসাম]]",
+      "where": "infobox"
+     }
+    ],
+    "point": [
+     {
+      "ref": "bnwp:moamoria",
+      "states": "[[আসাম]]",
+      "where": "infobox"
+     }
+    ]
+   },
+   "point": {
+    "marker": "ring",
+    "source": "NE-1",
+    "name": "Assam",
+    "adm0": "IND"
+   }
+  },
+  {
+   "id": "alsace-lorraine-1918",
+   "tab": "uprising",
+   "nameBn": "১৯১৮-এর নভেম্বরে আলজাস-লরেনে বিদ্রোহ",
+   "nameEn": "November 1918 insurgency in Alsace–Lorraine",
+   "whenBn": "নভেম্বর ১৯১৮",
+   "from": 1918,
+   "placeBn": "আলসেস-লরেন অঞ্চল",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:alsace1918",
+      "states": "১৯১৮-এর নভেম্বরে আলজাস-লরেনে বিদ্রোহ",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:alsace1918",
+      "states": "১৯১৮ সালের নভেম্বরে আলসেস-লরেনের বিদ্রোহ"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:alsace1918",
+      "states": "আলসেস-লরেন অঞ্চলটি জার্মান থেকে ফরাসি সার্বভৌমত্বে চলে যায়"
+     }
+    ],
+    "point": [
+     {
+      "ref": "enwp:alsace1918",
+      "states": "The red flag was thus hoisted atop Strasbourg Cathedral"
+     }
+    ]
+   },
+   "notesBn": [
+    "শিরোনামে বানান «আলজাস-লরেন», ভূমিকায় «আলসেস-লরেন»।",
+    "মার্কারটি Strasbourg শহরে: ইংরেজি উইকিপিডিয়ায় বিদ্রোহের লাল পতাকা Strasbourg ক্যাথিড্রালে ওড়ানো হয়।"
+   ],
+   "point": {
+    "marker": "dot",
+    "source": "NE-pp",
+    "name": "Strasbourg",
+    "adm0": "FRA",
+    "historical": true,
+    "match": [
+     {
+      "ref": "enwp:alsace1918",
+      "states": "The red flag was thus hoisted atop Strasbourg Cathedral"
+     },
+     {
+      "ref": "enwp:alsace1918",
+      "states": "The entry of General Henri Gouraud's 4th Army into Strasbourg on November 22, 1918 brought an end to the uprisings in the region"
+     }
+    ]
+   }
+  },
+  {
+   "id": "chechen-ingush-1940",
+   "tab": "uprising",
+   "nameBn": "১৯৪০–১৯৪৪ সালের চেচেন-ইঙ্গুশ বিদ্রোহ",
+   "nameEn": "1940–1944 insurgency in Chechnya",
+   "whenBn": "২০ ডিসেম্বর ১৯৪০ – ১৫ ডিসেম্বর ১৯৪৪",
+   "from": 1940,
+   "placeBn": "চেচেন-ইঙ্গুশ সোভিয়েত প্রজাতন্ত্র",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:chechen1940",
+      "states": "১৯৪০–১৯৪৪ সালের চেচেন-ইঙ্গুশ বিদ্রোহ",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:chechen1940",
+      "states": "২০ ডিসেম্বর ১৯৪০ – ১৫ ডিসেম্বর ১৯৪৪",
+      "where": "infobox"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:chechen1940",
+      "states": "ছিল চেচেন-ইঙ্গুশ সোভিয়েত প্রজাতন্ত্রে সোভিয়েত ইউনিয়নের বিরুদ্ধে সংঘটিত বিদ্রোহ"
+     }
+    ],
+    "point": [
+     {
+      "ref": "enwp:chechen1940",
+      "states": "The 1940–1944 insurgency in Chechnya"
+     }
+    ]
+   },
+   "conflicts": [
+    {
+     "field": "whenBn",
+     "others": [
+      {
+       "valueBn": "শুরু জানুয়ারি ১৯৪০",
+       "cite": [
+        {
+         "ref": "enwp:chechen1940",
+         "states": "January 1940 – 15 December 1944",
+         "where": "infobox"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "notesBn": [
+    "বাংলা উইকিপিডিয়ার ভূমিকায় সাল লেখা «১৯৪০–১৯৪০»; শিরোনাম ও তথ্যছকে ১৯৪০–১৯৪৪।"
+   ],
+   "point": {
+    "marker": "ring",
+    "source": "NE-1",
+    "name": "Chechnya",
+    "adm0": "RUS",
+    "historical": true,
+    "match": [
+     {
+      "ref": "enwp:chechen1940",
+      "states": "The 1940–1944 insurgency in Chechnya"
+     }
+    ]
+   }
+  },
+  {
+   "id": "mass-uprising-1990",
+   "tab": "uprising",
+   "nameBn": "নব্বইয়ের গণঅভ্যুত্থান",
+   "nameEn": "1990 Bangladesh mass uprising",
+   "whenBn": "১৯৯০",
+   "from": 1990,
+   "placeBn": "ঢাকা, বাংলাদেশ",
+   "aka": [
+    {
+     "textBn": "১৯৯০ সালের গণঅভ্যুত্থান",
+     "cite": [
+      {
+       "ref": "nctb:H910-১৮৩",
+       "states": "«১৯৯০ সালের গণঅভ্যুত্থান বা নব্বইয়ের গণঅভ্যুত্থান বাংলাদেশের রাজনৈতিক ইতিহাসে একটি উল্লেখযোগ্য ঘটনা।»"
+      }
+     ]
+    },
+    {
+     "textBn": "নব্বইয়ের স্বৈরাচারবিরোধী আন্দোলন",
+     "cite": [
+      {
+       "ref": "bnwp:bd1990",
+       "states": "নব্বইয়ের স্বৈরাচারবিরোধী আন্দোলন",
+       "where": "title"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "nctb:H910-১৮৩",
+      "states": "«১৯৯০ সালের গণঅভ্যুত্থান বা নব্বইয়ের গণঅভ্যুত্থান বাংলাদেশের রাজনৈতিক ইতিহাসে একটি উল্লেখযোগ্য ঘটনা।»"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "nctb:H910-১৮৩",
+      "states": "«১৯৯০ সালের গণঅভ্যুত্থান বা নব্বইয়ের গণঅভ্যুত্থান বাংলাদেশের রাজনৈতিক ইতিহাসে একটি উল্লেখযোগ্য ঘটনা।»"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:bd1990",
+      "states": "[[ঢাকা]], [[বাংলাদেশ]]",
+      "where": "infobox"
+     }
+    ],
+    "point": [
+     {
+      "ref": "bnwp:bd1990",
+      "states": "[[ঢাকা]], [[বাংলাদেশ]]",
+      "where": "infobox"
+     }
+    ]
+   },
+   "notesBn": [
+    "NCTB বইয়ে ১৯৯০ সালের ৬ ডিসেম্বর এরশাদ রাষ্ট্রপতির পদ থেকে পদত্যাগ করেন; বাংলা উইকিপিডিয়ার তথ্যছকে সময় ১০ অক্টোবর – ৪ ডিসেম্বর ১৯৯০, আর ভূমিকায় আন্দোলনের সূচনা ১৯৮২ সালের ২৪ মার্চ।"
+   ],
+   "point": {
+    "marker": "dot",
+    "source": "NE-pp",
+    "name": "Dhaka",
+    "adm0": "BGD"
+   }
+  },
+  {
+   "id": "industrial-revolution",
+   "tab": "nonpolitical",
+   "nameBn": "শিল্প বিপ্লব",
+   "nameEn": "Industrial Revolution",
+   "whenBn": "প্রায় ১৭৬০–১৮৪০",
+   "from": 1760,
+   "placeBn": "গ্রেট ব্রিটেন, ইউরোপ মহাদেশ ও মার্কিন যুক্তরাষ্ট্র",
+   "aka": [
+    {
+     "textBn": "প্রথম শিল্প বিপ্লব",
+     "cite": [
+      {
+       "ref": "bnwp:industrial",
+       "states": "(প্রথম শিল্প বিপ্লব নামেও পরিচিত)"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:industrial",
+      "states": "শিল্প বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:industrial",
+      "states": "প্রায় ১৭৬০ থেকে ১৮৪০ সালের মধ্যে ঘটেছিল"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:industrial",
+      "states": "এটি কৃষি বিপ্লবের পর গ্রেট ব্রিটেনে, ইউরোপ মহাদেশে এবং মার্কিন যুক্তরাষ্ট্রে"
+     }
+    ]
+   },
+   "conflicts": [
+    {
+     "field": "placeBn",
+     "others": [
+      {
+       "valueBn": "শুরু ইংল্যান্ডে (৫টি পরীক্ষার প্রশ্নের উত্তর)",
+       "cite": [
+        {
+         "ref": "exam:industrial-sa",
+         "states": "«শিল্প বিপ্লব যে দেশে শুরু হয়েছিল?»"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "point": null
+  },
+  {
+   "id": "fourth-industrial-revolution",
+   "tab": "nonpolitical",
+   "nameBn": "চতুর্থ শিল্প বিপ্লব",
+   "nameEn": "Fourth Industrial Revolution",
+   "whenBn": "চলমান",
+   "from": null,
+   "placeBn": null,
+   "aka": [
+    {
+     "textBn": "ইন্ডাস্ট্রি ৪.০",
+     "cite": [
+      {
+       "ref": "bnwp:fourth_ind",
+       "states": "চতুর্থ শিল্প বিপ্লব (বা ইন্ডাস্ট্রি ৪.০)"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:fourth_ind",
+      "states": "চতুর্থ শিল্প বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:fourth_ind",
+      "states": "একটি চলমান প্রক্রিয়া"
+     }
+    ]
+   },
+   "point": null
+  },
+  {
+   "id": "green-revolution",
+   "tab": "nonpolitical",
+   "nameBn": "সবুজ বিপ্লব",
+   "nameEn": "Green Revolution",
+   "whenBn": "২০শ শতকের শুরু – ১৯৮০-এর দশকের শেষ",
+   "from": null,
+   "century": 20,
+   "placeBn": null,
+   "aka": [
+    {
+     "textBn": "তৃতীয় কৃষি বিপ্লব",
+     "cite": [
+      {
+       "ref": "bnwp:green",
+       "states": "সবুজ বিপ্লব বা তৃতীয় কৃষি বিপ্লব"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:green",
+      "states": "সবুজ বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:green",
+      "states": "এই কৃষি পরিবর্তন প্রথমে উন্নত দেশগুলোতে ২০শ শতকের শুরুতে শুরু হয় এবং ১৯৮০-এর দশকের শেষ পর্যন্ত বৈশ্বিকভাবে বিস্তার লাভ করে"
+     }
+    ]
+   },
+   "conflicts": [
+    {
+     "field": "whenBn",
+     "others": [
+      {
+       "valueBn": "সূচনা ১৯৪৫ (সরকারি মাধ্যমিক বিদ্যালয় সহকারী শিক্ষক ২০০৮-এর প্রশ্ন, একটি সাইটে)",
+       "cite": [
+        {
+         "ref": "exam:green-bs",
+         "states": "«233. সবুজ বিপ্লব-এর সূচনা হয় কত সালে?»"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "point": null
+  },
+  {
+   "id": "chinta-biplob",
+   "tab": "nonpolitical",
+   "nameBn": "চিন্তাবিপ্লব",
+   "nameEn": "Revolution of thought (as the exam names it)",
+   "whenBn": null,
+   "from": null,
+   "placeBn": null,
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "exam:44bcs-cb",
+      "states": "«১৭৯. ইসলাম ও সুফিমতের প্রভাবে ভারতবর্ষে ঘটেছিল-»"
+     },
+     {
+      "ref": "exam:44bcs-bs",
+      "states": "চিন্তাবিপ্লব (options: বর্ণবাদের পুনরুত্থান / রাষ্ট্রবিপ্লব / চিন্তাবিপ্লব / অভিবাসন বিপ্লব)"
+     }
+    ]
+   },
+   "notesBn": [
+    "৪৪তম বিসিএসের প্রশ্ন: «ইসলাম ও সুফিমতের প্রভাবে ভারতবর্ষে ঘটেছিল-», উত্তর «চিন্তাবিপ্লব»। উৎস-ক্রমের কোনো সূত্রে এর সময় বা বিবরণ পাওয়া যায়নি।"
+   ],
+   "point": null
+  },
+  {
+   "id": "british-agricultural-revolution",
+   "tab": "nonpolitical",
+   "nameBn": "ব্রিটিশ কৃষি বিপ্লব",
+   "nameEn": "British Agricultural Revolution",
+   "whenBn": "১৭শ শতকের মাঝামাঝি – ১৯শ শতকের শেষের দিক",
+   "from": null,
+   "century": 17,
+   "placeBn": "ব্রিটেন",
+   "aka": [
+    {
+     "textBn": "দ্বিতীয় কৃষি বিপ্লব",
+     "cite": [
+      {
+       "ref": "bnwp:agri_uk",
+       "states": "ব্রিটিশ কৃষি বিপ্লব, বা দ্বিতীয় কৃষি বিপ্লব"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:agri_uk",
+      "states": "ব্রিটিশ কৃষি বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:agri_uk",
+      "states": "১৭শ শতকের মাঝামাঝি থেকে ১৯শ শতকের শেষের দিকে"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:agri_uk",
+      "states": "ব্রিটেনে কৃষিজ উৎপাদনের এক অভূতপূর্ব বৃদ্ধি ও বিস্তার"
+     }
+    ]
+   },
+   "conflicts": [
+    {
+     "field": "whenBn",
+     "others": [
+      {
+       "valueBn": "অষ্টাদশ শতাব্দী (৪২তম বিশেষ বিসিএস; চাকরি বাংলা ও বিদ্যাবাড়ির উত্তর)",
+       "cite": [
+        {
+         "ref": "exam:42bcs-cb",
+         "states": "«৬৮. ব্রিটিশ কৃষি বিপ্লব কখন সংঘটিত হয়েছিল?»"
+        }
+       ]
+      },
+      {
+       "valueBn": "উনবিংশ শতাব্দী (একই প্রশ্ন; BCS Study-র উত্তর)",
+       "cite": [
+        {
+         "ref": "exam:42bcs-bs",
+         "states": "«২১) ব্রিটিশ কৃষি বিপ্লব সংঘটিত হয় – উনবিংশ শতাব্দী।»"
+        }
+       ]
+      },
+      {
+       "valueBn": "কোনটিই নয় (একই প্রশ্ন; Bissoy-র উত্তর)",
+       "cite": [
+        {
+         "ref": "exam:42bcs-bissoy",
+         "states": "(2) কোনটিই নয়, from bissoy"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "point": null
+  },
+  {
+   "id": "neolithic-revolution",
+   "tab": "nonpolitical",
+   "nameBn": "নব্যপ্রস্তর যুগীয় বিপ্লব",
+   "nameEn": "Neolithic Revolution",
+   "whenBn": null,
+   "from": null,
+   "placeBn": null,
+   "aka": [
+    {
+     "textBn": "প্রথম কৃষি বিপ্লব",
+     "cite": [
+      {
+       "ref": "bnwp:neolithic",
+       "states": "নব্যপ্রস্তর যুগীয় বিপ্লব, নব্যপ্রস্তর যুগীয় জনগোষ্ঠী পরিবর্তন, কৃষি বিপ্লব, অথবা প্রথম কৃষি বিপ্লব"
+      }
+     ]
+    },
+    {
+     "textBn": "কৃষি বিপ্লব",
+     "cite": [
+      {
+       "ref": "bnwp:neolithic",
+       "states": "নব্যপ্রস্তর যুগীয় বিপ্লব, নব্যপ্রস্তর যুগীয় জনগোষ্ঠী পরিবর্তন, কৃষি বিপ্লব, অথবা প্রথম কৃষি বিপ্লব"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:neolithic",
+      "states": "নব্যপ্রস্তর যুগীয় বিপ্লব",
+      "where": "title"
+     }
+    ]
+   },
+   "point": null
+  },
+  {
+   "id": "scientific-revolution",
+   "tab": "nonpolitical",
+   "nameBn": "বৈজ্ঞানিক বিপ্লব",
+   "nameEn": "Scientific Revolution",
+   "whenBn": "রেনেসাঁ পর্বের শেষের দিক থেকে ১৮ শতকের শেষের দিক পর্যন্ত",
+   "from": null,
+   "placeBn": "ইউরোপ",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:scientific",
+      "states": "বৈজ্ঞানিক বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:scientific",
+      "states": "রেনেসাঁ পর্বের শেষের দিকে ইউরোপে বৈজ্ঞানিক বিপ্লব সংঘটিত হয়েছিল এবং ১৮ শতকের শেষের দিক পর্যন্ত এটি অব্যাহত ছিল"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:scientific",
+      "states": "রেনেসাঁ পর্বের শেষের দিকে ইউরোপে বৈজ্ঞানিক বিপ্লব সংঘটিত হয়েছিল"
+     }
+    ]
+   },
+   "point": null
+  },
+  {
+   "id": "digital-revolution",
+   "tab": "nonpolitical",
+   "nameBn": "ডিজিটাল বিপ্লব",
+   "nameEn": "Digital Revolution",
+   "whenBn": "১৯৮০-র দশকের শুরু থেকে",
+   "from": null,
+   "century": 20,
+   "placeBn": "সারা বিশ্ব",
+   "aka": [
+    {
+     "textBn": "তৃতীয় শিল্প বিপ্লব",
+     "cite": [
+      {
+       "ref": "bnwp:digital",
+       "states": "ডিজিটাল বিপ্লব (Digital Revolution) বা তৃতীয় শিল্প বিপ্লব"
+      }
+     ]
+    }
+   ],
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:digital",
+      "states": "ডিজিটাল বিপ্লব (Digital Revolution)"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "bnwp:digital",
+      "states": "(১৯৮০-র দশকের শুরুতে এসে)"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "bnwp:digital",
+      "states": "(১৯৮০-র দশকের শুরুতে এসে) সারা বিশ্বে তথ্য ও যোগাযোগ প্রযুক্তির"
+     }
+    ]
+   },
+   "point": null
+  },
+  {
+   "id": "second-industrial-revolution",
+   "tab": "nonpolitical",
+   "nameBn": "দ্বিতীয় শিল্প বিপ্লব",
+   "nameEn": "Second Industrial Revolution",
+   "whenBn": "১৮৭০ থেকে",
+   "from": 1870,
+   "placeBn": null,
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:cat:দ্বিতীয় শিল্প বিপ্লব",
+      "states": "বিষয়শ্রেণী:দ্বিতীয় শিল্প বিপ্লব",
+      "where": "title"
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "enwp:second_ind",
+      "states": "before the Second Industrial Revolution started in 1870"
+     }
+    ]
+   },
+   "point": null
+  }
+ ]
+}

@@ -1,0 +1,14 @@
+{
+  "revolution": {
+    "titleBn": "বিপ্লব",
+    "placeholderBn": "একটি বিপ্লব বেছে নিন…"
+  },
+  "uprising": {
+    "titleBn": "গণঅভ্যুত্থান ও বিদ্রোহ",
+    "placeholderBn": "একটি গণঅভ্যুত্থান বা বিদ্রোহ বেছে নিন…"
+  },
+  "nonpolitical": {
+    "titleBn": "অ-রাজনৈতিক বিপ্লব",
+    "placeholderBn": "একটি অ-রাজনৈতিক বিপ্লব বেছে নিন…"
+  }
+}

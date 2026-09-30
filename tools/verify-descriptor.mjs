@@ -25,6 +25,9 @@
 //                               earth-interior.seed.json and the approved master
 //   seasons (a diagram)  checked against data-sources/seasons/seasons.seed.json
 //                        and the approved paintings
+//   world-revolutions  checked against data-sources/world-revolutions/
+//                      world-revolutions.seed.json; its points, against the pinned
+//                      Natural Earth and COD-AB files, by tools/verify.mjs
 //   bangladesh-rivers (a diagram)  checked against data-sources/bangladesh-rivers/
 //                                  bangladesh-rivers.seed.json; its geometry, against the
 //                                  pinned sources, by tools/verify.mjs
@@ -81,6 +84,9 @@ const JANAPADA_SEEDS = path.join(ROOT, 'data-sources/ancient-janapadas');
 const TREATY_SEEDS = path.join(ROOT, 'data-sources/environment-treaties');
 // The liberation-war-1971 map: the editor's seed and the traced sectors.
 const LIBERATION_SEEDS = path.join(ROOT, 'data-sources/liberation-war-1971');
+// The world-revolutions map: the editor's seed, pinned (Stage 1, 2026-10-01).
+const WORLD_REVOLUTIONS_SEEDS = path.join(ROOT, 'data-sources/world-revolutions');
+const WORLD_REVOLUTIONS_SEED_SHA256 = '4a05b62f8bdcad583fd1acc53bb713755ccfbcf83f6018f2e7e049c6f2bb21f7';
 // Every authored diagram lives under here, one folder per diagram id, and the
 // diagram shell that opens them.
 const DIAGRAMS_DIR = path.join(ROOT, 'docs/diagrams');
@@ -2308,6 +2314,82 @@ console.log('\n\n============ liberation-war-1971 ============');
   const placeIds = new Set(readJson(path.join(dir, 'places.geojson')).features.map((f) => f.properties.id));
   check(byTab('places').every(([key]) => placeIds.has(key)), 'every place and event has its red dot');
   checkMap({ id: 'liberation-war-1971', expectedPending: 0 });
+}
+
+/*
+|--------------------------------------------------------------------------
+| WORLD-REVOLUTIONS — faithful to data-sources/world-revolutions/
+| world-revolutions.seed.json; its points are traced to the pinned files by
+| tools/verify.mjs
+|--------------------------------------------------------------------------
+*/
+console.log('\n\n============ world-revolutions ============');
+{
+  const id = 'world-revolutions';
+  const dir = path.join(MAPS_DIR, id);
+  const seedFile = path.join(WORLD_REVOLUTIONS_SEEDS, 'world-revolutions.seed.json');
+  const seedSha = crypto.createHash('sha256').update(fs.readFileSync(seedFile)).digest('hex');
+  check(seedSha === WORLD_REVOLUTIONS_SEED_SHA256, `the seed is the approved one (sha256 ${seedSha.slice(0, 12)}…)${seedSha === WORLD_REVOLUTIONS_SEED_SHA256 ? '' : ` — pinned ${WORLD_REVOLUTIONS_SEED_SHA256.slice(0, 12)}…; report, do not re-pin to pass`}`);
+  const seed = readJson(seedFile);
+  const recs = readJson(path.join(dir, 'records.json'));
+  const places = readJson(path.join(dir, 'places.json'));
+  const tabs = readJson(path.join(dir, 'tabs.json'));
+  const info = readJson(path.join(dir, 'info.json'));
+  const events = Object.fromEntries(seed.events.map((e) => [e.id, e]));
+
+  // The approved shortlist's three tabs and their sizes (2026-10-01).
+  const count = (tab) => seed.events.filter((e) => e.tab === tab).length;
+  check(count('revolution') === 30 && count('uprising') === 14 && count('nonpolitical') === 9, `the seed holds «বিপ্লব» 30, «গণঅভ্যুত্থান ও বিদ্রোহ» 14, «অ-রাজনৈতিক বিপ্লব» 9 (${['revolution', 'uprising', 'nonpolitical'].map(count).join('/')})`);
+  check(JSON.stringify(tabs) === JSON.stringify(Object.fromEntries(seed.tabs.map((t) => [t.id, { titleBn: t.titleBn, placeholderBn: t.placeholderBn }]))), `tabs.json is the seed's tabs, in order (${Object.keys(tabs).join(', ')})`);
+  check(Object.keys(recs).sort().join() === Object.keys(events).sort().join(), `records.json holds exactly the seed's ${seed.events.length} events`);
+
+  // Every card value is the seed's, and every value the seed gives is cited.
+  const bad = [];
+  for (const [key, r] of Object.entries(recs)) {
+    const e = events[key];
+    if (!e) continue;
+    const want = { tab: e.tab, nameBn: e.nameBn, nameEn: e.nameEn, whenBn: e.whenBn, placeBn: e.placeBn, akaBn: e.aka?.length ? e.aka.map((a) => a.textBn).join(', ') : undefined, kindBn: e.kind === 'rebel-group' ? 'বিদ্রোহী দল' : undefined, groupBn: e.group ? seed.groups[e.group].memberBn : undefined };
+    for (const [f, v] of Object.entries(want)) if (JSON.stringify(r[f]) !== JSON.stringify(v)) bad.push(`${key}.${f}`);
+    for (const f of ['nameBn', 'whenBn', 'placeBn']) if (e[f] !== null && !(e.cite?.[f] ?? []).every((c) => c.ref in seed.refs && c.states)) bad.push(`${key}.${f} uncited`);
+    for (const f of ['nameBn', 'whenBn', 'placeBn']) if (e[f] !== null && !(e.cite?.[f] ?? []).length) bad.push(`${key}.${f} uncited`);
+    for (const a of e.aka ?? []) if (!a.cite?.length || !a.cite.every((c) => c.ref in seed.refs && c.states)) bad.push(`${key} other name «${a.textBn}» uncited`);
+  }
+  check(bad.length === 0, `every card value is the seed's, and every one the seed gives is cited (${Object.keys(recs).length} events)${bad.length ? ` — not ${bad.join(', ')}` : ''}`);
+  const pinnedRef = Object.entries(seed.refs).filter(([, r]) => r.kind === 'wikipedia' && !/^https:\/\/(bn|en)\.wikipedia\.org\/w\/index\.php\?title=[^&]+&oldid=\d+$/.test(r.url));
+  check(pinnedRef.length === 0, `every Wikipedia source is a pinned revision (${Object.values(seed.refs).filter((r) => r.kind === 'wikipedia').length})${pinnedRef.length ? ` — not ${pinnedRef.map(([k]) => k).join(', ')}` : ''}`);
+
+  // THE NO-POINT EXCEPTION (the user's decision, 2026-10-01; notes/descriptor.md):
+  // an event on a map tab with no marker is in the seed's noPoint list, with
+  // its reason, and its card says so — never silently absent. The cards-only
+  // tab draws nothing, by the same decision.
+  const mapTab = (r) => r.tab !== 'nonpolitical';
+  const unmarked = Object.entries(recs).filter(([, r]) => mapTab(r) && !r.marker).map(([k]) => k).sort();
+  const listed = Object.keys(seed.noPoint ?? {}).sort();
+  check(unmarked.join() === listed.join() && listed.every((k) => typeof seed.noPoint[k] === 'string' && seed.noPoint[k].length > 0), `the events on a map tab with no marker are exactly the seed's noPoint list, each with its reason (${listed.length}: ${listed.join(', ')})${unmarked.join() === listed.join() ? '' : ` — unmarked ${unmarked.join(', ')}`}`);
+  const noPointCard = Object.entries(recs).filter(([k, r]) => (listed.includes(k) ? r.noPointBn !== 'নির্দিষ্ট বিন্দু নেই' : 'noPointBn' in r)).map(([k]) => k);
+  check(noPointCard.length === 0, `every one of them, and only they, carries «নির্দিষ্ট বিন্দু নেই» on its card${noPointCard.length ? ` — not ${noPointCard.join(', ')}` : ''}`);
+  const drawnCardsOnly = Object.entries(recs).filter(([, r]) => !mapTab(r) && (r.marker || r.at || r.soloAt || r.place)).map(([k]) => k);
+  check(drawnCardsOnly.length === 0, `the cards-only tab draws nothing (${Object.values(recs).filter((r) => !mapTab(r)).length} events)${drawnCardsOnly.length ? ` — drawn: ${drawnCardsOnly.join(', ')}` : ''}`);
+
+  // Markers: a dot or a ring as the seed says, alone or in its shared place.
+  const badMarker = Object.entries(recs).filter(([k, r]) => r.marker !== (events[k]?.point?.marker ?? undefined)).map(([k]) => k);
+  check(badMarker.length === 0, `every marker is the seed's dot or ring (${Object.values(recs).filter((r) => r.marker === 'dot').length} dots, ${Object.values(recs).filter((r) => r.marker === 'ring').length} rings)${badMarker.length ? ` — not ${badMarker.join(', ')}` : ''}`);
+  const badPlace = [];
+  for (const [pk, p] of Object.entries(places)) {
+    if (p.count !== p.records.length || p.count < 2) badPlace.push(pk);
+    for (const k of p.records) if (recs[k]?.place?.[0] !== pk || recs[k].soloAt || recs[k].tab !== p.tab || recs[k].marker !== p.marker || JSON.stringify(recs[k].at) !== JSON.stringify(p.at)) badPlace.push(`${pk}:${k}`);
+  }
+  const solo = Object.entries(recs).filter(([, r]) => r.soloAt);
+  for (const [k, r] of solo) if (JSON.stringify(r.soloAt) !== JSON.stringify(r.at) || solo.some(([k2, r2]) => k2 !== k && r2.tab === r.tab && JSON.stringify(r2.at) === JSON.stringify(r.at))) badPlace.push(k);
+  check(badPlace.length === 0, `events sharing a spot in a tab are one place listing them all (${Object.entries(places).map(([k, p]) => `${k} ${p.count}`).join(', ')}); the other ${solo.length} are alone${badPlace.length ? ` — not ${badPlace.join(', ')}` : ''}`);
+
+  // ⓘ: one line of sources per event, its notes, and one line per disagreement.
+  const wantNotes = seed.events.length + seed.events.reduce((n, e) => n + (e.notesBn?.length ?? 0), 0);
+  const wantConflicts = seed.events.reduce((n, e) => n + (e.conflicts?.length ?? 0), 0);
+  check(info.lines.filter((l) => l.group === 'notes').length === wantNotes && info.lines.filter((l) => l.group === 'conflicts').length === wantConflicts, `ⓘ holds ${wantNotes} notes (every event's sources, and the seed's notes) and ${wantConflicts} disagreements`);
+
+  // Pending: the seed's nulls, no more — places, times no source in the order gives.
+  checkMap({ id, expectedPending: seed.events.reduce((n, e) => n + ['whenBn', 'placeBn'].filter((f) => e[f] === null).length, 0) });
 }
 
 /*

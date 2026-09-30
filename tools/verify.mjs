@@ -1014,6 +1014,83 @@ const describe = (f) => `${relToRoot(f.file)}:${f.line} ${f.class} — ${f.rule}
   if (!hits) check(true, `no e-mail address in the ${tracked.length} tracked files (${allowed} allowed matches: image file names and a certificate authority's)`);
 }
 
+// ---- world-revolutions: every marker traced to its pinned file -------------------------
+// Re-derived here from the seed and the pinned files, apart from the build:
+// the seed names a file and a key, the file gives the point. A country's point
+// is its Natural Earth label point — where world.pmtiles labels it — and every
+// marker lies inside its own country's polygon in the countries file
+// world.pmtiles is built from. An event with no marker is the seed's noPoint
+// list, and the cards-only tab has none (tools/verify-descriptor.mjs holds both).
+console.log('\n---- world-revolutions: markers ----');
+{
+  const seed = JSON.parse(fs.readFileSync(path.join(DATA_SOURCES, 'world-revolutions/world-revolutions.seed.json'), 'utf8'));
+  const recs = JSON.parse(fs.readFileSync(path.join(SERVED, 'maps/world-revolutions/records.json'), 'utf8'));
+  const pins = JSON.parse(fs.readFileSync(path.join(HERE, 'sources.json'), 'utf8'));
+  const blob = (buf) => crypto.createHash('sha1').update(Buffer.concat([Buffer.from(`blob ${buf.length}\0`), buf])).digest('hex');
+  const ne = (name) => {
+    const buf = fs.readFileSync(path.join(CACHE, name));
+    const pin = pins.naturalEarth.files[name];
+    check(buf.length === pin.size && blob(buf) === pin.gitBlobSha1, `world-revolutions: ${name} is the pinned file`);
+    return JSON.parse(buf.toString('utf8'));
+  };
+  const countries = ne('ne_10m_admin_0_countries_bdg.geojson').features;
+  const cities = ne('ne_10m_populated_places_simple.geojson').features;
+  const admin1 = ne('ne_10m_admin_1_states_provinces.geojson').features;
+  const codAbBuf = fs.readFileSync(path.join(CACHE, pins.codAbBangladesh.file));
+  check(crypto.createHash('sha256').update(codAbBuf).digest('hex') === pins.codAbBangladesh.sha256, 'world-revolutions: the COD-AB zip is the pinned file');
+  const codAb = zipEntry(codAbBuf, 'bgd_adminpoints.geojson').features;
+  const pointOf = (p) => {
+    if (p.source === 'NE-0') {
+      const f = countries.filter((c) => c.properties.ADM0_A3 === p.adm0);
+      return f.length === 1 ? [[f[0].properties.LABEL_X, f[0].properties.LABEL_Y], p.adm0] : null;
+    }
+    if (p.source === 'NE-pp') {
+      const f = cities.filter((c) => c.properties.name === p.name && c.properties.adm0_a3 === p.adm0);
+      return f.length === 1 ? [[f[0].properties.longitude, f[0].properties.latitude], p.adm0] : null;
+    }
+    if (p.source === 'NE-1') {
+      const f = admin1.filter((c) => c.properties.name === p.name && c.properties.adm0_a3 === p.adm0);
+      return f.length === 1 ? [[f[0].properties.longitude, f[0].properties.latitude], p.adm0] : null;
+    }
+    if (p.source === 'COD-AB') {
+      const f = codAb.filter((c) => c.properties.admin_level === p.level && c.properties[p.level === 2 ? 'adm2_pcode' : 'adm3_pcode'] === p.pcode && c.properties.name === p.name);
+      return f.length === 1 ? [f[0].geometry.coordinates, 'BGD'] : null;
+    }
+    return null;
+  };
+  const inRing = ([x, y], ring) => {
+    let inside = false;
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      const [xi, yi] = ring[i];
+      const [xj, yj] = ring[j];
+      if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) inside = !inside;
+    }
+    return inside;
+  };
+  const inside = (pt, adm0) => {
+    const f = countries.find((c) => c.properties.ADM0_A3 === adm0);
+    const polys = f?.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f?.geometry.coordinates ?? [];
+    return polys.some((rings) => inRing(pt, rings[0]) && !rings.slice(1).some((h) => inRing(pt, h)));
+  };
+  const round = (n) => Number(n.toFixed(5));
+  const bad = [];
+  let traced = 0;
+  for (const e of seed.events) {
+    const r = recs[e.id];
+    if (!e.point) {
+      if (r?.at || r?.marker) bad.push(`${e.id}: drawn, though the seed gives no point`);
+      continue;
+    }
+    const got = pointOf(e.point);
+    if (!got) bad.push(`${e.id}: ${e.point.source} has no single match`);
+    else if (JSON.stringify(r?.at) !== JSON.stringify(got[0].map(round))) bad.push(`${e.id}: its marker is not its ${e.point.source} point`);
+    else if (!inside(got[0], got[1])) bad.push(`${e.id}: outside ${got[1]}`);
+    else if (!countries.some((c) => c.properties.ADM0_A3 === got[1] && c.properties.NAME_BN)) bad.push(`${e.id}: ${got[1]} has no label on world.pmtiles`);
+    else traced++;
+  }
+  check(bad.length === 0, `world-revolutions: every marker is its pinned file's point, inside its own labelled country (${traced} of ${seed.events.length} events; ${seed.events.filter((e) => !e.point).length} with none)${bad.length ? ` — not ${bad.join('; ')}` : ''}`);
+}
+
 if (failures) {
   console.error(`\n${failures} check(s) failed.`);
   process.exit(1);

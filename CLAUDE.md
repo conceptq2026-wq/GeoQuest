@@ -380,7 +380,11 @@ holds the two products' built files to parity. The map's upstream rule reads
 the pinned Natural Earth admin-1 and regions files and geoBoundaries India. The shared district file,
 `docs/shared/bangladesh-districts.json` (COD-AB's 64 districts, the
 basemap's Bengali names), is rebuilt by `tools/build-bangladesh-districts.mjs`
-and compared byte for byte in `tools/verify.mjs`.
+and compared byte for byte in `tools/verify.mjs`. world-revolutions: its
+seed, `data-sources/world-revolutions/world-revolutions.seed.json`, by
+SHA-256 in `tools/verify-descriptor.mjs`; every marker is re-derived from the
+pinned Natural Earth countries, populated-places and admin-1 files and the
+COD-AB zip in `tools/verify.mjs`, and must lie inside its own country.
 
 When a pin moves, **stop and report the old and new values.** Never re-pin to
 make a build pass. A dropped `featurecla` once shifted a line by three points
@@ -413,7 +417,10 @@ State which kind a task is when reporting it.
   (`notes/bangladesh-rivers-map.md`); `atmosphere-layers`, `earth-interior`
   and `seasons` under বিবিধ. Both rivers products went live together
   (2026-09-30), with the home page's first captions.
-- Work in progress (`tools/wip.json`): none.
+- Work in progress (`tools/wip.json`): `world-revolutions`, a world map
+  under International, Stage 1 of its plan (2026-10-01): three tabs, 53
+  events, dot and ring markers, and the one no-point exception
+  (`notes/world-revolutions.md`); local preview only, not in the registry.
 
 ## Index — notes, read only when working on that item
 
@@ -421,6 +428,8 @@ Moved verbatim from this file on 2026-09-28; every line lives in one place.
 
 - Each map and diagram: `notes/<id>.md` — the Geography maps but
   latitude-longitude share `notes/geography.md`; straits is the reference page.
+  world-revolutions, `notes/world-revolutions.md`; its no-point exception to
+  "never silently absent", `notes/descriptor.md`.
 - The map shell (baseline data, tabs, timeline, teardown; a new shell feature
   is a module loaded only where declared): `notes/shell.md`; the globe,
   `notes/globe.md`; descriptor terms past the data model, `notes/descriptor.md`;

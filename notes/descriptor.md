@@ -174,3 +174,14 @@ point and no frame. A record that legitimately cannot be given a point is
 listed in `NO_POINT_YET`, and the build also fails if that list goes stale.
 
 **Never silently absent from the map.**
+
+**The one exception: world-revolutions** (the user's decision, 2026-10-01).
+There, an event whose sources name no single place a pinned file can locate
+has no marker at all. It is still in the picker, its card opens, and a row on
+it says «নির্দিষ্ট বিন্দু নেই» — absent, but never silently. The events are
+listed, each with its reason, in the seed's `noPoint`
+(`data-sources/world-revolutions/world-revolutions.seed.json`). The build and
+`tools/verify-descriptor.mjs` each fail when the list and the unmarked events
+disagree either way, or when a listed event's card lacks the row. The map's
+third tab, «অ-রাজনৈতিক বিপ্লব», is cards only: the same decision, and the
+validator fails any marker there. No other map may leave a record unmarked.
