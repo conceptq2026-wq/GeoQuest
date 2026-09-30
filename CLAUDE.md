@@ -406,9 +406,10 @@ State which kind a task is when reporting it.
 
 ## Current state
 
-- Thirteen maps. Bangladesh: `ancient-janapadas`, `liberation-war-1971` and
+- Fourteen maps. Bangladesh: `ancient-janapadas`, `liberation-war-1971` and
   `bangladesh-rivers-map` («নদী ২»). International: `straits`,
-  `border-lines`, `org-headquarters`, `environment-treaties`. Geography:
+  `border-lines`, `org-headquarters`, `environment-treaties` and
+  `world-revolutions` (`notes/world-revolutions.md`). Geography:
   `deserts`, `lakes`, `forests`, `mountains`, `waterfalls` and
   `latitude-longitude`, all under `docs/maps/`.
 - Four diagrams, in `docs/diagrams/`: `bangladesh-rivers` («নদী ১») under
@@ -417,11 +418,10 @@ State which kind a task is when reporting it.
   (`notes/bangladesh-rivers-map.md`); `atmosphere-layers`, `earth-interior`
   and `seasons` under বিবিধ. Both rivers products went live together
   (2026-09-30), with the home page's first captions.
-- Work in progress (`tools/wip.json`): `world-revolutions`, a world map
-  under International, Stages 1–3 of its plan (2026-10-01): three tabs, 55
-  events, dot and ring markers, group chips, a cards-only tab, and the one
-  no-point exception (`notes/world-revolutions.md`); local preview only, not
-  in the registry.
+- `world-revolutions` went live on the home page on 2026-10-01, with a
+  caption, after Stages 1–3 of its plan: three tabs, 55 events, dot and ring
+  markers, group chips, a cards-only tab, and the one no-point exception.
+- Work in progress (`tools/wip.json`): none.
 
 ## Index — notes, read only when working on that item
 

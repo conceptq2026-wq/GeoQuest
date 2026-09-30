@@ -79,6 +79,17 @@
       }
     },
     {
+      "id": "world-revolutions",
+      "section": "international",
+      "title": {
+        "en": "Revolutions and Uprisings of the World",
+        "bn": "বিশ্বের বিপ্লব ও গণঅভ্যুত্থান"
+      },
+      "caption": {
+        "bn": "তিন ট্যাব: বিপ্লব, অভ্যুত্থান ও অ-রাজনৈতিক বিপ্লব"
+      }
+    },
+    {
       "id": "deserts",
       "section": "geography",
       "title": {

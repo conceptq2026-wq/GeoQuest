@@ -9,9 +9,10 @@ Read it with `CLAUDE.md`, whose rules and verification budget apply.
   - «বিপ্লব»: 32 events.
   - «গণঅভ্যুত্থান ও বিদ্রোহ»: 14 events.
   - «অ-রাজনৈতিক বিপ্লব»: 9 events, cards only, no points.
-- **In progress.** Listed in `tools/wip.json`: on the local preview's home page
-  only, not in the registry. The title «বিশ্বের বিপ্লব ও গণঅভ্যুত্থান» is a
-  working title; the final one is the user's decision.
+- **Live** on the home page since 2026-10-01 (the user's approval), under
+  International, titled «বিশ্বের বিপ্লব ও গণঅভ্যুত্থান» as its descriptor is,
+  with the caption «তিন ট্যাব: বিপ্লব, অভ্যুত্থান ও অ-রাজনৈতিক বিপ্লব»
+  (`tools/home-cards.json`). No longer in `tools/wip.json`.
 - **The list.** It is the shortlist the user approved on 2026-10-01,
   `tools/.cache/world-revolutions/shortlist.md`. That file also holds the
   exclusions, what is held back, and the rules:
