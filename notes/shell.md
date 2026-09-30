@@ -122,6 +122,35 @@ drawn now (`drawn`), and read a file of the map's own folder (`file`).
   copied in each time it opens), then the lines of `file` (`{ lines: [{ text,
   group }] }`, `group` "notes" or "conflicts") under their headings. 14 px
   text; the panel scrolls inside itself.
+- **`chips: { records, field, from, label, frame? }`** (2026-10-01) is one line
+  of group chips in the map's top-left corner, clear of the ⓘ zone and the
+  corner controls. It scrolls sideways when it is longer than the map.
+  - The groups are the rows of `from`, each chip titled by `label`. A record
+    belongs to the group its `field` names; every group needs at least two
+    members.
+  - On a tabbed map, a group's row names its `tab`, and only the open tab's
+    chips show.
+  - A tap on a chip keeps its members on the map and takes the rest off it,
+    off the map only (`hideOnMap`), so a tap can land only on a member. A
+    place a member points at stays. The camera goes to the union of the
+    members' `frame` fields.
+  - A second tap, a selection outside the group, or another tab releases the
+    chip.
+  - Each chip is a 44 px tap zone with 14 px text. `tools/check.mjs` presses
+    each chip, checks that only its members stay drawn, then releases it.
+  - world-revolutions' Arab Spring and Revolutions of 1848 are the first use.
+- **`tabs.cardsOnly: [<tab>]`** (2026-10-01) names tabs whose records have no
+  place on the map.
+  - While one is open, the map and everything drawn on it are hidden, not
+    removed: the legend, chips, corner controls and the floating card.
+  - The tab's cards are listed in the map's own space instead, in the table's
+    order. Each card is drawn by the shell's `card(table, key)`: the sheet's
+    title and value rows.
+  - A tap on a card selects it as the picker would, and the picked card is
+    marked and scrolled into view.
+  - The validator fails any source that draws a record of such a tab.
+  - It is the exception written in `notes/descriptor.md`, used by
+    world-revolutions' «অ-রাজনৈতিক বিপ্লব».
 - A capability may be proved on a **test map outside `docs/`** first:
   `tools/fixtures/<name>/`, never published, checked by
   `node tools/check.mjs --fixture=tools/fixtures/<name>`. M1's `shell-m1` was

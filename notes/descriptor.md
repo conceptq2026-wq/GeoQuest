@@ -184,4 +184,6 @@ listed, each with its reason, in the seed's `noPoint`
 `tools/verify-descriptor.mjs` each fail when the list and the unmarked events
 disagree either way, or when a listed event's card lacks the row. The map's
 third tab, «অ-রাজনৈতিক বিপ্লব», is cards only: the same decision, and the
-validator fails any marker there. No other map may leave a record unmarked.
+validator fails any marker there. That tab hides the map itself and lists
+its cards in the map's space (`tabs.cardsOnly`, `notes/shell.md`). No other
+map may leave a record unmarked.

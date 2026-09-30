@@ -20,7 +20,59 @@
  "groups": {
   "arab-spring": {
    "nameBn": "আরব বসন্ত",
-   "memberBn": "আরব বসন্তের অংশ"
+   "memberBn": "আরব বসন্তের অংশ",
+   "tab": "revolution",
+   "cite": [
+    {
+     "ref": "bnwp:arabspring",
+     "states": "আরব বসন্ত",
+     "where": "title"
+    }
+   ]
+  },
+  "revolutions-1848": {
+   "nameBn": "১৮৪৮-এর বিপ্লব",
+   "memberBn": "১৮৪৮-এর বিপ্লবের অংশ",
+   "tab": "revolution",
+   "cite": [
+    {
+     "ref": "bnwp:cat:১৮৪৮-এর বিপ্লবের ব্যক্তি",
+     "states": "বিষয়শ্রেণী:১৮৪৮-এর বিপ্লবের ব্যক্তি",
+     "where": "title"
+    }
+   ]
+  }
+ },
+ "excluded": {
+  "14-july-revolution": {
+   "nameBn": "১৪ জুলাই বিপ্লব",
+   "reason": "A coup: bn Wikipedia gives it the other name \"the 1958 Iraqi coup\"; coups are excluded (the user, 2026-10-01).",
+   "cite": [
+    {
+     "ref": "bnwp:iraq1958",
+     "states": "১৪ জুলাই বিপ্লব বা ১৯৫৮ ইরাকি অভ্যুত্থান"
+    }
+   ]
+  },
+  "ramadan-revolution": {
+   "nameBn": "রমজান বিপ্লব",
+   "reason": "A coup: bn Wikipedia calls it a military coup; coups are excluded (the user, 2026-10-01).",
+   "cite": [
+    {
+     "ref": "bnwp:iraq1963",
+     "states": "ছিল একটি সামরিক অভ্যুত্থান যা ১৯৬৩ সালে ইরাকে সংঘটিত হয়"
+    }
+   ]
+  },
+  "17-july-revolution": {
+   "nameBn": "১৭ জুলাই বিপ্লব",
+   "reason": "A coup: bn Wikipedia calls it a bloodless coup; coups are excluded (the user, 2026-10-01).",
+   "cite": [
+    {
+     "ref": "bnwp:iraq1968",
+     "states": "১৯৬৮ সালে ইরাকে সংঘটিত একটি রক্তপাতহীন অভ্যুত্থান"
+    }
+   ]
   }
  },
  "noPoint": {
@@ -331,6 +383,13 @@
    "url": "https://en.wikipedia.org/w/index.php?title=Syrian_revolution&oldid=1376655795",
    "read": "2026-10-01"
   },
+  "bnwp:arabspring": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"আরব বসন্ত\", revision 9149146",
+   "titleBn": "বাংলা উইকিপিডিয়া, «আরব বসন্ত» (সংস্করণ ৯১৪৯১৪৬)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%86%E0%A6%B0%E0%A6%AC_%E0%A6%AC%E0%A6%B8%E0%A6%A8%E0%A7%8D%E0%A6%A4&oldid=9149146",
+   "read": "2026-10-01"
+  },
   "bnwp:bd2024": {
    "kind": "wikipedia",
    "title": "Bengali Wikipedia, \"জুলাই গণঅভ্যুত্থান\", revision 9162636",
@@ -518,6 +577,20 @@
    "title": "Bengali Wikipedia, \"বিষয়শ্রেণী:নিকারাগুয়ান বিপ্লব\", revision 8036464",
    "titleBn": "বাংলা উইকিপিডিয়া, «বিষয়শ্রেণী:নিকারাগুয়ান বিপ্লব» (সংস্করণ ৮০৩৬৪৬৪)",
    "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AC%E0%A6%BF%E0%A6%B7%E0%A6%AF%E0%A6%BC%E0%A6%B6%E0%A7%8D%E0%A6%B0%E0%A7%87%E0%A6%A3%E0%A7%80%3A%E0%A6%A8%E0%A6%BF%E0%A6%95%E0%A6%BE%E0%A6%B0%E0%A6%BE%E0%A6%97%E0%A7%81%E0%A6%AF%E0%A6%BC%E0%A6%BE%E0%A6%A8_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC&oldid=8036464",
+   "read": "2026-10-01"
+  },
+  "bnwp:cat:১৮৪৮-এর বিপ্লবের ব্যক্তি": {
+   "kind": "wikipedia",
+   "title": "Bengali Wikipedia, \"বিষয়শ্রেণী:১৮৪৮-এর বিপ্লবের ব্যক্তি\", revision 7991956",
+   "titleBn": "বাংলা উইকিপিডিয়া, «বিষয়শ্রেণী:১৮৪৮-এর বিপ্লবের ব্যক্তি» (সংস্করণ ৭৯৯১৯৫৬)",
+   "url": "https://bn.wikipedia.org/w/index.php?title=%E0%A6%AC%E0%A6%BF%E0%A6%B7%E0%A6%AF%E0%A6%BC%E0%A6%B6%E0%A7%8D%E0%A6%B0%E0%A7%87%E0%A6%A3%E0%A7%80%3A%E0%A7%A7%E0%A7%AE%E0%A7%AA%E0%A7%AE-%E0%A6%8F%E0%A6%B0_%E0%A6%AC%E0%A6%BF%E0%A6%AA%E0%A7%8D%E0%A6%B2%E0%A6%AC%E0%A7%87%E0%A6%B0_%E0%A6%AC%E0%A7%8D%E0%A6%AF%E0%A6%95%E0%A7%8D%E0%A6%A4%E0%A6%BF&oldid=7991956",
+   "read": "2026-10-01"
+  },
+  "enwp:1848": {
+   "kind": "wikipedia",
+   "title": "English Wikipedia, \"Revolutions of 1848\", revision 1372038790",
+   "titleBn": "ইংরেজি উইকিপিডিয়া, “Revolutions of 1848” (সংস্করণ ১৩৭২০৩৮৭৯০)",
+   "url": "https://en.wikipedia.org/w/index.php?title=Revolutions_of_1848&oldid=1372038790",
    "read": "2026-10-01"
   },
   "bnwp:21-october": {
@@ -828,22 +901,28 @@
    "whenBn": "১৯১৭",
    "from": 1917,
    "placeBn": "পেট্রোগ্রাড",
-   "aka": [
+   "parts": [
     {
-     "textBn": "অক্টোবর বিপ্লব",
+     "textBn": "ফেব্রুয়ারি বিপ্লব",
      "cite": [
       {
        "ref": "bnwp:russian",
-       "states": "রুশ বিপ্লব হচ্ছে বলশেভিক বিপ্লব এবং অক্টোবর বিপ্লবের সমন্বিত রূপ"
+       "states": "ফেব্রুয়ারি বিপ্লব : [[৮ মার্চ|৮]] – ১৬ মার্চ ১৯১৭",
+       "where": "infobox"
       }
      ]
     },
     {
-     "textBn": "বলশেভিক বিপ্লব",
+     "textBn": "অক্টোবর বিপ্লব (বলশেভিক বিপ্লব)",
      "cite": [
       {
        "ref": "bnwp:russian",
-       "states": "রুশ বিপ্লব হচ্ছে বলশেভিক বিপ্লব এবং অক্টোবর বিপ্লবের সমন্বিত রূপ"
+       "states": "[[অক্টোবর বিপ্লব]] : [[৭ নভেম্বর|৭]] – ৮ নভেম্বর ১৯১৭",
+       "where": "infobox"
+      },
+      {
+       "ref": "bnwp:october",
+       "states": "বলশেভিক বিপ্লব, বা বলশেভিক অভ্যুত্থান নামে"
       }
      ]
     }
@@ -906,6 +985,7 @@
     }
    ],
    "notesBn": [
+    "বাংলা উইকিপিডিয়ার তথ্যছকে রুশ বিপ্লবের দুই পর্ব: ফেব্রুয়ারি বিপ্লব ও অক্টোবর বিপ্লব; «অক্টোবর বিপ্লব» নিবন্ধে এর আরেক নাম বলশেভিক বিপ্লব। একই নিবন্ধের ভূমিকায় লেখা: «রুশ বিপ্লব হচ্ছে বলশেভিক বিপ্লব এবং অক্টোবর বিপ্লবের সমন্বিত রূপ»।",
     "এই নিবন্ধের তথ্যছকে স্থান «রুশ সাম্রাজ্য»; মার্কারটি «অক্টোবর বিপ্লব» নিবন্ধের স্থান পেট্রোগ্রাডে, যার সংযোগ «সেইন্ট পিটার্সবার্গ» নিবন্ধে। «ফেব্রুয়ারি বিপ্লব» নিবন্ধে বানান «পেট্রোগ্রাদ»।"
    ],
    "point": {
@@ -1713,6 +1793,9 @@
      ]
     }
    ],
+   "notesBn": [
+    "স্থানটি দেশের নাম মিলিয়ে বসানো: ইংরেজি উইকিপিডিয়ার তথ্যছকে স্থান «Vietnam», যার সংযোগ «Empire of Vietnam» নিবন্ধে।"
+   ],
    "point": {
     "marker": "ring",
     "source": "NE-0",
@@ -1837,10 +1920,10 @@
     ]
    },
    "notesBn": [
-    "মার্কারটি জাঞ্জিবার শহরে: ইংরেজি উইকিপিডিয়ায় বিদ্রোহীরা Zanzibar Town-এ গিয়ে সুলতানকে উৎখাত করে; বিন্দুটি Natural Earth-এর «Zanzibar» (তানজানিয়া)।"
+    "স্থানটি অঞ্চলের নাম মিলিয়ে বসানো: ইংরেজি উইকিপিডিয়ায় বিদ্রোহীরা Zanzibar Town-এ গিয়ে সুলতানকে উৎখাত করে; বৃত্তটি Natural Earth-এর «Zanzibar» (তানজানিয়া) বিন্দুতে।"
    ],
    "point": {
-    "marker": "dot",
+    "marker": "ring",
     "source": "NE-pp",
     "name": "Zanzibar",
     "adm0": "TZA",
@@ -1855,167 +1938,6 @@
       "states": "জাঞ্জিবার সালতানাত তানজানিয়ার পূর্ব উপকূলবর্তী কয়েকটি দ্বীপ দ্বারা গঠিত রাষ্ট্র"
      }
     ]
-   }
-  },
-  {
-   "id": "14-july-revolution",
-   "tab": "revolution",
-   "nameBn": "১৪ জুলাই বিপ্লব",
-   "nameEn": "14 July Revolution",
-   "whenBn": "১৪ জুলাই ১৯৫৮",
-   "from": 1958,
-   "placeBn": "ইরাক",
-   "aka": [
-    {
-     "textBn": "১৯৫৮ ইরাকি অভ্যুত্থান",
-     "cite": [
-      {
-       "ref": "bnwp:iraq1958",
-       "states": "১৪ জুলাই বিপ্লব বা ১৯৫৮ ইরাকি অভ্যুত্থান"
-      }
-     ]
-    }
-   ],
-   "cite": {
-    "nameBn": [
-     {
-      "ref": "bnwp:iraq1958",
-      "states": "১৪ জুলাই বিপ্লব",
-      "where": "title"
-     }
-    ],
-    "whenBn": [
-     {
-      "ref": "bnwp:iraq1958",
-      "states": "১৪ জুলাই ১৯৫৮",
-      "where": "infobox"
-     }
-    ],
-    "placeBn": [
-     {
-      "ref": "bnwp:iraq1958",
-      "states": "[[ইরাক]]",
-      "where": "infobox"
-     }
-    ],
-    "point": [
-     {
-      "ref": "bnwp:iraq1958",
-      "states": "[[ইরাক]]",
-      "where": "infobox"
-     }
-    ]
-   },
-   "point": {
-    "marker": "ring",
-    "source": "NE-0",
-    "adm0": "IRQ"
-   }
-  },
-  {
-   "id": "ramadan-revolution",
-   "tab": "revolution",
-   "nameBn": "রমজান বিপ্লব",
-   "nameEn": "Ramadan Revolution",
-   "whenBn": "৮–১০ ফেব্রুয়ারি ১৯৬৩",
-   "from": 1963,
-   "placeBn": "ইরাক",
-   "aka": [
-    {
-     "textBn": "৮ ফেব্রুয়ারি বিপ্লব",
-     "cite": [
-      {
-       "ref": "bnwp:iraq1963",
-       "states": "রমজান বিপ্লব (৮ ফেব্রুয়ারি বিপ্লব বা ফেব্রুয়ারি ১৯৬৩ ইরাক অভ্যুত্থান বলেও পরিচিত)"
-      }
-     ]
-    },
-    {
-     "textBn": "ফেব্রুয়ারি ১৯৬৩ ইরাক অভ্যুত্থান",
-     "cite": [
-      {
-       "ref": "bnwp:iraq1963",
-       "states": "রমজান বিপ্লব (৮ ফেব্রুয়ারি বিপ্লব বা ফেব্রুয়ারি ১৯৬৩ ইরাক অভ্যুত্থান বলেও পরিচিত)"
-      }
-     ]
-    }
-   ],
-   "cite": {
-    "nameBn": [
-     {
-      "ref": "bnwp:iraq1963",
-      "states": "রমজান বিপ্লব",
-      "where": "title"
-     }
-    ],
-    "whenBn": [
-     {
-      "ref": "bnwp:iraq1963",
-      "states": "৮-১০ ফেব্রুয়ারি ১৯৬৩",
-      "where": "infobox"
-     }
-    ],
-    "placeBn": [
-     {
-      "ref": "bnwp:iraq1963",
-      "states": "যা ১৯৬৩ সালে ইরাকে সংঘটিত হয়"
-     }
-    ],
-    "point": [
-     {
-      "ref": "bnwp:iraq1963",
-      "states": "যা ১৯৬৩ সালে ইরাকে সংঘটিত হয়"
-     }
-    ]
-   },
-   "point": {
-    "marker": "ring",
-    "source": "NE-0",
-    "adm0": "IRQ"
-   }
-  },
-  {
-   "id": "17-july-revolution",
-   "tab": "revolution",
-   "nameBn": "১৭ জুলাই বিপ্লব",
-   "nameEn": "17 July Revolution",
-   "whenBn": "১৭ জুলাই ১৯৬৮",
-   "from": 1968,
-   "placeBn": "ইরাক",
-   "cite": {
-    "nameBn": [
-     {
-      "ref": "bnwp:iraq1968",
-      "states": "১৭ জুলাই বিপ্লব",
-      "where": "title"
-     }
-    ],
-    "whenBn": [
-     {
-      "ref": "bnwp:iraq1968",
-      "states": "১৭ জুলাই ১৯৬৮",
-      "where": "infobox"
-     }
-    ],
-    "placeBn": [
-     {
-      "ref": "bnwp:iraq1968",
-      "states": "[[ইরাক]]",
-      "where": "infobox"
-     }
-    ],
-    "point": [
-     {
-      "ref": "bnwp:iraq1968",
-      "states": "[[ইরাক]]",
-      "where": "infobox"
-     }
-    ]
-   },
-   "point": {
-    "marker": "ring",
-    "source": "NE-0",
-    "adm0": "IRQ"
    }
   },
   {
@@ -2400,13 +2322,19 @@
    "id": "egypt-2011",
    "tab": "revolution",
    "group": "arab-spring",
-   "nameBn": "মিশর",
+   "descriptive": true,
+   "nameBn": "আরব বসন্ত — মিশর",
    "nameEn": "2011 Egyptian revolution",
    "whenBn": "২৫ জানুয়ারি – ১১ ফেব্রুয়ারি ২০১১",
    "from": 2011,
    "placeBn": "মিশর",
    "cite": {
     "nameBn": [
+     {
+      "ref": "bnwp:arabspring",
+      "states": "আরব বসন্ত",
+      "where": "title"
+     },
      {
       "ref": "ne:admin0",
       "states": "EGY: NAME_BN «মিশর»",
@@ -2446,6 +2374,9 @@
      }
     ]
    },
+   "notesBn": [
+    "শিরোনামটি চেনার জন্য একটি বর্ণনামূলক লেবেল, ঘটনার নাম নয়; «আরব বসন্ত» নামটির সূত্র নিচে।"
+   ],
    "point": {
     "marker": "ring",
     "source": "NE-0",
@@ -2456,13 +2387,19 @@
    "id": "libya-2011",
    "tab": "revolution",
    "group": "arab-spring",
-   "nameBn": "লিবিয়া",
+   "descriptive": true,
+   "nameBn": "আরব বসন্ত — লিবিয়া",
    "nameEn": "Libyan civil war (2011)",
    "whenBn": "১৫ ফেব্রুয়ারি – ২৩ অক্টোবর ২০১১",
    "from": 2011,
    "placeBn": "লিবিয়া",
    "cite": {
     "nameBn": [
+     {
+      "ref": "bnwp:arabspring",
+      "states": "আরব বসন্ত",
+      "where": "title"
+     },
      {
       "ref": "ne:admin0",
       "states": "LBY: NAME_BN «লিবিয়া»",
@@ -2502,6 +2439,9 @@
      }
     ]
    },
+   "notesBn": [
+    "শিরোনামটি চেনার জন্য একটি বর্ণনামূলক লেবেল, ঘটনার নাম নয়; «আরব বসন্ত» নামটির সূত্র নিচে।"
+   ],
    "point": {
     "marker": "ring",
     "source": "NE-0",
@@ -2512,13 +2452,19 @@
    "id": "syria-2011",
    "tab": "revolution",
    "group": "arab-spring",
-   "nameBn": "সিরিয়া",
+   "descriptive": true,
+   "nameBn": "আরব বসন্ত — সিরিয়া",
    "nameEn": "Syrian revolution",
    "whenBn": "২০১১–২০২৪",
    "from": 2011,
    "placeBn": "সিরিয়া",
    "cite": {
     "nameBn": [
+     {
+      "ref": "bnwp:arabspring",
+      "states": "আরব বসন্ত",
+      "where": "title"
+     },
      {
       "ref": "ne:admin0",
       "states": "SYR: NAME_BN «সিরিয়া»",
@@ -2555,6 +2501,9 @@
      }
     ]
    },
+   "notesBn": [
+    "শিরোনামটি চেনার জন্য একটি বর্ণনামূলক লেবেল, ঘটনার নাম নয়; «আরব বসন্ত» নামটির সূত্র নিচে।"
+   ],
    "point": {
     "marker": "ring",
     "source": "NE-0",
@@ -2564,6 +2513,347 @@
      {
       "ref": "enwp:syria",
       "states": "a series of mass protests and civilian uprisings throughout Syria"
+     }
+    ]
+   }
+  },
+  {
+   "id": "revolution-1848-france",
+   "tab": "revolution",
+   "group": "revolutions-1848",
+   "descriptive": true,
+   "nameBn": "১৮৪৮-এর বিপ্লব — ফ্রান্স",
+   "nameEn": "Revolutions of 1848: france",
+   "whenBn": "১৮৪৮",
+   "from": 1848,
+   "placeBn": "ফ্রান্স",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:cat:১৮৪৮-এর বিপ্লবের ব্যক্তি",
+      "states": "বিষয়শ্রেণী:১৮৪৮-এর বিপ্লবের ব্যক্তি",
+      "where": "title"
+     },
+     {
+      "ref": "ne:admin0",
+      "states": "FRA: NAME_BN «ফ্রান্স»",
+      "check": {
+       "adm0": "FRA",
+       "nameBn": "ফ্রান্স"
+      }
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "enwp:1848",
+      "states": "Revolutions of 1848",
+      "where": "title"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "enwp:1848",
+      "states": "[[July Monarchy|France]]",
+      "where": "infobox"
+     },
+     {
+      "ref": "ne:admin0",
+      "states": "FRA: NAME_BN «ফ্রান্স»",
+      "check": {
+       "adm0": "FRA",
+       "nameBn": "ফ্রান্স"
+      }
+     }
+    ],
+    "point": [
+     {
+      "ref": "enwp:1848",
+      "states": "[[July Monarchy|France]]",
+      "where": "infobox"
+     }
+    ]
+   },
+   "notesBn": [
+    "শিরোনামটি চেনার জন্য একটি বর্ণনামূলক লেবেল, ঘটনার নাম নয়; «১৮৪৮-এর বিপ্লব» নামটির সূত্র নিচে।"
+   ],
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "FRA",
+    "historical": true,
+    "match": [
+     {
+      "ref": "enwp:1848",
+      "states": "===France===",
+      "where": "infobox"
+     }
+    ]
+   }
+  },
+  {
+   "id": "revolution-1848-denmark",
+   "tab": "revolution",
+   "group": "revolutions-1848",
+   "descriptive": true,
+   "nameBn": "১৮৪৮-এর বিপ্লব — ডেনমার্ক",
+   "nameEn": "Revolutions of 1848: denmark",
+   "whenBn": "১৮৪৮",
+   "from": 1848,
+   "placeBn": "ডেনমার্ক",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:cat:১৮৪৮-এর বিপ্লবের ব্যক্তি",
+      "states": "বিষয়শ্রেণী:১৮৪৮-এর বিপ্লবের ব্যক্তি",
+      "where": "title"
+     },
+     {
+      "ref": "ne:admin0",
+      "states": "DNK: NAME_BN «ডেনমার্ক»",
+      "check": {
+       "adm0": "DNK",
+       "nameBn": "ডেনমার্ক"
+      }
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "enwp:1848",
+      "states": "Revolutions of 1848",
+      "where": "title"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "enwp:1848",
+      "states": "[[Denmark]]",
+      "where": "infobox"
+     },
+     {
+      "ref": "ne:admin0",
+      "states": "DNK: NAME_BN «ডেনমার্ক»",
+      "check": {
+       "adm0": "DNK",
+       "nameBn": "ডেনমার্ক"
+      }
+     }
+    ],
+    "point": [
+     {
+      "ref": "enwp:1848",
+      "states": "[[Denmark]]",
+      "where": "infobox"
+     }
+    ]
+   },
+   "notesBn": [
+    "শিরোনামটি চেনার জন্য একটি বর্ণনামূলক লেবেল, ঘটনার নাম নয়; «১৮৪৮-এর বিপ্লব» নামটির সূত্র নিচে।"
+   ],
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "DNK"
+   }
+  },
+  {
+   "id": "revolution-1848-switzerland",
+   "tab": "revolution",
+   "group": "revolutions-1848",
+   "descriptive": true,
+   "nameBn": "১৮৪৮-এর বিপ্লব — সুইজারল্যান্ড",
+   "nameEn": "Revolutions of 1848: switzerland",
+   "whenBn": "১৮৪৮",
+   "from": 1848,
+   "placeBn": "সুইজারল্যান্ড",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:cat:১৮৪৮-এর বিপ্লবের ব্যক্তি",
+      "states": "বিষয়শ্রেণী:১৮৪৮-এর বিপ্লবের ব্যক্তি",
+      "where": "title"
+     },
+     {
+      "ref": "ne:admin0",
+      "states": "CHE: NAME_BN «সুইজারল্যান্ড»",
+      "check": {
+       "adm0": "CHE",
+       "nameBn": "সুইজারল্যান্ড"
+      }
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "enwp:1848",
+      "states": "Revolutions of 1848",
+      "where": "title"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "enwp:1848",
+      "states": "===Switzerland===",
+      "where": "infobox"
+     },
+     {
+      "ref": "ne:admin0",
+      "states": "CHE: NAME_BN «সুইজারল্যান্ড»",
+      "check": {
+       "adm0": "CHE",
+       "nameBn": "সুইজারল্যান্ড"
+      }
+     }
+    ],
+    "point": [
+     {
+      "ref": "enwp:1848",
+      "states": "===Switzerland===",
+      "where": "infobox"
+     }
+    ]
+   },
+   "notesBn": [
+    "শিরোনামটি চেনার জন্য একটি বর্ণনামূলক লেবেল, ঘটনার নাম নয়; «১৮৪৮-এর বিপ্লব» নামটির সূত্র নিচে।"
+   ],
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "CHE"
+   }
+  },
+  {
+   "id": "revolution-1848-belgium",
+   "tab": "revolution",
+   "group": "revolutions-1848",
+   "descriptive": true,
+   "nameBn": "১৮৪৮-এর বিপ্লব — বেলজিয়াম",
+   "nameEn": "Revolutions of 1848: belgium",
+   "whenBn": "১৮৪৮",
+   "from": 1848,
+   "placeBn": "বেলজিয়াম",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:cat:১৮৪৮-এর বিপ্লবের ব্যক্তি",
+      "states": "বিষয়শ্রেণী:১৮৪৮-এর বিপ্লবের ব্যক্তি",
+      "where": "title"
+     },
+     {
+      "ref": "ne:admin0",
+      "states": "BEL: NAME_BN «বেলজিয়াম»",
+      "check": {
+       "adm0": "BEL",
+       "nameBn": "বেলজিয়াম"
+      }
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "enwp:1848",
+      "states": "Revolutions of 1848",
+      "where": "title"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "enwp:1848",
+      "states": "===Belgium===",
+      "where": "infobox"
+     },
+     {
+      "ref": "ne:admin0",
+      "states": "BEL: NAME_BN «বেলজিয়াম»",
+      "check": {
+       "adm0": "BEL",
+       "nameBn": "বেলজিয়াম"
+      }
+     }
+    ],
+    "point": [
+     {
+      "ref": "enwp:1848",
+      "states": "===Belgium===",
+      "where": "infobox"
+     }
+    ]
+   },
+   "notesBn": [
+    "শিরোনামটি চেনার জন্য একটি বর্ণনামূলক লেবেল, ঘটনার নাম নয়; «১৮৪৮-এর বিপ্লব» নামটির সূত্র নিচে।"
+   ],
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "BEL"
+   }
+  },
+  {
+   "id": "revolution-1848-hungary",
+   "tab": "revolution",
+   "group": "revolutions-1848",
+   "descriptive": true,
+   "nameBn": "১৮৪৮-এর বিপ্লব — হাঙ্গেরি",
+   "nameEn": "Revolutions of 1848: hungary",
+   "whenBn": "১৮৪৮",
+   "from": 1848,
+   "placeBn": "হাঙ্গেরি",
+   "cite": {
+    "nameBn": [
+     {
+      "ref": "bnwp:cat:১৮৪৮-এর বিপ্লবের ব্যক্তি",
+      "states": "বিষয়শ্রেণী:১৮৪৮-এর বিপ্লবের ব্যক্তি",
+      "where": "title"
+     },
+     {
+      "ref": "ne:admin0",
+      "states": "HUN: NAME_BN «হাঙ্গেরি»",
+      "check": {
+       "adm0": "HUN",
+       "nameBn": "হাঙ্গেরি"
+      }
+     }
+    ],
+    "whenBn": [
+     {
+      "ref": "enwp:1848",
+      "states": "Revolutions of 1848",
+      "where": "title"
+     }
+    ],
+    "placeBn": [
+     {
+      "ref": "enwp:1848",
+      "states": "====Hungary====",
+      "where": "infobox"
+     },
+     {
+      "ref": "ne:admin0",
+      "states": "HUN: NAME_BN «হাঙ্গেরি»",
+      "check": {
+       "adm0": "HUN",
+       "nameBn": "হাঙ্গেরি"
+      }
+     }
+    ],
+    "point": [
+     {
+      "ref": "enwp:1848",
+      "states": "====Hungary====",
+      "where": "infobox"
+     }
+    ]
+   },
+   "notesBn": [
+    "শিরোনামটি চেনার জন্য একটি বর্ণনামূলক লেবেল, ঘটনার নাম নয়; «১৮৪৮-এর বিপ্লব» নামটির সূত্র নিচে।"
+   ],
+   "point": {
+    "marker": "ring",
+    "source": "NE-0",
+    "adm0": "HUN",
+    "historical": true,
+    "match": [
+     {
+      "ref": "enwp:1848",
+      "states": "====Hungary====",
+      "where": "infobox"
      }
     ]
    }
@@ -2951,6 +3241,9 @@
      }
     ]
    },
+   "notesBn": [
+    "বাংলা নামের সূত্র: বাংলা উইকিপিডিয়ার একটি তারিখ-নিবন্ধ («২১ অক্টোবর»)।"
+   ],
    "point": {
     "marker": "ring",
     "source": "NE-0",

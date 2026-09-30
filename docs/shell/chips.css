@@ -1,0 +1,73 @@
+/*
+ * CHIPS — the chips module's own styles, loaded only with it.
+ *
+ * One line of pills in the map's top-left corner, clear of the corner
+ * controls and the ⓘ zone on the right, as the tab note is; it scrolls
+ * sideways when it is longer than the map is wide. Each chip is a 44 px tap
+ * zone around its pill; the pressed chip is a filled pill.
+ */
+.map-chips {
+  position: absolute;
+  top: 4px;
+  left: 6px;
+  z-index: 3;
+  display: flex;
+  gap: 2px;
+  max-width: calc(100% - 64px);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  white-space: nowrap;
+}
+
+.map-chips::-webkit-scrollbar {
+  display: none;
+}
+
+.map-chips[hidden],
+.map-chip[hidden] {
+  display: none;
+}
+
+.map-chip {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  min-width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0 2px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.map-chip-pill {
+  display: inline-block;
+  padding: 3px 11px;
+
+  border: 1px solid #c7d5ea;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 1px 3px rgba(19, 33, 59, 0.18);
+  color: #3a4a66;
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.map-chip.active .map-chip-pill {
+  border-color: #c62828;
+  background: #c62828;
+  color: #ffffff;
+}
+
+.map-chip:focus-visible {
+  outline: none;
+}
+
+.map-chip:focus-visible .map-chip-pill {
+  outline: 2px solid #0b5cad;
+  outline-offset: 1px;
+}

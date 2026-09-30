@@ -122,3 +122,55 @@
 .info-credits .tab-disabled-note[hidden] {
   display: none;
 }
+
+/*
+ * A cards-only tab (tabs.cardsOnly): the map and everything drawn on it give
+ * way — hidden, not removed, so the map keeps its size — to the tab's cards,
+ * listed in the map's own space and scrolling inside it. The selected card is
+ * outlined in the tab bar's blue.
+ */
+.map-shell.cards-only > * {
+  visibility: hidden;
+}
+
+.map-shell.cards-only > .tab-card-list {
+  visibility: visible;
+}
+
+.tab-card-list {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  overflow-y: auto;
+  background: #f4f7fb;
+}
+
+.tab-card-list[hidden] {
+  display: none;
+}
+
+.tab-card {
+  flex: 0 0 auto;
+  padding: 10px 14px 8px;
+  border: 1px solid #d3deec;
+  border-radius: 14px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.tab-card.selected {
+  border-color: #3762b4;
+  box-shadow: inset 0 0 0 1px #3762b4;
+}
+
+.tab-card-title {
+  margin: 0 0 4px;
+  color: #13233a;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.35;
+}

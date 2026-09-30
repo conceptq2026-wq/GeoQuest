@@ -418,9 +418,10 @@ State which kind a task is when reporting it.
   and `seasons` under বিবিধ. Both rivers products went live together
   (2026-09-30), with the home page's first captions.
 - Work in progress (`tools/wip.json`): `world-revolutions`, a world map
-  under International, Stage 1 of its plan (2026-10-01): three tabs, 53
-  events, dot and ring markers, and the one no-point exception
-  (`notes/world-revolutions.md`); local preview only, not in the registry.
+  under International, Stages 1–3 of its plan (2026-10-01): three tabs, 55
+  events, dot and ring markers, group chips, a cards-only tab, and the one
+  no-point exception (`notes/world-revolutions.md`); local preview only, not
+  in the registry.
 
 ## Index — notes, read only when working on that item
 
@@ -430,8 +431,9 @@ Moved verbatim from this file on 2026-09-28; every line lives in one place.
   latitude-longitude share `notes/geography.md`; straits is the reference page.
   world-revolutions, `notes/world-revolutions.md`; its no-point exception to
   "never silently absent", `notes/descriptor.md`.
-- The map shell (baseline data, tabs, timeline, teardown; a new shell feature
-  is a module loaded only where declared): `notes/shell.md`; the globe,
+- The map shell (baseline data, tabs and cards-only tabs, chips, timeline,
+  teardown; a new shell feature is a module loaded only where declared):
+  `notes/shell.md`; the globe,
   `notes/globe.md`; descriptor terms past the data model, `notes/descriptor.md`;
   the diagram shell, `notes/diagrams.md`. A map's data (provenance, the
   English-name exception, name matching, frames): `notes/data.md`.

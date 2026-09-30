@@ -8,7 +8,12 @@
   },
   "basemap": "world",
   "view": {
-    "fitBounds": [-110, -20, 125, 64]
+    "fitBounds": [
+      -110,
+      -20,
+      125,
+      64
+    ]
   },
   "constraints": {
     "minZoom": 0,
@@ -30,40 +35,133 @@
     "items": {
       "file": "./records.json",
       "fields": {
-        "tab": { "type": "text", "required": true, "display": false },
-        "nameBn": { "type": "text", "required": true },
-        "nameEn": { "type": "text", "required": true, "display": false },
-        "centuryBn": { "type": "text", "required": true, "display": false },
-        "akaBn": { "type": "text" },
-        "kindBn": { "type": "text" },
-        "whenBn": { "type": "text", "verifiable": true },
-        "placeBn": { "type": "text", "verifiable": true },
-        "groupBn": { "type": "text" },
-        "noPointBn": { "type": "text" },
-        "marker": { "type": "text", "display": false },
-        "at": { "type": "point" },
-        "soloAt": { "type": "point" },
-        "place": { "type": "refs", "to": "places" },
-        "frame": { "type": "bbox" }
+        "tab": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "nameBn": {
+          "type": "text",
+          "required": true
+        },
+        "nameEn": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "centuryBn": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "akaBn": {
+          "type": "text"
+        },
+        "partsBn": {
+          "type": "text"
+        },
+        "kindBn": {
+          "type": "text"
+        },
+        "whenBn": {
+          "type": "text",
+          "verifiable": true
+        },
+        "placeBn": {
+          "type": "text",
+          "verifiable": true
+        },
+        "groupBn": {
+          "type": "text"
+        },
+        "group": {
+          "type": "text",
+          "display": false
+        },
+        "noPointBn": {
+          "type": "text"
+        },
+        "marker": {
+          "type": "text",
+          "display": false
+        },
+        "at": {
+          "type": "point"
+        },
+        "soloAt": {
+          "type": "point"
+        },
+        "place": {
+          "type": "refs",
+          "to": "places"
+        },
+        "frame": {
+          "type": "bbox"
+        }
       }
     },
     "places": {
       "file": "./places.json",
       "fields": {
-        "nameBn": { "type": "text", "required": true },
-        "tab": { "type": "text", "required": true, "display": false },
-        "marker": { "type": "text", "required": true, "display": false },
-        "count": { "type": "number", "required": true, "display": false },
-        "records": { "type": "refs", "to": "items", "required": true },
-        "at": { "type": "point", "required": true },
-        "frame": { "type": "bbox", "required": true }
+        "nameBn": {
+          "type": "text",
+          "required": true
+        },
+        "tab": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "marker": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "count": {
+          "type": "number",
+          "required": true,
+          "display": false
+        },
+        "records": {
+          "type": "refs",
+          "to": "items",
+          "required": true
+        },
+        "at": {
+          "type": "point",
+          "required": true
+        },
+        "frame": {
+          "type": "bbox",
+          "required": true
+        }
       }
     },
     "tabs": {
       "file": "./tabs.json",
       "fields": {
-        "titleBn": { "type": "text", "required": true },
-        "placeholderBn": { "type": "text", "required": true }
+        "titleBn": {
+          "type": "text",
+          "required": true
+        },
+        "placeholderBn": {
+          "type": "text",
+          "required": true
+        }
+      }
+    },
+    "groups": {
+      "file": "./groups.json",
+      "fields": {
+        "nameBn": {
+          "type": "text",
+          "required": true
+        },
+        "tab": {
+          "type": "text",
+          "required": true,
+          "display": false
+        }
       }
     }
   },
@@ -71,14 +169,22 @@
     "solo": {
       "records": "items",
       "geometryFrom": "soloAt",
-      "properties": ["marker", "tab"],
-      "state": ["selected"],
+      "properties": [
+        "marker",
+        "tab"
+      ],
+      "state": [
+        "selected"
+      ],
       "attribution": "Points: <a href=\"https://www.naturalearthdata.com/\" target=\"_blank\" rel=\"noopener noreferrer\">Natural Earth</a>; in Bangladesh, <a href=\"https://data.humdata.org/dataset/cod-ab-bgd\" target=\"_blank\" rel=\"noopener noreferrer\">Bangladesh – Subnational Administrative Boundaries</a> (BBS / OCHA FISS), <a href=\"http://creativecommons.org/licenses/by/3.0/igo/legalcode\" target=\"_blank\" rel=\"noopener noreferrer\">CC BY 3.0 IGO</a>"
     },
     "places": {
       "records": "places",
       "geometryFrom": "at",
-      "properties": ["marker", "tab"],
+      "properties": [
+        "marker",
+        "tab"
+      ],
       "state": [
         "selected",
         {
@@ -114,7 +220,14 @@
       "source": "solo",
       "slot": "belowLabels",
       "style": "marker-glow",
-      "filter": ["==", ["get", "selected"], true]
+      "filter": [
+        "==",
+        [
+          "get",
+          "selected"
+        ],
+        true
+      ]
     },
     {
       "id": "place-glow",
@@ -122,7 +235,25 @@
       "source": "places",
       "slot": "belowLabels",
       "style": "marker-glow",
-      "filter": ["any", ["==", ["get", "selected"], true], ["==", ["get", "active"], true]]
+      "filter": [
+        "any",
+        [
+          "==",
+          [
+            "get",
+            "selected"
+          ],
+          true
+        ],
+        [
+          "==",
+          [
+            "get",
+            "active"
+          ],
+          true
+        ]
+      ]
     },
     {
       "id": "solo-ring",
@@ -130,10 +261,29 @@
       "source": "solo",
       "slot": "belowLabels",
       "style": "marker",
-      "filter": ["==", ["get", "marker"], "ring"],
+      "filter": [
+        "==",
+        [
+          "get",
+          "marker"
+        ],
+        "ring"
+      ],
       "layout": {
         "icon-image": "ring",
-        "icon-size": ["case", ["==", ["get", "selected"], true], 1.45, 1]
+        "icon-size": [
+          "case",
+          [
+            "==",
+            [
+              "get",
+              "selected"
+            ],
+            true
+          ],
+          1.45,
+          1
+        ]
       }
     },
     {
@@ -142,10 +292,40 @@
       "source": "places",
       "slot": "belowLabels",
       "style": "marker",
-      "filter": ["==", ["get", "marker"], "ring"],
+      "filter": [
+        "==",
+        [
+          "get",
+          "marker"
+        ],
+        "ring"
+      ],
       "layout": {
         "icon-image": "ring",
-        "icon-size": ["case", ["any", ["==", ["get", "selected"], true], ["==", ["get", "active"], true]], 1.45, 1]
+        "icon-size": [
+          "case",
+          [
+            "any",
+            [
+              "==",
+              [
+                "get",
+                "selected"
+              ],
+              true
+            ],
+            [
+              "==",
+              [
+                "get",
+                "active"
+              ],
+              true
+            ]
+          ],
+          1.45,
+          1
+        ]
       }
     },
     {
@@ -154,10 +334,29 @@
       "source": "solo",
       "slot": "aboveLabels",
       "style": "marker",
-      "filter": ["==", ["get", "marker"], "dot"],
+      "filter": [
+        "==",
+        [
+          "get",
+          "marker"
+        ],
+        "dot"
+      ],
       "layout": {
         "icon-image": "dot",
-        "icon-size": ["case", ["==", ["get", "selected"], true], 1.45, 1]
+        "icon-size": [
+          "case",
+          [
+            "==",
+            [
+              "get",
+              "selected"
+            ],
+            true
+          ],
+          1.45,
+          1
+        ]
       }
     },
     {
@@ -166,10 +365,40 @@
       "source": "places",
       "slot": "aboveLabels",
       "style": "marker",
-      "filter": ["==", ["get", "marker"], "dot"],
+      "filter": [
+        "==",
+        [
+          "get",
+          "marker"
+        ],
+        "dot"
+      ],
       "layout": {
         "icon-image": "dot",
-        "icon-size": ["case", ["any", ["==", ["get", "selected"], true], ["==", ["get", "active"], true]], 1.45, 1]
+        "icon-size": [
+          "case",
+          [
+            "any",
+            [
+              "==",
+              [
+                "get",
+                "selected"
+              ],
+              true
+            ],
+            [
+              "==",
+              [
+                "get",
+                "active"
+              ],
+              true
+            ]
+          ],
+          1.45,
+          1
+        ]
       }
     }
   ],
@@ -185,11 +414,28 @@
       },
       "groupBy": {
         "field": "centuryBn",
-        "order": ["একাদশ শতক", "সপ্তদশ শতক", "অষ্টাদশ শতক", "ঊনবিংশ শতক", "বিংশ শতক", "একবিংশ শতক", "সময় নির্দিষ্ট নয়"]
+        "order": [
+          "একাদশ শতক",
+          "সপ্তদশ শতক",
+          "অষ্টাদশ শতক",
+          "ঊনবিংশ শতক",
+          "বিংশ শতক",
+          "একবিংশ শতক",
+          "সময় নির্দিষ্ট নয়"
+        ]
       },
       "do": [
-        { "action": "select" },
-        { "action": "fitBounds", "clear": ["sheet"], "duration": 1800, "field": "frame" }
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
       ]
     }
   ],
@@ -198,16 +444,34 @@
       "on": "click",
       "target": "source:solo",
       "do": [
-        { "action": "select" },
-        { "action": "fitBounds", "clear": ["sheet"], "duration": 1800, "field": "frame" }
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
       ]
     },
     {
       "on": "click",
       "target": "source:places",
       "do": [
-        { "action": "select" },
-        { "action": "fitBounds", "clear": ["sheet"], "duration": 1800, "field": "frame" }
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
       ]
     }
   ],
@@ -220,7 +484,19 @@
     },
     "placeholder": {
       "field": "placeholderBn"
-    }
+    },
+    "cardsOnly": [
+      "nonpolitical"
+    ]
+  },
+  "chips": {
+    "records": "items",
+    "field": "group",
+    "from": "groups",
+    "label": {
+      "field": "nameBn"
+    },
+    "frame": "frame"
   },
   "sheets": {
     "items": {
@@ -228,12 +504,34 @@
         "field": "nameBn"
       },
       "rows": [
-        { "label": "অন্য নাম", "field": "akaBn" },
-        { "label": "ধরন", "field": "kindBn" },
-        { "label": "সময়", "field": "whenBn" },
-        { "label": "স্থান", "field": "placeBn" },
-        { "field": "groupBn", "stacked": true },
-        { "field": "noPointBn", "stacked": true }
+        {
+          "label": "অন্য নাম",
+          "field": "akaBn"
+        },
+        {
+          "label": "এর দুই পর্ব",
+          "field": "partsBn"
+        },
+        {
+          "label": "ধরন",
+          "field": "kindBn"
+        },
+        {
+          "label": "সময়",
+          "field": "whenBn"
+        },
+        {
+          "label": "স্থান",
+          "field": "placeBn"
+        },
+        {
+          "field": "groupBn",
+          "stacked": true
+        },
+        {
+          "field": "noPointBn",
+          "stacked": true
+        }
       ]
     },
     "places": {
@@ -250,8 +548,17 @@
             "field": "nameBn"
           },
           "do": [
-            { "action": "select" },
-            { "action": "fitBounds", "clear": ["sheet"], "duration": 1800, "field": "frame" }
+            {
+              "action": "select"
+            },
+            {
+              "action": "fitBounds",
+              "clear": [
+                "sheet"
+              ],
+              "duration": 1800,
+              "field": "frame"
+            }
           ]
         }
       ]
@@ -259,12 +566,26 @@
   },
   "legend": {
     "items": [
-      { "kind": "dot", "label": "বিন্দু: সূত্রে নির্দিষ্ট স্থান", "image": "dot" },
-      { "kind": "ring", "label": "বৃত্ত: সূত্রে শুধু দেশ বা অঞ্চল", "image": "ring" }
+      {
+        "kind": "dot",
+        "label": "বিন্দু: সূত্রে নির্দিষ্ট স্থান",
+        "image": "dot"
+      },
+      {
+        "kind": "ring",
+        "label": "বৃত্ত: সূত্রে শুধু দেশ বা অঞ্চল",
+        "image": "ring"
+      }
     ],
     "kinds": [
-      { "records": "items", "field": "marker" },
-      { "records": "places", "field": "marker" }
+      {
+        "records": "items",
+        "field": "marker"
+      },
+      {
+        "records": "places",
+        "field": "marker"
+      }
     ]
   },
   "info": {

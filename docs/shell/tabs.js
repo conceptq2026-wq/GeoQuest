@@ -3,7 +3,7 @@
 | TABS — a shell module: one records table divided by a field, one part at a
 | time
 |
-|   tabs: { records, field, from, label, placeholder?, note?, frame? }
+|   tabs: { records, field, from, label, placeholder?, note?, frame?, cardsOnly? }
 |
 | The tabs are the rows of `from`, in its order, each titled by `label` (a
 | value spec, as a card's title is); a row's key is a value of
@@ -48,6 +48,15 @@
 | With nothing selected every tab is enabled. The tabs module tells other
 | modules the open tab (`activeTab()`): focus rests on a set per tab.
 |
+| Cards only (2026-10-01): `cardsOnly` names tabs whose records have no place
+| on the map. While one is open the map, its legend, chips and corner
+| controls give way — hidden, not torn down — to a list of the tab's cards in
+| the map's own space, each drawn as the sheet draws it (the shell's `card`),
+| in the table's order; a tap on one selects it as the picker would, and the
+| selected card is marked and scrolled into view. The floating card stays
+| away there: the list is the card. world-revolutions' «অ-রাজনৈতিক বিপ্লব»,
+| the one exception to "never silently absent" (notes/descriptor.md).
+|
 | Loaded only for a map whose descriptor declares `tabs`.
 |--------------------------------------------------------------------------
 */
@@ -61,6 +70,7 @@ const buttons = new Map(); // tab key -> its button
 let reached = null; // table -> the keys an active record refers to; rebuilt on a change of tab
 const disabled = new Set(); // view tabs a selection has disabled
 let disabledNote = null; // why, in ⓘ's row
+let list = null; // a cards-only tab's list of cards, in the map's space
 
 /** Before the map is built: the bar takes its room, and the first tab hides the rest. */
 export async function mount(api) {
@@ -75,11 +85,13 @@ export async function mount(api) {
   active = keys[0];
   for (const k of Object.keys(spec.views ?? {})) if (!keys.includes(k)) throw new Error(`tabs: views names "${k}", which "${spec.from}" has no tab for`);
   if (spec.views && table) throw new Error('tabs: views are for view tabs, which divide no records table');
+  for (const k of spec.cardsOnly ?? []) if (!keys.includes(k)) throw new Error(`tabs: cardsOnly names "${k}", which "${spec.from}" has no tab for`);
+  if (spec.cardsOnly && !table) throw new Error('tabs: cardsOnly is for tabs that divide a records table');
   // Other modules read the open tab; the descriptor's picker and taps frame a selection by it.
   api.activeTab = () => active;
   api.actions.fitTab = (action, context) => fitSelection(action, context);
 
-  await stylesheet(api, './tabs.css?v=59adf41b77');
+  await stylesheet(api, './tabs.css?v=71a580d545');
   bar = api.own.node(document.createElement('div'), 'tabs');
   bar.className = table ? 'map-tabs' : 'map-tabs view-tabs';
   bar.setAttribute('role', 'tablist');
@@ -101,6 +113,13 @@ export async function mount(api) {
     note.hidden = true; // until the map is built and its words are set
     note.lang = api.language ?? 'bn';
     api.dom.mapShell.append(note);
+  }
+  if (spec.cardsOnly?.length) {
+    list = api.own.node(document.createElement('div'), 'card list');
+    list.className = 'tab-card-list';
+    list.lang = api.language ?? 'bn';
+    list.hidden = true;
+    api.dom.mapShell.append(list);
   }
   sync();
   if (table) api.hide(hidden);
@@ -125,6 +144,16 @@ export function install(api) {
     buttons.get(next).focus();
   });
   words();
+  if (list) {
+    // A card in the list chooses its record, as the picker would.
+    api.own.domHandler(list, 'click', (event) => {
+      const card = event.target.closest('.tab-card');
+      if (!card) return;
+      const picker = (api.descriptor.controls ?? []).find((c) => c.type === 'picker');
+      api.runActions(picker?.do ?? [{ action: 'select' }], { table: spec.records, key: card.dataset.key });
+    });
+    fillList();
+  }
   if (spec.views) {
     const row = document.querySelector('.info-credits');
     if (row) {
@@ -150,6 +179,7 @@ export function install(api) {
     const key = api.selection.get(spec.records);
     const tab = key === undefined ? undefined : api.records[spec.records][key]?.[spec.field];
     if (tab !== undefined && tab !== active) open(tab);
+    markList();
   });
 }
 
@@ -193,6 +223,27 @@ function open(tab) {
   sync();
   shell.refilter();
   words();
+  fillList();
+}
+
+/** On a cards-only tab: every card of the tab that is shown, in the table's order, the selected one marked. */
+function fillList() {
+  if (!list || !spec.cardsOnly?.includes(active)) return;
+  const table = shell.records[spec.records];
+  list.replaceChildren(...Object.keys(table).filter((key) => shell.shown(spec.records, key)).map((key) => shell.card(spec.records, key)));
+  markList();
+}
+
+function markList() {
+  if (!list || list.hidden) return;
+  const key = shell.selection.get(spec.records);
+  for (const card of list.children) {
+    const on = card.dataset.key === key;
+    card.classList.toggle('selected', on);
+    if (on) card.setAttribute('aria-current', 'true');
+    else card.removeAttribute('aria-current');
+    if (on) card.scrollIntoView({ block: 'nearest' });
+  }
 }
 
 /** The picker's prompt and the note on the map, as the active tab's row gives them. */
@@ -221,6 +272,9 @@ function toWorld() {
 }
 
 function sync() {
+  const cards = Boolean(spec.cardsOnly?.includes(active));
+  shell.dom.mapShell.classList.toggle('cards-only', cards);
+  if (list) list.hidden = !cards;
   for (const [key, button] of buttons) {
     const on = key === active;
     button.classList.toggle('active', on);

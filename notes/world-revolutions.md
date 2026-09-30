@@ -2,11 +2,11 @@
 
 Read it with `CLAUDE.md`, whose rules and verification budget apply.
 
-## Current state (Stage 1, 2026-10-01)
+## Current state (Stages 1–3, 2026-10-01)
 
 - **What it is.** World and Bangladesh revolutions and uprisings on the world
   basemap (`world`, world.pmtiles), in three tabs:
-  - «বিপ্লব»: 30 events.
+  - «বিপ্লব»: 32 events.
   - «গণঅভ্যুত্থান ও বিদ্রোহ»: 14 events.
   - «অ-রাজনৈতিক বিপ্লব»: 9 events, cards only, no points.
 - **In progress.** Listed in `tools/wip.json`: on the local preview's home page
@@ -45,7 +45,7 @@ Read it with `CLAUDE.md`, whose rules and verification budget apply.
     Earth file (NAME_BN), checked by the build. Egypt, Libya and Syria are
     titled by their country: no source gives them a Bengali event name. Their
     cards, like Tunisia's, say «আরব বসন্তের অংশ» (`group`). The group chips
-    come in Stage 2.
+    are the chips module's (`notes/shell.md`).
   - Banglapedia could not be read on 2026-10-01: every page served «Hello
     World :-)».
 - **Markers**, by the user's decision:
@@ -75,8 +75,27 @@ Read it with `CLAUDE.md`, whose rules and verification budget apply.
   other value and whose.
 - **Pending: 7.** Four non-political events have no place in any source, and
   two have no time: চিন্তাবিপ্লব and নব্যপ্রস্তর যুগীয় বিপ্লব.
-- **Stages to come.**
-  - Stage 2: group chips (a `chips` module) and the Arab Spring and 1848
-    country markers.
-  - Stage 3: the remaining regional points and the user's no-point decisions.
-  - Stage 4: card facts (leaders, causes, results).
+- **Stage 2 and 3 (the user's review, 2026-10-01).**
+  - The three Iraqi «বিপ্লব» (1958, 1963, 1968) are out. bn Wikipedia calls
+    them coups, and coups are excluded. They are kept, with the reason and the
+    source, in the seed's `excluded`.
+  - Egypt, Libya and Syria carry a descriptive label, «আরব বসন্ত — …», not an
+    event name. The five 1848 members carry «১৮৪৮-এর বিপ্লব — …». ⓘ says so for
+    each, and cites the group's own name: bn Wikipedia's «আরব বসন্ত», and the
+    bn category «১৮৪৮-এর বিপ্লবের ব্যক্তি».
+  - The 1848 members are the countries en Wikipedia's "Revolutions of 1848"
+    (revision 1372038790) names by a present-day name: France, Denmark,
+    Switzerland, Belgium and Hungary. Left out:
+    - Ireland, because Natural Earth's Bengali name is «প্রজাতন্ত্রী
+      আয়ারল্যান্ড»;
+    - the German and Italian states, the Austrian Empire, the Romanian
+      principalities and Greater Poland, because no cited source gives a
+      present-day place for them.
+  - The Russian Revolution's card row «এর দুই পর্ব» replaces «অন্য নাম». A
+    part is never an alias; every other alias row was checked.
+  - Zanzibar is drawn as a ring. Its ⓘ, and Vietnam's, say the place was
+    matched by the region's or country's name.
+  - The group chips (`chips`) and the cards-only tab (`tabs.cardsOnly`)
+    are the map's.
+- **Stage 4 to come.** Card facts: leaders, causes, results, and when the
+  exams asked.

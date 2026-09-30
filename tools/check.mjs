@@ -12,13 +12,17 @@
 // in progress is on its home page) and, at 390×844 and 320×640 in headless
 // Edge with reduced motion: opens the home page and checks the item's card
 // is in its section; opens the item from that card; steps through every
-// picker item (‹ › and the dropdown's options) or every timeline dot, or a
+// picker item (‹ › and the dropdown's options) — on a map whose tabs divide
+// its records, in every tab — or every timeline dot, or a
 // diagram's every slab, or its picker items and tap zones (a thin zone's
 // depth checked against 44 px), and checks each card opens; taps every record drawn
 // on the map at a point where it alone is under the finger, and checks a card
 // opens; and reports console messages and any request to a host but ours.
 // On a map with view tabs (views) it also frames each picker group's first
 // record in every tab past the first and taps a tab a selection disables;
+// on a map with chips it presses each chip of each tab and checks that only its
+// members stay drawn, then releases it; a cards-only tab's card is the
+// selected card of its list;
 // with minTextSize it scans the page and the style for smaller text; the zoom
 // each picker step's frame settles at goes to <size>-frames.txt.
 // Screenshots go to tools/.check/<id>/ as contact sheets, never to stdout. A
@@ -287,6 +291,12 @@ const CAMERA = `(() => {
 
 /** The card: open, and its title. */
 const CARD = `(() => {
+  // A cards-only tab (tabs.cardsOnly): the card is the list's selected one.
+  const list = document.querySelector('.map-shell.cards-only .tab-card-list');
+  if (list) {
+    const c = list.querySelector('.tab-card.selected');
+    return { open: !!c, title: c ? c.querySelector('.tab-card-title').textContent.trim() : null };
+  }
   const sheet = document.getElementById('infoSheet');
   if (sheet) {
     const open = !sheet.hidden && !sheet.inert && getComputedStyle(sheet).display !== 'none' && sheet.getBoundingClientRect().height > 0;
@@ -604,7 +614,7 @@ async function useItem(browser, size, entry, base, origin, dir) {
         }
         return out; })()`).catch(() => []);
       for (const n of named) summary.push(`names at the opening, ${n.id}: ${n.placed}/${n.all} placed${n.missing.length ? ` — not ${n.missing.join(', ')}` : ''}`);
-      if (selector === 'picker') await pickerSteps(page, shoot, summary, fail);
+      if (selector === 'picker') await pickerSteps(page, shoot, summary, fail, tabs);
       else if (selector === 'timeline') await timelineSteps(page, shoot, summary, fail, tabs);
       else fail('no picker and no timeline');
       if (page.zooms?.length) {
@@ -765,7 +775,31 @@ async function textFloor(page, summary, fail) {
 }
 
 /** ‹ › and the dropdown: › from the placeholder through every option, then the ends. */
-async function pickerSteps(page, shoot, summary, fail) {
+async function pickerSteps(page, shoot, summary, fail, tabs = 0) {
+  // Tabs that divide the records each list their own: every tab's picker, tab by tab. View tabs list them all.
+  const divided = tabs > 0 && (await page.evaluate('Boolean(window.__shell?.descriptor?.tabs?.records)'));
+  let good = 0;
+  let total = 0;
+  for (let t = 0; t < (divided ? tabs : 1); t++) {
+    if (divided) {
+      const at = await page.evaluate(`(() => { const b = document.querySelectorAll('.map-tab')[${t}]; const r = b.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; })()`);
+      await page.click(...at);
+      await settle(page, 10000);
+    }
+    const r = await pickerTab(page, shoot, fail);
+    good += r.good;
+    total += r.total;
+  }
+  summary.push(`picker ${good}/${total} cards${divided ? ` over ${tabs} tabs` : ''}`);
+  if (divided) {
+    const at = await page.evaluate(`(() => { const b = document.querySelectorAll('.map-tab')[0]; const r = b.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; })()`);
+    await page.click(...at);
+    await settle(page, 10000);
+  }
+}
+
+/** One picker's items, as the open tab lists them: ›, each card, then the dropdown and ‹. */
+async function pickerTab(page, shoot, fail) {
   const options = await page.evaluate(`[...document.getElementById('recordPicker').options].filter((o) => o.value).map((o) => [o.value, o.textContent])`);
   const start = await page.evaluate(`document.getElementById('recordPicker').value`);
   if (start) {
@@ -798,7 +832,7 @@ async function pickerSteps(page, shoot, summary, fail) {
   const card = await waitCard(page);
   const prev = await page.evaluate(`document.getElementById('prevRecord').disabled`);
   if (!card.open || !prev) fail(`picker: the dropdown's first option → card ${card.open ? 'open' : 'closed'}, ‹ ${prev ? 'disabled' : 'enabled'}`);
-  summary.push(`picker ${good}/${options.length} cards`);
+  return { good, total: options.length };
 }
 
 /** Every timeline dot, tab by tab. */
@@ -1077,6 +1111,7 @@ async function taps(page, shoot, summary, fail, sources, tabs, camera) {
       // Each tab as it opens, on its own frame (a view tab's, or the map's own).
       const name = await page.evaluate(`document.querySelectorAll('.map-tab')[${t}].textContent.trim()`);
       await shoot('views', `tab «${name}»`);
+      await chips(page, shoot, fail, name, camera);
     }
     for (const source of sources) {
       // A focus map draws only what the selection is about: every key the source can draw is tapped, each
@@ -1169,6 +1204,42 @@ async function taps(page, shoot, summary, fail, sources, tabs, camera) {
   }
   if (unreachable.length) fail(`no tap point for ${unreachable.length}: ${unreachable.slice(0, 6).join(', ')}`);
   summary.push(`taps ${good}/${total} cards (${own} its own${others.length ? `; ${others.length > 2 ? `${others.length} another's` : others.join(', ')}` : ''})`);
+  if (page.chips) summary.push(`chips ${page.chips.good}/${page.chips.total}: only the members drawn, and all back when released`);
+}
+
+/** Each chip the open tab shows: pressed, only its members (and the places they point at) drawn; released, all back. */
+async function chips(page, shoot, fail, tab, camera) {
+  const shown = await page.evaluate(`[...document.querySelectorAll('.map-chip')].filter((b) => !b.hidden && b.getClientRects().length).map((b) => b.dataset.group)`);
+  if (!shown.length) return;
+  page.chips ??= { good: 0, total: 0 };
+  const STATE = `(() => { const s = window.__shell; const c = s.descriptor.chips; const t = s.records[c.records];
+    const drawn = Object.keys(t).filter((k) => s.drawn(c.records, k) && t[k].soloAt);
+    const places = Object.entries(s.records.places ?? {}).filter(([k]) => s.drawn('places', k)).map(([k, p]) => p.records);
+    return { drawn, places, groups: Object.fromEntries(Object.entries(t).map(([k, r]) => [k, r[c.field] ?? null])), tabOf: Object.fromEntries(Object.entries(t).map(([k, r]) => [k, r[s.descriptor.tabs?.field]])) }; })()`;
+  const before = await page.evaluate(STATE);
+  for (const group of shown) {
+    page.chips.total++;
+    const at = await page.evaluate(`(() => { const b = document.querySelector('.map-chip[data-group="${group}"]'); b.scrollIntoView({ block: 'nearest', inline: 'center' }); const r = b.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2, r.height, getComputedStyle(b.querySelector('.map-chip-pill')).fontSize]; })()`);
+    if (at[2] < 44) fail(`chip ${group}: ${Math.round(at[2])} px tall, under 44`);
+    if (parseFloat(at[3]) < 14) fail(`chip ${group}: text ${at[3]}, under 14 px`);
+    await page.click(at[0], at[1]);
+    await settle(page, 10000);
+    const on = await page.evaluate(STATE);
+    const pressed = await page.evaluate(`document.querySelector('.map-chip[data-group="${group}"]').getAttribute('aria-pressed')`);
+    const strays = on.drawn.filter((k) => on.groups[k] !== group);
+    const placeStrays = on.places.filter((keys) => !keys.some((k) => on.groups[k] === group));
+    const members = Object.keys(on.groups).filter((k) => on.groups[k] === group);
+    const label = await page.evaluate(`document.querySelector('.map-chip[data-group="${group}"]').textContent.trim()`);
+    await shoot('views', `tab «${tab}», chip «${label}» (${members.length} members)`);
+    await page.click(at[0], at[1]);
+    await settle(page, 10000);
+    const off = await page.evaluate(STATE);
+    const back = JSON.stringify(off.drawn) === JSON.stringify(before.drawn) && off.places.length === before.places.length;
+    if (pressed === 'true' && !strays.length && !placeStrays.length && back) page.chips.good++;
+    else fail(`chip ${group}: pressed ${pressed}, drawn outside the group ${[...strays, ...placeStrays.map((p) => p.join('+'))].join(', ') || 'none'}, ${back ? 'all back' : 'not all back'} when released`);
+    await page.evaluate(`window.__check.reset(${JSON.stringify(camera)})`);
+    await settle(page, 10000);
+  }
 }
 
 // ---- contact sheets -------------------------------------------------------------------

@@ -50,8 +50,9 @@ const DIR = path.join(ROOT, 'docs/maps/world-revolutions');
 const SEED = path.join(ROOT, 'data-sources/world-revolutions/world-revolutions.seed.json');
 const PINS = path.join(ROOT, 'tools/sources.json');
 
-// The approved shortlist's tabs and how many events each holds (2026-10-01).
-const COUNTS = { revolution: 30, uprising: 14, nonpolitical: 9 };
+// The approved shortlist's tabs and how many events each holds: 30, 14 and 9
+// (2026-10-01); then the three Iraqi coups out and five 1848 members in (Stage 2).
+const COUNTS = { revolution: 32, uprising: 14, nonpolitical: 9 };
 // The tab that shows cards only: its events have no point, by the user's decision.
 const CARDS_ONLY = 'nonpolitical';
 
@@ -201,6 +202,9 @@ for (const ev of seed.events) {
   }
   if (ev.from !== null && ev.from !== undefined && !Number.isInteger(ev.from)) fail(`${ev.id}: from ${ev.from} is not a whole year`);
   if (ev.group && !(ev.group in (seed.groups ?? {}))) fail(`${ev.id}: group "${ev.group}" is not one of the seed's groups`);
+  if (ev.group && seed.groups[ev.group]?.tab !== ev.tab) fail(`${ev.id}: its group lives in another tab`);
+  for (const p of ev.parts ?? []) checkCites(`${ev.id} part «${p.textBn}»`, p.cite);
+  if (ev.parts && ev.aka) fail(`${ev.id}: both parts and other names — a part is not another name`);
 
   // The point: none in the cards-only tab; otherwise a pinned place, or listed in NO_POINT.
   if (ev.tab === CARDS_ONLY && ev.point) fail(`${ev.id}: a point in the cards-only tab`);
@@ -217,6 +221,17 @@ for (const ev of seed.events) {
   }
 }
 for (const id of Object.keys(NO_POINT)) if (!ids.has(id)) fail(`NO_POINT lists ${id}, which is no event`);
+// The groups, each named by a source; the events left out, each with why and its source.
+for (const [g, grp] of Object.entries(seed.groups ?? {})) {
+  if (!grp.nameBn || !grp.memberBn || !COUNTS[grp.tab]) fail(`group ${g}: no name, member line or tab`);
+  checkCites(`group ${g}`, grp.cite);
+  if (seed.events.filter((e) => e.group === g).length < 2) fail(`group ${g}: fewer than two members`);
+}
+for (const [id, x] of Object.entries(seed.excluded ?? {})) {
+  if (ids.has(id)) fail(`${id}: excluded, yet an event`);
+  if (!x.nameBn || !x.reason) fail(`excluded ${id}: no name or no reason`);
+  checkCites(`excluded ${id}`, x.cite);
+}
 
 // ---- the basemap check: the country is labelled, and the point is inside it ----------
 for (const [id, loc] of Object.entries(located)) {
@@ -288,8 +303,12 @@ for (const { ev } of order) {
     placeBn: ev.placeBn,
   };
   if (ev.aka?.length) rec.akaBn = ev.aka.map((a) => a.textBn).join(', ');
+  if (ev.parts?.length) rec.partsBn = ev.parts.map((p) => p.textBn).join(', ');
   if (ev.kind === 'rebel-group') rec.kindBn = WORDS.rebelGroup;
-  if (ev.group) rec.groupBn = seed.groups[ev.group].memberBn;
+  if (ev.group) {
+    rec.group = ev.group;
+    rec.groupBn = seed.groups[ev.group].memberBn;
+  }
   if (ev.tab !== CARDS_ONLY && !ev.point) rec.noPointBn = WORDS.noPoint;
   const loc = located[ev.id];
   if (loc) {
@@ -312,6 +331,8 @@ if (outside.length) {
 }
 
 const tabs = Object.fromEntries(seed.tabs.map((t) => [t.id, { titleBn: t.titleBn, placeholderBn: t.placeholderBn }]));
+// The groups the chips offer, in the seed's order, each with its tab.
+const groups = Object.fromEntries(Object.entries(seed.groups ?? {}).map(([g, grp]) => [g, { nameBn: grp.nameBn, tab: grp.tab }]));
 
 // ---- ⓘ: each event's sources, then every disagreement ---------------------------------------
 const refTitle = (id) => refs[id].titleBn ?? refs[id].title;
@@ -320,6 +341,7 @@ for (const { ev } of order) {
   const used = new Set();
   for (const f of [...CITED, 'point']) for (const c of ev.cite?.[f] ?? []) used.add(c.ref);
   for (const a of ev.aka ?? []) for (const c of a.cite) used.add(c.ref);
+  for (const p of ev.parts ?? []) for (const c of p.cite) used.add(c.ref);
   if (ev.point?.match) for (const c of ev.point.match) used.add(c.ref);
   lines.push({ text: `${ev.nameBn}: ${[...used].map(refTitle).join('; ')}।`, group: 'notes' });
   for (const n of ev.notesBn ?? []) lines.push({ text: `${ev.nameBn}: ${n}`, group: 'notes' });
@@ -336,6 +358,7 @@ const write = (name, value) => fs.writeFileSync(path.join(DIR, name), JSON.strin
 write('records.json', out);
 write('places.json', places);
 write('tabs.json', tabs);
+write('groups.json', groups);
 write('info.json', { _about: 'Built by tools/build-world-revolutions.mjs from the seed in data-sources/world-revolutions/; do not edit.', lines });
 
 // ---- the report ----------------------------------------------------------------------------

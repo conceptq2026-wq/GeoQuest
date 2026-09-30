@@ -3,10 +3,11 @@
     "nameBn": "ফ্রান্স",
     "tab": "revolution",
     "marker": "ring",
-    "count": 2,
+    "count": 3,
     "records": [
       "french-revolution",
-      "july-revolution-1830"
+      "july-revolution-1830",
+      "revolution-1848-france"
     ],
     "at": [
       2.55227,
@@ -37,27 +38,6 @@
       29.498,
       108.937,
       35.498
-    ]
-  },
-  "revolution-irq": {
-    "nameBn": "ইরাক",
-    "tab": "revolution",
-    "marker": "ring",
-    "count": 3,
-    "records": [
-      "14-july-revolution",
-      "ramadan-revolution",
-      "17-july-revolution"
-    ],
-    "at": [
-      43.26181,
-      33.09403
-    ],
-    "frame": [
-      40.662,
-      30.094,
-      45.862,
-      36.094
     ]
   },
   "uprising-bgd": {

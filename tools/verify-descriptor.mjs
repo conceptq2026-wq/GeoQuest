@@ -86,7 +86,8 @@ const TREATY_SEEDS = path.join(ROOT, 'data-sources/environment-treaties');
 const LIBERATION_SEEDS = path.join(ROOT, 'data-sources/liberation-war-1971');
 // The world-revolutions map: the editor's seed, pinned (Stage 1, 2026-10-01).
 const WORLD_REVOLUTIONS_SEEDS = path.join(ROOT, 'data-sources/world-revolutions');
-const WORLD_REVOLUTIONS_SEED_SHA256 = '4a05b62f8bdcad583fd1acc53bb713755ccfbcf83f6018f2e7e049c6f2bb21f7';
+// Re-pinned 2026-10-01 (was 4a05b62f…, Stage 1): the three Iraqi coups out, the 1848 members in, the Russian Revolution's phases, the descriptive labels.
+const WORLD_REVOLUTIONS_SEED_SHA256 = 'bf1d5e4400042c82f9947d169d103c1d86b605af88b3c7fb7d65579e111c8479';
 // Every authored diagram lives under here, one folder per diagram id, and the
 // diagram shell that opens them.
 const DIAGRAMS_DIR = path.join(ROOT, 'docs/diagrams');
@@ -192,6 +193,17 @@ const gets = (node, out = []) => {
 */
 // Every map a section below has checked, for the guard at the end.
 const CHECKED = new Set();
+/** A value spec's value on a row, for a label the validator must see is there: field, or the first whole compose. */
+function valueOfSpec(spec, row) {
+  if (!spec) return null;
+  if (spec.field !== undefined) return row[spec.field] ?? null;
+  for (const t of spec.compose ?? []) {
+    const names = [...t.matchAll(/\{([A-Za-z][A-Za-z0-9_]*)\}/g)].map((m) => m[1]);
+    if (names.every((n) => row[n] != null)) return t.replace(/\{([A-Za-z][A-Za-z0-9_]*)\}/g, (_, n) => row[n]);
+  }
+  return null;
+}
+
 function checkMap({ id, expectedPending }) {
   CHECKED.add(id);
   const dir = path.join(MAPS_DIR, id);
@@ -648,7 +660,7 @@ function checkMap({ id, expectedPending }) {
     // The picker's prompt and a note on the map, as the active tab's row gives them.
     noteSpec(t.from, t.placeholder);
     noteSpec(t.from, t.note);
-    check(Object.keys(t).every((k) => ['records', 'field', 'from', 'label', 'placeholder', 'note', 'frame', 'views'].includes(k)), `tabs declares only records, field, from, label, placeholder, note, frame and views (${Object.keys(t).join(', ')})`);
+    check(Object.keys(t).every((k) => ['records', 'field', 'from', 'label', 'placeholder', 'note', 'frame', 'views', 'cardsOnly'].includes(k)), `tabs declares only records, field, from, label, placeholder, note, frame, views and cardsOnly (${Object.keys(t).join(', ')})`);
     noteSpec(t.from, t.frame);
     if (t.placeholder) {
       const unprompted = Object.keys(tables[t.from] ?? {}).filter((k) => !tables[t.from][k][t.placeholder.field]);
@@ -661,6 +673,20 @@ function checkMap({ id, expectedPending }) {
       const empty = tabKeys.filter((k) => !values.has(k));
       check(untabbed.length === 0 && empty.length === 0, `tabs: every value of ${t.records}.${t.field} has a tab in "${t.from}", and every tab has records${untabbed.length || empty.length ? ` — untabbed ${untabbed.join(', ') || '-'}, empty ${empty.join(', ') || '-'}` : ''}`);
       check(!t.views, 'tabs: views are for view tabs, which divide no records table');
+      // Cards only (2026-10-01): a tab whose records have no place on the map lists its cards there instead;
+      // no source draws any of its records — the exception to "never silently absent" (notes/descriptor.md).
+      if (t.cardsOnly !== undefined) {
+        const listed = Array.isArray(t.cardsOnly) ? t.cardsOnly : [];
+        const drawnThere = [];
+        for (const [name, src] of Object.entries(descriptor.sources)) {
+          if (src.records !== t.records) continue;
+          for (const [key, r] of Object.entries(tables[t.records] ?? {})) {
+            if (!listed.includes(r[t.field])) continue;
+            if ((src.geometryFrom && r[src.geometryFrom] != null) || (src.geometry && (!src.expectGeometry || Object.entries(src.expectGeometry).every(([ef, ev]) => r[ef] === ev)))) drawnThere.push(`${name}:${key}`);
+          }
+        }
+        check(listed.length > 0 && listed.every((k) => tabKeys.includes(k)) && drawnThere.length === 0, `tabs: cardsOnly names tabs (${listed.join(', ')}), and no source draws a record of one${drawnThere.length ? ` — drawn: ${drawnThere.join(', ')}` : ''}`);
+      }
     } else {
       // View tabs (2026-09-30): nothing divided; each may frame a selection by a bbox field, and be
       // disabled by a boolean field of the selected record, its note a value spec on its row.
@@ -680,6 +706,26 @@ function checkMap({ id, expectedPending }) {
       check(Object.values(tables[t.from] ?? {}).every((r) => Array.isArray(t.frame ? r[t.frame.field] : [0, 0, 0, 0])), 'tabs: every view tab has its frame');
     }
     check(!descriptor.controls.some((c) => c.type === 'recordFilter'), 'tabs: not beside a recordFilter — both decide what is shown');
+  }
+  // Chips (2026-10-01): one line of group chips; a group is a row of `from`, its members the records whose field
+  // names it, at least two; on a tabbed map each group names its tab, and its members live there.
+  if (descriptor.chips) {
+    const c = descriptor.chips;
+    note(c.records, c.field);
+    note(c.records, c.frame);
+    noteSpec(c.from, c.label);
+    check(Object.keys(c).every((k) => ['records', 'field', 'from', 'label', 'frame'].includes(k)), `chips declares only records, field, from, label and frame (${Object.keys(c).join(', ')})`);
+    const groups = tables[c.from] ?? {};
+    const members = {};
+    for (const [key, r] of Object.entries(tables[c.records] ?? {})) if (r[c.field] != null) (members[r[c.field]] ??= []).push(key);
+    const bad = [];
+    for (const g of Object.keys(members)) if (!(g in groups)) bad.push(`${g} has no row in ${c.from}`);
+    for (const [g, row] of Object.entries(groups)) {
+      if ((members[g]?.length ?? 0) < 2) bad.push(`${g} has ${members[g]?.length ?? 0} members`);
+      if (!c.label || !valueOfSpec(c.label, row)) bad.push(`${g} has no label`);
+      if (descriptor.tabs?.records === c.records && (members[g] ?? []).some((k) => tables[c.records][k][descriptor.tabs.field] !== row.tab)) bad.push(`${g}: a member outside its tab ${row.tab}`);
+    }
+    check(bad.length === 0, `chips: ${Object.keys(groups).length} groups (${Object.entries(groups).map(([g]) => `${g} ${members[g]?.length ?? 0}`).join(', ')}), each named, with two or more members${descriptor.tabs ? ' in its own tab' : ''}${bad.length ? ` — ${bad.join('; ')}` : ''}`);
   }
   if (descriptor.timeline) {
     const t = descriptor.timeline;
@@ -2339,7 +2385,12 @@ console.log('\n\n============ world-revolutions ============');
 
   // The approved shortlist's three tabs and their sizes (2026-10-01).
   const count = (tab) => seed.events.filter((e) => e.tab === tab).length;
-  check(count('revolution') === 30 && count('uprising') === 14 && count('nonpolitical') === 9, `the seed holds «বিপ্লব» 30, «গণঅভ্যুত্থান ও বিদ্রোহ» 14, «অ-রাজনৈতিক বিপ্লব» 9 (${['revolution', 'uprising', 'nonpolitical'].map(count).join('/')})`);
+  // The shortlist's 30, 14 and 9 (2026-10-01); then the three Iraqi coups out, and five 1848 members in (Stage 2).
+  check(count('revolution') === 32 && count('uprising') === 14 && count('nonpolitical') === 9, `the seed holds «বিপ্লব» 32, «গণঅভ্যুত্থান ও বিদ্রোহ» 14, «অ-রাজনৈতিক বিপ্লব» 9 (${['revolution', 'uprising', 'nonpolitical'].map(count).join('/')})`);
+  const excluded = Object.entries(seed.excluded ?? {});
+  check(excluded.length === 3 && excluded.every(([k, x]) => !(k in events) && x.reason && x.cite?.length && x.cite.every((c) => c.ref in seed.refs && c.states)), `the events left out are out, each with its reason and its source (${excluded.map(([k]) => k).join(', ')})`);
+  const groupsFile = readJson(path.join(dir, 'groups.json'));
+  check(JSON.stringify(groupsFile) === JSON.stringify(Object.fromEntries(Object.entries(seed.groups).map(([g, x]) => [g, { nameBn: x.nameBn, tab: x.tab }]))) && Object.values(seed.groups).every((x) => x.cite?.length && x.cite.every((c) => c.ref in seed.refs && c.states)), `groups.json is the seed's groups, each name cited (${Object.keys(groupsFile).join(', ')})`);
   check(JSON.stringify(tabs) === JSON.stringify(Object.fromEntries(seed.tabs.map((t) => [t.id, { titleBn: t.titleBn, placeholderBn: t.placeholderBn }]))), `tabs.json is the seed's tabs, in order (${Object.keys(tabs).join(', ')})`);
   check(Object.keys(recs).sort().join() === Object.keys(events).sort().join(), `records.json holds exactly the seed's ${seed.events.length} events`);
 
@@ -2348,7 +2399,9 @@ console.log('\n\n============ world-revolutions ============');
   for (const [key, r] of Object.entries(recs)) {
     const e = events[key];
     if (!e) continue;
-    const want = { tab: e.tab, nameBn: e.nameBn, nameEn: e.nameEn, whenBn: e.whenBn, placeBn: e.placeBn, akaBn: e.aka?.length ? e.aka.map((a) => a.textBn).join(', ') : undefined, kindBn: e.kind === 'rebel-group' ? 'বিদ্রোহী দল' : undefined, groupBn: e.group ? seed.groups[e.group].memberBn : undefined };
+    const want = { tab: e.tab, nameBn: e.nameBn, nameEn: e.nameEn, whenBn: e.whenBn, placeBn: e.placeBn, akaBn: e.aka?.length ? e.aka.map((a) => a.textBn).join(', ') : undefined, partsBn: e.parts?.length ? e.parts.map((p) => p.textBn).join(', ') : undefined, kindBn: e.kind === 'rebel-group' ? 'বিদ্রোহী দল' : undefined, group: e.group, groupBn: e.group ? seed.groups[e.group].memberBn : undefined };
+    for (const p of e.parts ?? []) if (!p.cite?.length || !p.cite.every((c) => c.ref in seed.refs && c.states)) bad.push(`${key} part «${p.textBn}» uncited`);
+    if (e.parts && e.aka) bad.push(`${key}: both parts and other names`);
     for (const [f, v] of Object.entries(want)) if (JSON.stringify(r[f]) !== JSON.stringify(v)) bad.push(`${key}.${f}`);
     for (const f of ['nameBn', 'whenBn', 'placeBn']) if (e[f] !== null && !(e.cite?.[f] ?? []).every((c) => c.ref in seed.refs && c.states)) bad.push(`${key}.${f} uncited`);
     for (const f of ['nameBn', 'whenBn', 'placeBn']) if (e[f] !== null && !(e.cite?.[f] ?? []).length) bad.push(`${key}.${f} uncited`);

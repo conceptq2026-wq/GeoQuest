@@ -185,6 +185,130 @@
       49.696
     ]
   },
+  "revolution-1848-france": {
+    "tab": "revolution",
+    "nameBn": "১৮৪৮-এর বিপ্লব — ফ্রান্স",
+    "nameEn": "Revolutions of 1848: france",
+    "centuryBn": "ঊনবিংশ শতক",
+    "whenBn": "১৮৪৮",
+    "placeBn": "ফ্রান্স",
+    "group": "revolutions-1848",
+    "groupBn": "১৮৪৮-এর বিপ্লবের অংশ",
+    "marker": "ring",
+    "at": [
+      2.55227,
+      46.69611
+    ],
+    "place": [
+      "revolution-fra"
+    ],
+    "frame": [
+      -0.048,
+      43.696,
+      5.152,
+      49.696
+    ]
+  },
+  "revolution-1848-denmark": {
+    "tab": "revolution",
+    "nameBn": "১৮৪৮-এর বিপ্লব — ডেনমার্ক",
+    "nameEn": "Revolutions of 1848: denmark",
+    "centuryBn": "ঊনবিংশ শতক",
+    "whenBn": "১৮৪৮",
+    "placeBn": "ডেনমার্ক",
+    "group": "revolutions-1848",
+    "groupBn": "১৮৪৮-এর বিপ্লবের অংশ",
+    "marker": "ring",
+    "at": [
+      9.01816,
+      55.96697
+    ],
+    "soloAt": [
+      9.01816,
+      55.96697
+    ],
+    "frame": [
+      6.418,
+      52.967,
+      11.618,
+      58.967
+    ]
+  },
+  "revolution-1848-switzerland": {
+    "tab": "revolution",
+    "nameBn": "১৮৪৮-এর বিপ্লব — সুইজারল্যান্ড",
+    "nameEn": "Revolutions of 1848: switzerland",
+    "centuryBn": "ঊনবিংশ শতক",
+    "whenBn": "১৮৪৮",
+    "placeBn": "সুইজারল্যান্ড",
+    "group": "revolutions-1848",
+    "groupBn": "১৮৪৮-এর বিপ্লবের অংশ",
+    "marker": "ring",
+    "at": [
+      7.46396,
+      46.71911
+    ],
+    "soloAt": [
+      7.46396,
+      46.71911
+    ],
+    "frame": [
+      4.864,
+      43.719,
+      10.064,
+      49.719
+    ]
+  },
+  "revolution-1848-belgium": {
+    "tab": "revolution",
+    "nameBn": "১৮৪৮-এর বিপ্লব — বেলজিয়াম",
+    "nameEn": "Revolutions of 1848: belgium",
+    "centuryBn": "ঊনবিংশ শতক",
+    "whenBn": "১৮৪৮",
+    "placeBn": "বেলজিয়াম",
+    "group": "revolutions-1848",
+    "groupBn": "১৮৪৮-এর বিপ্লবের অংশ",
+    "marker": "ring",
+    "at": [
+      4.80045,
+      50.78539
+    ],
+    "soloAt": [
+      4.80045,
+      50.78539
+    ],
+    "frame": [
+      2.2,
+      47.785,
+      7.4,
+      53.785
+    ]
+  },
+  "revolution-1848-hungary": {
+    "tab": "revolution",
+    "nameBn": "১৮৪৮-এর বিপ্লব — হাঙ্গেরি",
+    "nameEn": "Revolutions of 1848: hungary",
+    "centuryBn": "ঊনবিংশ শতক",
+    "whenBn": "১৮৪৮",
+    "placeBn": "হাঙ্গেরি",
+    "group": "revolutions-1848",
+    "groupBn": "১৮৪৮-এর বিপ্লবের অংশ",
+    "marker": "ring",
+    "at": [
+      19.44787,
+      47.08684
+    ],
+    "soloAt": [
+      19.44787,
+      47.08684
+    ],
+    "frame": [
+      16.848,
+      44.087,
+      22.048,
+      50.087
+    ]
+  },
   "santal-rebellion": {
     "tab": "uprising",
     "nameBn": "সাঁওতাল বিদ্রোহ",
@@ -298,7 +422,7 @@
     "centuryBn": "বিংশ শতক",
     "whenBn": "১৯১৭",
     "placeBn": "পেট্রোগ্রাড",
-    "akaBn": "অক্টোবর বিপ্লব, বলশেভিক বিপ্লব",
+    "partsBn": "ফেব্রুয়ারি বিপ্লব, অক্টোবর বিপ্লব (বলশেভিক বিপ্লব)",
     "marker": "dot",
     "at": [
       30.31407,
@@ -502,29 +626,6 @@
       24.334
     ]
   },
-  "14-july-revolution": {
-    "tab": "revolution",
-    "nameBn": "১৪ জুলাই বিপ্লব",
-    "nameEn": "14 July Revolution",
-    "centuryBn": "বিংশ শতক",
-    "whenBn": "১৪ জুলাই ১৯৫৮",
-    "placeBn": "ইরাক",
-    "akaBn": "১৯৫৮ ইরাকি অভ্যুত্থান",
-    "marker": "ring",
-    "at": [
-      43.26181,
-      33.09403
-    ],
-    "place": [
-      "revolution-irq"
-    ],
-    "frame": [
-      40.662,
-      30.094,
-      45.862,
-      36.094
-    ]
-  },
   "nicaraguan-revolution": {
     "tab": "revolution",
     "nameBn": "নিকারাগুয়ান বিপ্লব",
@@ -548,29 +649,6 @@
       15.671
     ]
   },
-  "ramadan-revolution": {
-    "tab": "revolution",
-    "nameBn": "রমজান বিপ্লব",
-    "nameEn": "Ramadan Revolution",
-    "centuryBn": "বিংশ শতক",
-    "whenBn": "৮–১০ ফেব্রুয়ারি ১৯৬৩",
-    "placeBn": "ইরাক",
-    "akaBn": "৮ ফেব্রুয়ারি বিপ্লব, ফেব্রুয়ারি ১৯৬৩ ইরাক অভ্যুত্থান",
-    "marker": "ring",
-    "at": [
-      43.26181,
-      33.09403
-    ],
-    "place": [
-      "revolution-irq"
-    ],
-    "frame": [
-      40.662,
-      30.094,
-      45.862,
-      36.094
-    ]
-  },
   "zanzibar-revolution": {
     "tab": "revolution",
     "nameBn": "জাঞ্জিবার বিপ্লব",
@@ -578,7 +656,7 @@
     "centuryBn": "বিংশ শতক",
     "whenBn": "১২ জানুয়ারি ১৯৬৪",
     "placeBn": "জাঞ্জিবার সালতানাত",
-    "marker": "dot",
+    "marker": "ring",
     "at": [
       39.20003,
       -6.16
@@ -615,28 +693,6 @@
       29.498,
       108.937,
       35.498
-    ]
-  },
-  "17-july-revolution": {
-    "tab": "revolution",
-    "nameBn": "১৭ জুলাই বিপ্লব",
-    "nameEn": "17 July Revolution",
-    "centuryBn": "বিংশ শতক",
-    "whenBn": "১৭ জুলাই ১৯৬৮",
-    "placeBn": "ইরাক",
-    "marker": "ring",
-    "at": [
-      43.26181,
-      33.09403
-    ],
-    "place": [
-      "revolution-irq"
-    ],
-    "frame": [
-      40.662,
-      30.094,
-      45.862,
-      36.094
     ]
   },
   "mass-uprising-1969": {
@@ -905,6 +961,7 @@
     "whenBn": "২০১০–২০১১",
     "placeBn": "তিউনিসিয়া",
     "akaBn": "তিউনিসিয়ান বিপ্লব, মর্যাদার তিউনিসিয়ান বিপ্লব, জুঁই বিপ্লব",
+    "group": "arab-spring",
     "groupBn": "আরব বসন্তের অংশ",
     "marker": "ring",
     "at": [
@@ -924,11 +981,12 @@
   },
   "egypt-2011": {
     "tab": "revolution",
-    "nameBn": "মিশর",
+    "nameBn": "আরব বসন্ত — মিশর",
     "nameEn": "2011 Egyptian revolution",
     "centuryBn": "একবিংশ শতক",
     "whenBn": "২৫ জানুয়ারি – ১১ ফেব্রুয়ারি ২০১১",
     "placeBn": "মিশর",
+    "group": "arab-spring",
     "groupBn": "আরব বসন্তের অংশ",
     "marker": "ring",
     "at": [
@@ -948,11 +1006,12 @@
   },
   "libya-2011": {
     "tab": "revolution",
-    "nameBn": "লিবিয়া",
+    "nameBn": "আরব বসন্ত — লিবিয়া",
     "nameEn": "Libyan civil war (2011)",
     "centuryBn": "একবিংশ শতক",
     "whenBn": "১৫ ফেব্রুয়ারি – ২৩ অক্টোবর ২০১১",
     "placeBn": "লিবিয়া",
+    "group": "arab-spring",
     "groupBn": "আরব বসন্তের অংশ",
     "marker": "ring",
     "at": [
@@ -972,11 +1031,12 @@
   },
   "syria-2011": {
     "tab": "revolution",
-    "nameBn": "সিরিয়া",
+    "nameBn": "আরব বসন্ত — সিরিয়া",
     "nameEn": "Syrian revolution",
     "centuryBn": "একবিংশ শতক",
     "whenBn": "২০১১–২০২৪",
     "placeBn": "সিরিয়া",
+    "group": "arab-spring",
     "groupBn": "আরব বসন্তের অংশ",
     "marker": "ring",
     "at": [
