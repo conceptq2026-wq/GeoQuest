@@ -87,7 +87,7 @@ const LIBERATION_SEEDS = path.join(ROOT, 'data-sources/liberation-war-1971');
 // The world-revolutions map: the editor's seed, pinned (Stage 1, 2026-10-01).
 const WORLD_REVOLUTIONS_SEEDS = path.join(ROOT, 'data-sources/world-revolutions');
 // Re-pinned 2026-10-01 (was 4a05b62f…, Stage 1): the three Iraqi coups out, the 1848 members in, the Russian Revolution's phases, the descriptive labels.
-const WORLD_REVOLUTIONS_SEED_SHA256 = 'bf1d5e4400042c82f9947d169d103c1d86b605af88b3c7fb7d65579e111c8479';
+const WORLD_REVOLUTIONS_SEED_SHA256 = '22ae5f4ef640c71e12f3bf4009925567b3bbc97c0139a9a01be9ff772c534430';
 // Every authored diagram lives under here, one folder per diagram id, and the
 // diagram shell that opens them.
 const DIAGRAMS_DIR = path.join(ROOT, 'docs/diagrams');
@@ -2437,9 +2437,12 @@ console.log('\n\n============ world-revolutions ============');
   check(badPlace.length === 0, `events sharing a spot in a tab are one place listing them all (${Object.entries(places).map(([k, p]) => `${k} ${p.count}`).join(', ')}); the other ${solo.length} are alone${badPlace.length ? ` — not ${badPlace.join(', ')}` : ''}`);
 
   // ⓘ: one line of sources per event, its notes, and one line per disagreement.
-  const wantNotes = seed.events.length + seed.events.reduce((n, e) => n + (e.notesBn?.length ?? 0), 0);
+  // A group chip shows only the members drawn here; ⓘ opens with a cited line per group saying what else its source names.
+  const groups = Object.entries(seed.groups);
+  check(groups.every(([g, x]) => x.omissionBn && x.omissionCite?.length && x.omissionCite.every((c) => c.ref in seed.refs && c.states) && info.lines.some((l) => l.group === 'notes' && l.text.startsWith(`${x.nameBn}: ${x.omissionBn} (`))), `every group chip has a cited ⓘ line naming what the map leaves out (${groups.length})`);
+  const wantNotes = groups.length + seed.events.length + seed.events.reduce((n, e) => n + (e.notesBn?.length ?? 0), 0);
   const wantConflicts = seed.events.reduce((n, e) => n + (e.conflicts?.length ?? 0), 0);
-  check(info.lines.filter((l) => l.group === 'notes').length === wantNotes && info.lines.filter((l) => l.group === 'conflicts').length === wantConflicts, `ⓘ holds ${wantNotes} notes (every event's sources, and the seed's notes) and ${wantConflicts} disagreements`);
+  check(info.lines.filter((l) => l.group === 'notes').length === wantNotes && info.lines.filter((l) => l.group === 'conflicts').length === wantConflicts, `ⓘ holds ${wantNotes} notes (each group's omission, every event's sources, and the seed's notes) and ${wantConflicts} disagreements`);
 
   // Pending: the seed's nulls, no more — places, times no source in the order gives.
   checkMap({ id, expectedPending: seed.events.reduce((n, e) => n + ['whenBn', 'placeBn'].filter((f) => e[f] === null).length, 0) });

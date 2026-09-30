@@ -62,7 +62,7 @@ const CARDS_ONLY = 'nonpolitical';
 const FRAME_HALF = { lon: 2.6, lat: 3.0 };
 
 // The picker's groups: the century an event began in, in Bengali ordinals.
-const CENTURY_BN = { 11: 'একাদশ শতক', 17: 'সপ্তদশ শতক', 18: 'অষ্টাদশ শতক', 19: 'ঊনবিংশ শতক', 20: 'বিংশ শতক', 21: 'একবিংশ শতক' };
+const CENTURY_BN = { 11: 'একাদশ শতক', 17: 'সপ্তদশ শতক', 18: 'অষ্টাদশ শতক', 19: 'উনবিংশ শতক', 20: 'বিংশ শতক', 21: 'একবিংশ শতক' };
 const NO_CENTURY_BN = 'সময় নির্দিষ্ট নয়';
 
 // The card's fixed words (the user's, 2026-10-01).
@@ -334,25 +334,40 @@ const tabs = Object.fromEntries(seed.tabs.map((t) => [t.id, { titleBn: t.titleBn
 // The groups the chips offer, in the seed's order, each with its tab.
 const groups = Object.fromEntries(Object.entries(seed.groups ?? {}).map(([g, grp]) => [g, { nameBn: grp.nameBn, tab: grp.tab }]));
 
-// ---- ⓘ: each event's sources, then every disagreement ---------------------------------------
+// ---- ⓘ: each group's omission, each event's sources, then every disagreement -------------------
+// A student reads these lines, so a source is named as a reader knows it. The Bengali country names
+// taken from Natural Earth are the map's own data and are credited in the credits line, not here.
 const refTitle = (id) => refs[id].titleBn ?? refs[id].title;
+const shownRef = (id) => refs[id].kind !== 'natural-earth';
 const lines = [];
+// A group chip shows only the members drawn here: its line says what else its source names, and whose.
+for (const [g, grp] of Object.entries(seed.groups ?? {})) {
+  if (!grp.omissionBn) fail(`group ${g}: no line saying what the map leaves out`);
+  checkCites(`group ${g} omission`, grp.omissionCite);
+  lines.push({ text: `${grp.nameBn}: ${grp.omissionBn} (${[...new Set(grp.omissionCite.map((c) => refTitle(c.ref)))].join('; ')})।`, group: 'notes' });
+}
 for (const { ev } of order) {
   const used = new Set();
   for (const f of [...CITED, 'point']) for (const c of ev.cite?.[f] ?? []) used.add(c.ref);
   for (const a of ev.aka ?? []) for (const c of a.cite) used.add(c.ref);
   for (const p of ev.parts ?? []) for (const c of p.cite) used.add(c.ref);
   if (ev.point?.match) for (const c of ev.point.match) used.add(c.ref);
-  lines.push({ text: `${ev.nameBn}: ${[...used].map(refTitle).join('; ')}।`, group: 'notes' });
+  const named = [...used].filter(shownRef).map(refTitle);
+  if (!named.length) fail(`${ev.id}: no source a reader knows by name`);
+  lines.push({ text: `${ev.nameBn}: ${named.join('; ')}।`, group: 'notes' });
   for (const n of ev.notesBn ?? []) lines.push({ text: `${ev.nameBn}: ${n}`, group: 'notes' });
 }
 // One line per disagreement: what the card shows and whose it is, then each other value and whose.
 const FIELD_BN = { whenBn: 'সময়', placeBn: 'স্থান', nameBn: 'নাম' };
-const whose = (cites) => [...new Set(cites.map((c) => refTitle(c.ref)))].join('; ');
+const whose = (cites) => [...new Set(cites.filter((c) => shownRef(c.ref)).map((c) => refTitle(c.ref)))].join('; ');
 for (const { ev } of order)
   for (const c of ev.conflicts ?? [])
     lines.push({ text: `${ev.nameBn}, ${FIELD_BN[c.field]}: কার্ডে «${ev[c.field]}» (${whose(ev.cite[c.field])}); ${c.others.map((o) => `«${o.valueBn}» (${whose(o.cite)})`).join('; ')}।`, group: 'conflicts' });
 
+if (problems.length) {
+  console.error(`world-revolutions: ${problems.length} problem(s)\n  ${problems.join('\n  ')}`);
+  process.exit(1);
+}
 fs.mkdirSync(DIR, { recursive: true });
 const write = (name, value) => fs.writeFileSync(path.join(DIR, name), JSON.stringify(value, null, 2) + '\n');
 write('records.json', out);

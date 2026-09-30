@@ -1089,6 +1089,36 @@ console.log('\n---- world-revolutions: markers ----');
     else traced++;
   }
   check(bad.length === 0, `world-revolutions: every marker is its pinned file's point, inside its own labelled country (${traced} of ${seed.events.length} events; ${seed.events.filter((e) => !e.point).length} with none)${bad.length ? ` — not ${bad.join('; ')}` : ''}`);
+
+  // Every Bengali string a student sees on this map (the user's review, 2026-10-01): no project-internal
+  // word, one century and decade form, «সূত্র» for a source, and no stray space before , ; । or doubled.
+  const dir = path.join(SERVED, 'maps/world-revolutions');
+  const d = JSON.parse(fs.readFileSync(path.join(dir, 'descriptor.json'), 'utf8'));
+  const readMap = (f) => JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
+  const itemFields = Object.entries(d.records.items.fields).filter(([, fd]) => fd.display !== false && fd.type === 'text').map(([f]) => f);
+  const shown = [
+    ...Object.values(recs).flatMap((r) => itemFields.map((f) => r[f]).filter((v) => typeof v === 'string')),
+    ...Object.values(readMap('places.json')).map((p) => p.nameBn),
+    ...Object.values(readMap('tabs.json')).flatMap((t) => [t.titleBn, t.placeholderBn]),
+    ...Object.values(readMap('groups.json')).map((g) => g.nameBn),
+    ...readMap('info.json').lines.map((l) => l.text),
+    d.title.bn,
+    d.controls.find((c) => c.type === 'picker').placeholder,
+    ...d.controls.find((c) => c.type === 'picker').groupBy.order,
+    ...d.legend.items.map((i) => i.label),
+    ...Object.values(d.info.headings),
+    ...Object.values(d.sheets).flatMap((sh) => (sh.rows ?? []).map((r) => r.label).filter(Boolean)),
+  ];
+  const INTERNAL = /পিন|উৎস|ভিত্তিমানচিত্র|\bNE-|COD-AB|Natural Earth|\bextract|\bseed\b|pending|basemap|\bpin(ned)?\b/i;
+  // One century form, the ordinal word with «শতক» as the NCTB book writes «অষ্টাদশ শতকের শেষার্ধে» (p. ১১৩), spelt
+  // «উনবিংশ» as bn Wikipedia and the exam spell it; decades as «১৯৮০-এর দশক». A quoted source («…») keeps its own.
+  const WRONG = [/[০-৯]+শ? শতক/, /শতাব্দী/, /ঊনবিংশ/, /(?<![ঀ-৿])(এগারো|সতেরো|আঠারো|উনিশ|বিশ|একুশ) শতক/, /[০-৯]-র দশক/];
+  const unquoted = (t) => {
+    for (let prev; prev !== t; ) [prev, t] = [t, t.replace(/«[^«»]*»|“[^“”]*”/g, '')];
+    return t;
+  };
+  const badText = shown.filter((t) => INTERNAL.test(t) || WRONG.some((re) => re.test(unquoted(t))) || / [,;।]|  /.test(t));
+  check(badText.length === 0, `world-revolutions: every shown Bengali string (${shown.length}) is free of project words, holds one century and decade form, and has no space before , ; । or doubled${badText.length ? ` — not: ${badText.slice(0, 4).join(' | ')}` : ''}`);
 }
 
 if (failures) {

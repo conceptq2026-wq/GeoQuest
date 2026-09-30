@@ -34,7 +34,7 @@ Read it with `CLAUDE.md`, whose rules and verification budget apply.
   `nctb-h910.md` and the four exam files. The script that wrote the seed
   checked every quoted phrase against that text.
 - **Sources, in the user's order.**
-  - The NCTB textbook «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», classes 9–10 (2026) —
+  - The NCTB textbook «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», classes 9–10, revised for the 2026 school year (its title page: «২০২৬ শিক্ষাবর্ষের জন্য পরিমার্জিত») —
     liberation-war-1971's H910 — for the events it covers: কৈবর্ত,
     ফকির-সন্ন্যাসী, সিপাহি, ১৯৬৯, ১৯৯০, ২০২৪ and ফরাসি বিপ্লবের সাল.
   - Then Bengali Wikipedia, then English Wikipedia, each at a pinned revision.
@@ -93,9 +93,25 @@ Read it with `CLAUDE.md`, whose rules and verification budget apply.
       present-day place for them.
   - The Russian Revolution's card row «এর দুই পর্ব» replaces «অন্য নাম». A
     part is never an alias; every other alias row was checked.
-  - Zanzibar is drawn as a ring. Its ⓘ, and Vietnam's, say the place was
-    matched by the region's or country's name.
+  - Zanzibar is drawn as a ring. Its ⓘ, and Vietnam's, carry one sentence:
+    «মার্কারটি দেশ বা অঞ্চলের নাম ধরে বসানো; সূত্রে নির্দিষ্ট স্থান নেই।»
   - The group chips (`chips`) and the cards-only tab (`tabs.cardsOnly`)
     are the map's.
+- **Wording (the user's review of Stages 2–3, 2026-10-01).**
+  - A student reads only plain Bengali: no project word (pin, extract, seed,
+    NE-, COD-AB, «উৎস-ক্রম») in any shown string. Natural Earth and BBS / OCHA
+    are named in the credits alone; the Bengali country names taken from
+    Natural Earth are not listed as a source in ⓘ.
+  - «সূত্র» for a source, never «উৎস». Centuries are the ordinal word with
+    «শতক» («অষ্টাদশ শতক», «উনবিংশ শতক»), as the NCTB book writes «অষ্টাদশ
+    শতকের শেষার্ধে» (p. ১১৩). Decades are «১৯৮০-এর দশক». A quoted source keeps
+    its own form.
+  - `tools/verify.mjs` fails any shown string of this map that breaks one of
+    these, or has a space before , ; । or a doubled space.
+  - ⓘ opens with one cited line per group chip: the chip shows only the
+    members drawn here, so the line names what else the group's own article
+    lists. Arab Spring: bn Wikipedia's list «যেসব দেশে বিক্ষোভ চলছে» (15 more).
+    1848: en Wikipedia's infobox participants (7 more), in English, since
+    none has a bn article. The validator requires both.
 - **Stage 4 to come.** Card facts: leaders, causes, results, and when the
   exams asked.

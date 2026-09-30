@@ -28,6 +28,14 @@
      "states": "আরব বসন্ত",
      "where": "title"
     }
+   ],
+   "omissionBn": "এই ম্যাপে এর চারটি দেশ আঁকা আছে: তিউনিসিয়া, মিশর, লিবিয়া ও সিরিয়া। সূত্রের «যেসব দেশে বিক্ষোভ চলছে» তালিকায় আরও আছে আলজেরিয়া, বাহরাইন, জিবুতি, ইরান, ইরাক, জর্ডান, কুয়েত, মৌরিতানিয়া, সোমালিয়া, সুদান, ইয়েমেন, মরক্কো, পশ্চিম সাহারা, ওমান ও সৌদি আরব; এগুলো এই ম্যাপে আঁকা হয়নি",
+   "omissionCite": [
+    {
+     "ref": "bnwp:arabspring",
+     "states": "== যেসব দেশে বিক্ষোভ চলছে == ১.আলজেরিয়া ২.বাহরাইন ৩.জিবুতি ৪.মিশর ৫.ইরান ৬.ইরাক ৭.জর্ডান ৮.কুয়েত ৯.লিবিয়া ১০.মৌরিতানিয়া ১১.সিরিয়া ১২.সোমালিয়া ১৩.সুদান ১৪.তিউনিসিয়া ১৫.ইয়েমেন ১৬.মরক্কো ১৭.পশ্চিম সাহারা ১৮.ওমান ১৯.সৌদি আরব",
+     "where": "wikitext"
+    }
    ]
   },
   "revolutions-1848": {
@@ -39,6 +47,14 @@
      "ref": "bnwp:cat:১৮৪৮-এর বিপ্লবের ব্যক্তি",
      "states": "বিষয়শ্রেণী:১৮৪৮-এর বিপ্লবের ব্যক্তি",
      "where": "title"
+    }
+   ],
+   "omissionBn": "এই ম্যাপে এর পাঁচটি দেশ আঁকা আছে: ফ্রান্স, ডেনমার্ক, সুইজারল্যান্ড, বেলজিয়াম ও হাঙ্গেরি। সূত্রের তথ্যছকে অংশগ্রহণকারীদের মধ্যে আরও আছে German Confederation, Austrian Empire, Italian states, Ireland, Moldavia, Wallachia, Greater Poland ও অন্যান্য; এগুলো এই ম্যাপে আঁকা হয়নি",
+   "omissionCite": [
+    {
+     "ref": "enwp:1848",
+     "states": "People and governments of [[July Monarchy|France]], the [[German Confederation]], the [[Austrian Empire]], [[List of historical states of Italy#From the Restoration to the Unification|Italian states]], [[Denmark]], [[History of Ireland (1801–1923)|Ireland]], [[Moldavia]], [[Wallachia]], [[Greater Poland]], and others",
+     "where": "infobox"
     }
    ]
   }
@@ -609,8 +625,8 @@
   },
   "nctb:H910-৪২": {
    "kind": "nctb",
-   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (2026), p. ৪২",
-   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬), পৃষ্ঠা ৪২",
+   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (revised for the 2026 school year), p. ৪২",
+   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬ শিক্ষাবর্ষ), পৃষ্ঠা ৪২",
    "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
    "file": "itihas-2026.pdf",
    "sha256": "0e0521c3ddcdd61e1414e0aec431570a80f661d7f31d4bae0260e20ea4583e5b",
@@ -618,8 +634,8 @@
   },
   "nctb:H910-১০৯": {
    "kind": "nctb",
-   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (2026), p. ১০৯",
-   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬), পৃষ্ঠা ১০৯",
+   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (revised for the 2026 school year), p. ১০৯",
+   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬ শিক্ষাবর্ষ), পৃষ্ঠা ১০৯",
    "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
    "file": "itihas-2026.pdf",
    "sha256": "0e0521c3ddcdd61e1414e0aec431570a80f661d7f31d4bae0260e20ea4583e5b",
@@ -627,8 +643,8 @@
   },
   "nctb:H910-১১৩": {
    "kind": "nctb",
-   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (2026), p. ১১৩",
-   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬), পৃষ্ঠা ১১৩",
+   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (revised for the 2026 school year), p. ১১৩",
+   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬ শিক্ষাবর্ষ), পৃষ্ঠা ১১৩",
    "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
    "file": "itihas-2026.pdf",
    "sha256": "0e0521c3ddcdd61e1414e0aec431570a80f661d7f31d4bae0260e20ea4583e5b",
@@ -636,8 +652,8 @@
   },
   "nctb:H910-১২৩": {
    "kind": "nctb",
-   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (2026), p. ১২৩",
-   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬), পৃষ্ঠা ১২৩",
+   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (revised for the 2026 school year), p. ১২৩",
+   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬ শিক্ষাবর্ষ), পৃষ্ঠা ১২৩",
    "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
    "file": "itihas-2026.pdf",
    "sha256": "0e0521c3ddcdd61e1414e0aec431570a80f661d7f31d4bae0260e20ea4583e5b",
@@ -645,8 +661,8 @@
   },
   "nctb:H910-১৬০": {
    "kind": "nctb",
-   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (2026), p. ১৬০",
-   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬), পৃষ্ঠা ১৬০",
+   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (revised for the 2026 school year), p. ১৬০",
+   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬ শিক্ষাবর্ষ), পৃষ্ঠা ১৬০",
    "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
    "file": "itihas-2026.pdf",
    "sha256": "0e0521c3ddcdd61e1414e0aec431570a80f661d7f31d4bae0260e20ea4583e5b",
@@ -654,8 +670,8 @@
   },
   "nctb:H910-১৬১": {
    "kind": "nctb",
-   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (2026), p. ১৬১",
-   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬), পৃষ্ঠা ১৬১",
+   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (revised for the 2026 school year), p. ১৬১",
+   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬ শিক্ষাবর্ষ), পৃষ্ঠা ১৬১",
    "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
    "file": "itihas-2026.pdf",
    "sha256": "0e0521c3ddcdd61e1414e0aec431570a80f661d7f31d4bae0260e20ea4583e5b",
@@ -663,8 +679,8 @@
   },
   "nctb:H910-১৮৩": {
    "kind": "nctb",
-   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (2026), p. ১৮৩",
-   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬), পৃষ্ঠা ১৮৩",
+   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (revised for the 2026 school year), p. ১৮৩",
+   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬ শিক্ষাবর্ষ), পৃষ্ঠা ১৮৩",
    "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
    "file": "itihas-2026.pdf",
    "sha256": "0e0521c3ddcdd61e1414e0aec431570a80f661d7f31d4bae0260e20ea4583e5b",
@@ -672,8 +688,8 @@
   },
   "nctb:H910-১৮৪": {
    "kind": "nctb",
-   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (2026), p. ১৮৪",
-   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬), পৃষ্ঠা ১৮৪",
+   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (revised for the 2026 school year), p. ১৮৪",
+   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬ শিক্ষাবর্ষ), পৃষ্ঠা ১৮৪",
    "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
    "file": "itihas-2026.pdf",
    "sha256": "0e0521c3ddcdd61e1414e0aec431570a80f661d7f31d4bae0260e20ea4583e5b",
@@ -681,8 +697,8 @@
   },
   "nctb:H910-১৮৫": {
    "kind": "nctb",
-   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (2026), p. ১৮৫",
-   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬), পৃষ্ঠা ১৮৫",
+   "title": "NCTB, Bangladesher Itihas o Bishwasabhyata, classes 9–10 (revised for the 2026 school year), p. ১৮৫",
+   "titleBn": "NCTB «বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা», নবম–দশম শ্রেণি (২০২৬ শিক্ষাবর্ষ), পৃষ্ঠা ১৮৫",
    "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
    "file": "itihas-2026.pdf",
    "sha256": "0e0521c3ddcdd61e1414e0aec431570a80f661d7f31d4bae0260e20ea4583e5b",
@@ -1794,7 +1810,7 @@
     }
    ],
    "notesBn": [
-    "স্থানটি দেশের নাম মিলিয়ে বসানো: ইংরেজি উইকিপিডিয়ার তথ্যছকে স্থান «Vietnam», যার সংযোগ «Empire of Vietnam» নিবন্ধে।"
+    "মার্কারটি দেশ বা অঞ্চলের নাম ধরে বসানো; সূত্রে নির্দিষ্ট স্থান নেই।"
    ],
    "point": {
     "marker": "ring",
@@ -1920,7 +1936,7 @@
     ]
    },
    "notesBn": [
-    "স্থানটি অঞ্চলের নাম মিলিয়ে বসানো: ইংরেজি উইকিপিডিয়ায় বিদ্রোহীরা Zanzibar Town-এ গিয়ে সুলতানকে উৎখাত করে; বৃত্তটি Natural Earth-এর «Zanzibar» (তানজানিয়া) বিন্দুতে।"
+    "মার্কারটি দেশ বা অঞ্চলের নাম ধরে বসানো; সূত্রে নির্দিষ্ট স্থান নেই।"
    ],
    "point": {
     "marker": "ring",
@@ -2375,7 +2391,7 @@
     ]
    },
    "notesBn": [
-    "শিরোনামটি চেনার জন্য একটি বর্ণনামূলক লেবেল, ঘটনার নাম নয়; «আরব বসন্ত» নামটির সূত্র নিচে।"
+    "শিরোনামটি চেনার জন্য একটি বর্ণনামূলক লেবেল, ঘটনার নাম নয়; «আরব বসন্ত» নামটির সূত্র ওপরের লাইনে।"
    ],
    "point": {
     "marker": "ring",
@@ -2440,7 +2456,7 @@
     ]
    },
    "notesBn": [
-    "শিরোনামটি চেনার জন্য একটি বর্ণনামূলক লেবেল, ঘটনার নাম নয়; «আরব বসন্ত» নামটির সূত্র নিচে।"
+    "শিরোনামটি চেনার জন্য একটি বর্ণনামূলক লেবেল, ঘটনার নাম নয়; «আরব বসন্ত» নামটির সূত্র ওপরের লাইনে।"
    ],
    "point": {
     "marker": "ring",
@@ -2502,7 +2518,7 @@
     ]
    },
    "notesBn": [
-    "শিরোনামটি চেনার জন্য একটি বর্ণনামূলক লেবেল, ঘটনার নাম নয়; «আরব বসন্ত» নামটির সূত্র নিচে।"
+    "শিরোনামটি চেনার জন্য একটি বর্ণনামূলক লেবেল, ঘটনার নাম নয়; «আরব বসন্ত» নামটির সূত্র ওপরের লাইনে।"
    ],
    "point": {
     "marker": "ring",
@@ -2574,7 +2590,7 @@
     ]
    },
    "notesBn": [
-    "শিরোনামটি চেনার জন্য একটি বর্ণনামূলক লেবেল, ঘটনার নাম নয়; «১৮৪৮-এর বিপ্লব» নামটির সূত্র নিচে।"
+    "শিরোনামটি চেনার জন্য একটি বর্ণনামূলক লেবেল, ঘটনার নাম নয়; «১৮৪৮-এর বিপ্লব» নামটির সূত্র ওপরের লাইনে।"
    ],
    "point": {
     "marker": "ring",
@@ -2647,7 +2663,7 @@
     ]
    },
    "notesBn": [
-    "শিরোনামটি চেনার জন্য একটি বর্ণনামূলক লেবেল, ঘটনার নাম নয়; «১৮৪৮-এর বিপ্লব» নামটির সূত্র নিচে।"
+    "শিরোনামটি চেনার জন্য একটি বর্ণনামূলক লেবেল, ঘটনার নাম নয়; «১৮৪৮-এর বিপ্লব» নামটির সূত্র ওপরের লাইনে।"
    ],
    "point": {
     "marker": "ring",
@@ -2712,7 +2728,7 @@
     ]
    },
    "notesBn": [
-    "শিরোনামটি চেনার জন্য একটি বর্ণনামূলক লেবেল, ঘটনার নাম নয়; «১৮৪৮-এর বিপ্লব» নামটির সূত্র নিচে।"
+    "শিরোনামটি চেনার জন্য একটি বর্ণনামূলক লেবেল, ঘটনার নাম নয়; «১৮৪৮-এর বিপ্লব» নামটির সূত্র ওপরের লাইনে।"
    ],
    "point": {
     "marker": "ring",
@@ -2777,7 +2793,7 @@
     ]
    },
    "notesBn": [
-    "শিরোনামটি চেনার জন্য একটি বর্ণনামূলক লেবেল, ঘটনার নাম নয়; «১৮৪৮-এর বিপ্লব» নামটির সূত্র নিচে।"
+    "শিরোনামটি চেনার জন্য একটি বর্ণনামূলক লেবেল, ঘটনার নাম নয়; «১৮৪৮-এর বিপ্লব» নামটির সূত্র ওপরের লাইনে।"
    ],
    "point": {
     "marker": "ring",
@@ -2842,7 +2858,7 @@
     ]
    },
    "notesBn": [
-    "শিরোনামটি চেনার জন্য একটি বর্ণনামূলক লেবেল, ঘটনার নাম নয়; «১৮৪৮-এর বিপ্লব» নামটির সূত্র নিচে।"
+    "শিরোনামটি চেনার জন্য একটি বর্ণনামূলক লেবেল, ঘটনার নাম নয়; «১৮৪৮-এর বিপ্লব» নামটির সূত্র ওপরের লাইনে।"
    ],
    "point": {
     "marker": "ring",
@@ -3128,7 +3144,7 @@
    ],
    "notesBn": [
     "নামের বানান NCTB বই ও বাংলা উইকিপিডিয়ার «সিপাহি»; পরীক্ষার প্রশ্নে «সিপাহী»।",
-    "বৃত্তটি পশ্চিমবঙ্গে: ব্যারাকপুরের বিন্দু কোনো পিন করা ফাইলে নেই; সূত্রে নাম আছে রাজ্যটির, পশ্চিমবঙ্গ।"
+    "ব্যারাকপুরের নির্দিষ্ট বিন্দু এই ম্যাপের ভৌগোলিক তথ্যে নেই, তাই বৃত্তটি রাজ্যের ওপর বসানো হয়েছে।"
    ],
    "point": {
     "marker": "ring",
@@ -3875,7 +3891,7 @@
    "tab": "nonpolitical",
    "nameBn": "সবুজ বিপ্লব",
    "nameEn": "Green Revolution",
-   "whenBn": "২০শ শতকের শুরু – ১৯৮০-এর দশকের শেষ",
+   "whenBn": "বিংশ শতকের শুরু – ১৯৮০-এর দশকের শেষ",
    "from": null,
    "century": 20,
    "placeBn": null,
@@ -3944,7 +3960,7 @@
     ]
    },
    "notesBn": [
-    "৪৪তম বিসিএসের প্রশ্ন: «ইসলাম ও সুফিমতের প্রভাবে ভারতবর্ষে ঘটেছিল-», উত্তর «চিন্তাবিপ্লব»। উৎস-ক্রমের কোনো সূত্রে এর সময় বা বিবরণ পাওয়া যায়নি।"
+    "৪৪তম বিসিএসের প্রশ্ন: «ইসলাম ও সুফিমতের প্রভাবে ভারতবর্ষে ঘটেছিল-», উত্তর «চিন্তাবিপ্লব»। NCTB বই বা উইকিপিডিয়ায় এর সময় বা বিবরণ পাওয়া যায়নি।"
    ],
    "point": null
   },
@@ -3953,7 +3969,7 @@
    "tab": "nonpolitical",
    "nameBn": "ব্রিটিশ কৃষি বিপ্লব",
    "nameEn": "British Agricultural Revolution",
-   "whenBn": "১৭শ শতকের মাঝামাঝি – ১৯শ শতকের শেষের দিক",
+   "whenBn": "সপ্তদশ শতকের মাঝামাঝি – উনবিংশ শতকের শেষের দিক",
    "from": null,
    "century": 17,
    "placeBn": "ব্রিটেন",
@@ -4069,7 +4085,7 @@
    "tab": "nonpolitical",
    "nameBn": "বৈজ্ঞানিক বিপ্লব",
    "nameEn": "Scientific Revolution",
-   "whenBn": "রেনেসাঁ পর্বের শেষের দিক থেকে ১৮ শতকের শেষের দিক পর্যন্ত",
+   "whenBn": "রেনেসাঁ পর্বের শেষের দিক থেকে অষ্টাদশ শতকের শেষের দিক পর্যন্ত",
    "from": null,
    "placeBn": "ইউরোপ",
    "cite": {
@@ -4100,7 +4116,7 @@
    "tab": "nonpolitical",
    "nameBn": "ডিজিটাল বিপ্লব",
    "nameEn": "Digital Revolution",
-   "whenBn": "১৯৮০-র দশকের শুরু থেকে",
+   "whenBn": "১৯৮০-এর দশকের শুরু থেকে",
    "from": null,
    "century": 20,
    "placeBn": "সারা বিশ্ব",
