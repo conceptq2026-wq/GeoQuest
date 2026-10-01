@@ -421,7 +421,9 @@ State which kind a task is when reporting it.
 - `world-revolutions` went live on the home page on 2026-10-01, with a
   caption, after Stages 1–3 of its plan: three tabs, 55 events, dot and ring
   markers, group chips, a cards-only tab, and the one no-point exception.
-- Work in progress (`tools/wip.json`): none.
+- Work in progress (`tools/wip.json`): `maritime-zones`, a diagram under
+  International (step 1, the seed only; local preview only:
+  `notes/maritime-zones.md`).
 
 ## Index — notes, read only when working on that item
 

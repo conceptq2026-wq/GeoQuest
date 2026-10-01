@@ -69,3 +69,17 @@ await fetchVerified(lic.url, path.join(cache, lic.file),
 // The latitude-longitude globe's imagery, NASA's Blue Marble: Next Generation.
 const marble = sources.nasaBlueMarble;
 await fetchPinned(marble, path.join(cache, marble.file), (buf) => buf.length === marble.size);
+
+// The maritime-zones diagram's two sources (UN DOALOS): the overview page, and the
+// Convention's parts its seed cites — each by size and SHA-256, into unclos/. The site
+// names the parts .htm; the cache keeps them as .html.
+const overview = sources.unclosOverview;
+fs.mkdirSync(path.join(cache, path.dirname(overview.file)), { recursive: true });
+await fetchVerified(overview.url, path.join(cache, overview.file),
+  (buf) => buf.length === overview.size && sha256(buf) === overview.sha256);
+const convention = sources.unclosConvention;
+fs.mkdirSync(path.join(cache, convention.dir), { recursive: true });
+for (const [name, want] of Object.entries(convention.files)) {
+  await fetchVerified(convention.baseUrl + name.replace(/\.html$/, '.htm'), path.join(cache, convention.dir, name),
+    (buf) => buf.length === want.size && sha256(buf) === want.sha256);
+}

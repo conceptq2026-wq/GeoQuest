@@ -1,0 +1,924 @@
+{
+ "_about": "The editor's seed for the maritime-zones diagram (UNCLOS), step 1 (2026-10-02): no drawing yet. Two sources only, by the user's decision: the DOALOS overview page and the Convention's full text linked from it, each pinned below by the SHA-256 of the files as downloaded (kept in tools/.cache/unclos/, out of git). Every sentence cites its source, the article or the overview's place, and the place of a quote of at most 15 words in that text (see quoteLocation); tools/verify.mjs re-checks each. Every Bengali string is approved (step 1c, 2026-10-02). Distances in nautical miles only.",
+ "id": "maritime-zones",
+ "section": "international",
+ "sources": {
+  "overview": {
+   "title": "United Nations, Division for Ocean Affairs and the Law of the Sea (DOALOS): \"Overview - Convention & Related Agreements\"",
+   "url": "https://www.un.org/depts/los/convention_agreements/convention_overview_convention.htm",
+   "requested": "http://www.un.org/depts/los/convention_agreements/convention_overview_convention.htm",
+   "retrieved": "2026-10-01T21:24:11.779Z",
+   "lastModified": "2026-04-24T14:55:39.000Z",
+   "files": {
+    "overview.html": {
+     "bytes": 21697,
+     "sha256": "21cec587034280c5ceacbc66f9ce068e520d41df081f7b9b5a013351b4cd315d"
+    }
+   }
+  },
+  "convention": {
+   "title": "United Nations Convention on the Law of the Sea, full text as published by DOALOS (linked from the overview)",
+   "url": "https://www.un.org/depts/los/convention_agreements/texts/unclos/closindx.htm",
+   "retrieved": "2026-10-01T21:41:43.834Z",
+   "lastModified": "2026-04-24T15:00:30.000Z",
+   "files": {
+    "part1.html": {
+     "bytes": 3849,
+     "sha256": "fcf6cfd7f8015b4648909b83bbc97aff9f2e3c8325ae0871043274d1f21595c1"
+    },
+    "part2.html": {
+     "bytes": 30486,
+     "sha256": "3ac2030f00afa24a28a9f37cdbe4e66b8d87c44fae305da9456bacd765c93d53"
+    },
+    "part3.html": {
+     "bytes": 14166,
+     "sha256": "7cc16627c10ee72ddb783df326573326563c88fae502a2e36ac4752eb37235fc"
+    },
+    "part4.html": {
+     "bytes": 13069,
+     "sha256": "b946c84b61341405d5840c77f0cb4b9ea1c7e813bacd2909854c7571068ba820"
+    },
+    "part5.html": {
+     "bytes": 35006,
+     "sha256": "9a1058bffaa5c3ef9b99bcd301f3a07274976e0e8e77ec63f68c49f0ed3a36f4"
+    },
+    "part6.html": {
+     "bytes": 14246,
+     "sha256": "32fcb195f3dfaa60b62769aec0ec86e27b364a8a489e8bccb0d9bba63367f40e"
+    },
+    "part7.html": {
+     "bytes": 32838,
+     "sha256": "87ae8b2617f6ef0645b87e4bcdd91ce83576dded3db4ef654155f44654bf266e"
+    },
+    "part10.html": {
+     "bytes": 7583,
+     "sha256": "27d4ae4f863933cedcb8093972138db21b28d1d4b282fa5ecfd049896d0ce0d4"
+    },
+    "part11-1.html": {
+     "bytes": 3338,
+     "sha256": "e0c451c6e387f4a10fbeaf3d3562df713db85d097b1ab787e1610f9d2374ee29"
+    },
+    "part11-2.html": {
+     "bytes": 15927,
+     "sha256": "ab0e4819be75f9f7db9c3973a6fc0489f9c268eecce38c10571facc332b3b843"
+    }
+   }
+  }
+ },
+ "words": {
+  "title": {
+   "bn": "সমুদ্র আইন: সমুদ্রের অঞ্চল",
+   "approved": true,
+   "en": "Law of the Sea: Maritime Zones"
+  },
+  "caption": {
+   "bn": "কোন সমুদ্র-অঞ্চলে কার কী অধিকার",
+   "approved": true
+  },
+  "picker": {
+   "bn": "একটি অঞ্চল বেছে নিন…",
+   "approved": true
+  },
+  "close": {
+   "bn": "বন্ধ করুন",
+   "approved": true,
+   "note": "the word earth-interior uses; reuse here needs approval"
+  },
+  "scale": {
+   "bn": "স্কেল অনুযায়ী নয়",
+   "approved": true,
+   "note": "the word earth-interior uses; reuse here needs approval"
+  },
+  "infoSources": {
+   "bn": "সূত্র",
+   "approved": true
+  },
+  "infoNotes": {
+   "bn": "টীকা",
+   "approved": true
+  },
+  "neutral": {
+   "bn": "এই ছবিতে কোনো দেশের দাবি দেখানো হয়নি",
+   "approved": true
+  }
+ },
+ "items": [
+  {
+   "id": "internal-waters",
+   "row": "water",
+   "name": {
+    "bn": "অভ্যন্তরীণ জলসীমা",
+    "approved": true
+   },
+   "nameEn": "Internal Waters",
+   "sentences": [
+    {
+     "bn": "ভিত্তিরেখার স্থলভাগের দিকের জলরাশি।",
+     "approved": true,
+     "cite": [
+      {
+       "source": "convention",
+       "at": "art. 8(1)",
+       "file": "part2.html",
+       "offset": 3533,
+       "length": 66,
+       "sha256": "730296e76d0e8b26fd712e00dfc305247a93c2fc2e63a12f0f1cb2f0b3aea355"
+      }
+     ]
+    },
+    {
+     "bn": "সরল ভিত্তিরেখা টানায় যে জল নতুন করে অভ্যন্তরীণ জলসীমায় পড়ে, সেখানে নির্দোষ অতিক্রমণের অধিকার থাকে।",
+     "approved": true,
+     "cite": [
+      {
+       "source": "convention",
+       "at": "art. 8(2)",
+       "file": "part2.html",
+       "offset": 3853,
+       "length": 86,
+       "sha256": "4fb50c6be8a6165dab6cc212a2a96414c44e3bcabedcffdd27265c9d3c64587d"
+      },
+      {
+       "source": "convention",
+       "at": "art. 8(2)",
+       "file": "part2.html",
+       "offset": 3768,
+       "length": 83,
+       "sha256": "3ccf0db5be9d89649360c07319435d1f4b43a79f6faff4643046b740c7821c99"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "territorial-sea",
+   "row": "water",
+   "name": {
+    "bn": "আঞ্চলিক সমুদ্র (সর্বোচ্চ ১২ নটিক্যাল মাইল)",
+    "approved": true
+   },
+   "nameEn": "Territorial Sea (up to 12 NM)",
+   "sentences": [
+    {
+     "bn": "ভিত্তিরেখা থেকে সর্বোচ্চ ১২ নটিক্যাল মাইল।",
+     "approved": true,
+     "cite": [
+      {
+       "source": "convention",
+       "at": "art. 3",
+       "file": "part2.html",
+       "offset": 846,
+       "length": 70,
+       "sha256": "8387163ac63ced2e21895b1fe5f6760aa8451d1f8e0902b2ae0b3374291cef3e"
+      },
+      {
+       "source": "overview",
+       "at": "key features, bullet 1",
+       "file": "overview.html",
+       "offset": 4315,
+       "length": 45,
+       "sha256": "56fc38db81642ee53468cb62a78f91b26c770b7e72200d3cde545588c78bd15b"
+      }
+     ]
+    },
+    {
+     "bn": "এই সমুদ্র, তার ওপরের আকাশ এবং তলদেশ ও তার নিচের মাটিতে উপকূলীয় রাষ্ট্রের সার্বভৌমত্ব।",
+     "approved": true,
+     "cite": [
+      {
+       "source": "convention",
+       "at": "art. 2(1)",
+       "file": "part2.html",
+       "offset": 399,
+       "length": 60,
+       "sha256": "a1f316a1198c33ac1ac97a1ff3363bc8548d4fabcde2b5a113beb4ac036f887f"
+      },
+      {
+       "source": "convention",
+       "at": "art. 2(2)",
+       "file": "part2.html",
+       "offset": 464,
+       "length": 66,
+       "sha256": "b10256b1eed9794ef6c5d71146dc6dfbebac362daacb278b1165c76d5abd3c90"
+      },
+      {
+       "source": "convention",
+       "at": "art. 2(2)",
+       "file": "part2.html",
+       "offset": 531,
+       "length": 33,
+       "sha256": "d8b24948a6f25d85dbb0900c91c9bef979b4f27ec3b325434c3561c0d966335f"
+      },
+      {
+       "source": "overview",
+       "at": "key features, bullet 1",
+       "file": "overview.html",
+       "offset": 4201,
+       "length": 62,
+       "sha256": "4068c877f9ff25c1f26ad66ed24632cf4a5275e489227fd32c7fee961b7a2088"
+      }
+     ]
+    },
+    {
+     "bn": "সব রাষ্ট্রের জাহাজ নির্দোষ অতিক্রমণ করতে পারে।",
+     "approved": true,
+     "cite": [
+      {
+       "source": "convention",
+       "at": "art. 17",
+       "file": "part2.html",
+       "offset": 8763,
+       "length": 88,
+       "sha256": "4000af6f4bec3daa25fbfe8c36baffee56c78bfa42951828c9ef83460577adcf"
+      },
+      {
+       "source": "overview",
+       "at": "key features, bullet 1",
+       "file": "overview.html",
+       "offset": 4362,
+       "length": 67,
+       "sha256": "6a36632d4cfc7888000febfa44d94a31936cc90837067d7d8181d098da2a15c2"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "contiguous-zone",
+   "row": "strip",
+   "name": {
+    "bn": "সংলগ্ন অঞ্চল (সর্বোচ্চ ২৪ নটিক্যাল মাইল)",
+    "approved": true
+   },
+   "nameEn": "Contiguous Zone (up to 24 NM)",
+   "sentences": [
+    {
+     "bn": "ভিত্তিরেখা থেকে সর্বোচ্চ ২৪ নটিক্যাল মাইল।",
+     "approved": true,
+     "cite": [
+      {
+       "source": "convention",
+       "at": "art. 33(2)",
+       "file": "part2.html",
+       "offset": 21448,
+       "length": 58,
+       "sha256": "82012519c4575dd73206caa8ddbc80ad6b57751403dd27d78d6765e2b0063e83"
+      }
+     ]
+    },
+    {
+     "bn": "নিজ ভূখণ্ড বা আঞ্চলিক সমুদ্রে শুল্ক, রাজস্ব, অভিবাসন ও স্বাস্থ্য-আইন ভঙ্গ ঠেকাতে ও শাস্তি দিতে রাষ্ট্র প্রয়োজনীয় নিয়ন্ত্রণ চালাতে পারে।",
+     "approved": true,
+     "cite": [
+      {
+       "source": "convention",
+       "at": "art. 33(1)",
+       "file": "part2.html",
+       "offset": 21124,
+       "length": 55,
+       "sha256": "b633cf9bdc0bc02ee0e143b4ce8a9a7f1e848ea2882aaa2b978cb5a43b883f8b"
+      },
+      {
+       "source": "convention",
+       "at": "art. 33(1)(a)",
+       "file": "part2.html",
+       "offset": 21185,
+       "length": 89,
+       "sha256": "372102d2dd1eef9104f00ba8f6d57aff49fa7f962a47e0e1da3bcec0910839ac"
+      },
+      {
+       "source": "convention",
+       "at": "art. 33(1)(a)",
+       "file": "part2.html",
+       "offset": 21275,
+       "length": 39,
+       "sha256": "c66834c9593579fcfc4d086dd8c18945774f0092436e70520faeec0219ea51bf"
+      },
+      {
+       "source": "convention",
+       "at": "art. 33(1)(b)",
+       "file": "part2.html",
+       "offset": 21320,
+       "length": 53,
+       "sha256": "e47ef03040ccde87ab7595f87452f770657f630ce54df808ef721394b24039da"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "eez",
+   "row": "water",
+   "name": {
+    "bn": "একান্ত অর্থনৈতিক অঞ্চল (সর্বোচ্চ ২০০ নটিক্যাল মাইল)",
+    "approved": true
+   },
+   "nameEn": "Exclusive Economic Zone (EEZ) (up to 200 NM)",
+   "sentences": [
+    {
+     "bn": "আঞ্চলিক সমুদ্রের পর থেকে, ভিত্তিরেখা থেকে সর্বোচ্চ ২০০ নটিক্যাল মাইল।",
+     "approved": true,
+     "cite": [
+      {
+       "source": "convention",
+       "at": "art. 55",
+       "file": "part5.html",
+       "offset": 190,
+       "length": 50,
+       "sha256": "94c55d3ea59e4f1ca2cf2d44f14e25ae96a76e43817131016f1cd7520cc8ed76"
+      },
+      {
+       "source": "convention",
+       "at": "art. 57",
+       "file": "part5.html",
+       "offset": 1808,
+       "length": 61,
+       "sha256": "033df2aa0eff185fbb003a2874ea744858859069a32a5a1302c60d0dced2b339"
+      },
+      {
+       "source": "overview",
+       "at": "key features, bullet 4",
+       "file": "overview.html",
+       "offset": 5114,
+       "length": 47,
+       "sha256": "70b2974684ff8929d5301c8356c053ee9ded2fcccf9686c15914ba015e758f63"
+      }
+     ]
+    },
+    {
+     "bn": "প্রাকৃতিক সম্পদে উপকূলীয় রাষ্ট্রের সার্বভৌম অধিকার।",
+     "approved": true,
+     "cite": [
+      {
+       "source": "convention",
+       "at": "art. 56(1)(a)",
+       "file": "part5.html",
+       "offset": 626,
+       "length": 107,
+       "sha256": "7ce2155774807ec5a223a1efa40f95cced9fbae9e6d520884f4451075f361995"
+      },
+      {
+       "source": "overview",
+       "at": "key features, bullet 4",
+       "file": "overview.html",
+       "offset": 5092,
+       "length": 103,
+       "sha256": "f695d2772b27e63ed504e99632fa2129c93aa0324722bd2375e250f59451b87d"
+      }
+     ]
+    },
+    {
+     "bn": "সব রাষ্ট্রের নৌচলাচল, ওপর দিয়ে উড্ডয়ন এবং সমুদ্রতলে কেবল ও পাইপলাইন বসানোর স্বাধীনতা।",
+     "approved": true,
+     "cite": [
+      {
+       "source": "convention",
+       "at": "art. 58(1)",
+       "file": "part5.html",
+       "offset": 2184,
+       "length": 80,
+       "sha256": "22a2c7a2a30235754e80e09daa61a9cbc7e438861484a4c482cfa23bb3b73157"
+      },
+      {
+       "source": "overview",
+       "at": "key features, bullet 5",
+       "file": "overview.html",
+       "offset": 5338,
+       "length": 47,
+       "sha256": "694bb5aa485bfcd3b3e178710f387ded77488cfd830d4e1cd6bc84bca3008524"
+      },
+      {
+       "source": "overview",
+       "at": "key features, bullet 5",
+       "file": "overview.html",
+       "offset": 5398,
+       "length": 45,
+       "sha256": "6457535938a6a5b6259a8550ce9291eb650c20c4c6af07b047d9943ff6ca93ce"
+      },
+      {
+       "source": "convention",
+       "at": "art. 58(1)",
+       "file": "part2.html",
+       "offset": 8772,
+       "length": 49,
+       "sha256": "fd7ae41279477da7990802d8158719b93e9319bd014bf408358a3fd39300dcb4"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "continental-shelf",
+   "row": "seabed",
+   "name": {
+    "bn": "মহীসোপান (অন্তত ২০০ নটিক্যাল মাইল)",
+    "approved": true
+   },
+   "nameEn": "Continental Shelf (at least 200 NM)",
+   "sentences": [
+    {
+     "bn": "আঞ্চলিক সমুদ্রের পর থেকে সমুদ্রতল ও তার নিচের মাটি; অন্তত ২০০ নটিক্যাল মাইল, মহাদেশীয় প্রান্ত দূরে গেলে আরও বেশি।",
+     "approved": true,
+     "cite": [
+      {
+       "source": "convention",
+       "at": "art. 76(1)",
+       "file": "part6.html",
+       "offset": 191,
+       "length": 84,
+       "sha256": "11573df8851e66cca8002ccc8c0672106ba9879734e991ffb41f70591cac04c8"
+      },
+      {
+       "source": "convention",
+       "at": "art. 76(1)",
+       "file": "part6.html",
+       "offset": 341,
+       "length": 76,
+       "sha256": "768a9756db4c44a5529499fe1bef880502661cd71c694419862eca40eceea075"
+      },
+      {
+       "source": "overview",
+       "at": "key features, bullet 7",
+       "file": "overview.html",
+       "offset": 5933,
+       "length": 82,
+       "sha256": "9debd3c58c6ed1ede5a9e4966cb46302d957bab2f2ac7af5fa167437f516dc07"
+      }
+     ]
+    },
+    {
+     "bn": "বাইরের সীমা ভিত্তিরেখা থেকে সর্বোচ্চ ৩৫০ নটিক্যাল মাইল, অথবা ২,৫০০ মিটার গভীরতা-রেখা থেকে সর্বোচ্চ ১০০ নটিক্যাল মাইল।",
+     "approved": true,
+     "cite": [
+      {
+       "source": "convention",
+       "at": "art. 76(5)",
+       "file": "part6.html",
+       "offset": 1947,
+       "length": 61,
+       "sha256": "08f016bbdf06b83ac04431b7a8dfbf5884f2242045cd5ac5542668b5e5d0eb61"
+      },
+      {
+       "source": "convention",
+       "at": "art. 76(5)",
+       "file": "part6.html",
+       "offset": 2067,
+       "length": 67,
+       "sha256": "c1de9c063d7b778f610e61578090323c079d7305149416edc614d3806cec479a"
+      }
+     ]
+    },
+    {
+     "bn": "সম্পদ অনুসন্ধান ও আহরণে উপকূলীয় রাষ্ট্রের সার্বভৌম অধিকার; ওপরের জলের মর্যাদা বদলায় না।",
+     "approved": true,
+     "cite": [
+      {
+       "source": "convention",
+       "at": "art. 77(1)",
+       "file": "part6.html",
+       "offset": 4072,
+       "length": 85,
+       "sha256": "738150031e285f1b1249093a94f10af24f3f6e341455ee23c24b51e7b14adc5d"
+      },
+      {
+       "source": "convention",
+       "at": "art. 78(1)",
+       "file": "part6.html",
+       "offset": 5114,
+       "length": 56,
+       "sha256": "67147edb7c8e72f97b33ae6ffa9e5fa043ababcc701fffc3dee42a8380ef48e9"
+      },
+      {
+       "source": "overview",
+       "at": "key features, bullet 7",
+       "file": "overview.html",
+       "offset": 5781,
+       "length": 63,
+       "sha256": "11c2ccb8e474329360a66db54be86a9be3670e47b75e145275b8b69fcd57847a"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "high-seas",
+   "row": "water",
+   "name": {
+    "bn": "উন্মুক্ত সমুদ্র (অর্থনৈতিক অঞ্চলের বাইরে)",
+    "approved": true
+   },
+   "nameEn": "High Seas (beyond the EEZ)",
+   "sentences": [
+    {
+     "bn": "একান্ত অর্থনৈতিক অঞ্চল, আঞ্চলিক সমুদ্র, অভ্যন্তরীণ জলসীমা ও দ্বীপপুঞ্জীয় জলসীমার বাইরের সমুদ্র।",
+     "approved": true,
+     "cite": [
+      {
+       "source": "convention",
+       "at": "art. 86",
+       "file": "part7.html",
+       "offset": 204,
+       "length": 73,
+       "sha256": "bd4610480c7e3f43d3914784ca79e21d64558d6c0297c45d69b5a9532090bb28"
+      },
+      {
+       "source": "convention",
+       "at": "art. 86",
+       "file": "part7.html",
+       "offset": 279,
+       "length": 59,
+       "sha256": "27abf9c3c90eeb79caa703fbb30a25b1a7af66166905f7f89835310644739c2f"
+      },
+      {
+       "source": "convention",
+       "at": "art. 86",
+       "file": "part7.html",
+       "offset": 340,
+       "length": 54,
+       "sha256": "b75f77dc6a11d64f1b958dc3128d125bda25b7945f59bad1e0519052b684fdf8"
+      }
+     ]
+    },
+    {
+     "bn": "সব রাষ্ট্রের নৌচলাচল, উড্ডয়ন, মাছ ধরা ও বৈজ্ঞানিক গবেষণার স্বাধীনতা।",
+     "approved": true,
+     "cite": [
+      {
+       "source": "overview",
+       "at": "key features, bullet 10",
+       "file": "overview.html",
+       "offset": 6368,
+       "length": 84,
+       "sha256": "5b865ec44320b67da1fef72f6001f00de6a7447c3a57fac2c44c639a72a3a0a4"
+      },
+      {
+       "source": "convention",
+       "at": "art. 87(1)",
+       "file": "part7.html",
+       "offset": 579,
+       "length": 68,
+       "sha256": "2d874e357b4d5feb6518f5dd1959669f50cf57f6f9694b5479c72399637283ee"
+      }
+     ]
+    },
+    {
+     "bn": "কোনো রাষ্ট্র এর কোনো অংশে সার্বভৌমত্ব দাবি করতে পারে না।",
+     "approved": true,
+     "cite": [
+      {
+       "source": "convention",
+       "at": "art. 89",
+       "file": "part7.html",
+       "offset": 1677,
+       "length": 75,
+       "sha256": "2327ace15e5e0f83180cc9547da068980ae10a31a048764e67c6f18dd80a836f"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "the-area",
+   "row": "seabed",
+   "name": {
+    "bn": "আন্তর্জাতিক সমুদ্রতল (এরিয়া)",
+    "approved": true
+   },
+   "nameEn": "The Area",
+   "sentences": [
+    {
+     "bn": "জাতীয় এখতিয়ারের বাইরের সমুদ্রতল ও তার নিচের মাটি।",
+     "approved": true,
+     "cite": [
+      {
+       "source": "convention",
+       "at": "art. 1(1)(1)",
+       "file": "part1.html",
+       "offset": 159,
+       "length": 90,
+       "sha256": "8d111646c01f11bd341c9d05a8c5a7e250b1a2f13fde69ea6fd7bf7b4ff07ae1"
+      }
+     ]
+    },
+    {
+     "bn": "এরিয়া ও এর সম্পদ মানবজাতির সাধারণ ঐতিহ্য।",
+     "approved": true,
+     "cite": [
+      {
+       "source": "convention",
+       "at": "art. 136",
+       "file": "part11-2.html",
+       "offset": 128,
+       "length": 61,
+       "sha256": "6949560e36b674f857c3135400444d7106191d1f67a82a4f40f7a98ce0db0ac3"
+      }
+     ]
+    },
+    {
+     "bn": "কোনো রাষ্ট্র এর ওপর সার্বভৌমত্ব দাবি বা প্রয়োগ করতে পারে না।",
+     "approved": true,
+     "cite": [
+      {
+       "source": "convention",
+       "at": "art. 137(1)",
+       "file": "part11-2.html",
+       "offset": 248,
+       "length": 78,
+       "sha256": "3f16e8e38bf088912fa60417250c2f236d5411b4ac41ad34ea9a3941960e86b3"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "textOnly": [
+  {
+   "id": "straits",
+   "nameEn": "Straits used for international navigation",
+   "sentences": [
+    {
+     "bn": "আন্তর্জাতিক নৌচলাচলে ব্যবহৃত প্রণালিতে সব জাহাজ ও বিমানের ট্রানজিট অতিক্রমণের অধিকার।",
+     "approved": true,
+     "cite": [
+      {
+       "source": "convention",
+       "at": "art. 38(1)",
+       "file": "part3.html",
+       "offset": 2186,
+       "length": 57,
+       "sha256": "cbd881d7b1ef634985811a5fc9773d64f8f09bae9a6c69c4f8ab128c82cac42b"
+      },
+      {
+       "source": "overview",
+       "at": "key features, bullet 2",
+       "file": "overview.html",
+       "offset": 4481,
+       "length": 67,
+       "sha256": "552c9828d712f70f20b5e8656442df298baba573b1acf8c5b5f9613c9acc2ff6"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "archipelagic-waters",
+   "nameEn": "Archipelagic waters",
+   "sentences": [
+    {
+     "bn": "দ্বীপপুঞ্জ-রাষ্ট্র শর্তসাপেক্ষে সবচেয়ে বাইরের দ্বীপগুলোর প্রান্তবিন্দু যুক্ত করে সরল ভিত্তিরেখা টানতে পারে; ভেতরের জলরাশি দ্বীপপুঞ্জীয় জলসীমা, যেখানে তার সার্বভৌমত্ব।",
+     "approved": true,
+     "cite": [
+      {
+       "source": "convention",
+       "at": "art. 47(1)",
+       "file": "part4.html",
+       "offset": 660,
+       "length": 85,
+       "sha256": "ca7cee8a4bba30b763b1a56ca98e39fcac8e0efbbafd693c4acab57f7dbc3a4d"
+      },
+      {
+       "source": "convention",
+       "at": "art. 49(1)",
+       "file": "part4.html",
+       "offset": 3447,
+       "length": 101,
+       "sha256": "f8882b81470759ed0cf144aaa966e914015a8aa2e62a40a3e665e41ea0f721cc"
+      },
+      {
+       "source": "overview",
+       "at": "key features, bullet 3",
+       "file": "overview.html",
+       "offset": 4775,
+       "length": 76,
+       "sha256": "4202e55561726f71d90ada15facfa69ef17a452e8d63d8b4f8e5d197b08afdfa"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "land-locked-states",
+   "nameEn": "Land-locked States",
+   "sentences": [
+    {
+     "bn": "স্থলবেষ্টিত রাষ্ট্রের সমুদ্রে যাওয়া-আসার অধিকার এবং ট্রানজিট রাষ্ট্রের ভূখণ্ড দিয়ে চলাচলের স্বাধীনতা আছে।",
+     "approved": true,
+     "cite": [
+      {
+       "source": "convention",
+       "at": "art. 125(1)",
+       "file": "part10.html",
+       "offset": 1269,
+       "length": 69,
+       "sha256": "d16566251df3739802d49540c277018c2e8aa68b60cdca1ba2ffce52fd120685"
+      },
+      {
+       "source": "convention",
+       "at": "art. 125(1)",
+       "file": "part10.html",
+       "offset": 1549,
+       "length": 58,
+       "sha256": "eeca68ef3769e2fcbbbcc02080770f0e10583250da9c79e78f1c597b610b514a"
+      },
+      {
+       "source": "overview",
+       "at": "key features, bullet 13",
+       "file": "overview.html",
+       "offset": 7058,
+       "length": 39,
+       "sha256": "90dc30f3853b5915c24d82699db58d4d4fd5dffa2d404dc1862a061f13a28464"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "drawing": {
+  "measuredFrom": {
+   "label": {
+    "bn": "ভিত্তিরেখা থেকে নটিক্যাল মাইলে",
+    "approved": true
+   },
+   "cite": [
+    {
+     "source": "convention",
+     "at": "art. 3",
+     "file": "part2.html",
+     "offset": 893,
+     "length": 69,
+     "sha256": "c4c555dbae724386e7436013bd964e89b0932aa24c52df2af0d772c5ec861be2"
+    },
+    {
+     "source": "convention",
+     "at": "art. 33(2)",
+     "file": "part2.html",
+     "offset": 21470,
+     "length": 36,
+     "sha256": "0b6a6fdee034820d208c682f6228871984a4f33a8f7f8a36108f98a3dc085800"
+    },
+    {
+     "source": "convention",
+     "at": "art. 57",
+     "file": "part5.html",
+     "offset": 1832,
+     "length": 37,
+     "sha256": "b8e07f0a5a4ece93c795ba5f7e832efcd5adf1efd7b357bee0491d6547f58eb1"
+    }
+   ]
+  },
+  "baseline": {
+   "kind": "line",
+   "label": {
+    "bn": "ভিত্তিরেখা",
+    "approved": true
+   },
+   "cite": [
+    {
+     "source": "convention",
+     "at": "art. 5",
+     "file": "part2.html",
+     "offset": 1330,
+     "length": 66,
+     "sha256": "cff55c56ee08e7c6b09d9e99e539fcd1db4095d9feaad8557a4f231a1efc5077"
+    }
+   ]
+  },
+  "rows": {
+   "water": [
+    "internal-waters",
+    "territorial-sea",
+    "eez",
+    "high-seas"
+   ],
+   "seabed": [
+    "territorial-sea",
+    "continental-shelf",
+    "the-area"
+   ]
+  },
+  "contiguousStrip": {
+   "over": "eez",
+   "fromNm": 12,
+   "toNm": 24,
+   "why": "A drawing choice, never a card claim: the contiguous zone reaches at most 24 NM from the baselines (art. 33(2)), and the EEZ starts at the territorial sea and reaches at most 200 NM (arts. 55, 57), so the strip lies over the EEZ's inner part.",
+   "cite": [
+    {
+     "source": "convention",
+     "at": "art. 33(2)",
+     "file": "part2.html",
+     "offset": 21448,
+     "length": 58,
+     "sha256": "82012519c4575dd73206caa8ddbc80ad6b57751403dd27d78d6765e2b0063e83"
+    },
+    {
+     "source": "convention",
+     "at": "art. 55",
+     "file": "part5.html",
+     "offset": 190,
+     "length": 50,
+     "sha256": "94c55d3ea59e4f1ca2cf2d44f14e25ae96a76e43817131016f1cd7520cc8ed76"
+    },
+    {
+     "source": "convention",
+     "at": "art. 57",
+     "file": "part5.html",
+     "offset": 1808,
+     "length": 61,
+     "sha256": "033df2aa0eff185fbb003a2874ea744858859069a32a5a1302c60d0dced2b339"
+    }
+   ]
+  },
+  "seabedUnderTerritorialSea": {
+   "item": "territorial-sea",
+   "cite": [
+    {
+     "source": "convention",
+     "at": "art. 2(2)",
+     "file": "part2.html",
+     "offset": 531,
+     "length": 33,
+     "sha256": "d8b24948a6f25d85dbb0900c91c9bef979b4f27ec3b325434c3561c0d966335f"
+    }
+   ]
+  },
+  "shelfBeyond200": {
+   "style": "fade, no end tick, no number",
+   "label": {
+    "bn": "শর্তসাপেক্ষে ২০০-এর বেশি",
+    "approved": true
+   },
+   "cite": [
+    {
+     "source": "overview",
+     "at": "key features, bullet 7",
+     "file": "overview.html",
+     "offset": 5933,
+     "length": 82,
+     "sha256": "9debd3c58c6ed1ede5a9e4966cb46302d957bab2f2ac7af5fa167437f516dc07"
+    }
+   ]
+  },
+  "highSeasOverShelf": {
+   "cite": [
+    {
+     "source": "convention",
+     "at": "art. 78(1)",
+     "file": "part6.html",
+     "offset": 5114,
+     "length": 56,
+     "sha256": "67147edb7c8e72f97b33ae6ffa9e5fa043ababcc701fffc3dee42a8380ef48e9"
+    }
+   ]
+  },
+  "ticksNm": [
+   0,
+   12,
+   24,
+   200
+  ],
+  "tickLabels": [
+   {
+    "bn": "০",
+    "approved": true
+   },
+   {
+    "bn": "১২",
+    "approved": true
+   },
+   {
+    "bn": "২৪",
+    "approved": true
+   },
+   {
+    "bn": "২০০",
+    "approved": true
+   }
+  ],
+  "rangeLabels": {
+   "territorial-sea": {
+    "bn": "সর্বোচ্চ ১২",
+    "approved": true
+   },
+   "contiguous-zone": {
+    "bn": "সর্বোচ্চ ২৪",
+    "approved": true
+   },
+   "eez": {
+    "bn": "সর্বোচ্চ ২০০",
+    "approved": true
+   }
+  },
+  "places": {
+   "land": {
+    "bn": "স্থলভাগ",
+    "approved": true
+   },
+   "seabed": {
+    "bn": "সমুদ্রতল",
+    "approved": true
+   }
+  },
+  "toScale": false
+ },
+ "quoteLocation": "A citation names its source, the article or the overview's place, the pinned file, and the quote's offset and length in that file's normalised text, with the SHA-256 of the quote: the words themselves are not committed (the UN site's Terms of Use, read 2026-10-01; notes/maritime-zones.md defines the normalisation). The readable quotes are in tools/.cache/unclos/quotes.json, out of git."
+}

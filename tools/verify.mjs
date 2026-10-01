@@ -1121,6 +1121,126 @@ console.log('\n---- world-revolutions: markers ----');
   check(badText.length === 0, `world-revolutions: every shown Bengali string (${shown.length}) is free of project words, holds one century and decade form, and has no space before , ; । or doubled${badText.length ? ` — not: ${badText.slice(0, 4).join(' | ')}` : ''}`);
 }
 
+// ---- maritime-zones (work in progress): the seed alone, step 1 -------------------------
+// Two sources, by the user's decision (2026-10-02): the DOALOS overview page and the
+// Convention's full text linked from it, pinned in the seed by each downloaded file's
+// SHA-256 and kept in tools/.cache/unclos/. A quote is committed only as its place in a
+// pinned file's normalised text and its SHA-256 (the UN site's Terms of Use, step 1c):
+// each is sliced out again and hashed, and no tracked file may hold its words.
+console.log('\n---- maritime-zones: seed ----');
+{
+  const seedFile = path.join(DATA_SOURCES, 'maritime-zones/maritime-zones.seed.json');
+  const seedText = fs.readFileSync(seedFile, 'utf8');
+  const seed = JSON.parse(seedText);
+  const dir = path.join(ROOT, 'tools/.cache/unclos');
+  // The normalisation notes/maritime-zones.md defines: Latin-1, no script, style or comment,
+  // a newline for each block tag, every other tag dropped, entities decoded, whitespace collapsed.
+  const ENT = { nbsp: ' ', amp: '&', quot: '"', lt: '<', gt: '>', rsquo: "'", lsquo: "'", ldquo: '"', rdquo: '"', ndash: '–', mdash: '—' };
+  const textOf = (buf) =>
+    buf
+      .toString('latin1')
+      .replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<!--[\s\S]*?-->/gi, '')
+      .replace(/<(p|div|br|li|tr|table|h[1-6])\b[^>]*>/gi, '\n')
+      .replace(/<[^>]+>/g, '')
+      .replace(/&#(\d+);/g, (m, n) => String.fromCharCode(Number(n)))
+      .replace(/&([a-z]+);/gi, (m, n) => ENT[n] ?? m)
+      .replace(/\s+/g, ' ');
+  const text = {}; // "<source>/<file>" -> that pinned file's normalised text
+  const badPins = [];
+  for (const [id, s] of Object.entries(seed.sources)) {
+    for (const [file, p] of Object.entries(s.files)) {
+      const at = path.join(dir, file);
+      const buf = fs.existsSync(at) ? fs.readFileSync(at) : null;
+      if (!buf || buf.length !== p.bytes || crypto.createHash('sha256').update(buf).digest('hex') !== p.sha256) badPins.push(`${id}/${file}`);
+      else text[`${id}/${file}`] = textOf(buf);
+    }
+  }
+  check(badPins.length === 0, `maritime-zones: each source file is the pinned one (${Object.values(seed.sources).reduce((n, s) => n + Object.keys(s.files).length, 0)} files, tools/.cache/unclos/)${badPins.length ? ` — not: ${badPins.join(', ')}` : ''}`);
+  // The seed's pins are the ones tools/sources.json records (unclosOverview, unclosConvention).
+  const listed = JSON.parse(fs.readFileSync(path.join(HERE, 'sources.json'), 'utf8'));
+  const pinOf = { 'overview.html': listed.unclosOverview && { bytes: listed.unclosOverview.size, sha256: listed.unclosOverview.sha256 } };
+  for (const [f, p] of Object.entries(listed.unclosConvention?.files ?? {})) pinOf[f] = { bytes: p.size, sha256: p.sha256 };
+  const seedPins = Object.values(seed.sources).flatMap((s) => Object.entries(s.files));
+  const drift = seedPins.filter(([f, p]) => pinOf[f]?.bytes !== p.bytes || pinOf[f]?.sha256 !== p.sha256).map(([f]) => f);
+  check(drift.length === 0 && Object.keys(pinOf).length === seedPins.length, `maritime-zones: the seed's ${seedPins.length} pins are tools/sources.json's${drift.length ? ` — not: ${drift.join(', ')}` : ''}`);
+
+  // Every sentence and every drawing position cites; each quote is its place in a pinned file's
+  // normalised text: sliced there, it is at most 15 words and hashes to the recorded SHA-256.
+  const cites = [];
+  const uncited = [];
+  const walkCites = (v, where) => {
+    if (Array.isArray(v)) v.forEach((x, i) => walkCites(x, `${where}[${i}]`));
+    else if (v && typeof v === 'object') {
+      if ('cite' in v) {
+        if (!Array.isArray(v.cite) || !v.cite.length) uncited.push(where);
+        else for (const c of v.cite) cites.push({ ...c, where });
+      }
+      for (const [k, x] of Object.entries(v)) if (k !== 'cite') walkCites(x, `${where}.${k}`);
+    }
+  };
+  walkCites(seed.items, 'items');
+  walkCites(seed.textOnly, 'textOnly');
+  walkCites(seed.drawing, 'drawing');
+  const sentences = [...seed.items, ...seed.textOnly].flatMap((i) => i.sentences ?? []);
+  const quoteOf = (c) => {
+    const t = text[`${c.source}/${c.file}`];
+    if (typeof t !== 'string' || !Number.isInteger(c.offset) || !Number.isInteger(c.length) || c.offset < 0 || c.length < 1 || c.offset + c.length > t.length) return null;
+    return t.slice(c.offset, c.offset + c.length);
+  };
+  const quotes = [];
+  const badQuotes = cites.filter((c) => {
+    const q = quoteOf(c);
+    if (q !== null) quotes.push(q);
+    return 'quote' in c || !c.at || q === null || q.trim().split(/\s+/).length > 15 || crypto.createHash('sha256').update(q).digest('hex') !== c.sha256;
+  });
+  check(uncited.length === 0 && sentences.every((s) => s.cite?.length), `maritime-zones: every sentence (${sentences.length}) and every drawn position cites its source${uncited.length ? ` — not: ${uncited.join(', ')}` : ''}`);
+  check(badQuotes.length === 0, `maritime-zones: every quote (${cites.length}) is its source, place, file, offset and length, at most 15 words there, matching its SHA-256, with no words committed${badQuotes.length ? ` — not: ${badQuotes.slice(0, 3).map((c) => `${c.where} (${c.at})`).join('; ')}` : ''}`);
+
+  // No tracked file may hold a quote's words (whitespace collapsed, so a wrapped line counts too),
+  // as written or as a JSON string would escape them.
+  const tracked = execFileSync('git', ['ls-files', '-z'], { cwd: ROOT, maxBuffer: 64 * 1024 * 1024 }).toString('utf8').split('\0').filter(Boolean);
+  const forms = quotes.flatMap((q) => [q, JSON.stringify(q).slice(1, -1)]);
+  const holding = new Set();
+  for (const f of tracked) {
+    const at = path.join(ROOT, f);
+    if (!fs.existsSync(at) || fs.statSync(at).size > 64 * 1024 * 1024) continue;
+    const buf = fs.readFileSync(at);
+    if (buf.subarray(0, 8000).includes(0)) continue; // binary
+    const flat = buf.toString('utf8').replace(/\s+/g, ' ');
+    if (forms.some((q) => flat.includes(q))) holding.add(f);
+  }
+  check(holding.size === 0 && quotes.length === cites.length, `maritime-zones: none of the ${quotes.length} quotes appears in any of the ${tracked.length} tracked files${holding.size ? ` — found in: ${[...holding].join(', ')}` : ''}`);
+
+  // The picker's seven items, coast to sea, and the three lines shown only as text.
+  const ITEMS = ['internal-waters', 'territorial-sea', 'contiguous-zone', 'eez', 'continental-shelf', 'high-seas', 'the-area'];
+  const TEXT_ONLY = ['straits', 'archipelagic-waters', 'land-locked-states'];
+  check(JSON.stringify(seed.items.map((i) => i.id)) === JSON.stringify(ITEMS) && JSON.stringify(seed.textOnly.map((i) => i.id)) === JSON.stringify(TEXT_ONLY), `maritime-zones: the picker's ${ITEMS.length} items run coast to sea, and ${TEXT_ONLY.length} lines are text only`);
+
+  // Every Bengali string is the "bn" of an object that says whether the user approved it.
+  const bengali = [];
+  const unflagged = [];
+  let approved = 0;
+  const walkBn = (v, where, owner, key) => {
+    if (typeof v === 'string') {
+      if (!/[ঀ-৿]/.test(v)) return;
+      if (key === 'bn' && typeof owner?.approved === 'boolean') {
+        bengali.push(v);
+        if (owner.approved) approved++;
+      } else unflagged.push(where);
+    } else if (Array.isArray(v)) v.forEach((x, i) => walkBn(x, `${where}[${i}]`, v, i));
+    else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) walkBn(x, `${where}.${k}`, v, k);
+  };
+  walkBn(seed, 'seed', null, null);
+  check(unflagged.length === 0, `maritime-zones: every Bengali string (${bengali.length}) carries its approval flag (${approved} approved)${unflagged.length ? ` — not: ${unflagged.slice(0, 3).join(', ')}` : ''}`);
+
+  // No project words, no stray spacing, nautical miles only, no e-mail address.
+  const INTERNAL = /পিন|উৎস|ভিত্তিমানচিত্র|\bNE-|COD-AB|Natural Earth|\bextract|\bseed\b|pending|basemap|\bpin(ned)?\b/i;
+  const badBn = bengali.filter((t) => INTERNAL.test(t) || / [,;।]|  /.test(t));
+  check(badBn.length === 0, `maritime-zones: no Bengali string holds a project word or a space before , ; । or doubled${badBn.length ? ` — not: ${badBn.slice(0, 3).join(' | ')}` : ''}`);
+  check(!/কিলোমিটার|কি\.মি\.|\bkm\b|kilomet/i.test(seedText), 'maritime-zones: distances in nautical miles only, no kilometre anywhere in the seed');
+  check(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(seedText), 'maritime-zones: no e-mail address in the seed');
+}
+
 if (failures) {
   console.error(`\n${failures} check(s) failed.`);
   process.exit(1);

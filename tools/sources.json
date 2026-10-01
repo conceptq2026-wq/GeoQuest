@@ -335,5 +335,67 @@
     "snapshot": "2026-09-29T14:34:21Z",
     "licence": "ODbL 1.0 — © OpenStreetMap contributors",
     "sha256": "b456037a54a36ef125c3bc3ffdf40409cc6e7927fe5d8150da0cb7ef1e27911a"
+  },
+  "unclosOverview": {
+    "_comment": "UN DOALOS, \"Overview - Convention & Related Agreements\": one of the two sources of the maritime-zones diagram (the user's decision, 2026-10-02). Fetched once with the repo's User-Agent into tools/.cache/unclos/; tools/verify.mjs finds every quote of data-sources/maritime-zones/maritime-zones.seed.json word for word in it, and holds the seed's pins to these.",
+    "url": "https://www.un.org/depts/los/convention_agreements/convention_overview_convention.htm",
+    "requested": "http://www.un.org/depts/los/convention_agreements/convention_overview_convention.htm",
+    "file": "unclos/overview.html",
+    "size": 21697,
+    "sha256": "21cec587034280c5ceacbc66f9ce068e520d41df081f7b9b5a013351b4cd315d",
+    "fetched": "2026-10-01T21:24:11.779Z",
+    "lastModified": "2026-04-24T14:55:39.000Z",
+    "licence": "The UN site's Terms of Use (https://www.un.org/en/about-us/terms-of-use, read 2026-10-01T22:43Z, page SHA-256 c63ab9e5…, kept in tools/.cache/unclos/) permit downloading and copying for personal, non-commercial use, without any right to redistribute or to create derivative works. So no UN text is committed: the seed holds the diagram's own Bengali sentences and, for each quote, only its place (file, offset, length) and SHA-256 (step 1c, 2026-10-02); the readable quotes stay in the gitignored cache."
+  },
+  "unclosConvention": {
+    "_comment": "The United Nations Convention on the Law of the Sea, full text as DOALOS publishes it, linked from the overview (closindx.htm, a frameset; parts listed in its contents frame): the other source of the maritime-zones diagram. Only the parts its seed cites. Fetched once with the repo's User-Agent into tools/.cache/unclos/.",
+    "url": "https://www.un.org/depts/los/convention_agreements/texts/unclos/closindx.htm",
+    "baseUrl": "https://www.un.org/depts/los/convention_agreements/texts/unclos/",
+    "dir": "unclos/",
+    "fetched": "2026-10-01T21:41:43.834Z",
+    "lastModified": "2026-04-24T15:00:30.000Z",
+    "licence": "The UN site's Terms of Use (https://www.un.org/en/about-us/terms-of-use, read 2026-10-01T22:43Z, page SHA-256 c63ab9e5…, kept in tools/.cache/unclos/) permit downloading and copying for personal, non-commercial use, without any right to redistribute or to create derivative works. So no UN text is committed: the seed holds the diagram's own Bengali sentences and, for each quote, only its place (file, offset, length) and SHA-256 (step 1c, 2026-10-02); the readable quotes stay in the gitignored cache.",
+    "files": {
+      "part1.html": {
+        "size": 3849,
+        "sha256": "fcf6cfd7f8015b4648909b83bbc97aff9f2e3c8325ae0871043274d1f21595c1"
+      },
+      "part2.html": {
+        "size": 30486,
+        "sha256": "3ac2030f00afa24a28a9f37cdbe4e66b8d87c44fae305da9456bacd765c93d53"
+      },
+      "part3.html": {
+        "size": 14166,
+        "sha256": "7cc16627c10ee72ddb783df326573326563c88fae502a2e36ac4752eb37235fc"
+      },
+      "part4.html": {
+        "size": 13069,
+        "sha256": "b946c84b61341405d5840c77f0cb4b9ea1c7e813bacd2909854c7571068ba820"
+      },
+      "part5.html": {
+        "size": 35006,
+        "sha256": "9a1058bffaa5c3ef9b99bcd301f3a07274976e0e8e77ec63f68c49f0ed3a36f4"
+      },
+      "part6.html": {
+        "size": 14246,
+        "sha256": "32fcb195f3dfaa60b62769aec0ec86e27b364a8a489e8bccb0d9bba63367f40e"
+      },
+      "part7.html": {
+        "size": 32838,
+        "sha256": "87ae8b2617f6ef0645b87e4bcdd91ce83576dded3db4ef654155f44654bf266e"
+      },
+      "part10.html": {
+        "size": 7583,
+        "sha256": "27d4ae4f863933cedcb8093972138db21b28d1d4b282fa5ecfd049896d0ce0d4"
+      },
+      "part11-1.html": {
+        "size": 3338,
+        "sha256": "e0c451c6e387f4a10fbeaf3d3562df713db85d097b1ab787e1610f9d2374ee29"
+      },
+      "part11-2.html": {
+        "size": 15927,
+        "sha256": "ab0e4819be75f9f7db9c3973a6fc0489f9c268eecce38c10571facc332b3b843"
+      }
+    }
   }
 }
