@@ -1,0 +1,170 @@
+/*
+| THE ZONES VIEW (zones.js): the cross-section of the sea's zones, its words,
+| and its card's sentences. Loaded only for a view of type `zones`.
+| Every word at least 14 px; a zone's name in the label colour its fill gets.
+*/
+
+.zones .stage {
+  background: var(--page);
+}
+
+.zones-svg {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: visible;
+}
+
+.zones-svg text {
+  font-size: 14px;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
+.zones-svg .zone-label {
+  font-weight: 600;
+  text-anchor: middle;
+}
+
+/* Names on the picture (the user's rule): at least 15 px, 14 under 390 px wide, semi-bold. */
+.zones-svg text.layer-label,
+.zones-svg text.measurer {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+@media (max-width: 389px) {
+  .zones-svg text.layer-label,
+  .zones-svg text.measurer {
+    font-size: 14px;
+  }
+}
+
+.zones-svg .measurer {
+  visibility: hidden;
+}
+
+.zones-svg .baseline-label,
+.zones-svg .tick-label {
+  fill: var(--ink);
+  text-anchor: middle;
+}
+
+.zones-svg .baseline-label {
+  font-weight: 600;
+}
+
+.zones-svg .scale-note {
+  fill: var(--ink);
+  font-weight: 700;
+}
+
+.zones-svg .axis-note,
+.zones-svg .legend-label {
+  fill: var(--ink);
+}
+
+/* A zone: a button. Its focus ring is its own outline. */
+.zones-svg .zone {
+  cursor: pointer;
+  outline: none;
+}
+
+.zones-svg .zone:focus-visible {
+  stroke: var(--focus, #0b5cad);
+  stroke-width: 3px;
+}
+
+.zones-svg .surface,
+.zones-svg .seabed-top {
+  stroke: #33415c;
+  stroke-width: 1px;
+  pointer-events: none;
+}
+
+.zones-svg .baseline {
+  stroke-width: 2px;
+  pointer-events: none;
+}
+
+.zones-svg .tick {
+  stroke: var(--ink);
+  stroke-width: 1.5px;
+}
+
+.zones-svg .strip-edge {
+  fill: none;
+  stroke: #8a3b00;
+  stroke-width: 1.5px;
+  pointer-events: none;
+}
+
+.zones-svg .fade-dots,
+.zones-svg .swatch-dots {
+  pointer-events: none;
+}
+
+.zones-svg .area-edge {
+  stroke: #5a1f44;
+  stroke-width: 1.5px;
+  stroke-dasharray: 4 3;
+  pointer-events: none;
+}
+
+.zones-svg .swatch {
+  stroke: #33415c;
+  stroke-width: 1px;
+}
+
+.zones-svg .land {
+  pointer-events: none;
+}
+
+/* One zone chosen: it is outlined, every other fill dims. The names stay whole, in dark ink, which the
+   dimmed fills (35% over the page) carry at 4.5:1 or more (the build's `dimmed` contrast). */
+.zones-svg.has-lit .zone:not(.lit),
+.zones-svg.has-lit .fade-dots:not(.lit),
+.zones-svg.has-lit .strip-edge:not(.lit) {
+  opacity: 0.35;
+}
+
+.zones-svg.has-lit .zone-label:not(.lit):not(.land-label) {
+  fill: #111111;
+}
+
+.zones-svg .lit-outline rect {
+  fill: none;
+  stroke: #111111;
+  stroke-width: 2px;
+  pointer-events: none;
+}
+
+/* ⓘ sits in this view's panel (docs/visual/app.js): here its lines are notes a student reads, so 14 px,
+   the Bengali ones in the page's Bengali face. Other diagrams' ⓘ is unchanged. */
+.zones .attrib-item {
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.zones .attrib-item [lang='bn'] {
+  font-family: 'Noto Sans Bengali', sans-serif;
+}
+
+/* The card: the zone's sentences, one under another, not the two-column rows. */
+.zones .card-rows {
+  display: none;
+}
+
+.zones-sentences {
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.zones-sentences li {
+  padding: 9px 0;
+  border-top: 1px solid var(--divider);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.5;
+}

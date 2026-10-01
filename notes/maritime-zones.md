@@ -2,6 +2,66 @@
 
 Read it with `CLAUDE.md`, whose rules and verification budget apply.
 
+## Step 2 (2026-10-02): the drawing, a `zones` view — local preview only
+
+- **The shell exception the user approved (Option A).** It adds a new
+  `docs/visual/zones.js` and `zones.css`, loaded only for a view of type
+  `zones`, through one line in `VIEW_MODULES` (`docs/visual/app.js`), plus
+  the regenerated asset stamp. Nothing else in the shells changed.
+  `check.mjs --all` against the baseline stored first: all 36 differences
+  are exactly the stamp swap.
+- **The build.** `tools/build-diagram-maritime-zones.mjs [out]` writes
+  `descriptor.json`, `data.json` and `zones.json` (the layout). While the
+  item is in progress only the preview runs it, into its copy; nothing is
+  under `docs/diagrams/` yet, and the registry is unchanged. It refuses an
+  unapproved string and a fill whose label colour misses 4.5:1, plain or
+  dimmed.
+- **The picture**, drawn by `zones.js` in CSS px, not to scale:
+  - Water row, coast to sea: land, internal waters, the baseline, the
+    territorial sea, the EEZ (the contiguous zone a hatched strip over its
+    inner part), the high seas.
+  - Seabed row: plain seabed under the internal waters, then the territorial
+    sea's own bed, then the shelf from the 12 mark, solid to 200 and fading
+    with no end tick, then the Area, dotted.
+  - Ticks 0/12/24/200, the axis note, a three-line legend (hatch, fade,
+    dots), and the baseline's name and «স্কেল অনুযায়ী নয়» in the top row,
+    clear of ⓘ's zone.
+- **Labels.** A zone's name on its fill is its approved name without the
+  bracket that follows it, placed across or up in lines wherever it fits
+  whole. Names on the picture are 15 px from 390 px wide and 14 px under
+  (the user's rule); every other word is 14 px. ⓘ's lines are 14 px here
+  only (`.zones .attrib-item`).
+- **Colours** are zones-design.md's light values. Label ink per fill, plain
+  then dimmed (dark ink when another zone is chosen):
+  - internal waters: white 5.19, dimmed 10.38;
+  - territorial sea: 8.38, dimmed 13.19;
+  - EEZ: 5.52, dimmed 11.47;
+  - high seas: 8.18, dimmed 13.22;
+  - shelf: 14.28, dimmed 15.82;
+  - land: 11.54.
+
+  The hatched strip and the dotted Area carry no text; the legend names
+  them.
+- **Tap zones at 320 px:**
+  - water row: internal waters 44 wide, territorial sea 48, EEZ 98 (strip
+    48 × 44 over its inner part), high seas 72;
+  - seabed row, 48 tall: the territorial sea's bed 48, shelf 126 (with its
+    fade), Area 44.
+
+  At 390 px the columns are wider by weight. The picker is the main way in.
+  Water and seabed are separate zones; the territorial sea's two are one
+  item.
+- **Interaction.** Choosing or tapping outlines the zone (2 px), dims the
+  other fills to 35%, and docks the card with the zone's sentences. ×, Escape
+  or a second tap closes it, and focus returns to the zone; the zones are
+  focusable buttons (Enter or Space).
+- **Checked at the end:**
+  - `check.mjs maritime-zones` at 390 and 320 px: picker 7/7, taps 8/8,
+    tap zones ≥ 44 px, layout clear 16/16, console 0.
+  - The three suites.
+  - Escape, × and focus return in the in-app browser at 320 px.
+  - One contact sheet: `tools/.check/maritime-zones/contact-sheet.png`.
+
 ## Current state (step 1c, 2026-10-02)
 
 - **What it is.** A diagram of the zones of the UN Convention on the Law of

@@ -26,7 +26,7 @@ export async function mount(api) {
   if (!response.ok) throw new Error(`info: ${spec.file} -> ${response.status}`);
   lines = (await response.json()).lines ?? [];
   for (const line of lines) if (!['notes', 'conflicts'].includes(line.group) || typeof line.text !== 'string') throw new Error('info: every line is { text, group: "notes" | "conflicts" }');
-  await stylesheet(api, './info.css?v=71a580d545');
+  await stylesheet(api, './info.css?v=68edd3c554');
 }
 
 /** Once the credits row exists: the headed panel inside ⓘ, filled from the credits whenever it opens. */
