@@ -2,7 +2,7 @@
 | THE ZONES VIEW (zones.js): the block picture, its view switch, its legend
 | and the card's sentences. Loaded only for a view of type `zones`.
 | Every word at least 14 px on a 320 px screen: the picture's numbers and
-| ruler are 26 of its units, 14.4 px when it is 288 px wide.
+| tick labels are 26 of its units × k, 14.4 px when it is 288 px wide.
 */
 
 /* The view switch: a row of its own under ⓘ's, two buttons, each 44 px tall. */
@@ -59,9 +59,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   margin: auto 0;
-  padding: 8px 16px;
+  padding: 4px 16px;
 }
 
 .zones-svg {
@@ -78,24 +78,35 @@
   font-weight: 700;
 }
 
-.zones-svg .ruler line,
-.zones-svg .ruler path {
+/* The distance arrows (step 2c): every one from the baseline, the shelf's dashed past ২০০. */
+.zones-svg .arrows line,
+.zones-svg .arrows .head {
   stroke: #13252d;
-  stroke-width: 1.5;
+  stroke-width: 1.6;
 }
 
-.zones-svg .ruler .tick {
-  stroke-width: 2;
+.zones-svg .arrows .head {
+  fill: #13252d;
+  stroke-width: 0.8;
 }
 
-.zones-svg .ruler-label {
+.zones-svg .arrows .beyond {
+  stroke-dasharray: 6 4;
+}
+
+.zones-svg .arrows .extension {
+  stroke: #4a5f68;
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+}
+
+.zones-svg .tick-label {
   fill: #13252d;
   font-weight: 600;
 }
 
 /* Only the discs and the zones' own areas take a tap; the picture under them does not. */
 .zones-svg .mz-part,
-.zones-svg .ruler,
 .zones-svg defs ~ g:not(.zone-areas):not(.zone-hits) {
   pointer-events: none;
 }
@@ -113,18 +124,9 @@
   stroke-width: 4;
 }
 
-/* The zones' fills, blended into the water; a choice lights one and dims the rest. */
-.zones-svg .mz-part .top,
-.zones-svg .mz-part .front,
-.zones-svg .mz-part .sea,
-.zones-svg .mz-part .band,
-.zones-svg .mz-part .edge,
-.zones-svg .badge circle {
-  transition:
-    opacity 0.25s,
-    stroke-opacity 0.25s;
-}
-
+/* The zones' fills, blended into the water, always in full colour (the user's decision, step 2c):
+   a choice dims nothing; the chosen zone is outlined — a light halo under a dark line — and its
+   numbers' discs take a stronger ring. */
 .zones-svg .mz-part .top {
   mix-blend-mode: color;
   opacity: 0.6;
@@ -145,57 +147,27 @@
   stroke-opacity: 0.35;
 }
 
-.zones-svg.has-lit .mz-part:not(.lit) .top {
-  opacity: 0.1;
+.zones-svg .mz-part .halo {
+  stroke: #ffffff;
+  stroke-width: 5;
+  stroke-opacity: 0;
+  stroke-linejoin: round;
 }
 
-.zones-svg.has-lit .mz-part:not(.lit) .front {
-  opacity: 0.06;
-}
-
-.zones-svg.has-lit .mz-part:not(.lit) .band {
-  opacity: 0.35;
-}
-
-.zones-svg.has-lit .mz-part:not(.lit) .sea {
-  opacity: 0.25;
-}
-
-/* A number keeps its full ink; only its disc's ring dims. */
-.zones-svg.has-lit .mz-part:not(.lit) .badge circle {
-  stroke-opacity: 0.35;
-}
-
-.zones-svg .mz-part.lit .top {
-  opacity: 0.82;
-}
-
-.zones-svg .mz-part.lit .front {
-  opacity: 0.7;
-}
-
-.zones-svg .mz-part.lit .sea {
-  opacity: 1;
+.zones-svg .mz-part.lit .halo {
+  stroke-opacity: 0.9;
 }
 
 .zones-svg .mz-part.lit .edge {
-  stroke-width: 2.6;
-  stroke-opacity: 0.95;
+  stroke: #13252d;
+  stroke-width: 2.4;
+  stroke-opacity: 1;
+  stroke-linejoin: round;
 }
 
-.zones-svg .mz-part.lit .badge circle {
-  stroke-width: 4;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .zones-svg .mz-part .top,
-  .zones-svg .mz-part .front,
-  .zones-svg .mz-part .sea,
-  .zones-svg .mz-part .band,
-  .zones-svg .mz-part .edge,
-  .zones-svg .badge circle {
-    transition: none;
-  }
+.zones-svg .mz-part.lit .badge circle,
+.zones-svg .mz-part.lit .arrow-badge circle {
+  stroke-width: 6;
 }
 
 /* The legend under the picture: 15 px from 390 px wide, 14 under. */

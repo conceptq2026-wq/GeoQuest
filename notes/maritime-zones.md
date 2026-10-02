@@ -2,6 +2,38 @@
 
 Read it with `CLAUDE.md`, whose rules and verification budget apply.
 
+## Step 2c (2026-10-02): full colours, baseline arrows — local preview only
+
+- **Full colour** (the user's decision). Choosing a zone dims nothing. Every
+  face of the chosen zone gets a light halo under a dark line, and its
+  numbers' discs a stronger ring (6 units against 2.5).
+- **Distances from the baseline** (the user's decision). The ruler is now
+  nested dimension arrows, every one starting at ০:
+  - ০→১২ with disc ২, ০→২৪ with ৩, ০→২০০ with ৪;
+  - the shelf's arrow, solid to ২০০ then dashed beyond it, with ৫.
+
+  Tick labels ০/১২/২৪/২০০ sit between the block and the arrows, with
+  dotted extension lines.
+- **Where they sit.** Under the block from the side, left of it from the
+  sea. The longest arrow is nearest the block; each number stands just past
+  its arrow's tip, where no shorter arrow reaches. The zones' own areas are
+  unchanged: the EEZ after the territorial sea, the contiguous zone 12–24
+  over its inner part.
+- **The sea projection** became x = 84 + 280v + 150a (from 40 + 300v + 150a),
+  to make room for the arrows on its left.
+  - Its numbers moved to stay 45 px apart and clear of the tick labels;
+    the shelf's now stands at u = 250.
+  - The side view's Area number moved up 6 units, and the stage's padding
+    tightened, so the side view with a card open still fits 288 px at
+    320 × 640.
+- **At 320 px:**
+  - arrows to the zones' tap circles: ≥ 1.8 px (side), ≥ 0.6 px (sea);
+  - arrows to the discs: ≥ 15 px;
+  - disc centres: ≥ 46.1 px (side), 45.2 px (sea) apart;
+  - text: 14.4 px least.
+
+  No new words.
+
 ## Step 2b (2026-10-02): the 3D look and the sea view — local preview only
 
 - **The look** is the user's approved mockup,

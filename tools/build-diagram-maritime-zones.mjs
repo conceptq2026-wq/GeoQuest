@@ -63,20 +63,38 @@ const FLOOR = 170;
 const BAY = { from: 0.3, to: 0.75, depth: 24 };
 // Each view: its frame (x, y, width, height), the face cut along the coast (v), and x, y as
 // [·u, ·v, ·z, constant]. «সমুদ্র থেকে» looks from the open sea toward the baseline, raised:
-// a = (end − u) / (end − coast); x = 40 + 300v + 150a, y = 330 − 210a + 0.9z.
+// a = (end − u) / (end − coast); x = 84 + 280v + 150a, y = 330 − 210a + 0.9z — the mockup's
+// x = 40 + 300v + 150a moved right and narrowed a little (step 2c), for the arrows on its left.
 const span = U.end - U.coast;
 const r6 = (x) => Math.round(x * 1e6) / 1e6;
+// Each frame holds the block and, along one of its edges, the distance arrows (step 2c): the side
+// view's under the block, the sea view's left of it — which is why that frame starts left of 0. A
+// frame wider than 520 units would draw its words and discs k = width / 520 times larger, so they
+// keep their size on the screen; both are 520 wide now.
 const VIEWS = {
-  side: { box: [0, 84, 520, 332], cut: 0, x: [1, 55, 0, 0], y: [0, -80, 1, 180] },
-  sea: { box: [0, 40, 520, 470], cut: 1, x: [r6(-150 / span), 300, 0, r6(40 + (150 * U.end) / span)], y: [r6(210 / span), 0, 0.9, r6(330 - (210 * U.end) / span)] },
+  side: { box: [0, 84, 520, 368], cut: 0, x: [1, 55, 0, 0], y: [0, -80, 1, 180] },
+  sea: { box: [0, 40, 520, 470], cut: 1, x: [r6(-150 / span), 280, 0, r6(84 + (150 * U.end) / span)], y: [r6(210 / span), 0, 0.9, r6(330 - (210 * U.end) / span)] },
+};
+for (const v of Object.values(VIEWS)) v.k = r6(v.box[2] / 520);
+// The distance arrows (the user's decision, step 2c): nested, every one starting at the baseline (০),
+// along the block's v = 0 edge at depth z, offset away from the block by so many units (× k): the
+// tick labels first, then the arrows, the longest nearest — ০→২০০ and beyond (dashed past ২০০, the
+// shelf's «at least 200»), ০→২০০, ০→২৪, ০→১২ — each with its zone's number in a disc just past its
+// tip, where no shorter arrow reaches. The zones' own areas stay where the Convention puts them.
+const ARROWS = {
+  side: { z: 'floor', labels: 14, rows: [32, 42, 52, 62] },
+  sea: { z: 0, labels: 16, rows: [36, 48, 60, 72] },
+  beyond: 440,
+  order: [['continental-shelf', 'beyond'], ['eez', 'u200'], ['contiguous-zone', 'u24'], ['territorial-sea', 'u12']],
 };
 // Where each zone's number stands: [u, v, z], z as a depth or as so much under the seabed ('bed+n').
 // Each number's disc is also its zone's tap target, at least TEXT.hitPx across the radius on a
 // 320 px screen (79.5 units): the numbers stand at least that far apart in both views — the
-// mockup's places, moved along the coast (v) where two were closer.
+// mockup's places, moved along the coast (v) where two were closer, and in the sea view clear of
+// the tick labels along its left edge (step 2c).
 const BADGES = {
-  side: { 'internal-waters': [78, 0.75, 0], 'territorial-sea': [180, 0.15, 0], 'contiguous-zone': [229, 0.75, 0], eez: [330, 0.85, 0], 'high-seas': [430, 0.15, 0], 'continental-shelf': [240, 0, 'bed+30'], 'the-area': [425, 0, 'bed+28'] },
-  sea: { 'internal-waters': [90, 0.56, 0], 'territorial-sea': [150, 0.3, 0], 'contiguous-zone': [229, 0.153, 0], eez: [330, 0.9, 0], 'high-seas': [408, 0.38, 0], 'continental-shelf': [235, 0.5, 'bed+0'], 'the-area': [450, 0.5, 'bed+22'] },
+  side: { 'internal-waters': [78, 0.75, 0], 'territorial-sea': [180, 0.15, 0], 'contiguous-zone': [229, 0.75, 0], eez: [330, 0.85, 0], 'high-seas': [430, 0.15, 0], 'continental-shelf': [240, 0, 'bed+30'], 'the-area': [425, 0, 'bed+22'] },
+  sea: { 'internal-waters': [90, 0.764, 0], 'territorial-sea': [150, 0.349, 0], 'contiguous-zone': [229, 0.214, 0], eez: [330, 0.99, 0], 'high-seas': [408, 0.462, 0], 'continental-shelf': [250, 0.55, 'bed+0'], 'the-area': [450, 0.5, 'bed+22'] },
 };
 // Decoration, simple original shapes: hills [u, v, half-width, height], ships [u, v, scale], one platform on the shelf at u.
 const DECOR = {
@@ -179,6 +197,7 @@ const model = {
   views: VIEWS,
   badges: BADGES,
   decor: DECOR,
+  arrows: ARROWS,
   text: TEXT,
   ink: INK,
   disc: DISC,

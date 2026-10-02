@@ -20,13 +20,17 @@
 | Area's floor. Textures — ripples, glints, terrain, grain — are SVG filters;
 | nothing is an image. The contiguous zone keeps its hatch, the baseline its
 | dashed line. Each zone carries its number, ১–৭ coast to sea, in a disc.
+| The distances are nested arrows, every one from the baseline (০): ০→১২ (২),
+| ০→২৪ (৩), ০→২০০ (৪) and the shelf's past ২০০, dashed (৫) — under the block
+| from the side, left of it from the sea.
 |
 | The picker row at the top is the main way in; its items, the card's title
 | and each disc read «<number>. <name>». Each disc is its zone's tap target,
 | at least 44 px across on any screen (an invisible circle round the number);
-| the zone's own surface and faces take a tap too. Choosing outlines the zone,
-| dims the others and docks the card with its sentences; ×, Escape or a
-| second tap closes it, and focus returns to the zone's disc. The picture is
+| the zone's own surface and faces take a tap too. Every zone keeps its full
+| colour: choosing outlines the chosen one, strengthens its discs' rings and
+| docks the card with its sentences; ×, Escape or a second tap closes it, and
+| focus returns to the zone's disc. The picture is
 | drawn again only when the view changes; choosing changes classes only, and
 | a new screen width only the discs' reach. Switching keeps the choice and
 | the card.
@@ -34,7 +38,7 @@
 | Every word shown is the descriptor's or the data's.
 */
 
-import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=8164f80c4b';
+import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=628d4ffd04';
 
 // CSS px: the picture's side margins, and its widest.
 const GUTTER = 16;
@@ -71,7 +75,7 @@ const SWATCH = {
 export async function mount(panel, { descriptor, data, art }) {
   const words = descriptor.words ?? {};
   const M = await art;
-  await Promise.all([stylesheet('../shared/picker.css?v=8164f80c4b'), stylesheet('./zones.css?v=8164f80c4b')]);
+  await Promise.all([stylesheet('../shared/picker.css?v=628d4ffd04'), stylesheet('./zones.css?v=628d4ffd04')]);
 
   const zones = data.zones;
   const byId = new Map(zones.map((z) => [z.id, z]));
@@ -200,6 +204,11 @@ export async function mount(panel, { descriptor, data, art }) {
   /** A zone's part of the picture: its fills dim and light with the choice. */
   const part = (id, parent) => S('g', { class: 'mz-part', 'data-key': id }, parent);
   const fillOf = (id) => byId.get(id).fill;
+  /** A face's outline: faint, and clear — a light halo under a dark line — once its zone is chosen. */
+  const outline = (p, poly) => {
+    S('polygon', { class: 'halo', points: pts(poly), fill: 'none' }, p);
+    S('polygon', { class: 'edge', points: pts(poly), fill: 'none' }, p);
+  };
 
   function render() {
     V = M.views[view];
@@ -277,7 +286,7 @@ export async function mount(panel, { descriptor, data, art }) {
     for (const [id, poly] of Object.entries(tops)) {
       const p = part(id, scene);
       S('polygon', { class: 'top', points: pts(poly), fill: fillOf(id) }, p);
-      S('polygon', { class: 'edge', points: pts(poly), fill: 'none' }, p);
+      outline(p, poly);
       if (id === 'contiguous-zone') S('polygon', { class: 'band', points: pts(poly), fill: 'url(#mz-hatch)' }, p);
     }
     // The baseline: a dashed line across the bay's mouth.
@@ -318,10 +327,16 @@ export async function mount(panel, { descriptor, data, art }) {
     const [r0, r1] = [P(U.coast, vc, 0), P(U.end, vc, 0)];
     S('line', { x1: r0[0], y1: r0[1], x2: r1[0], y2: r1[1], stroke: '#E9F7FB', 'stroke-width': 1.4, 'stroke-opacity': 0.8 }, face);
     const fronts = { 'internal-waters': [U.coast, U.base], 'territorial-sea': [U.base, U.u12], eez: [U.u12, U.u200], 'high-seas': [U.u200, U.end] };
-    for (const [id, [u0, u1]] of Object.entries(fronts)) S('polygon', { class: 'front', points: pts(profileWater(vc, u0, u1)), fill: fillOf(id) }, part(id, face));
+    for (const [id, [u0, u1]] of Object.entries(fronts)) {
+      const p = part(id, face);
+      S('polygon', { class: 'front', points: pts(profileWater(vc, u0, u1)), fill: fillOf(id) }, p);
+      outline(p, profileWater(vc, u0, u1));
+    }
     const cq = useq(U.u12, U.u24, 6);
     const czFront = [...cq.map((u) => P(u, vc, 0)), ...cq.slice().reverse().map((u) => P(u, vc, Math.min(22, dep(u))))];
-    S('polygon', { class: 'band', points: pts(czFront), fill: 'url(#mz-hatch)' }, part('contiguous-zone', face));
+    const czPart = part('contiguous-zone', face);
+    S('polygon', { class: 'band', points: pts(czFront), fill: 'url(#mz-hatch)' }, czPart);
+    outline(czPart, czFront);
     for (const u of [U.base, U.u12, U.u24, U.u200]) {
       const [a, b] = [P(u, vc, 0), P(u, vc, dep(u))];
       S('line', { x1: a[0], y1: a[1], x2: b[0], y2: b[1], stroke: '#E3F2F7', 'stroke-opacity': 0.55, 'stroke-width': 1, 'stroke-dasharray': '3 3' }, face);
@@ -329,10 +344,10 @@ export async function mount(panel, { descriptor, data, art }) {
     g = part('continental-shelf', face);
     S('polygon', { class: 'sea', points: pts(bandOnProfile(vc, U.u12, U.u200, 10)), fill: fillOf('continental-shelf') }, g);
     for (const [a, b, o] of [[U.u200, 370, 0.75], [370, 381, 0.5], [381, 390, 0.3], [390, U.fade, 0.14]]) S('polygon', { class: 'sea', points: pts(bandOnProfile(vc, a, b, 10)), fill: fillOf('continental-shelf'), 'fill-opacity': o }, g);
-    S('polygon', { class: 'edge', points: pts(bandOnProfile(vc, U.u12, U.fade, 10)), fill: 'none' }, g);
+    outline(g, bandOnProfile(vc, U.u12, U.fade, 10));
     g = part('the-area', face);
     S('polygon', { class: 'sea', points: pts(bandOnProfile(vc, U.fade, U.end, 10)), fill: fillOf('the-area') }, g);
-    S('polygon', { class: 'edge', points: pts(bandOnProfile(vc, U.fade, U.end, 10)), fill: 'none' }, g);
+    outline(g, bandOnProfile(vc, U.fade, U.end, 10));
     for (let i = 0; i < 16; i++) {
       const u = U.fade + 2 + i * 3.1;
       const p = P(u, vc, dep(u) - 1.2);
@@ -345,7 +360,9 @@ export async function mount(panel, { descriptor, data, art }) {
     for (const [d, c] of [[0, '#A39478'], [9, '#B3A283'], [30, '#958670']]) S('polygon', { points: pts(eq(Math.min(dE + d, ZB), ZB)), fill: c }, endFace);
     S('polygon', { points: pts(eq(0, dE)), fill: 'url(#mz-deep)' }, endFace);
     if (view === 'side') S('polygon', { points: pts(eq(0, ZB)), fill: '#0B1E26', 'fill-opacity': 0.3 }, endFace);
-    S('polygon', { class: 'front', points: pts(eq(0, dE)), fill: fillOf('high-seas') }, part('high-seas', endFace));
+    const hsEnd = part('high-seas', endFace);
+    S('polygon', { class: 'front', points: pts(eq(0, dE)), fill: fillOf('high-seas') }, hsEnd);
+    outline(hsEnd, eq(0, dE));
     S('polygon', { class: 'sea', points: pts(eq(dE, dE + 10)), fill: fillOf('the-area') }, part('the-area', endFace));
     const [e0, e1] = [P(U.end, 0, 0), P(U.end, 1, 0)];
     S('line', { x1: e0[0], y1: e0[1], x2: e1[0], y2: e1[1], stroke: '#E9F7FB', 'stroke-width': 1, 'stroke-opacity': 0.6 }, endFace);
@@ -372,30 +389,58 @@ export async function mount(panel, { descriptor, data, art }) {
     S('path', { d: `M${dk[0] + 1},${dk[1]} L${dk[0] + 4.5},${dk[1] - 23} L${dk[0] + 8},${dk[1]} M${dk[0] + 2},${dk[1] - 7} L${dk[0] + 7},${dk[1] - 7} M${dk[0] + 3},${dk[1] - 14} L${dk[0] + 6},${dk[1] - 14}`, fill: 'none', stroke: '#C2CAD0', 'stroke-width': 1 }, deco);
     S('rect', { x: dk[0] - 10, y: dk[1] - 6, width: 8, height: 6, fill: '#D5DADD' }, deco);
 
-    // 8) The ruler: nautical miles from the baseline, along the front from the side, the left edge from the sea.
-    const ruler = S('g', { class: 'ruler' }, svg);
-    const label = (x, y, anchor, t) => (S('text', { class: 'ruler-label fit-text', x, y, 'text-anchor': anchor, 'font-size': T.size, 'data-fit': `the ruler ${t.label}`, lang: 'bn' }, ruler).textContent = t.label);
-    if (view === 'side') {
-      const RY = 378;
-      S('line', { x1: U.base, y1: RY, x2: U.end, y2: RY }, ruler);
-      for (const t of M.ticks) {
-        S('line', { class: 'tick', x1: t.u, y1: RY - 7, x2: t.u, y2: RY + 7 }, ruler);
-        label(t.u, RY + 30, 'middle', t);
-      }
-      S('path', { d: `M${U.end - 8},${RY - 5} L${U.end},${RY} L${U.end - 8},${RY + 5}`, fill: 'none' }, ruler);
-    } else {
-      const edge = (u) => {
-        const p = P(u, 0, 0);
-        return [p[0] - 16, p[1]];
-      };
-      const [a, b] = [edge(U.base), edge(U.end)];
-      S('line', { x1: a[0], y1: a[1], x2: b[0], y2: b[1] }, ruler);
-      for (const t of M.ticks) {
-        const p = edge(t.u);
-        S('line', { class: 'tick', x1: p[0] - 7, y1: p[1], x2: p[0] + 7, y2: p[1] }, ruler);
-        label(p[0] - 10, p[1] + 9, 'end', t);
-      }
+    // A number in a disc of its zone's colour: on the zone, and on its distance arrow.
+    const k = V.k;
+    const size = T.size * k;
+    const disc = (z, p, parent, cls, fit) => {
+      const badge = S('g', { class: cls, filter: 'url(#mz-drop)' }, part(z.id, parent));
+      S('circle', { cx: p[0], cy: p[1], r: T.disc * k, fill: M.disc, 'fill-opacity': 0.92, stroke: z.fill, 'stroke-width': 2.5 * k }, badge);
+      S('text', { class: `badge-number fit-text${cls === 'badge' ? ' layer-label' : ''}`, x: p[0], y: p[1] + size * 0.33, 'text-anchor': 'middle', 'font-size': size, fill: M.ink, 'data-fit': fit, lang: 'bn' }, badge).textContent = z.numberBn;
+    };
+
+    // 8) The distances: nested arrows, every one from the baseline (০), along the block's v = 0 edge —
+    //    under the block from the side, left of it from the sea — with the tick labels between the block
+    //    and the arrows. The longest is nearest; each arrow's number stands just past its tip, where no
+    //    shorter arrow reaches. The shelf's runs on past ২০০, dashed: at least 200, more on conditions.
+    const A = M.arrows[view];
+    const zEdge = A.z === 'floor' ? ZB : A.z;
+    const p0 = P(U.base, 0, zEdge);
+    const p1 = P(U.end, 0, zEdge);
+    const len = Math.hypot(p1[0] - p0[0], p1[1] - p0[1]);
+    const dir = [(p1[0] - p0[0]) / len, (p1[1] - p0[1]) / len];
+    const away = [p0[0] - P(U.base, 1, zEdge)[0], p0[1] - P(U.base, 1, zEdge)[1]];
+    const nrm = -dir[1] * away[0] + dir[0] * away[1] >= 0 ? [-dir[1], dir[0]] : [dir[1], -dir[0]];
+    const along = (u, off) => {
+      const p = P(u, 0, zEdge);
+      return [p[0] + nrm[0] * off * k, p[1] + nrm[1] * off * k];
+    };
+    const arrows = S('g', { class: 'arrows', 'aria-hidden': 'true' }, svg);
+    const seg = (a, b, cls) => S('line', { class: cls, x1: a[0], y1: a[1], x2: b[0], y2: b[1] }, arrows);
+    const uOf = { u12: U.u12, u24: U.u24, u200: U.u200, beyond: M.arrows.beyond };
+    const last = A.rows.at(-1);
+    // The tick labels, each with its extension line out to the arrows that start or end there.
+    for (const t of M.ticks) {
+      const reach = t.u === U.base ? last : A.rows[M.arrows.order.findIndex(([, to]) => uOf[to] === t.u)];
+      seg(along(t.u, A.labels + 9), along(t.u, reach + 4), 'extension');
+      const p = along(t.u, A.labels);
+      S('text', { class: 'tick-label fit-text', x: p[0], y: p[1], 'text-anchor': 'middle', 'dominant-baseline': 'central', 'font-size': size, 'data-fit': `the tick ${t.label}`, lang: 'bn' }, arrows).textContent = t.label;
     }
+    M.arrows.order.forEach(([id, to], i) => {
+      const off = A.rows[i];
+      const tip = along(uOf[to], off);
+      const from = along(U.base, off);
+      if (to === 'beyond') {
+        seg(from, along(U.u200, off), 'arrow');
+        seg(along(U.u200, off), tip, 'arrow beyond');
+      } else seg(from, tip, 'arrow');
+      // The arrowhead at the tip.
+      const h = 7 * k;
+      const w = 3.5 * k;
+      const back = [tip[0] - dir[0] * h, tip[1] - dir[1] * h];
+      S('path', { class: 'head', d: `M${tip[0]},${tip[1]} L${back[0] + nrm[0] * w},${back[1] + nrm[1] * w} L${back[0] - nrm[0] * w},${back[1] - nrm[1] * w} Z` }, arrows);
+      const r = (T.disc + 3) * k;
+      disc(byId.get(id), [tip[0] + nrm[0] * r, tip[1] + nrm[1] * r], arrows, 'arrow-badge', `the arrow ${byId.get(id).numberBn}`);
+    });
 
     // 9) The numbers, coast to sea, each in a disc of its zone's colour.
     const at = {};
@@ -403,9 +448,7 @@ export async function mount(panel, { descriptor, data, art }) {
       const [u, v, zz] = M.badges[view][z.id];
       const p = P(u, v, typeof zz === 'string' ? dep(u) + Number(zz.slice(4)) : zz);
       at[z.id] = p;
-      const badge = S('g', { class: 'badge', filter: 'url(#mz-drop)' }, part(z.id, svg));
-      S('circle', { cx: p[0], cy: p[1], r: T.disc, fill: M.disc, 'fill-opacity': 0.92, stroke: z.fill, 'stroke-width': 2.5 }, badge);
-      S('text', { class: 'badge-number layer-label fit-text', x: p[0], y: p[1] + T.size * 0.33, 'text-anchor': 'middle', 'font-size': T.size, fill: M.ink, 'data-fit': `the number ${z.numberBn}`, lang: 'bn' }, badge).textContent = z.numberBn;
+      disc(z, p, svg, 'badge', `the number ${z.numberBn}`);
     }
 
     // 10) What takes a tap: each zone's surface and faces, then over everything each zone's disc —
