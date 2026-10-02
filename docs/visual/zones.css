@@ -1,8 +1,8 @@
 /*
 | THE ZONES VIEW (zones.js): the block picture, its view switch, its legend
 | and the card's sentences. Loaded only for a view of type `zones`.
-| Every word at least 14 px on a 320 px screen: the picture's numbers and
-| tick labels are 26 of its units × k, 14.4 px when it is 288 px wide.
+| Every word at least 14 px on a 320 px screen at 1×: the picture is as wide
+| as the stage, so its 26-unit numbers and tick labels draw at 14.9 px or more.
 */
 
 /* The view switch: a row of its own under ⓘ's, two buttons, each 44 px tall. */
@@ -44,29 +44,21 @@
   outline-offset: -3px;
 }
 
-/* The stage: the picture and the legend, centred in its height, scrolling when it is short. */
+/* The stage: the picture fills it (step 2c), and takes a pinch and a drag itself. */
 .zones .stage {
   background: var(--page);
-}
-
-.zones .stage-content {
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-}
-
-.zones-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  margin: auto 0;
-  padding: 4px 16px;
+  touch-action: none;
 }
 
 .zones-svg {
+  position: absolute;
+  inset: 0;
   display: block;
-  overflow: visible;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .zones-svg text {
@@ -170,33 +162,9 @@
   stroke-width: 6;
 }
 
-/* The legend under the picture: 15 px from 390 px wide, 14 under. */
-.zones-legend {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 4px 16px;
-  color: #4a5f68;
-  font-size: 15px;
-  line-height: 1.4;
-}
-
-.zones-legend .legend-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.zones-legend svg {
-  display: inline;
-  width: 26px;
-  height: 16px;
-}
-
-@media (max-width: 389px) {
-  .zones-legend {
-    font-size: 14px;
-  }
+/* The legend, inside the picture under the drawing. */
+.zones-svg .legend-label {
+  fill: #4a5f68;
 }
 
 /* ⓘ sits in this view's panel (docs/visual/app.js): here its lines are notes a student reads, so 14 px,

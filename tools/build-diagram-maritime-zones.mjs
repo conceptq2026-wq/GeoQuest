@@ -57,55 +57,51 @@ const CONTRAST_MIN = 4.5;
 const U = { land0: 10, coast: 70, base: 110, u12: 190, u24: 268, u200: 360, fade: 398, end: 450 };
 // Depth under the sea surface at each u: the shelf, the slope from about 312, the rise, the deep floor.
 const PROFILE = [[70, 3], [110, 10], [190, 24], [268, 37], [312, 47], [338, 85], [360, 111], [398, 126], [450, 132]];
-// The block's floor, under the deepest sea.
-const FLOOR = 170;
+// The block's floor: thin earth under the deepest sea (step 2c: 150, from 170).
+const FLOOR = 150;
 // The bay: the coast pulled back 24 units between v 0.3 and 0.75 — the internal waters.
 const BAY = { from: 0.3, to: 0.75, depth: 24 };
-// Each view: its frame (x, y, width, height), the face cut along the coast (v), and x, y as
-// [·u, ·v, ·z, constant]. «সমুদ্র থেকে» looks from the open sea toward the baseline, raised:
-// a = (end − u) / (end − coast); x = 84 + 280v + 150a, y = 330 − 210a + 0.9z — the mockup's
-// x = 40 + 300v + 150a moved right and narrowed a little (step 2c), for the arrows on its left.
+// Each view: the face cut along the coast (v), and x, y as [·u, ·v, ·z, constant]. Recomposed for
+// portrait phones (the user's decision, step 2c): the far edge raised — a steeper oblique — and the
+// depth drawn larger, so the picture, cropped to the drawing by the view, fills a phone's stage.
+// «পাশ থেকে»: x = u + 40v, y = 300 − 235v + 2.1z (the mockup's u + 55v, 180 − 80v + z).
+// «সমুদ্র থেকে», from the open sea toward the baseline: a = (end − u) / (end − coast);
+// x = 84 + 280v + 150a, y = 600 − 400a + 1.6z (the mockup's 40 + 300v + 150a, 330 − 210a + 0.9z).
 const span = U.end - U.coast;
 const r6 = (x) => Math.round(x * 1e6) / 1e6;
-// Each frame holds the block and, along one of its edges, the distance arrows (step 2c): the side
-// view's under the block, the sea view's left of it — which is why that frame starts left of 0. A
-// frame wider than 520 units would draw its words and discs k = width / 520 times larger, so they
-// keep their size on the screen; both are 520 wide now.
 const VIEWS = {
-  side: { box: [0, 84, 520, 368], cut: 0, x: [1, 55, 0, 0], y: [0, -80, 1, 180] },
-  sea: { box: [0, 40, 520, 470], cut: 1, x: [r6(-150 / span), 280, 0, r6(84 + (150 * U.end) / span)], y: [r6(210 / span), 0, 0.9, r6(330 - (210 * U.end) / span)] },
+  side: { cut: 0, x: [1, 40, 0, 0], y: [0, -235, 2.1, 300] },
+  sea: { cut: 1, x: [r6(-150 / span), 280, 0, r6(84 + (150 * U.end) / span)], y: [r6(400 / span), 0, 1.6, r6(600 - (400 * U.end) / span)] },
 };
-for (const v of Object.values(VIEWS)) v.k = r6(v.box[2] / 520);
 // The distance arrows (the user's decision, step 2c): nested, every one starting at the baseline (০),
-// along the block's v = 0 edge at depth z, offset away from the block by so many units (× k): the
-// tick labels first, then the arrows, the longest nearest — ০→২০০ and beyond (dashed past ২০০, the
+// along the block's v = 0 edge at depth z, offset away from the block by so many units: the tick
+// labels first, then the arrows, the longest nearest — ০→২০০ and beyond (dashed past ২০০, the
 // shelf's «at least 200»), ০→২০০, ০→২৪, ০→১২ — each with its zone's number in a disc just past its
 // tip, where no shorter arrow reaches. The zones' own areas stay where the Convention puts them.
 const ARROWS = {
-  side: { z: 'floor', labels: 14, rows: [32, 42, 52, 62] },
-  sea: { z: 0, labels: 16, rows: [36, 48, 60, 72] },
+  side: { z: 'floor', labels: 16, rows: [36, 48, 60, 72] },
+  sea: { z: 0, labels: 18, rows: [40, 53, 66, 79] },
   beyond: 440,
   order: [['continental-shelf', 'beyond'], ['eez', 'u200'], ['contiguous-zone', 'u24'], ['territorial-sea', 'u12']],
 };
-// Where each zone's number stands: [u, v, z], z as a depth or as so much under the seabed ('bed+n').
-// Each number's disc is also its zone's tap target, at least TEXT.hitPx across the radius on a
-// 320 px screen (79.5 units): the numbers stand at least that far apart in both views — the
-// mockup's places, moved along the coast (v) where two were closer, and in the sea view clear of
-// the tick labels along its left edge (step 2c).
+// Where each zone's number stands: [u, v, z], z as a depth or relative to the seabed ('bed+n',
+// 'bed-n' above it). Each number's disc is also its zone's tap target, TEXT.hitPx CSS px in radius:
+// the numbers stand far enough apart for that, and clear of the arrows and tick labels.
 const BADGES = {
-  side: { 'internal-waters': [78, 0.75, 0], 'territorial-sea': [180, 0.15, 0], 'contiguous-zone': [229, 0.75, 0], eez: [330, 0.85, 0], 'high-seas': [430, 0.15, 0], 'continental-shelf': [240, 0, 'bed+30'], 'the-area': [425, 0, 'bed+22'] },
-  sea: { 'internal-waters': [90, 0.764, 0], 'territorial-sea': [150, 0.349, 0], 'contiguous-zone': [229, 0.214, 0], eez: [330, 0.99, 0], 'high-seas': [408, 0.462, 0], 'continental-shelf': [250, 0.55, 'bed+0'], 'the-area': [450, 0.5, 'bed+22'] },
+  side: { 'internal-waters': [78, 0.75, 0], 'territorial-sea': [180, 0.15, 0], 'contiguous-zone': [229, 0.75, 0], eez: [330, 0.85, 0], 'high-seas': [430, 0.15, 0], 'continental-shelf': [240, 0, 'bed+30'], 'the-area': [425, 0, 'bed-18'] },
+  sea: { 'internal-waters': [90, 0.764, 0], 'territorial-sea': [150, 0.349, 0], 'contiguous-zone': [229, 0.214, 0], eez: [330, 0.99, 0], 'high-seas': [408, 0.462, 0], 'continental-shelf': [250, 0.55, 'bed+0'], 'the-area': [450, 0.5, 'bed+8'] },
 };
-// Decoration, simple original shapes: hills [u, v, half-width, height], ships [u, v, scale], one platform on the shelf at u.
+// Decoration, simple original shapes: hills [u, v, half-width, height], ships [u, v, scale], light in
+// the side view's water [u, width, drift], one platform on the shelf at u.
 const DECOR = {
-  side: { hills: [[34, 0.25, 15, 24], [32, 0.65, 17, 32], [44, 0.92, 10, 18]], ships: [[420, 0.74, 0.8], [292, 0.38, 0.62]] },
+  side: { hills: [[34, 0.25, 15, 24], [32, 0.65, 17, 32], [44, 0.92, 10, 18]], ships: [[420, 0.74, 0.8], [292, 0.38, 0.62]], rays: [[150, 18, 40], [232, 14, 52], [318, 22, 70], [400, 16, 60]] },
   sea: { hills: [[30, 0.2, 22, 30], [34, 0.55, 26, 40], [40, 0.88, 20, 26]], ships: [[418, 0.22, 0.75], [300, 0.62, 0.55]] },
   platform: 300,
 };
-// The numbers' discs and the ruler's words, in the picture's units: 26 units is 14.4 px when the
-// picture is 288 px wide (a 320 px screen), the least the user's rule allows. Each disc's tap
-// target is hitPx CSS px in radius — 45 px across, past rounding — on any screen.
-const TEXT = { size: 26, disc: 16.5, hitPx: 22.5 };
+// The picture's words and discs, in its units: the view crops the frame to the drawing and fits its
+// width to the stage, so a 560-unit-wide picture on a 320 px screen draws 26 units as 14.9 px —
+// never under 14 at 1×. Each disc's tap target is hitPx CSS px in radius — 45 px across — at any zoom.
+const TEXT = { size: 26, disc: 16, legend: 25, hitPx: 22.5 };
 
 const OUT = path.resolve(process.argv[2] ?? DEFAULT_OUT);
 const fail = (msg) => {

@@ -30,19 +30,27 @@
 | the zone's own surface and faces take a tap too. Every zone keeps its full
 | colour: choosing outlines the chosen one, strengthens its discs' rings and
 | docks the card with its sentences; ×, Escape or a second tap closes it, and
-| focus returns to the zone's disc. The picture is
-| drawn again only when the view changes; choosing changes classes only, and
-| a new screen width only the discs' reach. Switching keeps the choice and
-| the card.
+| focus returns to the zone's disc. Switching keeps the choice and the card.
+|
+| The picture fills the stage (step 2c): its frame is cropped to the drawing,
+| the legend inside it, and at 1× its width is the stage's; a two-finger pinch
+| zooms 1×–3× and a drag pans, a double tap goes back to 1×, the wheel zooms
+| on a desktop. With the card open the stage is shorter and the picture keeps
+| its 1× size, centred on the chosen zone's number. Zoom resets when the view
+| changes. The picture is drawn again only when the view changes; choosing
+| changes classes only, and zooming the frame and the discs' reach.
 |
 | Every word shown is the descriptor's or the data's.
 */
 
-import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=628d4ffd04';
+import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=3edae74988';
 
-// CSS px: the picture's side margins, and its widest.
-const GUTTER = 16;
-const MAX_WIDTH = 540;
+// Picture units of margin round the drawing, and of space under it before the legend.
+const PAD = 6;
+const LEGEND_GAP = 18;
+// A tap that moves less than this (CSS px) is a tap; two taps on one zone within DOUBLE ms are a double tap.
+const TAP_SLOP = 8;
+const DOUBLE = 300;
 
 // The filters, gradients and patterns, all generated here (no image is fetched).
 const DEFS = `
@@ -75,7 +83,7 @@ const SWATCH = {
 export async function mount(panel, { descriptor, data, art }) {
   const words = descriptor.words ?? {};
   const M = await art;
-  await Promise.all([stylesheet('../shared/picker.css?v=628d4ffd04'), stylesheet('./zones.css?v=628d4ffd04')]);
+  await Promise.all([stylesheet('../shared/picker.css?v=3edae74988'), stylesheet('./zones.css?v=3edae74988')]);
 
   const zones = data.zones;
   const byId = new Map(zones.map((z) => [z.id, z]));
@@ -118,7 +126,18 @@ export async function mount(panel, { descriptor, data, art }) {
   let view = 'side';
   let V = M.views.side;
   const P = (u, v, z) => [V.x[0] * u + V.x[1] * v + V.x[2] * z + V.x[3], V.y[0] * u + V.y[1] * v + V.y[2] * z + V.y[3]];
-  const pts = (a) => a.map((p) => `${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ');
+  let box = null; // the drawing's extent, [x0, y0, x1, y1], grown as it is drawn
+  const grow = (x, y, r = 0) => {
+    if (!box) box = [x - r, y - r, x + r, y + r];
+    else box = [Math.min(box[0], x - r), Math.min(box[1], y - r), Math.max(box[2], x + r), Math.max(box[3], y + r)];
+  };
+  const pts = (a) =>
+    a
+      .map((p) => {
+        grow(p[0], p[1]);
+        return `${p[0].toFixed(1)},${p[1].toFixed(1)}`;
+      })
+      .join(' ');
   const quad = (u0, u1, v0, v1, zf) => [P(u0, v0, zf(u0)), P(u1, v0, zf(u1)), P(u1, v1, zf(u1)), P(u0, v1, zf(u0))];
   const flat = () => 0;
   const coastLine = () => Array.from({ length: 21 }, (_, i) => P(coastU(i / 20), i / 20, 0));
@@ -137,7 +156,7 @@ export async function mount(panel, { descriptor, data, art }) {
   };
   const bandOnProfile = (vc, u0, u1, th) => {
     const q = useq(u0, u1, 6);
-    return [...q.map((u) => P(u, vc, dep(u))), ...q.slice().reverse().map((u) => P(u, vc, dep(u) + th))];
+    return [...q.map((u) => P(u, vc, dep(u))), ...q.slice().reverse().map((u) => P(u, vc, Math.min(dep(u) + th, ZB)))];
   };
 
   // ---- the page ------------------------------------------------------------------------
@@ -160,25 +179,10 @@ export async function mount(panel, { descriptor, data, art }) {
 
   const stage = el('div', 'stage');
   const content = el('div', 'stage-content loading');
-  const inner = el('div', 'zones-inner');
-  const svg = svgEl('svg', { class: 'zones-svg', role: 'group' });
+  const svg = svgEl('svg', { class: 'zones-svg', role: 'group', preserveAspectRatio: 'xMidYMid meet' });
   if (descriptor.title?.bn) svg.setAttribute('aria-label', descriptor.title.bn);
-  const legend = el('div', 'zones-legend', 'bn');
   const L = words.legend ?? {};
-  for (const [key, text] of [['baseline', L.baseline], ['contiguous', L.contiguous], ['area', L.area], [null, L.scale], [null, L.ticks]]) {
-    if (!text) continue;
-    const item = el('span', 'legend-item fit-text', 'bn');
-    item.dataset.fit = `the legend: ${key ?? text}`;
-    if (key) {
-      const mark = svgEl('svg', { viewBox: '0 0 26 16', 'aria-hidden': 'true' });
-      mark.innerHTML = SWATCH[key];
-      item.append(mark);
-    }
-    item.append(text);
-    legend.append(item);
-  }
-  inner.append(svg, legend);
-  content.append(inner);
+  content.append(svg);
   stage.append(content);
 
   // The card docked under the picture, and the picker row at the top (./parts.js).
@@ -200,6 +204,16 @@ export async function mount(panel, { descriptor, data, art }) {
   const S = (tag, attrs, parent) => parent.appendChild(svgEl(tag, attrs));
   let hits = null; // the zones' discs: their buttons
   let scale = 0; // CSS px per picture unit, as the discs were last sized
+  let frame = null; // the drawing's frame, [x, y, width, height], cropped to it
+  let at = {}; // each zone's number, in picture units
+  let zoom = 1; // 1× to 3×
+  let centre = null; // the frame's point at the stage's middle, or null for the frame's own middle
+  const covers = []; // the textures' rects, as large as the frame
+  const cover = (attrs, parent) => {
+    const r = S('rect', attrs, parent);
+    covers.push(r);
+    return r;
+  };
 
   /** A zone's part of the picture: its fills dim and light with the choice. */
   const part = (id, parent) => S('g', { class: 'mz-part', 'data-key': id }, parent);
@@ -213,15 +227,14 @@ export async function mount(panel, { descriptor, data, art }) {
   function render() {
     V = M.views[view];
     svg.replaceChildren();
-    const [bx, by, bw, bh] = V.box;
-    svg.setAttribute('viewBox', `${bx} ${by} ${bw} ${bh}`);
+    box = null;
+    covers.length = 0;
     const defs = S('defs', {}, svg);
     defs.innerHTML = DEFS;
     const clip = (id, poly) => S('polygon', { points: pts(poly) }, S('clipPath', { id }, defs));
     const scene = S('g', { filter: 'url(#mz-grade)' }, svg);
     const vc = V.cut;
     const dE = dep(U.end);
-    const cover = { x: bx, y: by, width: bw, height: bh };
 
     // The block's shadow on the ground.
     const corners = [P(U.land0, 0, ZB), P(U.land0, 1, ZB), P(U.end, 0, ZB), P(U.end, 1, ZB)];
@@ -241,7 +254,7 @@ export async function mount(panel, { descriptor, data, art }) {
       const c = mix(mix('#CBBE98', '#6F6A62', Math.min(1, d / 132)), '#3E3A36', slope * 0.45);
       S('polygon', { points: pts(quad(u0, u1, 0, 1, dep)), fill: c, stroke: c, 'stroke-width': 0.6 }, bed);
     }
-    S('rect', { ...cover, filter: 'url(#mz-bed)', opacity: 0.45, style: 'mix-blend-mode:soft-light', 'clip-path': 'url(#mz-c-bed)' }, bed);
+    cover({ filter: 'url(#mz-bed)', opacity: 0.45, style: 'mix-blend-mode:soft-light', 'clip-path': 'url(#mz-c-bed)' }, bed);
     for (const u of [U.base, U.u12, U.u24, 312, 338, U.u200, U.fade]) {
       const [a, b] = [P(u, 0, dep(u)), P(u, 1, dep(u))];
       S('line', { x1: a[0], y1: a[1], x2: b[0], y2: b[1], stroke: '#F3EEDC', 'stroke-opacity': 0.3, 'stroke-width': 0.8 }, bed);
@@ -270,9 +283,9 @@ export async function mount(panel, { descriptor, data, art }) {
       const o = Math.min(0.96, 0.2 + Math.pow(t, 1.15) * 0.95);
       S('polygon', { points: pts(quad(u0, u1, 0, 1, flat)), fill: c, 'fill-opacity': o, stroke: c, 'stroke-opacity': o, 'stroke-width': 0.5 }, surf);
     }
-    S('rect', { ...cover, filter: 'url(#mz-ripple)', opacity: 0.32, style: 'mix-blend-mode:soft-light', 'clip-path': 'url(#mz-c-surf)' }, surf);
-    S('rect', { ...cover, filter: 'url(#mz-glint)', opacity: 0.25, style: 'mix-blend-mode:screen', 'clip-path': 'url(#mz-c-surf)' }, surf);
-    S('rect', { ...cover, fill: 'url(#mz-haze)', 'clip-path': 'url(#mz-c-surf)' }, surf);
+    cover({ filter: 'url(#mz-ripple)', opacity: 0.32, style: 'mix-blend-mode:soft-light', 'clip-path': 'url(#mz-c-surf)' }, surf);
+    cover({ filter: 'url(#mz-glint)', opacity: 0.25, style: 'mix-blend-mode:screen', 'clip-path': 'url(#mz-c-surf)' }, surf);
+    cover({ fill: 'url(#mz-haze)', 'clip-path': 'url(#mz-c-surf)' }, surf);
     S('polyline', { points: pts(coastLine()), fill: 'none', stroke: '#E8F6F2', 'stroke-width': 3, 'stroke-opacity': 0.55, filter: 'url(#mz-soft)' }, surf);
 
     // 3) The water zones' fills on the surface; the contiguous zone hatched over the EEZ's inner part.
@@ -299,10 +312,12 @@ export async function mount(panel, { descriptor, data, art }) {
     const landPoly = [P(U.land0, 0, 0), ...coastLine(), P(U.land0, 1, 0)];
     clip('mz-c-land', landPoly);
     S('polygon', { points: pts(landPoly), fill: 'url(#mz-land)' }, land);
-    S('rect', { ...cover, filter: 'url(#mz-terrain)', opacity: 0.55, style: 'mix-blend-mode:soft-light', 'clip-path': 'url(#mz-c-land)' }, land);
+    cover({ filter: 'url(#mz-terrain)', opacity: 0.55, style: 'mix-blend-mode:soft-light', 'clip-path': 'url(#mz-c-land)' }, land);
     for (const [u, v, w, h] of M.decor[view].hills) {
       const c = P(u, v, 0);
       const d = `M${c[0] - w},${c[1] + 2} C${c[0] - w * 0.5},${c[1] - h} ${c[0] + w * 0.3},${c[1] - h * 1.05} ${c[0] + w},${c[1] + 2} Z`;
+      grow(c[0] - w, c[1] - h);
+      grow(c[0] + w, c[1] + 2);
       S('path', { d, fill: 'url(#mz-hill)' }, land);
       S('path', { d, fill: '#000', filter: 'url(#mz-terrain-in)', opacity: 0.55, style: 'mix-blend-mode:soft-light' }, land);
     }
@@ -313,7 +328,7 @@ export async function mount(panel, { descriptor, data, art }) {
     for (const [d, c] of [[0, '#A39478'], [9, '#B3A283'], [30, '#958670'], [58, '#7E7366'], [92, '#68625D'], [128, '#514C4A']]) S('polygon', { points: pts(profileLayer(vc, d)), fill: c }, face);
     for (const d of [18, 44, 75, 110]) S('polyline', { points: pts(profileLayer(vc, d).slice(0, -2)), fill: 'none', stroke: '#F2EBDD', 'stroke-opacity': 0.12, 'stroke-width': 1 }, face);
     clip('mz-c-face', profileLayer(vc, 0));
-    S('rect', { ...cover, filter: 'url(#mz-grain)', opacity: 0.2, style: 'mix-blend-mode:multiply', 'clip-path': 'url(#mz-c-face)' }, face);
+    cover({ filter: 'url(#mz-grain)', opacity: 0.2, style: 'mix-blend-mode:multiply', 'clip-path': 'url(#mz-c-face)' }, face);
     const [lA, lB, lC, lD] = [P(U.land0, vc, 0), P(U.coast, vc, 0), P(U.coast, vc, 5), P(U.land0, vc, 5)];
     S('polygon', { points: pts([lA, lB, lC, lD]), fill: '#4E6534' }, face);
     S('polygon', { points: pts([lD, lC, P(U.coast, vc, 13), P(U.land0, vc, 13)]), fill: '#4A3D31', 'fill-opacity': 0.85 }, face);
@@ -321,7 +336,7 @@ export async function mount(panel, { descriptor, data, art }) {
     clip('mz-c-water', water);
     S('polygon', { points: pts(water), fill: 'url(#mz-deep)' }, face);
     if (view === 'side') {
-      for (const [x, w, s] of [[150, 18, 40], [232, 14, 52], [318, 22, 70], [400, 16, 60]]) S('polygon', { points: pts([[x, 180], [x + w, 180], [x + w + s, 350], [x + s - 10, 350]]), fill: 'url(#mz-ray)', opacity: 0.35, style: 'mix-blend-mode:screen', 'clip-path': 'url(#mz-c-water)' }, face);
+      for (const [u, w, d] of M.decor.side.rays) S('polygon', { points: pts([P(u, 0, 0), P(u + w, 0, 0), P(u + w + d, 0, ZB), P(u + d - 10, 0, ZB)]), fill: 'url(#mz-ray)', opacity: 0.35, style: 'mix-blend-mode:screen', 'clip-path': 'url(#mz-c-water)' }, face);
     } else S('polygon', { points: pts(profileLayer(vc, -200)), fill: '#0B1E26', 'fill-opacity': 0.2 }, face);
     S('polyline', { points: pts(useq(U.coast, U.end, 6).map((u) => P(u, vc, dep(u)))), fill: 'none', stroke: '#C2B597', 'stroke-width': 3, 'stroke-opacity': 0.9 }, face);
     const [r0, r1] = [P(U.coast, vc, 0), P(U.end, vc, 0)];
@@ -372,6 +387,8 @@ export async function mount(panel, { descriptor, data, art }) {
     for (const [u, v, s] of M.decor[view].ships) {
       const p = P(u, v, 0);
       const ship = S('g', { transform: `translate(${p[0].toFixed(1)},${p[1].toFixed(1)}) scale(${s})` }, deco);
+      grow(p[0] - 64 * s, p[1] - 12 * s);
+      grow(p[0] + 25 * s, p[1] + 7 * s);
       S('path', { d: 'M-34,1 L-62,-3 M-34,3 L-64,7', stroke: '#F2FBFF', 'stroke-opacity': 0.55, 'stroke-width': 1.2, fill: 'none' }, ship);
       S('ellipse', { cx: 0, cy: 3, rx: 24, ry: 2.6, fill: '#06212F', opacity: 0.35 }, ship);
       S('path', { d: 'M-22,-2 L20,-2 L24,-6 L25,-1 L19,4 L-20,4 Z', fill: 'url(#mz-hull)' }, ship);
@@ -384,18 +401,20 @@ export async function mount(panel, { descriptor, data, art }) {
     S('path', { d: `M${s0[0] - 8},${s0[1]} L${t0[0] - 6},${t0[1]} M${s0[0] + 8},${s0[1]} L${t0[0] + 6},${t0[1]}`, stroke: 'url(#mz-steel)', 'stroke-width': 2.6, fill: 'none' }, deco);
     S('path', { d: `M${s0[0] - 7},${s0[1] - 5} L${t0[0] + 5},${t0[1] + 8} M${s0[0] + 7},${s0[1] - 5} L${t0[0] - 5},${t0[1] + 8}`, stroke: '#7D888F', 'stroke-width': 0.9, fill: 'none' }, deco);
     const dk = [t0[0], t0[1] - 6];
+    grow(dk[0] - 12, dk[1] - 23);
     S('rect', { x: dk[0] - 12, y: dk[1], width: 24, height: 6, fill: '#56616A' }, deco);
     S('rect', { x: dk[0] - 12, y: dk[1], width: 24, height: 1.5, fill: '#A9B3BA' }, deco);
     S('path', { d: `M${dk[0] + 1},${dk[1]} L${dk[0] + 4.5},${dk[1] - 23} L${dk[0] + 8},${dk[1]} M${dk[0] + 2},${dk[1] - 7} L${dk[0] + 7},${dk[1] - 7} M${dk[0] + 3},${dk[1] - 14} L${dk[0] + 6},${dk[1] - 14}`, fill: 'none', stroke: '#C2CAD0', 'stroke-width': 1 }, deco);
     S('rect', { x: dk[0] - 10, y: dk[1] - 6, width: 8, height: 6, fill: '#D5DADD' }, deco);
 
     // A number in a disc of its zone's colour: on the zone, and on its distance arrow.
-    const k = V.k;
-    const size = T.size * k;
-    const disc = (z, p, parent, cls, fit) => {
+    const k = 1;
+    const size = T.size;
+    const disc = (z, p, parent, cls) => {
+      grow(p[0], p[1], T.disc + 2);
       const badge = S('g', { class: cls, filter: 'url(#mz-drop)' }, part(z.id, parent));
-      S('circle', { cx: p[0], cy: p[1], r: T.disc * k, fill: M.disc, 'fill-opacity': 0.92, stroke: z.fill, 'stroke-width': 2.5 * k }, badge);
-      S('text', { class: `badge-number fit-text${cls === 'badge' ? ' layer-label' : ''}`, x: p[0], y: p[1] + size * 0.33, 'text-anchor': 'middle', 'font-size': size, fill: M.ink, 'data-fit': fit, lang: 'bn' }, badge).textContent = z.numberBn;
+      S('circle', { cx: p[0], cy: p[1], r: T.disc, fill: M.disc, 'fill-opacity': 0.92, stroke: z.fill, 'stroke-width': 2.5 }, badge);
+      S('text', { class: `badge-number fit-text${cls === 'badge' ? ' layer-label' : ''}`, x: p[0], y: p[1] + size * 0.33, 'text-anchor': 'middle', 'font-size': size, fill: M.ink, lang: 'bn' }, badge).textContent = z.numberBn;
     };
 
     // 8) The distances: nested arrows, every one from the baseline (০), along the block's v = 0 edge —
@@ -415,7 +434,11 @@ export async function mount(panel, { descriptor, data, art }) {
       return [p[0] + nrm[0] * off * k, p[1] + nrm[1] * off * k];
     };
     const arrows = S('g', { class: 'arrows', 'aria-hidden': 'true' }, svg);
-    const seg = (a, b, cls) => S('line', { class: cls, x1: a[0], y1: a[1], x2: b[0], y2: b[1] }, arrows);
+    const seg = (a, b, cls) => {
+      grow(a[0], a[1]);
+      grow(b[0], b[1]);
+      return S('line', { class: cls, x1: a[0], y1: a[1], x2: b[0], y2: b[1] }, arrows);
+    };
     const uOf = { u12: U.u12, u24: U.u24, u200: U.u200, beyond: M.arrows.beyond };
     const last = A.rows.at(-1);
     // The tick labels, each with its extension line out to the arrows that start or end there.
@@ -423,7 +446,8 @@ export async function mount(panel, { descriptor, data, art }) {
       const reach = t.u === U.base ? last : A.rows[M.arrows.order.findIndex(([, to]) => uOf[to] === t.u)];
       seg(along(t.u, A.labels + 9), along(t.u, reach + 4), 'extension');
       const p = along(t.u, A.labels);
-      S('text', { class: 'tick-label fit-text', x: p[0], y: p[1], 'text-anchor': 'middle', 'dominant-baseline': 'central', 'font-size': size, 'data-fit': `the tick ${t.label}`, lang: 'bn' }, arrows).textContent = t.label;
+      grow(p[0], p[1], size);
+      S('text', { class: 'tick-label fit-text', x: p[0], y: p[1], 'text-anchor': 'middle', 'dominant-baseline': 'central', 'font-size': size, lang: 'bn' }, arrows).textContent = t.label;
     }
     M.arrows.order.forEach(([id, to], i) => {
       const off = A.rows[i];
@@ -439,17 +463,48 @@ export async function mount(panel, { descriptor, data, art }) {
       const back = [tip[0] - dir[0] * h, tip[1] - dir[1] * h];
       S('path', { class: 'head', d: `M${tip[0]},${tip[1]} L${back[0] + nrm[0] * w},${back[1] + nrm[1] * w} L${back[0] - nrm[0] * w},${back[1] - nrm[1] * w} Z` }, arrows);
       const r = (T.disc + 3) * k;
-      disc(byId.get(id), [tip[0] + nrm[0] * r, tip[1] + nrm[1] * r], arrows, 'arrow-badge', `the arrow ${byId.get(id).numberBn}`);
+      disc(byId.get(id), [tip[0] + nrm[0] * r, tip[1] + nrm[1] * r], arrows, 'arrow-badge');
     });
 
     // 9) The numbers, coast to sea, each in a disc of its zone's colour.
-    const at = {};
+    at = {};
     for (const z of zones) {
       const [u, v, zz] = M.badges[view][z.id];
-      const p = P(u, v, typeof zz === 'string' ? dep(u) + Number(zz.slice(4)) : zz);
+      const p = P(u, v, typeof zz === 'string' ? dep(u) + Number(zz.slice(3)) : zz);
       at[z.id] = p;
-      disc(z, p, svg, 'badge', `the number ${z.numberBn}`);
+      disc(z, p, svg, 'badge');
     }
+
+    // 9b) The legend, under the drawing, in lines as wide as it: the baseline's dashed line, the
+    //     contiguous zone's hatch, the Area's nodules, the scale and what the tick numbers count.
+    const legend = S('g', { class: 'legend' }, svg);
+    const [lx0, , lx1, ly1] = box;
+    const line = T.legend * 1.5;
+    let lx = lx0;
+    let ly = ly1 + LEGEND_GAP + line / 2;
+    for (const [key, text] of [['baseline', L.baseline], ['contiguous', L.contiguous], ['area', L.area], [null, L.scale], [null, L.ticks]]) {
+      if (!text) continue;
+      const t = S('text', { class: 'legend-label fit-text', 'font-size': T.legend, 'dominant-baseline': 'central', lang: 'bn' }, legend);
+      t.textContent = text;
+      const mark = key ? T.legend * 1.25 + 8 : 0;
+      const w = mark + t.getComputedTextLength();
+      if (lx > lx0 && lx + w > lx1) {
+        lx = lx0;
+        ly += line;
+      }
+      if (key) {
+        const sw = S('svg', { x: lx, y: ly - T.legend * 0.38, width: T.legend * 1.25, height: T.legend * 0.76, viewBox: '0 0 26 16', 'aria-hidden': 'true' }, legend);
+        sw.innerHTML = SWATCH[key];
+      }
+      t.setAttribute('x', (lx + mark).toFixed(1));
+      t.setAttribute('y', ly.toFixed(1));
+      grow(lx + w, ly + line / 2);
+      lx += w + T.legend;
+    }
+
+    // The frame: the drawing and its legend, with a small margin; the textures fill it.
+    frame = [box[0] - PAD, box[1] - PAD, box[2] - box[0] + 2 * PAD, box[3] - box[1] + 2 * PAD];
+    for (const r of covers) for (const [k2, v2] of Object.entries({ x: frame[0], y: frame[1], width: frame[2], height: frame[3] })) r.setAttribute(k2, v2.toFixed(1));
 
     // 10) What takes a tap: each zone's surface and faces, then over everything each zone's disc —
     //     its button, at least 2 × T.hitPx CSS px across, sized by layout().
@@ -494,6 +549,7 @@ export async function mount(panel, { descriptor, data, art }) {
     select.value = key;
     row.sync();
     light();
+    centre = at[key] ? [...at[key]] : centre;
     layout();
   }
 
@@ -509,11 +565,105 @@ export async function mount(panel, { descriptor, data, art }) {
     if (returnFocus) svg.querySelector(`.zone[data-key="${was}"]`)?.focus();
   }
 
+  // A tap chooses (a drag or a pinch is not a tap). A second tap at the same place soon after is a
+  // double tap: it takes back what the first one chose — the card may have moved the picture under the
+  // finger — and goes back to 1×.
+  let last = { t: 0, x: 0, y: 0, before: null };
   stage.addEventListener('click', (event) => {
+    if (moved) {
+      moved = false;
+      return;
+    }
+    const t = performance.now();
+    if (t - last.t < DOUBLE && Math.hypot(event.clientX - last.x, event.clientY - last.y) < TAP_SLOP * 4) {
+      const before = last.before;
+      last = { t: 0, x: 0, y: 0, before: null };
+      if (before !== selected) {
+        if (before) choose(before);
+        else clear(false);
+      }
+      zoom = 1;
+      centre = selected && at[selected] ? [...at[selected]] : null;
+      layout();
+      return;
+    }
+    last = { t, x: event.clientX, y: event.clientY, before: selected };
     const key = event.target.closest?.('.zone, .zone-area')?.dataset.key;
     if (key && key !== selected) choose(key);
     else clear(false);
   });
+  // A number brought into view when it takes the keyboard's focus.
+  svg.addEventListener('focusin', (event) => {
+    const key = event.target.closest?.('.zone')?.dataset.key;
+    if (key && at[key]) {
+      centre = [...at[key]];
+      layout();
+    }
+  });
+
+  // ---- zooming and panning, inside the stage -------------------------------------------------
+
+  const pointers = new Map(); // pointer id -> [x, y], CSS px
+  let moved = false;
+  let downAt = null;
+  let pinch = null; // { dist, zoom }
+  const units = (x, y) => {
+    const r = stage.getBoundingClientRect();
+    const vb = svg.viewBox.baseVal;
+    return [vb.x + ((x - r.left) * vb.width) / r.width, vb.y + ((y - r.top) * vb.height) / r.height];
+  };
+  /** Zoom to z with the stage point (x, y) staying under the same place of the picture. */
+  function zoomAbout(z, x, y) {
+    const [ux, uy] = units(x, y);
+    zoom = Math.min(3, Math.max(1, z));
+    const r = stage.getBoundingClientRect();
+    const sNew = (r.width / frame[2]) * zoom;
+    centre = [ux - (x - r.left - r.width / 2) / sNew, uy - (y - r.top - r.height / 2) / sNew];
+    layout();
+  }
+  stage.addEventListener('pointerdown', (event) => {
+    pointers.set(event.pointerId, [event.clientX, event.clientY]);
+    if (pointers.size === 1) {
+      moved = false;
+      downAt = [event.clientX, event.clientY];
+    } else if (pointers.size === 2) {
+      const [a, b] = [...pointers.values()];
+      pinch = { dist: Math.hypot(a[0] - b[0], a[1] - b[1]), zoom };
+    }
+  });
+  window.addEventListener('pointermove', (event) => {
+    const was = pointers.get(event.pointerId);
+    if (!was || !frame) return;
+    const now = [event.clientX, event.clientY];
+    pointers.set(event.pointerId, now);
+    if (pointers.size >= 2 && pinch) {
+      const [a, b] = [...pointers.values()];
+      moved = true;
+      zoomAbout((pinch.zoom * Math.hypot(a[0] - b[0], a[1] - b[1])) / pinch.dist, (a[0] + b[0]) / 2, (a[1] + b[1]) / 2);
+    } else if (pointers.size === 1) {
+      if (!moved && Math.hypot(now[0] - downAt[0], now[1] - downAt[1]) < TAP_SLOP) return;
+      moved = true;
+      const s = (stage.clientWidth / frame[2]) * zoom;
+      const [cx, cy] = centre ?? [frame[0] + frame[2] / 2, frame[1] + frame[3] / 2];
+      centre = [cx - (now[0] - was[0]) / s, cy - (now[1] - was[1]) / s];
+      layout();
+    }
+  });
+  const lift = (event) => {
+    pointers.delete(event.pointerId);
+    if (pointers.size < 2) pinch = null;
+  };
+  window.addEventListener('pointerup', lift);
+  window.addEventListener('pointercancel', lift);
+  stage.addEventListener(
+    'wheel',
+    (event) => {
+      if (!frame) return;
+      event.preventDefault();
+      zoomAbout(zoom * Math.exp(-event.deltaY * 0.0015), event.clientX, event.clientY);
+    },
+    { passive: false },
+  );
   svg.addEventListener('keydown', (event) => {
     const key = event.target.closest?.('.zone')?.dataset.key;
     if (!key || (event.key !== 'Enter' && event.key !== ' ')) return;
@@ -530,33 +680,44 @@ export async function mount(panel, { descriptor, data, art }) {
     if (!next || next === view) return;
     view = next;
     for (const [key, b] of Object.entries(switches)) b.setAttribute('aria-pressed', String(key === view));
+    zoom = 1;
+    centre = null;
     render();
     light();
+    if (selected && at[selected]) {
+      centre = [...at[selected]];
+      layout();
+    }
   });
 
   // ---- layout, in CSS px ----------------------------------------------------------------
 
   function layout() {
     const W = stage.clientWidth;
-    if (!W) return;
-    const [, , bw, bh] = V.box;
-    const width = Math.min(MAX_WIDTH, W - 2 * GUTTER);
-    svg.setAttribute('width', width.toFixed(0));
-    svg.setAttribute('height', ((width * bh) / bw).toFixed(0));
-    // Each disc's tap target: at least T.hitPx CSS px in radius, whatever the picture's scale.
-    const next = width / bw;
-    if (next !== scale && hits) {
-      scale = next;
-      for (const c of hits.children) c.setAttribute('r', Math.max(T.disc, T.hitPx / scale).toFixed(2));
+    const H = stage.clientHeight;
+    if (!W || !H || !frame) return;
+    // 1×: the frame as wide as the stage. The window is the stage's size at the zoom, kept on the frame.
+    const s = (W / frame[2]) * zoom;
+    const vw = W / s;
+    const vh = H / s;
+    let [cx, cy] = centre ?? [frame[0] + frame[2] / 2, frame[1] + frame[3] / 2];
+    cx = vw >= frame[2] ? frame[0] + frame[2] / 2 : Math.min(Math.max(cx, frame[0] + vw / 2), frame[0] + frame[2] - vw / 2);
+    cy = vh >= frame[3] ? frame[1] + frame[3] / 2 : Math.min(Math.max(cy, frame[1] + vh / 2), frame[1] + frame[3] - vh / 2);
+    centre = [cx, cy];
+    svg.setAttribute('viewBox', `${(cx - vw / 2).toFixed(2)} ${(cy - vh / 2).toFixed(2)} ${vw.toFixed(2)} ${vh.toFixed(2)}`);
+    // Each disc's tap target: T.hitPx CSS px in radius at any zoom.
+    if (s !== scale && hits) {
+      scale = s;
+      for (const c of hits.children) c.setAttribute('r', Math.max(T.disc, T.hitPx / s).toFixed(2));
     }
   }
 
   window.addEventListener('resize', () => layout());
 
-  render();
-  light();
   const ready = (async () => {
     await document.fonts?.ready;
+    render();
+    light();
     content.classList.remove('loading');
     layout();
   })();

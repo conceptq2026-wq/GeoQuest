@@ -2,6 +2,34 @@
 
 Read it with `CLAUDE.md`, whose rules and verification budget apply.
 
+## Step 2c, second part (2026-10-02): a picture that fills the stage — local preview only
+
+- **Why.** At 320 × 640 the picture filled about a third of the stage
+  (288 × 204 px in 320 × 522).
+- **Recomposed for portrait phones:**
+  - side view: x = u + 40v, y = 300 − 235v + 2.1z;
+  - sea view: x = 84 + 280v + 150a, y = 600 − 400a + 1.6z;
+  - the block's floor is 150 (was 170), so the earth under the seabed is
+    thinner;
+  - numbers relative to the seabed may stand above it ('bed-n'), as the
+    Area's does in the side view.
+- **Fill.** The frame is cropped to the drawing, with the legend drawn
+  inside the picture under it. At 1× the frame is as wide as the stage.
+  - At 320 × 640: side 320 × 521, sea 320 × 516 in a 320 × 522 stage.
+  - At 390 × 844: side 390 × 635 (88% of the height), sea 390 × 629 (87%).
+- **Zoom.** A pinch zooms 1×–3× and a drag pans. A double tap at one place
+  takes back the first tap's choice and goes to 1×. The wheel zooms on a
+  desktop. A switch of view resets the zoom.
+  - With the card open the stage is shorter. The picture keeps its 1× size
+    and centres on the chosen number; a number taking the keyboard's focus
+    is brought into view.
+  - The discs' tap circles stay 45 px at any zoom. Nothing animates.
+- **Layout check.** Nothing in the picture carries `data-fit`: it pans, so
+  `check.mjs`'s fixed-stage layout probe does not apply to it. Word overlaps
+  and sizes were measured by hand at 1×.
+- **At 320 px:** text ≥ 14.95 px; disc centres ≥ 57.6 px apart; arrows ≥ 7.6
+  px from the tap circles and ≥ 20.6 px from the discs; no words overlapping.
+
 ## Step 2c (2026-10-02): full colours, baseline arrows — local preview only
 
 - **Full colour** (the user's decision). Choosing a zone dims nothing. Every
