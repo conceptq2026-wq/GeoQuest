@@ -1,142 +1,230 @@
 /*
-| THE ZONES VIEW (zones.js): the cross-section of the sea's zones, its words,
-| and its card's sentences. Loaded only for a view of type `zones`.
-| Every word at least 14 px; a zone's name in the label colour its fill gets.
+| THE ZONES VIEW (zones.js): the block picture, its view switch, its legend
+| and the card's sentences. Loaded only for a view of type `zones`.
+| Every word at least 14 px on a 320 px screen: the picture's numbers and
+| ruler are 26 of its units, 14.4 px when it is 288 px wide.
 */
 
+/* The view switch: a row of its own under ⓘ's, two buttons, each 44 px tall. */
+.zones-switch {
+  display: flex;
+  flex: 0 0 auto;
+  align-self: flex-start;
+  margin: 6px 16px 0;
+  overflow: hidden;
+  border: 1px solid #c4d3d8;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.zones-view {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 0;
+  background: transparent;
+  color: #13252d;
+  font: inherit;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.zones-view + .zones-view {
+  border-left: 1px solid #c4d3d8;
+}
+
+.zones-view[aria-pressed='true'] {
+  background: #0b5d7a;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.zones-view:focus-visible {
+  outline: 3px solid #13252d;
+  outline-offset: -3px;
+}
+
+/* The stage: the picture and the legend, centred in its height, scrolling when it is short. */
 .zones .stage {
   background: var(--page);
 }
 
+.zones .stage-content {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.zones-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin: auto 0;
+  padding: 8px 16px;
+}
+
 .zones-svg {
-  position: absolute;
-  inset: 0;
   display: block;
   overflow: visible;
 }
 
 .zones-svg text {
-  font-size: 14px;
-  dominant-baseline: central;
+  font-family: 'Noto Sans Bengali', system-ui, sans-serif;
   pointer-events: none;
 }
 
-.zones-svg .zone-label {
-  font-weight: 600;
-  text-anchor: middle;
-}
-
-/* Names on the picture (the user's rule): at least 15 px, 14 under 390 px wide, semi-bold. */
-.zones-svg text.layer-label,
-.zones-svg text.measurer {
-  font-size: 15px;
-  font-weight: 600;
-}
-
-@media (max-width: 389px) {
-  .zones-svg text.layer-label,
-  .zones-svg text.measurer {
-    font-size: 14px;
-  }
-}
-
-.zones-svg .measurer {
-  visibility: hidden;
-}
-
-.zones-svg .baseline-label,
-.zones-svg .tick-label {
-  fill: var(--ink);
-  text-anchor: middle;
-}
-
-.zones-svg .baseline-label {
-  font-weight: 600;
-}
-
-.zones-svg .scale-note {
-  fill: var(--ink);
+.zones-svg .badge-number {
   font-weight: 700;
 }
 
-.zones-svg .axis-note,
-.zones-svg .legend-label {
-  fill: var(--ink);
+.zones-svg .ruler line,
+.zones-svg .ruler path {
+  stroke: #13252d;
+  stroke-width: 1.5;
 }
 
-/* A zone: a button. Its focus ring is its own outline. */
-.zones-svg .zone {
+.zones-svg .ruler .tick {
+  stroke-width: 2;
+}
+
+.zones-svg .ruler-label {
+  fill: #13252d;
+  font-weight: 600;
+}
+
+/* Only the discs and the zones' own areas take a tap; the picture under them does not. */
+.zones-svg .mz-part,
+.zones-svg .ruler,
+.zones-svg defs ~ g:not(.zone-areas):not(.zone-hits) {
+  pointer-events: none;
+}
+
+.zones-svg .zone,
+.zones-svg .zone-area {
+  fill: transparent;
   cursor: pointer;
   outline: none;
+  pointer-events: all;
 }
 
 .zones-svg .zone:focus-visible {
-  stroke: var(--focus, #0b5cad);
-  stroke-width: 3px;
+  stroke: #13252d;
+  stroke-width: 4;
 }
 
-.zones-svg .surface,
-.zones-svg .seabed-top {
-  stroke: #33415c;
-  stroke-width: 1px;
-  pointer-events: none;
+/* The zones' fills, blended into the water; a choice lights one and dims the rest. */
+.zones-svg .mz-part .top,
+.zones-svg .mz-part .front,
+.zones-svg .mz-part .sea,
+.zones-svg .mz-part .band,
+.zones-svg .mz-part .edge,
+.zones-svg .badge circle {
+  transition:
+    opacity 0.25s,
+    stroke-opacity 0.25s;
 }
 
-.zones-svg .baseline {
-  stroke-width: 2px;
-  pointer-events: none;
+.zones-svg .mz-part .top {
+  mix-blend-mode: color;
+  opacity: 0.6;
 }
 
-.zones-svg .tick {
-  stroke: var(--ink);
-  stroke-width: 1.5px;
+.zones-svg .mz-part .front {
+  mix-blend-mode: color;
+  opacity: 0.5;
 }
 
-.zones-svg .strip-edge {
-  fill: none;
-  stroke: #8a3b00;
-  stroke-width: 1.5px;
-  pointer-events: none;
+.zones-svg .mz-part .sea {
+  opacity: 0.85;
 }
 
-.zones-svg .fade-dots,
-.zones-svg .swatch-dots {
-  pointer-events: none;
+.zones-svg .mz-part .edge {
+  stroke: #f4f8f9;
+  stroke-width: 1.2;
+  stroke-opacity: 0.35;
 }
 
-.zones-svg .area-edge {
-  stroke: #5a1f44;
-  stroke-width: 1.5px;
-  stroke-dasharray: 4 3;
-  pointer-events: none;
+.zones-svg.has-lit .mz-part:not(.lit) .top {
+  opacity: 0.1;
 }
 
-.zones-svg .swatch {
-  stroke: #33415c;
-  stroke-width: 1px;
+.zones-svg.has-lit .mz-part:not(.lit) .front {
+  opacity: 0.06;
 }
 
-.zones-svg .land {
-  pointer-events: none;
-}
-
-/* One zone chosen: it is outlined, every other fill dims. The names stay whole, in dark ink, which the
-   dimmed fills (35% over the page) carry at 4.5:1 or more (the build's `dimmed` contrast). */
-.zones-svg.has-lit .zone:not(.lit),
-.zones-svg.has-lit .fade-dots:not(.lit),
-.zones-svg.has-lit .strip-edge:not(.lit) {
+.zones-svg.has-lit .mz-part:not(.lit) .band {
   opacity: 0.35;
 }
 
-.zones-svg.has-lit .zone-label:not(.lit):not(.land-label) {
-  fill: #111111;
+.zones-svg.has-lit .mz-part:not(.lit) .sea {
+  opacity: 0.25;
 }
 
-.zones-svg .lit-outline rect {
-  fill: none;
-  stroke: #111111;
-  stroke-width: 2px;
-  pointer-events: none;
+/* A number keeps its full ink; only its disc's ring dims. */
+.zones-svg.has-lit .mz-part:not(.lit) .badge circle {
+  stroke-opacity: 0.35;
+}
+
+.zones-svg .mz-part.lit .top {
+  opacity: 0.82;
+}
+
+.zones-svg .mz-part.lit .front {
+  opacity: 0.7;
+}
+
+.zones-svg .mz-part.lit .sea {
+  opacity: 1;
+}
+
+.zones-svg .mz-part.lit .edge {
+  stroke-width: 2.6;
+  stroke-opacity: 0.95;
+}
+
+.zones-svg .mz-part.lit .badge circle {
+  stroke-width: 4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zones-svg .mz-part .top,
+  .zones-svg .mz-part .front,
+  .zones-svg .mz-part .sea,
+  .zones-svg .mz-part .band,
+  .zones-svg .mz-part .edge,
+  .zones-svg .badge circle {
+    transition: none;
+  }
+}
+
+/* The legend under the picture: 15 px from 390 px wide, 14 under. */
+.zones-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 16px;
+  color: #4a5f68;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.zones-legend .legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.zones-legend svg {
+  display: inline;
+  width: 26px;
+  height: 16px;
+}
+
+@media (max-width: 389px) {
+  .zones-legend {
+    font-size: 14px;
+  }
 }
 
 /* ⓘ sits in this view's panel (docs/visual/app.js): here its lines are notes a student reads, so 14 px,

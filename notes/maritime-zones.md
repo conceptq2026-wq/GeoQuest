@@ -2,6 +2,50 @@
 
 Read it with `CLAUDE.md`, whose rules and verification budget apply.
 
+## Step 2b (2026-10-02): the 3D look and the sea view — local preview only
+
+- **The look** is the user's approved mockup,
+  `tools/.cache/unclos/maritime-zones-mockup-v4.html` (SHA-256 `90e4c8da…`,
+  an original made for the project), ported into the shell's conventions.
+  The same exception as step 2 covers it: only `zones.js`, `zones.css`,
+  this item's files and the stamp changed.
+- **The model.** `zones.json` holds one 3D model: u from the land to the open
+  sea, v along the coast, z the depth. The seabed is a profile, with a bay
+  for the internal waters.
+  - It has two affine projections, chosen by a two-button switch in a row of
+    its own under ⓘ's: «পাশ থেকে» (default) and «সমুদ্র থেকে».
+  - Switching re-renders the picture and keeps the choice and the card.
+    Choosing changes classes only.
+- **Drawn back to front:**
+  - the seabed shaded by depth and slope, with depth lines, under a water
+    surface whose opacity follows the depth;
+  - the zones' approved fills blended into the water;
+  - the land with hills, the cut face's sediment layers and water column,
+    and the end face;
+  - ships, a platform, and nodules on the Area.
+
+  Textures are SVG filters; no image. The contiguous zone is hatched and
+  the baseline dashed.
+- **Numbers.** The zones are numbered ১–৭ coast to sea in discs. The picker,
+  the card's title and each disc's name read «<number>. <name>».
+  - The legend: dashed line «ভিত্তিরেখা», hatch «সংলগ্ন অঞ্চল», nodules
+    «এরিয়া», «স্কেল অনুযায়ী নয়», and «দাগের সংখ্যা: ভিত্তিরেখা থেকে নটিক্যাল
+    মাইলে».
+  - The switch's and the legend's new words are in the seed, approved (the
+    user, step 2b).
+- **Taps.** Each zone's button is an invisible disc round its number, 45 px
+  across on any screen. The zone's own surface and faces take a tap too.
+  - The numbers stand at least 44 px apart at 320 px in both views. The
+    mockup's places moved along the coast where two were closer.
+  - Numbers keep full ink when another zone is chosen; only the disc's ring
+    dims.
+- **Sizes at 320 px.** The numbers and the ruler are 26 picture units, 14.4
+  px when the picture is 288 px wide. The legend is 14 px (15 from 390 px).
+  - The sea view with a card open is taller than the stage at 320 × 640,
+    and the stage scrolls to its legend.
+- **Not drawn now:** the land's label, the shelf's «শর্তসাপেক্ষে ২০০-এর
+  বেশি» and the separate axis note; the legend replaces them.
+
 ## Step 2 (2026-10-02): the drawing, a `zones` view — local preview only
 
 - **The shell exception the user approved (Option A).** It adds a new

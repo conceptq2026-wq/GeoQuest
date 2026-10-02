@@ -1,5 +1,5 @@
 // Builds the maritime-zones diagram into a folder: the descriptor, the data
-// and the picture's layout, from the seed alone.
+// and the picture's model, from the seed alone.
 //
 //   node tools/build-diagram-maritime-zones.mjs [out]   (out: docs/diagrams/maritime-zones)
 //
@@ -8,15 +8,20 @@
 // under docs/ until it is finished.
 //
 // From the seed, data-sources/maritime-zones/maritime-zones.seed.json, which
-// it reads and never writes. Every Bengali word shown is the seed's, approved
-// (a zone's label in the picture is its approved name without the bracket that
-// follows it). Provenance — each sentence's source, article and quote place —
-// is not shipped: ⓘ names the two sources and links them. No quoted UN text is
-// shipped. The picture is drawn by the view (docs/visual/zones.js) from the
-// layout written here: the columns' least widths at 320 px (each tap zone at
-// least 44 px), the rows, the colours and, per fill, the label colour that
-// reaches a 4.5:1 contrast (the build fails where neither does). Not to scale.
-// A second build writes the same bytes.
+// it reads and never writes. Every Bengali word shown is the seed's, approved.
+// Provenance — each sentence's source, article and quote place — is not
+// shipped: ⓘ names the two sources and links them. No quoted UN text is
+// shipped.
+//
+// The picture (step 2b, the look of the user's approved mockup,
+// tools/.cache/unclos/maritime-zones-mockup-v4.html): one 3D model — u, the
+// distance from the land toward the open sea; v, 0 to 1 along the coast; z,
+// the depth below the sea surface — seen in two projections, «পাশ থেকে» and
+// «সমুদ্র থেকে», each an affine map of (u, v, z) to the picture's units. The
+// view (docs/visual/zones.js) draws everything from this file; textures are
+// SVG filters, nothing is an image. Not to scale. The zones are numbered ১–৭
+// coast to sea; the numbers' ink and the ruler's reach 4.5:1 or the build
+// fails. A second build writes the same bytes.
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -29,45 +34,60 @@ const DEFAULT_OUT = path.join(ROOT, 'docs/diagrams/maritime-zones');
 const ID = 'maritime-zones';
 const ITEMS = ['internal-waters', 'territorial-sea', 'contiguous-zone', 'eez', 'continental-shelf', 'high-seas', 'the-area'];
 const TEXT_ONLY = ['straits', 'archipelagic-waters', 'land-locked-states'];
+const DIGITS = '০১২৩৪৫৬৭৮৯';
 
-// The colours of zones-design.md (light values), the land's and the plain seabed's added.
+// The approved fills (zones-design.md, light values), blended into the water by the view.
 const FILL = {
-  land: '#D9C9A3',
   'internal-waters': '#0072B2',
   'territorial-sea': '#E69F00',
   'contiguous-zone': '#D55E00',
   eez: '#009E73',
-  'high-seas': '#56B4E9',
   'continental-shelf': '#F0E442',
+  'high-seas': '#56B4E9',
   'the-area': '#CC79A7',
-  seabed: '#BDB6A8',
-  baseline: '#222222',
 };
-const INK = { dark: '#111111', light: '#FFFFFF' };
+// The words' inks and what they sit on: a number on its disc, the ruler on the page.
+const INK = '#13252D';
+const DISC = '#F7FAFB';
+const PAGE = '#EEF3F8';
 const CONTRAST_MIN = 4.5;
 
-// The picture, in CSS px. Columns, coast to sea, each at least `min` wide at 320 px
-// (a 288 px stage), the room past that shared by `weight`.
-const LAYOUT = {
-  gutter: 16,
-  columns: [
-    { id: 'land', min: 26, weight: 0.3 },
-    { id: 'internal-waters', min: 44, weight: 0.5 },
-    { id: 'territorial-sea', min: 48, weight: 0.6 },
-    { id: 'eez', min: 98, weight: 2.4 },
-    { id: 'high-seas', min: 72, weight: 1.4 },
-  ],
-  // The contiguous zone: a strip over the EEZ's inner part, at the water's top.
-  strip: { id: 'contiguous-zone', over: 'eez', min: 48, share: 0.3, height: 44 },
-  // The seabed under the high seas: the shelf's fade past 200, then the Area, at least `min` wide.
-  fade: { min: 28, share: 0.35 },
-  area: { min: 44 },
-  // The air row is as deep as ⓘ's tap zone hangs into the stage (docs/visual/style.css).
-  rows: { air: 26, waterMin: 92, waterMax: 170, seabed: 48, ticks: 20, note: 20, legend: 20, gap: 2 },
-  // A name's room inside its fill; its size (15 px, 14 under 390 px wide) is docs/visual/zones.css's.
-  label: { pad: 4 },
-  tap: 44,
+// ---- the model, in the picture's units (the mockup's) -----------------------------------
+
+const U = { land0: 10, coast: 70, base: 110, u12: 190, u24: 268, u200: 360, fade: 398, end: 450 };
+// Depth under the sea surface at each u: the shelf, the slope from about 312, the rise, the deep floor.
+const PROFILE = [[70, 3], [110, 10], [190, 24], [268, 37], [312, 47], [338, 85], [360, 111], [398, 126], [450, 132]];
+// The block's floor, under the deepest sea.
+const FLOOR = 170;
+// The bay: the coast pulled back 24 units between v 0.3 and 0.75 — the internal waters.
+const BAY = { from: 0.3, to: 0.75, depth: 24 };
+// Each view: its frame (x, y, width, height), the face cut along the coast (v), and x, y as
+// [·u, ·v, ·z, constant]. «সমুদ্র থেকে» looks from the open sea toward the baseline, raised:
+// a = (end − u) / (end − coast); x = 40 + 300v + 150a, y = 330 − 210a + 0.9z.
+const span = U.end - U.coast;
+const r6 = (x) => Math.round(x * 1e6) / 1e6;
+const VIEWS = {
+  side: { box: [0, 84, 520, 332], cut: 0, x: [1, 55, 0, 0], y: [0, -80, 1, 180] },
+  sea: { box: [0, 40, 520, 470], cut: 1, x: [r6(-150 / span), 300, 0, r6(40 + (150 * U.end) / span)], y: [r6(210 / span), 0, 0.9, r6(330 - (210 * U.end) / span)] },
 };
+// Where each zone's number stands: [u, v, z], z as a depth or as so much under the seabed ('bed+n').
+// Each number's disc is also its zone's tap target, at least TEXT.hitPx across the radius on a
+// 320 px screen (79.5 units): the numbers stand at least that far apart in both views — the
+// mockup's places, moved along the coast (v) where two were closer.
+const BADGES = {
+  side: { 'internal-waters': [78, 0.75, 0], 'territorial-sea': [180, 0.15, 0], 'contiguous-zone': [229, 0.75, 0], eez: [330, 0.85, 0], 'high-seas': [430, 0.15, 0], 'continental-shelf': [240, 0, 'bed+30'], 'the-area': [425, 0, 'bed+28'] },
+  sea: { 'internal-waters': [90, 0.56, 0], 'territorial-sea': [150, 0.3, 0], 'contiguous-zone': [229, 0.153, 0], eez: [330, 0.9, 0], 'high-seas': [408, 0.38, 0], 'continental-shelf': [235, 0.5, 'bed+0'], 'the-area': [450, 0.5, 'bed+22'] },
+};
+// Decoration, simple original shapes: hills [u, v, half-width, height], ships [u, v, scale], one platform on the shelf at u.
+const DECOR = {
+  side: { hills: [[34, 0.25, 15, 24], [32, 0.65, 17, 32], [44, 0.92, 10, 18]], ships: [[420, 0.74, 0.8], [292, 0.38, 0.62]] },
+  sea: { hills: [[30, 0.2, 22, 30], [34, 0.55, 26, 40], [40, 0.88, 20, 26]], ships: [[418, 0.22, 0.75], [300, 0.62, 0.55]] },
+  platform: 300,
+};
+// The numbers' discs and the ruler's words, in the picture's units: 26 units is 14.4 px when the
+// picture is 288 px wide (a 320 px screen), the least the user's rule allows. Each disc's tap
+// target is hitPx CSS px in radius — 45 px across, past rounding — on any screen.
+const TEXT = { size: 26, disc: 16.5, hitPx: 22.5 };
 
 const OUT = path.resolve(process.argv[2] ?? DEFAULT_OUT);
 const fail = (msg) => {
@@ -91,39 +111,20 @@ const luminance = (hex) => {
 };
 const contrast = (a, b) => {
   const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
-  return (hi + 0.05) / (lo + 0.05);
+  return Math.round(((hi + 0.05) / (lo + 0.05)) * 100) / 100;
 };
-// The label colour on each fill a label sits on: the better of dark and light ink, which must reach CONTRAST_MIN.
-const labelled = ['land', 'internal-waters', 'territorial-sea', 'eez', 'high-seas', 'continental-shelf'];
-// With one zone chosen the others' fills dim to DIM over the page, and their names turn dark (docs/visual/zones.css).
-const PAGE = '#EEF3F8';
-const DIM = 0.35;
-const blend = (hex, alpha, under) => `#${[1, 3, 5].map((i) => Math.round(alpha * parseInt(hex.slice(i, i + 2), 16) + (1 - alpha) * parseInt(under.slice(i, i + 2), 16)).toString(16).padStart(2, '0')).join('')}`;
-const colours = {};
-for (const [id, fill] of Object.entries(FILL)) {
-  const dark = contrast(fill, INK.dark);
-  const light = contrast(fill, INK.light);
-  const ink = dark >= light ? 'dark' : 'light';
-  const ratio = Math.max(dark, light);
-  if (labelled.includes(id) && ratio < CONTRAST_MIN) fail(`${id}: no label colour reaches ${CONTRAST_MIN}:1 on ${fill} (dark ${dark.toFixed(2)}, light ${light.toFixed(2)})`);
-  const dimmed = contrast(blend(fill, DIM, PAGE), INK.dark);
-  if (labelled.includes(id) && id !== 'land' && dimmed < CONTRAST_MIN) fail(`${id}: dark ink on the dimmed fill reaches only ${dimmed.toFixed(2)}:1`);
-  colours[id] = { fill, text: INK[ink], contrast: Math.round(ratio * 100) / 100, dimmed: Math.round(dimmed * 100) / 100 };
-}
+const inks = { number: contrast(INK, DISC), ruler: contrast(INK, PAGE) };
+for (const [k, c] of Object.entries(inks)) if (c < CONTRAST_MIN) fail(`the ${k}'s ink reaches only ${c}:1`);
 
 // ---- the zones ------------------------------------------------------------------------
 
-const label = (name) => name.replace(/\s*\([^()]*\)$/, '');
-const zones = seed.items.map((item) => {
-  const nameBn = approved(item.name, `${item.id}.name`);
-  return {
-    id: item.id,
-    row: item.row,
-    nameBn,
-    labelBn: label(nameBn),
-    sentences: item.sentences.map((s, i) => approved(s, `${item.id}.sentences[${i}]`)),
-  };
-});
+const zones = seed.items.map((item, n) => ({
+  id: item.id,
+  numberBn: DIGITS[n + 1],
+  nameBn: approved(item.name, `${item.id}.name`),
+  fill: FILL[item.id] ?? fail(`${item.id}: no fill`),
+  sentences: item.sentences.map((s, i) => approved(s, `${item.id}.sentences[${i}]`)),
+}));
 for (const z of zones) if (!z.sentences.length || z.sentences.length > 3) fail(`${z.id}: ${z.sentences.length} sentences; a card shows 1 to 3`);
 
 // ---- ⓘ: the two sources by name and link, then the notes ----------------------------------
@@ -140,6 +141,7 @@ const credits = [
 // ---- the files --------------------------------------------------------------------------
 
 const json = (v) => JSON.stringify(v, null, 2) + '\n';
+if (JSON.stringify(d.ticksNm) !== '[0,12,24,200]') fail(`the ticks are ${d.ticksNm.join(', ')}; the view draws 0, 12, 24 and 200`);
 const descriptor = {
   id: ID,
   section: seed.section,
@@ -151,11 +153,15 @@ const descriptor = {
   words: {
     picker: approved(w.picker, 'words.picker'),
     close: approved(w.close, 'words.close'),
-    scale: approved(w.scale, 'words.scale'),
-    axis: approved(d.measuredFrom.label, 'drawing.measuredFrom.label'),
-    baseline: approved(d.baseline.label, 'drawing.baseline.label'),
-    land: approved(d.places.land, 'drawing.places.land'),
-    beyond200: approved(d.shelfBeyond200.label, 'drawing.shelfBeyond200.label'),
+    viewSide: approved(w.viewSide, 'words.viewSide'),
+    viewSea: approved(w.viewSea, 'words.viewSea'),
+    legend: {
+      baseline: approved(d.baseline.label, 'drawing.baseline.label'),
+      contiguous: approved(w.legendContiguous, 'words.legendContiguous'),
+      area: approved(w.legendArea, 'words.legendArea'),
+      scale: approved(w.scale, 'words.scale'),
+      ticks: approved(w.legendTicks, 'words.legendTicks'),
+    },
   },
 };
 const data = {
@@ -164,22 +170,23 @@ const data = {
   credits,
   creditGroups: { sources: approved(w.infoSources, 'words.infoSources'), notes: approved(w.infoNotes, 'words.infoNotes') },
 };
-const ticks = d.ticksNm.map((nm, i) => ({ nm, label: approved(d.tickLabels[i], `drawing.tickLabels[${i}]`) }));
-if (JSON.stringify(d.ticksNm) !== '[0,12,24,200]') fail(`the ticks are ${d.ticksNm.join(', ')}; the view draws 0, 12, 24 and 200`);
-const zonesArt = {
-  _about: 'Built by tools/build-diagram-maritime-zones.mjs. The picture\'s layout in CSS px, not to scale: each column\'s least width at 320 px (a 288 px stage) and its share of the room past that; the colours, and per fill the label colour and its contrast ratio.',
-  ...LAYOUT,
-  ticks,
-  colours,
-  legend: [
-    { pattern: 'hatch', zone: 'contiguous-zone', text: zones.find((z) => z.id === 'contiguous-zone').labelBn },
-    { pattern: 'fade', zone: 'continental-shelf', text: descriptor.words.beyond200 },
-    { pattern: 'dots', zone: 'the-area', text: zones.find((z) => z.id === 'the-area').nameBn },
-  ],
+const model = {
+  _about: 'Built by tools/build-diagram-maritime-zones.mjs. One 3D model in the picture\'s units — u from the land to the open sea, v along the coast (0–1), z the depth — and its two projections; not to scale. The zones\' fills are the approved ones, blended into the water by docs/visual/zones.js.',
+  u: U,
+  profile: PROFILE,
+  floor: FLOOR,
+  bay: BAY,
+  views: VIEWS,
+  badges: BADGES,
+  decor: DECOR,
+  text: TEXT,
+  ink: INK,
+  disc: DISC,
+  ticks: d.ticksNm.map((nm, i) => ({ u: { 0: U.base, 12: U.u12, 24: U.u24, 200: U.u200 }[nm], label: approved(d.tickLabels[i], `drawing.tickLabels[${i}]`) })),
 };
 
 fs.mkdirSync(OUT, { recursive: true });
 fs.writeFileSync(path.join(OUT, 'descriptor.json'), json(descriptor));
 fs.writeFileSync(path.join(OUT, 'data.json'), json(data));
-fs.writeFileSync(path.join(OUT, 'zones.json'), json(zonesArt));
-console.log(`wrote ${path.relative(ROOT, OUT) || OUT}: descriptor.json, data.json, zones.json — ${zones.length} zones; label contrast ${labelled.map((id) => `${id} ${colours[id].contrast}`).join(', ')}`);
+fs.writeFileSync(path.join(OUT, 'zones.json'), json(model));
+console.log(`wrote ${path.relative(ROOT, OUT) || OUT}: descriptor.json, data.json, zones.json — ${zones.length} zones; ink contrast: numbers ${inks.number}, ruler ${inks.ruler}`);

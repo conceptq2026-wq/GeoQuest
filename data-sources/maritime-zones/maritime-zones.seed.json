@@ -100,6 +100,31 @@
   "neutral": {
    "bn": "এই ছবিতে কোনো দেশের দাবি দেখানো হয়নি",
    "approved": true
+  },
+  "viewSide": {
+   "bn": "পাশ থেকে",
+   "approved": true,
+   "note": "the view switch, the user's (step 2b, 2026-10-02)"
+  },
+  "viewSea": {
+   "bn": "সমুদ্র থেকে",
+   "approved": true,
+   "note": "the view switch, the user's (step 2b, 2026-10-02)"
+  },
+  "legendContiguous": {
+   "bn": "সংলগ্ন অঞ্চল",
+   "approved": true,
+   "note": "the legend's hatch, the user's (step 2b, 2026-10-02)"
+  },
+  "legendArea": {
+   "bn": "এরিয়া",
+   "approved": true,
+   "note": "the legend's nodules, the user's (step 2b, 2026-10-02)"
+  },
+  "legendTicks": {
+   "bn": "দাগের সংখ্যা: ভিত্তিরেখা থেকে নটিক্যাল মাইলে",
+   "approved": true,
+   "note": "the legend's line for the ruler, the user's (step 2b, 2026-10-02)"
   }
  },
  "items": [
