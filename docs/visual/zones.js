@@ -20,9 +20,11 @@
 | Area's floor. Textures — ripples, glints, terrain, grain — are SVG filters;
 | nothing is an image. The contiguous zone keeps its hatch, the baseline its
 | dashed line. Each zone carries its number, ১–৭ coast to sea, in a disc.
-| The distances are nested arrows, every one from the baseline (০): ০→১২ (২),
-| ০→২৪ (৩), ০→২০০ (৪) and the shelf's past ২০০, dashed (৫) — under the block
-| from the side, left of it from the sea.
+| The distances are coloured bars on the sea surface, each in its zone's
+| colour and every one from the baseline (০): ০→১২ (২), ০→২৪ (৩, hatched),
+| ০→২০০ (৪) and the shelf's ০→২০০ then dashed beyond (৫) — along the front
+| edge from the side, the left edge from the sea. The zones' own areas stay
+| where the Convention puts them; only the bars start at the baseline.
 |
 | The picker row at the top is the main way in; its items, the card's title
 | and each disc read «<number>. <name>». Each disc is its zone's tap target,
@@ -32,7 +34,8 @@
 | docks the card with its sentences; ×, Escape or a second tap closes it, and
 | focus returns to the zone's disc. Switching keeps the choice and the card.
 |
-| The picture fills the stage (step 2c): its frame is cropped to the drawing,
+| The picture is as wide as the stage and about half a phone's screen tall
+| (step 2d), at the stage's top: its frame is cropped to the drawing,
 | the legend inside it, and at 1× its width is the stage's; a two-finger pinch
 | zooms 1×–3× and a drag pans, a double tap goes back to 1×, the wheel zooms
 | on a desktop. With the card open the stage is shorter and the picture keeps
@@ -43,7 +46,7 @@
 | Every word shown is the descriptor's or the data's.
 */
 
-import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=3edae74988';
+import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=4eddfc961f';
 
 // Picture units of margin round the drawing, and of space under it before the legend.
 const PAD = 6;
@@ -83,7 +86,7 @@ const SWATCH = {
 export async function mount(panel, { descriptor, data, art }) {
   const words = descriptor.words ?? {};
   const M = await art;
-  await Promise.all([stylesheet('../shared/picker.css?v=3edae74988'), stylesheet('./zones.css?v=3edae74988')]);
+  await Promise.all([stylesheet('../shared/picker.css?v=4eddfc961f'), stylesheet('./zones.css?v=4eddfc961f')]);
 
   const zones = data.zones;
   const byId = new Map(zones.map((z) => [z.id, z]));
@@ -407,8 +410,7 @@ export async function mount(panel, { descriptor, data, art }) {
     S('path', { d: `M${dk[0] + 1},${dk[1]} L${dk[0] + 4.5},${dk[1] - 23} L${dk[0] + 8},${dk[1]} M${dk[0] + 2},${dk[1] - 7} L${dk[0] + 7},${dk[1] - 7} M${dk[0] + 3},${dk[1] - 14} L${dk[0] + 6},${dk[1] - 14}`, fill: 'none', stroke: '#C2CAD0', 'stroke-width': 1 }, deco);
     S('rect', { x: dk[0] - 10, y: dk[1] - 6, width: 8, height: 6, fill: '#D5DADD' }, deco);
 
-    // A number in a disc of its zone's colour: on the zone, and on its distance arrow.
-    const k = 1;
+    // A number in a disc of its zone's colour: on the zone, and at its distance bar's tip.
     const size = T.size;
     const disc = (z, p, parent, cls) => {
       grow(p[0], p[1], T.disc + 2);
@@ -417,54 +419,62 @@ export async function mount(panel, { descriptor, data, art }) {
       S('text', { class: `badge-number fit-text${cls === 'badge' ? ' layer-label' : ''}`, x: p[0], y: p[1] + size * 0.33, 'text-anchor': 'middle', 'font-size': size, fill: M.ink, lang: 'bn' }, badge).textContent = z.numberBn;
     };
 
-    // 8) The distances: nested arrows, every one from the baseline (০), along the block's v = 0 edge —
-    //    under the block from the side, left of it from the sea — with the tick labels between the block
-    //    and the arrows. The longest is nearest; each arrow's number stands just past its tip, where no
-    //    shorter arrow reaches. The shelf's runs on past ২০০, dashed: at least 200, more on conditions.
-    const A = M.arrows[view];
-    const zEdge = A.z === 'floor' ? ZB : A.z;
-    const p0 = P(U.base, 0, zEdge);
-    const p1 = P(U.end, 0, zEdge);
-    const len = Math.hypot(p1[0] - p0[0], p1[1] - p0[1]);
-    const dir = [(p1[0] - p0[0]) / len, (p1[1] - p0[1]) / len];
-    const away = [p0[0] - P(U.base, 1, zEdge)[0], p0[1] - P(U.base, 1, zEdge)[1]];
-    const nrm = -dir[1] * away[0] + dir[0] * away[1] >= 0 ? [-dir[1], dir[0]] : [dir[1], -dir[0]];
-    const along = (u, off) => {
-      const p = P(u, 0, zEdge);
-      return [p[0] + nrm[0] * off * k, p[1] + nrm[1] * off * k];
-    };
-    const arrows = S('g', { class: 'arrows', 'aria-hidden': 'true' }, svg);
-    const seg = (a, b, cls) => {
-      grow(a[0], a[1]);
-      grow(b[0], b[1]);
-      return S('line', { class: cls, x1: a[0], y1: a[1], x2: b[0], y2: b[1] }, arrows);
-    };
-    const uOf = { u12: U.u12, u24: U.u24, u200: U.u200, beyond: M.arrows.beyond };
-    const last = A.rows.at(-1);
-    // The tick labels, each with its extension line out to the arrows that start or end there.
-    for (const t of M.ticks) {
-      const reach = t.u === U.base ? last : A.rows[M.arrows.order.findIndex(([, to]) => uOf[to] === t.u)];
-      seg(along(t.u, A.labels + 9), along(t.u, reach + 4), 'extension');
-      const p = along(t.u, A.labels);
-      grow(p[0], p[1], size);
-      S('text', { class: 'tick-label fit-text', x: p[0], y: p[1], 'text-anchor': 'middle', 'dominant-baseline': 'central', 'font-size': size, lang: 'bn' }, arrows).textContent = t.label;
-    }
-    M.arrows.order.forEach(([id, to], i) => {
-      const off = A.rows[i];
-      const tip = along(uOf[to], off);
-      const from = along(U.base, off);
+    // 8) The distances, in colour (step 2d): thin strips on the sea surface along its v = 0 edge — the
+    //    front edge from the side, the left edge from the sea — each in its zone's colour and every one
+    //    starting at the baseline (০): ০→১২, ০→২৪ (hatched), ০→২০০, and the shelf's ০→২০০ then dashed
+    //    beyond. Each zone's number stands just past its bar's tip; the tick labels stand off the edge.
+    //    The zones' own areas stay where the Convention puts them; only the bars start at the baseline.
+    const B2 = M.bars[view];
+    const uOf = { u12: U.u12, u24: U.u24, u200: U.u200, beyond: M.bars.beyond };
+    // Picture units per unit of v, and per unit of u, along the v = 0 edge.
+    const vLen = Math.hypot(P(U.base, 1, 0)[0] - P(U.base, 0, 0)[0], P(U.base, 1, 0)[1] - P(U.base, 0, 0)[1]);
+    const uLen = Math.hypot(P(U.end, 0, 0)[0] - P(U.base, 0, 0)[0], P(U.end, 0, 0)[1] - P(U.base, 0, 0)[1]) / (U.end - U.base);
+    const bars = S('g', { class: 'bars', 'aria-hidden': 'true' }, svg);
+    M.bars.order.forEach(([id, to], i) => {
+      const v0 = (B2.gap + i * (B2.thick + B2.gap)) / vLen;
+      const v1 = v0 + B2.thick / vLen;
+      const p = part(id, bars);
+      const end = uOf[to];
+      const solidEnd = to === 'beyond' ? U.u200 : end;
+      const strip = quad(U.base, solidEnd, v0, v1, flat);
+      S('polygon', { class: 'bar', points: pts(strip), fill: fillOf(id) }, p);
+      if (id === 'contiguous-zone') S('polygon', { class: 'bar-hatch', points: pts(strip), fill: 'url(#mz-hatch)' }, p);
       if (to === 'beyond') {
-        seg(from, along(U.u200, off), 'arrow');
-        seg(along(U.u200, off), tip, 'arrow beyond');
-      } else seg(from, tip, 'arrow');
-      // The arrowhead at the tip.
-      const h = 7 * k;
-      const w = 3.5 * k;
-      const back = [tip[0] - dir[0] * h, tip[1] - dir[1] * h];
-      S('path', { class: 'head', d: `M${tip[0]},${tip[1]} L${back[0] + nrm[0] * w},${back[1] + nrm[1] * w} L${back[0] - nrm[0] * w},${back[1] - nrm[1] * w} Z` }, arrows);
-      const r = (T.disc + 3) * k;
-      disc(byId.get(id), [tip[0] + nrm[0] * r, tip[1] + nrm[1] * r], arrows, 'arrow-badge');
+        // Past ২০০, dashed: at least 200, more on conditions.
+        for (let u = U.u200 + 4; u < end - 2; u += 10) S('polygon', { class: 'bar', points: pts(quad(u, Math.min(u + 6, end), v0, v1, flat)), fill: fillOf(id) }, p);
+      }
+      outline(p, quad(U.base, end, v0, v1, flat));
+      // The number, just past the tip.
+      disc(byId.get(id), P(end + (T.disc + 4) / uLen, (v0 + v1) / 2, 0), p, 'bar-badge');
     });
+    // The baseline over the bars' starts, so each is seen to start there.
+    const vTop = (B2.gap + M.bars.order.length * (B2.thick + B2.gap)) / vLen;
+    const [s0b, s1b] = [P(U.base, 0, 0), P(U.base, vTop, 0)];
+    S('line', { x1: s0b[0], y1: s0b[1], x2: s1b[0], y2: s1b[1], stroke: '#0B1E26', 'stroke-opacity': 0.55, 'stroke-width': 3.2 }, bars);
+    S('line', { x1: s0b[0], y1: s0b[1], x2: s1b[0], y2: s1b[1], stroke: '#F4F8F9', 'stroke-width': 1.6, 'stroke-dasharray': '6 4' }, bars);
+    // The tick labels, off the edge, away from the surface, on a light halo.
+    const off = [P(U.base, 0, 0)[0] - P(U.base, 1, 0)[0], P(U.base, 0, 0)[1] - P(U.base, 1, 0)[1]].map((c) => c / vLen);
+    // Where two labels stand close (১২ and ২৪ along the sea view's steep edge), the later one steps out.
+    const placed = [];
+    const m = 4; // units of room between two labels
+    const meets = (a, b) => a.x < b.x + b.width + m && b.x < a.x + a.width + m && a.y < b.y + b.height + m && b.y < a.y + a.height + m;
+    for (const t of M.ticks) {
+      const q = P(t.u, 0, 0);
+      let out = B2.labels;
+      // Beside a left edge a label stands to the edge's left, its end toward it; under a front edge, centred.
+      const label = S('text', { class: 'tick-label fit-text', 'text-anchor': off[0] < -0.5 ? 'end' : 'middle', 'dominant-baseline': 'central', 'font-size': size, lang: 'bn' }, bars);
+      label.textContent = t.label;
+      for (let tries = 0; tries < 4; tries++) {
+        label.setAttribute('x', (q[0] + off[0] * out).toFixed(1));
+        label.setAttribute('y', (q[1] + off[1] * out).toFixed(1));
+        if (!placed.some((b) => meets(b, label.getBBox()))) break;
+        out += size * 0.6;
+      }
+      const bb = label.getBBox();
+      placed.push(bb);
+      grow(bb.x, bb.y);
+      grow(bb.x + bb.width, bb.y + bb.height);
+    }
 
     // 9) The numbers, coast to sea, each in a disc of its zone's colour.
     at = {};
@@ -702,7 +712,8 @@ export async function mount(panel, { descriptor, data, art }) {
     const vh = H / s;
     let [cx, cy] = centre ?? [frame[0] + frame[2] / 2, frame[1] + frame[3] / 2];
     cx = vw >= frame[2] ? frame[0] + frame[2] / 2 : Math.min(Math.max(cx, frame[0] + vw / 2), frame[0] + frame[2] - vw / 2);
-    cy = vh >= frame[3] ? frame[1] + frame[3] / 2 : Math.min(Math.max(cy, frame[1] + vh / 2), frame[1] + frame[3] - vh / 2);
+    // Shorter than the stage, the picture stands at its top; the room under it is the card's.
+    cy = vh >= frame[3] ? frame[1] + vh / 2 : Math.min(Math.max(cy, frame[1] + vh / 2), frame[1] + frame[3] - vh / 2);
     centre = [cx, cy];
     svg.setAttribute('viewBox', `${(cx - vw / 2).toFixed(2)} ${(cy - vh / 2).toFixed(2)} ${vw.toFixed(2)} ${vh.toFixed(2)}`);
     // Each disc's tap target: T.hitPx CSS px in radius at any zoom.

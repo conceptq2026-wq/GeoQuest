@@ -70,31 +70,21 @@
   font-weight: 700;
 }
 
-/* The distance arrows (step 2c): every one from the baseline, the shelf's dashed past ২০০. */
-.zones-svg .arrows line,
-.zones-svg .arrows .head {
+/* The distance bars (step 2d): each zone's colour, from the baseline; the shelf's dashed past ২০০. */
+.zones-svg .bar {
   stroke: #13252d;
-  stroke-width: 1.6;
-}
-
-.zones-svg .arrows .head {
-  fill: #13252d;
-  stroke-width: 0.8;
-}
-
-.zones-svg .arrows .beyond {
-  stroke-dasharray: 6 4;
-}
-
-.zones-svg .arrows .extension {
-  stroke: #4a5f68;
-  stroke-width: 1;
-  stroke-dasharray: 2 3;
+  stroke-width: 0.6;
+  stroke-opacity: 0.45;
 }
 
 .zones-svg .tick-label {
   fill: #13252d;
   font-weight: 600;
+  stroke: #ffffff;
+  stroke-width: 5px;
+  stroke-opacity: 0.9;
+  stroke-linejoin: round;
+  paint-order: stroke fill;
 }
 
 /* Only the discs and the zones' own areas take a tap; the picture under them does not. */
@@ -158,7 +148,7 @@
 }
 
 .zones-svg .mz-part.lit .badge circle,
-.zones-svg .mz-part.lit .arrow-badge circle {
+.zones-svg .mz-part.lit .bar-badge circle {
   stroke-width: 6;
 }
 

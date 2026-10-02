@@ -61,35 +61,37 @@ const PROFILE = [[70, 3], [110, 10], [190, 24], [268, 37], [312, 47], [338, 85],
 const FLOOR = 150;
 // The bay: the coast pulled back 24 units between v 0.3 and 0.75 — the internal waters.
 const BAY = { from: 0.3, to: 0.75, depth: 24 };
-// Each view: the face cut along the coast (v), and x, y as [·u, ·v, ·z, constant]. Recomposed for
-// portrait phones (the user's decision, step 2c): the far edge raised — a steeper oblique — and the
-// depth drawn larger, so the picture, cropped to the drawing by the view, fills a phone's stage.
-// «পাশ থেকে»: x = u + 40v, y = 300 − 235v + 2.1z (the mockup's u + 55v, 180 − 80v + z).
+// Each view: the face cut along the coast (v), and x, y as [·u, ·v, ·z, constant]. Sized for about
+// half a phone's screen (the user's decision, step 2d): the picture, cropped to the drawing by the
+// view, is as wide as the stage and about as tall as it is wide.
+// «পাশ থেকে»: x = u + 40v, y = 300 − 140v + 1.3z (the mockup's u + 55v, 180 − 80v + z).
 // «সমুদ্র থেকে», from the open sea toward the baseline: a = (end − u) / (end − coast);
-// x = 84 + 280v + 150a, y = 600 − 400a + 1.6z (the mockup's 40 + 300v + 150a, 330 − 210a + 0.9z).
+// x = 84 + 280v + 150a, y = 600 − 165a + 0.8z (the mockup's 40 + 300v + 150a, 330 − 210a + 0.9z).
 const span = U.end - U.coast;
 const r6 = (x) => Math.round(x * 1e6) / 1e6;
 const VIEWS = {
-  side: { cut: 0, x: [1, 40, 0, 0], y: [0, -235, 2.1, 300] },
-  sea: { cut: 1, x: [r6(-150 / span), 280, 0, r6(84 + (150 * U.end) / span)], y: [r6(400 / span), 0, 1.6, r6(600 - (400 * U.end) / span)] },
+  side: { cut: 0, x: [1, 40, 0, 0], y: [0, -140, 1.3, 300] },
+  sea: { cut: 1, x: [r6(-150 / span), 280, 0, r6(84 + (150 * U.end) / span)], y: [r6(165 / span), 0, 0.8, r6(600 - (165 * U.end) / span)] },
 };
-// The distance arrows (the user's decision, step 2c): nested, every one starting at the baseline (০),
-// along the block's v = 0 edge at depth z, offset away from the block by so many units: the tick
-// labels first, then the arrows, the longest nearest — ০→২০০ and beyond (dashed past ২০০, the
-// shelf's «at least 200»), ০→২০০, ০→২৪, ০→১২ — each with its zone's number in a disc just past its
-// tip, where no shorter arrow reaches. The zones' own areas stay where the Convention puts them.
-const ARROWS = {
-  side: { z: 'floor', labels: 16, rows: [36, 48, 60, 72] },
-  sea: { z: 0, labels: 18, rows: [40, 53, 66, 79] },
+// The distance bars (the user's decision, step 2d): thin strips in each zone's own colour, on the sea
+// surface along its v = 0 edge — the front edge from the side, the left edge from the sea — every one
+// starting at the baseline (০): the territorial sea's ০→১২ nearest the edge, then the contiguous zone's
+// ০→২৪ (hatched), the EEZ's ০→২০০, and the shelf's ০→২০০ then dashed beyond. Each zone's number
+// stands just past its bar's tip. Rows are `thick` units deep with `gap` between them; the tick
+// labels stand `labels` units off the edge, away from the surface. The zones' own areas stay where
+// the Convention puts them; only the bars start at the baseline.
+const BARS = {
+  side: { thick: 7, gap: 2, labels: 28 },
+  sea: { thick: 9, gap: 2, labels: 34 },
   beyond: 440,
-  order: [['continental-shelf', 'beyond'], ['eez', 'u200'], ['contiguous-zone', 'u24'], ['territorial-sea', 'u12']],
+  order: [['territorial-sea', 'u12'], ['contiguous-zone', 'u24'], ['eez', 'u200'], ['continental-shelf', 'beyond']],
 };
 // Where each zone's number stands: [u, v, z], z as a depth or relative to the seabed ('bed+n',
-// 'bed-n' above it). Each number's disc is also its zone's tap target, TEXT.hitPx CSS px in radius:
-// the numbers stand far enough apart for that, and clear of the arrows and tick labels.
+// 'bed-n' above it), clear of the bars along the v = 0 edge. Each number's disc is also its zone's
+// tap target, TEXT.hitPx CSS px in radius: the numbers stand far enough apart for that.
 const BADGES = {
-  side: { 'internal-waters': [78, 0.75, 0], 'territorial-sea': [180, 0.15, 0], 'contiguous-zone': [229, 0.75, 0], eez: [330, 0.85, 0], 'high-seas': [430, 0.15, 0], 'continental-shelf': [240, 0, 'bed+30'], 'the-area': [425, 0, 'bed-18'] },
-  sea: { 'internal-waters': [90, 0.764, 0], 'territorial-sea': [150, 0.349, 0], 'contiguous-zone': [229, 0.214, 0], eez: [330, 0.99, 0], 'high-seas': [408, 0.462, 0], 'continental-shelf': [250, 0.55, 'bed+0'], 'the-area': [450, 0.5, 'bed+8'] },
+  side: { 'internal-waters': [78, 0.75, 0], 'territorial-sea': [165, 0.6, 0], 'contiguous-zone': [229, 0.8, 0], eez: [320, 0.6, 0], 'high-seas': [420, 0.8, 0], 'continental-shelf': [240, 0, 'bed+34'], 'the-area': [425, 0, 'bed-12'] },
+  sea: { 'internal-waters': [90, 0.45, 0], 'territorial-sea': [150, 0.95, 0], 'contiguous-zone': [229, 0.4, 0], eez: [314, 0.85, 0], 'high-seas': [405, 0.35, 0], 'continental-shelf': [330, 0.65, 'bed+0'], 'the-area': [450, 0.5, 'bed+8'] },
 };
 // Decoration, simple original shapes: hills [u, v, half-width, height], ships [u, v, scale], light in
 // the side view's water [u, width, drift], one platform on the shelf at u.
@@ -193,7 +195,7 @@ const model = {
   views: VIEWS,
   badges: BADGES,
   decor: DECOR,
-  arrows: ARROWS,
+  bars: BARS,
   text: TEXT,
   ink: INK,
   disc: DISC,

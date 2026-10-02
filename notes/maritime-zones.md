@@ -2,6 +2,39 @@
 
 Read it with `CLAUDE.md`, whose rules and verification budget apply.
 
+## Step 2d (2026-10-02): a half-screen picture, baseline distance bars — local preview only
+
+- **Size** (the user's decision). The picture is as wide as the stage and
+  stands at its top, about as tall as it is wide.
+  - At 320 × 640: side 320 × 315 (60% of the stage's height), sea 320 × 309
+    (59%).
+  - At 390 × 844: side 390 × 384 (53%), sea 390 × 377 (52%).
+  - One shape cannot be 55–60% on both screens; this one sits at the range's
+    top on the first and just under it on the second.
+  - Projections: side y = 300 − 140v + 1.3z; sea y = 600 − 165a + 0.8z.
+  - Zoom, double tap and the card behave as in step 2c.
+- **Distance bars** (the user's decision) replace step 2c's arrows. They are
+  thin strips on the sea surface along its v = 0 edge (the front edge from
+  the side, the left edge from the sea), each in its zone's colour, every
+  one starting at the baseline:
+  - ০→১২ (২), ০→২৪ (৩, hatched), ০→২০০ (৪);
+  - the shelf's ০→২০০, then dashed to 440 (৫).
+- **Details.**
+  - The dashed baseline is drawn again over the bars' starts.
+  - The tick labels ০/১২/২৪/২০০ stand off the edge, on a light halo. In the
+    sea view they stand to the edge's left, and a label that would touch
+    the one before steps out.
+  - Choosing a zone outlines its bar too.
+  - The zones' own areas are unchanged: the contiguous zone over the EEZ's
+    inner part, the EEZ after the territorial sea (arts. 33, 55).
+- **At 320 px:**
+  - the bars start 0.02–0.03 px from the baseline line (0, to rounding);
+  - text ≥ 15.7 px; disc centres ≥ 50 px apart;
+  - the strips ≥ 15 px from the discs and ≥ 2.6 px from their tap circles;
+  - the bars' numbers and the tick labels ≥ 13 px from the discs and
+    ≥ 0.9 px from the tap circles;
+  - no words overlapping. No new words.
+
 ## Step 2c, second part (2026-10-02): a picture that fills the stage — local preview only
 
 - **Why.** At 320 × 640 the picture filled about a third of the stage
