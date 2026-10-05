@@ -83,3 +83,9 @@ for (const [name, want] of Object.entries(convention.files)) {
   await fetchVerified(convention.baseUrl + name.replace(/\.html$/, '.htm'), path.join(cache, convention.dir, name),
     (buf) => buf.length === want.size && sha256(buf) === want.sha256);
 }
+
+// Three.js r128, the maritime-zones 3D view's library: the npm tarball, by size and SHA-256. Its two
+// vendored files are held to their own SHA-256s by tools/verify.mjs.
+const three128 = sources.threeR128;
+await fetchVerified(three128.url, path.join(cache, three128.file),
+  (buf) => buf.length === three128.size && sha256(buf) === three128.sha256);

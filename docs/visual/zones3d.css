@@ -1,0 +1,198 @@
+/*
+| THE 3D ZONES VIEW (zones3d.js): the WebGL stage in the upper part of the
+| screen, its numbers, words and reset over it, and under it the tip and the
+| legend, or the card in their place. Loaded only for a view of type
+| `zones3d`. Every word at least 14 px; every number a 44 px button.
+*/
+
+/* The stage: about 58% of the screen's height, under the picker row and ⓘ's row; never under the card. */
+.zones3d .stage {
+  flex: 0 0 auto;
+  height: 58vh;
+  height: 58dvh;
+  min-height: 260px;
+  background: linear-gradient(#cfe0e7, #e8eef0 70%);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.zones3d .stage canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Until the first frame, nothing that hangs off it shows. */
+.zones3d .stage.loading > :not(canvas) {
+  visibility: hidden;
+}
+
+/* ⟲, back to the side view: top left, clear of ⓘ's tap zone at the top right. */
+.zones3d-reset {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid #c4d3d8;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(19, 37, 45, 0.15);
+  color: #0b5d7a;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.zones3d-reset:focus-visible {
+  outline: 3px solid #13252d;
+  outline-offset: 2px;
+}
+
+/* Each zone's number: a 44 px button round a disc ringed in its zone's colour (set inline as color). */
+.zones3d-disc {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.zones3d-disc span {
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  border: 3px solid currentColor;
+  border-radius: 50%;
+  background: rgba(247, 250, 251, 0.94);
+  box-shadow: 0 2px 5px rgba(11, 30, 38, 0.45);
+  color: #13252d;
+  font: 700 15px/1 'Noto Sans Bengali', system-ui, sans-serif;
+  pointer-events: none;
+}
+
+.zones3d-disc.on span {
+  width: 34px;
+  height: 34px;
+  border-width: 5px;
+}
+
+.zones3d-disc:focus-visible {
+  outline: none;
+}
+
+.zones3d-disc:focus-visible span {
+  outline: 3px solid #13252d;
+  outline-offset: 2px;
+}
+
+/* The words on the picture: the bars' labels above them, the shelf's and the Area's names, the baseline's. */
+.zones3d-label {
+  position: absolute;
+  z-index: 2;
+  color: #13252d;
+  font: 600 15px/1 'Noto Sans Bengali', system-ui, sans-serif;
+  white-space: nowrap;
+  text-shadow: 0 0 3px #e8eef0, 0 0 3px #e8eef0;
+  transform: translate(4px, -50%);
+  pointer-events: none;
+}
+
+.zones3d-label.up {
+  font-size: 14px;
+  transform: translate(0, -100%);
+}
+
+.zones3d-scale {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 3;
+  padding: 0 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.75);
+  color: #4a5f68;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+/* Under the stage: the tip and the legend. */
+.zones3d-below {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  padding: 10px 14px;
+  color: #4a5f68;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.zones3d-tip {
+  margin: 0 0 8px;
+  color: #13252d;
+}
+
+.zones3d-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+}
+
+.zones3d-key {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.zones3d-key svg {
+  display: inline;
+  width: 26px;
+  height: 16px;
+}
+
+/* The card takes the room under the stage and scrolls inside itself. */
+.zones3d .card {
+  flex: 1 1 auto;
+}
+
+.zones3d .card-rows {
+  display: none;
+}
+
+.zones3d-sentences {
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.zones3d-sentences li {
+  padding: 9px 0;
+  border-top: 1px solid var(--divider);
+  color: var(--ink);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* ⓘ's lines are notes a student reads: 14 px here, the Bengali ones in the page's Bengali face. */
+.zones3d .attrib-item {
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.zones3d .attrib-item [lang='bn'] {
+  font-family: 'Noto Sans Bengali', sans-serif;
+}

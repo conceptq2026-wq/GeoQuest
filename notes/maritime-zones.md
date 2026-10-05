@@ -2,6 +2,74 @@
 
 Read it with `CLAUDE.md`, whose rules and verification budget apply.
 
+## Step 3 (2026-10-05): the real-time 3D view — local preview only
+
+- **The look** is the user's approved mockup,
+  `tools/.cache/unclos/maritime-zones-mockup-3d-v7.html` (SHA-256
+  `bca6dd80…`, an original made for the project, not copied into `docs/`),
+  ported into the shell's conventions. The descriptor's view is now of type
+  `zones3d`; its file is still `zones.json`, which gains a `scene` model (the
+  mockup's units) beside step 2d's 2D model.
+- **The shell exception the user approved** (as in step 2): new
+  `docs/visual/zones3d.js` and `zones3d.css`, loaded only for a `zones3d`
+  view through one line in `VIEW_MODULES` (`docs/visual/app.js`), plus the
+  regenerated asset stamp. Nothing else in the shells changed.
+- **Three.js r128**, for this view only (the shells' `three` stays 0.185.1):
+  `build/three.min.js` and `LICENSE` from the npm package three 0.128.0,
+  unchanged, in `docs/visual/vendor/three-0.128.0/`.
+  - Source: `https://registry.npmjs.org/three/-/three-0.128.0.tgz`, fetched
+    once with the repo's User-Agent; 6,543,441 bytes, SHA-256 `df6a5d06…`
+    (`threeR128` in `tools/sources.json`; `tools/fetch-sources.mjs` checks the
+    cached copy).
+  - `three.min.js`: 603,445 bytes (148,737 gzip -9), SHA-256 `9274bbce…`;
+    `LICENSE` (MIT) SHA-256 `7dddf7c5…`.
+  - `tools/verify.mjs` holds both files to those hashes, allows nothing else in
+    `docs/visual/vendor/`, and pins the network surface: absolute URLs 4,
+    `fetch(` 2, image src 1, XHR 1, the rest 0 (its loaders; the view uses
+    none). Loaded by a relative dynamic import from `zones3d.js` only; no CDN.
+- **Fallback.** No WebGL context, Three.js failing to load or the renderer
+  failing to start: `zones3d.js` hands the panel to `zones.js` with the same
+  file — step 2d's 2D view, both projections. Its legend's Area swatch is
+  still `zones.js`'s own pink (`#C98FAE`); `zones.js` may not change.
+- **The scene** (the user's decisions):
+  - one side view; a drag turns it, a pinch or the wheel zooms × 0.35–1.5 of
+    the distance; ⟲, named «পাশ থেকে», goes back (at once with reduced
+    motion, else 600 ms); a frame is drawn only on a change, no loop;
+  - a low rolling coastal plain, field-patch colours, tree clumps, no hills;
+    the bay is the internal waters; strata on all four cut faces, the
+    terrain's underside filled; translucent water walls on the near, far and
+    open-sea faces; the surface's opacity follows the depth;
+  - the shelf and the Area as thick bands on the near and far faces, the
+    Area's on the open-sea face, nodules on its floor, the overlays over the
+    water tint; «মহীসোপান» and «এরিয়া» beside discs ৫ and ৭;
+  - the baseline a white dashed line on a dark edge, a light curtain to the
+    seabed, «ভিত্তিরেখা» at its far end;
+  - four bars under the near face, every one from the baseline, each label
+    above its bar; choosing ২–৫ washes the span from the baseline with a white
+    dashed outline and thickens its bar; every zone keeps its own area's
+    outline (the EEZ after the territorial sea, arts. 33, 55).
+- **Colours** (the user's change): the shelf bright yellow, fill `#E8C400`
+  (was `#F0E442`), bands `#F2D21B`; the Area deep purple, fill `#6A3D9A` (was
+  `#CC79A7`), bands `#7B4BAE`, nodule texture `#8A63BD`. All seven now live in
+  the seed (`drawing.colours`); the build reads them there.
+- **New strings**, approved (the user, 2026-10-05): `words.tip3d` and the four
+  `drawing.distanceLabels`. The shelf's name is its approved name without the
+  bracket (step 2's rule).
+- **Layout.** The stage is 58% of the screen's height (at least 260 px) under
+  the picker row and ⓘ's row; under it the tip and the legend (baseline,
+  contiguous zone, shelf, Area); the card takes their place, never the
+  stage's. Text ≥ 14 px; each number a 44 px button (`.zone[data-key]`).
+- **Where it differs from the mockup:**
+  - disc anchors moved (১ 66/0.5, ২ 148/0.1, ৩ 222/0.88, ৫ 215) and the bars
+    0.66 apart (was 0.46), so that at 320 px the numbers stand ≥ 44 px apart
+    and each label fits between two bars;
+  - a name that would leave the stage stands left of its number (৭ at 320 and
+    390); «ভিত্তিরেখা» stands higher, clear of ১;
+  - no «ঘোরাতে টানুন» hint (not an approved string) and no failure text (the
+    2D view replaces it);
+  - a tap on nothing or a second tap on the chosen zone closes the card, as in
+    step 2; × and Escape return focus to the zone's number.
+
 ## Step 2d (2026-10-02): a half-screen picture, baseline distance bars — local preview only
 
 - **Size** (the user's decision). The picture is as wide as the stage and

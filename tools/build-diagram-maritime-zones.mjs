@@ -22,6 +22,12 @@
 // SVG filters, nothing is an image. Not to scale. The zones are numbered ১–৭
 // coast to sea; the numbers' ink and the ruler's reach 4.5:1 or the build
 // fails. A second build writes the same bytes.
+//
+// Step 3 (2026-10-05): the view is `zones3d`, a real-time 3D block drawn with
+// Three.js r128 from SCENE below (the user's approved mockup
+// tools/.cache/unclos/maritime-zones-mockup-3d-v7.html); the 2D model stays in
+// the same file for the fallback without WebGL. The zones' colours are the
+// seed's (drawing.colours).
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -36,16 +42,6 @@ const ITEMS = ['internal-waters', 'territorial-sea', 'contiguous-zone', 'eez', '
 const TEXT_ONLY = ['straits', 'archipelagic-waters', 'land-locked-states'];
 const DIGITS = '০১২৩৪৫৬৭৮৯';
 
-// The approved fills (zones-design.md, light values), blended into the water by the view.
-const FILL = {
-  'internal-waters': '#0072B2',
-  'territorial-sea': '#E69F00',
-  'contiguous-zone': '#D55E00',
-  eez: '#009E73',
-  'continental-shelf': '#F0E442',
-  'high-seas': '#56B4E9',
-  'the-area': '#CC79A7',
-};
 // The words' inks and what they sit on: a number on its disc, the ruler on the page.
 const INK = '#13252D';
 const DISC = '#F7FAFB';
@@ -105,6 +101,32 @@ const DECOR = {
 // never under 14 at 1×. Each disc's tap target is hitPx CSS px in radius — 45 px across — at any zoom.
 const TEXT = { size: 26, disc: 16, legend: 25, hitPx: 22.5 };
 
+// ---- the 3D scene (step 3, the user's approved mockup, tools/.cache/unclos/maritime-zones-mockup-3d-v7.html) ----
+// Its own model, in its units: u from the land to the open sea, v along the coast (0–1), depth below the
+// surface. World units: x = u · scale, z = −v · length, y up; the block's floor at −floor · scale. Not to
+// scale. docs/visual/zones3d.js draws it with Three.js r128 and falls back to docs/visual/zones.js.
+const SCENE = {
+  u: { coast: 60, base: 100, u12: 180, u24: 255, u200: 350, fade: 392, end: 450 },
+  // The seabed: the shelf, the slope from about 300, the rise, the deep floor.
+  profile: [[0, 0], [60, 4], [100, 15], [180, 27], [255, 37], [300, 46], [330, 92], [350, 118], [392, 140], [450, 146]],
+  scale: 0.02,
+  length: 4.6,
+  floor: 180,
+  // The bay — the internal waters: the coast pulled back `depth` units between v from and to.
+  bay: { from: 0.28, to: 0.76, depth: 28 },
+  // Where each zone's number stands: [u, v, height above the surface], or [u, 0, null] on the near face,
+  // a little under the seabed (the shelf and the Area, beside their bands).
+  anchors: { 'internal-waters': [66, 0.5, 0.03], 'territorial-sea': [148, 0.1, 0.03], 'contiguous-zone': [222, 0.88, 0.03], eez: [305, 0.78, 0.03], 'high-seas': [418, 0.42, 0.03], 'continental-shelf': [215, 0, null], 'the-area': [410, 0, null] },
+  // The four distance bars under the near face, every one from the baseline, nearest first, `barStep`
+  // apart (world units: room for each label between two bars at 320 px); the shelf's solid to 200 and
+  // dashed to `beyond`.
+  barStep: 0.66,
+  bars: [['territorial-sea', 'u12'], ['contiguous-zone', 'u24'], ['eez', 'u200'], ['continental-shelf', 'beyond']],
+  beyond: 432,
+  // The camera: one side view (the reset), its target, and the zoom's reach (distance × 0.35 to × 1.5).
+  camera: { fov: 32, target: [4.5, -2.0, -2.2], azimuth: -0.12, elevation: 0.42, fit: [5.7, 4.6], zoom: [0.35, 1.5] },
+};
+
 const OUT = path.resolve(process.argv[2] ?? DEFAULT_OUT);
 const fail = (msg) => {
   throw new Error(`${ID}: ${msg}`);
@@ -134,13 +156,24 @@ for (const [k, c] of Object.entries(inks)) if (c < CONTRAST_MIN) fail(`the ${k}'
 
 // ---- the zones ------------------------------------------------------------------------
 
-const zones = seed.items.map((item, n) => ({
-  id: item.id,
-  numberBn: DIGITS[n + 1],
-  nameBn: approved(item.name, `${item.id}.name`),
-  fill: FILL[item.id] ?? fail(`${item.id}: no fill`),
-  sentences: item.sentences.map((s, i) => approved(s, `${item.id}.sentences[${i}]`)),
-}));
+// Each zone's colours, the seed's (drawing.colours): the fill, and the shelf's and the Area's band and texture.
+const COLOURS = seed.drawing.colours ?? fail('drawing.colours: none');
+const HEX = /^#[0-9A-F]{6}$/;
+const zones = seed.items.map((item, n) => {
+  const c = COLOURS[item.id] ?? fail(`${item.id}: no colour`);
+  for (const [k, v] of Object.entries(c)) if (!HEX.test(v)) fail(`${item.id}: colour ${k} is ${v}`);
+  return {
+    id: item.id,
+    numberBn: DIGITS[n + 1],
+    nameBn: approved(item.name, `${item.id}.name`),
+    fill: c.fill ?? fail(`${item.id}: no fill`),
+    ...(c.band ? { band: c.band } : {}),
+    ...(c.texture ? { texture: c.texture } : {}),
+    sentences: item.sentences.map((s, i) => approved(s, `${item.id}.sentences[${i}]`)),
+  };
+});
+// A name on the picture is the approved name without the bracket that follows it (step 2).
+const shortName = (id) => zones.find((z) => z.id === id).nameBn.replace(/\s*\([^)]*\)$/, '');
 for (const z of zones) if (!z.sentences.length || z.sentences.length > 3) fail(`${z.id}: ${z.sentences.length} sentences; a card shows 1 to 3`);
 
 // ---- ⓘ: the two sources by name and link, then the notes ----------------------------------
@@ -164,7 +197,8 @@ const descriptor = {
   language: 'bn',
   title: { en: w.title.en, bn: approved(w.title, 'words.title') },
   data: 'data.json',
-  views: [{ id: 'zones', type: 'zones', art: 'zones.json' }],
+  // The 3D view (step 3); without WebGL it shows the 2D zones view from the same file.
+  views: [{ id: 'zones', type: 'zones3d', art: 'zones.json' }],
   // Interface words are data: the seed's, and no others.
   words: {
     picker: approved(w.picker, 'words.picker'),
@@ -177,7 +211,11 @@ const descriptor = {
       area: approved(w.legendArea, 'words.legendArea'),
       scale: approved(w.scale, 'words.scale'),
       ticks: approved(w.legendTicks, 'words.legendTicks'),
+      shelf: shortName('continental-shelf'),
     },
+    // The 3D view's words (step 3): the tip under the picture, and each distance bar's label.
+    tip: approved(w.tip3d, 'words.tip3d'),
+    distances: Object.fromEntries(SCENE.bars.map(([id]) => [id, approved(d.distanceLabels?.[id], `drawing.distanceLabels.${id}`)])),
   },
 };
 const data = {
@@ -197,6 +235,7 @@ const model = {
   decor: DECOR,
   bars: BARS,
   text: TEXT,
+  scene: SCENE,
   ink: INK,
   disc: DISC,
   ticks: d.ticksNm.map((nm, i) => ({ u: { 0: U.base, 12: U.u12, 24: U.u24, 200: U.u200 }[nm], label: approved(d.tickLabels[i], `drawing.tickLabels[${i}]`) })),

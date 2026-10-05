@@ -397,5 +397,28 @@
         "sha256": "ab0e4819be75f9f7db9c3973a6fc0489f9c268eecce38c10571facc332b3b843"
       }
     }
+  },
+  "threeR128": {
+    "_comment": "Three.js r128, for the maritime-zones 3D view only (the user's approved exception, step 3, 2026-10-05; the shells' three stays 0.185.1): build/three.min.js and LICENSE from the npm package three 0.128.0, vendored unchanged in docs/visual/vendor/three-0.128.0/ and loaded only by docs/visual/zones3d.js, never from a CDN. The tarball was fetched once with the repo's User-Agent and pinned by that download (size, SHA-256; sha512 is the same bytes in npm's integrity form); tools/verify.mjs holds the vendored files to the SHA-256s below and pins their network surface.",
+    "package": "three 0.128.0",
+    "url": "https://registry.npmjs.org/three/-/three-0.128.0.tgz",
+    "file": "three-0.128.0.tgz",
+    "fetched": "2026-10-05",
+    "size": 6543441,
+    "sha256": "df6a5d06dcd9a361831669f1b6dd081b2a43f9933d7b16de532417cc8d7c6153",
+    "sha512": "sha512-i0ap/E+OaSfzw7bD1TtYnPo3VEplkl70WX5fZqZnfZsE3k3aSFudqrrC9ldFZfYFkn1zwDmBcdGfiIm/hnbyZA==",
+    "licence": "MIT (the package's LICENSE, vendored beside the script)",
+    "files": {
+      "package/build/three.min.js": {
+        "vendored": "docs/visual/vendor/three-0.128.0/three.min.js",
+        "size": 603445,
+        "sha256": "9274bbcec8d96168626c732b5d31c775aa8cfb7eaa0599bec0c175908a2c1ce2"
+      },
+      "package/LICENSE": {
+        "vendored": "docs/visual/vendor/three-0.128.0/LICENSE",
+        "size": 1081,
+        "sha256": "7dddf7c5b8fd10ee654db8857d75d104b5557889aa5a91fc4ca545ea7c07062f"
+      }
+    }
   }
 }

@@ -89,6 +89,9 @@ BCS / government exam prep.
 - `maplibre-gl` **6.9.0**
 - `pmtiles` **4.5.0**
 - `three` **0.185.1**
+- One exception, the user's (2026-10-05): Three.js **r128** (three 0.128.0's
+  `build/three.min.js`), in `docs/visual/vendor/three-0.128.0/`, for
+  maritime-zones' 3D view only: `notes/maritime-zones.md`.
 
 ## Structure
 
@@ -318,7 +321,9 @@ Currently pinned: each vendored library's network surface, counted over its
 JS and CSS — absolute URLs, `fetch(` sites, image `src`, XHR, workers,
 sockets, beacons and dynamic imports — in `tools/verify.mjs`: MapLibre
 6.9.0 8 / 3 / 5 / 1 / 2 / 0 / 0 / 2, pmtiles 4.5.0 1 / 2 / 1 / 0 / 0 / 0 / 0
-/ 0, three.js 0.185.1 2 / 3 / 1 / 0 / 0 / 0 / 0 / 0. The count cannot tell a
+/ 0, three.js 0.185.1 2 / 3 / 1 / 0 / 0 / 0 / 0 / 0, and the diagram
+shell's three.js r128 4 / 2 / 1 / 1 / 0 / 0 / 0 / 0, its two files by
+SHA-256 (`threeR128` in `tools/sources.json`). The count cannot tell a
 live call from a mention, so any change is read before it is re-pinned.
 Then: trace count, per-record geometry hash, `bdPov` literals,
 `name_bn` hash and count, per-class boundary counts — and for the OpenStreetMap
@@ -422,8 +427,8 @@ State which kind a task is when reporting it.
   caption, after Stages 1–3 of its plan: three tabs, 55 events, dot and ring
   markers, group chips, a cards-only tab, and the one no-point exception.
 - Work in progress (`tools/wip.json`): `maritime-zones`, a diagram under
-  International (step 1, the seed only; local preview only:
-  `notes/maritime-zones.md`).
+  International (step 3, a real-time 3D view with the 2D view as its
+  fallback; local preview only: `notes/maritime-zones.md`).
 
 ## Index — notes, read only when working on that item
 

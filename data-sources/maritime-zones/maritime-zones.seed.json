@@ -125,6 +125,11 @@
    "bn": "দাগের সংখ্যা: ভিত্তিরেখা থেকে নটিক্যাল মাইলে",
    "approved": true,
    "note": "the legend's line for the ruler, the user's (step 2b, 2026-10-02)"
+  },
+  "tip3d": {
+   "bn": "একটি অঞ্চল বেছে নিন… (ছবির নম্বরে চাপুন বা ওপরের তালিকা থেকে)",
+   "approved": true,
+   "note": "the tip under the 3D picture, the user's (step 3, 2026-10-05)"
   }
  },
  "items": [
@@ -941,6 +946,52 @@
    "seabed": {
     "bn": "সমুদ্রতল",
     "approved": true
+   }
+  },
+  "distanceLabels": {
+   "_about": "The 3D view's four distance bars under the near face, every one from the baseline; each label above its bar, the user's (step 3, 2026-10-05).",
+   "territorial-sea": {
+    "bn": "২ · ০–১২ নটিক্যাল মাইল",
+    "approved": true
+   },
+   "contiguous-zone": {
+    "bn": "৩ · ০–২৪ নটিক্যাল মাইল",
+    "approved": true
+   },
+   "eez": {
+    "bn": "৪ · ০–২০০ নটিক্যাল মাইল",
+    "approved": true
+   },
+   "continental-shelf": {
+    "bn": "৫ · অন্তত ২০০ নটিক্যাল মাইল",
+    "approved": true
+   }
+  },
+  "colours": {
+   "_about": "Each zone's colour: fill is its disc's ring, the picker's swatch and the 2D fill; band, where given, the shelf's and the Area's bands on the cut faces; texture, the Area's nodule ground. zones-design.md's light values, but for two the user changed on 2026-10-05 (step 3): the continental shelf, bright yellow (fill #E8C400 for #F0E442, bands #F2D21B), and the Area, deep purple (fill #6A3D9A for #CC79A7, bands #7B4BAE, nodule texture #8A63BD).",
+   "internal-waters": {
+    "fill": "#0072B2"
+   },
+   "territorial-sea": {
+    "fill": "#E69F00"
+   },
+   "contiguous-zone": {
+    "fill": "#D55E00"
+   },
+   "eez": {
+    "fill": "#009E73"
+   },
+   "continental-shelf": {
+    "fill": "#E8C400",
+    "band": "#F2D21B"
+   },
+   "high-seas": {
+    "fill": "#56B4E9"
+   },
+   "the-area": {
+    "fill": "#6A3D9A",
+    "band": "#7B4BAE",
+    "texture": "#8A63BD"
    }
   },
   "toScale": false

@@ -672,6 +672,16 @@ const vendored = [
   ['shared/vendor/three-0.185.1/LICENSE', 'node_modules/three/LICENSE'],
 ];
 for (const [copy, original] of vendored) check(sha(path.join(SERVED, copy)) === sha(path.join(HERE, original)), `${copy} matches the pinned npm package`);
+// The diagram shell's one vendored library, Three.js r128 for the maritime-zones 3D view only (the
+// user's exception, 2026-10-05): each file the one tools/sources.json pins, and nothing else there.
+{
+  const pin = JSON.parse(fs.readFileSync(path.join(HERE, 'sources.json'), 'utf8')).threeR128;
+  const want = Object.values(pin.files).map((f) => f.vendored.slice('docs/'.length));
+  const there = fs.readdirSync(path.join(SERVED, 'visual/vendor'), { recursive: true, withFileTypes: true }).filter((e) => e.isFile()).map((e) => path.relative(SERVED, path.join(e.parentPath ?? e.path, e.name)).split(path.sep).join('/'));
+  for (const f of Object.values(pin.files)) check(sha(path.join(ROOT, f.vendored)) === f.sha256, `${f.vendored} matches ${pin.package}'s file, by the SHA-256 in tools/sources.json`);
+  const extra = there.filter((f) => !want.includes(f));
+  check(extra.length === 0, `docs/visual/vendor/ holds only ${pin.package}'s pinned files${extra.length ? ` — not: ${extra.join(', ')}` : ''}`);
+}
 
 // ---- straits map: each passage's first view must show what it sits between ----
 const { PASSAGES, SEAS } = await import(pathToFileURL(path.join(STRAITS_DIR, 'data.js')).href);
@@ -888,6 +898,14 @@ const describe = (f) => `${relToRoot(f.file)}:${f.line} ${f.class} — ${f.rule}
     'pmtiles-4.5.0': { 'absolute URLs': 1, 'fetch( sites': 2, 'image src': 1, XHR: 0, workers: 0, sockets: 0, beacons: 0, 'dynamic imports': 0 },
     'three-0.185.1': { 'absolute URLs': 2, 'fetch( sites': 3, 'image src': 1, XHR: 0, workers: 0, sockets: 0, beacons: 0, 'dynamic imports': 0 },
   };
+  // The diagram shell's Three.js r128 (maritime-zones' 3D view only), counted the same way.
+  const PINNED_VISUAL = { 'three-0.128.0': { 'absolute URLs': 4, 'fetch( sites': 2, 'image src': 1, XHR: 1, workers: 0, sockets: 0, beacons: 0, 'dynamic imports': 0 } };
+  for (const [lib, pinned] of Object.entries(PINNED_VISUAL)) {
+    const counted = librarySurface(path.join(SERVED, 'visual/vendor', lib));
+    const moved = Object.keys(SURFACE).filter((k) => counted[k] !== pinned[k]);
+    for (const k of moved) check(false, `docs/visual/vendor/${lib}: ${k} ${counted[k]}, pinned ${pinned[k]} — review the library's network code before re-pinning`);
+    if (!moved.length) check(true, `docs/visual/vendor/${lib}: network surface as pinned (${Object.entries(counted).map(([k, n]) => `${k} ${n}`).join(', ')})`);
+  }
   const vendored = fs
     .readdirSync(VENDOR_DIR, { withFileTypes: true })
     .filter((e) => e.isDirectory())
