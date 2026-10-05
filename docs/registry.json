@@ -63,6 +63,18 @@
       }
     },
     {
+      "id": "maritime-zones",
+      "kind": "diagram",
+      "section": "international",
+      "title": {
+        "en": "Law of the Sea: Maritime Zones",
+        "bn": "সমুদ্র আইন: সমুদ্রের অঞ্চল"
+      },
+      "caption": {
+        "bn": "কোন সমুদ্র-অঞ্চলে কার কী অধিকার"
+      }
+    },
+    {
       "id": "org-headquarters",
       "section": "international",
       "title": {

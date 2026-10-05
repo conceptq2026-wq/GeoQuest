@@ -104,7 +104,7 @@ shell/index.html?map=straits
 Not one folder per map. Each map's data lives in its own file so its source can
 later change from a local file to a fetch from the app's Gateway without
 touching anything else. A diagram is opened the same way by a second page,
-`visual/index.html?v=<id>` — built, with four diagrams live (see
+`visual/index.html?v=<id>` — built, with five diagrams live (see
 **Interactive diagrams**).
 
 `docs/` is the served tree. **Invariant: the committed contents of `docs/` are
@@ -421,22 +421,24 @@ State which kind a task is when reporting it.
   `world-revolutions` (`notes/world-revolutions.md`). Geography:
   `deserts`, `lakes`, `forests`, `mountains`, `waterfalls` and
   `latitude-longitude`, all under `docs/maps/`.
-- Four diagrams, in `docs/diagrams/`: `bangladesh-rivers` («নদী ১») under
+- Five diagrams, in `docs/diagrams/`: `bangladesh-rivers` («নদী ১») under
   বাংলাদেশ, drawn in code from the rivers seed (`notes/bangladesh-rivers.md`),
   maintenance-only beside the map of the same seed
-  (`notes/bangladesh-rivers-map.md`); `atmosphere-layers`, `earth-interior`
-  and `seasons` under বিবিধ. Both rivers products went live together
-  (2026-09-30), with the home page's first captions.
+  (`notes/bangladesh-rivers-map.md`); `maritime-zones` under International;
+  `atmosphere-layers`, `earth-interior` and `seasons` under বিবিধ. Both
+  rivers products went live together (2026-09-30), with the home page's first
+  captions.
 - `world-revolutions` went live on the home page on 2026-10-01, with a
   caption, after Stages 1–3 of its plan: three tabs, 55 events, dot and ring
   markers, group chips, a cards-only tab, and the one no-point exception.
-- Work in progress (`tools/wip.json`): `maritime-zones`, a diagram under
-  International (step 3d, a real-time 3D view; its fallback without WebGL,
-  the 2D view, shows the side view only — `zones.js` changed for it once,
-  by the user's exception of 2026-10-05; local preview only:
-  `notes/maritime-zones.md`), and
+- `maritime-zones` «সমুদ্র আইন: সমুদ্রের অঞ্চল» went live on the home page on
+  2026-10-05, with a caption, after step 3d: a real-time 3D view (Three.js
+  r128); its fallback without WebGL, the 2D view, shows the side view only —
+  `zones.js` changed for it once, by the user's exception of 2026-10-05
+  (`notes/maritime-zones.md`).
+- Work in progress (`tools/wip.json`):
   `bangladesh-maritime-boundary` «বাংলাদেশের সমুদ্রসীমা», a map under বাংলাদেশ
-  (step 1: the ITLOS and PCA lines, St Martin's, the 2015 baselines and the
+  (step 1b: the ITLOS and PCA lines, St Martin's, the 2015 baselines and the
   lines' junction; local preview only: `notes/bangladesh-maritime-boundary.md`).
 
 ## Index — notes, read only when working on that item

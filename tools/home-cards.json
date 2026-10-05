@@ -14,6 +14,10 @@
     "world-revolutions": {
       "kind": "map",
       "captionBn": "তিন ট্যাব: বিপ্লব, অভ্যুত্থান ও অ-রাজনৈতিক বিপ্লব"
+    },
+    "maritime-zones": {
+      "kind": "diagram",
+      "captionBn": "কোন সমুদ্র-অঞ্চলে কার কী অধিকার"
     }
   }
 }

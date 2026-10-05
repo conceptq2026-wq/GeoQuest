@@ -1,0 +1,37 @@
+{
+  "id": "maritime-zones",
+  "section": "international",
+  "language": "bn",
+  "title": {
+    "en": "Law of the Sea: Maritime Zones",
+    "bn": "সমুদ্র আইন: সমুদ্রের অঞ্চল"
+  },
+  "data": "data.json",
+  "views": [
+    {
+      "id": "zones",
+      "type": "zones3d",
+      "art": "zones.json"
+    }
+  ],
+  "words": {
+    "picker": "একটি অঞ্চল বেছে নিন…",
+    "close": "বন্ধ করুন",
+    "viewSide": "পাশ থেকে",
+    "legend": {
+      "baseline": "ভিত্তিরেখা",
+      "contiguous": "সংলগ্ন অঞ্চল",
+      "area": "এরিয়া",
+      "scale": "স্কেল অনুযায়ী নয়",
+      "ticks": "দাগের সংখ্যা: ভিত্তিরেখা থেকে নটিক্যাল মাইলে",
+      "shelf": "মহীসোপান"
+    },
+    "tip": "একটি অঞ্চল বেছে নিন… (ছবির নম্বরে চাপুন বা ওপরের তালিকা থেকে)",
+    "distances": {
+      "territorial-sea": "২ · ০–১২ নটিক্যাল মাইল",
+      "contiguous-zone": "৩ · ০–২৪ নটিক্যাল মাইল",
+      "eez": "৪ · ০–২০০ নটিক্যাল মাইল",
+      "continental-shelf": "৫ · অন্তত ২০০ নটিক্যাল মাইল"
+    }
+  }
+}

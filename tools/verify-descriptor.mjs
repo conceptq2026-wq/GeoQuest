@@ -31,6 +31,8 @@
 //   bangladesh-rivers (a diagram)  checked against data-sources/bangladesh-rivers/
 //                                  bangladesh-rivers.seed.json; its geometry, against the
 //                                  pinned sources, by tools/verify.mjs
+//   maritime-zones (a diagram)  docs/diagrams/maritime-zones/ is a fresh build of
+//                               data-sources/maritime-zones/maritime-zones.seed.json, pinned
 //   bangladesh-maritime-boundary  work in progress, built into a temporary folder from
 //                                 data-sources/bangladesh-maritime-boundary/; its seed, by tools/verify.mjs
 //
@@ -105,6 +107,8 @@ const EARTH_SEED_SHA256 = '990b45a50ad3ccf8baffefcfa82a4cb1a4d8e5e2be02665be9b32
 // The seasons diagram: the editor's seed, pinned, and the approved paintings.
 const SEASONS_SEEDS = path.join(ROOT, 'data-sources/seasons');
 const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa32509b451efb2';
+// The maritime-zones diagram: the editor's seed, pinned (live 2026-10-05).
+const MARITIME_ZONES_SEED_SHA256 = '6b0f67dbac0b0fa97037d86c7f94d3f07a73bd57a42d7b0986e8b3dc9fdab689';
 // The bangladesh-rivers diagram: the editor's seed, pinned. Its geometry is pinned in tools/bangladesh-rivers-pins.json.
 const BANGLADESH_RIVERS_SEEDS = path.join(ROOT, 'data-sources/bangladesh-rivers');
 // One pin per seed file: the common file and each system's (tools/lib/rivers-seed.mjs).
@@ -2449,6 +2453,37 @@ console.log('\n\n============ world-revolutions ============');
 
   // Pending: the seed's nulls, no more — places, times no source in the order gives.
   checkMap({ id, expectedPending: seed.events.reduce((n, e) => n + ['whenBn', 'placeBn'].filter((f) => e[f] === null).length, 0) });
+}
+
+/*
+|--------------------------------------------------------------------------
+| MARITIME-ZONES — a diagram (live 2026-10-05), built by
+| tools/build-diagram-maritime-zones.mjs from its seed alone: the seed is the
+| approved one, and docs/ holds exactly what a fresh build of it writes. The
+| seed's quotes, pins and strings are held by tools/verify.mjs.
+|--------------------------------------------------------------------------
+*/
+console.log('\n\n============ maritime-zones (diagram) ============');
+{
+  const id = 'maritime-zones';
+  CHECKED_DIAGRAMS.add(id);
+  const dir = path.join(DIAGRAMS_DIR, id);
+  const seedFile = path.join(ROOT, 'data-sources', id, `${id}.seed.json`);
+  const seed = readJson(seedFile);
+  const seedHash = crypto.createHash('sha256').update(fs.readFileSync(seedFile)).digest('hex');
+  check(seedHash === MARITIME_ZONES_SEED_SHA256, `the seed is the approved one: SHA-256 ${seedHash.slice(0, 12)}… (pinned ${MARITIME_ZONES_SEED_SHA256.slice(0, 12)}…)`);
+  const descriptor = readJson(path.join(dir, 'descriptor.json'));
+  check(descriptor.id === id && descriptor.language === 'bn' && descriptor.section === seed.section && descriptor.section === 'international', `descriptor: id ${descriptor.id}, language ${descriptor.language}, section ${descriptor.section}`);
+  check(descriptor.title?.bn === seed.words.title.bn && descriptor.title?.en === seed.words.title.en, `title is the seed's: «${descriptor.title?.bn}» / ${descriptor.title?.en}`);
+  const modules = [...(fs.readFileSync(path.join(VISUAL_DIR, 'app.js'), 'utf8').match(/const VIEW_MODULES = \{([^}]*)\}/)?.[1] ?? '').matchAll(/^\s*'?([\w-]+)'?\s*:/gm)].map((m) => m[1]);
+  check(descriptor.views.length === 1 && descriptor.views[0].type === 'zones3d' && modules.includes('zones3d') && modules.includes('zones'), `one view, of type zones3d, with its 2D fallback; docs/visual/app.js has both modules (${descriptor.views.map((v) => v.type).join(', ')})`);
+  // docs/ holds what the build writes from the seed, byte for byte, and nothing else.
+  const fresh = path.join(os.tmpdir(), 'geoquest-verify', id);
+  fs.rmSync(fresh, { recursive: true, force: true });
+  execFileSync(process.execPath, [path.join(HERE, 'build-diagram-maritime-zones.mjs'), fresh], { stdio: 'pipe' });
+  const want = fs.readdirSync(fresh).sort();
+  const differ = want.filter((name) => !fs.existsSync(path.join(dir, name)) || !fs.readFileSync(path.join(dir, name)).equals(fs.readFileSync(path.join(fresh, name))));
+  check(differ.length === 0 && fs.readdirSync(dir).sort().join() === want.join(), `docs/diagrams/${id}/ is a fresh build of the seed, byte for byte (${want.join(', ')})${differ.length ? ` — differs: ${differ.join(', ')}` : ''}`);
 }
 
 /*
