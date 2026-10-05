@@ -2290,7 +2290,7 @@ console.log('\n\n============ bangladesh-rivers-map ============');
   // Refined (2026-10-05): a head that joins its parent — the start of a connector to it, or on its drawn course — is reached.
   const connectorFeatures = readJson(path.join(dir, 'connectors.geojson')).features;
   // By id (Stage 4): the untrimmed ways, to tell a head at its way's named end from one trimmed short of it.
-  const { ways: coreWays } = riversCore({ id, product: 'map' });
+  const { ways: coreWays, lines: coreLines } = riversCore({ id, product: 'map' });
   const cutRows = (seed.mapUpstreamReached ?? []).map((r) => {
     const head = frame.lines.find((l) => entityOf(l) === r.card);
     const end = headEnd(head);
@@ -2303,6 +2303,25 @@ console.log('\n\n============ bangladesh-rivers-map ============');
   const cutCards = cutRows.filter((r) => r.cut).map((r) => r.card);
   const cutText = (k) => `${rivers[k].nameBn}: ${words.upstreamInPart}`;
   check(cutCards.every((k) => info.lines.some((l) => l.text === cutText(k))) && cutRows.filter((r) => !r.cut).every((r) => !info.lines.some((l) => l.text === cutText(r.card))), `the cut rule (within ${CUT_TOL_M} m of a selection box's edge): ${cutRows.map((r) => `${r.card} ${r.at ? `${(r.at.m / 1000).toFixed(3)} km (${r.at.river})` : 'no box'}${r.joins ? ', joins its parent at its head' : ''}${r.own?.byId ? (r.own.named ? ', by id at its named head' : ', by id, trimmed short') : ''}`).join('; ')} — cut, with the upstream ⓘ line: ${cutCards.join(', ') || 'none'}`);
+  // «পুরো পথ» frames the river and its descendants — every piece, inside and out — not its ancestors (the user's
+  // decision, 2026-10-05): each card's frameWhole is that tree's lines, whole, with the build's margin (5% of the
+  // longer span a side, at least 0.1°), outward to 0.01°.
+  const treeOfCard = (card) => {
+    const keys = new Set([card]);
+    for (let grew = true; grew; ) {
+      grew = false;
+      for (const [k, r] of Object.entries(rivers)) if (!keys.has(k) && keys.has(r.up)) (keys.add(k), (grew = true));
+    }
+    return [...keys];
+  };
+  const cardLines = (card) => G.frames.bangladesh.lines.filter((l) => (l === 'main' ? 'main' : G.lines[l]?.entity) === card);
+  const wantWhole = (card) => {
+    const b = treeOfCard(card).flatMap(cardLines).flatMap((l) => coreLines[l].coords).reduce((a, [x, y]) => [Math.min(a[0], x), Math.min(a[1], y), Math.max(a[2], x), Math.max(a[3], y)], [Infinity, Infinity, -Infinity, -Infinity]);
+    const m = Math.max(0.1, 0.05 * Math.max(b[2] - b[0], b[3] - b[1]));
+    return [Math.floor((b[0] - m) * 100) / 100, Math.floor((b[1] - m) * 100) / 100, Math.ceil((b[2] + m) * 100) / 100, Math.ceil((b[3] + m) * 100) / 100];
+  };
+  const badWhole = Object.keys(rivers).filter((k) => JSON.stringify(rivers[k].frameWhole) !== JSON.stringify(wantWhole(k)));
+  check(badWhole.length === 0, `«পুরো পথ» frames each card's river and descendants, not its ancestors (2026-10-05): ${Object.keys(rivers).length} frames re-derived${badWhole.length ? ` — not: ${badWhole.join(', ')}` : ''}`);
   const ownLines = seed.infoBn.lines.map((l) => ({ text: l.textBn, group: l.group }));
   const afterInPart = seed.infoBn.lines.findLastIndex((l) => l.card) + 1;
   const wantLines = [...seed.markers.filter((m) => m.infoBn).map((m) => ({ text: m.infoBn, group: 'notes' })), ...ownLines.slice(0, afterInPart), ...cutCards.map((k) => ({ text: cutText(k), group: 'notes' })), ...ownLines.slice(afterInPart)];

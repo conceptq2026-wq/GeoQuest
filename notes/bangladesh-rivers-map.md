@@ -66,8 +66,11 @@ M3 «পুরো পথ», M4 parity with the diagram — all done, 2026-09-30.
       Brahmaputra–Jamuna 5.09 → 6.53, Padma 5.81 → 5.79;
     - 320 px: Rupsa 6.17 → 10.95, Tista 5.73 → 7.57, Brahmaputra–Jamuna
       3.67 → 5.99, Padma 4.56 → 5.16.
-  - «পুরো পথ» frames the same set whole, with every pinned reach outside and a
-    margin (`frameWhole`: 5% of the span a side, at least 0.1°). With nothing
+  - «পুরো পথ» frames, as «বাংলাদেশে» does, the river and its descendants —
+    every piece, inside and out, with a margin (`frameWhole`: 5% of the span
+    a side, at least 0.1°) — not its ancestors, which stay drawn, lighter
+    (the user's decision, 2026-10-05). Its enabling still reads the whole
+    set, ancestors included. With nothing
     selected it rests on every main river whose system — the river and its
     descendants — has a reach outside, framed on all of those systems: the
     Jamuna, the Padma, the Meghna (by the Barak, Gumti, Khowai and Manu; R-55),
@@ -85,10 +88,20 @@ M3 «পুরো পথ», M4 parity with the diagram — all done, 2026-09-30.
   - «বাংলাদেশে» and the map keep the map's own bounds, 80.5, 19, 97, 32: the
     map-only upstream reaches are left out of them, and out of «বাংলাদেশে»'s
     pieces. world.pmtiles covers the globe (±85.05°, z0–10).
-  - A whole-course frame holds a card's ancestors, so 26 frames widened with
-    Stage 4. Every Padma branch now frames up to Gangotri, as the Teesta's
-    reaches Tibet. Chosen, at 390 / 320: Padma z4.09 / 3.75, Barak 5.94 /
-    5.6, Meghna 5.74 / 5.4, Karnaphuli 7.48 / 6.95, Teesta 4.04 / 3.7.
+  - Until 2026-10-05 a whole-course frame held the card's ancestors too, so
+    Stage 4 had widened 26 frames (Gorai to Gangotri, Teesta all of Tibet).
+  - Chosen, z at 390 / 320, before → after:
+    - Teesta 4.04 → 6.54 / 3.7 → 5.88; Gorai 4.09 → 8.12 / 3.75 → 7.37;
+      Barak 5.94 → 7.04 / 5.6 → 6.7;
+    - unchanged: Padma 4.09 / 3.75, Meghna 5.74 / 5.4, Karnaphuli 7.48 /
+      6.95, Brahmaputra–Jamuna 4.04 / 3.7.
+  - **For the user's later decision:** 17 cards keep «পুরো পথ» enabled
+    (through an ancestor's reach outside), though their own frame draws
+    nothing outside Bangladesh:
+    - karatoya, dhaleshwari, banshi, shitalakshya, oldBrahmaputra, buriganga;
+    - gorai, madhumati, arialKhan, kirtankhola, kumar, bhairab, rupsa,
+      nabaganga, chitra;
+    - kasalong, halda.
   - **Disabled rule:** «পুরো পথ» is disabled for a selection whose set has no
     reach outside Bangladesh — a card's lines running at least 1 km outside
     COD-AB's outline; the build refuses a disabled set that has any piece
@@ -338,3 +351,13 @@ first card in «পুরো পথ», taps a disabled tab, and scans the text f
 - Settled by R-56 (2026-10-05): Bhagirathi and Barak are out of «বাংলাদেশে»'s
   picker; Bhagirathi is reached; «পুরো পথ» pans wider; a frame keeps a
   district's name.
+- The Karnaphuli's «আসামের লুসাই পাহাড়» (origin row, cited) = today's Mizoram:
+  no ⓘ line yet (2026-10-05). No authoritative source was reachable with the
+  project's User-Agent:
+  - Banglapedia (en and bn) answers "Hello World :-)";
+  - india.gov.in (Know India), mizoram.gov.in and mdoner.gov.in answer 403,
+    and mizoram.nic.in fails;
+  - ten Mizoram district sites (nic.in) are reachable, but none says the
+    Lushai Hills became Mizoram (Lunglei's names the Lushai Hills District
+    of 1898, under Assam, only).
+  - Needs a source the user names.

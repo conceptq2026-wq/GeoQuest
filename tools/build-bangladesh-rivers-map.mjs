@@ -374,9 +374,13 @@ const named = (k, box) => {
   widened.push(`${k} → «${near.nameBn}»`);
   return out;
 };
+// «পুরো পথ» frames a selection as «বাংলাদেশে» does — the river and its descendants, every piece, inside and out — and
+// not its ancestors, which stay drawn, lighter, for context (the user's decision, 2026-10-05). Its enabling still
+// reads the whole set, ancestors included (outsideSet).
+const wholeInside = []; // enabled cards whose own frame holds nothing outside Bangladesh, for the user's later decision
 for (const [k, row] of Object.entries(rivers)) {
   const set = setOf(k);
-  const ids = set.flatMap(linesOf);
+  const ids = treeOf(k).flatMap(linesOf);
   const own = bdBox(treeOf(k));
   row.frameBd = own ? named(k, own) : (framedOnRest.push(k), bdRest);
   row.frameWhole = outward(margin(bbox(ids.flatMap((id) => lines[id].coords))));
@@ -384,6 +388,7 @@ for (const [k, row] of Object.entries(rivers)) {
   // «পুরো পথ» rests on every main river whose system — the river and its descendants — has a reach outside.
   row.restWhole = row.role === 'main' && treeOf(k).some((c) => outsideKm[c] >= OUTSIDE_KM);
   if (row.dashed) row.dashedKind = 'outside';
+  if (row.outsideSet && treeOf(k).every((c) => !outsideKm[c])) wholeInside.push(k);
   // A disabled «পুরো পথ» says no part outside is drawn: then nothing of it may be.
   if (!row.outsideSet && set.some((c) => outsideKm[c] > 0)) fail(`${k}: its set has ${set.filter((c) => outsideKm[c] > 0).join(', ')} outside Bangladesh, under ${OUTSIDE_KM} km — «${words.wholeDisabled}» would not hold`);
 }
@@ -795,6 +800,7 @@ say(`upstream: in part ${inPartCards.length} (${inPartCards.join(', ')}); reache
 say(`cut rule (within ${CUT_TOL_M} m of a selection box's edge): ${cutReport.join('; ')}; cut: ${cutCards.join(', ') || 'none'}`);
 say(`«বাংলাদেশে»: ${bdPieces.length} inside pieces (band ${BD_BAND_M} m, bits under ${BD_BIT_KM} km dropped: ${bits.join(', ') || 'none'}); the band keeps ${banded.size} lines' border reaches (${[...banded].join(', ')}); ${bdConnectors.length} of ${connectors.length} connectors; no inside piece: ${noInside.join(', ') || 'none'} (framed on Bangladesh: ${framedOnRest.join(', ') || 'none'}); rest frame ${bdRest.join(', ')}; the map-only upstream reaches left out: ${s4Left.join(', ')}`);
 say(`hidden in «বাংলাদেশে»: ${Object.keys(names).filter((k) => !names[k].inBd).length} names, ${Object.keys(marks).filter((k) => !marks[k].inBd).length} markers`);
+say(`«পুরো পথ» frames the river and its descendants: ${wholeInside.length} cards it is enabled for draw nothing outside Bangladesh themselves (${wholeInside.join(', ')})`);
 for (const k of ['main', 'teesta', 'rupsa']) say(`frames ${k}: in Bangladesh ${rivers[k].frameBd.join(', ')}; whole ${rivers[k].frameWhole.join(', ')}`);
 say(`diagram-only: ${diagramOnly.ids.size} ids and ${diagramOnly.texts.size} texts held back, none shipped; map-only drawn: ${Object.keys(places).length} place(s), ${info.lines.length - seed.infoBn.lines.filter((l) => !l.only).length - seed.markers.filter((m) => m.infoBn).length} ⓘ line(s)`);
 say(`pending: ${nPending}; ⓘ: ${extra.length} credits, ${info.lines.filter((l) => l.group === 'notes').length} notes, ${info.lines.filter((l) => l.group === 'conflicts').length} conflicts`);
