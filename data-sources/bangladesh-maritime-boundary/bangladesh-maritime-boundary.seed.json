@@ -804,7 +804,7 @@
       "kind": "myanmar",
       "name": {
         "bn": "মিয়ানমারের সঙ্গে সীমা (ITLOS, ২০১২)",
-        "approved": false
+        "approved": true
       },
       "line": "myanmar"
     },
@@ -813,7 +813,7 @@
       "kind": "india",
       "name": {
         "bn": "ভারতের সঙ্গে সীমা (PCA, ২০১৪)",
-        "approved": false
+        "approved": true
       },
       "line": "india"
     },
@@ -822,7 +822,7 @@
       "kind": "island",
       "name": {
         "bn": "সেন্টমার্টিন্স দ্বীপ",
-        "approved": false,
+        "approved": true,
         "cite": [
           {
             "source": "nctb",
@@ -838,7 +838,7 @@
       "kind": "baseline",
       "name": {
         "bn": "ভিত্তিরেখা (২০১৫)",
-        "approved": false
+        "approved": true
       },
       "line": "baselines"
     },
@@ -847,7 +847,7 @@
       "kind": "junction",
       "name": {
         "bn": "দুই সীমার মিলনবিন্দু",
-        "approved": false
+        "approved": true
       },
       "at": "junction"
     }
@@ -855,19 +855,19 @@
   "area": {
     "label": {
       "bn": "বাংলাদেশের সমুদ্র এলাকা",
-      "approved": false
+      "approved": true
     },
     "closedBy": "the coastline (coast, above) and the two lines, which meet at the junction",
     "noFigure": "No area figure is shown: none computed here, and the NCTB book's is a round figure (notes)."
   },
   "approxLabel": {
     "bn": "আনুমানিক",
-    "approved": false
+    "approved": true
   },
   "words": {
     "placeholder": {
       "bn": "একটি সীমা বা স্থান বেছে নিন…",
-      "approved": false
+      "approved": true
     }
   },
   "protests": [
@@ -920,7 +920,7 @@
     {
       "group": "notes",
       "bn": "এই সমুদ্র এলাকার কিছু অংশ বাংলাদেশের ভিত্তিরেখা থেকে ২০০ নটিক্যাল মাইলের বাইরে, কিন্তু প্রতিবেশী দেশের ২০০ নটিক্যাল মাইলের ভেতরে («ধূসর এলাকা»)। সেখানে বাংলাদেশের অধিকার কেবল সমুদ্রতল ও তার নিচে; ওপরের পানিতে প্রতিবেশী দেশের অধিকার বহাল।",
-      "approved": false,
+      "approved": true,
       "cite": [
         {
           "source": "itlos",
@@ -934,8 +934,8 @@
     },
     {
       "group": "notes",
-      "bn": "সেন্টমার্টিন্স দ্বীপের চারপাশে মিয়ানমারের সঙ্গে সীমার যে অংশ দ্বীপ থেকে ১২ নটিক্যাল মাইল দূর দিয়ে গেছে, রায়ে তার স্থানাঙ্ক দেওয়া নেই। ড্যাশ দেওয়া এই অংশ OpenStreetMap-এর তথ্যে দ্বীপের তটরেখা থেকে আনুমানিক আঁকা।",
-      "approved": false,
+      "bn": "সেন্টমার্টিন্স দ্বীপের চারপাশে মিয়ানমারের সঙ্গে সীমার যে অংশ দ্বীপ থেকে ১২ নটিক্যাল মাইল দূর দিয়ে গেছে, রায়ে তার স্থানাঙ্ক দেওয়া নেই। ড্যাশ দেওয়া এই অংশ OpenStreetMap-এর তটরেখা থেকে হিসাব করে আনুমানিকভাবে আঁকা।",
+      "approved": true,
       "cite": [
         {
           "source": "itlos",
@@ -946,7 +946,7 @@
     {
       "group": "notes",
       "bn": "২০১৫ সালের ভিত্তিরেখার চারটি বিন্দুর মাঝের সরল অংশই আঁকা হয়েছে; ৪ নম্বর বিন্দু (কক্সবাজার) থেকে টেকনাফ ও সেন্টমার্টিন্স দ্বীপ পর্যন্ত ভিত্তিরেখা ভাটার সময়ের জলরেখা ধরে চলে।",
-      "approved": false,
+      "approved": true,
       "cite": [
         {
           "source": "sro328",
@@ -958,7 +958,7 @@
     {
       "group": "notes",
       "bn": "ভিত্তিরেখার ২ নম্বর বিন্দু ও ৫ নম্বর বিন্দু (সেন্টমার্টিন্স দ্বীপের দক্ষিণ প্রান্ত) নিয়ে ভারত (২০১৭ ও ২০২১) ও মিয়ানমার (২০১৯ ও ২০২১) জাতিসংঘে লিখিত আপত্তি জানিয়েছে।",
-      "approved": false,
+      "approved": true,
       "cite": [
         {
           "source": "ind2017",
@@ -988,11 +988,11 @@
     },
     "notes": {
       "bn": "টীকা",
-      "approved": false
+      "approved": true
     },
     "conflicts": {
       "bn": "সূত্রগুলোর অমিল",
-      "approved": false
+      "approved": true
     }
   }
 }

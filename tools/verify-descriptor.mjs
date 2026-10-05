@@ -2468,7 +2468,7 @@ console.log('\n\n============ bangladesh-maritime-boundary (work in progress) ==
   const descriptor = readJson(path.join(dir, 'descriptor.json'));
   const items = readJson(path.join(dir, 'items.json'));
   const info = readJson(path.join(dir, 'info.json'));
-  const FILES = ['arc.geojson', 'area.geojson', 'descriptor.json', 'info.json', 'items.json', 'lines.geojson', 'vertices.geojson'];
+  const FILES = ['arc.geojson', 'area-overview.geojson', 'area.geojson', 'descriptor.json', 'info.json', 'items.json', 'lines.geojson', 'vertices.geojson'];
   check(fs.readdirSync(dir).sort().join() === FILES.join(), `the build writes its ${FILES.length} files and nothing else`);
   check(descriptor.id === id && descriptor.section === seed.section && descriptor.basemap === 'bangladesh-wide' && descriptor.title?.bn === seed.title.bn, `descriptor: ${descriptor.id}, section ${descriptor.section}, basemap ${descriptor.basemap}, title «${descriptor.title?.bn}», the seed's`);
   // The user's five items, in the seed's order, named as the seed names them; each line record has its line, each place its point.
@@ -2479,7 +2479,7 @@ console.log('\n\n============ bangladesh-maritime-boundary (work in progress) ==
   check(JSON.stringify(lines.features.map((f) => f.properties.item)) === JSON.stringify(ITEMS.filter((k) => items[k].hasLine)) && ITEMS.every((k) => items[k].hasLine !== Array.isArray(items[k].at)), 'three items are lines (joined by key), two are points');
   // No grey area, no 12/24/200 nm line, no link to the diagram in step 1 (the user's decisions, 2026-10-05).
   const sourceNames = Object.keys(descriptor.sources).sort().join();
-  check(sourceNames === 'arc,area,lines,points,vertices' && !JSON.stringify(descriptor).includes('visual/index.html'), `sources: ${sourceNames} — no grey area, no distance line, no link`);
+  check(sourceNames === 'arc,area,areaOverview,lines,points,vertices' && !JSON.stringify(descriptor).includes('visual/index.html'), `sources: ${sourceNames} — no grey area, no distance line, no link`);
   // The area's label is neutral: never the EEZ's name. The envelope is dashed and marked approximate.
   const area = readJson(path.join(dir, 'area.geojson'));
   const areaLabel = area.features.find((f) => f.geometry.type === 'Point')?.properties.label;
@@ -2491,7 +2491,10 @@ console.log('\n\n============ bangladesh-maritime-boundary (work in progress) ==
   const cited = new Set([...Object.values(seed.lines).flatMap((l) => [...(l.cite ?? []), ...l.parts.flatMap((p) => p.cite ?? [])]), ...seed.info.flatMap((l) => l.cite), ...Object.values(seed.points).flatMap((p) => [...p.cite, ...(p.crossCheck?.cite ?? [])])].map((c) => c.source));
   const credited = descriptor.attribution.extra.map((a) => Object.entries(seed.sources).find(([, s]) => a.includes(`href="${s.url}"`))?.[0]);
   check(credited.every(Boolean) && [...cited].every((s) => credited.includes(s)), `ⓘ credits every source the map draws from or cites (${credited.length})`);
-  check(['area', 'arc'].every((s) => descriptor.sources[s].attribution?.includes('openstreetmap.org/copyright')), 'the coastline-derived sources credit OpenStreetMap');
+  check(['area', 'areaOverview', 'arc'].every((s) => descriptor.sources[s].attribution?.includes('openstreetmap.org/copyright')), 'the coastline-derived sources credit OpenStreetMap');
+  // The sea area's name is the last symbol layer: placed first, it wins every collision (step 1b).
+  const symbols = descriptor.layers.filter((l) => l.type === 'symbol');
+  check(symbols.at(-1)?.id === 'area-label', `the sea area's name is the map's last symbol layer, so it is placed first (${symbols.map((l) => l.id).join(', ')})`);
   checkMap({ id, expectedPending: 0, dir });
 }
 

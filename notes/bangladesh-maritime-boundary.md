@@ -27,6 +27,20 @@ behind it is `tools/.cache/bd-maritime/investigation.md`, out of git.
    chapters 5 and 9, which the user will supply as photos. The card shows the
    name only.
 
+### Step 1b (2026-10-05)
+
+1. **All 14 strings are approved**, with one change: ⓘ 2's last sentence is
+   «ড্যাশ দেওয়া এই অংশ OpenStreetMap-এর তটরেখা থেকে হিসাব করে আনুমানিকভাবে
+   আঁকা।». Every string in the seed is now `approved: true`.
+2. **The junction check** uses the PCA appendix's unrounded point 3 (¶14
+   Prov-3), with the tolerance kept at 0.01″.
+   - From ¶509's rounded point 3 the meeting point is 0.029″ (1.06 m) off.
+   - ¶26 says why: the award lists its points rounded to 0.1″, about 3 m.
+3. **The sea fill keeps following the OSM coastline up the estuaries**, with
+   no closing lines.
+4. **The neighbours' country names stay**: they are the shell's baseline, as
+   on the other Bangladesh maps.
+
 ## Sources
 
 All of them are pinned by size and SHA-256 in the seed and in
@@ -118,10 +132,34 @@ fetches them again.
   - Its outline runs along the India line to the junction, back along the
     Myanmar line (envelope included), and closes over land, east of the Naf
     and Raimangal mouths.
-  - The OSM land is erased from it and the largest piece kept, simplified to
-    30 m.
-  - It reaches 22.80° N where the OSM coastline leaves estuaries open; 146
-    islands are cut out.
+  - The OSM land is erased from it and the largest piece kept.
+  - It reaches 22.80° N where the OSM coastline leaves estuaries open.
+  - **Two smoothed copies (step 1b).** The sea is drawn from two copies:
+    - `area-overview.geojson` below zoom 8: opened, then closed, by 1000 m,
+      simplified to 100 m, 16 islands cut out;
+    - `area.geojson` from zoom 8: by 120 m, simplified to 20 m, 56 islands.
+    - A channel or a land spit narrower than twice the radius goes; the
+      estuaries stay.
+  - **Why: the lighter band of step 1.**
+    - MapLibre tiles a GeoJSON source and simplifies each ring in each tile:
+      about 460 m at zoom 6, 115 m at zoom 8, 14 m at zoom 11.
+    - One island on the Teknaf coast (92.20–92.22° E, 21.12–21.14° N) sat 56
+      m from the shore. Tiled at the opening zoom, its ring crossed the
+      coast's, and the triangulation laid a sliver across open water.
+    - Tiled as MapLibre tiles it, step 1's fill had rings crossing in tiles at
+      every zoom from 1 to 10 (4 of 6 tiles at zoom 6).
+    - Evidence:
+      - sampled down four transects at the opening view, the band went with
+        this map's `sea-area` layer and with no other layer, basemap
+        included;
+      - the fill without its 146 holes, or without that one hole (found by
+        bisection), drew none;
+      - bangladesh-rivers-map at the same camera has none.
+    - The shared basemap, style and shell are not involved, and nothing
+      shared changed.
+  - **The guard.** The build tiles both copies as MapLibre does (geojson-vt
+    with extent 8192, tolerance 0.375 and buffer 128 of a 512 px tile) at
+    the zooms each is drawn at. It stops if any two rings cross in any tile.
   - Its label, «বাংলাদেশের সমুদ্র এলাকা», never names the EEZ. ⓘ says
     that grey areas inside it carry seabed rights only (ITLOS ¶471–476, PCA
     ¶498–508).
@@ -130,6 +168,17 @@ fetches them again.
   - St Martin's is at the centre of the OSM polygons;
   - the junction is the PCA's.
   - Both use the standard point marker.
+  - **The junction's view (step 1b)** frames the junction with the nearest
+    point of Bangladesh's own coast: the sea area's coastal edge, more than
+    3 km from either line. That is Teknaf, 92.326° E 20.759° N, 541 km away.
+    The view is therefore never open water only.
+- **Label priority (step 1b).** The sea area's name is the map's last symbol
+  layer, so MapLibre places it first, and the baseline's point numbers and
+  the other names give way to it.
+  - The opening view shows it at 390×844 (zoom 6.13) and 320×640 (zoom 5.82).
+  - Every label's text size (flat view) is unchanged: lines, the «আনুমানিক»
+    arc and the baseline numbers 14 px, the points 14 px (16 chosen), the
+    area 15 px.
   - The published turning points are small dots.
 - **Basemap `bangladesh-wide`.**
   - The Bangladesh archive's box ends at 17.0° N, and the junction is at
@@ -174,11 +223,13 @@ fetches them again.
 
 ## Strings
 
-Every Bengali string in the seed is `{ bn, approved }`. The title is the
-user's (approved). The rest await approval: the five item names, the area
-label, «আনুমানিক», the picker's placeholder, the four ⓘ lines and the ⓘ
-headings «টীকা» and «সূত্রগুলোর অমিল» («সূত্র», not «উৎস», as on
-world-revolutions). The build prints the list.
+Every Bengali string in the seed is `{ bn, approved }`, and all 16 are
+approved (step 1b).
+- The title is the user's.
+- The other 15: the five item names, the area label, «আনুমানিক», the
+  picker's placeholder, the four ⓘ lines, and the ⓘ headings «সূত্র», «টীকা»
+  and «সূত্রগুলোর অমিল» («সূত্র», not «উৎস», as on world-revolutions).
+- The build lists any string still awaiting approval.
 
 ## Files
 
@@ -191,7 +242,7 @@ world-revolutions). The build prints the list.
   - `items.json`
   - `lines.geojson`
   - `arc.geojson`
-  - `area.geojson` (207 KB)
+  - `area.geojson` (150 KB) and `area-overview.geojson` (21 KB)
   - `vertices.geojson`
   - `info.json`
 - Checks:

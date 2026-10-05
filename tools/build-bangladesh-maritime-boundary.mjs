@@ -31,6 +31,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import mapshaper from 'mapshaper';
+import geojsonvt from 'geojson-vt';
 import { GRS80, NM, dms, toDms, direct, inverse, densify, meet } from './lib/geodesic.mjs';
 
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
@@ -162,17 +163,90 @@ async function ms(cmd, files) {
   return JSON.parse(out['out.json'].toString());
 }
 const landDetail = { type: 'FeatureCollection', features: land.features.filter((f) => f.properties.set === seed.coast.set) };
-const pieces = await ms('-i combine-files s.json l.json -target s -erase source=l -explode -sort "this.area" descending -simplify dp interval=30 keep-shapes', {
+const pieces = await ms('-i combine-files s.json l.json -target s -erase source=l -explode -sort "this.area" descending', {
   's.json': { type: 'FeatureCollection', features: [{ type: 'Feature', properties: {}, geometry: { type: 'Polygon', coordinates: [seaRing] } }] },
   'l.json': landDetail,
 });
-const sea = pieces.features[0];
+const seaExact = { type: 'FeatureCollection', features: [pieces.features[0]] };
+
+/*
+| The sea is drawn from two smoothed copies, one below zoom 8 and one from it (step 1b). MapLibre
+| tiles a GeoJSON source and simplifies every ring in each tile — by about 460 m at zoom 6, 115 m at
+| zoom 8, 14 m at zoom 11 — so an island or a creek bank closer to the coast than that is simplified
+| across it, and the triangulation lays a sliver over open water: the lighter band of step 1, made by
+| one island on the Teknaf coast 56 m from the shore. Each copy is opened, then closed, by its radius —
+| no sea channel and no land spit narrower than twice that is left — then simplified; and the build
+| tiles both as MapLibre does and stops if any two rings cross in any tile they are drawn at.
+*/
+const SMOOTH = { overview: { radius: 1000, interval: 100, zooms: [0, 7] }, detail: { radius: 120, interval: 20, zooms: [8, 11] } };
+async function smoothSea({ radius: r, interval }) {
+  const opened = await ms(`-i in.json -buffer radius=-${r} -buffer radius=${r} -buffer radius=${r} -buffer radius=-${r} -explode -sort "this.area" descending`, { 'in.json': seaExact });
+  return (await ms(`-i in.json -simplify dp interval=${interval} keep-shapes`, { 'in.json': { type: 'FeatureCollection', features: [opened.features[0]] } })).features[0];
+}
+const seaOf = { overview: await smoothSea(SMOOTH.overview), detail: await smoothSea(SMOOTH.detail) };
+const sea = seaOf.detail;
+// MapLibre's GeoJSON source: geojson-vt with extent 8192, tolerance 0.375 and buffer 128 of a 512 px tile.
+const orient = (p, q, r) => Math.sign((q[0] - p[0]) * (r[1] - p[1]) - (q[1] - p[1]) * (r[0] - p[0]));
+function ringCrossings(rings) {
+  const segs = [];
+  rings.forEach((r, ri) => { for (let i = 0; i < r.length - 1; i++) segs.push([ri, i, r[i], r[i + 1]]); });
+  const grid = new Map();
+  segs.forEach((s, k) => {
+    for (let x = Math.floor(Math.min(s[2][0], s[3][0]) / 256); x <= Math.floor(Math.max(s[2][0], s[3][0]) / 256); x++)
+      for (let y = Math.floor(Math.min(s[2][1], s[3][1]) / 256); y <= Math.floor(Math.max(s[2][1], s[3][1]) / 256); y++) {
+        const key = `${x},${y}`;
+        if (!grid.has(key)) grid.set(key, []);
+        grid.get(key).push(k);
+      }
+  });
+  const seen = new Set();
+  let n = 0;
+  for (const list of grid.values())
+    for (let i = 0; i < list.length; i++)
+      for (let j = i + 1; j < list.length; j++) {
+        const [a, b] = [segs[list[i]], segs[list[j]]];
+        const key = `${list[i]}-${list[j]}`;
+        if ((a[0] === b[0] && Math.abs(a[1] - b[1]) <= 1) || seen.has(key)) continue;
+        seen.add(key);
+        if (orient(a[2], a[3], b[2]) * orient(a[2], a[3], b[3]) < 0 && orient(b[2], b[3], a[2]) * orient(b[2], b[3], a[3]) < 0) n++;
+      }
+  return n;
+}
+const tileX = (lon, z) => Math.floor(((lon + 180) / 360) * 2 ** z);
+const tileY = (lat, z) => { const r = (lat * Math.PI) / 180; return Math.floor(((1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2) * 2 ** z); };
+for (const [name, s] of Object.entries(SMOOTH)) {
+  const [z0, z1] = s.zooms;
+  const index = geojsonvt({ type: 'FeatureCollection', features: [seaOf[name]] }, { extent: 8192, tolerance: 6, buffer: 2048, maxZoom: z1, indexMaxZoom: z1, indexMaxPoints: 0 });
+  const xs = seaOf[name].geometry.coordinates[0].map((c) => c[0]);
+  const ys = seaOf[name].geometry.coordinates[0].map((c) => c[1]);
+  let tiles = 0;
+  for (let z = z0; z <= z1; z++)
+    for (let x = tileX(Math.min(...xs), z); x <= tileX(Math.max(...xs), z); x++)
+      for (let y = tileY(Math.max(...ys), z); y <= tileY(Math.min(...ys), z); y++) {
+        const tile = index.getTile(z, x, y);
+        if (!tile) continue;
+        tiles++;
+        const k = tile.features.reduce((sum, ft) => sum + (ft.type === 3 ? ringCrossings(ft.geometry) : 0), 0);
+        if (k) fail(`the sea area (${name}) crosses itself ${k} times in tile ${z}/${x}/${y} as MapLibre tiles it`);
+      }
+  const g = seaOf[name].geometry;
+  console.log(`sea area, ${name} (zoom ${z0}–${z1}): smoothed by ${s.radius} m, simplified to ${s.interval} m; ${g.coordinates.length - 1} islands cut out, ${g.coordinates.flat().length} vertices; no ring crossing in ${tiles} tiles`);
+}
 const seaNorth = Math.max(...sea.geometry.coordinates[0].map((c) => c[1]));
-console.log(`sea area: the largest of ${pieces.features.length} pieces, ${sea.geometry.coordinates.length - 1} islands cut out, reaching ${seaNorth.toFixed(3)}°N up the estuaries the OSM coastline leaves open`);
+console.log(`sea area reaches ${seaNorth.toFixed(3)}°N up the estuaries the OSM coastline leaves open`);
 // The area's name sits on open water, well inside.
 const AREA_LABEL_AT = [90.35, 19.4];
 const inRing = ([x, y], r) => { let c = false; for (let i = 0, j = r.length - 1; i < r.length; j = i++) if (r[i][1] > y !== r[j][1] > y && x < ((r[j][0] - r[i][0]) * (y - r[i][1])) / (r[j][1] - r[i][1]) + r[i][0]) c = !c; return c; };
 if (!inRing(AREA_LABEL_AT, sea.geometry.coordinates[0])) fail('the area label is not inside the sea area');
+
+// The junction's view: the junction with the nearest stretch of Bangladesh's own coast — the sea area's
+// coastal edge, more than 3 km from either boundary line — so the view is never open water only.
+const lineVerts = [...lineGeom['india-line'].coordinates, ...lineGeom['myanmar-line'].coordinates.flat(), ...arc];
+const nearLine = (p) => lineVerts.some((q) => Math.abs(q[0] - p[0]) < 0.05 && Math.abs(q[1] - p[1]) < 0.05 && inverse(p, q).distance < 3000);
+const coastNearJunction = sea.geometry.coordinates[0]
+  .reduce((best, p) => { const d = Math.hypot((p[0] - P.junction[0]) * 0.95, p[1] - P.junction[1]); return d < best.d && !nearLine(p) ? { p, d } : best; }, { p: null, d: Infinity }).p;
+if (!coastNearJunction) fail("no coast found for the junction's view");
+console.log(`junction's view: with Bangladesh's coast at ${coastNearJunction.map((v) => v.toFixed(3)).join(', ')}, ${(inverse(P.junction, coastNearJunction).distance / 1000).toFixed(0)} km away`);
 
 // ---- the frame, and the basemap's reach ---------------------------------------------------------
 const BASEMAP = 'bangladesh-wide';
@@ -196,7 +270,10 @@ for (const item of seed.items) {
   const row = { nameBn: item.name.bn, kind: item.kind, hasLine: Boolean(item.line) };
   if (item.line) row.frame = bbox(lineGeom[item.id].type === 'MultiLineString' ? [...lineGeom[item.id].coordinates.flat(), ...arc] : lineGeom[item.id].coordinates);
   if (item.at === 'stMartins') Object.assign(row, { at: stMartinsAt, frame: bbox([...arc, ...island.flatMap((f) => f.geometry.coordinates[0])]) });
-  if (item.at === 'junction') Object.assign(row, { at: P.junction.map((v) => Math.round(v * 1e6) / 1e6), frame: around(P.junction, 0.6) });
+  if (item.at === 'junction') {
+    const [a, b] = [around(P.junction, 0.35), around(coastNearJunction, 0.15)];
+    Object.assign(row, { at: P.junction.map((v) => Math.round(v * 1e6) / 1e6), frame: bbox([[a[0], a[1]], [a[2], a[3]], [b[0], b[1]], [b[2], b[3]]]) });
+  }
   records[item.id] = row;
 }
 
@@ -215,7 +292,8 @@ const files = {
   'items.json': records,
   'lines.geojson': fc(Object.entries(lineGeom).map(([item, g]) => feature({ item }, g))),
   'arc.geojson': fc([feature({ label: seed.approxLabel.bn }, { type: 'LineString', coordinates: r6(arc) })]),
-  'area.geojson': fc([feature({}, sea.geometry), feature({ label: seed.area.label.bn }, { type: 'Point', coordinates: AREA_LABEL_AT })]),
+  'area.geojson': fc([feature({}, seaOf.detail.geometry), feature({ label: seed.area.label.bn }, { type: 'Point', coordinates: AREA_LABEL_AT })]),
+  'area-overview.geojson': fc([feature({}, seaOf.overview.geometry)]),
   'vertices.geojson': fc(vertices),
   'info.json': { _about: `Built by tools/build-${ID}.mjs from the seed in data-sources/${ID}/; do not edit.`, lines: seed.info.map((l) => ({ text: l.bn, group: l.group })) },
 };
@@ -250,6 +328,7 @@ const descriptor = {
   },
   sources: {
     area: { geometry: './area.geojson', attribution: OSM_CREDIT },
+    areaOverview: { geometry: './area-overview.geojson', attribution: OSM_CREDIT },
     lines: { records: 'items', geometry: './lines.geojson', joinField: 'item', expectGeometry: { hasLine: true }, state: ['selected'], properties: ['kind', 'nameBn'] },
     arc: { geometry: './arc.geojson', attribution: OSM_CREDIT },
     vertices: { geometry: './vertices.geojson' },
@@ -269,17 +348,20 @@ const descriptor = {
     'point-label': { layout: { 'text-font': ['Noto Sans Bengali'], 'text-variable-anchor': ['right', 'left', 'top', 'bottom'], 'text-radial-offset': 1, 'text-optional': true }, paint: { 'text-color': '#0b3d91', 'text-halo-color': '#ffffff', 'text-halo-width': 2 } },
   },
   layers: [
-    { id: 'sea-area', type: 'fill', source: 'area', slot: 'belowLabels', style: 'sea-fill', filter: ['==', ['geometry-type'], 'Polygon'] },
+    { id: 'sea-area-overview', type: 'fill', source: 'areaOverview', slot: 'belowLabels', style: 'sea-fill', maxzoom: SMOOTH.detail.zooms[0] },
+    { id: 'sea-area', type: 'fill', source: 'area', slot: 'belowLabels', style: 'sea-fill', minzoom: SMOOTH.detail.zooms[0], filter: ['==', ['geometry-type'], 'Polygon'] },
     { id: 'line-casing', type: 'line', source: 'lines', slot: 'belowLabels', style: 'line-casing' },
     { id: 'line-trace', type: 'line', source: 'lines', slot: 'belowLabels', style: 'line-trace' },
     { id: 'arc-line', type: 'line', source: 'arc', slot: 'belowLabels', style: 'arc-line' },
     { id: 'vertex-dots', type: 'circle', source: 'vertices', slot: 'belowLabels', style: 'vertex-dot' },
-    { id: 'area-label', type: 'symbol', source: 'area', slot: 'aboveLabels', style: 'area-label', filter: ['==', ['geometry-type'], 'Point'], layout: { 'text-field': ['get', 'label'] } },
     { id: 'line-labels', type: 'symbol', source: 'lines', slot: 'aboveLabels', style: 'line-label', filter: ['!=', ['get', 'kind'], 'baseline'], layout: { 'text-field': ['get', 'nameBn'] } },
     { id: 'arc-label', type: 'symbol', source: 'arc', slot: 'aboveLabels', style: 'arc-label', minzoom: 8, layout: { 'text-field': ['get', 'label'] } },
     { id: 'vertex-numbers', type: 'symbol', source: 'vertices', slot: 'aboveLabels', style: 'vertex-number', minzoom: 6, filter: ['has', 'n'], layout: { 'text-field': ['get', 'n'] } },
     { id: 'point-markers', type: 'circle', source: 'points', slot: 'aboveLabels', style: 'point-marker', filter: ['!', ['get', 'selected']] },
     { id: 'point-labels', type: 'symbol', source: 'points', slot: 'aboveLabels', style: 'point-label', layout: { 'text-field': ['get', 'nameBn'], 'text-size': ['case', ['get', 'selected'], 16, 14] } },
+    // The sea area's name last: MapLibre places the topmost symbol layer first, so on a collision the
+    // baseline's numbers and the other names give way to it (step 1b).
+    { id: 'area-label', type: 'symbol', source: 'area', slot: 'aboveLabels', style: 'area-label', filter: ['==', ['geometry-type'], 'Point'], layout: { 'text-field': ['get', 'label'] } },
   ],
   controls: [
     { type: 'picker', id: 'item', from: 'items', labelField: 'nameBn', placeholder: seed.words.placeholder.bn, labelEn: 'Choose a boundary or a place', do: selectAndFrame },
