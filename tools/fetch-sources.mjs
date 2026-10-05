@@ -3,6 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { execFileSync } from 'node:child_process';
 import { UA } from './net.mjs';
 
 const here = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
@@ -82,6 +83,20 @@ fs.mkdirSync(path.join(cache, convention.dir), { recursive: true });
 for (const [name, want] of Object.entries(convention.files)) {
   await fetchVerified(convention.baseUrl + name.replace(/\.html$/, '.htm'), path.join(cache, convention.dir, name),
     (buf) => buf.length === want.size && sha256(buf) === want.sha256);
+}
+
+// The bangladesh-maritime-boundary map's sources, each by size and SHA-256, into bd-maritime/. A PDF
+// whose quotes the seed cites also pins its text, as pdftotext prints it (xpdf 4.06): made here, and
+// refused if it differs.
+const maritime = sources.bangladeshMaritime;
+fs.mkdirSync(path.join(cache, maritime.dir, 'text'), { recursive: true });
+for (const [name, want] of Object.entries(maritime.files)) {
+  const dest = path.join(cache, maritime.dir, name);
+  await fetchVerified(want.url, dest, (buf) => buf.length === want.size && sha256(buf) === want.sha256);
+  if (!want.text) continue;
+  const text = execFileSync('pdftotext', ['-enc', 'UTF-8', dest, '-']);
+  if (text.length !== want.text.size || sha256(text) !== want.text.sha256) throw new Error(`${want.text.file}: pdftotext's text of ${name} is not the pinned one — refusing it`);
+  fs.writeFileSync(path.join(cache, maritime.dir, want.text.file), text);
 }
 
 // Three.js r128, the maritime-zones 3D view's library: the npm tarball, by size and SHA-256. Its two

@@ -420,5 +420,127 @@
         "sha256": "7dddf7c5b8fd10ee654db8857d75d104b5557889aa5a91fc4ca545ea7c07062f"
       }
     }
+  },
+  "bangladeshMaritime": {
+    "_comment": "The bangladesh-maritime-boundary map's sources (work in progress, step 1, 2026-10-05), each fetched once with the repo's User-Agent into tools/.cache/bd-maritime/ and pinned by that download (size, SHA-256): the ITLOS judgment (Case No. 16), the PCA award with its hydrographer's appendix, S.R.O. No. 328 (2015) as deposited with the UN, Act No. XXIX of 2021 and the 1974 Act's sections it substitutes (bdlaws), Bangladesh's amended CLCS executive summary (2020), and India's and Myanmar's notes on the 2015 baselines. A PDF with a text layer also pins its text, as `pdftotext -enc UTF-8` (xpdf 4.06) prints it, under text/: the seed's quotes are offsets into that text. The PCA site (pca-cpa.org) answers our User-Agent with a Cloudflare challenge; the award is its own case repository's file. Terms: ITLOS's website terms bar reproduction and commercial use of its information or data and of its judgments without the Registrar's written permission; the user decided (2026-10-05) to proceed as with the UN (option ক): facts in our own words, our own drawing, no ITLOS text reproduced (notes/bangladesh-maritime-boundary.md). PCA's terms could not be read; bdlaws shows a copyright line and no terms; the UN copies fall under the UN Terms of Use already recorded for maritime-zones.",
+    "dir": "bd-maritime",
+    "files": {
+      "itlos-c16-judgment.pdf": {
+        "source": "itlos",
+        "url": "https://www.itlos.org/fileadmin/itlos/documents/cases/case_no_16/published/C16-14_mar_12_Judgment.pdf",
+        "size": 3691202,
+        "sha256": "eea4fc10a71dc516cda7aa481c528f11c97faa9167e7a030c2fc0479fadd5c29",
+        "text": {
+          "file": "text/itlos-c16-judgment.txt",
+          "size": 273586,
+          "sha256": "5a0439ea2c3645cbb2d82e99b15eb88b4cd083790ece3f1293b093bb58e6545c"
+        }
+      },
+      "pca-award.pdf": {
+        "source": "pca",
+        "url": "https://pcacases.com/web/sendAttach/383",
+        "size": 5946493,
+        "sha256": "d19f271cb051a7a913a2fd96464c04236511fd7c621c8f30193e9ac63dafa993",
+        "text": {
+          "file": "text/pca-award.txt",
+          "size": 354701,
+          "sha256": "4019885cdf4452cdd9174222c0f3505bf4172b7cbedbe4c1a784e04e3d248415"
+        }
+      },
+      "bgd-mzn118-coords.pdf": {
+        "source": "sro328",
+        "url": "https://www.un.org/depts/los/LEGISLATIONANDTREATIES/PDFFILES/DEPOSIT/bgd_mzn118.pdf",
+        "size": 6748752,
+        "sha256": "503c32957866bcb56423a13b9cbbdc9f3716311ed465271fa7688a28ffba7de2"
+      },
+      "bdlaws-1394.html": {
+        "source": "act2021",
+        "url": "http://bdlaws.minlaw.gov.bd/act-1394.html",
+        "size": 84176,
+        "sha256": "4059deaebb72669d3cc5b50fff99e1643ae2188e450f3c47d1f446d2a1c93fe5"
+      },
+      "s2C.html": {
+        "source": "act2021",
+        "url": "http://bdlaws.minlaw.gov.bd/act-467/section-50753.html",
+        "size": 47496,
+        "sha256": "ca76258780321f1cf20e6e8c8b469bf07fec7262e94130b4bf7820f7a4da4563"
+      },
+      "s3.html": {
+        "source": "act2021",
+        "url": "http://bdlaws.minlaw.gov.bd/act-467/section-11461.html",
+        "size": 50656,
+        "sha256": "db78a7eb51bbb2f1ba5227b1a2cd1fbb65f687b792fec6e7f588a3663c0bb31d"
+      },
+      "s4.html": {
+        "source": "act2021",
+        "url": "http://bdlaws.minlaw.gov.bd/act-467/section-11462.html",
+        "size": 49974,
+        "sha256": "96278859ba603d67cce7206b367159b4b540c9a2c00b32d658c3f92364ad4aac"
+      },
+      "s5.html": {
+        "source": "act2021",
+        "url": "http://bdlaws.minlaw.gov.bd/act-467/section-11463.html",
+        "size": 53142,
+        "sha256": "cea6ebe89412ea8544b536d3068ad2276cc9619885056d0665c1bf1dbdc85aa1"
+      },
+      "s7.html": {
+        "source": "act2021",
+        "url": "http://bdlaws.minlaw.gov.bd/act-467/section-11465.html",
+        "size": 49976,
+        "sha256": "5a9097790757bd8282b6e0df48035b1ee9fe94854452a9ede14a5892b412b034"
+      },
+      "clcs-bgd-amd-summary.pdf": {
+        "source": "clcs",
+        "url": "https://www.un.org/Depts/los/clcs_new/submissions_files/bgd55_11/Executive%20summary_BGD_AMD.pdf",
+        "size": 2822346,
+        "sha256": "1a671e84fd9e2fe4e2418f8bdd8a0830c3b82d48faa01c5de0820fa258222554",
+        "text": {
+          "file": "text/clcs-bgd-amd-summary.txt",
+          "size": 13802,
+          "sha256": "b8338a9403da7241644c297955c250b79e418b4ec80966435ed48c8bf1a24437"
+        }
+      },
+      "ind-2017.pdf": {
+        "source": "ind2017",
+        "url": "https://www.un.org/depts/los/LEGISLATIONANDTREATIES/PDFFILES/2017_08_03_IND_UN.pdf",
+        "size": 117123,
+        "sha256": "bd83e7e109b4f0d9a28be7fa15eea9ecf0afe244c76f6e9b862bd25e074f2275",
+        "text": {
+          "file": "text/ind-2017.txt",
+          "size": 2571,
+          "sha256": "2bd1685764f19a924350778b2edf85da237b0dcc09de151a28feea771b003e13"
+        }
+      },
+      "mmr-2019.pdf": {
+        "source": "mmr2019",
+        "url": "https://www.un.org/depts/los/LEGISLATIONANDTREATIES/PDFFILES/NV57-030945%28corrected%29.pdf",
+        "size": 127127,
+        "sha256": "35f5e0d98e76310ea191a020a89e995fe96041f3cbb66b7c7737859a89f825d8",
+        "text": {
+          "file": "text/mmr-2019.txt",
+          "size": 3411,
+          "sha256": "b6a2a09463f20f2fa929701da1518bf1fa89b969a3016113af6eb5b80168619a"
+        }
+      },
+      "clcs-ind-2021.pdf": {
+        "source": "ind2021",
+        "url": "https://www.un.org/Depts/los/clcs_new/submissions_files/bgd55_11/20210416IndNvUN002.pdf",
+        "size": 141025,
+        "sha256": "730e3a5f639f22c73b1e348310d36502289afb66fae19618b5ef73d14715e8d0"
+      },
+      "clcs-mmr-2021.pdf": {
+        "source": "mmr2021",
+        "url": "https://www.un.org/Depts/los/clcs_new/submissions_files/bgd55_11/20210126MmrNvUn002.pdf",
+        "size": 592058,
+        "sha256": "4009a613b5a1fd51932c2876cf70a0d4788875c6894f9ca06df2009a539b008e"
+      }
+    },
+    "nctbBhugol2026": {
+      "_comment": "NCTB «ভূগোল ও পরিবেশ», নবম–দশম শ্রেণি, 2026 edition, already cached for earth-interior (notes/earth-interior.md: row ১৩ of the NCTB page, its government-cloud link). Used in step 1 for the notes only (p. ১৪৯, PDF p. 154). Imprint: «প্রকাশক কর্তৃক সর্বস্বত্ব সংরক্ষিত». Not downloaded by tools/fetch-sources.mjs: the link is not recorded.",
+      "page": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
+      "file": "earth-interior/bhugol-2026.pdf",
+      "size": 68511711,
+      "sha256": "54143857fe880659c23f35469eb512d410ff8b8ee5fe75c4700cb28b33c8f79a"
+    }
   }
 }

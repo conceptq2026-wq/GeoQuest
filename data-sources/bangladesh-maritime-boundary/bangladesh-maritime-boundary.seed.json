@@ -1,0 +1,998 @@
+{
+  "_about": "The Bangladesh maritime boundary map (work in progress, step 1, 2026-10-05). Read by tools/build-bangladesh-maritime-boundary.mjs and checked by tools/verify.mjs; notes/bangladesh-maritime-boundary.md says why each choice was made. A citation names its source, the paragraph and page, the pinned file and the quote's offset and length in that file's normalised text, with the SHA-256 of the quote: the words themselves are not committed. The readable quotes are in tools/.cache/bd-maritime/quotes.json, out of git. A scanned source has no text: its citation says `scan: true` and gives the page.",
+  "id": "bangladesh-maritime-boundary",
+  "section": "bangladesh",
+  "title": {
+    "bn": "বাংলাদেশের সমুদ্রসীমা",
+    "approved": true,
+    "en": "Bangladesh Maritime Boundary"
+  },
+  "quoteLocation": "Normalised text: what `pdftotext -enc UTF-8 <file> -` (xpdf 4.06) prints for the pinned PDF, kept as text/<name>.txt beside it in tools/.cache/bd-maritime/ and pinned by its own SHA-256 here, with each run of whitespace (JavaScript \\s) collapsed to one space. Offsets are JavaScript string indices into that text.",
+  "sources": {
+    "itlos": {
+      "title": "Delimitation of the maritime boundary in the Bay of Bengal (Bangladesh/Myanmar), Case No. 16, Judgment of 14 March 2012",
+      "by": "International Tribunal for the Law of the Sea (ITLOS)",
+      "url": "https://www.itlos.org/fileadmin/itlos/documents/cases/case_no_16/published/C16-14_mar_12_Judgment.pdf",
+      "files": {
+        "itlos-c16-judgment.pdf": {
+          "bytes": 3691202,
+          "sha256": "eea4fc10a71dc516cda7aa481c528f11c97faa9167e7a030c2fc0479fadd5c29",
+          "text": {
+            "file": "itlos-c16-judgment.txt",
+            "bytes": 273586,
+            "sha256": "5a0439ea2c3645cbb2d82e99b15eb88b4cd083790ece3f1293b093bb58e6545c"
+          }
+        }
+      }
+    },
+    "pca": {
+      "title": "Bay of Bengal Maritime Boundary Arbitration (Bangladesh v. India), Award of 7 July 2014, with the Technical Report of the Tribunal's Hydrographer as its appendix",
+      "by": "Permanent Court of Arbitration (PCA)",
+      "url": "https://pcacases.com/web/sendAttach/383",
+      "files": {
+        "pca-award.pdf": {
+          "bytes": 5946493,
+          "sha256": "d19f271cb051a7a913a2fd96464c04236511fd7c621c8f30193e9ac63dafa993",
+          "text": {
+            "file": "pca-award.txt",
+            "bytes": 354701,
+            "sha256": "4019885cdf4452cdd9174222c0f3505bf4172b7cbedbe4c1a784e04e3d248415"
+          }
+        }
+      }
+    },
+    "sro328": {
+      "title": "Notification S.R.O. No. 328-Law/2015/MOFA/UNCLOS/113/2/15 of 4 November 2015 (Bangladesh Gazette Extraordinary, 10 November 2015), as deposited with the United Nations (M.Z.N.118.2016.LOS, 7 April 2016)",
+      "by": "Ministry of Foreign Affairs, Bangladesh; deposited copy published by UN DOALOS",
+      "url": "https://www.un.org/depts/los/LEGISLATIONANDTREATIES/PDFFILES/DEPOSIT/bgd_mzn118.pdf",
+      "files": {
+        "bgd-mzn118-coords.pdf": {
+          "bytes": 6748752,
+          "sha256": "503c32957866bcb56423a13b9cbbdc9f3716311ed465271fa7688a28ffba7de2",
+          "text": null
+        }
+      }
+    },
+    "act2021": {
+      "title": "Territorial Waters and Maritime Zones (Amendment) Act, 2021 (Act No. XXIX of 2021), and the Territorial Waters and Maritime Zones Act, 1974 as it amends it, sections 2C, 3, 4, 5 and 7",
+      "by": "Legislative and Parliamentary Affairs Division, Ministry of Law, Justice and Parliamentary Affairs (bdlaws.minlaw.gov.bd)",
+      "url": "http://bdlaws.minlaw.gov.bd/act-1394.html",
+      "files": {
+        "bdlaws-1394.html": {
+          "bytes": 84176,
+          "sha256": "4059deaebb72669d3cc5b50fff99e1643ae2188e450f3c47d1f446d2a1c93fe5"
+        },
+        "s2C.html": {
+          "bytes": 47496,
+          "sha256": "ca76258780321f1cf20e6e8c8b469bf07fec7262e94130b4bf7820f7a4da4563"
+        },
+        "s3.html": {
+          "bytes": 50656,
+          "sha256": "db78a7eb51bbb2f1ba5227b1a2cd1fbb65f687b792fec6e7f588a3663c0bb31d"
+        },
+        "s4.html": {
+          "bytes": 49974,
+          "sha256": "96278859ba603d67cce7206b367159b4b540c9a2c00b32d658c3f92364ad4aac"
+        },
+        "s5.html": {
+          "bytes": 53142,
+          "sha256": "cea6ebe89412ea8544b536d3068ad2276cc9619885056d0665c1bf1dbdc85aa1"
+        },
+        "s7.html": {
+          "bytes": 49976,
+          "sha256": "5a9097790757bd8282b6e0df48035b1ee9fe94854452a9ede14a5892b412b034"
+        }
+      }
+    },
+    "clcs": {
+      "title": "Amended Submission to the Commission on the Limits of the Continental Shelf, Executive Summary (22 October 2020)",
+      "by": "People's Republic of Bangladesh, Ministry of Foreign Affairs",
+      "url": "https://www.un.org/Depts/los/clcs_new/submissions_files/bgd55_11/Executive%20summary_BGD_AMD.pdf",
+      "files": {
+        "clcs-bgd-amd-summary.pdf": {
+          "bytes": 2822346,
+          "sha256": "1a671e84fd9e2fe4e2418f8bdd8a0830c3b82d48faa01c5de0820fa258222554",
+          "text": {
+            "file": "clcs-bgd-amd-summary.txt",
+            "bytes": 13802,
+            "sha256": "b8338a9403da7241644c297955c250b79e418b4ec80966435ed48c8bf1a24437"
+          }
+        }
+      }
+    },
+    "ind2017": {
+      "title": "Note PM/NY/443/1/2017 of 3 August 2017 on M.Z.N.118.2016.LOS",
+      "by": "Permanent Mission of India to the United Nations",
+      "url": "https://www.un.org/depts/los/LEGISLATIONANDTREATIES/PDFFILES/2017_08_03_IND_UN.pdf",
+      "files": {
+        "ind-2017.pdf": {
+          "bytes": 117123,
+          "sha256": "bd83e7e109b4f0d9a28be7fa15eea9ecf0afe244c76f6e9b862bd25e074f2275",
+          "text": {
+            "file": "ind-2017.txt",
+            "bytes": 2571,
+            "sha256": "2bd1685764f19a924350778b2edf85da237b0dcc09de151a28feea771b003e13"
+          }
+        }
+      }
+    },
+    "mmr2019": {
+      "title": "Note No. 57/03 09 45 of 15 February 2019 on M.Z.N.118.2016.LOS",
+      "by": "Permanent Mission of the Republic of the Union of Myanmar to the United Nations",
+      "url": "https://www.un.org/depts/los/LEGISLATIONANDTREATIES/PDFFILES/NV57-030945%28corrected%29.pdf",
+      "files": {
+        "mmr-2019.pdf": {
+          "bytes": 127127,
+          "sha256": "35f5e0d98e76310ea191a020a89e995fe96041f3cbb66b7c7737859a89f825d8",
+          "text": {
+            "file": "mmr-2019.txt",
+            "bytes": 3411,
+            "sha256": "b6a2a09463f20f2fa929701da1518bf1fa89b969a3016113af6eb5b80168619a"
+          }
+        }
+      }
+    },
+    "ind2021": {
+      "title": "Note PM/NY/443/4/2021 on Bangladesh's amended CLCS submission",
+      "by": "Permanent Mission of India to the United Nations",
+      "url": "https://www.un.org/Depts/los/clcs_new/submissions_files/bgd55_11/20210416IndNvUN002.pdf",
+      "files": {
+        "clcs-ind-2021.pdf": {
+          "bytes": 141025,
+          "sha256": "730e3a5f639f22c73b1e348310d36502289afb66fae19618b5ef73d14715e8d0",
+          "text": null
+        }
+      }
+    },
+    "mmr2021": {
+      "title": "Note No. 29/13 13 on Bangladesh's amended CLCS submission",
+      "by": "Permanent Mission of the Republic of the Union of Myanmar to the United Nations",
+      "url": "https://www.un.org/Depts/los/clcs_new/submissions_files/bgd55_11/20210126MmrNvUn002.pdf",
+      "files": {
+        "clcs-mmr-2021.pdf": {
+          "bytes": 592058,
+          "sha256": "4009a613b5a1fd51932c2876cf70a0d4788875c6894f9ca06df2009a539b008e",
+          "text": null
+        }
+      }
+    },
+    "nctb": {
+      "title": "ভূগোল ও পরিবেশ, নবম ও দশম শ্রেণি (২০২৬ শিক্ষাবর্ষ), পৃষ্ঠা ১৪৯",
+      "by": "National Curriculum and Textbook Board (NCTB)",
+      "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
+      "cache": "tools/.cache/earth-interior/",
+      "files": {
+        "bhugol-2026.pdf": {
+          "bytes": 68511711,
+          "sha256": "54143857fe880659c23f35469eb512d410ff8b8ee5fe75c4700cb28b33c8f79a",
+          "text": null
+        }
+      },
+      "use": "notes only in step 1: the conflicts in notes/bangladesh-maritime-boundary.md; no card text yet"
+    }
+  },
+  "points": {
+    "itlos-1": {
+      "lat": [
+        20,
+        42,
+        15.8
+      ],
+      "lon": [
+        92,
+        22,
+        7.2
+      ],
+      "cite": [
+        {
+          "source": "itlos",
+          "at": "¶501, p. 128",
+          "file": "itlos-c16-judgment.txt",
+          "offset": 257558,
+          "length": 33,
+          "sha256": "7548e5ed5616e125e46489617ef8f02fcde6fe087120da8aca6f5b8c25628a0f"
+        }
+      ]
+    },
+    "itlos-2": {
+      "lat": [
+        20,
+        40,
+        45
+      ],
+      "lon": [
+        92,
+        20,
+        29
+      ],
+      "cite": [
+        {
+          "source": "itlos",
+          "at": "¶501, p. 128",
+          "file": "itlos-c16-judgment.txt",
+          "offset": 257596,
+          "length": 33,
+          "sha256": "b49ee7e940c45cdd4dbc61a7480d0279fd726c5a8c030859e0d3518bd77f44e9"
+        }
+      ]
+    },
+    "itlos-3": {
+      "lat": [
+        20,
+        39,
+        51
+      ],
+      "lon": [
+        92,
+        21,
+        11.5
+      ],
+      "cite": [
+        {
+          "source": "itlos",
+          "at": "¶501, p. 128",
+          "file": "itlos-c16-judgment.txt",
+          "offset": 257634,
+          "length": 32,
+          "sha256": "0ea6d40f54fefab8d628609921f272b1624bc6a53d2c10bcef8ab7c13e892a44"
+        }
+      ]
+    },
+    "itlos-4": {
+      "lat": [
+        20,
+        37,
+        13.5
+      ],
+      "lon": [
+        92,
+        23,
+        42.3
+      ],
+      "cite": [
+        {
+          "source": "itlos",
+          "at": "¶501, p. 128",
+          "file": "itlos-c16-judgment.txt",
+          "offset": 257671,
+          "length": 32,
+          "sha256": "4f30f0eb364ea91d718ae75b1fa59aa56375ed2020de5a07e211d137263a2df3"
+        }
+      ]
+    },
+    "itlos-5": {
+      "lat": [
+        20,
+        35,
+        26.7
+      ],
+      "lon": [
+        92,
+        24,
+        58.5
+      ],
+      "cite": [
+        {
+          "source": "itlos",
+          "at": "¶501, p. 128",
+          "file": "itlos-c16-judgment.txt",
+          "offset": 257708,
+          "length": 32,
+          "sha256": "6535ae6e4bb4fe4c805962e33a14b8d81bc88d7be217383d9d94706e581a081b"
+        }
+      ]
+    },
+    "itlos-6": {
+      "lat": [
+        20,
+        33,
+        17.8
+      ],
+      "lon": [
+        92,
+        25,
+        46
+      ],
+      "cite": [
+        {
+          "source": "itlos",
+          "at": "¶501, p. 128",
+          "file": "itlos-c16-judgment.txt",
+          "offset": 257745,
+          "length": 32,
+          "sha256": "3fdb9d8ab92a43bd9a8a22f6628cd31806156dc00ef4d9f167c0841ba61886b2"
+        }
+      ]
+    },
+    "itlos-7": {
+      "lat": [
+        20,
+        26,
+        11.3
+      ],
+      "lon": [
+        92,
+        24,
+        52.4
+      ],
+      "cite": [
+        {
+          "source": "itlos",
+          "at": "¶501, p. 128",
+          "file": "itlos-c16-judgment.txt",
+          "offset": 257782,
+          "length": 32,
+          "sha256": "f62b1e8c77f4b7b165514bdf25494c73662fa4cafe1b368fae39369442c494de"
+        }
+      ]
+    },
+    "itlos-8": {
+      "lat": [
+        20,
+        22,
+        46.1
+      ],
+      "lon": [
+        92,
+        24,
+        9.1
+      ],
+      "cite": [
+        {
+          "source": "itlos",
+          "at": "¶501, p. 128",
+          "file": "itlos-c16-judgment.txt",
+          "offset": 257819,
+          "length": 32,
+          "sha256": "0e76e57ddc92f9ab3b3c4a0b31ae70e9342fe7b69b1d6fe94e0e2b7acf282478"
+        }
+      ]
+    },
+    "itlos-9": {
+      "lat": [
+        20,
+        26,
+        39.2
+      ],
+      "lon": [
+        92,
+        9,
+        50.7
+      ],
+      "cite": [
+        {
+          "source": "itlos",
+          "at": "¶502, p. 128",
+          "file": "itlos-c16-judgment.txt",
+          "offset": 258062,
+          "length": 31,
+          "sha256": "034bfb952499013229e76e2860fe828b4b77e09bdee1acc3b1068e8b3616720c"
+        }
+      ]
+    },
+    "itlos-10": {
+      "lat": [
+        20,
+        13,
+        6.3
+      ],
+      "lon": [
+        92,
+        0,
+        7.6
+      ],
+      "cite": [
+        {
+          "source": "itlos",
+          "at": "¶503, p. 128",
+          "file": "itlos-c16-judgment.txt",
+          "offset": 258304,
+          "length": 32,
+          "sha256": "45b7cd652666efdecbb1607a9d6ad641873347de189de0a5574e3071c2fb4c49"
+        }
+      ]
+    },
+    "itlos-11": {
+      "lat": [
+        20,
+        3,
+        32
+      ],
+      "lon": [
+        91,
+        50,
+        31.8
+      ],
+      "cite": [
+        {
+          "source": "itlos",
+          "at": "¶504, p. 128",
+          "file": "itlos-c16-judgment.txt",
+          "offset": 258443,
+          "length": 32,
+          "sha256": "c475b24c4307684b0170933d534726fcc2ef86216e52e95c87914b212e3662c1"
+        }
+      ]
+    },
+    "pca-1": {
+      "lat": [
+        21,
+        38,
+        40.2
+      ],
+      "lon": [
+        89,
+        9,
+        20
+      ],
+      "cite": [
+        {
+          "source": "pca",
+          "at": "¶509(2)–(3), p. 165",
+          "file": "pca-award.txt",
+          "offset": 329406,
+          "length": 30,
+          "sha256": "7d1fcf53bbcd3c2ddad371fad39f7b2af8c7c50672512325203c60e8cf49a6a9"
+        }
+      ]
+    },
+    "pca-2": {
+      "lat": [
+        21,
+        26,
+        43.6
+      ],
+      "lon": [
+        89,
+        10,
+        59.2
+      ],
+      "cite": [
+        {
+          "source": "pca",
+          "at": "¶509(3), p. 165",
+          "file": "pca-award.txt",
+          "offset": 329458,
+          "length": 30,
+          "sha256": "523c94e9f42e5ef9adcd1e395155ecbc086a4a3a109830063d9c154285775bed"
+        }
+      ]
+    },
+    "pca-3": {
+      "lat": [
+        21,
+        7,
+        44.8
+      ],
+      "lon": [
+        89,
+        13,
+        56.5
+      ],
+      "cite": [
+        {
+          "source": "pca",
+          "at": "¶509(3), p. 165",
+          "file": "pca-award.txt",
+          "offset": 329510,
+          "length": 30,
+          "sha256": "ed29abce298cdb5caa1e714439354e75250b320c744e945277ca54d23e74054f"
+        }
+      ]
+    },
+    "junction": {
+      "lat": [
+        16,
+        43,
+        28.77187
+      ],
+      "lon": [
+        89,
+        25,
+        54.39092
+      ],
+      "cite": [
+        {
+          "source": "pca",
+          "at": "appendix ¶23, p. A-4",
+          "file": "pca-award.txt",
+          "offset": 340092,
+          "length": 38,
+          "sha256": "e2df992984a6502b56410c10184e8d02344fb8b475693928e3fc96cfe48d8685"
+        }
+      ],
+      "crossCheck": {
+        "lat": [
+          16,
+          43,
+          28.7
+        ],
+        "lon": [
+          89,
+          25,
+          54.3
+        ],
+        "note": "Bangladesh's amended CLCS submission gives its shelf's one fixed point, \"Delimitation line intersection\", to 0.1″; it agrees with the PCA's point to that precision (the seconds truncated, not rounded).",
+        "cite": [
+          {
+            "source": "clcs",
+            "at": "Table 1, p. 11",
+            "file": "clcs-bgd-amd-summary.txt",
+            "offset": 12550,
+            "length": 25,
+            "sha256": "c1c7fca70369418f616df932049178abe5e095893bd0c6b85c8f0b661a44d4df"
+          }
+        ]
+      }
+    },
+    "baseline-1": {
+      "lat": [
+        21,
+        38,
+        40.2
+      ],
+      "lon": [
+        89,
+        9,
+        20
+      ],
+      "identifier": "Land Boundary Terminus (LBT)",
+      "outerLimits": [
+        "TS",
+        "CZ"
+      ],
+      "cite": [
+        {
+          "source": "sro328",
+          "at": "S.R.O. No. 328, table (C), Bangladesh Gazette Extraordinary, 10 November 2015, p. ৮৭৬৪ (PDF p. 2)",
+          "scan": true
+        }
+      ]
+    },
+    "baseline-2": {
+      "lat": [
+        21,
+        36,
+        39.2
+      ],
+      "lon": [
+        89,
+        22,
+        14
+      ],
+      "identifier": "Putney Island",
+      "outerLimits": [
+        "TS",
+        "CZ",
+        "EEZ"
+      ],
+      "cite": [
+        {
+          "source": "sro328",
+          "at": "S.R.O. No. 328, table (C), Bangladesh Gazette Extraordinary, 10 November 2015, p. ৮৭৬৪ (PDF p. 2)",
+          "scan": true
+        },
+        {
+          "source": "ind2017",
+          "at": "note PM/NY/443/1/2017, p. 1",
+          "file": "ind-2017.txt",
+          "offset": 1092,
+          "length": 28,
+          "sha256": "0ee600211ec6802399d81793d63a86e059165220f359bff1133c9ac36322a31f"
+        }
+      ]
+    },
+    "baseline-3": {
+      "lat": [
+        21,
+        38,
+        16
+      ],
+      "lon": [
+        90,
+        47,
+        16.5
+      ],
+      "identifier": "Dakhin Bhasan Char",
+      "outerLimits": [
+        "TS",
+        "CZ"
+      ],
+      "cite": [
+        {
+          "source": "sro328",
+          "at": "S.R.O. No. 328, table (C), Bangladesh Gazette Extraordinary, 10 November 2015, p. ৮৭৬৪ (PDF p. 2)",
+          "scan": true
+        }
+      ]
+    },
+    "baseline-4": {
+      "lat": [
+        21,
+        25,
+        51
+      ],
+      "lon": [
+        91,
+        57,
+        42
+      ],
+      "identifier": "Cox's Bazar",
+      "outerLimits": [
+        "TS",
+        "CZ"
+      ],
+      "cite": [
+        {
+          "source": "sro328",
+          "at": "S.R.O. No. 328, table (C), Bangladesh Gazette Extraordinary, 10 November 2015, p. ৮৭৬৪ (PDF p. 2)",
+          "scan": true
+        }
+      ]
+    }
+  },
+  "checkOnly": {
+    "prov3": {
+      "lat": [
+        21,
+        7,
+        44.80407
+      ],
+      "lon": [
+        89,
+        13,
+        56.52123
+      ],
+      "cite": [
+        {
+          "source": "pca",
+          "at": "appendix ¶14 (Prov-3) and ¶22, p. A-3",
+          "file": "pca-award.txt",
+          "offset": 337131,
+          "length": 37,
+          "sha256": "5f20e63b9df91f0b3605e649cd5eb335b860ba0b8b6d8d7a3b48b5dbb23da315"
+        }
+      ]
+    }
+  },
+  "lines": {
+    "myanmar": {
+      "cite": [
+        {
+          "source": "itlos",
+          "at": "¶501–505 and ¶506(4)–(6), pp. 128–132",
+          "file": "itlos-c16-judgment.txt",
+          "offset": 257526,
+          "length": 27,
+          "sha256": "cf33ee80d79dca26d8b11e5697ca9beef18bcffc8ccf758740ea3e14daa042e4"
+        }
+      ],
+      "parts": [
+        {
+          "kind": "geodesic",
+          "through": [
+            "itlos-1",
+            "itlos-2",
+            "itlos-3",
+            "itlos-4",
+            "itlos-5",
+            "itlos-6",
+            "itlos-7",
+            "itlos-8"
+          ]
+        },
+        {
+          "kind": "envelope",
+          "from": "itlos-8",
+          "to": "itlos-9",
+          "radiusNm": 12,
+          "around": "stMartins",
+          "approximate": true,
+          "cite": [
+            {
+              "source": "itlos",
+              "at": "¶502, p. 128",
+              "file": "itlos-c16-judgment.txt",
+              "offset": 257941,
+              "length": 71,
+              "sha256": "28cea38a39b7f0370ba01108459d5a2672f131bc08663950f1865b1467d3d25d"
+            }
+          ]
+        },
+        {
+          "kind": "geodesic",
+          "through": [
+            "itlos-9",
+            "itlos-10",
+            "itlos-11"
+          ]
+        },
+        {
+          "kind": "azimuth",
+          "from": "itlos-11",
+          "azimuthDeg": 215,
+          "to": "junction",
+          "cite": [
+            {
+              "source": "itlos",
+              "at": "¶505, p. 128",
+              "file": "itlos-c16-judgment.txt",
+              "offset": 258555,
+              "length": 30,
+              "sha256": "f13c1cf8f465e3a4cb4022a97836fb220630c3245fa6947013043eec58221866"
+            }
+          ]
+        }
+      ]
+    },
+    "india": {
+      "cite": [
+        {
+          "source": "pca",
+          "at": "¶509(3), p. 165",
+          "file": "pca-award.txt",
+          "offset": 329160,
+          "length": 58,
+          "sha256": "78abc5f5ecdfae17a21d1bac41a884293ac5669ed4649af5b0d2a5536274ddbe"
+        }
+      ],
+      "parts": [
+        {
+          "kind": "geodesic",
+          "through": [
+            "pca-1",
+            "pca-2",
+            "pca-3"
+          ]
+        },
+        {
+          "kind": "azimuth",
+          "from": "pca-3",
+          "azimuthDeg": 177.5,
+          "to": "junction",
+          "cite": [
+            {
+              "source": "pca",
+              "at": "¶509(3), p. 165",
+              "file": "pca-award.txt",
+              "offset": 329577,
+              "length": 34,
+              "sha256": "bac4af5380e8c21318b5c4bce042001c001bca002eb0e9141aaa2963c98d484c"
+            }
+          ]
+        }
+      ]
+    },
+    "baselines": {
+      "cite": [
+        {
+          "source": "sro328",
+          "at": "S.R.O. No. 328, table (C), Bangladesh Gazette Extraordinary, 10 November 2015, p. ৮৭৬৪ (PDF p. 2); Explanation a, p. ৮৭৬৪",
+          "scan": true
+        }
+      ],
+      "parts": [
+        {
+          "kind": "geodesic",
+          "through": [
+            "baseline-1",
+            "baseline-2",
+            "baseline-3",
+            "baseline-4"
+          ]
+        }
+      ],
+      "rest": "From baseline point 4 the baseline follows the low-water line to Teknaf point and St Martin's Island; point 5, the southern end of St Martin's Island, is defined by the low-water line and has no coordinates. Neither is drawn."
+    }
+  },
+  "coast": {
+    "source": "osmBangladeshLand",
+    "file": "tools/sources/osm-bangladesh-land.geojson",
+    "set": "detail",
+    "stMartinsBox": [
+      92.28,
+      20.55,
+      92.36,
+      20.66
+    ],
+    "stMartinsPolygons": 2,
+    "note": "OpenStreetMap's land polygons follow the coastline as mapped, which is not the low-water line the judgment measured from: the envelope is approximate, and drawn dashed."
+  },
+  "items": [
+    {
+      "id": "myanmar-line",
+      "kind": "myanmar",
+      "name": {
+        "bn": "মিয়ানমারের সঙ্গে সীমা (ITLOS, ২০১২)",
+        "approved": false
+      },
+      "line": "myanmar"
+    },
+    {
+      "id": "india-line",
+      "kind": "india",
+      "name": {
+        "bn": "ভারতের সঙ্গে সীমা (PCA, ২০১৪)",
+        "approved": false
+      },
+      "line": "india"
+    },
+    {
+      "id": "st-martins",
+      "kind": "island",
+      "name": {
+        "bn": "সেন্টমার্টিন্স দ্বীপ",
+        "approved": false,
+        "cite": [
+          {
+            "source": "nctb",
+            "at": "পৃষ্ঠা ১৪৯ (PDF p. 154), boxed text",
+            "scan": true
+          }
+        ]
+      },
+      "at": "stMartins"
+    },
+    {
+      "id": "baselines-2015",
+      "kind": "baseline",
+      "name": {
+        "bn": "ভিত্তিরেখা (২০১৫)",
+        "approved": false
+      },
+      "line": "baselines"
+    },
+    {
+      "id": "junction",
+      "kind": "junction",
+      "name": {
+        "bn": "দুই সীমার মিলনবিন্দু",
+        "approved": false
+      },
+      "at": "junction"
+    }
+  ],
+  "area": {
+    "label": {
+      "bn": "বাংলাদেশের সমুদ্র এলাকা",
+      "approved": false
+    },
+    "closedBy": "the coastline (coast, above) and the two lines, which meet at the junction",
+    "noFigure": "No area figure is shown: none computed here, and the NCTB book's is a round figure (notes)."
+  },
+  "approxLabel": {
+    "bn": "আনুমানিক",
+    "approved": false
+  },
+  "words": {
+    "placeholder": {
+      "bn": "একটি সীমা বা স্থান বেছে নিন…",
+      "approved": false
+    }
+  },
+  "protests": [
+    {
+      "by": "India",
+      "note": "PM/NY/443/1/2017",
+      "date": "2017-08-03",
+      "on": "S.R.O. No. 328 (M.Z.N.118.2016.LOS)",
+      "points": [
+        2,
+        5
+      ],
+      "source": "ind2017"
+    },
+    {
+      "by": "Myanmar",
+      "note": "57/03 09 45",
+      "date": "2019-02-15",
+      "on": "S.R.O. No. 328 (M.Z.N.118.2016.LOS)",
+      "points": [
+        2,
+        5
+      ],
+      "source": "mmr2019"
+    },
+    {
+      "by": "India",
+      "note": "PM/NY/443/4/2021",
+      "date": "2021",
+      "on": "the amended CLCS submission (2020), repeating the 2017 note",
+      "points": [
+        2,
+        5
+      ],
+      "source": "ind2021"
+    },
+    {
+      "by": "Myanmar",
+      "note": "29/13 13",
+      "date": "2021",
+      "on": "the amended CLCS submission (2020), repeating the 2019 note",
+      "points": [
+        2,
+        5
+      ],
+      "source": "mmr2021"
+    }
+  ],
+  "info": [
+    {
+      "group": "notes",
+      "bn": "এই সমুদ্র এলাকার কিছু অংশ বাংলাদেশের ভিত্তিরেখা থেকে ২০০ নটিক্যাল মাইলের বাইরে, কিন্তু প্রতিবেশী দেশের ২০০ নটিক্যাল মাইলের ভেতরে («ধূসর এলাকা»)। সেখানে বাংলাদেশের অধিকার কেবল সমুদ্রতল ও তার নিচে; ওপরের পানিতে প্রতিবেশী দেশের অধিকার বহাল।",
+      "approved": false,
+      "cite": [
+        {
+          "source": "itlos",
+          "at": "¶471–476, pp. 120–121"
+        },
+        {
+          "source": "pca",
+          "at": "¶498–508, pp. 155–157"
+        }
+      ]
+    },
+    {
+      "group": "notes",
+      "bn": "সেন্টমার্টিন্স দ্বীপের চারপাশে মিয়ানমারের সঙ্গে সীমার যে অংশ দ্বীপ থেকে ১২ নটিক্যাল মাইল দূর দিয়ে গেছে, রায়ে তার স্থানাঙ্ক দেওয়া নেই। ড্যাশ দেওয়া এই অংশ OpenStreetMap-এর তথ্যে দ্বীপের তটরেখা থেকে আনুমানিক আঁকা।",
+      "approved": false,
+      "cite": [
+        {
+          "source": "itlos",
+          "at": "¶502, p. 128"
+        }
+      ]
+    },
+    {
+      "group": "notes",
+      "bn": "২০১৫ সালের ভিত্তিরেখার চারটি বিন্দুর মাঝের সরল অংশই আঁকা হয়েছে; ৪ নম্বর বিন্দু (কক্সবাজার) থেকে টেকনাফ ও সেন্টমার্টিন্স দ্বীপ পর্যন্ত ভিত্তিরেখা ভাটার সময়ের জলরেখা ধরে চলে।",
+      "approved": false,
+      "cite": [
+        {
+          "source": "sro328",
+          "at": "S.R.O. No. 328, table (C), Bangladesh Gazette Extraordinary, 10 November 2015, p. ৮৭৬৪ (PDF p. 2)",
+          "scan": true
+        }
+      ]
+    },
+    {
+      "group": "notes",
+      "bn": "ভিত্তিরেখার ২ নম্বর বিন্দু ও ৫ নম্বর বিন্দু (সেন্টমার্টিন্স দ্বীপের দক্ষিণ প্রান্ত) নিয়ে ভারত (২০১৭ ও ২০২১) ও মিয়ানমার (২০১৯ ও ২০২১) জাতিসংঘে লিখিত আপত্তি জানিয়েছে।",
+      "approved": false,
+      "cite": [
+        {
+          "source": "ind2017",
+          "at": "p. 1"
+        },
+        {
+          "source": "mmr2019",
+          "at": "pp. 1–2"
+        },
+        {
+          "source": "ind2021",
+          "at": "¶3",
+          "scan": true
+        },
+        {
+          "source": "mmr2021",
+          "at": "¶1",
+          "scan": true
+        }
+      ]
+    }
+  ],
+  "infoHeadings": {
+    "sources": {
+      "bn": "সূত্র",
+      "approved": true
+    },
+    "notes": {
+      "bn": "টীকা",
+      "approved": false
+    },
+    "conflicts": {
+      "bn": "সূত্রগুলোর অমিল",
+      "approved": false
+    }
+  }
+}

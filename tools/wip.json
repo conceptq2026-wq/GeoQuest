@@ -9,6 +9,15 @@
         "bn": "সমুদ্র আইন: সমুদ্রের অঞ্চল",
         "en": "Law of the Sea: Maritime Zones"
       }
+    },
+    {
+      "id": "bangladesh-maritime-boundary",
+      "kind": "map",
+      "section": "bangladesh",
+      "title": {
+        "bn": "বাংলাদেশের সমুদ্রসীমা",
+        "en": "Bangladesh Maritime Boundary"
+      }
     }
   ]
 }

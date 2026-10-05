@@ -390,6 +390,10 @@ seed, `data-sources/world-revolutions/world-revolutions.seed.json`, by
 SHA-256 in `tools/verify-descriptor.mjs`; every marker is re-derived from the
 pinned Natural Earth countries, populated-places and admin-1 files and the
 COD-AB zip in `tools/verify.mjs`, and must lie inside its own country.
+bangladesh-maritime-boundary (work in progress):
+its sources, each by size and SHA-256, and the texts its quotes are offsets
+into (`bangladeshMaritime` in `tools/sources.json`); in its build, the
+junction recomputed from the two azimuths within 0.01″ of the PCA's.
 
 When a pin moves, **stop and report the old and new values.** Never re-pin to
 make a build pass. A dropped `featurecla` once shifted a line by three points
@@ -428,7 +432,10 @@ State which kind a task is when reporting it.
   markers, group chips, a cards-only tab, and the one no-point exception.
 - Work in progress (`tools/wip.json`): `maritime-zones`, a diagram under
   International (step 3, a real-time 3D view with the 2D view as its
-  fallback; local preview only: `notes/maritime-zones.md`).
+  fallback; local preview only: `notes/maritime-zones.md`), and
+  `bangladesh-maritime-boundary` «বাংলাদেশের সমুদ্রসীমা», a map under বাংলাদেশ
+  (step 1: the ITLOS and PCA lines, St Martin's, the 2015 baselines and the
+  lines' junction; local preview only: `notes/bangladesh-maritime-boundary.md`).
 
 ## Index — notes, read only when working on that item
 

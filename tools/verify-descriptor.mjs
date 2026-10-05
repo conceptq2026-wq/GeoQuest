@@ -31,14 +31,18 @@
 //   bangladesh-rivers (a diagram)  checked against data-sources/bangladesh-rivers/
 //                                  bangladesh-rivers.seed.json; its geometry, against the
 //                                  pinned sources, by tools/verify.mjs
+//   bangladesh-maritime-boundary  work in progress, built into a temporary folder from
+//                                 data-sources/bangladesh-maritime-boundary/; its seed, by tools/verify.mjs
 //
 // A map under docs/maps/ or a diagram under docs/diagrams/ with no section
 // here fails, by its id: a new one is written into this file with its own
 // section, not left unchecked.
 //
 // Run:  node tools/verify-descriptor.mjs   (from the repo root or from tools/)
+import { execFileSync } from 'node:child_process';
 import crypto from 'node:crypto';
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import zlib from 'node:zlib';
 import { pathToFileURL } from 'node:url';
@@ -204,9 +208,8 @@ function valueOfSpec(spec, row) {
   return null;
 }
 
-function checkMap({ id, expectedPending }) {
+function checkMap({ id, expectedPending, dir = path.join(MAPS_DIR, id) }) {
   CHECKED.add(id);
-  const dir = path.join(MAPS_DIR, id);
   const descriptor = readJson(path.join(dir, 'descriptor.json'));
   const tables = {};
   // Baseline first, so a descriptor that tries to redeclare one collides.
@@ -2446,6 +2449,50 @@ console.log('\n\n============ world-revolutions ============');
 
   // Pending: the seed's nulls, no more — places, times no source in the order gives.
   checkMap({ id, expectedPending: seed.events.reduce((n, e) => n + ['whenBn', 'placeBn'].filter((f) => e[f] === null).length, 0) });
+}
+
+/*
+|--------------------------------------------------------------------------
+| BANGLADESH-MARITIME-BOUNDARY — work in progress (step 1, 2026-10-05): not
+| under docs/ yet, so its build runs into a temporary folder and the generic
+| checks read it there. The seed's quotes, pins and strings are held by
+| tools/verify.mjs; the build itself stops on its geodesic checks.
+|--------------------------------------------------------------------------
+*/
+console.log('\n\n============ bangladesh-maritime-boundary (work in progress) ============');
+{
+  const id = 'bangladesh-maritime-boundary';
+  const seed = readJson(path.join(ROOT, 'data-sources', id, `${id}.seed.json`));
+  const dir = path.join(os.tmpdir(), 'geoquest-verify', id);
+  execFileSync(process.execPath, [path.join(HERE, `build-${id}.mjs`), dir], { stdio: 'pipe' });
+  const descriptor = readJson(path.join(dir, 'descriptor.json'));
+  const items = readJson(path.join(dir, 'items.json'));
+  const info = readJson(path.join(dir, 'info.json'));
+  const FILES = ['arc.geojson', 'area.geojson', 'descriptor.json', 'info.json', 'items.json', 'lines.geojson', 'vertices.geojson'];
+  check(fs.readdirSync(dir).sort().join() === FILES.join(), `the build writes its ${FILES.length} files and nothing else`);
+  check(descriptor.id === id && descriptor.section === seed.section && descriptor.basemap === 'bangladesh-wide' && descriptor.title?.bn === seed.title.bn, `descriptor: ${descriptor.id}, section ${descriptor.section}, basemap ${descriptor.basemap}, title «${descriptor.title?.bn}», the seed's`);
+  // The user's five items, in the seed's order, named as the seed names them; each line record has its line, each place its point.
+  const ITEMS = ['myanmar-line', 'india-line', 'st-martins', 'baselines-2015', 'junction'];
+  check(JSON.stringify(Object.keys(items)) === JSON.stringify(ITEMS) && JSON.stringify(seed.items.map((i) => i.id)) === JSON.stringify(ITEMS), `the picker's ${ITEMS.length} items: ${ITEMS.join(', ')}`);
+  check(seed.items.every((i) => items[i.id].nameBn === i.name.bn), 'every item is named as the seed names it');
+  const lines = readJson(path.join(dir, 'lines.geojson'));
+  check(JSON.stringify(lines.features.map((f) => f.properties.item)) === JSON.stringify(ITEMS.filter((k) => items[k].hasLine)) && ITEMS.every((k) => items[k].hasLine !== Array.isArray(items[k].at)), 'three items are lines (joined by key), two are points');
+  // No grey area, no 12/24/200 nm line, no link to the diagram in step 1 (the user's decisions, 2026-10-05).
+  const sourceNames = Object.keys(descriptor.sources).sort().join();
+  check(sourceNames === 'arc,area,lines,points,vertices' && !JSON.stringify(descriptor).includes('visual/index.html'), `sources: ${sourceNames} — no grey area, no distance line, no link`);
+  // The area's label is neutral: never the EEZ's name. The envelope is dashed and marked approximate.
+  const area = readJson(path.join(dir, 'area.geojson'));
+  const areaLabel = area.features.find((f) => f.geometry.type === 'Point')?.properties.label;
+  check(areaLabel === seed.area.label.bn && !/একান্ত অর্থনৈতিক অঞ্চল/.test(areaLabel), `the sea area is labelled «${areaLabel}», not as an exclusive economic zone`);
+  const arcLayer = descriptor.layers.find((l) => l.source === 'arc' && l.type === 'line');
+  check(Boolean(descriptor.styles[arcLayer?.style]?.paint['line-dasharray']) && readJson(path.join(dir, 'arc.geojson')).features[0].properties.label === seed.approxLabel.bn && seed.lines.myanmar.parts.some((p) => p.kind === 'envelope' && p.approximate === true), `the 8–9 envelope is its own source, dashed and labelled «${seed.approxLabel.bn}»`);
+  // ⓘ: the seed's lines, in order; the credits, every source a drawn line or an ⓘ line cites.
+  check(JSON.stringify(info.lines) === JSON.stringify(seed.info.map((l) => ({ text: l.bn, group: l.group }))), `ⓘ holds the seed's ${seed.info.length} lines`);
+  const cited = new Set([...Object.values(seed.lines).flatMap((l) => [...(l.cite ?? []), ...l.parts.flatMap((p) => p.cite ?? [])]), ...seed.info.flatMap((l) => l.cite), ...Object.values(seed.points).flatMap((p) => [...p.cite, ...(p.crossCheck?.cite ?? [])])].map((c) => c.source));
+  const credited = descriptor.attribution.extra.map((a) => Object.entries(seed.sources).find(([, s]) => a.includes(`href="${s.url}"`))?.[0]);
+  check(credited.every(Boolean) && [...cited].every((s) => credited.includes(s)), `ⓘ credits every source the map draws from or cites (${credited.length})`);
+  check(['area', 'arc'].every((s) => descriptor.sources[s].attribution?.includes('openstreetmap.org/copyright')), 'the coastline-derived sources credit OpenStreetMap');
+  checkMap({ id, expectedPending: 0, dir });
 }
 
 /*

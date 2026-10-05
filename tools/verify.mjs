@@ -1259,6 +1259,124 @@ console.log('\n---- maritime-zones: seed ----');
   check(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(seedText), 'maritime-zones: no e-mail address in the seed');
 }
 
+// ---- bangladesh-maritime-boundary (work in progress): the seed, step 1 -------------------------
+// Every source is pinned in the seed and in tools/sources.json (bangladeshMaritime) and kept in
+// tools/.cache/bd-maritime/. A coordinate's citation is its place in the pinned PDF's text, as
+// pdftotext prints it (notes/bangladesh-maritime-boundary.md), and the SHA-256 of the quote: each is
+// sliced out again, hashed, and read back as the seed's numbers; no tracked file may hold its words.
+// A scanned page has no text: its citation says so and gives the page.
+console.log('\n---- bangladesh-maritime-boundary: seed ----');
+{
+  const MB = 'bangladesh-maritime-boundary';
+  const seedText = fs.readFileSync(path.join(DATA_SOURCES, MB, `${MB}.seed.json`), 'utf8');
+  const seed = JSON.parse(seedText);
+  const listed = JSON.parse(fs.readFileSync(path.join(HERE, 'sources.json'), 'utf8')).bangladeshMaritime;
+  const dir = path.join(HERE, '.cache', listed.dir);
+  const sha = (b) => crypto.createHash('sha256').update(b).digest('hex');
+  const text = {}; // "<source>/<text file>" -> the normalised text
+  const badPins = [];
+  let pinned = 0;
+  for (const [id, s] of Object.entries(seed.sources)) {
+    if (id === 'nctb') {
+      const n = listed.nctbBhugol2026;
+      const p = s.files['bhugol-2026.pdf'];
+      const at = path.join(HERE, '.cache', n.file);
+      const buf = fs.existsSync(at) ? fs.readFileSync(at) : null;
+      if (!buf || buf.length !== p.bytes || sha(buf) !== p.sha256 || n.size !== p.bytes || n.sha256 !== p.sha256) badPins.push('nctb/bhugol-2026.pdf');
+      pinned++;
+      continue;
+    }
+    for (const [file, p] of Object.entries(s.files)) {
+      pinned++;
+      const l = listed.files[file];
+      const buf = fs.existsSync(path.join(dir, file)) ? fs.readFileSync(path.join(dir, file)) : null;
+      if (!l || l.source !== id || l.size !== p.bytes || l.sha256 !== p.sha256 || !buf || buf.length !== p.bytes || sha(buf) !== p.sha256) badPins.push(`${id}/${file}`);
+      if (!p.text) continue;
+      const tAt = path.join(dir, 'text', p.text.file);
+      const t = fs.existsSync(tAt) ? fs.readFileSync(tAt) : null;
+      if (!t || t.length !== p.text.bytes || sha(t) !== p.text.sha256 || l?.text?.sha256 !== p.text.sha256 || l?.text?.size !== p.text.bytes) badPins.push(`${id}/text/${p.text.file}`);
+      else text[`${id}/${p.text.file}`] = t.toString('utf8').replace(/\s+/g, ' ');
+    }
+  }
+  check(badPins.length === 0 && Object.keys(listed.files).length === pinned - 1, `${MB}: each of the ${pinned} source files, and the ${Object.keys(text).length} texts quoted from, is the pinned one, as tools/sources.json records it${badPins.length ? ` — not: ${badPins.join(', ')}` : ''}`);
+
+  // Every point, line part and ⓘ line cites; a quote is sliced, at most 15 words, matching its SHA-256.
+  const cites = [];
+  const walk = (v, where) => {
+    if (Array.isArray(v)) v.forEach((x, i) => walk(x, `${where}[${i}]`));
+    else if (v && typeof v === 'object') {
+      if ('cite' in v) for (const c of v.cite) cites.push({ ...c, where });
+      for (const [k, x] of Object.entries(v)) if (k !== 'cite') walk(x, `${where}.${k}`);
+    }
+  };
+  walk(seed, 'seed');
+  const uncited = [...Object.entries(seed.points).filter(([, p]) => !p.cite?.length).map(([k]) => `points.${k}`), ...Object.entries(seed.lines).filter(([, l]) => !l.cite?.length).map(([k]) => `lines.${k}`), ...Object.values(seed.lines).flatMap((l) => l.parts).filter((p) => p.kind !== 'geodesic' && !p.cite?.length).map((p) => p.kind), ...seed.info.filter((l) => !l.cite?.length).map((l) => l.bn.slice(0, 20))];
+  check(uncited.length === 0, `${MB}: every point (${Object.keys(seed.points).length}), line, azimuth or envelope and ⓘ line (${seed.info.length}) cites its source${uncited.length ? ` — not: ${uncited.join(', ')}` : ''}`);
+  const quotes = [];
+  const badCites = cites.filter((c) => {
+    if (!(c.source in seed.sources) || !c.at || 'quote' in c) return true;
+    if (c.offset === undefined) return false; // a place without words: a scanned page, or a paragraph
+    const t = text[`${c.source}/${c.file}`];
+    if (typeof t !== 'string' || !Number.isInteger(c.offset) || !Number.isInteger(c.length) || c.offset < 0 || c.offset + c.length > t.length) return true;
+    const q = t.slice(c.offset, c.offset + c.length);
+    quotes.push(q);
+    return q.trim().split(/\s+/).length > 15 || sha(q) !== c.sha256;
+  });
+  check(badCites.length === 0 && quotes.length > 0, `${MB}: every citation (${cites.length}) names a source and its place; each of the ${quotes.length} quotes is at its file, offset and length, at most 15 words, matching its SHA-256, with no words committed${badCites.length ? ` — not: ${badCites.slice(0, 3).map((c) => `${c.where} (${c.at})`).join('; ')}` : ''}`);
+  const scans = cites.filter((c) => c.scan);
+  check(scans.every((c) => c.offset === undefined && Object.values(seed.sources[c.source].files).every((f) => !f.text)), `${MB}: the ${scans.length} citations of a scanned page give the page and no offset, and their files have no text`);
+  // Each coordinate quote reads back as the seed's own numbers.
+  const numbers = (s) => s.match(/\d+(?:\.\d+)?/g)?.map(Number) ?? [];
+  const misread = [];
+  for (const [k, p] of Object.entries(seed.points)) {
+    const want = JSON.stringify([...p.lat, ...p.lon]);
+    for (const c of [...p.cite.filter((c) => c.offset !== undefined)]) if (JSON.stringify(numbers(text[`${c.source}/${c.file}`].slice(c.offset, c.offset + c.length))) !== want) misread.push(k);
+    for (const c of p.crossCheck?.cite ?? []) if (JSON.stringify(numbers(text[`${c.source}/${c.file}`].slice(c.offset, c.offset + c.length))) !== JSON.stringify([...p.crossCheck.lat, ...p.crossCheck.lon])) misread.push(`${k} (cross-check)`);
+  }
+  const prov3 = seed.checkOnly.prov3;
+  const pc = prov3.cite[0];
+  if (JSON.stringify(numbers(text[`${pc.source}/${pc.file}`].slice(pc.offset, pc.offset + pc.length))) !== JSON.stringify([...prov3.lat, ...prov3.lon])) misread.push('checkOnly.prov3');
+  check(misread.length === 0, `${MB}: every quoted coordinate reads back as the seed's numbers (${Object.values(seed.points).filter((p) => p.cite.some((c) => c.offset !== undefined)).length} points, the CLCS cross-check and the appendix's start)${misread.length ? ` — not: ${misread.join(', ')}` : ''}`);
+
+  // No tracked file may hold a quote's words (whitespace collapsed), as written or JSON-escaped.
+  const tracked = execFileSync('git', ['ls-files', '-z'], { cwd: ROOT, maxBuffer: 64 * 1024 * 1024 }).toString('utf8').split('\0').filter(Boolean);
+  const forms = quotes.flatMap((q) => [q, JSON.stringify(q).slice(1, -1)]);
+  const holding = new Set();
+  for (const f of [...tracked, `data-sources/${MB}/${MB}.seed.json`, `tools/build-${MB}.mjs`, `notes/${MB}.md`]) {
+    const at = path.join(ROOT, f);
+    if (!fs.existsSync(at) || fs.statSync(at).size > 64 * 1024 * 1024) continue;
+    const buf = fs.readFileSync(at);
+    if (buf.subarray(0, 8000).includes(0)) continue; // binary
+    const flat = buf.toString('utf8').replace(/\s+/g, ' ');
+    if (forms.some((q) => flat.includes(q))) holding.add(f);
+  }
+  check(holding.size === 0, `${MB}: none of the ${quotes.length} quotes appears in any tracked file, the seed, the build or the notes${holding.size ? ` — found in: ${[...holding].join(', ')}` : ''}`);
+
+  // Step 1's five items, and nothing the user left out (2026-10-05): no grey area, no 12/24/200 nm line.
+  const ITEMS = ['myanmar-line', 'india-line', 'st-martins', 'baselines-2015', 'junction'];
+  check(JSON.stringify(seed.items.map((i) => i.id)) === JSON.stringify(ITEMS) && !/"(greyArea|grayArea|zones|eezLine|limit(12|24|200))"/.test(seedText), `${MB}: the five items of step 1, and no grey area or distance line`);
+  check(seed.lines.myanmar.parts.filter((p) => p.kind === 'envelope').every((p) => p.approximate === true && p.radiusNm === 12) && seed.coast.source in JSON.parse(fs.readFileSync(path.join(HERE, 'sources.json'), 'utf8')), `${MB}: the 8–9 envelope is flagged approximate, 12 nm round St Martin's, from the pinned coastline (${seed.coast.source})`);
+
+  // Every Bengali string is the "bn" of an object that says whether the user approved it.
+  const bengali = [];
+  const unflagged = [];
+  const walkBn = (v, where, owner, key) => {
+    if (typeof v === 'string') {
+      if (!/[ঀ-৿]/.test(v)) return;
+      if (key === 'bn' && typeof owner?.approved === 'boolean') bengali.push({ text: v, approved: owner.approved });
+      else if (!(key === 'title' && where.startsWith('seed.sources.nctb')) && !(key === 'at' && owner?.source)) unflagged.push(where);
+    } else if (Array.isArray(v)) v.forEach((x, i) => walkBn(x, `${where}[${i}]`, v, i));
+    else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) walkBn(x, `${where}.${k}`, v, k);
+  };
+  walkBn(seed, 'seed', null, null);
+  check(unflagged.length === 0, `${MB}: every Bengali string (${bengali.length}) carries its approval flag (${bengali.filter((b) => b.approved).length} approved, ${bengali.filter((b) => !b.approved).length} awaiting the user)${unflagged.length ? ` — not: ${unflagged.slice(0, 3).join(', ')}` : ''}`);
+  const INTERNAL = /পিন|উৎস|ভিত্তিমানচিত্র|\bNE-|COD-AB|Natural Earth|\bextract|\bseed\b|pending|basemap|\bpin(ned)?\b/i;
+  const badBn = bengali.map((b) => b.text).filter((t) => INTERNAL.test(t) || / [,;।]|  /.test(t) || /কিলোমিটার|কি\.মি\./.test(t));
+  check(badBn.length === 0, `${MB}: no Bengali string holds a project word, a kilometre or a space before , ; । or doubled${badBn.length ? ` — not: ${badBn.slice(0, 3).join(' | ')}` : ''}`);
+  check(!bengali.some((b) => b.text === seed.area.label.bn && /একান্ত অর্থনৈতিক অঞ্চল/.test(b.text)), `${MB}: the sea area's label is not the exclusive economic zone's name`);
+  check(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(seedText), `${MB}: no e-mail address in the seed`);
+}
+
 if (failures) {
   console.error(`\n${failures} check(s) failed.`);
   process.exit(1);
