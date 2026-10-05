@@ -578,5 +578,345 @@
     "licence": "ODbL 1.0 — © OpenStreetMap contributors",
     "size": 43345,
     "sha256": "b8f690cde5adda4f6ea8534720a61ced6547546a132afb9988552b7f02a7d337"
+  },
+  "orgMembers": {
+    "_comment": "The org-members map’s sources (work in progress, step 1, 2026-10-06): each organisation’s own page (for G7 and G20 the presidency government’s), fetched once with the repo’s User-Agent into tools/.cache/org-members/sources/ and pinned by that download (size, SHA-256), with the text the seed’s quotes point into (tools/lib/html-text.mjs). Three pages were read in headless Edge with the same User-Agent (via \"browser\": asean.org and gcc-sg.org answer a plain fetch with a script challenge); fetch-sources.mjs does not download those. These pages change: a fresh download that differs is not cached, and the run says the seed’s re-check is due (notes/org-members.md). Terms: the seed’s terms table.",
+    "dir": "org-members/sources",
+    "files": {
+      "saarc-about.json": {
+        "source": "saarc-about",
+        "url": "https://www.saarc-sec.org/api/pages/about-saarc",
+        "size": 3485,
+        "sha256": "26149288830fcf7cf1f231a052dce060b0c1cc87e80eca618f359b2d85829df4",
+        "extract": "json:page.content.en",
+        "text": {
+          "file": "saarc-about.txt",
+          "size": 1406,
+          "sha256": "36fe68c13ae62c7a3cdd134ffb31b64415d73e77fe6e741dbaca6d40b5d78fc1"
+        }
+      },
+      "bimstec-members.html": {
+        "source": "bimstec-members",
+        "url": "https://bimstec.org/member-states",
+        "size": 43956,
+        "sha256": "881a1aa1ce18c137974c2731b64b686bf9ae73f7f24182fe0a60319bb7c405d3",
+        "text": {
+          "file": "bimstec-members.txt",
+          "size": 2021,
+          "sha256": "2e2d41fa5a8c9c6ecb0e610a80ae8213fd746eb8bfb49993015c8a1f41dedd63"
+        }
+      },
+      "au-members.html": {
+        "source": "au-members",
+        "url": "https://au.int/en/member_states/countryprofiles2",
+        "size": 112261,
+        "sha256": "fd4031314d15cc6bda79f427151050a1494993d666cbf2374de602ef3e8d388e",
+        "text": {
+          "file": "au-members.txt",
+          "size": 15289,
+          "sha256": "b066cad90f2f4de46684ae0e30129bac19aa33a16c74eeea0c743ad9a139e91b"
+        }
+      },
+      "au-legal.html": {
+        "source": "au-legal",
+        "url": "https://au.int/en/legal_notice",
+        "size": 101766,
+        "sha256": "74501a45a1d77f910e34bff7d67d2cc61f79710300b4965909e4156c52b0e7a5",
+        "text": {
+          "file": "au-legal.txt",
+          "size": 13069,
+          "sha256": "2c83b86170de37f4ca95071faac82aee9c631851297472999c5cdfd3de992963"
+        }
+      },
+      "eu-countries.html": {
+        "source": "eu-countries",
+        "url": "https://european-union.europa.eu/principles-countries-history/eu-countries_en",
+        "size": 117331,
+        "sha256": "49233ca7684478d6559cd177236bca23b94abbcfe4069b44e416d70e393b7f35",
+        "text": {
+          "file": "eu-countries.txt",
+          "size": 5193,
+          "sha256": "5bf9ba9f686add5670cf1ee4c28efbabdcfb1ff84f1a6cf92dbbcf686f5fd7ab"
+        }
+      },
+      "eu-countries-2.html": {
+        "source": "eu-countries-2",
+        "url": "https://european-union.europa.eu/principles-countries-history/eu-countries_en?page=1",
+        "size": 103184,
+        "sha256": "abda73d362d9709f183afa5bd3038a06d446b7fe3697e1f8c8ae2e239bd49c0d",
+        "text": {
+          "file": "eu-countries-2.txt",
+          "size": 3317,
+          "sha256": "a8df0d40322dce914986249ddbbd59fcc67247b1b0e93abb240bfbcebd51e23b"
+        }
+      },
+      "eu-enlargement.html": {
+        "source": "eu-enlargement",
+        "url": "https://european-union.europa.eu/principles-countries-history/eu-enlargement_en",
+        "size": 109339,
+        "sha256": "fc6077009470192c5c8fe6fd9fbca55b61089ac7ab1fc6b57771abf97ec41824",
+        "text": {
+          "file": "eu-enlargement.txt",
+          "size": 9695,
+          "sha256": "be3fa5dcf5fd0dee7b0cf1ba0f18e2ca28c696628034ab2f819fd2a51614ed86"
+        }
+      },
+      "eu-legal.html": {
+        "source": "eu-legal",
+        "url": "https://european-union.europa.eu/legal-notice_en",
+        "size": 90241,
+        "sha256": "c154e544c3889293409b4707655a6870d11f9a5dfb20938b5eb2020729fc8eec",
+        "text": {
+          "file": "eu-legal.txt",
+          "size": 6631,
+          "sha256": "a5ae43431009a5dbb03b75e181601842ae3274f3da58db55d387ea37fa76b7c9"
+        }
+      },
+      "oic-members.html": {
+        "source": "oic-members",
+        "url": "https://www.oic-oci.org/en/members",
+        "size": 311166,
+        "sha256": "ac972d5fe61fc1ce9ea8f35ceccb82f93805535fc700542e81961d532c4b5024",
+        "text": {
+          "file": "oic-members.txt",
+          "size": 3867,
+          "sha256": "1f83462936b392593d3f4f2fa81880bc53834b3982f5fcc8d74b94b3df8d9abb"
+        }
+      },
+      "oic-observers.html": {
+        "source": "oic-observers",
+        "url": "https://www.oic-oci.org/en/page/27",
+        "size": 167399,
+        "sha256": "cdf39866e92138a768e07f1f930e94b256ab594264311b199160f76327da2f94",
+        "text": {
+          "file": "oic-observers.txt",
+          "size": 2157,
+          "sha256": "295074613261b1612d23e6d7efb135355e40d2326037725c712c809358a5b629"
+        }
+      },
+      "commonwealth-members.html": {
+        "source": "commonwealth-members",
+        "url": "https://thecommonwealth.org/our-member-countries",
+        "size": 88995,
+        "sha256": "a3220e23528c2795a110d52915dad6a221977e422dc0259c41ac089d0d52f53a",
+        "text": {
+          "file": "commonwealth-members.txt",
+          "size": 2712,
+          "sha256": "36eab5e6ed2cc03013e273a756aa6337f75f1cf74404ef3c1206a0946a1a0524"
+        }
+      },
+      "commonwealth-terms.html": {
+        "source": "commonwealth-terms",
+        "url": "https://thecommonwealth.org/terms-conditions",
+        "size": 40075,
+        "sha256": "ac4dd9aff7283a4915c9d7141101f85b2e3815cba6e548c4f690f6f8899ed16b",
+        "text": {
+          "file": "commonwealth-terms.txt",
+          "size": 4182,
+          "sha256": "309b66f85a7655acc3022bc9a23ffc2ec73cd0e820cc3fa75a8e9759ac2ffe87"
+        }
+      },
+      "opec-home.html": {
+        "source": "opec-home",
+        "url": "https://www.opec.org/",
+        "size": 247409,
+        "sha256": "1c6c6145c7db1e3fe076e4eb5bc6b816b0d604662718d39b02a8a121b13b429b",
+        "text": {
+          "file": "opec-home.txt",
+          "size": 5828,
+          "sha256": "b4e9e23f2645ae623513cb9ebf5c6ba8ea8e892de132eaf11a8369aef9a7fe72"
+        }
+      },
+      "nato-members.html": {
+        "source": "nato-members",
+        "url": "https://www.nato.int/en/about-us/organization/nato-member-countries",
+        "size": 380042,
+        "sha256": "7c41ecbf3535edfe8d5358598004d57849254303e8739d8c6ad3f886f597c326",
+        "text": {
+          "file": "nato-members.txt",
+          "size": 57753,
+          "sha256": "c2a1cdc08b0e6afd0b17622cd4f12a3e3ef769afa9da6717c26f15a422adfbfd"
+        }
+      },
+      "nato-terms.html": {
+        "source": "nato-terms",
+        "url": "https://www.nato.int/en/about-us/official-texts-and-resources/use-of-nato-content-and-brand",
+        "size": 296972,
+        "sha256": "d230be38be4ac345b331af96eb9c0cf0a736e84489318c93ed855d0aee3f0427",
+        "text": {
+          "file": "nato-terms.txt",
+          "size": 26383,
+          "sha256": "6d4d730d13d660034386dca877191be1c82552d78af89952febf1431dddebc90"
+        }
+      },
+      "sco-general.html": {
+        "source": "sco-general",
+        "url": "https://eng.sectsco.org/20170110/192193.html",
+        "size": 33524,
+        "sha256": "a6d2309840d29df9c4b452d552700883530c50d8f4b4081e5ce4954ade53e59d",
+        "text": {
+          "file": "sco-general.txt",
+          "size": 10352,
+          "sha256": "73a7f7519996f444e2eae03d47babe2504cf49c83475fda7e2898af5a157473d"
+        }
+      },
+      "sco-observers.html": {
+        "source": "sco-observers",
+        "url": "https://eng.sectsco.org/20260306/2185663.html",
+        "size": 22619,
+        "sha256": "f76882ab696f9b045061c8a08a2283bac7f50048a9b39ab5fa5403c0529822ec",
+        "text": {
+          "file": "sco-observers.txt",
+          "size": 8299,
+          "sha256": "939bd3f581c9cc3986ceb825b351a84c8720d34db2edb01711d83e05b363eccf"
+        }
+      },
+      "d8-about.html": {
+        "source": "d8-about",
+        "url": "https://developing8.org/about-d-8/",
+        "size": 107133,
+        "sha256": "01dcbed3ae39a3a3c4da91343ad6c156b77410443e09174e827211fec79a4669",
+        "text": {
+          "file": "d8-about.txt",
+          "size": 3704,
+          "sha256": "c7b72e8e30beeba1f0fe73dc823a7121f9d948f7f6d01269faf203386f390a00"
+        }
+      },
+      "apec-members.html": {
+        "source": "apec-members",
+        "url": "https://www.apec.org/who-we-are/our-members",
+        "size": 160742,
+        "sha256": "d1e674e73f66977df2a63f407a5ceead60acd531f6bdea297ff47eee2ddb9c47",
+        "text": {
+          "file": "apec-members.txt",
+          "size": 14072,
+          "sha256": "01fbabbe8683c7449f76cf9e1990a1156a2014946b6faf16844b44432c563f7d"
+        }
+      },
+      "apec-terms.html": {
+        "source": "apec-terms",
+        "url": "https://www.apec.org/termsofuse",
+        "size": 163818,
+        "sha256": "17f110c484e3877ced8ee94c5617ecf2efb08285be82cabdfa02684f13e5f765",
+        "text": {
+          "file": "apec-terms.txt",
+          "size": 19997,
+          "sha256": "673fd46d28265c65faa7f4359fd51fa6fd7e11dfef6ca53ce0cbc27a95efc66b"
+        }
+      },
+      "eco-members.html": {
+        "source": "eco-members",
+        "url": "https://eco.int/member-states/",
+        "size": 78647,
+        "sha256": "d0de977c07aefd8cdbeccb36dca00cb43e1162b5df1372a0ab8a46f601b81888",
+        "text": {
+          "file": "eco-members.txt",
+          "size": 2879,
+          "sha256": "39bca2eed83a34fe2212e5719885404918524e361769ac079e0bcac107ca1dd7"
+        }
+      },
+      "eco-observers.html": {
+        "source": "eco-observers",
+        "url": "https://eco.int/observers/",
+        "size": 76622,
+        "sha256": "9302c07e7b85b4b36806c29e48e02d436202cd564041e824c7dff6d5b91b6cd5",
+        "text": {
+          "file": "eco-observers.txt",
+          "size": 2428,
+          "sha256": "79aa9caad01e80cab58abdc86b22abcde7302477b91d489b016829eecbf66e78"
+        }
+      },
+      "arableague-members.html": {
+        "source": "arableague-members",
+        "url": "http://www.lasportal.org/ar/aboutlas/Pages/CountryData.aspx",
+        "size": 126914,
+        "sha256": "15def26e965e64f9b457de5c50811dbee0201778c96f61bc4ebd355061623729",
+        "text": {
+          "file": "arableague-members.txt",
+          "size": 6443,
+          "sha256": "a66fda5eff77fecc1ea5024818ca7d15a24b5ff6b28adc196621e66c6f506711"
+        }
+      },
+      "iora-members.html": {
+        "source": "iora-members",
+        "url": "https://www.iora.int/en/about/member-states",
+        "size": 94422,
+        "sha256": "477b5f3b3ed0002b6887cb8ce5529a1d4d39785abe9340fe8bd4ed231b8c57bd",
+        "text": {
+          "file": "iora-members.txt",
+          "size": 2316,
+          "sha256": "c50a94dfbbbc9d00ba198204f9279e39c9aef7ebaf3f82d5468911cdb5f9760d"
+        }
+      },
+      "iora-partners.html": {
+        "source": "iora-partners",
+        "url": "https://www.iora.int/dialogue-partners",
+        "size": 81584,
+        "sha256": "37d8e969ae80cc1b9643f695433bdb218e9630b2e790a3193cb9d3478b82e2f2",
+        "text": {
+          "file": "iora-partners.txt",
+          "size": 1956,
+          "sha256": "776ecf0fcad60ee509b3c4fc683ca5cbd0a4f9128b7580cd1e4cb6d1b7d26e11"
+        }
+      },
+      "asean-members.html": {
+        "source": "asean-members",
+        "url": "https://asean.org/member-states/",
+        "via": "browser",
+        "size": 512234,
+        "sha256": "6960669d602ffaae914e24e87910cee50cef4224027308201ca6f26c40d50914",
+        "text": {
+          "file": "asean-members.txt",
+          "size": 7954,
+          "sha256": "e4222e536c1510058ba9fa048fa39e7d3ecc12b09e41f3fbc1e1688005708cd3"
+        }
+      },
+      "gcc-members.html": {
+        "source": "gcc-members",
+        "url": "https://www.gcc-sg.org/en/AboutUs/MemberStates/",
+        "via": "browser",
+        "size": 88910,
+        "sha256": "d4a012cba9dc0a92abd9c579bee9b993a9332abc3bde5b6ccb7560e9c93ab6e4",
+        "text": {
+          "file": "gcc-members.txt",
+          "size": 4733,
+          "sha256": "80ed01c4160e21511163d68213f163448194dbd482df29ae58c4301bc292cfe9"
+        }
+      },
+      "gcc-terms.html": {
+        "source": "gcc-terms",
+        "url": "https://www.gcc-sg.org/en/PortalServices/Pages/TermsOfUse.aspx",
+        "via": "browser",
+        "size": 50297,
+        "sha256": "be3284915fb1caa804daa46bdca4f5d7dc8b8d1dde7333128b30033500974114",
+        "text": {
+          "file": "gcc-terms.txt",
+          "size": 953,
+          "sha256": "bd2602ff71415463a9bb411c41f95bb5ef1a2874b41e9beeb739c3e01b9ec885"
+        }
+      },
+      "g7-diplomatie.html": {
+        "source": "g7-diplomatie",
+        "url": "https://www.diplomatie.gouv.fr/en/presse-et-ressources/decouvrir-et-informer/actualites/g7-quelles-priorites-pour-le-sommet-d-evian",
+        "size": 50278,
+        "sha256": "e85f83d9a957c255881098223786c4c0e832d1376891df2df507a7439e58170c",
+        "text": {
+          "file": "g7-diplomatie.txt",
+          "size": 7346,
+          "sha256": "31a7951a3e513acb9319a9953ea58dca508309142d6c14c9921a3895fe42af7d"
+        }
+      },
+      "g20-govinfo.html": {
+        "source": "g20-govinfo",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2025-01-07/html/2025-00018.htm",
+        "size": 36471,
+        "sha256": "fefb68710497c4f1e6961393444399b00a797da2aed879174a2acb505cd87366",
+        "text": {
+          "file": "g20-govinfo.txt",
+          "size": 25136,
+          "sha256": "e85984ab82e70eeebd9bbd936b95f73ffcc304d9d127a43605afa3219591a9a0"
+        }
+      }
+    }
   }
 }

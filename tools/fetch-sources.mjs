@@ -5,6 +5,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { UA } from './net.mjs';
+import { sourceText } from './lib/html-text.mjs';
 
 const here = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const cache = path.join(here, '.cache');
@@ -104,3 +105,23 @@ for (const [name, want] of Object.entries(maritime.files)) {
 const three128 = sources.threeR128;
 await fetchVerified(three128.url, path.join(cache, three128.file),
   (buf) => buf.length === three128.size && sha256(buf) === three128.sha256);
+
+// The org-members map's sources: each organisation's own page, by size and SHA-256, into
+// org-members/sources/, with the text its quotes point into (tools/lib/html-text.mjs) made here and
+// refused if it differs. These pages change: a download that differs is not cached and the run goes
+// on, naming it — the seed's re-check is due (notes/org-members.md). A page read in a browser
+// ("via": "browser") is not downloaded here.
+const orgMembers = sources.orgMembers;
+const orgDir = path.join(cache, orgMembers.dir);
+fs.mkdirSync(orgDir, { recursive: true });
+const changed = [];
+for (const [name, want] of Object.entries(orgMembers.files)) {
+  const dest = path.join(orgDir, name);
+  const ok = (buf) => buf.length === want.size && sha256(buf) === want.sha256;
+  if (want.via === 'browser' && !(fs.existsSync(dest) && ok(fs.readFileSync(dest)))) { changed.push(`${name} (read in a browser; not in the cache)`); continue; }
+  try { await fetchVerified(want.url, dest, ok); } catch (e) { changed.push(`${name} (${e.message.includes('Checksum') ? 'the page has changed' : e.message})`); continue; }
+  const text = Buffer.from(sourceText(fs.readFileSync(dest), want.extract), 'utf8');
+  if (text.length !== want.text.size || sha256(text) !== want.text.sha256) throw new Error(`${want.text.file}: the text of ${name} is not the pinned one — refusing it`);
+  fs.writeFileSync(path.join(orgDir, want.text.file), text);
+}
+if (changed.length) console.log(`org-members: ${changed.length} source(s) not cached — re-check due:\n  ${changed.join('\n  ')}`);

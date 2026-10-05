@@ -17,6 +17,7 @@ import { CACHE, zipEntry } from './lib/geo.mjs';
 import { projection, distM, nearestOnLine, parsePath } from './lib/rivers-frame.mjs';
 import { loadRiversSeed } from './lib/rivers-seed.mjs';
 import { seedFor } from './lib/rivers-core.mjs';
+import { sourceText } from './lib/html-text.mjs';
 
 const require = createRequire(import.meta.url);
 const vtRequire = createRequire(require.resolve('vt-pbf'));
@@ -1382,6 +1383,151 @@ console.log('\n---- bangladesh-maritime-boundary: seed ----');
   check(badBn.length === 0, `${MB}: no Bengali string holds a project word, a kilometre or a space before , ; । or doubled${badBn.length ? ` — not: ${badBn.slice(0, 3).join(' | ')}` : ''}`);
   check(!bengali.some((b) => b.text === seed.area.label.bn && /একান্ত অর্থনৈতিক অঞ্চল/.test(b.text)), `${MB}: the sea area's label is not the exclusive economic zone's name`);
   check(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(seedText), `${MB}: no e-mail address in the seed`);
+}
+
+// ---- org-members (work in progress): the seed, step 1 ----------------------------------------
+// Every page is pinned in the seed and in tools/sources.json (orgMembers) and kept in
+// tools/.cache/org-members/sources/, with its text as tools/lib/html-text.mjs makes it. Each member,
+// status and stated count cites its place in that text and the quote's SHA-256: sliced out again and
+// hashed, no words committed (notes/org-members.md). Codes are shapes of the Bangladesh-view file.
+console.log('\n---- org-members: seed ----');
+{
+  const OM = 'org-members';
+  const seedText = fs.readFileSync(path.join(DATA_SOURCES, OM, `${OM}.seed.json`), 'utf8');
+  const seed = JSON.parse(seedText);
+  const allSources = JSON.parse(fs.readFileSync(path.join(HERE, 'sources.json'), 'utf8'));
+  const listed = allSources.orgMembers;
+  const dir = path.join(HERE, '.cache', listed.dir);
+  const sha = (b) => crypto.createHash('sha256').update(b).digest('hex');
+  const EMAIL = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/;
+  const text = {};
+  const badPins = [];
+  const pages = Object.entries(seed.sources);
+  for (const [id, s] of pages) {
+    const l = listed.files[s.file];
+    const raw = fs.existsSync(path.join(dir, s.file)) ? fs.readFileSync(path.join(dir, s.file)) : null;
+    const t = fs.existsSync(path.join(dir, s.text.file)) ? fs.readFileSync(path.join(dir, s.text.file)) : null;
+    const same = l && l.source === id && l.url === s.url && l.size === s.bytes && l.sha256 === s.sha256 && l.text.size === s.text.bytes && l.text.sha256 === s.text.sha256 && (l.extract ?? null) === (s.extract ?? null) && (l.via === 'browser') === (s.via === 'browser');
+    if (!same || !raw || raw.length !== s.bytes || sha(raw) !== s.sha256 || !t || t.length !== s.text.bytes || sha(t) !== s.text.sha256) { badPins.push(id); continue; }
+    if (sourceText(raw, s.extract) !== t.toString('utf8') || EMAIL.test(t.toString('utf8'))) { badPins.push(`${id} (text)`); continue; }
+    text[id] = t.toString('utf8');
+  }
+  const authorityBad = pages.filter(([, s]) => !['organisation', 'presidency'].includes(s.authority) || (s.authority === 'presidency') !== (s.org === 'g7' || s.org === 'g20'));
+  check(badPins.length === 0 && authorityBad.length === 0 && Object.keys(listed.files).length === pages.length && !listed.nctbBgs6, `${OM}: each of the ${pages.length} pages is the pinned one, as tools/sources.json records it, and each page's text is html-text.mjs's, with no e-mail address; a source is the organisation's own site or a presidency government's${badPins.length || authorityBad.length ? ` — not: ${[...badPins, ...authorityBad.map(([id]) => id)].join(', ')}` : ''}`);
+  check(Object.values(seed.terms['eu-cc-by'] ?? {}).length && seed.terms['eu-cc-by'].licence === 'CC BY 4.0' && /CC BY 4\.0/.test(seed.terms['eu-cc-by'].credit ?? '') && pages.every(([, s]) => s.terms in seed.terms), `${OM}: every page names its terms; the EU's CC BY 4.0 credit is recorded`);
+
+  // Every cite is at its offset and length in its page's text, at most 15 words, matching its SHA-256.
+  const LISTS = ['members', 'observer', 'dialoguePartner', 'candidate', 'potentialCandidate'];
+  const orgs = Object.entries(seed.organisations);
+  const cites = [];
+  for (const [id, o] of orgs) {
+    for (const l of LISTS) for (const m of o[l] ?? []) cites.push({ id, where: `${id}.${l}.${m.code}`, c: m.cite });
+    for (const n of o.nonCountry ?? []) cites.push({ id, where: `${id}.nonCountry.${n.key}`, c: n.cite });
+    for (const [k, s] of Object.entries(o.stated ?? {})) cites.push({ id, where: `${id}.stated.${k}`, c: s.cite });
+  }
+  const sentences = [];
+  const badCites = cites.filter(({ id, where, c }) => {
+    const t = text[c?.source];
+    if (typeof t !== 'string' || seed.sources[c.source].org !== id || !Number.isInteger(c.offset) || !Number.isInteger(c.length) || c.offset < 0 || c.offset + c.length > t.length) return true;
+    const q = t.slice(c.offset, c.offset + c.length);
+    if (where.includes('.stated.')) sentences.push(q);
+    return q.trim().split(/\s+/).length > 15 || sha(q) !== c.sha256;
+  });
+  check(badCites.length === 0 && !/"quote"\s*:/.test(seedText), `${OM}: every member, status, non-country row and stated count (${cites.length}) cites its own organisation's page at an offset and length, at most 15 words, matching its SHA-256, with no words committed${badCites.length ? ` — not: ${badCites.slice(0, 4).map((b) => b.where).join(', ')}` : ''}`);
+  // A stated count is the page's own sentence, not a name: no tracked file may hold it.
+  const long = [...new Set(sentences.map((q) => q.replace(/\s+/g, ' ')))];
+  const forms = long.flatMap((q) => [q, JSON.stringify(q).slice(1, -1)]);
+  const tracked = execFileSync('git', ['ls-files', '-z'], { cwd: ROOT, maxBuffer: 64 * 1024 * 1024 }).toString('utf8').split('\0').filter(Boolean);
+  const holding = new Set();
+  for (const f of [...tracked, `data-sources/${OM}/${OM}.seed.json`, `notes/${OM}.md`]) {
+    const at = path.join(ROOT, f);
+    if (!fs.existsSync(at) || fs.statSync(at).size > 64 * 1024 * 1024) continue;
+    const buf = fs.readFileSync(at);
+    if (buf.subarray(0, 8000).includes(0)) continue;
+    const flat = buf.toString('utf8').replace(/\s+/g, ' ');
+    if (forms.some((q) => flat.includes(q))) holding.add(f);
+  }
+  check(holding.size === 0, `${OM}: none of the ${long.length} sentence quotes appears in any tracked file, the seed or the notes${holding.size ? ` — found in: ${[...holding].join(', ')}` : ''}`);
+
+  // Codes are shapes of the Bangladesh-view countries file; a list holds a code once, and an
+  // organisation gives a country one status; non-country rows carry no code, so nothing colours them.
+  const bdg = JSON.parse(fs.readFileSync(path.join(CACHE, seed.geometry.file), 'utf8'));
+  const shapes = new Set(bdg.features.map((f) => f.properties.ADM0_A3));
+  const noShape = [], twice = [];
+  for (const [id, o] of orgs) {
+    const seen = new Set();
+    for (const l of LISTS) for (const m of o[l] ?? []) {
+      if (!shapes.has(m.code)) noShape.push(`${id}.${l}.${m.code}`);
+      if (seen.has(m.code)) twice.push(`${id}.${m.code}`);
+      seen.add(m.code);
+    }
+  }
+  const codes = new Set(orgs.flatMap(([, o]) => LISTS.flatMap((l) => (o[l] ?? []).map((m) => m.code))));
+  check(noShape.length === 0 && twice.length === 0 && orgs.every(([, o]) => (o.nonCountry ?? []).every((n) => !('code' in n) && LISTS.includes(n.role))), `${OM}: the ${codes.size} countries are shapes of ${seed.geometry.file}, each once per organisation, and the non-country rows carry no code${noShape.length + twice.length ? ` — not: ${[...noShape, ...twice].slice(0, 5).join(', ')}` : ''}`);
+  const absorbs = Object.entries(seed.geometry.absorbs);
+  check(absorbs.every(([k, v]) => shapes.has(k) && v.every((a) => !shapes.has(a))) && seed.geometry.ownShape.every((c) => shapes.has(c)) && !codes.has('ISR') && !codes.has('TWN'), `${OM}: the shapes that hold another territory (${absorbs.map(([k, v]) => `${k}: ${v.join(', ')}`).join('; ')}) are the file's, and no list names Israel or Taiwan`);
+
+  // Statuses only as the pages state them: the five lists and no other, no suspension; each stated
+  // count is its list's length.
+  const stray = orgs.flatMap(([id, o]) => Object.keys(o).filter((k) => /suspen/i.test(k) || ['nctb', 'conflicts'].includes(k) || (Array.isArray(o[k]) && !LISTS.includes(k) && !['sources', 'nonCountry'].includes(k))).map((k) => `${id}.${k}`));
+  check(stray.length === 0 && !/suspen/i.test(JSON.stringify(seed.organisations)) && LISTS.every((l) => l === 'members' || !seed.organisations.au[l]), `${OM}: statuses are members, observer, dialogue partner, candidate and potential candidate only, with no suspension and none for the AU${stray.length ? ` — not: ${stray.join(', ')}` : ''}`);
+  const nc = (o, role) => (o.nonCountry ?? []).filter((n) => n.role === role).length;
+  const COUNT = {
+    count: (o) => o.members.length + nc(o, 'members'),
+    countries: (o) => o.members.length,
+    bodies: (o) => nc(o, 'members'),
+    observers: (o) => (o.observer ?? []).length + nc(o, 'observer'),
+    dialoguePartners: (o) => (o.dialoguePartner ?? []).length + nc(o, 'dialoguePartner'),
+    aspiring: (o) => (o.candidate ?? []).length + (o.potentialCandidate ?? []).length,
+  };
+  const miscount = orgs.flatMap(([id, o]) => Object.entries(o.stated ?? {}).filter(([k, s]) => s.value !== undefined && (!COUNT[k] || COUNT[k](o) !== s.value)).map(([k, s]) => `${id}.${k} ${s.value}`));
+  const stated = orgs.flatMap(([, o]) => Object.values(o.stated ?? {})).filter((s) => s.value !== undefined).length;
+  check(miscount.length === 0, `${OM}: each of the ${stated} counts a page states is its list's length${miscount.length ? ` — not: ${miscount.join(', ')}` : ''}`);
+  // Cites are an official page (the organisation's own, or a presidency government's) or the user.
+  const citeBad = [];
+  const walkCite = (v, where) => {
+    if (Array.isArray(v)) v.forEach((x, i) => walkCite(x, `${where}[${i}]`));
+    else if (v && typeof v === 'object') {
+      if (v.cite) {
+        const c = v.cite;
+        const official = c.source in seed.sources && ['organisation', 'presidency'].includes(seed.sources[c.source].authority);
+        const user = c.source === 'user' && c.date === '2026-10-06' && !('offset' in c) && where.endsWith('.nameBn');
+        if (!official && !user) citeBad.push(where);
+      }
+      for (const [k, x] of Object.entries(v)) if (k !== 'cite') walkCite(x, `${where}.${k}`);
+    }
+  };
+  walkCite(seed.organisations, 'organisations');
+  check(citeBad.length === 0 && !/nctb|NCTB|textbook|বিশ্বপরিচয়/.test(seedText), `${OM}: every cite is the organisation's own site, a presidency government's, or the user's decision of 2026-10-06, and no book is a source${citeBad.length ? ` — not: ${citeBad.slice(0, 4).join(', ')}` : ''}`);
+  const asean = seed.organisations.asean;
+  check(asean.members.length === 11 && asean.members.some((m) => m.code === 'TLS') && !seed.strings.info.conflictsHeading && !seed.strings.info.asean, `${OM}: ASEAN's 11 members include Timor-Leste, from its own site`);
+
+  // Every Bengali string is the "bn" of an object that says whether the user approved it; a reused
+  // name is the org-headquarters seed's, as approved there.
+  const bengali = [];
+  const unflagged = [];
+  const walkBn = (v, where, owner, key) => {
+    if (typeof v === 'string') {
+      if (!/[ঀ-৿]/.test(v)) return;
+      if (key === 'bn' && typeof owner?.approved === 'boolean') bengali.push({ text: v, approved: owner.approved, owner });
+      else if (!(key === 'note' && typeof owner?.approved === 'boolean')) unflagged.push(where);
+    } else if (Array.isArray(v)) v.forEach((x, i) => walkBn(x, `${where}[${i}]`, v, i));
+    else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) walkBn(x, `${where}.${k}`, v, k);
+  };
+  walkBn(seed, 'seed', null, null);
+  check(unflagged.length === 0 && bengali.length > 0 && bengali.every((b) => b.approved), `${OM}: every Bengali string (${bengali.length}) is approved${unflagged.length || bengali.some((b) => !b.approved) ? ` — not: ${[...unflagged, ...bengali.filter((b) => !b.approved).map((b) => b.text)].slice(0, 3).join(', ')}` : ''}`);
+  const hq = JSON.parse(fs.readFileSync(path.join(DATA_SOURCES, 'org-headquarters/organisations.seed.json'), 'utf8'));
+  const hqNames = new Set(Object.values(hq).map((r) => r.nameBn));
+  const reused = bengali.filter((b) => b.owner.from === 'org-headquarters seed');
+  const namedByUser = ['ইউরোপীয় ইউনিয়ন', 'জি-৭', 'জি-২০'];
+  check(reused.every((b) => hqNames.has(b.text)) && namedByUser.every((t) => bengali.some((b) => b.text === t && b.owner.cite?.source === 'user')), `${OM}: the ${reused.length} reused names are the org-headquarters seed's, and «ইউরোপীয় ইউনিয়ন», «জি-৭» and «জি-২০» cite the user`);
+  const INTERNAL = /পিন|উৎস|ভিত্তিমানচিত্র|\bNE-|COD-AB|Natural Earth|\bextract|\bseed\b|pending|basemap|\bpin(ned)?\b/i;
+  const badBn = bengali.map((b) => b.text).filter((t) => INTERNAL.test(t) || / [,;।]|  /.test(t));
+  check(badBn.length === 0, `${OM}: no Bengali string holds a project word or a space before , ; । or doubled${badBn.length ? ` — not: ${badBn.slice(0, 3).join(' | ')}` : ''}`);
+  const used = LISTS.filter((l) => orgs.some(([, o]) => o[l]?.length));
+  check(used.every((l) => seed.strings.status[l] && seed.strings.legend[l]), `${OM}: every status a page states (${used.join(', ')}) has its label and legend line`);
+  check(!EMAIL.test(seedText), `${OM}: no e-mail address in the seed`);
+  check(wipItems.some((w) => w.id === OM && w.kind === 'map' && w.section === 'international') && !registry.maps.some((e) => e.id === OM) && !fs.existsSync(path.join(ROOT, 'docs/maps', OM)), `${OM}: in tools/wip.json under International, not in registry.json, and nothing under docs/ yet`);
 }
 
 if (failures) {

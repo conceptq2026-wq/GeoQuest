@@ -396,6 +396,12 @@ bangladesh-maritime-boundary (work in progress):
 its sources, each by size and SHA-256, and the texts its quotes are offsets
 into (`bangladeshMaritime` in `tools/sources.json`); in its build, the
 junction recomputed from the two azimuths within 0.01″ of the PCA's.
+org-members (work in progress): each organisation's page and its text
+(`tools/lib/html-text.mjs`), each by size and SHA-256, in the seed and in
+`tools/sources.json` (`orgMembers`); every member, status and stated count
+cites an offset into that text with the quote's SHA-256, checked in
+`tools/verify.mjs`. Bengali names cite the user's decision of 2026-10-06;
+no book is a source.
 
 When a pin moves, **stop and report the old and new values.** Never re-pin to
 make a build pass. A dropped `featurecla` once shifted a line by three points
@@ -441,7 +447,10 @@ State which kind a task is when reporting it.
 - Work in progress (`tools/wip.json`):
   `bangladesh-maritime-boundary` «বাংলাদেশের সমুদ্রসীমা», a map under বাংলাদেশ
   (step 1b: the ITLOS and PCA lines, St Martin's, the 2015 baselines and the
-  lines' junction; local preview only: `notes/bangladesh-maritime-boundary.md`).
+  lines' junction; local preview only: `notes/bangladesh-maritime-boundary.md`);
+  `org-members` «আঞ্চলিক ও আন্তর্জাতিক সংস্থার সদস্য দেশ» (proposed), a map
+  under International (step 1: sources, seed and strings, nothing drawn:
+  `notes/org-members.md`).
 
 ## Index — notes, read only when working on that item
 

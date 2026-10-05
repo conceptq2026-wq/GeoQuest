@@ -1,0 +1,5430 @@
+{
+ "_about": "org-members (work in progress, step 1, 2026-10-06): which countries belong to which organisation, and with which status, each as the organisation’s own page states it (or, for G7 and G20, the presidency government’s). Every member, status and count cites its place in the pinned page text (tools/lib/html-text.mjs): offset and length in UTF-16 units, and the SHA-256 of the quote — no words committed. Codes are ADM0_A3 of Natural Earth’s Bangladesh view (ne_10m_admin_0_countries_bdg.geojson). Nothing is drawn yet: notes/org-members.md.",
+ "id": "org-members",
+ "decisions": [
+  "UN dropped (2026-10-06).",
+  "Geometry follows Bangladesh’s view, as org-headquarters: Taiwan inside China, Israel inside PSX (the basemap’s Palestine area), Abyei uncoloured (2026-10-06).",
+  "Non-country members (EU and AU in the G20, Chinese Taipei, observers that are organisations) are card rows only, never coloured; Hong Kong has its own shape and is coloured (2026-10-06).",
+  "Statuses only as each organisation’s own page states them; no AU suspensions for now (2026-10-06).",
+  "Approved but not built now: a country picker, opening on Bangladesh’s card, a legend that follows the chosen organisation (2026-10-06).",
+  "BRICS left out of step 1: its chair’s site (brics2026.gov.in) did not resolve from here; no other official page reached (2026-10-06).",
+  "Facts come only from the organisation’s own site, or the current presidency’s government site, and from the latest such page. No book is a source (2026-10-06).",
+  "ASEAN has 11 members, Timor-Leste included, from ASEAN’s own site (2026-10-06).",
+  "Bengali names are the user's, dated 2026-10-06: G7, G20, the EU (plain, this map only) and the Arab League (2026-10-06)."
+ ],
+ "geometry": {
+  "file": "ne_10m_admin_0_countries_bdg.geojson",
+  "join": "ADM0_A3",
+  "absorbs": {
+   "PSX": [
+    "ISR"
+   ],
+   "CHN": [
+    "TWN"
+   ],
+   "SOM": [
+    "SOL"
+   ],
+   "CYP": [
+    "CYN",
+    "CNM"
+   ],
+   "IND": [
+    "KAS"
+   ],
+   "KAZ": [
+    "KAB"
+   ]
+  },
+  "ownShape": [
+   "HKG"
+  ],
+  "uncoloured": [
+   "Abyei"
+  ]
+ },
+ "terms": {
+  "facts-only": {
+   "summary": "No reuse licence found, or \"All rights reserved\": only facts are taken (which country holds which status), in our own words and drawing; quotes are offsets into the cached text, no words committed."
+  },
+  "au-legal": {
+   "summary": "au.int legal notice: no reproduction without written permission. Facts only, as above."
+  },
+  "commonwealth-terms": {
+   "summary": "thecommonwealth.org terms: no reproduction on another website without permission. Facts only, as above."
+  },
+  "nato-terms": {
+   "summary": "nato.int: content republished must be credited to NATO, and none is sold or used for advertising. Facts only; NATO credited in ⓘ."
+  },
+  "apec-terms": {
+   "summary": "apec.org terms: reproduction with credit, non-profit, unmodified. Facts only; APEC credited in ⓘ."
+  },
+  "eu-cc-by": {
+   "summary": "european-union.europa.eu legal notice: EU-owned content is CC BY 4.0 — credit given and changes indicated.",
+   "credit": "© European Union, 1995–2026, european-union.europa.eu, CC BY 4.0. Changes: the member and candidate lists are extracted and shown as a map, with names in Bengali.",
+   "licence": "CC BY 4.0"
+  }
+ },
+ "sources": {
+  "saarc-about": {
+   "org": "saarc",
+   "publisher": "SAARC Secretariat",
+   "url": "https://www.saarc-sec.org/api/pages/about-saarc",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "saarc-about.json",
+   "bytes": 3485,
+   "sha256": "26149288830fcf7cf1f231a052dce060b0c1cc87e80eca618f359b2d85829df4",
+   "extract": "json:page.content.en",
+   "text": {
+    "file": "saarc-about.txt",
+    "bytes": 1406,
+    "sha256": "36fe68c13ae62c7a3cdd134ffb31b64415d73e77fe6e741dbaca6d40b5d78fc1"
+   },
+   "terms": "facts-only",
+   "authority": "organisation"
+  },
+  "bimstec-members": {
+   "org": "bimstec",
+   "publisher": "BIMSTEC Secretariat",
+   "url": "https://bimstec.org/member-states",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "bimstec-members.html",
+   "bytes": 43956,
+   "sha256": "881a1aa1ce18c137974c2731b64b686bf9ae73f7f24182fe0a60319bb7c405d3",
+   "text": {
+    "file": "bimstec-members.txt",
+    "bytes": 2021,
+    "sha256": "2e2d41fa5a8c9c6ecb0e610a80ae8213fd746eb8bfb49993015c8a1f41dedd63"
+   },
+   "terms": "facts-only",
+   "authority": "organisation"
+  },
+  "au-members": {
+   "org": "au",
+   "publisher": "African Union Commission",
+   "url": "https://au.int/en/member_states/countryprofiles2",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "au-members.html",
+   "bytes": 112261,
+   "sha256": "fd4031314d15cc6bda79f427151050a1494993d666cbf2374de602ef3e8d388e",
+   "text": {
+    "file": "au-members.txt",
+    "bytes": 15289,
+    "sha256": "b066cad90f2f4de46684ae0e30129bac19aa33a16c74eeea0c743ad9a139e91b"
+   },
+   "terms": "au-legal",
+   "authority": "organisation"
+  },
+  "au-legal": {
+   "org": "au",
+   "publisher": "African Union Commission",
+   "role": "terms",
+   "url": "https://au.int/en/legal_notice",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "au-legal.html",
+   "bytes": 101766,
+   "sha256": "74501a45a1d77f910e34bff7d67d2cc61f79710300b4965909e4156c52b0e7a5",
+   "text": {
+    "file": "au-legal.txt",
+    "bytes": 13069,
+    "sha256": "2c83b86170de37f4ca95071faac82aee9c631851297472999c5cdfd3de992963"
+   },
+   "terms": "au-legal",
+   "authority": "organisation"
+  },
+  "eu-countries": {
+   "org": "eu",
+   "publisher": "European Union",
+   "url": "https://european-union.europa.eu/principles-countries-history/eu-countries_en",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "eu-countries.html",
+   "bytes": 117331,
+   "sha256": "49233ca7684478d6559cd177236bca23b94abbcfe4069b44e416d70e393b7f35",
+   "text": {
+    "file": "eu-countries.txt",
+    "bytes": 5193,
+    "sha256": "5bf9ba9f686add5670cf1ee4c28efbabdcfb1ff84f1a6cf92dbbcf686f5fd7ab"
+   },
+   "terms": "eu-cc-by",
+   "authority": "organisation"
+  },
+  "eu-countries-2": {
+   "org": "eu",
+   "publisher": "European Union",
+   "url": "https://european-union.europa.eu/principles-countries-history/eu-countries_en?page=1",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "eu-countries-2.html",
+   "bytes": 103184,
+   "sha256": "abda73d362d9709f183afa5bd3038a06d446b7fe3697e1f8c8ae2e239bd49c0d",
+   "text": {
+    "file": "eu-countries-2.txt",
+    "bytes": 3317,
+    "sha256": "a8df0d40322dce914986249ddbbd59fcc67247b1b0e93abb240bfbcebd51e23b"
+   },
+   "terms": "eu-cc-by",
+   "authority": "organisation"
+  },
+  "eu-enlargement": {
+   "org": "eu",
+   "publisher": "European Union",
+   "url": "https://european-union.europa.eu/principles-countries-history/eu-enlargement_en",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "eu-enlargement.html",
+   "bytes": 109339,
+   "sha256": "fc6077009470192c5c8fe6fd9fbca55b61089ac7ab1fc6b57771abf97ec41824",
+   "text": {
+    "file": "eu-enlargement.txt",
+    "bytes": 9695,
+    "sha256": "be3fa5dcf5fd0dee7b0cf1ba0f18e2ca28c696628034ab2f819fd2a51614ed86"
+   },
+   "terms": "eu-cc-by",
+   "authority": "organisation"
+  },
+  "eu-legal": {
+   "org": "eu",
+   "publisher": "European Union",
+   "role": "terms",
+   "url": "https://european-union.europa.eu/legal-notice_en",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "eu-legal.html",
+   "bytes": 90241,
+   "sha256": "c154e544c3889293409b4707655a6870d11f9a5dfb20938b5eb2020729fc8eec",
+   "text": {
+    "file": "eu-legal.txt",
+    "bytes": 6631,
+    "sha256": "a5ae43431009a5dbb03b75e181601842ae3274f3da58db55d387ea37fa76b7c9"
+   },
+   "terms": "eu-cc-by",
+   "authority": "organisation"
+  },
+  "oic-members": {
+   "org": "oic",
+   "publisher": "OIC General Secretariat",
+   "url": "https://www.oic-oci.org/en/members",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "oic-members.html",
+   "bytes": 311166,
+   "sha256": "ac972d5fe61fc1ce9ea8f35ceccb82f93805535fc700542e81961d532c4b5024",
+   "text": {
+    "file": "oic-members.txt",
+    "bytes": 3867,
+    "sha256": "1f83462936b392593d3f4f2fa81880bc53834b3982f5fcc8d74b94b3df8d9abb"
+   },
+   "terms": "facts-only",
+   "authority": "organisation"
+  },
+  "oic-observers": {
+   "org": "oic",
+   "publisher": "OIC General Secretariat",
+   "url": "https://www.oic-oci.org/en/page/27",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "oic-observers.html",
+   "bytes": 167399,
+   "sha256": "cdf39866e92138a768e07f1f930e94b256ab594264311b199160f76327da2f94",
+   "text": {
+    "file": "oic-observers.txt",
+    "bytes": 2157,
+    "sha256": "295074613261b1612d23e6d7efb135355e40d2326037725c712c809358a5b629"
+   },
+   "terms": "facts-only",
+   "authority": "organisation"
+  },
+  "commonwealth-members": {
+   "org": "commonwealth",
+   "publisher": "Commonwealth Secretariat",
+   "url": "https://thecommonwealth.org/our-member-countries",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "commonwealth-members.html",
+   "bytes": 88995,
+   "sha256": "a3220e23528c2795a110d52915dad6a221977e422dc0259c41ac089d0d52f53a",
+   "text": {
+    "file": "commonwealth-members.txt",
+    "bytes": 2712,
+    "sha256": "36eab5e6ed2cc03013e273a756aa6337f75f1cf74404ef3c1206a0946a1a0524"
+   },
+   "terms": "commonwealth-terms",
+   "authority": "organisation"
+  },
+  "commonwealth-terms": {
+   "org": "commonwealth",
+   "publisher": "Commonwealth Secretariat",
+   "role": "terms",
+   "url": "https://thecommonwealth.org/terms-conditions",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "commonwealth-terms.html",
+   "bytes": 40075,
+   "sha256": "ac4dd9aff7283a4915c9d7141101f85b2e3815cba6e548c4f690f6f8899ed16b",
+   "text": {
+    "file": "commonwealth-terms.txt",
+    "bytes": 4182,
+    "sha256": "309b66f85a7655acc3022bc9a23ffc2ec73cd0e820cc3fa75a8e9759ac2ffe87"
+   },
+   "terms": "commonwealth-terms",
+   "authority": "organisation"
+  },
+  "opec-home": {
+   "org": "opec",
+   "publisher": "OPEC Secretariat",
+   "url": "https://www.opec.org/",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "opec-home.html",
+   "bytes": 247409,
+   "sha256": "1c6c6145c7db1e3fe076e4eb5bc6b816b0d604662718d39b02a8a121b13b429b",
+   "text": {
+    "file": "opec-home.txt",
+    "bytes": 5828,
+    "sha256": "b4e9e23f2645ae623513cb9ebf5c6ba8ea8e892de132eaf11a8369aef9a7fe72"
+   },
+   "terms": "facts-only",
+   "authority": "organisation"
+  },
+  "nato-members": {
+   "org": "nato",
+   "publisher": "NATO",
+   "url": "https://www.nato.int/en/about-us/organization/nato-member-countries",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "nato-members.html",
+   "bytes": 380042,
+   "sha256": "7c41ecbf3535edfe8d5358598004d57849254303e8739d8c6ad3f886f597c326",
+   "text": {
+    "file": "nato-members.txt",
+    "bytes": 57753,
+    "sha256": "c2a1cdc08b0e6afd0b17622cd4f12a3e3ef769afa9da6717c26f15a422adfbfd"
+   },
+   "pageDate": "2024-03-11",
+   "terms": "nato-terms",
+   "authority": "organisation"
+  },
+  "nato-terms": {
+   "org": "nato",
+   "publisher": "NATO",
+   "role": "terms",
+   "url": "https://www.nato.int/en/about-us/official-texts-and-resources/use-of-nato-content-and-brand",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "nato-terms.html",
+   "bytes": 296972,
+   "sha256": "d230be38be4ac345b331af96eb9c0cf0a736e84489318c93ed855d0aee3f0427",
+   "text": {
+    "file": "nato-terms.txt",
+    "bytes": 26383,
+    "sha256": "6d4d730d13d660034386dca877191be1c82552d78af89952febf1431dddebc90"
+   },
+   "terms": "nato-terms",
+   "authority": "organisation"
+  },
+  "sco-general": {
+   "org": "sco",
+   "publisher": "SCO Secretariat",
+   "url": "https://eng.sectsco.org/20170110/192193.html",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "sco-general.html",
+   "bytes": 33524,
+   "sha256": "a6d2309840d29df9c4b452d552700883530c50d8f4b4081e5ce4954ade53e59d",
+   "text": {
+    "file": "sco-general.txt",
+    "bytes": 10352,
+    "sha256": "73a7f7519996f444e2eae03d47babe2504cf49c83475fda7e2898af5a157473d"
+   },
+   "terms": "facts-only",
+   "authority": "organisation"
+  },
+  "sco-observers": {
+   "org": "sco",
+   "publisher": "SCO Secretariat",
+   "url": "https://eng.sectsco.org/20260306/2185663.html",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "sco-observers.html",
+   "bytes": 22619,
+   "sha256": "f76882ab696f9b045061c8a08a2283bac7f50048a9b39ab5fa5403c0529822ec",
+   "text": {
+    "file": "sco-observers.txt",
+    "bytes": 8299,
+    "sha256": "939bd3f581c9cc3986ceb825b351a84c8720d34db2edb01711d83e05b363eccf"
+   },
+   "pageDate": "2026-03-06",
+   "terms": "facts-only",
+   "authority": "organisation"
+  },
+  "d8-about": {
+   "org": "d8",
+   "publisher": "D-8 Secretariat",
+   "url": "https://developing8.org/about-d-8/",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "d8-about.html",
+   "bytes": 107133,
+   "sha256": "01dcbed3ae39a3a3c4da91343ad6c156b77410443e09174e827211fec79a4669",
+   "text": {
+    "file": "d8-about.txt",
+    "bytes": 3704,
+    "sha256": "c7b72e8e30beeba1f0fe73dc823a7121f9d948f7f6d01269faf203386f390a00"
+   },
+   "terms": "facts-only",
+   "authority": "organisation"
+  },
+  "apec-members": {
+   "org": "apec",
+   "publisher": "APEC Secretariat",
+   "url": "https://www.apec.org/who-we-are/our-members",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "apec-members.html",
+   "bytes": 160742,
+   "sha256": "d1e674e73f66977df2a63f407a5ceead60acd531f6bdea297ff47eee2ddb9c47",
+   "text": {
+    "file": "apec-members.txt",
+    "bytes": 14072,
+    "sha256": "01fbabbe8683c7449f76cf9e1990a1156a2014946b6faf16844b44432c563f7d"
+   },
+   "terms": "apec-terms",
+   "authority": "organisation"
+  },
+  "apec-terms": {
+   "org": "apec",
+   "publisher": "APEC Secretariat",
+   "role": "terms",
+   "url": "https://www.apec.org/termsofuse",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "apec-terms.html",
+   "bytes": 163818,
+   "sha256": "17f110c484e3877ced8ee94c5617ecf2efb08285be82cabdfa02684f13e5f765",
+   "text": {
+    "file": "apec-terms.txt",
+    "bytes": 19997,
+    "sha256": "673fd46d28265c65faa7f4359fd51fa6fd7e11dfef6ca53ce0cbc27a95efc66b"
+   },
+   "terms": "apec-terms",
+   "authority": "organisation"
+  },
+  "eco-members": {
+   "org": "eco",
+   "publisher": "ECO Secretariat",
+   "url": "https://eco.int/member-states/",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "eco-members.html",
+   "bytes": 78647,
+   "sha256": "d0de977c07aefd8cdbeccb36dca00cb43e1162b5df1372a0ab8a46f601b81888",
+   "text": {
+    "file": "eco-members.txt",
+    "bytes": 2879,
+    "sha256": "39bca2eed83a34fe2212e5719885404918524e361769ac079e0bcac107ca1dd7"
+   },
+   "terms": "facts-only",
+   "authority": "organisation"
+  },
+  "eco-observers": {
+   "org": "eco",
+   "publisher": "ECO Secretariat",
+   "url": "https://eco.int/observers/",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "eco-observers.html",
+   "bytes": 76622,
+   "sha256": "9302c07e7b85b4b36806c29e48e02d436202cd564041e824c7dff6d5b91b6cd5",
+   "text": {
+    "file": "eco-observers.txt",
+    "bytes": 2428,
+    "sha256": "79aa9caad01e80cab58abdc86b22abcde7302477b91d489b016829eecbf66e78"
+   },
+   "terms": "facts-only",
+   "authority": "organisation"
+  },
+  "arableague-members": {
+   "org": "arableague",
+   "publisher": "League of Arab States",
+   "url": "http://www.lasportal.org/ar/aboutlas/Pages/CountryData.aspx",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "arableague-members.html",
+   "bytes": 126914,
+   "sha256": "15def26e965e64f9b457de5c50811dbee0201778c96f61bc4ebd355061623729",
+   "text": {
+    "file": "arableague-members.txt",
+    "bytes": 6443,
+    "sha256": "a66fda5eff77fecc1ea5024818ca7d15a24b5ff6b28adc196621e66c6f506711"
+   },
+   "terms": "facts-only",
+   "authority": "organisation"
+  },
+  "iora-members": {
+   "org": "iora",
+   "publisher": "IORA Secretariat",
+   "url": "https://www.iora.int/en/about/member-states",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "iora-members.html",
+   "bytes": 94422,
+   "sha256": "477b5f3b3ed0002b6887cb8ce5529a1d4d39785abe9340fe8bd4ed231b8c57bd",
+   "text": {
+    "file": "iora-members.txt",
+    "bytes": 2316,
+    "sha256": "c50a94dfbbbc9d00ba198204f9279e39c9aef7ebaf3f82d5468911cdb5f9760d"
+   },
+   "terms": "facts-only",
+   "authority": "organisation"
+  },
+  "iora-partners": {
+   "org": "iora",
+   "publisher": "IORA Secretariat",
+   "url": "https://www.iora.int/dialogue-partners",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "iora-partners.html",
+   "bytes": 81584,
+   "sha256": "37d8e969ae80cc1b9643f695433bdb218e9630b2e790a3193cb9d3478b82e2f2",
+   "text": {
+    "file": "iora-partners.txt",
+    "bytes": 1956,
+    "sha256": "776ecf0fcad60ee509b3c4fc683ca5cbd0a4f9128b7580cd1e4cb6d1b7d26e11"
+   },
+   "terms": "facts-only",
+   "authority": "organisation"
+  },
+  "asean-members": {
+   "org": "asean",
+   "publisher": "ASEAN Secretariat",
+   "url": "https://asean.org/member-states/",
+   "retrieved": "2026-10-06",
+   "via": "browser",
+   "file": "asean-members.html",
+   "bytes": 512234,
+   "sha256": "6960669d602ffaae914e24e87910cee50cef4224027308201ca6f26c40d50914",
+   "text": {
+    "file": "asean-members.txt",
+    "bytes": 7954,
+    "sha256": "e4222e536c1510058ba9fa048fa39e7d3ecc12b09e41f3fbc1e1688005708cd3"
+   },
+   "terms": "facts-only",
+   "authority": "organisation"
+  },
+  "gcc-members": {
+   "org": "gcc",
+   "publisher": "GCC General Secretariat",
+   "url": "https://www.gcc-sg.org/en/AboutUs/MemberStates/",
+   "retrieved": "2026-10-06",
+   "via": "browser",
+   "file": "gcc-members.html",
+   "bytes": 88910,
+   "sha256": "d4a012cba9dc0a92abd9c579bee9b993a9332abc3bde5b6ccb7560e9c93ab6e4",
+   "text": {
+    "file": "gcc-members.txt",
+    "bytes": 4733,
+    "sha256": "80ed01c4160e21511163d68213f163448194dbd482df29ae58c4301bc292cfe9"
+   },
+   "terms": "facts-only",
+   "authority": "organisation"
+  },
+  "gcc-terms": {
+   "org": "gcc",
+   "publisher": "GCC General Secretariat",
+   "role": "terms",
+   "url": "https://www.gcc-sg.org/en/PortalServices/Pages/TermsOfUse.aspx",
+   "retrieved": "2026-10-06",
+   "via": "browser",
+   "file": "gcc-terms.html",
+   "bytes": 50297,
+   "sha256": "be3284915fb1caa804daa46bdca4f5d7dc8b8d1dde7333128b30033500974114",
+   "text": {
+    "file": "gcc-terms.txt",
+    "bytes": 953,
+    "sha256": "bd2602ff71415463a9bb411c41f95bb5ef1a2874b41e9beeb739c3e01b9ec885"
+   },
+   "terms": "facts-only",
+   "authority": "organisation"
+  },
+  "g7-diplomatie": {
+   "org": "g7",
+   "publisher": "France, Ministry for Europe and Foreign Affairs (G7 presidency 2026)",
+   "url": "https://www.diplomatie.gouv.fr/en/presse-et-ressources/decouvrir-et-informer/actualites/g7-quelles-priorites-pour-le-sommet-d-evian",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "g7-diplomatie.html",
+   "bytes": 50278,
+   "sha256": "e85f83d9a957c255881098223786c4c0e832d1376891df2df507a7439e58170c",
+   "text": {
+    "file": "g7-diplomatie.txt",
+    "bytes": 7346,
+    "sha256": "31a7951a3e513acb9319a9953ea58dca508309142d6c14c9921a3895fe42af7d"
+   },
+   "pageDate": "2026-07-22",
+   "terms": "facts-only",
+   "authority": "presidency"
+  },
+  "g20-govinfo": {
+   "org": "g20",
+   "publisher": "United States, Federal Register via govinfo.gov (G20 presidency 2026)",
+   "url": "https://www.govinfo.gov/content/pkg/FR-2025-01-07/html/2025-00018.htm",
+   "retrieved": "2026-10-06",
+   "via": "fetch",
+   "file": "g20-govinfo.html",
+   "bytes": 36471,
+   "sha256": "fefb68710497c4f1e6961393444399b00a797da2aed879174a2acb505cd87366",
+   "text": {
+    "file": "g20-govinfo.txt",
+    "bytes": 25136,
+    "sha256": "e85984ab82e70eeebd9bbd936b95f73ffcc304d9d127a43605afa3219591a9a0"
+   },
+   "pageDate": "2025-01-07",
+   "terms": "facts-only",
+   "authority": "presidency"
+  }
+ },
+ "organisations": {
+  "saarc": {
+   "abbr": "SAARC",
+   "nameEn": "South Asian Association for Regional Cooperation",
+   "nameBn": {
+    "bn": "সার্ক",
+    "approved": true,
+    "from": "org-headquarters seed"
+   },
+   "sources": [
+    "saarc-about"
+   ],
+   "asOf": {
+    "retrieved": "2026-10-06"
+   },
+   "recheck": "yearly",
+   "members": [
+    {
+     "code": "AFG",
+     "cite": {
+      "source": "saarc-about",
+      "offset": 196,
+      "length": 11,
+      "sha256": "5dbddf911f9e565299428e948a92ea5d1943c4099db883cc4491cb32cc757de8"
+     }
+    },
+    {
+     "code": "BGD",
+     "cite": {
+      "source": "saarc-about",
+      "offset": 209,
+      "length": 10,
+      "sha256": "2f1d47eb679bb05e6d8fe039af1563549588cd44b40be6b1013ea8ca2268845f"
+     }
+    },
+    {
+     "code": "BTN",
+     "cite": {
+      "source": "saarc-about",
+      "offset": 221,
+      "length": 6,
+      "sha256": "d889e2172a211a1df09723b11ff7cd0d9c0fefb4c0bac1cdea6aadb4e6ccc0b7"
+     }
+    },
+    {
+     "code": "IND",
+     "cite": {
+      "source": "saarc-about",
+      "offset": 229,
+      "length": 5,
+      "sha256": "abd149214539d9f222d25de6358735b9fa0efd3956f66102b2c119ae2d9f6348"
+     }
+    },
+    {
+     "code": "MDV",
+     "cite": {
+      "source": "saarc-about",
+      "offset": 236,
+      "length": 8,
+      "sha256": "8fb54471a4b8bc78ddc7ef0871d1cad84cc428a41a4326e876871689cbf426f8"
+     }
+    },
+    {
+     "code": "NPL",
+     "cite": {
+      "source": "saarc-about",
+      "offset": 246,
+      "length": 5,
+      "sha256": "e15a18aadcac09e6fa6469cee82b657d12915065b23be9f2c1a14685b08cb3d1"
+     }
+    },
+    {
+     "code": "PAK",
+     "cite": {
+      "source": "saarc-about",
+      "offset": 253,
+      "length": 8,
+      "sha256": "e2567312ec53232b5353c2798f8054759ee21b03af967265dd22b4cb4284bc49"
+     }
+    },
+    {
+     "code": "LKA",
+     "cite": {
+      "source": "saarc-about",
+      "offset": 266,
+      "length": 9,
+      "sha256": "07f8d1144a39d45664231d8f129214d7ba99ce146240e154f4c893e8e4e1c0d6"
+     }
+    }
+   ],
+   "stated": {
+    "count": {
+     "value": 8,
+     "cite": {
+      "source": "saarc-about",
+      "offset": 156,
+      "length": 38,
+      "sha256": "7c5d0c171829cf53edcf40eab05d35d423b9aa0482fe5053e51bbebb58607d8b"
+     }
+    }
+   }
+  },
+  "bimstec": {
+   "abbr": "BIMSTEC",
+   "nameEn": "Bay of Bengal Initiative for Multi-Sectoral Technical and Economic Cooperation",
+   "nameBn": {
+    "bn": "বিমসটেক",
+    "approved": true,
+    "from": "org-headquarters seed"
+   },
+   "sources": [
+    "bimstec-members"
+   ],
+   "asOf": {
+    "retrieved": "2026-10-06"
+   },
+   "recheck": "yearly",
+   "members": [
+    {
+     "code": "BGD",
+     "cite": {
+      "source": "bimstec-members",
+      "offset": 1200,
+      "length": 10,
+      "sha256": "2f1d47eb679bb05e6d8fe039af1563549588cd44b40be6b1013ea8ca2268845f"
+     }
+    },
+    {
+     "code": "BTN",
+     "cite": {
+      "source": "bimstec-members",
+      "offset": 1211,
+      "length": 6,
+      "sha256": "d889e2172a211a1df09723b11ff7cd0d9c0fefb4c0bac1cdea6aadb4e6ccc0b7"
+     }
+    },
+    {
+     "code": "IND",
+     "cite": {
+      "source": "bimstec-members",
+      "offset": 1218,
+      "length": 5,
+      "sha256": "abd149214539d9f222d25de6358735b9fa0efd3956f66102b2c119ae2d9f6348"
+     }
+    },
+    {
+     "code": "MMR",
+     "cite": {
+      "source": "bimstec-members",
+      "offset": 1224,
+      "length": 7,
+      "sha256": "ba2039a4cf69defd3f474495125904bb9286d1ec20651501c42c146b8c38b2f8"
+     }
+    },
+    {
+     "code": "NPL",
+     "cite": {
+      "source": "bimstec-members",
+      "offset": 1232,
+      "length": 5,
+      "sha256": "e15a18aadcac09e6fa6469cee82b657d12915065b23be9f2c1a14685b08cb3d1"
+     }
+    },
+    {
+     "code": "LKA",
+     "cite": {
+      "source": "bimstec-members",
+      "offset": 1238,
+      "length": 9,
+      "sha256": "07f8d1144a39d45664231d8f129214d7ba99ce146240e154f4c893e8e4e1c0d6"
+     }
+    },
+    {
+     "code": "THA",
+     "cite": {
+      "source": "bimstec-members",
+      "offset": 1248,
+      "length": 8,
+      "sha256": "6e49e65081b2bcb5a54e6a6a74086f42949ddf388d516ce7eb0dad7d95e80ceb"
+     }
+    }
+   ]
+  },
+  "au": {
+   "abbr": "AU",
+   "nameEn": "African Union",
+   "nameBn": {
+    "bn": "আফ্রিকান ইউনিয়ন",
+    "approved": true,
+    "from": "org-headquarters seed"
+   },
+   "sources": [
+    "au-members"
+   ],
+   "asOf": {
+    "retrieved": "2026-10-06"
+   },
+   "recheck": "after each summit, and at least quarterly",
+   "members": [
+    {
+     "code": "BDI",
+     "cite": {
+      "source": "au-members",
+      "offset": 7473,
+      "length": 7,
+      "sha256": "c835bd1c4578817f60901e0153611b19a97b2275befa8de44e1e42cb3f53ea0d"
+     }
+    },
+    {
+     "code": "CMR",
+     "cite": {
+      "source": "au-members",
+      "offset": 7514,
+      "length": 8,
+      "sha256": "085807f22f69d2c9a89a9bcbcf06b63a32e5afc414c7c66b42992de8e5a7cd21"
+     }
+    },
+    {
+     "code": "CAF",
+     "cite": {
+      "source": "au-members",
+      "offset": 7535,
+      "length": 24,
+      "sha256": "e509cda4c4469cb8cf81ee15665b638a4b8c2e24b57890353227f0b60cd5a046"
+     }
+    },
+    {
+     "code": "TCD",
+     "cite": {
+      "source": "au-members",
+      "offset": 7614,
+      "length": 4,
+      "sha256": "4256e512fcfb03cad0ee741589ec9ea9d525dc2af0ebb1d5db1ffa9eb4cc3f49"
+     }
+    },
+    {
+     "code": "COG",
+     "cite": {
+      "source": "au-members",
+      "offset": 7631,
+      "length": 21,
+      "sha256": "7491ff18fff69f4ccec41f45c109660a03c86180c9d29872e78f30954b6c233d"
+     }
+    },
+    {
+     "code": "COD",
+     "cite": {
+      "source": "au-members",
+      "offset": 7709,
+      "length": 8,
+      "sha256": "059bdf337a98e69e2baa3f4f1fca8d4b25de2a5a0ce29fcecd02a6beae960585"
+     }
+    },
+    {
+     "code": "GNQ",
+     "cite": {
+      "source": "au-members",
+      "offset": 7760,
+      "length": 17,
+      "sha256": "8994687843a38376e70bf40df5ef5160f91343a895c62515571aeae973214132"
+     }
+    },
+    {
+     "code": "GAB",
+     "cite": {
+      "source": "au-members",
+      "offset": 7812,
+      "length": 5,
+      "sha256": "7e222a78e771f1b9b5692f4df889961e98152756af6391b1340366632e57b6ae"
+     }
+    },
+    {
+     "code": "STP",
+     "cite": {
+      "source": "au-members",
+      "offset": 7875,
+      "length": 21,
+      "sha256": "003c6e4d801fd1e5164b62ba5eff30155486d357fbf29d8f2bf82d37f7038019"
+     }
+    },
+    {
+     "code": "COM",
+     "cite": {
+      "source": "au-members",
+      "offset": 8002,
+      "length": 7,
+      "sha256": "e814fdb45fd481e74da4de0e0e61f98a93a7a071a5f3ca8cd49082ff6df89c47"
+     }
+    },
+    {
+     "code": "DJI",
+     "cite": {
+      "source": "au-members",
+      "offset": 8044,
+      "length": 8,
+      "sha256": "4678a57b30912b23d1e908a04decb5f4a004d7056b36390ee3737f6bbb50b202"
+     }
+    },
+    {
+     "code": "ERI",
+     "cite": {
+      "source": "au-members",
+      "offset": 8083,
+      "length": 7,
+      "sha256": "01bc4009390083a75d0215a4847774db711b39a30e04e4d5d297416b2fb3a9de"
+     }
+    },
+    {
+     "code": "ETH",
+     "cite": {
+      "source": "au-members",
+      "offset": 8143,
+      "length": 8,
+      "sha256": "7d94977e033dee6304f7d11d4b3b1cc17df77ba3a5dea84ce7e482a8d7af5a08"
+     }
+    },
+    {
+     "code": "KEN",
+     "cite": {
+      "source": "au-members",
+      "offset": 8182,
+      "length": 5,
+      "sha256": "74e1891dc615b22fac103c74ab7133742dd1d95a604f6d4edb1a9403b7156506"
+     }
+    },
+    {
+     "code": "MDG",
+     "cite": {
+      "source": "au-members",
+      "offset": 8223,
+      "length": 10,
+      "sha256": "d6804464c5f44de8308cefd03beff616f2a9333ab628e4d190c0f944431cb216"
+     }
+    },
+    {
+     "code": "MUS",
+     "cite": {
+      "source": "au-members",
+      "offset": 8268,
+      "length": 9,
+      "sha256": "aa8057ecb40b1361656fac129c1ed8793c89d64f4934aced427166a5b2657731"
+     }
+    },
+    {
+     "code": "RWA",
+     "cite": {
+      "source": "au-members",
+      "offset": 8309,
+      "length": 6,
+      "sha256": "12c8f8f4912cbdb3946196e4b7e8457c703967a9bfaff0f785979f4bc6d30a18"
+     }
+    },
+    {
+     "code": "SYC",
+     "cite": {
+      "source": "au-members",
+      "offset": 8351,
+      "length": 10,
+      "sha256": "d1d6332085114485c8a27776e8ed6a66c296f4179e4220a75f1b1fead1ec54f3"
+     }
+    },
+    {
+     "code": "SOM",
+     "cite": {
+      "source": "au-members",
+      "offset": 8403,
+      "length": 7,
+      "sha256": "bd05d324d8a3dfad0a804375c9646b527dda1a8eb7fceeebcd1a0a8bd4460784"
+     }
+    },
+    {
+     "code": "SDS",
+     "cite": {
+      "source": "au-members",
+      "offset": 8447,
+      "length": 11,
+      "sha256": "8fe5a93113d728e60d4b1f63d4b24f03ccc7dfd4936fd610a2bcc975090a521d"
+     }
+    },
+    {
+     "code": "SDN",
+     "cite": {
+      "source": "au-members",
+      "offset": 8494,
+      "length": 5,
+      "sha256": "ed68d4def1af578d108ecdfbb1fe7ea1dfc8c023c24a1d7dbdbcbe1a9f21909c"
+     }
+    },
+    {
+     "code": "TZA",
+     "cite": {
+      "source": "au-members",
+      "offset": 8540,
+      "length": 8,
+      "sha256": "9555664fcf433126481600df355699e290fc5aae1b758439968880b973f1c256"
+     }
+    },
+    {
+     "code": "UGA",
+     "cite": {
+      "source": "au-members",
+      "offset": 8580,
+      "length": 6,
+      "sha256": "893d538563bcd9aca0cf6f926bd7902a7dc17471ba50c10a54210fe4d277bf14"
+     }
+    },
+    {
+     "code": "DZA",
+     "cite": {
+      "source": "au-members",
+      "offset": 8711,
+      "length": 7,
+      "sha256": "30e230229746a0c64818c9bc8f2c86e31bbb500f0a8db33c4b02adf9cded18f8"
+     }
+    },
+    {
+     "code": "EGY",
+     "cite": {
+      "source": "au-members",
+      "offset": 8754,
+      "length": 5,
+      "sha256": "557c1599d9a04895d3817d293e0806a4419a14de31958386182798d0d2ed3a56"
+     }
+    },
+    {
+     "code": "LBY",
+     "cite": {
+      "source": "au-members",
+      "offset": 8772,
+      "length": 5,
+      "sha256": "2aa2fcef50db47e73b7d33539aa20acdf6afabb60f7b35696048e4a769a1f8c6"
+     }
+    },
+    {
+     "code": "MRT",
+     "cite": {
+      "source": "au-members",
+      "offset": 8827,
+      "length": 10,
+      "sha256": "bfb0c8d36f4aaa84129067675a722a877e0784a54edd5fc6ed1d86d7717eef9b"
+     }
+    },
+    {
+     "code": "MAR",
+     "cite": {
+      "source": "au-members",
+      "offset": 8869,
+      "length": 7,
+      "sha256": "b675f5df5fe68da179f367852f25b42aa16fd84b05d9b05da50cd723635dfd02"
+     }
+    },
+    {
+     "code": "SAH",
+     "cite": {
+      "source": "au-members",
+      "offset": 8898,
+      "length": 32,
+      "sha256": "1cd87910e8c2c7b9b7e9094d6914126d083fbedddfa272ff4cabcff95b9f0c6d"
+     }
+    },
+    {
+     "code": "TUN",
+     "cite": {
+      "source": "au-members",
+      "offset": 8985,
+      "length": 7,
+      "sha256": "4609682a2f3d7a64f456583019c21a2cf89644d62ff4b3b4d59ac3cfad720a2f"
+     }
+    },
+    {
+     "code": "AGO",
+     "cite": {
+      "source": "au-members",
+      "offset": 9096,
+      "length": 6,
+      "sha256": "22b9653281793ae7a688c75fe7ec20375484d583a062f32918ba23a86be0c079"
+     }
+    },
+    {
+     "code": "BWA",
+     "cite": {
+      "source": "au-members",
+      "offset": 9141,
+      "length": 8,
+      "sha256": "1672f60c3a9ae94f9e7ca742d9c4dce6a547baae599f938b060336b82f9d1652"
+     }
+    },
+    {
+     "code": "SWZ",
+     "cite": {
+      "source": "au-members",
+      "offset": 9186,
+      "length": 8,
+      "sha256": "e0568e4ce9cb8d1e7031beb24a3cd4a86defc49340221698690574dacb108c35"
+     }
+    },
+    {
+     "code": "LSO",
+     "cite": {
+      "source": "au-members",
+      "offset": 9232,
+      "length": 7,
+      "sha256": "5c2e4745c608d719cab6de3f2c11f3d972e212334f794dea783b7dc16c7b31f2"
+     }
+    },
+    {
+     "code": "MWI",
+     "cite": {
+      "source": "au-members",
+      "offset": 9275,
+      "length": 6,
+      "sha256": "611025cdde0afeeaae379492b36231ab70eb0f81ad6cb59f11cb807ad1ceb09f"
+     }
+    },
+    {
+     "code": "MOZ",
+     "cite": {
+      "source": "au-members",
+      "offset": 9318,
+      "length": 10,
+      "sha256": "c9054826f71c23b8eeb727b87d60b579c12b36bacdb42fc8f33d0a15e6eb23d1"
+     }
+    },
+    {
+     "code": "NAM",
+     "cite": {
+      "source": "au-members",
+      "offset": 9362,
+      "length": 7,
+      "sha256": "ea5bd39848d8ae8b2d4313b815a7805002e512d1d0ce48bf205e9cb20ab444de"
+     }
+    },
+    {
+     "code": "ZAF",
+     "cite": {
+      "source": "au-members",
+      "offset": 9405,
+      "length": 12,
+      "sha256": "3e049d78d958038ac6bd5dcf038075cc73362b4956aaf7308c3a69c8eca76297"
+     }
+    },
+    {
+     "code": "ZMB",
+     "cite": {
+      "source": "au-members",
+      "offset": 9449,
+      "length": 6,
+      "sha256": "b5f9221ae041a8f8fff31fcb6f43e6a57de061dd67b14ea8308fd2337200ea9a"
+     }
+    },
+    {
+     "code": "ZWE",
+     "cite": {
+      "source": "au-members",
+      "offset": 9494,
+      "length": 8,
+      "sha256": "c72199a85b5423d21edc30d37fb7b33687ff08dcc7ba41dd3c67f860e1e48528"
+     }
+    },
+    {
+     "code": "BEN",
+     "cite": {
+      "source": "au-members",
+      "offset": 9605,
+      "length": 5,
+      "sha256": "69d0a7b84cd1d5d0928e636b0a7204897af58fe55bd258ff996f4c5063bb2e2f"
+     }
+    },
+    {
+     "code": "BFA",
+     "cite": {
+      "source": "au-members",
+      "offset": 9623,
+      "length": 12,
+      "sha256": "a564371ac0f23840bc76bd564bdbbd02b32795a1583359583795698dafa8d3c0"
+     }
+    },
+    {
+     "code": "CPV",
+     "cite": {
+      "source": "au-members",
+      "offset": 9684,
+      "length": 10,
+      "sha256": "881f7fcc2e55695c6ea802187fbc4e0fcb90531b60b1c7988df9997fbac6a676"
+     }
+    },
+    {
+     "code": "CIV",
+     "cite": {
+      "source": "au-members",
+      "offset": 9734,
+      "length": 13,
+      "sha256": "b9c877b97fdffadc8c2197432937e61de611a62a0aad777d1a0124d1cb859aaf"
+     }
+    },
+    {
+     "code": "GMB",
+     "cite": {
+      "source": "au-members",
+      "offset": 9783,
+      "length": 6,
+      "sha256": "c6e681b1968d02d952a72f0b538568e424dd321b3b1278381334eec30c04ef78"
+     }
+    },
+    {
+     "code": "GHA",
+     "cite": {
+      "source": "au-members",
+      "offset": 9821,
+      "length": 5,
+      "sha256": "583201c1efbf30eb13b79352ab6ebd35103ec347953d8e99858a57b5bab3dde9"
+     }
+    },
+    {
+     "code": "GIN",
+     "cite": {
+      "source": "au-members",
+      "offset": 9858,
+      "length": 6,
+      "sha256": "dd591d77ea53db0b8ca1653e61680228df0d7a2c93f4b168fd3cfff120e7d5b2"
+     }
+    },
+    {
+     "code": "GNB",
+     "cite": {
+      "source": "au-members",
+      "offset": 9903,
+      "length": 13,
+      "sha256": "75e8f462f9dae90e449fc1a7e4e3ca571f83541f5314096f4de1d224c4dbfacc"
+     }
+    },
+    {
+     "code": "LBR",
+     "cite": {
+      "source": "au-members",
+      "offset": 9954,
+      "length": 7,
+      "sha256": "c9d2604dd5187b6a6ab3635747a24a6d01d443070e33c12780e72cf3647f4142"
+     }
+    },
+    {
+     "code": "MLI",
+     "cite": {
+      "source": "au-members",
+      "offset": 9991,
+      "length": 4,
+      "sha256": "ee5721a5a60b76256bb8f1d0692e488c02c7f54f56752602e8c8978f80b50867"
+     }
+    },
+    {
+     "code": "NER",
+     "cite": {
+      "source": "au-members",
+      "offset": 10026,
+      "length": 5,
+      "sha256": "2cbebc541f98c7a72472194f1987a1541fa278d9e27a97013c1c889bd26d5d1f"
+     }
+    },
+    {
+     "code": "NGA",
+     "cite": {
+      "source": "au-members",
+      "offset": 10072,
+      "length": 7,
+      "sha256": "04952a0f984dccfa1c401fbe5669c5342059049be3e2bba73dc5a481759b22a9"
+     }
+    },
+    {
+     "code": "SEN",
+     "cite": {
+      "source": "au-members",
+      "offset": 10112,
+      "length": 7,
+      "sha256": "364e5f6525c75b813171e128c9475e7dd4679989e4e865e0a14db87a9771da2c"
+     }
+    },
+    {
+     "code": "SLE",
+     "cite": {
+      "source": "au-members",
+      "offset": 10157,
+      "length": 12,
+      "sha256": "f405b98d5ffcfb0519c1cdaa60216738c0adff1e60ad95191bb67633b55bdc6c"
+     }
+    },
+    {
+     "code": "TGO",
+     "cite": {
+      "source": "au-members",
+      "offset": 10200,
+      "length": 4,
+      "sha256": "4080343ee0fe2dc36867973cd59a1ec0a331c7323cfad8af4ea214367dcb7974"
+     }
+    }
+   ],
+   "stated": {
+    "count": {
+     "value": 55,
+     "cite": {
+      "source": "au-members",
+      "offset": 7021,
+      "length": 37,
+      "sha256": "f333d2b1dc336185ac436bc0a88f0b3549a8041742b097ff7266f99c53084f65"
+     }
+    }
+   }
+  },
+  "eu": {
+   "abbr": "EU",
+   "nameEn": "European Union",
+   "nameBn": {
+    "bn": "ইউরোপীয় ইউনিয়ন",
+    "approved": true,
+    "cite": {
+     "source": "user",
+     "date": "2026-10-06"
+    },
+    "note": "this map only; org-headquarters keeps «ইউরোপীয় ইউনিয়ন (ইউরোপীয় কমিশন)»"
+   },
+   "sources": [
+    "eu-countries",
+    "eu-countries-2",
+    "eu-enlargement"
+   ],
+   "asOf": {
+    "retrieved": "2026-10-06"
+   },
+   "recheck": "every 6 months",
+   "members": [
+    {
+     "code": "AUT",
+     "cite": {
+      "source": "eu-countries",
+      "offset": 1916,
+      "length": 7,
+      "sha256": "c9cab0238debc6e55498e2c0963a1d8e25bd29c95ddd53a3fff841ee636b6bc5"
+     }
+    },
+    {
+     "code": "BEL",
+     "cite": {
+      "source": "eu-countries",
+      "offset": 2063,
+      "length": 7,
+      "sha256": "348841ef53dbd5a64008a86be432973db790774fb28b59b0d99702a3188b3705"
+     }
+    },
+    {
+     "code": "BGR",
+     "cite": {
+      "source": "eu-countries",
+      "offset": 2210,
+      "length": 8,
+      "sha256": "66b86bf0f04594746e886baa094d6038b92895c79526fd60a44395cb0c0854cc"
+     }
+    },
+    {
+     "code": "HRV",
+     "cite": {
+      "source": "eu-countries",
+      "offset": 2359,
+      "length": 7,
+      "sha256": "7328d3f829b7b3405e87f3041aa984b8844c4155ea865d5be3b2036bd5264898"
+     }
+    },
+    {
+     "code": "CYP",
+     "cite": {
+      "source": "eu-countries",
+      "offset": 2506,
+      "length": 6,
+      "sha256": "5f1162c57ecf998190d473ff238b6e311d7c52f5f81ca7ac3fca9267832b585c"
+     }
+    },
+    {
+     "code": "CZE",
+     "cite": {
+      "source": "eu-countries",
+      "offset": 2619,
+      "length": 7,
+      "sha256": "ecfa967e901a86b132554041d686ac4273fc4c194d16eeeac1fe7244f8002973"
+     }
+    },
+    {
+     "code": "DNK",
+     "cite": {
+      "source": "eu-countries",
+      "offset": 2737,
+      "length": 7,
+      "sha256": "c527097577600a6726de99bd6f555fbfaf214da9b7d127d7dd4a807927422b98"
+     }
+    },
+    {
+     "code": "EST",
+     "cite": {
+      "source": "eu-countries",
+      "offset": 2855,
+      "length": 7,
+      "sha256": "10aeba697f6ba830e1252df6f9a9051eb4317954ff933bff25458f28fb069c6b"
+     }
+    },
+    {
+     "code": "FIN",
+     "cite": {
+      "source": "eu-countries",
+      "offset": 3002,
+      "length": 7,
+      "sha256": "aed8f531aa7e785be255bc435e2582e74c58defedebcb629eeabf365b809bd6f"
+     }
+    },
+    {
+     "code": "FRA",
+     "cite": {
+      "source": "eu-countries",
+      "offset": 3149,
+      "length": 6,
+      "sha256": "7a1ca4ef7515f7276bae7230545829c27810c9d9e98ab2c06066bee6270d5153"
+     }
+    },
+    {
+     "code": "DEU",
+     "cite": {
+      "source": "eu-countries",
+      "offset": 3294,
+      "length": 7,
+      "sha256": "80db4ccdca106d37b920206331fcfe3e9e50a9e763d89b54ce3ad5ac8cf30f03"
+     }
+    },
+    {
+     "code": "GRC",
+     "cite": {
+      "source": "eu-countries",
+      "offset": 3441,
+      "length": 6,
+      "sha256": "9c93ad439373b4ee35e70ba1318055a14d2ed222f69f9e2d069689e83829833d"
+     }
+    },
+    {
+     "code": "HUN",
+     "cite": {
+      "source": "eu-countries",
+      "offset": 3586,
+      "length": 7,
+      "sha256": "504be3084f44d3e7eea35c83d4c8338e1fa19b777badc317f69326a4083d804e"
+     }
+    },
+    {
+     "code": "IRL",
+     "cite": {
+      "source": "eu-countries",
+      "offset": 3704,
+      "length": 7,
+      "sha256": "02bf1dfa9a0365a86223f0e4ac9eaa0517b06b2e9273790f719feda656a247ae"
+     }
+    },
+    {
+     "code": "ITA",
+     "cite": {
+      "source": "eu-countries",
+      "offset": 3818,
+      "length": 5,
+      "sha256": "5a9cf672c8be6b5ab9546a2fb49b06dd81a4e364c86ed023898c49d9bb0605dc"
+     }
+    },
+    {
+     "code": "LVA",
+     "cite": {
+      "source": "eu-countries",
+      "offset": 3961,
+      "length": 6,
+      "sha256": "988c8160b754c01d1a62b7def28a8b1bcafc842ce2e48f27f9447095d72967e6"
+     }
+    },
+    {
+     "code": "LTU",
+     "cite": {
+      "source": "eu-countries",
+      "offset": 4106,
+      "length": 9,
+      "sha256": "5c83a631bce2bffe885e5c3e62ebb7dcec455fc6cd99be22101d3f0fcb158c8a"
+     }
+    },
+    {
+     "code": "LUX",
+     "cite": {
+      "source": "eu-countries",
+      "offset": 4257,
+      "length": 10,
+      "sha256": "ed76f191621cf6ed77eab6a8013d1cb4bdfa89a75a24aa6a18f7f81dff91d5db"
+     }
+    },
+    {
+     "code": "MLT",
+     "cite": {
+      "source": "eu-countries",
+      "offset": 4410,
+      "length": 5,
+      "sha256": "71e9eb10755c8232974d186a560f7658a1ccbdd3097877dfa1ad3436af90d46a"
+     }
+    },
+    {
+     "code": "NLD",
+     "cite": {
+      "source": "eu-countries",
+      "offset": 4553,
+      "length": 11,
+      "sha256": "3a386c13d283dc2ebbe2aeffc1ab3930d086b28956930d913d8dc58f34c013b7"
+     }
+    },
+    {
+     "code": "POL",
+     "cite": {
+      "source": "eu-countries-2",
+      "offset": 1917,
+      "length": 6,
+      "sha256": "7f69649ad70496d441a62f0f196b1c3283572f2c64f7b1b9cbc3939dac388958"
+     }
+    },
+    {
+     "code": "PRT",
+     "cite": {
+      "source": "eu-countries-2",
+      "offset": 2033,
+      "length": 8,
+      "sha256": "4c7de2c3da6dc0ae8f9d13b107718a913859359bd30166d077c867577953865d"
+     }
+    },
+    {
+     "code": "ROU",
+     "cite": {
+      "source": "eu-countries-2",
+      "offset": 2182,
+      "length": 7,
+      "sha256": "ea23726dd0fd4e4dd85eb695843fcdd3b6928ab5561fa959f1523bd36bb613fe"
+     }
+    },
+    {
+     "code": "SVK",
+     "cite": {
+      "source": "eu-countries-2",
+      "offset": 2300,
+      "length": 8,
+      "sha256": "a2ea3384e02f917ad5a79542bfa9e29ad3dc2b1ee573811803f3057d0715e10b"
+     }
+    },
+    {
+     "code": "SVN",
+     "cite": {
+      "source": "eu-countries-2",
+      "offset": 2449,
+      "length": 8,
+      "sha256": "56059e7fb4e9ddfa1470a50a43ac2f05509cb802757e68d35d9033232b097e58"
+     }
+    },
+    {
+     "code": "ESP",
+     "cite": {
+      "source": "eu-countries-2",
+      "offset": 2583,
+      "length": 5,
+      "sha256": "8ef41e6f4b07432a0cb4eb7a8774e7a3878fd3e385f49aa09b406768467db228"
+     }
+    },
+    {
+     "code": "SWE",
+     "cite": {
+      "source": "eu-countries-2",
+      "offset": 2726,
+      "length": 6,
+      "sha256": "853637136575897a73cba3c5fb085e8c8a2627df22983d2bbe9ff158d11351b4"
+     }
+    }
+   ],
+   "candidate": [
+    {
+     "code": "ALB",
+     "cite": {
+      "source": "eu-enlargement",
+      "offset": 7437,
+      "length": 7,
+      "sha256": "1af00b874ff3183021ca5c541e6f3e8d1bbb2b412bdb87f44cb07ae930dad646"
+     }
+    },
+    {
+     "code": "BIH",
+     "cite": {
+      "source": "eu-enlargement",
+      "offset": 7604,
+      "length": 22,
+      "sha256": "b0772b9c5500c4f5d53a519dec5e40d8ab8428bfcbd252dc5b0346a88871b631"
+     }
+    },
+    {
+     "code": "GEO",
+     "cite": {
+      "source": "eu-enlargement",
+      "offset": 7764,
+      "length": 7,
+      "sha256": "4691492179d2208993976d27d343bd02964068569f241d6061116d7df6d4099a"
+     }
+    },
+    {
+     "code": "MDA",
+     "cite": {
+      "source": "eu-enlargement",
+      "offset": 7891,
+      "length": 7,
+      "sha256": "14ad63a1c63f01d72a38faeb055ef73eef341cf154126ec59bd6d0c1509d4f89"
+     }
+    },
+    {
+     "code": "MNE",
+     "cite": {
+      "source": "eu-enlargement",
+      "offset": 8058,
+      "length": 10,
+      "sha256": "7ab597e1b5cc23df9c19293f489c4e3ae5a8233b071cf277524c37d405fa3ed7"
+     }
+    },
+    {
+     "code": "MKD",
+     "cite": {
+      "source": "eu-enlargement",
+      "offset": 8238,
+      "length": 15,
+      "sha256": "cd84722648feda2159bbc0b73efa10b0e58213dfae2fb986310cd7a59e0c3d9c"
+     }
+    },
+    {
+     "code": "SRB",
+     "cite": {
+      "source": "eu-enlargement",
+      "offset": 8425,
+      "length": 6,
+      "sha256": "e8739c839576f7acbf1f190c8ac6b69e9bb11dda266a624abf1523460ac28106"
+     }
+    },
+    {
+     "code": "TUR",
+     "cite": {
+      "source": "eu-enlargement",
+      "offset": 8597,
+      "length": 7,
+      "sha256": "d15b2145422e575c7033a9b4295c02f6e92e6a3ca7179cc75fbabd914dccc455"
+     }
+    },
+    {
+     "code": "UKR",
+     "cite": {
+      "source": "eu-enlargement",
+      "offset": 8771,
+      "length": 7,
+      "sha256": "580eedc669f3b989d0a0be1988b583af29a45a9edf5ca8375c36818d2c44ee4a"
+     }
+    }
+   ],
+   "potentialCandidate": [
+    {
+     "code": "KOS",
+     "cite": {
+      "source": "eu-enlargement",
+      "offset": 9058,
+      "length": 6,
+      "sha256": "4a867424c728c2ce5af8f6445adf3383fead7f1c4e115fd7126fc59e4d31b050"
+     }
+    }
+   ],
+   "stated": {
+    "count": {
+     "value": 27,
+     "cite": {
+      "source": "eu-enlargement",
+      "offset": 5908,
+      "length": 39,
+      "sha256": "bf0365cbd8b9a3edb12a104b1fbc0ae7c6977a6b89f2d5a54803f885133138c0"
+     }
+    },
+    "aspiring": {
+     "value": 10,
+     "cite": {
+      "source": "eu-enlargement",
+      "offset": 7195,
+      "length": 68,
+      "sha256": "bbdfc1cd84d82afc54d4d744ec56b087de4bc02367591d24af3e87f14f35b420"
+     }
+    }
+   }
+  },
+  "oic": {
+   "abbr": "OIC",
+   "nameEn": "Organisation of Islamic Cooperation",
+   "nameBn": {
+    "bn": "ইসলামি সহযোগিতা সংস্থা (ওআইসি)",
+    "approved": true,
+    "from": "org-headquarters seed"
+   },
+   "sources": [
+    "oic-members",
+    "oic-observers"
+   ],
+   "asOf": {
+    "retrieved": "2026-10-06"
+   },
+   "recheck": "yearly",
+   "members": [
+    {
+     "code": "AZE",
+     "cite": {
+      "source": "oic-members",
+      "offset": 1241,
+      "length": 22,
+      "sha256": "e9e7568e9479db65b8552601f03d539599cecb9a27d68350e070f5808e355990"
+     }
+    },
+    {
+     "code": "JOR",
+     "cite": {
+      "source": "oic-members",
+      "offset": 1282,
+      "length": 27,
+      "sha256": "b5e830a5e5ec61870a48938ee3a25050b3ca69d53de6a1753a0fccf61ee9b6e7"
+     }
+    },
+    {
+     "code": "AFG",
+     "cite": {
+      "source": "oic-members",
+      "offset": 1348,
+      "length": 11,
+      "sha256": "1fb6107312a337f9699c8c14376fe432317e3d9f3b05fc6bb7067a037f831bfd"
+     }
+    },
+    {
+     "code": "ALB",
+     "cite": {
+      "source": "oic-members",
+      "offset": 1378,
+      "length": 19,
+      "sha256": "351fbd3ac5a01f3fdc132026ff3f0eed347aebb4945ac9928de2852a6acf998f"
+     }
+    },
+    {
+     "code": "ARE",
+     "cite": {
+      "source": "oic-members",
+      "offset": 1429,
+      "length": 20,
+      "sha256": "370b08e391ed6072dd1668aee340bfc3a72d4f8705d49c66e7c6c1bb4fdbe001"
+     }
+    },
+    {
+     "code": "IDN",
+     "cite": {
+      "source": "oic-members",
+      "offset": 1468,
+      "length": 21,
+      "sha256": "7d462cb252a6a3a8f132206d585174ca45c92d8cbe347249cd280c3b9118bc95"
+     }
+    },
+    {
+     "code": "UZB",
+     "cite": {
+      "source": "oic-members",
+      "offset": 1508,
+      "length": 22,
+      "sha256": "bf39019311654763941a154069bebfb3bb571891e331aa373a1ee9a19537cf1f"
+     }
+    },
+    {
+     "code": "UGA",
+     "cite": {
+      "source": "oic-members",
+      "offset": 1549,
+      "length": 18,
+      "sha256": "0fe00e0f4f4a4bf1548cb448ff9b6838071ebacad2cfa30fa3497a5f1c16b59a"
+     }
+    },
+    {
+     "code": "IRN",
+     "cite": {
+      "source": "oic-members",
+      "offset": 1586,
+      "length": 24,
+      "sha256": "16dc04877eaad6fbbabe378500c01dd80f133ce7674a0d2b196ebdac5e83d878"
+     }
+    },
+    {
+     "code": "PAK",
+     "cite": {
+      "source": "oic-members",
+      "offset": 1629,
+      "length": 28,
+      "sha256": "dcd156883caf43d83e7627d00a1ab4a244598db200ccaa615d313ac2e1b1f171"
+     }
+    },
+    {
+     "code": "BHR",
+     "cite": {
+      "source": "oic-members",
+      "offset": 1676,
+      "length": 18,
+      "sha256": "57c67bacbdfa838b9111328355dd18205d6eadb7bcaafbe3e75b21ac55b1897b"
+     }
+    },
+    {
+     "code": "BRN",
+     "cite": {
+      "source": "oic-members",
+      "offset": 1713,
+      "length": 17,
+      "sha256": "f191178b14ebda692d598014b3b6d42552f7740d1c6cb8e017a221d3fe3ae5f3"
+     }
+    },
+    {
+     "code": "BGD",
+     "cite": {
+      "source": "oic-members",
+      "offset": 1770,
+      "length": 10,
+      "sha256": "d0a8fc7218c66ef030750bea3195ee576e3701d2d31770597bf1e8e20c5850c9"
+     }
+    },
+    {
+     "code": "BEN",
+     "cite": {
+      "source": "oic-members",
+      "offset": 1799,
+      "length": 17,
+      "sha256": "d75b8fce2f409554ee4145bfe652d29d8c117dcc93d3e0dc722d57931beac76f"
+     }
+    },
+    {
+     "code": "BFA",
+     "cite": {
+      "source": "oic-members",
+      "offset": 1835,
+      "length": 12,
+      "sha256": "a564371ac0f23840bc76bd564bdbbd02b32795a1583359583795698dafa8d3c0"
+     }
+    },
+    {
+     "code": "TJK",
+     "cite": {
+      "source": "oic-members",
+      "offset": 1866,
+      "length": 22,
+      "sha256": "ca1f4ec99ad0c7368f60a665577f817890a716f32402986f35e45d91b7d44723"
+     }
+    },
+    {
+     "code": "TUR",
+     "cite": {
+      "source": "oic-members",
+      "offset": 1907,
+      "length": 19,
+      "sha256": "016960d26e84be314eedb83c8a4a6312e0c9bebba98d98785265f7478095f234"
+     }
+    },
+    {
+     "code": "TKM",
+     "cite": {
+      "source": "oic-members",
+      "offset": 1945,
+      "length": 12,
+      "sha256": "b3dfc8505d59e324e89a763c5705abece10f668215e69c0ad9be77900837bbb3"
+     }
+    },
+    {
+     "code": "TCD",
+     "cite": {
+      "source": "oic-members",
+      "offset": 1976,
+      "length": 16,
+      "sha256": "c4c04261b9288db9e01b335c6d56abc37ac2b4a2c64c54f97fd8dc882d8ef00d"
+     }
+    },
+    {
+     "code": "TGO",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2023,
+      "length": 4,
+      "sha256": "672ef431d8b54eb03958e6a8e197a0c633a504cfbcdad74881e436a285b944a5"
+     }
+    },
+    {
+     "code": "TUN",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2046,
+      "length": 19,
+      "sha256": "f7fe16a35194f2f492e3acc69f9511f35f53c616400e030092938e9beec5d938"
+     }
+    },
+    {
+     "code": "DZA",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2116,
+      "length": 7,
+      "sha256": "976788f11b78e179c810b97a159971687d062d6a8cb0bc43201adf8d39c1c8d5"
+     }
+    },
+    {
+     "code": "DJI",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2142,
+      "length": 20,
+      "sha256": "9e75c5233ad5fb4bc3323332aaf958b6298751a650642febdfc24e1a2da35b63"
+     }
+    },
+    {
+     "code": "SAU",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2181,
+      "length": 23,
+      "sha256": "986117a7875e59b4260481f51b2678ededbb8b5f6cacd9feb3758e24cabe6c56"
+     }
+    },
+    {
+     "code": "SEN",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2223,
+      "length": 19,
+      "sha256": "9ac77f2f730c33915bbe67ae90fc7cc20b19dee24cc090bb7d766d03ae4bad7c"
+     }
+    },
+    {
+     "code": "SDN",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2261,
+      "length": 21,
+      "sha256": "59021e28e34f5a57f10bdbeb2b4fbc0ffc59ff4edd37163a531f3d8357453ac8"
+     }
+    },
+    {
+     "code": "SYR",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2301,
+      "length": 20,
+      "sha256": "f44e1a9f0aee5b29fd5e21834e813c646da0f54aa18fbec12ba59a339d5ac689"
+     }
+    },
+    {
+     "code": "SUR",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2340,
+      "length": 20,
+      "sha256": "9548572e4e1e8a0a80461ff70617e426431c857d01caae6389d2bfc75ee6d68b"
+     }
+    },
+    {
+     "code": "SLE",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2379,
+      "length": 24,
+      "sha256": "338a6fb33047b36fdeed96a23dc2f548143089f73019cabfd630625e21bb4ccd"
+     }
+    },
+    {
+     "code": "SOM",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2422,
+      "length": 27,
+      "sha256": "79eafa1722043cee869ecbe0371527a5aa9979d92f75ed1f415cd7f9d006796f"
+     }
+    },
+    {
+     "code": "IRQ",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2468,
+      "length": 16,
+      "sha256": "ea17e94891910098fcd39be13a4f822b04b6e106b8feee3793bfc442cd2000b2"
+     }
+    },
+    {
+     "code": "OMN",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2503,
+      "length": 17,
+      "sha256": "01c3acad00f7de83813605b14cbc45aa9a4a8c67fe88a17549bdb7108d93c5b9"
+     }
+    },
+    {
+     "code": "GAB",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2551,
+      "length": 5,
+      "sha256": "723ee43de64f91187eac563ea7cffec709c65a31b22be65c5e9a480d72156aa9"
+     }
+    },
+    {
+     "code": "GMB",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2575,
+      "length": 22,
+      "sha256": "4e20f185123273d2ca2a3248f65dd0e2c83b04ff6c1cccb1717da81e2f301d40"
+     }
+    },
+    {
+     "code": "GUY",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2640,
+      "length": 6,
+      "sha256": "6f726d2a2ee1558be0b10eee3a24403691e702535b8463f29f33237d51893ec7"
+     }
+    },
+    {
+     "code": "GIN",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2665,
+      "length": 18,
+      "sha256": "3342a46604a70b3e4d9cbe25b6a5c169209c0fa319094b89b16bb5f8aca2f29b"
+     }
+    },
+    {
+     "code": "GNB",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2702,
+      "length": 25,
+      "sha256": "f35676b05e47703fa900731d2247ad845cd8c81ac4608858d317b42c6c1235b8"
+     }
+    },
+    {
+     "code": "PSX",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2746,
+      "length": 18,
+      "sha256": "d98a4ddfe50f3a0a177669d0ed4611830d068552ea21bd3832cc50d5905a293d"
+     }
+    },
+    {
+     "code": "COM",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2783,
+      "length": 20,
+      "sha256": "c69614309d38a8eb489502235d5c54d4c8e1f3018c607fd93afec1c616302baf"
+     }
+    },
+    {
+     "code": "KGZ",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2822,
+      "length": 15,
+      "sha256": "e8c77a4a6fca82b97ce07b063e61a2ef71ee59604555496d250a254f97cd5ef7"
+     }
+    },
+    {
+     "code": "QAT",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2856,
+      "length": 14,
+      "sha256": "f61d20392e3ba7e5a96f59b2383e6f87fa12d81518ef83ce09fd537128b64776"
+     }
+    },
+    {
+     "code": "KAZ",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2889,
+      "length": 22,
+      "sha256": "b197c3e023b6f77b60dbdd29d9020732ed1fa36e83c59e890ff4ddfe6b2d64d8"
+     }
+    },
+    {
+     "code": "CMR",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2930,
+      "length": 20,
+      "sha256": "34603be141943cf34b05dec24b57ed01993c196aad2bd6e122d0d0cb2955b94a"
+     }
+    },
+    {
+     "code": "CIV",
+     "cite": {
+      "source": "oic-members",
+      "offset": 2981,
+      "length": 13,
+      "sha256": "c8dac7df2812772f50ede78c52b744e0d6a4fd21bc2855125d1d66fc74dc6dbe"
+     }
+    },
+    {
+     "code": "KWT",
+     "cite": {
+      "source": "oic-members",
+      "offset": 3013,
+      "length": 15,
+      "sha256": "f5d1a0cc3904214698eeaa93e2e2c041eaaa4dbe83d5927f7dab90afd4bc36ee"
+     }
+    },
+    {
+     "code": "LBN",
+     "cite": {
+      "source": "oic-members",
+      "offset": 3059,
+      "length": 7,
+      "sha256": "7274b6e3ea15401a66f561442a1f9589daec487386230c46677bb8f3d8984642"
+     }
+    },
+    {
+     "code": "LBY",
+     "cite": {
+      "source": "oic-members",
+      "offset": 3085,
+      "length": 5,
+      "sha256": "2aa2fcef50db47e73b7d33539aa20acdf6afabb60f7b35696048e4a769a1f8c6"
+     }
+    },
+    {
+     "code": "MDV",
+     "cite": {
+      "source": "oic-members",
+      "offset": 3109,
+      "length": 20,
+      "sha256": "26ed42a418a06e969b20587ed814e1842751a857949436e6fcec1d525a6f5c83"
+     }
+    },
+    {
+     "code": "MLI",
+     "cite": {
+      "source": "oic-members",
+      "offset": 3148,
+      "length": 16,
+      "sha256": "6376c1fd0f17022bce1619f22e3e6f37bde1db056e12ed5f1a270e613a0f8531"
+     }
+    },
+    {
+     "code": "MYS",
+     "cite": {
+      "source": "oic-members",
+      "offset": 3183,
+      "length": 8,
+      "sha256": "0fee48a619eac425d0d5d7086ca803ba2ce7f2415e8652a587892f7b07a0c434"
+     }
+    },
+    {
+     "code": "EGY",
+     "cite": {
+      "source": "oic-members",
+      "offset": 3210,
+      "length": 22,
+      "sha256": "386abf1505237dddc077f7bcc767350e40835553d4e7c439fa47df23eb52f4a6"
+     }
+    },
+    {
+     "code": "MAR",
+     "cite": {
+      "source": "oic-members",
+      "offset": 3251,
+      "length": 18,
+      "sha256": "c0ee4f58e68f7503872d2f37f90cd0c0e10bb82e6454767743378d965906da1d"
+     }
+    },
+    {
+     "code": "MRT",
+     "cite": {
+      "source": "oic-members",
+      "offset": 3288,
+      "length": 30,
+      "sha256": "a32dca6a083292f89f3c96fbec999bfa933562d7d920e496aee73f34616220fa"
+     }
+    },
+    {
+     "code": "MOZ",
+     "cite": {
+      "source": "oic-members",
+      "offset": 3337,
+      "length": 22,
+      "sha256": "feee67bd1b33efdb9ad5f33de3140e5253ec97b4b9ed0b42a751807cb825e195"
+     }
+    },
+    {
+     "code": "NER",
+     "cite": {
+      "source": "oic-members",
+      "offset": 3378,
+      "length": 17,
+      "sha256": "bdf25d7eb8cba38f3b22296c2905edb3ff1b7bf9c59007a8615d955fefd32f0f"
+     }
+    },
+    {
+     "code": "NGA",
+     "cite": {
+      "source": "oic-members",
+      "offset": 3414,
+      "length": 27,
+      "sha256": "3b66f42294712e5b9ea65d7aeb62d982a7438a9afb8bf41d85a1fb96f26d7539"
+     }
+    },
+    {
+     "code": "YEM",
+     "cite": {
+      "source": "oic-members",
+      "offset": 3460,
+      "length": 17,
+      "sha256": "fba1673e215b5cd9cbaf5fbec65f2412c0bbb949897e6577501e95c4753e251d"
+     }
+    }
+   ],
+   "observer": [
+    {
+     "code": "BIH",
+     "cite": {
+      "source": "oic-observers",
+      "offset": 1276,
+      "length": 22,
+      "sha256": "b0772b9c5500c4f5d53a519dec5e40d8ab8428bfcbd252dc5b0346a88871b631"
+     }
+    },
+    {
+     "code": "CAF",
+     "cite": {
+      "source": "oic-observers",
+      "offset": 1306,
+      "length": 24,
+      "sha256": "e509cda4c4469cb8cf81ee15665b638a4b8c2e24b57890353227f0b60cd5a046"
+     }
+    },
+    {
+     "code": "THA",
+     "cite": {
+      "source": "oic-observers",
+      "offset": 1338,
+      "length": 19,
+      "sha256": "dc4f7f7d4b54a3cfb56a2647ec269ea97f3287fa08ab068d80b94fc51a212287"
+     }
+    },
+    {
+     "code": "RUS",
+     "cite": {
+      "source": "oic-observers",
+      "offset": 1369,
+      "length": 18,
+      "sha256": "45855688011b856c016875ad9125d7fff5e6ffbc11240a6bb75a25931fb3cc09"
+     }
+    }
+   ],
+   "nonCountry": [
+    {
+     "key": "turkishCypriotState",
+     "role": "observer",
+     "nameBn": {
+      "bn": null
+     },
+     "cite": {
+      "source": "oic-observers",
+      "offset": 1395,
+      "length": 21,
+      "sha256": "5ac2fbec3d77618cdba23f90d4649951a9d4767fb12f98ba0e22d3fce9b9530d"
+     }
+    },
+    {
+     "key": "mnlf",
+     "role": "observer",
+     "nameBn": {
+      "bn": null
+     },
+     "cite": {
+      "source": "oic-observers",
+      "offset": 1458,
+      "length": 30,
+      "sha256": "b659ff3ab815c00e0deb00cc0e83c09615971c4277a2ded40da0f27103fb05f9"
+     }
+    },
+    {
+     "key": "puoicm",
+     "role": "observer",
+     "nameBn": {
+      "bn": null
+     },
+     "cite": {
+      "source": "oic-observers",
+      "offset": 1517,
+      "length": 53,
+      "sha256": "6453a370a6026adaf3bbeb0c29a746ba14c20c436cf8ec2ca4991d6bea0a2090"
+     }
+    },
+    {
+     "key": "un",
+     "role": "observer",
+     "nameBn": {
+      "bn": "জাতিসংঘ",
+      "approved": true,
+      "from": "org-headquarters seed"
+     },
+     "cite": {
+      "source": "oic-observers",
+      "offset": 1606,
+      "length": 19,
+      "sha256": "80b411ee69e9e4b6ff24e0698b7bbcd71cca20448f33ab89812047b59a6e09c1"
+     }
+    },
+    {
+     "key": "nam",
+     "role": "observer",
+     "nameBn": {
+      "bn": null
+     },
+     "cite": {
+      "source": "oic-observers",
+      "offset": 1633,
+      "length": 26,
+      "sha256": "812f72ee568bc97b5af54d596418371affbfc9fd106fbf0e4f2f77194be01974"
+     }
+    },
+    {
+     "key": "las",
+     "role": "observer",
+     "nameBn": {
+      "bn": "আরব লীগ",
+      "approved": true,
+      "from": "org-headquarters seed"
+     },
+     "cite": {
+      "source": "oic-observers",
+      "offset": 1667,
+      "length": 27,
+      "sha256": "54503e63a8b1a1056fe7fd52bca0af52d582f27bf1d321e4ea849a0d55a3428f"
+     }
+    },
+    {
+     "key": "au",
+     "role": "observer",
+     "nameBn": {
+      "bn": "আফ্রিকান ইউনিয়ন",
+      "approved": true,
+      "from": "org-headquarters seed"
+     },
+     "cite": {
+      "source": "oic-observers",
+      "offset": 1702,
+      "length": 18,
+      "sha256": "ade4854b78914ea93f2725c2868122598813eba09cb6c93b639ab2f676dcd4c8"
+     }
+    },
+    {
+     "key": "eco",
+     "role": "observer",
+     "nameBn": {
+      "bn": "অর্থনৈতিক সহযোগিতা সংস্থা (ইকো)",
+      "approved": true,
+      "from": "org-headquarters seed"
+     },
+     "cite": {
+      "source": "oic-observers",
+      "offset": 1728,
+      "length": 39,
+      "sha256": "a7e634f53bb66c1aad76291f7e5e229515120ff94f1fb489cf00a4ba350e4dd9"
+     }
+    }
+   ],
+   "stated": {
+    "count": {
+     "value": 57,
+     "cite": {
+      "source": "oic-members",
+      "offset": 559,
+      "length": 30,
+      "sha256": "397dc0e1e54b9b44694a1c4cc8f1cbc2e4d24eedc5e25669ff581d0b90b2a8aa"
+     }
+    }
+   }
+  },
+  "commonwealth": {
+   "abbr": "Commonwealth",
+   "nameEn": "Commonwealth of Nations",
+   "nameBn": {
+    "bn": "কমনওয়েলথ",
+    "approved": true,
+    "from": "org-headquarters seed"
+   },
+   "sources": [
+    "commonwealth-members"
+   ],
+   "asOf": {
+    "retrieved": "2026-10-06"
+   },
+   "recheck": "every 6 months",
+   "members": [
+    {
+     "code": "BWA",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1349,
+      "length": 8,
+      "sha256": "1672f60c3a9ae94f9e7ca742d9c4dce6a547baae599f938b060336b82f9d1652"
+     }
+    },
+    {
+     "code": "CMR",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1358,
+      "length": 8,
+      "sha256": "085807f22f69d2c9a89a9bcbcf06b63a32e5afc414c7c66b42992de8e5a7cd21"
+     }
+    },
+    {
+     "code": "GAB",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1367,
+      "length": 5,
+      "sha256": "7e222a78e771f1b9b5692f4df889961e98152756af6391b1340366632e57b6ae"
+     }
+    },
+    {
+     "code": "GMB",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1373,
+      "length": 11,
+      "sha256": "6966b4a4e75fac6602d0a8f69f617c7c22ccdeccb458fb28e20c985272b9c65b"
+     }
+    },
+    {
+     "code": "GHA",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1385,
+      "length": 5,
+      "sha256": "583201c1efbf30eb13b79352ab6ebd35103ec347953d8e99858a57b5bab3dde9"
+     }
+    },
+    {
+     "code": "KEN",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1391,
+      "length": 5,
+      "sha256": "74e1891dc615b22fac103c74ab7133742dd1d95a604f6d4edb1a9403b7156506"
+     }
+    },
+    {
+     "code": "SWZ",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1397,
+      "length": 19,
+      "sha256": "08731bba3167a13c9a5d44ae5123d20e2cc1d73bf1c766e4c5627c0178e92a1b"
+     }
+    },
+    {
+     "code": "LSO",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1417,
+      "length": 7,
+      "sha256": "5c2e4745c608d719cab6de3f2c11f3d972e212334f794dea783b7dc16c7b31f2"
+     }
+    },
+    {
+     "code": "MWI",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1425,
+      "length": 6,
+      "sha256": "611025cdde0afeeaae379492b36231ab70eb0f81ad6cb59f11cb807ad1ceb09f"
+     }
+    },
+    {
+     "code": "MUS",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1432,
+      "length": 9,
+      "sha256": "aa8057ecb40b1361656fac129c1ed8793c89d64f4934aced427166a5b2657731"
+     }
+    },
+    {
+     "code": "MOZ",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1442,
+      "length": 10,
+      "sha256": "c9054826f71c23b8eeb727b87d60b579c12b36bacdb42fc8f33d0a15e6eb23d1"
+     }
+    },
+    {
+     "code": "NAM",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1453,
+      "length": 7,
+      "sha256": "ea5bd39848d8ae8b2d4313b815a7805002e512d1d0ce48bf205e9cb20ab444de"
+     }
+    },
+    {
+     "code": "NGA",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1461,
+      "length": 7,
+      "sha256": "04952a0f984dccfa1c401fbe5669c5342059049be3e2bba73dc5a481759b22a9"
+     }
+    },
+    {
+     "code": "RWA",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1469,
+      "length": 6,
+      "sha256": "12c8f8f4912cbdb3946196e4b7e8457c703967a9bfaff0f785979f4bc6d30a18"
+     }
+    },
+    {
+     "code": "SYC",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1476,
+      "length": 10,
+      "sha256": "d1d6332085114485c8a27776e8ed6a66c296f4179e4220a75f1b1fead1ec54f3"
+     }
+    },
+    {
+     "code": "SLE",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1487,
+      "length": 12,
+      "sha256": "f405b98d5ffcfb0519c1cdaa60216738c0adff1e60ad95191bb67633b55bdc6c"
+     }
+    },
+    {
+     "code": "ZAF",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1500,
+      "length": 12,
+      "sha256": "3e049d78d958038ac6bd5dcf038075cc73362b4956aaf7308c3a69c8eca76297"
+     }
+    },
+    {
+     "code": "TGO",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1513,
+      "length": 4,
+      "sha256": "4080343ee0fe2dc36867973cd59a1ec0a331c7323cfad8af4ea214367dcb7974"
+     }
+    },
+    {
+     "code": "UGA",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1518,
+      "length": 6,
+      "sha256": "893d538563bcd9aca0cf6f926bd7902a7dc17471ba50c10a54210fe4d277bf14"
+     }
+    },
+    {
+     "code": "TZA",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1525,
+      "length": 27,
+      "sha256": "3bf24a10f5ff2767e53e69adc89ec4469dbcc08a4e558f8fd68c1f030b44b67e"
+     }
+    },
+    {
+     "code": "ZMB",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1553,
+      "length": 6,
+      "sha256": "b5f9221ae041a8f8fff31fcb6f43e6a57de061dd67b14ea8308fd2337200ea9a"
+     }
+    },
+    {
+     "code": "BGD",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1565,
+      "length": 10,
+      "sha256": "2f1d47eb679bb05e6d8fe039af1563549588cd44b40be6b1013ea8ca2268845f"
+     }
+    },
+    {
+     "code": "BRN",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1576,
+      "length": 17,
+      "sha256": "f196e55ef16d86d62bfc7dd9475f153ce9966d1745067850138381421d6b9fce"
+     }
+    },
+    {
+     "code": "IND",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1594,
+      "length": 5,
+      "sha256": "abd149214539d9f222d25de6358735b9fa0efd3956f66102b2c119ae2d9f6348"
+     }
+    },
+    {
+     "code": "MYS",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1600,
+      "length": 8,
+      "sha256": "084504165b0775879a4a0c9b8dac6d58a0d205ab44be6d33fe4a96191f039a61"
+     }
+    },
+    {
+     "code": "MDV",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1609,
+      "length": 8,
+      "sha256": "8fb54471a4b8bc78ddc7ef0871d1cad84cc428a41a4326e876871689cbf426f8"
+     }
+    },
+    {
+     "code": "PAK",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1618,
+      "length": 8,
+      "sha256": "e2567312ec53232b5353c2798f8054759ee21b03af967265dd22b4cb4284bc49"
+     }
+    },
+    {
+     "code": "SGP",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1627,
+      "length": 9,
+      "sha256": "c96dd81db196cca5f57bd4270bbb9d9e9d1b242d67f9364005ee1dfdc2632523"
+     }
+    },
+    {
+     "code": "LKA",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1637,
+      "length": 9,
+      "sha256": "07f8d1144a39d45664231d8f129214d7ba99ce146240e154f4c893e8e4e1c0d6"
+     }
+    },
+    {
+     "code": "ATG",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1670,
+      "length": 19,
+      "sha256": "100c4768d37d3b0330697dd015641185b91a931077b0c92bfb792f5eb3a6b519"
+     }
+    },
+    {
+     "code": "BHS",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1690,
+      "length": 12,
+      "sha256": "640aed49e24b3f1db0a70870e6bd8963017f89256ed65e66bf0a25606576e665"
+     }
+    },
+    {
+     "code": "BRB",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1703,
+      "length": 8,
+      "sha256": "8e8dfae9b75212091282fd58d57e7cd8ba4715468bf10ee05cd62298b83bbc23"
+     }
+    },
+    {
+     "code": "BLZ",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1712,
+      "length": 6,
+      "sha256": "71dc81f13c2d66fa5814b85a90a18a4181d22caead990696ef3e502dbc86229c"
+     }
+    },
+    {
+     "code": "CAN",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1719,
+      "length": 6,
+      "sha256": "be55ef3f4c4e6c2d9c2afe2a33ac90ad0f50d4de7f9163999877e2a9ca5a54f8"
+     }
+    },
+    {
+     "code": "DMA",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1726,
+      "length": 8,
+      "sha256": "be2a7f5684fdd2ede8b5ef5e966b60e2386fcba778168b8b8a4a2e14101b5f90"
+     }
+    },
+    {
+     "code": "GRD",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1735,
+      "length": 7,
+      "sha256": "0593aa0c8ed587bb36f2f3f859d575fa49cdb0a178670a03d3eb3ccf5bbfb429"
+     }
+    },
+    {
+     "code": "GUY",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1743,
+      "length": 6,
+      "sha256": "ea3bfc26fa5ca39f2e3bc05cfbebbcd13ddbc03e5e86914542f0ead4a7e7df23"
+     }
+    },
+    {
+     "code": "JAM",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1750,
+      "length": 7,
+      "sha256": "42c298ba17fed5da36b79be3d5ad4eb769ca0d31febae3ba921058068a25014a"
+     }
+    },
+    {
+     "code": "LCA",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1758,
+      "length": 11,
+      "sha256": "abe06aae4495f3cf8615eacf0f3ad984d5a86eb681c588b789ae523c01268449"
+     }
+    },
+    {
+     "code": "KNA",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1770,
+      "length": 18,
+      "sha256": "cec9d3227fcc22ddb29f9f113334134b027d0197c4d2a4dfab81b388a255910a"
+     }
+    },
+    {
+     "code": "VCT",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1789,
+      "length": 29,
+      "sha256": "0baf3efb7d778a188284c665df1d6fc13703e9e257256d46cdff401bf8e13394"
+     }
+    },
+    {
+     "code": "TTO",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1819,
+      "length": 19,
+      "sha256": "0c0177b537471c75386b6330df2df63905cdaff2bc03e12e6e322d2d0622cf15"
+     }
+    },
+    {
+     "code": "CYP",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1846,
+      "length": 6,
+      "sha256": "5f1162c57ecf998190d473ff238b6e311d7c52f5f81ca7ac3fca9267832b585c"
+     }
+    },
+    {
+     "code": "MLT",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1853,
+      "length": 5,
+      "sha256": "71e9eb10755c8232974d186a560f7658a1ccbdd3097877dfa1ad3436af90d46a"
+     }
+    },
+    {
+     "code": "GBR",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1859,
+      "length": 14,
+      "sha256": "8d23a6e37e0a6431a8f1b43a91026dcff51170a89a6512ff098eaa56a4d5fb19"
+     }
+    },
+    {
+     "code": "AUS",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1882,
+      "length": 9,
+      "sha256": "c1ef40ce0484c698eb4bd27fe56c1e7b68d74f9780ed674210d0e5013dae45e9"
+     }
+    },
+    {
+     "code": "FJI",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1892,
+      "length": 4,
+      "sha256": "679c02dcd2ba58a3bb65d32b9324e7bca93c2a9a1f6a35964f853fcdedf73f97"
+     }
+    },
+    {
+     "code": "KIR",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1897,
+      "length": 8,
+      "sha256": "819123146c09d7ef385cfcc64ef21691f42d9d4520e0af31eead156f43d8c640"
+     }
+    },
+    {
+     "code": "NRU",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1906,
+      "length": 6,
+      "sha256": "49fc551470b246c5c585ecdb68f0bbc93b28c5e3aad685cb125d8e27aeb7f83d"
+     }
+    },
+    {
+     "code": "NZL",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1913,
+      "length": 11,
+      "sha256": "2898e16d4e4ee2ae2fa8815d719efb385f0b40ca912e06fc2940658547c30237"
+     }
+    },
+    {
+     "code": "PNG",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1925,
+      "length": 16,
+      "sha256": "c65742ceb289d67f60f20eb78418c5f7c39ccc1096c5f17954065bd7248f18ac"
+     }
+    },
+    {
+     "code": "WSM",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1942,
+      "length": 5,
+      "sha256": "0ea781cd42b6d5480bb32fd75227f7e3545eafb3cf50fd37a773864508983a81"
+     }
+    },
+    {
+     "code": "SLB",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1948,
+      "length": 15,
+      "sha256": "cff4c58de0baa1005e4b62c7330f70e34bb3cc4380d0023508f0b495e7b27ecc"
+     }
+    },
+    {
+     "code": "TON",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1964,
+      "length": 5,
+      "sha256": "310bc325097977730002bcdfe4c09bb1e62d26f4b90eb63645e8dc6ccbde1370"
+     }
+    },
+    {
+     "code": "TUV",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1970,
+      "length": 6,
+      "sha256": "30b1ff9aeeeba16abd664c7622650fdebba7dd8db241d4dd2941956164a6ab39"
+     }
+    },
+    {
+     "code": "VUT",
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 1977,
+      "length": 7,
+      "sha256": "c5b2a6de9d5ae20a21a551d160d6e6bdb1322f7dbe94c6f30d1f88f092af50a1"
+     }
+    }
+   ],
+   "stated": {
+    "count": {
+     "value": 56,
+     "cite": {
+      "source": "commonwealth-members",
+      "offset": 548,
+      "length": 49,
+      "sha256": "90ad89c7c600111e01ecc6ba6c7d86f5cf3abb3d12f4b14713a49bdbc25552b1"
+     }
+    }
+   }
+  },
+  "opec": {
+   "abbr": "OPEC",
+   "nameEn": "Organization of the Petroleum Exporting Countries",
+   "nameBn": {
+    "bn": "ওপেক",
+    "approved": true,
+    "from": "org-headquarters seed"
+   },
+   "sources": [
+    "opec-home"
+   ],
+   "asOf": {
+    "retrieved": "2026-10-06"
+   },
+   "recheck": "every 6 months",
+   "members": [
+    {
+     "code": "DZA",
+     "cite": {
+      "source": "opec-home",
+      "offset": 144,
+      "length": 7,
+      "sha256": "30e230229746a0c64818c9bc8f2c86e31bbb500f0a8db33c4b02adf9cded18f8"
+     }
+    },
+    {
+     "code": "COG",
+     "cite": {
+      "source": "opec-home",
+      "offset": 152,
+      "length": 5,
+      "sha256": "0bbfeb155e2239ce4acdc5026f16d07d9eecbec2105fa6a140847b385f3ff99b"
+     }
+    },
+    {
+     "code": "GNQ",
+     "cite": {
+      "source": "opec-home",
+      "offset": 158,
+      "length": 17,
+      "sha256": "8994687843a38376e70bf40df5ef5160f91343a895c62515571aeae973214132"
+     }
+    },
+    {
+     "code": "GAB",
+     "cite": {
+      "source": "opec-home",
+      "offset": 176,
+      "length": 5,
+      "sha256": "7e222a78e771f1b9b5692f4df889961e98152756af6391b1340366632e57b6ae"
+     }
+    },
+    {
+     "code": "IRN",
+     "cite": {
+      "source": "opec-home",
+      "offset": 182,
+      "length": 4,
+      "sha256": "18d4e170765cc48842d847de1d0545a2e379e9c87b2af2a6f761681309939ce5"
+     }
+    },
+    {
+     "code": "IRQ",
+     "cite": {
+      "source": "opec-home",
+      "offset": 187,
+      "length": 4,
+      "sha256": "de5008d194a73211f2ef2ae0b0457c812545c65559c8a3bcc2458d0485e29fc0"
+     }
+    },
+    {
+     "code": "KWT",
+     "cite": {
+      "source": "opec-home",
+      "offset": 192,
+      "length": 6,
+      "sha256": "10c3c2e2edc1f1f0696bf6f30af2fc80b4e1759ab4614b0d1331799b4ce35cca"
+     }
+    },
+    {
+     "code": "LBY",
+     "cite": {
+      "source": "opec-home",
+      "offset": 199,
+      "length": 5,
+      "sha256": "2aa2fcef50db47e73b7d33539aa20acdf6afabb60f7b35696048e4a769a1f8c6"
+     }
+    },
+    {
+     "code": "NGA",
+     "cite": {
+      "source": "opec-home",
+      "offset": 205,
+      "length": 7,
+      "sha256": "04952a0f984dccfa1c401fbe5669c5342059049be3e2bba73dc5a481759b22a9"
+     }
+    },
+    {
+     "code": "SAU",
+     "cite": {
+      "source": "opec-home",
+      "offset": 213,
+      "length": 12,
+      "sha256": "ed9ad13611d7164839dd3feaf9a7f6a75a4138f389e0d45f8e07fa38da1116a2"
+     }
+    },
+    {
+     "code": "ARE",
+     "cite": {
+      "source": "opec-home",
+      "offset": 226,
+      "length": 20,
+      "sha256": "dd64913c8b91d76ca27b371f0b86fd30452370469b8cadf4e5a61d41d14e42ec"
+     }
+    },
+    {
+     "code": "VEN",
+     "cite": {
+      "source": "opec-home",
+      "offset": 247,
+      "length": 9,
+      "sha256": "020e438bafc3a7861aea8d79117d2c05b80f2cba2ae5aeb740b3a0f71379ba36"
+     }
+    }
+   ]
+  },
+  "nato": {
+   "abbr": "NATO",
+   "nameEn": "North Atlantic Treaty Organization",
+   "nameBn": {
+    "bn": "ন্যাটো",
+    "approved": true,
+    "from": "org-headquarters seed"
+   },
+   "sources": [
+    "nato-members"
+   ],
+   "asOf": {
+    "retrieved": "2026-10-06",
+    "pageDate": "2024-03-11"
+   },
+   "recheck": "every 6 months",
+   "members": [
+    {
+     "code": "ALB",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16207,
+      "length": 7,
+      "sha256": "1af00b874ff3183021ca5c541e6f3e8d1bbb2b412bdb87f44cb07ae930dad646"
+     }
+    },
+    {
+     "code": "BEL",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16220,
+      "length": 7,
+      "sha256": "348841ef53dbd5a64008a86be432973db790774fb28b59b0d99702a3188b3705"
+     }
+    },
+    {
+     "code": "BGR",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16233,
+      "length": 8,
+      "sha256": "66b86bf0f04594746e886baa094d6038b92895c79526fd60a44395cb0c0854cc"
+     }
+    },
+    {
+     "code": "CAN",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16247,
+      "length": 6,
+      "sha256": "be55ef3f4c4e6c2d9c2afe2a33ac90ad0f50d4de7f9163999877e2a9ca5a54f8"
+     }
+    },
+    {
+     "code": "HRV",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16259,
+      "length": 7,
+      "sha256": "7328d3f829b7b3405e87f3041aa984b8844c4155ea865d5be3b2036bd5264898"
+     }
+    },
+    {
+     "code": "CZE",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16272,
+      "length": 7,
+      "sha256": "ecfa967e901a86b132554041d686ac4273fc4c194d16eeeac1fe7244f8002973"
+     }
+    },
+    {
+     "code": "DNK",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16285,
+      "length": 7,
+      "sha256": "c527097577600a6726de99bd6f555fbfaf214da9b7d127d7dd4a807927422b98"
+     }
+    },
+    {
+     "code": "EST",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16298,
+      "length": 7,
+      "sha256": "10aeba697f6ba830e1252df6f9a9051eb4317954ff933bff25458f28fb069c6b"
+     }
+    },
+    {
+     "code": "FIN",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16311,
+      "length": 7,
+      "sha256": "aed8f531aa7e785be255bc435e2582e74c58defedebcb629eeabf365b809bd6f"
+     }
+    },
+    {
+     "code": "FRA",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16324,
+      "length": 6,
+      "sha256": "7a1ca4ef7515f7276bae7230545829c27810c9d9e98ab2c06066bee6270d5153"
+     }
+    },
+    {
+     "code": "DEU",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16336,
+      "length": 7,
+      "sha256": "80db4ccdca106d37b920206331fcfe3e9e50a9e763d89b54ce3ad5ac8cf30f03"
+     }
+    },
+    {
+     "code": "GRC",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16349,
+      "length": 6,
+      "sha256": "9c93ad439373b4ee35e70ba1318055a14d2ed222f69f9e2d069689e83829833d"
+     }
+    },
+    {
+     "code": "HUN",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16361,
+      "length": 7,
+      "sha256": "504be3084f44d3e7eea35c83d4c8338e1fa19b777badc317f69326a4083d804e"
+     }
+    },
+    {
+     "code": "ISL",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16374,
+      "length": 7,
+      "sha256": "595d6d914950b8a20f65bebf7a6278b0bde5973de85c4be47950b14a3e8f74be"
+     }
+    },
+    {
+     "code": "ITA",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16387,
+      "length": 5,
+      "sha256": "5a9cf672c8be6b5ab9546a2fb49b06dd81a4e364c86ed023898c49d9bb0605dc"
+     }
+    },
+    {
+     "code": "LVA",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16398,
+      "length": 6,
+      "sha256": "988c8160b754c01d1a62b7def28a8b1bcafc842ce2e48f27f9447095d72967e6"
+     }
+    },
+    {
+     "code": "LTU",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16410,
+      "length": 9,
+      "sha256": "5c83a631bce2bffe885e5c3e62ebb7dcec455fc6cd99be22101d3f0fcb158c8a"
+     }
+    },
+    {
+     "code": "LUX",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16425,
+      "length": 10,
+      "sha256": "ed76f191621cf6ed77eab6a8013d1cb4bdfa89a75a24aa6a18f7f81dff91d5db"
+     }
+    },
+    {
+     "code": "MNE",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16441,
+      "length": 10,
+      "sha256": "7ab597e1b5cc23df9c19293f489c4e3ae5a8233b071cf277524c37d405fa3ed7"
+     }
+    },
+    {
+     "code": "MKD",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16457,
+      "length": 15,
+      "sha256": "cd84722648feda2159bbc0b73efa10b0e58213dfae2fb986310cd7a59e0c3d9c"
+     }
+    },
+    {
+     "code": "NOR",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16478,
+      "length": 6,
+      "sha256": "bea54a349795017db7e863500429c8ba0c78b89855d73f9c82dfd92cb7c2d748"
+     }
+    },
+    {
+     "code": "POL",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16490,
+      "length": 6,
+      "sha256": "7f69649ad70496d441a62f0f196b1c3283572f2c64f7b1b9cbc3939dac388958"
+     }
+    },
+    {
+     "code": "PRT",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16502,
+      "length": 8,
+      "sha256": "4c7de2c3da6dc0ae8f9d13b107718a913859359bd30166d077c867577953865d"
+     }
+    },
+    {
+     "code": "ROU",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16516,
+      "length": 7,
+      "sha256": "ea23726dd0fd4e4dd85eb695843fcdd3b6928ab5561fa959f1523bd36bb613fe"
+     }
+    },
+    {
+     "code": "SVK",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16529,
+      "length": 8,
+      "sha256": "a2ea3384e02f917ad5a79542bfa9e29ad3dc2b1ee573811803f3057d0715e10b"
+     }
+    },
+    {
+     "code": "SVN",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16543,
+      "length": 8,
+      "sha256": "56059e7fb4e9ddfa1470a50a43ac2f05509cb802757e68d35d9033232b097e58"
+     }
+    },
+    {
+     "code": "ESP",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16557,
+      "length": 5,
+      "sha256": "8ef41e6f4b07432a0cb4eb7a8774e7a3878fd3e385f49aa09b406768467db228"
+     }
+    },
+    {
+     "code": "SWE",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16568,
+      "length": 6,
+      "sha256": "853637136575897a73cba3c5fb085e8c8a2627df22983d2bbe9ff158d11351b4"
+     }
+    },
+    {
+     "code": "NLD",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16580,
+      "length": 15,
+      "sha256": "91729ff7107ee698fe168dc62d5b2020678fcfcf55b4ea9065982ce1d071ba31"
+     }
+    },
+    {
+     "code": "TUR",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16601,
+      "length": 7,
+      "sha256": "d15b2145422e575c7033a9b4295c02f6e92e6a3ca7179cc75fbabd914dccc455"
+     }
+    },
+    {
+     "code": "GBR",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16614,
+      "length": 14,
+      "sha256": "8d23a6e37e0a6431a8f1b43a91026dcff51170a89a6512ff098eaa56a4d5fb19"
+     }
+    },
+    {
+     "code": "USA",
+     "cite": {
+      "source": "nato-members",
+      "offset": 16634,
+      "length": 13,
+      "sha256": "49dca65f362fee401292ed7ada96f96295eab1e589c52e4e66bf4aedda715fdd"
+     }
+    }
+   ],
+   "stated": {
+    "count": {
+     "value": 32,
+     "cite": {
+      "source": "nato-members",
+      "offset": 14487,
+      "length": 41,
+      "sha256": "68983b8ec6b789a75d60219ec6b12503f440ad77236c49f54896772257e44cb6"
+     }
+    }
+   }
+  },
+  "sco": {
+   "abbr": "SCO",
+   "nameEn": "Shanghai Cooperation Organisation",
+   "nameBn": {
+    "bn": "সাংহাই সহযোগিতা সংস্থা",
+    "approved": true,
+    "from": "org-headquarters seed"
+   },
+   "sources": [
+    "sco-general",
+    "sco-observers"
+   ],
+   "asOf": {
+    "retrieved": "2026-10-06",
+    "pageDate": "2026-03-06"
+   },
+   "recheck": "after each summit, and at least quarterly",
+   "members": [
+    {
+     "code": "BLR",
+     "cite": {
+      "source": "sco-general",
+      "offset": 9216,
+      "length": 7,
+      "sha256": "4bef16df1755bca99ff5f132ef91c6777ca4ceda51605626abff54c8adfd9026"
+     }
+    },
+    {
+     "code": "IND",
+     "cite": {
+      "source": "sco-general",
+      "offset": 9241,
+      "length": 5,
+      "sha256": "abd149214539d9f222d25de6358735b9fa0efd3956f66102b2c119ae2d9f6348"
+     }
+    },
+    {
+     "code": "IRN",
+     "cite": {
+      "source": "sco-general",
+      "offset": 9272,
+      "length": 4,
+      "sha256": "18d4e170765cc48842d847de1d0545a2e379e9c87b2af2a6f761681309939ce5"
+     }
+    },
+    {
+     "code": "KAZ",
+     "cite": {
+      "source": "sco-general",
+      "offset": 9294,
+      "length": 10,
+      "sha256": "75c02b8d2f91ba67aa6445c054c45bf11355321835a2e545cf18d054d2b4ebd8"
+     }
+    },
+    {
+     "code": "CHN",
+     "cite": {
+      "source": "sco-general",
+      "offset": 9331,
+      "length": 5,
+      "sha256": "10436829032f361a3de50048de41755140e581467bc1895e6c1a17f423e42d10"
+     }
+    },
+    {
+     "code": "KGZ",
+     "cite": {
+      "source": "sco-general",
+      "offset": 9342,
+      "length": 15,
+      "sha256": "9e79f12027f3c3c355647fac9f76fd43fcb6331ffd96960179967653684758eb"
+     }
+    },
+    {
+     "code": "PAK",
+     "cite": {
+      "source": "sco-general",
+      "offset": 9383,
+      "length": 8,
+      "sha256": "e2567312ec53232b5353c2798f8054759ee21b03af967265dd22b4cb4284bc49"
+     }
+    },
+    {
+     "code": "RUS",
+     "cite": {
+      "source": "sco-general",
+      "offset": 9397,
+      "length": 18,
+      "sha256": "45855688011b856c016875ad9125d7fff5e6ffbc11240a6bb75a25931fb3cc09"
+     }
+    },
+    {
+     "code": "TJK",
+     "cite": {
+      "source": "sco-general",
+      "offset": 9433,
+      "length": 10,
+      "sha256": "066b02130b7e0ece3b40f3169a54f1efcf051232b0c3fe3dfb63d949b9910d55"
+     }
+    },
+    {
+     "code": "UZB",
+     "cite": {
+      "source": "sco-general",
+      "offset": 9465,
+      "length": 10,
+      "sha256": "4bc2f1c23b3d2f7e44aba9f39e105c3c4b741ccabb2cc189df37f9ec8f5ae115"
+     }
+    }
+   ],
+   "observer": [
+    {
+     "code": "AFG",
+     "cite": {
+      "source": "sco-observers",
+      "offset": 2590,
+      "length": 11,
+      "sha256": "5dbddf911f9e565299428e948a92ea5d1943c4099db883cc4491cb32cc757de8"
+     }
+    },
+    {
+     "code": "MNG",
+     "cite": {
+      "source": "sco-observers",
+      "offset": 2606,
+      "length": 8,
+      "sha256": "99a7c065a730fdac00718082c230850a5ae80dc98ba1b4e17609c56dec36b458"
+     }
+    }
+   ],
+   "dialoguePartner": [
+    {
+     "code": "AZE",
+     "cite": {
+      "source": "sco-observers",
+      "offset": 3737,
+      "length": 10,
+      "sha256": "efa9150afdeaa69ffcdefc990cb8db6e67ac2aed628d8c696da4e36ed649f39b"
+     }
+    },
+    {
+     "code": "ARM",
+     "cite": {
+      "source": "sco-observers",
+      "offset": 3749,
+      "length": 7,
+      "sha256": "2ddc5634ff5e06c551736395174b5a62f10864ab2878f03d079836b253994869"
+     }
+    },
+    {
+     "code": "BHR",
+     "cite": {
+      "source": "sco-observers",
+      "offset": 3758,
+      "length": 7,
+      "sha256": "94b2859b913c9e2cff6a5b2ecf260ef36c3694e366b15952c0d9033577e5e80d"
+     }
+    },
+    {
+     "code": "EGY",
+     "cite": {
+      "source": "sco-observers",
+      "offset": 3767,
+      "length": 5,
+      "sha256": "557c1599d9a04895d3817d293e0806a4419a14de31958386182798d0d2ed3a56"
+     }
+    },
+    {
+     "code": "KHM",
+     "cite": {
+      "source": "sco-observers",
+      "offset": 3774,
+      "length": 8,
+      "sha256": "0c2cb01a2da1815539c81a7b1cee8f8c471db628928444d8149964a43b2a28f1"
+     }
+    },
+    {
+     "code": "QAT",
+     "cite": {
+      "source": "sco-observers",
+      "offset": 3784,
+      "length": 5,
+      "sha256": "55ccc5014f2a6d4c42c7b1b7e74dd26a2983c362b14c89e4475a2d170fe96dfb"
+     }
+    },
+    {
+     "code": "KWT",
+     "cite": {
+      "source": "sco-observers",
+      "offset": 3791,
+      "length": 6,
+      "sha256": "10c3c2e2edc1f1f0696bf6f30af2fc80b4e1759ab4614b0d1331799b4ce35cca"
+     }
+    },
+    {
+     "code": "LAO",
+     "cite": {
+      "source": "sco-observers",
+      "offset": 3799,
+      "length": 4,
+      "sha256": "98e18f46684be4fe542c9354f709cc57de51644f0a68e080f6d78c92965edd17"
+     }
+    },
+    {
+     "code": "MDV",
+     "cite": {
+      "source": "sco-observers",
+      "offset": 3809,
+      "length": 8,
+      "sha256": "8fb54471a4b8bc78ddc7ef0871d1cad84cc428a41a4326e876871689cbf426f8"
+     }
+    },
+    {
+     "code": "MMR",
+     "cite": {
+      "source": "sco-observers",
+      "offset": 3819,
+      "length": 7,
+      "sha256": "ba2039a4cf69defd3f474495125904bb9286d1ec20651501c42c146b8c38b2f8"
+     }
+    },
+    {
+     "code": "NPL",
+     "cite": {
+      "source": "sco-observers",
+      "offset": 3828,
+      "length": 5,
+      "sha256": "e15a18aadcac09e6fa6469cee82b657d12915065b23be9f2c1a14685b08cb3d1"
+     }
+    },
+    {
+     "code": "ARE",
+     "cite": {
+      "source": "sco-observers",
+      "offset": 3839,
+      "length": 3,
+      "sha256": "937040cd1003b9a4b6985bbe2b006e73f04bd90f6194d9f2c42256139a6bc523"
+     }
+    },
+    {
+     "code": "SAU",
+     "cite": {
+      "source": "sco-observers",
+      "offset": 3844,
+      "length": 12,
+      "sha256": "ed9ad13611d7164839dd3feaf9a7f6a75a4138f389e0d45f8e07fa38da1116a2"
+     }
+    },
+    {
+     "code": "TUR",
+     "cite": {
+      "source": "sco-observers",
+      "offset": 3858,
+      "length": 7,
+      "sha256": "d15b2145422e575c7033a9b4295c02f6e92e6a3ca7179cc75fbabd914dccc455"
+     }
+    },
+    {
+     "code": "LKA",
+     "cite": {
+      "source": "sco-observers",
+      "offset": 3870,
+      "length": 9,
+      "sha256": "07f8d1144a39d45664231d8f129214d7ba99ce146240e154f4c893e8e4e1c0d6"
+     }
+    }
+   ],
+   "stated": {
+    "count": {
+     "value": 10,
+     "cite": {
+      "source": "sco-general",
+      "offset": 2302,
+      "length": 59,
+      "sha256": "bfec88e213c5f6f56209d7a7389b70597eb487f10aa7e517dd8c171e18cbdb5c"
+     }
+    },
+    "observers": {
+     "value": 2,
+     "cite": {
+      "source": "sco-observers",
+      "offset": 2494,
+      "length": 69,
+      "sha256": "5243b4e012af387f1d092fd8bfd7349679956880ed46dcf9bdff642be426cd62"
+     }
+    },
+    "dialoguePartners": {
+     "value": 15,
+     "cite": {
+      "source": "sco-observers",
+      "offset": 3672,
+      "length": 55,
+      "sha256": "3608eaa3af9f17d8d9dba1115542ebf967eed81aee3e0fd73adb4a6e12063d46"
+     }
+    },
+    "reform": {
+     "cite": {
+      "source": "sco-observers",
+      "offset": 7789,
+      "length": 59,
+      "sha256": "a61164d005661cbfd890e71bae1af27e50fcc6e0801599e12f6f020631ace586"
+     }
+    },
+    "retain": {
+     "cite": {
+      "source": "sco-observers",
+      "offset": 8092,
+      "length": 84,
+      "sha256": "aab309bc02e75c40ce8a4d343fe74aedf4132e9cffbb0eb5ad0d47ca0bd0a09f"
+     }
+    }
+   },
+   "note": "The page (6 March 2026) keeps observers and dialogue partners until the 2025 decision’s amendments enter into force (stated.reform, stated.retain)."
+  },
+  "d8": {
+   "abbr": "D-8",
+   "nameEn": "D-8 Organization for Economic Cooperation",
+   "nameBn": {
+    "bn": "ডি-৮",
+    "approved": true,
+    "from": "org-headquarters seed"
+   },
+   "sources": [
+    "d8-about"
+   ],
+   "asOf": {
+    "retrieved": "2026-10-06"
+   },
+   "recheck": "yearly",
+   "members": [
+    {
+     "code": "AZE",
+     "cite": {
+      "source": "d8-about",
+      "offset": 1497,
+      "length": 10,
+      "sha256": "efa9150afdeaa69ffcdefc990cb8db6e67ac2aed628d8c696da4e36ed649f39b"
+     }
+    },
+    {
+     "code": "BGD",
+     "cite": {
+      "source": "d8-about",
+      "offset": 1508,
+      "length": 10,
+      "sha256": "2f1d47eb679bb05e6d8fe039af1563549588cd44b40be6b1013ea8ca2268845f"
+     }
+    },
+    {
+     "code": "EGY",
+     "cite": {
+      "source": "d8-about",
+      "offset": 1519,
+      "length": 5,
+      "sha256": "557c1599d9a04895d3817d293e0806a4419a14de31958386182798d0d2ed3a56"
+     }
+    },
+    {
+     "code": "IDN",
+     "cite": {
+      "source": "d8-about",
+      "offset": 1525,
+      "length": 9,
+      "sha256": "dbc74a36d8e7439c45c64d856388506cc9b1218619cef979c3d605115a7a4546"
+     }
+    },
+    {
+     "code": "IRN",
+     "cite": {
+      "source": "d8-about",
+      "offset": 1535,
+      "length": 4,
+      "sha256": "18d4e170765cc48842d847de1d0545a2e379e9c87b2af2a6f761681309939ce5"
+     }
+    },
+    {
+     "code": "MYS",
+     "cite": {
+      "source": "d8-about",
+      "offset": 1540,
+      "length": 8,
+      "sha256": "084504165b0775879a4a0c9b8dac6d58a0d205ab44be6d33fe4a96191f039a61"
+     }
+    },
+    {
+     "code": "NGA",
+     "cite": {
+      "source": "d8-about",
+      "offset": 1549,
+      "length": 7,
+      "sha256": "04952a0f984dccfa1c401fbe5669c5342059049be3e2bba73dc5a481759b22a9"
+     }
+    },
+    {
+     "code": "PAK",
+     "cite": {
+      "source": "d8-about",
+      "offset": 1557,
+      "length": 8,
+      "sha256": "e2567312ec53232b5353c2798f8054759ee21b03af967265dd22b4cb4284bc49"
+     }
+    },
+    {
+     "code": "TUR",
+     "cite": {
+      "source": "d8-about",
+      "offset": 1566,
+      "length": 7,
+      "sha256": "9e79e9e4afb3c02c855dd02b0f91e9a8962614540397c000fac27aac4c98d01a"
+     }
+    }
+   ]
+  },
+  "apec": {
+   "abbr": "APEC",
+   "nameEn": "Asia-Pacific Economic Cooperation",
+   "nameBn": {
+    "bn": "অ্যাপেক",
+    "approved": true,
+    "from": "org-headquarters seed"
+   },
+   "sources": [
+    "apec-members"
+   ],
+   "asOf": {
+    "retrieved": "2026-10-06"
+   },
+   "recheck": "yearly",
+   "members": [
+    {
+     "code": "AUS",
+     "cite": {
+      "source": "apec-members",
+      "offset": 11021,
+      "length": 9,
+      "sha256": "c1ef40ce0484c698eb4bd27fe56c1e7b68d74f9780ed674210d0e5013dae45e9"
+     }
+    },
+    {
+     "code": "BRN",
+     "cite": {
+      "source": "apec-members",
+      "offset": 11044,
+      "length": 17,
+      "sha256": "f196e55ef16d86d62bfc7dd9475f153ce9966d1745067850138381421d6b9fce"
+     }
+    },
+    {
+     "code": "CAN",
+     "cite": {
+      "source": "apec-members",
+      "offset": 11075,
+      "length": 6,
+      "sha256": "be55ef3f4c4e6c2d9c2afe2a33ac90ad0f50d4de7f9163999877e2a9ca5a54f8"
+     }
+    },
+    {
+     "code": "CHL",
+     "cite": {
+      "source": "apec-members",
+      "offset": 11095,
+      "length": 5,
+      "sha256": "f5273e236d498c359c7a91edb712e28728d902bf6dd4f60984dfbc9501a9bf4c"
+     }
+    },
+    {
+     "code": "CHN",
+     "cite": {
+      "source": "apec-members",
+      "offset": 11116,
+      "length": 26,
+      "sha256": "f163c62c72748681126cbb1b801c7dea485a77a01747de0ce78179cc13984551"
+     }
+    },
+    {
+     "code": "HKG",
+     "cite": {
+      "source": "apec-members",
+      "offset": 11158,
+      "length": 16,
+      "sha256": "2709af6bfca1b28b57c6ada39ed6ef3b148bc49f9e059e2d275f9c12610e064e"
+     }
+    },
+    {
+     "code": "IDN",
+     "cite": {
+      "source": "apec-members",
+      "offset": 11190,
+      "length": 9,
+      "sha256": "dbc74a36d8e7439c45c64d856388506cc9b1218619cef979c3d605115a7a4546"
+     }
+    },
+    {
+     "code": "JPN",
+     "cite": {
+      "source": "apec-members",
+      "offset": 11213,
+      "length": 5,
+      "sha256": "647294383b2cbc24b18f629498fc7c6f61d3819fb42a2287e93305aaa01b74e7"
+     }
+    },
+    {
+     "code": "KOR",
+     "cite": {
+      "source": "apec-members",
+      "offset": 11232,
+      "length": 17,
+      "sha256": "ee3ba8e2407b4d9bff3622a4ca4e713132c93b0c05334176e7b5a029868bcd33"
+     }
+    },
+    {
+     "code": "MYS",
+     "cite": {
+      "source": "apec-members",
+      "offset": 11263,
+      "length": 8,
+      "sha256": "084504165b0775879a4a0c9b8dac6d58a0d205ab44be6d33fe4a96191f039a61"
+     }
+    },
+    {
+     "code": "MEX",
+     "cite": {
+      "source": "apec-members",
+      "offset": 11285,
+      "length": 6,
+      "sha256": "a7d355b26bda6bf1196ccffead0b2cf2b81f0a9de5b4876b44407f1dc07e51e6"
+     }
+    },
+    {
+     "code": "NZL",
+     "cite": {
+      "source": "apec-members",
+      "offset": 11307,
+      "length": 11,
+      "sha256": "2898e16d4e4ee2ae2fa8815d719efb385f0b40ca912e06fc2940658547c30237"
+     }
+    },
+    {
+     "code": "PNG",
+     "cite": {
+      "source": "apec-members",
+      "offset": 11332,
+      "length": 16,
+      "sha256": "c65742ceb289d67f60f20eb78418c5f7c39ccc1096c5f17954065bd7248f18ac"
+     }
+    },
+    {
+     "code": "PER",
+     "cite": {
+      "source": "apec-members",
+      "offset": 11364,
+      "length": 4,
+      "sha256": "508731a3c5d375cb49d07a2b83439abf84a501d75f428c8838ff01b69d21b412"
+     }
+    },
+    {
+     "code": "PHL",
+     "cite": {
+      "source": "apec-members",
+      "offset": 11388,
+      "length": 11,
+      "sha256": "c3782c86d8099f3fb5b755ebc970322567aa3894923de8c9c5fc97456133471c"
+     }
+    },
+    {
+     "code": "RUS",
+     "cite": {
+      "source": "apec-members",
+      "offset": 11413,
+      "length": 6,
+      "sha256": "33a3d8ed92b0709ba525369922e5138756c43abbf7e05edfcf02d3e0fd645c02"
+     }
+    },
+    {
+     "code": "SGP",
+     "cite": {
+      "source": "apec-members",
+      "offset": 11435,
+      "length": 9,
+      "sha256": "c96dd81db196cca5f57bd4270bbb9d9e9d1b242d67f9364005ee1dfdc2632523"
+     }
+    },
+    {
+     "code": "THA",
+     "cite": {
+      "source": "apec-members",
+      "offset": 11488,
+      "length": 8,
+      "sha256": "6e49e65081b2bcb5a54e6a6a74086f42949ddf388d516ce7eb0dad7d95e80ceb"
+     }
+    },
+    {
+     "code": "USA",
+     "cite": {
+      "source": "apec-members",
+      "offset": 11514,
+      "length": 13,
+      "sha256": "49dca65f362fee401292ed7ada96f96295eab1e589c52e4e66bf4aedda715fdd"
+     }
+    },
+    {
+     "code": "VNM",
+     "cite": {
+      "source": "apec-members",
+      "offset": 11541,
+      "length": 8,
+      "sha256": "6ca41f1b61085e8d5de0dd035868a0f3bcbede5100e1ac367c3b00ad0a7dd9a3"
+     }
+    }
+   ],
+   "nonCountry": [
+    {
+     "key": "chineseTaipei",
+     "role": "members",
+     "nameBn": {
+      "bn": null
+     },
+     "cite": {
+      "source": "apec-members",
+      "offset": 11458,
+      "length": 14,
+      "sha256": "ca3ad6123338a5ca11f0818a296691f4393f52951ca4ce35981095f74ddac9fd"
+     }
+    },
+    {
+     "key": "aseanSecretariat",
+     "role": "observer",
+     "nameBn": {
+      "bn": null
+     },
+     "cite": {
+      "source": "apec-members",
+      "offset": 11822,
+      "length": 58,
+      "sha256": "eb0378487889dc47d776066ed90f8128c410127bf09525f4720826055f8f8c5c"
+     }
+    },
+    {
+     "key": "pecc",
+     "role": "observer",
+     "nameBn": {
+      "bn": null
+     },
+     "cite": {
+      "source": "apec-members",
+      "offset": 12205,
+      "length": 43,
+      "sha256": "2bf2cffae174432485b5eaf3abe67a8529e32d3bd6fa826933408831747ab818"
+     }
+    },
+    {
+     "key": "pifSecretariat",
+     "role": "observer",
+     "nameBn": {
+      "bn": null
+     },
+     "cite": {
+      "source": "apec-members",
+      "offset": 12541,
+      "length": 39,
+      "sha256": "180f66aeab74282fd1a34aa9a53edaa29eee98cedeec8c01cdc96bbdcd40a558"
+     }
+    }
+   ],
+   "stated": {
+    "count": {
+     "value": 21,
+     "cite": {
+      "source": "apec-members",
+      "offset": 10751,
+      "length": 29,
+      "sha256": "d50b9118934e0177df73e5d2ee2f2141b8cbb0d809aa66f0826c4403b38b88ea"
+     }
+    },
+    "observers": {
+     "value": 3,
+     "cite": {
+      "source": "apec-members",
+      "offset": 11565,
+      "length": 33,
+      "sha256": "68988eddc7397b1f60e1f9b12fe2e872a92527574ad9e4c95bee298d93e7f9aa"
+     }
+    }
+   }
+  },
+  "eco": {
+   "abbr": "ECO",
+   "nameEn": "Economic Cooperation Organization",
+   "nameBn": {
+    "bn": "অর্থনৈতিক সহযোগিতা সংস্থা (ইকো)",
+    "approved": true,
+    "from": "org-headquarters seed"
+   },
+   "sources": [
+    "eco-members",
+    "eco-observers"
+   ],
+   "asOf": {
+    "retrieved": "2026-10-06"
+   },
+   "recheck": "yearly",
+   "members": [
+    {
+     "code": "AFG",
+     "cite": {
+      "source": "eco-members",
+      "offset": 2180,
+      "length": 11,
+      "sha256": "5dbddf911f9e565299428e948a92ea5d1943c4099db883cc4491cb32cc757de8"
+     }
+    },
+    {
+     "code": "AZE",
+     "cite": {
+      "source": "eco-members",
+      "offset": 2192,
+      "length": 10,
+      "sha256": "efa9150afdeaa69ffcdefc990cb8db6e67ac2aed628d8c696da4e36ed649f39b"
+     }
+    },
+    {
+     "code": "IRN",
+     "cite": {
+      "source": "eco-members",
+      "offset": 2203,
+      "length": 4,
+      "sha256": "18d4e170765cc48842d847de1d0545a2e379e9c87b2af2a6f761681309939ce5"
+     }
+    },
+    {
+     "code": "KAZ",
+     "cite": {
+      "source": "eco-members",
+      "offset": 2208,
+      "length": 10,
+      "sha256": "75c02b8d2f91ba67aa6445c054c45bf11355321835a2e545cf18d054d2b4ebd8"
+     }
+    },
+    {
+     "code": "KGZ",
+     "cite": {
+      "source": "eco-members",
+      "offset": 2219,
+      "length": 15,
+      "sha256": "9e79f12027f3c3c355647fac9f76fd43fcb6331ffd96960179967653684758eb"
+     }
+    },
+    {
+     "code": "PAK",
+     "cite": {
+      "source": "eco-members",
+      "offset": 2235,
+      "length": 8,
+      "sha256": "e2567312ec53232b5353c2798f8054759ee21b03af967265dd22b4cb4284bc49"
+     }
+    },
+    {
+     "code": "TJK",
+     "cite": {
+      "source": "eco-members",
+      "offset": 2244,
+      "length": 10,
+      "sha256": "066b02130b7e0ece3b40f3169a54f1efcf051232b0c3fe3dfb63d949b9910d55"
+     }
+    },
+    {
+     "code": "TUR",
+     "cite": {
+      "source": "eco-members",
+      "offset": 2255,
+      "length": 7,
+      "sha256": "d15b2145422e575c7033a9b4295c02f6e92e6a3ca7179cc75fbabd914dccc455"
+     }
+    },
+    {
+     "code": "TKM",
+     "cite": {
+      "source": "eco-members",
+      "offset": 2263,
+      "length": 12,
+      "sha256": "b3dfc8505d59e324e89a763c5705abece10f668215e69c0ad9be77900837bbb3"
+     }
+    },
+    {
+     "code": "UZB",
+     "cite": {
+      "source": "eco-members",
+      "offset": 2276,
+      "length": 10,
+      "sha256": "4bc2f1c23b3d2f7e44aba9f39e105c3c4b741ccabb2cc189df37f9ec8f5ae115"
+     }
+    }
+   ],
+   "nonCountry": [
+    {
+     "key": "turkishCypriotState",
+     "role": "observer",
+     "nameBn": {
+      "bn": null
+     },
+     "cite": {
+      "source": "eco-observers",
+      "offset": 1649,
+      "length": 42,
+      "sha256": "d87cd4a2ee6acec5149b49b8a220ebb659b2b901121ee30b2e8c69be4d3aa1e7"
+     }
+    },
+    {
+     "key": "turkicCouncil",
+     "role": "observer",
+     "nameBn": {
+      "bn": null
+     },
+     "cite": {
+      "source": "eco-observers",
+      "offset": 1692,
+      "length": 66,
+      "sha256": "4d8eeaceaf62c1a839b53c0db234ee00e526fc842cea04eddd0bc399f031c240"
+     }
+    },
+    {
+     "key": "energyCharter",
+     "role": "observer",
+     "nameBn": {
+      "bn": null
+     },
+     "cite": {
+      "source": "eco-observers",
+      "offset": 1759,
+      "length": 50,
+      "sha256": "874691b2e5bc0ad498283bdfc4875c086fac18b4e34ec16eebc940fdf169599f"
+     }
+    }
+   ]
+  },
+  "arableague": {
+   "abbr": "Arab League",
+   "nameEn": "League of Arab States",
+   "nameBn": {
+    "bn": "আরব লীগ",
+    "approved": true,
+    "from": "org-headquarters seed"
+   },
+   "sources": [
+    "arableague-members"
+   ],
+   "asOf": {
+    "retrieved": "2026-10-06"
+   },
+   "recheck": "yearly",
+   "members": [
+    {
+     "code": "JOR",
+     "cite": {
+      "source": "arableague-members",
+      "offset": 1643,
+      "length": 25,
+      "sha256": "8455e393f5cd15abef12cb77ffd1619863e768976137321b6a98a98195927b8c"
+     }
+    },
+    {
+     "code": "ARE",
+     "cite": {
+      "source": "arableague-members",
+      "offset": 1669,
+      "length": 24,
+      "sha256": "cdaf6f5f0e19960eb40d059f279d2d673b7bece8739a64b6525f16398d5834b6"
+     }
+    },
+    {
+     "code": "BHR",
+     "cite": {
+      "source": "arableague-members",
+      "offset": 1694,
+      "length": 13,
+      "sha256": "38c3ced85ae4a1f6fe200b0c88c318afb84e26197398d790d3fa50f6248ff1da"
+     }
+    },
+    {
+     "code": "TUN",
+     "cite": {
+      "source": "arableague-members",
+      "offset": 1708,
+      "length": 18,
+      "sha256": "a3fdd8d151ea960a5039c1448c82d1158cde9986c7e0da5633812aeef7fb422b"
+     }
+    },
+    {
+     "code": "DZA",
+     "cite": {
+      "source": "arableague-members",
+      "offset": 1727,
+      "length": 39,
+      "sha256": "74e6f0d24a9dcc0770cd81fadf06395732a9481a1e2fe1eb28444fcba6a8215e"
+     }
+    },
+    {
+     "code": "DJI",
+     "cite": {
+      "source": "arableague-members",
+      "offset": 1767,
+      "length": 14,
+      "sha256": "8a94460f1bd4cb8ab5dd5f9d83365d9536c8316cdc207860ffeb97ee14fda182"
+     }
+    },
+    {
+     "code": "SAU",
+     "cite": {
+      "source": "arableague-members",
+      "offset": 1782,
+      "length": 24,
+      "sha256": "1a55f9989df13ad2969548067944d3ea3714d5e99b2cb577d6c8ce25ecaca2ca"
+     }
+    },
+    {
+     "code": "SDN",
+     "cite": {
+      "source": "arableague-members",
+      "offset": 1807,
+      "length": 15,
+      "sha256": "0217f361d5fcb7c25f183f6e21def1724b89f1ecf5d06e8e69c3caa6539736b4"
+     }
+    },
+    {
+     "code": "SYR",
+     "cite": {
+      "source": "arableague-members",
+      "offset": 1823,
+      "length": 25,
+      "sha256": "3e6091c750bf124b4fdcebd9a620c791559ea23b60f4b593c5c10873ce952944"
+     }
+    },
+    {
+     "code": "SOM",
+     "cite": {
+      "source": "arableague-members",
+      "offset": 1849,
+      "length": 26,
+      "sha256": "0c6812f413ffcea9e0589d9cfce2f215c32dfb61c0d1b995ab2264875234b33b"
+     }
+    },
+    {
+     "code": "IRQ",
+     "cite": {
+      "source": "arableague-members",
+      "offset": 1876,
+      "length": 14,
+      "sha256": "e7d3b8fd2a352aef00387f89d0c11acd8fdd6bc0916ce3439fda91dfced535b6"
+     }
+    },
+    {
+     "code": "OMN",
+     "cite": {
+      "source": "arableague-members",
+      "offset": 1891,
+      "length": 10,
+      "sha256": "71bc5c807efe1089a5d737292d9a910b892be3ead9a06198e070dacee1fc4df3"
+     }
+    },
+    {
+     "code": "PSX",
+     "cite": {
+      "source": "arableague-members",
+      "offset": 1902,
+      "length": 11,
+      "sha256": "b69c3e7a514f48d32753c4038b3e0193c45330b47b24558ab2d7cac2cda47c5a"
+     }
+    },
+    {
+     "code": "QAT",
+     "cite": {
+      "source": "arableague-members",
+      "offset": 1914,
+      "length": 8,
+      "sha256": "9704034cb5e67f8a9e183299714b0e664096f954d85f462f197121e5fa2f53cd"
+     }
+    },
+    {
+     "code": "COM",
+     "cite": {
+      "source": "arableague-members",
+      "offset": 1923,
+      "length": 21,
+      "sha256": "24dca4eaee5f35b13449c413bee240f7435fdc1db11e5be12062d4ad8f17bbba"
+     }
+    },
+    {
+     "code": "KWT",
+     "cite": {
+      "source": "arableague-members",
+      "offset": 1945,
+      "length": 11,
+      "sha256": "bdeb6e2618b2eba7f6f03fd2c16fcdc7397963874ba98fd1f5580f99058b2af5"
+     }
+    },
+    {
+     "code": "LBN",
+     "cite": {
+      "source": "arableague-members",
+      "offset": 1957,
+      "length": 19,
+      "sha256": "54a15e794fb0eef8b6da3eff2a0150dcb1eabad5ba97a78f56dca615e88d0b66"
+     }
+    },
+    {
+     "code": "LBY",
+     "cite": {
+      "source": "arableague-members",
+      "offset": 1977,
+      "length": 10,
+      "sha256": "f3634d9696a6fcea1b9a26d41956ab894686b6d549886f366bd4070f651dfd06"
+     }
+    },
+    {
+     "code": "EGY",
+     "cite": {
+      "source": "arableague-members",
+      "offset": 1988,
+      "length": 19,
+      "sha256": "3922af4de0275957e40e57be446970d96fb88f2da33c93ba389d7d4b2f350267"
+     }
+    },
+    {
+     "code": "MAR",
+     "cite": {
+      "source": "arableague-members",
+      "offset": 2008,
+      "length": 16,
+      "sha256": "f8488dd2ba7924f9e0b8beded8fe8edfa37840f874dc87e95fc1a4b811a3c2c0"
+     }
+    },
+    {
+     "code": "MRT",
+     "cite": {
+      "source": "arableague-members",
+      "offset": 2025,
+      "length": 31,
+      "sha256": "e653ada9c0e74ec1cfab7a9ad26d4579fefe09ac636e77f2aa39ca9b4c5d47d2"
+     }
+    },
+    {
+     "code": "YEM",
+     "cite": {
+      "source": "arableague-members",
+      "offset": 2057,
+      "length": 17,
+      "sha256": "ff9670d1eb9f99aa08bfb4416299477c20f3c8a0292be4456bb9699ae49e04ef"
+     }
+    }
+   ]
+  },
+  "iora": {
+   "abbr": "IORA",
+   "nameEn": "Indian Ocean Rim Association",
+   "nameBn": {
+    "bn": "ভারত মহাসাগরীয় রিম অ্যাসোসিয়েশন (আইওরা)",
+    "approved": true,
+    "from": "org-headquarters seed"
+   },
+   "sources": [
+    "iora-members",
+    "iora-partners"
+   ],
+   "asOf": {
+    "retrieved": "2026-10-06"
+   },
+   "recheck": "yearly",
+   "members": [
+    {
+     "code": "AUS",
+     "cite": {
+      "source": "iora-members",
+      "offset": 1567,
+      "length": 25,
+      "sha256": "f482bfad86ca42f448da6c7ddcbeb9799a1f2952907a5b7f3d1975a009a8e8ad"
+     }
+    },
+    {
+     "code": "BGD",
+     "cite": {
+      "source": "iora-members",
+      "offset": 1600,
+      "length": 31,
+      "sha256": "dbb547530c048dc5deeeed0c069c710af629d9e3f0263397deac6ce8c2c6da06"
+     }
+    },
+    {
+     "code": "COM",
+     "cite": {
+      "source": "iora-members",
+      "offset": 1639,
+      "length": 16,
+      "sha256": "f8456f3656a353bdd353f57f89c4a9a8bacfa1b9be806b89ee3e165d73c151d2"
+     }
+    },
+    {
+     "code": "FRA",
+     "cite": {
+      "source": "iora-members",
+      "offset": 1663,
+      "length": 15,
+      "sha256": "e5c0c8ddb01588daa083d119785f9b3da1c66ce05441aaa8225540e7dbf70dda"
+     }
+    },
+    {
+     "code": "IND",
+     "cite": {
+      "source": "iora-members",
+      "offset": 1686,
+      "length": 17,
+      "sha256": "3325ba8721a632425447e876c91559e3859fc733507c34c6b313098830ce2b2a"
+     }
+    },
+    {
+     "code": "IDN",
+     "cite": {
+      "source": "iora-members",
+      "offset": 1711,
+      "length": 21,
+      "sha256": "bf49495502b2f4ef013b88348b22c820680238e02260277b020a5c7059569027"
+     }
+    },
+    {
+     "code": "IRN",
+     "cite": {
+      "source": "iora-members",
+      "offset": 1740,
+      "length": 24,
+      "sha256": "a6a22e52dfd70d2b66ed925f526ed7726af2eda2c84f1f9ff002f8b9c3d834eb"
+     }
+    },
+    {
+     "code": "KEN",
+     "cite": {
+      "source": "iora-members",
+      "offset": 1772,
+      "length": 17,
+      "sha256": "f1fe33b201a7219e01c92bc812f33d5568a58d7d15992ebf50ac7992bef9f0d5"
+     }
+    },
+    {
+     "code": "MDG",
+     "cite": {
+      "source": "iora-members",
+      "offset": 1797,
+      "length": 22,
+      "sha256": "270609e7e5b074d2c1924c1e09ce15c1a538dc9ecea3fa58b2fa1d9358729561"
+     }
+    },
+    {
+     "code": "MYS",
+     "cite": {
+      "source": "iora-members",
+      "offset": 1827,
+      "length": 8,
+      "sha256": "084504165b0775879a4a0c9b8dac6d58a0d205ab44be6d33fe4a96191f039a61"
+     }
+    },
+    {
+     "code": "MDV",
+     "cite": {
+      "source": "iora-members",
+      "offset": 1843,
+      "length": 20,
+      "sha256": "eb4a39c549c1b5b505d00e50687587eaa360bc79396c6f37f5f39b393c22862b"
+     }
+    },
+    {
+     "code": "MUS",
+     "cite": {
+      "source": "iora-members",
+      "offset": 1871,
+      "length": 21,
+      "sha256": "a445468ee16646305b061606a5403dbfa73b9fba85f245f3158a0bdd3ac0e32f"
+     }
+    },
+    {
+     "code": "MOZ",
+     "cite": {
+      "source": "iora-members",
+      "offset": 1900,
+      "length": 22,
+      "sha256": "1ce6342960ee608588cdcbfaea5252f8a4789bdfb2a40eefb6fa833705108f8f"
+     }
+    },
+    {
+     "code": "OMN",
+     "cite": {
+      "source": "iora-members",
+      "offset": 1930,
+      "length": 17,
+      "sha256": "7b9f46adeee5bf59d2599e054b4306f6ed946bee77db88239fa66cbcbd499262"
+     }
+    },
+    {
+     "code": "SYC",
+     "cite": {
+      "source": "iora-members",
+      "offset": 1955,
+      "length": 22,
+      "sha256": "8f448bd7f35826240627a3cc966a7002e113a05f4582168effcc443d940a56b5"
+     }
+    },
+    {
+     "code": "SGP",
+     "cite": {
+      "source": "iora-members",
+      "offset": 1985,
+      "length": 21,
+      "sha256": "40e755067a9b7a827313169b6c702cd03481d92d4a64dc84c9ca4b11793894c9"
+     }
+    },
+    {
+     "code": "SOM",
+     "cite": {
+      "source": "iora-members",
+      "offset": 2014,
+      "length": 27,
+      "sha256": "79eafa1722043cee869ecbe0371527a5aa9979d92f75ed1f415cd7f9d006796f"
+     }
+    },
+    {
+     "code": "ZAF",
+     "cite": {
+      "source": "iora-members",
+      "offset": 2049,
+      "length": 24,
+      "sha256": "993c4b0f037cdd3e19a5a1b3bcf10158ce29f9ecc19981ba00bce1c0a2341759"
+     }
+    },
+    {
+     "code": "LKA",
+     "cite": {
+      "source": "iora-members",
+      "offset": 2081,
+      "length": 42,
+      "sha256": "75197d2536e345055d8fc0eb8191758441de5be62f3811416a07759d445c886d"
+     }
+    },
+    {
+     "code": "TZA",
+     "cite": {
+      "source": "iora-members",
+      "offset": 2131,
+      "length": 27,
+      "sha256": "3bf24a10f5ff2767e53e69adc89ec4469dbcc08a4e558f8fd68c1f030b44b67e"
+     }
+    },
+    {
+     "code": "THA",
+     "cite": {
+      "source": "iora-members",
+      "offset": 2166,
+      "length": 19,
+      "sha256": "dc4f7f7d4b54a3cfb56a2647ec269ea97f3287fa08ab068d80b94fc51a212287"
+     }
+    },
+    {
+     "code": "ARE",
+     "cite": {
+      "source": "iora-members",
+      "offset": 2193,
+      "length": 20,
+      "sha256": "dd64913c8b91d76ca27b371f0b86fd30452370469b8cadf4e5a61d41d14e42ec"
+     }
+    },
+    {
+     "code": "YEM",
+     "cite": {
+      "source": "iora-members",
+      "offset": 2221,
+      "length": 17,
+      "sha256": "8df0308703301571c1e7af22d04627992e6052474a25e70260b294abe7fc087e"
+     }
+    }
+   ],
+   "dialoguePartner": [
+    {
+     "code": "CHN",
+     "cite": {
+      "source": "iora-partners",
+      "offset": 1592,
+      "length": 5,
+      "sha256": "10436829032f361a3de50048de41755140e581467bc1895e6c1a17f423e42d10"
+     }
+    },
+    {
+     "code": "EGY",
+     "cite": {
+      "source": "iora-partners",
+      "offset": 1605,
+      "length": 22,
+      "sha256": "c8eb5080089f1ae27e0a6e14b0bdc7b34815b601f29f4e84ed5b68b3505b2eba"
+     }
+    },
+    {
+     "code": "DEU",
+     "cite": {
+      "source": "iora-partners",
+      "offset": 1669,
+      "length": 7,
+      "sha256": "80db4ccdca106d37b920206331fcfe3e9e50a9e763d89b54ce3ad5ac8cf30f03"
+     }
+    },
+    {
+     "code": "ITA",
+     "cite": {
+      "source": "iora-partners",
+      "offset": 1696,
+      "length": 5,
+      "sha256": "5a9cf672c8be6b5ab9546a2fb49b06dd81a4e364c86ed023898c49d9bb0605dc"
+     }
+    },
+    {
+     "code": "JPN",
+     "cite": {
+      "source": "iora-partners",
+      "offset": 1709,
+      "length": 5,
+      "sha256": "647294383b2cbc24b18f629498fc7c6f61d3819fb42a2287e93305aaa01b74e7"
+     }
+    },
+    {
+     "code": "KOR",
+     "cite": {
+      "source": "iora-partners",
+      "offset": 1722,
+      "length": 17,
+      "sha256": "ee3ba8e2407b4d9bff3622a4ca4e713132c93b0c05334176e7b5a029868bcd33"
+     }
+    },
+    {
+     "code": "RUS",
+     "cite": {
+      "source": "iora-partners",
+      "offset": 1747,
+      "length": 18,
+      "sha256": "45855688011b856c016875ad9125d7fff5e6ffbc11240a6bb75a25931fb3cc09"
+     }
+    },
+    {
+     "code": "SAU",
+     "cite": {
+      "source": "iora-partners",
+      "offset": 1773,
+      "length": 23,
+      "sha256": "adff3370725bf67fc3b28cb88fd7182497ad0a15c3e487db1e915632321a50c9"
+     }
+    },
+    {
+     "code": "TUR",
+     "cite": {
+      "source": "iora-partners",
+      "offset": 1804,
+      "length": 19,
+      "sha256": "016960d26e84be314eedb83c8a4a6312e0c9bebba98d98785265f7478095f234"
+     }
+    },
+    {
+     "code": "GBR",
+     "cite": {
+      "source": "iora-partners",
+      "offset": 1831,
+      "length": 14,
+      "sha256": "8d23a6e37e0a6431a8f1b43a91026dcff51170a89a6512ff098eaa56a4d5fb19"
+     }
+    },
+    {
+     "code": "USA",
+     "cite": {
+      "source": "iora-partners",
+      "offset": 1853,
+      "length": 24,
+      "sha256": "dbab41120f92e12716a999ebb41f891929c2b01b29c5822f96cb7d62a4f7c328"
+     }
+    }
+   ],
+   "nonCountry": [
+    {
+     "key": "eu",
+     "role": "dialoguePartner",
+     "nameBn": {
+      "bn": "ইউরোপীয় ইউনিয়ন",
+      "approved": true,
+      "cite": {
+       "source": "user",
+       "date": "2026-10-06"
+      },
+      "note": "this map only; org-headquarters keeps «ইউরোপীয় ইউনিয়ন (ইউরোপীয় কমিশন)»"
+     },
+     "cite": {
+      "source": "iora-partners",
+      "offset": 1635,
+      "length": 14,
+      "sha256": "7fe24f2b7ba5e4553152d419a942666808849d1da2d54eea7c3e361436b61ab4"
+     }
+    }
+   ]
+  },
+  "asean": {
+   "abbr": "ASEAN",
+   "nameEn": "Association of Southeast Asian Nations",
+   "nameBn": {
+    "bn": "আসিয়ান",
+    "approved": true,
+    "from": "org-headquarters seed"
+   },
+   "sources": [
+    "asean-members"
+   ],
+   "asOf": {
+    "retrieved": "2026-10-06"
+   },
+   "recheck": "every 6 months",
+   "members": [
+    {
+     "code": "BRN",
+     "cite": {
+      "source": "asean-members",
+      "offset": 7448,
+      "length": 17,
+      "sha256": "f196e55ef16d86d62bfc7dd9475f153ce9966d1745067850138381421d6b9fce"
+     }
+    },
+    {
+     "code": "KHM",
+     "cite": {
+      "source": "asean-members",
+      "offset": 7466,
+      "length": 8,
+      "sha256": "0c2cb01a2da1815539c81a7b1cee8f8c471db628928444d8149964a43b2a28f1"
+     }
+    },
+    {
+     "code": "IDN",
+     "cite": {
+      "source": "asean-members",
+      "offset": 7475,
+      "length": 9,
+      "sha256": "dbc74a36d8e7439c45c64d856388506cc9b1218619cef979c3d605115a7a4546"
+     }
+    },
+    {
+     "code": "LAO",
+     "cite": {
+      "source": "asean-members",
+      "offset": 7485,
+      "length": 7,
+      "sha256": "9e614ab5cf0ce314dda96a8c28727d8636b16e1cd59016f957dba49f1c615a67"
+     }
+    },
+    {
+     "code": "MYS",
+     "cite": {
+      "source": "asean-members",
+      "offset": 7493,
+      "length": 8,
+      "sha256": "084504165b0775879a4a0c9b8dac6d58a0d205ab44be6d33fe4a96191f039a61"
+     }
+    },
+    {
+     "code": "MMR",
+     "cite": {
+      "source": "asean-members",
+      "offset": 7502,
+      "length": 7,
+      "sha256": "ba2039a4cf69defd3f474495125904bb9286d1ec20651501c42c146b8c38b2f8"
+     }
+    },
+    {
+     "code": "PHL",
+     "cite": {
+      "source": "asean-members",
+      "offset": 7510,
+      "length": 11,
+      "sha256": "c3782c86d8099f3fb5b755ebc970322567aa3894923de8c9c5fc97456133471c"
+     }
+    },
+    {
+     "code": "SGP",
+     "cite": {
+      "source": "asean-members",
+      "offset": 7522,
+      "length": 9,
+      "sha256": "c96dd81db196cca5f57bd4270bbb9d9e9d1b242d67f9364005ee1dfdc2632523"
+     }
+    },
+    {
+     "code": "THA",
+     "cite": {
+      "source": "asean-members",
+      "offset": 7532,
+      "length": 8,
+      "sha256": "6e49e65081b2bcb5a54e6a6a74086f42949ddf388d516ce7eb0dad7d95e80ceb"
+     }
+    },
+    {
+     "code": "TLS",
+     "cite": {
+      "source": "asean-members",
+      "offset": 7541,
+      "length": 11,
+      "sha256": "6303e847182509dfaa2a16268a3c0b8bbb5c2ece12b78753152b12e1bb716e2d"
+     }
+    },
+    {
+     "code": "VNM",
+     "cite": {
+      "source": "asean-members",
+      "offset": 7553,
+      "length": 8,
+      "sha256": "6ca41f1b61085e8d5de0dd035868a0f3bcbede5100e1ac367c3b00ad0a7dd9a3"
+     }
+    }
+   ]
+  },
+  "gcc": {
+   "abbr": "GCC",
+   "nameEn": "Gulf Cooperation Council",
+   "nameBn": {
+    "bn": "উপসাগরীয় সহযোগিতা পরিষদ (জিসিসি)",
+    "approved": true,
+    "from": "org-headquarters seed"
+   },
+   "sources": [
+    "gcc-members"
+   ],
+   "asOf": {
+    "retrieved": "2026-10-06"
+   },
+   "recheck": "yearly",
+   "members": [
+    {
+     "code": "ARE",
+     "cite": {
+      "source": "gcc-members",
+      "offset": 661,
+      "length": 20,
+      "sha256": "dd64913c8b91d76ca27b371f0b86fd30452370469b8cadf4e5a61d41d14e42ec"
+     }
+    },
+    {
+     "code": "BHR",
+     "cite": {
+      "source": "gcc-members",
+      "offset": 682,
+      "length": 7,
+      "sha256": "94b2859b913c9e2cff6a5b2ecf260ef36c3694e366b15952c0d9033577e5e80d"
+     }
+    },
+    {
+     "code": "SAU",
+     "cite": {
+      "source": "gcc-members",
+      "offset": 1027,
+      "length": 23,
+      "sha256": "adff3370725bf67fc3b28cb88fd7182497ad0a15c3e487db1e915632321a50c9"
+     }
+    },
+    {
+     "code": "OMN",
+     "cite": {
+      "source": "gcc-members",
+      "offset": 1051,
+      "length": 4,
+      "sha256": "c3ce4bf88db5e7b645d4630c54f757f055bd5163d11027fe81e7cc04d3574c42"
+     }
+    },
+    {
+     "code": "QAT",
+     "cite": {
+      "source": "gcc-members",
+      "offset": 1242,
+      "length": 5,
+      "sha256": "55ccc5014f2a6d4c42c7b1b7e74dd26a2983c362b14c89e4475a2d170fe96dfb"
+     }
+    },
+    {
+     "code": "KWT",
+     "cite": {
+      "source": "gcc-members",
+      "offset": 1425,
+      "length": 6,
+      "sha256": "10c3c2e2edc1f1f0696bf6f30af2fc80b4e1759ab4614b0d1331799b4ce35cca"
+     }
+    }
+   ]
+  },
+  "g7": {
+   "abbr": "G7",
+   "nameEn": "Group of Seven",
+   "nameBn": {
+    "bn": "জি-৭",
+    "approved": true,
+    "cite": {
+     "source": "user",
+     "date": "2026-10-06"
+    }
+   },
+   "sources": [
+    "g7-diplomatie"
+   ],
+   "asOf": {
+    "retrieved": "2026-10-06",
+    "pageDate": "2026-07-22"
+   },
+   "recheck": "yearly",
+   "members": [
+    {
+     "code": "CAN",
+     "cite": {
+      "source": "g7-diplomatie",
+      "offset": 2023,
+      "length": 6,
+      "sha256": "be55ef3f4c4e6c2d9c2afe2a33ac90ad0f50d4de7f9163999877e2a9ca5a54f8"
+     }
+    },
+    {
+     "code": "FRA",
+     "cite": {
+      "source": "g7-diplomatie",
+      "offset": 2031,
+      "length": 6,
+      "sha256": "7a1ca4ef7515f7276bae7230545829c27810c9d9e98ab2c06066bee6270d5153"
+     }
+    },
+    {
+     "code": "DEU",
+     "cite": {
+      "source": "g7-diplomatie",
+      "offset": 2039,
+      "length": 7,
+      "sha256": "80db4ccdca106d37b920206331fcfe3e9e50a9e763d89b54ce3ad5ac8cf30f03"
+     }
+    },
+    {
+     "code": "ITA",
+     "cite": {
+      "source": "g7-diplomatie",
+      "offset": 2048,
+      "length": 5,
+      "sha256": "5a9cf672c8be6b5ab9546a2fb49b06dd81a4e364c86ed023898c49d9bb0605dc"
+     }
+    },
+    {
+     "code": "JPN",
+     "cite": {
+      "source": "g7-diplomatie",
+      "offset": 2055,
+      "length": 5,
+      "sha256": "647294383b2cbc24b18f629498fc7c6f61d3819fb42a2287e93305aaa01b74e7"
+     }
+    },
+    {
+     "code": "GBR",
+     "cite": {
+      "source": "g7-diplomatie",
+      "offset": 2066,
+      "length": 14,
+      "sha256": "8d23a6e37e0a6431a8f1b43a91026dcff51170a89a6512ff098eaa56a4d5fb19"
+     }
+    },
+    {
+     "code": "USA",
+     "cite": {
+      "source": "g7-diplomatie",
+      "offset": 2089,
+      "length": 13,
+      "sha256": "49dca65f362fee401292ed7ada96f96295eab1e589c52e4e66bf4aedda715fdd"
+     }
+    }
+   ],
+   "nonCountry": [
+    {
+     "key": "eu",
+     "role": "members",
+     "nameBn": {
+      "bn": "ইউরোপীয় ইউনিয়ন",
+      "approved": true,
+      "cite": {
+       "source": "user",
+       "date": "2026-10-06"
+      },
+      "note": "this map only; org-headquarters keeps «ইউরোপীয় ইউনিয়ন (ইউরোপীয় কমিশন)»"
+     },
+     "cite": {
+      "source": "g7-diplomatie",
+      "offset": 2119,
+      "length": 14,
+      "sha256": "7fe24f2b7ba5e4553152d419a942666808849d1da2d54eea7c3e361436b61ab4"
+     }
+    }
+   ]
+  },
+  "g20": {
+   "abbr": "G20",
+   "nameEn": "Group of Twenty",
+   "nameBn": {
+    "bn": "জি-২০",
+    "approved": true,
+    "cite": {
+     "source": "user",
+     "date": "2026-10-06"
+    }
+   },
+   "sources": [
+    "g20-govinfo"
+   ],
+   "asOf": {
+    "retrieved": "2026-10-06",
+    "pageDate": "2025-01-07"
+   },
+   "recheck": "yearly",
+   "members": [
+    {
+     "code": "ARG",
+     "cite": {
+      "source": "g20-govinfo",
+      "offset": 1992,
+      "length": 9,
+      "sha256": "ea0b937ea317101ee2c26b03a4843a19ceced8a2b9673c3cf409a726ca2b0fd8"
+     }
+    },
+    {
+     "code": "AUS",
+     "cite": {
+      "source": "g20-govinfo",
+      "offset": 2003,
+      "length": 9,
+      "sha256": "c1ef40ce0484c698eb4bd27fe56c1e7b68d74f9780ed674210d0e5013dae45e9"
+     }
+    },
+    {
+     "code": "BRA",
+     "cite": {
+      "source": "g20-govinfo",
+      "offset": 2014,
+      "length": 6,
+      "sha256": "07f62b021771d3cf67e2e1faf18769cc5e5c119ad7d4d1847a11e11d6d5a7ecb"
+     }
+    },
+    {
+     "code": "CAN",
+     "cite": {
+      "source": "g20-govinfo",
+      "offset": 2022,
+      "length": 6,
+      "sha256": "be55ef3f4c4e6c2d9c2afe2a33ac90ad0f50d4de7f9163999877e2a9ca5a54f8"
+     }
+    },
+    {
+     "code": "CHN",
+     "cite": {
+      "source": "g20-govinfo",
+      "offset": 2030,
+      "length": 5,
+      "sha256": "10436829032f361a3de50048de41755140e581467bc1895e6c1a17f423e42d10"
+     }
+    },
+    {
+     "code": "FRA",
+     "cite": {
+      "source": "g20-govinfo",
+      "offset": 2037,
+      "length": 6,
+      "sha256": "7a1ca4ef7515f7276bae7230545829c27810c9d9e98ab2c06066bee6270d5153"
+     }
+    },
+    {
+     "code": "DEU",
+     "cite": {
+      "source": "g20-govinfo",
+      "offset": 2045,
+      "length": 7,
+      "sha256": "80db4ccdca106d37b920206331fcfe3e9e50a9e763d89b54ce3ad5ac8cf30f03"
+     }
+    },
+    {
+     "code": "IND",
+     "cite": {
+      "source": "g20-govinfo",
+      "offset": 2054,
+      "length": 5,
+      "sha256": "abd149214539d9f222d25de6358735b9fa0efd3956f66102b2c119ae2d9f6348"
+     }
+    },
+    {
+     "code": "IDN",
+     "cite": {
+      "source": "g20-govinfo",
+      "offset": 2061,
+      "length": 9,
+      "sha256": "dbc74a36d8e7439c45c64d856388506cc9b1218619cef979c3d605115a7a4546"
+     }
+    },
+    {
+     "code": "ITA",
+     "cite": {
+      "source": "g20-govinfo",
+      "offset": 2072,
+      "length": 5,
+      "sha256": "5a9cf672c8be6b5ab9546a2fb49b06dd81a4e364c86ed023898c49d9bb0605dc"
+     }
+    },
+    {
+     "code": "JPN",
+     "cite": {
+      "source": "g20-govinfo",
+      "offset": 2079,
+      "length": 5,
+      "sha256": "647294383b2cbc24b18f629498fc7c6f61d3819fb42a2287e93305aaa01b74e7"
+     }
+    },
+    {
+     "code": "KOR",
+     "cite": {
+      "source": "g20-govinfo",
+      "offset": 2086,
+      "length": 17,
+      "sha256": "ee3ba8e2407b4d9bff3622a4ca4e713132c93b0c05334176e7b5a029868bcd33"
+     }
+    },
+    {
+     "code": "MEX",
+     "cite": {
+      "source": "g20-govinfo",
+      "offset": 2105,
+      "length": 6,
+      "sha256": "a7d355b26bda6bf1196ccffead0b2cf2b81f0a9de5b4876b44407f1dc07e51e6"
+     }
+    },
+    {
+     "code": "RUS",
+     "cite": {
+      "source": "g20-govinfo",
+      "offset": 2113,
+      "length": 6,
+      "sha256": "33a3d8ed92b0709ba525369922e5138756c43abbf7e05edfcf02d3e0fd645c02"
+     }
+    },
+    {
+     "code": "SAU",
+     "cite": {
+      "source": "g20-govinfo",
+      "offset": 2121,
+      "length": 12,
+      "sha256": "ed9ad13611d7164839dd3feaf9a7f6a75a4138f389e0d45f8e07fa38da1116a2"
+     }
+    },
+    {
+     "code": "ZAF",
+     "cite": {
+      "source": "g20-govinfo",
+      "offset": 2135,
+      "length": 12,
+      "sha256": "3e049d78d958038ac6bd5dcf038075cc73362b4956aaf7308c3a69c8eca76297"
+     }
+    },
+    {
+     "code": "TUR",
+     "cite": {
+      "source": "g20-govinfo",
+      "offset": 2149,
+      "length": 12,
+      "sha256": "a16891134224acd44ec7e87cd80d607b47bf1f8c4248a2fdb1a5c696d529adbe"
+     }
+    },
+    {
+     "code": "GBR",
+     "cite": {
+      "source": "g20-govinfo",
+      "offset": 2163,
+      "length": 14,
+      "sha256": "8d23a6e37e0a6431a8f1b43a91026dcff51170a89a6512ff098eaa56a4d5fb19"
+     }
+    },
+    {
+     "code": "USA",
+     "cite": {
+      "source": "g20-govinfo",
+      "offset": 2183,
+      "length": 13,
+      "sha256": "49dca65f362fee401292ed7ada96f96295eab1e589c52e4e66bf4aedda715fdd"
+     }
+    }
+   ],
+   "nonCountry": [
+    {
+     "key": "eu",
+     "role": "members",
+     "nameBn": {
+      "bn": "ইউরোপীয় ইউনিয়ন",
+      "approved": true,
+      "cite": {
+       "source": "user",
+       "date": "2026-10-06"
+      },
+      "note": "this map only; org-headquarters keeps «ইউরোপীয় ইউনিয়ন (ইউরোপীয় কমিশন)»"
+     },
+     "cite": {
+      "source": "g20-govinfo",
+      "offset": 2227,
+      "length": 14,
+      "sha256": "7fe24f2b7ba5e4553152d419a942666808849d1da2d54eea7c3e361436b61ab4"
+     }
+    },
+    {
+     "key": "au",
+     "role": "members",
+     "nameBn": {
+      "bn": "আফ্রিকান ইউনিয়ন",
+      "approved": true,
+      "from": "org-headquarters seed"
+     },
+     "cite": {
+      "source": "g20-govinfo",
+      "offset": 2265,
+      "length": 13,
+      "sha256": "cd68dafeb4f50139c6787028c2f7ad82289c3a625485a65684a94873a0f9b5b3"
+     }
+    }
+   ],
+   "stated": {
+    "countries": {
+     "value": 19,
+     "cite": {
+      "source": "g20-govinfo",
+      "offset": 1962,
+      "length": 18,
+      "sha256": "d6bd9c560c7ac1356942ce46152992d808be8170045dfe3dc92f4af62e3102fa"
+     }
+    },
+    "bodies": {
+     "value": 2,
+     "cite": {
+      "source": "g20-govinfo",
+      "offset": 2202,
+      "length": 19,
+      "sha256": "f9966baced21580a83d18acce40981e91ae1115e26450b731064cb0460fdbbf5"
+     }
+    }
+   }
+  }
+ },
+ "strings": {
+  "title": {
+   "bn": "আঞ্চলিক ও আন্তর্জাতিক সংস্থার সদস্য দেশ",
+   "approved": true
+  },
+  "pickerPrompt": {
+   "bn": "একটি সংস্থা বেছে নিন…",
+   "approved": true
+  },
+  "countryPickerPrompt": {
+   "bn": "একটি দেশ বেছে নিন…",
+   "approved": true
+  },
+  "status": {
+   "members": {
+    "bn": "সদস্য দেশ",
+    "approved": true
+   },
+   "observer": {
+    "bn": "পর্যবেক্ষক দেশ",
+    "approved": true
+   },
+   "dialoguePartner": {
+    "bn": "সংলাপ অংশীদার দেশ",
+    "approved": true
+   },
+   "candidate": {
+    "bn": "প্রার্থী দেশ",
+    "approved": true
+   },
+   "potentialCandidate": {
+    "bn": "সম্ভাব্য প্রার্থী দেশ",
+    "approved": true
+   }
+  },
+  "nonCountry": {
+   "members": {
+    "bn": "দেশ নয় এমন সদস্য",
+    "approved": true
+   },
+   "observer": {
+    "bn": "দেশ নয় এমন পর্যবেক্ষক",
+    "approved": true
+   },
+   "dialoguePartner": {
+    "bn": "দেশ নয় এমন সংলাপ অংশীদার",
+    "approved": true
+   }
+  },
+  "legend": {
+   "members": {
+    "bn": "সদস্য দেশ",
+    "approved": true
+   },
+   "observer": {
+    "bn": "পর্যবেক্ষক দেশ",
+    "approved": true
+   },
+   "dialoguePartner": {
+    "bn": "সংলাপ অংশীদার দেশ",
+    "approved": true
+   },
+   "candidate": {
+    "bn": "প্রার্থী দেশ",
+    "approved": true
+   },
+   "potentialCandidate": {
+    "bn": "সম্ভাব্য প্রার্থী দেশ",
+    "approved": true
+   },
+   "other": {
+    "bn": "অন্য দেশ",
+    "approved": true
+   }
+  },
+  "card": {
+   "count": {
+    "bn": "সদস্য সংখ্যা",
+    "approved": true
+   },
+   "asOf": {
+    "bn": "তথ্যের তারিখ",
+    "approved": true
+   },
+   "memberOf": {
+    "bn": "যেসব সংস্থার সদস্য",
+    "approved": true
+   },
+   "observerOf": {
+    "bn": "যেসব সংস্থার পর্যবেক্ষক",
+    "approved": true
+   },
+   "dialoguePartnerOf": {
+    "bn": "যেসব সংস্থার সংলাপ অংশীদার",
+    "approved": true
+   },
+   "candidateOf": {
+    "bn": "যে সংস্থার প্রার্থী দেশ",
+    "approved": true
+   }
+  },
+  "info": {
+   "heading": {
+    "bn": "টীকা",
+    "approved": true
+   },
+   "sourcesHeading": {
+    "bn": "সূত্র",
+    "approved": true
+   },
+   "view": {
+    "bn": "দেশের সীমানা বাংলাদেশের অবস্থান অনুযায়ী আঁকা: তাইওয়ান চীনের অংশ, আর ইসরায়েলের এলাকা «ফিলিস্তিন অঞ্চল»-এর মধ্যে। তাই কোনো সংস্থায় চীন বা ফিলিস্তিনের রং ওই এলাকাতেও পড়ে।",
+    "approved": true
+   },
+   "abyei": {
+    "bn": "আবেই এলাকা কোনো দেশের অংশ হিসেবে আঁকা নয়, তাই তাতে রং নেই।",
+    "approved": true
+   },
+   "nonCountry": {
+    "bn": "যেসব সদস্য বা পর্যবেক্ষক দেশ নয়, তাদের নাম শুধু কার্ডে দেওয়া; মানচিত্রে তাদের রং নেই।",
+    "approved": true
+   },
+   "statuses": {
+    "bn": "সদস্য, পর্যবেক্ষক, সংলাপ অংশীদার বা প্রার্থী — প্রতিটি মর্যাদা সংশ্লিষ্ট সংস্থার নিজের ওয়েবসাইট অনুযায়ী, কার্ডে দেওয়া তারিখে।",
+    "approved": true
+   },
+   "sco": {
+    "bn": "২০২৫ সালের ১ সেপ্টেম্বর সাংহাই সহযোগিতা সংস্থা পর্যবেক্ষক ও সংলাপ অংশীদার মর্যাদা তুলে দিয়ে একটি নতুন অংশীদার মর্যাদা চালুর সিদ্ধান্ত নেয়; সংশোধনী কার্যকর না হওয়া পর্যন্ত বর্তমান পর্যবেক্ষক ও সংলাপ অংশীদাররা নিজ নিজ মর্যাদায় আছে।",
+    "approved": true
+   },
+   "credits": {
+    "bn": "ইউরোপীয় ইউনিয়নের তথ্য: © European Union, CC BY 4.0; ন্যাটো ও অ্যাপেকের তথ্য তাদের নিজস্ব ওয়েবসাইট থেকে।",
+    "approved": true
+   }
+  }
+ }
+}
