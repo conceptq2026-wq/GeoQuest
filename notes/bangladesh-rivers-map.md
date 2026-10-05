@@ -19,14 +19,44 @@ M3 «পুরো পথ», M4 parity with the diagram — all done, 2026-09-30.
   (`notes/basemaps.md`): the neighbours plain grey, country names only, no
   basemap river, the district names the basemap's own from z7; the 27.6°N
   seam draws no line in either tab (checked on the shots, 2026-09-30).
-- **Two tabs, two views of one map** (M3, the user's rules, 2026-09-30):
-  - «বাংলাদেশে» opens on Bangladesh. A selection is framed on the parts inside
-    Bangladesh (COD-AB) of what it draws — the river, its descendants, its
-    ancestors (`frameBd`).
+- **Two tabs, two views of one map** (M3, the user's rules, 2026-09-30; R-55,
+  2026-10-05):
+  - «বাংলাদেশে» shows Bangladesh only (R-55). Every line is split, at build
+    time, into the pieces inside COD-AB's outline widened by a 500 m band
+    (`BD_BAND_M`, `tools/lib/rivers-cut.mjs`), so a reach that follows the
+    border is not cut into bits where the two traces part.
+    - The band keeps 23 lines' border reaches: main, dharla, teesta, atrai,
+      gangaPadma, mahananda, mahananda3, mathabhanga, kapotaksha, punarbhaba,
+      pagla, tangon, harinbhanga, ichamati, baral, surma, kushiyara, manu2,
+      gumti, khowai, feni, muhuri and naf.
+    - An inside piece under 1 km between reaches outside is a flicker and is
+      dropped: one, 0.97 km of the Kushiyara.
+    - The tab draws, names and takes taps on those pieces only (`bd-lines`,
+      `bd-connectors`: 74 pieces, 16 of the 19 connectors). The whole-course
+      sources are hidden there, with their tap zones. So are the names and
+      markers outside (4 names, the Yarlung's among them, and the origin
+      marker), through `tabs.views.bd.hide` (`notes/shell.md`).
+    - Two cards have no inside piece, Bhagirathi and Barak. They stay in the
+      picker. Chosen in this tab, nothing of theirs is drawn and the map shows
+      Bangladesh (their `frameBd` is the rest frame).
+  - A selection there is framed on the inside pieces of the river and its
+    descendants, not its ancestors (`frameBd`). The ancestors stay drawn,
+    inside Bangladesh only, lighter. At rest the tab frames the main rivers'
+    inside pieces: 88.02, 20.73, 92.63, 25.74.
+  - The open card takes at most 40% of the map's height and scrolls inside
+    itself; the frame fits the room above it (`sheetMaxHeight: 0.4`,
+    `notes/shell.md`).
+  - Zoom with the card open, before → after:
+    - 390 px: Rupsa 6.51 → 11 (the map's maxZoom), Tista 6.79 → 8.24,
+      Brahmaputra–Jamuna 5.09 → 6.53, Padma 5.81 → 5.79;
+    - 320 px: Rupsa 6.17 → 10.95, Tista 5.73 → 7.57, Brahmaputra–Jamuna
+      3.67 → 5.99, Padma 4.56 → 5.16.
   - «পুরো পথ» frames the same set whole, with every pinned reach outside and a
     margin (`frameWhole`: 5% of the span a side, at least 0.1°). With nothing
-    selected it rests on the main rivers with a reach outside — the Jamuna,
-    the Padma, the Feni and the Naf — framed on all of them.
+    selected it rests on every main river whose system — the river and its
+    descendants — has a reach outside, framed on all of those systems: the
+    Jamuna, the Padma, the Meghna (by the Barak, Gumti, Khowai and Manu; R-55),
+    the Feni and the Naf. It draws as before; its frame did not move.
   - **Disabled rule:** «পুরো পথ» is disabled for a selection whose set has no
     reach outside Bangladesh — a card's lines running at least 1 km outside
     COD-AB's outline; the build refuses a disabled set that has any piece
@@ -44,7 +74,8 @@ M3 «পুরো পথ», M4 parity with the diagram — all done, 2026-09-30.
 - Lines by role in the diagram's colours; dashed outside Bangladesh where the
   seed splits a line at COD-AB's border (the Feni and the Ichamati stay solid,
   border rivers); a white halo, the selected river's lit. The legend lists a
-  dashed reach, «বাংলাদেশের বাইরে», only while a drawn river has one.
+  dashed reach, «বাংলাদেশের বাইরে», only while a drawn river has one, and only in
+  «পুরো পথ», the one tab that draws it (`legend.kinds[].tab`, R-55).
 - No text under 14 px (`minTextSize: 14`, M3): the labels floored, the card,
   the tabs, the Tilt button and ⓘ at 14 px; `tools/check.mjs` scans the page
   and the style.
@@ -86,8 +117,56 @@ origin row's word), gumti (in Tripura), muhuri (South Tripura), bhagirathi
 (Murshidabad); and rising in Bangladesh (a district of the pinned Bengali list
 in the origin row): mathabhanga, kapotaksha, harinbhanga, baral. Every card
 whose chain begins outside Bangladesh is in one list or the other, or the
-build stops. The Teesta's chain ends at 27.601°N, on the snapshot's box, yet
-inside Sikkim, the region its origin row names: reached, by the rule.
+build stops.
+
+**The cut rule** (R-55, 2026-10-05, `tools/lib/rivers-cut.mjs`):
+- A card listed as reached is CUT when its head line's upstream end lies
+  within 1 km (`CUT_TOL_M`) of the outline of a box the rivers snapshot
+  selected that line's ways in (`tools/extract-bangladesh.mjs` takes a river
+  by name only inside its own box).
+- A cut card gets the map's upstream ⓘ line, built by the map from the
+  approved sentence after the card's name, as every upstream line has it.
+- The seed's `mapUpstreamReached` is unchanged and its evidence still holds.
+  The rule overrides it from the drawn course; no seed file moved.
+- The 12, end to box outline:
+  - main 900.102 km (its pinned origin in Tibet; the brahmaputraJamuna box);
+  - **teesta 0.122 km** (its teesta box's 27.6°N): cut;
+  - **bhagirathi 0.714 km** (the hooghly box's 24.5°N; its head meets the
+    Ganga only by a 7.4 km connector): cut;
+  - ichamati, pagla, khowai, gumti, muhuri, mathabhanga, kapotaksha,
+    harinbhanga and baral: no box (every way read by its id, whole).
+- `tools/verify-descriptor.mjs` re-reads the rule off the built lines, so a
+  future river can't be counted reached by mistake.
+
+## Stage 4: the upstream reaches still missing (R-55, notes only, nothing fetched)
+
+Each card's current upstream end, as the map draws it, and what drawing the rest
+would need. Every source named is a new pinned extract, fetched only on purpose.
+
+- **Padma — the Ganga's upper course**: ends at 87.8726°E 25.0607°N (Bihar).
+  Needs the Ganga upstream to the Gangotri glacier (the origin row): OSM
+  ways by id, or Natural Earth's 10m rivers (already pinned) for the upper
+  course, as the main line takes its Tibetan reach.
+- **Barak — to its source**: no inside piece. Ends at 92.9091°E 24.7511°N
+  (Assam). Needs OSM ways of the Barak in Manipur and Nagaland.
+- **Meghna**: its origin row is the Barak's; drawn once the Barak is.
+- **Karnaphuli in Mizoram**: ends at 92.3761°E 22.9288°N. Needs OSM ways of
+  the Karnaphuli (Khawthlangtuipui) in Mizoram (the «লুসাই পাহাড়»).
+- **Teesta in north Sikkim**: ends at 88.6489°E 27.6011°N (cut, the box's
+  edge). Needs OSM ways of the Teesta north of 27.6°N, a box or way list
+  reaching its source in Sikkim.
+- **Bhagirathi — its head at the Ganga**: ends at 88.0913°E 24.4936°N (cut,
+  the hooghly box's edge; a 7.4 km connector to the Ganga). Needs OSM ways
+  of the Bhagirathi up to its offtake near Dhulian (the origin row).
+- **Dharla**: ends at 88.8738°E 26.6993°N. Needs the Jaldhaka's OSM ways to
+  south Sikkim.
+- **Mahananda**: ends at 88.3622°E 26.8666°N. Needs its OSM ways in the
+  Darjeeling hills.
+- **Manu**: ends at 92.0366°E 23.8352°N. Needs its OSM ways in Tripura.
+- **Naf**: ends at 92.1805°E 21.1592°N. Needs its OSM ways in Myanmar.
+- **Feni**: ends at 91.7838°E 23.3252°N. Needs its OSM ways in Tripura.
+- **Sangu**: ends at 92.6074°E 21.2725°N. Needs its OSM ways in the north
+  Arakan hills (Myanmar).
 
 ## `only`
 
@@ -105,7 +184,8 @@ pins file's `lines`.
 - **`tools/build-bangladesh-rivers-map.mjs [out]`** writes the descriptor, the
   records (`rivers.json`, `marks.json`, `names.json`, `places.json`,
   `views.json`), `info.json`, the lines (`lines-in.geojson` solid,
-  `lines-out.geojson` dashed, `connectors.geojson`) and one SVG per marker
+  `lines-out.geojson` dashed, `connectors.geojson`; «বাংলাদেশে»'s
+  `bd-lines.geojson` and `bd-connectors.geojson`, R-55) and one SVG per marker
   kind into `docs/maps/bangladesh-rivers-map/`, through
   `tools/lib/rivers-core.mjs` (the same chains, the same 68 pins).
 - Each line is its pinned chain, split at the border, simplified by
@@ -120,8 +200,13 @@ pins file's `lines`.
 ## What is checked
 
 `tools/verify-descriptor.mjs` (its section): the generic checks (view tabs,
-fitTab, idleByTab, minTextSize among them), and every card, row, null, marker,
-name, view, ⓘ line, credit, upstream line and word against the seed.
+fitTab, idleByTab, minTextSize, the views' `hide`, `sheetMaxHeight` and the
+legend's `tab` among them), and every card, row, null, marker, name, view,
+ⓘ line, credit, upstream line and word against the seed. Since R-55 also:
+- «বাংলাদেশে» draws Bangladesh only: every vertex of `bd-lines` and
+  `bd-connectors` inside COD-AB's outline or within the band; every name and
+  marker outside it hidden there.
+- The cut rule, read off the built lines.
 `tools/verify.mjs`: the diagram's checks a–g in metres on the map's GeoJSON, the
 build re-run to the same bytes, and the **parity** check (M4): the two
 products' built files — the same cards in the same groups, their rows word for
@@ -146,7 +231,10 @@ first card in «পুরো পথ», taps a disabled tab, and scans the text f
 
 ## Decisions open
 
-- The frame of a selection fits above the open card, which covers up to 62% of
-  the screen (taller with 14 px rows): «বাংলাদেশে» frames the Jamuna at z5.09
-  at 390 px and z3.67 at 320 px (the pan limit), though its box inside
-  Bangladesh is 2.3° × 2.7°.
+- Settled by R-55 (2026-10-05): the card takes at most 40% of the map, and the
+  frame fits the room above it.
+- Bhagirathi and Barak have no piece inside Bangladesh: listed, unchanged, and
+  framed on Bangladesh in «বাংলাদেশে». Change their picker entries only on the
+  user's word.
+- Rupsa's frame inside Bangladesh is 0.07° × 0.09°: it opens at the map's
+  maxZoom, 11.

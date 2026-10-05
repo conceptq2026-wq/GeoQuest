@@ -12,12 +12,13 @@
 // and every drawn vertex lies on the chain. A branch whose parent-side end
 // misses its parent by more than CONNECT_FROM_M, up to CONNECT_MAX_M, gets a
 // straight connector to the parent as the map draws it, as in the diagram.
-// Two views, as tabs (M3, 2026-09-30): «বাংলাদেশে», a selection framed on the
-// parts inside Bangladesh of what it draws (the river, its descendants, its
-// ancestors); and «পুরো পথ», framed on all of it with every pinned reach
-// outside, disabled for a selection with none. The lines, markers and names
-// of the seed's Bangladesh frame, and the whole-course frame's (the origin,
-// the Yarlung's name).
+// Two views, as tabs (M3, 2026-09-30; R-55, 2026-10-05): «বাংলাদেশে» draws,
+// names and takes taps on Bangladesh only — each line's pieces inside COD-AB's
+// outline widened by BD_BAND_M — and frames a selection on the inside pieces
+// of the river and its descendants; and «পুরো পথ», framed on all of it with
+// every pinned reach outside, disabled for a selection with none. The lines,
+// markers and names of the seed's Bangladesh frame, and the whole-course
+// frame's (the origin, the Yarlung's name).
 //
 // Every Bengali word shipped is the seed's: the cards and their rows, the
 // markers' cards, the names on the lines, the legend, ⓘ's headings and lines,
@@ -31,6 +32,8 @@ import path from 'node:path';
 import { distM, nearestOnLine, lengthKm } from './lib/rivers-frame.mjs';
 import { CACHE } from './lib/geo.mjs';
 import { riversCore, itemsOnly, SEED, MAP_PINS, CONNECT_FROM_M, CONNECT_MAX_M, UNJOINED_BY_DECISION } from './lib/rivers-core.mjs';
+import { SegmentGrid } from './lib/bangladesh-units.mjs';
+import { cutAt, snapshotBoxes, snapshotRivers, CUT_TOL_M, BD_BAND_M } from './lib/rivers-cut.mjs';
 
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const ROOT = path.resolve(HERE, '..');
@@ -58,6 +61,12 @@ const CONTEXT_NAME = 0.6;
 // A card has a pinned reach outside Bangladesh when its lines run this far outside COD-AB's outline (km):
 // less is a border river's sliver, not a reach.
 const OUTSIDE_KM = 1;
+// «বাংলাদেশে» draws a line where it lies inside COD-AB's outline or within BD_BAND_M of it (tools/lib/rivers-cut.mjs)
+// — so a reach that follows the border is not cut into bits where the two traces part — and drops an inside piece
+// shorter than BD_BIT_KM between reaches outside: a flicker, not a reach (R-55, 2026-10-05).
+const BD_BIT_KM = 1;
+// The open card takes at most this share of the map's height; the rest of it scrolls inside (R-55).
+const SHEET_MAX = 0.4;
 // «পুরো পথ»'s frames: this share of the span added on each side, at least MARGIN_MIN degrees.
 const MARGIN = 0.05;
 const MARGIN_MIN = 0.1;
@@ -171,6 +180,33 @@ for (const id of frame.lines) {
   if (m > CONNECT_FROM_M && m <= CONNECT_MAX_M) connectors.push({ line: id, entity: entityOf(id), parent, m: Math.round(m), coords: [fix(end), fix(best.pt)] });
 }
 
+// ---- «বাংলাদেশে»: Bangladesh only (R-55, 2026-10-05) ----------------------------------------------------
+
+const outlineGrid = new SegmentGrid(outlineRings, 0.02);
+const inBd = (p) => inside(p, outlineIdx) || outlineGrid.nearest(p, BD_BAND_M / 1000) !== null;
+const bdPieces = []; // { line, entity, coords }: the inside pieces, simplified as the rest
+const banded = new Set(); // lines the band keeps a reach of that lies outside the outline itself
+const bits = [];
+for (const id of frame.lines) {
+  const runs = [];
+  let cur = null;
+  for (const p of lines[id].coords) {
+    if (inBd(p)) (cur ??= []).push(p);
+    else if (cur) (runs.push(cur), (cur = null));
+  }
+  if (cur) runs.push(cur);
+  const real = runs.filter((r) => r.length > 1);
+  for (const r of real) {
+    if (real.length > 1 && lengthKm(r) < BD_BIT_KM) {
+      bits.push(`${id} ${round(lengthKm(r), 2)} km`);
+      continue;
+    }
+    if (r.some((p) => !inside(p, outlineIdx))) banded.add(id);
+    bdPieces.push({ line: id, entity: entityOf(id), coords: keepIndices(r, SIMPLIFY_M).map((i) => fix(r[i])) });
+  }
+}
+const bdConnectors = connectors.filter((c) => c.coords.every(inBd));
+
 // ---- the records -----------------------------------------------------------------------------------
 
 // A card's parent card: the card of the line its first line joins; a main river has none (it is a root).
@@ -194,6 +230,8 @@ for (const eid of order) {
   row.solid = pieces.some((p) => p.entity === eid && !p.dashed);
   row.dashed = pieces.some((p) => p.entity === eid && p.dashed);
   row.joined = connectors.some((c) => c.entity === eid);
+  row.hasBd = bdPieces.some((p) => p.entity === eid);
+  row.bdJoined = bdConnectors.some((c) => c.entity === eid);
   // The rows, in ui.rowOrder: a null stays null (unverified, hidden, pending); a row the card lacks stays absent.
   for (const k of ui.rowOrder) if (k in e.values) row[k] = e.values[k];
   for (const k of Object.keys(e.values)) if (!ui.rowOrder.includes(k)) fail(`${eid} has a row ${k} that ui.rowOrder does not place`);
@@ -204,7 +242,7 @@ for (const mid of [...frame.markers, ...wholeFrame.markers.filter((k) => !frame.
   const m = markerSeed[mid] ?? fail(`the seed has no marker ${mid}`);
   if (!(m.entity in rivers)) fail(`marker ${mid}'s card ${m.entity} is not on the map`);
   // The card's heading, as the diagram composes it: the marker's name — its kind.
-  marks[mid] = { nameBn: m.nameBn, titleBn: `${m.nameBn} — ${ui.legendBn[m.kind]}`, kind: m.kind, river: m.entity, at: m.lonLat, [m.row]: m.valueBn };
+  marks[mid] = { nameBn: m.nameBn, titleBn: `${m.nameBn} — ${ui.legendBn[m.kind]}`, kind: m.kind, river: m.entity, at: m.lonLat, inBd: inBd(m.lonLat), [m.row]: m.valueBn };
 }
 const names = {};
 const mapLabels = [...frame.labels, ...wholeFrame.labels.filter((l) => !frame.labels.some((b) => b.id === l.id))];
@@ -218,7 +256,7 @@ for (const lab of mapLabels) {
     if (!best || n.m < best.m) best = n;
   }
   const eid = entityOf(lab.line);
-  names[lab.id] = { nameBn: text, river: eid, role: l.role, at: fix(best.pt) };
+  names[lab.id] = { nameBn: text, river: eid, role: l.role, at: fix(best.pt), inBd: inBd(best.pt) };
 }
 // A branch's ancestors, up to its main river, and their names: drawn for context, lighter, while it is
 // selected. A main river has none (absent, not applicable).
@@ -277,13 +315,31 @@ const setOf = (card) => {
   for (const a of rivers[card].ancestors ?? []) keys.add(a);
   return [...keys];
 };
+// A card and its descendants, every generation: what «বাংলাদেশে» frames (R-55: not its ancestors).
+const treeOf = (card) => {
+  const keys = new Set([card]);
+  for (let grew = true; grew; ) {
+    grew = false;
+    for (const [k, r] of Object.entries(rivers)) if (!keys.has(k) && keys.has(r.up)) (keys.add(k), (grew = true));
+  }
+  return [...keys];
+};
+const bdBox = (cards) => {
+  const pts = bdPieces.filter((p) => cards.includes(p.entity)).flatMap((p) => p.coords);
+  return pts.length ? outward(bbox(pts)) : null;
+};
+// «বাংলাদেশে» at rest: the main rivers' inside pieces.
+const bdRest = bdBox(Object.keys(rivers).filter((k) => rivers[k].role === 'main')) ?? fail('no main river has a piece inside Bangladesh');
+const noInside = Object.keys(rivers).filter((k) => !rivers[k].hasBd);
+const framedOnRest = [];
 for (const [k, row] of Object.entries(rivers)) {
   const set = setOf(k);
   const ids = set.flatMap(linesOf);
-  row.frameBd = outward(bbox(ids.flatMap((id) => split.get(id).filter((q) => q.inside).flatMap((q) => q.coords))));
+  row.frameBd = bdBox(treeOf(k)) ?? (framedOnRest.push(k), bdRest);
   row.frameWhole = outward(margin(bbox(ids.flatMap((id) => lines[id].coords))));
   row.outsideSet = set.some((c) => outsideKm[c] >= OUTSIDE_KM);
-  row.restWhole = row.role === 'main' && outsideKm[k] >= OUTSIDE_KM;
+  // «পুরো পথ» rests on every main river whose system — the river and its descendants — has a reach outside.
+  row.restWhole = row.role === 'main' && treeOf(k).some((c) => outsideKm[c] >= OUTSIDE_KM);
   if (row.dashed) row.dashedKind = 'outside';
   // A disabled «পুরো পথ» says no part outside is drawn: then nothing of it may be.
   if (!row.outsideSet && set.some((c) => outsideKm[c] > 0)) fail(`${k}: its set has ${set.filter((c) => outsideKm[c] > 0).join(', ')} outside Bangladesh, under ${OUTSIDE_KM} km — «${words.wholeDisabled}» would not hold`);
@@ -293,7 +349,7 @@ const restWhole = Object.keys(rivers).filter((k) => rivers[k].restWhole);
 if (!restWhole.length) fail('no main river has a reach outside Bangladesh');
 const views = {
   bd: { titleBn: ui.tabsBn.bangladesh, frame: null },
-  whole: { titleBn: ui.tabsBn.whole, frame: outward(margin(bbox(restWhole.flatMap(linesOf).flatMap((id) => lines[id].coords)))), disabledBn: words.wholeDisabled },
+  whole: { titleBn: ui.tabsBn.whole, frame: outward(margin(bbox(restWhole.flatMap(treeOf).flatMap(linesOf).flatMap((id) => lines[id].coords)))), disabledBn: words.wholeDisabled },
 };
 const disabledCards = Object.keys(rivers).filter((k) => !rivers[k].outsideSet);
 
@@ -337,6 +393,18 @@ const both = inPartCards.filter((k) => reachedCards.includes(k));
 const beginsOutside = Object.keys(rivers).filter((k) => !inside(upstreamEnd(k), outlineIdx));
 const unruled = beginsOutside.filter((k) => !inPartCards.includes(k) && !reachedCards.includes(k));
 if (both.length || unruled.length) fail(`the upstream rule: ${both.length ? `in part and reached: ${both.join(', ')}` : ''}${unruled.length ? ` begins outside Bangladesh, listed nowhere: ${unruled.join(', ')}` : ''}`);
+// The cut rule (R-55, tools/lib/rivers-cut.mjs): a card listed as reached whose head line stops on the box a
+// snapshot selection took it in is cut there, not reached — it gets the map's upstream ⓘ line.
+const boxes = snapshotBoxes();
+const snapRivers = snapshotRivers();
+const cutReport = [];
+const cutCards = [];
+for (const card of reachedCards) {
+  const head = linesOf(card)[0];
+  const at = cutAt(upstreamEnd(card), head === 'main' ? G.main.ways : (lines[head].spec?.ways ?? []), boxes, snapRivers);
+  cutReport.push(`${card} ${at ? `${round(at.m / 1000, 3)} km from its ${at.river} box` : 'no box'}`);
+  if (at && at.m <= CUT_TOL_M) cutCards.push(card);
+}
 
 // ---- the map's own places: a name on the water where a cited book gives one --------------------------
 // Each is a Natural Earth feature, by its ne_id in a file pinned in tools/sources.json, its geometry pinned in
@@ -378,7 +446,13 @@ for (const c of credits) if (!/^https:\/\//.test(c.url ?? '')) fail(`the credit 
 const extra = credits.map((c) => `<a href="${escape(c.url)}" target="_blank" rel="noopener noreferrer">${escape(`${c.title} (${c.by})`)}</a>`);
 const info = {
   _about: `Built by tools/build-${ID}.mjs from the seed in ${path.relative(ROOT, SEED).replace(/\\/g, '/')}/; do not edit.`,
-  lines: [...seed.markers.filter((m) => m.infoBn).map((m) => ({ text: m.infoBn, group: 'notes' })), ...seed.infoBn.lines.map((l) => ({ text: l.textBn, group: l.group }))],
+  lines: (() => {
+    // The seed's lines, the cut cards' upstream lines after its own (R-55).
+    const own = seed.infoBn.lines.map((l) => ({ text: l.textBn, group: l.group }));
+    const after = seed.infoBn.lines.findLastIndex((l) => l.card) + 1;
+    const cut = cutCards.map((k) => ({ text: `${rivers[k].nameBn}: ${words.upstreamInPart}`, group: 'notes' }));
+    return [...seed.markers.filter((m) => m.infoBn).map((m) => ({ text: m.infoBn, group: 'notes' })), ...own.slice(0, after), ...cut, ...own.slice(after)];
+  })(),
 };
 
 // ---- the marker icons: the diagram's glyphs on a pale disc ----------------------------------------
@@ -422,10 +496,7 @@ const lineLayers = (source, dashed) => [
 ];
 // Select, then frame by the open tab: inside Bangladesh, or the whole course (the tabs module's fitTab).
 const fitSelected = [{ action: 'select' }, { action: 'fitTab', clear: ['sheet'], duration: 1200 }];
-const outline = outlineRings.flat();
-const view = outline.reduce((b, [x, y]) => [Math.min(b[0], x), Math.min(b[1], y), Math.max(b[2], x), Math.max(b[3], y)], [Infinity, Infinity, -Infinity, -Infinity]);
-const bangladeshView = [Math.floor(view[0] * 20) / 20, Math.floor(view[1] * 20) / 20, Math.ceil(view[2] * 20) / 20, Math.ceil(view[3] * 20) / 20];
-views.bd.frame = bangladeshView;
+views.bd.frame = bdRest;
 // Where the map may pan: every drawn line, with room round it (half-degrees, outward).
 const all = bbox(Object.values(lines).flatMap((l) => l.coords));
 const maxBounds = [Math.floor((all[0] - 1.5) * 2) / 2, Math.floor((all[1] - 1.5) * 2) / 2, Math.ceil((all[2] + 1.5) * 2) / 2, Math.ceil((all[3] + 1.5) * 2) / 2];
@@ -437,10 +508,12 @@ const descriptor = {
   section: SECTION,
   title: { bn: seed.titleBn, en: `${seed.titleEn} (map)` },
   basemap: 'bangladesh-wide',
-  view: { fitBounds: bangladeshView },
+  view: { fitBounds: bdRest },
   constraints: { maxZoom: 11, maxBounds },
   // No text under 14 px on this map: the labels floored, the chrome's too (the user's rule for it, M3).
   minTextSize: 14,
+  // The open card at most this share of the map's height, the frame in the room above it (R-55).
+  sheetMaxHeight: SHEET_MAX,
   lookups: { systems: Object.fromEntries(seed.systems.filter((s) => order.some((k) => rivers[k].system === s.id)).map((s) => [s.id, { nameBn: s.nameBn }])) },
   images,
   records: {
@@ -454,6 +527,8 @@ const descriptor = {
         solid: { type: 'boolean', display: false },
         dashed: { type: 'boolean', display: false },
         joined: { type: 'boolean', display: false },
+        hasBd: { type: 'boolean', display: false },
+        bdJoined: { type: 'boolean', display: false },
         ancestors: { type: 'refs', to: 'rivers', display: false },
         ancestorNames: { type: 'refs', to: 'names', display: false },
         frameBd: { type: 'bbox', display: false },
@@ -472,6 +547,7 @@ const descriptor = {
         kind: { type: 'text', required: true, display: false },
         river: { type: 'text', required: true, display: false },
         at: { type: 'point', required: true },
+        inBd: { type: 'boolean', required: true, display: false },
         frameBd: { type: 'bbox', display: false },
         frameWhole: { type: 'bbox', display: false },
         outsideSet: { type: 'boolean', display: false },
@@ -485,6 +561,7 @@ const descriptor = {
         river: { type: 'text', required: true, display: false },
         role: { type: 'text', required: true, display: false },
         at: { type: 'point', required: true },
+        inBd: { type: 'boolean', required: true, display: false },
       },
     },
     views: {
@@ -507,6 +584,9 @@ const descriptor = {
     connectors: { records: 'rivers', geometry: './connectors.geojson', joinField: 'key', expectGeometry: { joined: true }, state: ['selected', { name: 'context', fromSelection: { records: 'rivers', listField: 'ancestors' } }], properties: ['role'] },
     'lines-out': { records: 'rivers', geometry: './lines-out.geojson', joinField: 'key', expectGeometry: { dashed: true }, state: ['selected', { name: 'context', fromSelection: { records: 'rivers', listField: 'ancestors' } }], properties: ['role'], tapWidth: 44, attribution: OSM_CREDIT },
     'lines-in': { records: 'rivers', geometry: './lines-in.geojson', joinField: 'key', expectGeometry: { solid: true }, state: ['selected', { name: 'context', fromSelection: { records: 'rivers', listField: 'ancestors' } }], properties: ['role'], tapWidth: 44, attribution: OSM_CREDIT },
+    // «বাংলাদেশে»'s own lines and connectors: the pieces inside Bangladesh (R-55).
+    'bd-connectors': { records: 'rivers', geometry: './bd-connectors.geojson', joinField: 'key', expectGeometry: { bdJoined: true }, state: ['selected', { name: 'context', fromSelection: { records: 'rivers', listField: 'ancestors' } }], properties: ['role'] },
+    'bd-lines': { records: 'rivers', geometry: './bd-lines.geojson', joinField: 'key', expectGeometry: { hasBd: true }, state: ['selected', { name: 'context', fromSelection: { records: 'rivers', listField: 'ancestors' } }], properties: ['role'], tapWidth: 44, attribution: OSM_CREDIT },
     names: { records: 'names', geometryFrom: 'at', state: [{ name: 'context', fromSelection: { records: 'rivers', listField: 'ancestorNames' } }], properties: ['nameBn', 'role'] },
     places: { records: 'places', geometryFrom: 'at', properties: ['nameBn'] },
     marks: { records: 'marks', geometryFrom: 'at', state: ['selected'], properties: ['kind'], tapWidth: 44 },
@@ -515,6 +595,8 @@ const descriptor = {
     ...lineLayers('connectors', false),
     ...lineLayers('lines-out', true),
     ...lineLayers('lines-in', false),
+    ...lineLayers('bd-connectors', false),
+    ...lineLayers('bd-lines', false),
     // A place's name on the water, at least 14 px; below the rivers' names, which are placed first.
     {
       id: 'place-names',
@@ -573,6 +655,7 @@ const descriptor = {
   interactions: [
     { on: 'click', target: 'source:lines-in', do: fitSelected },
     { on: 'click', target: 'source:lines-out', do: fitSelected },
+    { on: 'click', target: 'source:bd-lines', do: fitSelected },
     { on: 'click', target: 'source:marks', do: [{ action: 'select' }] },
   ],
   sheets: {
@@ -586,15 +669,27 @@ const descriptor = {
     label: { field: 'titleBn' },
     frame: { field: 'frame' },
     views: {
-      bd: { selectionFrame: 'frameBd' },
-      whole: { selectionFrame: 'frameWhole', enabledBy: 'outsideSet', disabledNote: { field: 'disabledBn' } },
+      // «বাংলাদেশে» draws Bangladesh only: its own inside pieces, and no name, marker or river with none (R-55).
+      bd: {
+        selectionFrame: 'frameBd',
+        hide: {
+          sources: ['connectors', 'lines-out', 'lines-in'],
+          records: [
+            { records: 'rivers', field: 'hasBd', value: false },
+            { records: 'names', field: 'inBd', value: false },
+            { records: 'marks', field: 'inBd', value: false },
+          ],
+        },
+      },
+      whole: { selectionFrame: 'frameWhole', enabledBy: 'outsideSet', disabledNote: { field: 'disabledBn' }, hide: { sources: ['bd-connectors', 'bd-lines'] } },
     },
   },
   focus: { records: 'rivers', idle: { field: 'role', value: 'main' }, idleByTab: { whole: { field: 'restWhole', value: true } }, parent: 'up', also: [{ records: 'marks', field: 'river' }, { records: 'names', field: 'river' }] },
   legend: {
     // A dashed reach is listed only while a drawn river has one.
     items: [...roles.map((r) => ({ kind: r, label: ui.legendBn[r], line: { color: LINE[r].color, width: LINE[r].width } })), { kind: 'outside', label: words.outside, line: { color: LINE.main.color, width: LINE.main.width, dash: true } }, ...kindsDrawn.map((k) => ({ kind: k, label: ui.legendBn[k], image: k }))],
-    kinds: [{ records: 'rivers', field: 'role' }, { records: 'rivers', field: 'dashedKind' }, { records: 'marks', field: 'kind' }],
+    // The dashed reach outside is drawn only in «পুরো পথ».
+    kinds: [{ records: 'rivers', field: 'role' }, { records: 'rivers', field: 'dashedKind', tab: 'whole' }, { records: 'marks', field: 'kind' }],
   },
   info: { file: './info.json', headings: ui.creditGroupsBn },
   attribution: { extra },
@@ -614,6 +709,8 @@ const files = {
   'lines-in.geojson': geojson(pieces.filter((p) => !p.dashed).map((p) => feature(p.entity, p.line, p.coords))),
   'lines-out.geojson': geojson(pieces.filter((p) => p.dashed).map((p) => feature(p.entity, p.line, p.coords))),
   'connectors.geojson': geojson(connectors.map((c) => ({ ...feature(c.entity, c.line, c.coords), properties: { key: c.entity, line: c.line, parent: c.parent, m: c.m } }))),
+  'bd-lines.geojson': geojson(bdPieces.map((p) => feature(p.entity, p.line, p.coords))),
+  'bd-connectors.geojson': geojson(bdConnectors.map((c) => ({ ...feature(c.entity, c.line, c.coords), properties: { key: c.entity, line: c.line, parent: c.parent, m: c.m } }))),
   ...Object.fromEntries(kindsDrawn.map((k) => [`${k}.svg`, icon(k)])),
 };
 // Nothing the diagram alone draws reaches the map (the user's decision, 2026-09-30): no id of its cards,
@@ -635,6 +732,9 @@ say(`focus: ${Object.values(rivers).filter((r) => !r.up).length} roots (${Object
 say(`places: ${placeReport.join('; ') || 'none'}`);
 say(`views: «পুরো পথ» rests on ${restWhole.join(', ')}, framed ${views.whole.frame.join(', ')}; disabled for ${disabledCards.length} cards (${disabledCards.join(', ')}); pans within ${maxBounds.join(', ')}`);
 say(`upstream: in part ${inPartCards.length} (${inPartCards.join(', ')}); reached or rising in Bangladesh ${reachedCards.length} (${reachedCards.join(', ')})`);
+say(`cut rule (within ${CUT_TOL_M} m of a selection box's edge): ${cutReport.join('; ')}; cut: ${cutCards.join(', ') || 'none'}`);
+say(`«বাংলাদেশে»: ${bdPieces.length} inside pieces (band ${BD_BAND_M} m, bits under ${BD_BIT_KM} km dropped: ${bits.join(', ') || 'none'}); the band keeps ${banded.size} lines' border reaches (${[...banded].join(', ')}); ${bdConnectors.length} of ${connectors.length} connectors; no inside piece: ${noInside.join(', ') || 'none'} (framed on Bangladesh: ${framedOnRest.join(', ') || 'none'}); rest frame ${bdRest.join(', ')}`);
+say(`hidden in «বাংলাদেশে»: ${Object.keys(names).filter((k) => !names[k].inBd).length} names, ${Object.keys(marks).filter((k) => !marks[k].inBd).length} markers`);
 for (const k of ['main', 'teesta', 'rupsa']) say(`frames ${k}: in Bangladesh ${rivers[k].frameBd.join(', ')}; whole ${rivers[k].frameWhole.join(', ')}`);
 say(`diagram-only: ${diagramOnly.ids.size} ids and ${diagramOnly.texts.size} texts held back, none shipped; map-only drawn: ${Object.keys(places).length} place(s), ${info.lines.length - seed.infoBn.lines.filter((l) => !l.only).length - seed.markers.filter((m) => m.infoBn).length} ⓘ line(s)`);
 say(`pending: ${nPending}; ⓘ: ${extra.length} credits, ${info.lines.filter((l) => l.group === 'notes').length} notes, ${info.lines.filter((l) => l.group === 'conflicts').length} conflicts`);

@@ -19,7 +19,9 @@
 // on the map at a point where it alone is under the finger, and checks a card
 // opens; and reports console messages and any request to a host but ours.
 // On a map with view tabs (views) it also frames each picker group's first
-// record in every tab past the first and taps a tab a selection disables;
+// record in every tab past the first and taps a tab a selection disables; a
+// tab's taps skip what its `hide` takes off the map, and a record whose
+// selection disables the tab (the other tab taps it);
 // on a map with chips it presses each chip of each tab and checks that only its
 // members stay drawn, then releases it; a cards-only tab's card is the
 // selected card of its list;
@@ -1113,7 +1115,12 @@ async function taps(page, shoot, summary, fail, sources, tabs, camera) {
       await shoot('views', `tab «${name}»`);
       await chips(page, shoot, fail, name, camera);
     }
+    // A tab that takes sources or records off the map (`views.<tab>.hide`) has no taps on them: the tab
+    // that shows them taps them. Each record from this tab, chosen afresh, since a selection may disable it.
+    const tabKey = tabs ? await page.evaluate(`document.querySelectorAll('.map-tab')[${t}].dataset.tab`) : null;
+    const hides = tabKey && (await page.evaluate(`!!window.__shell.descriptor.tabs?.views?.[${JSON.stringify(tabKey)}]?.hide`));
     for (const source of sources) {
+      if (hides && (await page.evaluate(`window.__shell.descriptor.tabs.views[${JSON.stringify(tabKey)}].hide.sources ?? []`)).includes(source)) continue;
       // A focus map draws only what the selection is about: every key the source can draw is tapped, each
       // after the picker has put its river (a branch's parent, a marker's owner) in view, or with nothing
       // selected for a record drawn at rest — as a student reaches it.
@@ -1127,6 +1134,8 @@ async function taps(page, shoot, summary, fail, sources, tabs, camera) {
           await page.click(...close);
           await settle(page, 10000);
         }
+        // This tab open, with nothing chosen, before the record is put in view: what it draws at rest is this tab's.
+        if (hides && (await page.evaluate(`(() => { window.__shell.deselect(); const b = document.querySelectorAll('.map-tab')[${t}]; if (b.classList.contains('active')) return false; b.click(); return true; })()`))) await settle(page, 10000);
         if (focus) {
           await page.evaluate(`(() => {
             const s = window.__shell; const f = s.descriptor.focus; const table = s.descriptor.sources[${JSON.stringify(source)}].records;
@@ -1139,6 +1148,23 @@ async function taps(page, shoot, summary, fail, sources, tabs, camera) {
             else if (table === f.records && !s.drawn(table, ${JSON.stringify(key)}) && picker && !picker.hidden) { picker.value = ${JSON.stringify(key)}; picker.dispatchEvent(new Event('change', { bubbles: true })); }
             window.__check.forget();
           })()`);
+          await settle(page, 10000);
+        }
+        if (hides) {
+          // Back on this tab when the record's selection leaves it open; else the record is the other tab's.
+          const off = await page.evaluate(`(() => {
+            const s = window.__shell; const b = document.querySelectorAll('.map-tab')[${t}];
+            if (!b.classList.contains('active') && b.getAttribute('aria-disabled') !== 'true') b.click();
+            const a = document.querySelector('.map-tab.active')?.dataset.tab; const h = s.descriptor.tabs.views[a]?.hide;
+            if (a !== ${JSON.stringify(tabKey)}) return true;
+            if (!h) return false;
+            const table = s.descriptor.sources[${JSON.stringify(source)}].records;
+            return (h.records ?? []).some((r) => r.records === table && s.records[table][${JSON.stringify(key)}]?.[r.field] === r.value);
+          })()`);
+          if (off) {
+            total--;
+            continue;
+          }
           await settle(page, 10000);
         }
         // Each record from the map's opening camera, so no record's view carries over to the next.

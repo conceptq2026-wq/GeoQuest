@@ -49,6 +49,9 @@ import path from 'node:path';
 import zlib from 'node:zlib';
 import { pathToFileURL } from 'node:url';
 import { loadRiversSeed } from './lib/rivers-seed.mjs';
+import { riversCore } from './lib/rivers-core.mjs';
+import { cutAt, CUT_TOL_M, BD_BAND_M } from './lib/rivers-cut.mjs';
+import { SegmentGrid } from './lib/bangladesh-units.mjs';
 
 // ---- where things are -------------------------------------------------------
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
@@ -708,11 +711,26 @@ function checkMap({ id, expectedPending, dir = path.join(MAPS_DIR, id) }) {
           for (const name of on) note(name, field);
         }
         if (v.enabledBy && !v.disabledNote) bad.push(`${tab} may be disabled but says not why`);
+        // hide (2026-10-05): sources the map declares; records by a declared field of a declared table.
+        for (const s of v.hide?.sources ?? []) if (!descriptor.sources?.[s]) bad.push(`${tab}.hide names no source ${s}`);
+        for (const r of v.hide?.records ?? []) {
+          if (!declarations[r.records]?.fields?.[r.field]) bad.push(`${tab}.hide: ${r.records}.${r.field} is no declared field`);
+          else note(r.records, r.field);
+        }
+        if (v.hide && Object.keys(v.hide).some((k) => !['sources', 'records'].includes(k))) bad.push(`${tab}.hide declares only sources and records`);
       }
       check(bad.length === 0, `tabs: ${tabKeys.length} view tabs, nothing divided; their views frame a selection and say when they are disabled${bad.length ? ` — ${bad.join('; ')}` : ''}`);
       check(Object.values(tables[t.from] ?? {}).every((r) => Array.isArray(t.frame ? r[t.frame.field] : [0, 0, 0, 0])), 'tabs: every view tab has its frame');
     }
     check(!descriptor.controls.some((c) => c.type === 'recordFilter'), 'tabs: not beside a recordFilter — both decide what is shown');
+  }
+  // sheetMaxHeight (2026-10-05): the open card's most, as a share of the map's height, from 0.2 to the shell's 0.62.
+  if (descriptor.sheetMaxHeight !== undefined) check(typeof descriptor.sheetMaxHeight === 'number' && descriptor.sheetMaxHeight >= 0.2 && descriptor.sheetMaxHeight <= 0.62, `sheetMaxHeight is a share of the map's height from 0.2 to 0.62 (${descriptor.sheetMaxHeight})`);
+  // A legend kinds entry may count only while a view tab is open (2026-10-05): a tab the map has.
+  if (descriptor.legend?.kinds?.some((k) => k.tab !== undefined)) {
+    const tabKeys = Object.keys(tables[descriptor.tabs?.from] ?? {});
+    const bad = descriptor.legend.kinds.filter((k) => k.tab !== undefined && !tabKeys.includes(k.tab));
+    check(bad.length === 0, `legend: every kinds entry that names a tab names one of the map's (${descriptor.legend.kinds.filter((k) => k.tab).map((k) => `${k.field} in ${k.tab}`).join(', ')})`);
   }
   // Chips (2026-10-01): one line of group chips; a group is a row of `from`, its members the records whose field
   // names it, at least two; on a tabbed map each group names its tab, and its members live there.
@@ -2208,7 +2226,7 @@ console.log('\n\n============ bangladesh-rivers-map ============');
   const badMarks = mapMarkers.filter((k) => {
     const m = seedMarker[k];
     const r = marks[k];
-    return !r || r.nameBn !== m.nameBn || r.titleBn !== `${m.nameBn} — ${ui.legendBn[m.kind]}` || r.kind !== m.kind || r.river !== m.entity || r.at[0] !== m.lonLat[0] || r.at[1] !== m.lonLat[1] || r[m.row] !== m.valueBn || Object.keys(r).length !== 9 || JSON.stringify(r.frameWhole) !== JSON.stringify(rivers[m.entity].frameWhole);
+    return !r || r.nameBn !== m.nameBn || r.titleBn !== `${m.nameBn} — ${ui.legendBn[m.kind]}` || r.kind !== m.kind || r.river !== m.entity || r.at[0] !== m.lonLat[0] || r.at[1] !== m.lonLat[1] || r[m.row] !== m.valueBn || Object.keys(r).length !== 10 || typeof r.inBd !== 'boolean' || JSON.stringify(r.frameWhole) !== JSON.stringify(rivers[m.entity].frameWhole);
   });
   check(badMarks.length === 0, `every marker's card is the seed's: «name — kind», its one row, at its recorded coordinate exactly${badMarks.length ? ` — not ${badMarks.join(', ')}` : ''}`);
   const labelsBn = Object.fromEntries(Object.entries(seed.labelsBn).filter(([k]) => !k.startsWith('_')));
@@ -2218,16 +2236,43 @@ console.log('\n\n============ bangladesh-rivers-map ============');
   const views = readJson(path.join(dir, 'views.json'));
   const words = ui.mapOnlyBn ?? {};
   check(JSON.stringify(Object.keys(views)) === '["bd","whole"]' && views.bd.titleBn === ui.tabsBn.bangladesh && views.whole.titleBn === ui.tabsBn.whole && views.whole.disabledBn === words.wholeDisabled && JSON.stringify(views.bd.frame) === JSON.stringify(descriptor.view.fitBounds), `two views: «${views.bd?.titleBn}» on Bangladesh and «${views.whole?.titleBn}», disabled with «${words.wholeDisabled}»`);
-  check(JSON.stringify(descriptor.tabs?.views) === JSON.stringify({ bd: { selectionFrame: 'frameBd' }, whole: { selectionFrame: 'frameWhole', enabledBy: 'outsideSet', disabledNote: { field: 'disabledBn' } } }) && JSON.stringify(descriptor.focus?.idleByTab) === JSON.stringify({ whole: { field: 'restWhole', value: true } }), 'a selection framed in Bangladesh or on its whole course, by the open tab; «পুরো পথ» rests on the main rivers with a reach outside, and is disabled for a selection with none');
+  const wantViews = {
+    bd: { selectionFrame: 'frameBd', hide: { sources: ['connectors', 'lines-out', 'lines-in'], records: [{ records: 'rivers', field: 'hasBd', value: false }, { records: 'names', field: 'inBd', value: false }, { records: 'marks', field: 'inBd', value: false }] } },
+    whole: { selectionFrame: 'frameWhole', enabledBy: 'outsideSet', disabledNote: { field: 'disabledBn' }, hide: { sources: ['bd-connectors', 'bd-lines'] } },
+  };
+  check(JSON.stringify(descriptor.tabs?.views) === JSON.stringify(wantViews) && JSON.stringify(descriptor.focus?.idleByTab) === JSON.stringify({ whole: { field: 'restWhole', value: true } }) && descriptor.sheetMaxHeight === 0.4, 'a selection framed in Bangladesh (its inside pieces) or on its whole course, by the open tab; «বাংলাদেশে» draws Bangladesh only, «পুরো পথ» everything as before, rests on the main rivers whose systems reach outside, and is disabled for a selection with none; the card at most 0.4 of the map (R-55)');
+  // «পুরো পথ» rests on every main river whose system — the river and its descendants — has a reach outside: a main
+  // river's set is its system, so the build's outsideSet says it.
+  const restWant = Object.keys(rivers).filter((k) => rivers[k].role === 'main' && !rivers[k].up && rivers[k].outsideSet);
+  check(JSON.stringify(Object.keys(rivers).filter((k) => rivers[k].restWhole)) === JSON.stringify(restWant), `«পুরো পথ» rests on every main river whose system has a reach outside: ${restWant.join(', ')}`);
   const disabledCards = Object.keys(rivers).filter((k) => rivers[k].outsideSet === false);
   const inBox = (b, c) => b[0] <= c[0] && b[1] <= c[1] && b[2] >= c[2] && b[3] >= c[3];
-  check(Object.values(rivers).every((r) => Array.isArray(r.frameBd) && Array.isArray(r.frameWhole) && inBox(r.frameWhole, r.frameBd) && inBox(descriptor.constraints.maxBounds, r.frameWhole)), `every card has its two frames, the whole one holding the Bangladesh one, both inside the map's bounds; «পুরো পথ» disabled for ${disabledCards.length}: ${disabledCards.join(', ')}`);
-  check(descriptor.legend?.items?.some((i) => i.kind === 'outside' && i.label === words.outside && i.line?.dash) && descriptor.legend?.kinds?.some((k) => k.field === 'dashedKind'), `the legend lists a dashed reach, «${words.outside}», only while a drawn river has one`);
+  check(Object.values(rivers).every((r) => Array.isArray(r.frameBd) && Array.isArray(r.frameWhole) && inBox(descriptor.constraints.maxBounds, r.frameBd) && inBox(descriptor.constraints.maxBounds, r.frameWhole)), `every card has its two frames, both inside the map's bounds; «পুরো পথ» disabled for ${disabledCards.length}: ${disabledCards.join(', ')}`);
+  check(descriptor.legend?.items?.some((i) => i.kind === 'outside' && i.label === words.outside && i.line?.dash) && descriptor.legend?.kinds?.some((k) => k.field === 'dashedKind' && k.tab === 'whole'), `the legend lists a dashed reach, «${words.outside}», only while a drawn river has one, in «পুরো পথ» (R-55)`);
   // The upstream rule: one map-only ⓘ line per card in part, «name: the user's sentence», with its evidence.
   const upstream = seed.infoBn.lines.filter((l) => l.card);
   const badUp = upstream.filter((l) => l.only !== 'map' || !(l.card in rivers) || l.textBn !== `${rivers[l.card].nameBn}: ${words.upstreamInPart}` || !l.evidence?.length || !info.lines.some((x) => x.text === l.textBn));
   check(upstream.length > 0 && badUp.length === 0 && !upstream.some((l) => (seed.mapUpstreamReached ?? []).some((r) => r.card === l.card)), `the upstream rule: ${upstream.length} cards drawn in part upstream, each with a map-only ⓘ line «<name>: ${words.upstreamInPart}» and its evidence (${upstream.map((l) => l.card).join(', ')}); ${(seed.mapUpstreamReached ?? []).length} listed as reaching their origin or rising in Bangladesh${badUp.length ? ` — not ${badUp.map((l) => l.card).join(', ')}` : ''}`);
-  const wantLines = [...seed.markers.filter((m) => m.infoBn).map((m) => ({ text: m.infoBn, group: 'notes' })), ...seed.infoBn.lines.map((l) => ({ text: l.textBn, group: l.group }))];
+  // The cut rule (R-55, tools/lib/rivers-cut.mjs): a card listed as reaching its origin whose head line stops within
+  // CUT_TOL_M of the box a snapshot selection took it in is cut there — it carries the upstream ⓘ line. Read off the
+  // built lines, so a future river can't be counted reached by mistake.
+  const pieceFiles = ['lines-in.geojson', 'lines-out.geojson'].flatMap((n) => readJson(path.join(dir, n)).features);
+  const headEnd = (line) => {
+    const ps = pieceFiles.filter((p) => p.properties.line === line).map((p) => p.geometry.coordinates);
+    const ends = ps.map((c) => c.at(-1));
+    return ps.map((c) => c[0]).find((s) => !ends.some((e) => Math.abs(e[0] - s[0]) < 1e-6 && Math.abs(e[1] - s[1]) < 1e-6));
+  };
+  const cutRows = (seed.mapUpstreamReached ?? []).map((r) => {
+    const head = frame.lines.find((l) => entityOf(l) === r.card);
+    const at = cutAt(headEnd(head), head === 'main' ? G.main.ways : (G.lines[head]?.ways ?? []));
+    return { card: r.card, at, cut: Boolean(at && at.m <= CUT_TOL_M) };
+  });
+  const cutCards = cutRows.filter((r) => r.cut).map((r) => r.card);
+  const cutText = (k) => `${rivers[k].nameBn}: ${words.upstreamInPart}`;
+  check(cutCards.every((k) => info.lines.some((l) => l.text === cutText(k))) && cutRows.filter((r) => !r.cut).every((r) => !info.lines.some((l) => l.text === cutText(r.card))), `the cut rule (within ${CUT_TOL_M} m of a selection box's edge): ${cutRows.map((r) => `${r.card} ${r.at ? `${(r.at.m / 1000).toFixed(3)} km (${r.at.river})` : 'no box'}`).join('; ')} — cut, with the upstream ⓘ line: ${cutCards.join(', ') || 'none'}`);
+  const ownLines = seed.infoBn.lines.map((l) => ({ text: l.textBn, group: l.group }));
+  const afterInPart = seed.infoBn.lines.findLastIndex((l) => l.card) + 1;
+  const wantLines = [...seed.markers.filter((m) => m.infoBn).map((m) => ({ text: m.infoBn, group: 'notes' })), ...ownLines.slice(0, afterInPart), ...cutCards.map((k) => ({ text: cutText(k), group: 'notes' })), ...ownLines.slice(afterInPart)];
   check(JSON.stringify(info.lines) === JSON.stringify(wantLines) && JSON.stringify(descriptor.info?.headings) === JSON.stringify(ui.creditGroupsBn), `ⓘ: «${ui.creditGroupsBn.sources}», «${ui.creditGroupsBn.notes}» (${wantLines.filter((l) => l.group === 'notes').length}) and «${ui.creditGroupsBn.conflicts}» (${wantLines.filter((l) => l.group === 'conflicts').length}), the seed's lines in its order`);
   const cited = new Set(['naturalEarth', 'codab', 'osm']);
   const collect = (v) => (Array.isArray(v) ? v.forEach(collect) : v && typeof v === 'object' ? Object.entries(v).forEach(([k, x]) => (k === 'source' && typeof x === 'string' ? cited.add(x) : collect(x))) : null);
@@ -2250,7 +2295,7 @@ console.log('\n\n============ bangladesh-rivers-map ============');
     return r.up ? JSON.stringify(r.ancestors) !== JSON.stringify(chain) || JSON.stringify(r.ancestorNames) !== JSON.stringify(chainNames) : 'ancestors' in r || 'ancestorNames' in r;
   });
   const ctxSources = Object.entries(descriptor.sources).filter(([, sp]) => (sp.state ?? []).some((f) => f.name === 'context')).map(([k]) => k);
-  check(badAnc.length === 0 && JSON.stringify(ctxSources) === JSON.stringify(['connectors', 'lines-out', 'lines-in', 'names']), `every branch's ancestors are its chain of parent cards up to its main river, with their names — drawn for context in ${ctxSources.join(', ')}${badAnc.length ? ` — not ${badAnc.map(([k]) => k).join(', ')}` : ''}`);
+  check(badAnc.length === 0 && JSON.stringify(ctxSources) === JSON.stringify(['connectors', 'lines-out', 'lines-in', 'bd-connectors', 'bd-lines', 'names']), `every branch's ancestors are its chain of parent cards up to its main river, with their names — drawn for context in ${ctxSources.join(', ')}${badAnc.length ? ` — not ${badAnc.map(([k]) => k).join(', ')}` : ''}`);
   // The map's own items: the places (a name on the water, from a cited book) and the ⓘ variants; nothing only the diagram draws.
   const wantPlaces = seed.mapPlacesBn.filter((pl) => pl.only === 'map' && pl.sources?.nameBn?.length && pl.sources?.outline?.length);
   check(JSON.stringify(Object.keys(places)) === JSON.stringify(wantPlaces.map((pl) => pl.id)) && wantPlaces.every((pl) => places[pl.id].nameBn === pl.nameBn && places[pl.id].at.length === 2), `the map's own places are the seed's map-only ones, each named as its cited source gives it: ${wantPlaces.map((pl) => `«${pl.nameBn}» (${pl.sources.nameBn.map((c) => `${c.source} ${c.where}`).join('; ')})`).join(', ')}`);
@@ -2272,12 +2317,27 @@ console.log('\n\n============ bangladesh-rivers-map ============');
   gatherStr(seed);
   all.forEach((s) => seedStrings.add(s));
   for (const m of seed.markers) seedStrings.add(`${m.nameBn} — ${ui.legendBn[m.kind]}`);
+  // The cut cards' upstream lines: the seed's approved sentence after the card's name, as every upstream line has it.
+  for (const k of cutCards) seedStrings.add(cutText(k));
   const shown = [];
   const gatherShown = (v) => (typeof v === 'string' ? shown.push(v) : v && typeof v === 'object' ? Object.values(v).forEach(gatherShown) : null);
   gatherShown({ ...descriptor, attribution: null });
   gatherShown([rivers, marks, names, info, places, views]);
   const foreign = shown.filter((v) => /[ঀ-৿]/.test(v) && !seedStrings.has(v));
   check(foreign.length === 0, `every Bengali string shown is the seed's${foreign.length ? `, not: ${foreign.slice(0, 5).join(' | ')}` : ''}`);
+  // «বাংলাদেশে» draws Bangladesh only (R-55): every vertex its lines and connectors draw, every name, marker and place it
+  // shows, inside COD-AB's outline or within BD_BAND_M of it; every name and marker outside that hidden there.
+  {
+    const { outlineRings, outlineIdx, inside } = riversCore({ id, product: 'map' });
+    const grid = new SegmentGrid(outlineRings, 0.02);
+    const inBd = (p) => inside(p, outlineIdx) || grid.nearest(p, BD_BAND_M / 1000) !== null;
+    const bdFeatures = ['bd-lines.geojson', 'bd-connectors.geojson'].flatMap((n) => readJson(path.join(dir, n)).features);
+    const outside = bdFeatures.filter((ft) => !ft.geometry.coordinates.every(inBd)).map((ft) => ft.properties.line);
+    const badPts = [...Object.entries(names).filter(([, n]) => n.inBd !== inBd(n.at)), ...Object.entries(marks).filter(([, m]) => m.inBd !== inBd(m.at)), ...Object.entries(places).filter(([, p]) => !inBd(p.at))].map(([k]) => k);
+    const noPiece = Object.keys(rivers).filter((k) => !rivers[k].hasBd);
+    const piecesOf = new Set(bdFeatures.filter((ft) => ft.properties.parent === undefined).map((ft) => ft.properties.key));
+    check(outside.length === 0 && badPts.length === 0 && Object.keys(rivers).every((k) => rivers[k].hasBd === piecesOf.has(k)), `«বাংলাদেশে» draws Bangladesh only: ${bdFeatures.length} lines and connectors, every vertex inside COD-AB's outline or within ${BD_BAND_M} m of it; names and markers outside it hidden there (${Object.values(names).filter((n) => !n.inBd).length} names, ${Object.values(marks).filter((m) => !m.inBd).length} markers); no inside piece: ${noPiece.join(', ') || 'none'}${outside.length || badPts.length ? ` — not: ${[...outside, ...badPts].join(', ')}` : ''}`);
+  }
 }
 
 /*

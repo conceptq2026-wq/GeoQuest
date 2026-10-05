@@ -15,9 +15,9 @@
 |--------------------------------------------------------------------------
 */
 
-import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=a74f425c2d';
-import { resolver } from '../shared/resolver.js?v=a74f425c2d';
-import { pickerRow } from '../shared/picker.js?v=a74f425c2d';
+import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=bc23c7640f';
+import { resolver } from '../shared/resolver.js?v=bc23c7640f';
+import { pickerRow } from '../shared/picker.js?v=bc23c7640f';
 
 /*
 |--------------------------------------------------------------------------
@@ -642,13 +642,13 @@ function pick(row, keys) {
 |--------------------------------------------------------------------------
 */
 const SHELL_MODULES = {
-  tabs: './tabs.js?v=a74f425c2d',
-  chips: './chips.js?v=a74f425c2d',
-  timeline: './timeline.js?v=a74f425c2d',
-  globe: './globe.js?v=a74f425c2d',
-  focus: './focus.js?v=a74f425c2d',
-  legend: './legend.js?v=a74f425c2d',
-  info: './info.js?v=a74f425c2d',
+  tabs: './tabs.js?v=bc23c7640f',
+  chips: './chips.js?v=bc23c7640f',
+  timeline: './timeline.js?v=bc23c7640f',
+  globe: './globe.js?v=bc23c7640f',
+  focus: './focus.js?v=bc23c7640f',
+  legend: './legend.js?v=bc23c7640f',
+  info: './info.js?v=bc23c7640f',
 };
 const hiders = []; // (table, key) => true takes a record off the map, the picker and ‹ ›
 // (table, key) => true takes a record off the map only: the picker and ‹ › still list it (the focus module).
@@ -1815,7 +1815,29 @@ function fillPhoto(sheet, row) {
   );
 }
 
+/*
+ * A map may hold its card lower than the shell's 62% of the screen
+ * (`sheetMaxHeight`, a share of the map's own height, 2026-10-05: the rivers
+ * map's 0.4): the card's body scrolls inside the rest, and the camera, padded
+ * for the card as it stands, frames the selection in the room above it. Every
+ * other map's card is as before.
+ */
+const SHEET_MAX = descriptor.sheetMaxHeight;
+if (SHEET_MAX !== undefined && !(typeof SHEET_MAX === 'number' && SHEET_MAX >= 0.2 && SHEET_MAX <= 0.62)) throw new Error(`sheetMaxHeight is a share of the map's height from 0.2 to 0.62, not ${SHEET_MAX}`);
+function capSheet() {
+  if (!SHEET_MAX || dom.sheet.hidden) return;
+  dom.sheetBody.style.maxHeight = '';
+  const chrome = dom.sheet.offsetHeight - dom.sheetBody.offsetHeight;
+  dom.sheetBody.style.maxHeight = `${Math.max(64, Math.floor(SHEET_MAX * dom.mapShell.clientHeight) - chrome)}px`;
+}
+if (SHEET_MAX) own.undo('the card held low', () => (dom.sheetBody.style.maxHeight = ''));
+
 function fillSheet(table, key) {
+  fillSheetRows(table, key);
+  capSheet();
+}
+
+function fillSheetRows(table, key) {
   const sheet = sheetFor(table);
   const row = records[table][key];
   dom.sheet.hidden = false;
@@ -2315,6 +2337,7 @@ own.mapHandler(map, 'error', (event) => {
 
 own.domHandler(window, 'resize', () => {
   map.resize();
+  capSheet();
 });
 
 if (hasSheet) setSheetOpen(false);

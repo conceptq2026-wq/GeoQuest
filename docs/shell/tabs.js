@@ -48,6 +48,16 @@
 | With nothing selected every tab is enabled. The tabs module tells other
 | modules the open tab (`activeTab()`): focus rests on a set per tab.
 |
+| A view tab may also hide part of the map while it is open (2026-10-05):
+|
+|   views: { <tab>: { hide?: { sources?: [<source>], records?: [{ records, field, value }] } } }
+|
+| `sources` takes those sources off the map — every layer drawing them, their
+| tap zones too — and `records` takes off the map the records whose `field`
+| holds `value`, from every source derived from their table (the shell's
+| map-only hiding: the picker and ‹ › still list them). Another tab shows them
+| again. The rivers map's «বাংলাদেশে» draws only what lies in Bangladesh.
+|
 | Cards only (2026-10-01): `cardsOnly` names tabs whose records have no place
 | on the map. While one is open the map, its legend, chips and corner
 | controls give way — hidden, not torn down — to a list of the tab's cards in
@@ -85,13 +95,19 @@ export async function mount(api) {
   active = keys[0];
   for (const k of Object.keys(spec.views ?? {})) if (!keys.includes(k)) throw new Error(`tabs: views names "${k}", which "${spec.from}" has no tab for`);
   if (spec.views && table) throw new Error('tabs: views are for view tabs, which divide no records table');
+  for (const [k, view] of Object.entries(spec.views ?? {})) {
+    for (const s of view.hide?.sources ?? []) if (!api.descriptor.sources?.[s]) throw new Error(`tabs: views.${k}.hide names source "${s}", which the map does not declare`);
+    for (const r of view.hide?.records ?? []) if (!api.records[r.records] || !r.field) throw new Error(`tabs: views.${k}.hide.records needs a records table and a field`);
+  }
+  // What the open view tab takes off the map: its records here, its sources once the map is built.
+  if (Object.values(spec.views ?? {}).some((v) => v.hide?.records?.length)) api.hideOnMap((t, key) => (spec.views[active]?.hide?.records ?? []).some((r) => r.records === t && api.records[t][key]?.[r.field] === r.value));
   for (const k of spec.cardsOnly ?? []) if (!keys.includes(k)) throw new Error(`tabs: cardsOnly names "${k}", which "${spec.from}" has no tab for`);
   if (spec.cardsOnly && !table) throw new Error('tabs: cardsOnly is for tabs that divide a records table');
   // Other modules read the open tab; the descriptor's picker and taps frame a selection by it.
   api.activeTab = () => active;
   api.actions.fitTab = (action, context) => fitSelection(action, context);
 
-  await stylesheet(api, './tabs.css?v=a74f425c2d');
+  await stylesheet(api, './tabs.css?v=bc23c7640f');
   bar = api.own.node(document.createElement('div'), 'tabs');
   bar.className = table ? 'map-tabs' : 'map-tabs view-tabs';
   bar.setAttribute('role', 'tablist');
@@ -144,6 +160,7 @@ export function install(api) {
     buttons.get(next).focus();
   });
   words();
+  hideSources();
   if (list) {
     // A card in the list chooses its record, as the picker would.
     api.own.domHandler(list, 'click', (event) => {
@@ -224,6 +241,16 @@ function open(tab) {
   shell.refilter();
   words();
   fillList();
+  hideSources();
+}
+
+/** The sources some view tab hides: off the map while that tab is open — their tap zones too — on in any other. */
+function hideSources() {
+  if (!shell.map || !spec.views) return;
+  const named = new Set(Object.values(spec.views).flatMap((v) => v.hide?.sources ?? []));
+  if (!named.size) return;
+  const off = new Set(spec.views[active]?.hide?.sources ?? []);
+  for (const layer of shell.map.getStyle().layers) if (named.has(layer.source)) shell.map.setLayoutProperty(layer.id, 'visibility', off.has(layer.source) ? 'none' : 'visible');
 }
 
 /** On a cards-only tab: every card of the tab that is shown, in the table's order, the selected one marked. */

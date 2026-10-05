@@ -4,7 +4,7 @@
 | draws now
 |
 |   legend: { items: [{ kind, label, line?: { color, width?, dash? }, image? }],
-|             kinds: [{ records, field }] }
+|             kinds: [{ records, field, tab? }] }
 |
 | One line per item: a sample — a stroke in the line's colour, dashed where it
 | says so, or one of the map's own images — and its label. An item is listed
@@ -12,6 +12,9 @@
 | `kinds` fields (a river's role, a marker's kind), so the legend shrinks to
 | what the current view shows — one river system's roles and marks. Drawn in
 | the map's bottom-left corner, 14 px text, above the map and under the card.
+| A `kinds` entry may name a view `tab` (2026-10-05): it counts only while that
+| tab is open — the rivers map's dashed reach outside Bangladesh, which its
+| «বাংলাদেশে» does not draw.
 |
 | Loaded only for a map whose descriptor declares `legend`.
 |--------------------------------------------------------------------------
@@ -28,7 +31,7 @@ export async function mount(api) {
   if (!Array.isArray(spec.items) || !spec.items.length) throw new Error('legend: items must be a non-empty list');
   if (!Array.isArray(spec.kinds) || !spec.kinds.length) throw new Error('legend: kinds must name at least one records field');
   for (const k of spec.kinds) if (!api.records[k.records]) throw new Error(`legend: "${k.records}" is not a records table`);
-  await stylesheet(api, './legend.css?v=a74f425c2d');
+  await stylesheet(api, './legend.css?v=bc23c7640f');
   box = api.own.node(document.createElement('ul'), 'legend');
   box.className = 'map-legend';
   box.lang = api.language ?? 'bn';
@@ -71,7 +74,8 @@ export function install(api) {
 /** Only the kinds some drawn record carries. */
 function render() {
   const present = new Set();
-  for (const { records, field } of spec.kinds) {
+  for (const { records, field, tab } of spec.kinds) {
+    if (tab !== undefined && shell.activeTab?.() !== tab) continue;
     for (const [key, row] of Object.entries(shell.records[records])) if (shell.drawn(records, key)) present.add(row[field]);
   }
   let any = false;

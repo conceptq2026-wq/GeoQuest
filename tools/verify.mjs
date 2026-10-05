@@ -646,10 +646,12 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
       // ⓘ's lines, but the items the seed keeps to one product.
       const onlyTexts = new Set(S.infoBn.lines.filter((l) => l.only).map((l) => l.textBn));
       const dLines = dData.credits.filter((c) => c.group).map((c) => `${c.group}|${c.title}`).filter((t) => !onlyTexts.has(t.split('|').slice(1).join('|')));
-      const mLines = mInfo.lines.map((l) => `${l.group}|${l.text}`).filter((t) => !onlyTexts.has(t.split('|').slice(1).join('|')));
+      // The map's own upstream lines for cut cards (R-55): the seed's map-only sentence after a card's name, built, not listed.
+      const cutLine = (s) => s.endsWith(`: ${S.ui.mapOnlyBn?.upstreamInPart}`) && !S.infoBn.lines.some((l) => l.textBn === s);
+      const mLines = mInfo.lines.map((l) => `${l.group}|${l.text}`).filter((t) => !onlyTexts.has(t.split('|').slice(1).join('|')) && !cutLine(t.split('|').slice(1).join('|')));
       if (JSON.stringify(dLines) !== JSON.stringify(mLines)) diffs.push('ⓘ lines');
       const flaggedD = dData.credits.filter((c) => c.group && onlyTexts.has(c.title)).length;
-      const flaggedM = mInfo.lines.filter((l) => onlyTexts.has(l.text)).length;
+      const flaggedM = mInfo.lines.filter((l) => onlyTexts.has(l.text) || cutLine(l.text)).length;
       // Line ids and roles: every line either frame draws, and the map's, each with its card's role.
       const dLineRoles = [...new Map(dFrames.flatMap((f) => f.lines.map((l) => [l.id, l.role]))).entries()].sort().map(([k, r]) => `${k}|${r}`);
       const mLineRoles = [...new Map(features.map((f) => [f.properties.line, mRivers[f.properties.key].role])).entries()].sort().map(([k, r]) => `${k}|${r}`);

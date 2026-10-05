@@ -47,7 +47,7 @@
 | Every word shown is the descriptor's or the data's.
 */
 
-import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=a74f425c2d';
+import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=bc23c7640f';
 
 // Picture units of margin round the drawing, and of space under it before the legend.
 const PAD = 6;
@@ -87,7 +87,7 @@ const SWATCH = {
 export async function mount(panel, { descriptor, data, art }) {
   const words = descriptor.words ?? {};
   const M = await art;
-  await Promise.all([stylesheet('../shared/picker.css?v=a74f425c2d'), stylesheet('./zones.css?v=a74f425c2d')]);
+  await Promise.all([stylesheet('../shared/picker.css?v=bc23c7640f'), stylesheet('./zones.css?v=bc23c7640f')]);
 
   const zones = data.zones;
   const byId = new Map(zones.map((z) => [z.id, z]));

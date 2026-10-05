@@ -166,6 +166,26 @@ drawn now (`drawn`), and read a file of the map's own folder (`file`).
   on the tab's row, says why in ⓘ's row; a selection that disables the open
   tab opens the first left. The module tells others the open tab
   (`activeTab()`); focus's `idleByTab` rests a tab on a set of its own.
+- **A view tab may hide part of the map** (R-55, 2026-10-05): `views: { <tab>:
+  { hide: { sources?: [<source>], records?: [{ records, field, value }] } } }`.
+  - While that tab is open, `sources` are off the map: every layer drawing
+    them, their tap zones too.
+  - `records` are off the map wherever their `field` holds `value`, from
+    every source derived from their table (`hideOnMap`: the picker and ‹ ›
+    still list them).
+  - Another tab shows them again. The validator holds the names to declared
+    sources and fields.
+  - The rivers map's «বাংলাদেশে» draws Bangladesh only; its «পুরো পথ» hides
+    the Bangladesh-only lines.
+- **A legend `kinds` entry may name a `tab`** (R-55): it counts only while
+  that view tab is open, so the rivers map lists its dashed reach outside
+  only in «পুরো পথ».
+- **`sheetMaxHeight`** (R-55, top level): the open card's most, as a share of
+  the map's height, from 0.2 to the shell's own 0.62.
+  - The card's body scrolls inside the rest; the camera, padded for the card
+    as it stands, frames the selection in the room above.
+  - Set when a card opens and on every resize. Without it a card is as before.
+  - The rivers map's 0.4.
 - **`minTextSize: 14`** (M3): no text under 14 px on that map — every label's
   size in its style floored (the basemap's, the baseline's, its own), the
   shell's chrome under `[data-min-text]` in style.css. Other maps unchanged.

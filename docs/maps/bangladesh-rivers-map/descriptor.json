@@ -9,10 +9,10 @@
  "basemap": "bangladesh-wide",
  "view": {
   "fitBounds": [
-   88,
-   20.55,
-   92.7,
-   26.65
+   88.02,
+   20.73,
+   92.63,
+   25.74
   ]
  },
  "constraints": {
@@ -25,6 +25,7 @@
   ]
  },
  "minTextSize": 14,
+ "sheetMaxHeight": 0.4,
  "lookups": {
   "systems": {
    "jamuna": {
@@ -90,6 +91,14 @@
      "display": false
     },
     "joined": {
+     "type": "boolean",
+     "display": false
+    },
+    "hasBd": {
+     "type": "boolean",
+     "display": false
+    },
+    "bdJoined": {
      "type": "boolean",
      "display": false
     },
@@ -195,6 +204,11 @@
      "type": "point",
      "required": true
     },
+    "inBd": {
+     "type": "boolean",
+     "required": true,
+     "display": false
+    },
     "frameBd": {
      "type": "bbox",
      "display": false
@@ -241,6 +255,11 @@
     "at": {
      "type": "point",
      "required": true
+    },
+    "inBd": {
+     "type": "boolean",
+     "required": true,
+     "display": false
     }
    }
   },
@@ -325,6 +344,50 @@
    "joinField": "key",
    "expectGeometry": {
     "solid": true
+   },
+   "state": [
+    "selected",
+    {
+     "name": "context",
+     "fromSelection": {
+      "records": "rivers",
+      "listField": "ancestors"
+     }
+    }
+   ],
+   "properties": [
+    "role"
+   ],
+   "tapWidth": 44,
+   "attribution": "<a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener noreferrer\">© OpenStreetMap contributors</a>"
+  },
+  "bd-connectors": {
+   "records": "rivers",
+   "geometry": "./bd-connectors.geojson",
+   "joinField": "key",
+   "expectGeometry": {
+    "bdJoined": true
+   },
+   "state": [
+    "selected",
+    {
+     "name": "context",
+     "fromSelection": {
+      "records": "rivers",
+      "listField": "ancestors"
+     }
+    }
+   ],
+   "properties": [
+    "role"
+   ]
+  },
+  "bd-lines": {
+   "records": "rivers",
+   "geometry": "./bd-lines.geojson",
+   "joinField": "key",
+   "expectGeometry": {
+    "hasBd": true
    },
    "state": [
     "selected",
@@ -789,6 +852,276 @@
    }
   },
   {
+   "id": "bd-connectors-halo",
+   "type": "line",
+   "source": "bd-connectors",
+   "slot": "belowLabels",
+   "layout": {
+    "line-join": "round",
+    "line-cap": "round"
+   },
+   "paint": {
+    "line-color": [
+     "case",
+     [
+      "==",
+      [
+       "get",
+       "selected"
+      ],
+      true
+     ],
+     "#ffc933",
+     "#ffffff"
+    ],
+    "line-opacity": [
+     "case",
+     [
+      "==",
+      [
+       "get",
+       "selected"
+      ],
+      true
+     ],
+     1,
+     [
+      "case",
+      [
+       "==",
+       [
+        "get",
+        "context"
+       ],
+       true
+      ],
+      0.35,
+      0.85
+     ]
+    ],
+    "line-width": [
+     "case",
+     [
+      "==",
+      [
+       "get",
+       "selected"
+      ],
+      true
+     ],
+     7.8,
+     [
+      "match",
+      [
+       "get",
+       "role"
+      ],
+      "main",
+      4.9,
+      "tributary",
+      3.9,
+      "distributary",
+      3.9,
+      "disputed",
+      3.9,
+      3.9
+     ]
+    ]
+   }
+  },
+  {
+   "id": "bd-connectors-line",
+   "type": "line",
+   "source": "bd-connectors",
+   "slot": "belowLabels",
+   "layout": {
+    "line-join": "round",
+    "line-cap": "round"
+   },
+   "paint": {
+    "line-opacity": [
+     "case",
+     [
+      "==",
+      [
+       "get",
+       "context"
+      ],
+      true
+     ],
+     0.45,
+     1
+    ],
+    "line-color": [
+     "match",
+     [
+      "get",
+      "role"
+     ],
+     "main",
+     "#0b3d91",
+     "tributary",
+     "#0f9d8a",
+     "distributary",
+     "#e07b00",
+     "disputed",
+     "#7e57c2",
+     "#a9b4c3"
+    ],
+    "line-width": [
+     "match",
+     [
+      "get",
+      "role"
+     ],
+     "main",
+     2.9,
+     "tributary",
+     2,
+     "distributary",
+     2,
+     "disputed",
+     2,
+     2
+    ]
+   }
+  },
+  {
+   "id": "bd-lines-halo",
+   "type": "line",
+   "source": "bd-lines",
+   "slot": "belowLabels",
+   "layout": {
+    "line-join": "round",
+    "line-cap": "round"
+   },
+   "paint": {
+    "line-color": [
+     "case",
+     [
+      "==",
+      [
+       "get",
+       "selected"
+      ],
+      true
+     ],
+     "#ffc933",
+     "#ffffff"
+    ],
+    "line-opacity": [
+     "case",
+     [
+      "==",
+      [
+       "get",
+       "selected"
+      ],
+      true
+     ],
+     1,
+     [
+      "case",
+      [
+       "==",
+       [
+        "get",
+        "context"
+       ],
+       true
+      ],
+      0.35,
+      0.85
+     ]
+    ],
+    "line-width": [
+     "case",
+     [
+      "==",
+      [
+       "get",
+       "selected"
+      ],
+      true
+     ],
+     7.8,
+     [
+      "match",
+      [
+       "get",
+       "role"
+      ],
+      "main",
+      4.9,
+      "tributary",
+      3.9,
+      "distributary",
+      3.9,
+      "disputed",
+      3.9,
+      3.9
+     ]
+    ]
+   }
+  },
+  {
+   "id": "bd-lines-line",
+   "type": "line",
+   "source": "bd-lines",
+   "slot": "belowLabels",
+   "layout": {
+    "line-join": "round",
+    "line-cap": "round"
+   },
+   "paint": {
+    "line-opacity": [
+     "case",
+     [
+      "==",
+      [
+       "get",
+       "context"
+      ],
+      true
+     ],
+     0.45,
+     1
+    ],
+    "line-color": [
+     "match",
+     [
+      "get",
+      "role"
+     ],
+     "main",
+     "#0b3d91",
+     "tributary",
+     "#0f9d8a",
+     "distributary",
+     "#e07b00",
+     "disputed",
+     "#7e57c2",
+     "#a9b4c3"
+    ],
+    "line-width": [
+     "match",
+     [
+      "get",
+      "role"
+     ],
+     "main",
+     2.9,
+     "tributary",
+     2,
+     "distributary",
+     2,
+     "disputed",
+     2,
+     2
+    ]
+   }
+  },
+  {
    "id": "place-names",
    "type": "symbol",
    "source": "places",
@@ -1048,6 +1381,22 @@
   },
   {
    "on": "click",
+   "target": "source:bd-lines",
+   "do": [
+    {
+     "action": "select"
+    },
+    {
+     "action": "fitTab",
+     "clear": [
+      "sheet"
+     ],
+     "duration": 1200
+    }
+   ]
+  },
+  {
+   "on": "click",
    "target": "source:marks",
    "do": [
     {
@@ -1142,13 +1491,43 @@
   },
   "views": {
    "bd": {
-    "selectionFrame": "frameBd"
+    "selectionFrame": "frameBd",
+    "hide": {
+     "sources": [
+      "connectors",
+      "lines-out",
+      "lines-in"
+     ],
+     "records": [
+      {
+       "records": "rivers",
+       "field": "hasBd",
+       "value": false
+      },
+      {
+       "records": "names",
+       "field": "inBd",
+       "value": false
+      },
+      {
+       "records": "marks",
+       "field": "inBd",
+       "value": false
+      }
+     ]
+    }
    },
    "whole": {
     "selectionFrame": "frameWhole",
     "enabledBy": "outsideSet",
     "disabledNote": {
      "field": "disabledBn"
+    },
+    "hide": {
+     "sources": [
+      "bd-connectors",
+      "bd-lines"
+     ]
     }
    }
   }
@@ -1248,7 +1627,8 @@
    },
    {
     "records": "rivers",
-    "field": "dashedKind"
+    "field": "dashedKind",
+    "tab": "whole"
    },
    {
     "records": "marks",
