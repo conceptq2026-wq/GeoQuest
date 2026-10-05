@@ -54,6 +54,68 @@
   outline-offset: 2px;
 }
 
+/*
+| The arrows and witness lines (step 3b): an SVG over the picture, under the numbers and words, sized
+| in CSS px — so no width follows the stage, the orbit or a pinch. It takes no tap.
+*/
+.zones3d-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+/* A witness line: 1.5 px ink at 75%, dashed 5/4, on a 3 px white halo at 70%; the baseline's fully opaque. */
+.zones3d-witness-halo {
+  stroke: #ffffff;
+  stroke-opacity: 0.7;
+  stroke-width: 3;
+  stroke-dasharray: 5 4;
+}
+
+.zones3d-witness {
+  stroke: #13252d;
+  stroke-opacity: 0.75;
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+
+.zones3d-witness.base {
+  stroke-opacity: 1;
+}
+
+/* An arrow, in its zone's colour (set inline as color): a 2.5 px line, round caps, an open head; ৫ dashed past ২০০. */
+.zones3d-arrow {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.zones3d-arrow .shaft,
+.zones3d-arrow .head {
+  stroke-width: 2.5;
+}
+
+.zones3d-arrow .shaft.dashed {
+  stroke-dasharray: 6 4;
+  stroke-linecap: butt;
+}
+
+/* The baseline end: a 10 px tick along the baseline's witness line, where the dot was. */
+.zones3d-arrow .tick {
+  stroke: #13252d;
+  stroke-width: 2;
+}
+
+/* The chosen zone's arrow, thicker. */
+.zones3d-arrow.on .shaft {
+  stroke-width: 4;
+}
+
 /* Each zone's number: a 44 px button round a disc ringed in its zone's colour (set inline as color). */
 .zones3d-disc {
   position: absolute;
@@ -100,7 +162,7 @@
   outline-offset: 2px;
 }
 
-/* The words on the picture: the bars' labels above them, the shelf's and the Area's names, the baseline's. */
+/* The words on the picture: the arrows' labels above them, the shelf's and the Area's names, the baseline's. */
 .zones3d-label {
   position: absolute;
   z-index: 2;
@@ -112,15 +174,20 @@
   pointer-events: none;
 }
 
+/* An arrow's label, on a light plate: a witness line passing behind it never runs through the words. */
 .zones3d-label.up {
+  padding: 0 3px;
+  border-radius: 3px;
+  background: rgba(232, 238, 240, 0.9);
   font-size: 14px;
   transform: translate(0, -100%);
 }
 
+/* «not to scale», top left beside ⟲, over the sky: the arrows take the bottom of the stage (step 3b). */
 .zones3d-scale {
   position: absolute;
-  right: 10px;
-  bottom: 10px;
+  top: 22px;
+  left: 62px;
   z-index: 3;
   padding: 0 8px;
   border-radius: 6px;

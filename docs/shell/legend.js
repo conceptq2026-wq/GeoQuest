@@ -28,7 +28,7 @@ export async function mount(api) {
   if (!Array.isArray(spec.items) || !spec.items.length) throw new Error('legend: items must be a non-empty list');
   if (!Array.isArray(spec.kinds) || !spec.kinds.length) throw new Error('legend: kinds must name at least one records field');
   for (const k of spec.kinds) if (!api.records[k.records]) throw new Error(`legend: "${k.records}" is not a records table`);
-  await stylesheet(api, './legend.css?v=7c7aafc0af');
+  await stylesheet(api, './legend.css?v=7e404693d8');
   box = api.own.node(document.createElement('ul'), 'legend');
   box.className = 'map-legend';
   box.lang = api.language ?? 'bn';

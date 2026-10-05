@@ -21,8 +21,10 @@
 | contiguous zone hatched over the EEZ's inner part, the shelf and the Area
 | on the seabed and as thick bands on the cut faces, nodules on the Area's
 | floor. The baseline is a white dashed line on a dark edge, with a light
-| curtain down to the seabed. Under the near face, four bars in the zones'
-| colours, every one from the baseline, each with its label above it.
+| curtain down to the seabed. Under the near face, four arrows in the zones'
+| colours, every one from the baseline, each with its label above it, and
+| dashed witness lines down from the marks: drawn in screen space over the
+| picture (step 3b), so their widths stay put whatever the stage or the view.
 |
 | One side view: a drag turns the block, a pinch or the wheel zooms it
 | (× 0.35 to × 1.5 of the distance), and ⟲ («পাশ থেকে») goes back to the side
@@ -34,13 +36,13 @@
 | zone; a tap on the zone's own surface or band chooses it too, and a tap on
 | nothing, × or Escape closes the card, focus going back to the zone's
 | number. Choosing outlines the zone's own area and, for ২–৫, washes the span
-| from the baseline and thickens its bar. The stage keeps the upper part of
+| from the baseline and thickens its arrow. The stage keeps the upper part of
 | the screen; under it the tip and the legend, or the card in their place.
 |
 | Every word shown is the descriptor's or the data's.
 */
 
-import { dockedCard, el, pickerBar, stylesheet } from './parts.js?v=7c7aafc0af';
+import { dockedCard, el, pickerBar, stylesheet } from './parts.js?v=7e404693d8';
 
 // A pointer that moves less than this (CSS px) between down and up is a tap.
 const TAP_SLOP = 8;
@@ -60,7 +62,7 @@ async function loadThree() {
     const gl = probe.getContext('webgl') ?? probe.getContext('experimental-webgl');
     if (!gl) return null;
     gl.getExtension('WEBGL_lose_context')?.loseContext();
-    await import('./vendor/three-0.128.0/three.min.js?v=7c7aafc0af');
+    await import('./vendor/three-0.128.0/three.min.js?v=7e404693d8');
     return globalThis.THREE ?? null;
   } catch {
     return null;
@@ -76,12 +78,12 @@ export async function mount(panel, context) {
     renderer = null;
   }
   // No WebGL: the 2D zones view, from the same file.
-  if (!renderer) return (await import('./zones.js?v=7c7aafc0af')).mount(panel, context);
+  if (!renderer) return (await import('./zones.js?v=7e404693d8')).mount(panel, context);
 
   const { descriptor, data, art } = context;
   const words = descriptor.words ?? {};
   const M = await art;
-  await Promise.all([stylesheet('../shared/picker.css?v=7c7aafc0af'), stylesheet('./zones3d.css?v=7c7aafc0af')]);
+  await Promise.all([stylesheet('../shared/picker.css?v=7e404693d8'), stylesheet('./zones3d.css?v=7e404693d8')]);
 
   const zones = data.zones;
   const byId = new Map(zones.map((z) => [z.id, z]));
@@ -572,23 +574,28 @@ export async function mount(panel, context) {
 
   // ---- lines: outlines, spans, the baseline -------------------------------------------------
 
-  /** A ribbon of flat boxes along points, drawn over everything; dashed if asked. */
-  function ribbon(points, color, width, dashed, shown = false) {
+  /**
+   * A ribbon of flat boxes along points, drawn over everything; dashed if asked — long dashes, about
+   * twice their gaps — and drawn after `order`'s lower numbers (an under-stroke goes first).
+   */
+  const DASH = 0.16;
+  const GAP = 0.08;
+  function ribbon(points, color, width, dashed, shown = false, order = 9) {
     const grp = new T.Group();
     const mat = new T.MeshBasicMaterial({ color, transparent: true, opacity: 0.95, depthWrite: false, depthTest: false });
     for (let i = 0; i < points.length - 1; i++) {
       const a = points[i];
       const b = points[i + 1];
       const len = a.distanceTo(b);
-      const step = dashed ? 0.14 : len;
+      const step = dashed ? DASH + GAP : len;
       for (let t = 0; t < len - 1e-6; t += step) {
         const p1 = a.clone().lerp(b, t / len);
-        const p2 = a.clone().lerp(b, Math.min(len, t + (dashed ? 0.08 : len)) / len);
+        const p2 = a.clone().lerp(b, Math.min(len, t + (dashed ? DASH : len)) / len);
         const m = new T.Mesh(new T.BoxGeometry(p1.distanceTo(p2), 0.004, width), mat);
         m.position.copy(p1).lerp(p2, 0.5);
         m.lookAt(p2);
         m.rotateY(Math.PI / 2);
-        m.renderOrder = 9;
+        m.renderOrder = order;
         grp.add(m);
       }
     }
@@ -608,16 +615,17 @@ export async function mount(panel, context) {
     'continental-shelf': ribbon(nearEdge(U.u12, U.u200, 40, 0.02), '#ffffff', 0.045),
     'the-area': ribbon(nearEdge(U.fade, U.end, 20, 0.02), '#ffffff', 0.04),
   };
-  // For ২–৫, the span from the baseline: a light wash and a white dashed outline.
+  // For ২–৫, the span from the baseline: a light wash and a white dashed outline on a thin dark under-stroke.
   const SPAN = {};
   const spanMat = new T.MeshBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.2, depthWrite: false });
   for (const [id, b] of [['territorial-sea', U.u12], ['contiguous-zone', U.u24], ['eez', U.u200]]) {
     const g = new T.Group();
     const q = surfQuad(U.base, b, 0.012, spanMat);
     scene.remove(q);
+    const under = ribbon(rect(U.base, b, 0.025), INK, 0.046, true, true, 8);
     const r = ribbon(rect(U.base, b, 0.025), '#ffffff', 0.03, true, true);
-    scene.remove(r);
-    g.add(q, r);
+    scene.remove(under, r);
+    g.add(q, under, r);
     g.visible = false;
     scene.add(g);
     SPAN[id] = g;
@@ -625,9 +633,10 @@ export async function mount(panel, context) {
   {
     const g = new T.Group();
     const wash = bedStrip(U.base, U.fade, '#FFF6B0', 0.28);
+    const under = ribbon(nearEdge(U.base, U.fade, 40, 0.03), INK, 0.046, true, true, 8);
     const r = ribbon(nearEdge(U.base, U.fade, 40, 0.03), '#ffffff', 0.03, true, true);
-    scene.remove(wash, r);
-    g.add(wash, r);
+    scene.remove(wash, under, r);
+    g.add(wash, under, r);
     g.visible = false;
     scene.add(g);
     SPAN['continental-shelf'] = g;
@@ -635,44 +644,22 @@ export async function mount(panel, context) {
   // The baseline: a white dashed line on a dark edge, and a light curtain down to the seabed.
   {
     const a = [V3(U.base, 0, 0.03), V3(U.base, 1, 0.03)];
-    ribbon(a, INK, 0.075, false, true);
+    ribbon(a, INK, 0.075, false, true, 8);
     ribbon(a, '#ffffff', 0.045, true, true);
     strip(edge((v) => [[X(U.base), 0, Zc(v)], [X(U.base), height(U.base, v), Zc(v)]], 40), new T.MeshBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.28, side: T.DoubleSide, depthWrite: false })).renderOrder = 7;
   }
 
-  // The distance bars under the near face, every one from the baseline; dotted lines down from the marks.
-  const barY = (i) => -ZB - 0.42 - S.barStep * i;
-  for (const u of [U.base, U.u12, U.u24, U.u200]) {
-    const r = ribbon([V3(u, 0, 0).add(new T.Vector3(0, 0, 0.01)), V3(u, 0, barY(S.bars.length - 1) - 0.05).add(new T.Vector3(0, 0, 0.01))], u === U.base ? INK : '#5E6E75', 0.012, true, true);
-    for (const c of r.children) c.rotation.set(0, 0, Math.PI / 2);
-  }
-  const BARS = {};
+  // The distance arrows under the near face, every one from the baseline, and the witness lines down
+  // from the marks, drawn in screen space by the overlay (place(), below), so no width changes with the
+  // stage, the orbit or a pinch. Each witness line is a vertical in the scene at its mark, projected;
+  // each arrow is level on the screen, ending where its row crosses those lines. The first row is where
+  // the first bar stood, or the nearest clear place where a word is in the way (place()); the rest
+  // follow ROW_PX apart: room for a 14 px label, its 6 px gap, and clear of the arrowhead of the row above.
+  const ROW_PX = 29;
+  const HEAD = [9, 4]; // an arrowhead's length, and its half-width
+  const ROW_Z = 0.03;
+  const FIRST_ROW = -ZB - 0.42;
   const uOf = { u12: U.u12, u24: U.u24, u200: U.u200, beyond: S.beyond };
-  S.bars.forEach(([id, to], i) => {
-    const y = barY(i);
-    const g = new T.Group();
-    const mat = new T.MeshBasicMaterial({ color: fillOf(id) });
-    const end = uOf[to];
-    const solidEnd = to === 'beyond' ? U.u200 : end;
-    const bar = new T.Mesh(new T.BoxGeometry(X(solidEnd) - X(U.base), 0.09, 0.09), mat);
-    bar.position.set((X(U.base) + X(solidEnd)) / 2, y, 0.06);
-    g.add(bar);
-    if (to === 'beyond') {
-      for (let u = U.u200 + 4; u < end - 4; u += 10) {
-        const dash = new T.Mesh(new T.BoxGeometry(X(6), 0.09, 0.09), mat);
-        dash.position.set(X(u + 3), y, 0.06);
-        g.add(dash);
-      }
-    }
-    const cone = new T.Mesh(new T.ConeGeometry(0.11, 0.22, 12), mat);
-    cone.rotation.z = -Math.PI / 2;
-    cone.position.set(X(end) + 0.02, y, 0.06);
-    const dot = new T.Mesh(new T.SphereGeometry(0.05, 12, 8), new T.MeshBasicMaterial({ color: INK }));
-    dot.position.set(X(U.base), y, 0.06);
-    g.add(cone, dot);
-    scene.add(g);
-    BARS[id] = { g, anchor: new T.Vector3(X(U.base) + 0.02, y + 0.1, 0.06) };
-  });
 
   // Two ships and a platform on the shelf: simple shapes of our own.
   function ship(u, v, k) {
@@ -712,6 +699,48 @@ export async function mount(panel, context) {
     g.position.set(X(292), 0, Zc(0.12));
     scene.add(g);
   }
+
+  // ---- the arrows and witness lines over the picture, in screen space -------------------------
+
+  // Under the numbers and words; hidden with the picture if WebGL goes. Every line is CSS px wide.
+  const SVG = 'http://www.w3.org/2000/svg';
+  const svg = (name, cls, parent) => {
+    const node = document.createElementNS(SVG, name);
+    if (cls) node.setAttribute('class', cls);
+    parent.append(node);
+    return node;
+  };
+  const arrowLayer = document.createElementNS(SVG, 'svg');
+  arrowLayer.setAttribute('class', 'zones3d-overlay');
+  arrowLayer.setAttribute('aria-hidden', 'true');
+  stage.append(arrowLayer);
+  const witness = [U.base, U.u12, U.u24, U.u200].map((u) => ({
+    u,
+    halo: svg('line', 'zones3d-witness-halo', arrowLayer),
+    line: svg('line', `zones3d-witness${u === U.base ? ' base' : ''}`, arrowLayer),
+  }));
+  const ARROWS = {};
+  S.bars.forEach(([id, to], i) => {
+    const g = svg('g', 'zones3d-arrow', arrowLayer);
+    g.style.color = fillOf(id);
+    ARROWS[id] = {
+      g,
+      row: i,
+      end: uOf[to],
+      solidEnd: to === 'beyond' ? U.u200 : uOf[to],
+      shaft: svg('line', 'shaft', g),
+      dashed: to === 'beyond' ? svg('line', 'shaft dashed', g) : null,
+      head: svg('polyline', 'head', g),
+      tick: svg('line', 'tick', g),
+    };
+  });
+  renderer.domElement.addEventListener('webglcontextlost', () => {
+    arrowLayer.style.display = 'none';
+  });
+  renderer.domElement.addEventListener('webglcontextrestored', () => {
+    arrowLayer.style.display = '';
+    req();
+  });
 
   // ---- the words and numbers over the picture ------------------------------------------------
 
@@ -762,12 +791,92 @@ export async function mount(panel, context) {
       at(discs[z.id], [x, y]);
       discs[z.id].hidden = zz > 1 || x < 0 || x > w || y < 0 || y > h;
     }
-    for (const [id] of S.bars) at(barLabels[id], pr(BARS[id].anchor));
     // A name stands right of its number, or left of it where the stage ends first.
     for (const id of Object.keys(nameLabels)) {
       const p = pr(anchorOf(id));
       const wide = nameLabels[id].offsetWidth;
       at(nameLabels[id], p, p[0] + 20 + wide + 4 > w ? -20 - wide - 8 : 20);
+    }
+    // The witness lines, from the surface down to their arrows; then each arrow, a tick on the
+    // baseline's line, and its label 6 px above its line.
+    const P = (u, y) => pr(new T.Vector3(X(u), y, ROW_Z));
+    /** The point at screen height y on the vertical through mark u, projected. */
+    const onMark = (u, y) => {
+      const a = P(u, 0);
+      const b = P(u, FIRST_ROW);
+      const k = (y - a[1]) / (b[1] - a[1] || 1);
+      return [a[0] + (b[0] - a[0]) * k, y, Math.max(a[2], b[2])];
+    };
+    const lineHalf = (id) => (id === selected ? 4 : 2.5) / 2;
+    // The rows sit where the first bar stood, clear of the scale note and the names on the picture: a
+    // row takes its label and its line, tick to head.
+    const sb = stage.getBoundingClientRect();
+    const boxOf = (n) => {
+      const r = n.getBoundingClientRect();
+      return [r.left - sb.left, r.top - sb.top, r.right - sb.left, r.bottom - sb.top];
+    };
+    const blockers = [scaleNote, ...Object.values(nameLabels)].filter((n) => !n.hidden && n.offsetWidth).map(boxOf);
+    const takenBy = (y0) =>
+      S.bars.flatMap(([id], i) => {
+        const y = y0 + ROW_PX * i;
+        const x0 = onMark(U.base, y)[0];
+        const x1 = onMark(ARROWS[id].end, y)[0];
+        const lb = y - 6.05 - lineHalf(id);
+        return [
+          [x0 + 4, lb - barLabels[id].offsetHeight, x0 + 4 + barLabels[id].offsetWidth, lb],
+          [x0 - 5, y - HEAD[1] - lineHalf(id), x1 + lineHalf(id), y + HEAD[1] + lineHalf(id)],
+        ];
+      });
+    const MARGIN = 3;
+    const clashes = (y0) => {
+      const boxes = takenBy(y0);
+      const inside = boxes.every(([, t0, , b0]) => t0 >= MARGIN && b0 <= h - MARGIN);
+      return !inside || boxes.some(([l, t0, r, b0]) => blockers.some(([bl, bt, br, bb]) => l < br + MARGIN && r > bl - MARGIN && t0 < bb + MARGIN && b0 > bt - MARGIN));
+    };
+    // The first bar's place if it is clear; else the clear place nearest it, just below or just above a
+    // word in the way; else the first bar's place after all.
+    const first = P(U.base, FIRST_ROW)[1];
+    const span = takenBy(0);
+    const top0 = Math.min(...span.map((x) => x[1]));
+    const bottom0 = Math.max(...span.map((x) => x[3]));
+    const candidates = [first, ...blockers.flatMap(([, bt, , bb]) => [bb + MARGIN + 0.5 - top0, bt - MARGIN - 0.5 - bottom0])].sort((p, q) => Math.abs(p - first) - Math.abs(q - first));
+    const Y0 = candidates.find((y0) => !clashes(y0)) ?? first;
+    const rowAt = (i) => Y0 + ROW_PX * i;
+    // A witness line goes down to the last arrow that starts or ends on it, and 8 px past it.
+    const bottomOf = (u) => rowAt(Math.max(...Object.values(ARROWS).filter((A) => u === U.base || A.end === u || A.solidEnd === u).map((A) => A.row))) + 8;
+    const xy = (node, a, b) => {
+      node.setAttribute('x1', a[0].toFixed(2));
+      node.setAttribute('y1', a[1].toFixed(2));
+      node.setAttribute('x2', b[0].toFixed(2));
+      node.setAttribute('y2', b[1].toFixed(2));
+    };
+    const unit = (a, b) => {
+      const d = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1;
+      return [(b[0] - a[0]) / d, (b[1] - a[1]) / d];
+    };
+    let down = [0, 1];
+    for (const wl of witness) {
+      const a = P(wl.u, 0);
+      const b = onMark(wl.u, bottomOf(wl.u));
+      xy(wl.halo, a, b);
+      xy(wl.line, a, b);
+      if (wl.u === U.base) down = unit(a, b);
+    }
+    for (const [id, A] of Object.entries(ARROWS)) {
+      const y = rowAt(A.row);
+      const p0 = onMark(U.base, y);
+      const pS = onMark(A.solidEnd, y);
+      const pE = onMark(A.end, y);
+      A.g.style.display = [p0, pE].some((p) => p[2] > 1) ? 'none' : '';
+      xy(A.shaft, p0, pS);
+      if (A.dashed) xy(A.dashed, pS, pE);
+      const [dx, dy] = unit(A.dashed ? pS : p0, pE);
+      const bx = pE[0] - dx * HEAD[0];
+      const by = pE[1] - dy * HEAD[0];
+      const hw = HEAD[1];
+      A.head.setAttribute('points', `${(bx - dy * hw).toFixed(2)},${(by + dx * hw).toFixed(2)} ${pE[0].toFixed(2)},${pE[1].toFixed(2)} ${(bx + dy * hw).toFixed(2)},${(by - dx * hw).toFixed(2)}`);
+      xy(A.tick, [p0[0] - down[0] * 5, p0[1] - down[1] * 5], [p0[0] + down[0] * 5, p0[1] + down[1] * 5]);
+      at(barLabels[id], [p0[0] + 4, y - 6.05 - lineHalf(id)]); // 6 px clear, after rounding to 0.1 px
     }
     const b = pr(new T.Vector3(X(U.base), 0.5, Zc(0.98)));
     at(baseLabel, b, -30);
@@ -910,7 +1019,7 @@ export async function mount(panel, context) {
         m.userData.base ??= m.material.opacity;
         m.material.opacity = k === selected ? Math.min(0.95, m.userData.base + 0.25) : m.userData.base;
       }
-    for (const [k, { g }] of Object.entries(BARS)) g.scale.set(1, k === selected ? 1.8 : 1, k === selected ? 1.8 : 1);
+    for (const [k, { g }] of Object.entries(ARROWS)) g.classList.toggle('on', k === selected);
     for (const [k, b] of Object.entries(discs)) b.classList.toggle('on', k === selected);
     req();
   }

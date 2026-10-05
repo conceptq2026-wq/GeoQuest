@@ -15,9 +15,9 @@
 |--------------------------------------------------------------------------
 */
 
-import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=7c7aafc0af';
-import { resolver } from '../shared/resolver.js?v=7c7aafc0af';
-import { pickerRow } from '../shared/picker.js?v=7c7aafc0af';
+import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=7e404693d8';
+import { resolver } from '../shared/resolver.js?v=7e404693d8';
+import { pickerRow } from '../shared/picker.js?v=7e404693d8';
 
 /*
 |--------------------------------------------------------------------------
@@ -642,13 +642,13 @@ function pick(row, keys) {
 |--------------------------------------------------------------------------
 */
 const SHELL_MODULES = {
-  tabs: './tabs.js?v=7c7aafc0af',
-  chips: './chips.js?v=7c7aafc0af',
-  timeline: './timeline.js?v=7c7aafc0af',
-  globe: './globe.js?v=7c7aafc0af',
-  focus: './focus.js?v=7c7aafc0af',
-  legend: './legend.js?v=7c7aafc0af',
-  info: './info.js?v=7c7aafc0af',
+  tabs: './tabs.js?v=7e404693d8',
+  chips: './chips.js?v=7e404693d8',
+  timeline: './timeline.js?v=7e404693d8',
+  globe: './globe.js?v=7e404693d8',
+  focus: './focus.js?v=7e404693d8',
+  legend: './legend.js?v=7e404693d8',
+  info: './info.js?v=7e404693d8',
 };
 const hiders = []; // (table, key) => true takes a record off the map, the picker and ‹ ›
 // (table, key) => true takes a record off the map only: the picker and ‹ › still list it (the focus module).
