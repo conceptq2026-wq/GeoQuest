@@ -21,6 +21,7 @@
       "lines": [
         "meghnaUpper",
         "meghna",
+        "barakUpper",
         "barak",
         "surma",
         "kushiyara",
@@ -172,6 +173,33 @@
         ],
         "identified": "One chain of ten OSM ways named «মেঘনা নদী» (name:en «Meghna River») from the Meghna above Bhairab Bazar, where the Old Brahmaputra joins it (the book), past the Padma junction, to 22.3835°N. Ways 630320743 and 908091551 carry a name:bn tag reading «গঙ্গা নদী» in OSM; their name and position are the Meghna's. The picture stops at 22.38°N, above the estuary. From Stage 2 (b3) a main line of the Meghna's card, no longer a grey continuation; its ways, and so its geometry pin, are unchanged.",
         "entity": "meghna"
+      },
+      "barakUpper": {
+        "entity": "barak",
+        "role": "disputed",
+        "split": "border",
+        "only": "map",
+        "ways": [
+          385534480,
+          1388626685,
+          27919542,
+          27919470,
+          128600546,
+          149124188,
+          671138432,
+          27919388,
+          128600532
+        ],
+        "down": [
+          92.9091,
+          24.7511
+        ],
+        "join": {
+          "parent": "barak",
+          "end": "tail",
+          "source": "node 306477733, where way 128600532 ends and the line barak begins (0 m)"
+        },
+        "identified": "Stage 4 batch 1 (the user's decision, 2026-10-05), the map's alone: the Barak upstream of the line barak to its head. 9 ways from this system's s4 extract (tools/sources/osm-bangladesh-rivers-meghna-s4.geojson), every link sharing a node, all tagged «Barak River» / «Barāk River», OSM relation 5904028 (Q1709169). It ends on node 306477733, the first node of the line barak, and begins at the head of way 385534480 in Senapati, Manipur. Drawn under the Barak's card, unlabelled; the Meghna's course follows through it."
       },
       "barak": {
         "entity": "barak",
@@ -494,6 +522,19 @@
           623989282,
           622950338,
           237377854
+        ]
+      },
+      "s4": {
+        "barakUpper": [
+          385534480,
+          1388626685,
+          27919542,
+          27919470,
+          128600546,
+          149124188,
+          671138432,
+          27919388,
+          128600532
         ]
       }
     }

@@ -4,6 +4,21 @@
   "nameBn": "দক্ষিণ পূর্বাঞ্চল",
   "geometry": {
     "lines": {
+      "khawthlangtuipui": {
+        "entity": "karnaphuli",
+        "role": "main",
+        "split": "border",
+        "only": "map",
+        "ways": [
+          530306794,
+          661437160
+        ],
+        "down": [
+          92.3761,
+          22.9288
+        ],
+        "identified": "Stage 4 batch 1 (the user's decision, 2026-10-05), the map's alone: the Karnaphuli in Mizoram as OSM names it, «Khawthlangtuipui» (the card's own cited Mizo name), to its named head. Ways 530306794 and 661437160 from this system's s4 extract (tools/sources/osm-bangladesh-rivers-karnaphuli-s4.geojson). It ends on node 5149768416, 0.03 m from the first vertex of karnaphuliUpper, and begins at the head of way 530306794 in Lunglei, Mizoram, where nothing named flows in. Not drawn, by the user's decision: the Tuiliampul and the Tuichawng, whose names no cited source joins to the Karnaphuli."
+      },
       "karnaphuliUpper": {
         "entity": "karnaphuli",
         "role": "main",
@@ -288,6 +303,12 @@
         "naf": [
           1223242401
         ]
+      },
+      "s4": {
+        "khawthlangtuipui": [
+          530306794,
+          661437160
+        ]
       }
     }
   },
@@ -305,6 +326,7 @@
   "frames": {
     "bangladesh": {
       "lines": [
+        "khawthlangtuipui",
         "karnaphuliUpper",
         "karnaphuli",
         "kasalong",

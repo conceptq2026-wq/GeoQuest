@@ -56,6 +56,7 @@
       "lines": [
         "main",
         "dharla",
+        "lachenChu",
         "teesta",
         "karatoya",
         "atrai",
@@ -240,6 +241,26 @@
           "source": "the line's own mouth node in OpenStreetMap; the parent line is 2.5 km away (the drawn Jamuna keeps its east channel)"
         },
         "identified": "OSM relation 12420354. Way 97817505 is named «Jaldhaka» with alt name «Dharla» (the Dharla's upper course in OSM); way 28801794 is «Dharla». The four ways between are unnamed links joined by connectivity."
+      },
+      "lachenChu": {
+        "entity": "teesta",
+        "role": "tributary",
+        "only": "map",
+        "ways": [
+          192599614,
+          293185705,
+          126757767,
+          126757760
+        ],
+        "down": [
+          88.6489,
+          27.6011
+        ],
+        "join": {
+          "parent": "teesta",
+          "source": "node 1404342384 at Chungthang, where way 126757760 ends and the line teesta begins (0 m)"
+        },
+        "identified": "Stage 4 batch 1 (the user's decision, 2026-10-05), the map's alone: the Teesta upstream of Chungthang by the Lachen Chu, its longest headstream (89.5 km). 4 ways from this system's s4 extract (tools/sources/osm-bangladesh-rivers-jamuna-s4.geojson), every link sharing a node, all tagged «Lachen Chu» (OSM relation 19299440, Q6468335). It ends on node 1404342384 at Chungthang, where OSM's «Teesta River» relation 13577352 ends and the line teesta begins, and begins at the head of way 192599614 in North Sikkim. Drawn under the Teesta's card, solid as the Teesta's line is, unlabelled. Not drawn: the Lachung Chu and the Zemu Chu."
       },
       "teesta": {
         "entity": "teesta",
@@ -436,6 +457,14 @@
       "b4": {
         "buriganga": [
           722862311
+        ]
+      },
+      "s4": {
+        "lachenChu": [
+          192599614,
+          293185705,
+          126757767,
+          126757760
         ]
       }
     }

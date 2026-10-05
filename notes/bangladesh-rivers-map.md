@@ -71,23 +71,34 @@ M3 «পুরো পথ», M4 parity with the diagram — all done, 2026-09-30.
     selected it rests on every main river whose system — the river and its
     descendants — has a reach outside, framed on all of those systems: the
     Jamuna, the Padma, the Meghna (by the Barak, Gumti, Khowai and Manu; R-55),
-    the Feni and the Naf. It draws as before; its frame did not move.
-  - «পুরো পথ» pans within 80.5, 10, 97, 40 (R-56, `views.whole.maxBounds`).
-    Those bounds hold its rest frame fitted to the width of a map up to 2.2
-    times as high as wide. Under the map's own 19–32°N, a phone held upright
-    stopped at z5.12, with the Tibetan reach and the Barak's end cut off.
-    Its rest view is now z4.17 at 390 × 844 and z3.86 at 320 × 640, the
-    whole 81.74–96.13°E in view. «বাংলাদেশে» keeps the map's own bounds.
-    world.pmtiles covers the globe (±85.05°, z0–10).
+    the Karnaphuli (by the Khawthlangtuipui, Stage 4), the Feni and the Naf.
+    Its frame is 77.16, 19.86, 96.35, 31.92 since Stage 4: the Ganga's course
+    reaches 78.0°E near Haridwar.
+  - «পুরো পথ» pans within bounds of its own (R-56, `views.whole.maxBounds`).
+    They hold its rest frame fitted to the width of a map up to 2.2 times as
+    high as wide.
+    - R-56: 80.5, 10, 97, 40. Under the map's own 19–32°N, a phone held
+      upright had stopped at z5.12, with the Tibetan reach cut off.
+    - Stage 4: **77, 5, 97, 44** (the S4-1 estimate, 77.5, 7, 97, 43, read
+      only the Gangotri head, not the course's 78.0°E at Haridwar).
+    - Rest view: z3.75 at 390 × 844, z3.45 at 320 × 640 (R-56: 4.17 and 3.86).
+  - «বাংলাদেশে» and the map keep the map's own bounds, 80.5, 19, 97, 32: the
+    map-only upstream reaches are left out of them, and out of «বাংলাদেশে»'s
+    pieces. world.pmtiles covers the globe (±85.05°, z0–10).
+  - A whole-course frame holds a card's ancestors, so 26 frames widened with
+    Stage 4. Every Padma branch now frames up to Gangotri, as the Teesta's
+    reaches Tibet. Chosen, at 390 / 320: Padma z4.09 / 3.75, Barak 5.94 /
+    5.6, Meghna 5.74 / 5.4, Karnaphuli 7.48 / 6.95, Teesta 4.04 / 3.7.
   - **Disabled rule:** «পুরো পথ» is disabled for a selection whose set has no
     reach outside Bangladesh — a card's lines running at least 1 km outside
     COD-AB's outline; the build refuses a disabled set that has any piece
     outside at all, so its note is exactly true. Disabled: greyed, still in
     the bar, 44 px, aria-disabled; a tap does nothing, and ⓘ's row says «এই
     নদীর বাংলাদেশের বাইরের কোনো অংশ এই মানচিত্রে আঁকা নেই।». A selection that
-    disables the open tab opens «বাংলাদেশে». Ten cards: pashur, titas,
-    tetuliaBarishal, burishwar, mogra, karnaphuli, kasalong, halda, sangu,
-    matamuhuri. The selection stays when the tab changes.
+    disables the open tab opens «বাংলাদেশে». Seven cards: pashur, titas,
+    tetuliaBarishal, burishwar, mogra, sangu and matamuhuri. Karnaphuli,
+    Kasalong and Halda left this list in Stage 4: the Karnaphuli now has a
+    reach outside. The selection stays when the tab changes.
 - **Focus** (`notes/shell.md`): at rest only the tab's rest set; a selection
   draws that river, all its descendants and every ancestor up to its main
   river, no sibling; the ancestors lighter, for context (lines at 0.45 of
@@ -131,15 +142,24 @@ evidence stands in the seed and the build re-checks it against the pinned file:
   Manu, Naf);
 - its origin is a river itself drawn in part (Meghna: the Barak).
 
-In part: dharla, padma, mahananda, barak, manu, naf, meghna, karnaphuli, feni,
-sangu. Listed as reaching the origin the seed states, with their evidence
-(`mapUpstreamReached`): main (its pinned origin point), ichamati (its head
-meets the Mathabhanga), teesta (in Sikkim), pagla and khowai (in India, the
-origin row's word), gumti (in Tripura), muhuri (South Tripura), bhagirathi
-(Murshidabad); and rising in Bangladesh (a district of the pinned Bengali list
-in the origin row): mathabhanga, kapotaksha, harinbhanga, baral. Every card
-whose chain begins outside Bangladesh is in one list or the other, or the
-build stops.
+In part: dharla, mahananda, manu, naf, feni and sangu.
+
+Listed as reaching the origin the seed states, with their evidence
+(`mapUpstreamReached`):
+- main (its pinned origin point); ichamati (its head meets the Mathabhanga);
+- teesta (in Sikkim); pagla and khowai (in India, the origin row's word);
+  gumti (in Tripura); muhuri (South Tripura); bhagirathi (Murshidabad);
+- since Stage 4 batch 1 (2026-10-05):
+  - padma: in the HIMALAYAS region and in Uttarkashi (geoBoundaries);
+  - barak: in Manipur, IND-2478;
+  - meghna: `origin-reached`, a new evidence kind — the card its origin row
+    names (the Barak) is itself listed here;
+  - karnaphuli: in Mizoram, IND-3300;
+- rising in Bangladesh (a district of the pinned Bengali list in the origin
+  row): mathabhanga, kapotaksha, harinbhanga, baral.
+
+Every card whose chain begins outside Bangladesh is in one list or the other,
+or the build stops.
 
 **The cut rule** (R-55, 2026-10-05, `tools/lib/rivers-cut.mjs`):
 - A card listed as reached is CUT when its head line's upstream end lies
@@ -164,10 +184,62 @@ build stops.
   - ichamati, kapotaksha and baral also join their parents at their heads.
   - ichamati, pagla, khowai, gumti, muhuri, mathabhanga, kapotaksha,
     harinbhanga and baral: no box (every way read by its id, whole).
+- **By id** (the user, 2026-10-05, Stage 4): a head line whose upstream end
+  lies on a way read by its id has reached its source when that end is the
+  way's own, named head (`byIdHead`); trimmed short of it, it is cut.
+  - Every listed card ends so today. The Teesta is drawn to the Lachen Chu's
+    head, so it is no longer cut.
 - `tools/verify-descriptor.mjs` re-reads the rule off the built lines, so a
   future river can't be counted reached by mistake.
 
-## Stage 4: the upstream reaches still missing (R-55, notes only, nothing fetched)
+## Stage 4: the upstream reaches
+
+**Batch 1, drawn** (the user's decisions, 2026-10-05, from the S4-1 investigation):
+- Map-only lines (`only: "map"`), each before its card's head line and ending
+  on its first node, with no gap and no trim.
+- Each comes from a new by-id extract, `osm-bangladesh-rivers-<system>-s4`,
+  pinned in `tools/sources.json` by size and SHA-256. The lines are pinned in
+  the map pins file's `lines`, and the five seed files re-pinned.
+- **All these pins were approved by the user as part of the batch.**
+
+| Line | Card | OSM | Added | Raw / gzip |
+|---|---|---|---|---|
+| gangaUpper | Padma | relations 1236345 and 1236089, 35 ways, to the Gangotri glacier (Uttarkashi) | 2,058 km | 95,191 / ~32,894 B |
+| barakUpper | Barak (the Meghna through it) | relation 5904028, 9 ways, to Senapati, Manipur | 401.6 km | 37,707 / ~12,490 B |
+| khawthlangtuipui | Karnaphuli | 2 ways, to its named head in Lunglei, Mizoram | 79.9 km | 13,546 / ~3,250 B |
+| lachenChu | Teesta | relation 19299440, 4 ways, from Chungthang | 89.5 km | 13,982 / ~4,506 B |
+
+- **Styles:** dashed outside, as their cards' head lines split at the border.
+  - The Khawthlangtuipui's last reach zigzags across COD-AB's border: 12 solid
+    and 12 dashed pieces.
+  - The Lachen Chu is solid, as the Teesta's line is.
+- **Labels:** none of their own. This Bhagirathi is the Ganga's headstream,
+  not the map's «ভাগীরথী» card (the Hooghly).
+- **Not drawn, by the user's decision:** the Tuiliampul, the Tuichawng, the
+  Lachung Chu and the Zemu Chu.
+- **Size:** the map's folder grew from 1,209,081 B to 1,368,090 B (+159,009;
+  +53,530 B gzip, to 414,564 B). Every line loads with the map, whichever tab
+  opens first.
+
+**Still missing, each keeping its upstream ⓘ line:**
+- **Dharla / Jaldhaka** (on hold): ends at 88.8738°E 26.6993°N. BWDB
+  (bwdbNW59 §1.1) says the Jaldhaka rises in South Sikkim; OSM's relation
+  12420354 heads in East Sikkim (89.4 / 86.8 km). Waits for that conflict to
+  be ruled.
+- **Mahananda**: OSM's named river begins at our end, 88.3622°E 26.8666°N;
+  only unnamed streams flow in.
+- **Manu**: OSM's «Manu» begins at our end, 92.0366°E 23.8352°N, already in
+  Tripura; only unnamed ways above.
+- **Naf**: OSM's relation is a tidal channel to the sea from our end,
+  92.1805°E 21.1592°N; its one upstream member, «Modhur Chhora» (13.4 km),
+  rises in Bangladesh, not in Myanmar's northern hills.
+- **Feni**: OSM's «ফেনী নদী» begins at our end, 91.7838°E 23.3252°N; nothing
+  flows in.
+- **Sangu**: OSM's «সাঙ্গু নদী» begins at our end, 92.6074°E 21.2725°N;
+  nothing flows in.
+- **Bhagirathi**: reached since R-56; its 7.4 km connector to the Ganga stays.
+
+## Stage 4 before batch 1 (R-55, notes only, nothing fetched)
 
 Each card's current upstream end, as the map draws it, and what drawing the rest
 would need. Every source named is a new pinned extract, fetched only on purpose.
@@ -205,8 +277,8 @@ of `geometry.lines`, a map place or a `mapUpstreamReached` card — nowhere else
 (`tools/lib/rivers-core.mjs` refuses it elsewhere). Each build reads the seed
 less the other's items and asserts that none of their ids or texts reaches its
 files; the validator holds both directions; the words only the map shows are
-`ui.mapOnlyBn`. The map's own lines, when there are any, are pinned in the map
-pins file's `lines`.
+`ui.mapOnlyBn`. The map's own lines are pinned in the map pins file's `lines`:
+gangaUpper, barakUpper, khawthlangtuipui and lachenChu (Stage 4, 2026-10-05).
 
 ## How it is built
 
@@ -216,7 +288,8 @@ pins file's `lines`.
   `lines-out.geojson` dashed, `connectors.geojson`; «বাংলাদেশে»'s
   `bd-lines.geojson` and `bd-connectors.geojson`, R-55) and one SVG per marker
   kind into `docs/maps/bangladesh-rivers-map/`, through
-  `tools/lib/rivers-core.mjs` (the same chains, the same 68 pins).
+  `tools/lib/rivers-core.mjs` (the same chains, the same 68 pins, and the
+  map's own four lines, 72 in all).
 - Each line is its pinned chain, split at the border, simplified by
   Douglas–Peucker at 14 m; every chain vertex within 15 m of the drawn segment
   (worst 14.01 m, the Kasalong), every drawn vertex on its chain. The main line

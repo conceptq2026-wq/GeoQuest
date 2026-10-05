@@ -49,8 +49,8 @@ import path from 'node:path';
 import zlib from 'node:zlib';
 import { pathToFileURL } from 'node:url';
 import { loadRiversSeed } from './lib/rivers-seed.mjs';
-import { riversCore } from './lib/rivers-core.mjs';
-import { cutAt, headJoins, CUT_TOL_M, BD_BAND_M } from './lib/rivers-cut.mjs';
+import { riversCore, seedFor } from './lib/rivers-core.mjs';
+import { cutAt, headJoins, byIdHead, CUT_TOL_M, BD_BAND_M } from './lib/rivers-cut.mjs';
 import { districtLabels, NAME_ROOM } from './lib/bd-labels.mjs';
 import { SegmentGrid } from './lib/bangladesh-units.mjs';
 
@@ -119,11 +119,14 @@ const BANGLADESH_RIVERS_SEEDS = path.join(ROOT, 'data-sources/bangladesh-rivers'
 const BANGLADESH_RIVERS_SEED_SHA256 = {
   // Re-pinned 2026-09-30 (was d0d9a622…, then 56b057b2…): the map-only Kaptai label, the map's ⓘ variants and the
   // lakes source; then M3's upstream rule (ten ⓘ lines, mapUpstreamReached), two Natural Earth sources, ui.mapOnlyBn.
-  'bangladesh-rivers.seed.json': '90ded5652b5629a468b954a40da292fb993c4da66eb692241c0da4a335e52ab5',
-  'systems/jamuna.seed.json': 'c43cad5f93c46ee3d75a5959443637456845274be7c4276cc40def7d63c34795',
-  'systems/padma.seed.json': 'be8e5d28a3533b941006423815f79c08e3eee2d31ac651bb4f44c0f428829f15',
-  'systems/meghna.seed.json': 'a807af25804b71d7c0cd7636fc1f1cdaddacae13259085241d5f333bebaefe91',
-  'systems/karnaphuli.seed.json': '8b470923787f2ee181cb0044f8e08da5a71f00c82a0e7ad7c74082f896c309b7',
+  // Re-pinned 2026-10-05, with the user's approval of Stage 4 batch 1 (was 90ded565…, c43cad5f…, be8e5d28…, a807af25…,
+  // 8b470923…): the map-only lines gangaUpper, barakUpper, khawthlangtuipui and lachenChu, their s4 extracts, and the
+  // Padma, Barak, Meghna and Karnaphuli moved from the upstream ⓘ lines to mapUpstreamReached.
+  'bangladesh-rivers.seed.json': '087ed2114fca6d7326470b7dc26ba6d36514aefd357b51f9c338e8d5adf23101',
+  'systems/jamuna.seed.json': '1811dfb54ea0415452ac35e908bb8a371491be60c2e1129d7adee8edf0530386',
+  'systems/padma.seed.json': '1c0880f6f638037a8a7d3b00b6b878b2bd0d75b687f9bb1ff94ec92de124b7af',
+  'systems/meghna.seed.json': 'c337805b678c0b00fc6ac81cf6a635b14a4148ac2ee5c9c86d85df9643a0e071',
+  'systems/karnaphuli.seed.json': '592faa0a89452f64b90010d030e39d54f9764176ccd9a31f835f267de50fd64e',
 };
 // The latitude-longitude globe: the editor's seed, the pinned sources (its
 // imagery's credit among them) and the geometry pins.
@@ -1984,7 +1987,8 @@ console.log('\n\n============ bangladesh-rivers (diagram) ============');
   const { seed: wholeSeed, files: seedFiles } = loadRiversSeed(BANGLADESH_RIVERS_SEEDS);
   // The diagram reads the seed less what only the map draws (only: "map", the user's decisions, 2026-09-30).
   const notMap = (x) => x?.only !== 'map';
-  const seed = { ...wholeSeed, entities: wholeSeed.entities.filter(notMap), markers: wholeSeed.markers.filter(notMap), continuations: wholeSeed.continuations.filter(notMap), infoBn: { ...wholeSeed.infoBn, lines: wholeSeed.infoBn.lines.filter(notMap) } };
+  // Its lines and frames less the map's own lines too (Stage 4), as the core's seedFor reads them.
+  const seed = { ...wholeSeed, entities: wholeSeed.entities.filter(notMap), markers: wholeSeed.markers.filter(notMap), continuations: wholeSeed.continuations.filter(notMap), infoBn: { ...wholeSeed.infoBn, lines: wholeSeed.infoBn.lines.filter(notMap) }, geometry: seedFor(wholeSeed, 'diagram').geometry };
   for (const f of seedFiles) check(BANGLADESH_RIVERS_SEED_SHA256[f.file] === f.sha256, `the seed file ${f.file} is the approved one: SHA-256 ${f.sha256.slice(0, 12)}… (pinned ${(BANGLADESH_RIVERS_SEED_SHA256[f.file] ?? 'none').slice(0, 12)}…)`);
   check(Object.keys(BANGLADESH_RIVERS_SEED_SHA256).length === seedFiles.length, `every pinned seed file is one the seed lists (${seedFiles.length})`);
   const descriptor = readJson(path.join(dir, 'descriptor.json'));
@@ -2267,7 +2271,8 @@ console.log('\n\n============ bangladesh-rivers-map ============');
   check(JSON.stringify(Object.keys(rivers).filter((k) => rivers[k].restWhole)) === JSON.stringify(restWant), `«পুরো পথ» rests on every main river whose system has a reach outside: ${restWant.join(', ')}`);
   const disabledCards = Object.keys(rivers).filter((k) => rivers[k].outsideSet === false);
   const inBox = (b, c) => b[0] <= c[0] && b[1] <= c[1] && b[2] >= c[2] && b[3] >= c[3];
-  check(Object.values(rivers).every((r) => Array.isArray(r.frameBd) && Array.isArray(r.frameWhole) && inBox(descriptor.constraints.maxBounds, r.frameBd) && inBox(descriptor.constraints.maxBounds, r.frameWhole)), `every card has its two frames, both inside the map's bounds; «পুরো পথ» disabled for ${disabledCards.length}: ${disabledCards.join(', ')}`);
+  // «বাংলাদেশে»'s frames inside the map's own bounds; «পুরো পথ»'s inside its own (Stage 4: Gangotri lies west of the map's).
+  check(Object.values(rivers).every((r) => Array.isArray(r.frameBd) && Array.isArray(r.frameWhole) && inBox(descriptor.constraints.maxBounds, r.frameBd) && inBox(descriptor.tabs.views.whole.maxBounds, r.frameWhole)), `every card has its two frames, «বাংলাদেশে»'s inside the map's bounds, «পুরো পথ»'s inside its own; «পুরো পথ» disabled for ${disabledCards.length}: ${disabledCards.join(', ')}`);
   check(descriptor.legend?.items?.some((i) => i.kind === 'outside' && i.label === words.outside && i.line?.dash) && descriptor.legend?.kinds?.some((k) => k.field === 'dashedKind' && k.tab === 'whole'), `the legend lists a dashed reach, «${words.outside}», only while a drawn river has one, in «পুরো পথ» (R-55)`);
   // The upstream rule: one map-only ⓘ line per card in part, «name: the user's sentence», with its evidence.
   const upstream = seed.infoBn.lines.filter((l) => l.card);
@@ -2284,17 +2289,20 @@ console.log('\n\n============ bangladesh-rivers-map ============');
   };
   // Refined (2026-10-05): a head that joins its parent — the start of a connector to it, or on its drawn course — is reached.
   const connectorFeatures = readJson(path.join(dir, 'connectors.geojson')).features;
+  // By id (Stage 4): the untrimmed ways, to tell a head at its way's named end from one trimmed short of it.
+  const { ways: coreWays } = riversCore({ id, product: 'map' });
   const cutRows = (seed.mapUpstreamReached ?? []).map((r) => {
     const head = frame.lines.find((l) => entityOf(l) === r.card);
     const end = headEnd(head);
     const at = cutAt(end, head === 'main' ? G.main.ways : (G.lines[head]?.ways ?? []));
     const parent = head === 'main' ? undefined : G.lines[head]?.join?.parent;
     const joins = parent !== undefined && headJoins(end, pieceFiles.filter((p) => p.properties.line === parent).map((p) => p.geometry.coordinates), connectorFeatures.filter((c) => c.properties.line === head).map((c) => c.geometry.coordinates[0]));
-    return { card: r.card, at, joins, cut: Boolean(at && at.m <= CUT_TOL_M && !joins) };
+    const own = head === 'main' ? null : byIdHead(end, G.lines[head]?.ways ?? [], coreWays);
+    return { card: r.card, at, joins, own, cut: Boolean((at && at.m <= CUT_TOL_M && !joins) || (own?.byId && !own.named)) };
   });
   const cutCards = cutRows.filter((r) => r.cut).map((r) => r.card);
   const cutText = (k) => `${rivers[k].nameBn}: ${words.upstreamInPart}`;
-  check(cutCards.every((k) => info.lines.some((l) => l.text === cutText(k))) && cutRows.filter((r) => !r.cut).every((r) => !info.lines.some((l) => l.text === cutText(r.card))), `the cut rule (within ${CUT_TOL_M} m of a selection box's edge): ${cutRows.map((r) => `${r.card} ${r.at ? `${(r.at.m / 1000).toFixed(3)} km (${r.at.river})` : 'no box'}${r.joins ? ', joins its parent at its head' : ''}`).join('; ')} — cut, with the upstream ⓘ line: ${cutCards.join(', ') || 'none'}`);
+  check(cutCards.every((k) => info.lines.some((l) => l.text === cutText(k))) && cutRows.filter((r) => !r.cut).every((r) => !info.lines.some((l) => l.text === cutText(r.card))), `the cut rule (within ${CUT_TOL_M} m of a selection box's edge): ${cutRows.map((r) => `${r.card} ${r.at ? `${(r.at.m / 1000).toFixed(3)} km (${r.at.river})` : 'no box'}${r.joins ? ', joins its parent at its head' : ''}${r.own?.byId ? (r.own.named ? ', by id at its named head' : ', by id, trimmed short') : ''}`).join('; ')} — cut, with the upstream ⓘ line: ${cutCards.join(', ') || 'none'}`);
   const ownLines = seed.infoBn.lines.map((l) => ({ text: l.textBn, group: l.group }));
   const afterInPart = seed.infoBn.lines.findLastIndex((l) => l.card) + 1;
   const wantLines = [...seed.markers.filter((m) => m.infoBn).map((m) => ({ text: m.infoBn, group: 'notes' })), ...ownLines.slice(0, afterInPart), ...cutCards.map((k) => ({ text: cutText(k), group: 'notes' })), ...ownLines.slice(afterInPart)];

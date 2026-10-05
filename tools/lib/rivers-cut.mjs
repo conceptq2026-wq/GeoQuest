@@ -13,6 +13,11 @@
 | Ganga by its 7.4 km connector 0.7 km inside the hooghly box's 24.5°N, is reached; the Teesta, which
 | joins its parent at its other end, stays cut.
 |
+| By id (Stage 4, the user's rule, 2026-10-05): a head line whose upstream end lies on a way read by its id has
+| reached its source when that end is the way's own, named head (byIdHead below); trimmed short of it, it is cut.
+| The Padma (gangaUpper), the Barak (barakUpper), the Karnaphuli (khawthlangtuipui) and the Teesta (lachenChu)
+| end so, at the heads OpenStreetMap names.
+|
 | Read by tools/build-bangladesh-rivers-map.mjs, which gives every cut card the map's upstream ⓘ line,
 | and by tools/verify-descriptor.mjs, which holds the map to it. No network: the boxes are read from the
 | extract tool's own source, the ways from the pinned snapshot.
@@ -75,4 +80,19 @@ export function cutAt(end, wayIds, boxes = snapshotBoxes(), rivers = snapshotRiv
 export function headJoins(end, parentCoords, connectorStarts) {
   if (connectorStarts.some((s) => distM(s, end) <= 1)) return true;
   return parentCoords.some((c) => c.length > 1 && nearestOnLine(end, c).m <= CONNECT_FROM_M);
+}
+
+/*
+ * A by-id head (Stage 4, 2026-10-05). Where the way that carries a line's upstream end was read by its id — no
+ * snapshot selection took it, so no box can cut it — the chain has reached its named head when that end is the
+ * way's own end: the head OpenStreetMap gives the river by that name, not a node the seed trims it to. Such a
+ * line counts as reached; trimmed short of it, it is cut. Returns { way, byId, named }, or null where no way of
+ * the line carries the end. `ways` is the core's map of untrimmed ways; `rivers` the snapshot's selections.
+ */
+export function byIdHead(end, wayIds, ways, rivers = snapshotRivers()) {
+  const carrying = wayIds.map((id) => ways.get(id)).filter((w) => w && w.coords.some((p) => distM(p, end) <= 1));
+  if (!carrying.length) return null;
+  const atEnd = carrying.find((w) => [w.coords[0], w.coords.at(-1)].some((p) => distM(p, end) <= 1));
+  const way = atEnd ?? carrying[0];
+  return { way: way.id, byId: !rivers.has(way.id), named: Boolean(atEnd) };
 }

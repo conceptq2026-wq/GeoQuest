@@ -30,6 +30,7 @@
   "frames": {
     "bangladesh": {
       "lines": [
+        "gangaUpper",
         "gangaPadma",
         "padma",
         "gorai",
@@ -257,6 +258,54 @@
   },
   "geometry": {
     "lines": {
+      "gangaUpper": {
+        "entity": "padma",
+        "role": "main",
+        "split": "border",
+        "only": "map",
+        "ways": [
+          27282683,
+          229531420,
+          297379872,
+          297429226,
+          323348496,
+          323348500,
+          962189608,
+          962189609,
+          82303835,
+          313510334,
+          27282446,
+          27286263,
+          27282950,
+          82295325,
+          27283151,
+          1016304776,
+          44733081,
+          82295315,
+          82295304,
+          82296646,
+          197026308,
+          82296648,
+          82300600,
+          166517651,
+          160795745,
+          82300638,
+          82300618,
+          197594615,
+          206113622,
+          82308491,
+          82308496,
+          131485555,
+          197526030,
+          155336052,
+          166334629
+        ],
+        "down": [
+          87.8726,
+          25.0607
+        ],
+        "identified": "Stage 4 batch 1 (the user's decision, 2026-10-05), the map's alone: the Ganga upstream of the line gangaPadma to the Gangotri glacier. 35 ways from this system's s4 extract (tools/sources/osm-bangladesh-rivers-padma-s4.geojson), every link sharing a node: OSM relation 1236345 «Ganga» (Q5089), its main_stream ways, then relation 1236089 «Bhagirathi River» (Q170218) above Devprayag — the Bhagirathi headstream, not the Alaknanda. It ends on node 958591880, the first vertex of gangaPadma (0.05 m), and begins at the head of way 27282683, within 3 km of OSM's «Gangotri Glacier» (way 233453553), in Uttarkashi. Drawn under the Padma's card, unlabelled: this Bhagirathi is not the map's «ভাগীরথী» card (the Hooghly)."
+      },
       "gangaPadma": {
         "entity": "padma",
         "role": "main",
@@ -1033,6 +1082,45 @@
           161860530,
           929214029,
           62113458
+        ]
+      },
+      "s4": {
+        "gangaUpper": [
+          27282683,
+          229531420,
+          297379872,
+          297429226,
+          323348496,
+          323348500,
+          962189608,
+          962189609,
+          82303835,
+          313510334,
+          27282446,
+          27286263,
+          27282950,
+          82295325,
+          27283151,
+          1016304776,
+          44733081,
+          82295315,
+          82295304,
+          82296646,
+          197026308,
+          82296648,
+          82300600,
+          166517651,
+          160795745,
+          82300638,
+          82300618,
+          197594615,
+          206113622,
+          82308491,
+          82308496,
+          131485555,
+          197526030,
+          155336052,
+          166334629
         ]
       }
     }

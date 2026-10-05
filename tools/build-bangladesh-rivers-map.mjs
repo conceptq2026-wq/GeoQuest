@@ -33,7 +33,7 @@ import { distM, nearestOnLine, lengthKm } from './lib/rivers-frame.mjs';
 import { CACHE } from './lib/geo.mjs';
 import { riversCore, itemsOnly, SEED, MAP_PINS, CONNECT_FROM_M, CONNECT_MAX_M, UNJOINED_BY_DECISION } from './lib/rivers-core.mjs';
 import { SegmentGrid } from './lib/bangladesh-units.mjs';
-import { cutAt, headJoins, snapshotBoxes, snapshotRivers, CUT_TOL_M, BD_BAND_M } from './lib/rivers-cut.mjs';
+import { cutAt, headJoins, byIdHead, snapshotBoxes, snapshotRivers, CUT_TOL_M, BD_BAND_M } from './lib/rivers-cut.mjs';
 import { districtLabels, NAME_ROOM } from './lib/bd-labels.mjs';
 
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
@@ -84,7 +84,7 @@ const json = (v) => JSON.stringify(v, null, 1) + '\n';
 const geojson = (features) => `{"type":"FeatureCollection","features":[\n${features.map((f) => JSON.stringify(f)).join(',\n')}\n]}\n`;
 const say = (s) => console.log(s);
 
-const { wholeSeed, seed, ui, G, lines, joinsParent, parentSideAtTail, borderPieces, splitAtBorder, markerSeed, outlineRings, outlineIdx, inside, labelTexts, pending, credit, cited } = riversCore({ id: ID, product: 'map' });
+const { wholeSeed, seed, ui, G, lines, ways, joinsParent, parentSideAtTail, borderPieces, splitAtBorder, markerSeed, outlineRings, outlineIdx, inside, labelTexts, pending, credit, cited } = riversCore({ id: ID, product: 'map' });
 const frame = G.frames.bangladesh;
 const wholeFrame = G.frames.whole;
 const words = ui.mapOnlyBn ?? fail('the seed has no ui.mapOnlyBn');
@@ -188,7 +188,14 @@ const inBd = (p) => inside(p, outlineIdx) || outlineGrid.nearest(p, BD_BAND_M / 
 const bdPieces = []; // { line, entity, coords }: the inside pieces, simplified as the rest
 const banded = new Set(); // lines the band keeps a reach of that lies outside the outline itself
 const bits = [];
+// The map-only upstream reaches (Stage 4, 2026-10-05) are «পুরো পথ»'s alone: none of them reaches «বাংলাদেশে», even
+// where one runs within the band (the Khawthlangtuipui's last reach, along the border above Barkal).
+const s4Left = [];
 for (const id of frame.lines) {
+  if (lines[id].spec?.only === 'map') {
+    s4Left.push(id);
+    continue;
+  }
   const runs = [];
   let cur = null;
   for (const p of lines[id].coords) {
@@ -415,6 +422,8 @@ function holds(card, ev) {
   if (ev.kind === 'starts-inside') return inside(at, outlineIdx);
   if (ev.kind === 'seed-note') return String(lines[ev.line]?.spec?.identified ?? '').includes(ev.quote);
   if (ev.kind === 'origin-in-part') return inPartCards.includes(ev.card);
+  // The card its origin row names is itself listed as reached (Stage 4: the Meghna through the Barak).
+  if (ev.kind === 'origin-reached') return reachedCards.includes(ev.card);
   if (ev.kind === 'origin-in-bangladesh') return districtsBn.includes(ev.district.normalize('NFC')) && String(entitySeed[card].values.origin ?? '').normalize('NFC').includes(ev.district.normalize('NFC'));
   fail(`${card}: unknown evidence «${ev.kind}»`);
 }
@@ -441,9 +450,14 @@ for (const card of reachedCards) {
   // Refined (2026-10-05): a head that joins its parent — directly or by a connector — has reached its source.
   const parent = head === 'main' ? undefined : lines[head].spec?.join?.parent;
   const joins = parent !== undefined && !parentSideAtTail(lines[head]) && headJoins(upstreamEnd(card), drawnOf(parent), connectors.filter((q) => q.line === head).map((q) => q.coords[0]));
-  cutReport.push(`${card} ${at ? `${round(at.m / 1000, 3)} km from its ${at.river} box` : 'no box'}${joins ? `, joins ${parent} at its head` : ''}`);
-  if (at && at.m <= CUT_TOL_M && !joins) cutCards.push(card);
+  // By id (Stage 4): a head on a way read by its id is reached at that way's named head, cut if trimmed short of it.
+  const own = head === 'main' ? null : byIdHead(upstreamEnd(card), lines[head].spec?.ways ?? [], ways, snapRivers);
+  const short = Boolean(own?.byId && !own.named);
+  cutReport.push(`${card} ${at ? `${round(at.m / 1000, 3)} km from its ${at.river} box` : 'no box'}${joins ? `, joins ${parent} at its head` : ''}${own?.byId ? (own.named ? `, by id at its named head (way ${own.way})` : `, by id but trimmed short of its head (way ${own.way})`) : ''}`);
+  if ((at && at.m <= CUT_TOL_M && !joins) || short) cutCards.push(card);
 }
+// Reached through another card only while that card is not cut.
+for (const r of seed.mapUpstreamReached ?? []) for (const ev of r.evidence) if (ev.kind === 'origin-reached' && cutCards.includes(ev.card)) fail(`${r.card}: reached through ${ev.card}, which the cut rule cuts`);
 
 // ---- the map's own places: a name on the water where a cited book gives one --------------------------
 // Each is a Natural Earth feature, by its ne_id in a file pinned in tools/sources.json, its geometry pinned in
@@ -536,8 +550,9 @@ const lineLayers = (source, dashed) => [
 // Select, then frame by the open tab: inside Bangladesh, or the whole course (the tabs module's fitTab).
 const fitSelected = [{ action: 'select' }, { action: 'fitTab', clear: ['sheet'], duration: 1200 }];
 views.bd.frame = bdRest;
-// Where the map may pan: every drawn line, with room round it (half-degrees, outward).
-const all = bbox(Object.values(lines).flatMap((l) => l.coords));
+// Where the map may pan: every drawn line, with room round it (half-degrees, outward) — but the map-only
+// upstream reaches (Stage 4, 2026-10-05): «বাংলাদেশে» and the map keep their bounds; only «পুরো পথ» pans to them.
+const all = bbox(Object.values(lines).filter((l) => l.spec?.only !== 'map').flatMap((l) => l.coords));
 const maxBounds = [Math.floor((all[0] - 1.5) * 2) / 2, Math.floor((all[1] - 1.5) * 2) / 2, Math.ceil((all[2] + 1.5) * 2) / 2, Math.ceil((all[3] + 1.5) * 2) / 2];
 // «পুরো পথ» pans wider (2026-10-05): MapLibre keeps the whole view inside the bounds, so on a phone held upright
 // the map's own bounds held its rest frame to their height and cut the courses off at the sides. Its bounds
@@ -778,7 +793,7 @@ say(`views: «পুরো পথ» rests on ${restWhole.join(', ')}, framed ${v
 say(`frames with a name: ${widened.length} «বাংলাদেশে» frames held no district's name and take in the nearest (${widened.join(', ') || 'none'})`);
 say(`upstream: in part ${inPartCards.length} (${inPartCards.join(', ')}); reached or rising in Bangladesh ${reachedCards.length} (${reachedCards.join(', ')})`);
 say(`cut rule (within ${CUT_TOL_M} m of a selection box's edge): ${cutReport.join('; ')}; cut: ${cutCards.join(', ') || 'none'}`);
-say(`«বাংলাদেশে»: ${bdPieces.length} inside pieces (band ${BD_BAND_M} m, bits under ${BD_BIT_KM} km dropped: ${bits.join(', ') || 'none'}); the band keeps ${banded.size} lines' border reaches (${[...banded].join(', ')}); ${bdConnectors.length} of ${connectors.length} connectors; no inside piece: ${noInside.join(', ') || 'none'} (framed on Bangladesh: ${framedOnRest.join(', ') || 'none'}); rest frame ${bdRest.join(', ')}`);
+say(`«বাংলাদেশে»: ${bdPieces.length} inside pieces (band ${BD_BAND_M} m, bits under ${BD_BIT_KM} km dropped: ${bits.join(', ') || 'none'}); the band keeps ${banded.size} lines' border reaches (${[...banded].join(', ')}); ${bdConnectors.length} of ${connectors.length} connectors; no inside piece: ${noInside.join(', ') || 'none'} (framed on Bangladesh: ${framedOnRest.join(', ') || 'none'}); rest frame ${bdRest.join(', ')}; the map-only upstream reaches left out: ${s4Left.join(', ')}`);
 say(`hidden in «বাংলাদেশে»: ${Object.keys(names).filter((k) => !names[k].inBd).length} names, ${Object.keys(marks).filter((k) => !marks[k].inBd).length} markers`);
 for (const k of ['main', 'teesta', 'rupsa']) say(`frames ${k}: in Bangladesh ${rivers[k].frameBd.join(', ')}; whole ${rivers[k].frameWhole.join(', ')}`);
 say(`diagram-only: ${diagramOnly.ids.size} ids and ${diagramOnly.texts.size} texts held back, none shipped; map-only drawn: ${Object.keys(places).length} place(s), ${info.lines.length - seed.infoBn.lines.filter((l) => !l.only).length - seed.markers.filter((m) => m.infoBn).length} ⓘ line(s)`);

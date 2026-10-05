@@ -378,7 +378,9 @@ build core, `tools/lib/rivers-core.mjs`. bangladesh-rivers-map: the same
 seed, pins and extracts, and its lines within 15 m of the pinned chains
 (checked vertex by vertex in its build); what only the map draws is pinned
 apart, in `tools/bangladesh-rivers-map-pins.json` — Kaptai Lake's outline, as
-Natural Earth's 10m lakes file (pinned in `tools/sources.json`) has it. The
+Natural Earth's 10m lakes file (pinned in `tools/sources.json`) has it, and
+Stage 4's four map-only upstream lines (2026-10-05), from the by-id extracts
+`osmBangladeshRivers<System>S4`, pinned by size and SHA-256. The
 seed's `only` ("map" or "diagram", 2026-09-30) keeps an item to one product;
 each build asserts that none of the other's reaches it, and `tools/verify.mjs`
 holds the two products' built files to parity. The map's upstream rule reads

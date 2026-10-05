@@ -1,6 +1,11 @@
 {
-  "_about": "The map's own geometry pins (bangladesh-rivers-map): what only the map draws, apart from the diagram's 68 in tools/bangladesh-rivers-pins.json, so that file and its check stay as they are. `lines`: map-only lines, by line id, hashed as the diagram's are (tools/lib/rivers-core.mjs). `places`: map-only places, by place id, the SHA-256 (first 16 hex) of the Natural Earth feature's coordinates as the pinned file has them (tools/build-bangladesh-rivers-map.mjs). A build whose geometry moved stops and says so; it is never re-pinned to pass. kaptaiLake first pinned 2026-09-30.",
-  "lines": {},
+  "_about": "The map's own geometry pins (bangladesh-rivers-map): what only the map draws, apart from the diagram's 68 in tools/bangladesh-rivers-pins.json, so that file and its check stay as they are. `lines`: map-only lines, by line id, hashed as the diagram's are (tools/lib/rivers-core.mjs). `places`: map-only places, by place id, the SHA-256 (first 16 hex) of the Natural Earth feature's coordinates as the pinned file has them (tools/build-bangladesh-rivers-map.mjs). A build whose geometry moved stops and says so; it is never re-pinned to pass. kaptaiLake first pinned 2026-09-30. gangaUpper, barakUpper, khawthlangtuipui and lachenChu (Stage 4 batch 1, the map-only upstream reaches) first pinned 2026-10-05, with the user's approval of the batch.",
+  "lines": {
+    "gangaUpper": "99233708c4b42580",
+    "barakUpper": "1d9be555d36d19df",
+    "khawthlangtuipui": "217f8f3ac9fc27e6",
+    "lachenChu": "4cc70fd20ccc3c86"
+  },
   "places": {
     "kaptaiLake": "151a3ec77ec2f8d1"
   }

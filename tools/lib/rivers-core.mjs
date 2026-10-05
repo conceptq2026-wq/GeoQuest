@@ -145,7 +145,8 @@ export function riversCore({ id = 'bangladesh-rivers', product, printPins = fals
   const admin2 = zipEntry(zip, G.files.codab.admin2);
   const osmFile = (entry, rel) => {
     if (entry.file !== rel) fail(`the seed reads ${rel}, tools/sources.json pins ${entry.file}`);
-    return JSON.parse(pinnedBuffer(path.join(ROOT, entry.file), undefined, { sha256: entry.sha256 }).toString('utf8'));
+    // Its size too where the pin carries one (Stage 4's extracts, 2026-10-05).
+    return JSON.parse(pinnedBuffer(path.join(ROOT, entry.file), entry.size, { sha256: entry.sha256 }).toString('utf8'));
   };
   const osmSnapshot = osmFile(sources.osmBangladeshRivers, G.files.osmSnapshot);
   const osmPilot = osmFile(sources.osmBangladeshRiversPilot, G.files.osmPilot);

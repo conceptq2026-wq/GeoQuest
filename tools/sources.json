@@ -542,5 +542,41 @@
       "size": 68511711,
       "sha256": "54143857fe880659c23f35469eb512d410ff8b8ee5fe75c4700cb28b33c8f79a"
     }
+  },
+  "osmBangladeshRiversPadmaS4": {
+    "_comment": "The OpenStreetMap ways the Rivers of Bangladesh map alone draws in Stage 4 batch 1 (s4, 2026-10-05) — the Ganga upstream of the Padma line to the Gangotri glacier: OSM relations 1236345 (Ganga, main_stream) and 1236089 (Bhagirathi River) — by way id, with node ids and tags, from tools/extract-bangladesh-rivers-system.mjs padma s4 (the way list is the Padma seed’s geometry.extractBatches.s4). Map-only lines (only: \"map\"); the diagram reads the file and draws none of it. Pinned with the user’s approval of this batch. Only a deliberate re-run changes it.",
+    "file": "tools/sources/osm-bangladesh-rivers-padma-s4.geojson",
+    "fetched": "2026-10-05",
+    "snapshot": "2026-10-05T13:25:01Z",
+    "licence": "ODbL 1.0 — © OpenStreetMap contributors",
+    "size": 253038,
+    "sha256": "d6ef35f5b565a375695b1f8f7839aa7e7163b9c815cc0d7d839b40335c9c7a32"
+  },
+  "osmBangladeshRiversMeghnaS4": {
+    "_comment": "The OpenStreetMap ways the Rivers of Bangladesh map alone draws in Stage 4 batch 1 (s4, 2026-10-05) — the Barak upstream to its head in Senapati, Manipur: OSM relation 5904028 — by way id, with node ids and tags, from tools/extract-bangladesh-rivers-system.mjs meghna s4 (the way list is the Meghna seed’s geometry.extractBatches.s4). Map-only lines (only: \"map\"); the diagram reads the file and draws none of it. Pinned with the user’s approval of this batch. Only a deliberate re-run changes it.",
+    "file": "tools/sources/osm-bangladesh-rivers-meghna-s4.geojson",
+    "fetched": "2026-10-05",
+    "snapshot": "2026-10-05T13:25:01Z",
+    "licence": "ODbL 1.0 — © OpenStreetMap contributors",
+    "size": 118138,
+    "sha256": "3d45533fdbf75f6497a6d395cfd29f5b9496d7b134744d27dcbefee34d08aa02"
+  },
+  "osmBangladeshRiversKarnaphuliS4": {
+    "_comment": "The OpenStreetMap ways the Rivers of Bangladesh map alone draws in Stage 4 batch 1 (s4, 2026-10-05) — the Karnaphuli in Mizoram as «Khawthlangtuipui», to its named head — by way id, with node ids and tags, from tools/extract-bangladesh-rivers-system.mjs karnaphuli s4 (the way list is the Karnaphuli seed’s geometry.extractBatches.s4). Map-only lines (only: \"map\"); the diagram reads the file and draws none of it. Pinned with the user’s approval of this batch. Only a deliberate re-run changes it.",
+    "file": "tools/sources/osm-bangladesh-rivers-karnaphuli-s4.geojson",
+    "fetched": "2026-10-05",
+    "snapshot": "2026-10-05T13:29:06Z",
+    "licence": "ODbL 1.0 — © OpenStreetMap contributors",
+    "size": 29308,
+    "sha256": "e27b7038e718062291d7c2dbd39df5d2c2d0b0a8f0628e9d21d14f093252dc9e"
+  },
+  "osmBangladeshRiversJamunaS4": {
+    "_comment": "The OpenStreetMap ways the Rivers of Bangladesh map alone draws in Stage 4 batch 1 (s4, 2026-10-05) — the Teesta upstream of Chungthang by the Lachen Chu: OSM relations 19299440 (Lachen Chu) and 13577352 (Teesta River) — by way id, with node ids and tags, from tools/extract-bangladesh-rivers-system.mjs jamuna s4 (the way list is the Jamuna seed’s geometry.extractBatches.s4). Map-only lines (only: \"map\"); the diagram reads the file and draws none of it. Pinned with the user’s approval of this batch. Only a deliberate re-run changes it.",
+    "file": "tools/sources/osm-bangladesh-rivers-jamuna-s4.geojson",
+    "fetched": "2026-10-05",
+    "snapshot": "2026-10-05T13:29:06Z",
+    "licence": "ODbL 1.0 — © OpenStreetMap contributors",
+    "size": 43345,
+    "sha256": "b8f690cde5adda4f6ea8534720a61ced6547546a132afb9988552b7f02a7d337"
   }
 }

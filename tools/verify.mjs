@@ -16,6 +16,7 @@ import { assetVersion, codeFiles, references } from './lib/asset-version.mjs';
 import { CACHE, zipEntry } from './lib/geo.mjs';
 import { projection, distM, nearestOnLine, parsePath } from './lib/rivers-frame.mjs';
 import { loadRiversSeed } from './lib/rivers-seed.mjs';
+import { seedFor } from './lib/rivers-core.mjs';
 
 const require = createRequire(import.meta.url);
 const vtRequire = createRequire(require.resolve('vt-pbf'));
@@ -177,6 +178,8 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
 {
   const S = loadRiversSeed(RIVERS_SEED).seed;
   const G = S.geometry;
+  // The diagram's own lines: the seed less the map's (only: "map", Stage 4's upstream reaches), as its build reads it.
+  const GD = seedFor(S, 'diagram').geometry;
   const riversSources = readJ(path.join(HERE, 'sources.json'));
   const frames = {
     whole: readJ(path.join(RIVERS_DIR, 'frame-whole.json')),
@@ -240,7 +243,7 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
   const CONNECTOR_MAX_M = 12000;
   const maxFor = () => CONNECTOR_MAX_M;
   // A branch: a tributary, a distributary, a river whose role the books dispute, or a main river's later piece.
-  const branches = Object.entries(G.lines).filter(([, l]) => ['tributary', 'distributary', 'disputed'].includes(l.role) || (l.role === 'main' && l.join?.parent));
+  const branches = Object.entries(GD.lines).filter(([, l]) => ['tributary', 'distributary', 'disputed'].includes(l.role) || (l.role === 'main' && l.join?.parent));
   const connectors = frames.bangladesh.connectors ?? [];
   const connectorOf = new Map();
   for (const c of connectors) {
@@ -344,7 +347,7 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
   const mainNote = [];
   for (const e of S.entities.filter((x) => x.role === 'main' && x.id !== 'main')) {
     const ids = frames.bangladesh.lines.filter((l) => l.entity === e.id).map((l) => l.id);
-    const order = Object.keys(G.lines).filter((id) => ids.includes(id));
+    const order = Object.keys(GD.lines).filter((id) => ids.includes(id));
     // A piece joined to the one before (join.parent) is held by b., with its connector or its reason.
     const gaps = order.slice(1).flatMap((id, i) => (G.lines[id].join?.parent === order[i] ? [] : [distM(lineOf('bangladesh', order[i]).at(-1).at(-1), lineOf('bangladesh', id)[0][0])]));
     const roles = order.every((id) => G.lines[id].role === 'main');
@@ -654,9 +657,11 @@ check(outerOk, 'land outer rings are wound correctly (land will not render as se
       const flaggedM = mInfo.lines.filter((l) => onlyTexts.has(l.text) || cutLine(l.text)).length;
       // Line ids and roles: every line either frame draws, and the map's, each with its card's role.
       const dLineRoles = [...new Map(dFrames.flatMap((f) => f.lines.map((l) => [l.id, l.role]))).entries()].sort().map(([k, r]) => `${k}|${r}`);
-      const mLineRoles = [...new Map(features.map((f) => [f.properties.line, mRivers[f.properties.key].role])).entries()].sort().map(([k, r]) => `${k}|${r}`);
+      // The map's own lines (only: "map", Stage 4's upstream reaches) set aside, as its own ⓘ lines are.
+      const mapOnlyLines = new Set(Object.entries(G.lines).filter(([, l]) => l.only === 'map').map(([id]) => id));
+      const mLineRoles = [...new Map(features.filter((f) => !mapOnlyLines.has(f.properties.line)).map((f) => [f.properties.line, mRivers[f.properties.key].role])).entries()].sort().map(([k, r]) => `${k}|${r}`);
       if (JSON.stringify(dLineRoles) !== JSON.stringify(mLineRoles)) diffs.push('line ids or roles');
-      check(diffs.length === 0, `parity: diagram and map — ${dCards.length} cards in ${mGroups.length} groups, their rows word for word, ${Object.keys(mMarks).length} markers' cards, ${dLines.length} ⓘ lines alike (the diagram's own ${flaggedD} and the map's own ${flaggedM} set aside by the seed's only), ${dLineRoles.length} line ids and roles, ${pendingD} pending facts${diffs.length ? ` — differ: ${diffs.join('; ')}` : ''}`);
+      check(diffs.length === 0, `parity: diagram and map — ${dCards.length} cards in ${mGroups.length} groups, their rows word for word, ${Object.keys(mMarks).length} markers' cards, ${dLines.length} ⓘ lines alike (the diagram's own ${flaggedD} and the map's own ${flaggedM} set aside by the seed's only), ${dLineRoles.length} line ids and roles (the map's own ${mapOnlyLines.size} lines set aside), ${pendingD} pending facts${diffs.length ? ` — differ: ${diffs.join('; ')}` : ''}`);
     }
   }
 }
