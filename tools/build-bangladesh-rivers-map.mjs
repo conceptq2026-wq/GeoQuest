@@ -33,7 +33,8 @@ import { distM, nearestOnLine, lengthKm } from './lib/rivers-frame.mjs';
 import { CACHE } from './lib/geo.mjs';
 import { riversCore, itemsOnly, SEED, MAP_PINS, CONNECT_FROM_M, CONNECT_MAX_M, UNJOINED_BY_DECISION } from './lib/rivers-core.mjs';
 import { SegmentGrid } from './lib/bangladesh-units.mjs';
-import { cutAt, snapshotBoxes, snapshotRivers, CUT_TOL_M, BD_BAND_M } from './lib/rivers-cut.mjs';
+import { cutAt, headJoins, snapshotBoxes, snapshotRivers, CUT_TOL_M, BD_BAND_M } from './lib/rivers-cut.mjs';
+import { districtLabels, NAME_ROOM } from './lib/bd-labels.mjs';
 
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const ROOT = path.resolve(HERE, '..');
@@ -300,6 +301,18 @@ const split = new Map(Object.keys(lines).map((id) => [id, splitAtBorder(lines[id
 const linesOf = (card) => frame.lines.filter((id) => entityOf(id) === card);
 const outsideKm = Object.fromEntries(Object.keys(rivers).map((k) => [k, linesOf(k).reduce((n, id) => n + split.get(id).filter((q) => !q.inside).reduce((m, q) => m + lengthKm(q.coords), 0), 0)]));
 const bbox = (pts) => pts.reduce((b, [x, y]) => [Math.min(b[0], x), Math.min(b[1], y), Math.max(b[2], x), Math.max(b[3], y)], [Infinity, Infinity, -Infinity, -Infinity]);
+// The bounds a frame needs on a map up to `tall` times as high as wide, fitted to its width: MapLibre keeps the
+// whole view inside them. Mercator about the frame's middle, outward to whole degrees, holding `base` too.
+const TALL = 2.2;
+const mercY = (lat) => Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360));
+const latOf = (y) => (360 / Math.PI) * Math.atan(Math.exp(y)) - 90;
+function tallBounds(f, tall, base) {
+  const width = ((f[2] - f[0]) * Math.PI) / 180;
+  const [s, n] = [mercY(f[1]), mercY(f[3])];
+  const half = Math.max(n - s, width * tall) / 2;
+  const middle = (s + n) / 2;
+  return [Math.min(base[0], Math.floor(f[0])), Math.min(base[1], Math.floor(latOf(middle - half))), Math.max(base[2], Math.ceil(f[2])), Math.max(base[3], Math.ceil(latOf(middle + half)))];
+}
 const outward = (b, d = 2) => [Math.floor(b[0] * 10 ** d) / 10 ** d, Math.floor(b[1] * 10 ** d) / 10 ** d, Math.ceil(b[2] * 10 ** d) / 10 ** d, Math.ceil(b[3] * 10 ** d) / 10 ** d];
 const margin = (b) => {
   const m = Math.max(MARGIN_MIN, MARGIN * Math.max(b[2] - b[0], b[3] - b[1]));
@@ -332,10 +345,33 @@ const bdBox = (cards) => {
 const bdRest = bdBox(Object.keys(rivers).filter((k) => rivers[k].role === 'main')) ?? fail('no main river has a piece inside Bangladesh');
 const noInside = Object.keys(rivers).filter((k) => !rivers[k].hasBd);
 const framedOnRest = [];
+// A frame keeps a name besides the river's own (the user's default, 2026-10-05): a «বাংলাদেশে» frame whose
+// square holds no district's label point, as the basemap draws it, takes in the nearest one with room for its name — so a
+// small river opens no closer than the zoom that shows where it is. Larger frames are left as they are.
+const { points: districtPoints } = await districtLabels();
+const widened = [];
+// The frame as the room above the open card shows it, about square on a phone: its shorter side widened to its longer.
+const squared = (box) => {
+  const k = Math.cos((((box[1] + box[3]) / 2) * Math.PI) / 180);
+  const half = Math.max((box[2] - box[0]) * k, box[3] - box[1]) / 2;
+  const [cx, cy] = [(box[0] + box[2]) / 2, (box[1] + box[3]) / 2];
+  return [cx - half / k, cy - half, cx + half / k, cy + half];
+};
+const named = (k, box) => {
+  const seen = squared(box);
+  if (districtPoints.some(({ at: [x, y] }) => x >= seen[0] && x <= seen[2] && y >= seen[1] && y <= seen[3])) return box;
+  const gap = ({ at: [x, y] }) => Math.hypot(Math.max(box[0] - x, 0, x - box[2]) * Math.cos((y * Math.PI) / 180), Math.max(box[1] - y, 0, y - box[3]));
+  const near = districtPoints.reduce((a, b) => (gap(b) < gap(a) ? b : a));
+  const [x, y] = near.at;
+  const out = outward([Math.min(box[0], x - NAME_ROOM[0]), Math.min(box[1], y - NAME_ROOM[1]), Math.max(box[2], x + NAME_ROOM[0]), Math.max(box[3], y + NAME_ROOM[1])]);
+  widened.push(`${k} → «${near.nameBn}»`);
+  return out;
+};
 for (const [k, row] of Object.entries(rivers)) {
   const set = setOf(k);
   const ids = set.flatMap(linesOf);
-  row.frameBd = bdBox(treeOf(k)) ?? (framedOnRest.push(k), bdRest);
+  const own = bdBox(treeOf(k));
+  row.frameBd = own ? named(k, own) : (framedOnRest.push(k), bdRest);
   row.frameWhole = outward(margin(bbox(ids.flatMap((id) => lines[id].coords))));
   row.outsideSet = set.some((c) => outsideKm[c] >= OUTSIDE_KM);
   // «পুরো পথ» rests on every main river whose system — the river and its descendants — has a reach outside.
@@ -402,8 +438,11 @@ const cutCards = [];
 for (const card of reachedCards) {
   const head = linesOf(card)[0];
   const at = cutAt(upstreamEnd(card), head === 'main' ? G.main.ways : (lines[head].spec?.ways ?? []), boxes, snapRivers);
-  cutReport.push(`${card} ${at ? `${round(at.m / 1000, 3)} km from its ${at.river} box` : 'no box'}`);
-  if (at && at.m <= CUT_TOL_M) cutCards.push(card);
+  // Refined (2026-10-05): a head that joins its parent — directly or by a connector — has reached its source.
+  const parent = head === 'main' ? undefined : lines[head].spec?.join?.parent;
+  const joins = parent !== undefined && !parentSideAtTail(lines[head]) && headJoins(upstreamEnd(card), drawnOf(parent), connectors.filter((q) => q.line === head).map((q) => q.coords[0]));
+  cutReport.push(`${card} ${at ? `${round(at.m / 1000, 3)} km from its ${at.river} box` : 'no box'}${joins ? `, joins ${parent} at its head` : ''}`);
+  if (at && at.m <= CUT_TOL_M && !joins) cutCards.push(card);
 }
 
 // ---- the map's own places: a name on the water where a cited book gives one --------------------------
@@ -500,6 +539,10 @@ views.bd.frame = bdRest;
 // Where the map may pan: every drawn line, with room round it (half-degrees, outward).
 const all = bbox(Object.values(lines).flatMap((l) => l.coords));
 const maxBounds = [Math.floor((all[0] - 1.5) * 2) / 2, Math.floor((all[1] - 1.5) * 2) / 2, Math.ceil((all[2] + 1.5) * 2) / 2, Math.ceil((all[3] + 1.5) * 2) / 2];
+// «পুরো পথ» pans wider (2026-10-05): MapLibre keeps the whole view inside the bounds, so on a phone held upright
+// the map's own bounds held its rest frame to their height and cut the courses off at the sides. Its bounds
+// hold the rest frame fitted to the width of a map up to TALL times as high as wide, outward to whole degrees.
+const wholeBounds = tallBounds(views.whole.frame, TALL, maxBounds);
 const rowFields = Object.fromEntries(ui.rowOrder.map((k) => [k, { type: 'text', verifiable: true }]));
 const markRowFields = Object.fromEntries(ui.rowOrder.filter((k) => Object.values(marks).some((m) => k in m)).map((k) => [k, { type: 'text' }]));
 const descriptor = {
@@ -675,13 +718,14 @@ const descriptor = {
         hide: {
           sources: ['connectors', 'lines-out', 'lines-in'],
           records: [
-            { records: 'rivers', field: 'hasBd', value: false },
+            // …nor in its picker and ‹ › (2026-10-05): Bhagirathi and Barak have no piece inside.
+            { records: 'rivers', field: 'hasBd', value: false, picker: true },
             { records: 'names', field: 'inBd', value: false },
             { records: 'marks', field: 'inBd', value: false },
           ],
         },
       },
-      whole: { selectionFrame: 'frameWhole', enabledBy: 'outsideSet', disabledNote: { field: 'disabledBn' }, hide: { sources: ['bd-connectors', 'bd-lines'] } },
+      whole: { selectionFrame: 'frameWhole', enabledBy: 'outsideSet', disabledNote: { field: 'disabledBn' }, hide: { sources: ['bd-connectors', 'bd-lines'] }, maxBounds: wholeBounds },
     },
   },
   focus: { records: 'rivers', idle: { field: 'role', value: 'main' }, idleByTab: { whole: { field: 'restWhole', value: true } }, parent: 'up', also: [{ records: 'marks', field: 'river' }, { records: 'names', field: 'river' }] },
@@ -730,7 +774,8 @@ say(`main line crossings: drawn ${mainCrossings.drawn.length}, pinned chain ${ma
 say(`connectors: ${connectors.map((c) => `${c.line} → ${c.parent} ${c.m} m`).join(', ') || 'none'} (from ${CONNECT_FROM_M} m to ${CONNECT_MAX_M / 1000} km)`);
 say(`focus: ${Object.values(rivers).filter((r) => !r.up).length} roots (${Object.keys(rivers).filter((k) => !rivers[k].up).join(', ')}); ${Object.values(rivers).filter((r) => r.up && rivers[r.up]?.up).length} cards below a branch`);
 say(`places: ${placeReport.join('; ') || 'none'}`);
-say(`views: «পুরো পথ» rests on ${restWhole.join(', ')}, framed ${views.whole.frame.join(', ')}; disabled for ${disabledCards.length} cards (${disabledCards.join(', ')}); pans within ${maxBounds.join(', ')}`);
+say(`views: «পুরো পথ» rests on ${restWhole.join(', ')}, framed ${views.whole.frame.join(', ')}, pans within ${wholeBounds.join(', ')} (a map up to ${TALL} times as high as wide); disabled for ${disabledCards.length} cards (${disabledCards.join(', ')}); «বাংলাদেশে» pans within ${maxBounds.join(', ')}`);
+say(`frames with a name: ${widened.length} «বাংলাদেশে» frames held no district's name and take in the nearest (${widened.join(', ') || 'none'})`);
 say(`upstream: in part ${inPartCards.length} (${inPartCards.join(', ')}); reached or rising in Bangladesh ${reachedCards.length} (${reachedCards.join(', ')})`);
 say(`cut rule (within ${CUT_TOL_M} m of a selection box's edge): ${cutReport.join('; ')}; cut: ${cutCards.join(', ') || 'none'}`);
 say(`«বাংলাদেশে»: ${bdPieces.length} inside pieces (band ${BD_BAND_M} m, bits under ${BD_BIT_KM} km dropped: ${bits.join(', ') || 'none'}); the band keeps ${banded.size} lines' border reaches (${[...banded].join(', ')}); ${bdConnectors.length} of ${connectors.length} connectors; no inside piece: ${noInside.join(', ') || 'none'} (framed on Bangladesh: ${framedOnRest.join(', ') || 'none'}); rest frame ${bdRest.join(', ')}`);

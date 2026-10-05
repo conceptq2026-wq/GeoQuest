@@ -7,13 +7,20 @@
 | because the box did, not the river; a way read by its id (every later extract) is taken whole and
 | ends where OpenStreetMap's way does. The Teesta stops at 27.601°N, on its box's 27.6°N.
 |
+| Refined by the user (2026-10-05): a line whose upstream end joins its parent river — on the parent's
+| drawn course, within CONNECT_FROM_M, or the start of a connector to it — has reached its source, the
+| point where it leaves its parent, however near a box's edge that lies. The Bhagirathi, which leaves the
+| Ganga by its 7.4 km connector 0.7 km inside the hooghly box's 24.5°N, is reached; the Teesta, which
+| joins its parent at its other end, stays cut.
+|
 | Read by tools/build-bangladesh-rivers-map.mjs, which gives every cut card the map's upstream ⓘ line,
 | and by tools/verify-descriptor.mjs, which holds the map to it. No network: the boxes are read from the
 | extract tool's own source, the ways from the pinned snapshot.
 */
 import fs from 'node:fs';
 import path from 'node:path';
-import { distM } from './rivers-frame.mjs';
+import { distM, nearestOnLine } from './rivers-frame.mjs';
+import { CONNECT_FROM_M } from './rivers-core.mjs';
 
 export const CUT_TOL_M = 1000;
 // «বাংলাদেশে»'s band (R-55): a line counts as inside Bangladesh where it lies inside COD-AB's outline or within
@@ -58,4 +65,14 @@ export function cutAt(end, wayIds, boxes = snapshotBoxes(), rivers = snapshotRiv
     if (!best || m < best.m) best = { river, box, m };
   }
   return best;
+}
+
+/**
+ * A line's upstream end joins its parent: it starts a connector to the parent (connectorStarts, the parent-side
+ * ends of the line's connectors), or lies within CONNECT_FROM_M of the parent's drawn course (parentCoords, its
+ * pieces). Such a line is reached, not cut, whatever box it was taken in.
+ */
+export function headJoins(end, parentCoords, connectorStarts) {
+  if (connectorStarts.some((s) => distM(s, end) <= 1)) return true;
+  return parentCoords.some((c) => c.length > 1 && nearestOnLine(end, c).m <= CONNECT_FROM_M);
 }

@@ -15,9 +15,9 @@
 |--------------------------------------------------------------------------
 */
 
-import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=bc23c7640f';
-import { resolver } from '../shared/resolver.js?v=bc23c7640f';
-import { pickerRow } from '../shared/picker.js?v=bc23c7640f';
+import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=c63cfbb211';
+import { resolver } from '../shared/resolver.js?v=c63cfbb211';
+import { pickerRow } from '../shared/picker.js?v=c63cfbb211';
 
 /*
 |--------------------------------------------------------------------------
@@ -642,13 +642,13 @@ function pick(row, keys) {
 |--------------------------------------------------------------------------
 */
 const SHELL_MODULES = {
-  tabs: './tabs.js?v=bc23c7640f',
-  chips: './chips.js?v=bc23c7640f',
-  timeline: './timeline.js?v=bc23c7640f',
-  globe: './globe.js?v=bc23c7640f',
-  focus: './focus.js?v=bc23c7640f',
-  legend: './legend.js?v=bc23c7640f',
-  info: './info.js?v=bc23c7640f',
+  tabs: './tabs.js?v=c63cfbb211',
+  chips: './chips.js?v=c63cfbb211',
+  timeline: './timeline.js?v=c63cfbb211',
+  globe: './globe.js?v=c63cfbb211',
+  focus: './focus.js?v=c63cfbb211',
+  legend: './legend.js?v=c63cfbb211',
+  info: './info.js?v=c63cfbb211',
 };
 const hiders = []; // (table, key) => true takes a record off the map, the picker and ‹ ›
 // (table, key) => true takes a record off the map only: the picker and ‹ › still list it (the focus module).
@@ -2102,7 +2102,7 @@ const applySheetOffset = (offset) => {
  * return. Like MapLibre's own bound, this takes the screen as unrotated. A map
  * without maxBounds never reaches any of it.
  */
-const maxBox = maxBounds ? map.getMaxBounds() : null;
+let maxBox = maxBounds ? map.getMaxBounds() : null;
 const boundsUnderCard = Boolean(maxBox) && maxBox.getWest() < maxBox.getEast();
 let cardCovers = 0;
 let boundsToRelease = false;
@@ -2149,6 +2149,19 @@ function boundUnderCard() {
   // Back inside the box as the card slides away; MapLibre's own bounds once there.
   boundsToRelease = true;
   map.easeTo({ center: to.center, zoom: to.zoom, duration: motion(280), essential: true });
+}
+/*
+ * A module's own pan limit for the moment — a view tab's (`views.<tab>.maxBounds`,
+ * the tabs module, 2026-10-05) — or, given null, the map's own again. The
+ * bounds under the card follow it: the card's rule is the same, the box is
+ * the one in force.
+ */
+function setBound(box) {
+  if (!maxBox) throw new Error('a pan limit of its own needs the map to have one: constraints.maxBounds');
+  map.setMaxBounds(box ?? maxBounds);
+  maxBox = map.getMaxBounds();
+  cardCovers = -1;
+  boundUnderCard();
 }
 if (boundsUnderCard) {
   own.mapHandler(map, 'moveend', () => {
@@ -2402,6 +2415,7 @@ Object.assign(shell, {
   runActions,
   refilter: applyFilter,
   deselect: clearSelection,
+  bound: setBound,
   onChange: (listener) => changeListeners.push(listener),
   tapTargets,
   archive: (path, kind) => {

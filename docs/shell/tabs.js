@@ -58,6 +58,22 @@
 | map-only hiding: the picker and ‹ › still list them). Another tab shows them
 | again. The rivers map's «বাংলাদেশে» draws only what lies in Bangladesh.
 |
+| A `records` entry with `picker: true` (2026-10-05) takes its records out of
+| the picker and ‹ › too, while that tab is open. Such a record is not chosen
+| there: picking the tab with one selected clears the selection and opens the
+| tab's own view, and selecting one from anywhere while the tab is open opens
+| the first tab that lists it. The rivers map's Bhagirathi and Barak, with no
+| piece inside Bangladesh, leave «বাংলাদেশে»'s list.
+|
+| A view tab may pan within bounds of its own (2026-10-05):
+|
+|   views: { <tab>: { maxBounds?: [w, s, e, n] } }
+|
+| While that tab is open the map pans within them, in place of the map's own
+| `constraints.maxBounds`, which every other tab keeps; the bounds under the
+| card follow. The rivers map's «পুরো পথ» rests on courses to Tibet, wider and
+| taller than a phone held upright shows inside the map's own bounds.
+|
 | Cards only (2026-10-01): `cardsOnly` names tabs whose records have no place
 | on the map. While one is open the map, its legend, chips and corner
 | controls give way — hidden, not torn down — to a list of the tab's cards in
@@ -97,17 +113,22 @@ export async function mount(api) {
   if (spec.views && table) throw new Error('tabs: views are for view tabs, which divide no records table');
   for (const [k, view] of Object.entries(spec.views ?? {})) {
     for (const s of view.hide?.sources ?? []) if (!api.descriptor.sources?.[s]) throw new Error(`tabs: views.${k}.hide names source "${s}", which the map does not declare`);
-    for (const r of view.hide?.records ?? []) if (!api.records[r.records] || !r.field) throw new Error(`tabs: views.${k}.hide.records needs a records table and a field`);
+    for (const r of view.hide?.records ?? []) if (!api.records[r.records] || !r.field || (r.picker !== undefined && typeof r.picker !== 'boolean')) throw new Error(`tabs: views.${k}.hide.records needs a records table and a field, and picker, if given, true or false`);
+    const b = view.maxBounds;
+    if (b !== undefined && !(Array.isArray(b) && b.length === 4 && b.every(Number.isFinite) && b[0] < b[2] && b[1] < b[3] && b[1] >= -85 && b[3] <= 85)) throw new Error(`tabs: views.${k}.maxBounds must be [w, s, e, n] within ±85°`);
+    if (b !== undefined && !api.descriptor.constraints?.maxBounds) throw new Error(`tabs: views.${k}.maxBounds needs the map's own constraints.maxBounds, which the other tabs keep`);
   }
   // What the open view tab takes off the map: its records here, its sources once the map is built.
   if (Object.values(spec.views ?? {}).some((v) => v.hide?.records?.length)) api.hideOnMap((t, key) => (spec.views[active]?.hide?.records ?? []).some((r) => r.records === t && api.records[t][key]?.[r.field] === r.value));
+  // …and, where an entry says `picker`, out of the picker and ‹ › as well.
+  if (Object.values(spec.views ?? {}).some((v) => v.hide?.records?.some((r) => r.picker))) api.hide((t, key) => unlisted(active, t, key));
   for (const k of spec.cardsOnly ?? []) if (!keys.includes(k)) throw new Error(`tabs: cardsOnly names "${k}", which "${spec.from}" has no tab for`);
   if (spec.cardsOnly && !table) throw new Error('tabs: cardsOnly is for tabs that divide a records table');
   // Other modules read the open tab; the descriptor's picker and taps frame a selection by it.
   api.activeTab = () => active;
   api.actions.fitTab = (action, context) => fitSelection(action, context);
 
-  await stylesheet(api, './tabs.css?v=bc23c7640f');
+  await stylesheet(api, './tabs.css?v=c63cfbb211');
   bar = api.own.node(document.createElement('div'), 'tabs');
   bar.className = table ? 'map-tabs' : 'map-tabs view-tabs';
   bar.setAttribute('role', 'tablist');
@@ -146,6 +167,7 @@ export function install(api) {
   api.own.domHandler(bar, 'click', (event) => {
     const button = event.target.closest('.map-tab');
     if (!button || button.dataset.tab === active || disabled.has(button.dataset.tab)) return;
+    leave(button.dataset.tab);
     open(button.dataset.tab);
     frame();
   });
@@ -155,12 +177,14 @@ export function install(api) {
     const keys = [...buttons.keys()].filter((k) => k === active || !disabled.has(k));
     const next = keys[(keys.indexOf(active) + (event.key === 'ArrowRight' ? 1 : keys.length - 1)) % keys.length];
     if (next === active) return;
+    leave(next);
     open(next);
     frame();
     buttons.get(next).focus();
   });
   words();
   hideSources();
+  bound();
   if (list) {
     // A card in the list chooses its record, as the picker would.
     api.own.domHandler(list, 'click', (event) => {
@@ -189,6 +213,16 @@ export function install(api) {
       if (disabled.has(active)) {
         open([...buttons.keys()].find((k) => !disabled.has(k)));
         queueMicrotask(frame);
+        return;
+      }
+      // A record this tab does not list, chosen from anywhere: the first tab that lists it opens.
+      const sel = selected();
+      if (sel && unlisted(active, sel.table, sel.key)) {
+        const to = [...buttons.keys()].find((k) => !disabled.has(k) && !unlisted(k, sel.table, sel.key));
+        if (to) {
+          open(to);
+          queueMicrotask(frame);
+        }
       }
       return;
     }
@@ -198,6 +232,23 @@ export function install(api) {
     if (tab !== undefined && tab !== active) open(tab);
     markList();
   });
+}
+
+/** A record a tab takes out of its picker and ‹ › (`hide.records[].picker`). */
+function unlisted(tab, table, key) {
+  return (spec.views?.[tab]?.hide?.records ?? []).some((r) => r.picker && r.records === table && shell.records[table][key]?.[r.field] === r.value);
+}
+
+/** Before a tab the student picks opens: a selection it does not list is cleared, so it opens on its own view. */
+function leave(tab) {
+  const sel = selected();
+  if (sel && unlisted(tab, sel.table, sel.key)) shell.deselect();
+}
+
+/** The open tab's own pan limit, or the map's. */
+function bound() {
+  if (!shell.map || !Object.values(spec.views ?? {}).some((v) => v.maxBounds)) return;
+  shell.bound(spec.views[active]?.maxBounds ?? null);
 }
 
 /** The selected record, from whichever table holds the one selection. */
@@ -242,6 +293,7 @@ function open(tab) {
   words();
   fillList();
   hideSources();
+  bound();
 }
 
 /** The sources some view tab hides: off the map while that tab is open — their tap zones too — on in any other. */

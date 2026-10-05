@@ -1502,7 +1502,8 @@
       {
        "records": "rivers",
        "field": "hasBd",
-       "value": false
+       "value": false,
+       "picker": true
       },
       {
        "records": "names",
@@ -1528,7 +1529,13 @@
       "bd-connectors",
       "bd-lines"
      ]
-    }
+    },
+    "maxBounds": [
+     80.5,
+     10,
+     97,
+     40
+    ]
    }
   }
  },

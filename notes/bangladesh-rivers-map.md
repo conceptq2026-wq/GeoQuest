@@ -36,13 +36,28 @@ M3 «পুরো পথ», M4 parity with the diagram — all done, 2026-09-30.
       sources are hidden there, with their tap zones. So are the names and
       markers outside (4 names, the Yarlung's among them, and the origin
       marker), through `tabs.views.bd.hide` (`notes/shell.md`).
-    - Two cards have no inside piece, Bhagirathi and Barak. They stay in the
-      picker. Chosen in this tab, nothing of theirs is drawn and the map shows
-      Bangladesh (their `frameBd` is the rest frame).
+    - Two cards have no inside piece, Bhagirathi and Barak. «বাংলাদেশে»
+      leaves them out of its picker and ‹ › (the user's decision, 2026-10-05;
+      `hide.records[].picker`, `notes/shell.md`). «পুরো পথ» lists them as
+      before. Chosen there, a switch to «বাংলাদেশে» clears the selection and
+      shows its rest view. Their `frameBd` is the rest frame, unused.
+    - Nothing else opens either: no card row links a river, no marker is
+      theirs, and their names are hidden in «বাংলাদেশে». A selection of one
+      from anywhere while «বাংলাদেশে» is open would open «পুরো পথ».
   - A selection there is framed on the inside pieces of the river and its
     descendants, not its ancestors (`frameBd`). The ancestors stay drawn,
     inside Bangladesh only, lighter. At rest the tab frames the main rivers'
     inside pieces: 88.02, 20.73, 92.63, 25.74.
+  - **A frame keeps a name** (the user's default, 2026-10-05,
+    `tools/lib/bd-labels.mjs`):
+    - A frame's square (the room above the card is about square) must hold a
+      district's label point as bangladesh.pmtiles draws it (from z7).
+    - Otherwise the frame takes in the nearest one, with room for its name
+      (0.06° × 0.02° a side). Seven frames: Kirtankhola, Harinbhanga, Rupsa,
+      Mogra, Halda, Matamuhuri and Naf. The other 41 are their inside pieces,
+      as before.
+    - The deepest frame is now z10.53 (Buriganga, unchanged), down from 11.
+      Rupsa opens at 9.72 (390 px) and 9.16 (320 px), Bagerhat's name in view.
   - The open card takes at most 40% of the map's height and scrolls inside
     itself; the frame fits the room above it (`sheetMaxHeight: 0.4`,
     `notes/shell.md`).
@@ -57,6 +72,13 @@ M3 «পুরো পথ», M4 parity with the diagram — all done, 2026-09-30.
     descendants — has a reach outside, framed on all of those systems: the
     Jamuna, the Padma, the Meghna (by the Barak, Gumti, Khowai and Manu; R-55),
     the Feni and the Naf. It draws as before; its frame did not move.
+  - «পুরো পথ» pans within 80.5, 10, 97, 40 (R-56, `views.whole.maxBounds`).
+    Those bounds hold its rest frame fitted to the width of a map up to 2.2
+    times as high as wide. Under the map's own 19–32°N, a phone held upright
+    stopped at z5.12, with the Tibetan reach and the Barak's end cut off.
+    Its rest view is now z4.17 at 390 × 844 and z3.86 at 320 × 640, the
+    whole 81.74–96.13°E in view. «বাংলাদেশে» keeps the map's own bounds.
+    world.pmtiles covers the globe (±85.05°, z0–10).
   - **Disabled rule:** «পুরো পথ» is disabled for a selection whose set has no
     reach outside Bangladesh — a card's lines running at least 1 km outside
     COD-AB's outline; the build refuses a disabled set that has any piece
@@ -128,11 +150,18 @@ build stops.
   approved sentence after the card's name, as every upstream line has it.
 - The seed's `mapUpstreamReached` is unchanged and its evidence still holds.
   The rule overrides it from the drawn course; no seed file moved.
+- **Refined** (the user, 2026-10-05): a line whose upstream end joins its
+  parent has reached its source, however near a box's edge it lies.
+  - Joining means within 50 m of the parent's drawn course, or the start of
+    a connector to it (`headJoins`).
+  - The build and the validator read the same helper.
 - The 12, end to box outline:
   - main 900.102 km (its pinned origin in Tibet; the brahmaputraJamuna box);
-  - **teesta 0.122 km** (its teesta box's 27.6°N): cut;
-  - **bhagirathi 0.714 km** (the hooghly box's 24.5°N; its head meets the
-    Ganga only by a 7.4 km connector): cut;
+  - **teesta 0.122 km** (its teesta box's 27.6°N; it joins its parent at its
+    other end): cut;
+  - bhagirathi 0.714 km (the hooghly box's 24.5°N), but its head joins the
+    Ganga by its 7.4 km connector: reached, no upstream ⓘ line (R-56);
+  - ichamati, kapotaksha and baral also join their parents at their heads.
   - ichamati, pagla, khowai, gumti, muhuri, mathabhanga, kapotaksha,
     harinbhanga and baral: no box (every way read by its id, whole).
 - `tools/verify-descriptor.mjs` re-reads the rule off the built lines, so a
@@ -155,9 +184,9 @@ would need. Every source named is a new pinned extract, fetched only on purpose.
 - **Teesta in north Sikkim**: ends at 88.6489°E 27.6011°N (cut, the box's
   edge). Needs OSM ways of the Teesta north of 27.6°N, a box or way list
   reaching its source in Sikkim.
-- **Bhagirathi — its head at the Ganga**: ends at 88.0913°E 24.4936°N (cut,
-  the hooghly box's edge; a 7.4 km connector to the Ganga). Needs OSM ways
-  of the Bhagirathi up to its offtake near Dhulian (the origin row).
+- Bhagirathi: off this list since R-56. Its head, 88.0913°E 24.4936°N, joins
+  the Ganga by its 7.4 km connector. Drawing that gap as the river would
+  need OSM ways of the Bhagirathi up to its offtake near Dhulian.
 - **Dharla**: ends at 88.8738°E 26.6993°N. Needs the Jaldhaka's OSM ways to
   south Sikkim.
 - **Mahananda**: ends at 88.3622°E 26.8666°N. Needs its OSM ways in the
@@ -233,8 +262,6 @@ first card in «পুরো পথ», taps a disabled tab, and scans the text f
 
 - Settled by R-55 (2026-10-05): the card takes at most 40% of the map, and the
   frame fits the room above it.
-- Bhagirathi and Barak have no piece inside Bangladesh: listed, unchanged, and
-  framed on Bangladesh in «বাংলাদেশে». Change their picker entries only on the
-  user's word.
-- Rupsa's frame inside Bangladesh is 0.07° × 0.09°: it opens at the map's
-  maxZoom, 11.
+- Settled by R-56 (2026-10-05): Bhagirathi and Barak are out of «বাংলাদেশে»'s
+  picker; Bhagirathi is reached; «পুরো পথ» pans wider; a frame keeps a
+  district's name.

@@ -166,17 +166,32 @@ drawn now (`drawn`), and read a file of the map's own folder (`file`).
   on the tab's row, says why in ⓘ's row; a selection that disables the open
   tab opens the first left. The module tells others the open tab
   (`activeTab()`); focus's `idleByTab` rests a tab on a set of its own.
+- **Approved** (the user, 2026-10-05, on the R-55 report): `views.<tab>.hide`,
+  legend `kinds[].tab` and `sheetMaxHeight`, below. R-56 (the same day, the
+  user's decisions) added `hide.records[].picker` and `views.<tab>.maxBounds`.
 - **A view tab may hide part of the map** (R-55, 2026-10-05): `views: { <tab>:
-  { hide: { sources?: [<source>], records?: [{ records, field, value }] } } }`.
+  { hide: { sources?: [<source>], records?: [{ records, field, value, picker? }] } } }`.
   - While that tab is open, `sources` are off the map: every layer drawing
     them, their tap zones too.
   - `records` are off the map wherever their `field` holds `value`, from
     every source derived from their table (`hideOnMap`: the picker and ‹ ›
     still list them).
+  - `picker: true` on a records entry (R-56) takes those records out of the
+    picker and ‹ › as well (`hide`, not `hideOnMap`). Picking the tab with
+    one selected clears the selection and opens the tab's own view. One
+    selected from anywhere while the tab is open opens the first tab that
+    lists it.
   - Another tab shows them again. The validator holds the names to declared
     sources and fields.
   - The rivers map's «বাংলাদেশে» draws Bangladesh only; its «পুরো পথ» hides
     the Bangladesh-only lines.
+- **A view tab may pan within bounds of its own** (R-56, 2026-10-05):
+  `views: { <tab>: { maxBounds: [w, s, e, n] } }`, within ±85°, beside the
+  map's own `constraints.maxBounds`, which every other tab keeps.
+  - The tabs module sets them through the shell's `bound(box | null)`; the
+    bounds under the card follow the box in force.
+  - The rivers map's «পুরো পথ»: 80.5, 10, 97, 40, so its rest view shows
+    every course on a phone held upright.
 - **A legend `kinds` entry may name a `tab`** (R-55): it counts only while
   that view tab is open, so the rivers map lists its dashed reach outside
   only in «পুরো পথ».
