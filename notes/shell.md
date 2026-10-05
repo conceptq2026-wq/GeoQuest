@@ -168,7 +168,8 @@ drawn now (`drawn`), and read a file of the map's own folder (`file`).
   (`activeTab()`); focus's `idleByTab` rests a tab on a set of its own.
 - **Approved** (the user, 2026-10-05, on the R-55 report): `views.<tab>.hide`,
   legend `kinds[].tab` and `sheetMaxHeight`, below. R-56 (the same day, the
-  user's decisions) added `hide.records[].picker` and `views.<tab>.maxBounds`.
+  user's decisions) added `hide.records[].picker` and `views.<tab>.maxBounds`,
+  approved by the user the same day (2026-10-05, on the R-56 report).
 - **A view tab may hide part of the map** (R-55, 2026-10-05): `views: { <tab>:
   { hide: { sources?: [<source>], records?: [{ records, field, value, picker? }] } } }`.
   - While that tab is open, `sources` are off the map: every layer drawing
