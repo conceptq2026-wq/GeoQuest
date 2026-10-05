@@ -147,6 +147,23 @@ org-headquarters keeps its own form). The Arab League stays «আরব লী�
 Country names on cards will be the basemap's `name_bn`. Eleven non-country
 rows have no Bengali name (`bn: null`).
 
+## Step 2 (2026-10-06): drawn in the local preview only
+
+`tools/build-org-members.mjs <out-dir>` writes the map into the preview copy.
+Nothing under `docs/`. The three opt-in shell terms, this map only:
+
+- `controls[].byTab` — the country picker. «সংস্থা» lists organisations;
+  «দেশ» lists countries.
+- `openOn` — on open, the «সংস্থা» tab, no organisation chosen, Bangladesh's
+  card open.
+- `legend.followsSelection` — the legend lists only the chosen organisation's
+  statuses, and is hidden when none is chosen.
+
+Tab labels «সংস্থা» and «দেশ» are `approved: false`. Country shapes are
+simplified at 12 km (Douglas–Peucker), 110,749 bytes gzipped, with no
+self-crossing and no country containing another's interior. A kept outline
+stays within 12 km; a few islets (Chile's is the farthest) collapse.
+
 ## Open items
 
 - **BRICS** stays out. Its 2026 chair's site, `www.brics2026.gov.in`, does

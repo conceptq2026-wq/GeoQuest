@@ -29,9 +29,12 @@ export async function mount(api) {
   shell = api;
   spec = api.descriptor.legend;
   if (!Array.isArray(spec.items) || !spec.items.length) throw new Error('legend: items must be a non-empty list');
-  if (!Array.isArray(spec.kinds) || !spec.kinds.length) throw new Error('legend: kinds must name at least one records field');
-  for (const k of spec.kinds) if (!api.records[k.records]) throw new Error(`legend: "${k.records}" is not a records table`);
-  await stylesheet(api, './legend.css?v=280d02e417');
+  if (spec.followsSelection) {
+    const follow = spec.followsSelection;
+    if (!api.records[follow.records] || !follow.lists || !Object.keys(follow.lists).length) throw new Error('legend: followsSelection needs a records table and a list per kind');
+  } else if (!Array.isArray(spec.kinds) || !spec.kinds.length) throw new Error('legend: kinds must name at least one records field');
+  for (const k of spec.kinds ?? []) if (!api.records[k.records]) throw new Error(`legend: "${k.records}" is not a records table`);
+  await stylesheet(api, './legend.css?v=84977c031b');
   box = api.own.node(document.createElement('ul'), 'legend');
   box.className = 'map-legend';
   box.lang = api.language ?? 'bn';
@@ -46,7 +49,7 @@ export async function mount(api) {
       stroke.className = 'map-legend-line';
       stroke.style.borderTopColor = item.line.color;
       stroke.style.borderTopWidth = `${item.line.width ?? 3}px`;
-      stroke.style.borderTopStyle = item.line.dash ? 'dashed' : 'solid';
+      stroke.style.borderTopStyle = item.line.style ?? (item.line.dash ? 'dashed' : 'solid');
       sample.append(stroke);
     } else if (item.image) {
       const image = api.descriptor.images?.[item.image];
@@ -71,12 +74,20 @@ export function install(api) {
   api.onChange(render);
 }
 
-/** Only the kinds some drawn record carries. */
+/** Only the kinds some drawn record carries — or, where the map says so, the
+ * statuses of the organisation that is chosen (org-members). */
 function render() {
   const present = new Set();
-  for (const { records, field, tab } of spec.kinds) {
-    if (tab !== undefined && shell.activeTab?.() !== tab) continue;
-    for (const [key, row] of Object.entries(shell.records[records])) if (shell.drawn(records, key)) present.add(row[field]);
+  const follow = spec.followsSelection;
+  if (follow) {
+    const key = shell.selection.get(follow.records);
+    const row = key === undefined ? null : shell.records[follow.records]?.[key];
+    if (row) for (const [kind, field] of Object.entries(follow.lists)) if ((row[field] ?? []).length) present.add(kind);
+  } else {
+    for (const { records, field, tab } of spec.kinds) {
+      if (tab !== undefined && shell.activeTab?.() !== tab) continue;
+      for (const [key, row] of Object.entries(shell.records[records])) if (shell.drawn(records, key)) present.add(row[field]);
+    }
   }
   let any = false;
   for (const [kind, li] of rows) {

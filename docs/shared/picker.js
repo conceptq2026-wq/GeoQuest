@@ -26,7 +26,7 @@
  * after the choice changes.
  */
 export function pickerRow({ select, prev, next, placeholder, label, groups = [], items, shown = () => items.map((i) => i.key), current, choose, listen = (element, type, handler) => element.addEventListener(type, handler) }) {
-  const groupOf = new Map(items.map((i) => [i.key, i.group]));
+  let groupOf = new Map(items.map((i) => [i.key, i.group]));
   const optgroups = new Map(); // group value -> optgroup, built once
   const options = new Map(); // key -> option, built once
   let order = []; // what ‹ › step through: the shown keys, in order
@@ -105,5 +105,22 @@ export function pickerRow({ select, prev, next, placeholder, label, groups = [],
   listen(next, 'click', () => step(1));
   sync();
 
-  return { render, sync };
+  // A view tab that lists a different table (org-members). Other maps never call it.
+  function setItems(next, placeholderText) {
+    items = next;
+    groupOf = new Map(items.map((i) => [i.key, i.group]));
+    for (const opt of options.values()) opt.remove();
+    options.clear();
+    for (const item of items) {
+      const option = document.createElement('option');
+      option.value = item.key;
+      option.textContent = item.label;
+      options.set(item.key, option);
+    }
+    const blank = select.querySelector('option[value=""]');
+    if (blank && placeholderText) blank.textContent = placeholderText;
+    render();
+  }
+
+  return { render, sync, setItems };
 }

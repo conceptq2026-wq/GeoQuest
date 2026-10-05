@@ -262,6 +262,17 @@ body {
   line-height: 1.5;
 }
 
+/* org-members: card rows at 14 px. No other map carries this id. */
+html[data-map='org-members'] .info-row {
+  font-size: 14px;
+}
+
+/* The card covers the legend's usual corner; this map keeps it at the top left. */
+html[data-map='org-members'] .map-legend {
+  top: 8px;
+  bottom: auto;
+}
+
 /* display: grid above would otherwise override the hidden attribute. */
 .info-row[hidden] {
   display: none;

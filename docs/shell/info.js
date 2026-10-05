@@ -25,8 +25,8 @@ export async function mount(api) {
   const response = await fetch(api.file(spec.file));
   if (!response.ok) throw new Error(`info: ${spec.file} -> ${response.status}`);
   lines = (await response.json()).lines ?? [];
-  for (const line of lines) if (!['notes', 'conflicts'].includes(line.group) || typeof line.text !== 'string') throw new Error('info: every line is { text, group: "notes" | "conflicts" }');
-  await stylesheet(api, './info.css?v=280d02e417');
+  for (const line of lines) if (!['notes', 'conflicts', 'sources'].includes(line.group) || typeof line.text !== 'string') throw new Error('info: every line is { text, group: "notes" | "conflicts" | "sources" }');
+  await stylesheet(api, './info.css?v=84977c031b');
 }
 
 /** Once the credits row exists: the headed panel inside ⓘ, filled from the credits whenever it opens. */
@@ -51,6 +51,17 @@ export function install(api) {
   const sources = document.createElement('div');
   sources.className = 'info-sources';
   panel.append(sources);
+  const cited = lines.filter((l) => l.group === 'sources');
+  if (cited.length) {
+    const list = document.createElement('ul');
+    list.className = 'info-lines';
+    for (const l of cited) {
+      const li = document.createElement('li');
+      li.textContent = l.text;
+      list.append(li);
+    }
+    panel.append(list);
+  }
   for (const group of ['notes', 'conflicts']) {
     const mine = lines.filter((l) => l.group === group);
     if (!mine.length) continue;

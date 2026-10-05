@@ -110,6 +110,17 @@ drawn now (`drawn`), and read a file of the map's own folder (`file`).
   `field` names (a river's markers go with their river), and selecting one of
   its records puts the view on that record. Hidden on the map only, through
   `hideOnMap`: the picker and ‹ › still list every record.
+- **`legend.followsSelection: { records, lists: { <kind>: <listField> } }`**
+  (org-members, 2026-10-06) lists a legend row only while the chosen record of
+  `records` has a non-empty `listField` for that kind. With nothing chosen,
+  the legend is hidden. No other map sets it; without it the legend still
+  follows what is drawn.
+- **`openOn: { tab, records, key }`** (org-members, 2026-10-06) opens that
+  record's card on load. The picker is left on its own table, so it shows its
+  prompt. No other map sets it.
+- **A picker's `byTab`** (org-members, 2026-10-06): `{ <tab>: { from, label,
+  placeholder, do } }` makes the one picker list that table while the view tab
+  is open. No other map sets it.
 - **`legend: { items: [{ kind, label, line? | image? }], kinds: [{ records, field }] }`**
   (2026-09-30) lists, in the map's bottom-left corner at 14 px, what its
   colours and marks mean: one row per item, a stroke (`line: { color, width?,

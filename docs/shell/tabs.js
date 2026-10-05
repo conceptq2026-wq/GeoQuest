@@ -128,7 +128,7 @@ export async function mount(api) {
   api.activeTab = () => active;
   api.actions.fitTab = (action, context) => fitSelection(action, context);
 
-  await stylesheet(api, './tabs.css?v=280d02e417');
+  await stylesheet(api, './tabs.css?v=84977c031b');
   bar = api.own.node(document.createElement('div'), 'tabs');
   bar.className = table ? 'map-tabs' : 'map-tabs view-tabs';
   bar.setAttribute('role', 'tablist');
@@ -327,6 +327,7 @@ function markList() {
 
 /** The picker's prompt and the note on the map, as the active tab's row gives them. */
 function words() {
+  if (shell.pickerForTab) shell.pickerForTab(active);
   const row = shell.records[spec.from][active];
   const prompt = spec.placeholder ? shell.dom.picker.querySelector('option[value=""]') : null;
   if (prompt) prompt.textContent = shell.valueOf(spec.placeholder, row) ?? '';

@@ -187,3 +187,9 @@ third tab, «অ-রাজনৈতিক বিপ্লব», is cards only: t
 validator fails any marker there. That tab hides the map itself and lists
 its cards in the map's space (`tabs.cardsOnly`, `notes/shell.md`). No other
 map may leave a record unmarked.
+
+**org-members** (2026-10-06), this map only. Three opt-in terms, each absent
+on every other map: a picker's `byTab` lists a different table per view tab;
+`openOn` opens one record's card at load while the picker stays on its
+prompt; `legend.followsSelection` shows only the chosen record's non-empty
+lists. See `notes/shell.md` and `notes/org-members.md`.

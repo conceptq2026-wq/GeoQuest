@@ -449,8 +449,8 @@ State which kind a task is when reporting it.
   (step 1b: the ITLOS and PCA lines, St Martin's, the 2015 baselines and the
   lines' junction; local preview only: `notes/bangladesh-maritime-boundary.md`);
   `org-members` «আঞ্চলিক ও আন্তর্জাতিক সংস্থার সদস্য দেশ» (proposed), a map
-  under International (step 1: sources, seed and strings, nothing drawn:
-  `notes/org-members.md`).
+  under International (step 2: drawn in the local preview only, not on the
+  live home page: `notes/org-members.md`).
 
 ## Index — notes, read only when working on that item
 

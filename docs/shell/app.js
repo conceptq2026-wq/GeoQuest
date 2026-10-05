@@ -15,9 +15,9 @@
 |--------------------------------------------------------------------------
 */
 
-import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=280d02e417';
-import { resolver } from '../shared/resolver.js?v=280d02e417';
-import { pickerRow } from '../shared/picker.js?v=280d02e417';
+import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=84977c031b';
+import { resolver } from '../shared/resolver.js?v=84977c031b';
+import { pickerRow } from '../shared/picker.js?v=84977c031b';
 
 /*
 |--------------------------------------------------------------------------
@@ -422,6 +422,8 @@ const fetchJson = async (url) => {
 };
 
 const descriptor = await fetchJson(mapFile('descriptor.json'));
+// This map's own text size and tab height (org-members). Other maps do not match it.
+document.documentElement.dataset.map = descriptor.id;
 
 /*
  * The map's language. Every map is in Bengali but one: environment-treaties is
@@ -642,13 +644,13 @@ function pick(row, keys) {
 |--------------------------------------------------------------------------
 */
 const SHELL_MODULES = {
-  tabs: './tabs.js?v=280d02e417',
-  chips: './chips.js?v=280d02e417',
-  timeline: './timeline.js?v=280d02e417',
-  globe: './globe.js?v=280d02e417',
-  focus: './focus.js?v=280d02e417',
-  legend: './legend.js?v=280d02e417',
-  info: './info.js?v=280d02e417',
+  tabs: './tabs.js?v=84977c031b',
+  chips: './chips.js?v=84977c031b',
+  timeline: './timeline.js?v=84977c031b',
+  globe: './globe.js?v=84977c031b',
+  focus: './focus.js?v=84977c031b',
+  legend: './legend.js?v=84977c031b',
+  info: './info.js?v=84977c031b',
 };
 const hiders = []; // (table, key) => true takes a record off the map, the picker and ‹ ›
 // (table, key) => true takes a record off the map only: the picker and ‹ › still list it (the focus module).
@@ -1606,26 +1608,50 @@ const row = picker ? buildPicker(picker) : null;
  * selection; the row reads it and runs the picker's actions on a choice.
  */
 function buildPicker(control) {
-  const table = records[control.from] ?? {};
-  dom.picker.dataset.table = control.from;
+  // `byTab` (org-members, 2026-10-06): the one picker lists a different table on
+  // each view tab. Absent on every other map, which keeps the single `from`.
+  const labelOf = (spec) => spec.label ?? (spec.labelField ? { field: spec.labelField } : null);
+  const state = { from: control.from, label: labelOf(control), do: control.do, placeholder: control.placeholder };
+  const apply = (spec) => {
+    state.from = spec.from ?? control.from;
+    state.label = labelOf(spec) ?? state.label;
+    state.do = spec.do ?? control.do;
+    if (spec.placeholder !== undefined) state.placeholder = spec.placeholder;
+  };
+  if (control.byTab) {
+    for (const [tab, spec] of Object.entries(control.byTab)) if (!records[spec.from]) throw new Error(`picker byTab.${tab}: "${spec.from}" is not a records table`);
+    const tab = shell.activeTab?.();
+    if (tab && control.byTab[tab]) apply(control.byTab[tab]);
+  }
+  dom.picker.dataset.table = state.from;
   const group = control.groupBy;
-  // `labelField` names one field; `label` takes the same field/lookup/compose
-  // spec the sheet uses, so a map whose names are still being approved can
-  // fall back to another field instead of listing blank rows.
-  const labelSpec = control.label ?? { field: control.labelField };
-  return pickerRow({
+  const itemsNow = () => {
+    const table = records[state.from] ?? {};
+    return Object.keys(table).map((key) => ({ key, label: valueOf(state.label, table[key]) ?? '', group: group ? table[key][group.field] : undefined }));
+  };
+  const built = pickerRow({
     select: dom.picker,
     prev: dom.prev,
     next: dom.next,
-    placeholder: control.placeholder,
+    placeholder: state.placeholder,
     label: control.labelEn,
     groups: group ? (group.order ?? []).map((value) => ({ value, label: lookupValue(group.lookup, value, group.take) ?? value })) : [],
-    items: Object.keys(table).map((key) => ({ key, label: valueOf(labelSpec, table[key]) ?? '', group: group ? table[key][group.field] : undefined })),
-    shown: () => Object.keys(table).filter((key) => onMap(control.from, key)),
-    current: () => selection.get(control.from),
-    choose: (key) => runActions(control.do, { table: control.from, key }),
+    items: itemsNow(),
+    shown: () => Object.keys(records[state.from] ?? {}).filter((key) => onMap(state.from, key)),
+    current: () => selection.get(state.from),
+    choose: (key) => runActions(state.do, { table: state.from, key }),
     listen: (element, type, handler) => own.domHandler(element, type, handler),
   });
+  if (control.byTab) {
+    shell.pickerForTab = (tab) => {
+      const spec = control.byTab[tab];
+      if (!spec) return;
+      apply(spec);
+      dom.picker.dataset.table = state.from;
+      built.setItems(itemsNow(), state.placeholder);
+    };
+  }
+  return built;
 }
 
 const toggle = (descriptor.controls ?? []).find((c) => c.type === 'layerToggle');
@@ -2030,7 +2056,7 @@ function referencedByRow(spec, index, key) {
   const keys = Object.keys(table).filter((k) => (table[k][listField] ?? []).includes(key) && shown(from, k));
   if (!keys.length) return null;
   const line = document.createElement('div');
-  line.className = 'info-row info-row-list';
+  line.className = spec.stacked ? 'info-row info-row-list info-row-stacked' : 'info-row info-row-list';
   if (spec.label) {
     const label = document.createElement('span');
     label.className = 'info-label';
@@ -2443,6 +2469,14 @@ Object.assign(shell, {
   geometry: (name) => geometryFiles[name] ?? null,
 });
 for (const module of modules) module.install?.(shell);
+
+// Opening on one record's card (org-members, 2026-10-06): the picker stays on
+// its own table, so it shows its prompt while this card is open.
+if (descriptor.openOn) {
+  const { records: table, key } = descriptor.openOn;
+  if (!records[table]?.[key]) throw new Error(`openOn: ${table}.${key} is not a record`);
+  doSelect({ table, key });
+}
 
 // The only surface the shell exposes, for the harness and for switchMap later.
 window.__shell = {

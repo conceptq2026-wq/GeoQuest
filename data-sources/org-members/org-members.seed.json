@@ -5425,6 +5425,16 @@
     "bn": "ইউরোপীয় ইউনিয়নের তথ্য: © European Union, CC BY 4.0; ন্যাটো ও অ্যাপেকের তথ্য তাদের নিজস্ব ওয়েবসাইট থেকে।",
     "approved": true
    }
+  },
+  "tabs": {
+   "orgs": {
+    "bn": "সংস্থা",
+    "approved": false
+   },
+   "countries": {
+    "bn": "দেশ",
+    "approved": false
+   }
   }
  }
 }
