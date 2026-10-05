@@ -69,8 +69,12 @@ M3 «পুরো পথ», M4 parity with the diagram — all done, 2026-09-30.
   - «পুরো পথ» frames, as «বাংলাদেশে» does, the river and its descendants —
     every piece, inside and out, with a margin (`frameWhole`: 5% of the span
     a side, at least 0.1°) — not its ancestors, which stay drawn, lighter
-    (the user's decision, 2026-10-05). Its enabling still reads the whole
-    set, ancestors included. With nothing
+    (the user's decision, 2026-10-05). A card whose origin is reached through
+    another card's line (`origin-reached`) frames that line too, to its
+    head. The Meghna's Barak is already a descendant through the Kushiyara,
+    so this changes no card today. Every selection's frame keeps clear of the
+    top-right controls (`frameClearsControls`, `notes/shell.md`, 2026-10-06):
+    70 px on the right at 320 and 390. With nothing
     selected it rests on every main river whose system — the river and its
     descendants — has a reach outside, framed on all of those systems: the
     Jamuna, the Padma, the Meghna (by the Barak, Gumti, Khowai and Manu; R-55),
@@ -95,23 +99,30 @@ M3 «পুরো পথ», M4 parity with the diagram — all done, 2026-09-30.
       Barak 5.94 → 7.04 / 5.6 → 6.7;
     - unchanged: Padma 4.09 / 3.75, Meghna 5.74 / 5.4, Karnaphuli 7.48 /
       6.95, Brahmaputra–Jamuna 4.04 / 3.7.
-  - **For the user's later decision:** 17 cards keep «পুরো পথ» enabled
-    (through an ancestor's reach outside), though their own frame draws
-    nothing outside Bangladesh:
-    - karatoya, dhaleshwari, banshi, shitalakshya, oldBrahmaputra, buriganga;
-    - gorai, madhumati, arialKhan, kirtankhola, kumar, bhairab, rupsa,
-      nabaganga, chitra;
-    - kasalong, halda.
-  - **Disabled rule:** «পুরো পথ» is disabled for a selection whose set has no
-    reach outside Bangladesh — a card's lines running at least 1 km outside
-    COD-AB's outline; the build refuses a disabled set that has any piece
-    outside at all, so its note is exactly true. Disabled: greyed, still in
+  - Zoom with the controls kept clear, at 390 / 320, before → after: Meghna
+    5.74 → 5.49 / 5.4 → 5.08; Barak 7.04 → 6.78 / 6.7 → 6.37; Padma 4.09 →
+    3.84 / 3.75 → 3.43; Teesta unchanged, 6.54 / 5.88 (its frame clears
+    them already). The rest views do not move.
+  - **Disabled rule** (the user's rules, 2026-10-05 and 2026-10-06): «পুরো পথ»
+    is enabled for a card only where the card, its descendants or its
+    origin-reached line reach outside Bangladesh **beyond the 500 m band**
+    «বাংলাদেশে» uses (R-55). A border river's trace that parts from COD-AB's by
+    less than that is no reach outside. Ancestors no longer count.
+    - Until 2026-10-05 the rule read the whole set, ancestors included, and
+      1 km outside COD-AB's outline.
+    - Disabled: greyed, still in
     the bar, 44 px, aria-disabled; a tap does nothing, and ⓘ's row says «এই
     নদীর বাংলাদেশের বাইরের কোনো অংশ এই মানচিত্রে আঁকা নেই।». A selection that
-    disables the open tab opens «বাংলাদেশে». Seven cards: pashur, titas,
-    tetuliaBarishal, burishwar, mogra, sangu and matamuhuri. Karnaphuli,
-    Kasalong and Halda left this list in Stage 4: the Karnaphuli now has a
-    reach outside. The selection stays when the tab changes.
+    disables the open tab opens «বাংলাদেশে», framed there.
+  - **27 cards disabled:**
+    - pashur, titas, tetuliaBarishal, burishwar, mogra, sangu, matamuhuri
+      (before);
+    - karatoya, dhaleshwari, banshi, shitalakshya, oldBrahmaputra, buriganga,
+      gorai, madhumati, arialKhan, kirtankhola, kumar, bhairab, rupsa,
+      nabaganga, chitra, kasalong and halda (nothing outside of their own);
+    - kapotaksha (2.89 km), baral (0.2 km) and surma (19.27 km): outside
+      COD-AB's outline, but only within the band.
+  - The selection stays when the tab changes.
 - **Focus** (`notes/shell.md`): at rest only the tab's rest set; a selection
   draws that river, all its descendants and every ancestor up to its main
   river, no sibling; the ancestors lighter, for context (lines at 0.45 of

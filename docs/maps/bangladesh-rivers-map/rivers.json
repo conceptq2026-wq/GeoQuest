@@ -141,7 +141,7 @@
    89.58,
    25.26
   ],
-  "outsideSet": true,
+  "outsideSet": false,
   "restWhole": false
  },
  "atrai": {
@@ -216,7 +216,7 @@
    90.66,
    24.27
   ],
-  "outsideSet": true,
+  "outsideSet": false,
   "restWhole": false
  },
  "banshi": {
@@ -253,7 +253,7 @@
    90.37,
    24.72
   ],
-  "outsideSet": true,
+  "outsideSet": false,
   "restWhole": false
  },
  "shitalakshya": {
@@ -292,7 +292,7 @@
    90.76,
    24.38
   ],
-  "outsideSet": true,
+  "outsideSet": false,
   "restWhole": false
  },
  "oldBrahmaputra": {
@@ -329,7 +329,7 @@
    91.09,
    25.39
   ],
-  "outsideSet": true,
+  "outsideSet": false,
   "restWhole": false
  },
  "buriganga": {
@@ -368,7 +368,7 @@
    90.58,
    23.89
   ],
-  "outsideSet": true,
+  "outsideSet": false,
   "restWhole": false
  },
  "padma": {
@@ -439,7 +439,7 @@
    89.86,
    24.06
   ],
-  "outsideSet": true,
+  "outsideSet": false,
   "restWhole": false
  },
  "madhumati": {
@@ -478,7 +478,7 @@
    89.86,
    23.61
   ],
-  "outsideSet": true,
+  "outsideSet": false,
   "restWhole": false
  },
  "arialKhan": {
@@ -515,7 +515,7 @@
    90.54,
    23.59
   ],
-  "outsideSet": true,
+  "outsideSet": false,
   "restWhole": false
  },
  "kirtankhola": {
@@ -555,7 +555,7 @@
    90.54,
    22.85
   ],
-  "outsideSet": true,
+  "outsideSet": false,
   "restWhole": false
  },
  "mahananda": {
@@ -910,7 +910,7 @@
    89.14,
    24.15
   ],
-  "outsideSet": true,
+  "outsideSet": false,
   "restWhole": false
  },
  "bhairab": {
@@ -950,7 +950,7 @@
    89.69,
    23.29
   ],
-  "outsideSet": true,
+  "outsideSet": false,
   "restWhole": false
  },
  "rupsa": {
@@ -992,7 +992,7 @@
    89.69,
    22.92
   ],
-  "outsideSet": true,
+  "outsideSet": false,
   "restWhole": false
  },
  "pashur": {
@@ -1062,7 +1062,7 @@
    89.51,
    23.61
   ],
-  "outsideSet": true,
+  "outsideSet": false,
   "restWhole": false
  },
  "nabaganga": {
@@ -1101,7 +1101,7 @@
    89.79,
    23.74
   ],
-  "outsideSet": true,
+  "outsideSet": false,
   "restWhole": false
  },
  "chitra": {
@@ -1140,7 +1140,7 @@
    89.67,
    23.67
   ],
-  "outsideSet": true,
+  "outsideSet": false,
   "restWhole": false
  },
  "baral": {
@@ -1177,7 +1177,7 @@
    89.76,
    24.52
   ],
-  "outsideSet": true,
+  "outsideSet": false,
   "restWhole": false
  },
  "meghna": {
@@ -1288,7 +1288,7 @@
    92.6,
    25.2
   ],
-  "outsideSet": true,
+  "outsideSet": false,
   "restWhole": false
  },
  "kushiyara": {
@@ -1660,7 +1660,7 @@
    92.35,
    23.56
   ],
-  "outsideSet": true,
+  "outsideSet": false,
   "restWhole": false
  },
  "halda": {
@@ -1696,7 +1696,7 @@
    92,
    22.9
   ],
-  "outsideSet": true,
+  "outsideSet": false,
   "restWhole": false
  },
  "feni": {

@@ -25,6 +25,7 @@
   ]
  },
  "minTextSize": 14,
+ "frameClearsControls": true,
  "sheetMaxHeight": 0.4,
  "lookups": {
   "systems": {

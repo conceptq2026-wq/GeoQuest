@@ -196,6 +196,12 @@ drawn now (`drawn`), and read a file of the map's own folder (`file`).
 - **A legend `kinds` entry may name a `tab`** (R-55): it counts only while
   that view tab is open, so the rivers map lists its dashed reach outside
   only in «পুরো পথ».
+- **`frameClearsControls: true`** (top level, opt-in; the user's decision,
+  2026-10-06, approved for the rivers map): every fit to a record keeps the
+  column of the map's top-right controls (the compass, the tilt button) out of
+  the frame on the right, measured as they stand: the column plus 16 px, 70 px
+  on the rivers map at 320 and 390. Opening and tab rest views are not fits to
+  a record and do not move. Without it a map frames as before.
 - **`sheetMaxHeight`** (R-55, top level): the open card's most, as a share of
   the map's height, from 0.2 to the shell's own 0.62.
   - The card's body scrolls inside the rest; the camera, padded for the card

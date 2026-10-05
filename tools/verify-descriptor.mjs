@@ -53,6 +53,7 @@ import { riversCore, seedFor } from './lib/rivers-core.mjs';
 import { cutAt, headJoins, byIdHead, CUT_TOL_M, BD_BAND_M } from './lib/rivers-cut.mjs';
 import { districtLabels, NAME_ROOM } from './lib/bd-labels.mjs';
 import { SegmentGrid } from './lib/bangladesh-units.mjs';
+import { distM } from './lib/rivers-frame.mjs';
 
 // ---- where things are -------------------------------------------------------
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
@@ -736,6 +737,8 @@ function checkMap({ id, expectedPending, dir = path.join(MAPS_DIR, id) }) {
     }
     check(!descriptor.controls.some((c) => c.type === 'recordFilter'), 'tabs: not beside a recordFilter — both decide what is shown');
   }
+  // frameClearsControls (2026-10-06): opt-in, true or false.
+  if (descriptor.frameClearsControls !== undefined) check(typeof descriptor.frameClearsControls === 'boolean', 'frameClearsControls is true or false');
   // sheetMaxHeight (2026-10-05): the open card's most, as a share of the map's height, from 0.2 to the shell's 0.62.
   if (descriptor.sheetMaxHeight !== undefined) check(typeof descriptor.sheetMaxHeight === 'number' && descriptor.sheetMaxHeight >= 0.2 && descriptor.sheetMaxHeight <= 0.62, `sheetMaxHeight is a share of the map's height from 0.2 to 0.62 (${descriptor.sheetMaxHeight})`);
   // A legend kinds entry may count only while a view tab is open (2026-10-05): a tab the map has.
@@ -2315,13 +2318,16 @@ console.log('\n\n============ bangladesh-rivers-map ============');
     return [...keys];
   };
   const cardLines = (card) => G.frames.bangladesh.lines.filter((l) => (l === 'main' ? 'main' : G.lines[l]?.entity) === card);
+  // …and the line of a card its origin is reached through (origin-reached: the Meghna's Barak), to its head.
+  const originCardsOf = (card) => (seed.mapUpstreamReached ?? []).filter((r) => r.card === card).flatMap((r) => r.evidence.filter((e) => e.kind === 'origin-reached').map((e) => e.card));
+  const wholeSetOfCard = (card) => [...new Set([...treeOfCard(card), ...originCardsOf(card)])];
   const wantWhole = (card) => {
-    const b = treeOfCard(card).flatMap(cardLines).flatMap((l) => coreLines[l].coords).reduce((a, [x, y]) => [Math.min(a[0], x), Math.min(a[1], y), Math.max(a[2], x), Math.max(a[3], y)], [Infinity, Infinity, -Infinity, -Infinity]);
+    const b = wholeSetOfCard(card).flatMap(cardLines).flatMap((l) => coreLines[l].coords).reduce((a, [x, y]) => [Math.min(a[0], x), Math.min(a[1], y), Math.max(a[2], x), Math.max(a[3], y)], [Infinity, Infinity, -Infinity, -Infinity]);
     const m = Math.max(0.1, 0.05 * Math.max(b[2] - b[0], b[3] - b[1]));
     return [Math.floor((b[0] - m) * 100) / 100, Math.floor((b[1] - m) * 100) / 100, Math.ceil((b[2] + m) * 100) / 100, Math.ceil((b[3] + m) * 100) / 100];
   };
   const badWhole = Object.keys(rivers).filter((k) => JSON.stringify(rivers[k].frameWhole) !== JSON.stringify(wantWhole(k)));
-  check(badWhole.length === 0, `«পুরো পথ» frames each card's river and descendants, not its ancestors (2026-10-05): ${Object.keys(rivers).length} frames re-derived${badWhole.length ? ` — not: ${badWhole.join(', ')}` : ''}`);
+  check(badWhole.length === 0, `«পুরো পথ» frames each card's river, its descendants and its origin-reached line, not its ancestors (2026-10-05): ${Object.keys(rivers).length} frames re-derived${badWhole.length ? ` — not: ${badWhole.join(', ')}` : ''}`);
   const ownLines = seed.infoBn.lines.map((l) => ({ text: l.textBn, group: l.group }));
   const afterInPart = seed.infoBn.lines.findLastIndex((l) => l.card) + 1;
   const wantLines = [...seed.markers.filter((m) => m.infoBn).map((m) => ({ text: m.infoBn, group: 'notes' })), ...ownLines.slice(0, afterInPart), ...cutCards.map((k) => ({ text: cutText(k), group: 'notes' })), ...ownLines.slice(afterInPart)];
@@ -2388,6 +2394,20 @@ console.log('\n\n============ bangladesh-rivers-map ============');
     const badPts = [...Object.entries(names).filter(([, n]) => n.inBd !== inBd(n.at)), ...Object.entries(marks).filter(([, m]) => m.inBd !== inBd(m.at)), ...Object.entries(places).filter(([, p]) => !inBd(p.at))].map(([k]) => k);
     const noPiece = Object.keys(rivers).filter((k) => !rivers[k].hasBd);
     const piecesOf = new Set(bdFeatures.filter((ft) => ft.properties.parent === undefined).map((ft) => ft.properties.key));
+    // «পুরো পথ» is enabled only where the card's river, its descendants or its origin-reached line reach beyond the band
+    // (the user's rule, 2026-10-06): kilometres of segments with both ends beyond it, on the pinned chains.
+    const beyond = {};
+    for (const l of G.frames.bangladesh.lines) {
+      const c = coreLines[l].coords;
+      const out = c.map((p) => !inBd(p));
+      let km = 0;
+      for (let i = 1; i < c.length; i++) if (out[i - 1] && out[i]) km += distM(c[i - 1], c[i]) / 1000;
+      const card = l === 'main' ? 'main' : G.lines[l].entity;
+      beyond[card] = (beyond[card] ?? 0) + km;
+    }
+    const badEnable = Object.keys(rivers).filter((k) => rivers[k].outsideSet !== wholeSetOfCard(k).some((c) => beyond[c] > 0));
+    const offCards = Object.keys(rivers).filter((k) => !rivers[k].outsideSet);
+    check(badEnable.length === 0 && descriptor.frameClearsControls === true, `«পুরো পথ» enabled only by a reach beyond the ${BD_BAND_M} m band (2026-10-06): disabled for ${offCards.length} (${offCards.join(', ')})${badEnable.length ? ` — not: ${badEnable.join(', ')}` : ''}; every frame clear of the top-right controls (frameClearsControls)`);
     check(outside.length === 0 && badPts.length === 0 && Object.keys(rivers).every((k) => rivers[k].hasBd === piecesOf.has(k)), `«বাংলাদেশে» draws Bangladesh only: ${bdFeatures.length} lines and connectors, every vertex inside COD-AB's outline or within ${BD_BAND_M} m of it; names and markers outside it hidden there (${Object.values(names).filter((n) => !n.inBd).length} names, ${Object.values(marks).filter((m) => !m.inBd).length} markers); no inside piece: ${noPiece.join(', ') || 'none'}${outside.length || badPts.length ? ` — not: ${[...outside, ...badPts].join(', ')}` : ''}`);
     // A frame keeps a name besides the river's own (2026-10-05): a «বাংলাদেশে» frame is its river's and descendants'
     // inside pieces, as before, where that frame's square — the room above the card, about square — holds a district's

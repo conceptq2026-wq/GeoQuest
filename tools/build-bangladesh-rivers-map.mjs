@@ -306,6 +306,17 @@ const inRing = (p, ring) => {
 // Each line cut at COD-AB's outline, for the frames and for the reaches outside.
 const split = new Map(Object.keys(lines).map((id) => [id, splitAtBorder(lines[id].coords)]));
 const linesOf = (card) => frame.lines.filter((id) => entityOf(id) === card);
+// «পুরো পথ»'s enabling counts a reach outside Bangladesh only beyond «বাংলাদেশে»'s band (the user's rule, 2026-10-06):
+// where a border river's trace parts from COD-AB's by less than BD_BAND_M it is not a reach outside (the Baral's
+// few hundred metres). Kilometres of each card's lines with both ends of a segment beyond the band.
+const beyondBandKm = Object.fromEntries(Object.keys(rivers).map((k) => [k, 0]));
+for (const id of frame.lines) {
+  const c = lines[id].coords;
+  const out = c.map((p) => !inBd(p));
+  let km = 0;
+  for (let i = 1; i < c.length; i++) if (out[i - 1] && out[i]) km += distM(c[i - 1], c[i]) / 1000;
+  beyondBandKm[entityOf(id)] += km;
+}
 const outsideKm = Object.fromEntries(Object.keys(rivers).map((k) => [k, linesOf(k).reduce((n, id) => n + split.get(id).filter((q) => !q.inside).reduce((m, q) => m + lengthKm(q.coords), 0), 0)]));
 const bbox = (pts) => pts.reduce((b, [x, y]) => [Math.min(b[0], x), Math.min(b[1], y), Math.max(b[2], x), Math.max(b[3], y)], [Infinity, Infinity, -Infinity, -Infinity]);
 // The bounds a frame needs on a map up to `tall` times as high as wide, fitted to its width: MapLibre keeps the
@@ -375,22 +386,29 @@ const named = (k, box) => {
   return out;
 };
 // «পুরো পথ» frames a selection as «বাংলাদেশে» does — the river and its descendants, every piece, inside and out — and
-// not its ancestors, which stay drawn, lighter, for context (the user's decision, 2026-10-05). Its enabling still
-// reads the whole set, ancestors included (outsideSet).
-const wholeInside = []; // enabled cards whose own frame holds nothing outside Bangladesh, for the user's later decision
+// not its ancestors, which stay drawn, lighter, for context (the user's decision, 2026-10-05); and, where the card's
+// origin is reached through another card's line (`origin-reached`: the Meghna through the Barak), that line too, to
+// its head. The same set decides whether the tab is enabled: only where it has a reach outside (the user's rule,
+// 2026-10-05; until then the ancestors counted too).
+const originCards = (card) => (seed.mapUpstreamReached ?? []).filter((r) => r.card === card).flatMap((r) => r.evidence.filter((e) => e.kind === 'origin-reached').map((e) => e.card));
+const wholeSetOf = (card) => [...new Set([...treeOf(card), ...originCards(card)])];
+const byOrigin = []; // cards whose «পুরো পথ» set the origin-reached rule widens
+const withinBand = []; // disabled cards whose lines leave COD-AB's outline only within the band
 for (const [k, row] of Object.entries(rivers)) {
-  const set = setOf(k);
-  const ids = treeOf(k).flatMap(linesOf);
+  const set = wholeSetOf(k);
+  if (originCards(k).some((c) => !treeOf(k).includes(c))) byOrigin.push(k);
+  const ids = set.flatMap(linesOf);
   const own = bdBox(treeOf(k));
   row.frameBd = own ? named(k, own) : (framedOnRest.push(k), bdRest);
   row.frameWhole = outward(margin(bbox(ids.flatMap((id) => lines[id].coords))));
-  row.outsideSet = set.some((c) => outsideKm[c] >= OUTSIDE_KM);
+  row.outsideSet = set.some((c) => beyondBandKm[c] > 0);
   // «পুরো পথ» rests on every main river whose system — the river and its descendants — has a reach outside.
   row.restWhole = row.role === 'main' && treeOf(k).some((c) => outsideKm[c] >= OUTSIDE_KM);
   if (row.dashed) row.dashedKind = 'outside';
-  if (row.outsideSet && treeOf(k).every((c) => !outsideKm[c])) wholeInside.push(k);
   // A disabled «পুরো পথ» says no part outside is drawn: then nothing of it may be.
-  if (!row.outsideSet && set.some((c) => outsideKm[c] > 0)) fail(`${k}: its set has ${set.filter((c) => outsideKm[c] > 0).join(', ')} outside Bangladesh, under ${OUTSIDE_KM} km — «${words.wholeDisabled}» would not hold`);
+  // Disabled, its note says no part outside is drawn: nothing beyond the band, by the rule itself; what lies outside
+  // COD-AB within the band is listed.
+  if (!row.outsideSet && set.some((c) => outsideKm[c] > 0)) withinBand.push(`${k} ${round(set.reduce((n, c) => n + outsideKm[c], 0), 2)} km`);
 }
 for (const m of Object.values(marks)) Object.assign(m, { frameBd: rivers[m.river].frameBd, frameWhole: rivers[m.river].frameWhole, outsideSet: rivers[m.river].outsideSet });
 const restWhole = Object.keys(rivers).filter((k) => rivers[k].restWhole);
@@ -575,6 +593,9 @@ const descriptor = {
   constraints: { maxZoom: 11, maxBounds },
   // No text under 14 px on this map: the labels floored, the chrome's too (the user's rule for it, M3).
   minTextSize: 14,
+  // Every selection's frame clear of the top-right controls, the compass and the tilt button (the user's decision,
+  // 2026-10-06): the Meghna's Barak ended under them.
+  frameClearsControls: true,
   // The open card at most this share of the map's height, the frame in the room above it (R-55).
   sheetMaxHeight: SHEET_MAX,
   lookups: { systems: Object.fromEntries(seed.systems.filter((s) => order.some((k) => rivers[k].system === s.id)).map((s) => [s.id, { nameBn: s.nameBn }])) },
@@ -800,7 +821,7 @@ say(`upstream: in part ${inPartCards.length} (${inPartCards.join(', ')}); reache
 say(`cut rule (within ${CUT_TOL_M} m of a selection box's edge): ${cutReport.join('; ')}; cut: ${cutCards.join(', ') || 'none'}`);
 say(`«বাংলাদেশে»: ${bdPieces.length} inside pieces (band ${BD_BAND_M} m, bits under ${BD_BIT_KM} km dropped: ${bits.join(', ') || 'none'}); the band keeps ${banded.size} lines' border reaches (${[...banded].join(', ')}); ${bdConnectors.length} of ${connectors.length} connectors; no inside piece: ${noInside.join(', ') || 'none'} (framed on Bangladesh: ${framedOnRest.join(', ') || 'none'}); rest frame ${bdRest.join(', ')}; the map-only upstream reaches left out: ${s4Left.join(', ')}`);
 say(`hidden in «বাংলাদেশে»: ${Object.keys(names).filter((k) => !names[k].inBd).length} names, ${Object.keys(marks).filter((k) => !marks[k].inBd).length} markers`);
-say(`«পুরো পথ» frames the river and its descendants: ${wholeInside.length} cards it is enabled for draw nothing outside Bangladesh themselves (${wholeInside.join(', ')})`);
+say(`«পুরো পথ» frames the river, its descendants and its origin-reached line (widened by that: ${byOrigin.join(', ') || 'none'}), and is enabled only where they reach beyond the ${BD_BAND_M} m band: disabled for ${Object.values(rivers).filter((r) => !r.outsideSet).length} (outside COD-AB within the band only: ${withinBand.join(', ') || 'none'})`);
 for (const k of ['main', 'teesta', 'rupsa']) say(`frames ${k}: in Bangladesh ${rivers[k].frameBd.join(', ')}; whole ${rivers[k].frameWhole.join(', ')}`);
 say(`diagram-only: ${diagramOnly.ids.size} ids and ${diagramOnly.texts.size} texts held back, none shipped; map-only drawn: ${Object.keys(places).length} place(s), ${info.lines.length - seed.infoBn.lines.filter((l) => !l.only).length - seed.markers.filter((m) => m.infoBn).length} ⓘ line(s)`);
 say(`pending: ${nPending}; ⓘ: ${extra.length} credits, ${info.lines.filter((l) => l.group === 'notes').length} notes, ${info.lines.filter((l) => l.group === 'conflicts').length} conflicts`);

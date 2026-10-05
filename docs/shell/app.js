@@ -15,9 +15,9 @@
 |--------------------------------------------------------------------------
 */
 
-import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=c63cfbb211';
-import { resolver } from '../shared/resolver.js?v=c63cfbb211';
-import { pickerRow } from '../shared/picker.js?v=c63cfbb211';
+import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=280d02e417';
+import { resolver } from '../shared/resolver.js?v=280d02e417';
+import { pickerRow } from '../shared/picker.js?v=280d02e417';
 
 /*
 |--------------------------------------------------------------------------
@@ -642,13 +642,13 @@ function pick(row, keys) {
 |--------------------------------------------------------------------------
 */
 const SHELL_MODULES = {
-  tabs: './tabs.js?v=c63cfbb211',
-  chips: './chips.js?v=c63cfbb211',
-  timeline: './timeline.js?v=c63cfbb211',
-  globe: './globe.js?v=c63cfbb211',
-  focus: './focus.js?v=c63cfbb211',
-  legend: './legend.js?v=c63cfbb211',
-  info: './info.js?v=c63cfbb211',
+  tabs: './tabs.js?v=280d02e417',
+  chips: './chips.js?v=280d02e417',
+  timeline: './timeline.js?v=280d02e417',
+  globe: './globe.js?v=280d02e417',
+  focus: './focus.js?v=280d02e417',
+  legend: './legend.js?v=280d02e417',
+  info: './info.js?v=280d02e417',
 };
 const hiders = []; // (table, key) => true takes a record off the map, the picker and ‹ ›
 // (table, key) => true takes a record off the map only: the picker and ‹ › still list it (the focus module).
@@ -1229,7 +1229,23 @@ function geometryOf(table, key) {
 function paddingFor(clear) {
   const base = { top: 16, right: 16, bottom: 16, left: 16 };
   if ((clear ?? []).includes('sheet') && !dom.sheet.hidden && sheetFloats()) base.bottom = sheetHeight() + 16;
+  if (CLEAR_CONTROLS) base.right = Math.max(base.right, controlsColumn() + 16);
   return base;
+}
+
+/*
+ * `frameClearsControls: true` (opt-in, 2026-10-06): every fit to a record keeps
+ * the column of the map's top-right controls — the compass, the tilt button —
+ * out of the frame on the right, measured as they stand, so a line's end is
+ * never framed under them. The rivers map's Meghna, whose Barak ended there.
+ * Without it a map frames as before.
+ */
+const CLEAR_CONTROLS = descriptor.frameClearsControls === true;
+if (descriptor.frameClearsControls !== undefined && typeof descriptor.frameClearsControls !== 'boolean') throw new Error('frameClearsControls is true or false');
+function controlsColumn() {
+  const corner = map.getContainer().querySelector('.maplibregl-ctrl-top-right');
+  if (!corner || !corner.offsetWidth) return 0;
+  return Math.ceil(map.getContainer().getBoundingClientRect().right - corner.getBoundingClientRect().left);
 }
 
 /*
