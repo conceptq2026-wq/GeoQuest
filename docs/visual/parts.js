@@ -6,7 +6,7 @@
 |--------------------------------------------------------------------------
 */
 
-import { pickerRow } from '../shared/picker.js?v=7e404693d8';
+import { pickerRow } from '../shared/picker.js?v=40cde902d7';
 
 export const SVG = 'http://www.w3.org/2000/svg';
 

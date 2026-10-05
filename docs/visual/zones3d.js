@@ -26,7 +26,8 @@
 | dashed witness lines down from the marks: drawn in screen space over the
 | picture (step 3b), so their widths stay put whatever the stage or the view.
 |
-| One side view: a drag turns the block, a pinch or the wheel zooms it
+| One side view: a drag turns the block — no further than the near face
+| still faces the viewer (step 3c) — a pinch or the wheel zooms it
 | (× 0.35 to × 1.5 of the distance), and ⟲ («পাশ থেকে») goes back to the side
 | view — at once with reduced motion. A frame is drawn only when something
 | changes; there is no animation loop.
@@ -42,7 +43,7 @@
 | Every word shown is the descriptor's or the data's.
 */
 
-import { dockedCard, el, pickerBar, stylesheet } from './parts.js?v=7e404693d8';
+import { dockedCard, el, pickerBar, stylesheet } from './parts.js?v=40cde902d7';
 
 // A pointer that moves less than this (CSS px) between down and up is a tap.
 const TAP_SLOP = 8;
@@ -62,7 +63,7 @@ async function loadThree() {
     const gl = probe.getContext('webgl') ?? probe.getContext('experimental-webgl');
     if (!gl) return null;
     gl.getExtension('WEBGL_lose_context')?.loseContext();
-    await import('./vendor/three-0.128.0/three.min.js?v=7e404693d8');
+    await import('./vendor/three-0.128.0/three.min.js?v=40cde902d7');
     return globalThis.THREE ?? null;
   } catch {
     return null;
@@ -78,12 +79,12 @@ export async function mount(panel, context) {
     renderer = null;
   }
   // No WebGL: the 2D zones view, from the same file.
-  if (!renderer) return (await import('./zones.js?v=7e404693d8')).mount(panel, context);
+  if (!renderer) return (await import('./zones.js?v=40cde902d7')).mount(panel, context);
 
   const { descriptor, data, art } = context;
   const words = descriptor.words ?? {};
   const M = await art;
-  await Promise.all([stylesheet('../shared/picker.css?v=7e404693d8'), stylesheet('./zones3d.css?v=7e404693d8')]);
+  await Promise.all([stylesheet('../shared/picker.css?v=40cde902d7'), stylesheet('./zones3d.css?v=40cde902d7')]);
 
   const zones = data.zones;
   const byId = new Map(zones.map((z) => [z.id, z]));
@@ -605,41 +606,36 @@ export async function mount(panel, context) {
   }
   const rect = (u0, u1, y) => [V3(u0, 0, y), V3(u1, 0, y), V3(u1, 1, y), V3(u0, 1, y), V3(u0, 0, y)];
   const nearEdge = (u0, u1, n, lift) => edge((t) => V3(u0 + t * (u1 - u0), 0, height(u0 + t * (u1 - u0), 0) + lift), n);
-  // Each zone's own area, outlined when chosen; the EEZ's from the territorial sea (arts. 33, 55).
+  // The chosen zone, outlined. ২–৫ in one continuous solid line from the baseline to the zone's outer
+  // limit, with no line inside it at 12 or 24 nm (step 3c); ৫'s, on the seabed, goes on dashed beyond 200,
+  // on a thin dark under-stroke. ১, ৬ and ৭ outline their own areas.
   const OUT = {
     'internal-waters': ribbon([...edge((v) => V3(coastU(v), v, 0.02), 30), V3(U.base, 1, 0.02), V3(U.base, 0, 0.02), V3(coastU(0), 0, 0.02)], '#ffffff', 0.035),
     'territorial-sea': ribbon(rect(U.base, U.u12, 0.02), '#ffffff', 0.035),
-    'contiguous-zone': ribbon(rect(U.u12, U.u24, 0.02), '#ffffff', 0.035),
-    eez: ribbon(rect(U.u12, U.u200, 0.02), '#ffffff', 0.035),
+    'contiguous-zone': ribbon(rect(U.base, U.u24, 0.02), '#ffffff', 0.035),
+    eez: ribbon(rect(U.base, U.u200, 0.02), '#ffffff', 0.035),
     'high-seas': ribbon(rect(U.u200, U.end, 0.02), '#ffffff', 0.035),
-    'continental-shelf': ribbon(nearEdge(U.u12, U.u200, 40, 0.02), '#ffffff', 0.045),
+    'continental-shelf': (() => {
+      const g = ribbon(nearEdge(U.base, U.u200, 40, 0.02), '#ffffff', 0.045);
+      const beyond = [ribbon(nearEdge(U.u200, U.fade, 12, 0.02), INK, 0.061, true, true, 8), ribbon(nearEdge(U.u200, U.fade, 12, 0.02), '#ffffff', 0.045, true, true)];
+      scene.remove(...beyond);
+      g.add(...beyond);
+      return g;
+    })(),
     'the-area': ribbon(nearEdge(U.fade, U.end, 20, 0.02), '#ffffff', 0.04),
   };
-  // For ২–৫, the span from the baseline: a light wash and a white dashed outline on a thin dark under-stroke.
+  // For ২–৫, the span from the baseline washed in light: on the surface, or on the seabed for ৫.
   const SPAN = {};
   const spanMat = new T.MeshBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.2, depthWrite: false });
   for (const [id, b] of [['territorial-sea', U.u12], ['contiguous-zone', U.u24], ['eez', U.u200]]) {
-    const g = new T.Group();
     const q = surfQuad(U.base, b, 0.012, spanMat);
-    scene.remove(q);
-    const under = ribbon(rect(U.base, b, 0.025), INK, 0.046, true, true, 8);
-    const r = ribbon(rect(U.base, b, 0.025), '#ffffff', 0.03, true, true);
-    scene.remove(under, r);
-    g.add(q, under, r);
-    g.visible = false;
-    scene.add(g);
-    SPAN[id] = g;
+    q.visible = false;
+    SPAN[id] = q;
   }
   {
-    const g = new T.Group();
     const wash = bedStrip(U.base, U.fade, '#FFF6B0', 0.28);
-    const under = ribbon(nearEdge(U.base, U.fade, 40, 0.03), INK, 0.046, true, true, 8);
-    const r = ribbon(nearEdge(U.base, U.fade, 40, 0.03), '#ffffff', 0.03, true, true);
-    scene.remove(wash, under, r);
-    g.add(wash, under, r);
-    g.visible = false;
-    scene.add(g);
-    SPAN['continental-shelf'] = g;
+    wash.visible = false;
+    SPAN['continental-shelf'] = wash;
   }
   // The baseline: a white dashed line on a dark edge, and a light curtain down to the seabed.
   {
@@ -815,7 +811,11 @@ export async function mount(panel, context) {
       const r = n.getBoundingClientRect();
       return [r.left - sb.left, r.top - sb.top, r.right - sb.left, r.bottom - sb.top];
     };
-    const blockers = [scaleNote, ...Object.values(nameLabels)].filter((n) => !n.hidden && n.offsetWidth).map(boxOf);
+    // …and of the numbers' discs, as drawn (30 px; their tap zones may overlap the arrows).
+    const blockers = [
+      ...[scaleNote, ...Object.values(nameLabels)].filter((n) => !n.hidden && n.offsetWidth).map(boxOf),
+      ...Object.values(discs).filter((d) => !d.hidden).map((d) => boxOf(d.firstElementChild)),
+    ];
     const takenBy = (y0) =>
       S.bars.flatMap(([id], i) => {
         const y = y0 + ROW_PX * i;
@@ -878,6 +878,13 @@ export async function mount(panel, context) {
       xy(A.tick, [p0[0] - down[0] * 5, p0[1] - down[1] * 5], [p0[0] + down[0] * 5, p0[1] + down[1] * 5]);
       at(barLabels[id], [p0[0] + 4, y - 6.05 - lineHalf(id)]); // 6 px clear, after rounding to 0.1 px
     }
+    // The labels never overlap: the rows keep them ROW_PX apart; should two still come within 6 px, they
+    // are stacked in one column, ROW_PX apart, at the leftmost label's place.
+    const boxes = S.bars.map(([id]) => boxOf(barLabels[id]));
+    if (boxes.some((a, i) => boxes.some((b, j) => j > i && a[0] < b[2] + 6 && b[0] < a[2] + 6 && a[1] < b[3] + 6 && b[1] < a[3] + 6))) {
+      const x = Math.min(...boxes.map((b) => b[0]));
+      S.bars.forEach(([id], i) => at(barLabels[id], [x, rowAt(i) - 6.05 - lineHalf(id)]));
+    }
     const b = pr(new T.Vector3(X(U.base), 0.5, Zc(0.98)));
     at(baseLabel, b, -30);
     baseLabel.hidden = b[2] > 1;
@@ -888,6 +895,11 @@ export async function mount(panel, context) {
   const C = S.camera;
   const target = new T.Vector3(...C.target);
   const orb = { az: C.azimuth, el: C.elevation, k: 1 };
+  // How far a drag may turn the block (step 3c): only so far that the near face still faces the viewer
+  // and the arrows under it stay readable — the azimuth within ORBIT_AZ of the side view's, the
+  // elevation between the two ORBIT_EL bounds, in radians.
+  const ORBIT_AZ = 0.4;
+  const ORBIT_EL = [0.12, 0.7];
   const [kMin, kMax] = C.zoom;
   const fitR = () => {
     const t = Math.tan(T.MathUtils.degToRad(cam.fov / 2));
@@ -959,8 +971,8 @@ export async function mount(panel, context) {
     pointers.set(event.pointerId, [event.clientX, event.clientY]);
     if (pointers.size === 1) {
       moved += Math.abs(dx) + Math.abs(dy);
-      orb.az -= dx * 0.008;
-      orb.el = Math.min(1.25, Math.max(0.12, orb.el + dy * 0.006));
+      orb.az = Math.min(C.azimuth + ORBIT_AZ, Math.max(C.azimuth - ORBIT_AZ, orb.az - dx * 0.008));
+      orb.el = Math.min(ORBIT_EL[1], Math.max(ORBIT_EL[0], orb.el + dy * 0.006));
       req();
     } else if (pointers.size === 2) {
       const [a, b] = [...pointers.values()];
