@@ -1,48 +1,9 @@
 /*
-| THE ZONES VIEW (zones.js): the block picture, its view switch, its legend
+| THE ZONES VIEW (zones.js): the block picture, its legend
 | and the card's sentences. Loaded only for a view of type `zones`.
 | Every word at least 14 px on a 320 px screen at 1×: the picture is as wide
 | as the stage, so its 26-unit numbers and tick labels draw at 14.9 px or more.
 */
-
-/* The view switch: a row of its own under ⓘ's, two buttons, each 44 px tall. */
-.zones-switch {
-  display: flex;
-  flex: 0 0 auto;
-  align-self: flex-start;
-  margin: 6px 16px 0;
-  overflow: hidden;
-  border: 1px solid #c4d3d8;
-  border-radius: 10px;
-  background: #ffffff;
-}
-
-.zones-view {
-  min-width: 44px;
-  min-height: 44px;
-  padding: 0 16px;
-  border: 0;
-  background: transparent;
-  color: #13252d;
-  font: inherit;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-.zones-view + .zones-view {
-  border-left: 1px solid #c4d3d8;
-}
-
-.zones-view[aria-pressed='true'] {
-  background: #0b5d7a;
-  color: #ffffff;
-  font-weight: 600;
-}
-
-.zones-view:focus-visible {
-  outline: 3px solid #13252d;
-  outline-offset: -3px;
-}
 
 /* The stage: the picture fills it (step 2c), and takes a pinch and a drag itself. */
 .zones .stage {

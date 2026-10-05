@@ -2,6 +2,41 @@
 
 Read it with `CLAUDE.md`, whose rules and verification budget apply.
 
+## Step 3d (2026-10-05): the user's three Step 3 decisions — local preview only
+
+- **The zones' colours live in the seed** (accepted, 2026-10-05):
+  `drawing.colours`, one entry per zone.
+  - `fill` is the disc's ring, the picker's swatch and the 2D fill.
+  - `band` (the shelf, the Area) is the colour of the cut faces.
+  - `texture` (the Area) is the nodule ground.
+  - Who reads it: `tools/build-diagram-maritime-zones.mjs` copies each zone's
+    `fill`, `band` and `texture` into `data.json`'s zones.
+  - `docs/visual/zones3d.js` draws them all.
+  - `docs/visual/zones.js`, the 2D fallback, draws the fills, and since this
+    step also the Area's band and nodule ground.
+  - The field's `_about` in the seed says the same.
+- **The 2D fallback, `zones.js`, changed once**, by the user's exception
+  (2026-10-05) to "`zones.js` may not change" (step 3, below). Only these
+  changes:
+  - the «পাশ থেকে» / «সমুদ্র থেকে» switch and the sea view are gone, and it
+    shows the side view only; the switch's rules left `zones.css`;
+  - the Area is purple, as the 3D view draws it: its faces in `band`
+    (#7B4BAE), its floor and the legend's swatch in `texture` (#8A63BD),
+    the nodules still dark. The pink `#C98FAE` is gone.
+  - Tap targets, picker, card, Escape and focus are unchanged.
+- **Strings.** «সমুদ্র থেকে» (`words.viewSea`) left the seed and the
+  build, with the sea projection's data (`VIEWS`, `BARS`, `BADGES`,
+  `DECOR`), which nothing drew any more. «পাশ থেকে» (`words.viewSide`)
+  stays: it names the 3D view's ⟲ button. No other used string became
+  unused. (`words.caption` was already not built; it is the future home
+  card's.)
+- **Since step 3, in `zones3d.js`/`zones3d.css` only**:
+  - step 3b: screen-space SVG distance arrows and witness lines, 29 px rows,
+    the scale note top left;
+  - step 3c: one continuous solid outline from the baseline for ২–৫ (৫
+    dashed beyond 200), and the orbit limited to ±0.4 rad of azimuth and
+    0.12–0.70 rad of elevation.
+
 ## Step 3 (2026-10-05): the real-time 3D view — local preview only
 
 - **The look** is the user's approved mockup,
@@ -31,6 +66,9 @@ Read it with `CLAUDE.md`, whose rules and verification budget apply.
   failing to start: `zones3d.js` hands the panel to `zones.js` with the same
   file — step 2d's 2D view, both projections. Its legend's Area swatch is
   still `zones.js`'s own pink (`#C98FAE`); `zones.js` may not change.
+  - **Exception, the user's (2026-10-05, step 3d)**, once: the fallback lost
+    the sea view and its switch, and draws the Area in the seed's purple.
+    Otherwise the rule stands.
 - **The scene** (the user's decisions):
   - one side view; a drag turns it, a pinch or the wheel zooms × 0.35–1.5 of
     the distance; ⟲, named «পাশ থেকে», goes back (at once with reduced
@@ -173,8 +211,9 @@ Read it with `CLAUDE.md`, whose rules and verification budget apply.
 - **The model.** `zones.json` holds one 3D model: u from the land to the open
   sea, v along the coast, z the depth. The seabed is a profile, with a bay
   for the internal waters.
-  - It has two affine projections, chosen by a two-button switch in a row of
-    its own under ⓘ's: «পাশ থেকে» (default) and «সমুদ্র থেকে».
+  - It had two affine projections, chosen by a two-button switch in a row of
+    its own under ⓘ's: «পাশ থেকে» (default) and the sea view (both removed in
+    step 3d; the side view stays).
   - Switching re-renders the picture and keeps the choice and the card.
     Choosing changes classes only.
 - **Drawn back to front:**

@@ -104,12 +104,7 @@
   "viewSide": {
    "bn": "পাশ থেকে",
    "approved": true,
-   "note": "the view switch, the user's (step 2b, 2026-10-02)"
-  },
-  "viewSea": {
-   "bn": "সমুদ্র থেকে",
-   "approved": true,
-   "note": "the view switch, the user's (step 2b, 2026-10-02)"
+   "note": "the 3D view's ⟲ button's name (aria-label and title); it named the view switch's side view (step 2b, 2026-10-02) until the switch was removed in step 3d (2026-10-05)"
   },
   "legendContiguous": {
    "bn": "সংলগ্ন অঞ্চল",
@@ -968,7 +963,7 @@
    }
   },
   "colours": {
-   "_about": "Each zone's colour: fill is its disc's ring, the picker's swatch and the 2D fill; band, where given, the shelf's and the Area's bands on the cut faces; texture, the Area's nodule ground. zones-design.md's light values, but for two the user changed on 2026-10-05 (step 3): the continental shelf, bright yellow (fill #E8C400 for #F0E442, bands #F2D21B), and the Area, deep purple (fill #6A3D9A for #CC79A7, bands #7B4BAE, nodule texture #8A63BD).",
+   "_about": "Each zone's colour: fill is its disc's ring, the picker's swatch and the 2D fill; band, where given, the shelf's and the Area's bands on the cut faces; texture, the Area's nodule ground. zones-design.md's light values, but for two the user changed on 2026-10-05 (step 3): the continental shelf, bright yellow (fill #E8C400 for #F0E442, bands #F2D21B), and the Area, deep purple (fill #6A3D9A for #CC79A7, bands #7B4BAE, nodule texture #8A63BD). Read by tools/build-diagram-maritime-zones.mjs, which copies each zone's fill, band and texture into data.json's zones; drawn by docs/visual/zones3d.js (fills, the shelf's and the Area's bands, the Area's nodule ground) and by docs/visual/zones.js, the 2D fallback (fills; since step 3d also the Area's band on its faces and its nodule ground on its floor and in the legend). The user accepted the field on 2026-10-05 (step 3d).",
    "internal-waters": {
     "fill": "#0072B2"
    },

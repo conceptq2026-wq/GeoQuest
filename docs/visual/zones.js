@@ -6,10 +6,9 @@
 | Loaded only for a view of type `zones` (maritime-zones). The view's file
 | (built by tools/build-diagram-maritime-zones.mjs) holds one 3D model — u,
 | the distance from the land toward the open sea; v, 0 to 1 along the coast;
-| z, the depth — and two projections of it, chosen by a two-button switch in
-| a row of its own under ⓘ's: «পাশ থেকে», the block from the side, its
-| profile cut in front, and «সমুদ্র থেকে», from the open sea toward the
-| baseline, raised, the profile its right face. Not to scale.
+| z, the depth — drawn in one projection, from the side, its profile cut in
+| front (step 3d: the sea view and its switch are gone; this view is now the
+| 3D view's fallback without WebGL). Not to scale.
 |
 | Drawn back to front: the seabed's surface, shaded by depth and steepness
 | with faint depth lines, under a water surface whose opacity follows the
@@ -23,7 +22,7 @@
 | The distances are coloured bars on the sea surface, each in its zone's
 | colour and every one from the baseline (০): ০→১২ (২), ০→২৪ (৩, hatched),
 | ০→২০০ (৪) and the shelf's ০→২০০ then dashed beyond (৫) — along the front
-| edge from the side, the left edge from the sea. The zones' own areas stay
+| edge. The zones' own areas stay
 | where the Convention puts them; only the bars start at the baseline.
 |
 | The picker row at the top is the main way in; its items, the card's title
@@ -32,21 +31,23 @@
 | the zone's own surface and faces take a tap too. Every zone keeps its full
 | colour: choosing outlines the chosen one, strengthens its discs' rings and
 | docks the card with its sentences; ×, Escape or a second tap closes it, and
-| focus returns to the zone's disc. Switching keeps the choice and the card.
+| focus returns to the zone's disc. The Area is drawn in the seed's purple, as
+| the 3D view draws it: its faces in its band colour, its floor and the
+| legend's swatch in its nodule ground (step 3d).
 |
 | The picture is as wide as the stage and about half a phone's screen tall
 | (step 2d), at the stage's top: its frame is cropped to the drawing,
 | the legend inside it, and at 1× its width is the stage's; a two-finger pinch
 | zooms 1×–3× and a drag pans, a double tap goes back to 1×, the wheel zooms
 | on a desktop. With the card open the stage is shorter and the picture keeps
-| its 1× size, centred on the chosen zone's number. Zoom resets when the view
-| changes. The picture is drawn again only when the view changes; choosing
-| changes classes only, and zooming the frame and the discs' reach.
+| its 1× size, centred on the chosen zone's number. The picture is drawn
+| once; choosing changes classes only, and zooming the frame and the discs'
+| reach.
 |
 | Every word shown is the descriptor's or the data's.
 */
 
-import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=40cde902d7';
+import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=a74f425c2d';
 
 // Picture units of margin round the drawing, and of space under it before the legend.
 const PAD = 6;
@@ -80,13 +81,13 @@ const DEFS = `
 const SWATCH = {
   baseline: '<line x1="2" y1="8" x2="24" y2="8" stroke="#13252D" stroke-width="2" stroke-dasharray="4 3"/>',
   contiguous: '<defs><pattern id="mz-hatch-key" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#E7B79A"/><line x1="0" y1="0" x2="0" y2="6" stroke="#B4521A" stroke-width="2.5"/></pattern></defs><rect width="26" height="16" fill="url(#mz-hatch-key)"/>',
-  area: '<rect width="26" height="16" fill="#C98FAE"/><g fill="#2B2522"><ellipse cx="5" cy="5" rx="2" ry="1.4"/><ellipse cx="13" cy="10" rx="2" ry="1.4"/><ellipse cx="21" cy="5" rx="2" ry="1.4"/><ellipse cx="8" cy="12" rx="1.6" ry="1.1"/><ellipse cx="18" cy="12" rx="1.6" ry="1.1"/></g>',
+  area: '<rect width="26" height="16" fill="AREA_GROUND"/><g fill="#2B2522"><ellipse cx="5" cy="5" rx="2" ry="1.4"/><ellipse cx="13" cy="10" rx="2" ry="1.4"/><ellipse cx="21" cy="5" rx="2" ry="1.4"/><ellipse cx="8" cy="12" rx="1.6" ry="1.1"/><ellipse cx="18" cy="12" rx="1.6" ry="1.1"/></g>',
 };
 
 export async function mount(panel, { descriptor, data, art }) {
   const words = descriptor.words ?? {};
   const M = await art;
-  await Promise.all([stylesheet('../shared/picker.css?v=40cde902d7'), stylesheet('./zones.css?v=40cde902d7')]);
+  await Promise.all([stylesheet('../shared/picker.css?v=a74f425c2d'), stylesheet('./zones.css?v=a74f425c2d')]);
 
   const zones = data.zones;
   const byId = new Map(zones.map((z) => [z.id, z]));
@@ -126,8 +127,7 @@ export async function mount(panel, { descriptor, data, art }) {
     return `#${A.map((x, i) => Math.round(lerp(x, B[i], t)).toString(16).padStart(2, '0')).join('')}`;
   }
 
-  let view = 'side';
-  let V = M.views.side;
+  const V = M.views.side;
   const P = (u, v, z) => [V.x[0] * u + V.x[1] * v + V.x[2] * z + V.x[3], V.y[0] * u + V.y[1] * v + V.y[2] * z + V.y[3]];
   let box = null; // the drawing's extent, [x0, y0, x1, y1], grown as it is drawn
   const grow = (x, y, r = 0) => {
@@ -166,20 +166,6 @@ export async function mount(panel, { descriptor, data, art }) {
 
   panel.classList.add('zones');
 
-  // The view switch: two buttons, in a row of their own under ⓘ's.
-  const switchRow = el('div', 'zones-switch');
-  switchRow.setAttribute('role', 'group');
-  const switches = {};
-  for (const [key, word] of [['side', words.viewSide], ['sea', words.viewSea]]) {
-    const b = el('button', 'zones-view', 'bn');
-    b.type = 'button';
-    b.dataset.view = key;
-    b.textContent = word ?? key;
-    b.setAttribute('aria-pressed', String(key === view));
-    switchRow.append(b);
-    switches[key] = b;
-  }
-
   const stage = el('div', 'stage');
   const content = el('div', 'stage-content loading');
   const svg = svgEl('svg', { class: 'zones-svg', role: 'group', preserveAspectRatio: 'xMidYMid meet' });
@@ -200,7 +186,7 @@ export async function mount(panel, { descriptor, data, art }) {
     current: () => selected ?? undefined,
     choose: (key) => choose(key),
   });
-  panel.append(bar, switchRow, stage, card);
+  panel.append(bar, stage, card);
 
   // ---- drawing ------------------------------------------------------------------------------
 
@@ -221,6 +207,10 @@ export async function mount(panel, { descriptor, data, art }) {
   /** A zone's part of the picture: its fills dim and light with the choice. */
   const part = (id, parent) => S('g', { class: 'mz-part', 'data-key': id }, parent);
   const fillOf = (id) => byId.get(id).fill;
+  // The Area as the 3D view draws it, the seed's purple: its faces in its band, its floor in its nodule ground.
+  const AREA = byId.get('the-area');
+  const areaFace = AREA.band ?? AREA.fill;
+  const areaGround = AREA.texture ?? AREA.fill;
   /** A face's outline: faint, and clear — a light halo under a dark line — once its zone is chosen. */
   const outline = (p, poly) => {
     S('polygon', { class: 'halo', points: pts(poly), fill: 'none' }, p);
@@ -228,7 +218,6 @@ export async function mount(panel, { descriptor, data, art }) {
   };
 
   function render() {
-    V = M.views[view];
     svg.replaceChildren();
     box = null;
     covers.length = 0;
@@ -266,7 +255,7 @@ export async function mount(panel, { descriptor, data, art }) {
     S('polygon', { class: 'sea', points: pts(bedStrip(U.u12, U.u200, 8)), fill: fillOf('continental-shelf'), 'fill-opacity': 0.5 }, g);
     for (const [a, b, o] of [[U.u200, 370, 0.4], [370, 381, 0.28], [381, 390, 0.16], [390, U.fade, 0.07]]) S('polygon', { class: 'sea', points: pts(bedStrip(a, b, 4)), fill: fillOf('continental-shelf'), 'fill-opacity': o }, g);
     g = part('the-area', scene);
-    S('polygon', { class: 'sea', points: pts(bedStrip(U.fade, U.end, 4)), fill: fillOf('the-area'), 'fill-opacity': 0.5 }, g);
+    S('polygon', { class: 'sea', points: pts(bedStrip(U.fade, U.end, 4)), fill: areaGround, 'fill-opacity': 0.5 }, g);
     for (let i = 0; i < 60; i++) {
       const u = U.fade + 4 + ((i * 37) % 48);
       const p = P(u, ((i * 53) % 100) / 100, dep(u) - 0.5);
@@ -316,7 +305,7 @@ export async function mount(panel, { descriptor, data, art }) {
     clip('mz-c-land', landPoly);
     S('polygon', { points: pts(landPoly), fill: 'url(#mz-land)' }, land);
     cover({ filter: 'url(#mz-terrain)', opacity: 0.55, style: 'mix-blend-mode:soft-light', 'clip-path': 'url(#mz-c-land)' }, land);
-    for (const [u, v, w, h] of M.decor[view].hills) {
+    for (const [u, v, w, h] of M.decor.side.hills) {
       const c = P(u, v, 0);
       const d = `M${c[0] - w},${c[1] + 2} C${c[0] - w * 0.5},${c[1] - h} ${c[0] + w * 0.3},${c[1] - h * 1.05} ${c[0] + w},${c[1] + 2} Z`;
       grow(c[0] - w, c[1] - h);
@@ -338,9 +327,7 @@ export async function mount(panel, { descriptor, data, art }) {
     const water = profileWater(vc, U.coast, U.end);
     clip('mz-c-water', water);
     S('polygon', { points: pts(water), fill: 'url(#mz-deep)' }, face);
-    if (view === 'side') {
-      for (const [u, w, d] of M.decor.side.rays) S('polygon', { points: pts([P(u, 0, 0), P(u + w, 0, 0), P(u + w + d, 0, ZB), P(u + d - 10, 0, ZB)]), fill: 'url(#mz-ray)', opacity: 0.35, style: 'mix-blend-mode:screen', 'clip-path': 'url(#mz-c-water)' }, face);
-    } else S('polygon', { points: pts(profileLayer(vc, -200)), fill: '#0B1E26', 'fill-opacity': 0.2 }, face);
+    for (const [u, w, d] of M.decor.side.rays) S('polygon', { points: pts([P(u, 0, 0), P(u + w, 0, 0), P(u + w + d, 0, ZB), P(u + d - 10, 0, ZB)]), fill: 'url(#mz-ray)', opacity: 0.35, style: 'mix-blend-mode:screen', 'clip-path': 'url(#mz-c-water)' }, face);
     S('polyline', { points: pts(useq(U.coast, U.end, 6).map((u) => P(u, vc, dep(u)))), fill: 'none', stroke: '#C2B597', 'stroke-width': 3, 'stroke-opacity': 0.9 }, face);
     const [r0, r1] = [P(U.coast, vc, 0), P(U.end, vc, 0)];
     S('line', { x1: r0[0], y1: r0[1], x2: r1[0], y2: r1[1], stroke: '#E9F7FB', 'stroke-width': 1.4, 'stroke-opacity': 0.8 }, face);
@@ -364,7 +351,7 @@ export async function mount(panel, { descriptor, data, art }) {
     for (const [a, b, o] of [[U.u200, 370, 0.75], [370, 381, 0.5], [381, 390, 0.3], [390, U.fade, 0.14]]) S('polygon', { class: 'sea', points: pts(bandOnProfile(vc, a, b, 10)), fill: fillOf('continental-shelf'), 'fill-opacity': o }, g);
     outline(g, bandOnProfile(vc, U.u12, U.fade, 10));
     g = part('the-area', face);
-    S('polygon', { class: 'sea', points: pts(bandOnProfile(vc, U.fade, U.end, 10)), fill: fillOf('the-area') }, g);
+    S('polygon', { class: 'sea', points: pts(bandOnProfile(vc, U.fade, U.end, 10)), fill: areaFace }, g);
     outline(g, bandOnProfile(vc, U.fade, U.end, 10));
     for (let i = 0; i < 16; i++) {
       const u = U.fade + 2 + i * 3.1;
@@ -372,22 +359,22 @@ export async function mount(panel, { descriptor, data, art }) {
       S('ellipse', { class: 'band', cx: p[0], cy: p[1], rx: 1.8, ry: 1.2, fill: '#2B2522' }, g);
     }
 
-    // 6) The open sea's end face: the right side from the side, the near face from the sea.
+    // 6) The open sea's end face, on the right.
     const endFace = S('g', {}, scene);
     const eq = (z0, z1) => [P(U.end, 0, z0), P(U.end, 1, z0), P(U.end, 1, z1), P(U.end, 0, z1)];
     for (const [d, c] of [[0, '#A39478'], [9, '#B3A283'], [30, '#958670']]) S('polygon', { points: pts(eq(Math.min(dE + d, ZB), ZB)), fill: c }, endFace);
     S('polygon', { points: pts(eq(0, dE)), fill: 'url(#mz-deep)' }, endFace);
-    if (view === 'side') S('polygon', { points: pts(eq(0, ZB)), fill: '#0B1E26', 'fill-opacity': 0.3 }, endFace);
+    S('polygon', { points: pts(eq(0, ZB)), fill: '#0B1E26', 'fill-opacity': 0.3 }, endFace);
     const hsEnd = part('high-seas', endFace);
     S('polygon', { class: 'front', points: pts(eq(0, dE)), fill: fillOf('high-seas') }, hsEnd);
     outline(hsEnd, eq(0, dE));
-    S('polygon', { class: 'sea', points: pts(eq(dE, dE + 10)), fill: fillOf('the-area') }, part('the-area', endFace));
+    S('polygon', { class: 'sea', points: pts(eq(dE, dE + 10)), fill: areaFace }, part('the-area', endFace));
     const [e0, e1] = [P(U.end, 0, 0), P(U.end, 1, 0)];
     S('line', { x1: e0[0], y1: e0[1], x2: e1[0], y2: e1[1], stroke: '#E9F7FB', 'stroke-width': 1, 'stroke-opacity': 0.6 }, endFace);
 
     // 7) Ships, and a platform standing on the shelf: simple shapes of our own.
     const deco = S('g', { 'aria-hidden': 'true' }, scene);
-    for (const [u, v, s] of M.decor[view].ships) {
+    for (const [u, v, s] of M.decor.side.ships) {
       const p = P(u, v, 0);
       const ship = S('g', { transform: `translate(${p[0].toFixed(1)},${p[1].toFixed(1)}) scale(${s})` }, deco);
       grow(p[0] - 64 * s, p[1] - 12 * s);
@@ -420,11 +407,11 @@ export async function mount(panel, { descriptor, data, art }) {
     };
 
     // 8) The distances, in colour (step 2d): thin strips on the sea surface along its v = 0 edge — the
-    //    front edge from the side, the left edge from the sea — each in its zone's colour and every one
+    //    front edge — each in its zone's colour and every one
     //    starting at the baseline (০): ০→১২, ০→২৪ (hatched), ০→২০০, and the shelf's ০→২০০ then dashed
     //    beyond. Each zone's number stands just past its bar's tip; the tick labels stand off the edge.
     //    The zones' own areas stay where the Convention puts them; only the bars start at the baseline.
-    const B2 = M.bars[view];
+    const B2 = M.bars.side;
     const uOf = { u12: U.u12, u24: U.u24, u200: U.u200, beyond: M.bars.beyond };
     // Picture units per unit of v, and per unit of u, along the v = 0 edge.
     const vLen = Math.hypot(P(U.base, 1, 0)[0] - P(U.base, 0, 0)[0], P(U.base, 1, 0)[1] - P(U.base, 0, 0)[1]);
@@ -454,7 +441,7 @@ export async function mount(panel, { descriptor, data, art }) {
     S('line', { x1: s0b[0], y1: s0b[1], x2: s1b[0], y2: s1b[1], stroke: '#F4F8F9', 'stroke-width': 1.6, 'stroke-dasharray': '6 4' }, bars);
     // The tick labels, off the edge, away from the surface, on a light halo.
     const off = [P(U.base, 0, 0)[0] - P(U.base, 1, 0)[0], P(U.base, 0, 0)[1] - P(U.base, 1, 0)[1]].map((c) => c / vLen);
-    // Where two labels stand close (১২ and ২৪ along the sea view's steep edge), the later one steps out.
+    // Where two labels stand close, the later one steps out.
     const placed = [];
     const m = 4; // units of room between two labels
     const meets = (a, b) => a.x < b.x + b.width + m && b.x < a.x + a.width + m && a.y < b.y + b.height + m && b.y < a.y + a.height + m;
@@ -479,7 +466,7 @@ export async function mount(panel, { descriptor, data, art }) {
     // 9) The numbers, coast to sea, each in a disc of its zone's colour.
     at = {};
     for (const z of zones) {
-      const [u, v, zz] = M.badges[view][z.id];
+      const [u, v, zz] = M.badges.side[z.id];
       const p = P(u, v, typeof zz === 'string' ? dep(u) + Number(zz.slice(3)) : zz);
       at[z.id] = p;
       disc(z, p, svg, 'badge');
@@ -504,7 +491,7 @@ export async function mount(panel, { descriptor, data, art }) {
       }
       if (key) {
         const sw = S('svg', { x: lx, y: ly - T.legend * 0.38, width: T.legend * 1.25, height: T.legend * 0.76, viewBox: '0 0 26 16', 'aria-hidden': 'true' }, legend);
-        sw.innerHTML = SWATCH[key];
+        sw.innerHTML = SWATCH[key].replace('AREA_GROUND', areaGround);
       }
       t.setAttribute('x', (lx + mark).toFixed(1));
       t.setAttribute('y', ly.toFixed(1));
@@ -684,20 +671,6 @@ export async function mount(panel, { descriptor, data, art }) {
   close.addEventListener('click', () => clear(true));
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && selected !== null && !panel.hidden) clear(true);
-  });
-  switchRow.addEventListener('click', (event) => {
-    const next = event.target.closest?.('.zones-view')?.dataset.view;
-    if (!next || next === view) return;
-    view = next;
-    for (const [key, b] of Object.entries(switches)) b.setAttribute('aria-pressed', String(key === view));
-    zoom = 1;
-    centre = null;
-    render();
-    light();
-    if (selected && at[selected]) {
-      centre = [...at[selected]];
-      layout();
-    }
   });
 
   // ---- layout, in CSS px ----------------------------------------------------------------

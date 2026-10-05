@@ -431,8 +431,10 @@ State which kind a task is when reporting it.
   caption, after Stages 1–3 of its plan: three tabs, 55 events, dot and ring
   markers, group chips, a cards-only tab, and the one no-point exception.
 - Work in progress (`tools/wip.json`): `maritime-zones`, a diagram under
-  International (step 3, a real-time 3D view with the 2D view as its
-  fallback; local preview only: `notes/maritime-zones.md`), and
+  International (step 3d, a real-time 3D view; its fallback without WebGL,
+  the 2D view, shows the side view only — `zones.js` changed for it once,
+  by the user's exception of 2026-10-05; local preview only:
+  `notes/maritime-zones.md`), and
   `bangladesh-maritime-boundary` «বাংলাদেশের সমুদ্রসীমা», a map under বাংলাদেশ
   (step 1: the ITLOS and PCA lines, St Martin's, the 2015 baselines and the
   lines' junction; local preview only: `notes/bangladesh-maritime-boundary.md`).

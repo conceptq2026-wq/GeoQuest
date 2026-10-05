@@ -16,8 +16,8 @@
 // The picture (step 2b, the look of the user's approved mockup,
 // tools/.cache/unclos/maritime-zones-mockup-v4.html): one 3D model — u, the
 // distance from the land toward the open sea; v, 0 to 1 along the coast; z,
-// the depth below the sea surface — seen in two projections, «পাশ থেকে» and
-// «সমুদ্র থেকে», each an affine map of (u, v, z) to the picture's units. The
+// the depth below the sea surface — seen from the side, «পাশ থেকে», an affine
+// map of (u, v, z) to the picture's units (the sea view went in step 3d). The
 // view (docs/visual/zones.js) draws everything from this file; textures are
 // SVG filters, nothing is an image. Not to scale. The zones are numbered ১–৭
 // coast to sea; the numbers' ink and the ruler's reach 4.5:1 or the build
@@ -61,13 +61,9 @@ const BAY = { from: 0.3, to: 0.75, depth: 24 };
 // half a phone's screen (the user's decision, step 2d): the picture, cropped to the drawing by the
 // view, is as wide as the stage and about as tall as it is wide.
 // «পাশ থেকে»: x = u + 40v, y = 300 − 140v + 1.3z (the mockup's u + 55v, 180 − 80v + z).
-// «সমুদ্র থেকে», from the open sea toward the baseline: a = (end − u) / (end − coast);
-// x = 84 + 280v + 150a, y = 600 − 165a + 0.8z (the mockup's 40 + 300v + 150a, 330 − 210a + 0.9z).
-const span = U.end - U.coast;
-const r6 = (x) => Math.round(x * 1e6) / 1e6;
+// The sea view and its switch were removed in step 3d (the user's decision, 2026-10-05).
 const VIEWS = {
   side: { cut: 0, x: [1, 40, 0, 0], y: [0, -140, 1.3, 300] },
-  sea: { cut: 1, x: [r6(-150 / span), 280, 0, r6(84 + (150 * U.end) / span)], y: [r6(165 / span), 0, 0.8, r6(600 - (165 * U.end) / span)] },
 };
 // The distance bars (the user's decision, step 2d): thin strips in each zone's own colour, on the sea
 // surface along its v = 0 edge — the front edge from the side, the left edge from the sea — every one
@@ -78,7 +74,6 @@ const VIEWS = {
 // the Convention puts them; only the bars start at the baseline.
 const BARS = {
   side: { thick: 7, gap: 2, labels: 28 },
-  sea: { thick: 9, gap: 2, labels: 34 },
   beyond: 440,
   order: [['territorial-sea', 'u12'], ['contiguous-zone', 'u24'], ['eez', 'u200'], ['continental-shelf', 'beyond']],
 };
@@ -87,13 +82,11 @@ const BARS = {
 // tap target, TEXT.hitPx CSS px in radius: the numbers stand far enough apart for that.
 const BADGES = {
   side: { 'internal-waters': [78, 0.75, 0], 'territorial-sea': [165, 0.6, 0], 'contiguous-zone': [229, 0.8, 0], eez: [320, 0.6, 0], 'high-seas': [420, 0.8, 0], 'continental-shelf': [240, 0, 'bed+34'], 'the-area': [425, 0, 'bed-12'] },
-  sea: { 'internal-waters': [90, 0.45, 0], 'territorial-sea': [150, 0.95, 0], 'contiguous-zone': [229, 0.4, 0], eez: [314, 0.85, 0], 'high-seas': [405, 0.35, 0], 'continental-shelf': [330, 0.65, 'bed+0'], 'the-area': [450, 0.5, 'bed+8'] },
 };
 // Decoration, simple original shapes: hills [u, v, half-width, height], ships [u, v, scale], light in
 // the side view's water [u, width, drift], one platform on the shelf at u.
 const DECOR = {
   side: { hills: [[34, 0.25, 15, 24], [32, 0.65, 17, 32], [44, 0.92, 10, 18]], ships: [[420, 0.74, 0.8], [292, 0.38, 0.62]], rays: [[150, 18, 40], [232, 14, 52], [318, 22, 70], [400, 16, 60]] },
-  sea: { hills: [[30, 0.2, 22, 30], [34, 0.55, 26, 40], [40, 0.88, 20, 26]], ships: [[418, 0.22, 0.75], [300, 0.62, 0.55]] },
   platform: 300,
 };
 // The picture's words and discs, in its units: the view crops the frame to the drawing and fits its
@@ -204,7 +197,6 @@ const descriptor = {
     picker: approved(w.picker, 'words.picker'),
     close: approved(w.close, 'words.close'),
     viewSide: approved(w.viewSide, 'words.viewSide'),
-    viewSea: approved(w.viewSea, 'words.viewSea'),
     legend: {
       baseline: approved(d.baseline.label, 'drawing.baseline.label'),
       contiguous: approved(w.legendContiguous, 'words.legendContiguous'),
