@@ -91,14 +91,24 @@ for (const [name, want] of Object.entries(convention.files)) {
 // refused if it differs.
 const maritime = sources.bangladeshMaritime;
 fs.mkdirSync(path.join(cache, maritime.dir, 'text'), { recursive: true });
+// An HTML page's text is tools/lib/html-text.mjs's (step 2, 2026-10-07: bdlaws' sections, the Teknaf upazila
+// page). A portal page that changes ("changes": true) is reported when it differs, not cached, and the run goes on.
+const maritimeChanged = [];
 for (const [name, want] of Object.entries(maritime.files)) {
   const dest = path.join(cache, maritime.dir, name);
-  await fetchVerified(want.url, dest, (buf) => buf.length === want.size && sha256(buf) === want.sha256);
+  try {
+    await fetchVerified(want.url, dest, (buf) => buf.length === want.size && sha256(buf) === want.sha256);
+  } catch (e) {
+    if (!want.changes) throw e;
+    maritimeChanged.push(`${name} (${e.message.includes('Checksum') ? 'the page has changed' : e.message})`);
+    continue;
+  }
   if (!want.text) continue;
-  const text = execFileSync('pdftotext', ['-enc', 'UTF-8', dest, '-']);
-  if (text.length !== want.text.size || sha256(text) !== want.text.sha256) throw new Error(`${want.text.file}: pdftotext's text of ${name} is not the pinned one — refusing it`);
+  const text = name.endsWith('.html') ? Buffer.from(sourceText(fs.readFileSync(dest)), 'utf8') : execFileSync('pdftotext', ['-enc', 'UTF-8', dest, '-']);
+  if (text.length !== want.text.size || sha256(text) !== want.text.sha256) throw new Error(`${want.text.file}: the text of ${name} is not the pinned one — refusing it`);
   fs.writeFileSync(path.join(cache, maritime.dir, want.text.file), text);
 }
+if (maritimeChanged.length) console.log(`bangladesh-maritime-boundary: ${maritimeChanged.length} source(s) not cached — re-check due:\n  ${maritimeChanged.join('\n  ')}`);
 
 // Three.js r128, the maritime-zones 3D view's library: the npm tarball, by size and SHA-256. Its two
 // vendored files are held to their own SHA-256s by tools/verify.mjs.

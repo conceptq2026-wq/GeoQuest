@@ -1285,15 +1285,6 @@ console.log('\n---- bangladesh-maritime-boundary: seed ----');
   const badPins = [];
   let pinned = 0;
   for (const [id, s] of Object.entries(seed.sources)) {
-    if (id === 'nctb') {
-      const n = listed.nctbBhugol2026;
-      const p = s.files['bhugol-2026.pdf'];
-      const at = path.join(HERE, '.cache', n.file);
-      const buf = fs.existsSync(at) ? fs.readFileSync(at) : null;
-      if (!buf || buf.length !== p.bytes || sha(buf) !== p.sha256 || n.size !== p.bytes || n.sha256 !== p.sha256) badPins.push('nctb/bhugol-2026.pdf');
-      pinned++;
-      continue;
-    }
     for (const [file, p] of Object.entries(s.files)) {
       pinned++;
       const l = listed.files[file];
@@ -1306,7 +1297,7 @@ console.log('\n---- bangladesh-maritime-boundary: seed ----');
       else text[`${id}/${p.text.file}`] = t.toString('utf8').replace(/\s+/g, ' ');
     }
   }
-  check(badPins.length === 0 && Object.keys(listed.files).length === pinned - 1, `${MB}: each of the ${pinned} source files, and the ${Object.keys(text).length} texts quoted from, is the pinned one, as tools/sources.json records it${badPins.length ? ` — not: ${badPins.join(', ')}` : ''}`);
+  check(badPins.length === 0 && Object.keys(listed.files).length === pinned, `${MB}: each of the ${pinned} source files, and the ${Object.keys(text).length} texts quoted from, is the pinned one, as tools/sources.json records it${badPins.length ? ` — not: ${badPins.join(', ')}` : ''}`);
 
   // Every point, line part and ⓘ line cites; a quote is sliced, at most 15 words, matching its SHA-256.
   const cites = [];
@@ -1318,7 +1309,7 @@ console.log('\n---- bangladesh-maritime-boundary: seed ----');
     }
   };
   walk(seed, 'seed');
-  const uncited = [...Object.entries(seed.points).filter(([, p]) => !p.cite?.length).map(([k]) => `points.${k}`), ...Object.entries(seed.lines).filter(([, l]) => !l.cite?.length).map(([k]) => `lines.${k}`), ...Object.values(seed.lines).flatMap((l) => l.parts).filter((p) => p.kind !== 'geodesic' && !p.cite?.length).map((p) => p.kind), ...seed.info.filter((l) => !l.cite?.length).map((l) => l.bn.slice(0, 20))];
+  const uncited = [...seed.items.flatMap((i) => Object.entries(i.rows ?? {}).filter(([, r]) => !r.cite?.length).map(([k]) => `${i.id}.rows.${k}`)), ...Object.entries(seed.points).filter(([, p]) => !p.cite?.length).map(([k]) => `points.${k}`), ...Object.entries(seed.lines).filter(([, l]) => !l.cite?.length).map(([k]) => `lines.${k}`), ...Object.values(seed.lines).flatMap((l) => l.parts).filter((p) => p.kind !== 'geodesic' && !p.cite?.length).map((p) => p.kind), ...seed.info.filter((l) => !l.cite?.length).map((l) => l.bn.slice(0, 20))];
   check(uncited.length === 0, `${MB}: every point (${Object.keys(seed.points).length}), line, azimuth or envelope and ⓘ line (${seed.info.length}) cites its source${uncited.length ? ` — not: ${uncited.join(', ')}` : ''}`);
   const quotes = [];
   const badCites = cites.filter((c) => {
@@ -1346,9 +1337,11 @@ console.log('\n---- bangladesh-maritime-boundary: seed ----');
   if (JSON.stringify(numbers(text[`${pc.source}/${pc.file}`].slice(pc.offset, pc.offset + pc.length))) !== JSON.stringify([...prov3.lat, ...prov3.lon])) misread.push('checkOnly.prov3');
   check(misread.length === 0, `${MB}: every quoted coordinate reads back as the seed's numbers (${Object.values(seed.points).filter((p) => p.cite.some((c) => c.offset !== undefined)).length} points, the CLCS cross-check and the appendix's start)${misread.length ? ` — not: ${misread.join(', ')}` : ''}`);
 
-  // No tracked file may hold a quote's words (whitespace collapsed), as written or JSON-escaped.
+  // No tracked file may hold a quote's words (whitespace collapsed), as written or JSON-escaped. A quote of three
+  // words or fewer is a name, a date or a number — a fact the seed states, not reusable text (step 2, 2026-10-07).
   const tracked = execFileSync('git', ['ls-files', '-z'], { cwd: ROOT, maxBuffer: 64 * 1024 * 1024 }).toString('utf8').split('\0').filter(Boolean);
-  const forms = quotes.flatMap((q) => [q, JSON.stringify(q).slice(1, -1)]);
+  const worded = quotes.filter((q) => q.trim().split(/\s+/).length > 3);
+  const forms = worded.flatMap((q) => [q, JSON.stringify(q).slice(1, -1)]);
   const holding = new Set();
   for (const f of [...tracked, `data-sources/${MB}/${MB}.seed.json`, `tools/build-${MB}.mjs`, `notes/${MB}.md`]) {
     const at = path.join(ROOT, f);
@@ -1358,11 +1351,12 @@ console.log('\n---- bangladesh-maritime-boundary: seed ----');
     const flat = buf.toString('utf8').replace(/\s+/g, ' ');
     if (forms.some((q) => flat.includes(q))) holding.add(f);
   }
-  check(holding.size === 0, `${MB}: none of the ${quotes.length} quotes appears in any tracked file, the seed, the build or the notes${holding.size ? ` — found in: ${[...holding].join(', ')}` : ''}`);
+  check(holding.size === 0, `${MB}: none of the ${worded.length} quotes of four words or more (of ${quotes.length}) appears in any tracked file, the seed, the build or the notes${holding.size ? ` — found in: ${[...holding].join(', ')}` : ''}`);
 
-  // Step 1's five items, and nothing the user left out (2026-10-05): no grey area, no 12/24/200 nm line.
+  // Step 1's five items, and nothing the user left out (2026-10-05): no grey area, no 12/24/200 nm line drawn. A
+  // card row may name the grey area (step 2), so the card's rows and labels are not read for it.
   const ITEMS = ['myanmar-line', 'india-line', 'st-martins', 'baselines-2015', 'junction'];
-  check(JSON.stringify(seed.items.map((i) => i.id)) === JSON.stringify(ITEMS) && !/"(greyArea|grayArea|zones|eezLine|limit(12|24|200))"/.test(seedText), `${MB}: the five items of step 1, and no grey area or distance line`);
+  check(JSON.stringify(seed.items.map((i) => i.id)) === JSON.stringify(ITEMS) && !/"(greyArea|grayArea|zones|eezLine|limit(12|24|200))"/.test(JSON.stringify({ ...seed, rowLabels: undefined, items: seed.items.map(({ rows, ...i }) => i) })), `${MB}: the five items of step 1, and no grey area or distance line`);
   check(seed.lines.myanmar.parts.filter((p) => p.kind === 'envelope').every((p) => p.approximate === true && p.radiusNm === 12) && seed.coast.source in JSON.parse(fs.readFileSync(path.join(HERE, 'sources.json'), 'utf8')), `${MB}: the 8–9 envelope is flagged approximate, 12 nm round St Martin's, from the pinned coastline (${seed.coast.source})`);
 
   // Every Bengali string is the "bn" of an object that says whether the user approved it.
@@ -1372,7 +1366,8 @@ console.log('\n---- bangladesh-maritime-boundary: seed ----');
     if (typeof v === 'string') {
       if (!/[ঀ-৿]/.test(v)) return;
       if (key === 'bn' && typeof owner?.approved === 'boolean') bengali.push({ text: v, approved: owner.approved });
-      else if (!(key === 'title' && where.startsWith('seed.sources.nctb')) && !(key === 'at' && owner?.source)) unflagged.push(where);
+      // A source's own title, as the source names itself, a place in it, and the spellings found for the user's choice carry no flag.
+      else if (!(key === 'title' && /^seed\.sources\.\w+$/.test(where.replace(/\.title$/, ''))) && !(key === 'at' && owner?.source) && !(key === 'form' && where.startsWith('seed.spellings.'))) unflagged.push(where);
     } else if (Array.isArray(v)) v.forEach((x, i) => walkBn(x, `${where}[${i}]`, v, i));
     else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) walkBn(x, `${where}.${k}`, v, k);
   };
@@ -1383,6 +1378,22 @@ console.log('\n---- bangladesh-maritime-boundary: seed ----');
   check(badBn.length === 0, `${MB}: no Bengali string holds a project word, a kilometre or a space before , ; । or doubled${badBn.length ? ` — not: ${badBn.slice(0, 3).join(' | ')}` : ''}`);
   check(!bengali.some((b) => b.text === seed.area.label.bn && /একান্ত অর্থনৈতিক অঞ্চল/.test(b.text)), `${MB}: the sea area's label is not the exclusive economic zone's name`);
   check(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(seedText), `${MB}: no e-mail address in the seed`);
+
+  // Official sources only (the user's rule, 2026-10-07): every source is the Government of Bangladesh's (its
+  // portals, bdlaws, the Gazette), the two tribunals', Bangladesh's own CLCS submission, or a neighbour's note as
+  // the UN publishes it; a citation names one of them, or the user. No textbook is used or named — not in the
+  // seed, the build or what it writes.
+  const OFFICIAL = ['gob-portal', 'bdlaws', 'gazette', 'itlos', 'pca', 'clcs-bangladesh', 'un-deposit'];
+  const notOfficial = Object.entries(seed.sources).filter(([, s]) => !OFFICIAL.includes(s.kind)).map(([k]) => k);
+  const strayCites = cites.filter((c) => c.source !== 'user' && !(c.source in seed.sources)).map((c) => c.where);
+  const BOOK = /NCTB|textbook|পাঠ্যপুস্তক|পাঠ্যবই|ভূগোল ও পরিবেশ|বাংলাদেশ ও বিশ্বপরিচয়/i;
+  const built = path.join(os.tmpdir(), 'geoquest-verify', MB);
+  const bookIn = [
+    [`data-sources/${MB}/${MB}.seed.json`, seedText],
+    [`tools/build-${MB}.mjs`, fs.readFileSync(path.join(HERE, `build-${MB}.mjs`), 'utf8')],
+    ...(fs.existsSync(built) ? fs.readdirSync(built).filter((f) => f.endsWith('.json')).map((f) => [`built ${f}`, fs.readFileSync(path.join(built, f), 'utf8')]) : []),
+  ].filter(([, s]) => BOOK.test(s)).map(([f]) => f);
+  check(notOfficial.length === 0 && strayCites.length === 0 && bookIn.length === 0, `${MB}: official sources only — ${Object.keys(seed.sources).length} sources, each of an official kind (${[...new Set(Object.values(seed.sources).map((s) => s.kind))].join(', ')}); every citation names one of them or the user; no textbook in the seed, the build or the built files${notOfficial.length || strayCites.length || bookIn.length ? ` — not: ${[...notOfficial, ...strayCites, ...bookIn].slice(0, 4).join(', ')}` : ''}`);
 }
 
 // ---- org-members (live 2026-10-07): the seed, its pages and quotes --------------------------------

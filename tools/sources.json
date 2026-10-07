@@ -422,7 +422,7 @@
     }
   },
   "bangladeshMaritime": {
-    "_comment": "The bangladesh-maritime-boundary map's sources (work in progress, step 1, 2026-10-05), each fetched once with the repo's User-Agent into tools/.cache/bd-maritime/ and pinned by that download (size, SHA-256): the ITLOS judgment (Case No. 16), the PCA award with its hydrographer's appendix, S.R.O. No. 328 (2015) as deposited with the UN, Act No. XXIX of 2021 and the 1974 Act's sections it substitutes (bdlaws), Bangladesh's amended CLCS executive summary (2020), and India's and Myanmar's notes on the 2015 baselines. A PDF with a text layer also pins its text, as `pdftotext -enc UTF-8` (xpdf 4.06) prints it, under text/: the seed's quotes are offsets into that text. The PCA site (pca-cpa.org) answers our User-Agent with a Cloudflare challenge; the award is its own case repository's file. Terms: ITLOS's website terms bar reproduction and commercial use of its information or data and of its judgments without the Registrar's written permission; the user decided (2026-10-05) to proceed as with the UN (option ক): facts in our own words, our own drawing, no ITLOS text reproduced (notes/bangladesh-maritime-boundary.md). PCA's terms could not be read; bdlaws shows a copyright line and no terms; the UN copies fall under the UN Terms of Use already recorded for maritime-zones.",
+    "_comment": "The bangladesh-maritime-boundary map's sources (work in progress, step 1, 2026-10-05), each fetched once with the repo's User-Agent into tools/.cache/bd-maritime/ and pinned by that download (size, SHA-256): the ITLOS judgment (Case No. 16), the PCA award with its hydrographer's appendix, S.R.O. No. 328 (2015) as deposited with the UN, Act No. XXIX of 2021 and the 1974 Act's sections it substitutes (bdlaws), Bangladesh's amended CLCS executive summary (2020), and India's and Myanmar's notes on the 2015 baselines. A PDF with a text layer also pins its text, as `pdftotext -enc UTF-8` (xpdf 4.06) prints it, under text/: the seed's quotes are offsets into that text. The PCA site (pca-cpa.org) answers our User-Agent with a Cloudflare challenge; the award is its own case repository's file. Terms: ITLOS's website terms bar reproduction and commercial use of its information or data and of its judgments without the Registrar's written permission; the user decided (2026-10-05) to proceed as with the UN (option ক): facts in our own words, our own drawing, no ITLOS text reproduced (notes/bangladesh-maritime-boundary.md). PCA's terms could not be read; bdlaws shows a copyright line and no terms; the UN copies fall under the UN Terms of Use already recorded for maritime-zones. Step 2 (2026-10-07): official sources only — the NCTB book is no longer pinned here; the Act's sections 3–5 and the Teknaf upazila page carry texts made by tools/lib/html-text.mjs; the two portal pages change (\"changes\": true), so a re-fetch that differs is reported, not cached.",
     "dir": "bd-maritime",
     "files": {
       "itlos-c16-judgment.pdf": {
@@ -455,7 +455,7 @@
       },
       "bdlaws-1394.html": {
         "source": "act2021",
-        "url": "http://bdlaws.minlaw.gov.bd/act-1394.html",
+        "url": "https://bdlaws.minlaw.gov.bd/act-1394.html",
         "size": 84176,
         "sha256": "4059deaebb72669d3cc5b50fff99e1643ae2188e450f3c47d1f446d2a1c93fe5"
       },
@@ -469,19 +469,34 @@
         "source": "act2021",
         "url": "http://bdlaws.minlaw.gov.bd/act-467/section-11461.html",
         "size": 50656,
-        "sha256": "db78a7eb51bbb2f1ba5227b1a2cd1fbb65f687b792fec6e7f588a3663c0bb31d"
+        "sha256": "db78a7eb51bbb2f1ba5227b1a2cd1fbb65f687b792fec6e7f588a3663c0bb31d",
+        "text": {
+          "file": "text/act-s3.txt",
+          "size": 2200,
+          "sha256": "066c0fc1b6efc333a61fd8a87f49b9eb7913b8aa57927aa8784c4ecbe32e35a5"
+        }
       },
       "s4.html": {
         "source": "act2021",
         "url": "http://bdlaws.minlaw.gov.bd/act-467/section-11462.html",
         "size": 49974,
-        "sha256": "96278859ba603d67cce7206b367159b4b540c9a2c00b32d658c3f92364ad4aac"
+        "sha256": "96278859ba603d67cce7206b367159b4b540c9a2c00b32d658c3f92364ad4aac",
+        "text": {
+          "file": "text/act-s4.txt",
+          "size": 1941,
+          "sha256": "24949b71a8ef7cc1a972dc6cc795ca387e6b4dcc65d4deeb781a4b409ae53934"
+        }
       },
       "s5.html": {
         "source": "act2021",
         "url": "http://bdlaws.minlaw.gov.bd/act-467/section-11463.html",
         "size": 53142,
-        "sha256": "cea6ebe89412ea8544b536d3068ad2276cc9619885056d0665c1bf1dbdc85aa1"
+        "sha256": "cea6ebe89412ea8544b536d3068ad2276cc9619885056d0665c1bf1dbdc85aa1",
+        "text": {
+          "file": "text/act-s5.txt",
+          "size": 3071,
+          "sha256": "e7e9a1e51826cf90a15bd3083414c69cd6b946552cff72286ec4261e574d25cf"
+        }
       },
       "s7.html": {
         "source": "act2021",
@@ -533,14 +548,26 @@
         "url": "https://www.un.org/Depts/los/clcs_new/submissions_files/bgd55_11/20210126MmrNvUn002.pdf",
         "size": 592058,
         "sha256": "4009a613b5a1fd51932c2876cf70a0d4788875c6894f9ca06df2009a539b008e"
+      },
+      "teknaf-stmartin.html": {
+        "source": "teknafUpazila",
+        "url": "https://teknaf.coxsbazar.gov.bd/pages/tourist-spot/%E0%A6%B8%E0%A7%87%E0%A6%A8%E0%A7%8D%E0%A6%9F%E0%A6%AE%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%9F%E0%A6%BF%E0%A6%A8-%E0%A6%A6%E0%A7%8D%E0%A6%AC%E0%A7%80%E0%A6%AA-52f2d8-6990be1c35ce18e1c07074bb",
+        "changes": true,
+        "size": 112386,
+        "sha256": "edd64bd2f593644a1c3285739c0a59cfd8fca718aa0245a2c693ca543c44516b",
+        "text": {
+          "file": "text/teknaf-stmartin.txt",
+          "size": 16290,
+          "sha256": "1c93481a3d59a7766b278795a431bc229d2426538450e0912447cf74fe083429"
+        }
+      },
+      "coxsbazar-home.html": {
+        "source": "coxsbazarDistrict",
+        "url": "https://coxsbazar.gov.bd/",
+        "changes": true,
+        "size": 197745,
+        "sha256": "5b3e5681ef85360c3466d9c5c47d60d352503fe6e95773209bea90345d2976c6"
       }
-    },
-    "nctbBhugol2026": {
-      "_comment": "NCTB «ভূগোল ও পরিবেশ», নবম–দশম শ্রেণি, 2026 edition, already cached for earth-interior (notes/earth-interior.md: row ১৩ of the NCTB page, its government-cloud link). Used in step 1 for the notes only (p. ১৪৯, PDF p. 154). Imprint: «প্রকাশক কর্তৃক সর্বস্বত্ব সংরক্ষিত». Not downloaded by tools/fetch-sources.mjs: the link is not recorded.",
-      "page": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
-      "file": "earth-interior/bhugol-2026.pdf",
-      "size": 68511711,
-      "sha256": "54143857fe880659c23f35469eb512d410ff8b8ee5fe75c4700cb28b33c8f79a"
     }
   },
   "osmBangladeshRiversPadmaS4": {

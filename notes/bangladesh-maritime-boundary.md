@@ -5,6 +5,25 @@ under বাংলাদেশ, **work in progress** (`tools/wip.json`): local p
 Nothing is under `docs/` and `docs/registry.json` is unchanged. The research
 behind it is `tools/.cache/bd-maritime/investigation.md`, out of git.
 
+## The user's rule for this map (2026-10-07)
+
+- **Every fact comes from an official source**, and from the latest official
+  page:
+  - Government of Bangladesh sites (the Ministry of Foreign Affairs' maritime
+    affairs pages, district and upazila portals);
+  - bdlaws (the Act), the Gazette and its S.R.O.s;
+  - the ITLOS judgment and the PCA award;
+  - Bangladesh's own UN and CLCS submissions.
+- **No textbook is used or mentioned anywhere on this map**, NCTB's or any
+  other: not as a source, not in ⓘ, not for a spelling.
+- The ITLOS (ক) decision below stands: facts in our own words, no ITLOS text
+  reused.
+- `tools/verify.mjs` holds it: every source has an official `kind`
+  (`gob-portal`, `bdlaws`, `gazette`, `itlos`, `pca`, `clcs-bangladesh`,
+  or `un-deposit` for a neighbour's note as the UN publishes it). Every
+  citation names one of them or the user, and no textbook appears in the
+  seed, the build or its output.
+
 ## The user's decisions (2026-10-05)
 
 1. **ITLOS data: option (ক), as for the UN.**
@@ -23,9 +42,8 @@ behind it is `tools/.cache/bd-maritime/investigation.md`, out of git.
    Martin's, the 2015 baselines and the junction point.
    - No grey area, no 12/24/200 NM line.
    - No link from the maritime-zones diagram yet.
-4. **No card sentences yet.** They wait for NCTB «বাংলাদেশ ও বিশ্বপরিচয়»
-   chapters 5 and 9, which the user will supply as photos. The card shows the
-   name only.
+4. **No card sentences in step 1**: the card showed the name only. Step 2
+   (2026-10-07) drafts them from official sources (below).
 
 ### Step 1b (2026-10-05)
 
@@ -75,10 +93,17 @@ fetches them again.
   - India, PM/NY/443/1/2017 (3 August 2017) and PM/NY/443/4/2021;
   - Myanmar, 57/03 09 45 (15 February 2019) and 29/13 13 (2021).
   - All object to baseline points 2 and 5. The 2021 notes are scans.
-- **NCTB «ভূগোল ও পরিবেশ», ৯–১০ (2026)**, p. ১৪৯ (PDF p. 154): for the
-  conflicts below and the spelling «সেন্টমার্টিন্স দ্বীপ».
-  - It is the earth-interior download, pinned again here
-    (`bangladeshMaritime.nctbBhugol2026`).
+- **Teknaf upazila portal** (teknaf.coxsbazar.gov.bd), the island's own page
+  «সেন্টমার্টিন দ্বীপ» (last updated 31 January 2023, read 2026-10-07): the
+  island's location. Its text is `tools/lib/html-text.mjs`'s.
+- **Cox's Bazar district portal** (coxsbazar.gov.bd), home page: the spelling
+  «সেন্টমার্টিন্স দ্বীপ», in a banner image's caption.
+- Both portal pages change: their pins carry `"changes": true`, and
+  `tools/fetch-sources.mjs` reports a changed page instead of failing.
+- **Act No. XXIX of 2021, sections 3–5** now also carry texts
+  (`tools/lib/html-text.mjs`, which reads these UTF-16 pages by their
+  byte-order mark) for the card and ⓘ quotes.
+- bdlaws serves the Act byte for byte over https too: the credit links there.
 - **The coastline**: `osmBangladeshLand` (`tools/sources/osm-bangladesh-land.geojson`),
   the OSM land polygons behind the Bangladesh basemap, detail set.
   - St Martin's is its two polygons in the box [92.28, 20.55, 92.36,
@@ -203,32 +228,51 @@ fetches them again.
 - **Reported:** ITLOS point 8 lies 561 m and point 9 944 m outside the derived
   envelope, at 12.303 and 12.510 NM from the OSM coast.
 
-## Conflicts (notes only, not on cards)
+## Step 2 (2026-10-07): card text from official sources only
 
-1. **Case date.** NCTB p. ১৪৯ gives «১৪ই ডিসেম্বর, ২০০৯» for both cases.
-   - The PCA award ¶1 dates India's case's notification 8 October 2009.
-   - ITLOS ¶1 says the proceedings against Myanmar were instituted on 8
-     October 2009 and the letter filed with the Tribunal on 14 December 2009.
-2. **Shelf.** NCTB p. ১৪৯ puts the shelf to 350 NM from the coast.
-   - Bangladesh's 2020 CLCS amendment defines its outer limit by one fixed
-     point, the junction of the two lines.
-   - The CLCS has not yet made its recommendations (its page, read
-     2026-10-05).
-3. **St Martin's EEZ.** NCTB p. ১৪৯ has the island give Bangladesh a 200 NM
-   EEZ.
-   - ITLOS ¶319 gives the island no effect on the EEZ and shelf boundary,
-     and full effect in the territorial sea (¶152).
-   - The 2015 baselines use the island's south end (point 5) for the EEZ;
-     India and Myanmar object.
+- **Removed:** the textbook source, its pin, its citation of the island's
+  spelling, its area figure, its conflict notes and the ⓘ heading
+  «সূত্রগুলোর অমিল», which nothing is left under.
+- **Card rows**, every one `approved: false` until the user approves them:
+  - Myanmar line: tribunal, case, judgment date, the line (ITLOS ¶462 and
+    ¶337–340), St Martin's effect (¶152, ¶319), grey area (¶464);
+  - India line: tribunal, case, award date, the line (PCA ¶267 and ¶509(3)),
+    grey area (¶498);
+  - St Martin's: location (the Teknaf upazila portal), effect (ITLOS ¶152,
+    ¶319);
+  - 2015 baselines: S.R.O. 328 and its dates (the Gazette scan), what a
+    baseline is (Act sections 3–5), the published points (the scan), the
+    objections (the neighbours' notes);
+  - junction: what it is (PCA appendix ¶22), its coordinates (appendix ¶23,
+    shown to 0.1″), the shelf's one fixed point (CLCS amendment ¶3.6, Table
+    1).
+- Each fact cites one official source by offset, length and SHA-256: no
+  words committed. Paragraph numbers, not guessed page numbers, for the new
+  citations.
+- **ⓘ** gains the Act's limits: 12, 24 and 200 nautical miles from the
+  baseline (sections 3–5).
+- **St Martin's spelling, for the user's choice** (`spellings` in the seed):
+  - «সেন্টমার্টিন দ্বীপ»: the Teknaf upazila portal, the island's own page
+    (its heading), and «সেন্টমার্টিন ইউনিয়ন» on its tourist-spot list;
+  - «সেন্টমার্টিন্স দ্বীপ»: the Cox's Bazar district portal, a banner
+    image's caption only.
+  - The map keeps «সেন্টমার্টিন্স দ্বীপ», now cited to the district portal,
+    until the user chooses.
+- **No sea-area figure:** no Government of Bangladesh page found states one
+  (searched 2026-10-07). The figures in circulation are newspapers', a
+  teachers' portal's and a journal's.
+- The drawing is unchanged: lines, arc, both sea fills and the vertices are
+  byte for byte step 1b's.
 
 ## Strings
 
-Every Bengali string in the seed is `{ bn, approved }`, and all 16 are
-approved (step 1b).
+Every Bengali string in the seed is `{ bn, approved }`. Step 1b's 16 are
+approved, less the heading «সূত্রগুলোর অমিল», now gone; step 2's 35 (the
+card's 14 labels and 20 rows, one ⓘ line) await the user.
 - The title is the user's.
-- The other 15: the five item names, the area label, «আনুমানিক», the
-  picker's placeholder, the four ⓘ lines, and the ⓘ headings «সূত্র», «টীকা»
-  and «সূত্রগুলোর অমিল» («সূত্র», not «উৎস», as on world-revolutions).
+- The other 14: the five item names, the area label, «আনুমানিক», the
+  picker's placeholder, the four ⓘ lines, and the ⓘ headings «সূত্র» and
+  «টীকা» («সূত্র», not «উৎস», as on world-revolutions).
 - The build lists any string still awaiting approval.
 
 ## Files

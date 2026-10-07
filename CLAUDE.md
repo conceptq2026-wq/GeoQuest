@@ -455,7 +455,8 @@ State which kind a task is when reporting it.
   with Bangladesh's card open.
 - Work in progress (`tools/wip.json`):
   `bangladesh-maritime-boundary` «বাংলাদেশের সমুদ্রসীমা», a map under বাংলাদেশ
-  (step 1b: the ITLOS and PCA lines, St Martin's, the 2015 baselines and the
+  (step 2: card text drafted from official sources only, awaiting approval, over
+  step 1b's ITLOS and PCA lines, St Martin's, the 2015 baselines and the
   lines' junction; local preview only: `notes/bangladesh-maritime-boundary.md`).
 
 ## Index — notes, read only when working on that item

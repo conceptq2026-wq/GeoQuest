@@ -1,5 +1,5 @@
 {
-  "_about": "The Bangladesh maritime boundary map (work in progress, step 1, 2026-10-05). Read by tools/build-bangladesh-maritime-boundary.mjs and checked by tools/verify.mjs; notes/bangladesh-maritime-boundary.md says why each choice was made. A citation names its source, the paragraph and page, the pinned file and the quote's offset and length in that file's normalised text, with the SHA-256 of the quote: the words themselves are not committed. The readable quotes are in tools/.cache/bd-maritime/quotes.json, out of git. A scanned source has no text: its citation says `scan: true` and gives the page.",
+  "_about": "The Bangladesh maritime boundary map (work in progress, step 2, 2026-10-07). Read by tools/build-bangladesh-maritime-boundary.mjs and checked by tools/verify.mjs; notes/bangladesh-maritime-boundary.md says why each choice was made. A citation names its source, the paragraph and page, the pinned file and the quote's offset and length in that file's normalised text, with the SHA-256 of the quote: the words themselves are not committed. The readable quotes are in tools/.cache/bd-maritime/quotes.json, out of git. A scanned source has no text: its citation says `scan: true` and gives the page. Official sources only (the user's rule, 2026-10-07): every source's `kind` is one of the official kinds tools/verify.mjs allows, and every source is official.",
   "id": "bangladesh-maritime-boundary",
   "section": "bangladesh",
   "title": {
@@ -23,7 +23,8 @@
             "sha256": "5a0439ea2c3645cbb2d82e99b15eb88b4cd083790ece3f1293b093bb58e6545c"
           }
         }
-      }
+      },
+      "kind": "itlos"
     },
     "pca": {
       "title": "Bay of Bengal Maritime Boundary Arbitration (Bangladesh v. India), Award of 7 July 2014, with the Technical Report of the Tribunal's Hydrographer as its appendix",
@@ -39,7 +40,8 @@
             "sha256": "4019885cdf4452cdd9174222c0f3505bf4172b7cbedbe4c1a784e04e3d248415"
           }
         }
-      }
+      },
+      "kind": "pca"
     },
     "sro328": {
       "title": "Notification S.R.O. No. 328-Law/2015/MOFA/UNCLOS/113/2/15 of 4 November 2015 (Bangladesh Gazette Extraordinary, 10 November 2015), as deposited with the United Nations (M.Z.N.118.2016.LOS, 7 April 2016)",
@@ -51,12 +53,13 @@
           "sha256": "503c32957866bcb56423a13b9cbbdc9f3716311ed465271fa7688a28ffba7de2",
           "text": null
         }
-      }
+      },
+      "kind": "gazette"
     },
     "act2021": {
       "title": "Territorial Waters and Maritime Zones (Amendment) Act, 2021 (Act No. XXIX of 2021), and the Territorial Waters and Maritime Zones Act, 1974 as it amends it, sections 2C, 3, 4, 5 and 7",
       "by": "Legislative and Parliamentary Affairs Division, Ministry of Law, Justice and Parliamentary Affairs (bdlaws.minlaw.gov.bd)",
-      "url": "http://bdlaws.minlaw.gov.bd/act-1394.html",
+      "url": "https://bdlaws.minlaw.gov.bd/act-1394.html",
       "files": {
         "bdlaws-1394.html": {
           "bytes": 84176,
@@ -68,21 +71,37 @@
         },
         "s3.html": {
           "bytes": 50656,
-          "sha256": "db78a7eb51bbb2f1ba5227b1a2cd1fbb65f687b792fec6e7f588a3663c0bb31d"
+          "sha256": "db78a7eb51bbb2f1ba5227b1a2cd1fbb65f687b792fec6e7f588a3663c0bb31d",
+          "text": {
+            "file": "act-s3.txt",
+            "bytes": 2200,
+            "sha256": "066c0fc1b6efc333a61fd8a87f49b9eb7913b8aa57927aa8784c4ecbe32e35a5"
+          }
         },
         "s4.html": {
           "bytes": 49974,
-          "sha256": "96278859ba603d67cce7206b367159b4b540c9a2c00b32d658c3f92364ad4aac"
+          "sha256": "96278859ba603d67cce7206b367159b4b540c9a2c00b32d658c3f92364ad4aac",
+          "text": {
+            "file": "act-s4.txt",
+            "bytes": 1941,
+            "sha256": "24949b71a8ef7cc1a972dc6cc795ca387e6b4dcc65d4deeb781a4b409ae53934"
+          }
         },
         "s5.html": {
           "bytes": 53142,
-          "sha256": "cea6ebe89412ea8544b536d3068ad2276cc9619885056d0665c1bf1dbdc85aa1"
+          "sha256": "cea6ebe89412ea8544b536d3068ad2276cc9619885056d0665c1bf1dbdc85aa1",
+          "text": {
+            "file": "act-s5.txt",
+            "bytes": 3071,
+            "sha256": "e7e9a1e51826cf90a15bd3083414c69cd6b946552cff72286ec4261e574d25cf"
+          }
         },
         "s7.html": {
           "bytes": 49976,
           "sha256": "5a9097790757bd8282b6e0df48035b1ee9fe94854452a9ede14a5892b412b034"
         }
-      }
+      },
+      "kind": "bdlaws"
     },
     "clcs": {
       "title": "Amended Submission to the Commission on the Limits of the Continental Shelf, Executive Summary (22 October 2020)",
@@ -98,7 +117,8 @@
             "sha256": "b8338a9403da7241644c297955c250b79e418b4ec80966435ed48c8bf1a24437"
           }
         }
-      }
+      },
+      "kind": "clcs-bangladesh"
     },
     "ind2017": {
       "title": "Note PM/NY/443/1/2017 of 3 August 2017 on M.Z.N.118.2016.LOS",
@@ -114,7 +134,8 @@
             "sha256": "2bd1685764f19a924350778b2edf85da237b0dcc09de151a28feea771b003e13"
           }
         }
-      }
+      },
+      "kind": "un-deposit"
     },
     "mmr2019": {
       "title": "Note No. 57/03 09 45 of 15 February 2019 on M.Z.N.118.2016.LOS",
@@ -130,7 +151,8 @@
             "sha256": "b6a2a09463f20f2fa929701da1518bf1fa89b969a3016113af6eb5b80168619a"
           }
         }
-      }
+      },
+      "kind": "un-deposit"
     },
     "ind2021": {
       "title": "Note PM/NY/443/4/2021 on Bangladesh's amended CLCS submission",
@@ -142,7 +164,8 @@
           "sha256": "730e3a5f639f22c73b1e348310d36502289afb66fae19618b5ef73d14715e8d0",
           "text": null
         }
-      }
+      },
+      "kind": "un-deposit"
     },
     "mmr2021": {
       "title": "Note No. 29/13 13 on Bangladesh's amended CLCS submission",
@@ -154,21 +177,39 @@
           "sha256": "4009a613b5a1fd51932c2876cf70a0d4788875c6894f9ca06df2009a539b008e",
           "text": null
         }
+      },
+      "kind": "un-deposit"
+    },
+    "teknafUpazila": {
+      "title": "সেন্টমার্টিন দ্বীপ (tourist-spot page), Teknaf upazila portal",
+      "by": "Teknaf Upazila, Cox's Bazar district (Bangladesh National Portal)",
+      "kind": "gob-portal",
+      "url": "https://teknaf.coxsbazar.gov.bd/pages/tourist-spot/%E0%A6%B8%E0%A7%87%E0%A6%A8%E0%A7%8D%E0%A6%9F%E0%A6%AE%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%9F%E0%A6%BF%E0%A6%A8-%E0%A6%A6%E0%A7%8D%E0%A6%AC%E0%A7%80%E0%A6%AA-52f2d8-6990be1c35ce18e1c07074bb",
+      "retrieved": "2026-10-07",
+      "files": {
+        "teknaf-stmartin.html": {
+          "bytes": 112386,
+          "sha256": "edd64bd2f593644a1c3285739c0a59cfd8fca718aa0245a2c693ca543c44516b",
+          "text": {
+            "file": "teknaf-stmartin.txt",
+            "bytes": 16290,
+            "sha256": "1c93481a3d59a7766b278795a431bc229d2426538450e0912447cf74fe083429"
+          }
+        }
       }
     },
-    "nctb": {
-      "title": "ভূগোল ও পরিবেশ, নবম ও দশম শ্রেণি (২০২৬ শিক্ষাবর্ষ), পৃষ্ঠা ১৪৯",
-      "by": "National Curriculum and Textbook Board (NCTB)",
-      "url": "https://nctb.gov.bd/pages/static-pages/695b99afc4774958d7b70612",
-      "cache": "tools/.cache/earth-interior/",
+    "coxsbazarDistrict": {
+      "title": "Cox's Bazar district portal, home page",
+      "by": "Cox's Bazar District (Bangladesh National Portal)",
+      "kind": "gob-portal",
+      "url": "https://coxsbazar.gov.bd/",
+      "retrieved": "2026-10-07",
       "files": {
-        "bhugol-2026.pdf": {
-          "bytes": 68511711,
-          "sha256": "54143857fe880659c23f35469eb512d410ff8b8ee5fe75c4700cb28b33c8f79a",
-          "text": null
+        "coxsbazar-home.html": {
+          "bytes": 197745,
+          "sha256": "5b3e5681ef85360c3466d9c5c47d60d352503fe6e95773209bea90345d2976c6"
         }
-      },
-      "use": "notes only in step 1: the conflicts in notes/bangladesh-maritime-boundary.md; no card text yet"
+      }
     }
   },
   "points": {
@@ -806,7 +847,101 @@
         "bn": "মিয়ানমারের সঙ্গে সীমা (ITLOS, ২০১২)",
         "approved": true
       },
-      "line": "myanmar"
+      "line": "myanmar",
+      "rows": {
+        "court": {
+          "bn": "সমুদ্র আইন বিষয়ক আন্তর্জাতিক ট্রাইব্যুনাল (ITLOS)",
+          "approved": false,
+          "cite": [
+            {
+              "source": "itlos",
+              "at": "title page",
+              "file": "itlos-c16-judgment.txt",
+              "offset": 1175,
+              "length": 55,
+              "sha256": "345b0532456b9a3881e8584dce471d7e5e8a60593514ed29f4394d7cd1d57679"
+            }
+          ]
+        },
+        "case": {
+          "bn": "মামলা নং ১৬, বাংলাদেশ/মিয়ানমার",
+          "approved": false,
+          "cite": [
+            {
+              "source": "itlos",
+              "at": "title page",
+              "file": "itlos-c16-judgment.txt",
+              "offset": 227,
+              "length": 21,
+              "sha256": "37d481dfe78b370ef9935482161171ff452540da156d3f7c0b6dd591c92017eb"
+            }
+          ]
+        },
+        "date": {
+          "bn": "রায়: ১৪ মার্চ ২০১২",
+          "approved": false,
+          "cite": [
+            {
+              "source": "itlos",
+              "at": "title page",
+              "file": "itlos-c16-judgment.txt",
+              "offset": 1221,
+              "length": 23,
+              "sha256": "800ebd6a6ff1dfa5033723088d96a6e93e1abaf540fdcc6a25e0681fad1c374c"
+            }
+          ]
+        },
+        "decision": {
+          "bn": "প্রাথমিক সমদূরত্ব রেখাকে সমন্বয় করে টানা রেখা, যা ২০০ নটিক্যাল মাইলের বাইরেও একই দিকে চলে",
+          "approved": false,
+          "cite": [
+            {
+              "source": "itlos",
+              "at": "¶462 (and ¶337–340)",
+              "file": "itlos-c16-judgment.txt",
+              "offset": 242392,
+              "length": 71,
+              "sha256": "7f19563c6e329d347f299fbc8ae73406df18072b4af693dab6ef38e2083c3ac2"
+            }
+          ]
+        },
+        "islandEffect": {
+          "bn": "আঞ্চলিক সমুদ্রে সেন্টমার্টিন্স দ্বীপ পূর্ণ প্রভাব পেয়েছে; একান্ত অর্থনৈতিক অঞ্চল ও মহীসোপানের সীমা টানায় কোনো প্রভাব পায়নি",
+          "approved": false,
+          "cite": [
+            {
+              "source": "itlos",
+              "at": "¶152",
+              "file": "itlos-c16-judgment.txt",
+              "offset": 90337,
+              "length": 85,
+              "sha256": "5580cec984f99e4ccaf870b310c3a34f16492fe7ce2a8ab544a24f17e3f6515b"
+            },
+            {
+              "source": "itlos",
+              "at": "¶319",
+              "file": "itlos-c16-judgment.txt",
+              "offset": 167547,
+              "length": 69,
+              "sha256": "1785c7bc2451df0721da4c68698ada64b74d464cedf4180e4339faf4874256d2"
+            }
+          ]
+        },
+        "greyArea": {
+          "bn": "এই রেখার ফলে একটি ধূসর এলাকা তৈরি হয়েছে (টীকা দেখুন)",
+          "approved": false,
+          "cite": [
+            {
+              "source": "itlos",
+              "at": "¶464",
+              "file": "itlos-c16-judgment.txt",
+              "offset": 243362,
+              "length": 43,
+              "sha256": "f17677a3a299b8a9740bb01200967c2b915b9a46e5710bcac7136e99e2b06cd9"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "india-line",
@@ -815,7 +950,87 @@
         "bn": "ভারতের সঙ্গে সীমা (PCA, ২০১৪)",
         "approved": true
       },
-      "line": "india"
+      "line": "india",
+      "rows": {
+        "court": {
+          "bn": "স্থায়ী সালিশি আদালতের (PCA) নিবন্ধনে গঠিত সালিশি ট্রাইব্যুনাল",
+          "approved": false,
+          "cite": [
+            {
+              "source": "pca",
+              "at": "title page",
+              "file": "pca-award.txt",
+              "offset": 303,
+              "length": 40,
+              "sha256": "76e759c31116f42b184c31d554490f170522bc16e6d593c025685dd961e64c38"
+            }
+          ]
+        },
+        "case": {
+          "bn": "বঙ্গোপসাগর সমুদ্রসীমা সালিশ, বাংলাদেশ বনাম ভারত",
+          "approved": false,
+          "cite": [
+            {
+              "source": "pca",
+              "at": "title page",
+              "file": "pca-award.txt",
+              "offset": 21,
+              "length": 43,
+              "sha256": "6cdce67cc8423ba8201138fa481b5d4a27e5bb7a49758730f0a9262f94ba23d4"
+            }
+          ]
+        },
+        "date": {
+          "bn": "রোয়েদাদ: ৭ জুলাই ২০১৪",
+          "approved": false,
+          "cite": [
+            {
+              "source": "pca",
+              "at": "title page",
+              "file": "pca-award.txt",
+              "offset": 344,
+              "length": 22,
+              "sha256": "fc94df411269e3056c89ea39da0fb680dc0597fe4dbe860ec590acc6b5cac6c1"
+            }
+          ]
+        },
+        "decision": {
+          "bn": "আঞ্চলিক সমুদ্রে সমদূরত্ব রেখা; তারপর ১৭৭°৩০′ দিগংশে সমন্বিত রেখা, যা মিয়ানমারের সঙ্গে সীমায় গিয়ে মিলেছে",
+          "approved": false,
+          "cite": [
+            {
+              "source": "pca",
+              "at": "¶267",
+              "file": "pca-award.txt",
+              "offset": 170722,
+              "length": 83,
+              "sha256": "a6328357e49ab973fb1a68791b041924fa31c014951d8f68e2c93bb9e46d7209"
+            },
+            {
+              "source": "pca",
+              "at": "¶509(3), p. 165",
+              "file": "pca-award.txt",
+              "offset": 329577,
+              "length": 71,
+              "sha256": "81327d3cdb8e0b98a29d64e74f80c9bc24d03410abc9676a64e95ad9cbbc379d"
+            }
+          ]
+        },
+        "greyArea": {
+          "bn": "এখানেও একটি ধূসর এলাকা তৈরি হয়েছে (টীকা দেখুন)",
+          "approved": false,
+          "cite": [
+            {
+              "source": "pca",
+              "at": "¶498",
+              "file": "pca-award.txt",
+              "offset": 321043,
+              "length": 80,
+              "sha256": "99dffaeed944dc4a47c284468676998b2ecdc5171ff6e848e79fc2e6dd690d4d"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "st-martins",
@@ -825,13 +1040,50 @@
         "approved": true,
         "cite": [
           {
-            "source": "nctb",
-            "at": "পৃষ্ঠা ১৪৯ (PDF p. 154), boxed text",
-            "scan": true
+            "source": "coxsbazarDistrict",
+            "at": "home page, the banner image captioned «সেন্টমার্টিন্স দ্বীপ ও শাহ্‌পরীর দ্বীপ» (image alt text; not in the page's visible text)"
           }
         ]
       },
-      "at": "stMartins"
+      "at": "stMartins",
+      "rows": {
+        "location": {
+          "bn": "কক্সবাজার জেলার টেকনাফ উপজেলা",
+          "approved": false,
+          "cite": [
+            {
+              "source": "teknafUpazila",
+              "at": "tourist-spot page «সেন্টমার্টিন দ্বীপ», under the Teknaf upazila portal of the Cox's Bazar district site",
+              "file": "teknaf-stmartin.txt",
+              "offset": 4159,
+              "length": 18,
+              "sha256": "ab90abb354dcfe42a519e678c19be805028190d6f1d9767d9733ee8dfdcf5126"
+            }
+          ]
+        },
+        "effect": {
+          "bn": "১২ নটিক্যাল মাইল আঞ্চলিক সমুদ্র; একান্ত অর্থনৈতিক অঞ্চল ও মহীসোপানের সীমা টানায় কোনো প্রভাব নয়",
+          "approved": false,
+          "cite": [
+            {
+              "source": "itlos",
+              "at": "¶152",
+              "file": "itlos-c16-judgment.txt",
+              "offset": 90337,
+              "length": 85,
+              "sha256": "5580cec984f99e4ccaf870b310c3a34f16492fe7ce2a8ab544a24f17e3f6515b"
+            },
+            {
+              "source": "itlos",
+              "at": "¶319",
+              "file": "itlos-c16-judgment.txt",
+              "offset": 167547,
+              "length": 69,
+              "sha256": "1785c7bc2451df0721da4c68698ada64b74d464cedf4180e4339faf4874256d2"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "baselines-2015",
@@ -840,7 +1092,93 @@
         "bn": "ভিত্তিরেখা (২০১৫)",
         "approved": true
       },
-      "line": "baselines"
+      "line": "baselines",
+      "rows": {
+        "notification": {
+          "bn": "এস.আর.ও. নং ৩২৮, ৪ নভেম্বর ২০১৫; বাংলাদেশ গেজেট অতিরিক্ত সংখ্যা, ১০ নভেম্বর ২০১৫",
+          "approved": false,
+          "cite": [
+            {
+              "source": "sro328",
+              "at": "S.R.O. No. 328, Bangladesh Gazette Extraordinary, 10 November 2015, p. ৮৭৬৪ (PDF p. 2)",
+              "scan": true
+            }
+          ]
+        },
+        "what": {
+          "bn": "যে রেখা থেকে আঞ্চলিক সমুদ্র, সংলগ্ন অঞ্চল ও একান্ত অর্থনৈতিক অঞ্চলের দূরত্ব মাপা হয়",
+          "approved": false,
+          "cite": [
+            {
+              "source": "act2021",
+              "at": "section 3",
+              "file": "act-s3.txt",
+              "offset": 514,
+              "length": 80,
+              "sha256": "e0733cbfb03a43b4d10ce81b8d29f51ea396ff7d3b20c244bb2a3a67c837ed96"
+            },
+            {
+              "source": "act2021",
+              "at": "section 4",
+              "file": "act-s4.txt",
+              "offset": 443,
+              "length": 53,
+              "sha256": "c9c65e23461bb053f8a8c7c175ab366e55c97f3fc575449e6eff12dd85136ca7"
+            },
+            {
+              "source": "act2021",
+              "at": "section 5",
+              "file": "act-s5.txt",
+              "offset": 498,
+              "length": 48,
+              "sha256": "5a193840aa890ed3d5b32aaf9132811e468adad4b1b81efe4a0f46cee24f699a"
+            }
+          ]
+        },
+        "points": {
+          "bn": "চারটি বিন্দুর স্থানাঙ্ক দেওয়া; ৪ নম্বর বিন্দু থেকে টেকনাফ ও সেন্টমার্টিন্স দ্বীপ পর্যন্ত ভাটার সময়ের জলরেখা; ৫ নম্বর বিন্দু দ্বীপের দক্ষিণ প্রান্ত",
+          "approved": false,
+          "cite": [
+            {
+              "source": "sro328",
+              "at": "S.R.O. No. 328, Bangladesh Gazette Extraordinary, 10 November 2015, p. ৮৭৬৪ (PDF p. 2)",
+              "scan": true
+            }
+          ]
+        },
+        "objections": {
+          "bn": "ভারত ৩ আগস্ট ২০১৭ ও মিয়ানমার ১৫ ফেব্রুয়ারি ২০১৯ জাতিসংঘে আপত্তি জানায়; ২০২১ সালে দুই দেশই আবার জানায়",
+          "approved": false,
+          "cite": [
+            {
+              "source": "ind2017",
+              "at": "p. 1",
+              "file": "ind-2017.txt",
+              "offset": 76,
+              "length": 13,
+              "sha256": "e334ca8297eb0854d606a19e1d1a223b3631a1faca664981b96a17a8a8e9c771"
+            },
+            {
+              "source": "mmr2019",
+              "at": "p. 2",
+              "file": "mmr-2019.txt",
+              "offset": 3231,
+              "length": 16,
+              "sha256": "b672a42339be68bd7c5dfb76be09e13cd5479c809db6dead0a772236e4b64872"
+            },
+            {
+              "source": "ind2021",
+              "at": "¶3",
+              "scan": true
+            },
+            {
+              "source": "mmr2021",
+              "at": "¶1",
+              "scan": true
+            }
+          ]
+        }
+      }
     },
     {
       "id": "junction",
@@ -849,7 +1187,59 @@
         "bn": "দুই সীমার মিলনবিন্দু",
         "approved": true
       },
-      "at": "junction"
+      "at": "junction",
+      "rows": {
+        "what": {
+          "bn": "মিয়ানমার ও ভারতের সঙ্গে দুই সীমারেখার মিলনবিন্দু",
+          "approved": false,
+          "cite": [
+            {
+              "source": "pca",
+              "at": "appendix ¶22, p. A-3",
+              "file": "pca-award.txt",
+              "offset": 339874,
+              "length": 66,
+              "sha256": "f0bc961818d965fa229165c41a985192f8774ba4761dfa1624e76e9ef740bc00"
+            }
+          ]
+        },
+        "coordinates": {
+          "bn": "১৬°৪৩′২৮.৮″ উত্তর, ৮৯°২৫′৫৪.৪″ পূর্ব",
+          "approved": false,
+          "cite": [
+            {
+              "source": "pca",
+              "at": "appendix ¶23, p. A-4",
+              "file": "pca-award.txt",
+              "offset": 340092,
+              "length": 38,
+              "sha256": "e2df992984a6502b56410c10184e8d02344fb8b475693928e3fc96cfe48d8685"
+            }
+          ]
+        },
+        "shelf": {
+          "bn": "২০২০ সালে জাতিসংঘে দাখিল করা সংশোধিত দাবিতে বাংলাদেশের মহীসোপানের বাইরের সীমা এই একটি বিন্দু",
+          "approved": false,
+          "cite": [
+            {
+              "source": "clcs",
+              "at": "¶3.6",
+              "file": "clcs-bgd-amd-summary.txt",
+              "offset": 10144,
+              "length": 47,
+              "sha256": "43aa65f0be8696152f39bf8867a010c5c978311e0a88fc80603db55fd317846d"
+            },
+            {
+              "source": "clcs",
+              "at": "Table 1, p. 11",
+              "file": "clcs-bgd-amd-summary.txt",
+              "offset": 12550,
+              "length": 25,
+              "sha256": "c1c7fca70369418f616df932049178abe5e095893bd0c6b85c8f0b661a44d4df"
+            }
+          ]
+        }
+      }
     }
   ],
   "area": {
@@ -858,7 +1248,7 @@
       "approved": true
     },
     "closedBy": "the coastline (coast, above) and the two lines, which meet at the junction",
-    "noFigure": "No area figure is shown: none computed here, and the NCTB book's is a round figure (notes)."
+    "noFigure": "No area figure is shown: no Government of Bangladesh page found states one (searched 2026-10-07; the figures in circulation are newspapers', a teachers' portal's and a journal's, not an official page's)."
   },
   "approxLabel": {
     "bn": "আনুমানিক",
@@ -979,6 +1369,37 @@
           "scan": true
         }
       ]
+    },
+    {
+      "group": "notes",
+      "bn": "২০২১ সালের সংশোধিত আইন অনুযায়ী বাংলাদেশের আঞ্চলিক সমুদ্র ভিত্তিরেখা থেকে ১২ নটিক্যাল মাইল, সংলগ্ন অঞ্চল ২৪ নটিক্যাল মাইল ও একান্ত অর্থনৈতিক অঞ্চল ২০০ নটিক্যাল মাইল পর্যন্ত।",
+      "approved": false,
+      "cite": [
+        {
+          "source": "act2021",
+          "at": "section 3",
+          "file": "act-s3.txt",
+          "offset": 514,
+          "length": 80,
+          "sha256": "e0733cbfb03a43b4d10ce81b8d29f51ea396ff7d3b20c244bb2a3a67c837ed96"
+        },
+        {
+          "source": "act2021",
+          "at": "section 4",
+          "file": "act-s4.txt",
+          "offset": 443,
+          "length": 53,
+          "sha256": "c9c65e23461bb053f8a8c7c175ab366e55c97f3fc575449e6eff12dd85136ca7"
+        },
+        {
+          "source": "act2021",
+          "at": "section 5",
+          "file": "act-s5.txt",
+          "offset": 498,
+          "length": 48,
+          "sha256": "5a193840aa890ed3d5b32aaf9132811e468adad4b1b81efe4a0f46cee24f699a"
+        }
+      ]
     }
   ],
   "infoHeadings": {
@@ -989,10 +1410,80 @@
     "notes": {
       "bn": "টীকা",
       "approved": true
+    }
+  },
+  "spellings": {
+    "_about": "Official spellings of St Martin's found on Government of Bangladesh sites (2026-10-07), for the user's choice; the map keeps the district portal's form until then.",
+    "found": [
+      {
+        "form": "সেন্টমার্টিন দ্বীপ",
+        "where": "Teknaf upazila portal: the island's own tourist-spot page, its heading",
+        "source": "teknafUpazila"
+      },
+      {
+        "form": "সেন্টমার্টিন্স দ্বীপ",
+        "where": "Cox's Bazar district portal: a home-page banner image's caption",
+        "source": "coxsbazarDistrict"
+      }
+    ]
+  },
+  "rowLabels": {
+    "_about": "The card's row labels, in this order; an item shows only the rows it has (step 2, 2026-10-07).",
+    "court": {
+      "bn": "আদালত",
+      "approved": false
     },
-    "conflicts": {
-      "bn": "সূত্রগুলোর অমিল",
-      "approved": true
+    "case": {
+      "bn": "মামলা",
+      "approved": false
+    },
+    "date": {
+      "bn": "তারিখ",
+      "approved": false
+    },
+    "decision": {
+      "bn": "সীমারেখা",
+      "approved": false
+    },
+    "islandEffect": {
+      "bn": "দ্বীপের প্রভাব",
+      "approved": false
+    },
+    "greyArea": {
+      "bn": "ধূসর এলাকা",
+      "approved": false
+    },
+    "location": {
+      "bn": "অবস্থান",
+      "approved": false
+    },
+    "effect": {
+      "bn": "রায়ে যা পেল",
+      "approved": false
+    },
+    "notification": {
+      "bn": "প্রজ্ঞাপন",
+      "approved": false
+    },
+    "what": {
+      "bn": "কী",
+      "approved": false
+    },
+    "points": {
+      "bn": "প্রকাশিত বিন্দু",
+      "approved": false
+    },
+    "objections": {
+      "bn": "আপত্তি",
+      "approved": false
+    },
+    "coordinates": {
+      "bn": "স্থানাঙ্ক",
+      "approved": false
+    },
+    "shelf": {
+      "bn": "মহীসোপান",
+      "approved": false
     }
   }
 }

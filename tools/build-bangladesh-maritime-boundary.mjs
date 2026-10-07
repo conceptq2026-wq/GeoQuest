@@ -259,6 +259,9 @@ const bdBox = JSON.parse(fs.readFileSync(path.join(HERE, 'bangladesh.config.mjs'
 console.log(`basemap ${BASEMAP}: world.pmtiles draws the whole Earth; the Bangladesh archive's box ends at ${bdBox[1]}°N, the junction is at ${jy.toFixed(4)}°N (${(bdBox[1] - jy).toFixed(2)}° south of it, on world.pmtiles); the map's bounds hold it with ${margin.toFixed(2)}° to spare, and the opening frame with ${(jy - FIT[1]).toFixed(2)}°`);
 
 // ---- records ---------------------------------------------------------------------------------
+// The card's row fields, in the seed's label order; every item's rows must be among them.
+const ROW_FIELDS = Object.keys(seed.rowLabels).filter((k) => !k.startsWith('_'));
+for (const item of seed.items) for (const f of Object.keys(item.rows ?? {})) if (!ROW_FIELDS.includes(f)) throw new Error(`${item.id}: row «${f}» has no label in rowLabels`);
 const bbox = (coords) => {
   const xs = coords.map((c) => c[0]), ys = coords.map((c) => c[1]);
   return [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)].map((v) => Math.round(v * 1e4) / 1e4);
@@ -268,6 +271,8 @@ const stMartinsAt = centre.map((v) => Math.round(v * 1e5) / 1e5);
 const records = {};
 for (const item of seed.items) {
   const row = { nameBn: item.name.bn, kind: item.kind, hasLine: Boolean(item.line) };
+  // The card's rows (step 2): each fact a field, from an official source; absent where the item has none.
+  for (const [field, v] of Object.entries(item.rows ?? {})) row[field] = v.bn;
   if (item.line) row.frame = bbox(lineGeom[item.id].type === 'MultiLineString' ? [...lineGeom[item.id].coordinates.flat(), ...arc] : lineGeom[item.id].coordinates);
   if (item.at === 'stMartins') Object.assign(row, { at: stMartinsAt, frame: bbox([...arc, ...island.flatMap((f) => f.geometry.coordinates[0])]) });
   if (item.at === 'junction') {
@@ -302,7 +307,7 @@ const files = {
 const COLOR = { myanmar: '#c2410c', india: '#6a1b9a', baseline: '#0b3d91', sea: '#1e88e5' };
 const kindColor = ['match', ['get', 'kind'], 'myanmar', COLOR.myanmar, 'india', COLOR.india, COLOR.baseline];
 const credit = (s) => `<a href="${s.url}" target="_blank" rel="noopener noreferrer">${s.title} (${s.by})</a>`;
-const CREDITED = ['itlos', 'pca', 'sro328', 'clcs', 'ind2017', 'mmr2019', 'ind2021', 'mmr2021'];
+const CREDITED = ['itlos', 'pca', 'sro328', 'act2021', 'clcs', 'ind2017', 'mmr2019', 'ind2021', 'mmr2021', 'teknafUpazila', 'coxsbazarDistrict'];
 const selectAndFrame = [{ action: 'select' }, { action: 'fitBounds', clear: ['sheet'], duration: 1800, field: 'frame' }];
 const descriptor = {
   schema: 'geoquest/map-descriptor@1',
@@ -323,6 +328,7 @@ const descriptor = {
         hasLine: { type: 'boolean', required: true, display: false },
         at: { type: 'point', appliesWhen: { hasLine: false } },
         frame: { type: 'bbox', required: true },
+        ...Object.fromEntries(ROW_FIELDS.map((f) => [f, { type: 'text' }])),
       },
     },
   },
@@ -370,8 +376,9 @@ const descriptor = {
     { on: 'click', target: 'source:lines', do: selectAndFrame },
     { on: 'click', target: 'source:points', do: selectAndFrame },
   ],
-  sheet: { title: { field: 'nameBn' }, rows: [] },
-  info: { file: './info.json', headings: Object.fromEntries(Object.entries(seed.infoHeadings).map(([k, v]) => [k, v.bn])) },
+  sheet: { title: { field: 'nameBn' }, rows: ROW_FIELDS.map((f) => ({ label: seed.rowLabels[f].bn, field: f })) },
+  // No heading for conflicts: no source conflicts with another now (step 2).
+  info: { file: './info.json', headings: { conflicts: '', ...Object.fromEntries(Object.entries(seed.infoHeadings).map(([k, v]) => [k, v.bn])) } },
   attribution: { extra: CREDITED.map((k) => credit(seed.sources[k])) },
 };
 

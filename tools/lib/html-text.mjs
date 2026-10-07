@@ -30,9 +30,12 @@ export function htmlText(html) {
   return s.replace(EMAIL, '[address removed]') + '\n';
 }
 
-// A source's text: `json:<dotted.path>` reads one string out of a JSON body first.
+// A source's text: `json:<dotted.path>` reads one string out of a JSON body first. A page that
+// begins with a UTF-16 byte-order mark is read as UTF-16 (bdlaws' section pages, big-endian);
+// every other page as UTF-8, as before.
 export function sourceText(buf, extract) {
-  const raw = buf.toString('utf8');
+  const bom = buf.length >= 2 ? (buf[0] === 0xfe && buf[1] === 0xff ? 'utf-16be' : buf[0] === 0xff && buf[1] === 0xfe ? 'utf-16le' : null) : null;
+  const raw = bom ? new TextDecoder(bom).decode(buf) : buf.toString('utf8');
   if (extract?.startsWith('json:')) {
     let v = JSON.parse(raw);
     for (const k of extract.slice(5).split('.')) v = v?.[k];
