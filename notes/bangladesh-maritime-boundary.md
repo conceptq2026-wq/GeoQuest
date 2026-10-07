@@ -293,8 +293,8 @@ that (the user's rule of 2026-10-08, in CLAUDE.md).
     স্থানাঙ্ক দেওয়া; ৫ নম্বর সেন্টমার্টিন্স দ্বীপের দক্ষিণ প্রান্ত, যার
     স্থানাঙ্কের ঘরে ভাটার সময়ের জলরেখা».
     - Re-read on the scan, p. ৮৭৬৪ (PDF p. 2), its table: five baseline
-      points; 1–4 with WGS84 coordinates; point 5, «Southern end of St.
-      Martin's Island», with "Low water line" in place of coordinates.
+      points; 1–4 with WGS84 coordinates; the fifth, at the island's
+      southern tip, has the low-water line in its coordinates' cell.
   - #34, junction card, shelf: «… বাইরের সীমা এই একটি বিন্দু» → «…
     বাইরের সীমা একটি স্থির বিন্দুতে নির্ধারিত, যা দুই সীমারেখার ছেদবিন্দু».
     - Re-read in the CLCS executive summary: ¶3.6, the outer limits are
