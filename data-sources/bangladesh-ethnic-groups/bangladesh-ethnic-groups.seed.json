@@ -21,7 +21,7 @@
     ]
   },
   "rules": {
-    "groups": "≥ 10,000 people in Census 2022 (Table P29), plus হাজং (the user, 2026-10-08)",
+    "groups": "≥ 10,000 people in Census 2022 (Table P29), plus Hajong (the user, 2026-10-08)",
     "districts": "districts in descending order of the group's count until they hold ≥ 80 % of it; of those, only districts with ≥ 1,000 (the user, 2026-10-08)",
     "zone": "hill if ≥ 50 % of the group lives in Rangamati (BD2084), Khagrachhari (BD2046) and Bandarban (BD2003), else plains (the user, 2026-10-08); no official classification exists (notes)"
   },
@@ -3272,11 +3272,11 @@
       "location": {
         "missing": true,
         "fallbackProposal": {
-          "lon": 90.6781412,
-          "lat": 25.1238305,
+          "lon": 90.67814,
+          "lat": 25.12383,
           "kind": "fallback",
-          "basis": "COD-AB v03 bgd_admincapitals.geojson, adm_p_lvl 3, name \"Durgapur\" (tools/.cache/bgd-codab/, pinned as codAbBangladesh in tools/sources.json)",
-          "note": "upazila HQ point of Durgapur (Netrakona, BD45720018), the upazila its history PDF names; not the academy itself"
+          "basis": "COD-AB v03 bgd_admincapitals (pinned as codAbBangladesh)",
+          "note": "the capital point of Durgapur upazila (Netrakona), which the academy's history names; not the academy itself"
         }
       }
     },
@@ -3386,11 +3386,11 @@
       "location": {
         "missing": true,
         "fallbackProposal": {
-          "lon": 92.2217498,
-          "lat": 22.1972889,
+          "lon": 92.22175,
+          "lat": 22.19729,
           "kind": "fallback",
-          "basis": "COD-AB v03 bgd_admincapitals.geojson, adm_p_lvl 2, name \"Bandarban\" (tools/.cache/bgd-codab/, pinned as codAbBangladesh in tools/sources.json)",
-          "note": "district HQ point; the history page places the institute «বান্দরবান পার্বত্য জেলা শহরে»"
+          "basis": "COD-AB v03 bgd_admincapitals (pinned as codAbBangladesh)",
+          "note": "the district capital point; the institute's history page places it in Bandarban town"
         }
       }
     },
@@ -3539,11 +3539,11 @@
       "location": {
         "missing": true,
         "fallbackProposal": {
-          "lon": 91.8555655,
-          "lat": 24.3524896,
+          "lon": 91.85557,
+          "lat": 24.35249,
           "kind": "fallback",
-          "basis": "COD-AB v03 bgd_admincapitals.geojson, adm_p_lvl 3, name \"Kamalganj\" (tools/.cache/bgd-codab/, pinned as codAbBangladesh in tools/sources.json)",
-          "note": "upazila HQ point of Kamalganj (BD60580056); the academy is at শিববাজার, মাধবপুর union, possibly some km away"
+          "basis": "COD-AB v03 bgd_admincapitals (pinned as codAbBangladesh)",
+          "note": "the capital point of Kamalganj upazila; the academy's own page places it in Madhabpur union, possibly some km away"
         }
       }
     },
@@ -3561,29 +3561,23 @@
       },
       "district": {
         "missing": true,
+        "note": "no official page states the district",
         "candidate": {
-          "district_en": "Mymensingh",
-          "district_bn": "ময়মনসিংহ",
-          "upazila_bn": "হালুয়াঘাট",
-          "status": "NOT an official statement about the institute: an inference for the user to accept or reject",
-          "evidence": [
-            "COD-AB v03 bgd_admin3 has exactly one unit named Haluaghat (BD45610024), in Mymensingh district",
-            "the upazila portal «হালুয়াঘাট উপজেলা» is haluaghat.mymensingh.gov.bd (raw/upazila-haluaghat-home.html), under the Mymensingh district portal; its at-a-glance, culture and heritage pages do not mention the institute",
-            "a web-search snippet of a Daily Star Bangla report (https://bangla.thedailystar.net/news/bangladesh/news-3950611) places an academy in Haluaghat upazila of Mymensingh; the page sits behind a Cloudflare challenge (HTTP 403), so it was not read and is not cited"
-          ]
-        },
-        "note": "no official page states the district"
+          "nameEn": "Mymensingh",
+          "pcode": "BD4561",
+          "inference": "COD-AB has one upazila named Haluaghat (BD45610024), in Mymensingh; its upazila portal is haluaghat.mymensingh.gov.bd — an inference, for the user to accept or reject"
+        }
       },
       "site": "https://knsphaluaghat.gov.bd/",
       "groupsNamed": null,
       "location": {
         "missing": true,
         "fallbackProposal": {
-          "lon": 90.3395618,
-          "lat": 25.1222567,
+          "lon": 90.33956,
+          "lat": 25.12226,
           "kind": "fallback",
-          "basis": "COD-AB v03 bgd_admincapitals.geojson, adm_p_lvl 3, name \"Haluaghat\" (tools/.cache/bgd-codab/, pinned as codAbBangladesh in tools/sources.json)",
-          "note": "upazila HQ point of Haluaghat (Mymensingh): usable only if the user accepts the district candidate"
+          "basis": "COD-AB v03 bgd_admincapitals (pinned as codAbBangladesh)",
+          "note": "the capital point of Haluaghat upazila; usable only if the user accepts the district candidate"
         }
       }
     },
@@ -3613,11 +3607,11 @@
       "location": {
         "missing": true,
         "fallbackProposal": {
-          "lon": 88.6346228,
-          "lat": 25.6260712,
+          "lon": 88.63462,
+          "lat": 25.62607,
           "kind": "fallback",
-          "basis": "COD-AB v03 bgd_admincapitals.geojson, adm_p_lvl 2, name \"Dinajpur\" (tools/.cache/bgd-codab/, pinned as codAbBangladesh in tools/sources.json)",
-          "note": "district HQ point"
+          "basis": "COD-AB v03 bgd_admincapitals (pinned as codAbBangladesh)",
+          "note": "the district capital point"
         }
       }
     },
@@ -3647,11 +3641,11 @@
       "location": {
         "missing": true,
         "fallbackProposal": {
-          "lon": 88.9445447,
-          "lat": 24.8073229,
+          "lon": 88.94454,
+          "lat": 24.80732,
           "kind": "fallback",
-          "basis": "COD-AB v03 bgd_admincapitals.geojson, adm_p_lvl 2, name \"Naogaon\" (tools/.cache/bgd-codab/, pinned as codAbBangladesh in tools/sources.json)",
-          "note": "district HQ point"
+          "basis": "COD-AB v03 bgd_admincapitals (pinned as codAbBangladesh)",
+          "note": "the district capital point"
         }
       }
     }

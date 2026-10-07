@@ -1589,15 +1589,16 @@ console.log('\n---- bangladesh-ethnic-groups: seed (draft) ----');
     });
     check(badAnchors.length === 0, `${EG}: each of the ${anchored.length} quote anchors is at its place in the cached text, at most 15 words, matching its SHA-256${badAnchors.length ? ` — not: ${badAnchors.length}` : ''}`);
   } else console.log(`warn ${EG}: tools/.cache/ethnic/ is not here, so the ${anchored.length} quote anchors are not re-read`);
-  // Every Bengali string carries its approval flag (rule (a)); a source's own title, a citation's place, the gazette's
-  // spelling and the names an institute's page prints are records of a source, not our words.
+  // Every Bengali string carries its approval flag (rule (a)); a source's own title and URL (a cached text's too),
+  // anything in a citation (its place, its text file's name), the gazette's spelling and the names an institute's
+  // page prints are records of a source, not our words.
   const unflagged = [];
   let pending = 0;
   const walk = (v, where, key, owner) => {
     if (typeof v === 'string') {
       if (!/[ঀ-৿]/.test(v)) return;
       if (key === 'bn' && typeof owner?.approved === 'boolean') { if (!owner.approved) pending++; return; }
-      if ((key === 'title' && /^seed\.sources\.\w+$/.test(where.replace(/\.title$/, ''))) || key === 'at' || /\.gazetteName\.bn$/.test(where) || /\.groupsNamed\.names\[\d+\]$/.test(where)) return;
+      if ((['title', 'url'].includes(key) && /^seed\.sources\.\w+$/.test(where.replace(/\.(title|url)$/, ''))) || (key === 'url' && where.startsWith('seed.texts.')) || /\.cite\[\d+\]\.\w+$/.test(where) || /\.gazetteName\.bn$/.test(where) || /\.groupsNamed\.names\[\d+\]$/.test(where)) return;
       unflagged.push(where);
     } else if (Array.isArray(v)) v.forEach((x, i) => walk(x, `${where}[${i}]`, i, v));
     else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) walk(x, `${where}.${k}`, k, v);
