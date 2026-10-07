@@ -191,9 +191,13 @@ console.log(`chosen ${chosen.metres} m, ${chosen.gj.length} B, gzip ${chosen.gzi
 
 const pointOf = chosen.points;
 const geomOf = new Map(chosen.features.map((f) => [f.properties.id, f.geometry]));
-// The part the inner point sits in: the tap target. A country whose largest part is
-// under 44 px at zoom 0 (the opening zoom on a phone) gets a dot instead.
-const SMALL_DEG = (44 * 360) / 512;
+// The part the inner point sits in: the tap target, a fill for every country. A dot only while
+// that part is smaller than a finger (step 2b, 2026-10-07): its box under 44 px both ways at the
+// current zoom. `dotUntil` is the zoom it reaches 44 px; the dot and its tap target show below it.
+// The map zooms out to MIN_ZOOM, so a world-wide organisation fits a phone's width.
+const MIN_ZOOM = -1;
+const mercY = (lat) => Math.log(Math.tan(Math.PI / 4 + (Math.max(-85, Math.min(85, lat)) * Math.PI) / 360)) / (2 * Math.PI);
+const dotUntilOf = (f) => +Math.log2(44 / (512 * Math.max((f[2] - f[0]) / 360, Math.abs(mercY(f[3]) - mercY(f[1])), 1e-9))).toFixed(2);
 function mainPart(geometry, pt) {
   const polys = geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.coordinates;
   const hit = polys.find((p) => inRing(pt, p[0]) && !p.slice(1).some((h) => inRing(pt, h)));
@@ -203,11 +207,28 @@ function frameOf(geometry) {
   const [w, s, e, n] = bboxOf(geometry);
   return e - w > 180 ? [-180, +s.toFixed(2), 180, +n.toFixed(2)] : [+w.toFixed(2), +s.toFixed(2), +e.toFixed(2), +n.toFixed(2)];
 }
+// The members' frame the short way round (2026-10-07): the longitudes their main parts cover, and
+// the widest stretch none covers left out — across the antimeridian where that is shorter, the east
+// edge then past 180°. Before, a span over 180° framed the whole world.
 function unionFrame(frames) {
-  let w = Infinity, s = Infinity, e = -Infinity, n = -Infinity;
-  for (const f of frames) { w = Math.min(w, f[0]); s = Math.min(s, f[1]); e = Math.max(e, f[2]); n = Math.max(n, f[3]); }
-  if (e - w > 180) return [-180, +s.toFixed(2), 180, +n.toFixed(2)];
-  return [+w.toFixed(2), +s.toFixed(2), +e.toFixed(2), +n.toFixed(2)];
+  const s = Math.min(...frames.map((f) => f[1]));
+  const n = Math.max(...frames.map((f) => f[3]));
+  if (frames.some((f) => f[2] - f[0] >= 359)) return [-180, +s.toFixed(2), 180, +n.toFixed(2)];
+  const merged = [];
+  for (const [w, e] of frames.map((f) => [f[0], f[2]]).sort((a, b) => a[0] - b[0])) {
+    if (merged.length && w <= merged.at(-1)[1]) merged.at(-1)[1] = Math.max(merged.at(-1)[1], e);
+    else merged.push([w, e]);
+  }
+  // The gap after each interval, to the next (the last wraps to the first).
+  let best = { size: -1, after: merged.length - 1 };
+  for (let i = 0; i < merged.length; i++) {
+    const next = i + 1 < merged.length ? merged[i + 1][0] : merged[0][0] + 360;
+    if (next - merged[i][1] > best.size) best = { size: next - merged[i][1], after: i };
+  }
+  const west = merged[(best.after + 1) % merged.length][0];
+  let east = merged[best.after][1];
+  if (east < west) east += 360;
+  return [+west.toFixed(2), +s.toFixed(2), +east.toFixed(2), +n.toFixed(2)];
 }
 
 const countryFrames = {};
@@ -219,15 +240,16 @@ for (const code of codes) {
   const part = mainPart(geometry, pointOf[code]);
   const frame = frameOf(part);
   countryFrames[code] = frame;
-  const small = frame[2] - frame[0] < SMALL_DEG && frame[3] - frame[1] < SMALL_DEG;
+  const dotUntil = dotUntilOf(frame);
+  const small = dotUntil > MIN_ZOOM;
   const src = by.get(code).properties;
-  countries[code] = { nameBn: src.NAME_BN, nameEn: src.NAME, frame, ...(small ? { dotAt: pointOf[code] } : {}) };
+  countries[code] = { nameBn: src.NAME_BN, nameEn: src.NAME, frame, ...(small ? { dotAt: pointOf[code], dotUntil } : {}) };
   if (small) dots++;
-  else lands.push({ type: 'Feature', properties: { id: code }, geometry: part });
+  lands.push({ type: 'Feature', properties: { id: code }, geometry: part });
 }
 const unnamed = codes.filter((c) => !countries[c].nameBn);
 if (unnamed.length) throw new Error(`no Bengali name for ${unnamed.join(', ')}`);
-console.log(`dot targets: ${dots} of ${codes.length} (box under 44 px at zoom 0)`);
+console.log(`dot targets: ${dots} of ${codes.length} (a dot below the zoom its main part reaches 44 px; every country a fill)`);
 
 function shownName(entry) {
   return entry.nameBn?.bn || NON_EN[entry.key] || null;
@@ -314,7 +336,11 @@ const descriptor = {
   title: { bn: text(S.title), en: 'Members of International Organisations' },
   basemap: 'world',
   view: { fitBounds: [-180, -56, 180, 78] },
-  constraints: { minZoom: 0, maxZoom: 8 },
+  // wholeWorld (opt-in, 2026-10-07): zoom out past the world's height, so a world-wide organisation fits a
+  // phone held upright.
+  constraints: { minZoom: MIN_ZOOM, maxZoom: 8, wholeWorld: true },
+  // The open card at most this share of the map's height; a frame fits the room above it (as the rivers map).
+  sheetMaxHeight: 0.4,
   openOn: { tab: 'orgs', records: 'countries', key: 'BGD' },
   records: {
     tabs: { file: './tabs.json', fields: { titleBn: { type: 'text', required: true }, placeholderBn: { type: 'text', required: true } } },
@@ -339,13 +365,14 @@ const descriptor = {
         nameEn: { type: 'text', required: true, display: false },
         frame: { type: 'bbox', required: true },
         dotAt: { type: 'point' },
+        dotUntil: { type: 'number', display: false },
       },
     },
   },
   sources: {
     countries: { records: 'countries', geometry: './countries.geojson', joinField: 'id', state, properties: ['nameBn'] },
     lands: { records: 'countries', geometry: './lands.geojson', joinField: 'id', state: ['selected'], properties: ['nameBn'] },
-    dots: { records: 'countries', geometryFrom: 'dotAt', state, properties: ['nameBn'], tapWidth: 44 },
+    dots: { records: 'countries', geometryFrom: 'dotAt', state, properties: ['nameBn', 'dotUntil'], tapWidth: 44, tapFilter: ['<', ['zoom'], ['get', 'dotUntil']] },
   },
   layers: [
     ...Object.keys(STATUS).map((kind) => ({
@@ -353,14 +380,20 @@ const descriptor = {
       paint: { 'fill-color': STATUS[kind].color, 'fill-opacity': 0.45 },
     })),
     ...Object.keys(STATUS).map(lineLayer),
+    // The chosen country (2026-10-07): a dark outline over a white halo — Bangladesh at opening, its card open.
+    { id: 'country-chosen-halo', type: 'line', source: 'countries', slot: 'aboveLabels', filter: ['get', 'selected'], layout: { 'line-join': 'round' }, paint: { 'line-color': '#ffffff', 'line-width': 5 } },
+    { id: 'country-chosen-line', type: 'line', source: 'countries', slot: 'aboveLabels', filter: ['get', 'selected'], layout: { 'line-join': 'round' }, paint: { 'line-color': '#111827', 'line-width': 2.5 } },
     {
       id: 'country-dots', type: 'circle', source: 'dots', slot: 'aboveLabels',
-      filter: ['case', ['get', 'orgChosen'], ['any', ...Object.keys(STATUS).map((k) => ['get', k])], true],
+      // Only while the country is smaller than a finger at this zoom (its tap target, invisible, follows the same
+      // rule), and only where the dot says something: the chosen organisation's members and statuses, or the chosen
+      // country. No grey dot for the rest — at world zoom nearly every country is under 44 px (2026-10-07).
+      filter: ['all', ['<', ['zoom'], ['get', 'dotUntil']], ['case', ['get', 'orgChosen'], ['any', ...Object.keys(STATUS).map((k) => ['get', k])], ['get', 'selected']]],
       paint: {
-        'circle-radius': 6,
+        'circle-radius': ['case', ['get', 'selected'], 7, 6],
         'circle-color': ['case', ...Object.keys(STATUS).flatMap((k) => [['get', k], STATUS[k].color]), '#64748b'],
-        'circle-stroke-width': 2,
-        'circle-stroke-color': '#ffffff',
+        'circle-stroke-width': ['case', ['get', 'selected'], 3, 2],
+        'circle-stroke-color': ['case', ['get', 'selected'], '#111827', '#ffffff'],
       },
     },
   ],

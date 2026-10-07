@@ -5429,11 +5429,11 @@
   "tabs": {
    "orgs": {
     "bn": "সংস্থা",
-    "approved": false
+    "approved": true
    },
    "countries": {
     "bn": "দেশ",
-    "approved": false
+    "approved": true
    }
   }
  }

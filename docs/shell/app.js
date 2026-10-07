@@ -15,9 +15,9 @@
 |--------------------------------------------------------------------------
 */
 
-import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=84977c031b';
-import { resolver } from '../shared/resolver.js?v=84977c031b';
-import { pickerRow } from '../shared/picker.js?v=84977c031b';
+import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=a9f63c2250';
+import { resolver } from '../shared/resolver.js?v=a9f63c2250';
+import { pickerRow } from '../shared/picker.js?v=a9f63c2250';
 
 /*
 |--------------------------------------------------------------------------
@@ -644,13 +644,13 @@ function pick(row, keys) {
 |--------------------------------------------------------------------------
 */
 const SHELL_MODULES = {
-  tabs: './tabs.js?v=84977c031b',
-  chips: './chips.js?v=84977c031b',
-  timeline: './timeline.js?v=84977c031b',
-  globe: './globe.js?v=84977c031b',
-  focus: './focus.js?v=84977c031b',
-  legend: './legend.js?v=84977c031b',
-  info: './info.js?v=84977c031b',
+  tabs: './tabs.js?v=a9f63c2250',
+  chips: './chips.js?v=a9f63c2250',
+  timeline: './timeline.js?v=a9f63c2250',
+  globe: './globe.js?v=a9f63c2250',
+  focus: './focus.js?v=a9f63c2250',
+  legend: './legend.js?v=a9f63c2250',
+  info: './info.js?v=a9f63c2250',
 };
 const hiders = []; // (table, key) => true takes a record off the map, the picker and ‹ ›
 // (table, key) => true takes a record off the map only: the picker and ‹ › still list it (the focus module).
@@ -1053,10 +1053,15 @@ function hitLayerBefore(source) {
   return ids[above];
 }
 
+// A source may narrow its target (`tapFilter`, opt-in, 2026-10-07): a filter expression on the tap
+// target, so a point drawn only below some zoom is tapped only there. org-members' country dots,
+// drawn while a country is smaller than a finger. Without it the target covers every feature, as before.
 for (const source of interactionSources) {
+  const tapFilter = sourceSpecs[source].tapFilter;
+  if (tapFilter !== undefined && !Array.isArray(tapFilter)) throw new Error(`source "${source}": tapFilter must be a filter expression`);
   own.layer(
     map,
-    { id: hitLayerId(source), source, ...hitLayerPaint(geometryKind(source, sourceSpecs[source]), sourceSpecs[source].tapWidth) },
+    { id: hitLayerId(source), source, ...hitLayerPaint(geometryKind(source, sourceSpecs[source]), sourceSpecs[source].tapWidth), ...(tapFilter ? { filter: tapFilter } : {}) },
     hitLayerBefore(source),
   );
 }
@@ -2212,6 +2217,20 @@ if (boundsUnderCard) {
     map.setTransformConstrain(null);
   });
   remember('constrain', 'bounds under the card', () => map.setTransformConstrain(null));
+}
+
+/*
+ * `constraints.wholeWorld: true` (opt-in, 2026-10-07): the map may zoom out until a frame as wide as the
+ * world fits a phone held upright. MapLibre otherwise keeps the world at least as tall as the map, which
+ * on a portrait screen shows little more than half its width at any zoom; here the sea fills the room
+ * above and below instead. Only the latitude of the centre and the zoom limits are held. For a map with
+ * no maxBounds (whose own bounds the card logic above keeps). org-members' world-wide organisations.
+ */
+if (descriptor.constraints?.wholeWorld !== undefined && typeof descriptor.constraints.wholeWorld !== 'boolean') throw new Error('constraints.wholeWorld is true or false');
+if (descriptor.constraints?.wholeWorld) {
+  if (maxBox) throw new Error('constraints.wholeWorld is for a map without maxBounds');
+  map.setTransformConstrain((center, zoom) => ({ center: new maplibregl.LngLat(center.lng, Math.max(-85, Math.min(85, center.lat))), zoom: Math.min(Math.max(zoom, map.getMinZoom()), map.getMaxZoom()) }));
+  remember('constrain', 'the whole world', () => map.setTransformConstrain(null));
 }
 
 function setSheetOpen(open) {

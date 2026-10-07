@@ -159,10 +159,58 @@ Nothing under `docs/`. The three opt-in shell terms, this map only:
 - `legend.followsSelection` — the legend lists only the chosen organisation's
   statuses, and is hidden when none is chosen.
 
-Tab labels «সংস্থা» and «দেশ» are `approved: false`. Country shapes are
+Tab labels «সংস্থা» and «দেশ» were `approved: false` (approved in step 2b). Country shapes are
 simplified at 12 km (Douglas–Peucker), 110,749 bytes gzipped, with no
 self-crossing and no country containing another's interior. A kept outline
 stays within 12 km; a few islets (Chile's is the farthest) collapse.
+
+## Step 2b (2026-10-07)
+
+- **Shared code review** of 8005b75:
+  - stamp-only: chips.js, globe.js, index.html and timeline.js in docs/shell/,
+    and every file in docs/visual/;
+  - real code, all opt-in: picker.js (`setItems`), app.js (`byTab`,
+    `openOn`, card rows' `stacked`), info.js (the `sources` group),
+    legend.js (`followsSelection`, `line.style`), tabs.js (calls
+    `pickerForTab` only where it exists), style.css (rules under
+    `html[data-map='org-members']`);
+  - one line runs on every map: app.js sets `<html data-map="<id>">`,
+    inert unless a stylesheet names the id;
+  - `check.mjs --all`: every item stamp-only.
+- **Tab labels** «সংস্থা» and «দেশ» approved by the user (2026-10-07). All 59
+  Bengali strings are approved now.
+- **Dots:**
+  - Every country is a fill, tapped by its main part.
+  - A country also has a 44 px tap target while its main part is under 44 px
+    both ways at the current zoom (`dotUntil`, the zoom it reaches 44 px).
+    171 of 173 have one at some zoom.
+  - Drawn dots: only where a dot says something — the chosen organisation's
+    members and statuses, or the chosen country. No grey dot for the rest.
+  - The literal rule (a grey dot for every country under 44 px) would draw
+    158 at the opening zoom against 139 before: at world zoom nearly every
+    country is smaller than a finger. Opening now: 1 dot, Bangladesh's.
+- **The chosen country:** a dark outline over a white halo, and its dot ringed
+  dark. Bangladesh at opening, its card open; in «দেশ» whichever is chosen.
+- **Frames:**
+  - Each organisation's members the short way round the globe, the widest
+    uncovered stretch of longitude left out (across the antimeridian where
+    that is shorter; the east edge then past 180°).
+  - The card at most 40% of the map (`sheetMaxHeight: 0.4`); every frame
+    fits the room above it.
+  - The map zooms out to −1 and past the world's height
+    (`constraints.wholeWorld`, `notes/shell.md`): MapLibre otherwise holds a
+    390 × 844 phone at z0.48, where 197° of longitude fit.
+  - Zoom chosen at 390 / 320, before → after:
+    - Commonwealth and G20 0.48 → −0.44 / 0 → −0.78;
+    - IORA 0.48 → −0.34 / 0 → −0.68; APEC 0.48 → −0.23 / 0 → −0.57;
+    - G7 0.48 → −0.07 / 0 → −0.4; OIC 0.48 → −0.03 / 0 → −0.37;
+    - NATO 0.48 → 0.35 / 0 → 0.01;
+    - the other 11 unchanged.
+  - Every member's main part now lies in view above the card for all 18
+    organisations (before, 15 of the Commonwealth's 56 were hidden at 390).
+  - The opening is unchanged: z0.51 / z0.03.
+- New opt-in shell terms, this map only: `sources.<id>.tapFilter` and
+  `constraints.wholeWorld` (`notes/shell.md`).
 
 ## Open items
 

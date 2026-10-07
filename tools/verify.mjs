@@ -1516,7 +1516,8 @@ console.log('\n---- org-members: seed ----');
   };
   walkBn(seed, 'seed', null, null);
   const pending = bengali.filter((b) => !b.approved).map((b) => b.text);
-  check(unflagged.length === 0 && pending.length === 2 && pending.includes('সংস্থা') && pending.includes('দেশ'), `${OM}: ${bengali.length - pending.length} Bengali strings approved; the tab labels «সংস্থা» and «দেশ» await the user${unflagged.length || pending.length !== 2 ? ` — ${[...unflagged, ...pending].slice(0, 4).join(', ')}` : ''}`);
+  // The tab labels «সংস্থা» and «দেশ» approved by the user on 2026-10-07: every string now is.
+  check(unflagged.length === 0 && pending.length === 0, `${OM}: all ${bengali.length} Bengali strings approved${unflagged.length || pending.length ? ` — not: ${[...unflagged, ...pending].slice(0, 4).join(', ')}` : ''}`);
   const hq = JSON.parse(fs.readFileSync(path.join(DATA_SOURCES, 'org-headquarters/organisations.seed.json'), 'utf8'));
   const hqNames = new Set(Object.values(hq).map((r) => r.nameBn));
   const reused = bengali.filter((b) => b.owner.from === 'org-headquarters seed');

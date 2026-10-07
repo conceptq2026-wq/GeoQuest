@@ -21,7 +21,8 @@
 // On a map with view tabs (views) it also frames each picker group's first
 // record in every tab past the first and taps a tab a selection disables; a
 // tab's taps skip what its `hide` takes off the map, and a record whose
-// selection disables the tab (the other tab taps it);
+// selection disables the tab (the other tab taps it); on a map with a
+// `tapFilter` source each record counts once per tab, reached by any source;
 // on a map with chips it presses each chip of each tab and checks that only its
 // members stay drawn, then releases it; a cards-only tab's card is the
 // selected card of its list;
@@ -1105,6 +1106,14 @@ async function taps(page, shoot, summary, fail, sources, tabs, camera) {
   let total = 0;
   const unreachable = [];
   const others = [];
+  // A map whose tap targets change with the zoom (a source with `tapFilter`, org-members: a country's dot while it
+  // is small, its fill once it is large) counts each record once per tab, reached by any of its sources.
+  const byRecord = await page.evaluate('Object.values(window.__shell.descriptor.sources ?? {}).some((s) => s.tapFilter)');
+  const sourceRecords = byRecord ? await page.evaluate('Object.fromEntries(Object.entries(window.__shell.descriptor.sources).map(([k, s]) => [k, s.records]))') : {};
+  const seenRec = new Set();
+  const goodRec = new Set();
+  const ownRec = new Set();
+  const missed = [];
   for (let t = 0; t < Math.max(1, tabs); t++) {
     if (tabs) {
       const at = await page.evaluate(`(() => { const b = document.querySelectorAll('.map-tab')[${t}]; const r = b.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; })()`);
@@ -1127,6 +1136,11 @@ async function taps(page, shoot, summary, fail, sources, tabs, camera) {
       const focus = await page.evaluate('!!window.__shell.descriptor.focus');
       const keys = await page.evaluate(focus ? `window.__shell.keysOf(${JSON.stringify(source)})` : `window.__check.features(${JSON.stringify(source)})`);
       for (const key of keys) {
+        const rec = `${t}|${sourceRecords[source]}:${key}`;
+        if (byRecord) {
+          seenRec.add(rec);
+          if (goodRec.has(rec)) continue;
+        }
         total++;
         // A card with a × is closed first, so the tap has something to open.
         const close = (await page.evaluate(box('.globe-card-close'))) ?? (await page.evaluate(box('.timeline-card-close')));
@@ -1207,7 +1221,8 @@ async function taps(page, shoot, summary, fail, sources, tabs, camera) {
           hit = (await find()) ?? (await bring(0), await find());
         }
         if (!hit) {
-          unreachable.push(`${source}:${key}`);
+          if (byRecord) missed.push({ rec, label: `${source}:${key}` });
+          else unreachable.push(`${source}:${key}`);
           continue;
         }
         const view = await page.evaluate(CAMERA);
@@ -1221,12 +1236,17 @@ async function taps(page, shoot, summary, fail, sources, tabs, camera) {
         if (card.open && changed) {
           good++;
           if (mine) own++;
+          if (byRecord) (goodRec.add(rec), mine && ownRec.add(rec));
           else others.push(`${key} → «${card.title}»`);
           if (!mine && hit.alone) fail(`tap ${source}:${key} alone under the finger at (${Math.round(hit.x)}, ${Math.round(hit.y)}), camera ${JSON.stringify(view)}, opened «${card.title}»`);
         } else fail(`tap ${source}:${key} at (${Math.round(hit.x)}, ${Math.round(hit.y)}): no card`);
         await shoot('taps', `${key}${mine ? '' : card.open ? ` → ${card.title}` : ' → nothing'}`, [hit.x, hit.y]);
       }
     }
+  }
+  if (byRecord) {
+    unreachable.push(...missed.filter((m) => !goodRec.has(m.rec)).map((m) => m.label));
+    [total, good, own] = [seenRec.size, goodRec.size, ownRec.size];
   }
   if (unreachable.length) fail(`no tap point for ${unreachable.length}: ${unreachable.slice(0, 6).join(', ')}`);
   summary.push(`taps ${good}/${total} cards (${own} its own${others.length ? `; ${others.length > 2 ? `${others.length} another's` : others.join(', ')}` : ''})`);

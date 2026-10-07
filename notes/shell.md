@@ -207,6 +207,16 @@ drawn now (`drawn`), and read a file of the map's own folder (`file`).
 - **A legend `kinds` entry may name a `tab`** (R-55): it counts only while
   that view tab is open, so the rivers map lists its dashed reach outside
   only in «পুরো পথ».
+- **`sources.<id>.tapFilter`** (opt-in, 2026-10-07): a filter expression on
+  that source's tap target, so a point drawn only below some zoom is tapped
+  only there. org-members' country dots: `['<', ['zoom'], ['get',
+  'dotUntil']]`. Without it a tap target covers every feature, as before.
+- **`constraints.wholeWorld: true`** (opt-in, 2026-10-07; a map without
+  `maxBounds`): the map may zoom out past the world's height, so a frame as
+  wide as the world fits a phone held upright; the sea fills the room above
+  and below. Only the centre's latitude (±85°) and the zoom limits are held.
+  MapLibre otherwise holds a 390 × 844 map at z0.48, where 197° fit.
+  org-members' world-wide organisations.
 - **`frameClearsControls: true`** (top level, opt-in; the user's decision,
   2026-10-06, approved for the rivers map): every fit to a record keeps the
   column of the map's top-right controls (the compass, the tilt button) out of

@@ -831,6 +831,10 @@ function checkMap({ id, expectedPending, dir = path.join(MAPS_DIR, id) }) {
     const lines = fs.existsSync(file) ? readJson(file).lines : null;
     check(['sources', 'notes', 'conflicts'].every((k) => typeof i.headings?.[k] === 'string') && Array.isArray(lines) && lines.every((x) => typeof x.text === 'string' && ['notes', 'conflicts'].includes(x.group)), `info: three headings, and ${i.file} holds ${lines?.length ?? 0} lines, each a note or a conflict`);
   }
+  // constraints.wholeWorld (opt-in, 2026-10-07): true or false, and only on a map with no maxBounds.
+  if (descriptor.constraints?.wholeWorld !== undefined) check(typeof descriptor.constraints.wholeWorld === 'boolean' && !(descriptor.constraints.wholeWorld && descriptor.constraints.maxBounds), 'constraints.wholeWorld is true or false, on a map without maxBounds');
+  // tapFilter (opt-in, 2026-10-07): a filter expression on a source's tap target.
+  for (const [name, spec] of Object.entries(descriptor.sources)) if (spec.tapFilter !== undefined) check(Array.isArray(spec.tapFilter) && (descriptor.interactions ?? []).some((i) => i.target === `source:${name}`), `source "${name}": tapFilter is a filter expression on a tapped source`);
   for (const [name, spec] of Object.entries(descriptor.sources)) if (spec.tapWidth !== undefined) check(Number.isFinite(spec.tapWidth) && spec.tapWidth >= 44, `source "${name}": its tap zone is ${spec.tapWidth} px wide, at least 44`);
 
   // ---- language ---------------------------------------------------------------
