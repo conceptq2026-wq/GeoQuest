@@ -1385,7 +1385,7 @@ console.log('\n---- bangladesh-maritime-boundary: seed ----');
   check(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(seedText), `${MB}: no e-mail address in the seed`);
 }
 
-// ---- org-members (work in progress): the seed, step 1 ----------------------------------------
+// ---- org-members (live 2026-10-07): the seed, its pages and quotes --------------------------------
 // Every page is pinned in the seed and in tools/sources.json (orgMembers) and kept in
 // tools/.cache/org-members/sources/, with its text as tools/lib/html-text.mjs makes it. Each member,
 // status and stated count cites its place in that text and the quote's SHA-256: sliced out again and
@@ -1529,7 +1529,9 @@ console.log('\n---- org-members: seed ----');
   const used = LISTS.filter((l) => orgs.some(([, o]) => o[l]?.length));
   check(used.every((l) => seed.strings.status[l] && seed.strings.legend[l]), `${OM}: every status a page states (${used.join(', ')}) has its label and legend line`);
   check(!EMAIL.test(seedText), `${OM}: no e-mail address in the seed`);
-  check(wipItems.some((w) => w.id === OM && w.kind === 'map' && w.section === 'international') && !registry.maps.some((e) => e.id === OM) && !fs.existsSync(path.join(ROOT, 'docs/maps', OM)), `${OM}: in tools/wip.json under International, not in registry.json, and nothing under docs/ yet`);
+  // Live since 2026-10-07: on the home page under International, out of the work in progress; its built files
+  // are held to a fresh build, and its seed to its pin, by tools/verify-descriptor.mjs.
+  check(!wipItems.some((w) => w.id === OM) && registry.maps.some((e) => e.id === OM && e.section === 'international') && fs.existsSync(path.join(ROOT, 'docs/maps', OM, 'descriptor.json')), `${OM}: live — in registry.json under International, its folder under docs/maps/, no longer in tools/wip.json`);
 }
 
 if (failures) {

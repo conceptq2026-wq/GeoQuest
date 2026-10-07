@@ -18,6 +18,9 @@
     "maritime-zones": {
       "kind": "diagram",
       "captionBn": "কোন সমুদ্র-অঞ্চলে কার কী অধিকার"
+    },
+    "org-members": {
+      "kind": "map"
     }
   }
 }

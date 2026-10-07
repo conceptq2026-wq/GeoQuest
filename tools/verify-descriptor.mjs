@@ -33,6 +33,8 @@
 //                                  pinned sources, by tools/verify.mjs
 //   maritime-zones (a diagram)  docs/diagrams/maritime-zones/ is a fresh build of
 //                               data-sources/maritime-zones/maritime-zones.seed.json, pinned
+//   org-members  docs/maps/org-members/ is a fresh build of data-sources/org-members/
+//                org-members.seed.json, pinned; its sources and quotes, by tools/verify.mjs
 //   bangladesh-maritime-boundary  work in progress, built into a temporary folder from
 //                                 data-sources/bangladesh-maritime-boundary/; its seed, by tools/verify.mjs
 //
@@ -114,6 +116,8 @@ const SEASONS_SEEDS = path.join(ROOT, 'data-sources/seasons');
 const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa32509b451efb2';
 // The maritime-zones diagram: the editor's seed, pinned (live 2026-10-05).
 const MARITIME_ZONES_SEED_SHA256 = '6b0f67dbac0b0fa97037d86c7f94d3f07a73bd57a42d7b0986e8b3dc9fdab689';
+// The org-members map: the editor's seed, pinned (live 2026-10-07).
+const ORG_MEMBERS_SEED_SHA256 = '6c09b4d8a43f1115c633ce14e860569cea611536fece7237822da5ae1ae5e262';
 // The bangladesh-rivers diagram: the editor's seed, pinned. Its geometry is pinned in tools/bangladesh-rivers-pins.json.
 const BANGLADESH_RIVERS_SEEDS = path.join(ROOT, 'data-sources/bangladesh-rivers');
 // One pin per seed file: the common file and each system's (tools/lib/rivers-seed.mjs).
@@ -829,7 +833,7 @@ function checkMap({ id, expectedPending, dir = path.join(MAPS_DIR, id) }) {
     const i = descriptor.info;
     const file = path.join(dir, path.basename(i.file ?? ''));
     const lines = fs.existsSync(file) ? readJson(file).lines : null;
-    check(['sources', 'notes', 'conflicts'].every((k) => typeof i.headings?.[k] === 'string') && Array.isArray(lines) && lines.every((x) => typeof x.text === 'string' && ['notes', 'conflicts'].includes(x.group)), `info: three headings, and ${i.file} holds ${lines?.length ?? 0} lines, each a note or a conflict`);
+    check(['sources', 'notes', 'conflicts'].every((k) => typeof i.headings?.[k] === 'string') && Array.isArray(lines) && lines.every((x) => typeof x.text === 'string' && ['notes', 'conflicts', 'sources'].includes(x.group)), `info: three headings, and ${i.file} holds ${lines?.length ?? 0} lines, each a note, a conflict or (info.js, 2026-10-06, org-members) a cited source`);
   }
   // constraints.wholeWorld (opt-in, 2026-10-07): true or false, and only on a map with no maxBounds.
   if (descriptor.constraints?.wholeWorld !== undefined) check(typeof descriptor.constraints.wholeWorld === 'boolean' && !(descriptor.constraints.wholeWorld && descriptor.constraints.maxBounds), 'constraints.wholeWorld is true or false, on a map without maxBounds');
@@ -2653,6 +2657,35 @@ console.log('\n\n============ maritime-zones (diagram) ============');
   const want = fs.readdirSync(fresh).sort();
   const differ = want.filter((name) => !fs.existsSync(path.join(dir, name)) || !fs.readFileSync(path.join(dir, name)).equals(fs.readFileSync(path.join(fresh, name))));
   check(differ.length === 0 && fs.readdirSync(dir).sort().join() === want.join(), `docs/diagrams/${id}/ is a fresh build of the seed, byte for byte (${want.join(', ')})${differ.length ? ` — differs: ${differ.join(', ')}` : ''}`);
+}
+
+/*
+|--------------------------------------------------------------------------
+| ORG-MEMBERS — a map (live 2026-10-07), built by tools/build-org-members.mjs
+| from its seed and the pinned Bangladesh-view countries file: the seed is the
+| approved one, the generic map checks hold, and docs/ holds exactly what a
+| fresh build writes. Its pages, quotes, counts and strings are held by
+| tools/verify.mjs.
+|--------------------------------------------------------------------------
+*/
+console.log('\n\n============ org-members ============');
+{
+  const id = 'org-members';
+  const dir = path.join(MAPS_DIR, id);
+  const seedFile = path.join(ROOT, 'data-sources', id, `${id}.seed.json`);
+  const seedHash = crypto.createHash('sha256').update(fs.readFileSync(seedFile)).digest('hex');
+  check(seedHash === ORG_MEMBERS_SEED_SHA256, `the seed is the approved one: SHA-256 ${seedHash.slice(0, 12)}… (pinned ${ORG_MEMBERS_SEED_SHA256.slice(0, 12)}…)`);
+  checkMap({ id, expectedPending: 0 });
+  const descriptor = readJson(path.join(dir, 'descriptor.json'));
+  const seed = readJson(seedFile);
+  check(descriptor.section === 'international' && descriptor.title?.bn === seed.strings.title.bn && seed.strings.title.approved === true, `descriptor: section ${descriptor.section}, title «${descriptor.title?.bn}», the seed's approved title`);
+  // docs/ holds what the build writes, byte for byte, and nothing else.
+  const fresh = path.join(os.tmpdir(), 'geoquest-verify', id);
+  fs.rmSync(fresh, { recursive: true, force: true });
+  execFileSync(process.execPath, [path.join(HERE, 'build-org-members.mjs'), fresh], { stdio: 'pipe' });
+  const want = fs.readdirSync(fresh).sort();
+  const differ = want.filter((name) => !fs.existsSync(path.join(dir, name)) || !fs.readFileSync(path.join(dir, name)).equals(fs.readFileSync(path.join(fresh, name))));
+  check(differ.length === 0 && fs.readdirSync(dir).sort().join() === want.join(), `docs/maps/${id}/ is a fresh build, byte for byte (${want.join(', ')})${differ.length ? ` — differs: ${differ.join(', ')}` : ''}`);
 }
 
 /*

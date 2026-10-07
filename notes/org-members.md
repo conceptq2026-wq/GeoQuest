@@ -1,8 +1,10 @@
 # org-members — «আঞ্চলিক ও আন্তর্জাতিক সংস্থার সদস্য দেশ» (proposed title)
 
 Read it with `CLAUDE.md`, whose rules and verification budget apply. A map
-under International, **work in progress** (`tools/wip.json`): local preview
-only. Nothing is under `docs/` and `docs/registry.json` is unchanged. The
+under International, **live since 2026-10-07** (the user's «Home page এ
+তুলুন»): built into `docs/maps/org-members/`, listed in `docs/registry.json`
+with its descriptor's titles and no caption, out of `tools/wip.json`. Until
+then it was work in progress, built into the local preview only. The
 research behind it is `tools/.cache/org-members/investigation.md` (ORG-1),
 out of git.
 

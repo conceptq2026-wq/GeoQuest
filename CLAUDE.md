@@ -399,7 +399,8 @@ bangladesh-maritime-boundary (work in progress):
 its sources, each by size and SHA-256, and the texts its quotes are offsets
 into (`bangladeshMaritime` in `tools/sources.json`); in its build, the
 junction recomputed from the two azimuths within 0.01″ of the PCA's.
-org-members (work in progress): each organisation's page and its text
+org-members (live 2026-10-07): its seed by SHA-256 and its built files held
+to a fresh build, in `tools/verify-descriptor.mjs`; each organisation's page and its text
 (`tools/lib/html-text.mjs`), each by size and SHA-256, in the seed and in
 `tools/sources.json` (`orgMembers`); every member, status and stated count
 cites an offset into that text with the quote's SHA-256, checked in
@@ -426,10 +427,11 @@ State which kind a task is when reporting it.
 
 ## Current state
 
-- Fourteen maps. Bangladesh: `ancient-janapadas`, `liberation-war-1971` and
+- Fifteen maps. Bangladesh: `ancient-janapadas`, `liberation-war-1971` and
   `bangladesh-rivers-map` («নদী ২»). International: `straits`,
-  `border-lines`, `org-headquarters`, `environment-treaties` and
-  `world-revolutions` (`notes/world-revolutions.md`). Geography:
+  `border-lines`, `org-headquarters`, `environment-treaties`,
+  `world-revolutions` (`notes/world-revolutions.md`) and `org-members`
+  (`notes/org-members.md`). Geography:
   `deserts`, `lakes`, `forests`, `mountains`, `waterfalls` and
   `latitude-longitude`, all under `docs/maps/`.
 - Five diagrams, in `docs/diagrams/`: `bangladesh-rivers` («নদী ১») under
@@ -447,13 +449,14 @@ State which kind a task is when reporting it.
   r128); its fallback without WebGL, the 2D view, shows the side view only —
   `zones.js` changed for it once, by the user's exception of 2026-10-05
   (`notes/maritime-zones.md`).
+- `org-members` «আঞ্চলিক ও আন্তর্জাতিক সংস্থার সদস্য দেশ» went live on the home
+  page on 2026-10-07, with no caption, after steps 1–2c: 18 organisations from
+  their own official pages, two tabs («সংস্থা», «দেশ»), opening on South Asia
+  with Bangladesh's card open.
 - Work in progress (`tools/wip.json`):
   `bangladesh-maritime-boundary` «বাংলাদেশের সমুদ্রসীমা», a map under বাংলাদেশ
   (step 1b: the ITLOS and PCA lines, St Martin's, the 2015 baselines and the
-  lines' junction; local preview only: `notes/bangladesh-maritime-boundary.md`);
-  `org-members` «আঞ্চলিক ও আন্তর্জাতিক সংস্থার সদস্য দেশ» (proposed), a map
-  under International (step 2: drawn in the local preview only, not on the
-  live home page: `notes/org-members.md`).
+  lines' junction; local preview only: `notes/bangladesh-maritime-boundary.md`).
 
 ## Index — notes, read only when working on that item
 

@@ -9,15 +9,6 @@
         "bn": "বাংলাদেশের সমুদ্রসীমা",
         "en": "Bangladesh Maritime Boundary"
       }
-    },
-    {
-      "id": "org-members",
-      "kind": "map",
-      "section": "international",
-      "title": {
-        "bn": "আঞ্চলিক ও আন্তর্জাতিক সংস্থার সদস্য দেশ",
-        "en": "Members of International Organisations"
-      }
     }
   ]
 }

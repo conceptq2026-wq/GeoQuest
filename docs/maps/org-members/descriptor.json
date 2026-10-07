@@ -1,0 +1,930 @@
+{
+  "schema": "geoquest/map-descriptor@1",
+  "id": "org-members",
+  "section": "international",
+  "title": {
+    "bn": "আঞ্চলিক ও আন্তর্জাতিক সংস্থার সদস্য দেশ",
+    "en": "Members of International Organisations"
+  },
+  "basemap": "world",
+  "view": {
+    "fitBounds": [
+      67.14,
+      -18.44,
+      112.8,
+      33.87
+    ]
+  },
+  "constraints": {
+    "minZoom": -1,
+    "maxZoom": 8,
+    "wholeWorld": true
+  },
+  "sheetMaxHeight": 0.4,
+  "openOn": {
+    "tab": "orgs",
+    "records": "countries",
+    "key": "BGD"
+  },
+  "records": {
+    "tabs": {
+      "file": "./tabs.json",
+      "fields": {
+        "titleBn": {
+          "type": "text",
+          "required": true
+        },
+        "placeholderBn": {
+          "type": "text",
+          "required": true
+        }
+      }
+    },
+    "organisations": {
+      "file": "./organisations.json",
+      "fields": {
+        "nameBn": {
+          "type": "text",
+          "required": true
+        },
+        "nameEn": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "abbr": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "count": {
+          "type": "text",
+          "required": true
+        },
+        "asOf": {
+          "type": "text",
+          "required": true
+        },
+        "frame": {
+          "type": "bbox",
+          "required": true
+        },
+        "shown": {
+          "type": "refs",
+          "to": "countries",
+          "display": false
+        },
+        "members": {
+          "type": "refs",
+          "to": "countries"
+        },
+        "observer": {
+          "type": "refs",
+          "to": "countries"
+        },
+        "dialoguePartner": {
+          "type": "refs",
+          "to": "countries"
+        },
+        "candidate": {
+          "type": "refs",
+          "to": "countries"
+        },
+        "potentialCandidate": {
+          "type": "refs",
+          "to": "countries"
+        },
+        "nonCountry.members": {
+          "type": "text"
+        },
+        "nonCountry.observer": {
+          "type": "text"
+        },
+        "nonCountry.dialoguePartner": {
+          "type": "text"
+        },
+        "nonCountry.candidate": {
+          "type": "text"
+        },
+        "nonCountry.potentialCandidate": {
+          "type": "text"
+        }
+      }
+    },
+    "countries": {
+      "file": "./countries.json",
+      "fields": {
+        "nameBn": {
+          "type": "text",
+          "required": true
+        },
+        "nameEn": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "frame": {
+          "type": "bbox",
+          "required": true
+        },
+        "dotAt": {
+          "type": "point"
+        },
+        "dotUntil": {
+          "type": "number",
+          "display": false
+        }
+      }
+    }
+  },
+  "sources": {
+    "countries": {
+      "records": "countries",
+      "geometry": "./countries.geojson",
+      "joinField": "id",
+      "state": [
+        "selected",
+        {
+          "name": "orgChosen",
+          "fromSelection": {
+            "records": "organisations",
+            "listField": "shown"
+          }
+        },
+        {
+          "name": "member",
+          "fromSelection": {
+            "records": "organisations",
+            "listField": "members"
+          }
+        },
+        {
+          "name": "observer",
+          "fromSelection": {
+            "records": "organisations",
+            "listField": "observer"
+          }
+        },
+        {
+          "name": "dialoguePartner",
+          "fromSelection": {
+            "records": "organisations",
+            "listField": "dialoguePartner"
+          }
+        },
+        {
+          "name": "candidate",
+          "fromSelection": {
+            "records": "organisations",
+            "listField": "candidate"
+          }
+        },
+        {
+          "name": "potentialCandidate",
+          "fromSelection": {
+            "records": "organisations",
+            "listField": "potentialCandidate"
+          }
+        }
+      ],
+      "properties": [
+        "nameBn"
+      ]
+    },
+    "lands": {
+      "records": "countries",
+      "geometry": "./lands.geojson",
+      "joinField": "id",
+      "state": [
+        "selected"
+      ],
+      "properties": [
+        "nameBn"
+      ]
+    },
+    "dots": {
+      "records": "countries",
+      "geometryFrom": "dotAt",
+      "state": [
+        "selected",
+        {
+          "name": "orgChosen",
+          "fromSelection": {
+            "records": "organisations",
+            "listField": "shown"
+          }
+        },
+        {
+          "name": "member",
+          "fromSelection": {
+            "records": "organisations",
+            "listField": "members"
+          }
+        },
+        {
+          "name": "observer",
+          "fromSelection": {
+            "records": "organisations",
+            "listField": "observer"
+          }
+        },
+        {
+          "name": "dialoguePartner",
+          "fromSelection": {
+            "records": "organisations",
+            "listField": "dialoguePartner"
+          }
+        },
+        {
+          "name": "candidate",
+          "fromSelection": {
+            "records": "organisations",
+            "listField": "candidate"
+          }
+        },
+        {
+          "name": "potentialCandidate",
+          "fromSelection": {
+            "records": "organisations",
+            "listField": "potentialCandidate"
+          }
+        }
+      ],
+      "properties": [
+        "nameBn",
+        "dotUntil"
+      ],
+      "tapWidth": 44,
+      "tapFilter": [
+        "<",
+        [
+          "zoom"
+        ],
+        [
+          "get",
+          "dotUntil"
+        ]
+      ]
+    }
+  },
+  "layers": [
+    {
+      "id": "country-member-fill",
+      "type": "fill",
+      "source": "countries",
+      "slot": "belowLabels",
+      "filter": [
+        "get",
+        "member"
+      ],
+      "paint": {
+        "fill-color": "#0072B2",
+        "fill-opacity": 0.45
+      }
+    },
+    {
+      "id": "country-observer-fill",
+      "type": "fill",
+      "source": "countries",
+      "slot": "belowLabels",
+      "filter": [
+        "get",
+        "observer"
+      ],
+      "paint": {
+        "fill-color": "#E69F00",
+        "fill-opacity": 0.45
+      }
+    },
+    {
+      "id": "country-dialoguePartner-fill",
+      "type": "fill",
+      "source": "countries",
+      "slot": "belowLabels",
+      "filter": [
+        "get",
+        "dialoguePartner"
+      ],
+      "paint": {
+        "fill-color": "#009E73",
+        "fill-opacity": 0.45
+      }
+    },
+    {
+      "id": "country-candidate-fill",
+      "type": "fill",
+      "source": "countries",
+      "slot": "belowLabels",
+      "filter": [
+        "get",
+        "candidate"
+      ],
+      "paint": {
+        "fill-color": "#D55E00",
+        "fill-opacity": 0.45
+      }
+    },
+    {
+      "id": "country-potentialCandidate-fill",
+      "type": "fill",
+      "source": "countries",
+      "slot": "belowLabels",
+      "filter": [
+        "get",
+        "potentialCandidate"
+      ],
+      "paint": {
+        "fill-color": "#CC79A7",
+        "fill-opacity": 0.45
+      }
+    },
+    {
+      "id": "country-member-line",
+      "type": "line",
+      "source": "countries",
+      "slot": "belowLabels",
+      "filter": [
+        "get",
+        "member"
+      ],
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-color": "#0072B2",
+        "line-width": 1.75,
+        "line-opacity": 0.95
+      }
+    },
+    {
+      "id": "country-observer-line",
+      "type": "line",
+      "source": "countries",
+      "slot": "belowLabels",
+      "filter": [
+        "get",
+        "observer"
+      ],
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-color": "#E69F00",
+        "line-width": 1.75,
+        "line-opacity": 0.95,
+        "line-dasharray": [
+          3,
+          2
+        ]
+      }
+    },
+    {
+      "id": "country-dialoguePartner-line",
+      "type": "line",
+      "source": "countries",
+      "slot": "belowLabels",
+      "filter": [
+        "get",
+        "dialoguePartner"
+      ],
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-color": "#009E73",
+        "line-width": 1.75,
+        "line-opacity": 0.95,
+        "line-dasharray": [
+          0.6,
+          1.5
+        ]
+      }
+    },
+    {
+      "id": "country-candidate-line",
+      "type": "line",
+      "source": "countries",
+      "slot": "belowLabels",
+      "filter": [
+        "get",
+        "candidate"
+      ],
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-color": "#D55E00",
+        "line-width": 1.75,
+        "line-opacity": 0.95
+      }
+    },
+    {
+      "id": "country-potentialCandidate-line",
+      "type": "line",
+      "source": "countries",
+      "slot": "belowLabels",
+      "filter": [
+        "get",
+        "potentialCandidate"
+      ],
+      "layout": {
+        "line-join": "round",
+        "line-cap": "round"
+      },
+      "paint": {
+        "line-color": "#CC79A7",
+        "line-width": 1.75,
+        "line-opacity": 0.95,
+        "line-dasharray": [
+          0.4,
+          1.8
+        ]
+      }
+    },
+    {
+      "id": "country-chosen-halo",
+      "type": "line",
+      "source": "countries",
+      "slot": "aboveLabels",
+      "filter": [
+        "get",
+        "selected"
+      ],
+      "layout": {
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "#ffffff",
+        "line-width": 5
+      }
+    },
+    {
+      "id": "country-chosen-line",
+      "type": "line",
+      "source": "countries",
+      "slot": "aboveLabels",
+      "filter": [
+        "get",
+        "selected"
+      ],
+      "layout": {
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "#111827",
+        "line-width": 2.5
+      }
+    },
+    {
+      "id": "country-dots",
+      "type": "circle",
+      "source": "dots",
+      "slot": "aboveLabels",
+      "filter": [
+        "all",
+        [
+          "<",
+          [
+            "zoom"
+          ],
+          [
+            "get",
+            "dotUntil"
+          ]
+        ],
+        [
+          "case",
+          [
+            "get",
+            "orgChosen"
+          ],
+          [
+            "any",
+            [
+              "get",
+              "member"
+            ],
+            [
+              "get",
+              "observer"
+            ],
+            [
+              "get",
+              "dialoguePartner"
+            ],
+            [
+              "get",
+              "candidate"
+            ],
+            [
+              "get",
+              "potentialCandidate"
+            ]
+          ],
+          [
+            "get",
+            "selected"
+          ]
+        ]
+      ],
+      "paint": {
+        "circle-radius": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          7,
+          6
+        ],
+        "circle-color": [
+          "case",
+          [
+            "get",
+            "member"
+          ],
+          "#0072B2",
+          [
+            "get",
+            "observer"
+          ],
+          "#E69F00",
+          [
+            "get",
+            "dialoguePartner"
+          ],
+          "#009E73",
+          [
+            "get",
+            "candidate"
+          ],
+          "#D55E00",
+          [
+            "get",
+            "potentialCandidate"
+          ],
+          "#CC79A7",
+          "#64748b"
+        ],
+        "circle-stroke-width": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          3,
+          2
+        ],
+        "circle-stroke-color": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          "#111827",
+          "#ffffff"
+        ]
+      }
+    }
+  ],
+  "interactions": [
+    {
+      "on": "click",
+      "target": "source:lands",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "field": "frame",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 900
+        }
+      ]
+    },
+    {
+      "on": "click",
+      "target": "source:dots",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "field": "frame",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 900
+        }
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "type": "picker",
+      "from": "organisations",
+      "label": {
+        "field": "nameBn"
+      },
+      "placeholder": "একটি সংস্থা বেছে নিন…",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "field": "frame",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 900
+        }
+      ],
+      "byTab": {
+        "orgs": {
+          "from": "organisations",
+          "label": {
+            "field": "nameBn"
+          },
+          "placeholder": "একটি সংস্থা বেছে নিন…",
+          "do": [
+            {
+              "action": "select"
+            },
+            {
+              "action": "fitBounds",
+              "field": "frame",
+              "clear": [
+                "sheet"
+              ],
+              "duration": 900
+            }
+          ]
+        },
+        "countries": {
+          "from": "countries",
+          "label": {
+            "field": "nameBn"
+          },
+          "placeholder": "একটি দেশ বেছে নিন…",
+          "do": [
+            {
+              "action": "select"
+            },
+            {
+              "action": "fitBounds",
+              "field": "frame",
+              "clear": [
+                "sheet"
+              ],
+              "duration": 900
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "tabs": {
+    "from": "tabs",
+    "label": {
+      "field": "titleBn"
+    },
+    "placeholder": {
+      "field": "placeholderBn"
+    }
+  },
+  "legend": {
+    "items": [
+      {
+        "kind": "member",
+        "label": "সদস্য দেশ",
+        "line": {
+          "color": "#0072B2",
+          "width": 3
+        }
+      },
+      {
+        "kind": "observer",
+        "label": "পর্যবেক্ষক দেশ",
+        "line": {
+          "color": "#E69F00",
+          "width": 3,
+          "style": "dashed"
+        }
+      },
+      {
+        "kind": "dialoguePartner",
+        "label": "সংলাপ অংশীদার দেশ",
+        "line": {
+          "color": "#009E73",
+          "width": 3,
+          "style": "dotted"
+        }
+      },
+      {
+        "kind": "candidate",
+        "label": "প্রার্থী দেশ",
+        "line": {
+          "color": "#D55E00",
+          "width": 3
+        }
+      },
+      {
+        "kind": "potentialCandidate",
+        "label": "সম্ভাব্য প্রার্থী দেশ",
+        "line": {
+          "color": "#CC79A7",
+          "width": 3,
+          "style": "dotted"
+        }
+      }
+    ],
+    "followsSelection": {
+      "records": "organisations",
+      "lists": {
+        "member": "members",
+        "observer": "observer",
+        "dialoguePartner": "dialoguePartner",
+        "candidate": "candidate",
+        "potentialCandidate": "potentialCandidate"
+      }
+    }
+  },
+  "info": {
+    "file": "./info.json",
+    "headings": {
+      "sources": "সূত্র",
+      "notes": "টীকা",
+      "conflicts": ""
+    }
+  },
+  "sheets": {
+    "organisations": {
+      "title": {
+        "field": "nameBn"
+      },
+      "rows": [
+        {
+          "label": "সদস্য সংখ্যা",
+          "field": "count",
+          "stacked": true
+        },
+        {
+          "label": "তথ্যের তারিখ",
+          "field": "asOf",
+          "stacked": true
+        },
+        {
+          "label": "দেশ নয় এমন সদস্য",
+          "field": "nonCountry.members",
+          "stacked": true
+        },
+        {
+          "label": "দেশ নয় এমন পর্যবেক্ষক",
+          "field": "nonCountry.observer",
+          "stacked": true
+        },
+        {
+          "label": "দেশ নয় এমন সংলাপ অংশীদার",
+          "field": "nonCountry.dialoguePartner",
+          "stacked": true
+        }
+      ]
+    },
+    "countries": {
+      "title": {
+        "field": "nameBn"
+      },
+      "rows": [
+        {
+          "label": "যেসব সংস্থার সদস্য",
+          "referencedBy": {
+            "records": "organisations",
+            "listField": "members"
+          },
+          "item": {
+            "field": "nameBn"
+          },
+          "stacked": true,
+          "do": [
+            {
+              "action": "select"
+            },
+            {
+              "action": "fitBounds",
+              "field": "frame",
+              "clear": [
+                "sheet"
+              ],
+              "duration": 900
+            }
+          ]
+        },
+        {
+          "label": "যেসব সংস্থার পর্যবেক্ষক",
+          "referencedBy": {
+            "records": "organisations",
+            "listField": "observer"
+          },
+          "item": {
+            "field": "nameBn"
+          },
+          "stacked": true,
+          "do": [
+            {
+              "action": "select"
+            },
+            {
+              "action": "fitBounds",
+              "field": "frame",
+              "clear": [
+                "sheet"
+              ],
+              "duration": 900
+            }
+          ]
+        },
+        {
+          "label": "যেসব সংস্থার সংলাপ অংশীদার",
+          "referencedBy": {
+            "records": "organisations",
+            "listField": "dialoguePartner"
+          },
+          "item": {
+            "field": "nameBn"
+          },
+          "stacked": true,
+          "do": [
+            {
+              "action": "select"
+            },
+            {
+              "action": "fitBounds",
+              "field": "frame",
+              "clear": [
+                "sheet"
+              ],
+              "duration": 900
+            }
+          ]
+        },
+        {
+          "label": "যে সংস্থার প্রার্থী দেশ",
+          "referencedBy": {
+            "records": "organisations",
+            "listField": "candidate"
+          },
+          "item": {
+            "field": "nameBn"
+          },
+          "stacked": true,
+          "do": [
+            {
+              "action": "select"
+            },
+            {
+              "action": "fitBounds",
+              "field": "frame",
+              "clear": [
+                "sheet"
+              ],
+              "duration": 900
+            }
+          ]
+        },
+        {
+          "label": "সম্ভাব্য প্রার্থী দেশ",
+          "referencedBy": {
+            "records": "organisations",
+            "listField": "potentialCandidate"
+          },
+          "item": {
+            "field": "nameBn"
+          },
+          "stacked": true,
+          "do": [
+            {
+              "action": "select"
+            },
+            {
+              "action": "fitBounds",
+              "field": "frame",
+              "clear": [
+                "sheet"
+              ],
+              "duration": 900
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
