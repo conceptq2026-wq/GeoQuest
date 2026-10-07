@@ -35,11 +35,13 @@ let failures = 0;
 const check = (ok, msg) => { console.log(`${ok ? 'ok  ' : 'FAIL'} ${msg}`); if (!ok) failures++; };
 
 // The cached source texts a quote could come from: the maritime map's (ITLOS, PCA, bdlaws, the CLCS
-// submission, the UN notes, the Teknaf portal) and the NCTB books'.
+// submission, the UN notes, the Teknaf portal), the NCTB books', and the ethnic-groups map's pages.
 const SOURCE_TEXTS = [
   ['tools/.cache/bd-maritime/text', /\.txt$/],
   ['tools/.cache/org-members/nctb', /\.txt$/],
   ['tools/.cache/earth-interior', /^book\.txt$/],
+  // bangladesh-ethnic-groups: the portal and Banglapedia pages its card facts come from (ETH-2).
+  ['tools/.cache/ethnic/raw/culture', /\.txt$/],
 ];
 
 // 1. Fast-forward only.

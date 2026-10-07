@@ -1548,6 +1548,66 @@ console.log('\n---- org-members: seed ----');
   check(!wipItems.some((w) => w.id === OM) && registry.maps.some((e) => e.id === OM && e.section === 'international') && fs.existsSync(path.join(ROOT, 'docs/maps', OM, 'descriptor.json')), `${OM}: live — in registry.json under International, its folder under docs/maps/, no longer in tools/wip.json`);
 }
 
+// ---- bangladesh-ethnic-groups (seed draft, ETH-2, 2026-10-08): the seed only ------------------------
+// Nothing is built yet and the map is in neither the registry nor tools/wip.json. The seed holds the 19 groups
+// the user chose, each district as a COD-AB pcode of docs/shared/bangladesh-districts.json, and a cited source
+// with a URL for every fact; a quote is its place in the cached text (tools/.cache/ethnic/), re-sliced and
+// hashed here when the cache is present. Unapproved strings only warn, as for work in progress.
+console.log('\n---- bangladesh-ethnic-groups: seed (draft) ----');
+{
+  const EG = 'bangladesh-ethnic-groups';
+  const seedText = fs.readFileSync(path.join(DATA_SOURCES, EG, `${EG}.seed.json`), 'utf8');
+  const seed = JSON.parse(seedText);
+  const GROUPS = ['chakma', 'marma', 'tripura', 'saontal', 'oraon', 'garo', 'munda', 'mro', 'tonchonga', 'barman', 'monipuri', 'mahato', 'malo', 'koch', 'bom', 'khasia', 'bagdi', 'rakhain', 'hajong'];
+  check(JSON.stringify(seed.groups.map((g) => g.id)) === JSON.stringify(GROUPS), `${EG}: the ${GROUPS.length} groups the user chose (2026-10-08), in census order`);
+  const shared = new Map(JSON.parse(fs.readFileSync(path.join(SERVED, 'shared/bangladesh-districts.json'), 'utf8')).districts.map((d) => [d.pcode, d]));
+  const badDistricts = seed.groups.flatMap((g) => g.districts.filter((d) => !shared.has(d.pcode) || d.bbsCode !== d.pcode.slice(-2) || !(d.count >= 1000)).map((d) => `${g.id}/${d.pcode}`));
+  const tab = Object.fromEntries([...shared.keys()].map((p) => [p, seed.groups.filter((g) => g.districts.some((d) => d.pcode === p)).map((g) => g.id)]));
+  check(badDistricts.length === 0 && seed.groups.every((g) => g.districts.length > 0) && JSON.stringify(seed.districtGroups) === JSON.stringify(tab), `${EG}: every district is a pcode of docs/shared/bangladesh-districts.json with ≥ 1,000 of the group (${seed.groups.reduce((s, g) => s + g.districts.length, 0)}), and the district tab lists all 64 districts as the records say (${Object.values(tab).filter((g) => !g.length).length} empty)${badDistricts.length ? ` — not: ${badDistricts.join(', ')}` : ''}`);
+  // Every fact cites a source with a URL, or the user; card facts say whether their source is official or Banglapedia.
+  const cites = [];
+  const facts = [];
+  for (const g of seed.groups) {
+    facts.push([`${g.id}.population`, g.population], [`${g.id}.zone`, g.zone], ...g.districts.map((d) => [`${g.id}.${d.pcode}`, d]));
+    for (const f of ['language', 'religion', 'festivals']) if (g[f]) facts.push([`${g.id}.${f}`, g[f]]);
+  }
+  for (const i of seed.institutes) { facts.push([`${i.id}.name`, i.name]); if (!i.location.missing) facts.push([`${i.id}.location`, i.location]); }
+  seed.info.forEach((l, n) => facts.push([`info[${n}]`, l]));
+  const unsourced = facts.filter(([, f]) => !f.cite?.length || f.cite.some((c) => c.source !== 'user' && !/^https?:\/\//.test(seed.sources[c.source]?.url ?? ''))).map(([k]) => k);
+  const badType = seed.groups.flatMap((g) => ['language', 'religion', 'festivals'].filter((f) => g[f] && !['official', 'banglapedia'].includes(g[f].sourceType)).map((f) => `${g.id}.${f}`));
+  check(unsourced.length === 0 && badType.length === 0, `${EG}: every fact (${facts.length}) cites a source with a URL or the user, and each card fact is official or Banglapedia${unsourced.length || badType.length ? ` — not: ${[...unsourced, ...badType].slice(0, 5).join(', ')}` : ''}`);
+  for (const [, f] of facts) for (const c of f.cite) cites.push(c);
+  const anchored = cites.filter((c) => c.offset !== undefined);
+  const cache = path.join(HERE, '.cache/ethnic');
+  if (fs.existsSync(cache)) {
+    const badAnchors = anchored.filter((c) => {
+      const at = path.join(cache, c.file);
+      if (!fs.existsSync(at)) return true;
+      const t = fs.readFileSync(at, 'utf8').replace(/\s+/g, ' ');
+      const q = t.slice(c.offset, c.offset + c.length);
+      return q.trim().split(/\s+/).length > 15 || crypto.createHash('sha256').update(q).digest('hex') !== c.sha256;
+    });
+    check(badAnchors.length === 0, `${EG}: each of the ${anchored.length} quote anchors is at its place in the cached text, at most 15 words, matching its SHA-256${badAnchors.length ? ` — not: ${badAnchors.length}` : ''}`);
+  } else console.log(`warn ${EG}: tools/.cache/ethnic/ is not here, so the ${anchored.length} quote anchors are not re-read`);
+  // Every Bengali string carries its approval flag (rule (a)); a source's own title, a citation's place, the gazette's
+  // spelling and the names an institute's page prints are records of a source, not our words.
+  const unflagged = [];
+  let pending = 0;
+  const walk = (v, where, key, owner) => {
+    if (typeof v === 'string') {
+      if (!/[ঀ-৿]/.test(v)) return;
+      if (key === 'bn' && typeof owner?.approved === 'boolean') { if (!owner.approved) pending++; return; }
+      if ((key === 'title' && /^seed\.sources\.\w+$/.test(where.replace(/\.title$/, ''))) || key === 'at' || /\.gazetteName\.bn$/.test(where) || /\.groupsNamed\.names\[\d+\]$/.test(where)) return;
+      unflagged.push(where);
+    } else if (Array.isArray(v)) v.forEach((x, i) => walk(x, `${where}[${i}]`, i, v));
+    else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) walk(x, `${where}.${k}`, k, v);
+  };
+  walk(seed, 'seed', null, null);
+  check(unflagged.length === 0, `${EG}: every Bengali string carries its approval flag${unflagged.length ? ` — not: ${unflagged.slice(0, 3).join(', ')}` : ''}`);
+  if (pending) console.log(`warn ${EG} (seed draft): ${pending} string(s) await the user's approval`);
+  check(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(seedText) && !registry.maps.some((e) => e.id === EG) && !wipItems.some((w) => w.id === EG) && !fs.existsSync(path.join(SERVED, 'maps', EG)), `${EG}: no e-mail address in the seed; nothing built, not in the registry or tools/wip.json`);
+}
+
 // ---- no unapproved string ships (the user's rule, 2026-10-08, BD-6) -------------------------------
 // A live item whose seed carries approval flags ({ bn, approved }) may not serve a string the user has not
 // approved: every { bn, approved: false } in its tracked seed files whose text appears in its files under

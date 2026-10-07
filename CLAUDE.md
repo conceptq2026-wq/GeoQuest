@@ -477,6 +477,9 @@ State which kind a task is when reporting it.
   junction, card text from official sources only (the user's rule,
   2026-10-07).
 - Work in progress (`tools/wip.json`): none.
+- Seed draft, not built and not in `tools/wip.json` by the user's instruction (ETH-2, 2026-10-08):
+  `bangladesh-ethnic-groups` «বাংলাদেশের ক্ষুদ্র নৃ-গোষ্ঠী», 19 groups from Census 2022, its seed checked by
+  `tools/verify.mjs` (`notes/bangladesh-ethnic-groups.md`).
 
 ## Index — notes, read only when working on that item
 

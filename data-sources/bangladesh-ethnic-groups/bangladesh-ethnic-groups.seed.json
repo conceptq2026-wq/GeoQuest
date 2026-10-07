@@ -1,0 +1,3822 @@
+{
+  "_about": "The bangladesh-ethnic-groups map, a SEED DRAFT (ETH-2, 2026-10-08): nothing is built and the map is not in tools/wip.json yet. notes/bangladesh-ethnic-groups.md says why each choice was made. Every Bengali string is { bn, approved }, all awaiting the user. A fact cites its source by id; a quote is stored as its place in the cached text (tools/.cache/ethnic/, out of git: the text with whitespace collapsed, offset, length, SHA-256), never as words. Districts are COD-AB pcodes (docs/shared/bangladesh-districts.json); bbsCode is the census district code, the pcode's last two digits.",
+  "id": "bangladesh-ethnic-groups",
+  "section": "bangladesh",
+  "title": {
+    "bn": "বাংলাদেশের ক্ষুদ্র নৃ-গোষ্ঠী",
+    "approved": false,
+    "cite": [
+      {
+        "source": "act2010",
+        "at": "title and section 2(2)"
+      },
+      {
+        "source": "gazette2019",
+        "at": "the list's heading"
+      },
+      {
+        "source": "user",
+        "at": "decision of 2026-10-08"
+      }
+    ]
+  },
+  "rules": {
+    "groups": "≥ 10,000 people in Census 2022 (Table P29), plus হাজং (the user, 2026-10-08)",
+    "districts": "districts in descending order of the group's count until they hold ≥ 80 % of it; of those, only districts with ≥ 1,000 (the user, 2026-10-08)",
+    "zone": "hill if ≥ 50 % of the group lives in Rangamati (BD2084), Khagrachhari (BD2046) and Bandarban (BD2003), else plains (the user, 2026-10-08); no official classification exists (notes)"
+  },
+  "sources": {
+    "bbsNational": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, National Report Volume I (BBS, November 2023)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2024/12/ad6c94d02722448f92690a27c4313ec9.pdf",
+      "file": "raw/census/NationalReport-Vol1.pdf"
+    },
+    "bbsPreliminaryBn": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "জনশুমারি ও গৃহগণনা ২০২২, প্রাথমিক প্রতিবেদন (বাংলা সংস্করণ), সারণি স-১.৪",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2024/12/97149c7ae55a4cd9a6c4f7bb995a737e.pdf",
+      "file": "raw/census/Preliminary-BN.pdf"
+    },
+    "gazette2019": {
+      "kind": "gazette",
+      "type": "official",
+      "title": "S.R.O. No. 78-Law/2019, Ministry of Cultural Affairs, 19 March 2019 (Bangladesh Gazette Extraordinary, 23 March 2019)",
+      "url": "https://dpp.gov.bd/upload_file/gazettes/31266_79440.pdf"
+    },
+    "act2010": {
+      "kind": "bdlaws",
+      "type": "official",
+      "title": "ক্ষুদ্র নৃ-গোষ্ঠী সাংস্কৃতিক প্রতিষ্ঠান আইন, ২০১০ (Act No. 23 of 2010)",
+      "url": "http://bdlaws.minlaw.gov.bd/act-details-1043.html"
+    },
+    "mocaInstitutes": {
+      "kind": "gob-portal",
+      "type": "official",
+      "title": "Ministry of Cultural Affairs, দপ্তর/সংস্থা list, rows ১৩–২২",
+      "url": "https://moca.gov.bd/pages/static-pages/694032e335ce18e1c0563ee3"
+    },
+    "codab": {
+      "kind": "codab",
+      "type": "official",
+      "title": "Bangladesh administrative boundaries (COD-AB v03), BBS/OCHA, CC BY-IGO 3.0 — docs/shared/bangladesh-districts.json",
+      "url": "https://data.humdata.org/dataset/401d3fae-4262-48c9-891f-461fd776d49b"
+    },
+    "osm": {
+      "kind": "osm",
+      "type": "osm",
+      "title": "OpenStreetMap contributors, ODbL",
+      "url": "https://www.openstreetmap.org/copyright"
+    },
+    "bbsZilaRANGAMATI": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: RANGAMATI (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/fc51a471-714b-4f0a-8ff1-9e1eba8f09a7.pdf",
+      "file": "raw/census/district-RANGAMATI.pdf",
+      "bytes": 21470135,
+      "sha256": "a2557ae15d7d8cc40153fcf0238953c89e012cb094d9fdf5e1239cdc1df0ba8e"
+    },
+    "bbsZilaKHAGRACHHARI": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: KHAGRACHHARI (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/727d240a-247a-45c4-9d11-5d47cdf34106.pdf",
+      "file": "raw/census/district-KHAGRACHHARI.pdf",
+      "bytes": 20218394,
+      "sha256": "f5992c0ddaf399f0b2aa6aedd6b9a0ad0db203372089c51617706a2487048241"
+    },
+    "bbsZilaBANDARBAN": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: BANDARBAN (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/288dd839-513c-483b-9006-a800daf482c4.pdf",
+      "file": "raw/census/district-BANDARBAN.pdf",
+      "bytes": 18851946,
+      "sha256": "d927877bcfe1b0246f87b0ae96315fc5147bccc5a8c695489084e818d6aaebca"
+    },
+    "page1": {
+      "kind": "gob-portal",
+      "type": "official",
+      "title": "ভাষা ও সংস্কৃতি | রাঙ্গামাটি পার্বত্য জেলা",
+      "url": "https://rangamati.gov.bd/pages/static-pages/6991008b35ce18e1c0733358"
+    },
+    "page2": {
+      "kind": "gob-portal",
+      "type": "official",
+      "title": "জেলার ঐতিহ্য (ভাষা ও সংস্কৃতি) | খাগড়াছড়ি জেলা",
+      "url": "https://khagrachhari.gov.bd/pages/static-pages/69910abd35ce18e1c0739155"
+    },
+    "bbsZilaCHATTOGRAM": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: CHATTOGRAM (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/6f835241-725c-42c7-a740-858d211699b7.pdf",
+      "file": "raw/census/district-CHATTOGRAM.pdf",
+      "bytes": 22126611,
+      "sha256": "62ba5e9e614870dfd4829e5cfe4ad67fad896e6c4eff3dc1d01fd6a56965fe81"
+    },
+    "bbsZilaDINAJPUR": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: DINAJPUR (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/6ee489fd-9412-4573-b5d6-6fe2a5e2e6dd.pdf",
+      "file": "raw/census/district-DINAJPUR.pdf",
+      "bytes": 28399497,
+      "sha256": "8bcf3bc6704213483d7a54bacdd024411ec8a65ff54013f5a14be14704dc1197"
+    },
+    "bbsZilaRAJSHAHI": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: RAJSHAHI (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/c712cc05-e861-40c1-8a1f-ae765cec9f78.pdf",
+      "file": "raw/census/district-RAJSHAHI.pdf",
+      "bytes": 30167949,
+      "sha256": "96221b8e47a4974d444a8ac9e10802e062ea55ad22ef7fc0e220bf70922a1634"
+    },
+    "bbsZilaNAOGAON": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: NAOGAON (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/7/d3ce217c-1df1-4a3a-b968-be2cff37b01f.pdf",
+      "file": "raw/census/district-NAOGAON.pdf",
+      "bytes": 21027262,
+      "sha256": "c8ef86156d404ac84921e719d027dae9ac3353ab7be08dde6afb9af48df4119c"
+    },
+    "bbsZilaHABIGANJ": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: HABIGANJ (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/1871b767-8ecd-4ec5-8073-d54d5ddd7b53.pdf",
+      "file": "raw/census/district-HABIGANJ.pdf",
+      "bytes": 24815506,
+      "sha256": "f78d0703c36d7532c7d4c0277a7749dd70c086832433509727f60253873ec24f"
+    },
+    "bbsZilaCHAPAINAWABGANJ": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: CHAPAI-NAWABGANJ (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/ca335923-8434-424e-a0f0-b166e5ec6e81.pdf",
+      "file": "raw/census/district-CHAPAI-NAWABGANJ.pdf",
+      "bytes": 15736836,
+      "sha256": "35e9a11099f01921eb94b880b8aa0aa90ad08b711f19aaad221b0949ae6905e8"
+    },
+    "bbsZilaMAULVIBAZAR": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: MAULVIBAZAR (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/4c98bb76-8069-414a-9851-6cbbc4b9273f.pdf",
+      "file": "raw/census/district-MAULVIBAZAR.pdf",
+      "bytes": 22864932,
+      "sha256": "9aa24a4a563fdb25f35e7f73d8689d7dd5d687c1b65244f4cefe571b1a41bf99"
+    },
+    "bp3": {
+      "kind": "banglapedia",
+      "type": "banglapedia",
+      "title": "সাঁওতাল - বাংলাপিডিয়া",
+      "url": "https://bn.banglapedia.org/index.php/সাঁওতাল"
+    },
+    "page4": {
+      "kind": "gob-portal",
+      "type": "official",
+      "title": "ভাষা ও সংস্কৃতি | রাজশাহী জেলা",
+      "url": "https://rajshahi.gov.bd/pages/static-pages/697f99c435ce18e1c06c087e"
+    },
+    "bbsZilaRANGPUR": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: RANGPUR (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/80d1ba40-44f5-4476-b4be-7e0609656893.pdf",
+      "file": "raw/census/district-RANGPUR.pdf",
+      "bytes": 24473208,
+      "sha256": "964a9e4a5f8e28610fb04ffe03f4cdff6b3b39acac652fe6dc92670ef63112cf"
+    },
+    "bbsZilaSIRAJGANJ": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: SIRAJGANJ (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/846d588b-a88f-4e17-b951-d81ae5bbf53f.pdf",
+      "file": "raw/census/district-SIRAJGANJ.pdf",
+      "bytes": 17807864,
+      "sha256": "a5a1521ca3f9dbd9aaf87065b52bc7fc1aa1206a8add5ca985a78d34cd089b85"
+    },
+    "bbsZilaJOYPURHAT": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: JOYPURHAT (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/bfd5f614-0469-4518-aab7-6d1fa6775622.pdf",
+      "file": "raw/census/district-JOYPURHAT.pdf",
+      "bytes": 62081791,
+      "sha256": "3d81be7c30442e2de40bb3a786420d15d806770960a1cc979c0405e20daeb79c"
+    },
+    "page5": {
+      "kind": "gob-portal",
+      "type": "official",
+      "title": "জেলার ঐতিহ্য | নওগাঁ জেলা",
+      "url": "https://naogaon.gov.bd/pages/static-pages/697f9a0935ce18e1c06c28cc"
+    },
+    "bp6": {
+      "kind": "banglapedia",
+      "type": "banglapedia",
+      "title": "ওরাওঁ - বাংলাপিডিয়া",
+      "url": "https://bn.banglapedia.org/index.php/ওরাওঁ"
+    },
+    "bbsZilaMYMENSINGH": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: MYMENSINGH (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/85ce7f4f-e79a-4e27-b0e1-7904d8fab45a.pdf",
+      "file": "raw/census/district-MYMENSINGH.pdf",
+      "bytes": 22013441,
+      "sha256": "99160ad203a481338a5f51dd322dbb5a965b0c8c2b20397d74b57309b22045e6"
+    },
+    "bbsZilaNETRAKONA": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: NETRAKONA (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/a9e0407a-e538-4dcf-8dfd-69fb95162789.pdf",
+      "file": "raw/census/district-NETRAKONA.pdf",
+      "bytes": 25275477,
+      "sha256": "ef5c71a96a87688a861d15ad7ad9cf538e382fe662ebddc0e57d88648cc2a14e"
+    },
+    "bbsZilaTANGAIL": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: TANGAIL (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/6ca57f37-00d6-48ad-9f8b-94c1226d0fa5.pdf",
+      "file": "raw/census/district-TANGAIL.pdf",
+      "bytes": 18953345,
+      "sha256": "f56a040dc5596b5f6ec38342086cab011cfb2cb9277750778a515086c0c6b4e8"
+    },
+    "bbsZilaDHAKA": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: DHAKA (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/6c4026f9-3ea4-493a-a0e3-c6d7c91fdc67.pdf",
+      "file": "raw/census/district-DHAKA.pdf",
+      "bytes": 29702260,
+      "sha256": "ed2f1050281b94793714c9bb42a9dfd7e63695c015c13730c253ef54db5b6859"
+    },
+    "bbsZilaSHERPUR": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: SHERPUR (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/a2999d5e-8125-4cd8-9b6f-e9463b1aedff.pdf",
+      "file": "raw/census/district-SHERPUR.pdf",
+      "bytes": 20649692,
+      "sha256": "f74fc809fd0738f8f8194d3f0da45bf042a07ee20dcc0c670e8e366d2997d688"
+    },
+    "page7": {
+      "kind": "gob-portal",
+      "type": "official",
+      "title": "ভাষা ও সংস্কৃতি | টাঙ্গাইল জেলা",
+      "url": "https://tangail.gov.bd/pages/static-pages/6995975d35ce18e1c0786877"
+    },
+    "bp8": {
+      "kind": "banglapedia",
+      "type": "banglapedia",
+      "title": "গারো - বাংলাপিডিয়া",
+      "url": "https://bn.banglapedia.org/index.php/গারো"
+    },
+    "bp9": {
+      "kind": "banglapedia",
+      "type": "banglapedia",
+      "title": "মুন্ডা - বাংলাপিডিয়া",
+      "url": "https://bn.banglapedia.org/index.php/মুন্ডা"
+    },
+    "bp10": {
+      "kind": "banglapedia",
+      "type": "banglapedia",
+      "title": "ম্রো - বাংলাপিডিয়া",
+      "url": "https://bn.banglapedia.org/index.php/ম্রো"
+    },
+    "bp11": {
+      "kind": "banglapedia",
+      "type": "banglapedia",
+      "title": "তঞ্চঙ্গ্যা - বাংলাপিডিয়া",
+      "url": "https://bn.banglapedia.org/index.php/তঞ্চঙ্গ্যা"
+    },
+    "page12": {
+      "kind": "gob-portal",
+      "type": "official",
+      "title": "জেলার ঐতিহ্য | রাঙ্গামাটি পার্বত্য জেলা",
+      "url": "https://rangamati.gov.bd/pages/static-pages/69910abd35ce18e1c073912a"
+    },
+    "bbsZilaTHAKURGAON": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: THAKURGAON (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/0dde44d6-0b48-41ee-9424-c8438e31e766.pdf",
+      "file": "raw/census/district-THAKURGAON.pdf",
+      "bytes": 19549360,
+      "sha256": "73f065452accdb1c06068e4e6bdf8ecb9c37b407dbdc979d669ec7106c554d9c"
+    },
+    "bbsZilaGAZIPUR": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: GAZIPUR (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/82a009d2-5259-45ea-b45d-4929d6040eda.pdf",
+      "file": "raw/census/district-GAZIPUR.pdf",
+      "bytes": 22955928,
+      "sha256": "90392f03ccb77f9accb5dc542e0b9998f14fc0065efa3fb33063cc4715d8ec98"
+    },
+    "bbsZilaSYLHET": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: SYLHET (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/95bca29b-c009-4261-97f2-e0f24cc55d87.pdf",
+      "file": "raw/census/district-SYLHET.pdf",
+      "bytes": 29198928,
+      "sha256": "74e2e193d1e860211b394ed452afa0f52b38be0e92bdd361572689986ad3e46c"
+    },
+    "bp13": {
+      "kind": "banglapedia",
+      "type": "banglapedia",
+      "title": "মণিপুরী - বাংলাপিডিয়া",
+      "url": "https://bn.banglapedia.org/index.php/মণিপুরী"
+    },
+    "page14": {
+      "kind": "gob-portal",
+      "type": "official",
+      "title": "ভাষা ও সংস্কৃতি | মৌলভীবাজার জেলা",
+      "url": "https://moulvibazar.gov.bd/pages/static-pages/ভাষা-ও-সংস্কৃতি-6f4d99-696cb3a0c4774958d7ba20b0"
+    },
+    "bbsZilaBOGURA": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: BOGURA (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/3d8572c6-d763-467a-a050-99ebfa7b4cdb.pdf",
+      "file": "raw/census/district-BOGURA.pdf",
+      "bytes": 29971896,
+      "sha256": "a4f12b9cc1ae5d284c51379a092326394f8682b6a42d1ff0e51e897bc82196c8"
+    },
+    "bp15": {
+      "kind": "banglapedia",
+      "type": "banglapedia",
+      "title": "উপজাতীয় ভাষা - বাংলাপিডিয়া",
+      "url": "https://bn.banglapedia.org/index.php/উপজাতীয়_ভাষা"
+    },
+    "bbsZilaNARAIL": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: NARAIL (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/38354ecb-c10b-43e0-b371-657c00463deb.pdf",
+      "file": "raw/census/district-NARAIL.pdf",
+      "bytes": 16381313,
+      "sha256": "d0b01c020e2708f4ba315ff533c2928f9cee42bb876ff7022575b62a89053e08"
+    },
+    "bbsZilaFARIDPUR": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: FARIDPUR (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/6febd6ad-75c2-4d22-be91-c0d446dacc54.pdf",
+      "file": "raw/census/district-FARIDPUR.pdf",
+      "bytes": 24504853,
+      "sha256": "668f5e25b742c6da410affa641a5e697d6e8ba188c6ec05d3a70f162905634cc"
+    },
+    "bbsZilaMAGURA": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: MAGURA (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/53f42ddf-d536-4efc-afd6-862ea73ab49a.pdf",
+      "file": "raw/census/district-MAGURA.pdf",
+      "bytes": 19149243,
+      "sha256": "dcd3a9d6bfd1aca8f7758a1bba345ddf4b62bef4539baeeed1b8eb9f83fb6181"
+    },
+    "bbsZilaJHENAIDAH": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: JHENAIDAH (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/16b05c3c-890f-478a-8518-20a76b3207c1.pdf",
+      "file": "raw/census/district-JHENAIDAH.pdf",
+      "bytes": 21145518,
+      "sha256": "45af3b28ab3d26bbfb408c16c19fef2c6cbbe01da17954901611a25a30b072f6"
+    },
+    "bp16": {
+      "kind": "banglapedia",
+      "type": "banglapedia",
+      "title": "কোচ - বাংলাপিডিয়া",
+      "url": "https://bn.banglapedia.org/index.php/কোচ"
+    },
+    "bp17": {
+      "kind": "banglapedia",
+      "type": "banglapedia",
+      "title": "বম - বাংলাপিডিয়া",
+      "url": "https://bn.banglapedia.org/index.php/বম"
+    },
+    "bp18": {
+      "kind": "banglapedia",
+      "type": "banglapedia",
+      "title": "খাসিয়া - বাংলাপিডিয়া",
+      "url": "https://bn.banglapedia.org/index.php/খাসিয়া"
+    },
+    "bbsZilaRAJBARI": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: RAJBARI (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/37fa9e29-13ca-40b4-95dc-75b85ce5ee48.pdf",
+      "file": "raw/census/district-RAJBARI.pdf",
+      "bytes": 19748295,
+      "sha256": "9c5387d63e7397370751913a15a812949c8949f7bf9d4f2390edc51df9a93d20"
+    },
+    "bp19": {
+      "kind": "banglapedia",
+      "type": "banglapedia",
+      "title": "Bagdi - Banglapedia",
+      "url": "https://en.banglapedia.org/index.php/Bagdi"
+    },
+    "bbsZilaCOXSBAZAR": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: COXS-BAZAR (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/ea2a0b77-6b05-40a9-af76-90c9828c4992.pdf",
+      "file": "raw/census/district-COXS-BAZAR.pdf",
+      "bytes": 19996619,
+      "sha256": "1d6188c5df5f52539400a8d516b6d4a9402ac0c340678060998c29601ae68b8e"
+    },
+    "bbsZilaBARGUNA": {
+      "kind": "bbs",
+      "type": "official",
+      "title": "Population and Housing Census 2022, District Report: BARGUNA (BBS, June 2024)",
+      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2026/4/d1d976c9-eb6d-4cc1-b6b4-da30713f6a38.pdf",
+      "file": "raw/census/district-BARGUNA.pdf",
+      "bytes": 20777541,
+      "sha256": "b9d2c046f4f4247364b1286fbfbeafb576b94f5645645a50c89846a5c6a7ea2f"
+    },
+    "page20": {
+      "kind": "gob-portal",
+      "type": "official",
+      "title": "ভাষা ও সংস্কৃতি | বরগুনা জেলা",
+      "url": "https://barguna.gov.bd/pages/static-pages/6978a7a235ce18e1c0674e6d"
+    },
+    "bp21": {
+      "kind": "banglapedia",
+      "type": "banglapedia",
+      "title": "হাজং - বাংলাপিডিয়া",
+      "url": "https://bn.banglapedia.org/index.php/হাজং"
+    },
+    "page22": {
+      "kind": "gob-portal",
+      "type": "official",
+      "title": "knca-birishiri: district",
+      "url": "https://kncabirisiri.portal.gov.bd/pages/static-pages/6922df83933eb65569e227b0"
+    },
+    "page23": {
+      "kind": "gob-portal",
+      "type": "official",
+      "title": "knsi-rangamati: district",
+      "url": "https://knsirangamati.portal.gov.bd/pages/static-pages/6922de9f933eb65569e1c18d"
+    },
+    "page24": {
+      "kind": "gob-portal",
+      "type": "official",
+      "title": "knsi-rangamati: groups served",
+      "url": "https://knsirangamati.portal.gov.bd/pages/static-pages/6922db81933eb65569e0a782"
+    },
+    "page25": {
+      "kind": "gob-portal",
+      "type": "official",
+      "title": "knsi-bandarban: district",
+      "url": "https://ksibandarban.portal.gov.bd/pages/static-pages/6922e03e933eb65569e262a3"
+    },
+    "page26": {
+      "kind": "gob-portal",
+      "type": "official",
+      "title": "knsi-bandarban: groups served",
+      "url": "https://ksibandarban.portal.gov.bd/pages/static-pages/6922dc68933eb65569e102e8"
+    },
+    "page27": {
+      "kind": "gob-portal",
+      "type": "official",
+      "title": "cox-cultural-centre: district",
+      "url": "https://coxculturecenter.portal.gov.bd/pages/static-pages/6922e050933eb65569e2678f"
+    },
+    "page28": {
+      "kind": "gob-portal",
+      "type": "official",
+      "title": "cox-cultural-centre: map",
+      "url": "https://coxculturecenter.portal.gov.bd/pages/static-pages/contact-map-g8u1rt-6a87236e9b63d6f0462f4e9a"
+    },
+    "page29": {
+      "kind": "gob-portal",
+      "type": "official",
+      "title": "knsi-khagrachari: district",
+      "url": "https://knsikhagrachari.portal.gov.bd/pages/static-pages/6922dfa8933eb65569e234c5"
+    },
+    "page30": {
+      "kind": "gob-portal",
+      "type": "official",
+      "title": "knsi-khagrachari: map",
+      "url": "https://knsikhagrachari.portal.gov.bd/"
+    },
+    "page31": {
+      "kind": "gob-portal",
+      "type": "official",
+      "title": "knca-rajshahi: district",
+      "url": "https://kncaraj.portal.gov.bd/pages/static-pages/6922e02a933eb65569e25caf"
+    },
+    "page32": {
+      "kind": "gob-portal",
+      "type": "official",
+      "title": "manipuri-lalitkala-academy: district",
+      "url": "https://mla.portal.gov.bd/pages/static-pages/6922e0b9933eb65569e2857b"
+    }
+  },
+  "texts": {
+    "dc-rangamati-c0733358.txt": {
+      "url": "https://rangamati.gov.bd/pages/static-pages/6991008b35ce18e1c0733358",
+      "bytes": 47342,
+      "sha256": "bcc1e492602869c28db0f4b24989b8db815f3fd3e6f32c71b7818dfb28840d55"
+    },
+    "dc-khagrachhari-c0739155.txt": {
+      "url": "https://khagrachhari.gov.bd/pages/static-pages/69910abd35ce18e1c0739155",
+      "bytes": 27395,
+      "sha256": "3e8596aefcec989355487847fa1cb93a1ac027b5d3fce954086ab948cfac6a01"
+    },
+    "bpbn-সাঁওতাল.txt": {
+      "url": "https://bn.banglapedia.org/index.php/সাঁওতাল",
+      "bytes": 13072,
+      "sha256": "b95142c831168fb0aaa84576bc2a0d619b3e922e11d4f7d60f047dcc0dc3bb33"
+    },
+    "dc-rajshahi-c06c087e.txt": {
+      "url": "https://rajshahi.gov.bd/pages/static-pages/697f99c435ce18e1c06c087e",
+      "bytes": 42417,
+      "sha256": "002e7d555861228c26c1b11ff70f934a181cbde8a6aa77699b60012ddbb7088a"
+    },
+    "dc-naogaon-c06c28cc.txt": {
+      "url": "https://naogaon.gov.bd/pages/static-pages/697f9a0935ce18e1c06c28cc",
+      "bytes": 128228,
+      "sha256": "b22456092ea80e80dd9c9fe8a4cf28d44173893d1707289d5cd8ce9af662e624"
+    },
+    "bpbn-ওরাওঁ.txt": {
+      "url": "https://bn.banglapedia.org/index.php/ওরাওঁ",
+      "bytes": 14955,
+      "sha256": "41190938fad37103d09b01d64bd605d94aeb35978f2fe1b9044e388f2b3bad2a"
+    },
+    "dc-tangail-c0786877.txt": {
+      "url": "https://tangail.gov.bd/pages/static-pages/6995975d35ce18e1c0786877",
+      "bytes": 85842,
+      "sha256": "65ec2c94dc2cf1fcf384fbfaf24299a5fb84040c189d2a7a7134c2e611d40207"
+    },
+    "bpbn-গারো.txt": {
+      "url": "https://bn.banglapedia.org/index.php/গারো",
+      "bytes": 18158,
+      "sha256": "65a1799ad1b2c28e88d2c50697ebb9f11d938fc47174f6ba5a7ac1744b3f4d5e"
+    },
+    "bpbn-মুন্ডা.txt": {
+      "url": "https://bn.banglapedia.org/index.php/মুন্ডা",
+      "bytes": 7129,
+      "sha256": "d8b513a3813fac39df3377bc9195c92b4be8a5cf4f9769d48d76bd6284edf5ec"
+    },
+    "bpbn-ম্রো.txt": {
+      "url": "https://bn.banglapedia.org/index.php/ম্রো",
+      "bytes": 13316,
+      "sha256": "b73269c3476a285511c4b1c27d25dd0051a32150ff14ce721f6017713edc3834"
+    },
+    "bpbn-তঞ্চঙ্গ্যা.txt": {
+      "url": "https://bn.banglapedia.org/index.php/তঞ্চঙ্গ্যা",
+      "bytes": 12539,
+      "sha256": "3b8abd1ef5e819293196aaaa7f56f4f3d6951fbf11e088c1d22d0fa722090627"
+    },
+    "dc-rangamati-c073912a.txt": {
+      "url": "https://rangamati.gov.bd/pages/static-pages/69910abd35ce18e1c073912a",
+      "bytes": 27377,
+      "sha256": "633d4b5fd72035c3aaf39f7e2730409663416e55fa57e301ab87d0eafc177400"
+    },
+    "bpbn-মণিপুরী.txt": {
+      "url": "https://bn.banglapedia.org/index.php/মণিপুরী",
+      "bytes": 22522,
+      "sha256": "c378d51336ee2998762d4a025409fbf21b7a6c65c2d702277b8923965a1c641a"
+    },
+    "dc-moulvibazar-d7ba20b0.txt": {
+      "url": "https://moulvibazar.gov.bd/pages/static-pages/ভাষা-ও-সংস্কৃতি-6f4d99-696cb3a0c4774958d7ba20b0",
+      "bytes": 29894,
+      "sha256": "c4d7bdd5db0e60016d599db8d3355871eeb045870f9754de2b51ab89d55ad019"
+    },
+    "bpbn-উপজাতীয়_ভাষা.txt": {
+      "url": "https://bn.banglapedia.org/index.php/উপজাতীয়_ভাষা",
+      "bytes": 49123,
+      "sha256": "235117d49e1a910811af1d3b4176d223879795adc019911092baa2189b062635"
+    },
+    "bpbn-কোচ.txt": {
+      "url": "https://bn.banglapedia.org/index.php/কোচ",
+      "bytes": 8342,
+      "sha256": "dfbd00695077945680c7a1931dd898393e1f011660e1f453f08cb29e1339ca37"
+    },
+    "bpbn-বম.txt": {
+      "url": "https://bn.banglapedia.org/index.php/বম",
+      "bytes": 7643,
+      "sha256": "37efff7dbacf777eb6f56a6826795dcf1c800a13644af1aa24fecde4a02dfa5d"
+    },
+    "bpbn-খাসিয়া.txt": {
+      "url": "https://bn.banglapedia.org/index.php/খাসিয়া",
+      "bytes": 26591,
+      "sha256": "f1888ce364903f61d2b13032f1dd4b45123e347799ba7aab8f1e33a1ac586b25"
+    },
+    "bpen-Bagdi.txt": {
+      "url": "https://en.banglapedia.org/index.php/Bagdi",
+      "bytes": 2893,
+      "sha256": "da9d6f93bb82ae6502ec725e21b49751619816f181bf76920bb17546e548b1bc"
+    },
+    "dc-barguna-c0674e6d.txt": {
+      "url": "https://barguna.gov.bd/pages/static-pages/6978a7a235ce18e1c0674e6d",
+      "bytes": 24721,
+      "sha256": "4ed1450b7bc38e39266293810a687c8db6f90c6f3dbc2fd0fd347a9b189d0fce"
+    },
+    "bpbn-হাজং.txt": {
+      "url": "https://bn.banglapedia.org/index.php/হাজং",
+      "bytes": 23683,
+      "sha256": "de2a587590aad440e76ea37bcb7e62825bfb7560cb6a6e426b62ad0b1af8e37e"
+    },
+    "bpbn-কুর্মি.txt": {
+      "url": "https://bn.banglapedia.org/index.php/কুর্মি",
+      "bytes": 10599,
+      "sha256": "a093d36e788f3519e7d1b71c330e9ea386991f0c35b8b4d68a16d49ffffd0b2e"
+    }
+  },
+  "strings": {
+    "tabs": {
+      "groups": {
+        "bn": "গোষ্ঠী",
+        "approved": false
+      },
+      "districts": {
+        "bn": "জেলা",
+        "approved": false
+      },
+      "institutes": {
+        "bn": "প্রতিষ্ঠান",
+        "approved": false
+      }
+    },
+    "pickers": {
+      "groups": {
+        "bn": "গোষ্ঠী বেছে নিন",
+        "approved": false
+      },
+      "districts": {
+        "bn": "জেলা বেছে নিন",
+        "approved": false
+      },
+      "institutes": {
+        "bn": "প্রতিষ্ঠান বেছে নিন",
+        "approved": false
+      }
+    },
+    "groupCard": {
+      "population": {
+        "bn": "জনসংখ্যা (২০২২)",
+        "approved": false
+      },
+      "districts": {
+        "bn": "প্রধান জেলা",
+        "approved": false
+      },
+      "zone": {
+        "bn": "অঞ্চল",
+        "approved": false
+      },
+      "language": {
+        "bn": "ভাষা",
+        "approved": false
+      },
+      "religion": {
+        "bn": "ধর্ম",
+        "approved": false
+      },
+      "festivals": {
+        "bn": "উৎসব ও সংস্কৃতি",
+        "approved": false
+      },
+      "institutes": {
+        "bn": "সাংস্কৃতিক প্রতিষ্ঠান",
+        "approved": false
+      }
+    },
+    "zone": {
+      "hill": {
+        "bn": "পাহাড়ি",
+        "approved": false
+      },
+      "plains": {
+        "bn": "সমতল",
+        "approved": false
+      }
+    },
+    "templates": {
+      "population": {
+        "bn": "{n} জন",
+        "approved": false
+      },
+      "zoneShare": {
+        "bn": "তিন পার্বত্য জেলায় {share}%",
+        "approved": false
+      }
+    },
+    "districtCard": {
+      "groups": {
+        "bn": "এই জেলায় রং করা গোষ্ঠী",
+        "approved": false
+      },
+      "empty": {
+        "bn": "মানচিত্রের ১৯টি গোষ্ঠীর কোনোটির জন্য এই জেলা রং করা হয়নি।",
+        "approved": false
+      }
+    },
+    "instituteCard": {
+      "district": {
+        "bn": "জেলা",
+        "approved": false
+      },
+      "groupsNamed": {
+        "bn": "প্রতিষ্ঠানের পাতায় নাম থাকা গোষ্ঠী",
+        "approved": false
+      },
+      "locationMissing": {
+        "bn": "সঠিক স্থান সূত্রে নেই; চিহ্নটি জেলায় বসানো",
+        "approved": false
+      }
+    },
+    "legend": {
+      "district": {
+        "bn": "রং করা জেলা: গোষ্ঠীর প্রধান বসতি",
+        "approved": false
+      },
+      "institute": {
+        "bn": "সাংস্কৃতিক প্রতিষ্ঠান",
+        "approved": false
+      }
+    }
+  },
+  "info": [
+    {
+      "bn": "মানচিত্রে ২০২২ সালের জনশুমারিতে ১০,০০০ বা তার বেশি মানুষের ১৮টি ক্ষুদ্র নৃ-গোষ্ঠী এবং হাজং দেখানো হয়েছে।",
+      "approved": false,
+      "cite": [
+        {
+          "source": "user",
+          "at": "decision of 2026-10-08: the 18 groups of ≥ 10,000, plus হাজং"
+        },
+        {
+          "source": "bbsNational",
+          "at": "Table P29"
+        }
+      ]
+    },
+    {
+      "bn": "জনসংখ্যা ও জেলার হিসাব বাংলাদেশ পরিসংখ্যান ব্যুরোর জনশুমারি ও গৃহগণনা ২০২২ থেকে।",
+      "approved": false,
+      "cite": [
+        {
+          "source": "bbsNational",
+          "at": "Table P29"
+        },
+        {
+          "source": "bbsZilaRANGAMATI",
+          "at": "Table P17 (one of the 64 District Reports)"
+        }
+      ]
+    },
+    {
+      "bn": "বড় থেকে ছোট ক্রমে যেসব জেলা মিলে একটি গোষ্ঠীর ৮০% মানুষ ধরে, তার মধ্যে অন্তত ১,০০০ জন থাকা জেলাগুলো রং করা।",
+      "approved": false,
+      "cite": [
+        {
+          "source": "user",
+          "at": "decision of 2026-10-08: the districts holding 80 %, each with ≥ 1,000"
+        }
+      ]
+    },
+    {
+      "bn": "যে গোষ্ঠীর অর্ধেক বা তার বেশি মানুষ রাঙ্গামাটি, খাগড়াছড়ি ও বান্দরবানে থাকে, তাকে পাহাড়ি বলা হয়েছে; বাকিগুলো সমতলের।",
+      "approved": false,
+      "cite": [
+        {
+          "source": "user",
+          "at": "decision of 2026-10-08: the hill rule"
+        }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "chakma",
+      "censusEn": "Chakma",
+      "name": {
+        "bn": "চাকমা",
+        "approved": false,
+        "verifiedFromText": true,
+        "cite": [
+          {
+            "source": "bbsPreliminaryBn",
+            "at": "সারণি স-১.৪, PDF p. 52 (printed ৩৩), text layer"
+          }
+        ]
+      },
+      "population": {
+        "value": 483365,
+        "cite": [
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block, printed p. 365 (PDF p. 413)"
+          }
+        ]
+      },
+      "districts": [
+        {
+          "pcode": "BD2084",
+          "bbsCode": "84",
+          "count": 276048,
+          "cite": [
+            {
+              "source": "bbsZilaRANGAMATI",
+              "at": "Table P17, printed pp. 235-239 (PDF pp. 285-289)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD2046",
+          "bbsCode": "46",
+          "count": 175165,
+          "cite": [
+            {
+              "source": "bbsZilaKHAGRACHHARI",
+              "at": "Table P17, printed pp. 231-235 (PDF pp. 279-283)"
+            }
+          ]
+        }
+      ],
+      "zone": {
+        "value": "hill",
+        "chtShare": 94.1,
+        "cite": [
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: hill if ≥ 50 % of the group lives in Rangamati, Khagrachhari and Bandarban"
+          },
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block (the total)"
+          },
+          {
+            "source": "bbsZilaRANGAMATI",
+            "at": "Table P17, printed pp. 235-239 (PDF pp. 285-289)"
+          },
+          {
+            "source": "bbsZilaKHAGRACHHARI",
+            "at": "Table P17, printed pp. 231-235 (PDF pp. 279-283)"
+          },
+          {
+            "source": "bbsZilaBANDARBAN",
+            "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
+          }
+        ]
+      },
+      "language": {
+        "bn": "চাকমা ভাষার নিজস্ব বর্ণমালা আছে",
+        "approved": false,
+        "sourceType": "official",
+        "cite": [
+          {
+            "source": "page1",
+            "at": "section «ভাষা:», 1st paragraph",
+            "file": "raw/culture/dc-rangamati-c0733358.txt",
+            "offset": 6159,
+            "length": 42,
+            "sha256": "73d5925bae0a5dd6980bc7bdfa49d394880b4e6405e969cffcc1627a1659c264"
+          }
+        ]
+      },
+      "religion": {
+        "bn": "মূলত বৌদ্ধ ধর্মের অনুসারী",
+        "approved": false,
+        "sourceType": "official",
+        "cite": [
+          {
+            "source": "page2",
+            "at": "section «চাকমা»",
+            "file": "raw/culture/dc-khagrachhari-c0739155.txt",
+            "offset": 6416,
+            "length": 31,
+            "sha256": "f1edb394dc7bf08249d38dec2247775f4e3a4e5f1788a9c377d9cb08d1c61ed6"
+          }
+        ]
+      },
+      "festivals": {
+        "bn": "প্রধান সামাজিক উৎসব বিজু",
+        "approved": false,
+        "sourceType": "official",
+        "cite": [
+          {
+            "source": "page2",
+            "at": "section «চাকমা»",
+            "file": "raw/culture/dc-khagrachhari-c0739155.txt",
+            "offset": 6416,
+            "length": 71,
+            "sha256": "ff39437318f6cb0a054dbed8e46a28f71710a4409e5f1fabfe415c3581f141ca"
+          }
+        ]
+      },
+      "institutes": [
+        "knsi-rangamati",
+        "knsi-bandarban"
+      ]
+    },
+    {
+      "id": "marma",
+      "censusEn": "Marma",
+      "name": {
+        "bn": "মারমা",
+        "approved": false,
+        "verifiedFromText": true,
+        "cite": [
+          {
+            "source": "bbsPreliminaryBn",
+            "at": "সারণি স-১.৪, PDF p. 52 (printed ৩৩), text layer"
+          }
+        ]
+      },
+      "population": {
+        "value": 224299,
+        "cite": [
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block, printed p. 365 (PDF p. 413)"
+          }
+        ]
+      },
+      "districts": [
+        {
+          "pcode": "BD2003",
+          "bbsCode": "03",
+          "count": 84170,
+          "cite": [
+            {
+              "source": "bbsZilaBANDARBAN",
+              "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD2046",
+          "bbsCode": "46",
+          "count": 74210,
+          "cite": [
+            {
+              "source": "bbsZilaKHAGRACHHARI",
+              "at": "Table P17, printed pp. 231-235 (PDF pp. 279-283)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD2084",
+          "bbsCode": "84",
+          "count": 51403,
+          "cite": [
+            {
+              "source": "bbsZilaRANGAMATI",
+              "at": "Table P17, printed pp. 235-239 (PDF pp. 285-289)"
+            }
+          ]
+        }
+      ],
+      "zone": {
+        "value": "hill",
+        "chtShare": 93.5,
+        "cite": [
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: hill if ≥ 50 % of the group lives in Rangamati, Khagrachhari and Bandarban"
+          },
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block (the total)"
+          },
+          {
+            "source": "bbsZilaRANGAMATI",
+            "at": "Table P17, printed pp. 235-239 (PDF pp. 285-289)"
+          },
+          {
+            "source": "bbsZilaKHAGRACHHARI",
+            "at": "Table P17, printed pp. 231-235 (PDF pp. 279-283)"
+          },
+          {
+            "source": "bbsZilaBANDARBAN",
+            "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
+          }
+        ]
+      },
+      "language": {
+        "bn": "তিব্বতি-বর্মী ভাষাদলের ভাষা",
+        "approved": false,
+        "sourceType": "official",
+        "cite": [
+          {
+            "source": "page1",
+            "at": "section «ভাষা:», 1st paragraph",
+            "file": "raw/culture/dc-rangamati-c0733358.txt",
+            "offset": 6721,
+            "length": 50,
+            "sha256": "ee49c3205cff25d8daf5d4c51c400c32c3e3fac191737ba4a3da52f3bc3cd4b9"
+          }
+        ]
+      },
+      "religion": {
+        "bn": "বৌদ্ধ; পাশাপাশি দেবতা ও অপদেবতাতেও বিশ্বাস রাখে",
+        "approved": false,
+        "sourceType": "official",
+        "cite": [
+          {
+            "source": "page2",
+            "at": "section «মারমা»",
+            "file": "raw/culture/dc-khagrachhari-c0739155.txt",
+            "offset": 8140,
+            "length": 91,
+            "sha256": "61ba8a70106c9d33657c753ef2b40448f3c411183dda0dd791cdba5da36bbf63"
+          }
+        ]
+      },
+      "festivals": {
+        "bn": "প্রধান সামাজিক উৎসব সাংগ্রাইং",
+        "approved": false,
+        "sourceType": "official",
+        "cite": [
+          {
+            "source": "page2",
+            "at": "section «মারমা»",
+            "file": "raw/culture/dc-khagrachhari-c0739155.txt",
+            "offset": 7436,
+            "length": 67,
+            "sha256": "288edd5220afc838d8a80c0f51f13e443d6ac04567c0a945169318973e03954c"
+          }
+        ]
+      },
+      "institutes": [
+        "knsi-rangamati",
+        "knsi-bandarban"
+      ]
+    },
+    {
+      "id": "tripura",
+      "censusEn": "Tripura",
+      "name": {
+        "bn": "ত্রিপুরা",
+        "approved": false,
+        "verifiedFromText": false,
+        "cite": [
+          {
+            "source": "bbsPreliminaryBn",
+            "at": "সারণি স-১.৪, PDF p. 52 (printed ৩৩), read from the page image: unverified"
+          }
+        ]
+      },
+      "population": {
+        "value": 156620,
+        "cite": [
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block, printed p. 365 (PDF p. 413)"
+          }
+        ]
+      },
+      "districts": [
+        {
+          "pcode": "BD2046",
+          "bbsCode": "46",
+          "count": 98500,
+          "cite": [
+            {
+              "source": "bbsZilaKHAGRACHHARI",
+              "at": "Table P17, printed pp. 231-235 (PDF pp. 279-283)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD2003",
+          "bbsCode": "03",
+          "count": 22572,
+          "cite": [
+            {
+              "source": "bbsZilaBANDARBAN",
+              "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD2015",
+          "bbsCode": "15",
+          "count": 15894,
+          "cite": [
+            {
+              "source": "bbsZilaCHATTOGRAM",
+              "at": "Table P17, printed pp. 319-326 (PDF pp. 367-374)"
+            }
+          ]
+        }
+      ],
+      "zone": {
+        "value": "hill",
+        "chtShare": 85.2,
+        "cite": [
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: hill if ≥ 50 % of the group lives in Rangamati, Khagrachhari and Bandarban"
+          },
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block (the total)"
+          },
+          {
+            "source": "bbsZilaRANGAMATI",
+            "at": "Table P17, printed pp. 235-239 (PDF pp. 285-289)"
+          },
+          {
+            "source": "bbsZilaKHAGRACHHARI",
+            "at": "Table P17, printed pp. 231-235 (PDF pp. 279-283)"
+          },
+          {
+            "source": "bbsZilaBANDARBAN",
+            "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
+          }
+        ]
+      },
+      "language": {
+        "bn": "চীনা-তিব্বতি গোত্রের ভাষা; ভারতে একে ককবরক বলা হয়",
+        "approved": false,
+        "sourceType": "official",
+        "cite": [
+          {
+            "source": "page1",
+            "at": "section «ভাষা:», 1st paragraph",
+            "file": "raw/culture/dc-rangamati-c0733358.txt",
+            "offset": 6772,
+            "length": 83,
+            "sha256": "b63f529e38efb4466bcdd0bed7ed3b754b89c39681dd2233b046474768b9035e"
+          }
+        ]
+      },
+      "religion": {
+        "bn": "সনাতন ধর্মের অনুসারী",
+        "approved": false,
+        "sourceType": "official",
+        "cite": [
+          {
+            "source": "page2",
+            "at": "section «ত্রিপুরা»",
+            "file": "raw/culture/dc-khagrachhari-c0739155.txt",
+            "offset": 8987,
+            "length": 29,
+            "sha256": "51f8fa10552ea5a1ddc8fadc9f3285032248e2131c7e6219da2bbaeb3e767ec2"
+          }
+        ]
+      },
+      "festivals": {
+        "bn": "প্রধান উৎসব বৈসাবী",
+        "approved": false,
+        "sourceType": "official",
+        "cite": [
+          {
+            "source": "page2",
+            "at": "section «ত্রিপুরা»",
+            "file": "raw/culture/dc-khagrachhari-c0739155.txt",
+            "offset": 9056,
+            "length": 29,
+            "sha256": "563332585d7c0312697ed60a374dca54dfb0a1963f0b87bf90637b076dee0b08"
+          }
+        ]
+      },
+      "institutes": [
+        "knsi-rangamati",
+        "knsi-bandarban"
+      ]
+    },
+    {
+      "id": "saontal",
+      "censusEn": "Saontal",
+      "name": {
+        "bn": "সাঁওতাল",
+        "approved": false,
+        "verifiedFromText": false,
+        "cite": [
+          {
+            "source": "bbsPreliminaryBn",
+            "at": "সারণি স-১.৪, PDF p. 53 (printed ৩৪), read from the page image: unverified"
+          }
+        ]
+      },
+      "population": {
+        "value": 129056,
+        "cite": [
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block, printed p. 365 (PDF p. 413)"
+          }
+        ]
+      },
+      "districts": [
+        {
+          "pcode": "BD5527",
+          "bbsCode": "27",
+          "count": 41079,
+          "cite": [
+            {
+              "source": "bbsZilaDINAJPUR",
+              "at": "Table P17, printed pp. 315-320 (PDF pp. 363-368)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD5081",
+          "bbsCode": "81",
+          "count": 26224,
+          "cite": [
+            {
+              "source": "bbsZilaRAJSHAHI",
+              "at": "Table P17, printed pp. 300-305 (PDF pp. 348-353)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD5064",
+          "bbsCode": "64",
+          "count": 18903,
+          "cite": [
+            {
+              "source": "bbsZilaNAOGAON",
+              "at": "Table P17, printed pp. 280-286 (PDF pp. 328-334)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD6036",
+          "bbsCode": "36",
+          "count": 6666,
+          "cite": [
+            {
+              "source": "bbsZilaHABIGANJ",
+              "at": "Table P17, printed pp. 257-262 (PDF pp. 305-310)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD5070",
+          "bbsCode": "70",
+          "count": 6409,
+          "cite": [
+            {
+              "source": "bbsZilaCHAPAINAWABGANJ",
+              "at": "Table P17, printed pp. 184-185 (PDF pp. 232-233)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD6058",
+          "bbsCode": "58",
+          "count": 6308,
+          "cite": [
+            {
+              "source": "bbsZilaMAULVIBAZAR",
+              "at": "Table P17, printed pp. 229-235 (PDF pp. 277-283)"
+            }
+          ]
+        }
+      ],
+      "zone": {
+        "value": "plains",
+        "chtShare": 0.5,
+        "cite": [
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: hill if ≥ 50 % of the group lives in Rangamati, Khagrachhari and Bandarban"
+          },
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block (the total)"
+          },
+          {
+            "source": "bbsZilaRANGAMATI",
+            "at": "Table P17, printed pp. 235-239 (PDF pp. 285-289)"
+          },
+          {
+            "source": "bbsZilaKHAGRACHHARI",
+            "at": "Table P17, printed pp. 231-235 (PDF pp. 279-283)"
+          },
+          {
+            "source": "bbsZilaBANDARBAN",
+            "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
+          }
+        ]
+      },
+      "language": {
+        "bn": "সাঁওতালি ভাষা, অস্ট্রিক ভাষা-পরিবারের",
+        "approved": false,
+        "sourceType": "banglapedia",
+        "cite": [
+          {
+            "source": "bp3",
+            "at": "paragraph ¶8 (paragraphs = text lines over 100 characters, as culture-work/bp.mjs counts)",
+            "file": "raw/culture/bpbn-সাঁওতাল.txt",
+            "offset": 3803,
+            "length": 41,
+            "sha256": "65cc680d983d26b8b3a0b559f78facddede482b16d3c82b2683f83817a699b22"
+          }
+        ]
+      },
+      "religion": {
+        "bn": "সর্বপ্রাণবাদী ও প্রকৃতির উপাসক",
+        "approved": false,
+        "sourceType": "banglapedia",
+        "cite": [
+          {
+            "source": "bp3",
+            "at": "paragraph ¶3 (paragraphs = text lines over 100 characters, as culture-work/bp.mjs counts)",
+            "file": "raw/culture/bpbn-সাঁওতাল.txt",
+            "offset": 1447,
+            "length": 74,
+            "sha256": "698d6abd2778378e5a259bf2bc00812d91602a47b0cb06dfede0a7a053bc9a55"
+          }
+        ]
+      },
+      "festivals": {
+        "bn": "ঐতিহ্যবাহী উৎসব দাশাই ও সোহরাই",
+        "approved": false,
+        "sourceType": "official",
+        "cite": [
+          {
+            "source": "page4",
+            "at": "section «নৃগোষ্ঠীর সংস্কৃতি ও বৈচিত্র্য»",
+            "file": "raw/culture/dc-rajshahi-c06c087e.txt",
+            "offset": 14812,
+            "length": 45,
+            "sha256": "774c5ad8761193155c37146e87545df3e6c5fcf6d98ab4dc0110d2bba6376011"
+          }
+        ]
+      },
+      "institutes": []
+    },
+    {
+      "id": "oraon",
+      "censusEn": "Oraon",
+      "name": {
+        "bn": "ওরাওঁ",
+        "approved": false,
+        "verifiedFromText": false,
+        "cite": [
+          {
+            "source": "bbsPreliminaryBn",
+            "at": "সারণি স-১.৪, PDF p. 52 (printed ৩৩), read from the page image: unverified"
+          }
+        ]
+      },
+      "population": {
+        "value": 85858,
+        "cite": [
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block, printed p. 365 (PDF p. 413)"
+          }
+        ]
+      },
+      "districts": [
+        {
+          "pcode": "BD5064",
+          "bbsCode": "64",
+          "count": 33198,
+          "cite": [
+            {
+              "source": "bbsZilaNAOGAON",
+              "at": "Table P17, printed pp. 280-286 (PDF pp. 328-334)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD5585",
+          "bbsCode": "85",
+          "count": 8580,
+          "cite": [
+            {
+              "source": "bbsZilaRANGPUR",
+              "at": "Table P17, printed pp. 256-259 (PDF pp. 304-307)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD5081",
+          "bbsCode": "81",
+          "count": 8048,
+          "cite": [
+            {
+              "source": "bbsZilaRAJSHAHI",
+              "at": "Table P17, printed pp. 300-305 (PDF pp. 348-353)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD5070",
+          "bbsCode": "70",
+          "count": 6510,
+          "cite": [
+            {
+              "source": "bbsZilaCHAPAINAWABGANJ",
+              "at": "Table P17, printed pp. 184-185 (PDF pp. 232-233)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD5088",
+          "bbsCode": "88",
+          "count": 5678,
+          "cite": [
+            {
+              "source": "bbsZilaSIRAJGANJ",
+              "at": "Table P17, printed pp. 213-215 (PDF pp. 261-263)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD5038",
+          "bbsCode": "38",
+          "count": 5074,
+          "cite": [
+            {
+              "source": "bbsZilaJOYPURHAT",
+              "at": "Table P17, printed pp. 205-207 (PDF pp. 253-255)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD6058",
+          "bbsCode": "58",
+          "count": 4468,
+          "cite": [
+            {
+              "source": "bbsZilaMAULVIBAZAR",
+              "at": "Table P17, printed pp. 229-235 (PDF pp. 277-283)"
+            }
+          ]
+        }
+      ],
+      "zone": {
+        "value": "plains",
+        "chtShare": 0,
+        "cite": [
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: hill if ≥ 50 % of the group lives in Rangamati, Khagrachhari and Bandarban"
+          },
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block (the total)"
+          },
+          {
+            "source": "bbsZilaRANGAMATI",
+            "at": "Table P17, printed pp. 235-239 (PDF pp. 285-289)"
+          },
+          {
+            "source": "bbsZilaKHAGRACHHARI",
+            "at": "Table P17, printed pp. 231-235 (PDF pp. 279-283)"
+          },
+          {
+            "source": "bbsZilaBANDARBAN",
+            "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
+          }
+        ]
+      },
+      "language": {
+        "bn": "কুরুখ ভাষা, দ্রাবিড় ভাষাগোষ্ঠীর",
+        "approved": false,
+        "sourceType": "official",
+        "cite": [
+          {
+            "source": "page5",
+            "at": "section «(৩) ওঁরাও (Oraon)», last sentence",
+            "file": "raw/culture/dc-naogaon-c06c28cc.txt",
+            "offset": 24174,
+            "length": 52,
+            "sha256": "a7b0e43991f936cc97e95be23dba96ec192855e744fa7968893f028846d28b53"
+          }
+        ]
+      },
+      "religion": {
+        "bn": "জড়োপাসক; তাদের ভগবান ধরমেশ বা ধরমী",
+        "approved": false,
+        "sourceType": "banglapedia",
+        "cite": [
+          {
+            "source": "bp6",
+            "at": "paragraph ¶4 (paragraphs = text lines over 100 characters, as culture-work/bp.mjs counts)",
+            "file": "raw/culture/bpbn-ওরাওঁ.txt",
+            "offset": 944,
+            "length": 65,
+            "sha256": "5590421d5a62ca1eb74721fa755cd9b97ebee9c8d82ef61f9b0da96699cee13c"
+          }
+        ]
+      },
+      "festivals": {
+        "bn": "প্রধান ধর্মীয় উৎসব ডালপূজা (ভাদ্র বা আশ্বিনে)",
+        "approved": false,
+        "sourceType": "official",
+        "cite": [
+          {
+            "source": "page5",
+            "at": "section «(৩) ওঁরাও (Oraon)»",
+            "file": "raw/culture/dc-naogaon-c06c28cc.txt",
+            "offset": 22220,
+            "length": 75,
+            "sha256": "cfb4cc1a4aa96b340502b711762753815a94a2b1b1028327429d4ddca453401e"
+          }
+        ]
+      },
+      "institutes": []
+    },
+    {
+      "id": "garo",
+      "censusEn": "Garo",
+      "name": {
+        "bn": "গারো",
+        "approved": false,
+        "verifiedFromText": true,
+        "cite": [
+          {
+            "source": "bbsPreliminaryBn",
+            "at": "সারণি স-১.৪, PDF p. 52 (printed ৩৩), text layer"
+          }
+        ]
+      },
+      "population": {
+        "value": 76854,
+        "cite": [
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block, printed p. 365 (PDF p. 413)"
+          }
+        ]
+      },
+      "districts": [
+        {
+          "pcode": "BD4561",
+          "bbsCode": "61",
+          "count": 21908,
+          "cite": [
+            {
+              "source": "bbsZilaMYMENSINGH",
+              "at": "Table P17, printed pp. 367-374 (PDF pp. 415-422)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD4572",
+          "bbsCode": "72",
+          "count": 16064,
+          "cite": [
+            {
+              "source": "bbsZilaNETRAKONA",
+              "at": "Table P17, printed pp. 274-278 (PDF pp. 322-326)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD3093",
+          "bbsCode": "93",
+          "count": 12610,
+          "cite": [
+            {
+              "source": "bbsZilaTANGAIL",
+              "at": "Table P17, printed pp. 254-257 (PDF pp. 302-305)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD3026",
+          "bbsCode": "26",
+          "count": 9367,
+          "cite": [
+            {
+              "source": "bbsZilaDHAKA",
+              "at": "Table P17, printed pp. 320-326 (PDF pp. 372-378)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD4589",
+          "bbsCode": "89",
+          "count": 6444,
+          "cite": [
+            {
+              "source": "bbsZilaSHERPUR",
+              "at": "Table P17, printed pp. 200-202 (PDF pp. 248-250)"
+            }
+          ]
+        }
+      ],
+      "zone": {
+        "value": "plains",
+        "chtShare": 0.2,
+        "cite": [
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: hill if ≥ 50 % of the group lives in Rangamati, Khagrachhari and Bandarban"
+          },
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block (the total)"
+          },
+          {
+            "source": "bbsZilaRANGAMATI",
+            "at": "Table P17, printed pp. 235-239 (PDF pp. 285-289)"
+          },
+          {
+            "source": "bbsZilaKHAGRACHHARI",
+            "at": "Table P17, printed pp. 231-235 (PDF pp. 279-283)"
+          },
+          {
+            "source": "bbsZilaBANDARBAN",
+            "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
+          }
+        ]
+      },
+      "language": {
+        "bn": "গারো ভাষা; এর লিখিত কোনো বর্ণমালা নেই",
+        "approved": false,
+        "sourceType": "official",
+        "cite": [
+          {
+            "source": "page7",
+            "at": "Garo paragraph (page has no sub-heading)",
+            "file": "raw/culture/dc-tangail-c0786877.txt",
+            "offset": 7540,
+            "length": 35,
+            "sha256": "e7915e74a8c85c7b3a4b48b47044cc9913904992965b7a22993b038b0f8c156e"
+          }
+        ]
+      },
+      "religion": {
+        "bn": "শতকরা ৯৯ জনই খ্রিস্টধর্মের অনুসারী",
+        "approved": false,
+        "sourceType": "banglapedia",
+        "cite": [
+          {
+            "source": "bp8",
+            "at": "paragraph ¶9 (paragraphs = text lines over 100 characters, as culture-work/bp.mjs counts)",
+            "file": "raw/culture/bpbn-গারো.txt",
+            "offset": 4582,
+            "length": 57,
+            "sha256": "12de261600664fbddd139ef6ab0bbf5672e3b2d0355f99571e45a97649a7f2de"
+          }
+        ]
+      },
+      "institutes": []
+    },
+    {
+      "id": "munda",
+      "censusEn": "Munda",
+      "name": {
+        "bn": "মুন্ডা",
+        "approved": false,
+        "verifiedFromText": false,
+        "cite": [
+          {
+            "source": "bbsPreliminaryBn",
+            "at": "সারণি স-১.৪, PDF p. 52 (printed ৩৩), read from the page image: unverified"
+          }
+        ]
+      },
+      "gazetteName": {
+        "bn": "মুণ্ডা",
+        "serial": 19,
+        "cite": [
+          {
+            "source": "gazette2019",
+            "at": "entry 19"
+          }
+        ]
+      },
+      "population": {
+        "value": 60201,
+        "cite": [
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block, printed p. 365 (PDF p. 413)"
+          }
+        ]
+      },
+      "districts": [
+        {
+          "pcode": "BD5064",
+          "bbsCode": "64",
+          "count": 25194,
+          "cite": [
+            {
+              "source": "bbsZilaNAOGAON",
+              "at": "Table P17, printed pp. 280-286 (PDF pp. 328-334)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD6036",
+          "bbsCode": "36",
+          "count": 13152,
+          "cite": [
+            {
+              "source": "bbsZilaHABIGANJ",
+              "at": "Table P17, printed pp. 257-262 (PDF pp. 305-310)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD6058",
+          "bbsCode": "58",
+          "count": 8158,
+          "cite": [
+            {
+              "source": "bbsZilaMAULVIBAZAR",
+              "at": "Table P17, printed pp. 229-235 (PDF pp. 277-283)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD5038",
+          "bbsCode": "38",
+          "count": 3489,
+          "cite": [
+            {
+              "source": "bbsZilaJOYPURHAT",
+              "at": "Table P17, printed pp. 205-207 (PDF pp. 253-255)"
+            }
+          ]
+        }
+      ],
+      "zone": {
+        "value": "plains",
+        "chtShare": 0,
+        "cite": [
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: hill if ≥ 50 % of the group lives in Rangamati, Khagrachhari and Bandarban"
+          },
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block (the total)"
+          },
+          {
+            "source": "bbsZilaRANGAMATI",
+            "at": "Table P17, printed pp. 235-239 (PDF pp. 285-289)"
+          },
+          {
+            "source": "bbsZilaKHAGRACHHARI",
+            "at": "Table P17, printed pp. 231-235 (PDF pp. 279-283)"
+          },
+          {
+            "source": "bbsZilaBANDARBAN",
+            "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
+          }
+        ]
+      },
+      "language": {
+        "bn": "নিজেদের মধ্যে মুন্ডারী ভাষা বলে; ভাষাটি মৌখিক",
+        "approved": false,
+        "sourceType": "banglapedia",
+        "cite": [
+          {
+            "source": "bp9",
+            "at": "paragraph ¶2 (paragraphs = text lines over 100 characters, as culture-work/bp.mjs counts)",
+            "file": "raw/culture/bpbn-মুন্ডা.txt",
+            "offset": 169,
+            "length": 59,
+            "sha256": "4028bcc6efc11f6a1b12470d92548e27f60160ee7372d4566dde3fb81c11fc12"
+          }
+        ]
+      },
+      "religion": {
+        "bn": "প্রকৃতির পূজারী",
+        "approved": false,
+        "sourceType": "banglapedia",
+        "cite": [
+          {
+            "source": "bp9",
+            "at": "paragraph ¶6 (paragraphs = text lines over 100 characters, as culture-work/bp.mjs counts)",
+            "file": "raw/culture/bpbn-মুন্ডা.txt",
+            "offset": 1846,
+            "length": 38,
+            "sha256": "f68c55caa395272ae15053fb9ec1001a42679f991db24e5ed0e6df5375c7816b"
+          }
+        ]
+      },
+      "institutes": []
+    },
+    {
+      "id": "mro",
+      "censusEn": "Mro",
+      "name": {
+        "bn": "ম্রো",
+        "approved": false,
+        "verifiedFromText": false,
+        "cite": [
+          {
+            "source": "bbsPreliminaryBn",
+            "at": "সারণি স-১.৪, PDF p. 53 (printed ৩৪), read from the page image: unverified"
+          }
+        ]
+      },
+      "population": {
+        "value": 52463,
+        "cite": [
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block, printed p. 365 (PDF p. 413)"
+          }
+        ]
+      },
+      "districts": [
+        {
+          "pcode": "BD2003",
+          "bbsCode": "03",
+          "count": 51448,
+          "cite": [
+            {
+              "source": "bbsZilaBANDARBAN",
+              "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
+            }
+          ]
+        }
+      ],
+      "zone": {
+        "value": "hill",
+        "chtShare": 98.6,
+        "cite": [
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: hill if ≥ 50 % of the group lives in Rangamati, Khagrachhari and Bandarban"
+          },
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block (the total)"
+          },
+          {
+            "source": "bbsZilaRANGAMATI",
+            "at": "Table P17, printed pp. 235-239 (PDF pp. 285-289)"
+          },
+          {
+            "source": "bbsZilaKHAGRACHHARI",
+            "at": "Table P17, printed pp. 231-235 (PDF pp. 279-283)"
+          },
+          {
+            "source": "bbsZilaBANDARBAN",
+            "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
+          }
+        ]
+      },
+      "language": {
+        "bn": "তিব্বতি-বর্মী ভাষাদলের ভাষা",
+        "approved": false,
+        "sourceType": "official",
+        "cite": [
+          {
+            "source": "page1",
+            "at": "section «ভাষা:», 1st paragraph",
+            "file": "raw/culture/dc-rangamati-c0733358.txt",
+            "offset": 6721,
+            "length": 50,
+            "sha256": "ee49c3205cff25d8daf5d4c51c400c32c3e3fac191737ba4a3da52f3bc3cd4b9"
+          }
+        ]
+      },
+      "religion": {
+        "bn": "ধর্মপ্রাণবাদী; তাদের দেবতা তিনজন",
+        "approved": false,
+        "sourceType": "banglapedia",
+        "cite": [
+          {
+            "source": "bp10",
+            "at": "paragraph ¶8 (paragraphs = text lines over 100 characters, as culture-work/bp.mjs counts)",
+            "file": "raw/culture/bpbn-ম্রো.txt",
+            "offset": 3844,
+            "length": 46,
+            "sha256": "b8336d2641d7a94fb54ffd43260580f601f65640c929b7d01d7fd343eba2a184"
+          }
+        ]
+      },
+      "festivals": {
+        "bn": "গো-হত্যা উৎসব",
+        "approved": false,
+        "sourceType": "official",
+        "cite": [
+          {
+            "source": "page1",
+            "at": "section «সংস্কৃতি:»",
+            "file": "raw/culture/dc-rangamati-c0733358.txt",
+            "offset": 10689,
+            "length": 30,
+            "sha256": "a7e85f3260009a9e459bf6d7f21fdbe71e2190636505835b30e5a8313a65b3a4"
+          }
+        ]
+      },
+      "institutes": [
+        "knsi-rangamati",
+        "knsi-bandarban"
+      ]
+    },
+    {
+      "id": "tonchonga",
+      "censusEn": "Tonchonga",
+      "name": {
+        "bn": "তঞ্চঙ্গা",
+        "approved": false,
+        "verifiedFromText": false,
+        "cite": [
+          {
+            "source": "bbsPreliminaryBn",
+            "at": "সারণি স-১.৪, PDF p. 52 (printed ৩৩), read from the page image: unverified"
+          }
+        ]
+      },
+      "population": {
+        "value": 45974,
+        "cite": [
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block, printed p. 365 (PDF p. 413)"
+          }
+        ]
+      },
+      "districts": [
+        {
+          "pcode": "BD2084",
+          "bbsCode": "84",
+          "count": 27975,
+          "cite": [
+            {
+              "source": "bbsZilaRANGAMATI",
+              "at": "Table P17, printed pp. 235-239 (PDF pp. 285-289)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD2003",
+          "bbsCode": "03",
+          "count": 14889,
+          "cite": [
+            {
+              "source": "bbsZilaBANDARBAN",
+              "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
+            }
+          ]
+        }
+      ],
+      "zone": {
+        "value": "hill",
+        "chtShare": 93.4,
+        "cite": [
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: hill if ≥ 50 % of the group lives in Rangamati, Khagrachhari and Bandarban"
+          },
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block (the total)"
+          },
+          {
+            "source": "bbsZilaRANGAMATI",
+            "at": "Table P17, printed pp. 235-239 (PDF pp. 285-289)"
+          },
+          {
+            "source": "bbsZilaKHAGRACHHARI",
+            "at": "Table P17, printed pp. 231-235 (PDF pp. 279-283)"
+          },
+          {
+            "source": "bbsZilaBANDARBAN",
+            "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
+          }
+        ]
+      },
+      "language": {
+        "bn": "চাকমা ভাষার সমগোত্রীয়, ইন্দো-আর্য শাখার ভাষা",
+        "approved": false,
+        "sourceType": "official",
+        "cite": [
+          {
+            "source": "page1",
+            "at": "section «ভাষা:», 1st paragraph",
+            "file": "raw/culture/dc-rangamati-c0733358.txt",
+            "offset": 6577,
+            "length": 114,
+            "sha256": "b8110faa6cfdb5550487ac07fd6c974204996f4728fc37b719b03bae6ec5fb4c"
+          }
+        ]
+      },
+      "religion": {
+        "bn": "প্রধানত বৌদ্ধ; অনেকের মধ্যে গাঙ পূজা ও ভূত পূজার মতো দেবপূজাও প্রচলিত",
+        "approved": false,
+        "sourceType": "banglapedia",
+        "cite": [
+          {
+            "source": "bp11",
+            "at": "paragraph ¶8 (paragraphs = text lines over 100 characters, as culture-work/bp.mjs counts)",
+            "file": "raw/culture/bpbn-তঞ্চঙ্গ্যা.txt",
+            "offset": 2765,
+            "length": 77,
+            "sha256": "0fe4477790c33b0300f2e753584967e7ea1cd9f4027d907de34b684a23d89f1b"
+          }
+        ]
+      },
+      "festivals": {
+        "bn": "প্রধান সামাজিক উৎসব বিজু-সাংগ্রাই-বৈসুক",
+        "approved": false,
+        "sourceType": "official",
+        "cite": [
+          {
+            "source": "page12",
+            "at": "section «বিজু-সাংগ্রাই-বৈসুকঃ»",
+            "file": "raw/culture/dc-rangamati-c073912a.txt",
+            "offset": 6101,
+            "length": 96,
+            "sha256": "005781eb355beafd21cd7fffc09fc86c7c969ab3c1cd5f9d80b23db708b99602"
+          }
+        ]
+      },
+      "institutes": [
+        "knsi-rangamati",
+        "knsi-bandarban"
+      ]
+    },
+    {
+      "id": "barman",
+      "censusEn": "Barman",
+      "name": {
+        "bn": "বর্মণ",
+        "approved": false,
+        "verifiedFromText": false,
+        "cite": [
+          {
+            "source": "bbsPreliminaryBn",
+            "at": "সারণি স-১.৪, PDF p. 52 (printed ৩৩), read from the page image: unverified"
+          }
+        ]
+      },
+      "population": {
+        "value": 44671,
+        "cite": [
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block, printed p. 365 (PDF p. 413)"
+          }
+        ]
+      },
+      "districts": [
+        {
+          "pcode": "BD5064",
+          "bbsCode": "64",
+          "count": 11918,
+          "cite": [
+            {
+              "source": "bbsZilaNAOGAON",
+              "at": "Table P17, printed pp. 280-286 (PDF pp. 328-334)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD5594",
+          "bbsCode": "94",
+          "count": 6534,
+          "cite": [
+            {
+              "source": "bbsZilaTHAKURGAON",
+              "at": "Table P17, printed pp. 208-210 (PDF pp. 256-258)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD3093",
+          "bbsCode": "93",
+          "count": 5219,
+          "cite": [
+            {
+              "source": "bbsZilaTANGAIL",
+              "at": "Table P17, printed pp. 254-257 (PDF pp. 302-305)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD5038",
+          "bbsCode": "38",
+          "count": 4463,
+          "cite": [
+            {
+              "source": "bbsZilaJOYPURHAT",
+              "at": "Table P17, printed pp. 205-207 (PDF pp. 253-255)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD5070",
+          "bbsCode": "70",
+          "count": 4196,
+          "cite": [
+            {
+              "source": "bbsZilaCHAPAINAWABGANJ",
+              "at": "Table P17, printed pp. 184-185 (PDF pp. 232-233)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD3033",
+          "bbsCode": "33",
+          "count": 2942,
+          "cite": [
+            {
+              "source": "bbsZilaGAZIPUR",
+              "at": "Table P17, printed pp. 229-234 (PDF pp. 277-282)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD4561",
+          "bbsCode": "61",
+          "count": 1390,
+          "cite": [
+            {
+              "source": "bbsZilaMYMENSINGH",
+              "at": "Table P17, printed pp. 367-374 (PDF pp. 415-422)"
+            }
+          ]
+        }
+      ],
+      "zone": {
+        "value": "plains",
+        "chtShare": 0.1,
+        "cite": [
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: hill if ≥ 50 % of the group lives in Rangamati, Khagrachhari and Bandarban"
+          },
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block (the total)"
+          },
+          {
+            "source": "bbsZilaRANGAMATI",
+            "at": "Table P17, printed pp. 235-239 (PDF pp. 285-289)"
+          },
+          {
+            "source": "bbsZilaKHAGRACHHARI",
+            "at": "Table P17, printed pp. 231-235 (PDF pp. 279-283)"
+          },
+          {
+            "source": "bbsZilaBANDARBAN",
+            "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
+          }
+        ]
+      },
+      "institutes": []
+    },
+    {
+      "id": "monipuri",
+      "censusEn": "Monipuri",
+      "name": {
+        "bn": "মণিপুরী",
+        "approved": false,
+        "verifiedFromText": false,
+        "cite": [
+          {
+            "source": "bbsPreliminaryBn",
+            "at": "সারণি স-১.৪, PDF p. 52 (printed ৩৩), read from the page image: unverified"
+          }
+        ]
+      },
+      "population": {
+        "value": 22979,
+        "cite": [
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block, printed p. 365 (PDF p. 413)"
+          }
+        ]
+      },
+      "districts": [
+        {
+          "pcode": "BD6058",
+          "bbsCode": "58",
+          "count": 18031,
+          "cite": [
+            {
+              "source": "bbsZilaMAULVIBAZAR",
+              "at": "Table P17, printed pp. 229-235 (PDF pp. 277-283)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD6091",
+          "bbsCode": "91",
+          "count": 2834,
+          "cite": [
+            {
+              "source": "bbsZilaSYLHET",
+              "at": "Table P17, printed pp. 342-349 (PDF pp. 390-397)"
+            }
+          ]
+        }
+      ],
+      "zone": {
+        "value": "plains",
+        "chtShare": 0.1,
+        "cite": [
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: hill if ≥ 50 % of the group lives in Rangamati, Khagrachhari and Bandarban"
+          },
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block (the total)"
+          },
+          {
+            "source": "bbsZilaRANGAMATI",
+            "at": "Table P17, printed pp. 235-239 (PDF pp. 285-289)"
+          },
+          {
+            "source": "bbsZilaKHAGRACHHARI",
+            "at": "Table P17, printed pp. 231-235 (PDF pp. 279-283)"
+          },
+          {
+            "source": "bbsZilaBANDARBAN",
+            "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
+          }
+        ]
+      },
+      "language": {
+        "bn": "মাতৃভাষা মেইতেই লন (মণিপুরী), তিব্বতি-বর্মি উপ-পরিবারের",
+        "approved": false,
+        "sourceType": "banglapedia",
+        "cite": [
+          {
+            "source": "bp13",
+            "at": "paragraph ¶5 (paragraphs = text lines over 100 characters, as culture-work/bp.mjs counts), under «ভাষা ও সাহিত্য»",
+            "file": "raw/culture/bpbn-মণিপুরী.txt",
+            "offset": 3183,
+            "length": 97,
+            "sha256": "6461f03ae39b9660594c77ae886e9da5859cba5ef87f9f6e8c74ff8b274164ef"
+          }
+        ]
+      },
+      "religion": {
+        "bn": "সনাতন ধর্মের চৈতন্য-ধারার অনুসারী",
+        "approved": false,
+        "sourceType": "banglapedia",
+        "cite": [
+          {
+            "source": "bp13",
+            "at": "paragraph ¶10 (paragraphs = text lines over 100 characters, as culture-work/bp.mjs counts), under «ধর্ম ও ধর্মীয় আচার-অনুষ্ঠান»",
+            "file": "raw/culture/bpbn-মণিপুরী.txt",
+            "offset": 7369,
+            "length": 55,
+            "sha256": "89bec28b702232db7f22e49ed3290bb963eb29c9714d3e2bc7af6ed765ed2f28"
+          }
+        ]
+      },
+      "festivals": {
+        "bn": "রাস উৎসব",
+        "approved": false,
+        "sourceType": "official",
+        "cite": [
+          {
+            "source": "page14",
+            "at": "section «লোকউৎসব :»",
+            "file": "raw/culture/dc-moulvibazar-d7ba20b0.txt",
+            "offset": 8266,
+            "length": 67,
+            "sha256": "9df222e5e073283ec6721d48fef3583ee7bb8608eb787ca798b86f1138306c4e"
+          }
+        ]
+      },
+      "institutes": [
+        "manipuri-lalitkala-academy"
+      ]
+    },
+    {
+      "id": "mahato",
+      "censusEn": "Mahato/Kurmi Mahato/Bedia Mahato",
+      "name": {
+        "bn": "মাহাতো/কুর্মি মাহাতো/বেদিয়ামাহাতো",
+        "approved": false,
+        "verifiedFromText": false,
+        "cite": [
+          {
+            "source": "bbsPreliminaryBn",
+            "at": "সারণি স-১.৪, PDF p. 52 (printed ৩৩), read from the page image: unverified"
+          }
+        ]
+      },
+      "gazetteName": {
+        "bn": "মাহাতো/কুর্মি মাহাতো/বেদিয়া মাহাতো",
+        "serial": 25,
+        "cite": [
+          {
+            "source": "gazette2019",
+            "at": "entry 25"
+          }
+        ]
+      },
+      "population": {
+        "value": 19271,
+        "cite": [
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block, printed p. 365 (PDF p. 413)"
+          }
+        ]
+      },
+      "districts": [
+        {
+          "pcode": "BD5088",
+          "bbsCode": "88",
+          "count": 7533,
+          "cite": [
+            {
+              "source": "bbsZilaSIRAJGANJ",
+              "at": "Table P17, printed pp. 213-215 (PDF pp. 261-263)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD6058",
+          "bbsCode": "58",
+          "count": 2632,
+          "cite": [
+            {
+              "source": "bbsZilaMAULVIBAZAR",
+              "at": "Table P17, printed pp. 229-235 (PDF pp. 277-283)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD5038",
+          "bbsCode": "38",
+          "count": 2132,
+          "cite": [
+            {
+              "source": "bbsZilaJOYPURHAT",
+              "at": "Table P17, printed pp. 205-207 (PDF pp. 253-255)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD5064",
+          "bbsCode": "64",
+          "count": 1894,
+          "cite": [
+            {
+              "source": "bbsZilaNAOGAON",
+              "at": "Table P17, printed pp. 280-286 (PDF pp. 328-334)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD5010",
+          "bbsCode": "10",
+          "count": 1305,
+          "cite": [
+            {
+              "source": "bbsZilaBOGURA",
+              "at": "Table P17, printed pp. 323-326 (PDF pp. 371-374)"
+            }
+          ]
+        }
+      ],
+      "zone": {
+        "value": "plains",
+        "chtShare": 0,
+        "cite": [
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: hill if ≥ 50 % of the group lives in Rangamati, Khagrachhari and Bandarban"
+          },
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block (the total)"
+          },
+          {
+            "source": "bbsZilaRANGAMATI",
+            "at": "Table P17, printed pp. 235-239 (PDF pp. 285-289)"
+          },
+          {
+            "source": "bbsZilaKHAGRACHHARI",
+            "at": "Table P17, printed pp. 231-235 (PDF pp. 279-283)"
+          },
+          {
+            "source": "bbsZilaBANDARBAN",
+            "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
+          }
+        ]
+      },
+      "language": {
+        "bn": "শাদ্রি ভাষায় কথা বলে",
+        "approved": false,
+        "sourceType": "banglapedia",
+        "cite": [
+          {
+            "source": "bp15",
+            "at": "paragraph ¶4 (paragraphs = text lines over 100 characters, as culture-work/bp.mjs counts)",
+            "file": "raw/culture/bpbn-উপজাতীয়_ভাষা.txt",
+            "offset": 1829,
+            "length": 97,
+            "sha256": "aa7e886ef886577ccde40527d7a44c5efe3d0c4f785df25750d9306519fcaf46"
+          }
+        ]
+      },
+      "institutes": []
+    },
+    {
+      "id": "malo",
+      "censusEn": "Malo/Ghasimalo",
+      "name": {
+        "bn": "মালো/ঘাসিমালো",
+        "approved": false,
+        "verifiedFromText": true,
+        "cite": [
+          {
+            "source": "bbsPreliminaryBn",
+            "at": "সারণি স-১.৪, PDF p. 52 (printed ৩৩), text layer"
+          }
+        ]
+      },
+      "population": {
+        "value": 14797,
+        "cite": [
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block, printed p. 365 (PDF p. 413)"
+          }
+        ]
+      },
+      "districts": [
+        {
+          "pcode": "BD4065",
+          "bbsCode": "65",
+          "count": 4141,
+          "cite": [
+            {
+              "source": "bbsZilaNARAIL",
+              "at": "Table P17, printed pp. 177-178 (PDF pp. 225-226)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD4041",
+          "bbsCode": "41",
+          "count": 2164,
+          "cite": [
+            {
+              "source": "bbsNational",
+              "at": "Table P29, the division block less its other districts (derived; see notes)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD3029",
+          "bbsCode": "29",
+          "count": 2046,
+          "cite": [
+            {
+              "source": "bbsZilaFARIDPUR",
+              "at": "Table P17, printed pp. 261-263 (PDF pp. 309-311)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD5038",
+          "bbsCode": "38",
+          "count": 1277,
+          "cite": [
+            {
+              "source": "bbsZilaJOYPURHAT",
+              "at": "Table P17, printed pp. 205-207 (PDF pp. 253-255)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD4055",
+          "bbsCode": "55",
+          "count": 1030,
+          "cite": [
+            {
+              "source": "bbsZilaMAGURA",
+              "at": "Table P17, printed pp. 186-187 (PDF pp. 234-235)"
+            }
+          ]
+        }
+      ],
+      "zone": {
+        "value": "plains",
+        "chtShare": 0.2,
+        "cite": [
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: hill if ≥ 50 % of the group lives in Rangamati, Khagrachhari and Bandarban"
+          },
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block (the total)"
+          },
+          {
+            "source": "bbsZilaRANGAMATI",
+            "at": "Table P17, printed pp. 235-239 (PDF pp. 285-289)"
+          },
+          {
+            "source": "bbsZilaKHAGRACHHARI",
+            "at": "Table P17, printed pp. 231-235 (PDF pp. 279-283)"
+          },
+          {
+            "source": "bbsZilaBANDARBAN",
+            "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
+          }
+        ]
+      },
+      "language": {
+        "bn": "শাদ্রি ভাষায় কথা বলে",
+        "approved": false,
+        "sourceType": "banglapedia",
+        "cite": [
+          {
+            "source": "bp15",
+            "at": "paragraph ¶4 (paragraphs = text lines over 100 characters, as culture-work/bp.mjs counts)",
+            "file": "raw/culture/bpbn-উপজাতীয়_ভাষা.txt",
+            "offset": 1829,
+            "length": 97,
+            "sha256": "aa7e886ef886577ccde40527d7a44c5efe3d0c4f785df25750d9306519fcaf46"
+          }
+        ]
+      },
+      "institutes": []
+    },
+    {
+      "id": "koch",
+      "censusEn": "Koch",
+      "name": {
+        "bn": "কোচ",
+        "approved": false,
+        "verifiedFromText": false,
+        "cite": [
+          {
+            "source": "bbsPreliminaryBn",
+            "at": "সারণি স-১.৪, PDF p. 52 (printed ৩৩), read from the page image: unverified"
+          }
+        ]
+      },
+      "population": {
+        "value": 13704,
+        "cite": [
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block, printed p. 365 (PDF p. 413)"
+          }
+        ]
+      },
+      "districts": [
+        {
+          "pcode": "BD3093",
+          "bbsCode": "93",
+          "count": 4845,
+          "cite": [
+            {
+              "source": "bbsZilaTANGAIL",
+              "at": "Table P17, printed pp. 254-257 (PDF pp. 302-305)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD3033",
+          "bbsCode": "33",
+          "count": 2890,
+          "cite": [
+            {
+              "source": "bbsZilaGAZIPUR",
+              "at": "Table P17, printed pp. 229-234 (PDF pp. 277-282)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD4589",
+          "bbsCode": "89",
+          "count": 1773,
+          "cite": [
+            {
+              "source": "bbsZilaSHERPUR",
+              "at": "Table P17, printed pp. 200-202 (PDF pp. 248-250)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD4044",
+          "bbsCode": "44",
+          "count": 1388,
+          "cite": [
+            {
+              "source": "bbsZilaJHENAIDAH",
+              "at": "Table P17, printed pp. 227-229 (PDF pp. 275-277)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD5594",
+          "bbsCode": "94",
+          "count": 1258,
+          "cite": [
+            {
+              "source": "bbsZilaTHAKURGAON",
+              "at": "Table P17, printed pp. 208-210 (PDF pp. 256-258)"
+            }
+          ]
+        }
+      ],
+      "zone": {
+        "value": "plains",
+        "chtShare": 0,
+        "cite": [
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: hill if ≥ 50 % of the group lives in Rangamati, Khagrachhari and Bandarban"
+          },
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block (the total)"
+          },
+          {
+            "source": "bbsZilaRANGAMATI",
+            "at": "Table P17, printed pp. 235-239 (PDF pp. 285-289)"
+          },
+          {
+            "source": "bbsZilaKHAGRACHHARI",
+            "at": "Table P17, printed pp. 231-235 (PDF pp. 279-283)"
+          },
+          {
+            "source": "bbsZilaBANDARBAN",
+            "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
+          }
+        ]
+      },
+      "language": {
+        "bn": "নিজস্ব ভাষা আছে, তবে তার বর্ণমালা নেই",
+        "approved": false,
+        "sourceType": "official",
+        "cite": [
+          {
+            "source": "page7",
+            "at": "Koch paragraph (page has no sub-heading)",
+            "file": "raw/culture/dc-tangail-c0786877.txt",
+            "offset": 8514,
+            "length": 79,
+            "sha256": "98011260467e9da4f76672dccb52d05498a9eff7b41a1ee46d60de73812889b7"
+          }
+        ]
+      },
+      "religion": {
+        "bn": "দুর্গা, কালী প্রভৃতির পূজা করে, সঙ্গে নিজেদের আদি দেবদেবীরও উপাসনা",
+        "approved": false,
+        "sourceType": "banglapedia",
+        "cite": [
+          {
+            "source": "bp16",
+            "at": "paragraph ¶4 (paragraphs = text lines over 100 characters, as culture-work/bp.mjs counts)",
+            "file": "raw/culture/bpbn-কোচ.txt",
+            "offset": 1927,
+            "length": 116,
+            "sha256": "866d42bd8f631f5e29e9a0c5131147332dc9e475539e6e757b3a67fd4051207c"
+          }
+        ]
+      },
+      "institutes": []
+    },
+    {
+      "id": "bom",
+      "censusEn": "Bom",
+      "name": {
+        "bn": "বম",
+        "approved": false,
+        "verifiedFromText": true,
+        "cite": [
+          {
+            "source": "bbsPreliminaryBn",
+            "at": "সারণি স-১.৪, PDF p. 52 (printed ৩৩), text layer"
+          }
+        ]
+      },
+      "population": {
+        "value": 13193,
+        "cite": [
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block, printed p. 365 (PDF p. 413)"
+          }
+        ]
+      },
+      "districts": [
+        {
+          "pcode": "BD2003",
+          "bbsCode": "03",
+          "count": 11854,
+          "cite": [
+            {
+              "source": "bbsZilaBANDARBAN",
+              "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
+            }
+          ]
+        }
+      ],
+      "zone": {
+        "value": "hill",
+        "chtShare": 93.3,
+        "cite": [
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: hill if ≥ 50 % of the group lives in Rangamati, Khagrachhari and Bandarban"
+          },
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block (the total)"
+          },
+          {
+            "source": "bbsZilaRANGAMATI",
+            "at": "Table P17, printed pp. 235-239 (PDF pp. 285-289)"
+          },
+          {
+            "source": "bbsZilaKHAGRACHHARI",
+            "at": "Table P17, printed pp. 231-235 (PDF pp. 279-283)"
+          },
+          {
+            "source": "bbsZilaBANDARBAN",
+            "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
+          }
+        ]
+      },
+      "language": {
+        "bn": "কুকী-চীন দলের ভাষা",
+        "approved": false,
+        "sourceType": "official",
+        "cite": [
+          {
+            "source": "page1",
+            "at": "section «ভাষা:», 1st paragraph",
+            "file": "raw/culture/dc-rangamati-c0733358.txt",
+            "offset": 6865,
+            "length": 79,
+            "sha256": "e9258a345956c049b2d3fbcfdd99cdfac01b0c74f421a1423fa0503a59a60da7"
+          }
+        ]
+      },
+      "religion": {
+        "bn": "২০০১ সালের মধ্যে প্রায় সবাই খ্রিস্টান হয়েছে",
+        "approved": false,
+        "sourceType": "banglapedia",
+        "cite": [
+          {
+            "source": "bp17",
+            "at": "paragraph ¶4 (paragraphs = text lines over 100 characters, as culture-work/bp.mjs counts)",
+            "file": "raw/culture/bpbn-বম.txt",
+            "offset": 1762,
+            "length": 56,
+            "sha256": "67e593c7b0a5d8cc53b9a064201c3047d1580aeee0209c6c849f0320500c9d76"
+          }
+        ]
+      },
+      "institutes": [
+        "knsi-rangamati",
+        "knsi-bandarban"
+      ]
+    },
+    {
+      "id": "khasia",
+      "censusEn": "Khasia/Khasi",
+      "name": {
+        "bn": "খাসিয়া/ খাসি",
+        "approved": false,
+        "verifiedFromText": true,
+        "cite": [
+          {
+            "source": "bbsPreliminaryBn",
+            "at": "সারণি স-১.৪, PDF p. 52 (printed ৩৩), text layer"
+          }
+        ]
+      },
+      "gazetteName": {
+        "bn": "খাসিয়া/খাসি",
+        "serial": 4,
+        "cite": [
+          {
+            "source": "gazette2019",
+            "at": "entry 4"
+          }
+        ]
+      },
+      "population": {
+        "value": 12422,
+        "cite": [
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block, printed p. 365 (PDF p. 413)"
+          }
+        ]
+      },
+      "districts": [
+        {
+          "pcode": "BD6058",
+          "bbsCode": "58",
+          "count": 10045,
+          "cite": [
+            {
+              "source": "bbsZilaMAULVIBAZAR",
+              "at": "Table P17, printed pp. 229-235 (PDF pp. 277-283)"
+            }
+          ]
+        }
+      ],
+      "zone": {
+        "value": "plains",
+        "chtShare": 0.3,
+        "cite": [
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: hill if ≥ 50 % of the group lives in Rangamati, Khagrachhari and Bandarban"
+          },
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block (the total)"
+          },
+          {
+            "source": "bbsZilaRANGAMATI",
+            "at": "Table P17, printed pp. 235-239 (PDF pp. 285-289)"
+          },
+          {
+            "source": "bbsZilaKHAGRACHHARI",
+            "at": "Table P17, printed pp. 231-235 (PDF pp. 279-283)"
+          },
+          {
+            "source": "bbsZilaBANDARBAN",
+            "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
+          }
+        ]
+      },
+      "language": {
+        "bn": "খাসিয়া ভাষা, অস্ট্রো-এশিয়াটিক ভাষাগোষ্ঠীর",
+        "approved": false,
+        "sourceType": "banglapedia",
+        "cite": [
+          {
+            "source": "bp15",
+            "at": "paragraph ¶12 (paragraphs = text lines over 100 characters, as culture-work/bp.mjs counts)",
+            "file": "raw/culture/bpbn-উপজাতীয়_ভাষা.txt",
+            "offset": 6025,
+            "length": 55,
+            "sha256": "68c979d09b6c64e30ebfe98e200509a134aa96aa8cea06ef773dfdb63572de3a"
+          }
+        ]
+      },
+      "religion": {
+        "bn": "বেশির ভাগই খ্রিস্টান (শতকরা ৮০-৯০ জন)",
+        "approved": false,
+        "sourceType": "banglapedia",
+        "cite": [
+          {
+            "source": "bp18",
+            "at": "paragraph ¶6 (paragraphs = text lines over 100 characters, as culture-work/bp.mjs counts)",
+            "file": "raw/culture/bpbn-খাসিয়া.txt",
+            "offset": 4179,
+            "length": 36,
+            "sha256": "2e3ba6eaf0c3695a65efc117c2936ec566ec1562d826a9af70d3d44f4a405859"
+          }
+        ]
+      },
+      "institutes": []
+    },
+    {
+      "id": "bagdi",
+      "censusEn": "Bagdi",
+      "name": {
+        "bn": "বাগদী",
+        "approved": false,
+        "verifiedFromText": true,
+        "cite": [
+          {
+            "source": "bbsPreliminaryBn",
+            "at": "সারণি স-১.৪, PDF p. 52 (printed ৩৩), text layer"
+          }
+        ]
+      },
+      "population": {
+        "value": 12096,
+        "cite": [
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block, printed p. 365 (PDF p. 413)"
+          }
+        ]
+      },
+      "districts": [
+        {
+          "pcode": "BD4055",
+          "bbsCode": "55",
+          "count": 2542,
+          "cite": [
+            {
+              "source": "bbsZilaMAGURA",
+              "at": "Table P17, printed pp. 186-187 (PDF pp. 234-235)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD3082",
+          "bbsCode": "82",
+          "count": 2157,
+          "cite": [
+            {
+              "source": "bbsZilaRAJBARI",
+              "at": "Table P17, printed pp. 196-198 (PDF pp. 244-246)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD4044",
+          "bbsCode": "44",
+          "count": 1830,
+          "cite": [
+            {
+              "source": "bbsZilaJHENAIDAH",
+              "at": "Table P17, printed pp. 227-229 (PDF pp. 275-277)"
+            }
+          ]
+        }
+      ],
+      "zone": {
+        "value": "plains",
+        "chtShare": 0,
+        "cite": [
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: hill if ≥ 50 % of the group lives in Rangamati, Khagrachhari and Bandarban"
+          },
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block (the total)"
+          },
+          {
+            "source": "bbsZilaRANGAMATI",
+            "at": "Table P17, printed pp. 235-239 (PDF pp. 285-289)"
+          },
+          {
+            "source": "bbsZilaKHAGRACHHARI",
+            "at": "Table P17, printed pp. 231-235 (PDF pp. 279-283)"
+          },
+          {
+            "source": "bbsZilaBANDARBAN",
+            "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
+          }
+        ]
+      },
+      "language": {
+        "bn": "নিজেদের ভাষা ব্যবহার করে, তবে তা প্রায় বাংলার কাছাকাছি",
+        "approved": false,
+        "sourceType": "banglapedia",
+        "cite": [
+          {
+            "source": "bp15",
+            "at": "paragraph ¶5 (paragraphs = text lines over 100 characters, as culture-work/bp.mjs counts)",
+            "file": "raw/culture/bpbn-উপজাতীয়_ভাষা.txt",
+            "offset": 2211,
+            "length": 101,
+            "sha256": "6b3364cb7c742ed909bbb1568cb5781d8ae506f6c4d6338e707898494ec27227"
+          }
+        ]
+      },
+      "religion": {
+        "bn": "হিন্দু ধর্মাচারের সঙ্গে পূর্বপুরুষের প্রকৃতি পূজা মিলিয়ে পালন করে",
+        "approved": false,
+        "sourceType": "banglapedia",
+        "cite": [
+          {
+            "source": "bp19",
+            "at": "paragraph ¶2 (paragraphs = text lines over 100 characters, as culture-work/bp.mjs counts); revision oldid=536",
+            "file": "raw/culture/bpen-Bagdi.txt",
+            "offset": 1357,
+            "length": 98,
+            "sha256": "25025ec90d0342b4549bace8edc76035e345b6751e2cf539db75e87b61ea873d"
+          }
+        ]
+      },
+      "institutes": []
+    },
+    {
+      "id": "rakhain",
+      "censusEn": "Rakhain",
+      "name": {
+        "bn": "রাখাইন",
+        "approved": false,
+        "verifiedFromText": true,
+        "cite": [
+          {
+            "source": "bbsPreliminaryBn",
+            "at": "সারণি স-১.৪, PDF p. 53 (printed ৩৪), text layer"
+          }
+        ]
+      },
+      "population": {
+        "value": 11197,
+        "cite": [
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block, printed p. 365 (PDF p. 413)"
+          }
+        ]
+      },
+      "districts": [
+        {
+          "pcode": "BD2022",
+          "bbsCode": "22",
+          "count": 7273,
+          "cite": [
+            {
+              "source": "bbsZilaCOXSBAZAR",
+              "at": "Table P17, printed pp. 258-262 (PDF pp. 306-310)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD1004",
+          "bbsCode": "04",
+          "count": 1017,
+          "cite": [
+            {
+              "source": "bbsZilaBARGUNA",
+              "at": "Table P17, printed pp. 212-213 (PDF pp. 260-261)"
+            }
+          ]
+        }
+      ],
+      "zone": {
+        "value": "plains",
+        "chtShare": 12.5,
+        "cite": [
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: hill if ≥ 50 % of the group lives in Rangamati, Khagrachhari and Bandarban"
+          },
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block (the total)"
+          },
+          {
+            "source": "bbsZilaRANGAMATI",
+            "at": "Table P17, printed pp. 235-239 (PDF pp. 285-289)"
+          },
+          {
+            "source": "bbsZilaKHAGRACHHARI",
+            "at": "Table P17, printed pp. 231-235 (PDF pp. 279-283)"
+          },
+          {
+            "source": "bbsZilaBANDARBAN",
+            "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
+          }
+        ]
+      },
+      "language": {
+        "bn": "নিজেদের মধ্যে নিজস্ব আরাকাইন ভাষায় কথা বলে",
+        "approved": false,
+        "sourceType": "official",
+        "cite": [
+          {
+            "source": "page20",
+            "at": "opening paragraph (language and religion)",
+            "file": "raw/culture/dc-barguna-c0674e6d.txt",
+            "offset": 6738,
+            "length": 75,
+            "sha256": "1662347c1e96e2608b5f27237c66f0552dfc7feee674cad82b1fcc9189b826fd"
+          }
+        ]
+      },
+      "religion": {
+        "bn": "বৌদ্ধ ধর্মাবলম্বী",
+        "approved": false,
+        "sourceType": "official",
+        "cite": [
+          {
+            "source": "page20",
+            "at": "opening paragraph (language and religion)",
+            "file": "raw/culture/dc-barguna-c0674e6d.txt",
+            "offset": 6510,
+            "length": 40,
+            "sha256": "bfaad838354f1517477e57eafbdeaeb7ed08ae0c9b78a9a47948881cdaac4d93"
+          }
+        ]
+      },
+      "festivals": {
+        "bn": "ধর্মীয় উৎসব: মাঘী পূর্ণিমা, বৈশাখী পূর্ণিমা ও রাস উৎসব",
+        "approved": false,
+        "sourceType": "official",
+        "cite": [
+          {
+            "source": "page20",
+            "at": "section «রাখাইন সংস্কৃতি:»",
+            "file": "raw/culture/dc-barguna-c0674e6d.txt",
+            "offset": 8449,
+            "length": 104,
+            "sha256": "2f0451c4d30acc494b29a873097bc8fbb6b330d94f1c1d6612e9a814f3ba8630"
+          }
+        ]
+      },
+      "institutes": []
+    },
+    {
+      "id": "hajong",
+      "censusEn": "Hajong",
+      "name": {
+        "bn": "হাজং",
+        "approved": false,
+        "verifiedFromText": true,
+        "cite": [
+          {
+            "source": "bbsPreliminaryBn",
+            "at": "সারণি স-১.৪, PDF p. 53 (printed ৩৪), text layer"
+          }
+        ]
+      },
+      "population": {
+        "value": 7996,
+        "cite": [
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block, printed p. 365 (PDF p. 413)"
+          }
+        ]
+      },
+      "districts": [
+        {
+          "pcode": "BD4572",
+          "bbsCode": "72",
+          "count": 4327,
+          "cite": [
+            {
+              "source": "bbsZilaNETRAKONA",
+              "at": "Table P17, printed pp. 274-278 (PDF pp. 322-326)"
+            }
+          ]
+        },
+        {
+          "pcode": "BD6090",
+          "bbsCode": "90",
+          "count": 1506,
+          "cite": [
+            {
+              "source": "bbsNational",
+              "at": "Table P29, the division block less its other districts (derived; see notes)"
+            }
+          ]
+        }
+      ],
+      "zone": {
+        "value": "plains",
+        "chtShare": 0.1,
+        "cite": [
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: hill if ≥ 50 % of the group lives in Rangamati, Khagrachhari and Bandarban"
+          },
+          {
+            "source": "bbsNational",
+            "at": "Table P29, national block (the total)"
+          },
+          {
+            "source": "bbsZilaRANGAMATI",
+            "at": "Table P17, printed pp. 235-239 (PDF pp. 285-289)"
+          },
+          {
+            "source": "bbsZilaKHAGRACHHARI",
+            "at": "Table P17, printed pp. 231-235 (PDF pp. 279-283)"
+          },
+          {
+            "source": "bbsZilaBANDARBAN",
+            "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
+          }
+        ]
+      },
+      "language": {
+        "bn": "নিজস্ব ভাষার বর্ণমালা নেই; লেখা হয় অসমীয়া বর্ণমালায়",
+        "approved": false,
+        "sourceType": "banglapedia",
+        "cite": [
+          {
+            "source": "bp21",
+            "at": "paragraph ¶3 (paragraphs = text lines over 100 characters, as culture-work/bp.mjs counts)",
+            "file": "raw/culture/bpbn-হাজং.txt",
+            "offset": 1890,
+            "length": 94,
+            "sha256": "813396e625008ffa0ad8cd8969c3dbbb34a219edaca1047521da7e64912667de"
+          }
+        ]
+      },
+      "religion": {
+        "bn": "হিন্দু, তবে নিজস্ব কিছু আদি বিশ্বাসও আছে",
+        "approved": false,
+        "sourceType": "banglapedia",
+        "cite": [
+          {
+            "source": "bp21",
+            "at": "paragraph ¶9 (paragraphs = text lines over 100 characters, as culture-work/bp.mjs counts)",
+            "file": "raw/culture/bpbn-হাজং.txt",
+            "offset": 5909,
+            "length": 65,
+            "sha256": "d8fc2314ec05e8bad3c1e452cf1757ec199bbfc27590bcde74ca9b803fee9c15"
+          }
+        ]
+      },
+      "festivals": {
+        "bn": "বারোয়ারি দুর্গাপুজা; কালী পূজার সময় উৎসব",
+        "approved": false,
+        "sourceType": "banglapedia",
+        "cite": [
+          {
+            "source": "bp21",
+            "at": "paragraph ¶9 (paragraphs = text lines over 100 characters, as culture-work/bp.mjs counts)",
+            "file": "raw/culture/bpbn-হাজং.txt",
+            "offset": 6539,
+            "length": 98,
+            "sha256": "23a7b2b3153d3feda610993d5da63f0601e368c40821510cfbf4eb56027141ad"
+          }
+        ]
+      },
+      "institutes": []
+    }
+  ],
+  "institutes": [
+    {
+      "id": "knca-birishiri",
+      "name": {
+        "bn": "ক্ষুদ্র নৃ-গোষ্ঠীর কালচারাল একাডেমি, বিরিশিরি, নেত্রকোণা",
+        "approved": false,
+        "cite": [
+          {
+            "source": "mocaInstitutes",
+            "at": "row 13"
+          }
+        ]
+      },
+      "district": {
+        "nameEn": "Netrakona",
+        "cite": [
+          {
+            "source": "page22",
+            "at": "«যোগাযোগ ঠিকানা» page body"
+          }
+        ]
+      },
+      "site": "https://kncabirisiri.portal.gov.bd/",
+      "groupsNamed": null,
+      "location": {
+        "missing": true,
+        "fallbackProposal": {
+          "lon": 90.6781412,
+          "lat": 25.1238305,
+          "kind": "fallback",
+          "basis": "COD-AB v03 bgd_admincapitals.geojson, adm_p_lvl 3, name \"Durgapur\" (tools/.cache/bgd-codab/, pinned as codAbBangladesh in tools/sources.json)",
+          "note": "upazila HQ point of Durgapur (Netrakona, BD45720018), the upazila its history PDF names; not the academy itself"
+        }
+      }
+    },
+    {
+      "id": "knsi-rangamati",
+      "name": {
+        "bn": "ক্ষুদ্র নৃ-গোষ্ঠীর সাংস্কৃতিক ইনস্টিটিউট, রাঙ্গামাটি",
+        "approved": false,
+        "cite": [
+          {
+            "source": "mocaInstitutes",
+            "at": "row 14"
+          }
+        ]
+      },
+      "district": {
+        "nameEn": "Rangamati",
+        "cite": [
+          {
+            "source": "page23",
+            "at": "«ঠিকানা» page body"
+          }
+        ]
+      },
+      "site": "https://knsirangamati.portal.gov.bd/",
+      "groupsNamed": {
+        "names": [
+          "চাকমা",
+          "মারমা",
+          "ত্রিপুরা",
+          "তঞ্চঙ্গ্যা",
+          "ম্রো",
+          "লাসাই",
+          "পাংখোয়া",
+          "বম",
+          "খিয়াং",
+          "চাক",
+          "খুমি",
+          "গুর্খা"
+        ],
+        "cite": [
+          {
+            "source": "page24",
+            "at": "«এক নজরে» page, paragraph 1: the CHT groups whose culture the institute was founded to preserve"
+          }
+        ]
+      },
+      "location": {
+        "lon": 92.15549,
+        "lat": 22.66121,
+        "kind": "osm",
+        "osm": {
+          "type": "node",
+          "id": 4707811087
+        },
+        "cite": [
+          {
+            "source": "osm",
+            "at": "node 4707811087"
+          }
+        ]
+      }
+    },
+    {
+      "id": "knsi-bandarban",
+      "name": {
+        "bn": "ক্ষুদ্র নৃ-গোষ্ঠীর সাংস্কৃতিক ইনস্টিটিউট, বান্দরবান",
+        "approved": false,
+        "cite": [
+          {
+            "source": "mocaInstitutes",
+            "at": "row 15"
+          }
+        ]
+      },
+      "district": {
+        "nameEn": "Bandarban",
+        "cite": [
+          {
+            "source": "page25",
+            "at": "«যোগাযোগ» page body"
+          }
+        ]
+      },
+      "site": "https://ksibandarban.portal.gov.bd/",
+      "groupsNamed": {
+        "names": [
+          "মারমা",
+          "ম্রো",
+          "ত্রিপুরা",
+          "বম",
+          "তঞ্চঙ্গ্যা",
+          "চাকমা",
+          "চাক",
+          "খেয়াং",
+          "খুমী",
+          "লুসাই",
+          "পাংখোয়া"
+        ],
+        "cite": [
+          {
+            "source": "page26",
+            "at": "«ইতিহাস» page, paragraph 1 (the 11 groups living in Bandarban district), read with paragraph 3 («বান্দরবান পার্বত্য জেলার ১১টি ক্ষুদ্র নৃগোষ্ঠীর সংস্কৃতি সংরক্ষণ»)"
+          }
+        ]
+      },
+      "location": {
+        "missing": true,
+        "fallbackProposal": {
+          "lon": 92.2217498,
+          "lat": 22.1972889,
+          "kind": "fallback",
+          "basis": "COD-AB v03 bgd_admincapitals.geojson, adm_p_lvl 2, name \"Bandarban\" (tools/.cache/bgd-codab/, pinned as codAbBangladesh in tools/sources.json)",
+          "note": "district HQ point; the history page places the institute «বান্দরবান পার্বত্য জেলা শহরে»"
+        }
+      }
+    },
+    {
+      "id": "cox-cultural-centre",
+      "name": {
+        "bn": "কক্সবাজার সাংস্কৃতিক কেন্দ্র, কক্সবাজার",
+        "approved": false,
+        "cite": [
+          {
+            "source": "mocaInstitutes",
+            "at": "row 16"
+          }
+        ]
+      },
+      "district": {
+        "nameEn": "Cox's Bazar",
+        "cite": [
+          {
+            "source": "page27",
+            "at": "«ইতিহাস ও কার্যাবলি» page, paragraph 2"
+          }
+        ]
+      },
+      "site": "https://coxculturecenter.portal.gov.bd/",
+      "groupsNamed": null,
+      "location": {
+        "lon": 91.97592,
+        "lat": 21.42847,
+        "kind": "published",
+        "cite": [
+          {
+            "source": "page28",
+            "at": "«যোগাযোগ ম্যাপ» page: embedded Google map iframe, pb=…!2d91.9759181!3d21.428469…!2sCox's Bazar Cultural Centre"
+          }
+        ]
+      }
+    },
+    {
+      "id": "knsi-khagrachari",
+      "name": {
+        "bn": "ক্ষুদ্র নৃ-গোষ্ঠীর সাংস্কৃতিক ইনস্টিটিউট, খাগড়াছড়ি",
+        "approved": false,
+        "cite": [
+          {
+            "source": "mocaInstitutes",
+            "at": "row 17"
+          }
+        ]
+      },
+      "district": {
+        "nameEn": "Khagrachhari",
+        "cite": [
+          {
+            "source": "page29",
+            "at": "«যোগাযোগ» page body"
+          }
+        ]
+      },
+      "site": "https://knsikhagrachari.portal.gov.bd",
+      "groupsNamed": null,
+      "location": {
+        "lon": 91.97164,
+        "lat": 23.11869,
+        "kind": "published",
+        "cite": [
+          {
+            "source": "page30",
+            "at": "home page: embedded Google map iframe, pb=…!2d91.97164141428433!3d23.1186918185317…!2sKhudra Nrigostir Sangskritic Institute, Khagrachari"
+          }
+        ]
+      }
+    },
+    {
+      "id": "knca-rajshahi",
+      "name": {
+        "bn": "রাজশাহী বিভাগীয় ক্ষুদ্র নৃ-গোষ্ঠীর কালচারাল একাডেমি, রাজশাহী",
+        "approved": false,
+        "cite": [
+          {
+            "source": "mocaInstitutes",
+            "at": "row 18"
+          }
+        ]
+      },
+      "district": {
+        "nameEn": "Rajshahi",
+        "cite": [
+          {
+            "source": "page31",
+            "at": "«ইতিহাস» page, paragraph 2"
+          }
+        ]
+      },
+      "site": "http://kncaraj.portal.gov.bd/",
+      "groupsNamed": null,
+      "location": {
+        "lon": 88.56557,
+        "lat": 24.39092,
+        "kind": "osm",
+        "osm": {
+          "type": "way",
+          "id": 1058731398
+        },
+        "cite": [
+          {
+            "source": "osm",
+            "at": "way 1058731398"
+          }
+        ]
+      }
+    },
+    {
+      "id": "manipuri-lalitkala-academy",
+      "name": {
+        "bn": "মনিপুরী ললিতকলা একাডেমি, কমলগঞ্জ, মৌলভীবাজার",
+        "approved": false,
+        "cite": [
+          {
+            "source": "mocaInstitutes",
+            "at": "row 19"
+          }
+        ]
+      },
+      "district": {
+        "nameEn": "Moulvibazar",
+        "cite": [
+          {
+            "source": "page32",
+            "at": "«আমাদের সম্পর্কে» page, paragraph 1"
+          }
+        ]
+      },
+      "site": "http://mla.portal.gov.bd/ (MoCA lists http://www.mla.portal.gov.bd)",
+      "groupsNamed": {
+        "names": [
+          "মণিপুরী"
+        ],
+        "cite": [
+          {
+            "source": "page32",
+            "at": "«আমাদের সম্পর্কে» page, paragraph 2"
+          }
+        ]
+      },
+      "location": {
+        "missing": true,
+        "fallbackProposal": {
+          "lon": 91.8555655,
+          "lat": 24.3524896,
+          "kind": "fallback",
+          "basis": "COD-AB v03 bgd_admincapitals.geojson, adm_p_lvl 3, name \"Kamalganj\" (tools/.cache/bgd-codab/, pinned as codAbBangladesh in tools/sources.json)",
+          "note": "upazila HQ point of Kamalganj (BD60580056); the academy is at শিববাজার, মাধবপুর union, possibly some km away"
+        }
+      }
+    },
+    {
+      "id": "knsp-haluaghat",
+      "name": {
+        "bn": "ক্ষুদ্র নৃ-গোষ্ঠীর সাংস্কৃতিক প্রতিষ্ঠান, হালুয়াঘাট",
+        "approved": false,
+        "cite": [
+          {
+            "source": "mocaInstitutes",
+            "at": "row 20"
+          }
+        ]
+      },
+      "district": {
+        "missing": true,
+        "candidate": {
+          "district_en": "Mymensingh",
+          "district_bn": "ময়মনসিংহ",
+          "upazila_bn": "হালুয়াঘাট",
+          "status": "NOT an official statement about the institute: an inference for the user to accept or reject",
+          "evidence": [
+            "COD-AB v03 bgd_admin3 has exactly one unit named Haluaghat (BD45610024), in Mymensingh district",
+            "the upazila portal «হালুয়াঘাট উপজেলা» is haluaghat.mymensingh.gov.bd (raw/upazila-haluaghat-home.html), under the Mymensingh district portal; its at-a-glance, culture and heritage pages do not mention the institute",
+            "a web-search snippet of a Daily Star Bangla report (https://bangla.thedailystar.net/news/bangladesh/news-3950611) places an academy in Haluaghat upazila of Mymensingh; the page sits behind a Cloudflare challenge (HTTP 403), so it was not read and is not cited"
+          ]
+        },
+        "note": "no official page states the district"
+      },
+      "site": "https://knsphaluaghat.gov.bd/",
+      "groupsNamed": null,
+      "location": {
+        "missing": true,
+        "fallbackProposal": {
+          "lon": 90.3395618,
+          "lat": 25.1222567,
+          "kind": "fallback",
+          "basis": "COD-AB v03 bgd_admincapitals.geojson, adm_p_lvl 3, name \"Haluaghat\" (tools/.cache/bgd-codab/, pinned as codAbBangladesh in tools/sources.json)",
+          "note": "upazila HQ point of Haluaghat (Mymensingh): usable only if the user accepts the district candidate"
+        }
+      }
+    },
+    {
+      "id": "knsp-dinajpur",
+      "name": {
+        "bn": "ক্ষুদ্র নৃ-গোষ্ঠীর সাংস্কৃতিক প্রতিষ্ঠান, দিনাজপুর",
+        "approved": false,
+        "cite": [
+          {
+            "source": "mocaInstitutes",
+            "at": "row 21"
+          }
+        ]
+      },
+      "district": {
+        "nameEn": "Dinajpur",
+        "cite": [
+          {
+            "source": "mocaInstitutes",
+            "at": "MoCA «দপ্তর/সংস্থা» table, row ২১"
+          }
+        ]
+      },
+      "site": "https://knspdinajpur.gov.bd/",
+      "groupsNamed": null,
+      "location": {
+        "missing": true,
+        "fallbackProposal": {
+          "lon": 88.6346228,
+          "lat": 25.6260712,
+          "kind": "fallback",
+          "basis": "COD-AB v03 bgd_admincapitals.geojson, adm_p_lvl 2, name \"Dinajpur\" (tools/.cache/bgd-codab/, pinned as codAbBangladesh in tools/sources.json)",
+          "note": "district HQ point"
+        }
+      }
+    },
+    {
+      "id": "knsp-naogaon",
+      "name": {
+        "bn": "ক্ষুদ্র নৃ-গোষ্ঠীর সাংস্কৃতিক প্রতিষ্ঠান, নওগাঁ",
+        "approved": false,
+        "cite": [
+          {
+            "source": "mocaInstitutes",
+            "at": "row 22"
+          }
+        ]
+      },
+      "district": {
+        "nameEn": "Naogaon",
+        "cite": [
+          {
+            "source": "mocaInstitutes",
+            "at": "MoCA «দপ্তর/সংস্থা» table, row ২২"
+          }
+        ]
+      },
+      "site": "https://knspnaogaon.gov.bd/",
+      "groupsNamed": null,
+      "location": {
+        "missing": true,
+        "fallbackProposal": {
+          "lon": 88.9445447,
+          "lat": 24.8073229,
+          "kind": "fallback",
+          "basis": "COD-AB v03 bgd_admincapitals.geojson, adm_p_lvl 2, name \"Naogaon\" (tools/.cache/bgd-codab/, pinned as codAbBangladesh in tools/sources.json)",
+          "note": "district HQ point"
+        }
+      }
+    }
+  ],
+  "districtGroups": {
+    "BD1004": [
+      "rakhain"
+    ],
+    "BD1006": [],
+    "BD1009": [],
+    "BD1042": [],
+    "BD1078": [],
+    "BD1079": [],
+    "BD2003": [
+      "marma",
+      "tripura",
+      "mro",
+      "tonchonga",
+      "bom"
+    ],
+    "BD2012": [],
+    "BD2013": [],
+    "BD2015": [
+      "tripura"
+    ],
+    "BD2019": [],
+    "BD2022": [
+      "rakhain"
+    ],
+    "BD2030": [],
+    "BD2046": [
+      "chakma",
+      "marma",
+      "tripura"
+    ],
+    "BD2051": [],
+    "BD2075": [],
+    "BD2084": [
+      "chakma",
+      "marma",
+      "tonchonga"
+    ],
+    "BD3026": [
+      "garo"
+    ],
+    "BD3029": [
+      "malo"
+    ],
+    "BD3033": [
+      "barman",
+      "koch"
+    ],
+    "BD3035": [],
+    "BD3048": [],
+    "BD3054": [],
+    "BD3056": [],
+    "BD3059": [],
+    "BD3067": [],
+    "BD3068": [],
+    "BD3082": [
+      "bagdi"
+    ],
+    "BD3086": [],
+    "BD3093": [
+      "garo",
+      "barman",
+      "koch"
+    ],
+    "BD4001": [],
+    "BD4018": [],
+    "BD4041": [
+      "malo"
+    ],
+    "BD4044": [
+      "koch",
+      "bagdi"
+    ],
+    "BD4047": [],
+    "BD4050": [],
+    "BD4055": [
+      "malo",
+      "bagdi"
+    ],
+    "BD4057": [],
+    "BD4065": [
+      "malo"
+    ],
+    "BD4087": [],
+    "BD4539": [],
+    "BD4561": [
+      "garo",
+      "barman"
+    ],
+    "BD4572": [
+      "garo",
+      "hajong"
+    ],
+    "BD4589": [
+      "garo",
+      "koch"
+    ],
+    "BD5010": [
+      "mahato"
+    ],
+    "BD5038": [
+      "oraon",
+      "munda",
+      "barman",
+      "mahato",
+      "malo"
+    ],
+    "BD5064": [
+      "saontal",
+      "oraon",
+      "munda",
+      "barman",
+      "mahato"
+    ],
+    "BD5069": [],
+    "BD5070": [
+      "saontal",
+      "oraon",
+      "barman"
+    ],
+    "BD5076": [],
+    "BD5081": [
+      "saontal",
+      "oraon"
+    ],
+    "BD5088": [
+      "oraon",
+      "mahato"
+    ],
+    "BD5527": [
+      "saontal"
+    ],
+    "BD5532": [],
+    "BD5549": [],
+    "BD5552": [],
+    "BD5573": [],
+    "BD5577": [],
+    "BD5585": [
+      "oraon"
+    ],
+    "BD5594": [
+      "barman",
+      "koch"
+    ],
+    "BD6036": [
+      "saontal",
+      "munda"
+    ],
+    "BD6058": [
+      "saontal",
+      "oraon",
+      "munda",
+      "monipuri",
+      "mahato",
+      "khasia"
+    ],
+    "BD6090": [
+      "hajong"
+    ],
+    "BD6091": [
+      "monipuri"
+    ]
+  }
+}
