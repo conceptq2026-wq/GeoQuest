@@ -212,6 +212,27 @@ stays within 12 km; a few islets (Chile's is the farthest) collapse.
 - New opt-in shell terms, this map only: `sources.<id>.tapFilter` and
   `constraints.wholeWorld` (`notes/shell.md`).
 
+## Step 2c (2026-10-07)
+
+- **Approved by the user** (2026-10-07, on the step 2b report):
+  - the dot rule — no grey dots at the opening; dots drawn only for the chosen
+    organisation's members and statuses and for the chosen country; an
+    invisible 44 px tap target on every country under 44 px at the zoom;
+  - the opt-in shell terms `constraints.wholeWorld` and `tapFilter`;
+  - `tools/check.mjs`: on a map with `tapFilter`, each country counts once
+    per tab, reached by any of its targets.
+- **Opening:** South Asia, Bangladesh in the middle of the room above its open
+  card, its neighbours (India, Myanmar, Nepal, Bhutan, Sri Lanka) wholly in
+  that room and its dot inside it. Before, the world's frame put Bangladesh's
+  dot half off the right edge at 390.
+  - One `view.fitBounds` box, derived in the build from Bangladesh's label
+    point and the neighbours' main parts: centred on that point, a degree
+    spare each side; 1.2 times as tall as wide in Mercator, so the width sets
+    the zoom on a phone; its middle south of Bangladesh by a fifth of a map
+    1.8 widths tall (320 × 640 is 1.71, 390 × 844 1.94), the card covering up
+    to 40%.
+  - Today's box: 67.14, −18.44, 112.8, 33.87.
+
 ## Open items
 
 - **BRICS** stays out. Its 2026 chair's site, `www.brics2026.gov.in`, does

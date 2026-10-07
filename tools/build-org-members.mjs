@@ -247,6 +247,24 @@ for (const code of codes) {
   if (small) dots++;
   lands.push({ type: 'Feature', properties: { id: code }, geometry: part });
 }
+// The opening (step 2c, 2026-10-07): South Asia, Bangladesh in the middle of the room above its open card,
+// its neighbours in view. One box, fitted unpadded to the whole map as the shell's opening is: as wide as
+// Bangladesh's label point and its neighbours' main parts need, centred on that point (a degree spare each
+// side); flatter than a phone (Mercator height 1.2 × its width), so the width sets the zoom; its middle south
+// of Bangladesh by a fifth of the screen's height — the card covers up to 40% (sheetMaxHeight), and the room
+// above it is centred 20% above the screen's — at a map 1.8 widths tall, between 320 × 640's 1.71 and 390 × 844's 1.94.
+const NEIGHBOURS = ['IND', 'MMR', 'NPL', 'BTN', 'LKA'];
+const CARD = 0.4;
+const PHONE = 1.8;
+const openingView = (() => {
+  const [bx, by] = pointOf.BGD;
+  const half = Math.max(...NEIGHBOURS.flatMap((c) => [bx - countryFrames[c][0], countryFrames[c][2] - bx])) + 1;
+  const widthW = (2 * half) / 360;
+  const yMid = mercY(by) - ((CARD / 2) * PHONE * widthW);
+  const latOf = (y) => (360 / Math.PI) * Math.atan(Math.exp(y * 2 * Math.PI)) - 90;
+  const r2 = (v) => Math.round(v * 100) / 100;
+  return [r2(bx - half), r2(latOf(yMid - 0.6 * widthW)), r2(bx + half), r2(latOf(yMid + 0.6 * widthW))];
+})();
 const unnamed = codes.filter((c) => !countries[c].nameBn);
 if (unnamed.length) throw new Error(`no Bengali name for ${unnamed.join(', ')}`);
 console.log(`dot targets: ${dots} of ${codes.length} (a dot below the zoom its main part reaches 44 px; every country a fill)`);
@@ -335,7 +353,7 @@ const descriptor = {
   section: 'international',
   title: { bn: text(S.title), en: 'Members of International Organisations' },
   basemap: 'world',
-  view: { fitBounds: [-180, -56, 180, 78] },
+  view: { fitBounds: openingView },
   // wholeWorld (opt-in, 2026-10-07): zoom out past the world's height, so a world-wide organisation fits a
   // phone held upright.
   constraints: { minZoom: MIN_ZOOM, maxZoom: 8, wholeWorld: true },
@@ -454,4 +472,5 @@ write('countries.json', sortedCountries);
 write('countries.geojson', { type: 'FeatureCollection', features: chosen.features }, false);
 write('lands.geojson', { type: 'FeatureCollection', features: lands }, false);
 write('info.json', { lines: infoLines });
+console.log(`opening: ${openingView.join(', ')} (Bangladesh's neighbours ${NEIGHBOURS.join(', ')})`);
 console.log(`wrote ${outDir}`);

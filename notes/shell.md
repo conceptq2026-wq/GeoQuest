@@ -211,6 +211,9 @@ drawn now (`drawn`), and read a file of the map's own folder (`file`).
 - **A legend `kinds` entry may name a `tab`** (R-55): it counts only while
   that view tab is open, so the rivers map lists its dashed reach outside
   only in «পুরো পথ».
+- **Approved by the user** (2026-10-07, on org-members' step 2b): `tapFilter`
+  and `constraints.wholeWorld` below, and `tools/check.mjs` counting each
+  record once per tab on a map with `tapFilter`.
 - **`sources.<id>.tapFilter`** (opt-in, 2026-10-07): a filter expression on
   that source's tap target, so a point drawn only below some zoom is tapped
   only there. org-members' country dots: `['<', ['zoom'], ['get',
