@@ -47,6 +47,10 @@ creates or changes goes through `own`, so teardown undoes it. Since
 picker and ‹ › still list them, unlike `hide`), ask whether a record is
 drawn now (`drawn`), and read a file of the map's own folder (`file`).
 
+- **Placement** (the user's rule, 2026-10-07): the tab row on top, the picker
+  row (‹ picker ›) directly under it, ⓘ's row under that — `tabs.js` puts its
+  bar before the picker row. Until then it sat between the picker row and ⓘ.
+  A page without tabs is unchanged.
 - **`tabs: { records, field, from, label, placeholder?, note? }`** divides one records table by a
   field, one part at a time: the tabs are the rows of `from`, in its order,
   titled by `label`. Only the active tab's records are on the map and in the

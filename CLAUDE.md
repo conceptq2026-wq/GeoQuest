@@ -167,11 +167,14 @@ owns the baseline layer ids and styles; a descriptor that declares one throws.
 A map cannot omit a baseline item by forgetting it. The picker row itself is
 shared code, `docs/shared/picker.js` and `picker.css`, used by both shells,
 and it sits at the top in every shell, directly under the header, whatever a
-mockup draws (the user's decision, 2026-09-28). Its look is
+mockup draws (the user's decision, 2026-09-28). **On a page with tabs the tab
+row goes on top and the picker row directly under it** (the user's rule,
+2026-10-07, in the shared shells: `docs/shell/tabs.js`; the diagram shell's
+header already held its tabs above each view's picker row). Its look is
 `design/mockups/picker-row.png`: ‹ and › round, 44 px, light blue, navy
 chevrons; the select a light-blue pill between them, the name centred, bold,
-navy. ⓘ has a row of its own directly under it — under the tabs where a map
-has them — right-aligned: an 18 px icon at 0.35 opacity, fully opaque when
+navy. ⓘ has a row of its own directly under the picker row — under the tabs
+where a page has tabs but no picker row — right-aligned: an 18 px icon at 0.35 opacity, fully opaque when
 pressed or focused, its tap zone an invisible 44 px square hanging down over
 the map's or the view's top-right corner, never over ‹ ›. The map's corner
 controls and the diagrams' words start below that zone; `tools/check.mjs`

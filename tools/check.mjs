@@ -1236,8 +1236,8 @@ async function taps(page, shoot, summary, fail, sources, tabs, camera) {
         if (card.open && changed) {
           good++;
           if (mine) own++;
-          if (byRecord) (goodRec.add(rec), mine && ownRec.add(rec));
           else others.push(`${key} → «${card.title}»`);
+          if (byRecord) (goodRec.add(rec), mine && ownRec.add(rec));
           if (!mine && hit.alone) fail(`tap ${source}:${key} alone under the finger at (${Math.round(hit.x)}, ${Math.round(hit.y)}), camera ${JSON.stringify(view)}, opened «${card.title}»`);
         } else fail(`tap ${source}:${key} at (${Math.round(hit.x)}, ${Math.round(hit.y)}): no card`);
         await shoot('taps', `${key}${mine ? '' : card.open ? ` → ${card.title}` : ' → nothing'}`, [hit.x, hit.y]);

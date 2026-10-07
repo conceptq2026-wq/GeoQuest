@@ -128,7 +128,7 @@ export async function mount(api) {
   api.activeTab = () => active;
   api.actions.fitTab = (action, context) => fitSelection(action, context);
 
-  await stylesheet(api, './tabs.css?v=a9f63c2250');
+  await stylesheet(api, './tabs.css?v=91ad9acb51');
   bar = api.own.node(document.createElement('div'), 'tabs');
   bar.className = table ? 'map-tabs' : 'map-tabs view-tabs';
   bar.setAttribute('role', 'tablist');
@@ -143,7 +143,12 @@ export async function mount(api) {
     bar.appendChild(button);
     buttons.set(key, button);
   }
-  api.dom.mapShell.before(bar);
+  // The tab row on top, the navigation row (‹ picker ›) directly under it, ⓘ's row under that (the
+  // user's rule, 2026-10-07; until then the tabs sat between the navigation row and ⓘ). Every map with
+  // tabs follows it; a page without tabs is unchanged.
+  const navRow = api.dom.picker?.closest('.picker-row');
+  if (navRow) navRow.before(bar);
+  else api.dom.mapShell.before(bar);
   if (spec.note) {
     note = api.own.node(document.createElement('p'), 'tab note');
     note.className = 'map-tab-note';
