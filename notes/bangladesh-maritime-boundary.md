@@ -9,7 +9,9 @@ preview only. The research behind it is
 `tools/.cache/bd-maritime/investigation.md`, out of git.
 
 History: 2026-10-08, live as built after step 2; BD-4 cancelled; the
-source-rule check found no textbook mention a student can see.
+source-rule check found no textbook mention a student can see. Later on
+2026-10-08 (BD-6), step 2's 35 strings were approved, five of them edited
+(see Strings).
 
 ## The user's rule for this map (2026-10-07)
 
@@ -272,9 +274,32 @@ fetches them again.
 
 ## Strings
 
-Every Bengali string in the seed is `{ bn, approved }`. Step 1b's 16 are
-approved, less the heading «সূত্রগুলোর অমিল», now gone; step 2's 35 (the
-card's 14 labels and 20 rows, one ⓘ line) await the user.
+Every Bengali string in the seed is `{ bn, approved }`, and all 50 are
+approved. Step 1b's 16 were approved then, less the heading
+«সূত্রগুলোর অমিল», now gone. Step 2's 35 (the card's 14 labels and 20 rows,
+one ⓘ line) went live unapproved on 2026-10-08; tools/verify.mjs now fails
+that (the user's rule of 2026-10-08, in CLAUDE.md).
+- **Approved by user 2026-10-08 (BD-5 review)**: all 35, numbered as in
+  `tools/.cache/bd-maritime/strings-review.md`. Five were edited:
+  - #10, a row label: «কী» → «কী বোঝায়».
+  - #21, India card, court: «স্থায়ী সালিশি আদালতের (PCA) নিবন্ধনে গঠিত
+    সালিশি ট্রাইব্যুনাল» → «সালিশি ট্রাইব্যুনাল; রেজিস্ট্রি: স্থায়ী সালিশি
+    আদালত (PCA)».
+  - #27, St Martin's card, effect: «… সীমা টানায় কোনো প্রভাব নয়» → «… সীমা
+    টানায় কোনো প্রভাব নেই».
+  - #30, baselines card, points: «চারটি বিন্দুর স্থানাঙ্ক দেওয়া; ৪ নম্বর বিন্দু
+    থেকে টেকনাফ ও সেন্টমার্টিন্স দ্বীপ পর্যন্ত ভাটার সময়ের জলরেখা; ৫ নম্বর
+    বিন্দু দ্বীপের দক্ষিণ প্রান্ত» → «পাঁচটি ভিত্তিবিন্দু: ১–৪ নম্বরের
+    স্থানাঙ্ক দেওয়া; ৫ নম্বর সেন্টমার্টিন্স দ্বীপের দক্ষিণ প্রান্ত, যার
+    স্থানাঙ্কের ঘরে ভাটার সময়ের জলরেখা».
+    - Re-read on the scan, p. ৮৭৬৪ (PDF p. 2), its table: five baseline
+      points; 1–4 with WGS84 coordinates; point 5, «Southern end of St.
+      Martin's Island», with "Low water line" in place of coordinates.
+  - #34, junction card, shelf: «… বাইরের সীমা এই একটি বিন্দু» → «…
+    বাইরের সীমা একটি স্থির বিন্দুতে নির্ধারিত, যা দুই সীমারেখার ছেদবিন্দু».
+    - Re-read in the CLCS executive summary: ¶3.6, the outer limits are
+      defined by one fixed point (offset 10167 in its normalised text), and
+      Table 1, its method "Delimitation line intersection" (offset 12583).
 - The title is the user's.
 - The other 14: the five item names, the area label, «আনুমানিক», the
   picker's placeholder, the four ⓘ lines, and the ⓘ headings «সূত্র» and

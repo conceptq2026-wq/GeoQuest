@@ -851,7 +851,7 @@
       "rows": {
         "court": {
           "bn": "সমুদ্র আইন বিষয়ক আন্তর্জাতিক ট্রাইব্যুনাল (ITLOS)",
-          "approved": false,
+          "approved": true,
           "cite": [
             {
               "source": "itlos",
@@ -865,7 +865,7 @@
         },
         "case": {
           "bn": "মামলা নং ১৬, বাংলাদেশ/মিয়ানমার",
-          "approved": false,
+          "approved": true,
           "cite": [
             {
               "source": "itlos",
@@ -879,7 +879,7 @@
         },
         "date": {
           "bn": "রায়: ১৪ মার্চ ২০১২",
-          "approved": false,
+          "approved": true,
           "cite": [
             {
               "source": "itlos",
@@ -893,7 +893,7 @@
         },
         "decision": {
           "bn": "প্রাথমিক সমদূরত্ব রেখাকে সমন্বয় করে টানা রেখা, যা ২০০ নটিক্যাল মাইলের বাইরেও একই দিকে চলে",
-          "approved": false,
+          "approved": true,
           "cite": [
             {
               "source": "itlos",
@@ -907,7 +907,7 @@
         },
         "islandEffect": {
           "bn": "আঞ্চলিক সমুদ্রে সেন্টমার্টিন্স দ্বীপ পূর্ণ প্রভাব পেয়েছে; একান্ত অর্থনৈতিক অঞ্চল ও মহীসোপানের সীমা টানায় কোনো প্রভাব পায়নি",
-          "approved": false,
+          "approved": true,
           "cite": [
             {
               "source": "itlos",
@@ -929,7 +929,7 @@
         },
         "greyArea": {
           "bn": "এই রেখার ফলে একটি ধূসর এলাকা তৈরি হয়েছে (টীকা দেখুন)",
-          "approved": false,
+          "approved": true,
           "cite": [
             {
               "source": "itlos",
@@ -953,8 +953,8 @@
       "line": "india",
       "rows": {
         "court": {
-          "bn": "স্থায়ী সালিশি আদালতের (PCA) নিবন্ধনে গঠিত সালিশি ট্রাইব্যুনাল",
-          "approved": false,
+          "bn": "সালিশি ট্রাইব্যুনাল; রেজিস্ট্রি: স্থায়ী সালিশি আদালত (PCA)",
+          "approved": true,
           "cite": [
             {
               "source": "pca",
@@ -968,7 +968,7 @@
         },
         "case": {
           "bn": "বঙ্গোপসাগর সমুদ্রসীমা সালিশ, বাংলাদেশ বনাম ভারত",
-          "approved": false,
+          "approved": true,
           "cite": [
             {
               "source": "pca",
@@ -982,7 +982,7 @@
         },
         "date": {
           "bn": "রোয়েদাদ: ৭ জুলাই ২০১৪",
-          "approved": false,
+          "approved": true,
           "cite": [
             {
               "source": "pca",
@@ -996,7 +996,7 @@
         },
         "decision": {
           "bn": "আঞ্চলিক সমুদ্রে সমদূরত্ব রেখা; তারপর ১৭৭°৩০′ দিগংশে সমন্বিত রেখা, যা মিয়ানমারের সঙ্গে সীমায় গিয়ে মিলেছে",
-          "approved": false,
+          "approved": true,
           "cite": [
             {
               "source": "pca",
@@ -1018,7 +1018,7 @@
         },
         "greyArea": {
           "bn": "এখানেও একটি ধূসর এলাকা তৈরি হয়েছে (টীকা দেখুন)",
-          "approved": false,
+          "approved": true,
           "cite": [
             {
               "source": "pca",
@@ -1049,7 +1049,7 @@
       "rows": {
         "location": {
           "bn": "কক্সবাজার জেলার টেকনাফ উপজেলা",
-          "approved": false,
+          "approved": true,
           "cite": [
             {
               "source": "teknafUpazila",
@@ -1062,8 +1062,8 @@
           ]
         },
         "effect": {
-          "bn": "১২ নটিক্যাল মাইল আঞ্চলিক সমুদ্র; একান্ত অর্থনৈতিক অঞ্চল ও মহীসোপানের সীমা টানায় কোনো প্রভাব নয়",
-          "approved": false,
+          "bn": "১২ নটিক্যাল মাইল আঞ্চলিক সমুদ্র; একান্ত অর্থনৈতিক অঞ্চল ও মহীসোপানের সীমা টানায় কোনো প্রভাব নেই",
+          "approved": true,
           "cite": [
             {
               "source": "itlos",
@@ -1096,7 +1096,7 @@
       "rows": {
         "notification": {
           "bn": "এস.আর.ও. নং ৩২৮, ৪ নভেম্বর ২০১৫; বাংলাদেশ গেজেট অতিরিক্ত সংখ্যা, ১০ নভেম্বর ২০১৫",
-          "approved": false,
+          "approved": true,
           "cite": [
             {
               "source": "sro328",
@@ -1107,7 +1107,7 @@
         },
         "what": {
           "bn": "যে রেখা থেকে আঞ্চলিক সমুদ্র, সংলগ্ন অঞ্চল ও একান্ত অর্থনৈতিক অঞ্চলের দূরত্ব মাপা হয়",
-          "approved": false,
+          "approved": true,
           "cite": [
             {
               "source": "act2021",
@@ -1136,8 +1136,8 @@
           ]
         },
         "points": {
-          "bn": "চারটি বিন্দুর স্থানাঙ্ক দেওয়া; ৪ নম্বর বিন্দু থেকে টেকনাফ ও সেন্টমার্টিন্স দ্বীপ পর্যন্ত ভাটার সময়ের জলরেখা; ৫ নম্বর বিন্দু দ্বীপের দক্ষিণ প্রান্ত",
-          "approved": false,
+          "bn": "পাঁচটি ভিত্তিবিন্দু: ১–৪ নম্বরের স্থানাঙ্ক দেওয়া; ৫ নম্বর সেন্টমার্টিন্স দ্বীপের দক্ষিণ প্রান্ত, যার স্থানাঙ্কের ঘরে ভাটার সময়ের জলরেখা",
+          "approved": true,
           "cite": [
             {
               "source": "sro328",
@@ -1148,7 +1148,7 @@
         },
         "objections": {
           "bn": "ভারত ৩ আগস্ট ২০১৭ ও মিয়ানমার ১৫ ফেব্রুয়ারি ২০১৯ জাতিসংঘে আপত্তি জানায়; ২০২১ সালে দুই দেশই আবার জানায়",
-          "approved": false,
+          "approved": true,
           "cite": [
             {
               "source": "ind2017",
@@ -1191,7 +1191,7 @@
       "rows": {
         "what": {
           "bn": "মিয়ানমার ও ভারতের সঙ্গে দুই সীমারেখার মিলনবিন্দু",
-          "approved": false,
+          "approved": true,
           "cite": [
             {
               "source": "pca",
@@ -1205,7 +1205,7 @@
         },
         "coordinates": {
           "bn": "১৬°৪৩′২৮.৮″ উত্তর, ৮৯°২৫′৫৪.৪″ পূর্ব",
-          "approved": false,
+          "approved": true,
           "cite": [
             {
               "source": "pca",
@@ -1218,8 +1218,8 @@
           ]
         },
         "shelf": {
-          "bn": "২০২০ সালে জাতিসংঘে দাখিল করা সংশোধিত দাবিতে বাংলাদেশের মহীসোপানের বাইরের সীমা এই একটি বিন্দু",
-          "approved": false,
+          "bn": "২০২০ সালে জাতিসংঘে দাখিল করা সংশোধিত দাবিতে বাংলাদেশের মহীসোপানের বাইরের সীমা একটি স্থির বিন্দুতে নির্ধারিত, যা দুই সীমারেখার ছেদবিন্দু",
+          "approved": true,
           "cite": [
             {
               "source": "clcs",
@@ -1373,7 +1373,7 @@
     {
       "group": "notes",
       "bn": "২০২১ সালের সংশোধিত আইন অনুযায়ী বাংলাদেশের আঞ্চলিক সমুদ্র ভিত্তিরেখা থেকে ১২ নটিক্যাল মাইল, সংলগ্ন অঞ্চল ২৪ নটিক্যাল মাইল ও একান্ত অর্থনৈতিক অঞ্চল ২০০ নটিক্যাল মাইল পর্যন্ত।",
-      "approved": false,
+      "approved": true,
       "cite": [
         {
           "source": "act2021",
@@ -1431,59 +1431,59 @@
     "_about": "The card's row labels, in this order; an item shows only the rows it has (step 2, 2026-10-07).",
     "court": {
       "bn": "আদালত",
-      "approved": false
+      "approved": true
     },
     "case": {
       "bn": "মামলা",
-      "approved": false
+      "approved": true
     },
     "date": {
       "bn": "তারিখ",
-      "approved": false
+      "approved": true
     },
     "decision": {
       "bn": "সীমারেখা",
-      "approved": false
+      "approved": true
     },
     "islandEffect": {
       "bn": "দ্বীপের প্রভাব",
-      "approved": false
+      "approved": true
     },
     "greyArea": {
       "bn": "ধূসর এলাকা",
-      "approved": false
+      "approved": true
     },
     "location": {
       "bn": "অবস্থান",
-      "approved": false
+      "approved": true
     },
     "effect": {
       "bn": "রায়ে যা পেল",
-      "approved": false
+      "approved": true
     },
     "notification": {
       "bn": "প্রজ্ঞাপন",
-      "approved": false
+      "approved": true
     },
     "what": {
-      "bn": "কী",
-      "approved": false
+      "bn": "কী বোঝায়",
+      "approved": true
     },
     "points": {
       "bn": "প্রকাশিত বিন্দু",
-      "approved": false
+      "approved": true
     },
     "objections": {
       "bn": "আপত্তি",
-      "approved": false
+      "approved": true
     },
     "coordinates": {
       "bn": "স্থানাঙ্ক",
-      "approved": false
+      "approved": true
     },
     "shelf": {
       "bn": "মহীসোপান",
-      "approved": false
+      "approved": true
     }
   }
 }

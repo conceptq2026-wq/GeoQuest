@@ -116,8 +116,8 @@ const SEASONS_SEEDS = path.join(ROOT, 'data-sources/seasons');
 const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa32509b451efb2';
 // The maritime-zones diagram: the editor's seed, pinned (live 2026-10-05).
 const MARITIME_ZONES_SEED_SHA256 = '6b0f67dbac0b0fa97037d86c7f94d3f07a73bd57a42d7b0986e8b3dc9fdab689';
-// The bangladesh-maritime-boundary map: the editor's seed, pinned (live 2026-10-08).
-const BANGLADESH_MARITIME_SEED_SHA256 = '1edf88deedf15093c5e82a990f4a252b32034b1dfd820e742ae6281a6da4b55c';
+// The bangladesh-maritime-boundary map: the editor's seed, pinned (live 2026-10-08; its 35 step-2 strings approved, BD-6).
+const BANGLADESH_MARITIME_SEED_SHA256 = '6a22df74f22ef8b34319e3b47d12fecd8bfe68991c4127440e101bda95a09f06';
 // The org-members map: the editor's seed, pinned (live 2026-10-07).
 const ORG_MEMBERS_SEED_SHA256 = '6c09b4d8a43f1115c633ce14e860569cea611536fece7237822da5ae1ae5e262';
 // The bangladesh-rivers diagram: the editor's seed, pinned. Its geometry is pinned in tools/bangladesh-rivers-pins.json.

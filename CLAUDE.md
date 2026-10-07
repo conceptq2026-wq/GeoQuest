@@ -60,6 +60,22 @@ BCS / government exam prep.
 - Never open a PR, never create a branch, never edit through the GitHub web
   interface.
 - **Never push until told to.** Report first; the user decides when to push.
+- **No unapproved string goes live** (the user's rule, 2026-10-08):
+  - `tools/verify.mjs` fails a live item whose seed has a `{ bn, approved: false }` string that reaches its
+    files under `docs/`.
+  - It also fails a live item whose seed carries no approval flags at all, unless the item is one of the 17
+    on its fixed LEGACY list. Every new map or diagram carries flags.
+  - Work in progress only warns.
+- **Before a push, `node tools/push-guard.mjs`** checks the commits since origin/main:
+  - fast-forward only, and the no-reply identity on every commit;
+  - no e-mail pattern in the diff or the commit messages;
+  - the 8-word quote scan against the cached source texts;
+  - no PDF, scan or image added.
+
+  The scan skips credit fields only, since a source is credited by its own title (rule (b), 2026-10-08):
+  - descriptor `attribution` and `sources.<src>.attribution`;
+  - `info.json` lines in the "sources" group;
+  - a diagram's `credits` and `creditGroups`.
 - Report in numbers, not narrative. Every report states: pending-fact count,
   trace count, geometry-hash status. Then anything that broke. Keep prose to
   what a number cannot say.

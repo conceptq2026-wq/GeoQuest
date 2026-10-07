@@ -1548,6 +1548,50 @@ console.log('\n---- org-members: seed ----');
   check(!wipItems.some((w) => w.id === OM) && registry.maps.some((e) => e.id === OM && e.section === 'international') && fs.existsSync(path.join(ROOT, 'docs/maps', OM, 'descriptor.json')), `${OM}: live — in registry.json under International, its folder under docs/maps/, no longer in tools/wip.json`);
 }
 
+// ---- no unapproved string ships (the user's rule, 2026-10-08, BD-6) -------------------------------
+// A live item whose seed carries approval flags ({ bn, approved }) may not serve a string the user has not
+// approved: every { bn, approved: false } in its tracked seed files whose text appears in its files under
+// docs/ (as written or JSON-escaped) fails. A live item whose seed carries no flags at all fails too, unless
+// it is one of the LEGACY items below, made before flags were used — so every new map or diagram carries them.
+// Work in progress only warns: its strings are drafts until it goes live.
+console.log('\n---- every live string is approved ----');
+{
+  const LEGACY = ['bangladesh-rivers', 'bangladesh-rivers-map', 'liberation-war-1971', 'border-lines', 'environment-treaties', 'org-headquarters', 'straits', 'world-revolutions', 'deserts', 'forests', 'lakes', 'latitude-longitude', 'mountains', 'waterfalls', 'atmosphere-layers', 'earth-interior', 'seasons'];
+  const SEED_DIR = { 'bangladesh-rivers-map': 'bangladesh-rivers' }; // the map reads the rivers diagram's seed
+  const trackedSeeds = execFileSync('git', ['ls-files', 'data-sources'], { cwd: ROOT }).toString('utf8').split('\n').filter((f) => f.endsWith('.json'));
+  const scanSeed = (id) => {
+    const dir = SEED_DIR[id] ?? id;
+    let flagged = 0;
+    const pending = [];
+    const walk = (v) => {
+      if (Array.isArray(v)) return v.forEach(walk);
+      if (!v || typeof v !== 'object') return;
+      if ('approved' in v) flagged++;
+      if (v.approved === false && typeof v.bn === 'string') pending.push(v.bn);
+      Object.values(v).forEach(walk);
+    };
+    for (const f of trackedSeeds.filter((f) => f.startsWith(`data-sources/${dir}/`))) walk(JSON.parse(fs.readFileSync(path.join(ROOT, f), 'utf8')));
+    return { flagged, pending };
+  };
+  const servedText = (dir) => fs.readdirSync(dir, { recursive: true }).map((f) => path.join(dir, String(f))).filter((f) => /\.(json|geojson)$/.test(f) && fs.statSync(f).isFile()).map((f) => fs.readFileSync(f, 'utf8')).join('\n');
+  const shipped = [], unflagged = [];
+  let flaggedItems = 0, legacyItems = 0;
+  for (const e of registry.maps) {
+    const { flagged, pending } = scanSeed(e.id);
+    if (!flagged) { if (LEGACY.includes(e.id)) legacyItems++; else unflagged.push(e.id); continue; }
+    flaggedItems++;
+    const served = servedText(path.join(SERVED, e.kind === 'diagram' ? 'diagrams' : 'maps', e.id));
+    const out = pending.filter((bn) => served.includes(bn) || served.includes(JSON.stringify(bn).slice(1, -1)));
+    if (out.length) shipped.push(`${e.id} (${out.length}: «${out[0].slice(0, 30)}»…)`);
+  }
+  check(shipped.length === 0 && unflagged.length === 0, `no live item serves an unapproved string: ${registry.maps.length} live items, ${flaggedItems} with approval flags, ${legacyItems} of the ${LEGACY.length} legacy items without${shipped.length ? ` — unapproved and live: ${shipped.join(', ')}` : ''}${unflagged.length ? ` — no approval flags and not legacy: ${unflagged.join(', ')}` : ''}`);
+  check(LEGACY.every((id) => registry.maps.some((e) => e.id === id)), `the legacy list names live items only (${LEGACY.length})`);
+  for (const w of wipItems) {
+    const { pending } = scanSeed(w.id);
+    if (pending.length) console.log(`warn ${w.id} (work in progress): ${pending.length} string(s) await the user's approval`);
+  }
+}
+
 if (failures) {
   console.error(`\n${failures} check(s) failed.`);
   process.exit(1);
