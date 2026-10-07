@@ -395,8 +395,9 @@ seed, `data-sources/world-revolutions/world-revolutions.seed.json`, by
 SHA-256 in `tools/verify-descriptor.mjs`; every marker is re-derived from the
 pinned Natural Earth countries, populated-places and admin-1 files and the
 COD-AB zip in `tools/verify.mjs`, and must lie inside its own country.
-bangladesh-maritime-boundary (work in progress):
-its sources, each by size and SHA-256, and the texts its quotes are offsets
+bangladesh-maritime-boundary (live 2026-10-08): its seed by SHA-256 and its
+built files held to a fresh build, in `tools/verify-descriptor.mjs`; its
+sources, each by size and SHA-256, and the texts its quotes are offsets
 into (`bangladeshMaritime` in `tools/sources.json`); in its build, the
 junction recomputed from the two azimuths within 0.01″ of the PCA's.
 org-members (live 2026-10-07): its seed by SHA-256 and its built files held
@@ -427,8 +428,9 @@ State which kind a task is when reporting it.
 
 ## Current state
 
-- Fifteen maps. Bangladesh: `ancient-janapadas`, `liberation-war-1971` and
-  `bangladesh-rivers-map` («নদী ২»). International: `straits`,
+- Sixteen maps. Bangladesh: `ancient-janapadas`, `liberation-war-1971`,
+  `bangladesh-rivers-map` («নদী ২») and `bangladesh-maritime-boundary`
+  (`notes/bangladesh-maritime-boundary.md`). International: `straits`,
   `border-lines`, `org-headquarters`, `environment-treaties`,
   `world-revolutions` (`notes/world-revolutions.md`) and `org-members`
   (`notes/org-members.md`). Geography:
@@ -453,11 +455,12 @@ State which kind a task is when reporting it.
   page on 2026-10-07, with no caption, after steps 1–2c: 18 organisations from
   their own official pages, two tabs («সংস্থা», «দেশ»), opening on South Asia
   with Bangladesh's card open.
-- Work in progress (`tools/wip.json`):
-  `bangladesh-maritime-boundary` «বাংলাদেশের সমুদ্রসীমা», a map under বাংলাদেশ
-  (step 2: card text drafted from official sources only, awaiting approval, over
-  step 1b's ITLOS and PCA lines, St Martin's, the 2015 baselines and the
-  lines' junction; local preview only: `notes/bangladesh-maritime-boundary.md`).
+- `bangladesh-maritime-boundary` «বাংলাদেশের সমুদ্রসীমা» went live on the home
+  page on 2026-10-08, under বাংলাদেশ, with no caption, after steps 1–2: the
+  ITLOS and PCA lines, St Martin's, the 2015 baselines and the lines'
+  junction, card text from official sources only (the user's rule,
+  2026-10-07).
+- Work in progress (`tools/wip.json`): none.
 
 ## Index — notes, read only when working on that item
 

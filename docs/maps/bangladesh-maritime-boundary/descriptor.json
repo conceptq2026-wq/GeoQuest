@@ -1,0 +1,650 @@
+{
+  "schema": "geoquest/map-descriptor@1",
+  "id": "bangladesh-maritime-boundary",
+  "section": "bangladesh",
+  "title": {
+    "bn": "বাংলাদেশের সমুদ্রসীমা",
+    "en": "Bangladesh Maritime Boundary"
+  },
+  "basemap": "bangladesh-wide",
+  "view": {
+    "fitBounds": [
+      88.9,
+      16.5,
+      92.6,
+      22.9
+    ]
+  },
+  "constraints": {
+    "maxZoom": 11,
+    "maxBounds": [
+      85.5,
+      14.5,
+      95.5,
+      25.5
+    ]
+  },
+  "minTextSize": 14,
+  "lookups": {},
+  "records": {
+    "items": {
+      "file": "./items.json",
+      "fields": {
+        "nameBn": {
+          "type": "text",
+          "required": true
+        },
+        "kind": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "hasLine": {
+          "type": "boolean",
+          "required": true,
+          "display": false
+        },
+        "at": {
+          "type": "point",
+          "appliesWhen": {
+            "hasLine": false
+          }
+        },
+        "frame": {
+          "type": "bbox",
+          "required": true
+        },
+        "court": {
+          "type": "text"
+        },
+        "case": {
+          "type": "text"
+        },
+        "date": {
+          "type": "text"
+        },
+        "decision": {
+          "type": "text"
+        },
+        "islandEffect": {
+          "type": "text"
+        },
+        "greyArea": {
+          "type": "text"
+        },
+        "location": {
+          "type": "text"
+        },
+        "effect": {
+          "type": "text"
+        },
+        "notification": {
+          "type": "text"
+        },
+        "what": {
+          "type": "text"
+        },
+        "points": {
+          "type": "text"
+        },
+        "objections": {
+          "type": "text"
+        },
+        "coordinates": {
+          "type": "text"
+        },
+        "shelf": {
+          "type": "text"
+        }
+      }
+    }
+  },
+  "sources": {
+    "area": {
+      "geometry": "./area.geojson",
+      "attribution": "<a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener noreferrer\">© OpenStreetMap contributors</a>"
+    },
+    "areaOverview": {
+      "geometry": "./area-overview.geojson",
+      "attribution": "<a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener noreferrer\">© OpenStreetMap contributors</a>"
+    },
+    "lines": {
+      "records": "items",
+      "geometry": "./lines.geojson",
+      "joinField": "item",
+      "expectGeometry": {
+        "hasLine": true
+      },
+      "state": [
+        "selected"
+      ],
+      "properties": [
+        "kind",
+        "nameBn"
+      ]
+    },
+    "arc": {
+      "geometry": "./arc.geojson",
+      "attribution": "<a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener noreferrer\">© OpenStreetMap contributors</a>"
+    },
+    "vertices": {
+      "geometry": "./vertices.geojson"
+    },
+    "points": {
+      "records": "items",
+      "geometryFrom": "at",
+      "state": [
+        "selected"
+      ],
+      "properties": [
+        "nameBn"
+      ],
+      "selectionMarker": true
+    }
+  },
+  "styles": {
+    "sea-fill": {
+      "paint": {
+        "fill-color": "#1e88e5",
+        "fill-opacity": 0.16
+      }
+    },
+    "line-casing": {
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "#ffffff",
+        "line-width": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          8,
+          5.5
+        ]
+      }
+    },
+    "line-trace": {
+      "layout": {
+        "line-cap": "round",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": [
+          "match",
+          [
+            "get",
+            "kind"
+          ],
+          "myanmar",
+          "#c2410c",
+          "india",
+          "#6a1b9a",
+          "#0b3d91"
+        ],
+        "line-width": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          4.5,
+          [
+            "==",
+            [
+              "get",
+              "kind"
+            ],
+            "baseline"
+          ],
+          2,
+          3
+        ]
+      }
+    },
+    "arc-line": {
+      "layout": {
+        "line-cap": "butt",
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "#c2410c",
+        "line-width": 3,
+        "line-dasharray": [
+          2,
+          1.5
+        ]
+      }
+    },
+    "vertex-dot": {
+      "paint": {
+        "circle-radius": 3,
+        "circle-color": [
+          "match",
+          [
+            "get",
+            "kind"
+          ],
+          "myanmar",
+          "#c2410c",
+          "india",
+          "#6a1b9a",
+          "#0b3d91"
+        ],
+        "circle-stroke-width": 1.5,
+        "circle-stroke-color": "#ffffff"
+      }
+    },
+    "vertex-number": {
+      "layout": {
+        "text-font": [
+          "Noto Sans Bengali"
+        ],
+        "text-size": 14,
+        "text-offset": [
+          0,
+          -1.1
+        ],
+        "text-allow-overlap": false
+      },
+      "paint": {
+        "text-color": "#0b3d91",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    "line-label": {
+      "layout": {
+        "symbol-placement": "line",
+        "text-font": [
+          "Noto Sans Bengali"
+        ],
+        "text-size": 14,
+        "symbol-spacing": 400,
+        "text-max-angle": 30
+      },
+      "paint": {
+        "text-color": [
+          "match",
+          [
+            "get",
+            "kind"
+          ],
+          "myanmar",
+          "#c2410c",
+          "india",
+          "#6a1b9a",
+          "#0b3d91"
+        ],
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    "arc-label": {
+      "layout": {
+        "symbol-placement": "line",
+        "text-font": [
+          "Noto Sans Bengali"
+        ],
+        "text-size": 14,
+        "symbol-spacing": 300
+      },
+      "paint": {
+        "text-color": "#c2410c",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    "area-label": {
+      "layout": {
+        "text-font": [
+          "Noto Sans Bengali"
+        ],
+        "text-size": 15
+      },
+      "paint": {
+        "text-color": "#0d47a1",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    },
+    "point-marker": {
+      "paint": {
+        "circle-radius": 6,
+        "circle-color": "#0b3d91",
+        "circle-stroke-width": 2,
+        "circle-stroke-color": "#ffffff"
+      }
+    },
+    "point-label": {
+      "layout": {
+        "text-font": [
+          "Noto Sans Bengali"
+        ],
+        "text-variable-anchor": [
+          "right",
+          "left",
+          "top",
+          "bottom"
+        ],
+        "text-radial-offset": 1,
+        "text-optional": true
+      },
+      "paint": {
+        "text-color": "#0b3d91",
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 2
+      }
+    }
+  },
+  "layers": [
+    {
+      "id": "sea-area-overview",
+      "type": "fill",
+      "source": "areaOverview",
+      "slot": "belowLabels",
+      "style": "sea-fill",
+      "maxzoom": 8
+    },
+    {
+      "id": "sea-area",
+      "type": "fill",
+      "source": "area",
+      "slot": "belowLabels",
+      "style": "sea-fill",
+      "minzoom": 8,
+      "filter": [
+        "==",
+        [
+          "geometry-type"
+        ],
+        "Polygon"
+      ]
+    },
+    {
+      "id": "line-casing",
+      "type": "line",
+      "source": "lines",
+      "slot": "belowLabels",
+      "style": "line-casing"
+    },
+    {
+      "id": "line-trace",
+      "type": "line",
+      "source": "lines",
+      "slot": "belowLabels",
+      "style": "line-trace"
+    },
+    {
+      "id": "arc-line",
+      "type": "line",
+      "source": "arc",
+      "slot": "belowLabels",
+      "style": "arc-line"
+    },
+    {
+      "id": "vertex-dots",
+      "type": "circle",
+      "source": "vertices",
+      "slot": "belowLabels",
+      "style": "vertex-dot"
+    },
+    {
+      "id": "line-labels",
+      "type": "symbol",
+      "source": "lines",
+      "slot": "aboveLabels",
+      "style": "line-label",
+      "filter": [
+        "!=",
+        [
+          "get",
+          "kind"
+        ],
+        "baseline"
+      ],
+      "layout": {
+        "text-field": [
+          "get",
+          "nameBn"
+        ]
+      }
+    },
+    {
+      "id": "arc-label",
+      "type": "symbol",
+      "source": "arc",
+      "slot": "aboveLabels",
+      "style": "arc-label",
+      "minzoom": 8,
+      "layout": {
+        "text-field": [
+          "get",
+          "label"
+        ]
+      }
+    },
+    {
+      "id": "vertex-numbers",
+      "type": "symbol",
+      "source": "vertices",
+      "slot": "aboveLabels",
+      "style": "vertex-number",
+      "minzoom": 6,
+      "filter": [
+        "has",
+        "n"
+      ],
+      "layout": {
+        "text-field": [
+          "get",
+          "n"
+        ]
+      }
+    },
+    {
+      "id": "point-markers",
+      "type": "circle",
+      "source": "points",
+      "slot": "aboveLabels",
+      "style": "point-marker",
+      "filter": [
+        "!",
+        [
+          "get",
+          "selected"
+        ]
+      ]
+    },
+    {
+      "id": "point-labels",
+      "type": "symbol",
+      "source": "points",
+      "slot": "aboveLabels",
+      "style": "point-label",
+      "layout": {
+        "text-field": [
+          "get",
+          "nameBn"
+        ],
+        "text-size": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          16,
+          14
+        ]
+      }
+    },
+    {
+      "id": "area-label",
+      "type": "symbol",
+      "source": "area",
+      "slot": "aboveLabels",
+      "style": "area-label",
+      "filter": [
+        "==",
+        [
+          "geometry-type"
+        ],
+        "Point"
+      ],
+      "layout": {
+        "text-field": [
+          "get",
+          "label"
+        ]
+      }
+    }
+  ],
+  "controls": [
+    {
+      "type": "picker",
+      "id": "item",
+      "from": "items",
+      "labelField": "nameBn",
+      "placeholder": "একটি সীমা বা স্থান বেছে নিন…",
+      "labelEn": "Choose a boundary or a place",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "on": "click",
+      "target": "source:lines",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
+    },
+    {
+      "on": "click",
+      "target": "source:points",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 1800,
+          "field": "frame"
+        }
+      ]
+    }
+  ],
+  "sheet": {
+    "title": {
+      "field": "nameBn"
+    },
+    "rows": [
+      {
+        "label": "আদালত",
+        "field": "court"
+      },
+      {
+        "label": "মামলা",
+        "field": "case"
+      },
+      {
+        "label": "তারিখ",
+        "field": "date"
+      },
+      {
+        "label": "সীমারেখা",
+        "field": "decision"
+      },
+      {
+        "label": "দ্বীপের প্রভাব",
+        "field": "islandEffect"
+      },
+      {
+        "label": "ধূসর এলাকা",
+        "field": "greyArea"
+      },
+      {
+        "label": "অবস্থান",
+        "field": "location"
+      },
+      {
+        "label": "রায়ে যা পেল",
+        "field": "effect"
+      },
+      {
+        "label": "প্রজ্ঞাপন",
+        "field": "notification"
+      },
+      {
+        "label": "কী",
+        "field": "what"
+      },
+      {
+        "label": "প্রকাশিত বিন্দু",
+        "field": "points"
+      },
+      {
+        "label": "আপত্তি",
+        "field": "objections"
+      },
+      {
+        "label": "স্থানাঙ্ক",
+        "field": "coordinates"
+      },
+      {
+        "label": "মহীসোপান",
+        "field": "shelf"
+      }
+    ]
+  },
+  "info": {
+    "file": "./info.json",
+    "headings": {
+      "conflicts": "",
+      "sources": "সূত্র",
+      "notes": "টীকা"
+    }
+  },
+  "attribution": {
+    "extra": [
+      "<a href=\"https://www.itlos.org/fileadmin/itlos/documents/cases/case_no_16/published/C16-14_mar_12_Judgment.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Delimitation of the maritime boundary in the Bay of Bengal (Bangladesh/Myanmar), Case No. 16, Judgment of 14 March 2012 (International Tribunal for the Law of the Sea (ITLOS))</a>",
+      "<a href=\"https://pcacases.com/web/sendAttach/383\" target=\"_blank\" rel=\"noopener noreferrer\">Bay of Bengal Maritime Boundary Arbitration (Bangladesh v. India), Award of 7 July 2014, with the Technical Report of the Tribunal's Hydrographer as its appendix (Permanent Court of Arbitration (PCA))</a>",
+      "<a href=\"https://www.un.org/depts/los/LEGISLATIONANDTREATIES/PDFFILES/DEPOSIT/bgd_mzn118.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Notification S.R.O. No. 328-Law/2015/MOFA/UNCLOS/113/2/15 of 4 November 2015 (Bangladesh Gazette Extraordinary, 10 November 2015), as deposited with the United Nations (M.Z.N.118.2016.LOS, 7 April 2016) (Ministry of Foreign Affairs, Bangladesh; deposited copy published by UN DOALOS)</a>",
+      "<a href=\"https://bdlaws.minlaw.gov.bd/act-1394.html\" target=\"_blank\" rel=\"noopener noreferrer\">Territorial Waters and Maritime Zones (Amendment) Act, 2021 (Act No. XXIX of 2021), and the Territorial Waters and Maritime Zones Act, 1974 as it amends it, sections 2C, 3, 4, 5 and 7 (Legislative and Parliamentary Affairs Division, Ministry of Law, Justice and Parliamentary Affairs (bdlaws.minlaw.gov.bd))</a>",
+      "<a href=\"https://www.un.org/Depts/los/clcs_new/submissions_files/bgd55_11/Executive%20summary_BGD_AMD.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Amended Submission to the Commission on the Limits of the Continental Shelf, Executive Summary (22 October 2020) (People's Republic of Bangladesh, Ministry of Foreign Affairs)</a>",
+      "<a href=\"https://www.un.org/depts/los/LEGISLATIONANDTREATIES/PDFFILES/2017_08_03_IND_UN.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Note PM/NY/443/1/2017 of 3 August 2017 on M.Z.N.118.2016.LOS (Permanent Mission of India to the United Nations)</a>",
+      "<a href=\"https://www.un.org/depts/los/LEGISLATIONANDTREATIES/PDFFILES/NV57-030945%28corrected%29.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Note No. 57/03 09 45 of 15 February 2019 on M.Z.N.118.2016.LOS (Permanent Mission of the Republic of the Union of Myanmar to the United Nations)</a>",
+      "<a href=\"https://www.un.org/Depts/los/clcs_new/submissions_files/bgd55_11/20210416IndNvUN002.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Note PM/NY/443/4/2021 on Bangladesh's amended CLCS submission (Permanent Mission of India to the United Nations)</a>",
+      "<a href=\"https://www.un.org/Depts/los/clcs_new/submissions_files/bgd55_11/20210126MmrNvUn002.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Note No. 29/13 13 on Bangladesh's amended CLCS submission (Permanent Mission of the Republic of the Union of Myanmar to the United Nations)</a>",
+      "<a href=\"https://teknaf.coxsbazar.gov.bd/pages/tourist-spot/%E0%A6%B8%E0%A7%87%E0%A6%A8%E0%A7%8D%E0%A6%9F%E0%A6%AE%E0%A6%BE%E0%A6%B0%E0%A7%8D%E0%A6%9F%E0%A6%BF%E0%A6%A8-%E0%A6%A6%E0%A7%8D%E0%A6%AC%E0%A7%80%E0%A6%AA-52f2d8-6990be1c35ce18e1c07074bb\" target=\"_blank\" rel=\"noopener noreferrer\">সেন্টমার্টিন দ্বীপ (tourist-spot page), Teknaf upazila portal (Teknaf Upazila, Cox's Bazar district (Bangladesh National Portal))</a>",
+      "<a href=\"https://coxsbazar.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">Cox's Bazar district portal, home page (Cox's Bazar District (Bangladesh National Portal))</a>"
+    ]
+  }
+}

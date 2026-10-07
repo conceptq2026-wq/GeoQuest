@@ -1267,7 +1267,7 @@ console.log('\n---- maritime-zones: seed ----');
   check(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(seedText), 'maritime-zones: no e-mail address in the seed');
 }
 
-// ---- bangladesh-maritime-boundary (work in progress): the seed, step 1 -------------------------
+// ---- bangladesh-maritime-boundary (live 2026-10-08): the seed, its sources and quotes -----------
 // Every source is pinned in the seed and in tools/sources.json (bangladeshMaritime) and kept in
 // tools/.cache/bd-maritime/. A coordinate's citation is its place in the pinned PDF's text, as
 // pdftotext prints it (notes/bangladesh-maritime-boundary.md), and the SHA-256 of the quote: each is
@@ -1387,12 +1387,15 @@ console.log('\n---- bangladesh-maritime-boundary: seed ----');
   const notOfficial = Object.entries(seed.sources).filter(([, s]) => !OFFICIAL.includes(s.kind)).map(([k]) => k);
   const strayCites = cites.filter((c) => c.source !== 'user' && !(c.source in seed.sources)).map((c) => c.where);
   const BOOK = /NCTB|textbook|পাঠ্যপুস্তক|পাঠ্যবই|ভূগোল ও পরিবেশ|বাংলাদেশ ও বিশ্বপরিচয়/i;
-  const built = path.join(os.tmpdir(), 'geoquest-verify', MB);
+  const built = path.join(ROOT, 'docs/maps', MB);
   const bookIn = [
     [`data-sources/${MB}/${MB}.seed.json`, seedText],
     [`tools/build-${MB}.mjs`, fs.readFileSync(path.join(HERE, `build-${MB}.mjs`), 'utf8')],
     ...(fs.existsSync(built) ? fs.readdirSync(built).filter((f) => f.endsWith('.json')).map((f) => [`built ${f}`, fs.readFileSync(path.join(built, f), 'utf8')]) : []),
   ].filter(([, s]) => BOOK.test(s)).map(([f]) => f);
+  // Live since 2026-10-08: on the home page under Bangladesh, out of the work in progress; its built files are held
+  // to a fresh build, and its seed to its pin, by tools/verify-descriptor.mjs.
+  check(!wipItems.some((w) => w.id === MB) && registry.maps.some((e) => e.id === MB && e.section === 'bangladesh') && fs.existsSync(path.join(ROOT, 'docs/maps', MB, 'descriptor.json')), `${MB}: live — in registry.json under Bangladesh, its folder under docs/maps/, no longer in tools/wip.json`);
   check(notOfficial.length === 0 && strayCites.length === 0 && bookIn.length === 0, `${MB}: official sources only — ${Object.keys(seed.sources).length} sources, each of an official kind (${[...new Set(Object.values(seed.sources).map((s) => s.kind))].join(', ')}); every citation names one of them or the user; no textbook in the seed, the build or the built files${notOfficial.length || strayCites.length || bookIn.length ? ` — not: ${[...notOfficial, ...strayCites, ...bookIn].slice(0, 4).join(', ')}` : ''}`);
 }
 

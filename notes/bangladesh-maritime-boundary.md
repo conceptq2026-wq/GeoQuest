@@ -1,9 +1,15 @@
 # bangladesh-maritime-boundary — «বাংলাদেশের সমুদ্রসীমা»
 
 Read it with `CLAUDE.md`, whose rules and verification budget apply. A map
-under বাংলাদেশ, **work in progress** (`tools/wip.json`): local preview only.
-Nothing is under `docs/` and `docs/registry.json` is unchanged. The research
-behind it is `tools/.cache/bd-maritime/investigation.md`, out of git.
+under বাংলাদেশ, **live since 2026-10-08** (the user's «এখন তুলুন», step GL-BD):
+built into `docs/maps/bangladesh-maritime-boundary/`, listed in
+`docs/registry.json` with its descriptor's titles and no caption, out of
+`tools/wip.json`. Until then it was work in progress, built into the local
+preview only. The research behind it is
+`tools/.cache/bd-maritime/investigation.md`, out of git.
+
+History: 2026-10-08, live as built after step 2; BD-4 cancelled; the
+source-rule check found no textbook mention a student can see.
 
 ## The user's rule for this map (2026-10-07)
 

@@ -16,6 +16,14 @@
       }
     },
     {
+      "id": "bangladesh-maritime-boundary",
+      "section": "bangladesh",
+      "title": {
+        "en": "Bangladesh Maritime Boundary",
+        "bn": "বাংলাদেশের সমুদ্রসীমা"
+      }
+    },
+    {
       "id": "bangladesh-rivers",
       "kind": "diagram",
       "section": "bangladesh",

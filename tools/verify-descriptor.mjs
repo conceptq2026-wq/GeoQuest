@@ -35,8 +35,8 @@
 //                               data-sources/maritime-zones/maritime-zones.seed.json, pinned
 //   org-members  docs/maps/org-members/ is a fresh build of data-sources/org-members/
 //                org-members.seed.json, pinned; its sources and quotes, by tools/verify.mjs
-//   bangladesh-maritime-boundary  work in progress, built into a temporary folder from
-//                                 data-sources/bangladesh-maritime-boundary/; its seed, by tools/verify.mjs
+//   bangladesh-maritime-boundary  docs/maps/bangladesh-maritime-boundary/ is a fresh build of
+//                                 data-sources/bangladesh-maritime-boundary/, pinned; its sources and quotes, by tools/verify.mjs
 //
 // A map under docs/maps/ or a diagram under docs/diagrams/ with no section
 // here fails, by its id: a new one is written into this file with its own
@@ -116,6 +116,8 @@ const SEASONS_SEEDS = path.join(ROOT, 'data-sources/seasons');
 const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa32509b451efb2';
 // The maritime-zones diagram: the editor's seed, pinned (live 2026-10-05).
 const MARITIME_ZONES_SEED_SHA256 = '6b0f67dbac0b0fa97037d86c7f94d3f07a73bd57a42d7b0986e8b3dc9fdab689';
+// The bangladesh-maritime-boundary map: the editor's seed, pinned (live 2026-10-08).
+const BANGLADESH_MARITIME_SEED_SHA256 = '1edf88deedf15093c5e82a990f4a252b32034b1dfd820e742ae6281a6da4b55c';
 // The org-members map: the editor's seed, pinned (live 2026-10-07).
 const ORG_MEMBERS_SEED_SHA256 = '6c09b4d8a43f1115c633ce14e860569cea611536fece7237822da5ae1ae5e262';
 // The bangladesh-rivers diagram: the editor's seed, pinned. Its geometry is pinned in tools/bangladesh-rivers-pins.json.
@@ -2690,18 +2692,27 @@ console.log('\n\n============ org-members ============');
 
 /*
 |--------------------------------------------------------------------------
-| BANGLADESH-MARITIME-BOUNDARY — work in progress (step 1, 2026-10-05): not
-| under docs/ yet, so its build runs into a temporary folder and the generic
-| checks read it there. The seed's quotes, pins and strings are held by
+| BANGLADESH-MARITIME-BOUNDARY — a map (live 2026-10-08): the seed is the
+| approved one, docs/ holds exactly what a fresh build writes, and the checks
+| below read docs/. The seed's quotes, pins and strings are held by
 | tools/verify.mjs; the build itself stops on its geodesic checks.
 |--------------------------------------------------------------------------
 */
-console.log('\n\n============ bangladesh-maritime-boundary (work in progress) ============');
+console.log('\n\n============ bangladesh-maritime-boundary ============');
 {
   const id = 'bangladesh-maritime-boundary';
-  const seed = readJson(path.join(ROOT, 'data-sources', id, `${id}.seed.json`));
-  const dir = path.join(os.tmpdir(), 'geoquest-verify', id);
-  execFileSync(process.execPath, [path.join(HERE, `build-${id}.mjs`), dir], { stdio: 'pipe' });
+  const seedFile = path.join(ROOT, 'data-sources', id, `${id}.seed.json`);
+  const seedHash = crypto.createHash('sha256').update(fs.readFileSync(seedFile)).digest('hex');
+  check(seedHash === BANGLADESH_MARITIME_SEED_SHA256, `the seed is the approved one: SHA-256 ${seedHash.slice(0, 12)}… (pinned ${BANGLADESH_MARITIME_SEED_SHA256.slice(0, 12)}…)`);
+  const seed = readJson(seedFile);
+  const dir = path.join(MAPS_DIR, id);
+  // docs/ holds what the build writes, byte for byte, and nothing else.
+  const fresh = path.join(os.tmpdir(), 'geoquest-verify', id);
+  fs.rmSync(fresh, { recursive: true, force: true });
+  execFileSync(process.execPath, [path.join(HERE, `build-${id}.mjs`), fresh], { stdio: 'pipe' });
+  const built = fs.readdirSync(fresh).sort();
+  const differ = built.filter((name) => !fs.existsSync(path.join(dir, name)) || !fs.readFileSync(path.join(dir, name)).equals(fs.readFileSync(path.join(fresh, name))));
+  check(differ.length === 0 && fs.readdirSync(dir).sort().join() === built.join(), `docs/maps/${id}/ is a fresh build, byte for byte (${built.join(', ')})${differ.length ? ` — differs: ${differ.join(', ')}` : ''}`);
   const descriptor = readJson(path.join(dir, 'descriptor.json'));
   const items = readJson(path.join(dir, 'items.json'));
   const info = readJson(path.join(dir, 'info.json'));
@@ -2732,7 +2743,7 @@ console.log('\n\n============ bangladesh-maritime-boundary (work in progress) ==
   // The sea area's name is the last symbol layer: placed first, it wins every collision (step 1b).
   const symbols = descriptor.layers.filter((l) => l.type === 'symbol');
   check(symbols.at(-1)?.id === 'area-label', `the sea area's name is the map's last symbol layer, so it is placed first (${symbols.map((l) => l.id).join(', ')})`);
-  checkMap({ id, expectedPending: 0, dir });
+  checkMap({ id, expectedPending: 0 });
 }
 
 /*

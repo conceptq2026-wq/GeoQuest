@@ -1,10 +1,10 @@
-// Builds the bangladesh-maritime-boundary map (work in progress, step 1) from its seed:
+// Builds the bangladesh-maritime-boundary map (live since 2026-10-08) from its seed:
 //
 //   node tools/build-bangladesh-maritime-boundary.mjs <out>
 //
-// While the map is in tools/wip.json, tools/preview.mjs runs this into its own copy of
-// docs/ and tools/verify-descriptor.mjs into a temporary folder; nothing is written under
-// docs/ until it is finished, so <out> is required.
+// It writes into <out>: docs/maps/bangladesh-maritime-boundary/ for the live map, which
+// tools/verify-descriptor.mjs holds to a fresh build in a temporary folder, byte for byte; <out>
+// is required.
 //
 // It reads data-sources/bangladesh-maritime-boundary/bangladesh-maritime-boundary.seed.json
 // and the coastline behind the Bangladesh basemap, tools/sources/osm-bangladesh-land.geojson
@@ -38,7 +38,7 @@ const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z
 const ROOT = path.resolve(HERE, '..');
 const ID = 'bangladesh-maritime-boundary';
 const SEED = path.join(ROOT, 'data-sources', ID, `${ID}.seed.json`);
-if (!process.argv[2]) throw new Error(`usage: node tools/build-${ID}.mjs <out> — the map is work in progress, so nothing is written under docs/`);
+if (!process.argv[2]) throw new Error(`usage: node tools/build-${ID}.mjs <out>, e.g. docs/maps/${ID}`);
 const OUT = path.resolve(process.argv[2]);
 
 const seed = JSON.parse(fs.readFileSync(SEED, 'utf8'));
