@@ -484,7 +484,7 @@ State which kind a task is when reporting it.
   - 19 groups from Census 2022, in three tabs (groups, districts, institutes);
   - its districts drawn from the shared district file through the shell's opt-in `sharedGeometry`
     (2026-10-08, `notes/shell.md`);
-  - 84 strings approved, 18 awaiting the user (`notes/bangladesh-ethnic-groups.md`).
+  - all 103 strings approved (2026-10-08, `notes/bangladesh-ethnic-groups.md`).
 
 ## Index — notes, read only when working on that item
 

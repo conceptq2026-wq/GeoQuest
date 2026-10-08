@@ -14,7 +14,7 @@
 //
 // Three view tabs over three tables: «গোষ্ঠী» picks a group and colours the districts that are its main
 // settlement (the seed's rule, 80 % + 1,000); «জেলা» picks a district and lists the groups whose main settlement
-// it is; «প্রতিষ্ঠান» shows the ten institutes of the Ministry of Cultural Affairs. Every Bengali word is the
+// it is; «প্রতিষ্ঠান» shows the ten institutes of the Ministry of Cultural Affairs, as plain dots. Every Bengali word is the
 // seed's; the numbers are written in Bengali digits, grouped as Bengali text groups them (৪,৮৩,৩৬৫).
 import fs from 'node:fs';
 import path from 'node:path';
@@ -96,7 +96,6 @@ for (const i of seed.institutes) {
     at,
     frame: [at[0] - 0.12, at[1] - 0.1, at[0] + 0.12, at[1] + 0.1].map(round),
     groups: seed.groups.filter((g) => g.institutes.includes(i.id)).map((g) => g.id),
-    legendKind: 'institute',
   };
 }
 
@@ -113,12 +112,21 @@ const link = (url, text) => {
 };
 const used = new Set(seed.groups.flatMap((g) => ['language', 'religion', 'festivals'].flatMap((f) => (g[f] ? g[f].cite.map((c) => c.source) : []))));
 for (const i of seed.institutes) for (const c of [...(i.groupsNamed?.cite ?? []), ...(i.location.cite ?? []), ...(i.district.cite ?? [])]) used.add(c.source);
-const portals = [...new Set([...used].filter((s) => seed.sources[s]?.kind === 'gob-portal').map((s) => seed.sources[s].url))].sort();
+// The district portals are one line (the user's decision, 2026-10-08): their own name, as every cached portal page's
+// header prints it, then the districts — the seed's approved string, linked to the national portal. Each fact keeps
+// its own page's URL in the seed. Every other government page is a line of its own, once.
+const P = S.credits.portals;
+const isPortal = (url) => P.hosts.includes(new URL(url).host);
+const pages = [...new Set([...used].filter((s) => seed.sources[s]?.kind === 'gob-portal').map((s) => seed.sources[s].url))].sort();
+const portalPages = pages.filter(isPortal);
+if (new Set(portalPages.map((u) => new URL(u).host)).size !== P.hosts.length) throw new Error(`the portal line names ${P.hosts.length} portals; the facts cite ${new Set(portalPages.map((u) => new URL(u).host)).size}`);
+const portals = pages.filter((u) => !isPortal(u) && u !== seed.sources.mocaInstitutes.url);
 const extra = [
   link(seed.sources.bbsNational.url, 'Bangladesh Bureau of Statistics, Population and Housing Census 2022, National Report Volume I (Table P29)'),
   link('https://bbs.gov.bd/pages/static-pages/6922e073933eb65569e27220', 'Bangladesh Bureau of Statistics, Population and Housing Census 2022, District Reports (Table P17), and the Preliminary Report (Bangla), table স-১.৪'),
   link(seed.sources.gazette2019.url, 'Ministry of Cultural Affairs, S.R.O. No. 78-Law/2019 (Bangladesh Gazette Extraordinary, 23 March 2019): the list of groups'),
   link(seed.sources.mocaInstitutes.url, 'Ministry of Cultural Affairs: its offices and institutes'),
+  link('https://bangladesh.gov.bd/', P.bn),
   ...portals.map((url) => link(url, `Government portal: ${new URL(url).host}`)),
   link('https://bn.banglapedia.org/', 'Banglapedia, Asiatic Society of Bangladesh'),
 ];
@@ -138,7 +146,6 @@ const descriptor = {
   minTextSize: 14,
   frameClearsControls: true,
   sheetMaxHeight: 0.5,
-  images: { institute: { file: './institute.svg', pixelRatio: 1 } },
   records: {
     tabs: { file: './tabs.json', fields: { titleBn: { type: 'text', required: true }, placeholderBn: { type: 'text', required: true } } },
     groups: {
@@ -154,21 +161,23 @@ const descriptor = {
       file: './institutes.json',
       fields: {
         nameBn: { type: 'text', required: true }, districtBn: { type: 'text', required: true }, namedBn: { type: 'text' }, locationBn: { type: 'text' },
-        at: { type: 'point', required: true }, frame: { type: 'bbox', required: true }, groups: { type: 'refs', to: 'groups', display: false }, legendKind: { type: 'text', display: false },
+        at: { type: 'point', required: true }, frame: { type: 'bbox', required: true }, groups: { type: 'refs', to: 'groups', display: false },
       },
     },
   },
   sources: {
     districtFill: { records: 'districts', sharedGeometry: 'bangladesh-districts.json', joinField: 'pcode', state: [{ name: 'inGroup', fromSelection: { records: 'groups', listField: 'districts' } }], attribution: CODAB },
     districtTap: { records: 'districts', sharedGeometry: 'bangladesh-districts.json', joinField: 'pcode', state: ['selected'], attribution: CODAB },
-    institutes: { records: 'institutes', geometryFrom: 'at', state: ['selected'], properties: ['nameBn'], selectionMarker: true, attribution: OSM },
+    institutes: { records: 'institutes', geometryFrom: 'at', state: ['selected'], properties: ['nameBn'], selectionMarker: true, tapWidth: 44, attribution: OSM },
   },
   layers: [
     { id: 'district-group-fill', type: 'fill', source: 'districtFill', slot: 'belowLabels', filter: ['get', 'inGroup'], paint: { 'fill-color': '#0072B2', 'fill-opacity': 0.45 } },
     { id: 'district-group-line', type: 'line', source: 'districtFill', slot: 'belowLabels', filter: ['get', 'inGroup'], layout: { 'line-join': 'round' }, paint: { 'line-color': '#0b3d91', 'line-width': 1.5 } },
     { id: 'district-chosen-halo', type: 'line', source: 'districtTap', slot: 'aboveLabels', filter: ['get', 'selected'], layout: { 'line-join': 'round' }, paint: { 'line-color': '#ffffff', 'line-width': 5 } },
     { id: 'district-chosen-line', type: 'line', source: 'districtTap', slot: 'aboveLabels', filter: ['get', 'selected'], layout: { 'line-join': 'round' }, paint: { 'line-color': '#111827', 'line-width': 2.5 } },
-    { id: 'institute-markers', type: 'symbol', source: 'institutes', slot: 'aboveLabels', layout: { 'icon-image': 'institute', 'icon-allow-overlap': true, 'icon-ignore-placement': true } },
+    // A plain circle, as org-members' country dots are drawn (radius, stroke and the chosen one's), in one colour: no
+    // image file. Its tap target is the shell's invisible 44 px disc (tapWidth).
+    { id: 'institute-markers', type: 'circle', source: 'institutes', slot: 'aboveLabels', paint: { 'circle-radius': ['case', ['get', 'selected'], 7, 6], 'circle-color': '#D55E00', 'circle-stroke-width': ['case', ['get', 'selected'], 3, 2], 'circle-stroke-color': ['case', ['get', 'selected'], '#111827', '#ffffff'] } },
   ],
   controls: [{ type: 'picker', ...pick('groups', S.pickers.groups.bn), byTab: { groups: pick('groups', S.pickers.groups.bn), districts: pick('districts', S.pickers.districts.bn), institutes: pick('institutes', S.pickers.institutes.bn) } }],
   interactions: [
@@ -184,8 +193,10 @@ const descriptor = {
     },
   },
   legend: {
-    items: [{ kind: 'main', label: S.legend.district.bn, line: { color: '#0072B2', width: 8 } }, { kind: 'institute', label: S.legend.institute.bn, image: 'institute' }],
-    kinds: [{ records: 'districts', field: 'legendKind', tab: 'groups' }, { records: 'institutes', field: 'legendKind', tab: 'institutes' }],
+    // The legend draws a line or an image only: the institutes' dots have no row (their tab names them), so
+    // S.legend.institute is not drawn.
+    items: [{ kind: 'main', label: S.legend.district.bn, line: { color: '#0072B2', width: 8 } }],
+    kinds: [{ records: 'districts', field: 'legendKind', tab: 'groups' }],
   },
   info: { file: './info.json', headings: { sources: S.infoHeadings.sources.bn, notes: S.infoHeadings.notes.bn, conflicts: '' } },
   attribution: { extra },
@@ -220,7 +231,6 @@ const descriptor = {
   },
 };
 
-const INSTITUTE_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"><circle cx="11" cy="11" r="8.5" fill="#D55E00" stroke="#ffffff" stroke-width="3"/></svg>\n';
 const files = {
   'descriptor.json': descriptor,
   'tabs.json': tabs,
@@ -232,7 +242,6 @@ const files = {
 fs.mkdirSync(out, { recursive: true });
 for (const f of fs.readdirSync(out)) fs.rmSync(path.join(out, f), { recursive: true });
 for (const [name, v] of Object.entries(files)) fs.writeFileSync(path.join(out, name), JSON.stringify(v, null, 2) + '\n');
-fs.writeFileSync(path.join(out, 'institute.svg'), INSTITUTE_SVG);
 
 const pending = [];
 const walk = (v, where) => {

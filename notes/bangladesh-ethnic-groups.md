@@ -313,11 +313,42 @@ new wording was checked against the cached passage it cites.
     card text).
   - Credits: COD-AB (CC BY-IGO 3.0) on the district sources, and OpenStreetMap (ODbL) on the institutes.
 
+## Final fixes (ETH-4, 2026-10-08), the user's decisions
+
+- **#80** (`mro.festivals`): «কুমুলং উৎসব, যাতে গরু বধ করা হয়» → now «কুমুলং উৎসব, যাতে গরু বলি দেওয়া হয়». Two
+  citations, each with its own anchor:
+  - the Rangamati district portal («সংস্কৃতি:», ETH-2's anchor), for the act;
+  - Banglapedia «ম্রো» (the photograph's caption), for the name «কুমুলং».
+  - Its `sourceType` is official, for the first.
+- **The Mahato label** stays «মাহাতো/কুর্মি মাহাতো/বেদিয়ামাহাতো», with a space after «কুর্মি», by the user's
+  decision.
+  - On the census page (সারণি স-১.৪, PDF p. 52) the label wraps after «কুর্মি», so the space cannot be read
+    there.
+  - The seed already had the space; the decision is now in the name's citation.
+- **Every pending string approved**, 18 in all:
+  - the six source checks (#67, #79, #80, #83, #84, #97);
+  - the ten names, which the user checked against `tools/.cache/ethnic/names-check.png`;
+  - the ⓘ headings «সূত্র» and «টীকা».
+- **The institute marker:** a 22 px SVG image (`institute.svg`, drawn by a symbol layer and shown in the
+  legend) → now a plain circle layer.
+  - Org-members' dot style: radius 6, 7 when chosen; white 2 px stroke, dark 3 px when chosen. One colour,
+    `#D55E00`.
+  - The shell's invisible tap disc, `tapWidth` 44.
+  - No image file is left in the folder.
+  - The legend draws a line or an image only, so the institutes have no legend row now. Their tab names them;
+    «সাংস্কৃতিক প্রতিষ্ঠান» (#25) is kept in the seed, approved, and not drawn.
+- **ⓘ's sources:** the seven district portals' eight lines → now one line, the seed's
+  `strings.credits.portals`, approved under this decision. It links to https://bangladesh.gov.bd/:
+  - «বাংলাদেশ জাতীয় তথ্য বাতায়ন: খাগড়াছড়ি, টাঙ্গাইল, নওগাঁ, বরগুনা, মৌলভীবাজার, রাঙ্গামাটি, রাজশাহী».
+  - The name is the header every cached portal page prints (Barguna, Khagrachhari, Moulvibazar, Naogaon,
+    Rajshahi, Rangamati, Tangail). The districts come in Bengali order, by the shared district file's names.
+  - Each fact keeps its own page's URL in the seed.
+  - The Ministry of Cultural Affairs' page, listed twice before, is listed once.
+  - Credit lines: 25 → now 17.
+
 ## Strings
 
-102 in ETH-2's numbering, less the two removed (#87, #88), plus the two ⓘ headings: 102 in the seed.
-- **Approved (2026-10-08, the user's review): 84.**
-- **Awaiting the user: 18.** Six source checks (#67, #79, #80, #83, #84, #97), the ten unverified names, and
-  the two ⓘ headings.
-- They show on the local preview while the map is work in progress. `tools/verify.mjs`'s rule (a) warns
-  only, and fails a live item that serves one.
+103: ETH-2's 102, less the two removed (#87, #88), plus the two ⓘ headings and the portal line.
+- **All approved; none pending** (the user, 2026-10-08).
+- `tools/verify.mjs`'s rule (a) warns on any that is not while the map is work in progress, and fails a live
+  item that serves one.

@@ -13,8 +13,7 @@
       90.8532,
       24.9856
     ],
-    "groups": [],
-    "legendKind": "institute"
+    "groups": []
   },
   "knsi-rangamati": {
     "nameBn": "ক্ষুদ্র নৃ-গোষ্ঠীর সাংস্কৃতিক ইনস্টিটিউট, রাঙ্গামাটি",
@@ -37,8 +36,7 @@
       "mro",
       "tonchonga",
       "bom"
-    ],
-    "legendKind": "institute"
+    ]
   },
   "knsi-bandarban": {
     "nameBn": "ক্ষুদ্র নৃ-গোষ্ঠীর সাংস্কৃতিক ইনস্টিটিউট, বান্দরবান",
@@ -62,8 +60,7 @@
       "mro",
       "tonchonga",
       "bom"
-    ],
-    "legendKind": "institute"
+    ]
   },
   "cox-cultural-centre": {
     "nameBn": "কক্সবাজার সাংস্কৃতিক কেন্দ্র, কক্সবাজার",
@@ -78,8 +75,7 @@
       92.0959,
       21.5285
     ],
-    "groups": [],
-    "legendKind": "institute"
+    "groups": []
   },
   "knsi-khagrachari": {
     "nameBn": "ক্ষুদ্র নৃ-গোষ্ঠীর সাংস্কৃতিক ইনস্টিটিউট, খাগড়াছড়ি",
@@ -94,8 +90,7 @@
       92.0916,
       23.2187
     ],
-    "groups": [],
-    "legendKind": "institute"
+    "groups": []
   },
   "knca-rajshahi": {
     "nameBn": "রাজশাহী বিভাগীয় ক্ষুদ্র নৃ-গোষ্ঠীর কালচারাল একাডেমি, রাজশাহী",
@@ -110,8 +105,7 @@
       88.6856,
       24.4909
     ],
-    "groups": [],
-    "legendKind": "institute"
+    "groups": []
   },
   "manipuri-lalitkala-academy": {
     "nameBn": "মনিপুরী ললিতকলা একাডেমি, কমলগঞ্জ, মৌলভীবাজার",
@@ -130,8 +124,7 @@
     ],
     "groups": [
       "monipuri"
-    ],
-    "legendKind": "institute"
+    ]
   },
   "knsp-haluaghat": {
     "nameBn": "ক্ষুদ্র নৃ-গোষ্ঠীর সাংস্কৃতিক প্রতিষ্ঠান, হালুয়াঘাট",
@@ -147,8 +140,7 @@
       90.5226,
       24.8395
     ],
-    "groups": [],
-    "legendKind": "institute"
+    "groups": []
   },
   "knsp-dinajpur": {
     "nameBn": "ক্ষুদ্র নৃ-গোষ্ঠীর সাংস্কৃতিক প্রতিষ্ঠান, দিনাজপুর",
@@ -164,8 +156,7 @@
       88.7546,
       25.7261
     ],
-    "groups": [],
-    "legendKind": "institute"
+    "groups": []
   },
   "knsp-naogaon": {
     "nameBn": "ক্ষুদ্র নৃ-গোষ্ঠীর সাংস্কৃতিক প্রতিষ্ঠান, নওগাঁ",
@@ -181,7 +172,6 @@
       89.0645,
       24.9073
     ],
-    "groups": [],
-    "legendKind": "institute"
+    "groups": []
   }
 }

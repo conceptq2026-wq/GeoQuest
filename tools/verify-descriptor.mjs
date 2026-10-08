@@ -121,7 +121,7 @@ const MARITIME_ZONES_SEED_SHA256 = '6b0f67dbac0b0fa97037d86c7f94d3f07a73bd57a42d
 // The bangladesh-maritime-boundary map: the editor's seed, pinned (live 2026-10-08; its 35 step-2 strings approved, BD-6; #30 reworded by the user the same day).
 const BANGLADESH_MARITIME_SEED_SHA256 = 'dcc627421f99b20faeffe17006d9348f181b9663c058af66f37ae6c572e8ebbd';
 // The bangladesh-ethnic-groups map (work in progress, ETH-3, 2026-10-08): its seed, pinned.
-const BANGLADESH_ETHNIC_SEED_SHA256 = '7e0b8bf43eec05b76cc41e08f74d90aaea617938ea6e80d60026da61a26babf7';
+const BANGLADESH_ETHNIC_SEED_SHA256 = '6608c411f0a529bac3cc53b957abf632528e3933af03ebe95fbbc093f374c1ce';
 // The org-members map: the editor's seed, pinned (live 2026-10-07).
 const ORG_MEMBERS_SEED_SHA256 = '6c09b4d8a43f1115c633ce14e860569cea611536fece7237822da5ae1ae5e262';
 // The bangladesh-rivers diagram: the editor's seed, pinned. Its geometry is pinned in tools/bangladesh-rivers-pins.json.
