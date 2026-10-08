@@ -1,0 +1,72 @@
+{
+  "lines": [
+    {
+      "text": "মানব উন্নয়ন সূচক: UNDP, Human Development Report 2025 — https://hdr.undp.org/sites/default/files/2025_HDR/HDR25_Composite_indices_complete_time_series.csv",
+      "group": "sources"
+    },
+    {
+      "text": "বহুমাত্রিক দারিদ্র্য সূচক: UNDP · OPHI, 2025 Global MPI — https://hdr.undp.org/sites/default/files/publications/additional-files/2025-10/2025_gMPI_Table1and2.xlsx",
+      "group": "sources"
+    },
+    {
+      "text": "বৈশ্বিক উদ্ভাবন সূচক: WIPO, Global Innovation Index 2026 — https://www.wipo.int/edocs/pubdocs/en/wipo-pub-2000-2026-tech1.xlsx",
+      "group": "sources"
+    },
+    {
+      "text": "বিশ্ব সুখ প্রতিবেদন: Wellbeing Research Centre, University of Oxford, World Happiness Report 2026 — https://files.worldhappiness.report/WHR26_Data_Figure_2.1.xlsx",
+      "group": "sources"
+    },
+    {
+      "text": "জনসংখ্যা: UN DESA Population Division, World Population Prospects 2024 (1 July 2026) — https://population.un.org/wpp/assets/Excel%20Files/1_Indicator%20(Standard)/CSV_FILES/WPP2024_Demographic_Indicators_Medium.csv.gz",
+      "group": "sources"
+    },
+    {
+      "text": "জনসংখ্যার ঘনত্ব: UN DESA Population Division, World Population Prospects 2024 (1 July 2026) — https://population.un.org/wpp/assets/Excel%20Files/1_Indicator%20(Standard)/CSV_FILES/WPP2024_Demographic_Indicators_Medium.csv.gz",
+      "group": "sources"
+    },
+    {
+      "text": "রেমিট্যান্স (প্রবাসী আয়): World Bank, World Development Indicators, 2024 data — https://api.worldbank.org/v2/country/all/indicator/BX.TRF.PWKR.CD.DT?format=json&per_page=20000&date=2023:2024",
+      "group": "sources"
+    },
+    {
+      "text": "প্রত্যক্ষ বিদেশি বিনিয়োগ: UNCTAD, UNCTADstat, 2025 data — https://unctadstat-api.unctad.org/bulkdownload/US.FdiFlowsStock/US_FdiFlowsStock",
+      "group": "sources"
+    },
+    {
+      "text": "দুর্নীতি ধারণা সূচক: Transparency International, Corruption Perceptions Index 2025 — https://www.transparency.org/en/api/latest/cpi",
+      "group": "sources"
+    },
+    {
+      "text": "বিশ্ব মুক্ত গণমাধ্যম সূচক: Reporters Without Borders (RSF), World Press Freedom Index 2026 — https://rsf.org/sites/default/files/import_classement/2026.csv",
+      "group": "sources"
+    },
+    {
+      "text": "ই-গভর্নমেন্ট উন্নয়ন সূচক: UN DESA, UN E-Government Survey 2024 — https://publicadministration.un.org/egovkb/en-us/Data-Center",
+      "group": "sources"
+    },
+    {
+      "text": "জলবায়ু ঝুঁকি সূচক: Germanwatch, Climate Risk Index 2026 (1995–2024) — https://www.germanwatch.org/sites/default/files/2025-11/CRI%2026%20full%20report.pdf",
+      "group": "sources"
+    },
+    {
+      "text": "আইনের শাসন সূচক: World Justice Project, WJP Rule of Law Index 2025 — https://worldjusticeproject.org/rule-of-law-index/data/2025.csv",
+      "group": "sources"
+    },
+    {
+      "text": "জাতিসংঘ শান্তিরক্ষী প্রেরণ: UN Department of Peace Operations, Contributions as of 31 July 2026 — https://api.psdata.un.org/public/data/DPO-UCLATEST/json",
+      "group": "sources"
+    },
+    {
+      "text": "Country shapes: Natural Earth, public domain.",
+      "group": "sources"
+    },
+    {
+      "text": "দেশের সীমানা বাংলাদেশের অবস্থান অনুযায়ী আঁকা। যে দেশ মানচিত্রে আলাদা করে আঁকা নেই, তার নাম ও অবস্থান কার্ডে দেওয়া আছে।",
+      "group": "notes"
+    },
+    {
+      "text": "দক্ষিণ এশিয়া মানে সার্কের আটটি দেশ।",
+      "group": "notes"
+    }
+  ]
+}

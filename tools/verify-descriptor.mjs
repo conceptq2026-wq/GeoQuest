@@ -39,6 +39,8 @@
 //                                 data-sources/bangladesh-maritime-boundary/, pinned; its sources and quotes, by tools/verify.mjs
 //   bangladesh-ethnic-groups  docs/maps/bangladesh-ethnic-groups/ is a fresh build of
 //                             data-sources/bangladesh-ethnic-groups/, pinned; its sources and anchors, by tools/verify.mjs
+//   global-indices  work in progress: docs/maps/global-indices/ is a fresh build of
+//                   data-sources/global-indices/, pinned; its strings, by tools/verify.mjs
 //   important-days (a diagram)  docs/diagrams/important-days/ is a fresh build of
 //                               data-sources/important-days/days.seed.json, pinned; its strings, by tools/verify.mjs
 //
@@ -122,6 +124,8 @@ const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa
 const MARITIME_ZONES_SEED_SHA256 = '6b0f67dbac0b0fa97037d86c7f94d3f07a73bd57a42d7b0986e8b3dc9fdab689';
 // The bangladesh-maritime-boundary map: the editor's seed, pinned (live 2026-10-08; its 35 step-2 strings approved, BD-6; #30 reworded by the user the same day).
 const BANGLADESH_MARITIME_SEED_SHA256 = 'dcc627421f99b20faeffe17006d9348f181b9663c058af66f37ae6c572e8ebbd';
+// The global-indices map «বৈশ্বিক সূচক» (work in progress, IDX-2, 2026-10-08): its seed, pinned.
+const GLOBAL_INDICES_SEED_SHA256 = 'c803b1aad3f966b6f3fba66120f9db9803bcb538adc552a1d0b4532b21347c0a';
 // The important-days diagram «বছরের চাকা»: its seed, pinned (live 2026-10-08, after WHEEL-2–5 and GL-WHEEL).
 const IMPORTANT_DAYS_SEED_SHA256 = '24fe65ed95d70d794a54c0a29341b85da87a13fcffa371a1d9967a862d737070';
 // The bangladesh-ethnic-groups map: its seed, pinned (live 2026-10-08).
@@ -2809,6 +2813,55 @@ console.log('\n\n============ bangladesh-ethnic-groups ============');
   check(Object.values(institutes).filter((i) => i.locationBn).length === seed.institutes.filter((i) => i.location.kind === 'district').length, `${Object.values(institutes).filter((i) => i.locationBn).length} institutes at their district, each card with the line that says so`);
   const viaShared = Object.entries(descriptor.sources).filter(([, s]) => s.sharedGeometry).map(([k]) => k);
   check(viaShared.length === 1 && !fs.readdirSync(dir).some((f) => /\.(geojson|svg|png|jpe?g|webp)$/.test(f)), `the districts are drawn from the shared file (${viaShared.join(', ')}), with no geometry or image in the folder`);
+  checkMap({ id, expectedPending: 0 });
+}
+
+/*
+|--------------------------------------------------------------------------
+| GLOBAL-INDICES — a map, «বৈশ্বিক সূচক» (work in progress, IDX-2,
+| 2026-10-08), built by tools/build-global-indices.mjs from its seed: the
+| seed is the pinned one; docs/ holds exactly what a fresh build writes;
+| every value was read twice from the pinned official files and the two
+| readings agree; an open ranking shades every country it ranks, a
+| facts-only one stores and shows Bangladesh, the top and the bottom alone;
+| a user-input ranking is not built until the user supplies its facts. Its
+| unapproved strings only warn while it is work in progress (verify.mjs).
+|--------------------------------------------------------------------------
+*/
+console.log('\n\n============ global-indices (work in progress) ============');
+{
+  const id = 'global-indices';
+  const seedFile = path.join(ROOT, 'data-sources', id, `${id}.seed.json`);
+  const seedHash = crypto.createHash('sha256').update(fs.readFileSync(seedFile)).digest('hex');
+  check(seedHash === GLOBAL_INDICES_SEED_SHA256, `the seed is the pinned one: SHA-256 ${seedHash.slice(0, 12)}… (pinned ${GLOBAL_INDICES_SEED_SHA256.slice(0, 12)}…)`);
+  const seed = readJson(seedFile);
+  const dir = path.join(MAPS_DIR, id);
+  const fresh = path.join(os.tmpdir(), 'geoquest-verify', id);
+  fs.rmSync(fresh, { recursive: true, force: true });
+  execFileSync(process.execPath, [path.join(HERE, `build-${id}.mjs`), fresh], { stdio: 'pipe' });
+  const built = fs.readdirSync(fresh).sort();
+  const differ = built.filter((name) => !fs.existsSync(path.join(dir, name)) || !fs.readFileSync(path.join(dir, name)).equals(fs.readFileSync(path.join(fresh, name))));
+  check(differ.length === 0 && fs.readdirSync(dir).sort().join() === built.join(), `docs/maps/${id}/ is a fresh build, byte for byte (${built.join(', ')})${differ.length ? ` — differs: ${differ.join(', ')}` : ''}`);
+  const descriptor = readJson(path.join(dir, 'descriptor.json'));
+  const indices = readJson(path.join(dir, 'indices.json'));
+  const tabsFile = readJson(path.join(dir, 'tabs.json'));
+  check(descriptor.section === 'international' && descriptor.basemap === 'world' && descriptor.minTextSize === 14 && JSON.stringify(Object.keys(tabsFile)) === '["countries","bangladesh"]' && descriptor.indices?.tabs?.bangladesh === 'bangladesh', 'descriptor: International, the world basemap, no text under 14 px, the tabs «দেশ» and «বাংলাদেশ» (no «শহর»), the indices module');
+  const sources = readJson(path.join(ROOT, 'tools', 'sources.json')).globalIndices.files;
+  const pinnedUrls = new Set(Object.values(sources).map((f) => f.url));
+  const SHADES = ['s1', 's2', 's3', 's4', 's5', 's6', 's7'];
+  const builtSeed = seed.indices.filter((x) => (x.kind === 'open' || x.kind === 'facts') && x.latest && !x.heldOut);
+  check(JSON.stringify(Object.keys(indices).filter((k) => !indices[k].bdOnly)) === JSON.stringify(builtSeed.map((x) => x.id)), `the picker's rankings are the seed's built ones, in its order: ${builtSeed.filter((x) => x.kind === 'open').length} open, ${builtSeed.filter((x) => x.kind === 'facts').length} facts-only`);
+  const shading = builtSeed.filter((x) => { const r = indices[x.id]; const shaded = SHADES.reduce((n, k) => n + r[k].length, 0); return x.kind === 'open' ? !shaded || r.hiTop.length || r.hiBottom.length : shaded || r.hiTop.length + r.hiBottom.length > 2; });
+  check(shading.length === 0, `an open ranking shades the countries it ranks in seven classes; a facts-only one lights only its top and bottom${shading.length ? ` — not: ${shading.map((x) => x.id).join(', ')}` : ''}`);
+  const FACT_KEYS = ['edition', 'editionNote', 'releaseDate', 'releaseUrl', 'dataUrl', 'dataFile', 'n', 'rule', 'bd', 'top', 'bottom'];
+  const leaky = seed.indices.filter((x) => x.kind === 'facts').flatMap((x) => [x.latest, x.previous].filter(Boolean).map((e) => [x.id, e])).filter(([, e]) => Object.keys(e).some((k) => !FACT_KEYS.includes(k)) || Object.keys(e.bd).join() !== 'rank' || ['top', 'bottom'].some((w) => Object.keys(e[w]).some((k) => !['iso3', 'name', 'rank', 'shared'].includes(k))));
+  check(leaky.length === 0, `a facts-only ranking keeps three facts per edition — Bangladesh's rank of N, the top, the bottom — and no other country's rank or any value${leaky.length ? ` — not: ${leaky.map(([k]) => k).join(', ')}` : ''}`);
+  const waiting = seed.indices.filter((x) => x.kind === 'user-input' || (x.kind === 'city' && !x.latest));
+  check(waiting.every((x) => !indices[x.id] && x.userInput?.pages?.length && x.userInput?.factsNeeded?.length), `${waiting.length} user-input rankings are not built, each with the official pages to read and the facts needed`);
+  const unsourced = builtSeed.flatMap((x) => [x.latest, x.previous].filter(Boolean).flatMap((e) => [!pinnedUrls.has(e.dataUrl) && `${x.id} ${e.edition}: data`, e.releaseDate && !pinnedUrls.has(e.releaseUrl) && `${x.id} ${e.edition}: release`, !/^https:\/\//.test(x.pageUrl ?? '') && `${x.id}: page`])).filter(Boolean);
+  check(unsourced.length === 0, `every built value cites a pinned official file, and every release date a pinned official page${unsourced.length ? ` — not: ${unsourced.slice(0, 4).join(', ')}` : ''}`);
+  const unread = builtSeed.filter((x) => x.read?.readers !== 2 || (!x.read.agreed && !(x.read.unstoredMismatches ?? []).length));
+  check(unread.length === 0, `every built ranking was read twice and the readings agree (a mismatch only in a field not stored: ${builtSeed.filter((x) => x.read?.unstoredMismatches?.length).map((x) => x.id).join(', ') || 'none'})`);
   checkMap({ id, expectedPending: 0 });
 }
 

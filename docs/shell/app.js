@@ -15,9 +15,9 @@
 |--------------------------------------------------------------------------
 */
 
-import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=dde7f58d0e';
-import { resolver } from '../shared/resolver.js?v=dde7f58d0e';
-import { pickerRow } from '../shared/picker.js?v=dde7f58d0e';
+import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=061f15ed08';
+import { resolver } from '../shared/resolver.js?v=061f15ed08';
+import { pickerRow } from '../shared/picker.js?v=061f15ed08';
 
 /*
 |--------------------------------------------------------------------------
@@ -688,13 +688,14 @@ function pick(row, keys) {
 |--------------------------------------------------------------------------
 */
 const SHELL_MODULES = {
-  tabs: './tabs.js?v=dde7f58d0e',
-  chips: './chips.js?v=dde7f58d0e',
-  timeline: './timeline.js?v=dde7f58d0e',
-  globe: './globe.js?v=dde7f58d0e',
-  focus: './focus.js?v=dde7f58d0e',
-  legend: './legend.js?v=dde7f58d0e',
-  info: './info.js?v=dde7f58d0e',
+  tabs: './tabs.js?v=061f15ed08',
+  chips: './chips.js?v=061f15ed08',
+  timeline: './timeline.js?v=061f15ed08',
+  globe: './globe.js?v=061f15ed08',
+  focus: './focus.js?v=061f15ed08',
+  legend: './legend.js?v=061f15ed08',
+  info: './info.js?v=061f15ed08',
+  indices: './indices.js?v=061f15ed08',
 };
 const hiders = []; // (table, key) => true takes a record off the map, the picker and ‹ ›
 // (table, key) => true takes a record off the map only: the picker and ‹ › still list it (the focus module).
@@ -2517,6 +2518,8 @@ function assertNoLeaks() {
 // imagery — and `geometry` hands out a source's geometry file as loaded.
 Object.assign(shell, {
   map,
+  // MapLibre itself, for a module that places HTML markers (indices).
+  maplibregl,
   runActions,
   refilter: applyFilter,
   deselect: clearSelection,

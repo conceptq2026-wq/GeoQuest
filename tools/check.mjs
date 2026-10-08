@@ -637,6 +637,7 @@ async function useItem(browser, size, entry, base, origin, dir) {
       await edgeTaps(page, summary, fail, sources, tabs);
       if (await page.evaluate(`Boolean(window.__shell?.descriptor?.tabs?.views)`)) await viewTabs(page, shoot, summary, fail);
       if (await page.evaluate(`Boolean(window.__shell?.descriptor?.minTextSize)`)) await textFloor(page, summary, fail);
+      if (await page.evaluate(`Boolean(window.__shell?.descriptor?.indices)`)) await indicesSteps(page, shoot, summary, fail);
     }
   }
 
@@ -915,6 +916,92 @@ async function daysSteps(page, shoot, summary, fail) {
   }
   await page.evaluate(top);
   summary.push(`wheel: ${cols} column(s); months ${months}/${options.length} by ›, round: ${wrap.join(', ')}; wedges ${wedges}/12 at mid-ring (${midArc.toFixed(1)} × ${geo.R - geo.r} px); cards ${cards}/${tappable} (✕, Escape), ${plainOk}/${plain} rows without a card inert; text ≥ 14 px, taps ≥ 44 px, sideways ${bad.sideways} px, names fit ${12 - bad.unfit.size}/12`);
+}
+
+/*
+ * The indices module (global-indices, docs/shell/indices.js; IDX-2, 2026-10-08): every ranking of the picker chosen,
+ * its card titled as the option, its three stat blocks, its pills on the map — Bangladesh's always (it carries the
+ * rank or the value), the top's and the bottom's wherever the country has a shape — its shading as its kind says (an
+ * open ranking in the seven classes, a facts-only one with only the top, the bottom and Bangladesh, and its one-line
+ * note), and the gradient strip only for an open one; the page held at this width (no sideways scroll, no text under
+ * 14 px, every tap 44 px or more, the map left of the card from 900 px); then the «বাংলাদেশ» tab: the map, its card
+ * and the picker row hidden, one row per ranking with data, each row opening its ranking on the map.
+ */
+async function indicesSteps(page, shoot, summary, fail) {
+  const LAYOUT = `(() => {
+    const vis = (e) => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden' && !e.closest('[hidden]');
+    const small = [...document.querySelectorAll('body *')].filter((e) => vis(e) && !e.closest('.maplibregl-ctrl-attrib, select, .step-btn, .maplibregl-canvas-container') && [...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim()) && parseFloat(getComputedStyle(e).fontSize) < 14).map((e) => '«' + e.textContent.trim().slice(0, 16) + '» ' + getComputedStyle(e).fontSize);
+    const taps = [...document.querySelectorAll('#prevRecord, #nextRecord, #recordPicker, .map-tab, .ix-row[type=button], .ix-foot a, .maplibregl-ctrl-attrib-button')].filter(vis).map((e) => [e.id || e.className, Math.min(e.getBoundingClientRect().width, e.getBoundingClientRect().height)]).filter(([, d]) => d < 44).map(([k, d]) => k + ' ' + Math.round(d));
+    const doc = document.scrollingElement;
+    // Whether the page, or a box in it, actually scrolls sideways: try it, read where it went, put it back.
+    const tryScroll = (e) => { const was = e.scrollLeft; e.scrollLeft = 60; const moved = e.scrollLeft; e.scrollLeft = was; return moved; };
+    const sideways = Math.max(tryScroll(doc), ...[...document.querySelectorAll('.map-page, .map-shell, .ix-list, .info-sheet-body')].map(tryScroll));
+    const m = document.getElementById('map').getBoundingClientRect(), c = document.getElementById('infoSheet').getBoundingClientRect();
+    return { small, taps, sideways, cols: !document.getElementById('infoSheet').hidden && m.width > 0 && c.left >= m.right - 1 && Math.abs(c.top - m.top) < 40 ? 2 : 1 };
+  })()`;
+  // Start on the map's own tab, whatever an earlier step left open.
+  const mapTab = await page.evaluate(box('.map-tab[data-tab="countries"]'));
+  if (mapTab) { await page.click(...mapTab); await settle(page, 10000); }
+  const bad = { small: new Set(), taps: new Set(), sideways: 0 };
+  const note = (l) => { l.small.forEach((x) => bad.small.add(x)); l.taps.forEach((x) => bad.taps.add(x)); bad.sideways = Math.max(bad.sideways, l.sideways); };
+  const options = await page.evaluate(`[...document.getElementById('recordPicker').options].filter((o) => o.value).map((o) => [o.value, o.textContent])`);
+  let good = 0, cols = 0;
+  for (const [key, label] of options) {
+    await page.evaluate(`(() => { const s = document.getElementById('recordPicker'); s.value = ${JSON.stringify(key)}; s.dispatchEvent(new Event('change', { bubbles: true })); })()`);
+    await settle(page, 10000);
+    const s = await page.evaluate(`(() => {
+      const r = window.__shell.records.indices[${JSON.stringify(key)}];
+      const pill = (k) => { const el = document.querySelector('.ix-pill-' + k); return el && el.isConnected && el.closest('.maplibregl-marker') ? el.querySelector('.ix-pill-text').textContent : null; };
+      const shaded = ['s1','s2','s3','s4','s5','s6','s7'].reduce((n, k) => n + (r[k] ?? []).length, 0);
+      const has = (code) => code && window.__shell.records.countries[code];
+      return { title: document.getElementById('infoTitle').textContent, stats: document.querySelectorAll('.ix-stats .ix-stat').length, kind: r.kind, shaded, hi: (r.hiTop ?? []).length + (r.hiBottom ?? []).length,
+        bd: pill('bd'), top: pill('top'), bottom: pill('bottom'), wantTop: Boolean(has(r.topCode)), wantBottom: Boolean(has(r.bottomCode)),
+        strip: !document.querySelector('.ix-strip').hidden, note: Boolean(document.querySelector('.ix-note')), foot: Boolean(document.querySelector('.ix-foot a')) };
+    })()`);
+    const problems = [];
+    if (s.title !== label) problems.push(`card «${s.title}»`);
+    if (s.stats !== 3) problems.push(`${s.stats} stat blocks`);
+    if (!s.bd) problems.push('no Bangladesh pill');
+    if (s.wantTop !== Boolean(s.top) || s.wantBottom !== Boolean(s.bottom)) problems.push(`pills top ${s.top}/${s.wantTop} bottom ${s.bottom}/${s.wantBottom}`);
+    if (s.kind === 'open' && (!s.shaded || s.hi || !s.strip || s.note)) problems.push(`open: shaded ${s.shaded}, highlights ${s.hi}, strip ${s.strip}, note ${s.note}`);
+    if (s.kind === 'facts' && (s.shaded || !s.hi || s.strip || !s.note)) problems.push(`facts: shaded ${s.shaded}, highlights ${s.hi}, strip ${s.strip}, note ${s.note}`);
+    if (!s.foot) problems.push('no «সূত্র» link');
+    if (problems.length) fail(`indices: ${label} — ${problems.join('; ')}`);
+    else good++;
+    const l = await page.evaluate(LAYOUT);
+    note(l);
+    cols = Math.max(cols, l.cols);
+  }
+  await shoot('steps', `${options.at(-1)[1]}`);
+  // The «বাংলাদেশ» tab.
+  const tabAt = await page.evaluate(box('.map-tab[data-tab="bangladesh"]'));
+  if (!tabAt) { fail('indices: no «বাংলাদেশ» tab'); return; }
+  await page.click(...tabAt);
+  await settle(page, 10000);
+  const bd = await page.evaluate(`({ rows: [...document.querySelectorAll('.ix-row')].map((r) => [r.dataset.key, r.tagName, r.querySelector('.ix-row-rank')?.textContent, r.querySelector('.ix-chip')?.textContent ?? null]), mapHidden: !document.getElementById('map').getClientRects().length, pickerHidden: !document.getElementById('recordPicker').getClientRects().length, list: !document.querySelector('.ix-list').hidden })`);
+  note(await page.evaluate(LAYOUT));
+  await shoot('steps', 'বাংলাদেশ tab');
+  if (!bd.list || !bd.mapHidden || !bd.pickerHidden) fail(`indices: the «বাংলাদেশ» tab — list ${bd.list}, map hidden ${bd.mapHidden}, picker hidden ${bd.pickerHidden}`);
+  if (bd.rows.length !== options.length) fail(`indices: the «বাংলাদেশ» tab lists ${bd.rows.length} rows for ${options.length} rankings`);
+  const chips = bd.rows.filter((r) => r[3]).length;
+  let opened = 0;
+  for (const [key] of bd.rows.filter((r) => r[1] === 'BUTTON')) {
+    const at = await page.evaluate(`(() => { const r = document.querySelector('.ix-row[data-key="${key}"]'); if (!r) return null; r.scrollIntoView({ block: 'center' }); const q = r.getBoundingClientRect(); return [q.left + q.width / 2, q.top + q.height / 2]; })()`);
+    if (!at) { fail(`indices: row ${key} gone`); continue; }
+    await page.click(...at);
+    await settle(page, 10000);
+    const now = await page.evaluate(`[document.getElementById('recordPicker').value, Boolean(document.getElementById('map').getClientRects().length)]`);
+    if (now[0] === key && now[1]) opened++;
+    else fail(`indices: the row ${key} opened ${now[0]} (map shown ${now[1]})`);
+    const back = await page.evaluate(box('.map-tab[data-tab="bangladesh"]'));
+    if (back) { await page.click(...back); await settle(page, 10000); }
+  }
+  const home = await page.evaluate(box('.map-tab[data-tab="countries"]'));
+  if (home) { await page.click(...home); await settle(page, 10000); }
+  if (bad.small.size) fail(`indices: text under 14 px — ${[...bad.small].slice(0, 4).join(', ')}`);
+  if (bad.taps.size) fail(`indices: tap targets under 44 px — ${[...bad.taps].slice(0, 4).join(', ')}`);
+  if (bad.sideways > 0) fail(`indices: sideways scroll ${bad.sideways} px`);
+  summary.push(`indices: ${good}/${options.length} rankings (card, stats, pills, shading); ${cols} column(s); «বাংলাদেশ» ${bd.rows.length} rows, ${chips} chips, ${opened} open their ranking; text ≥ 14 px, taps ≥ 44 px, sideways ${bad.sideways} px`);
 }
 
 async function pickerSteps(page, shoot, summary, fail, tabs = 0) {

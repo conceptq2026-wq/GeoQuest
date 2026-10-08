@@ -259,6 +259,15 @@ drawn now (`drawn`), and read a file of the map's own folder (`file`).
     source.
   - `tools/verify-descriptor.mjs` holds the file to the decoders it knows, the join field to the file's key,
     and the join both ways. No other map declares it.
+- **`indices: { records, countries, tabs: { map, bangladesh }, words }`** (opt-in, IDX-2, 2026-10-08;
+  global-indices, `docs/shell/indices.js`, `indices.css`): a ranking map. The descriptor shades the countries by the
+  chosen ranking's state lists as usual; the module adds the page one screen tall at every width (the map in a card
+  with a শীর্ষ → নিম্ন gradient strip, the card docked under it and beside it from 900 px), three HTML pills on the map
+  (Bangladesh's rank, the top «১», the bottom «নিম্ন»; a bubble slides to stay inside the map), three stat blocks and a
+  «সর্বশেষ যাচাই» · «সূত্র ↗» foot in the card, and the «বাংলাদেশ» view tab's list (one row per ranking: rank of N, a
+  position bar, a ▲/▼ chip; a row opens its ranking). While that tab is open the map, its card and the picker row are
+  hidden; ⓘ stays under the tabs. A record with `bdOnly` is in that list alone. For it the shell's module surface also
+  hands out `maplibregl` (to place HTML markers); no other map uses either. `tools/check.mjs` runs `indicesSteps`.
 - **`minTextSize: 14`** (M3): no text under 14 px on that map — every label's
   size in its style floored (the basemap's, the baseline's, its own), the
   shell's chrome under `[data-min-text]` in style.css. Other maps unchanged.

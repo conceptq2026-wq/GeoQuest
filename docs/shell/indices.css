@@ -1,0 +1,414 @@
+/*
+ * The indices module's page (indices.js): the map in a card of its own with its
+ * gradient strip, the ranking's card docked under it — beside it from 900 px —
+ * and the «বাংলাদেশ» tab's list. Every text 14 px or more; every tap 44 px.
+ * Loaded only for a map whose descriptor declares `indices`.
+ */
+
+/* ⓘ's 44 px zone hangs a few pixels past the edge; on this page it is clipped, never scrolled to. */
+.has-indices {
+  overflow-x: clip;
+}
+
+.has-indices {
+  --ix-ink: #13234a;
+  --ix-grey: #5b6577;
+  --ix-line: #e8edf4;
+  --ix-blue: #1d4ed8;
+  --ix-bd: #d55e00;
+  background: #f3f6fb;
+}
+
+/* ---- the page: one screen tall at every width; the map, its card and the list scroll inside it ---- */
+
+.has-indices.map-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh;
+  max-width: none;
+  padding: 10px 10px 0;
+}
+.has-indices > .page-header,
+.has-indices > .map-tabs,
+.has-indices > .info-credits {
+  flex: 0 0 auto;
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---- the map and its card -------------------------------------------- */
+
+.has-indices .map-shell {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 10px;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+  padding: 0 0 10px;
+  border: 0;
+  border-radius: 0;
+  background: none;
+}
+
+.has-indices #map {
+  position: relative;
+  inset: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 16px 16px 0 0;
+  background: #eaf2fb;
+}
+
+.ix-strip {
+  flex: 0 0 auto;
+  margin-top: -10px;
+  padding: 8px 16px 10px;
+  border-radius: 0 0 16px 16px;
+  background: #ffffff;
+  box-shadow: 0 6px 18px rgba(24, 52, 94, 0.08);
+}
+.ix-strip[hidden] {
+  display: none;
+}
+.has-indices .ix-strip[hidden] + .info-sheet,
+.has-indices #map:has(+ .ix-strip[hidden]) {
+  border-radius: 16px;
+}
+.ix-ramp {
+  display: block;
+  height: 10px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, #08306b, #08519c, #2171b5, #4292c6, #6baed6, #9ecae1, #c6dbef);
+}
+.ix-ends {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--ix-grey);
+}
+
+.has-indices .info-sheet {
+  position: relative;
+  left: auto;
+  bottom: auto;
+  z-index: 2;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+  width: auto;
+  max-height: 46%;
+  min-height: 96px;
+  margin: 0;
+  border: 0;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 6px 22px rgba(24, 52, 94, 0.1);
+  transform: none;
+  transition: none;
+  touch-action: auto;
+}
+.has-indices .info-sheet[hidden] {
+  display: none;
+}
+.has-indices .sheet-handle {
+  display: none;
+}
+.has-indices .info-sheet-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: none;
+  overflow-y: auto;
+  padding: 14px 16px;
+  touch-action: pan-y;
+}
+.has-indices .info-title {
+  font-size: 20px;
+  color: var(--ix-ink);
+}
+.has-indices .info-subtitle {
+  font-size: 14px;
+  color: var(--ix-grey);
+}
+.has-indices .info-label,
+.has-indices .info-value {
+  font-size: 14px;
+}
+
+.ix-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 12px 0 6px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--ix-line);
+}
+.ix-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding: 0 8px;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+.ix-stat + .ix-stat {
+  border-left: 1px solid var(--ix-line);
+}
+.ix-stat strong {
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--ix-blue);
+}
+.ix-stat-bd strong {
+  font-size: 22px;
+}
+.ix-stat span {
+  font-size: 14px;
+  color: var(--ix-grey);
+}
+.ix-note {
+  margin: 6px 0;
+  font-size: 14px;
+  color: var(--ix-grey);
+}
+.ix-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--ix-grey);
+}
+.ix-foot a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 4px;
+  color: var(--ix-blue);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* ---- the pills on the map ----------------------------------------------- */
+
+.ix-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}
+.ix-pill-text {
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #ffffff;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+.ix-pill-stem {
+  width: 2px;
+  height: 14px;
+}
+.ix-pill-dot {
+  width: 8px;
+  height: 8px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+}
+.ix-pill-top .ix-pill-text,
+.ix-pill-top .ix-pill-stem,
+.ix-pill-top .ix-pill-dot {
+  background: #0b2a6b;
+}
+.ix-pill-bottom .ix-pill-text,
+.ix-pill-bottom .ix-pill-stem,
+.ix-pill-bottom .ix-pill-dot {
+  background: #6b7280;
+}
+.ix-pill-bd .ix-pill-text,
+.ix-pill-bd .ix-pill-stem,
+.ix-pill-bd .ix-pill-dot {
+  background: var(--ix-bd);
+}
+
+/* ---- the «বাংলাদেশ» tab --------------------------------------------------- */
+
+.has-indices.indices-bd .page-header,
+.has-indices.indices-bd .map-shell {
+  display: none;
+}
+.ix-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 0 16px;
+}
+.ix-list[hidden] {
+  display: none;
+}
+.ix-caption {
+  margin: 4px 4px 8px;
+  font-size: 14px;
+  color: var(--ix-grey);
+}
+.ix-rows {
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 6px 22px rgba(24, 52, 94, 0.08);
+}
+.ix-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(112px, 38%);
+  grid-template-areas: 'text where' 'chip where';
+  gap: 4px 12px;
+  align-items: center;
+  width: 100%;
+  min-height: 64px;
+  padding: 12px 16px;
+  border: 0;
+  border-top: 1px solid var(--ix-line);
+  background: none;
+  color: var(--ix-ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+div.ix-row {
+  cursor: default;
+}
+.ix-row:first-child {
+  border-top: 0;
+}
+.ix-row:focus-visible {
+  outline: 3px solid var(--ix-blue);
+  outline-offset: -3px;
+  border-radius: 16px;
+}
+.ix-row-text {
+  grid-area: text;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.ix-row-name {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+.ix-row-meta {
+  font-size: 14px;
+  color: var(--ix-grey);
+  overflow-wrap: anywhere;
+}
+.ix-row-where {
+  grid-area: where;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ix-row-rank {
+  font-size: 18px;
+  color: var(--ix-blue);
+}
+.ix-bar-track {
+  position: relative;
+  display: block;
+  height: 6px;
+  border-radius: 3px;
+  background: #e3e9f2;
+}
+.ix-bar-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--at);
+  border-radius: 3px;
+  background: var(--ix-blue);
+}
+.ix-bar-dot {
+  position: absolute;
+  top: 50%;
+  left: var(--at);
+  width: 12px;
+  height: 12px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  background: var(--ix-blue);
+  transform: translate(-50%, -50%);
+}
+.ix-bar-ends {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--ix-grey);
+}
+.ix-chip {
+  grid-area: chip;
+  justify-self: start;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.ix-chip-good {
+  color: #166534;
+  background: #e7f6ec;
+}
+.ix-chip-bad {
+  color: #b42318;
+  background: #fdecea;
+}
+.ix-chip-neutral {
+  color: #3f4a5c;
+  background: #eef1f5;
+}
+
+/* ---- from 900 px: the map left, its card right ---------------------------- */
+
+@media (min-width: 900px) {
+  .has-indices .map-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 400px);
+    grid-template-rows: minmax(0, 1fr) auto;
+    column-gap: 16px;
+    row-gap: 0;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 0 16px;
+  }
+  .has-indices.map-page {
+    padding: 14px 16px 0;
+  }
+  .has-indices #map {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .ix-strip {
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: 0;
+  }
+  .has-indices .info-sheet {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: start;
+    max-height: 100%;
+  }
+  .ix-list {
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+}

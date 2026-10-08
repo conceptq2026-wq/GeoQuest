@@ -1645,6 +1645,31 @@ console.log('\n---- important-days: seed ----');
   check(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(seedText) && registry.maps.some((e) => e.id === ID && e.kind === 'diagram' && e.section === 'bangladesh') && !wipItems.some((w) => w.id === ID) && fs.existsSync(path.join(SERVED, 'diagrams', ID, 'descriptor.json')), `${ID}: no e-mail address in the seed; live — in registry.json under Bangladesh, its folder under docs/diagrams/, no longer in tools/wip.json`);
 }
 
+// ---- global-indices «বৈশ্বিক সূচক» (work in progress, IDX-2, 2026-10-08): the seed -------------------------------
+// Every Bengali string is { bn, approved }; the readings' own country names and edition lines are English records of
+// a source. Its built files are held to a fresh build by tools/verify-descriptor.mjs; unapproved strings only warn
+// while it is work in progress.
+console.log('\n---- global-indices: seed (work in progress) ----');
+{
+  const ID = 'global-indices';
+  const seedText = fs.readFileSync(path.join(DATA_SOURCES, ID, `${ID}.seed.json`), 'utf8');
+  const seed = JSON.parse(seedText);
+  const unflagged = [];
+  let pending = 0;
+  const walk = (v, where, key, owner) => {
+    if (typeof v === 'string') {
+      if (!/[ঀ-৿]/.test(v)) return;
+      if (key === 'bn' && typeof owner?.approved === 'boolean') { if (!owner.approved) pending++; return; }
+      unflagged.push(where);
+    } else if (Array.isArray(v)) v.forEach((x, i) => walk(x, `${where}[${i}]`, i, v));
+    else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) walk(x, `${where}.${k}`, k, v);
+  };
+  walk(seed, 'seed', null, null);
+  check(unflagged.length === 0, `${ID}: every Bengali string carries its approval flag${unflagged.length ? ` — not: ${unflagged.slice(0, 3).join(', ')}` : ''}`);
+  if (pending) console.log(`warn ${ID} (work in progress): ${pending} string(s) await the user's approval`);
+  check(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(seedText) && !registry.maps.some((e) => e.id === ID) && wipItems.some((w) => w.id === ID && w.kind === 'map' && w.section === 'international') && fs.existsSync(path.join(SERVED, 'maps', ID, 'descriptor.json')), `${ID}: no e-mail address in the seed; work in progress — in tools/wip.json under International, built into docs/maps/, not in the registry`);
+}
+
 // ---- no unapproved string ships (the user's rule, 2026-10-08, BD-6) -------------------------------
 // A live item whose seed carries approval flags ({ bn, approved }) may not serve a string the user has not
 // approved: every { bn, approved: false } in its tracked seed files whose text appears in its files under

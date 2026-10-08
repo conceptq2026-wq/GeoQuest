@@ -945,5 +945,330 @@
         }
       }
     }
+  },
+  "globalIndices": {
+    "_comment": "The global-indices map's sources (IDX-2, 2026-10-08): each publisher's own data file or web page — a PDF only where it publishes the facts in no page or file — fetched once with the repo's User-Agent into tools/.cache/global-indices/sources/ and pinned by that download (size, SHA-256). Only sites whose terms allow automated access; the user-input items (IMF, WEF, IEP, Henley, WTO, EIU, Heritage, GHI) are read by hand and not fetched. These files change with each edition: a fresh download that differs is not cached, and the run names it (notes/global-indices.md). Facts-only items keep only three facts per edition in the seed.",
+    "dir": "global-indices/sources",
+    "files": {
+      "hdi-hdr25.csv": {
+        "item": "hdi",
+        "url": "https://hdr.undp.org/sites/default/files/2025_HDR/HDR25_Composite_indices_complete_time_series.csv",
+        "size": 2001263,
+        "sha256": "61ed82e5b66c88dfca8ff9fac775c63981ecab6a254862af97acacc41c143117",
+        "fetched": "2026-10-08"
+      },
+      "hdi-hdr23-24.csv": {
+        "item": "hdi",
+        "url": "https://hdr.undp.org/sites/default/files/2023-24_HDR/HDR23-24_Composite_indices_complete_time_series.csv",
+        "size": 1919243,
+        "sha256": "d987af8fb17913d6c4b83e9e0e4bb23356166f606744e9818a28d06967a56eec",
+        "fetched": "2026-10-08"
+      },
+      "hdr-downloads.html": {
+        "item": "hdi",
+        "url": "https://hdr.undp.org/data-center/documentation-and-downloads",
+        "size": 44574,
+        "sha256": "6c07bd298286fd2baa1a2f0fa15ada0054595bc209583d38cc8f71acec6fdade",
+        "fetched": "2026-10-08"
+      },
+      "hdr-2023-24.html": {
+        "item": "hdi",
+        "url": "https://hdr.undp.org/content/human-development-report-2023-24",
+        "size": 45892,
+        "sha256": "74c954967c0811e4ed0c71d32da298383a6cf52df98acf2d0a72344b8ca5a651",
+        "fetched": "2026-10-08"
+      },
+      "mpi-2025.xlsx": {
+        "item": "mpi",
+        "url": "https://hdr.undp.org/sites/default/files/publications/additional-files/2025-10/2025_gMPI_Table1and2.xlsx",
+        "size": 139761,
+        "sha256": "0f8080a749ce23f991c5185466fbf0428d452c7673ee0e46a86ebbc93e5a4653",
+        "fetched": "2026-10-08"
+      },
+      "mpi-2024.xlsx": {
+        "item": "mpi",
+        "url": "https://hdr.undp.org/sites/default/files/publications/additional-files/2024-10/2024_gMPI_Table1and2.xlsx",
+        "size": 140719,
+        "sha256": "a7d0a6520bf90432a10b5eb1c6046a20091390ecdd19d6b695ec0ee60bbde570",
+        "fetched": "2026-10-08"
+      },
+      "mpi-2025.html": {
+        "item": "mpi",
+        "url": "https://hdr.undp.org/content/2025-global-multidimensional-poverty-index-mpi",
+        "size": 41587,
+        "sha256": "3745ffd3b22d882e0c5c370a4e22b1281250bc419f3324794f9f4b7ed3fbf28c",
+        "fetched": "2026-10-08"
+      },
+      "mpi-2024.html": {
+        "item": "mpi",
+        "url": "https://hdr.undp.org/content/2024-global-multidimensional-poverty-index-mpi",
+        "size": 47132,
+        "sha256": "805ea4ead6dce2d3d9cd7d68d04f8563fff2ba1b971a4f3166015b925c5b5d15",
+        "fetched": "2026-10-08"
+      },
+      "gii-2026.xlsx": {
+        "item": "gii",
+        "url": "https://www.wipo.int/edocs/pubdocs/en/wipo-pub-2000-2026-tech1.xlsx",
+        "size": 943159,
+        "sha256": "bbce0a2da785d566992e8d0b7677f76da2a8399a08fc45fd7e7e5485dd4ffd73",
+        "fetched": "2026-10-08"
+      },
+      "gii-2025.xlsx": {
+        "item": "gii",
+        "url": "https://www.wipo.int/edocs/pubdocs/en/wipo-pub-2000-2025-tech1.xlsx",
+        "size": 935909,
+        "sha256": "29dac5fadb7c1ef3ae54044887db8eedd232a08f7cae930cf886e131afd55b81",
+        "fetched": "2026-10-08"
+      },
+      "gii-2026-date.html": {
+        "item": "gii",
+        "url": "https://www.wipo.int/en/web/global-innovation-index/w/news/2026/save-the-date-gii-2026",
+        "size": 104176,
+        "sha256": "55f616e60d8fb3fe6eb5d64b57aaeecb109684865c156a774c2f159aa830c5aa",
+        "fetched": "2026-10-08"
+      },
+      "gii-2025-press.html": {
+        "item": "gii",
+        "url": "https://www.wipo.int/pressroom/en/articles/2025/article_0009.html",
+        "size": 48201,
+        "sha256": "8f6f07d87ea1019a33a0836297338ac87f55bd4e0b3cbe4f131acc0a7528f0c9",
+        "fetched": "2026-10-08"
+      },
+      "whr-2026.xlsx": {
+        "item": "whr",
+        "url": "https://files.worldhappiness.report/WHR26_Data_Figure_2.1.xlsx",
+        "size": 133553,
+        "sha256": "576e382655cec3ae704a0b41cd2c04465b87cd84b7f131a0c4fa26d41f6d8028",
+        "fetched": "2026-10-08"
+      },
+      "whr-2025.xlsx": {
+        "item": "whr",
+        "url": "https://files.worldhappiness.report/WHR25_Data_Figure_2.1.xlsx",
+        "size": 148164,
+        "sha256": "3d1b8af60ec8b095a5d5f0ad0298b87ba2b7514bb79bf18a44c6f6ddd3280b6d",
+        "fetched": "2026-10-08"
+      },
+      "whr-2026-news.html": {
+        "item": "whr",
+        "url": "https://www.worldhappiness.report/news/world-happiness-report-2026-complex-global-picture-of-social-media-and-happiness/",
+        "size": 44997,
+        "sha256": "47813785fa0f6b5676e357bd2f8799999a944d91839c37b5de151ff832ef0f01",
+        "fetched": "2026-10-08"
+      },
+      "whr-news.html": {
+        "item": "whr",
+        "url": "https://www.worldhappiness.report/news/",
+        "size": 72022,
+        "sha256": "3450add52357599b0f02ea477b88ba9774a72efd7fe102e81a1bfd6f476b9ed4",
+        "fetched": "2026-10-08"
+      },
+      "wpp2024-medium.csv.gz": {
+        "item": "population",
+        "url": "https://population.un.org/wpp/assets/Excel%20Files/1_Indicator%20(Standard)/CSV_FILES/WPP2024_Demographic_Indicators_Medium.csv.gz",
+        "size": 16557272,
+        "sha256": "286ac36bb1415e2e1ade03acfef0a29f0e4c087e2f78e38c48f50c5df89082bc",
+        "fetched": "2026-10-08"
+      },
+      "wpp2024-update.zip": {
+        "item": "population",
+        "url": "https://population.un.org/wpp/assets/Excel%20Files/1_Indicator%20(Standard)/WPP2024_CSV_files_update.zip",
+        "size": 943827,
+        "sha256": "eb7846bf5d937ee15060198e1130e770b885e58c24035b314966681ed929ca9f",
+        "fetched": "2026-10-08"
+      },
+      "wpp2024.html": {
+        "item": "population",
+        "url": "https://www.un.org/development/desa/pd/world-population-prospects-2024",
+        "size": 60689,
+        "sha256": "a955b121c6e4e1ddedb255493efc7ca4b85c05e58fd874e8c2127514cd2c97af",
+        "fetched": "2026-10-08"
+      },
+      "un-member-states.html": {
+        "item": "population",
+        "url": "https://www.un.org/en/about-us/member-states",
+        "size": 200748,
+        "sha256": "276decab9b9b619884e7fda41598fa9553ab29a58b9488d3ebbbfded57b2fe20",
+        "fetched": "2026-10-08"
+      },
+      "wdi-remittances.json": {
+        "item": "remittances",
+        "url": "https://api.worldbank.org/v2/country/all/indicator/BX.TRF.PWKR.CD.DT?format=json&per_page=20000&date=2023:2024",
+        "size": 127053,
+        "sha256": "935ed798a8e9db0de83e79fe66001a2d42f0fa44fb730c3924535d981bec2f9c",
+        "fetched": "2026-10-08"
+      },
+      "wb-countries.json": {
+        "item": "remittances",
+        "url": "https://api.worldbank.org/v2/country?format=json&per_page=400",
+        "size": 113954,
+        "sha256": "c9acf3932785191a649cbc04c3056af4cf64a236e5c3b49d49be25ddb0440bce",
+        "fetched": "2026-10-08"
+      },
+      "wdi-source.json": {
+        "item": "remittances",
+        "url": "https://api.worldbank.org/v2/sources/2?format=json",
+        "size": 236,
+        "sha256": "cb1418cfcc818fe5062286002fd01bf14a13e62a5a29fe9181b0cc6c07793b1c",
+        "fetched": "2026-10-08"
+      },
+      "unctad-fdi.7z": {
+        "item": "fdi",
+        "url": "https://unctadstat-api.unctad.org/bulkdownload/US.FdiFlowsStock/US_FdiFlowsStock",
+        "size": 676265,
+        "sha256": "a847d0190d7da799efdadce7cdcabf9ca50f5f495913184cadaaef2620022762",
+        "fetched": "2026-10-08"
+      },
+      "unctad-classifications.html": {
+        "item": "fdi",
+        "url": "https://unctadstat.unctad.org/EN/Classifications.html",
+        "size": 82042,
+        "sha256": "50e570e1057442ecd624639dd6f2224031538df0aa590a4c9c6d8641c566dacb",
+        "fetched": "2026-10-08"
+      },
+      "cpi.json": {
+        "item": "cpi",
+        "url": "https://www.transparency.org/en/api/latest/cpi",
+        "size": 364467,
+        "sha256": "786186cfa7181a4f58a6861f9674efa35ff5fe3b9c0d05cafc37e8f58b47d345",
+        "fetched": "2026-10-08"
+      },
+      "cpi-2025.html": {
+        "item": "cpi",
+        "url": "https://www.transparency.org/en/cpi/2025",
+        "size": 320409,
+        "sha256": "33ea6d682cdfaf8148bbdfd9c983c2d61d44e7595e913ef5519ca2aa8c3c0bc1",
+        "fetched": "2026-10-08"
+      },
+      "cpi-2024.html": {
+        "item": "cpi",
+        "url": "https://www.transparency.org/en/cpi/2024",
+        "size": 322500,
+        "sha256": "9fb7015156756556451d2a19ebb6ff8339bd73a8adeb2ee1ab00fd702f48854c",
+        "fetched": "2026-10-08"
+      },
+      "wpfi-2026.csv": {
+        "item": "wpfi",
+        "url": "https://rsf.org/sites/default/files/import_classement/2026.csv",
+        "size": 26930,
+        "sha256": "65ec7bd9b9740e0f51e9b4eea585030b2226c1a96938ec06a4cbbdbd2639aae2",
+        "fetched": "2026-10-08"
+      },
+      "wpfi-2025.csv": {
+        "item": "wpfi",
+        "url": "https://rsf.org/sites/default/files/import_classement/2025.csv",
+        "size": 26912,
+        "sha256": "22c147218f321dff690f8fef0b639c8d508782e2bfa0ad8fbffdc13743cf47cd",
+        "fetched": "2026-10-08"
+      },
+      "wpfi-2026-news.html": {
+        "item": "wpfi",
+        "url": "https://rsf.org/en/2026-rsf-index-press-freedom-25-year-low",
+        "size": 68492,
+        "sha256": "d2cb81a1f491c6479131f78f11416ba421504e9552f82e53839e3f74de25c3dc",
+        "fetched": "2026-10-08"
+      },
+      "wpfi-2025-news.html": {
+        "item": "wpfi",
+        "url": "https://rsf.org/en/rsf-world-press-freedom-index-2025-economic-fragility-leading-threat-press-freedom",
+        "size": 60980,
+        "sha256": "77e00364fe852126a45aafcd7eb981c81e5480a739a4978b4b8d1971a1bb4d49",
+        "fetched": "2026-10-08"
+      },
+      "egdi-2022-annex.pdf": {
+        "item": "egdi",
+        "url": "https://desapublications.un.org/sites/default/files/publications/2022-09/Annexes%2B%20cover.pdf",
+        "size": 890263,
+        "sha256": "cb27ee6615f309dc62545742186a7797c8e1eb99f3a87f921fec4229d59e3b8b",
+        "fetched": "2026-10-08"
+      },
+      "cri.html": {
+        "item": "cri",
+        "url": "https://www.germanwatch.org/en/cri",
+        "size": 156591,
+        "sha256": "ddbe30c5db2d150becb2c7677c5ec15cf6282f3a3e78788bc19760c1c5bfd65e",
+        "fetched": "2026-10-08"
+      },
+      "cri-2026.pdf": {
+        "item": "cri",
+        "url": "https://www.germanwatch.org/sites/default/files/2025-11/CRI%2026%20full%20report.pdf",
+        "size": 4175752,
+        "sha256": "847eced7e2d4e0bb30c3ef60da7c68e77990a507ea220c6110b5610a97b7f897",
+        "fetched": "2026-10-08"
+      },
+      "cri-2025.pdf": {
+        "item": "cri",
+        "url": "https://www.germanwatch.org/sites/default/files/2025-02/Climate%20Risk%20Index%202025.pdf",
+        "size": 3013847,
+        "sha256": "060b094f4128b6fd2c37a855cd5f04d38757d7e30e7309125b3d5c43dff449fa",
+        "fetched": "2026-10-08"
+      },
+      "wjp-2025.csv": {
+        "item": "rule-of-law",
+        "url": "https://worldjusticeproject.org/rule-of-law-index/data/2025.csv",
+        "size": 93270,
+        "sha256": "7582816520c6a84a48cb979fa839a71c9145596b69bcca50c7a572f529eaea3c",
+        "fetched": "2026-10-08"
+      },
+      "wjp-2024.csv": {
+        "item": "rule-of-law",
+        "url": "https://worldjusticeproject.org/rule-of-law-index/data/2024.csv",
+        "size": 92551,
+        "sha256": "8c9648cd859baebf3e252777517cf2e98400654acd75c857c4d37b1c7ba0da6c",
+        "fetched": "2026-10-08"
+      },
+      "pk-latest.json": {
+        "item": "un-peacekeeping",
+        "url": "https://api.psdata.un.org/public/data/DPO-UCLATEST/json",
+        "size": 25659,
+        "sha256": "d57a1d34fa1023c5993ea89a4538f1908af95bf4eb58225a9f17fdc21ccb7e1b",
+        "fetched": "2026-10-08"
+      },
+      "pk-2026-06.json": {
+        "item": "un-peacekeeping",
+        "url": "https://api.psdata.un.org/public/data/DPO-UCHISTORICAL/json?filter=last_reporting_date:2026-06-30",
+        "size": 185505,
+        "sha256": "a2788062008e8dac42288de92a1f307ddd01655c60495647127fa574cd6eb65e",
+        "fetched": "2026-10-08"
+      },
+      "pk-meta-latest.json": {
+        "item": "un-peacekeeping",
+        "url": "https://api.psdata.un.org/public/metadata/DPO-UCLATEST",
+        "size": 2939,
+        "sha256": "1384a92f8b252ce5e105a9e6fab7ad75a34389a8471a5f7c6c88bd8366a2406b",
+        "fetched": "2026-10-08"
+      },
+      "egdi-data-center.html": {
+        "item": "egdi",
+        "url": "https://publicadministration.un.org/egovkb/en-us/Data-Center",
+        "size": 385824,
+        "sha256": "fa334e9f6b8e2c570caa5f3cb394f02eed45855467784fa899361c711489c223",
+        "fetched": "2026-10-08",
+        "rawHttp": true
+      },
+      "egdi-bangladesh.html": {
+        "item": "egdi",
+        "url": "https://publicadministration.un.org/egovkb/en-us/Data/Country-Information/id/14-Bangladesh",
+        "size": 122932,
+        "sha256": "a0f4f9267acc668c07293ed8e4a98084c1b4a43b19c84584a686936f251125bc",
+        "fetched": "2026-10-08",
+        "rawHttp": true
+      },
+      "egdi-2024.html": {
+        "item": "egdi",
+        "url": "https://publicadministration.un.org/egovkb/en-us/Reports/UN-E-Government-Survey-2024",
+        "size": 47952,
+        "sha256": "e66b27546ef1da48b0e6d3b836eaa84c9a7f42be7ebb9a64c547794679d6cf70",
+        "fetched": "2026-10-08",
+        "rawHttp": true
+      },
+      "egdi-2022.html": {
+        "item": "egdi",
+        "url": "https://publicadministration.un.org/egovkb/en-us/Reports/UN-E-Government-Survey-2022",
+        "size": 32231,
+        "sha256": "28dadc7e77d3992b500e74500f745fcfd8dfaefdcdb8c6eb6981368bdbad34a7",
+        "fetched": "2026-10-08",
+        "rawHttp": true
+      }
+    }
   }
 }

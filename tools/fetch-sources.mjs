@@ -6,6 +6,7 @@ import crypto from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { UA } from './net.mjs';
 import { sourceText } from './lib/html-text.mjs';
+import { rawGet } from './lib/raw-get.mjs';
 
 const here = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const cache = path.join(here, '.cache');
@@ -135,3 +136,24 @@ for (const [name, want] of Object.entries(orgMembers.files)) {
   fs.writeFileSync(path.join(orgDir, want.text.file), text);
 }
 if (changed.length) console.log(`org-members: ${changed.length} source(s) not cached — re-check due:\n  ${changed.join('\n  ')}`);
+
+// The global-indices map's sources (IDX-2): each publisher's own data file or page, by size and SHA-256,
+// into global-indices/sources/. They change with each edition: a download that differs is not cached and
+// the run goes on, naming it — the seed's re-check is due (notes/global-indices.md). A source marked
+// `rawHttp` is read with tools/lib/raw-get.mjs (a server whose header Node's parser refuses).
+const indices = sources.globalIndices;
+const indicesDir = path.join(cache, indices.dir);
+fs.mkdirSync(indicesDir, { recursive: true });
+const indicesChanged = [];
+for (const [name, want] of Object.entries(indices.files)) {
+  const dest = path.join(indicesDir, name);
+  const ok = (buf) => buf.length === want.size && sha256(buf) === want.sha256;
+  if (fs.existsSync(dest) && ok(fs.readFileSync(dest))) { console.log(`ok (cached)  ${name}`); continue; }
+  try {
+    const buf = want.rawHttp ? await rawGet(want.url) : await download(want.url);
+    if (!ok(buf)) { indicesChanged.push(`${name} (the source has changed)`); continue; }
+    fs.writeFileSync(dest, buf);
+    console.log(`ok (fetched) ${name}`);
+  } catch (e) { indicesChanged.push(`${name} (${e.message})`); }
+}
+if (indicesChanged.length) console.log(`global-indices: ${indicesChanged.length} source(s) not cached — re-check due:\n  ${indicesChanged.join('\n  ')}`);

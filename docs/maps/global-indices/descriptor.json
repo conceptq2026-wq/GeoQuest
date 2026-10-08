@@ -1,0 +1,550 @@
+{
+  "schema": "geoquest/map-descriptor@1",
+  "id": "global-indices",
+  "section": "international",
+  "title": {
+    "bn": "বৈশ্বিক সূচক",
+    "en": "Global Indices"
+  },
+  "basemap": "world",
+  "view": {
+    "fitBounds": [
+      -170,
+      -58,
+      180,
+      80
+    ]
+  },
+  "constraints": {
+    "minZoom": -1,
+    "maxZoom": 6,
+    "wholeWorld": true
+  },
+  "minTextSize": 14,
+  "openOn": {
+    "tab": "countries",
+    "records": "indices",
+    "key": "hdi"
+  },
+  "records": {
+    "tabs": {
+      "file": "./tabs.json",
+      "fields": {
+        "titleBn": {
+          "type": "text",
+          "required": true
+        }
+      }
+    },
+    "indices": {
+      "file": "./indices.json",
+      "fields": {
+        "nameBn": {
+          "type": "text",
+          "required": true
+        },
+        "nameEn": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "kind": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "valueOnly": {
+          "type": "boolean",
+          "display": false
+        },
+        "bdRank": {
+          "type": "number",
+          "display": false
+        },
+        "bdOf": {
+          "type": "number",
+          "display": false
+        },
+        "bdValue": {
+          "type": "text",
+          "display": false
+        },
+        "topCode": {
+          "type": "text",
+          "display": false
+        },
+        "topName": {
+          "type": "text",
+          "display": false
+        },
+        "bottomCode": {
+          "type": "text",
+          "display": false
+        },
+        "bottomName": {
+          "type": "text",
+          "display": false
+        },
+        "topLabel": {
+          "type": "text",
+          "display": false
+        },
+        "bottomLabel": {
+          "type": "text",
+          "display": false
+        },
+        "pillTop": {
+          "type": "text",
+          "display": false
+        },
+        "pillBottom": {
+          "type": "text",
+          "display": false
+        },
+        "publisher": {
+          "type": "text",
+          "required": true
+        },
+        "edition": {
+          "type": "text",
+          "required": true
+        },
+        "southAsia": {
+          "type": "text"
+        },
+        "rankMeans": {
+          "type": "text",
+          "required": true
+        },
+        "unshaded": {
+          "type": "text"
+        },
+        "verified": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "url": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "change": {
+          "type": "number",
+          "display": false
+        },
+        "goodIs": {
+          "type": "text",
+          "display": false
+        },
+        "bdOnly": {
+          "type": "boolean",
+          "display": false
+        },
+        "s1": {
+          "type": "refs",
+          "to": "countries",
+          "display": false
+        },
+        "s2": {
+          "type": "refs",
+          "to": "countries",
+          "display": false
+        },
+        "s3": {
+          "type": "refs",
+          "to": "countries",
+          "display": false
+        },
+        "s4": {
+          "type": "refs",
+          "to": "countries",
+          "display": false
+        },
+        "s5": {
+          "type": "refs",
+          "to": "countries",
+          "display": false
+        },
+        "s6": {
+          "type": "refs",
+          "to": "countries",
+          "display": false
+        },
+        "s7": {
+          "type": "refs",
+          "to": "countries",
+          "display": false
+        },
+        "hiTop": {
+          "type": "refs",
+          "to": "countries",
+          "display": false
+        },
+        "hiBottom": {
+          "type": "refs",
+          "to": "countries",
+          "display": false
+        },
+        "bd": {
+          "type": "refs",
+          "to": "countries",
+          "display": false
+        }
+      }
+    },
+    "countries": {
+      "file": "./countries.json",
+      "fields": {
+        "nameBn": {
+          "type": "text",
+          "required": true
+        },
+        "nameEn": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "labelAt": {
+          "type": "point",
+          "display": false
+        }
+      }
+    }
+  },
+  "sources": {
+    "countries": {
+      "records": "countries",
+      "geometry": "./countries.geojson",
+      "joinField": "id",
+      "state": [
+        {
+          "name": "s1",
+          "fromSelection": {
+            "records": "indices",
+            "listField": "s1"
+          }
+        },
+        {
+          "name": "s2",
+          "fromSelection": {
+            "records": "indices",
+            "listField": "s2"
+          }
+        },
+        {
+          "name": "s3",
+          "fromSelection": {
+            "records": "indices",
+            "listField": "s3"
+          }
+        },
+        {
+          "name": "s4",
+          "fromSelection": {
+            "records": "indices",
+            "listField": "s4"
+          }
+        },
+        {
+          "name": "s5",
+          "fromSelection": {
+            "records": "indices",
+            "listField": "s5"
+          }
+        },
+        {
+          "name": "s6",
+          "fromSelection": {
+            "records": "indices",
+            "listField": "s6"
+          }
+        },
+        {
+          "name": "s7",
+          "fromSelection": {
+            "records": "indices",
+            "listField": "s7"
+          }
+        },
+        {
+          "name": "hiTop",
+          "fromSelection": {
+            "records": "indices",
+            "listField": "hiTop"
+          }
+        },
+        {
+          "name": "hiBottom",
+          "fromSelection": {
+            "records": "indices",
+            "listField": "hiBottom"
+          }
+        },
+        {
+          "name": "bd",
+          "fromSelection": {
+            "records": "indices",
+            "listField": "bd"
+          }
+        }
+      ],
+      "properties": [
+        "nameBn"
+      ]
+    }
+  },
+  "layers": [
+    {
+      "id": "ix-base",
+      "type": "fill",
+      "source": "countries",
+      "slot": "belowLabels",
+      "paint": {
+        "fill-color": "#dfe4ea",
+        "fill-opacity": 0.9
+      }
+    },
+    {
+      "id": "ix-s1",
+      "type": "fill",
+      "source": "countries",
+      "slot": "belowLabels",
+      "filter": [
+        "get",
+        "s1"
+      ],
+      "paint": {
+        "fill-color": "#08306b",
+        "fill-opacity": 0.92
+      }
+    },
+    {
+      "id": "ix-s2",
+      "type": "fill",
+      "source": "countries",
+      "slot": "belowLabels",
+      "filter": [
+        "get",
+        "s2"
+      ],
+      "paint": {
+        "fill-color": "#08519c",
+        "fill-opacity": 0.92
+      }
+    },
+    {
+      "id": "ix-s3",
+      "type": "fill",
+      "source": "countries",
+      "slot": "belowLabels",
+      "filter": [
+        "get",
+        "s3"
+      ],
+      "paint": {
+        "fill-color": "#2171b5",
+        "fill-opacity": 0.92
+      }
+    },
+    {
+      "id": "ix-s4",
+      "type": "fill",
+      "source": "countries",
+      "slot": "belowLabels",
+      "filter": [
+        "get",
+        "s4"
+      ],
+      "paint": {
+        "fill-color": "#4292c6",
+        "fill-opacity": 0.92
+      }
+    },
+    {
+      "id": "ix-s5",
+      "type": "fill",
+      "source": "countries",
+      "slot": "belowLabels",
+      "filter": [
+        "get",
+        "s5"
+      ],
+      "paint": {
+        "fill-color": "#6baed6",
+        "fill-opacity": 0.92
+      }
+    },
+    {
+      "id": "ix-s6",
+      "type": "fill",
+      "source": "countries",
+      "slot": "belowLabels",
+      "filter": [
+        "get",
+        "s6"
+      ],
+      "paint": {
+        "fill-color": "#9ecae1",
+        "fill-opacity": 0.92
+      }
+    },
+    {
+      "id": "ix-s7",
+      "type": "fill",
+      "source": "countries",
+      "slot": "belowLabels",
+      "filter": [
+        "get",
+        "s7"
+      ],
+      "paint": {
+        "fill-color": "#c6dbef",
+        "fill-opacity": 0.92
+      }
+    },
+    {
+      "id": "ix-hi-top",
+      "type": "fill",
+      "source": "countries",
+      "slot": "belowLabels",
+      "filter": [
+        "get",
+        "hiTop"
+      ],
+      "paint": {
+        "fill-color": "#08519c",
+        "fill-opacity": 0.92
+      }
+    },
+    {
+      "id": "ix-hi-bottom",
+      "type": "fill",
+      "source": "countries",
+      "slot": "belowLabels",
+      "filter": [
+        "get",
+        "hiBottom"
+      ],
+      "paint": {
+        "fill-color": "#6b7280",
+        "fill-opacity": 0.92
+      }
+    },
+    {
+      "id": "ix-bd",
+      "type": "fill",
+      "source": "countries",
+      "slot": "belowLabels",
+      "filter": [
+        "get",
+        "bd"
+      ],
+      "paint": {
+        "fill-color": "#d55e00",
+        "fill-opacity": 1
+      }
+    },
+    {
+      "id": "ix-lines",
+      "type": "line",
+      "source": "countries",
+      "slot": "belowLabels",
+      "layout": {
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "#ffffff",
+        "line-width": 0.6
+      }
+    }
+  ],
+  "interactions": [],
+  "controls": [
+    {
+      "type": "picker",
+      "from": "indices",
+      "label": {
+        "field": "nameBn"
+      },
+      "placeholder": "একটি সূচক বেছে নিন…",
+      "do": [
+        {
+          "action": "select"
+        }
+      ]
+    }
+  ],
+  "tabs": {
+    "from": "tabs",
+    "label": {
+      "field": "titleBn"
+    }
+  },
+  "indices": {
+    "records": "indices",
+    "countries": "countries",
+    "tabs": {
+      "map": "countries",
+      "bangladesh": "bangladesh"
+    },
+    "words": {
+      "bdStat": "বাংলাদেশের অবস্থান",
+      "topStat": "শীর্ষ",
+      "bottomStat": "সর্বনিম্ন",
+      "valueStat": "বাংলাদেশের মান",
+      "pillTop": "১",
+      "pillBottom": "নিম্ন",
+      "bd": "বাংলাদেশ",
+      "legendTop": "শীর্ষ",
+      "legendBottom": "নিম্ন",
+      "verified": "সর্বশেষ যাচাই",
+      "source": "সূত্র",
+      "factsNote": "এই সূচকের পূর্ণ র‍্যাংকিং দেখানো হয় না।",
+      "bdCaption": "সব সূচকে বাংলাদেশের অবস্থান",
+      "unchanged": "অপরিবর্তিত",
+      "steps": "{n} ধাপ"
+    }
+  },
+  "info": {
+    "file": "./info.json",
+    "headings": {
+      "sources": "সূত্র",
+      "notes": "টীকা",
+      "conflicts": ""
+    }
+  },
+  "sheets": {
+    "indices": {
+      "title": {
+        "field": "nameBn"
+      },
+      "subtitle": {
+        "field": "nameEn"
+      },
+      "rows": [
+        {
+          "label": "প্রকাশক",
+          "field": "publisher"
+        },
+        {
+          "label": "সংস্করণ",
+          "field": "edition"
+        },
+        {
+          "label": "দক্ষিণ এশিয়ায়",
+          "field": "southAsia"
+        },
+        {
+          "label": "র‍্যাংক",
+          "field": "rankMeans"
+        },
+        {
+          "label": "মানচিত্রে আঁকা নেই",
+          "field": "unshaded",
+          "stacked": true
+        }
+      ]
+    }
+  }
+}

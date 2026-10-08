@@ -416,6 +416,9 @@ built files held to a fresh build, in `tools/verify-descriptor.mjs`; its
 sources, each by size and SHA-256, and the texts its quotes are offsets
 into (`bangladeshMaritime` in `tools/sources.json`); in its build, the
 junction recomputed from the two azimuths within 0.01″ of the PCA's.
+global-indices (work in progress): its seed by SHA-256 and its built files held to a fresh build, in
+`tools/verify-descriptor.mjs`; every source it reads — each publisher's own data file or page — by size and SHA-256 in
+`tools/sources.json` (`globalIndices`), pinned by its first download.
 org-members (live 2026-10-07): its seed by SHA-256 and its built files held
 to a fresh build, in `tools/verify-descriptor.mjs`; each organisation's page and its text
 (`tools/lib/html-text.mjs`), each by size and SHA-256, in the seed and in
@@ -492,10 +495,14 @@ State which kind a task is when reporting it.
   amendments, religious days removed by the user, 80 of the 85 kept entries built (4 date conflicts and one undated
   day held out), two kinds, twelve months and no year shown, drawn by the diagram shell's `days` view, with Noto
   Sans Bengali Bold; all 187 strings approved by the user (WHEEL-4 and WHEEL-5) (`notes/important-days.md`).
-  Nothing is in progress (`tools/wip.json` is empty).
   - **Yearly check** (the user's rule, 2026-10-08): when each new public-holiday gazette is published, compare
     important-days' three Bangla-calendar dates (১ বৈশাখ 14 April, ২৫ বৈশাখ 8 May, ১১ জ্যৈষ্ঠ 25 May); if any differs,
     their strings go back to `approved: false` and the user is told.
+- Work in progress (`tools/wip.json`): `global-indices` «বৈশ্বিক সূচক», a map under International (IDX-1
+  investigation, IDX-2 data and build, 2026-10-08): 14 rankings built — 8 shading every country, 6 facts-only
+  (Bangladesh, top, bottom) — and 10 awaiting the user's hand-read facts, each value read twice from the publishers'
+  own pinned files, drawn with the map shell's new opt-in `indices` module; all strings awaiting the user
+  (`notes/global-indices.md`).
 
 ## Index — notes, read only when working on that item
 

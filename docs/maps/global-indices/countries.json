@@ -1,0 +1,1986 @@
+{
+  "ABW": {
+    "nameBn": "আরুবা",
+    "nameEn": "Aruba",
+    "labelAt": [
+      -69.973,
+      12.517
+    ]
+  },
+  "AFG": {
+    "nameBn": "আফগানিস্তান",
+    "nameEn": "Afghanistan",
+    "labelAt": [
+      66.497,
+      34.164
+    ]
+  },
+  "AGO": {
+    "nameBn": "অ্যাঙ্গোলা",
+    "nameEn": "Angola",
+    "labelAt": [
+      17.984,
+      -12.183
+    ]
+  },
+  "AIA": {
+    "nameBn": "এ্যাঙ্গুইলা",
+    "nameEn": "Anguilla",
+    "labelAt": [
+      -63.026,
+      18.243
+    ]
+  },
+  "ALB": {
+    "nameBn": "আলবেনিয়া",
+    "nameEn": "Albania",
+    "labelAt": [
+      20.114,
+      40.655
+    ]
+  },
+  "ALD": {
+    "nameBn": "অলান্দ দ্বীপপুঞ্জ",
+    "nameEn": "Åland",
+    "labelAt": [
+      19.87,
+      60.156
+    ]
+  },
+  "AND": {
+    "nameBn": "অ্যান্ডোরা",
+    "nameEn": "Andorra",
+    "labelAt": [
+      1.539,
+      42.548
+    ]
+  },
+  "ARE": {
+    "nameBn": "সংযুক্ত আরব আমিরাত",
+    "nameEn": "United Arab Emirates",
+    "labelAt": [
+      54.547,
+      23.466
+    ]
+  },
+  "ARG": {
+    "nameBn": "আর্জেন্টিনা",
+    "nameEn": "Argentina",
+    "labelAt": [
+      -64.173,
+      -33.501
+    ]
+  },
+  "ARM": {
+    "nameBn": "আর্মেনিয়া",
+    "nameEn": "Armenia",
+    "labelAt": [
+      44.801,
+      40.459
+    ]
+  },
+  "ASM": {
+    "nameBn": "মার্কিন সামোয়া",
+    "nameEn": "American Samoa",
+    "labelAt": [
+      -170.747,
+      -14.327
+    ]
+  },
+  "ATA": {
+    "nameBn": "অ্যান্টার্কটিকা",
+    "nameEn": "Antarctica",
+    "labelAt": [
+      35.885,
+      -79.843
+    ]
+  },
+  "ATC": {
+    "nameBn": "আসমর এবং কার্টিয়ে দ্বীপপুঞ্জ",
+    "nameEn": "Ashmore and Cartier Islands",
+    "labelAt": [
+      123.586,
+      -12.433
+    ]
+  },
+  "ATF": {
+    "nameBn": "ফ্র. এস. অ্যান্ড অ্যান্টার্কটিক ল্যান্ড",
+    "nameEn": "French Southern and Antarctic Lands",
+    "labelAt": [
+      69.122,
+      -49.304
+    ]
+  },
+  "ATG": {
+    "nameBn": "অ্যান্টিগুয়া ও বার্বুডা",
+    "nameEn": "Antigua and Barbuda",
+    "labelAt": [
+      -61.791,
+      17.352
+    ]
+  },
+  "AUS": {
+    "nameBn": "অস্ট্রেলিয়া",
+    "nameEn": "Australia",
+    "labelAt": [
+      134.05,
+      -24.13
+    ]
+  },
+  "AUT": {
+    "nameBn": "অস্ট্রিয়া",
+    "nameEn": "Austria",
+    "labelAt": [
+      14.131,
+      47.519
+    ]
+  },
+  "AZE": {
+    "nameBn": "আজারবাইজান",
+    "nameEn": "Azerbaijan",
+    "labelAt": [
+      47.211,
+      40.402
+    ]
+  },
+  "BDI": {
+    "nameBn": "বুরুন্ডি",
+    "nameEn": "Burundi",
+    "labelAt": [
+      29.917,
+      -3.333
+    ]
+  },
+  "BEL": {
+    "nameBn": "বেলজিয়াম",
+    "nameEn": "Belgium",
+    "labelAt": [
+      4.8,
+      50.785
+    ]
+  },
+  "BEN": {
+    "nameBn": "বেনিন",
+    "nameEn": "Benin",
+    "labelAt": [
+      2.352,
+      10.325
+    ]
+  },
+  "BFA": {
+    "nameBn": "বুর্কিনা ফাসো",
+    "nameEn": "Burkina Faso",
+    "labelAt": [
+      -1.364,
+      12.673
+    ]
+  },
+  "BGD": {
+    "nameBn": "বাংলাদেশ",
+    "nameEn": "Bangladesh",
+    "labelAt": [
+      89.685,
+      24.215
+    ]
+  },
+  "BGR": {
+    "nameBn": "বুলগেরিয়া",
+    "nameEn": "Bulgaria",
+    "labelAt": [
+      25.157,
+      42.509
+    ]
+  },
+  "BHR": {
+    "nameBn": "বাহরাইন",
+    "nameEn": "Bahrain",
+    "labelAt": [
+      50.555,
+      26.056
+    ]
+  },
+  "BHS": {
+    "nameBn": "বাহামা দ্বীপপুঞ্জ",
+    "nameEn": "The Bahamas",
+    "labelAt": [
+      -77.147,
+      26.402
+    ]
+  },
+  "BIH": {
+    "nameBn": "বসনিয়া ও হার্জেগোভিনা",
+    "nameEn": "Bosnia and Herzegovina",
+    "labelAt": [
+      18.068,
+      44.091
+    ]
+  },
+  "BLM": {
+    "nameBn": "সেন্ট-বার্থেলেমি",
+    "nameEn": "Saint Barthélemy",
+    "labelAt": [
+      -62.833,
+      17.902
+    ]
+  },
+  "BLR": {
+    "nameBn": "বেলারুশ",
+    "nameEn": "Belarus",
+    "labelAt": [
+      28.418,
+      53.822
+    ]
+  },
+  "BLZ": {
+    "nameBn": "বেলিজ",
+    "nameEn": "Belize",
+    "labelAt": [
+      -88.713,
+      17.202
+    ]
+  },
+  "BMU": {
+    "nameBn": "বারমুডা",
+    "nameEn": "Bermuda",
+    "labelAt": [
+      -64.764,
+      32.297
+    ]
+  },
+  "BOL": {
+    "nameBn": "বলিভিয়া",
+    "nameEn": "Bolivia",
+    "labelAt": [
+      -64.593,
+      -16.666
+    ]
+  },
+  "BRA": {
+    "nameBn": "ব্রাজিল",
+    "nameEn": "Brazil",
+    "labelAt": [
+      -49.559,
+      -12.099
+    ]
+  },
+  "BRB": {
+    "nameBn": "বার্বাডোস",
+    "nameEn": "Barbados",
+    "labelAt": [
+      -59.569,
+      13.164
+    ]
+  },
+  "BRI": {
+    "nameBn": "ব্রাজিলিয়ান আইল্যান্ড",
+    "nameEn": "Brazilian Island",
+    "labelAt": [
+      -57.623,
+      -30.188
+    ]
+  },
+  "BRN": {
+    "nameBn": "ব্রুনাই",
+    "nameEn": "Brunei",
+    "labelAt": [
+      114.552,
+      4.448
+    ]
+  },
+  "BRT": {
+    "nameBn": "বির তাউইল",
+    "nameEn": "Bir Tawil",
+    "labelAt": [
+      33.673,
+      21.86
+    ]
+  },
+  "BTN": {
+    "nameBn": "ভুটান",
+    "nameEn": "Bhutan",
+    "labelAt": [
+      90.04,
+      27.537
+    ]
+  },
+  "BWA": {
+    "nameBn": "বতসোয়ানা",
+    "nameEn": "Botswana",
+    "labelAt": [
+      24.179,
+      -22.103
+    ]
+  },
+  "CAF": {
+    "nameBn": "মধ্য আফ্রিকান প্রজাতন্ত্র",
+    "nameEn": "Central African Republic",
+    "labelAt": [
+      20.907,
+      6.99
+    ]
+  },
+  "CAN": {
+    "nameBn": "কানাডা",
+    "nameEn": "Canada",
+    "labelAt": [
+      -101.911,
+      60.324
+    ]
+  },
+  "CHE": {
+    "nameBn": "সুইজারল্যান্ড",
+    "nameEn": "Switzerland",
+    "labelAt": [
+      7.464,
+      46.719
+    ]
+  },
+  "CHL": {
+    "nameBn": "চিলি",
+    "nameEn": "Chile",
+    "labelAt": [
+      -72.319,
+      -38.152
+    ]
+  },
+  "CHN": {
+    "nameBn": "গণচীন",
+    "nameEn": "People's Republic of China",
+    "labelAt": [
+      106.337,
+      32.498
+    ]
+  },
+  "CIV": {
+    "nameBn": "কোত দিভোয়ার",
+    "nameEn": "Ivory Coast",
+    "labelAt": [
+      -5.569,
+      7.491
+    ]
+  },
+  "CLP": {
+    "nameBn": "ক্লিপারটন দ্বীপপুঞ্জ",
+    "nameEn": "Clipperton Island",
+    "labelAt": [
+      -109.22,
+      10.297
+    ]
+  },
+  "CMR": {
+    "nameBn": "ক্যামেরুন",
+    "nameEn": "Cameroon",
+    "labelAt": [
+      12.473,
+      4.585
+    ]
+  },
+  "COD": {
+    "nameBn": "গণতান্ত্রিক কঙ্গো প্রজাতন্ত্র",
+    "nameEn": "Democratic Republic of the Congo",
+    "labelAt": [
+      23.459,
+      -1.858
+    ]
+  },
+  "COG": {
+    "nameBn": "কঙ্গো প্রজাতন্ত্র",
+    "nameEn": "Republic of the Congo",
+    "labelAt": [
+      15.9,
+      0.142
+    ]
+  },
+  "COK": {
+    "nameBn": "কুক দ্বীপপুঞ্জ",
+    "nameEn": "Cook Islands",
+    "labelAt": [
+      -159.786,
+      -21.216
+    ]
+  },
+  "COL": {
+    "nameBn": "কলম্বিয়া",
+    "nameEn": "Colombia",
+    "labelAt": [
+      -73.174,
+      3.373
+    ]
+  },
+  "COM": {
+    "nameBn": "কোমোরোস",
+    "nameEn": "Comoros",
+    "labelAt": [
+      43.318,
+      -11.728
+    ]
+  },
+  "CPV": {
+    "nameBn": "কাবু ভের্দি",
+    "nameEn": "Cape Verde",
+    "labelAt": [
+      -23.639,
+      15.075
+    ]
+  },
+  "CRI": {
+    "nameBn": "কোস্টা রিকা",
+    "nameEn": "Costa Rica",
+    "labelAt": [
+      -84.078,
+      10.065
+    ]
+  },
+  "CSI": {
+    "nameBn": "কোরাল সাগর দ্বীপপুঞ্জ",
+    "nameEn": "Coral Sea Islands",
+    "labelAt": [
+      154.391,
+      -21.029
+    ]
+  },
+  "CUB": {
+    "nameBn": "কিউবা",
+    "nameEn": "Cuba",
+    "labelAt": [
+      -77.976,
+      21.334
+    ]
+  },
+  "CUW": {
+    "nameBn": "কিউরাসাও",
+    "nameEn": "Curaçao",
+    "labelAt": [
+      -68.921,
+      12.145
+    ]
+  },
+  "CYM": {
+    "nameBn": "কেইম্যান দ্বীপপুঞ্জ",
+    "nameEn": "Cayman Islands",
+    "labelAt": [
+      -81.241,
+      19.32
+    ]
+  },
+  "CYP": {
+    "nameBn": "সাইপ্রাস",
+    "nameEn": "Cyprus",
+    "labelAt": [
+      33.084,
+      34.913
+    ]
+  },
+  "CZE": {
+    "nameBn": "চেক প্রজাতন্ত্র",
+    "nameEn": "Czech Republic",
+    "labelAt": [
+      15.378,
+      49.882
+    ]
+  },
+  "DEU": {
+    "nameBn": "জার্মানি",
+    "nameEn": "Germany",
+    "labelAt": [
+      9.678,
+      50.962
+    ]
+  },
+  "DJI": {
+    "nameBn": "জিবুতি",
+    "nameEn": "Djibouti",
+    "labelAt": [
+      42.499,
+      11.976
+    ]
+  },
+  "DMA": {
+    "nameBn": "ডোমিনিকা",
+    "nameEn": "Dominica",
+    "labelAt": [
+      -61.345,
+      15.459
+    ]
+  },
+  "DNK": {
+    "nameBn": "ডেনমার্ক",
+    "nameEn": "Denmark",
+    "labelAt": [
+      9.018,
+      55.967
+    ]
+  },
+  "DOM": {
+    "nameBn": "ডোমিনিকান প্রজাতন্ত্র",
+    "nameEn": "Dominican Republic",
+    "labelAt": [
+      -70.654,
+      19.104
+    ]
+  },
+  "DZA": {
+    "nameBn": "আলজেরিয়া",
+    "nameEn": "Algeria",
+    "labelAt": [
+      2.808,
+      27.397
+    ]
+  },
+  "ECU": {
+    "nameBn": "ইকুয়েডর",
+    "nameEn": "Ecuador",
+    "labelAt": [
+      -78.188,
+      -1.259
+    ]
+  },
+  "EGY": {
+    "nameBn": "মিশর",
+    "nameEn": "Egypt",
+    "labelAt": [
+      29.446,
+      26.186
+    ]
+  },
+  "ERI": {
+    "nameBn": "ইরিত্রিয়া",
+    "nameEn": "Eritrea",
+    "labelAt": [
+      38.286,
+      15.787
+    ]
+  },
+  "ESB": {
+    "nameBn": "দেখেলিয়া ক্যান্টনমেন্ট",
+    "nameEn": "Dhekelia Cantonment",
+    "labelAt": [
+      33.791,
+      35.011
+    ]
+  },
+  "ESP": {
+    "nameBn": "স্পেন",
+    "nameEn": "Spain",
+    "labelAt": [
+      -3.465,
+      40.091
+    ]
+  },
+  "EST": {
+    "nameBn": "এস্তোনিয়া",
+    "nameEn": "Estonia",
+    "labelAt": [
+      25.867,
+      58.725
+    ]
+  },
+  "ETH": {
+    "nameBn": "ইথিওপিয়া",
+    "nameEn": "Ethiopia",
+    "labelAt": [
+      39.089,
+      8.033
+    ]
+  },
+  "FIN": {
+    "nameBn": "ফিনল্যান্ড",
+    "nameEn": "Finland",
+    "labelAt": [
+      27.276,
+      63.252
+    ]
+  },
+  "FJI": {
+    "nameBn": "ফিজি",
+    "nameEn": "Fiji",
+    "labelAt": [
+      177.975,
+      -17.826
+    ]
+  },
+  "FLK": {
+    "nameBn": "ফকল্যান্ড দ্বীপপুঞ্জ",
+    "nameEn": "Falkland Islands",
+    "labelAt": [
+      -58.739,
+      -51.609
+    ]
+  },
+  "FRA": {
+    "nameBn": "ফ্রান্স",
+    "nameEn": "France",
+    "labelAt": [
+      2.552,
+      46.696
+    ]
+  },
+  "FRO": {
+    "nameBn": "ফ্যারো দ্বীপপুঞ্জ",
+    "nameEn": "Faroe Islands",
+    "labelAt": [
+      -7.058,
+      62.186
+    ]
+  },
+  "FSM": {
+    "nameBn": "মাইক্রোনেশিয়া যুক্তরাজ্য",
+    "nameEn": "Federated States of Micronesia",
+    "labelAt": [
+      158.234,
+      6.888
+    ]
+  },
+  "GAB": {
+    "nameBn": "গ্যাবন",
+    "nameEn": "Gabon",
+    "labelAt": [
+      11.836,
+      -0.438
+    ]
+  },
+  "GBR": {
+    "nameBn": "যুক্তরাজ্য",
+    "nameEn": "United Kingdom",
+    "labelAt": [
+      -2.116,
+      54.403
+    ]
+  },
+  "GEO": {
+    "nameBn": "জর্জিয়া",
+    "nameEn": "Georgia",
+    "labelAt": [
+      43.736,
+      41.87
+    ]
+  },
+  "GGY": {
+    "nameBn": "গার্নসি",
+    "nameEn": "Guernsey",
+    "labelAt": [
+      -2.562,
+      49.464
+    ]
+  },
+  "GHA": {
+    "nameBn": "ঘানা",
+    "nameEn": "Ghana",
+    "labelAt": [
+      -1.037,
+      7.718
+    ]
+  },
+  "GIB": {
+    "nameBn": "জিব্রাল্টার",
+    "nameEn": "Gibraltar",
+    "labelAt": [
+      -5.347,
+      36.129
+    ]
+  },
+  "GIN": {
+    "nameBn": "গিনি",
+    "nameEn": "Guinea",
+    "labelAt": [
+      -10.016,
+      10.619
+    ]
+  },
+  "GMB": {
+    "nameBn": "গাম্বিয়া",
+    "nameEn": "The Gambia",
+    "labelAt": [
+      -14.998,
+      13.642
+    ]
+  },
+  "GNB": {
+    "nameBn": "গিনি-বিসাউ",
+    "nameEn": "Guinea-Bissau",
+    "labelAt": [
+      -14.524,
+      12.164
+    ]
+  },
+  "GNQ": {
+    "nameBn": "বিষুবীয় গিনি",
+    "nameEn": "Equatorial Guinea",
+    "labelAt": [
+      8.99,
+      2.333
+    ]
+  },
+  "GRC": {
+    "nameBn": "গ্রিস",
+    "nameEn": "Greece",
+    "labelAt": [
+      21.726,
+      39.493
+    ]
+  },
+  "GRD": {
+    "nameBn": "গ্রেনাডা",
+    "nameEn": "Grenada",
+    "labelAt": [
+      -61.68,
+      12.113
+    ]
+  },
+  "GRL": {
+    "nameBn": "গ্রিনল্যান্ড",
+    "nameEn": "Greenland",
+    "labelAt": [
+      -39.335,
+      74.319
+    ]
+  },
+  "GTM": {
+    "nameBn": "গুয়াতেমালা",
+    "nameEn": "Guatemala",
+    "labelAt": [
+      -90.497,
+      14.982
+    ]
+  },
+  "GUM": {
+    "nameBn": "গুয়াম",
+    "nameEn": "Guam",
+    "labelAt": [
+      144.704,
+      13.354
+    ]
+  },
+  "GUY": {
+    "nameBn": "গায়ানা",
+    "nameEn": "Guyana",
+    "labelAt": [
+      -58.943,
+      5.124
+    ]
+  },
+  "HKG": {
+    "nameBn": "হংকং",
+    "nameEn": "Hong Kong",
+    "labelAt": [
+      114.098,
+      22.449
+    ]
+  },
+  "HMD": {
+    "nameBn": "হার্ড দ্বীপ এবং ম্যাকডোনাল্ড দ্বীপপুঞ্জ",
+    "nameEn": "Heard Island and McDonald Islands",
+    "labelAt": [
+      73.505,
+      -53.103
+    ]
+  },
+  "HND": {
+    "nameBn": "হন্ডুরাস",
+    "nameEn": "Honduras",
+    "labelAt": [
+      -86.888,
+      14.795
+    ]
+  },
+  "HRV": {
+    "nameBn": "ক্রোয়েশিয়া",
+    "nameEn": "Croatia",
+    "labelAt": [
+      16.372,
+      45.806
+    ]
+  },
+  "HTI": {
+    "nameBn": "হাইতি",
+    "nameEn": "Haiti",
+    "labelAt": [
+      -72.224,
+      19.264
+    ]
+  },
+  "HUN": {
+    "nameBn": "হাঙ্গেরি",
+    "nameEn": "Hungary",
+    "labelAt": [
+      19.448,
+      47.087
+    ]
+  },
+  "IDN": {
+    "nameBn": "ইন্দোনেশিয়া",
+    "nameEn": "Indonesia",
+    "labelAt": [
+      101.893,
+      -0.954
+    ]
+  },
+  "IMN": {
+    "nameBn": "আইল অব ম্যান",
+    "nameEn": "Isle of Man",
+    "labelAt": [
+      -4.53,
+      54.221
+    ]
+  },
+  "IND": {
+    "nameBn": "ভারত",
+    "nameEn": "India",
+    "labelAt": [
+      79.358,
+      22.687
+    ]
+  },
+  "IOA": {
+    "nameBn": "অস্ট্রেলীয় ভারত মহাসাগর অঞ্চল",
+    "nameEn": "Australian Indian Ocean Territories",
+    "labelAt": [
+      105.673,
+      -10.491
+    ]
+  },
+  "IOT": {
+    "nameBn": "ব্রিটিশ ভারত মহাসাগরীয় এলাকা",
+    "nameEn": "British Indian Ocean Territory",
+    "labelAt": [
+      71.348,
+      -6.191
+    ]
+  },
+  "IRL": {
+    "nameBn": "প্রজাতন্ত্রী আয়ারল্যান্ড",
+    "nameEn": "Ireland",
+    "labelAt": [
+      -7.799,
+      53.079
+    ]
+  },
+  "IRN": {
+    "nameBn": "ইরান",
+    "nameEn": "Iran",
+    "labelAt": [
+      54.931,
+      32.166
+    ]
+  },
+  "IRQ": {
+    "nameBn": "ইরাক",
+    "nameEn": "Iraq",
+    "labelAt": [
+      43.262,
+      33.094
+    ]
+  },
+  "ISL": {
+    "nameBn": "আইসল্যান্ড",
+    "nameEn": "Iceland",
+    "labelAt": [
+      -18.674,
+      64.779
+    ]
+  },
+  "ITA": {
+    "nameBn": "ইতালি",
+    "nameEn": "Italy",
+    "labelAt": [
+      11.077,
+      44.732
+    ]
+  },
+  "JAM": {
+    "nameBn": "জ্যামাইকা",
+    "nameEn": "Jamaica",
+    "labelAt": [
+      -77.319,
+      18.137
+    ]
+  },
+  "JEY": {
+    "nameBn": "জার্সি",
+    "nameEn": "Jersey",
+    "labelAt": [
+      -2.09,
+      49.221
+    ]
+  },
+  "JOR": {
+    "nameBn": "জর্ডান",
+    "nameEn": "Jordan",
+    "labelAt": [
+      36.376,
+      30.805
+    ]
+  },
+  "JPN": {
+    "nameBn": "জাপান",
+    "nameEn": "Japan",
+    "labelAt": [
+      138.442,
+      36.143
+    ]
+  },
+  "KAZ": {
+    "nameBn": "কাজাখস্তান",
+    "nameEn": "Kazakhstan",
+    "labelAt": [
+      68.686,
+      49.054
+    ]
+  },
+  "KEN": {
+    "nameBn": "কেনিয়া",
+    "nameEn": "Kenya",
+    "labelAt": [
+      37.908,
+      0.549
+    ]
+  },
+  "KGZ": {
+    "nameBn": "কিরগিজস্তান",
+    "nameEn": "Kyrgyzstan",
+    "labelAt": [
+      74.533,
+      41.669
+    ]
+  },
+  "KHM": {
+    "nameBn": "কম্বোডিয়া",
+    "nameEn": "Cambodia",
+    "labelAt": [
+      104.505,
+      12.648
+    ]
+  },
+  "KIR": {
+    "nameBn": "কিরিবাস",
+    "nameEn": "Kiribati",
+    "labelAt": [
+      -157.385,
+      1.82
+    ]
+  },
+  "KNA": {
+    "nameBn": "সেন্ট কিট্স ও নেভিস",
+    "nameEn": "Saint Kitts and Nevis",
+    "labelAt": [
+      -62.758,
+      17.337
+    ]
+  },
+  "KOR": {
+    "nameBn": "দক্ষিণ কোরিয়া",
+    "nameEn": "South Korea",
+    "labelAt": [
+      128.13,
+      36.385
+    ]
+  },
+  "KOS": {
+    "nameBn": "কসোভো",
+    "nameEn": "Kosovo",
+    "labelAt": [
+      20.861,
+      42.594
+    ]
+  },
+  "KWT": {
+    "nameBn": "কুয়েত",
+    "nameEn": "Kuwait",
+    "labelAt": [
+      47.314,
+      29.414
+    ]
+  },
+  "LAO": {
+    "nameBn": "লাওস",
+    "nameEn": "Laos",
+    "labelAt": [
+      102.534,
+      19.432
+    ]
+  },
+  "LBN": {
+    "nameBn": "লেবানন",
+    "nameEn": "Lebanon",
+    "labelAt": [
+      35.993,
+      34.133
+    ]
+  },
+  "LBR": {
+    "nameBn": "লাইবেরিয়া",
+    "nameEn": "Liberia",
+    "labelAt": [
+      -9.46,
+      6.447
+    ]
+  },
+  "LBY": {
+    "nameBn": "লিবিয়া",
+    "nameEn": "Libya",
+    "labelAt": [
+      18.011,
+      26.639
+    ]
+  },
+  "LCA": {
+    "nameBn": "সেন্ট লুসিয়া",
+    "nameEn": "Saint Lucia",
+    "labelAt": [
+      -60.98,
+      13.892
+    ]
+  },
+  "LIE": {
+    "nameBn": "লিশটেনস্টাইন",
+    "nameEn": "Liechtenstein",
+    "labelAt": [
+      9.559,
+      47.111
+    ]
+  },
+  "LKA": {
+    "nameBn": "শ্রীলঙ্কা",
+    "nameEn": "Sri Lanka",
+    "labelAt": [
+      80.705,
+      7.581
+    ]
+  },
+  "LSO": {
+    "nameBn": "লেসোথো",
+    "nameEn": "Lesotho",
+    "labelAt": [
+      28.247,
+      -29.48
+    ]
+  },
+  "LTU": {
+    "nameBn": "লিথুয়ানিয়া",
+    "nameEn": "Lithuania",
+    "labelAt": [
+      24.09,
+      55.104
+    ]
+  },
+  "LUX": {
+    "nameBn": "লুক্সেমবুর্গ",
+    "nameEn": "Luxembourg",
+    "labelAt": [
+      6.078,
+      49.734
+    ]
+  },
+  "LVA": {
+    "nameBn": "লাতভিয়া",
+    "nameEn": "Latvia",
+    "labelAt": [
+      25.459,
+      57.067
+    ]
+  },
+  "MAC": {
+    "nameBn": "মাকাও",
+    "nameEn": "Macau",
+    "labelAt": [
+      113.556,
+      22.13
+    ]
+  },
+  "MAF": {
+    "nameBn": "সেন্ট-মার্টিন",
+    "nameEn": "Saint Martin",
+    "labelAt": [
+      -63.049,
+      18.081
+    ]
+  },
+  "MAR": {
+    "nameBn": "মরক্কো",
+    "nameEn": "Morocco",
+    "labelAt": [
+      -7.187,
+      31.651
+    ]
+  },
+  "MCO": {
+    "nameBn": "মোনাকো",
+    "nameEn": "Monaco",
+    "labelAt": [
+      7.398,
+      43.74
+    ]
+  },
+  "MDA": {
+    "nameBn": "মলদোভা",
+    "nameEn": "Moldova",
+    "labelAt": [
+      28.488,
+      47.435
+    ]
+  },
+  "MDG": {
+    "nameBn": "মাদাগাস্কার",
+    "nameEn": "Madagascar",
+    "labelAt": [
+      46.704,
+      -18.628
+    ]
+  },
+  "MDV": {
+    "nameBn": "মালদ্বীপ",
+    "nameEn": "Maldives",
+    "labelAt": [
+      73.508,
+      4.174
+    ]
+  },
+  "MEX": {
+    "nameBn": "মেক্সিকো",
+    "nameEn": "Mexico",
+    "labelAt": [
+      -102.289,
+      23.92
+    ]
+  },
+  "MHL": {
+    "nameBn": "মার্শাল দ্বীপপুঞ্জ",
+    "nameEn": "Marshall Islands",
+    "labelAt": [
+      171.194,
+      7.083
+    ]
+  },
+  "MKD": {
+    "nameBn": "উত্তর মেসিডোনিয়া",
+    "nameEn": "North Macedonia",
+    "labelAt": [
+      21.556,
+      41.558
+    ]
+  },
+  "MLI": {
+    "nameBn": "মালি",
+    "nameEn": "Mali",
+    "labelAt": [
+      -2.038,
+      18.693
+    ]
+  },
+  "MLT": {
+    "nameBn": "মাল্টা",
+    "nameEn": "Malta",
+    "labelAt": [
+      14.433,
+      35.893
+    ]
+  },
+  "MMR": {
+    "nameBn": "মিয়ানমার",
+    "nameEn": "Myanmar",
+    "labelAt": [
+      95.804,
+      21.574
+    ]
+  },
+  "MNE": {
+    "nameBn": "মন্টিনিগ্রো",
+    "nameEn": "Montenegro",
+    "labelAt": [
+      19.144,
+      42.803
+    ]
+  },
+  "MNG": {
+    "nameBn": "মঙ্গোলিয়া",
+    "nameEn": "Mongolia",
+    "labelAt": [
+      104.15,
+      45.997
+    ]
+  },
+  "MNP": {
+    "nameBn": "উত্তর মারিয়ানা দ্বীপপুঞ্জ",
+    "nameEn": "Northern Mariana Islands",
+    "labelAt": [
+      145.734,
+      15.188
+    ]
+  },
+  "MOZ": {
+    "nameBn": "মোজাম্বিক",
+    "nameEn": "Mozambique",
+    "labelAt": [
+      37.838,
+      -13.943
+    ]
+  },
+  "MRT": {
+    "nameBn": "মৌরিতানিয়া",
+    "nameEn": "Mauritania",
+    "labelAt": [
+      -9.74,
+      19.587
+    ]
+  },
+  "MSR": {
+    "nameBn": "মন্টসেরাট",
+    "nameEn": "Montserrat",
+    "labelAt": [
+      -62.188,
+      16.737
+    ]
+  },
+  "MUS": {
+    "nameBn": "মরিশাস",
+    "nameEn": "Mauritius",
+    "labelAt": [
+      57.566,
+      -20.3
+    ]
+  },
+  "MWI": {
+    "nameBn": "মালাউই",
+    "nameEn": "Malawi",
+    "labelAt": [
+      33.608,
+      -13.387
+    ]
+  },
+  "MYS": {
+    "nameBn": "মালয়েশিয়া",
+    "nameEn": "Malaysia",
+    "labelAt": [
+      113.837,
+      2.529
+    ]
+  },
+  "NAM": {
+    "nameBn": "নামিবিয়া",
+    "nameEn": "Namibia",
+    "labelAt": [
+      17.108,
+      -20.575
+    ]
+  },
+  "NCL": {
+    "nameBn": "নতুন ক্যালিডোনিয়া",
+    "nameEn": "New Caledonia",
+    "labelAt": [
+      165.084,
+      -21.065
+    ]
+  },
+  "NER": {
+    "nameBn": "নাইজার",
+    "nameEn": "Niger",
+    "labelAt": [
+      9.504,
+      17.446
+    ]
+  },
+  "NFK": {
+    "nameBn": "নরফোক দ্বীপ",
+    "nameEn": "Norfolk Island",
+    "labelAt": [
+      167.955,
+      -29.033
+    ]
+  },
+  "NGA": {
+    "nameBn": "নাইজেরিয়া",
+    "nameEn": "Nigeria",
+    "labelAt": [
+      7.503,
+      9.44
+    ]
+  },
+  "NIC": {
+    "nameBn": "নিকারাগুয়া",
+    "nameEn": "Nicaragua",
+    "labelAt": [
+      -85.069,
+      12.671
+    ]
+  },
+  "NIU": {
+    "nameBn": "নিউয়ে",
+    "nameEn": "Niue",
+    "labelAt": [
+      -169.863,
+      -19.046
+    ]
+  },
+  "NLD": {
+    "nameBn": "নেদারল্যান্ডস",
+    "nameEn": "Netherlands",
+    "labelAt": [
+      5.611,
+      52.422
+    ]
+  },
+  "NOR": {
+    "nameBn": "নরওয়ে",
+    "nameEn": "Norway",
+    "labelAt": [
+      9.68,
+      61.357
+    ]
+  },
+  "NPL": {
+    "nameBn": "নেপাল",
+    "nameEn": "Nepal",
+    "labelAt": [
+      83.64,
+      28.298
+    ]
+  },
+  "NRU": {
+    "nameBn": "নাউরু",
+    "nameEn": "Nauru",
+    "labelAt": [
+      166.933,
+      -0.52
+    ]
+  },
+  "NZL": {
+    "nameBn": "নিউজিল্যান্ড",
+    "nameEn": "New Zealand",
+    "labelAt": [
+      172.787,
+      -39.759
+    ]
+  },
+  "OMN": {
+    "nameBn": "ওমান",
+    "nameEn": "Oman",
+    "labelAt": [
+      57.337,
+      22.12
+    ]
+  },
+  "PAK": {
+    "nameBn": "পাকিস্তান",
+    "nameEn": "Pakistan",
+    "labelAt": [
+      68.546,
+      29.328
+    ]
+  },
+  "PAN": {
+    "nameBn": "পানামা",
+    "nameEn": "Panama",
+    "labelAt": [
+      -80.352,
+      8.722
+    ]
+  },
+  "PCN": {
+    "nameBn": "পীটকেয়ার্ন দ্বীপপুঞ্জ",
+    "nameEn": "Pitcairn Islands",
+    "labelAt": [
+      -128.318,
+      -24.365
+    ]
+  },
+  "PER": {
+    "nameBn": "পেরু",
+    "nameEn": "Peru",
+    "labelAt": [
+      -72.9,
+      -12.977
+    ]
+  },
+  "PGA": {
+    "nameBn": "ওয়েক দ্বীপপুঞ্জ",
+    "nameEn": "Wake Island",
+    "labelAt": [
+      115.82,
+      10.73
+    ]
+  },
+  "PHL": {
+    "nameBn": "ফিলিপাইন",
+    "nameEn": "Philippines",
+    "labelAt": [
+      122.465,
+      11.198
+    ]
+  },
+  "PLW": {
+    "nameBn": "পালাউ",
+    "nameEn": "Palau",
+    "labelAt": [
+      134.58,
+      7.518
+    ]
+  },
+  "PNG": {
+    "nameBn": "পাপুয়া নিউগিনি",
+    "nameEn": "Papua New Guinea",
+    "labelAt": [
+      143.91,
+      -5.695
+    ]
+  },
+  "POL": {
+    "nameBn": "পোল্যান্ড",
+    "nameEn": "Poland",
+    "labelAt": [
+      19.49,
+      51.99
+    ]
+  },
+  "PRI": {
+    "nameBn": "পুয়ের্তো রিকো",
+    "nameEn": "Puerto Rico",
+    "labelAt": [
+      -66.481,
+      18.235
+    ]
+  },
+  "PRK": {
+    "nameBn": "উত্তর কোরিয়া",
+    "nameEn": "North Korea",
+    "labelAt": [
+      126.445,
+      39.885
+    ]
+  },
+  "PRT": {
+    "nameBn": "পর্তুগাল",
+    "nameEn": "Portugal",
+    "labelAt": [
+      -8.272,
+      39.607
+    ]
+  },
+  "PRY": {
+    "nameBn": "প্যারাগুয়ে",
+    "nameEn": "Paraguay",
+    "labelAt": [
+      -60.146,
+      -21.675
+    ]
+  },
+  "PSX": {
+    "nameBn": "ফিলিস্তিন অঞ্চল",
+    "nameEn": "Palestine",
+    "labelAt": [
+      35.291,
+      32.047
+    ]
+  },
+  "PYF": {
+    "nameBn": "ফরাসি পলিনেশিয়া",
+    "nameEn": "French Polynesia",
+    "labelAt": [
+      -149.462,
+      -17.628
+    ]
+  },
+  "QAT": {
+    "nameBn": "কাতার",
+    "nameEn": "Qatar",
+    "labelAt": [
+      51.144,
+      25.237
+    ]
+  },
+  "ROU": {
+    "nameBn": "রোমানিয়া",
+    "nameEn": "Romania",
+    "labelAt": [
+      24.973,
+      45.733
+    ]
+  },
+  "RUS": {
+    "nameBn": "রাশিয়া",
+    "nameEn": "Russia",
+    "labelAt": [
+      44.686,
+      58.249
+    ]
+  },
+  "RWA": {
+    "nameBn": "রুয়ান্ডা",
+    "nameEn": "Rwanda",
+    "labelAt": [
+      30.104,
+      -1.897
+    ]
+  },
+  "SAH": {
+    "nameBn": "পশ্চিম সাহারা",
+    "nameEn": "Western Sahara",
+    "labelAt": [
+      -12.63,
+      23.968
+    ]
+  },
+  "SAU": {
+    "nameBn": "সৌদি আরব",
+    "nameEn": "Saudi Arabia",
+    "labelAt": [
+      44.7,
+      23.807
+    ]
+  },
+  "SCR": {
+    "nameBn": "স্কারবোরো সোয়াল",
+    "nameEn": "Scarborough Shoal",
+    "labelAt": [
+      117.754,
+      15.152
+    ]
+  },
+  "SDN": {
+    "nameBn": "সুদান",
+    "nameEn": "Sudan",
+    "labelAt": [
+      29.261,
+      16.331
+    ]
+  },
+  "SDS": {
+    "nameBn": "দক্ষিণ সুদান",
+    "nameEn": "South Sudan",
+    "labelAt": [
+      30.39,
+      7.23
+    ]
+  },
+  "SEN": {
+    "nameBn": "সেনেগাল",
+    "nameEn": "Senegal",
+    "labelAt": [
+      -14.779,
+      15.138
+    ]
+  },
+  "SGP": {
+    "nameBn": "সিঙ্গাপুর",
+    "nameEn": "Singapore",
+    "labelAt": [
+      103.817,
+      1.367
+    ]
+  },
+  "SGS": {
+    "nameBn": "দক্ষিণ জর্জিয়া ও দক্ষিণ স্যন্ডউইচ দ্বীপপুঞ্জ",
+    "nameEn": "South Georgia and the South Sandwich Islands",
+    "labelAt": [
+      -31.063,
+      -55.683
+    ]
+  },
+  "SHN": {
+    "nameBn": "সেন্ট হেলেনা",
+    "nameEn": "Saint Helena",
+    "labelAt": [
+      -5.713,
+      -15.95
+    ]
+  },
+  "SLB": {
+    "nameBn": "সলোমন দ্বীপপুঞ্জ",
+    "nameEn": "Solomon Islands",
+    "labelAt": [
+      159.17,
+      -8.03
+    ]
+  },
+  "SLE": {
+    "nameBn": "সিয়েরা লিওন",
+    "nameEn": "Sierra Leone",
+    "labelAt": [
+      -11.764,
+      8.617
+    ]
+  },
+  "SLV": {
+    "nameBn": "এল সালভাদোর",
+    "nameEn": "El Salvador",
+    "labelAt": [
+      -88.89,
+      13.685
+    ]
+  },
+  "SMR": {
+    "nameBn": "সান মারিনো",
+    "nameEn": "San Marino",
+    "labelAt": [
+      12.441,
+      43.934
+    ]
+  },
+  "SOM": {
+    "nameBn": "সোমালিয়া",
+    "nameEn": "Somalia",
+    "labelAt": [
+      45.192,
+      3.569
+    ]
+  },
+  "SPM": {
+    "nameBn": "সাঁ পিয়ের ও মিকলোঁ",
+    "nameEn": "Saint Pierre and Miquelon",
+    "labelAt": [
+      -56.332,
+      47.04
+    ]
+  },
+  "SRB": {
+    "nameBn": "সার্বিয়া",
+    "nameEn": "Serbia",
+    "labelAt": [
+      20.788,
+      44.19
+    ]
+  },
+  "STP": {
+    "nameBn": "সাঁউ তুমি ও প্রিন্সিপি",
+    "nameEn": "São Tomé and Príncipe",
+    "labelAt": [
+      7.021,
+      0.971
+    ]
+  },
+  "SUR": {
+    "nameBn": "সুরিনাম",
+    "nameEn": "Suriname",
+    "labelAt": [
+      -55.911,
+      4.144
+    ]
+  },
+  "SVK": {
+    "nameBn": "স্লোভাকিয়া",
+    "nameEn": "Slovakia",
+    "labelAt": [
+      19.05,
+      48.734
+    ]
+  },
+  "SVN": {
+    "nameBn": "স্লোভেনিয়া",
+    "nameEn": "Slovenia",
+    "labelAt": [
+      14.915,
+      46.061
+    ]
+  },
+  "SWE": {
+    "nameBn": "সুইডেন",
+    "nameEn": "Sweden",
+    "labelAt": [
+      19.017,
+      65.859
+    ]
+  },
+  "SWZ": {
+    "nameBn": "ইসোয়াতিনি",
+    "nameEn": "Eswatini",
+    "labelAt": [
+      31.467,
+      -26.534
+    ]
+  },
+  "SXM": {
+    "nameBn": "সিন্ট মার্টেন",
+    "nameEn": "Sint Maarten",
+    "labelAt": [
+      -63.07,
+      18.041
+    ]
+  },
+  "SYC": {
+    "nameBn": "সেশেলস",
+    "nameEn": "Seychelles",
+    "labelAt": [
+      55.48,
+      -4.677
+    ]
+  },
+  "SYR": {
+    "nameBn": "সিরিয়া",
+    "nameEn": "Syria",
+    "labelAt": [
+      38.278,
+      35.007
+    ]
+  },
+  "TCA": {
+    "nameBn": "টার্কস ও কেইকোস দ্বীপপুঞ্জ",
+    "nameEn": "Turks and Caicos Islands",
+    "labelAt": [
+      -71.753,
+      21.817
+    ]
+  },
+  "TCD": {
+    "nameBn": "চাদ",
+    "nameEn": "Chad",
+    "labelAt": [
+      18.645,
+      15.143
+    ]
+  },
+  "TGO": {
+    "nameBn": "টোগো",
+    "nameEn": "Togo",
+    "labelAt": [
+      1.058,
+      8.807
+    ]
+  },
+  "THA": {
+    "nameBn": "থাইল্যান্ড",
+    "nameEn": "Thailand",
+    "labelAt": [
+      101.073,
+      15.46
+    ]
+  },
+  "TJK": {
+    "nameBn": "তাজিকিস্তান",
+    "nameEn": "Tajikistan",
+    "labelAt": [
+      72.587,
+      38.2
+    ]
+  },
+  "TKM": {
+    "nameBn": "তুর্কমেনিস্তান",
+    "nameEn": "Turkmenistan",
+    "labelAt": [
+      58.677,
+      39.855
+    ]
+  },
+  "TLS": {
+    "nameBn": "পূর্ব তিমুর",
+    "nameEn": "East Timor",
+    "labelAt": [
+      125.855,
+      -8.804
+    ]
+  },
+  "TON": {
+    "nameBn": "টোঙ্গা",
+    "nameEn": "Tonga",
+    "labelAt": [
+      -175.163,
+      -21.21
+    ]
+  },
+  "TTO": {
+    "nameBn": "ত্রিনিদাদ ও টোবাগো",
+    "nameEn": "Trinidad and Tobago",
+    "labelAt": [
+      -60.918,
+      10.999
+    ]
+  },
+  "TUN": {
+    "nameBn": "তিউনিসিয়া",
+    "nameEn": "Tunisia",
+    "labelAt": [
+      9.008,
+      33.687
+    ]
+  },
+  "TUR": {
+    "nameBn": "তুরস্ক",
+    "nameEn": "Turkey",
+    "labelAt": [
+      34.508,
+      39.345
+    ]
+  },
+  "TUV": {
+    "nameBn": "টুভালু",
+    "nameEn": "Tuvalu",
+    "labelAt": [
+      179.21,
+      -8.514
+    ]
+  },
+  "TZA": {
+    "nameBn": "তানজানিয়া",
+    "nameEn": "Tanzania",
+    "labelAt": [
+      34.959,
+      -6.052
+    ]
+  },
+  "UGA": {
+    "nameBn": "উগান্ডা",
+    "nameEn": "Uganda",
+    "labelAt": [
+      32.949,
+      1.973
+    ]
+  },
+  "UKR": {
+    "nameBn": "ইউক্রেন",
+    "nameEn": "Ukraine",
+    "labelAt": [
+      32.141,
+      49.725
+    ]
+  },
+  "UMI": {
+    "nameBn": "মার্কিন যুক্তরাষ্ট্র পার্শ্ববর্তী ক্ষুদ্র দ্বীপপুঞ্জ",
+    "nameEn": "United States Minor Outlying Islands",
+    "labelAt": [
+      166.645,
+      19.286
+    ]
+  },
+  "URY": {
+    "nameBn": "উরুগুয়ে",
+    "nameEn": "Uruguay",
+    "labelAt": [
+      -55.967,
+      -32.961
+    ]
+  },
+  "USA": {
+    "nameBn": "মার্কিন যুক্তরাষ্ট্র",
+    "nameEn": "United States of America",
+    "labelAt": [
+      -97.483,
+      39.538
+    ]
+  },
+  "USG": {
+    "nameBn": "গুয়ানতানামো বে কারাগার নৌবাহিনী বেস",
+    "nameEn": "Guantanamo Bay Naval Base",
+    "labelAt": [
+      -75.117,
+      19.918
+    ]
+  },
+  "UZB": {
+    "nameBn": "উজবেকিস্তান",
+    "nameEn": "Uzbekistan",
+    "labelAt": [
+      64.005,
+      41.694
+    ]
+  },
+  "VAT": {
+    "nameBn": "ভ্যাটিকান সিটি",
+    "nameEn": "Vatican City",
+    "labelAt": [
+      12.453,
+      41.903
+    ]
+  },
+  "VCT": {
+    "nameBn": "সেন্ট ভিনসেন্ট ও গ্রেনাডাইন",
+    "nameEn": "Saint Vincent and the Grenadines",
+    "labelAt": [
+      -61.336,
+      13.088
+    ]
+  },
+  "VEN": {
+    "nameBn": "ভেনেজুয়েলা",
+    "nameEn": "Venezuela",
+    "labelAt": [
+      -64.599,
+      7.182
+    ]
+  },
+  "VGB": {
+    "nameBn": "ব্রিটিশ ভার্জিন দ্বীপপুঞ্জ",
+    "nameEn": "British Virgin Islands",
+    "labelAt": [
+      -64.637,
+      18.427
+    ]
+  },
+  "VIR": {
+    "nameBn": "মার্কিন ভার্জিন দ্বীপপুঞ্জ",
+    "nameEn": "United States Virgin Islands",
+    "labelAt": [
+      -64.779,
+      17.747
+    ]
+  },
+  "VNM": {
+    "nameBn": "ভিয়েতনাম",
+    "nameEn": "Vietnam",
+    "labelAt": [
+      105.387,
+      21.715
+    ]
+  },
+  "VUT": {
+    "nameBn": "ভানুয়াতু",
+    "nameEn": "Vanuatu",
+    "labelAt": [
+      166.909,
+      -15.372
+    ]
+  },
+  "WLF": {
+    "nameBn": "ওয়ালিস ও ফুটুনা",
+    "nameEn": "Wallis and Futuna",
+    "labelAt": [
+      -178.137,
+      -14.286
+    ]
+  },
+  "WSB": {
+    "nameBn": "আক্রোতিরি",
+    "nameEn": "Akrotiri Sovereign Base Area",
+    "labelAt": [
+      32.979,
+      34.601
+    ]
+  },
+  "WSM": {
+    "nameBn": "সামোয়া",
+    "nameEn": "Samoa",
+    "labelAt": [
+      -172.438,
+      -13.639
+    ]
+  },
+  "YEM": {
+    "nameBn": "ইয়েমেন",
+    "nameEn": "Yemen",
+    "labelAt": [
+      45.874,
+      15.328
+    ]
+  },
+  "ZAF": {
+    "nameBn": "দক্ষিণ আফ্রিকা",
+    "nameEn": "South Africa",
+    "labelAt": [
+      23.666,
+      -29.709
+    ]
+  },
+  "ZMB": {
+    "nameBn": "জাম্বিয়া",
+    "nameEn": "Zambia",
+    "labelAt": [
+      26.395,
+      -14.661
+    ]
+  },
+  "ZWE": {
+    "nameBn": "জিম্বাবুয়ে",
+    "nameEn": "Zimbabwe",
+    "labelAt": [
+      29.925,
+      -18.912
+    ]
+  }
+}
