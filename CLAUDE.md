@@ -434,7 +434,7 @@ junction recomputed from the two azimuths within 0.01″ of the PCA's.
 The shared countries file, `docs/shared/world-countries.json` (IDX-3: global-indices and org-members draw it),
 is rebuilt by `tools/build-world-countries.mjs` from the pinned Natural Earth file and compared byte for byte in
 `tools/verify.mjs`.
-global-indices (work in progress): its seed by SHA-256 and its built files held to a fresh build, in
+global-indices (live 2026-10-09): its seed by SHA-256 and its built files held to a fresh build, in
 `tools/verify-descriptor.mjs`; every source it reads — each publisher's own data file or page — by size and SHA-256 in
 `tools/sources.json` (`globalIndices`), pinned by its first download.
 org-members (live 2026-10-07): its seed by SHA-256 and its built files held
@@ -467,13 +467,13 @@ State which kind a task is when reporting it.
 
 ## Current state
 
-- Seventeen maps. Bangladesh: `ancient-janapadas`, `liberation-war-1971`,
+- Eighteen maps. Bangladesh: `ancient-janapadas`, `liberation-war-1971`,
   `bangladesh-rivers-map` («নদী ২»), `bangladesh-maritime-boundary`
   (`notes/bangladesh-maritime-boundary.md`) and `bangladesh-ethnic-groups`
   (`notes/bangladesh-ethnic-groups.md`). International: `straits`,
   `border-lines`, `org-headquarters`, `environment-treaties`,
-  `world-revolutions` (`notes/world-revolutions.md`) and `org-members`
-  (`notes/org-members.md`). Geography:
+  `world-revolutions` (`notes/world-revolutions.md`), `org-members`
+  (`notes/org-members.md`) and `global-indices` (`notes/global-indices.md`). Geography:
   `deserts`, `lakes`, `forests`, `mountains`, `waterfalls` and
   `latitude-longitude`, all under `docs/maps/`.
 - Six diagrams, in `docs/diagrams/`: `bangladesh-rivers` («নদী ১») under
@@ -519,12 +519,15 @@ State which kind a task is when reporting it.
 - **Open item** (the user, 2026-10-09): org-members re-verification — re-pin its 7 source pages lost from the cache
   in IDX-3 (`notes/org-members.md`) and re-check its memberships against the official sources; until then
   `tools/verify.mjs` warns «re-check due».
-- Work in progress (`tools/wip.json`): `global-indices` «বৈশ্বিক সূচক», a map under International (IDX-1
-  investigation, IDX-2 data and build, IDX-3 the user's decisions, 2026-10-08): 15 rankings built — 9 shading every
-  country (GDP per capita from the World Bank), 6 facts-only (Bangladesh, top, bottom) — and 9 awaiting the user's
-  hand-read facts (`tools/ingest-user-input.mjs`), each value read twice from the publishers' own pinned files, drawn
-  with the map shell's opt-in `indices` module on the shared countries file; all 113 strings approved by the user
-  (IDX-4) (`notes/global-indices.md`).
+- `global-indices` «বৈশ্বিক সূচক» went live on the home page on 2026-10-09, under International, with no caption,
+  after IDX-1–4 and IDX-ALL:
+  - 18 rankings in the «দেশ» tab — 12 shading every country they rank, from the publishers' own pinned files read
+    twice, 6 facts-only (Bangladesh, top, bottom) — and Dhaka's two city rows in the «বাংলাদেশ» tab, from two
+    agreeing secondary outlets (the scoped exception under **Accuracy**); 10 rankings held out, waiting for facts;
+  - drawn with the map shell's opt-in `indices` module on the shared countries file, pins for names
+    (`hideCountryLabels`);
+  - all 131 strings approved (`notes/global-indices.md`).
+- Work in progress (`tools/wip.json`): none.
 
 ## Index — notes, read only when working on that item
 

@@ -39,8 +39,8 @@
 //                                 data-sources/bangladesh-maritime-boundary/, pinned; its sources and quotes, by tools/verify.mjs
 //   bangladesh-ethnic-groups  docs/maps/bangladesh-ethnic-groups/ is a fresh build of
 //                             data-sources/bangladesh-ethnic-groups/, pinned; its sources and anchors, by tools/verify.mjs
-//   global-indices  work in progress: docs/maps/global-indices/ is a fresh build of
-//                   data-sources/global-indices/, pinned; its strings, by tools/verify.mjs
+//   global-indices  docs/maps/global-indices/ is a fresh build of data-sources/global-indices/,
+//                   pinned; no pending string or unapproved fact built; its strings, by tools/verify.mjs
 //   important-days (a diagram)  docs/diagrams/important-days/ is a fresh build of
 //                               data-sources/important-days/days.seed.json, pinned; its strings, by tools/verify.mjs
 //
@@ -124,7 +124,7 @@ const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa
 const MARITIME_ZONES_SEED_SHA256 = '6b0f67dbac0b0fa97037d86c7f94d3f07a73bd57a42d7b0986e8b3dc9fdab689';
 // The bangladesh-maritime-boundary map: the editor's seed, pinned (live 2026-10-08; its 35 step-2 strings approved, BD-6; #30 reworded by the user the same day).
 const BANGLADESH_MARITIME_SEED_SHA256 = 'dcc627421f99b20faeffe17006d9348f181b9663c058af66f37ae6c572e8ebbd';
-// The global-indices map «বৈশ্বিক সূচক» (work in progress, IDX-2, 2026-10-08): its seed, pinned.
+// The global-indices map «বৈশ্বিক সূচক»: its seed, pinned (live 2026-10-09).
 const GLOBAL_INDICES_SEED_SHA256 = '5ee85dbeee52a407cca600c707d059ab0c41fd22cbd5eed81dd6edcfd7547ce4';
 // The important-days diagram «বছরের চাকা»: its seed, pinned (live 2026-10-08, after WHEEL-2–5 and GL-WHEEL).
 const IMPORTANT_DAYS_SEED_SHA256 = '24fe65ed95d70d794a54c0a29341b85da87a13fcffa371a1d9967a862d737070';
@@ -2823,17 +2823,18 @@ console.log('\n\n============ bangladesh-ethnic-groups ============');
 
 /*
 |--------------------------------------------------------------------------
-| GLOBAL-INDICES — a map, «বৈশ্বিক সূচক» (work in progress, IDX-2,
-| 2026-10-08), built by tools/build-global-indices.mjs from its seed: the
+| GLOBAL-INDICES — a map, «বৈশ্বিক সূচক» (live 2026-10-09, IDX-ALL;
+| begun IDX-2, 2026-10-08), built by tools/build-global-indices.mjs from its seed: the
 | seed is the pinned one; docs/ holds exactly what a fresh build writes;
 | every value was read twice from the pinned official files and the two
 | readings agree; an open ranking shades every country it ranks, a
 | facts-only one stores and shows Bangladesh, the top and the bottom alone;
-| a user-input ranking is not built until the user supplies its facts. Its
-| unapproved strings only warn while it is work in progress (verify.mjs).
+| a user-input ranking is not built until its facts are in and approved —
+| the user's, or two agreeing secondary outlets (IDX-ALL Part D). Live, no
+| unapproved string reaches docs/ (rule (a), here and in verify.mjs).
 |--------------------------------------------------------------------------
 */
-console.log('\n\n============ global-indices (work in progress) ============');
+console.log('\n\n============ global-indices ============');
 {
   const id = 'global-indices';
   const seedFile = path.join(ROOT, 'data-sources', id, `${id}.seed.json`);

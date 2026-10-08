@@ -1668,11 +1668,11 @@ console.log('\n---- shared: world-countries.json ----');
   check(same && new Set(file.countries.map((c) => c.iso3)).size === file.countries.length, `docs/shared/world-countries.json is tools/build-world-countries.mjs's output, byte for byte: ${file.countries.length} countries, one key each; drawn by ${users.join(', ')}`);
 }
 
-// ---- global-indices «বৈশ্বিক সূচক» (work in progress, IDX-2, 2026-10-08): the seed -------------------------------
+// ---- global-indices «বৈশ্বিক সূচক» (live 2026-10-09, IDX-ALL): the seed ------------------------------------------
 // Every Bengali string is { bn, approved }; the readings' own country names and edition lines are English records of
-// a source. Its built files are held to a fresh build by tools/verify-descriptor.mjs; unapproved strings only warn
-// while it is work in progress.
-console.log('\n---- global-indices: seed (work in progress) ----');
+// a source. Its built files are held to a fresh build by tools/verify-descriptor.mjs; live, no unapproved string
+// may reach its files (rule (a), checked below with every live item).
+console.log('\n---- global-indices: seed ----');
 {
   const ID = 'global-indices';
   const seedText = fs.readFileSync(path.join(DATA_SOURCES, ID, `${ID}.seed.json`), 'utf8');
@@ -1689,8 +1689,8 @@ console.log('\n---- global-indices: seed (work in progress) ----');
   };
   walk(seed, 'seed', null, null);
   check(unflagged.length === 0, `${ID}: every Bengali string carries its approval flag${unflagged.length ? ` — not: ${unflagged.slice(0, 3).join(', ')}` : ''}`);
-  if (pending) console.log(`warn ${ID} (work in progress): ${pending} string(s) await the user's approval`);
-  check(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(seedText) && !registry.maps.some((e) => e.id === ID) && wipItems.some((w) => w.id === ID && w.kind === 'map' && w.section === 'international') && fs.existsSync(path.join(SERVED, 'maps', ID, 'descriptor.json')), `${ID}: no e-mail address in the seed; work in progress — in tools/wip.json under International, built into docs/maps/, not in the registry`);
+  if (pending) console.log(`warn ${ID}: ${pending} string(s) in the seed await the user's approval (none may reach docs/)`);
+  check(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(seedText) && registry.maps.some((e) => e.id === ID && e.section === 'international') && !wipItems.some((w) => w.id === ID) && fs.existsSync(path.join(SERVED, 'maps', ID, 'descriptor.json')), `${ID}: no e-mail address in the seed; live — in registry.json under International, its folder under docs/maps/, no longer in tools/wip.json`);
 }
 
 // ---- no unapproved string ships (the user's rule, 2026-10-08, BD-6) -------------------------------

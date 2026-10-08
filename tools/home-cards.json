@@ -30,6 +30,9 @@
     },
     "org-members": {
       "kind": "map"
+    },
+    "global-indices": {
+      "kind": "map"
     }
   }
 }

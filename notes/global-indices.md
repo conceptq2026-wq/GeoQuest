@@ -1,9 +1,10 @@
-# global-indices — «বৈশ্বিক সূচক» (work in progress)
+# global-indices — «বৈশ্বিক সূচক»
 
 Read it with `CLAUDE.md`, whose rules and verification budget apply. A map under International.
 
-**Status: work in progress (IDX-2 and IDX-3, 2026-10-08), on the local preview only.**
-- In `tools/wip.json` under International; not in `docs/registry.json`.
+**Status: live on the home page since 2026-10-09 (IDX-ALL), under International, with no caption**
+(`tools/home-cards.json`: `kind` only). Begun as work in progress in IDX-2 (2026-10-08).
+- In `docs/registry.json` under International; no longer in `tools/wip.json`.
 - Built into `docs/maps/global-indices/` by `tools/build-global-indices.mjs` from
   `data-sources/global-indices/global-indices.seed.json` and the pinned Natural Earth countries file (Bangladesh's
   view). `tools/verify-descriptor.mjs` pins the seed and holds the folder to a fresh build.

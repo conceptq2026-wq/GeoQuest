@@ -88,6 +88,14 @@
       }
     },
     {
+      "id": "global-indices",
+      "section": "international",
+      "title": {
+        "en": "Global Indices",
+        "bn": "বৈশ্বিক সূচক"
+      }
+    },
+    {
       "id": "maritime-zones",
       "kind": "diagram",
       "section": "international",
