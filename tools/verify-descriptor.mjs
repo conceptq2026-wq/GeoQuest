@@ -120,6 +120,8 @@ const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa
 const MARITIME_ZONES_SEED_SHA256 = '6b0f67dbac0b0fa97037d86c7f94d3f07a73bd57a42d7b0986e8b3dc9fdab689';
 // The bangladesh-maritime-boundary map: the editor's seed, pinned (live 2026-10-08; its 35 step-2 strings approved, BD-6; #30 reworded by the user the same day).
 const BANGLADESH_MARITIME_SEED_SHA256 = 'dcc627421f99b20faeffe17006d9348f181b9663c058af66f37ae6c572e8ebbd';
+// The important-days diagram «বছরের চাকা» (work in progress, WHEEL-2, 2026-10-08): its seed, pinned.
+const IMPORTANT_DAYS_SEED_SHA256 = '9e862c5930a385d8f4af244a05723e76c4ad01af4d0d9a5693c9a2fd2faabbf4';
 // The bangladesh-ethnic-groups map: its seed, pinned (live 2026-10-08).
 const BANGLADESH_ETHNIC_SEED_SHA256 = 'c2b2333d34be11f0c02aec09fade7c8d1c007fa445c573fdc65824770f96cd75';
 // The org-members map: the editor's seed, pinned (live 2026-10-07).
@@ -2806,6 +2808,48 @@ console.log('\n\n============ bangladesh-ethnic-groups ============');
   const viaShared = Object.entries(descriptor.sources).filter(([, s]) => s.sharedGeometry).map(([k]) => k);
   check(viaShared.length === 1 && !fs.readdirSync(dir).some((f) => /\.(geojson|svg|png|jpe?g|webp)$/.test(f)), `the districts are drawn from the shared file (${viaShared.join(', ')}), with no geometry or image in the folder`);
   checkMap({ id, expectedPending: 0 });
+}
+
+/*
+|--------------------------------------------------------------------------
+| IMPORTANT-DAYS — a diagram, «বছরের চাকা» (work in progress, WHEEL-2,
+| 2026-10-08), built by tools/build-diagram-important-days.mjs from its seed:
+| the days the Cabinet Division's circular of 11 March 2026 lists, each date
+| verified. The seed is the pinned one; docs/ holds exactly what a fresh build
+| writes; the view is the shell's `days` module; twelve months, their counts
+| the seed's built days; no held-out day built; every card fact cites a URL.
+| Its unapproved strings only warn while it is work in progress (verify.mjs).
+|--------------------------------------------------------------------------
+*/
+console.log('\n\n============ important-days (diagram, work in progress) ============');
+{
+  const id = 'important-days';
+  CHECKED_DIAGRAMS.add(id);
+  const dir = path.join(DIAGRAMS_DIR, id);
+  const seedFile = path.join(ROOT, 'data-sources', id, 'days.seed.json');
+  const seedHash = crypto.createHash('sha256').update(fs.readFileSync(seedFile)).digest('hex');
+  check(seedHash === IMPORTANT_DAYS_SEED_SHA256, `the seed is the pinned one: SHA-256 ${seedHash.slice(0, 12)}… (pinned ${IMPORTANT_DAYS_SEED_SHA256.slice(0, 12)}…)`);
+  const seed = readJson(seedFile);
+  const fresh = path.join(os.tmpdir(), 'geoquest-verify', id);
+  fs.rmSync(fresh, { recursive: true, force: true });
+  execFileSync(process.execPath, [path.join(HERE, `build-diagram-${id}.mjs`), fresh], { stdio: 'pipe' });
+  const built = fs.readdirSync(fresh).sort();
+  const differ = built.filter((name) => !fs.existsSync(path.join(dir, name)) || !fs.readFileSync(path.join(dir, name)).equals(fs.readFileSync(path.join(fresh, name))));
+  check(differ.length === 0 && fs.readdirSync(dir).sort().join() === built.join(), `docs/diagrams/${id}/ is a fresh build, byte for byte (${built.join(', ')})${differ.length ? ` — differs: ${differ.join(', ')}` : ''}`);
+  const descriptor = readJson(path.join(dir, 'descriptor.json'));
+  const data = readJson(path.join(dir, 'data.json'));
+  const modules = [...(fs.readFileSync(path.join(VISUAL_DIR, 'app.js'), 'utf8').match(/const VIEW_MODULES = \{([^}]*)\}/)?.[1] ?? '').matchAll(/^\s*'?([\w-]+)'?\s*:/gm)].map((m) => m[1]);
+  check(descriptor.id === id && descriptor.language === 'bn' && descriptor.section === seed.section && descriptor.views.length === 1 && descriptor.views[0].type === 'days' && modules.includes('days'), `descriptor: ${id}, section ${descriptor.section}, one view of type days, which docs/visual/app.js loads`);
+  check(descriptor.words.months.length === 12 && descriptor.words.months.every((m, i) => m === seed.words.months[i].bn), 'twelve months, the seed\'s names');
+  const builtSeed = seed.entries.filter((e) => e.status === 'built');
+  const monthOf = (e) => (e.date.type === 'dated' ? Number(e.date.dates[2026].slice(5, 7)) : e.date.m);
+  const want = [...Array(12)].map((_, i) => builtSeed.filter((e) => monthOf(e) === i + 1).length);
+  check(JSON.stringify(data.monthCounts) === JSON.stringify(want) && data.days.length === builtSeed.length && want.reduce((s, n) => s + n, 0) === builtSeed.length, `the month counts are the seed's built days (${want.join(' ')}; ${builtSeed.length} of the circular's ${seed.entries.length}, ${seed.entries.length - builtSeed.length} held out)`);
+  const heldIn = seed.entries.filter((e) => e.status === 'held' && data.days.some((d) => d.id === `e${e.index}`));
+  const badBuilt = builtSeed.filter((e) => !e.date || e.named.some((d) => d.status === 'CONFLICT' || !['VERIFIED', 'SINGLE-SOURCE'].includes(d.status)));
+  check(heldIn.length === 0 && badBuilt.length === 0, 'only VERIFIED or SINGLE-SOURCE days with a date are built; no held-out day reaches the data');
+  const noUrl = builtSeed.flatMap((e) => [...['englishName', 'declaredBy', 'firstObserved', 'purposeBn'].filter((k) => e.card[k] && !/^https?:\/\//.test(e.card[k].url ?? '')).map((k) => `${e.index}.${k}`), ...Object.entries(e.card.themes ?? {}).filter(([, t]) => !/^https?:\/\//.test(t.url ?? '')).map(([y]) => `${e.index}.theme${y}`), ...e.named.filter((d) => !(d.sources ?? []).some((s) => /^https?:\/\//.test(s.url ?? ''))).map(() => `${e.index}.date`)]);
+  check(noUrl.length === 0, `every built day's date and every card fact cites a URL${noUrl.length ? ` — not: ${noUrl.slice(0, 5).join(', ')}` : ''}`);
 }
 
 /*

@@ -1,0 +1,67 @@
+{
+  "id": "important-days",
+  "section": "bangladesh",
+  "language": "bn",
+  "title": {
+    "en": "Year Wheel of Days",
+    "bn": "বছরের চাকা"
+  },
+  "data": "data.json",
+  "views": [
+    {
+      "id": "wheel",
+      "type": "days"
+    }
+  ],
+  "words": {
+    "picker": "একটি মাস বেছে নিন",
+    "close": "বন্ধ করুন",
+    "months": [
+      "জানুয়ারি",
+      "ফেব্রুয়ারি",
+      "মার্চ",
+      "এপ্রিল",
+      "মে",
+      "জুন",
+      "জুলাই",
+      "আগস্ট",
+      "সেপ্টেম্বর",
+      "অক্টোবর",
+      "নভেম্বর",
+      "ডিসেম্বর"
+    ],
+    "kinds": {
+      "national": "জাতীয় দিবস",
+      "international": "আন্তর্জাতিক দিবস",
+      "other": "অন্যান্য দিবস",
+      "today": "আজ"
+    },
+    "listTitle": "{month} মাসের দিবসসমূহ",
+    "count": "{n}টি দিবস",
+    "inDays": "{n} দিন পর",
+    "empty": "এই মাসে কোনো দিবস নেই",
+    "wheelLabel": "বারো মাসের চাকা",
+    "cardRows": [
+      {
+        "key": "englishName",
+        "label": "ইংরেজি নাম"
+      },
+      {
+        "key": "declaredBy",
+        "label": "ঘোষণাকারী"
+      },
+      {
+        "key": "firstObserved",
+        "label": "প্রথম পালন"
+      },
+      {
+        "key": "purposeBn",
+        "label": "উদ্দেশ্য"
+      },
+      {
+        "key": "theme",
+        "label": "প্রতিপাদ্য ({year})"
+      }
+    ]
+  }
+}

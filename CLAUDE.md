@@ -486,7 +486,10 @@ State which kind a task is when reporting it.
   - its districts drawn from the shared district file through the shell's opt-in `sharedGeometry`
     (2026-10-08, `notes/shell.md`);
   - all 96 strings approved (2026-10-08, `notes/bangladesh-ethnic-groups.md`).
-- Work in progress (`tools/wip.json`): none.
+- Work in progress (`tools/wip.json`): `important-days` «বছরের চাকা», a diagram under বাংলাদেশ (WHEEL-2,
+  2026-10-08): the Cabinet Division's circular of 11 March 2026 and its amendments, 86 of its 91 entries built
+  (4 date conflicts and one undated day held out), drawn by the diagram shell's new `days` view, with Noto Sans
+  Bengali Bold; all strings awaiting the user (`notes/important-days.md`).
 
 ## Index — notes, read only when working on that item
 

@@ -256,7 +256,7 @@ const SETTLED = `(() => {
   const visual = location.pathname.endsWith('/visual/index.html');
   const notice = document.getElementById('loadNotice');
   if (notice && (visual ? !notice.hidden : notice.classList.contains('visible'))) return 'load-notice';
-  if (visual) return !!document.querySelector('.layer-name, .layer-label') && !document.querySelector('.loading');
+  if (visual) return !!document.querySelector('.layer-name, .layer-label, .days-wheel .days-seg') && !document.querySelector('.loading');
   const m = window.__shell && window.__shell.map;
   return !!(m && m.loaded() && !m.isMoving() && m.areTilesLoaded());
 })()`;
@@ -583,7 +583,9 @@ async function useItem(browser, size, entry, base, origin, dir) {
     if (entry.kind === 'diagram') {
       const picker = await page.evaluate(`(() => { const p = document.getElementById('recordPicker'); return !!p && !p.hidden; })()`);
       const rivers = await page.evaluate(`!!document.querySelector('.rivers .rivers-svg')`);
+      const wheel = await page.evaluate(`!!document.querySelector('.days .days-wheel')`);
       if (picker && rivers) await riverSteps(page, shoot, summary, fail);
+      else if (picker && wheel) await daysSteps(page, shoot, summary, fail);
       else if (picker) {
         await fitCheck(page, 'no card');
         await pickerSteps(page, shoot, summary, fail);
@@ -782,6 +784,79 @@ async function textFloor(page, summary, fail) {
 }
 
 /** ‹ › and the dropdown: › from the placeholder through every option, then the ends. */
+/*
+ * The year wheel (important-days, docs/visual/days.js, 2026-10-08): every month of the picker by ›, its centre and
+ * its list agreeing; each of the twelve wedges tapped at mid-ring, where a finger lands, choosing its month, the tap
+ * zone measured there (the arc and the ring's width, each at least 44 px); every row of this year's months opened,
+ * its card titled as the row, closed by ✕; Escape closing one card.
+ */
+async function daysSteps(page, shoot, summary, fail) {
+  const bnNum = (s) => Number(String(s).replace(/[০-৯]/g, (d) => '০১২৩৪৫৬৭৮৯'.indexOf(d)).replace(/\D/g, ''));
+  const options = await page.evaluate(`[...document.getElementById('recordPicker').options].filter((o) => o.value).map((o) => [o.value, o.textContent])`);
+  // Every month by ›, from the first.
+  await page.evaluate(`(() => { const s = document.getElementById('recordPicker'); s.value = ${JSON.stringify(options[0][0])}; s.dispatchEvent(new Event('change', { bubbles: true })); })()`);
+  await settle(page, 10000);
+  let months = 0;
+  for (let i = 0; i < options.length; i++) {
+    if (i > 0) {
+      const next = await page.evaluate(box('#nextRecord'));
+      if (!next) { fail(`wheel: › missing or disabled before ${options[i][1]}`); break; }
+      await page.click(...next);
+      await settle(page, 10000);
+    }
+    const s = await page.evaluate(`({ value: document.getElementById('recordPicker').value, centre: document.querySelector('.days-centre-month')?.textContent, count: document.querySelector('.days-centre-count')?.textContent, rows: document.querySelectorAll('.days-row').length })`);
+    const name = options[i][1].split(' ')[0];
+    if (s.value === options[i][0] && s.centre === name && bnNum(s.count) === s.rows) months++;
+    else fail(`wheel: › to ${options[i][1]} — picker ${s.value}, centre «${s.centre}», «${s.count}» for ${s.rows} rows`);
+  }
+  if (!(await page.evaluate(`document.getElementById('nextRecord').disabled`))) fail('wheel: › not disabled at the last month');
+  await shoot('steps', `› ${options.at(-1)[1]}`);
+  // The twelve wedges, each tapped at mid-ring; the zone measured there.
+  const geo = await page.evaluate(`(() => { const w = document.querySelector('.days-wheel'); const r = +w.dataset.r, R = +w.dataset.ring; const b = w.getBoundingClientRect(); return { r, R, cx: b.left + b.width / 2, cy: b.top + b.height / 2 }; })()`);
+  const midArc = ((geo.R + geo.r) / 2) * Math.PI / 6;
+  if (midArc < 44 || geo.R - geo.r < 44) fail(`wheel: a wedge's tap zone at mid-ring is ${midArc.toFixed(1)} × ${geo.R - geo.r} px, under 44`);
+  let wedges = 0;
+  for (let m = 1; m <= 12; m++) {
+    const g = await page.evaluate(`(() => { const w = document.querySelector('.days-wheel'); const r = +w.dataset.r, R = +w.dataset.ring; const b = w.getBoundingClientRect(); return { r, R, cx: b.left + b.width / 2, cy: b.top + b.height / 2 }; })()`);
+    const a = ((-90 + 30 * (m - 1)) * Math.PI) / 180, rad = (g.R + g.r) / 2;
+    await page.evaluate(`window.scrollTo(0, 0)`);
+    const at = await page.evaluate(`(() => { const w = document.querySelector('.days-wheel'); const b = w.getBoundingClientRect(); return [b.left + b.width / 2 + ${rad} * Math.cos(${a}), b.top + b.height / 2 + ${rad} * Math.sin(${a})]; })()`);
+    await page.click(...at);
+    await settle(page, 10000);
+    const centre = await page.evaluate(`document.querySelector('.days-centre-month')?.textContent`);
+    const want = await page.evaluate(`document.querySelectorAll('.days-seg:not(.days-seg-top) .days-seg-label')[${m - 1}].textContent`);
+    if (centre === want) wedges++;
+    else fail(`wheel: a tap at mid-ring of wedge ${m} chose «${centre}», not «${want}»`);
+  }
+  await shoot('steps', 'wedges tapped');
+  // Every row of this year's months, its card opened and closed.
+  let cards = 0, rows = 0;
+  const year = options[0][0].split('-')[0];
+  for (let m = 1; m <= 12; m++) {
+    await page.evaluate(`(() => { const s = document.getElementById('recordPicker'); s.value = '${year}-${m}'; s.dispatchEvent(new Event('change', { bubbles: true })); })()`);
+    await settle(page, 10000);
+    const n = await page.evaluate(`document.querySelectorAll('.days-row').length`);
+    for (let i = 0; i < n; i++) {
+      rows++;
+      const target = await page.evaluate(`(() => { const r = document.querySelectorAll('.days-row')[${i}]; r.scrollIntoView({ block: 'center' }); const q = r.getBoundingClientRect(); return { at: [q.left + q.width / 2, q.top + q.height / 2], name: r.querySelector('.days-row-name').textContent, h: Math.round(q.height) }; })()`);
+      if (target.h < 44) fail(`wheel: the row «${target.name}» is ${target.h} px tall`);
+      await page.click(...target.at);
+      await settle(page, 10000);
+      const open = await page.evaluate(`(() => { const s = document.querySelector('.days-sheet'); return s && !s.hidden ? document.getElementById('days-sheet-title')?.textContent : null; })()`);
+      if (open === target.name) cards++;
+      else fail(`wheel: the row «${target.name}» opened ${open === null ? 'no card' : `«${open}»`}`);
+      if (m === 1 && i === 0) await shoot('taps', `card «${target.name}»`);
+      // ✕, except the very first card, which Escape closes.
+      if (rows === 1) await page.key?.('Escape') ?? (await page.evaluate(`document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))`));
+      else { const x = await page.evaluate(box('.days-close')); if (x) await page.click(...x); }
+      await settle(page, 10000);
+      if (await page.evaluate(`!document.querySelector('.days-sheet').hidden`)) fail(`wheel: the card «${target.name}» did not close by ${rows === 1 ? 'Escape' : '✕'}`);
+    }
+  }
+  await page.evaluate(`window.scrollTo(0, 0)`);
+  summary.push(`wheel: months ${months}/${options.length} by ›, wedges ${wedges}/12 at mid-ring (${midArc.toFixed(1)} × ${geo.R - geo.r} px), cards ${cards}/${rows} (✕, Escape)`);
+}
+
 async function pickerSteps(page, shoot, summary, fail, tabs = 0) {
   // Tabs that divide the records each list their own: every tab's picker, tab by tab. View tabs list them all — unless
   // the picker lists a table of its own per tab (`byTab`), when every tab's picker is stepped too.

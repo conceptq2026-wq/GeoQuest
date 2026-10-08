@@ -728,6 +728,14 @@ for (const [key, p] of Object.entries(PASSAGES)) {
 const famous = JSON.parse(fs.readFileSync(path.join(DATA_SOURCES, 'famous-lines.geojson'), 'utf8'));
 check(famous.features.some((f) => f.properties.kind === 'trace'), 'data-sources/famous-lines.geojson has traced lines');
 check(fs.existsSync(path.join(SERVED, 'shared/fonts/noto-sans-bengali/OFL.txt')), 'Noto Sans Bengali licence is shipped next to the font');
+// Noto Sans Bengali Bold (the user's approval, 2026-10-08, WHEEL-2): tools/build-font.mjs's WOFF2 of the pinned
+// release's NotoSansBengali-Bold.ttf (tools/sources.json, notoSansBengali; SIL OFL 1.1), held to its SHA-256; the
+// diagram shell's days.css declares it, so only that view requests it.
+{
+  const bold = path.join(SERVED, 'shared/fonts/noto-sans-bengali/NotoSansBengali-Bold.woff2');
+  const sha = fs.existsSync(bold) ? crypto.createHash('sha256').update(fs.readFileSync(bold)).digest('hex') : null;
+  check(sha === '79dfb48884d8d7b4e81f51e53bdd4a0affd8be2d4f31b0c0c6e7def9cc064796', `Noto Sans Bengali Bold is the build of the pinned release (SHA-256 ${sha?.slice(0, 12)}…)`);
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -1609,6 +1617,32 @@ console.log('\n---- bangladesh-ethnic-groups: seed (draft) ----');
   check(unflagged.length === 0, `${EG}: every Bengali string carries its approval flag${unflagged.length ? ` — not: ${unflagged.slice(0, 3).join(', ')}` : ''}`);
   check(pending === 0, `${EG}: every string approved — the map is live${pending ? ` — ${pending} pending` : ''}`);
   check(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(seedText) && registry.maps.some((e) => e.id === EG && e.section === 'bangladesh') && !wipItems.some((w) => w.id === EG) && fs.existsSync(path.join(SERVED, 'maps', EG, 'descriptor.json')), `${EG}: no e-mail address in the seed; live — in registry.json under Bangladesh, its folder under docs/maps/, no longer in tools/wip.json`);
+}
+
+// ---- important-days «বছরের চাকা» (work in progress, WHEEL-2, 2026-10-08): the seed -------------------
+// Every Bengali string is { bn, approved }; a source's own title, a citation, a day's printed name in the circular's
+// record and a named day's name inside an entry are records of a source. Its built files are held to a fresh build
+// by tools/verify-descriptor.mjs; unapproved strings only warn while it is work in progress.
+console.log('\n---- important-days: seed (work in progress) ----');
+{
+  const ID = 'important-days';
+  const seedText = fs.readFileSync(path.join(DATA_SOURCES, ID, 'days.seed.json'), 'utf8');
+  const seed = JSON.parse(seedText);
+  const unflagged = [];
+  let pending = 0;
+  const walk = (v, where, key, owner) => {
+    if (typeof v === 'string') {
+      if (!/[ঀ-৿]/.test(v)) return;
+      if (key === 'bn' && typeof owner?.approved === 'boolean') { if (!owner.approved) pending++; return; }
+      if (/^seed\.(circular|amendments)/.test(where) || /\.named\[\d+\]\./.test(where) || /\.sources\[\d+\]\.|\.conflict\.|\.circularSource\.|\.date\.source$|\.dateAsPrinted$/.test(where) || ['what', 'url', 'note', 'place', 'category'].includes(key)) return;
+      unflagged.push(where);
+    } else if (Array.isArray(v)) v.forEach((x, i) => walk(x, `${where}[${i}]`, i, v));
+    else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) walk(x, `${where}.${k}`, k, v);
+  };
+  walk(seed, 'seed', null, null);
+  check(unflagged.length === 0, `${ID}: every Bengali string carries its approval flag${unflagged.length ? ` — not: ${unflagged.slice(0, 3).join(', ')}` : ''}`);
+  if (pending) console.log(`warn ${ID} (work in progress): ${pending} string(s) await the user's approval`);
+  check(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(seedText) && !registry.maps.some((e) => e.id === ID) && wipItems.some((w) => w.id === ID && w.kind === 'diagram' && w.section === 'bangladesh') && fs.existsSync(path.join(SERVED, 'diagrams', ID, 'descriptor.json')), `${ID}: no e-mail address in the seed; work in progress — in tools/wip.json under Bangladesh, built into docs/diagrams/, not in the registry`);
 }
 
 // ---- no unapproved string ships (the user's rule, 2026-10-08, BD-6) -------------------------------

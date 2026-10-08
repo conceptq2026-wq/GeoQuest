@@ -1,0 +1,86 @@
+/*
+| The year wheel (days.js): loaded only for a view of type `days`. Its bold is real (Noto Sans Bengali Bold, from the
+| same pinned release as the Regular, tools/build-font.mjs), declared here so no other view requests it.
+*/
+@font-face {
+  font-family: 'Noto Sans Bengali';
+  src: url('../shared/fonts/noto-sans-bengali/NotoSansBengali-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+.days {
+  --days-blue: #2563eb;
+  --days-blue-dark: #1d4ed8;
+  --days-ink: #0f2a4a;
+  --days-grey: #64748b;
+  --days-seg: #e8eef8;
+  --days-tile: #f1f5f9;
+  --days-national: #009e73;
+  --days-international: #0072b2;
+  --days-other: #e69f00;
+  --days-today: #d55e00;
+  background: #f5f7fb;
+  padding: 0 12px 24px;
+  color: var(--days-ink);
+}
+body:has(.days) { background: #f5f7fb; }
+
+.days-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 14px;
+  box-shadow: 0 2px 10px rgba(15, 42, 74, 0.07);
+}
+.days-card + .days-card { margin-top: 14px; }
+
+/* The wheel: static, about 86 % of the card's width. */
+.days-wheel { display: block; margin: 0 auto; overflow: visible; }
+.days-seg { cursor: pointer; outline: none; }
+.days-seg path { fill: var(--days-seg); stroke: #fff; stroke-width: 3; stroke-linejoin: round; }
+.days-seg.chosen path { fill: var(--days-blue); stroke: var(--days-blue-dark); stroke-width: 1.5; }
+.days-seg:focus-visible path { stroke: var(--days-blue); stroke-width: 3; }
+.days-seg-label { font-size: 14px; font-weight: 700; fill: var(--days-ink); text-anchor: middle; dominant-baseline: middle; }
+.days-seg.chosen .days-seg-label { fill: #fff; }
+.days-seg-top { pointer-events: none; }
+.days-centre { fill: #fff; }
+.days-centre-month { font-size: 30px; font-weight: 700; fill: var(--days-ink); text-anchor: middle; }
+.days-centre-count { font-size: 16px; fill: var(--days-grey); text-anchor: middle; }
+
+/* The legend: one row where it fits, else 2 × 2. */
+.days-legend { display: flex; flex-wrap: nowrap; justify-content: space-between; gap: 8px; margin-top: 14px; }
+.days-legend.two { display: grid; grid-template-columns: 1fr 1fr; }
+.days-pill { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 999px; background: var(--days-tile); font-size: 14px; white-space: nowrap; }
+
+/* The list. */
+.days-list-title { display: flex; align-items: center; gap: 10px; margin: 2px 2px 12px; font-size: 18px; font-weight: 700; }
+.days-title-icon { color: var(--days-blue); flex: none; }
+.days-row { display: grid; grid-template-columns: 56px 1fr auto; gap: 12px; align-items: center; min-height: 72px; padding: 8px 12px; border: 1.5px solid transparent; border-radius: 16px; background: #fff; cursor: pointer; box-shadow: 0 1px 4px rgba(15, 42, 74, 0.06); }
+.days-row + .days-row { margin-top: 8px; }
+.days-row.next { background: #eff6ff; border-color: var(--days-blue); }
+.days-row:focus-visible, .days-close:focus-visible { outline: 3px solid var(--days-blue); outline-offset: 2px; }
+.days-tile { width: 56px; height: 56px; border-radius: 14px; background: var(--days-tile); display: grid; place-items: center; align-content: center; line-height: 1.1; }
+.days-tile b { font-size: 24px; font-weight: 700; }
+.days-tile span { font-size: 14px; color: var(--days-grey); }
+.days-row-text { min-width: 0; }
+.days-row-name { font-size: 17px; font-weight: 700; line-height: 1.35; }
+.days-row-purpose { font-size: 14px; color: var(--days-grey); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.days-chip { display: inline-flex; align-items: center; gap: 5px; margin-top: 4px; padding: 2px 10px; border-radius: 999px; font-size: 14px; color: var(--days-blue-dark); background: #e8f0fe; border: 1px solid #bfd3f7; }
+.days-chip.today { color: #9a3412; background: #fff1e8; border-color: #f3c3a6; }
+.days-empty { font-size: 14px; color: var(--days-grey); margin: 8px 4px; }
+
+/* The card: a bottom sheet over the page. */
+.days-backdrop { position: fixed; inset: 0; background: rgba(15, 42, 74, 0.35); z-index: 40; }
+.days-sheet { position: fixed; left: 0; right: 0; bottom: 0; z-index: 41; max-height: 82vh; overflow-y: auto; background: #fff; border-radius: 20px 20px 0 0; padding: 10px 16px 24px; box-shadow: 0 -6px 24px rgba(15, 42, 74, 0.2); animation: days-up 180ms ease-out; color: var(--days-ink); }
+@keyframes days-up { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .days-sheet { animation: none; } }
+.days-handle { width: 44px; height: 5px; border-radius: 3px; background: #cbd5e1; margin: 0 auto 8px; }
+.days-sheet-head { display: grid; grid-template-columns: 56px 1fr 44px; gap: 12px; align-items: center; }
+.days-sheet-title { margin: 0; font-size: 20px; font-weight: 700; line-height: 1.3; }
+.days-sheet-kind { display: flex; align-items: center; gap: 6px; margin: 4px 0 0; font-size: 14px; color: var(--days-grey); }
+.days-close { width: 44px; height: 44px; border: 0; border-radius: 50%; background: var(--days-tile); color: var(--days-ink); font-size: 18px; cursor: pointer; }
+.days-facts { margin: 14px 0 0; display: grid; gap: 10px; }
+.days-facts div { border-top: 1px solid #eef2f7; padding-top: 8px; }
+.days-facts dt { font-size: 14px; color: var(--days-grey); }
+.days-facts dd { margin: 2px 0 0; font-size: 16px; }
+.days-icon { flex: none; overflow: visible; }

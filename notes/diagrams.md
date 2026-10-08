@@ -120,3 +120,11 @@ not built.
     `creditGroups` gets ⓘ as headed blocks — the ungrouped credits and the
     font first, then each group — one item a line, headings bold at 14 px;
     any other diagram keeps the one run of credits.
+- **The year wheel (2026-10-08).** `docs/visual/days.js` and `days.css`, loaded only for a view of type `days` —
+  one line in `VIEW_MODULES` — by important-days (work in progress: `notes/important-days.md`).
+  - **Drawn in code:** the shared picker row, a static twelve-wedge SVG wheel, a legend and a list of rows. A row
+    opens a bottom sheet.
+  - **«আজ»** is the device's local date.
+  - **Bold:** the module's stylesheet declares Noto Sans Bengali Bold, so only this view requests it.
+  - **`mount`** returns `{ ready }`, as the shell awaits.
+  - **`tools/check.mjs`** has a `daysSteps` branch for it.
