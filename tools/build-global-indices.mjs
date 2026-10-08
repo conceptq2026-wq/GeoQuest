@@ -179,6 +179,9 @@ const descriptor = {
   constraints: { minZoom: -1, maxZoom: 6, wholeWorld: true },
   // No text under 14 px anywhere on this map, the basemap's names and the shell's chrome included (the user, 2026-10-08).
   minTextSize: 14,
+  // No other country's name on the map (the user, 2026-10-09: «অন্য দেশের নাম থাকবে না»): the pins are its only names;
+  // sea and ocean names stay. A baseline exception, this map's alone (CLAUDE.md).
+  hideCountryLabels: true,
   openOn: { tab: 'countries', records: 'indices', key: built[0].id },
   records: {
     tabs: { file: './tabs.json', fields: { titleBn: { type: 'text', required: true } } },

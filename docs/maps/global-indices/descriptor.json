@@ -21,6 +21,7 @@
     "wholeWorld": true
   },
   "minTextSize": 14,
+  "hideCountryLabels": true,
   "openOn": {
     "tab": "countries",
     "records": "indices",

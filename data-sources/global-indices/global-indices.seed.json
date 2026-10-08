@@ -55,7 +55,7 @@
       },
       "southAsia": {
         "bn": "দক্ষিণ এশিয়ায় বাংলাদেশ",
-        "approved": false
+        "approved": true
       },
       "rank": {
         "bn": "র‍্যাংক",
@@ -88,23 +88,23 @@
     },
     "pinRank": {
       "bn": "{rank} · {name}",
-      "approved": false
+      "approved": true
     },
     "pinBd": {
       "bn": "বাংলাদেশ · {value}",
-      "approved": false
+      "approved": true
     },
     "pinTie": {
       "bn": "{rank} · যৌথভাবে {n}টি দেশ",
-      "approved": false
+      "approved": true
     },
     "pinLow": {
       "bn": "সর্বনিম্ন · {name}",
-      "approved": false
+      "approved": true
     },
     "pinHigh": {
       "bn": "সর্বোচ্চ · {name}",
-      "approved": false
+      "approved": true
     },
     "legendTop": {
       "bn": "শীর্ষ",

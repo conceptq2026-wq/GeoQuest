@@ -213,6 +213,10 @@ outline, no name; the neighbours' land is plain, the sea keeps its colour, and
 a map's own layers still draw over it: `notes/basemaps.md`.
 
 A globe map has no tilt button and keeps the picker row: `notes/globe.md`.
+
+**One exception, the user's decision (2026-10-09): global-indices shows no country name** — neither the
+basemap's nor its own (`hideCountryLabels: true`, opt-in, that map alone): its three pins per ranking are its only
+names. Sea and ocean names stay. The world basemap draws no city or place names on any map.
 One map, environment-treaties, is in English: `notes/environment-treaties.md`.
 
 **Which labels are emphasised is derived, never declared** — taken from the

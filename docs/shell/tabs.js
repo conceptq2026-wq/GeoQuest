@@ -128,7 +128,7 @@ export async function mount(api) {
   api.activeTab = () => active;
   api.actions.fitTab = (action, context) => fitSelection(action, context);
 
-  await stylesheet(api, './tabs.css?v=d75c4ba2ef');
+  await stylesheet(api, './tabs.css?v=fa4482392b');
   bar = api.own.node(document.createElement('div'), 'tabs');
   bar.className = table ? 'map-tabs' : 'map-tabs view-tabs';
   bar.setAttribute('role', 'tablist');

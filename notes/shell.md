@@ -284,6 +284,8 @@ drawn now (`drawn`), and read a file of the map's own folder (`file`).
   in green, «▼ অবনতি x ধাপ» in vermillion — a move toward rank 1 is «অবনতি» where rank 1 is the most affected (CRI) —
   «— অপরিবর্তিত» in grey, and «▲/▼ x ধাপ ওপরে/নিচে» in grey for a ranking that is neither better nor worse
   (population, density); under it «আগের সংস্করণের তুলনায়», or «আগের বছরের তুলনায়» (`basis: 'year'`).
+- **`hideCountryLabels: true`** (opt-in, 2026-10-09; global-indices, the user's baseline exception in CLAUDE.md): the
+  shell draws no country name — not the basemap's `country_labels`, not the map's own `countries` table; sea names stay.
 - **`tools/lib/raw-get.mjs`** (IDX-2, approved IDX-3): a plain HTTP/1.1 GET over TLS, with the repo's User-Agent, for
   a server whose response header Node's parser refuses even in its lenient mode (UN DESA's E-Government Knowledgebase,
   publicadministration.un.org). It exists ONLY for malformed headers: it must never be used to get round a block, a

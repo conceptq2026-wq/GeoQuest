@@ -15,9 +15,9 @@
 |--------------------------------------------------------------------------
 */
 
-import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=d75c4ba2ef';
-import { resolver } from '../shared/resolver.js?v=d75c4ba2ef';
-import { pickerRow } from '../shared/picker.js?v=d75c4ba2ef';
+import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=fa4482392b';
+import { resolver } from '../shared/resolver.js?v=fa4482392b';
+import { pickerRow } from '../shared/picker.js?v=fa4482392b';
 
 /*
 |--------------------------------------------------------------------------
@@ -722,14 +722,14 @@ function pick(row, keys) {
 |--------------------------------------------------------------------------
 */
 const SHELL_MODULES = {
-  tabs: './tabs.js?v=d75c4ba2ef',
-  chips: './chips.js?v=d75c4ba2ef',
-  timeline: './timeline.js?v=d75c4ba2ef',
-  globe: './globe.js?v=d75c4ba2ef',
-  focus: './focus.js?v=d75c4ba2ef',
-  legend: './legend.js?v=d75c4ba2ef',
-  info: './info.js?v=d75c4ba2ef',
-  indices: './indices.js?v=d75c4ba2ef',
+  tabs: './tabs.js?v=fa4482392b',
+  chips: './chips.js?v=fa4482392b',
+  timeline: './timeline.js?v=fa4482392b',
+  globe: './globe.js?v=fa4482392b',
+  focus: './focus.js?v=fa4482392b',
+  legend: './legend.js?v=fa4482392b',
+  info: './info.js?v=fa4482392b',
+  indices: './indices.js?v=fa4482392b',
 };
 const hiders = []; // (table, key) => true takes a record off the map, the picker and ‹ ›
 // (table, key) => true takes a record off the map only: the picker and ‹ › still list it (the focus module).
@@ -996,8 +996,20 @@ const IS_ACTIVE = ['==', ['get', 'active'], true];
  * name for context stays out of the way, a name the selection points at does
  * not get covered.
  */
+/*
+ * One exception (the user's, 2026-10-09; global-indices): `hideCountryLabels: true` draws no country name at all —
+ * neither the basemap's nor the map's own — so the only names on the map are its own pins. Sea and ocean names stay.
+ * Every other map keeps the baseline as it is.
+ */
+const HIDE_COUNTRY_LABELS = descriptor.hideCountryLabels === true;
+if (descriptor.hideCountryLabels !== undefined && typeof descriptor.hideCountryLabels !== 'boolean') throw new Error('hideCountryLabels is true or false');
 function baselineLayers() {
   const named = records[COUNTRY_TABLE] ? Object.keys(records[COUNTRY_TABLE]) : [];
+  if (HIDE_COUNTRY_LABELS) {
+    const plain = seasNamed ? [{ id: 'sea-labels', type: 'symbol', source: 'seas', style: 'sea-label', filter: ['all', NOT_ACTIVE, ['>=', ['zoom'], 3]], layout: { 'text-field': ['get', SEA_NAME] } }] : [];
+    const active = seasNamed ? [{ id: 'sea-labels-active', type: 'symbol', source: 'seas', style: 'sea-label-active', filter: IS_ACTIVE, layout: { 'text-field': ['get', SEA_NAME] } }] : [];
+    return { plain, active };
+  }
   const plain = [
     {
       id: 'country-labels',

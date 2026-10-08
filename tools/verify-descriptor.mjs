@@ -125,7 +125,7 @@ const MARITIME_ZONES_SEED_SHA256 = '6b0f67dbac0b0fa97037d86c7f94d3f07a73bd57a42d
 // The bangladesh-maritime-boundary map: the editor's seed, pinned (live 2026-10-08; its 35 step-2 strings approved, BD-6; #30 reworded by the user the same day).
 const BANGLADESH_MARITIME_SEED_SHA256 = 'dcc627421f99b20faeffe17006d9348f181b9663c058af66f37ae6c572e8ebbd';
 // The global-indices map «বৈশ্বিক সূচক» (work in progress, IDX-2, 2026-10-08): its seed, pinned.
-const GLOBAL_INDICES_SEED_SHA256 = '3786ee90aed5bec74bb53086ad649d2e1fddf92c6342d48fc55ddabdbbaa2ae2';
+const GLOBAL_INDICES_SEED_SHA256 = 'da3bbe9fe72c3cc1f373f673f2b78be24b722e4251a6262e5f21352c8847cbe4';
 // The important-days diagram «বছরের চাকা»: its seed, pinned (live 2026-10-08, after WHEEL-2–5 and GL-WHEEL).
 const IMPORTANT_DAYS_SEED_SHA256 = '24fe65ed95d70d794a54c0a29341b85da87a13fcffa371a1d9967a862d737070';
 // The bangladesh-ethnic-groups map: its seed, pinned (live 2026-10-08).
@@ -2850,6 +2850,8 @@ console.log('\n\n============ global-indices (work in progress) ============');
   const descriptor = readJson(path.join(dir, 'descriptor.json'));
   const indices = readJson(path.join(dir, 'indices.json'));
   const tabsFile = readJson(path.join(dir, 'tabs.json'));
+  const hiders = fs.readdirSync(MAPS_DIR).filter((m) => readJson(path.join(MAPS_DIR, m, 'descriptor.json')).hideCountryLabels !== undefined);
+  check(descriptor.hideCountryLabels === true && JSON.stringify(hiders) === JSON.stringify([id]), `no country name on the map but its pins (hideCountryLabels, the user's baseline exception of 2026-10-09), and no other map sets it (${hiders.join(', ')})`);
   check(descriptor.section === 'international' && descriptor.basemap === 'world' && descriptor.minTextSize === 14 && JSON.stringify(Object.keys(tabsFile)) === '["countries","bangladesh"]' && descriptor.indices?.tabs?.bangladesh === 'bangladesh', 'descriptor: International, the world basemap, no text under 14 px, the tabs «দেশ» and «বাংলাদেশ» (no «শহর»), the indices module');
   const sources = readJson(path.join(ROOT, 'tools', 'sources.json')).globalIndices.files;
   const pinnedUrls = new Set(Object.values(sources).map((f) => f.url));

@@ -71,6 +71,14 @@ Read it with `CLAUDE.md`, whose rules and verification budget apply. A map under
   (labels, then the rankings' names, then country names). Country names on the cards are the basemap's pinned
   `NAME_BN`; the two new ones (Israel, Taiwan) await approval.
 
+## IDX-ALL (2026-10-09)
+
+- **Baseline exception (the user: «অন্য দেশের নাম থাকবে না»):** `hideCountryLabels: true` (opt-in, this map only) — no
+  country name from the basemap or the map's own table; the pins are the only names; sea and ocean names stay (from
+  zoom 3, as on every map). The world basemap has no city or place names anywhere. Recorded in CLAUDE.md.
+- **The six IDX-4 strings approved** (the user delegated the review): «দক্ষিণ এশিয়ায় বাংলাদেশ», «{rank} · {name}»,
+  «বাংলাদেশ · {value}», «{rank} · যৌথভাবে {n}টি দেশ», «সর্বনিম্ন · {name}», «সর্বোচ্চ · {name}».
+
 ## IDX-4 revised (the user's review and preview feedback, 2026-10-09)
 
 - **No list of other countries' names on the card:** the «মানচিত্রে আঁকা নেই» row and GDP's «তথ্য নেই» list are gone,
@@ -87,8 +95,7 @@ Read it with `CLAUDE.md`, whose rules and verification budget apply. A map under
 - **New strings, awaiting the user's review (6):** the pin patterns «{rank} · {name}», «বাংলাদেশ · {value}»,
   «{rank} · যৌথভাবে {n}টি দেশ», «সর্বনিম্ন · {name}», «সর্বোচ্চ · {name}», and the row label «দক্ষিণ এশিয়ায় বাংলাদেশ».
   Every other string is approved.
-- **Not done:** hiding the basemap's place and country labels on this map. CLAUDE.md's map baseline puts sea and country
-  names on every map, enforced by the shell; that needs the user's explicit exception, recorded in CLAUDE.md, first.
+- **Not done then:** hiding the basemap's labels — it needed the user's explicit exception, given in IDX-ALL (above).
 
 ## IDX-4 (the user's review, 2026-10-09)
 

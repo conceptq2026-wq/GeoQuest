@@ -27,7 +27,7 @@
 | Every word shown is the descriptor's or the data's.
 */
 
-import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=d75c4ba2ef';
+import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=fa4482392b';
 
 const deg = Math.PI / 180;
 // CSS px: an Earth's tap zone is at least this across.
@@ -54,7 +54,7 @@ const RING = 5;
 export async function mount(panel, { descriptor, data, art, file }) {
   const words = descriptor.words ?? {};
   const manifest = await art;
-  await Promise.all([stylesheet('../shared/picker.css?v=d75c4ba2ef'), stylesheet('./orbit.css?v=d75c4ba2ef')]);
+  await Promise.all([stylesheet('../shared/picker.css?v=fa4482392b'), stylesheet('./orbit.css?v=fa4482392b')]);
 
   const positions = [...data.positions].sort((a, b) => a.order - b.order);
   const byId = new Map(positions.map((p) => [p.id, p]));
