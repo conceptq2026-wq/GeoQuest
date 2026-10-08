@@ -78,7 +78,7 @@ for (const x of built) {
       const adm = toAdm.get(r.iso3);
       const pos = x.valueOnly ? i : r.rank - 1;
       if (!adm || !drawn.has(adm)) {
-        unshaded.push(`${nameOf(r.iso3, r.name)}${x.valueOnly ? '' : ` (${bn(r.rank)})`}`);
+        unshaded.push(`${nameOf(r.iso3, r.iso3)}${x.valueOnly ? '' : ` (${bn(r.rank)})`}`);
         return;
       }
       lists[`s${Math.min(7, Math.floor((pos * 7) / n) + 1)}`].push(adm);
@@ -118,7 +118,7 @@ for (const x of built) {
     ...(southAsia ? { southAsia } : {}),
     rankMeans,
     ...(unshaded.length ? { unshaded: unshaded.join(', ') } : {}),
-    ...(L.missing?.length ? { noValue: L.missing.map((m) => nameOf(m.iso3, m.name)).join(', ') } : {}),
+    ...(L.missing?.length ? { noValue: L.missing.map((m) => nameOf(m.iso3, m.iso3)).join(', ') } : {}),
     basis: x.basis ?? 'edition',
     verified: bnDate(seed.verified),
     url: L.source?.url ?? x.pageUrl ?? L.releaseUrl ?? L.dataUrl,

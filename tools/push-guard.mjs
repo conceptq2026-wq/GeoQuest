@@ -64,7 +64,8 @@ check(found.length === 0, `no e-mail-address pattern in the diff or the commit m
 
 // 4. The 8-word quote scan.
 const words = (s) => s.replace(/https?:[^\s"'<>)]+/g, ' ').toLowerCase().replace(/[^\p{L}\p{N}\p{M}]+/gu, ' ').trim().split(' ').filter(Boolean);
-const runs = (s) => { const w = words(s); const out = new Set(); for (let i = 0; i + 8 <= w.length; i++) out.add(w.slice(i, i + 8).join(' ')); return out; };
+// A run of numbers alone (a shared geometry's arc indices, a table's figures) is data, not a quote: it is skipped (IDX-3).
+const runs = (s) => { const w = words(s); const out = new Set(); for (let i = 0; i + 8 <= w.length; i++) { const run = w.slice(i, i + 8); if (run.every((t) => /^\p{N}+$/u.test(t))) continue; out.add(run.join(' ')); } return out; };
 const sources = new Map();
 let texts = 0;
 for (const [dir, re] of SOURCE_TEXTS) {

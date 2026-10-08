@@ -5,7 +5,8 @@
 import fs from 'node:fs';
 import crypto from 'node:crypto';
 
-// An address: a local part, @, a domain with at least one dot; not an image or code file named like one (icon@2x.png).
+// An address: a local part, @, a domain with at least one dot; not an image or code file named like one (a name with
+// an @2x suffix and a .png ending).
 export const EMAIL = /[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.(?!(?:png|jpe?g|gif|svg|webp|css|js|pdf)\b)[A-Za-z]{2,}/g;
 const TEXT = /\.(html?|json|csv|txt|xml|md|tsv)$/i;
 const sha256 = (buf) => crypto.createHash('sha256').update(buf).digest('hex');
