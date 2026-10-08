@@ -78,6 +78,24 @@ Read it with `CLAUDE.md`, whose rules and verification budget apply. A map under
   zoom 3, as on every map). The world basemap has no city or place names anywhere. Recorded in CLAUDE.md.
 - **The six IDX-4 strings approved** (the user delegated the review): «দক্ষিণ এশিয়ায় বাংলাদেশ», «{rank} · {name}»,
   «বাংলাদেশ · {value}», «{rank} · যৌথভাবে {n}টি দেশ», «সর্বনিম্ন · {name}», «সর্বোচ্চ · {name}».
+- **Part B, three rankings from the pinned WPP 2024** (2026 projection against 2025, read twice and agreed):
+  population growth (Bangladesh 75 of 193, 1.19%, neutral chip), life expectancy at birth (84 of 193, 75.5 years;
+  male 73.8, female 77.2; better/worse chip) and population among the OIC's 57 members as the OIC's own page lists
+  them (oic-members.html, re-pinned 2026-10-09; Bangladesh 4th; members only shaded; no South Asia row).
+- **Part C:** GFSI 2022 and Mercer's two 2024 city rankings (Dhaka) are back in the seed, facts-only, with the
+  user's names and rank lines; their facts come only from Part D.
+- **Part D, secondary sources** (the user's scoped exception, recorded in CLAUDE.md): two readers
+  (`tools/.cache/indices/idx2/sec-A`, `sec-B`, brief `SECONDARY-BRIEF.md`) and a merge (`merge.mjs`, writing
+  `agreed.json`): values must agree; a fact counts only GoB, BSS, Reuters/AP/AFP and leading national dailies, one
+  owner once (Prothom Alo and its English edition; Dhaka Tribune, its Bangla site and Bangla Tribune), so portals,
+  TV sites, aggregators and republications count for nothing. Built: EIU liveability 2026, Dhaka 171/173,
+  Copenhagen/Damascus, previous 171 (TBS, New Age, Financial Express; previous: Dhaka Tribune, TBS); Mercer cost
+  of living 2024, Dhaka 140/226, Hong Kong/Abuja, previous 154 (Prothom Alo, Ittefaq; Vanguard, Punch, The Sun).
+  Held out: GPI, Henley, GGGI (one qualifying outlet for a fact; Henley's previous rank also differed, 100/95),
+  GFSI (the readers differed), GTI and GHI (tied ends, one source), Democracy Index, Economic Freedom and
+  Mercer quality of living (no report found), clothing exports (no source names the 10th or N). The previous
+  rank's sources date from the previous edition's year (the ingest's rule). A secondary previous edition stores
+  Bangladesh's rank only; the card's «সর্বশেষ যাচাই» is the reading's date.
 
 ## IDX-4 revised (the user's review and preview feedback, 2026-10-09)
 

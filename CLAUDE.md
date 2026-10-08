@@ -335,6 +335,16 @@ by map. **Nothing is guessed to fill a gap.**
   cited to that survey and its year, and `review` logs the other values.
 - Shortening the pending list is not a goal. A fact with one weak source stays
   pending.
+- **One scoped exception, secondary sources** (the user's decision, 2026-10-09, IDX-ALL Part D):
+  global-indices' facts-only rankings whose publishers forbid automated access may take Bangladesh's (or
+  Dhaka's) rank of N, the top, the bottom, the edition and the previous rank from SECONDARY reports, and only
+  these. The publishers' own sites are never fetched; the order is the Government of Bangladesh, BSS, Reuters/
+  AP/AFP, then leading national dailies (one owner counts once; portals, TV sites and Wikipedia never); each fact
+  needs two such outlets that agree, each naming the publisher and the edition, dated after the release (the
+  previous rank: after the previous edition's). Two independent readers; any mismatch, or a fact short of two,
+  holds the item out. Stored tagged «secondary» — URL, outlet, date, publisher, no article text — through
+  `tools/ingest-user-input.mjs --secondary`; the card's link reads «সূত্র: {outlet} (মূল: {publisher})».
+  Nothing else on any map uses it: `notes/global-indices.md`.
 
 ## Build pins
 

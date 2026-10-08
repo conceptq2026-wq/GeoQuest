@@ -21837,8 +21837,64 @@
         "approved": true
       },
       "basis": "edition",
-      "latest": null,
-      "previous": null,
+      "latest": {
+        "edition": "Cost of Living City Ranking 2024",
+        "releaseDate": "2024-06",
+        "n": 226,
+        "bd": {
+          "rank": 140
+        },
+        "top": {
+          "name": "Hong Kong",
+          "rank": 1
+        },
+        "bottom": {
+          "name": "Abuja",
+          "rank": 226
+        },
+        "source": {
+          "by": "secondary",
+          "date": "2026-10-08",
+          "secondary": [
+            {
+              "url": "https://en.prothomalo.com/bangladesh/whcezu6nk9",
+              "outlet": "Prothom Alo",
+              "date": "2024-06-19",
+              "publisher": "Mercer"
+            },
+            {
+              "url": "https://www.vanguardngr.com/2024/06/naira-depreciation-makes-lagos-abuja-cheapest-global-cities-for-expatriates-report-2/",
+              "outlet": "Vanguard (Nigeria)",
+              "date": "2024-06-20",
+              "publisher": "Mercer"
+            },
+            {
+              "url": "https://thesun.ng/naira-crash-makes-lagos-abuja-cheapest-cities-for-expatriates-report/",
+              "outlet": "The Sun (Nigeria)",
+              "date": "2024-06-19",
+              "publisher": "Mercer"
+            },
+            {
+              "url": "https://www.ittefaq.com.bd/690896/",
+              "outlet": "Ittefaq",
+              "date": "2024-06-18",
+              "publisher": "মার্সার কস্ট অব লিভিং সার্ভে"
+            },
+            {
+              "url": "https://punchng.com/abuja-now-cheapest-african-city-for-expatriates-report/",
+              "outlet": "Punch (Nigeria)",
+              "date": "2024-06-23",
+              "publisher": "Mercer"
+            }
+          ]
+        },
+        "approved": true
+      },
+      "previous": {
+        "bd": {
+          "rank": 154
+        }
+      },
       "userInput": {
         "why": "restricted licence or terms (IDX-1); facts from secondary sources (IDX-ALL Part D)",
         "pages": [
@@ -21903,8 +21959,58 @@
       },
       "goodIs": "up",
       "basis": "edition",
-      "latest": null,
-      "previous": null,
+      "latest": {
+        "edition": "Global Liveability Index 2026",
+        "releaseDate": "2026-07",
+        "n": 173,
+        "bd": {
+          "rank": 171
+        },
+        "top": {
+          "name": "Copenhagen",
+          "rank": 1
+        },
+        "bottom": {
+          "name": "Damascus",
+          "rank": 173
+        },
+        "source": {
+          "by": "secondary",
+          "date": "2026-10-08",
+          "secondary": [
+            {
+              "url": "https://www.tbsnews.net/bangladesh/environment/only-tripoli-and-damascus-rank-below-dhaka-eiu-liveability-index-1482091",
+              "outlet": "The Business Standard",
+              "date": "2026-07-07",
+              "publisher": "Economist Intelligence Unit (EIU)"
+            },
+            {
+              "url": "https://www.newagebd.net/post/country/305322/dhaka-worlds-3rd-least-liveable-city",
+              "outlet": "New Age",
+              "date": "2026-07-08",
+              "publisher": "Economist Intelligence Unit (EIU)"
+            },
+            {
+              "url": "https://thefinancialexpress.com.bd/national/only-damascus-and-tripoli-rank-below-dhaka-in-global-liveability-index",
+              "outlet": "The Financial Express",
+              "date": "2026-07-07",
+              "publisher": "EIU"
+            },
+            {
+              "url": "https://www.dhakatribune.com/bangladesh/dhaka/384785/global-liveability-index-2025-dhaka-ranks-171st",
+              "outlet": "Dhaka Tribune",
+              "date": "2025-06-25",
+              "publisher": "Economist Intelligence Unit (EIU)"
+            }
+          ]
+        },
+        "approved": true
+      },
+      "previous": {
+        "bd": {
+          "rank": 171
+        }
+      },
       "userInput": {
         "why": "the terms forbid automated access (https://www.eiu.com/n/terms/ 2.2 Prohibited Uses, item (D))",
         "pages": [

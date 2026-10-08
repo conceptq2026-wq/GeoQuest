@@ -125,7 +125,7 @@ const MARITIME_ZONES_SEED_SHA256 = '6b0f67dbac0b0fa97037d86c7f94d3f07a73bd57a42d
 // The bangladesh-maritime-boundary map: the editor's seed, pinned (live 2026-10-08; its 35 step-2 strings approved, BD-6; #30 reworded by the user the same day).
 const BANGLADESH_MARITIME_SEED_SHA256 = 'dcc627421f99b20faeffe17006d9348f181b9663c058af66f37ae6c572e8ebbd';
 // The global-indices map «বৈশ্বিক সূচক» (work in progress, IDX-2, 2026-10-08): its seed, pinned.
-const GLOBAL_INDICES_SEED_SHA256 = '41c770d8fa5e75d4f7f5b0f4e39736d25d0ba6f669fc1c4217b0bcbae98563b3';
+const GLOBAL_INDICES_SEED_SHA256 = '5ee85dbeee52a407cca600c707d059ab0c41fd22cbd5eed81dd6edcfd7547ce4';
 // The important-days diagram «বছরের চাকা»: its seed, pinned (live 2026-10-08, after WHEEL-2–5 and GL-WHEEL).
 const IMPORTANT_DAYS_SEED_SHA256 = '24fe65ed95d70d794a54c0a29341b85da87a13fcffa371a1d9967a862d737070';
 // The bangladesh-ethnic-groups map: its seed, pinned (live 2026-10-08).
@@ -2862,7 +2862,10 @@ console.log('\n\n============ global-indices (work in progress) ============');
   check(shading.length === 0, `an open ranking shades the countries it ranks in seven classes; a facts-only one lights only its top and bottom (a tied bottom's every country)${shading.length ? ` — not: ${shading.map((x) => x.id).join(', ')}` : ''}`);
   // A user-input ranking, once the user's facts are in (tools/ingest-user-input.mjs), is facts-only too, with its source.
   const FACT_KEYS = ['edition', 'editionNote', 'releaseDate', 'releaseYear', 'releaseSure', 'releaseUrl', 'dataUrl', 'dataFile', 'n', 'rule', 'bd', 'top', 'bottom', 'source', 'approved'];
-  const leaky = seed.indices.filter((x) => ['facts', 'user-input', 'city'].includes(x.kind)).flatMap((x) => [x.latest, x.previous].filter(Boolean).map((e) => [x.id, e])).filter(([, e]) => Object.keys(e).some((k) => !FACT_KEYS.includes(k)) || Object.keys(e.bd).join() !== 'rank' || ['top', 'bottom'].some((w) => Object.keys(e[w]).some((k) => !['iso3', 'name', 'rank', 'shared', 'tied'].includes(k)) || (e[w].tied ?? []).some((c) => Object.keys(c).some((k) => !['iso3', 'name'].includes(k)))));
+  // A previous edition read from secondary sources (IDX-ALL) keeps Bangladesh's rank only: it lights nothing.
+  const shapeBad = (e, rankOnly) => rankOnly ? Object.keys(e).join() !== 'bd' || Object.keys(e.bd).join() !== 'rank'
+    : Object.keys(e).some((k) => !FACT_KEYS.includes(k)) || Object.keys(e.bd).join() !== 'rank' || ['top', 'bottom'].some((w) => !e[w] || Object.keys(e[w]).some((k) => !['iso3', 'name', 'rank', 'shared', 'tied'].includes(k)) || (e[w].tied ?? []).some((c) => Object.keys(c).some((k) => !['iso3', 'name'].includes(k))));
+  const leaky = seed.indices.filter((x) => ['facts', 'user-input', 'city'].includes(x.kind)).flatMap((x) => [[x.latest, false], [x.previous, x.latest?.source?.by === 'secondary']].filter(([e]) => e).map(([e, rankOnly]) => [x.id, e, rankOnly])).filter(([, e, rankOnly]) => shapeBad(e, rankOnly));
   check(leaky.length === 0, `a facts-only ranking keeps three facts per edition — Bangladesh's rank of N, the top, the bottom — and no other country's rank or any value${leaky.length ? ` — not: ${leaky.map(([k]) => k).join(', ')}` : ''}`);
   const waiting = seed.indices.filter((x) => (x.kind === 'user-input' || x.kind === 'city') && !x.latest);
   check(waiting.every((x) => !indices[x.id] && x.userInput?.pages?.length && x.userInput?.factsNeeded?.length), `${waiting.length} user-input rankings are not built, each with the official pages to read and the facts needed`);

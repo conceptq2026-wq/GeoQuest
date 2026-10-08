@@ -83,8 +83,10 @@ for (const [id, body] of sections) {
   if (SECONDARY) {
     const after = got.month ? `${got.month}-01` : `${year}-01-01`;
     for (const field of ['edition', 'bd', 'of', 'top', 'bottom', ...(got.previous ? ['previousBdRank'] : [])]) {
-      const list = (secondary[id].facts?.[field] ?? []).filter((c) => /^https?:\/\//.test(c.url ?? '') && c.outlet && c.publisherNamed && c.editionNamed && /^\d{4}-\d\d-\d\d$/.test(c.date ?? '') && c.date >= after);
-      if (new Set(list.map((c) => c.outlet)).size < 2) bad.push(`${field}: fewer than two outlets that name the publisher and the edition, dated after ${after}`);
+      // The previous edition's rank is reported after that edition's release, so its sources date from its year on.
+      const from = field === 'previousBdRank' ? `${year - 1}-01-01` : after;
+      const list = (secondary[id].facts?.[field] ?? []).filter((c) => /^https?:\/\//.test(c.url ?? '') && c.outlet && c.publisherNamed && c.editionNamed && /^\d{4}-\d\d-\d\d$/.test(c.date ?? '') && c.date >= from);
+      if (new Set(list.map((c) => c.outlet)).size < 2) bad.push(`${field}: fewer than two outlets that name the publisher and the edition, dated after ${from}`);
       for (const c of list) if (!sources.some((x) => x.url === c.url)) sources.push({ url: c.url, outlet: c.outlet, date: c.date, publisher: c.publisherNamed });
     }
   }

@@ -152,9 +152,9 @@ for (const x of built) {
     ...(L.bdSexes ? { maleText: withUnit(L.bdSexes.male), femaleText: withUnit(L.bdSexes.female) } : {}),
     ...(x.note ? { note: t(x.note) } : {}),
     ...(x.bdStat ? { bdLabel: t(W[x.bdStat]) } : {}),
-    ...(via ? { sourceLabel: t(W.sourceVia).replace('{outlet}', via.outlet).replace('{publisher}', via.publisher) } : {}),
+    ...(via ? { sourceLabel: t(W.sourceVia).replace('{outlet}', via.outlet).replace('{publisher}', x.publisher) } : {}),
     basis: x.basis ?? 'edition',
-    verified: bnDate(seed.verified),
+    verified: bnDate(via ? L.source.date : seed.verified),
     url: via?.url ?? L.source?.url ?? x.pageUrl ?? L.releaseUrl ?? L.dataUrl,
     ...(change !== undefined ? { change } : {}),
     ...(x.goodIs ? { goodIs: x.goodIs } : {}),
@@ -166,7 +166,7 @@ for (const x of seed.indices.filter((y) => y.kind === 'city' && y.latest && !y.h
   const L = x.latest;
   const change = x.previous?.bd?.rank && L.bd?.rank ? x.previous.bd.rank - L.bd.rank : undefined;
   const cvia = L.source?.secondary?.[0];
-  indices[x.id] = { nameBn: t(x.nameBn), nameEn: x.nameEn, kind: 'facts', valueOnly: false, bdRank: L.bd.rank, bdOf: L.n, publisher: x.publisher, edition: L.edition, verified: bnDate(seed.verified), url: cvia?.url ?? L.source?.url ?? x.officialUrl, ...(cvia ? { sourceLabel: t(W.sourceVia).replace('{outlet}', cvia.outlet).replace('{publisher}', cvia.publisher) } : {}), bdOnly: true, basis: 'edition', ...(change !== undefined ? { change } : {}), ...(x.goodIs ? { goodIs: x.goodIs } : {}), ...Object.fromEntries(LISTS.map((k) => [k, []])) };
+  indices[x.id] = { nameBn: t(x.nameBn), nameEn: x.nameEn, kind: 'facts', valueOnly: false, bdRank: L.bd.rank, bdOf: L.n, rankMeans: t(x.rankMeans), publisher: x.publisher, edition: L.edition, verified: bnDate(cvia ? L.source.date : seed.verified), url: cvia?.url ?? L.source?.url ?? x.officialUrl, ...(cvia ? { sourceLabel: t(W.sourceVia).replace('{outlet}', cvia.outlet).replace('{publisher}', x.publisher) } : {}), bdOnly: true, basis: 'edition', ...(change !== undefined ? { change } : {}), ...(x.goodIs ? { goodIs: x.goodIs } : {}), ...Object.fromEntries(LISTS.map((k) => [k, []])) };
 }
 
 const tabs = { countries: { titleBn: t(W.tabCountries) }, bangladesh: { titleBn: t(W.tabBangladesh) } };
