@@ -15,9 +15,9 @@
 |--------------------------------------------------------------------------
 */
 
-import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=061f15ed08';
-import { resolver } from '../shared/resolver.js?v=061f15ed08';
-import { pickerRow } from '../shared/picker.js?v=061f15ed08';
+import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=7786978f35';
+import { resolver } from '../shared/resolver.js?v=7786978f35';
+import { pickerRow } from '../shared/picker.js?v=7786978f35';
 
 /*
 |--------------------------------------------------------------------------
@@ -531,13 +531,45 @@ const SHARED_GEOMETRY = {
     };
   },
 };
+/*
+ * world-countries.json (IDX-3, 2026-10-08): every country in Bangladesh's view, keyed by ISO3, with its ADM0_A3
+ * (`adm0`) beside it; shared arcs, each polygon its rings (outer first, then holes). `sharedPart: 'main'` on a source
+ * keeps, for each country, only the polygon its inner point falls in (a map's tap shape for it).
+ */
+SHARED_GEOMETRY['world-countries.json'] = (file) => {
+  const arcs = file.arcs.map((arc) => {
+    const pts = [];
+    for (let k = 0, x = 0, y = 0; k < arc.length; k += 2) {
+      x += arc[k];
+      y += arc[k + 1];
+      pts.push([+(x * file.quantum).toFixed(4), +(y * file.quantum).toFixed(4)]);
+    }
+    return pts;
+  });
+  const ringOf = (ids) => ids.flatMap((r, j) => (r < 0 ? arcs[~r].slice().reverse() : arcs[r]).slice(j ? 1 : 0));
+  return {
+    type: 'FeatureCollection',
+    features: file.countries.map((c) => {
+      const polygons = c.polygons.map((p) => p.map(ringOf));
+      return { type: 'Feature', properties: { iso3: c.iso3, adm0: c.adm0, main: c.main }, geometry: polygons.length === 1 ? { type: 'Polygon', coordinates: polygons[0] } : { type: 'MultiPolygon', coordinates: polygons } };
+    }),
+  };
+};
+const SHARED_PARTS = {
+  // The polygon a country's inner point falls in.
+  main: (fc) => ({
+    type: 'FeatureCollection',
+    features: fc.features.map((f) => ({ ...f, geometry: f.geometry.type === 'MultiPolygon' ? { type: 'Polygon', coordinates: f.geometry.coordinates[f.properties.main ?? 0] } : f.geometry })),
+  }),
+};
 const sharedGeometry = {};
 for (const [name, spec] of Object.entries(descriptor.sources ?? {})) {
   if (!spec.sharedGeometry) continue;
   const decode = SHARED_GEOMETRY[spec.sharedGeometry];
   if (!decode) throw new Error(`source "${name}": no decoder for shared geometry "${spec.sharedGeometry}"`);
+  if (spec.sharedPart !== undefined && !SHARED_PARTS[spec.sharedPart]) throw new Error(`source "${name}": sharedPart "${spec.sharedPart}" is not one of ${Object.keys(SHARED_PARTS).join(', ')}`);
   sharedGeometry[spec.sharedGeometry] ??= decode(await fetchJson(resolver.url('sharedData', spec.sharedGeometry)));
-  geometryFiles[name] = sharedGeometry[spec.sharedGeometry];
+  geometryFiles[name] = spec.sharedPart ? SHARED_PARTS[spec.sharedPart](sharedGeometry[spec.sharedGeometry]) : sharedGeometry[spec.sharedGeometry];
 }
 
 const pageTitle = descriptor.title?.[LANGUAGE] ?? descriptor.title?.bn;
@@ -638,9 +670,11 @@ function deriveAll(name, spec) {
   // Records joined to a geometry file on a shared key.
   if (spec.records && (spec.geometry || spec.sharedGeometry)) {
     const table = records[spec.records];
+    // A shared file may hold more than a map has records for (world-countries.json): only its records' shapes are drawn.
+    const features = spec.sharedGeometry ? geometryFiles[name].features.filter((f) => table?.[f.properties[spec.joinField]]) : geometryFiles[name].features;
     return {
       type: 'FeatureCollection',
-      features: geometryFiles[name].features.map((feature) => {
+      features: features.map((feature) => {
         const key = feature.properties[spec.joinField];
         const row = table?.[key] ?? {};
         const properties = { key, ...pick(row, spec.properties) };
@@ -688,14 +722,14 @@ function pick(row, keys) {
 |--------------------------------------------------------------------------
 */
 const SHELL_MODULES = {
-  tabs: './tabs.js?v=061f15ed08',
-  chips: './chips.js?v=061f15ed08',
-  timeline: './timeline.js?v=061f15ed08',
-  globe: './globe.js?v=061f15ed08',
-  focus: './focus.js?v=061f15ed08',
-  legend: './legend.js?v=061f15ed08',
-  info: './info.js?v=061f15ed08',
-  indices: './indices.js?v=061f15ed08',
+  tabs: './tabs.js?v=7786978f35',
+  chips: './chips.js?v=7786978f35',
+  timeline: './timeline.js?v=7786978f35',
+  globe: './globe.js?v=7786978f35',
+  focus: './focus.js?v=7786978f35',
+  legend: './legend.js?v=7786978f35',
+  info: './info.js?v=7786978f35',
+  indices: './indices.js?v=7786978f35',
 };
 const hiders = []; // (table, key) => true takes a record off the map, the picker and ‹ ›
 // (table, key) => true takes a record off the map only: the picker and ‹ › still list it (the focus module).

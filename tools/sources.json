@@ -1268,6 +1268,27 @@
         "sha256": "28dadc7e77d3992b500e74500f745fcfd8dfaefdcdb8c6eb6981368bdbad34a7",
         "fetched": "2026-10-08",
         "rawHttp": true
+      },
+      "wdi-gdp-per-capita.json": {
+        "item": "gdp-per-capita",
+        "url": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.PCAP.CD?format=json&per_page=20000&date=2022:2025",
+        "size": 235997,
+        "sha256": "d4ba56915f71d7001f6e7d3a18f8b425e8edc0bdef156c64a83901d60ff9b9c3",
+        "fetched": "2026-10-08"
+      },
+      "wdi-dataset.html": {
+        "item": "gdp-per-capita",
+        "url": "https://datacatalog.worldbank.org/search/dataset/0037712/World-Development-Indicators",
+        "size": 1875297,
+        "sha256": "0dc2cfe6ef6efd5b7c5a7a8dafd91e0c7574e286bf7cac4831f0c055bb4698d6",
+        "fetched": "2026-10-08"
+      },
+      "wb-public-licenses.html": {
+        "item": "gdp-per-capita",
+        "url": "https://datacatalog.worldbank.org/public-licenses",
+        "size": 17119,
+        "sha256": "c7c9b31441ea4a1fa27990f4b11f385587469c5c2bda4ec4fc7a6561db6d2422",
+        "fetched": "2026-10-08"
       }
     }
   }

@@ -1424,16 +1424,24 @@ console.log('\n---- org-members: seed ----');
   const EMAIL = /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/;
   const text = {};
   const badPins = [];
+  const uncached = [];
   const pages = Object.entries(seed.sources);
   for (const [id, s] of pages) {
     const l = listed.files[s.file];
     const raw = fs.existsSync(path.join(dir, s.file)) ? fs.readFileSync(path.join(dir, s.file)) : null;
     const t = fs.existsSync(path.join(dir, s.text.file)) ? fs.readFileSync(path.join(dir, s.text.file)) : null;
     const same = l && l.source === id && l.url === s.url && l.size === s.bytes && l.sha256 === s.sha256 && l.text.size === s.text.bytes && l.text.sha256 === s.text.sha256 && (l.extract ?? null) === (s.extract ?? null) && (l.via === 'browser') === (s.via === 'browser');
-    if (!same || !raw || raw.length !== s.bytes || sha(raw) !== s.sha256 || !t || t.length !== s.text.bytes || sha(t) !== s.text.sha256) { badPins.push(id); continue; }
-    if (sourceText(raw, s.extract) !== t.toString('utf8') || EMAIL.test(t.toString('utf8'))) { badPins.push(`${id} (text)`); continue; }
+    // The page as pinned, or as tools/fetch-sources.mjs keeps it without its e-mail addresses (IDX-3): its record
+    // names the pinned download's hash and the kept copy's. A page that has changed since it was pinned is not
+    // cached (fetch-sources says the re-check is due): its pinned text still stands and is checked.
+    const note = fs.existsSync(path.join(dir, `${s.file}.scrubbed.json`)) ? JSON.parse(fs.readFileSync(path.join(dir, `${s.file}.scrubbed.json`), 'utf8')) : null;
+    const rawOk = raw && ((raw.length === s.bytes && sha(raw) === s.sha256) || (note?.rawSha256 === s.sha256 && note.sha256 === sha(raw)));
+    if (!same || (raw && !rawOk) || !t || t.length !== s.text.bytes || sha(t) !== s.text.sha256) { badPins.push(id); continue; }
+    if (!raw) uncached.push(id);
+    if ((raw && sourceText(raw, s.extract) !== t.toString('utf8')) || EMAIL.test(t.toString('utf8'))) { badPins.push(`${id} (text)`); continue; }
     text[id] = t.toString('utf8');
   }
+  if (uncached.length) console.log(`warn ${OM}: ${uncached.length} page(s) not cached — changed since pinned; their pinned texts stand, re-check due: ${uncached.join(', ')}`);
   const authorityBad = pages.filter(([, s]) => !['organisation', 'presidency'].includes(s.authority) || (s.authority === 'presidency') !== (s.org === 'g7' || s.org === 'g20'));
   check(badPins.length === 0 && authorityBad.length === 0 && Object.keys(listed.files).length === pages.length && !listed.nctbBgs6, `${OM}: each of the ${pages.length} pages is the pinned one, as tools/sources.json records it, and each page's text is html-text.mjs's, with no e-mail address; a source is the organisation's own site or a presidency government's${badPins.length || authorityBad.length ? ` — not: ${[...badPins, ...authorityBad.map(([id]) => id)].join(', ')}` : ''}`);
   check(Object.values(seed.terms['eu-cc-by'] ?? {}).length && seed.terms['eu-cc-by'].licence === 'CC BY 4.0' && /CC BY 4\.0/.test(seed.terms['eu-cc-by'].credit ?? '') && pages.every(([, s]) => s.terms in seed.terms), `${OM}: every page names its terms; the EU's CC BY 4.0 credit is recorded`);
@@ -1643,6 +1651,21 @@ console.log('\n---- important-days: seed ----');
   check(unflagged.length === 0, `${ID}: every Bengali string carries its approval flag${unflagged.length ? ` — not: ${unflagged.slice(0, 3).join(', ')}` : ''}`);
   check(pending === 0, `${ID}: every string approved — the diagram is live${pending ? ` — ${pending} pending` : ''}`);
   check(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(seedText) && registry.maps.some((e) => e.id === ID && e.kind === 'diagram' && e.section === 'bangladesh') && !wipItems.some((w) => w.id === ID) && fs.existsSync(path.join(SERVED, 'diagrams', ID, 'descriptor.json')), `${ID}: no e-mail address in the seed; live — in registry.json under Bangladesh, its folder under docs/diagrams/, no longer in tools/wip.json`);
+}
+
+// ---- docs/shared/world-countries.json (IDX-3, 2026-10-08): the shared countries, held to a fresh build ----------
+console.log('\n---- shared: world-countries.json ----');
+{
+  const out = fs.mkdtempSync(path.join(os.tmpdir(), 'world-countries-'));
+  const built = path.join(out, 'world-countries.json');
+  try {
+    execFileSync(process.execPath, [path.join(HERE, 'build-world-countries.mjs'), built], { stdio: ['ignore', 'pipe', 'pipe'] });
+  } catch {}
+  const same = fs.existsSync(built) && fs.readFileSync(built).equals(fs.readFileSync(path.join(SERVED, 'shared', 'world-countries.json')));
+  fs.rmSync(out, { recursive: true, force: true });
+  const file = JSON.parse(fs.readFileSync(path.join(SERVED, 'shared', 'world-countries.json'), 'utf8'));
+  const users = fs.readdirSync(path.join(SERVED, 'maps')).filter((id) => Object.values(JSON.parse(fs.readFileSync(path.join(SERVED, 'maps', id, 'descriptor.json'), 'utf8')).sources ?? {}).some((src) => src.sharedGeometry === 'world-countries.json'));
+  check(same && new Set(file.countries.map((c) => c.iso3)).size === file.countries.length, `docs/shared/world-countries.json is tools/build-world-countries.mjs's output, byte for byte: ${file.countries.length} countries, one key each; drawn by ${users.join(', ')}`);
 }
 
 // ---- global-indices «বৈশ্বিক সূচক» (work in progress, IDX-2, 2026-10-08): the seed -------------------------------

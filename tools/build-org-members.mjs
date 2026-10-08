@@ -5,9 +5,8 @@
 //   node tools/build-org-members.mjs <out-dir>
 import fs from 'node:fs';
 import path from 'node:path';
-import zlib from 'node:zlib';
 import { readSource } from './lib/geo.mjs';
-import { simplifyFeatures, innerPoints } from './lib/border-traces.mjs';
+import { innerPoints } from './lib/border-traces.mjs';
 
 const outDir = process.argv[2];
 if (!outDir) throw new Error('usage: node tools/build-org-members.mjs <out-dir>');
@@ -54,47 +53,11 @@ const by = new Map(ne.features.map((f) => [f.properties.ADM0_A3, f]));
 const missing = codes.filter((c) => !by.has(c));
 if (missing.length) throw new Error(`no shape for ${missing.join(', ')}`);
 
-const raw = codes.map((code) => ({ type: 'Feature', properties: { id: code }, geometry: by.get(code).geometry }));
 
-function cleanGeometry(geometry) {
-  const roundRing = (ring) => {
-    const out = [];
-    for (const p of ring) {
-      const q = [+p[0].toFixed(3), +p[1].toFixed(3)];
-      const last = out.at(-1);
-      if (!last || last[0] !== q[0] || last[1] !== q[1]) out.push(q);
-    }
-    if (out.length > 1 && out[0][0] === out.at(-1)[0] && out[0][1] === out.at(-1)[1]) out.pop();
-    if (out.length >= 3) out.push([...out[0]]);
-    return out.length >= 4 ? out : null;
-  };
-  const polys = (geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.coordinates)
-    .map((poly) => poly.map(roundRing).filter(Boolean))
-    .filter((poly) => poly.length && poly[0]);
-  if (!polys.length) return null;
-  return polys.length === 1 ? { type: 'Polygon', coordinates: polys[0] } : { type: 'MultiPolygon', coordinates: polys };
-}
 
 function ringsOf(geometry) {
   const polys = geometry.type === 'Polygon' ? [geometry.coordinates] : geometry.coordinates;
   return polys.flat();
-}
-function orient(a, b, c) {
-  return (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0]);
-}
-function properCross(a, b, c, d) {
-  const o1 = orient(a, b, c), o2 = orient(a, b, d), o3 = orient(c, d, a), o4 = orient(c, d, b);
-  return o1 * o2 < 0 && o3 * o4 < 0;
-}
-function selfCross(geometry) {
-  for (const ring of ringsOf(geometry)) {
-    const n = ring.length - 1;
-    for (let i = 0; i < n; i++) for (let j = i + 2; j < n; j++) {
-      if (i === 0 && j === n - 1) continue;
-      if (properCross(ring[i], ring[i + 1], ring[j], ring[j + 1])) return true;
-    }
-  }
-  return false;
 }
 function inRing(pt, ring) {
   let c = false;
@@ -113,81 +76,27 @@ function bboxOf(geometry) {
   const xs = pts.map((p) => p[0]), ys = pts.map((p) => p[1]);
   return [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)];
 }
-function segMetres(p, a, b) {
-  const unwrap = (lon) => { let d = lon - p[0]; while (d > 180) d -= 360; while (d < -180) d += 360; return p[0] + d; };
-  a = [unwrap(a[0]), a[1]];
-  b = [unwrap(b[0]), b[1]];
-  const lat = (a[1] + b[1] + p[1]) / 3;
-  const m = Math.PI / 180;
-  const xy = (q) => [q[0] * m * 6371000 * Math.cos(lat * m), q[1] * m * 6371000];
-  const P = xy(p), A = xy(a), B = xy(b);
-  const abx = B[0] - A[0], aby = B[1] - A[1];
-  const ab2 = abx * abx + aby * aby || 1;
-  let t = ((P[0] - A[0]) * abx + (P[1] - A[1]) * aby) / ab2;
-  t = Math.max(0, Math.min(1, t));
-  return Math.hypot(P[0] - (A[0] + t * abx), P[1] - (A[1] + t * aby));
-}
-function deviationMetres(original, simplified) {
-  let near = 0, far = 0;
-  const segs = ringsOf(simplified).flatMap((ring) => ring.slice(0, -1).map((p, i) => [p, ring[i + 1]]).filter(([a, b]) => Math.abs(a[0] - b[0]) <= 180));
-  const verts = ringsOf(original).flat();
-  const step = Math.max(1, Math.ceil(verts.length / 2500));
-  for (let i = 0; i < verts.length; i += step) {
-    const p = verts[i];
-    let best = Infinity;
-    for (const [a, b] of segs) {
-      const close = (q) => Math.min(Math.abs(q[0] - p[0]), 360 - Math.abs(q[0] - p[0])) <= 8 && Math.abs(q[1] - p[1]) <= 8;
-      if (!close(a) && !close(b)) continue;
-      const d = segMetres(p, a, b);
-      if (d < best) best = d;
-      if (best < 1) break;
-    }
-    if (best === Infinity) continue;
-    if (best <= 25000) near = Math.max(near, best);
-    far = Math.max(far, best);
-  }
-  return { near, far };
-}
 
-console.log(`simplifying ${codes.length} countries…`);
-const trials = [];
-for (const metres of [8000, 12000, 16000, 20000, 25000]) {
-  const simplified = await simplifyFeatures(raw.map((f) => ({ ...f, geometry: f.geometry })), metres);
-  const features = [];
-  let lost = null;
-  for (const f of simplified) {
-    const geometry = cleanGeometry(f.geometry);
-    if (!geometry) { lost = f.properties.id; break; }
-    features.push({ type: 'Feature', properties: { id: f.properties.id }, geometry });
-  }
-  if (lost) { console.log(`  ${metres} m: ${lost} vanished`); continue; }
-  const crossed = features.filter((f) => selfCross(f.geometry)).map((f) => f.properties.id);
-  const points = await innerPoints(features);
-  const overlap = [];
-  const boxes = features.map((f) => ({ f, box: bboxOf(f.geometry) }));
-  for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++) {
-    const [a, b] = [boxes[i], boxes[j]];
-    if (a.box[2] < b.box[0] || b.box[2] < a.box[0] || a.box[3] < b.box[1] || b.box[3] < a.box[1]) continue;
-    const pa = points[a.f.properties.id], pb = points[b.f.properties.id];
-    if (inside(pa, b.f.geometry) || inside(pb, a.f.geometry)) overlap.push(`${a.f.properties.id}/${b.f.properties.id}`);
-  }
-  const gj = JSON.stringify({ type: 'FeatureCollection', features });
-  const gzip = zlib.gzipSync(gj).length;
-  const ok = !crossed.length && !overlap.length;
-  console.log(`  ${metres} m: ${gj.length} B, gzip ${gzip} B${ok ? '' : ` — cross ${crossed.slice(0, 3).join(',')} overlap ${overlap.slice(0, 3).join(',')}`}`);
-  if (ok) trials.push({ metres, features, points, gzip, gj });
-}
-if (!trials.length) throw new Error('no simplification kept every country without a self-crossing or an overlap');
-const target = 100 * 1024;
-const pool = trials.filter((t) => t.gzip <= target * 1.2);
-const chosen = (pool.length ? pool : trials).sort((a, b) => Math.abs(a.gzip - target) - Math.abs(b.gzip - target) || a.metres - b.metres)[0];
-let near = 0, far = 0, farId = '';
-for (const f of chosen.features) {
-  const d = deviationMetres(by.get(f.properties.id).geometry, f.geometry);
-  near = Math.max(near, d.near);
-  if (d.far > far) { far = d.far; farId = f.properties.id; }
-}
-console.log(`chosen ${chosen.metres} m, ${chosen.gj.length} B, gzip ${chosen.gzip} B, worst kept-line deviation ${(near / 1000).toFixed(1)} km; a dropped islet of ${farId} is ${(far / 1000).toFixed(0)} km from what remains`);
+// The country shapes (IDX-3, 2026-10-08): the shared world file, docs/shared/world-countries.json, built once by
+// tools/build-world-countries.mjs at the same 12 km as these shapes were, keyed by ISO3 with each country's ADM0_A3
+// beside it — this map's own key. Decoded here as the shell decodes it, for the frames, the inner points and the
+// tap parts (the polygon a country's inner point falls in, `main` in the file).
+const sharedFile = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/shared/world-countries.json'), 'utf8'));
+const sharedArcs = sharedFile.arcs.map((arc) => {
+  const pts = [];
+  for (let k = 0, x = 0, y = 0; k < arc.length; k += 2) { x += arc[k]; y += arc[k + 1]; pts.push([+(x * sharedFile.quantum).toFixed(4), +(y * sharedFile.quantum).toFixed(4)]); }
+  return pts;
+});
+const sharedRing = (ids) => ids.flatMap((r, j) => (r < 0 ? sharedArcs[~r].slice().reverse() : sharedArcs[r]).slice(j ? 1 : 0));
+const sharedByAdm = new Map(sharedFile.countries.map((c) => {
+  const polys = c.polygons.map((p) => p.map(sharedRing));
+  return [c.adm0, { main: c.main, geometry: polys.length === 1 ? { type: 'Polygon', coordinates: polys[0] } : { type: 'MultiPolygon', coordinates: polys } }];
+}));
+const noShared = codes.filter((c) => !sharedByAdm.has(c));
+if (noShared.length) throw new Error(`no shared shape for ${noShared.join(', ')}`);
+const chosenFeatures = codes.map((code) => ({ type: 'Feature', properties: { id: code }, geometry: sharedByAdm.get(code).geometry }));
+const chosen = { features: chosenFeatures, points: await innerPoints(chosenFeatures) };
+console.log(`${codes.length} countries from docs/shared/world-countries.json`);
 
 const pointOf = chosen.points;
 const geomOf = new Map(chosen.features.map((f) => [f.properties.id, f.geometry]));
@@ -233,7 +142,6 @@ function unionFrame(frames) {
 
 const countryFrames = {};
 const countries = {};
-const lands = [];
 let dots = 0;
 for (const code of codes) {
   const geometry = geomOf.get(code);
@@ -245,7 +153,6 @@ for (const code of codes) {
   const src = by.get(code).properties;
   countries[code] = { nameBn: src.NAME_BN, nameEn: src.NAME, frame, ...(small ? { dotAt: pointOf[code], dotUntil } : {}) };
   if (small) dots++;
-  lands.push({ type: 'Feature', properties: { id: code }, geometry: part });
 }
 // The opening (step 2c, 2026-10-07): South Asia, Bangladesh in the middle of the room above its open card,
 // its neighbours in view. One box, fitted unpadded to the whole map as the shell's opening is: as wide as
@@ -388,8 +295,9 @@ const descriptor = {
     },
   },
   sources: {
-    countries: { records: 'countries', geometry: './countries.geojson', joinField: 'id', state, properties: ['nameBn'] },
-    lands: { records: 'countries', geometry: './lands.geojson', joinField: 'id', state: ['selected'], properties: ['nameBn'] },
+    // The shared countries (IDX-3): the whole shapes, and each country's main part as its tap shape.
+    countries: { records: 'countries', sharedGeometry: 'world-countries.json', joinField: 'adm0', state, properties: ['nameBn'] },
+    lands: { records: 'countries', sharedGeometry: 'world-countries.json', sharedPart: 'main', joinField: 'adm0', state: ['selected'], properties: ['nameBn'] },
     dots: { records: 'countries', geometryFrom: 'dotAt', state, properties: ['nameBn', 'dotUntil'], tapWidth: 44, tapFilter: ['<', ['zoom'], ['get', 'dotUntil']] },
   },
   layers: [
@@ -469,8 +377,6 @@ write('descriptor.json', descriptor);
 write('tabs.json', tabs);
 write('organisations.json', organisations);
 write('countries.json', sortedCountries);
-write('countries.geojson', { type: 'FeatureCollection', features: chosen.features }, false);
-write('lands.geojson', { type: 'FeatureCollection', features: lands }, false);
 write('info.json', { lines: infoLines });
 console.log(`opening: ${openingView.join(', ')} (Bangladesh's neighbours ${NEIGHBOURS.join(', ')})`);
 console.log(`wrote ${outDir}`);

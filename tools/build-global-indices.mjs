@@ -11,7 +11,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { readSource } from './lib/geo.mjs';
-import { simplifyFeatures } from './lib/border-traces.mjs';
 
 const HERE = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const ROOT = path.resolve(HERE, '..');
@@ -25,47 +24,28 @@ const bn = (v) => String(v).replace(/[0-9]/g, (d) => DIGITS[d]);
 const SHADES = ['#08306b', '#08519c', '#2171b5', '#4292c6', '#6baed6', '#9ecae1', '#c6dbef'];
 const SAARC = ['AFG', 'BGD', 'BTN', 'IND', 'MDV', 'NPL', 'PAK', 'LKA'];
 
-// ---- the countries: every Natural Earth shape, its Bengali name (the basemap's), its label point
+// ---- the countries: the shared world file's (docs/shared/world-countries.json, keyed by ISO3 — Natural Earth's own
+// ADM0_A3 where it has none, as Kosovo's KOS), each with the basemap's Bengali name and its label point.
 const ne = readSource('ne_10m_admin_0_countries_bdg.geojson');
-const byAdm = new Map(ne.features.map((f) => [f.properties.ADM0_A3, f]));
-// A ranking's ISO3 to the shape it shades: ISO_A3, else ISO_A3_EH (France, Norway), else the seed's own list.
-const toAdm = new Map();
+const keyOf = (p) => (p.ISO_A3 && p.ISO_A3 !== '-99' ? p.ISO_A3 : p.ADM0_A3);
+const shared = JSON.parse(fs.readFileSync(path.join(ROOT, 'docs', 'shared', 'world-countries.json'), 'utf8'));
+const drawn = new Set(shared.countries.map((c) => c.iso3));
+// A ranking's code to the shape it shades: the same code, else ISO_A3_EH (France, Norway), else the seed's own list.
+const toAdm = new Map([...drawn].map((k) => [k, k]));
 for (const f of ne.features) {
   const p = f.properties;
-  for (const code of [p.ISO_A3, p.ISO_A3_EH]) if (code && code !== '-99' && !toAdm.has(code)) toAdm.set(code, p.ADM0_A3);
+  if (p.ISO_A3_EH && p.ISO_A3_EH !== '-99' && !toAdm.has(p.ISO_A3_EH)) toAdm.set(p.ISO_A3_EH, keyOf(p));
 }
-for (const [iso, adm] of Object.entries(seed.isoToShape ?? {})) toAdm.set(iso, adm);
+for (const [iso, key] of Object.entries(seed.isoToShape ?? {})) toAdm.set(iso, key);
 const countries = {};
-for (const f of [...ne.features].sort((a, b) => a.properties.ADM0_A3.localeCompare(b.properties.ADM0_A3))) {
+for (const f of [...ne.features].sort((a, b) => keyOf(a.properties).localeCompare(keyOf(b.properties)))) {
   const p = f.properties;
-  countries[p.ADM0_A3] = { nameBn: p.NAME_BN, nameEn: p.NAME_EN, labelAt: [+p.LABEL_X.toFixed(3), +p.LABEL_Y.toFixed(3)] };
+  countries[keyOf(p)] = { nameBn: p.NAME_BN, nameEn: p.NAME_EN, labelAt: [+p.LABEL_X.toFixed(3), +p.LABEL_Y.toFixed(3)] };
 }
 const nameOf = (iso, fallback) => {
-  const adm = toAdm.get(iso);
-  return (adm && countries[adm]?.nameBn) || t(seed.countryNames?.[iso]) || fallback;
+  const key = toAdm.get(iso);
+  return (key && countries[key]?.nameBn) || t(seed.countryNames?.[iso]) || fallback;
 };
-
-const raw = ne.features.map((f) => ({ type: 'Feature', properties: { id: f.properties.ADM0_A3 }, geometry: f.geometry }));
-const simplified = await simplifyFeatures(raw, 10000);
-const round = (ring) => {
-  const o = [];
-  for (const p of ring) {
-    const q = [+p[0].toFixed(3), +p[1].toFixed(3)];
-    const l = o.at(-1);
-    if (!l || l[0] !== q[0] || l[1] !== q[1]) o.push(q);
-  }
-  if (o.length > 1 && (o[0][0] !== o.at(-1)[0] || o[0][1] !== o.at(-1)[1])) o.push([...o[0]]);
-  return o.length >= 4 ? o : null;
-};
-const geoFeatures = simplified
-  .map((f) => {
-    const polys = (f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates).map((poly) => poly.map(round).filter(Boolean)).filter((poly) => poly.length);
-    if (!polys.length) return null;
-    return { type: 'Feature', properties: { id: f.properties.id }, geometry: polys.length === 1 ? { type: 'Polygon', coordinates: polys[0] } : { type: 'MultiPolygon', coordinates: polys } };
-  })
-  .filter(Boolean)
-  .sort((a, b) => a.properties.id.localeCompare(b.properties.id));
-const drawn = new Set(geoFeatures.map((f) => f.properties.id));
 
 // ---- the rankings
 const MONTHS = W.months.map(t);
@@ -79,7 +59,10 @@ const num = (v) => {
   const s = Math.abs(v) >= 100 ? Math.round(v).toLocaleString('en-US') : String(v);
   return bn(s);
 };
-const built = seed.indices.filter((x) => (x.kind === 'open' || x.kind === 'facts') && x.latest && !x.heldOut);
+// A user-input ranking is built, as facts-only, once tools/ingest-user-input.mjs has put the user's facts in; until
+// then it is hidden, with no placeholder.
+const built = seed.indices.filter((x) => (x.kind === 'open' || x.kind === 'facts' || x.kind === 'user-input') && x.latest && !x.heldOut);
+const kindOf = (x) => (x.kind === 'user-input' ? 'facts' : x.kind);
 const indices = {};
 const LISTS = ['s1', 's2', 's3', 's4', 's5', 's6', 's7', 'hiTop', 'hiBottom', 'bd'];
 for (const x of built) {
@@ -87,7 +70,7 @@ for (const x of built) {
   const lists = Object.fromEntries(LISTS.map((k) => [k, []]));
   const unshaded = [];
   let southAsia;
-  if (x.kind === 'open') {
+  if (kindOf(x) === 'open') {
     // Shade classes: by rank, or by value (lowest first) for a ranking given as values only.
     const order = x.valueOnly ? [...L.rows].sort((a, b) => a.value - b.value || a.iso3.localeCompare(b.iso3)) : [...L.rows].sort((a, b) => a.rank - b.rank || a.iso3.localeCompare(b.iso3));
     const n = order.length;
@@ -120,7 +103,7 @@ for (const x of built) {
   indices[x.id] = {
     nameBn: t(x.nameBn),
     nameEn: x.nameEn,
-    kind: x.kind,
+    kind: kindOf(x),
     valueOnly: Boolean(x.valueOnly),
     ...(x.valueOnly ? {} : { bdRank: L.bd.rank, bdOf: L.n }),
     ...(x.valueOnly ? { bdValue: bn(L.bd.value.toFixed(4)) } : {}),
@@ -130,12 +113,15 @@ for (const x of built) {
     bottomName: `${nameOf(L.bottom.iso3, L.bottom.name)}${L.bottom.shared ? ` (${t(W.shared)})` : ''}`,
     ...(x.valueOnly ? { topLabel: t(W.valueTopStat), bottomLabel: t(W.valueBottomStat), pillTop: t(W.valuePillTop), pillBottom: t(W.valuePillBottom) } : {}),
     publisher: x.publisher,
-    edition: `${L.edition}${L.releaseDate ? ` · ${t(W.released).replace('{date}', bnDate(L.releaseDate))}` : ''}`,
+    // Where the release date is unsure, its year only (the user, IDX-3).
+    edition: `${L.edition}${L.releaseDate || L.releaseYear ? ` · ${t(W.released).replace('{date}', L.releaseDate ? bnDate(L.releaseDate) : bn(L.releaseYear))}` : ''}`,
     ...(southAsia ? { southAsia } : {}),
     rankMeans,
     ...(unshaded.length ? { unshaded: unshaded.join(', ') } : {}),
+    ...(L.missing?.length ? { noValue: L.missing.map((m) => nameOf(m.iso3, m.name)).join(', ') } : {}),
+    basis: x.basis ?? 'edition',
     verified: bnDate(seed.verified),
-    url: L.pageUrl ?? L.releaseUrl ?? L.dataUrl,
+    url: L.source?.url ?? x.pageUrl ?? L.releaseUrl ?? L.dataUrl,
     ...(change !== undefined ? { change } : {}),
     ...(x.goodIs ? { goodIs: x.goodIs } : {}),
     ...lists,
@@ -144,7 +130,8 @@ for (const x of built) {
 // The «বাংলাদেশ» tab's own rows (Dhaka's city ranking), once their facts are in.
 for (const x of seed.indices.filter((y) => y.kind === 'city' && y.latest && !y.heldOut)) {
   const L = x.latest;
-  indices[x.id] = { nameBn: t(x.nameBn), nameEn: x.nameEn, kind: 'facts', valueOnly: false, bdRank: L.bd.rank, bdOf: L.n, publisher: x.publisher, edition: L.edition, verified: bnDate(seed.verified), url: L.pageUrl ?? L.releaseUrl, bdOnly: true, ...Object.fromEntries(LISTS.map((k) => [k, []])) };
+  const change = x.previous?.bd?.rank && L.bd?.rank ? x.previous.bd.rank - L.bd.rank : undefined;
+  indices[x.id] = { nameBn: t(x.nameBn), nameEn: x.nameEn, kind: 'facts', valueOnly: false, bdRank: L.bd.rank, bdOf: L.n, publisher: x.publisher, edition: L.edition, verified: bnDate(seed.verified), url: L.source?.url ?? x.officialUrl, bdOnly: true, basis: 'edition', ...(change !== undefined ? { change } : {}), ...(x.goodIs ? { goodIs: x.goodIs } : {}), ...Object.fromEntries(LISTS.map((k) => [k, []])) };
 }
 
 const tabs = { countries: { titleBn: t(W.tabCountries) }, bangladesh: { titleBn: t(W.tabBangladesh) } };
@@ -193,6 +180,8 @@ const descriptor = {
         southAsia: { type: 'text' },
         rankMeans: { type: 'text', required: true },
         unshaded: { type: 'text' },
+        noValue: { type: 'text' },
+        basis: { type: 'text', display: false },
         verified: { type: 'text', required: true, display: false },
         url: { type: 'text', required: true, display: false },
         change: { type: 'number', display: false },
@@ -213,8 +202,9 @@ const descriptor = {
   sources: {
     countries: {
       records: 'countries',
-      geometry: './countries.geojson',
-      joinField: 'id',
+      // The shared countries (IDX-3): one light file for every map that shades countries.
+      sharedGeometry: 'world-countries.json',
+      joinField: 'iso3',
       state: LISTS.map((k) => ({ name: k, fromSelection: { records: 'indices', listField: k } })),
       properties: ['nameBn'],
     },
@@ -235,7 +225,7 @@ const descriptor = {
     records: 'indices',
     countries: 'countries',
     tabs: { map: 'countries', bangladesh: 'bangladesh' },
-    words: Object.fromEntries(['bdStat', 'topStat', 'bottomStat', 'valueStat', 'pillTop', 'pillBottom', 'bd', 'legendTop', 'legendBottom', 'verified', 'source', 'factsNote', 'bdCaption', 'unchanged', 'steps'].map((k) => [k, t(W[k])])),
+    words: Object.fromEntries(['bdStat', 'topStat', 'bottomStat', 'valueStat', 'pillTop', 'pillBottom', 'bd', 'legendTop', 'legendBottom', 'verified', 'source', 'factsNote', 'bdCaption', 'unchanged', 'better', 'worse', 'upNeutral', 'downNeutral', 'basisEdition', 'basisYear'].map((k) => [k, t(W[k])])),
   },
   info: { file: './info.json', headings: { sources: t(W.infoSources), notes: t(W.infoNotes), conflicts: '' } },
   sheets: {
@@ -248,6 +238,7 @@ const descriptor = {
         { label: t(W.rows.southAsia), field: 'southAsia' },
         { label: t(W.rows.rank), field: 'rankMeans' },
         { label: t(W.rows.unshaded), field: 'unshaded', stacked: true },
+        { label: t(W.rows.noValue), field: 'noValue', stacked: true },
       ],
     },
   },
@@ -260,9 +251,8 @@ write('descriptor.json', descriptor);
 write('tabs.json', tabs);
 write('indices.json', indices);
 write('countries.json', countries);
-write('countries.geojson', { type: 'FeatureCollection', features: geoFeatures }, false);
 write('info.json', info);
 const pending = [];
 JSON.stringify(seed, (k, v) => { if (v && typeof v === 'object' && typeof v.bn === 'string' && v.approved === false) pending.push(v.bn); return v; });
 const waiting = seed.indices.filter((x) => x.kind === 'user-input' || (x.kind === 'city' && !x.latest)).map((x) => x.id);
-console.log(`${built.length} rankings built (${built.filter((x) => x.kind === 'open').length} open, ${built.filter((x) => x.kind === 'facts').length} facts-only); user-input: ${waiting.join(', ') || 'none'}; held out: ${seed.indices.filter((x) => x.heldOut).map((x) => x.id).join(', ') || 'none'}; ${geoFeatures.length} shapes; ${pending.length} Bengali strings await approval`);
+console.log(`${built.length} rankings built (${built.filter((x) => x.kind === 'open').length} open, ${built.filter((x) => x.kind === 'facts').length} facts-only); user-input: ${waiting.join(', ') || 'none'}; held out: ${seed.indices.filter((x) => x.heldOut).map((x) => x.id).join(', ') || 'none'}; ${drawn.size} shapes (shared); ${pending.length} Bengali strings await approval`);

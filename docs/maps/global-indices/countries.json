@@ -31,20 +31,20 @@
       18.243
     ]
   },
+  "ALA": {
+    "nameBn": "অলান্দ দ্বীপপুঞ্জ",
+    "nameEn": "Åland",
+    "labelAt": [
+      19.87,
+      60.156
+    ]
+  },
   "ALB": {
     "nameBn": "আলবেনিয়া",
     "nameEn": "Albania",
     "labelAt": [
       20.114,
       40.655
-    ]
-  },
-  "ALD": {
-    "nameBn": "অলান্দ দ্বীপপুঞ্জ",
-    "nameEn": "Åland",
-    "labelAt": [
-      19.87,
-      60.156
     ]
   },
   "AND": {
@@ -557,6 +557,14 @@
     "labelAt": [
       33.791,
       35.011
+    ]
+  },
+  "ESH": {
+    "nameBn": "পশ্চিম সাহারা",
+    "nameEn": "Western Sahara",
+    "labelAt": [
+      -12.63,
+      23.968
     ]
   },
   "ESP": {
@@ -1463,7 +1471,7 @@
       -21.675
     ]
   },
-  "PSX": {
+  "PSE": {
     "nameBn": "ফিলিস্তিন অঞ্চল",
     "nameEn": "Palestine",
     "labelAt": [
@@ -1511,14 +1519,6 @@
       -1.897
     ]
   },
-  "SAH": {
-    "nameBn": "পশ্চিম সাহারা",
-    "nameEn": "Western Sahara",
-    "labelAt": [
-      -12.63,
-      23.968
-    ]
-  },
   "SAU": {
     "nameBn": "সৌদি আরব",
     "nameEn": "Saudi Arabia",
@@ -1541,14 +1541,6 @@
     "labelAt": [
       29.261,
       16.331
-    ]
-  },
-  "SDS": {
-    "nameBn": "দক্ষিণ সুদান",
-    "nameEn": "South Sudan",
-    "labelAt": [
-      30.39,
-      7.23
     ]
   },
   "SEN": {
@@ -1637,6 +1629,14 @@
     "labelAt": [
       20.788,
       44.19
+    ]
+  },
+  "SSD": {
+    "nameBn": "দক্ষিণ সুদান",
+    "nameEn": "South Sudan",
+    "labelAt": [
+      30.39,
+      7.23
     ]
   },
   "STP": {

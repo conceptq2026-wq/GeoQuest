@@ -93,7 +93,7 @@ export async function mount(api) {
   if ((api.descriptor.controls ?? []).some((c) => c.type === 'picker'))
     throw new Error('timeline: a map with a timeline declares no picker — the timeline is its selector');
 
-  await stylesheet(api, './timeline.css?v=061f15ed08');
+  await stylesheet(api, './timeline.css?v=7786978f35');
   panel = api.own.node(document.createElement('section'), 'timeline');
   panel.className = 'timeline';
   panel.setAttribute('aria-label', 'Timeline');

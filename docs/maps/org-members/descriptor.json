@@ -140,8 +140,8 @@
   "sources": {
     "countries": {
       "records": "countries",
-      "geometry": "./countries.geojson",
-      "joinField": "id",
+      "sharedGeometry": "world-countries.json",
+      "joinField": "adm0",
       "state": [
         "selected",
         {
@@ -193,8 +193,9 @@
     },
     "lands": {
       "records": "countries",
-      "geometry": "./lands.geojson",
-      "joinField": "id",
+      "sharedGeometry": "world-countries.json",
+      "sharedPart": "main",
+      "joinField": "adm0",
       "state": [
         "selected"
       ],

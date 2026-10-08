@@ -251,3 +251,12 @@ stays within 12 km; a few islets (Chile's is the farthest) collapse.
 - Out of git, in `tools/.cache/org-members/`: `pin-fetch.mjs`,
   `browser.mjs`, `gen.mjs`, `spec.json`, `make-seed.mjs`, `shapes.mjs`, and
   the readable `quotes.json`.
+
+## IDX-3 (2026-10-08): the shared countries file
+
+- Its country shapes and tap shapes now come from `docs/shared/world-countries.json`, through the shell's
+  `sharedGeometry` (joined on `adm0`, this map's own ADM0_A3 keys, unchanged) and `sharedPart: 'main'` for the tap
+  shapes («lands»). The file is simplified at the same 12 km as these shapes were, with the same checks; the map's own
+  `countries.geojson` (313,271 bytes) and `lands.geojson` (205,658 bytes) are gone, for the shared 198,343-byte file.
+- Frames and dot points are recomputed from the shared shapes (a few hundredths of a degree moved); the opening view,
+  the 171 of 173 dots, the cards and the taps are as before (`tools/check.mjs org-members`, before and after).

@@ -119,6 +119,13 @@
         "unshaded": {
           "type": "text"
         },
+        "noValue": {
+          "type": "text"
+        },
+        "basis": {
+          "type": "text",
+          "display": false
+        },
         "verified": {
           "type": "text",
           "required": true,
@@ -215,8 +222,8 @@
   "sources": {
     "countries": {
       "records": "countries",
-      "geometry": "./countries.geojson",
-      "joinField": "id",
+      "sharedGeometry": "world-countries.json",
+      "joinField": "iso3",
       "state": [
         {
           "name": "s1",
@@ -503,7 +510,12 @@
       "factsNote": "এই সূচকের পূর্ণ র‍্যাংকিং দেখানো হয় না।",
       "bdCaption": "সব সূচকে বাংলাদেশের অবস্থান",
       "unchanged": "অপরিবর্তিত",
-      "steps": "{n} ধাপ"
+      "better": "উন্নতি {n} ধাপ",
+      "worse": "অবনতি {n} ধাপ",
+      "upNeutral": "{n} ধাপ ওপরে",
+      "downNeutral": "{n} ধাপ নিচে",
+      "basisEdition": "আগের সংস্করণের তুলনায়",
+      "basisYear": "আগের বছরের তুলনায়"
     }
   },
   "info": {
@@ -542,6 +554,11 @@
         {
           "label": "মানচিত্রে আঁকা নেই",
           "field": "unshaded",
+          "stacked": true
+        },
+        {
+          "label": "তথ্য নেই",
+          "field": "noValue",
           "stacked": true
         }
       ]

@@ -33,6 +33,10 @@
       "group": "sources"
     },
     {
+      "text": "মাথাপিছু জিডিপি: World Bank, World Development Indicators, 2025 data — https://api.worldbank.org/v2/country/all/indicator/NY.GDP.PCAP.CD?format=json&per_page=20000&date=2022:2025",
+      "group": "sources"
+    },
+    {
       "text": "দুর্নীতি ধারণা সূচক: Transparency International, Corruption Perceptions Index 2025 — https://www.transparency.org/en/api/latest/cpi",
       "group": "sources"
     },

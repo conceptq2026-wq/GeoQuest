@@ -125,7 +125,7 @@ const MARITIME_ZONES_SEED_SHA256 = '6b0f67dbac0b0fa97037d86c7f94d3f07a73bd57a42d
 // The bangladesh-maritime-boundary map: the editor's seed, pinned (live 2026-10-08; its 35 step-2 strings approved, BD-6; #30 reworded by the user the same day).
 const BANGLADESH_MARITIME_SEED_SHA256 = 'dcc627421f99b20faeffe17006d9348f181b9663c058af66f37ae6c572e8ebbd';
 // The global-indices map «বৈশ্বিক সূচক» (work in progress, IDX-2, 2026-10-08): its seed, pinned.
-const GLOBAL_INDICES_SEED_SHA256 = 'c803b1aad3f966b6f3fba66120f9db9803bcb538adc552a1d0b4532b21347c0a';
+const GLOBAL_INDICES_SEED_SHA256 = '4fb0bb7aa606b598da53519dc59563b0ec509dc99f65899088cef2e7c2eb1d81';
 // The important-days diagram «বছরের চাকা»: its seed, pinned (live 2026-10-08, after WHEEL-2–5 and GL-WHEEL).
 const IMPORTANT_DAYS_SEED_SHA256 = '24fe65ed95d70d794a54c0a29341b85da87a13fcffa371a1d9967a862d737070';
 // The bangladesh-ethnic-groups map: its seed, pinned (live 2026-10-08).
@@ -240,12 +240,16 @@ function valueOfSpec(spec, row) {
 
 // A source's sharedGeometry (opt-in, 2026-10-08; bangladesh-ethnic-groups): a file under docs/shared/ that the map
 // shell decodes into features (app.js, SHARED_GEOMETRY). Here, the keys each feature carries, as the shell gives them.
+// world-countries.json (IDX-3): every country, keyed by ISO3 with its ADM0_A3 beside it; a map joins on either and
+// may use only some of them (`partial`), so a country with no record is no orphan. `sharedPart` names a part the
+// shell can cut (main: the polygon a country's inner point falls in).
 const SHARED_GEOMETRY_KEYS = {
-  'bangladesh-districts.json': { joinField: 'pcode', keys: (file) => file.districts.map((d) => d.pcode) },
+  'bangladesh-districts.json': { joinFields: ['pcode'], keys: (file) => file.districts.map((d) => d.pcode) },
+  'world-countries.json': { joinFields: ['iso3', 'adm0'], partial: true, parts: ['main'], keys: (file, field) => file.countries.map((c) => c[field]) },
 };
-function sharedGeometryKeys(file) {
+function sharedGeometryKeys(file, joinField) {
   const spec = SHARED_GEOMETRY_KEYS[file];
-  return { features: spec ? spec.keys(readJson(path.join(ROOT, 'docs/shared', file))).map((k) => ({ properties: { [spec.joinField]: k } })) : [] };
+  return { features: spec ? spec.keys(readJson(path.join(ROOT, 'docs/shared', file)), joinField).map((k) => ({ properties: { [joinField]: k } })) : [] };
 }
 
 function checkMap({ id, expectedPending, dir = path.join(MAPS_DIR, id) }) {
@@ -324,8 +328,9 @@ function checkMap({ id, expectedPending, dir = path.join(MAPS_DIR, id) }) {
   for (const [name, spec] of Object.entries(descriptor.sources)) {
     if (!spec.records || !(spec.geometry || spec.sharedGeometry)) continue;
     const table = tables[spec.records];
-    if (spec.sharedGeometry) check(!spec.geometry && spec.sharedGeometry in SHARED_GEOMETRY_KEYS && spec.joinField === SHARED_GEOMETRY_KEYS[spec.sharedGeometry].joinField, `source "${name}": sharedGeometry "${spec.sharedGeometry}" is a shared file the shell decodes, joined on ${SHARED_GEOMETRY_KEYS[spec.sharedGeometry]?.joinField}, with no geometry of its own`);
-    const fc = spec.sharedGeometry ? sharedGeometryKeys(spec.sharedGeometry) : readJson(path.join(dir, path.basename(spec.geometry)));
+    const shared = spec.sharedGeometry ? SHARED_GEOMETRY_KEYS[spec.sharedGeometry] : null;
+    if (spec.sharedGeometry) check(!spec.geometry && Boolean(shared) && shared.joinFields.includes(spec.joinField) && (spec.sharedPart === undefined || (shared.parts ?? []).includes(spec.sharedPart)), `source "${name}": sharedGeometry "${spec.sharedGeometry}"${spec.sharedPart ? ` (part ${spec.sharedPart})` : ''} is a shared file the shell decodes, joined on ${spec.joinField} (one of ${shared?.joinFields.join(', ')}), with no geometry of its own`);
+    const fc = spec.sharedGeometry ? sharedGeometryKeys(spec.sharedGeometry, spec.joinField) : readJson(path.join(dir, path.basename(spec.geometry)));
     const present = new Set(fc.features.map((f) => f.properties?.[spec.joinField]));
     const carries = (key) =>
       !spec.expectGeometry || Object.entries(spec.expectGeometry).every(([f, v]) => table[key][f] === v);
@@ -342,8 +347,8 @@ function checkMap({ id, expectedPending, dir = path.join(MAPS_DIR, id) }) {
       unexpected.length === 0,
       `source "${name}": no record carries geometry it is declared not to have (${notExpected.length} declared without)${unexpected.length ? ` — ${unexpected.join(', ')}` : ''}`,
     );
-    const orphans = [...present].filter((v) => !(v in table));
-    check(orphans.length === 0, `source "${name}": no geometry without a record${orphans.length ? ` — ${orphans.join(', ')}` : ''}`);
+    const orphans = shared?.partial ? [] : [...present].filter((v) => !(v in table));
+    check(orphans.length === 0, `source "${name}": no geometry without a record${shared?.partial ? ' (a shared world file: a map uses the countries it has records for)' : ''}${orphans.length ? ` — ${orphans.join(', ')}` : ''}`);
   }
 
   // ---- the descriptor only references fields the records have ---------------
@@ -2849,18 +2854,20 @@ console.log('\n\n============ global-indices (work in progress) ============');
   const sources = readJson(path.join(ROOT, 'tools', 'sources.json')).globalIndices.files;
   const pinnedUrls = new Set(Object.values(sources).map((f) => f.url));
   const SHADES = ['s1', 's2', 's3', 's4', 's5', 's6', 's7'];
-  const builtSeed = seed.indices.filter((x) => (x.kind === 'open' || x.kind === 'facts') && x.latest && !x.heldOut);
+  const builtSeed = seed.indices.filter((x) => ['open', 'facts', 'user-input'].includes(x.kind) && x.latest && !x.heldOut);
   check(JSON.stringify(Object.keys(indices).filter((k) => !indices[k].bdOnly)) === JSON.stringify(builtSeed.map((x) => x.id)), `the picker's rankings are the seed's built ones, in its order: ${builtSeed.filter((x) => x.kind === 'open').length} open, ${builtSeed.filter((x) => x.kind === 'facts').length} facts-only`);
   const shading = builtSeed.filter((x) => { const r = indices[x.id]; const shaded = SHADES.reduce((n, k) => n + r[k].length, 0); return x.kind === 'open' ? !shaded || r.hiTop.length || r.hiBottom.length : shaded || r.hiTop.length + r.hiBottom.length > 2; });
   check(shading.length === 0, `an open ranking shades the countries it ranks in seven classes; a facts-only one lights only its top and bottom${shading.length ? ` — not: ${shading.map((x) => x.id).join(', ')}` : ''}`);
-  const FACT_KEYS = ['edition', 'editionNote', 'releaseDate', 'releaseUrl', 'dataUrl', 'dataFile', 'n', 'rule', 'bd', 'top', 'bottom'];
-  const leaky = seed.indices.filter((x) => x.kind === 'facts').flatMap((x) => [x.latest, x.previous].filter(Boolean).map((e) => [x.id, e])).filter(([, e]) => Object.keys(e).some((k) => !FACT_KEYS.includes(k)) || Object.keys(e.bd).join() !== 'rank' || ['top', 'bottom'].some((w) => Object.keys(e[w]).some((k) => !['iso3', 'name', 'rank', 'shared'].includes(k))));
+  // A user-input ranking, once the user's facts are in (tools/ingest-user-input.mjs), is facts-only too, with its source.
+  const FACT_KEYS = ['edition', 'editionNote', 'releaseDate', 'releaseYear', 'releaseSure', 'releaseUrl', 'dataUrl', 'dataFile', 'n', 'rule', 'bd', 'top', 'bottom', 'source', 'approved'];
+  const leaky = seed.indices.filter((x) => ['facts', 'user-input', 'city'].includes(x.kind)).flatMap((x) => [x.latest, x.previous].filter(Boolean).map((e) => [x.id, e])).filter(([, e]) => Object.keys(e).some((k) => !FACT_KEYS.includes(k)) || Object.keys(e.bd).join() !== 'rank' || ['top', 'bottom'].some((w) => Object.keys(e[w]).some((k) => !['iso3', 'name', 'rank', 'shared'].includes(k))));
   check(leaky.length === 0, `a facts-only ranking keeps three facts per edition — Bangladesh's rank of N, the top, the bottom — and no other country's rank or any value${leaky.length ? ` — not: ${leaky.map(([k]) => k).join(', ')}` : ''}`);
-  const waiting = seed.indices.filter((x) => x.kind === 'user-input' || (x.kind === 'city' && !x.latest));
+  const waiting = seed.indices.filter((x) => (x.kind === 'user-input' || x.kind === 'city') && !x.latest);
   check(waiting.every((x) => !indices[x.id] && x.userInput?.pages?.length && x.userInput?.factsNeeded?.length), `${waiting.length} user-input rankings are not built, each with the official pages to read and the facts needed`);
-  const unsourced = builtSeed.flatMap((x) => [x.latest, x.previous].filter(Boolean).flatMap((e) => [!pinnedUrls.has(e.dataUrl) && `${x.id} ${e.edition}: data`, e.releaseDate && !pinnedUrls.has(e.releaseUrl) && `${x.id} ${e.edition}: release`, !/^https:\/\//.test(x.pageUrl ?? '') && `${x.id}: page`])).filter(Boolean);
+  // A value read by the user cites the official page and «read by the user» with the date; every other, a pinned file.
+  const unsourced = builtSeed.flatMap((x) => [x.latest, x.previous].filter((e) => e?.edition).flatMap((e) => (e.source ? [!(/^https:\/\//.test(e.source.url ?? '') && e.source.by === 'read by the user' && /^\d{4}-\d\d-\d\d$/.test(e.source.date ?? '')) && `${x.id}: the user's source`] : [!pinnedUrls.has(e.dataUrl) && `${x.id} ${e.edition}: data`, e.releaseDate && !pinnedUrls.has(e.releaseUrl) && `${x.id} ${e.edition}: release`, !/^https:\/\//.test(x.pageUrl ?? '') && `${x.id}: page`]))).filter(Boolean);
   check(unsourced.length === 0, `every built value cites a pinned official file, and every release date a pinned official page${unsourced.length ? ` — not: ${unsourced.slice(0, 4).join(', ')}` : ''}`);
-  const unread = builtSeed.filter((x) => x.read?.readers !== 2 || (!x.read.agreed && !(x.read.unstoredMismatches ?? []).length));
+  const unread = builtSeed.filter((x) => x.kind !== 'user-input').filter((x) => x.read?.readers !== 2 || (!x.read.agreed && !(x.read.unstoredMismatches ?? []).length));
   check(unread.length === 0, `every built ranking was read twice and the readings agree (a mismatch only in a field not stored: ${builtSeed.filter((x) => x.read?.unstoredMismatches?.length).map((x) => x.id).join(', ') || 'none'})`);
   checkMap({ id, expectedPending: 0 });
 }

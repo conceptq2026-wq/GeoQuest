@@ -259,6 +259,16 @@ drawn now (`drawn`), and read a file of the map's own folder (`file`).
     source.
   - `tools/verify-descriptor.mjs` holds the file to the decoders it knows, the join field to the file's key,
     and the join both ways. No other map declares it.
+  - **`world-countries.json`** (IDX-3, 2026-10-08; global-indices and org-members): every country of the pinned
+    Natural Earth file in Bangladesh's view, built once by `tools/build-world-countries.mjs` (Douglas–Peucker
+    12 km, keep-shapes: no country disappears; no self-crossing ring; no country holding another's inner point)
+    and held to a fresh build by `tools/verify.mjs`. Shared arcs; a country is polygons → rings (outer first, then
+    holes) → arc indices. Each feature carries `iso3` (ISO 3166-1 alpha-3; Natural Earth's own ADM0_A3 where it has
+    none — Kosovo KOS) and `adm0` (ADM0_A3): a map joins on either. A map may draw only the countries it has records
+    for, so a country with no record is no orphan here (the validator's `partial`).
+  - **`sources.<id>.sharedPart: 'main'`** (opt-in, IDX-3): for each country only the polygon its inner point falls in
+    (the file's `main`) — org-members' tap shapes. The shell cuts it (`SHARED_PARTS` in `app.js`); the validator holds
+    the name to the parts a file offers.
 - **`indices: { records, countries, tabs: { map, bangladesh }, words }`** (opt-in, IDX-2, 2026-10-08;
   global-indices, `docs/shell/indices.js`, `indices.css`): a ranking map. The descriptor shades the countries by the
   chosen ranking's state lists as usual; the module adds the page one screen tall at every width (the map in a card
@@ -268,6 +278,20 @@ drawn now (`drawn`), and read a file of the map's own folder (`file`).
   position bar, a ▲/▼ chip; a row opens its ranking). While that tab is open the map, its card and the picker row are
   hidden; ⓘ stays under the tabs. A record with `bdOnly` is in that list alone. For it the shell's module surface also
   hands out `maplibregl` (to place HTML markers); no other map uses either. `tools/check.mjs` runs `indicesSteps`.
+  IDX-3: the «বাংলাদেশ» tab's chip says better or worse by the ranking's own direction (`goodIs`): «▲ উন্নতি x ধাপ»
+  in green, «▼ অবনতি x ধাপ» in vermillion — a move toward rank 1 is «অবনতি» where rank 1 is the most affected (CRI) —
+  «— অপরিবর্তিত» in grey, and «▲/▼ x ধাপ ওপরে/নিচে» in grey for a ranking that is neither better nor worse
+  (population, density); under it «আগের সংস্করণের তুলনায়», or «আগের বছরের তুলনায়» (`basis: 'year'`).
+- **`tools/lib/raw-get.mjs`** (IDX-2, approved IDX-3): a plain HTTP/1.1 GET over TLS, with the repo's User-Agent, for
+  a server whose response header Node's parser refuses even in its lenient mode (UN DESA's E-Government Knowledgebase,
+  publicadministration.un.org). It exists ONLY for malformed headers: it must never be used to get round a block, a
+  bot challenge, a login, robots.txt or a site's terms. `tools/fetch-sources.mjs` uses it for a source marked `rawHttp`.
+- **No e-mail address in the cache** (the user's rule, IDX-3): `tools/fetch-sources.mjs` checks every download against
+  its pin as downloaded, then writes it through `tools/lib/scrub-email.mjs` — a text file (html, json, csv, txt, xml)
+  with every e-mail pattern replaced by «[address removed]» (the placeholder `tools/lib/html-text.mjs` uses in
+  extracted text, so a page's text stays its pinned text) and a record beside it (`<file>.scrubbed.json`: the pinned
+  download's SHA-256, the kept copy's, the count). A verified cached copy that still holds one is rewritten the first
+  time it is read. A binary (archive, PDF, image) is kept as pinned: its bytes cannot change without breaking the pin.
 - **`minTextSize: 14`** (M3): no text under 14 px on that map — every label's
   size in its style floored (the basemap's, the baseline's, its own), the
   shell's chrome under `[data-min-text]` in style.css. Other maps unchanged.

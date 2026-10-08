@@ -7,6 +7,8 @@ import { execFileSync } from 'node:child_process';
 import { UA } from './net.mjs';
 import { sourceText } from './lib/html-text.mjs';
 import { rawGet } from './lib/raw-get.mjs';
+import { keepScrubbed, cachedCopy } from './lib/scrub-email.mjs';
+import os from 'node:os';
 
 const here = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'));
 const cache = path.join(here, '.cache');
@@ -23,17 +25,21 @@ async function download(url) {
   return Buffer.from(await res.arrayBuffer());
 }
 
+// Every source is checked against its pin as downloaded, then written without any e-mail address
+// (tools/lib/scrub-email.mjs, IDX-3): a text file scrubbed, with a record beside it; a binary whose bytes show
+// one is not kept and is used from memory. Returns the verified bytes.
 async function fetchVerified(url, dest, check) {
-  if (fs.existsSync(dest) && check(fs.readFileSync(dest))) {
+  const cached = cachedCopy(dest, check);
+  if (cached) {
     console.log(`ok (cached)  ${path.basename(dest)}`);
-    return;
+    return cached;
   }
   const buf = await download(url);
   if (!check(buf)) throw new Error(`Checksum mismatch for ${url} — refusing to use it.`);
-  fs.writeFileSync(dest, buf);
-  console.log(`ok (fetched) ${path.basename(dest)}  ${(buf.length / 1e6).toFixed(1)} MB`);
+  const kept = keepScrubbed(dest, buf);
+  console.log(`ok (fetched) ${path.basename(dest)}  ${(buf.length / 1e6).toFixed(1)} MB${kept.count ? (kept.kept ? ` — ${kept.count} e-mail address(es) scrubbed` : ` — not kept: its bytes show ${kept.count} e-mail pattern(s)`) : ''}`);
+  return buf;
 }
-
 // A source pinned by SHA-256 where nobody publishes one is pinned by its first
 // download: until the hash is recorded, its size is checked and its SHA-256
 // printed for sources.json, and nothing reaches the cache — so no build ever
@@ -97,15 +103,21 @@ fs.mkdirSync(path.join(cache, maritime.dir, 'text'), { recursive: true });
 const maritimeChanged = [];
 for (const [name, want] of Object.entries(maritime.files)) {
   const dest = path.join(cache, maritime.dir, name);
+  let raw;
   try {
-    await fetchVerified(want.url, dest, (buf) => buf.length === want.size && sha256(buf) === want.sha256);
+    raw = await fetchVerified(want.url, dest, (buf) => buf.length === want.size && sha256(buf) === want.sha256);
   } catch (e) {
     if (!want.changes) throw e;
     maritimeChanged.push(`${name} (${e.message.includes('Checksum') ? 'the page has changed' : e.message})`);
     continue;
   }
   if (!want.text) continue;
-  const text = name.endsWith('.html') ? Buffer.from(sourceText(fs.readFileSync(dest)), 'utf8') : execFileSync('pdftotext', ['-enc', 'UTF-8', dest, '-']);
+  const pdfText = () => {
+    const tmp = path.join(os.tmpdir(), `geoquest-${process.pid}-${name}`);
+    fs.writeFileSync(tmp, raw);
+    try { return execFileSync('pdftotext', ['-enc', 'UTF-8', tmp, '-']); } finally { fs.rmSync(tmp, { force: true }); }
+  };
+  const text = name.endsWith('.html') ? Buffer.from(sourceText(raw), 'utf8') : pdfText();
   if (text.length !== want.text.size || sha256(text) !== want.text.sha256) throw new Error(`${want.text.file}: the text of ${name} is not the pinned one — refusing it`);
   fs.writeFileSync(path.join(cache, maritime.dir, want.text.file), text);
 }
@@ -129,9 +141,10 @@ const changed = [];
 for (const [name, want] of Object.entries(orgMembers.files)) {
   const dest = path.join(orgDir, name);
   const ok = (buf) => buf.length === want.size && sha256(buf) === want.sha256;
-  if (want.via === 'browser' && !(fs.existsSync(dest) && ok(fs.readFileSync(dest)))) { changed.push(`${name} (read in a browser; not in the cache)`); continue; }
-  try { await fetchVerified(want.url, dest, ok); } catch (e) { changed.push(`${name} (${e.message.includes('Checksum') ? 'the page has changed' : e.message})`); continue; }
-  const text = Buffer.from(sourceText(fs.readFileSync(dest), want.extract), 'utf8');
+  if (want.via === 'browser' && !cachedCopy(dest, ok)) { changed.push(`${name} (read in a browser; not in the cache)`); continue; }
+  let raw;
+  try { raw = await fetchVerified(want.url, dest, ok); } catch (e) { changed.push(`${name} (${e.message.includes('Checksum') ? 'the page has changed' : e.message})`); continue; }
+  const text = Buffer.from(sourceText(raw, want.extract), 'utf8');
   if (text.length !== want.text.size || sha256(text) !== want.text.sha256) throw new Error(`${want.text.file}: the text of ${name} is not the pinned one — refusing it`);
   fs.writeFileSync(path.join(orgDir, want.text.file), text);
 }
@@ -148,12 +161,12 @@ const indicesChanged = [];
 for (const [name, want] of Object.entries(indices.files)) {
   const dest = path.join(indicesDir, name);
   const ok = (buf) => buf.length === want.size && sha256(buf) === want.sha256;
-  if (fs.existsSync(dest) && ok(fs.readFileSync(dest))) { console.log(`ok (cached)  ${name}`); continue; }
+  if (cachedCopy(dest, ok)) { console.log(`ok (cached)  ${name}`); continue; }
   try {
     const buf = want.rawHttp ? await rawGet(want.url) : await download(want.url);
     if (!ok(buf)) { indicesChanged.push(`${name} (the source has changed)`); continue; }
-    fs.writeFileSync(dest, buf);
-    console.log(`ok (fetched) ${name}`);
+    const kept = keepScrubbed(dest, buf);
+    console.log(`ok (fetched) ${name}${kept.count ? (kept.kept ? ` — ${kept.count} e-mail address(es) scrubbed` : ` — not kept: its bytes show ${kept.count} e-mail pattern(s)`) : ''}`);
   } catch (e) { indicesChanged.push(`${name} (${e.message})`); }
 }
 if (indicesChanged.length) console.log(`global-indices: ${indicesChanged.length} source(s) not cached — re-check due:\n  ${indicesChanged.join('\n  ')}`);

@@ -353,25 +353,34 @@ div.ix-row {
   font-size: 14px;
   color: var(--ix-grey);
 }
-.ix-chip {
+.ix-change {
   grid-area: chip;
-  justify-self: start;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 8px;
+}
+.ix-chip {
   padding: 2px 10px;
   border-radius: 999px;
   font-size: 14px;
   white-space: nowrap;
 }
-.ix-chip-good {
+.ix-chip-better {
   color: #166534;
   background: #e7f6ec;
 }
-.ix-chip-bad {
-  color: #b42318;
-  background: #fdecea;
+.ix-chip-worse {
+  color: #a3410a;
+  background: #fdeee4;
 }
-.ix-chip-neutral {
+.ix-chip-same {
   color: #3f4a5c;
   background: #eef1f5;
+}
+.ix-basis {
+  font-size: 14px;
+  color: var(--ix-grey);
 }
 
 /* ---- from 900 px: the map left, its card right ---------------------------- */

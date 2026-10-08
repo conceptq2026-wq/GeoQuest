@@ -1670,6 +1670,12 @@ async function everyEntry(store) {
     // A difference that is the shells' version stamp alone (?v=, after a change under docs/shell, visual or shared).
     const unstamp = (list) => list.map((r) => r.replace(/\?v=[0-9a-f]+/, '?v=*')).sort().join('\n');
     if (parts.length === 1 && (plus.length || minus.length) && unstamp(plus) === unstamp(minus)) stampOnly++;
+    else if (plus.length || minus.length) {
+      // What changed beyond the stamp, in full.
+      const a = new Set(minus.map((r) => r.replace(/\?v=[0-9a-f]+/, '?v=*'))), b = new Set(plus.map((r) => r.replace(/\?v=[0-9a-f]+/, '?v=*')));
+      const more = [...b].filter((r) => !a.has(r)), less = [...a].filter((r) => !b.has(r));
+      if (more.length || less.length) diffs[diffs.length - 1] += ` | beyond the stamp: ${[...more.map((r) => `+${r}`), ...less.map((r) => `−${r}`)].join(' ')}`;
+    }
   }
   fs.writeFileSync(path.join(OUT, 'all.txt'), diffs.join('\n') + '\n');
   console.log(`${diffs.length ? 'FAIL' : 'PASS'} --all: ${registry.maps.length} entries × ${SIZES.length} sizes against the baseline of ${before.head} (${before.made.slice(0, 16)}): ${diffs.length} differences in ${seconds(t0)}${diffs.length ? `, ${stampOnly} of them the ?v= stamp alone` : ''}`);

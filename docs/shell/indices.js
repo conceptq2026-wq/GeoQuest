@@ -47,8 +47,8 @@ export async function mount(api) {
   W = spec.words ?? {};
   for (const t of [spec.records, spec.countries]) if (!api.records[t]) throw new Error(`indices: "${t}" is not a records table`);
   if (!spec.tabs?.map || !spec.tabs?.bangladesh) throw new Error('indices: tabs.map and tabs.bangladesh name the two view tabs');
-  for (const k of ['bdStat', 'topStat', 'bottomStat', 'valueStat', 'pillTop', 'pillBottom', 'bd', 'legendTop', 'legendBottom', 'verified', 'source', 'factsNote', 'bdCaption', 'unchanged', 'steps']) if (typeof W[k] !== 'string') throw new Error(`indices: words.${k} is missing`);
-  await stylesheet(api, './indices.css?v=061f15ed08');
+  for (const k of ['bdStat', 'topStat', 'bottomStat', 'valueStat', 'pillTop', 'pillBottom', 'bd', 'legendTop', 'legendBottom', 'verified', 'source', 'factsNote', 'bdCaption', 'unchanged', 'better', 'worse', 'upNeutral', 'downNeutral', 'basisEdition', 'basisYear']) if (typeof W[k] !== 'string') throw new Error(`indices: words.${k} is missing`);
+  await stylesheet(api, './indices.css?v=7786978f35');
   page = api.dom.mapShell.parentElement;
   page.classList.add('has-indices');
   api.own.undo('the indices page', () => page.classList.remove('has-indices', 'indices-bd'));
@@ -221,12 +221,28 @@ function fillList() {
     }
     item.append(text, where);
     if (typeof r.change === 'number') {
+      // Better or worse by the ranking's own direction (IDX-3): a move toward rank 1 is «উন্নতি» where rank 1 is the
+      // best, «অবনতি» where it is the most affected (CRI); a ranking with neither (population) says which way it moved.
+      const n = bn(Math.abs(r.change));
+      const better = r.change === 0 ? null : r.goodIs === 'up' ? r.change > 0 : r.goodIs === 'down' ? r.change < 0 : null;
       const chip = document.createElement('span');
-      const dir = r.change > 0 ? 'up' : r.change < 0 ? 'down' : 'same';
-      const tone = dir === 'same' || !r.goodIs ? 'neutral' : (dir === 'up') === (r.goodIs === 'up') ? 'good' : 'bad';
-      chip.className = `ix-chip ix-chip-${dir} ix-chip-${tone}`;
-      chip.textContent = dir === 'same' ? `— ${W.unchanged}` : `${dir === 'up' ? '▲' : '▼'} ${fill(W.steps, { n: bn(Math.abs(r.change)) })}`;
-      item.append(chip);
+      if (r.change === 0) {
+        chip.className = 'ix-chip ix-chip-same';
+        chip.textContent = `— ${W.unchanged}`;
+      } else if (better === null) {
+        chip.className = 'ix-chip ix-chip-same';
+        chip.textContent = `${r.change > 0 ? '▲' : '▼'} ${fill(r.change > 0 ? W.upNeutral : W.downNeutral, { n })}`;
+      } else {
+        chip.className = `ix-chip ${better ? 'ix-chip-better' : 'ix-chip-worse'}`;
+        chip.textContent = `${better ? '▲' : '▼'} ${fill(better ? W.better : W.worse, { n })}`;
+      }
+      const basis = document.createElement('span');
+      basis.className = 'ix-basis';
+      basis.textContent = r.basis === 'year' ? W.basisYear : W.basisEdition;
+      const box = document.createElement('span');
+      box.className = 'ix-change';
+      box.append(chip, basis);
+      item.append(box);
     }
     if (!r.bdOnly) {
       item.addEventListener('click', () => {

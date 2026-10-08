@@ -64,6 +64,10 @@
       "unshaded": {
         "bn": "মানচিত্রে আঁকা নেই",
         "approved": false
+      },
+      "noValue": {
+        "bn": "তথ্য নেই",
+        "approved": false
       }
     },
     "bdStat": {
@@ -138,8 +142,28 @@
       "bn": "অপরিবর্তিত",
       "approved": false
     },
-    "steps": {
-      "bn": "{n} ধাপ",
+    "better": {
+      "bn": "উন্নতি {n} ধাপ",
+      "approved": false
+    },
+    "worse": {
+      "bn": "অবনতি {n} ধাপ",
+      "approved": false
+    },
+    "upNeutral": {
+      "bn": "{n} ধাপ ওপরে",
+      "approved": false
+    },
+    "downNeutral": {
+      "bn": "{n} ধাপ নিচে",
+      "approved": false
+    },
+    "basisEdition": {
+      "bn": "আগের সংস্করণের তুলনায়",
+      "approved": false
+    },
+    "basisYear": {
+      "bn": "আগের বছরের তুলনায়",
       "approved": false
     },
     "released": {
@@ -282,6 +306,7 @@
         "approved": false
       },
       "goodIs": "up",
+      "basis": "edition",
       "latest": {
         "edition": "Human Development Report 2025",
         "editionNote": "Human Development Report 2025 (HDI data year 2023)",
@@ -2676,6 +2701,7 @@
         "bn": "কম মান = কম দারিদ্র্য; প্রকাশক কোনো র‍্যাংক দেয় না",
         "approved": false
       },
+      "basis": "edition",
       "valueOnly": true,
       "latest": {
         "edition": "2025 Global MPI",
@@ -4082,10 +4108,13 @@
         "approved": false
       },
       "goodIs": "up",
+      "basis": "edition",
       "latest": {
         "edition": "Global Innovation Index 2026",
         "editionNote": "Global Innovation Index 2026 (19th edition)",
-        "releaseDate": "2026-09-29",
+        "releaseDate": null,
+        "releaseYear": 2026,
+        "releaseSure": false,
         "releaseUrl": "https://www.wipo.int/en/web/global-innovation-index/w/news/2026/save-the-date-gii-2026",
         "dataUrl": "https://www.wipo.int/edocs/pubdocs/en/wipo-pub-2000-2026-tech1.xlsx",
         "dataFile": "gii-2026.xlsx",
@@ -4947,7 +4976,9 @@
       "previous": {
         "edition": "Global Innovation Index 2025",
         "editionNote": "Global Innovation Index 2025",
-        "releaseDate": "2025-09-16",
+        "releaseDate": null,
+        "releaseYear": 2025,
+        "releaseSure": false,
         "releaseUrl": "https://www.wipo.int/pressroom/en/articles/2025/article_0009.html",
         "dataUrl": "https://www.wipo.int/edocs/pubdocs/en/wipo-pub-2000-2025-tech1.xlsx",
         "dataFile": "gii-2025.xlsx",
@@ -5829,6 +5860,7 @@
         "approved": false
       },
       "goodIs": "up",
+      "basis": "edition",
       "latest": {
         "edition": "World Happiness Report 2026",
         "editionNote": "World Happiness Report 2026 (life evaluations 2023-2025, rows Year = 2025)",
@@ -7671,6 +7703,7 @@
         "bn": "১ = সবচেয়ে বেশি জনসংখ্যা (জাতিসংঘের ১৯৩টি সদস্য দেশের মধ্যে)",
         "approved": false
       },
+      "basis": "year",
       "sortedByValue": true,
       "projection": true,
       "latest": {
@@ -10067,6 +10100,7 @@
         "bn": "১ = সবচেয়ে ঘন বসতি (জাতিসংঘের ১৯৩টি সদস্য দেশের মধ্যে)",
         "approved": false
       },
+      "basis": "year",
       "sortedByValue": true,
       "projection": true,
       "latest": {
@@ -12463,6 +12497,8 @@
         "bn": "১ = সবচেয়ে বেশি রেমিট্যান্স প্রাপ্তি",
         "approved": false
       },
+      "goodIs": "up",
+      "basis": "year",
       "sortedByValue": true,
       "latest": {
         "edition": "World Development Indicators, 2024 data",
@@ -14540,6 +14576,8 @@
         "bn": "১ = সবচেয়ে বেশি বিদেশি বিনিয়োগ এসেছে",
         "approved": false
       },
+      "goodIs": "up",
+      "basis": "year",
       "sortedByValue": true,
       "latest": {
         "edition": "UNCTADstat, 2025 data",
@@ -17030,35 +17068,2367 @@
     },
     {
       "id": "gdp-per-capita",
-      "kind": "user-input",
+      "kind": "open",
       "nameBn": {
         "bn": "মাথাপিছু জিডিপি",
         "approved": false
       },
-      "nameEn": "GDP per capita, current prices (U.S. dollars)",
-      "publisher": "IMF",
-      "publisherFull": "International Monetary Fund (IMF), World Economic Outlook database",
-      "officialUrl": "https://www.imf.org/en/publications/weo",
+      "nameEn": "GDP per capita (current US$)",
+      "publisher": "World Bank",
+      "publisherFull": "World Bank (World Development Indicators)",
+      "officialUrl": "https://data.worldbank.org/indicator/NY.GDP.PCAP.CD",
       "rankMeans": {
-        "bn": "১ = সবচেয়ে বেশি মাথাপিছু জিডিপি",
+        "bn": "১ = সবচেয়ে বেশি মাথাপিছু জিডিপি (জাতিসংঘের সদস্য দেশের মধ্যে)",
         "approved": false
       },
+      "goodIs": "up",
+      "basis": "year",
       "sortedByValue": true,
-      "latest": null,
-      "previous": null,
-      "userInput": {
-        "why": "the terms forbid automated access (https://www.imf.org/en/About/copyright-and-terms 'Prohibitions and Restrictions' (bulk download of information by automated technology needs explicit permission); also 'Data Usage' (commercial reuse: request permission))",
-        "pages": [
-          "https://data.imf.org/en/datasets/IMF.RES:WEO",
-          "https://data.imf.org/en/Datasets/WEO/Dataset-Vintages",
-          "https://www.imf.org/en/About/copyright-and-terms"
+      "latest": {
+        "edition": "World Development Indicators, 2025 data",
+        "editionNote": "World Development Indicators, NY.GDP.PCAP.CD (GDP per capita, current US$), data year 2025, database last updated 2026-07-13",
+        "releaseDate": "2026-07-13",
+        "releaseUrl": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.PCAP.CD?format=json&per_page=20000&date=2022:2025",
+        "dataUrl": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.PCAP.CD?format=json&per_page=20000&date=2022:2025",
+        "dataFile": "wdi-gdp-per-capita.json",
+        "n": 180,
+        "rule": "Computed by the reader: UN member states (193, un.org list) with a non-null 2025 value, sorted by value descending; rank 1 = highest GDP per capita; competition ranks (1,2,2,4) if values tie exactly (none tie). The World Bank publishes no rank.",
+        "bd": {
+          "rank": 140,
+          "value": 2597.34352335275
+        },
+        "top": {
+          "iso3": "LUX",
+          "name": "Luxembourg",
+          "wbName": "Luxembourg",
+          "rank": 1,
+          "value": 147252.179121515
+        },
+        "bottom": {
+          "iso3": "BDI",
+          "name": "Burundi",
+          "wbName": "Burundi",
+          "rank": 180,
+          "value": 233.823013385395
+        },
+        "rows": [
+          {
+            "iso3": "LUX",
+            "name": "Luxembourg",
+            "rank": 1,
+            "value": 147252.179121515
+          },
+          {
+            "iso3": "IRL",
+            "name": "Ireland",
+            "rank": 2,
+            "value": 131592.462547877
+          },
+          {
+            "iso3": "CHE",
+            "name": "Switzerland",
+            "rank": 3,
+            "value": 114769.012314293
+          },
+          {
+            "iso3": "SGP",
+            "name": "Singapore",
+            "rank": 4,
+            "value": 98813.9788172877
+          },
+          {
+            "iso3": "ISL",
+            "name": "Iceland",
+            "rank": 5,
+            "value": 98323.4849517418
+          },
+          {
+            "iso3": "NOR",
+            "name": "Norway",
+            "rank": 6,
+            "value": 94594.1929573987
+          },
+          {
+            "iso3": "USA",
+            "name": "United States of America",
+            "rank": 7,
+            "value": 90026.5163005744
+          },
+          {
+            "iso3": "DNK",
+            "name": "Denmark",
+            "rank": 8,
+            "value": 76970.1535217919
+          },
+          {
+            "iso3": "NLD",
+            "name": "Netherlands (Kingdom of the)",
+            "rank": 9,
+            "value": 73683.917132794
+          },
+          {
+            "iso3": "QAT",
+            "name": "Qatar",
+            "rank": 10,
+            "value": 72524.9066385222
+          },
+          {
+            "iso3": "AUS",
+            "name": "Australia",
+            "rank": 11,
+            "value": 65129.7227990563
+          },
+          {
+            "iso3": "SWE",
+            "name": "Sweden",
+            "rank": 12,
+            "value": 63133.2126736715
+          },
+          {
+            "iso3": "AUT",
+            "name": "Austria",
+            "rank": 13,
+            "value": 62930.0351324599
+          },
+          {
+            "iso3": "BEL",
+            "name": "Belgium",
+            "rank": 14,
+            "value": 60750.2735864647
+          },
+          {
+            "iso3": "DEU",
+            "name": "Germany",
+            "rank": 15,
+            "value": 60496.4350820414
+          },
+          {
+            "iso3": "ISR",
+            "name": "Israel",
+            "rank": 16,
+            "value": 60336.8477964194
+          },
+          {
+            "iso3": "GBR",
+            "name": "United Kingdom of Great Britain and Northern Ireland",
+            "rank": 17,
+            "value": 57601.9621201954
+          },
+          {
+            "iso3": "FIN",
+            "name": "Finland",
+            "rank": 18,
+            "value": 56148.580949046
+          },
+          {
+            "iso3": "CAN",
+            "name": "Canada",
+            "rank": 19,
+            "value": 55697.6639660837
+          },
+          {
+            "iso3": "AND",
+            "name": "Andorra",
+            "rank": 20,
+            "value": 54291.5026031052
+          },
+          {
+            "iso3": "NZL",
+            "name": "New Zealand",
+            "rank": 21,
+            "value": 49591.0405731713
+          },
+          {
+            "iso3": "FRA",
+            "name": "France",
+            "rank": 22,
+            "value": 48985.7307807924
+          },
+          {
+            "iso3": "MLT",
+            "name": "Malta",
+            "rank": 23,
+            "value": 47906.9000057635
+          },
+          {
+            "iso3": "ITA",
+            "name": "Italy",
+            "rank": 24,
+            "value": 43308.6403060733
+          },
+          {
+            "iso3": "CYP",
+            "name": "Cyprus",
+            "rank": 25,
+            "value": 41783.08984375
+          },
+          {
+            "iso3": "ESP",
+            "name": "Spain",
+            "rank": 26,
+            "value": 38627.2472148623
+          },
+          {
+            "iso3": "SVN",
+            "name": "Slovenia",
+            "rank": 27,
+            "value": 37376.2216079138
+          },
+          {
+            "iso3": "KOR",
+            "name": "Republic of Korea",
+            "rank": 28,
+            "value": 36226.9663637512
+          },
+          {
+            "iso3": "JPN",
+            "name": "Japan",
+            "rank": 29,
+            "value": 35951.0449549304
+          },
+          {
+            "iso3": "CZE",
+            "name": "Czechia",
+            "rank": 30,
+            "value": 35917.2724081665
+          },
+          {
+            "iso3": "SAU",
+            "name": "Saudi Arabia",
+            "rank": 31,
+            "value": 34536.6555456551
+          },
+          {
+            "iso3": "EST",
+            "name": "Estonia",
+            "rank": 32,
+            "value": 34417.6320815138
+          },
+          {
+            "iso3": "LTU",
+            "name": "Lithuania",
+            "rank": 33,
+            "value": 32958.6706396386
+          },
+          {
+            "iso3": "GUY",
+            "name": "Guyana",
+            "rank": 34,
+            "value": 32413.7930757518
+          },
+          {
+            "iso3": "KWT",
+            "name": "Kuwait",
+            "rank": 35,
+            "value": 32312.3119953634
+          },
+          {
+            "iso3": "BRN",
+            "name": "Brunei Darussalam",
+            "rank": 36,
+            "value": 32234.6428368582
+          },
+          {
+            "iso3": "PRT",
+            "name": "Portugal",
+            "rank": 37,
+            "value": 32081.8106150292
+          },
+          {
+            "iso3": "BHR",
+            "name": "Bahrain",
+            "rank": 38,
+            "value": 30596.5794898885
+          },
+          {
+            "iso3": "SVK",
+            "name": "Slovakia",
+            "rank": 39,
+            "value": 28543.6653439813
+          },
+          {
+            "iso3": "POL",
+            "name": "Poland",
+            "rank": 40,
+            "value": 28419.5777395638
+          },
+          {
+            "iso3": "BRB",
+            "name": "Barbados",
+            "rank": 41,
+            "value": 28364.8181499736
+          },
+          {
+            "iso3": "HRV",
+            "name": "Croatia",
+            "rank": 42,
+            "value": 27103.9116109268
+          },
+          {
+            "iso3": "GRC",
+            "name": "Greece",
+            "rank": 43,
+            "value": 26948.0070432791
+          },
+          {
+            "iso3": "LVA",
+            "name": "Latvia",
+            "rank": 44,
+            "value": 26311.9730706362
+          },
+          {
+            "iso3": "HUN",
+            "name": "Hungary",
+            "rank": 45,
+            "value": 25907.4743259406
+          },
+          {
+            "iso3": "KNA",
+            "name": "Saint Kitts and Nevis",
+            "rank": 46,
+            "value": 25223.0257622185
+          },
+          {
+            "iso3": "URY",
+            "name": "Uruguay",
+            "rank": 47,
+            "value": 25215.8238152781
+          },
+          {
+            "iso3": "ATG",
+            "name": "Antigua and Barbuda",
+            "rank": 48,
+            "value": 24819.2454680158
+          },
+          {
+            "iso3": "ROU",
+            "name": "Romania",
+            "rank": 49,
+            "value": 22537.9532108047
+          },
+          {
+            "iso3": "BGR",
+            "name": "Bulgaria",
+            "rank": 50,
+            "value": 20328.1667065538
+          },
+          {
+            "iso3": "CRI",
+            "name": "Costa Rica",
+            "rank": 51,
+            "value": 19970.0989059622
+          },
+          {
+            "iso3": "OMN",
+            "name": "Oman",
+            "rank": 52,
+            "value": 19947.3966227092
+          },
+          {
+            "iso3": "PAN",
+            "name": "Panama",
+            "rank": 53,
+            "value": 19789.7308555826
+          },
+          {
+            "iso3": "PLW",
+            "name": "Palau",
+            "rank": 54,
+            "value": 19532.3557719527
+          },
+          {
+            "iso3": "SYC",
+            "name": "Seychelles",
+            "rank": 55,
+            "value": 19449.3836346926
+          },
+          {
+            "iso3": "TTO",
+            "name": "Trinidad and Tobago",
+            "rank": 56,
+            "value": 18967.2704636681
+          },
+          {
+            "iso3": "TUR",
+            "name": "Türkiye",
+            "rank": 57,
+            "value": 18599.4420922378
+          },
+          {
+            "iso3": "CHL",
+            "name": "Chile",
+            "rank": 58,
+            "value": 17994.5911957485
+          },
+          {
+            "iso3": "RUS",
+            "name": "Russian Federation",
+            "rank": 59,
+            "value": 17546.609375
+          },
+          {
+            "iso3": "SRB",
+            "name": "Serbia",
+            "rank": 60,
+            "value": 15262.0464193413
+          },
+          {
+            "iso3": "ARG",
+            "name": "Argentina",
+            "rank": 61,
+            "value": 14898.0885943842
+          },
+          {
+            "iso3": "MNE",
+            "name": "Montenegro",
+            "rank": 62,
+            "value": 14816.8380299947
+          },
+          {
+            "iso3": "LCA",
+            "name": "Saint Lucia",
+            "rank": 63,
+            "value": 14745.8184305461
+          },
+          {
+            "iso3": "KAZ",
+            "name": "Kazakhstan",
+            "rank": 64,
+            "value": 14692.1331757237
+          },
+          {
+            "iso3": "NRU",
+            "name": "Naoero",
+            "rank": 65,
+            "value": 14639.5046929186
+          },
+          {
+            "iso3": "MDV",
+            "name": "Maldives",
+            "rank": 66,
+            "value": 14614.7208116541
+          },
+          {
+            "iso3": "MEX",
+            "name": "Mexico",
+            "rank": 67,
+            "value": 13889.2339628708
+          },
+          {
+            "iso3": "CHN",
+            "name": "China (the People's Republic of)",
+            "rank": 68,
+            "value": 13861.970224368
+          },
+          {
+            "iso3": "MYS",
+            "name": "Malaysia",
+            "rank": 69,
+            "value": 13124.5554178269
+          },
+          {
+            "iso3": "ALB",
+            "name": "Albania",
+            "rank": 70,
+            "value": 12998.147869552
+          },
+          {
+            "iso3": "MUS",
+            "name": "Mauritius",
+            "rank": 71,
+            "value": 12991.2935987166
+          },
+          {
+            "iso3": "VCT",
+            "name": "Saint Vincent and the Grenadines",
+            "rank": 72,
+            "value": 12561.769166789
+          },
+          {
+            "iso3": "GRD",
+            "name": "Grenada",
+            "rank": 73,
+            "value": 12106.8790105068
+          },
+          {
+            "iso3": "DOM",
+            "name": "Dominican Republic",
+            "rank": 74,
+            "value": 11059.2081531834
+          },
+          {
+            "iso3": "DMA",
+            "name": "Dominica",
+            "rank": 75,
+            "value": 10989.0431185083
+          },
+          {
+            "iso3": "BRA",
+            "name": "Brazil",
+            "rank": 76,
+            "value": 10713.2856869511
+          },
+          {
+            "iso3": "MKD",
+            "name": "North Macedonia",
+            "rank": 77,
+            "value": 10489.9255355525
+          },
+          {
+            "iso3": "BIH",
+            "name": "Bosnia and Herzegovina",
+            "rank": 78,
+            "value": 10381.8460703874
+          },
+          {
+            "iso3": "BLR",
+            "name": "Belarus",
+            "rank": 79,
+            "value": 10279.2547190723
+          },
+          {
+            "iso3": "GEO",
+            "name": "Georgia",
+            "rank": 80,
+            "value": 9691.53472415196
+          },
+          {
+            "iso3": "PER",
+            "name": "Peru",
+            "rank": 81,
+            "value": 9684.41170314988
+          },
+          {
+            "iso3": "ARM",
+            "name": "Armenia",
+            "rank": 82,
+            "value": 9474.01849300368
+          },
+          {
+            "iso3": "MDA",
+            "name": "Republic of Moldova",
+            "rank": 83,
+            "value": 8621.71721623786
+          },
+          {
+            "iso3": "COL",
+            "name": "Colombia",
+            "rank": 84,
+            "value": 8561.62091854449
+          },
+          {
+            "iso3": "MHL",
+            "name": "Marshall Islands",
+            "rank": 85,
+            "value": 8489.05793506422
+          },
+          {
+            "iso3": "GAB",
+            "name": "Gabon",
+            "rank": 86,
+            "value": 8263.03321595
+          },
+          {
+            "iso3": "THA",
+            "name": "Thailand",
+            "rank": 87,
+            "value": 8056.56359761558
+          },
+          {
+            "iso3": "JAM",
+            "name": "Jamaica",
+            "rank": 88,
+            "value": 8002.92104076242
+          },
+          {
+            "iso3": "BLZ",
+            "name": "Belize",
+            "rank": 89,
+            "value": 7865.47937690933
+          },
+          {
+            "iso3": "BWA",
+            "name": "Botswana",
+            "rank": 90,
+            "value": 7778.1151090571
+          },
+          {
+            "iso3": "AZE",
+            "name": "Azerbaijan",
+            "rank": 91,
+            "value": 7410.72281660142
+          },
+          {
+            "iso3": "ECU",
+            "name": "Ecuador",
+            "rank": 92,
+            "value": 7125.27618527738
+          },
+          {
+            "iso3": "MNG",
+            "name": "Mongolia",
+            "rank": 93,
+            "value": 7108.22743246244
+          },
+          {
+            "iso3": "SUR",
+            "name": "Suriname",
+            "rank": 94,
+            "value": 7069.87230892274
+          },
+          {
+            "iso3": "PRY",
+            "name": "Paraguay",
+            "rank": 95,
+            "value": 7026.61906146401
+          },
+          {
+            "iso3": "FJI",
+            "name": "Fiji",
+            "rank": 96,
+            "value": 6642.00449450523
+          },
+          {
+            "iso3": "GNQ",
+            "name": "Equatorial Guinea",
+            "rank": 97,
+            "value": 6615.25245207167
+          },
+          {
+            "iso3": "GTM",
+            "name": "Guatemala",
+            "rank": 98,
+            "value": 6598.18032988711
+          },
+          {
+            "iso3": "ZAF",
+            "name": "South Africa",
+            "rank": 99,
+            "value": 6597.71450918774
+          },
+          {
+            "iso3": "TON",
+            "name": "Tonga",
+            "rank": 100,
+            "value": 6547.18646814228
+          },
+          {
+            "iso3": "TKM",
+            "name": "Turkmenistan",
+            "rank": 101,
+            "value": 6540.17876401136
+          },
+          {
+            "iso3": "LBY",
+            "name": "Libya",
+            "rank": 102,
+            "value": 6448.82415074121
+          },
+          {
+            "iso3": "DZA",
+            "name": "Algeria",
+            "rank": 103,
+            "value": 6051.00322704182
+          },
+          {
+            "iso3": "TUV",
+            "name": "Tuvalu",
+            "rank": 104,
+            "value": 6041.44908591428
+          },
+          {
+            "iso3": "WSM",
+            "name": "Samoa",
+            "rank": 105,
+            "value": 5872.78333308796
+          },
+          {
+            "iso3": "UKR",
+            "name": "Ukraine",
+            "rank": 106,
+            "value": 5865.884765625
+          },
+          {
+            "iso3": "CPV",
+            "name": "Cabo Verde",
+            "rank": 107,
+            "value": 5796.47207860911
+          },
+          {
+            "iso3": "SLV",
+            "name": "El Salvador",
+            "rank": 108,
+            "value": 5766.72574029107
+          },
+          {
+            "iso3": "IRQ",
+            "name": "Iraq",
+            "rank": 109,
+            "value": 5409.67899716967
+          },
+          {
+            "iso3": "JOR",
+            "name": "Jordan",
+            "rank": 110,
+            "value": 5347.77731384797
+          },
+          {
+            "iso3": "BOL",
+            "name": "Bolivia (Plurinational State of)",
+            "rank": 111,
+            "value": 5147.81081955367
+          },
+          {
+            "iso3": "VNM",
+            "name": "Viet Nam",
+            "rank": 112,
+            "value": 5065.99091899299
+          },
+          {
+            "iso3": "IDN",
+            "name": "Indonesia",
+            "rank": 113,
+            "value": 5059.62596411213
+          },
+          {
+            "iso3": "LKA",
+            "name": "Sri Lanka",
+            "rank": 114,
+            "value": 5002.07904353724
+          },
+          {
+            "iso3": "NAM",
+            "name": "Namibia",
+            "rank": 115,
+            "value": 4875.92558158247
+          },
+          {
+            "iso3": "MAR",
+            "name": "Morocco",
+            "rank": 116,
+            "value": 4672.46826171875
+          },
+          {
+            "iso3": "TUN",
+            "name": "Tunisia",
+            "rank": 117,
+            "value": 4656.63818386852
+          },
+          {
+            "iso3": "BTN",
+            "name": "Bhutan",
+            "rank": 118,
+            "value": 4492.78400306618
+          },
+          {
+            "iso3": "FSM",
+            "name": "Micronesia (Federated States of)",
+            "rank": 119,
+            "value": 4414.00737137479
+          },
+          {
+            "iso3": "PHL",
+            "name": "Philippines",
+            "rank": 120,
+            "value": 4170.72347271451
+          },
+          {
+            "iso3": "SWZ",
+            "name": "Eswatini",
+            "rank": 121,
+            "value": 4108.25221093363
+          },
+          {
+            "iso3": "STP",
+            "name": "Sao Tome and Principe",
+            "rank": 122,
+            "value": 4084.40062145233
+          },
+          {
+            "iso3": "VUT",
+            "name": "Vanuatu",
+            "rank": 123,
+            "value": 4038.73520713411
+          },
+          {
+            "iso3": "UZB",
+            "name": "Uzbekistan",
+            "rank": 124,
+            "value": 3968.2720079072
+          },
+          {
+            "iso3": "IRN",
+            "name": "Iran (Islamic Republic of)",
+            "rank": 125,
+            "value": 3924.38017821898
+          },
+          {
+            "iso3": "DJI",
+            "name": "Djibouti",
+            "rank": 126,
+            "value": 3905.604954681
+          },
+          {
+            "iso3": "HND",
+            "name": "Honduras",
+            "rank": 127,
+            "value": 3598.21450440452
+          },
+          {
+            "iso3": "VEN",
+            "name": "Venezuela, Bolivarian Republic of",
+            "rank": 128,
+            "value": 3494.8138870244
+          },
+          {
+            "iso3": "GHA",
+            "name": "Ghana",
+            "rank": 129,
+            "value": 3257.1588903576
+          },
+          {
+            "iso3": "NIC",
+            "name": "Nicaragua",
+            "rank": 130,
+            "value": 3173.33724815085
+          },
+          {
+            "iso3": "AGO",
+            "name": "Angola",
+            "rank": 131,
+            "value": 3129.47662331063
+          },
+          {
+            "iso3": "EGY",
+            "name": "Egypt",
+            "rank": 132,
+            "value": 3085.80712036204
+          },
+          {
+            "iso3": "KGZ",
+            "name": "Kyrgyzstan",
+            "rank": 133,
+            "value": 3080.96893823359
+          },
+          {
+            "iso3": "CIV",
+            "name": "Côte D'Ivoire",
+            "rank": 134,
+            "value": 3050.10202257321
+          },
+          {
+            "iso3": "ZWE",
+            "name": "Zimbabwe",
+            "rank": 135,
+            "value": 3021.43019873632
+          },
+          {
+            "iso3": "PNG",
+            "name": "Papua New Guinea",
+            "rank": 136,
+            "value": 3019.5309140573
+          },
+          {
+            "iso3": "KHM",
+            "name": "Cambodia",
+            "rank": 137,
+            "value": 2872.42926639909
+          },
+          {
+            "iso3": "IND",
+            "name": "India",
+            "rank": 138,
+            "value": 2702.47987141553
+          },
+          {
+            "iso3": "HTI",
+            "name": "Haiti",
+            "rank": 139,
+            "value": 2694.18969101404
+          },
+          {
+            "iso3": "BGD",
+            "name": "Bangladesh",
+            "rank": 140,
+            "value": 2597.34352335275
+          },
+          {
+            "iso3": "KIR",
+            "name": "Kiribati",
+            "rank": 141,
+            "value": 2558.66636011102
+          },
+          {
+            "iso3": "COG",
+            "name": "Congo",
+            "rank": 142,
+            "value": 2514.73393584747
+          },
+          {
+            "iso3": "KEN",
+            "name": "Kenya",
+            "rank": 143,
+            "value": 2362.86091198611
+          },
+          {
+            "iso3": "LAO",
+            "name": "Lao People’s Democratic Republic",
+            "rank": 144,
+            "value": 2324.76353098791
+          },
+          {
+            "iso3": "MRT",
+            "name": "Mauritania",
+            "rank": 145,
+            "value": 2197.51046251309
+          },
+          {
+            "iso3": "SLB",
+            "name": "Solomon Islands",
+            "rank": 146,
+            "value": 2086.18955928928
+          },
+          {
+            "iso3": "COM",
+            "name": "Comoros",
+            "rank": 147,
+            "value": 2055.75921566281
+          },
+          {
+            "iso3": "CMR",
+            "name": "Cameroon",
+            "rank": 148,
+            "value": 1972.3815800786
+          },
+          {
+            "iso3": "SEN",
+            "name": "Senegal",
+            "rank": 149,
+            "value": 1954.71174194867
+          },
+          {
+            "iso3": "GIN",
+            "name": "Guinea",
+            "rank": 150,
+            "value": 1877.2541220972
+          },
+          {
+            "iso3": "BEN",
+            "name": "Benin",
+            "rank": 151,
+            "value": 1658.27312662991
+          },
+          {
+            "iso3": "TJK",
+            "name": "Tajikistan",
+            "rank": 152,
+            "value": 1637.2542942547
+          },
+          {
+            "iso3": "PAK",
+            "name": "Pakistan",
+            "rank": 153,
+            "value": 1595.90912252837
+          },
+          {
+            "iso3": "NPL",
+            "name": "Nepal",
+            "rank": 154,
+            "value": 1535.87781246307
+          },
+          {
+            "iso3": "MMR",
+            "name": "Myanmar",
+            "rank": 155,
+            "value": 1488.87527836542
+          },
+          {
+            "iso3": "TGO",
+            "name": "Togo",
+            "rank": 156,
+            "value": 1383.89974929887
+          },
+          {
+            "iso3": "TLS",
+            "name": "Timor-Leste",
+            "rank": 157,
+            "value": 1340.9640193437
+          },
+          {
+            "iso3": "TZA",
+            "name": "United Republic of Tanzania",
+            "rank": 158,
+            "value": 1318.81921386719
+          },
+          {
+            "iso3": "ZMB",
+            "name": "Zambia",
+            "rank": 159,
+            "value": 1317.87771619597
+          },
+          {
+            "iso3": "NGA",
+            "name": "Nigeria",
+            "rank": 160,
+            "value": 1224.25410237743
+          },
+          {
+            "iso3": "UGA",
+            "name": "Uganda",
+            "rank": 161,
+            "value": 1206.30450825002
+          },
+          {
+            "iso3": "MLI",
+            "name": "Mali",
+            "rank": 162,
+            "value": 1193.27601004701
+          },
+          {
+            "iso3": "SDN",
+            "name": "Sudan",
+            "rank": 163,
+            "value": 1164.53991699219
+          },
+          {
+            "iso3": "BFA",
+            "name": "Burkina Faso",
+            "rank": 164,
+            "value": 1147.57131635601
+          },
+          {
+            "iso3": "GNB",
+            "name": "Guinea Bissau",
+            "rank": 165,
+            "value": 1123.76679992349
+          },
+          {
+            "iso3": "RWA",
+            "name": "Rwanda",
+            "rank": 166,
+            "value": 1123.73874633225
+          },
+          {
+            "iso3": "LSO",
+            "name": "Lesotho",
+            "rank": 167,
+            "value": 1088.96276223185
+          },
+          {
+            "iso3": "TCD",
+            "name": "Chad",
+            "rank": 168,
+            "value": 1022.33559390754
+          },
+          {
+            "iso3": "ETH",
+            "name": "Ethiopia",
+            "rank": 169,
+            "value": 932.729352775179
+          },
+          {
+            "iso3": "GMB",
+            "name": "Gambia (Republic of The)",
+            "rank": 170,
+            "value": 919.060423427951
+          },
+          {
+            "iso3": "LBR",
+            "name": "Liberia",
+            "rank": 171,
+            "value": 915.328972645548
+          },
+          {
+            "iso3": "SLE",
+            "name": "Sierra Leone",
+            "rank": 172,
+            "value": 846.296172499617
+          },
+          {
+            "iso3": "COD",
+            "name": "Democratic Republic of the Congo",
+            "rank": 173,
+            "value": 806.776000708534
+          },
+          {
+            "iso3": "NER",
+            "name": "Niger",
+            "rank": 174,
+            "value": 775.353622143879
+          },
+          {
+            "iso3": "MWI",
+            "name": "Malawi",
+            "rank": 175,
+            "value": 671.506847203876
+          },
+          {
+            "iso3": "SOM",
+            "name": "Somalia",
+            "rank": 176,
+            "value": 661.173877723116
+          },
+          {
+            "iso3": "MOZ",
+            "name": "Mozambique",
+            "rank": 177,
+            "value": 626.914419215727
+          },
+          {
+            "iso3": "MDG",
+            "name": "Madagascar",
+            "rank": 178,
+            "value": 599.265294255357
+          },
+          {
+            "iso3": "CAF",
+            "name": "Central African Republic",
+            "rank": 179,
+            "value": 556.131398031455
+          },
+          {
+            "iso3": "BDI",
+            "name": "Burundi",
+            "rank": 180,
+            "value": 233.823013385395
+          }
         ],
-        "factsNeeded": [
-          "the April 2026 WEO Excel file (WEOApr2026all.xlsx), downloaded by a person and placed in the cache, or IMF's explicit permission for one API call per vintage — the user's decision",
-          "NGDPDPC for every economy, 2025 (latest complete year in the April 2026 vintage; partly IMF staff estimates) and 2024",
-          "previous edition: NGDPDPC 2024 from the October 2025 vintage",
-          "the user's call on commercial reuse under the IMF Data Usage clause"
+        "missing": [
+          {
+            "iso3": "AFG",
+            "name": "Afghanistan"
+          },
+          {
+            "iso3": "BHS",
+            "name": "Bahamas (The)"
+          },
+          {
+            "iso3": "CUB",
+            "name": "Cuba"
+          },
+          {
+            "iso3": "PRK",
+            "name": "Democratic People's Republic of Korea"
+          },
+          {
+            "iso3": "ERI",
+            "name": "Eritrea"
+          },
+          {
+            "iso3": "LBN",
+            "name": "Lebanon"
+          },
+          {
+            "iso3": "LIE",
+            "name": "Liechtenstein"
+          },
+          {
+            "iso3": "MCO",
+            "name": "Monaco"
+          },
+          {
+            "iso3": "SMR",
+            "name": "San Marino"
+          },
+          {
+            "iso3": "SSD",
+            "name": "South Sudan"
+          },
+          {
+            "iso3": "SYR",
+            "name": "Syrian Arab Republic"
+          },
+          {
+            "iso3": "ARE",
+            "name": "United Arab Emirates"
+          },
+          {
+            "iso3": "YEM",
+            "name": "Yemen"
+          }
         ]
+      },
+      "previous": {
+        "edition": "World Development Indicators, 2024 data",
+        "editionNote": "World Development Indicators, NY.GDP.PCAP.CD (GDP per capita, current US$), data year 2024, database last updated 2026-07-13",
+        "releaseDate": "2026-07-13",
+        "releaseUrl": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.PCAP.CD?format=json&per_page=20000&date=2022:2025",
+        "dataUrl": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.PCAP.CD?format=json&per_page=20000&date=2022:2025",
+        "dataFile": "wdi-gdp-per-capita.json",
+        "n": 186,
+        "rule": "Computed by the reader: UN member states (193, un.org list) with a non-null 2024 value, sorted by value descending; rank 1 = highest GDP per capita; competition ranks (1,2,2,4) if values tie exactly (none tie). The World Bank publishes no rank.",
+        "bd": {
+          "rank": 140,
+          "value": 2593.41611680774
+        },
+        "top": {
+          "iso3": "MCO",
+          "name": "Monaco",
+          "wbName": "Monaco",
+          "rank": 1,
+          "value": 288001.574856495
+        },
+        "bottom": {
+          "iso3": "BDI",
+          "name": "Burundi",
+          "wbName": "Burundi",
+          "rank": 186,
+          "value": 216.231928531758
+        },
+        "rows": [
+          {
+            "iso3": "MCO",
+            "name": "Monaco",
+            "rank": 1,
+            "value": 288001.574856495
+          },
+          {
+            "iso3": "LIE",
+            "name": "Liechtenstein",
+            "rank": 2,
+            "value": 220167.225473557
+          },
+          {
+            "iso3": "LUX",
+            "name": "Luxembourg",
+            "rank": 3,
+            "value": 137781.681659123
+          },
+          {
+            "iso3": "IRL",
+            "name": "Ireland",
+            "rank": 4,
+            "value": 112894.953240805
+          },
+          {
+            "iso3": "CHE",
+            "name": "Switzerland",
+            "rank": 5,
+            "value": 107702.065940312
+          },
+          {
+            "iso3": "SGP",
+            "name": "Singapore",
+            "rank": 6,
+            "value": 94896.5621495988
+          },
+          {
+            "iso3": "NOR",
+            "name": "Norway",
+            "rank": 7,
+            "value": 89888.9535204758
+          },
+          {
+            "iso3": "USA",
+            "name": "United States of America",
+            "rank": 8,
+            "value": 86169.6641581917
+          },
+          {
+            "iso3": "ISL",
+            "name": "Iceland",
+            "rank": 9,
+            "value": 85863.1479330343
+          },
+          {
+            "iso3": "QAT",
+            "name": "Qatar",
+            "rank": 10,
+            "value": 75685.0865779973
+          },
+          {
+            "iso3": "DNK",
+            "name": "Denmark",
+            "rank": 11,
+            "value": 71026.4832271897
+          },
+          {
+            "iso3": "NLD",
+            "name": "Netherlands (Kingdom of the)",
+            "rank": 12,
+            "value": 67465.3208126875
+          },
+          {
+            "iso3": "AUS",
+            "name": "Australia",
+            "rank": 13,
+            "value": 64609.9865116088
+          },
+          {
+            "iso3": "AUT",
+            "name": "Austria",
+            "rank": 14,
+            "value": 58268.8787651601
+          },
+          {
+            "iso3": "SWE",
+            "name": "Sweden",
+            "rank": 15,
+            "value": 57222.7100565003
+          },
+          {
+            "iso3": "BEL",
+            "name": "Belgium",
+            "rank": 16,
+            "value": 56581.9375642531
+          },
+          {
+            "iso3": "DEU",
+            "name": "Germany",
+            "rank": 17,
+            "value": 56103.7323182554
+          },
+          {
+            "iso3": "CAN",
+            "name": "Canada",
+            "rank": 18,
+            "value": 55015.7066917734
+          },
+          {
+            "iso3": "ISR",
+            "name": "Israel",
+            "rank": 19,
+            "value": 54216.5218142787
+          },
+          {
+            "iso3": "GBR",
+            "name": "United Kingdom of Great Britain and Northern Ireland",
+            "rank": 20,
+            "value": 53341.3131094262
+          },
+          {
+            "iso3": "FIN",
+            "name": "Finland",
+            "rank": 21,
+            "value": 53155.5451165897
+          },
+          {
+            "iso3": "ARE",
+            "name": "United Arab Emirates",
+            "rank": 22,
+            "value": 50273.5126243239
+          },
+          {
+            "iso3": "NZL",
+            "name": "New Zealand",
+            "rank": 23,
+            "value": 49432.3626396797
+          },
+          {
+            "iso3": "AND",
+            "name": "Andorra",
+            "rank": 24,
+            "value": 49357.437070178
+          },
+          {
+            "iso3": "FRA",
+            "name": "France",
+            "rank": 25,
+            "value": 46103.0840855884
+          },
+          {
+            "iso3": "MLT",
+            "name": "Malta",
+            "rank": 26,
+            "value": 44023.6341078148
+          },
+          {
+            "iso3": "ITA",
+            "name": "Italy",
+            "rank": 27,
+            "value": 40429.6224047352
+          },
+          {
+            "iso3": "BHS",
+            "name": "Bahamas (The)",
+            "rank": 28,
+            "value": 39455.4466548546
+          },
+          {
+            "iso3": "CYP",
+            "name": "Cyprus",
+            "rank": 29,
+            "value": 38674.3125
+          },
+          {
+            "iso3": "KOR",
+            "name": "Republic of Korea",
+            "rank": 30,
+            "value": 36238.639908315
+          },
+          {
+            "iso3": "SAU",
+            "name": "Saudi Arabia",
+            "rank": 31,
+            "value": 35527.786181866
+          },
+          {
+            "iso3": "ESP",
+            "name": "Spain",
+            "rank": 32,
+            "value": 35326.7683069278
+          },
+          {
+            "iso3": "SVN",
+            "name": "Slovenia",
+            "rank": 33,
+            "value": 34301.0318686594
+          },
+          {
+            "iso3": "JPN",
+            "name": "Japan",
+            "rank": 34,
+            "value": 33797.1014287876
+          },
+          {
+            "iso3": "BRN",
+            "name": "Brunei Darussalam",
+            "rank": 35,
+            "value": 33153.4738913513
+          },
+          {
+            "iso3": "KWT",
+            "name": "Kuwait",
+            "rank": 36,
+            "value": 32855.7209688827
+          },
+          {
+            "iso3": "CZE",
+            "name": "Czechia",
+            "rank": 37,
+            "value": 31827.7552539413
+          },
+          {
+            "iso3": "EST",
+            "name": "Estonia",
+            "rank": 38,
+            "value": 31428.3547816104
+          },
+          {
+            "iso3": "BHR",
+            "name": "Bahrain",
+            "rank": 39,
+            "value": 29717.1424605273
+          },
+          {
+            "iso3": "GUY",
+            "name": "Guyana",
+            "rank": 40,
+            "value": 29675.2501582835
+          },
+          {
+            "iso3": "LTU",
+            "name": "Lithuania",
+            "rank": 41,
+            "value": 29603.7772588256
+          },
+          {
+            "iso3": "PRT",
+            "name": "Portugal",
+            "rank": 42,
+            "value": 29328.3067415343
+          },
+          {
+            "iso3": "BRB",
+            "name": "Barbados",
+            "rank": 43,
+            "value": 26897.2002039176
+          },
+          {
+            "iso3": "SVK",
+            "name": "Slovakia",
+            "rank": 44,
+            "value": 25992.6748502048
+          },
+          {
+            "iso3": "POL",
+            "name": "Poland",
+            "rank": 45,
+            "value": 25103.565661423
+          },
+          {
+            "iso3": "GRC",
+            "name": "Greece",
+            "rank": 46,
+            "value": 24626.1481858973
+          },
+          {
+            "iso3": "URY",
+            "name": "Uruguay",
+            "rank": 47,
+            "value": 24308.4954958447
+          },
+          {
+            "iso3": "HRV",
+            "name": "Croatia",
+            "rank": 48,
+            "value": 24049.9441746337
+          },
+          {
+            "iso3": "KNA",
+            "name": "Saint Kitts and Nevis",
+            "rank": 49,
+            "value": 23960.6534357084
+          },
+          {
+            "iso3": "LVA",
+            "name": "Latvia",
+            "rank": 50,
+            "value": 23578.9663562625
+          },
+          {
+            "iso3": "HUN",
+            "name": "Hungary",
+            "rank": 51,
+            "value": 23305.4482514359
+          },
+          {
+            "iso3": "ATG",
+            "name": "Antigua and Barbuda",
+            "rank": 52,
+            "value": 23059.8330702839
+          },
+          {
+            "iso3": "OMN",
+            "name": "Oman",
+            "rank": 53,
+            "value": 20285.2272765262
+          },
+          {
+            "iso3": "ROU",
+            "name": "Romania",
+            "rank": 54,
+            "value": 20080.2096215595
+          },
+          {
+            "iso3": "PAN",
+            "name": "Panama",
+            "rank": 55,
+            "value": 19161.218843129
+          },
+          {
+            "iso3": "CRI",
+            "name": "Costa Rica",
+            "rank": 56,
+            "value": 18853.2828705886
+          },
+          {
+            "iso3": "TTO",
+            "name": "Trinidad and Tobago",
+            "rank": 57,
+            "value": 18733.4110406494
+          },
+          {
+            "iso3": "SYC",
+            "name": "Seychelles",
+            "rank": 58,
+            "value": 18364.5259678223
+          },
+          {
+            "iso3": "PLW",
+            "name": "Palau",
+            "rank": 59,
+            "value": 18169.0767165866
+          },
+          {
+            "iso3": "BGR",
+            "name": "Bulgaria",
+            "rank": 60,
+            "value": 17596.9167621233
+          },
+          {
+            "iso3": "CHL",
+            "name": "Chile",
+            "rank": 61,
+            "value": 16658.9652720351
+          },
+          {
+            "iso3": "TUR",
+            "name": "Türkiye",
+            "rank": 62,
+            "value": 15892.7157287241
+          },
+          {
+            "iso3": "RUS",
+            "name": "Russian Federation",
+            "rank": 63,
+            "value": 14961.8974609375
+          },
+          {
+            "iso3": "LCA",
+            "name": "Saint Lucia",
+            "rank": 64,
+            "value": 14493.658470648
+          },
+          {
+            "iso3": "KAZ",
+            "name": "Kazakhstan",
+            "rank": 65,
+            "value": 14154.6324958076
+          },
+          {
+            "iso3": "NRU",
+            "name": "Naoero",
+            "rank": 66,
+            "value": 14048.163961344
+          },
+          {
+            "iso3": "MEX",
+            "name": "Mexico",
+            "rank": 67,
+            "value": 13988.0423745241
+          },
+          {
+            "iso3": "ARG",
+            "name": "Argentina",
+            "rank": 68,
+            "value": 13969.7836603737
+          },
+          {
+            "iso3": "SRB",
+            "name": "Serbia",
+            "rank": 69,
+            "value": 13677.7794863909
+          },
+          {
+            "iso3": "MDV",
+            "name": "Maldives",
+            "rank": 70,
+            "value": 13379.3513577224
+          },
+          {
+            "iso3": "CHN",
+            "name": "China (the People's Republic of)",
+            "rank": 71,
+            "value": 13293.1162269366
+          },
+          {
+            "iso3": "MNE",
+            "name": "Montenegro",
+            "rank": 72,
+            "value": 13270.1824401005
+          },
+          {
+            "iso3": "MUS",
+            "name": "Mauritius",
+            "rank": 73,
+            "value": 11990.9355434317
+          },
+          {
+            "iso3": "MYS",
+            "name": "Malaysia",
+            "rank": 74,
+            "value": 11874.4273684245
+          },
+          {
+            "iso3": "GRD",
+            "name": "Grenada",
+            "rank": 75,
+            "value": 11528.9220811928
+          },
+          {
+            "iso3": "VCT",
+            "name": "Saint Vincent and the Grenadines",
+            "rank": 76,
+            "value": 11501.2265187188
+          },
+          {
+            "iso3": "ALB",
+            "name": "Albania",
+            "rank": 77,
+            "value": 11374.0085781236
+          },
+          {
+            "iso3": "DOM",
+            "name": "Dominican Republic",
+            "rank": 78,
+            "value": 10875.6618443092
+          },
+          {
+            "iso3": "DMA",
+            "name": "Dominica",
+            "rank": 79,
+            "value": 10405.2787777582
+          },
+          {
+            "iso3": "BRA",
+            "name": "Brazil",
+            "rank": 80,
+            "value": 10310.5486973693
+          },
+          {
+            "iso3": "BIH",
+            "name": "Bosnia and Herzegovina",
+            "rank": 81,
+            "value": 9397.90942855997
+          },
+          {
+            "iso3": "MKD",
+            "name": "North Macedonia",
+            "rank": 82,
+            "value": 9291.8566035502
+          },
+          {
+            "iso3": "GEO",
+            "name": "Georgia",
+            "rank": 83,
+            "value": 8967.67525638987
+          },
+          {
+            "iso3": "BLR",
+            "name": "Belarus",
+            "rank": 84,
+            "value": 8605.60954569694
+          },
+          {
+            "iso3": "ARM",
+            "name": "Armenia",
+            "rank": 85,
+            "value": 8556.21406956719
+          },
+          {
+            "iso3": "PER",
+            "name": "Peru",
+            "rank": 86,
+            "value": 8526.29665719783
+          },
+          {
+            "iso3": "GAB",
+            "name": "Gabon",
+            "rank": 87,
+            "value": 8230.04311451151
+          },
+          {
+            "iso3": "COL",
+            "name": "Colombia",
+            "rank": 88,
+            "value": 7951.08624019412
+          },
+          {
+            "iso3": "JAM",
+            "name": "Jamaica",
+            "rank": 89,
+            "value": 7753.8119527678
+          },
+          {
+            "iso3": "BLZ",
+            "name": "Belize",
+            "rank": 90,
+            "value": 7681.24400583113
+          },
+          {
+            "iso3": "BWA",
+            "name": "Botswana",
+            "rank": 91,
+            "value": 7649.81663744354
+          },
+          {
+            "iso3": "MHL",
+            "name": "Marshall Islands",
+            "rank": 92,
+            "value": 7590.28443592202
+          },
+          {
+            "iso3": "MDA",
+            "name": "Republic of Moldova",
+            "rank": 93,
+            "value": 7578.90216348853
+          },
+          {
+            "iso3": "THA",
+            "name": "Thailand",
+            "rank": 94,
+            "value": 7386.63615126055
+          },
+          {
+            "iso3": "AZE",
+            "name": "Azerbaijan",
+            "rank": 95,
+            "value": 7294.64276088105
+          },
+          {
+            "iso3": "GNQ",
+            "name": "Equatorial Guinea",
+            "rank": 96,
+            "value": 7003.58055684906
+          },
+          {
+            "iso3": "SUR",
+            "name": "Suriname",
+            "rank": 97,
+            "value": 6961.78956060258
+          },
+          {
+            "iso3": "ECU",
+            "name": "Ecuador",
+            "rank": 98,
+            "value": 6826.5294137822
+          },
+          {
+            "iso3": "MNG",
+            "name": "Mongolia",
+            "rank": 99,
+            "value": 6750.6301157724
+          },
+          {
+            "iso3": "LBY",
+            "name": "Libya",
+            "rank": 100,
+            "value": 6569.16408678648
+          },
+          {
+            "iso3": "PRY",
+            "name": "Paraguay",
+            "rank": 101,
+            "value": 6456.60723068562
+          },
+          {
+            "iso3": "FJI",
+            "name": "Fiji",
+            "rank": 102,
+            "value": 6425.74151715712
+          },
+          {
+            "iso3": "ZAF",
+            "name": "South Africa",
+            "rank": 103,
+            "value": 6267.186814093
+          },
+          {
+            "iso3": "TON",
+            "name": "Tonga",
+            "rank": 104,
+            "value": 6215.38990974121
+          },
+          {
+            "iso3": "GTM",
+            "name": "Guatemala",
+            "rank": 105,
+            "value": 6150.89465281457
+          },
+          {
+            "iso3": "IRQ",
+            "name": "Iraq",
+            "rank": 106,
+            "value": 6073.61032342708
+          },
+          {
+            "iso3": "TKM",
+            "name": "Turkmenistan",
+            "rank": 107,
+            "value": 5904.25772576512
+          },
+          {
+            "iso3": "TUV",
+            "name": "Tuvalu",
+            "rank": 108,
+            "value": 5883.50257114002
+          },
+          {
+            "iso3": "DZA",
+            "name": "Algeria",
+            "rank": 109,
+            "value": 5752.99076651465
+          },
+          {
+            "iso3": "SLV",
+            "name": "El Salvador",
+            "rank": 110,
+            "value": 5503.10317151907
+          },
+          {
+            "iso3": "WSM",
+            "name": "Samoa",
+            "rank": 111,
+            "value": 5392.87761915762
+          },
+          {
+            "iso3": "UKR",
+            "name": "Ukraine",
+            "rank": 112,
+            "value": 5391.62255859375
+          },
+          {
+            "iso3": "IRN",
+            "name": "Iran (Islamic Republic of)",
+            "rank": 113,
+            "value": 5190.16959024821
+          },
+          {
+            "iso3": "CPV",
+            "name": "Cabo Verde",
+            "rank": 114,
+            "value": 5170.20531932535
+          },
+          {
+            "iso3": "JOR",
+            "name": "Jordan",
+            "rank": 115,
+            "value": 5073.92103605892
+          },
+          {
+            "iso3": "IDN",
+            "name": "Indonesia",
+            "rank": 116,
+            "value": 4925.43644992666
+          },
+          {
+            "iso3": "VNM",
+            "name": "Viet Nam",
+            "rank": 117,
+            "value": 4716.6599379632
+          },
+          {
+            "iso3": "LKA",
+            "name": "Sri Lanka",
+            "rank": 118,
+            "value": 4545.36006870612
+          },
+          {
+            "iso3": "NAM",
+            "name": "Namibia",
+            "rank": 119,
+            "value": 4501.84849548225
+          },
+          {
+            "iso3": "LBN",
+            "name": "Lebanon",
+            "rank": 120,
+            "value": 4473.27134441128
+          },
+          {
+            "iso3": "BOL",
+            "name": "Bolivia (Plurinational State of)",
+            "rank": 121,
+            "value": 4421.16609889999
+          },
+          {
+            "iso3": "FSM",
+            "name": "Micronesia (Federated States of)",
+            "rank": 122,
+            "value": 4251.69052668788
+          },
+          {
+            "iso3": "VEN",
+            "name": "Venezuela, Bolivarian Republic of",
+            "rank": 123,
+            "value": 4244.45723136019
+          },
+          {
+            "iso3": "BTN",
+            "name": "Bhutan",
+            "rank": 124,
+            "value": 4228.05102403654
+          },
+          {
+            "iso3": "TUN",
+            "name": "Tunisia",
+            "rank": 125,
+            "value": 4187.64079392362
+          },
+          {
+            "iso3": "MAR",
+            "name": "Morocco",
+            "rank": 126,
+            "value": 4153.1943359375
+          },
+          {
+            "iso3": "PHL",
+            "name": "Philippines",
+            "rank": 127,
+            "value": 3985.29464669706
+          },
+          {
+            "iso3": "VUT",
+            "name": "Vanuatu",
+            "rank": 128,
+            "value": 3959.87703462363
+          },
+          {
+            "iso3": "SWZ",
+            "name": "Eswatini",
+            "rank": 129,
+            "value": 3909.55892378182
+          },
+          {
+            "iso3": "DJI",
+            "name": "Djibouti",
+            "rank": 130,
+            "value": 3552.72335079222
+          },
+          {
+            "iso3": "STP",
+            "name": "Sao Tome and Principe",
+            "rank": 131,
+            "value": 3502.6176807171
+          },
+          {
+            "iso3": "HND",
+            "name": "Honduras",
+            "rank": 132,
+            "value": 3415.96027916712
+          },
+          {
+            "iso3": "EGY",
+            "name": "Egypt",
+            "rank": 133,
+            "value": 3338.47371043679
+          },
+          {
+            "iso3": "UZB",
+            "name": "Uzbekistan",
+            "rank": 134,
+            "value": 3337.45492058664
+          },
+          {
+            "iso3": "PNG",
+            "name": "Papua New Guinea",
+            "rank": 135,
+            "value": 2912.4914068385
+          },
+          {
+            "iso3": "NIC",
+            "name": "Nicaragua",
+            "rank": 136,
+            "value": 2847.87639497305
+          },
+          {
+            "iso3": "CIV",
+            "name": "Côte D'Ivoire",
+            "rank": 137,
+            "value": 2727.8935220697
+          },
+          {
+            "iso3": "AGO",
+            "name": "Angola",
+            "rank": 138,
+            "value": 2720.81900669715
+          },
+          {
+            "iso3": "KHM",
+            "name": "Cambodia",
+            "rank": 139,
+            "value": 2627.87969756224
+          },
+          {
+            "iso3": "BGD",
+            "name": "Bangladesh",
+            "rank": 140,
+            "value": 2593.41611680774
+          },
+          {
+            "iso3": "IND",
+            "name": "India",
+            "rank": 141,
+            "value": 2591.9916607122
+          },
+          {
+            "iso3": "KIR",
+            "name": "Kiribati",
+            "rank": 142,
+            "value": 2550.98377226188
+          },
+          {
+            "iso3": "KGZ",
+            "name": "Kyrgyzstan",
+            "rank": 143,
+            "value": 2514.81066933171
+          },
+          {
+            "iso3": "ZWE",
+            "name": "Zimbabwe",
+            "rank": 144,
+            "value": 2496.15514995576
+          },
+          {
+            "iso3": "COG",
+            "name": "Congo",
+            "rank": 145,
+            "value": 2482.2489948456
+          },
+          {
+            "iso3": "GHA",
+            "name": "Ghana",
+            "rank": 146,
+            "value": 2419.2518672482
+          },
+          {
+            "iso3": "KEN",
+            "name": "Kenya",
+            "rank": 147,
+            "value": 2133.46193404026
+          },
+          {
+            "iso3": "LAO",
+            "name": "Lao People’s Democratic Republic",
+            "rank": 148,
+            "value": 2123.97909415109
+          },
+          {
+            "iso3": "MRT",
+            "name": "Mauritania",
+            "rank": 149,
+            "value": 2104.54260769051
+          },
+          {
+            "iso3": "HTI",
+            "name": "Haiti",
+            "rank": 150,
+            "value": 2060.35591768638
+          },
+          {
+            "iso3": "SLB",
+            "name": "Solomon Islands",
+            "rank": 151,
+            "value": 1933.55538435227
+          },
+          {
+            "iso3": "COM",
+            "name": "Comoros",
+            "rank": 152,
+            "value": 1857.87060684189
+          },
+          {
+            "iso3": "CMR",
+            "name": "Cameroon",
+            "rank": 153,
+            "value": 1830.00833684727
+          },
+          {
+            "iso3": "SEN",
+            "name": "Senegal",
+            "rank": 154,
+            "value": 1738.73223822106
+          },
+          {
+            "iso3": "GIN",
+            "name": "Guinea",
+            "rank": 155,
+            "value": 1694.95375862185
+          },
+          {
+            "iso3": "BEN",
+            "name": "Benin",
+            "rank": 156,
+            "value": 1485.38018885134
+          },
+          {
+            "iso3": "PAK",
+            "name": "Pakistan",
+            "rank": 157,
+            "value": 1479.47755241191
+          },
+          {
+            "iso3": "NPL",
+            "name": "Nepal",
+            "rank": 158,
+            "value": 1460.28237984149
+          },
+          {
+            "iso3": "TJK",
+            "name": "Tajikistan",
+            "rank": 159,
+            "value": 1362.02559981695
+          },
+          {
+            "iso3": "MMR",
+            "name": "Myanmar",
+            "rank": 160,
+            "value": 1359.05001560107
+          },
+          {
+            "iso3": "TLS",
+            "name": "Timor-Leste",
+            "rank": 161,
+            "value": 1331.9705130185
+          },
+          {
+            "iso3": "TGO",
+            "name": "Togo",
+            "rank": 162,
+            "value": 1266.08777721447
+          },
+          {
+            "iso3": "TZA",
+            "name": "United Republic of Tanzania",
+            "rank": 163,
+            "value": 1192.60668945313
+          },
+          {
+            "iso3": "ZMB",
+            "name": "Zambia",
+            "rank": 164,
+            "value": 1187.10943350064
+          },
+          {
+            "iso3": "ETH",
+            "name": "Ethiopia",
+            "rank": 165,
+            "value": 1133.88279681256
+          },
+          {
+            "iso3": "MLI",
+            "name": "Mali",
+            "rank": 166,
+            "value": 1093.2523323649
+          },
+          {
+            "iso3": "NGA",
+            "name": "Nigeria",
+            "rank": 167,
+            "value": 1084.16041805058
+          },
+          {
+            "iso3": "UGA",
+            "name": "Uganda",
+            "rank": 168,
+            "value": 1077.91278438613
+          },
+          {
+            "iso3": "RWA",
+            "name": "Rwanda",
+            "rank": 169,
+            "value": 1059.93709298801
+          },
+          {
+            "iso3": "LSO",
+            "name": "Lesotho",
+            "rank": 170,
+            "value": 1023.04227681523
+          },
+          {
+            "iso3": "GNB",
+            "name": "Guinea Bissau",
+            "rank": 171,
+            "value": 998.376093392688
+          },
+          {
+            "iso3": "SDN",
+            "name": "Sudan",
+            "rank": 172,
+            "value": 984.607666015625
+          },
+          {
+            "iso3": "BFA",
+            "name": "Burkina Faso",
+            "rank": 173,
+            "value": 982.493100418428
+          },
+          {
+            "iso3": "TCD",
+            "name": "Chad",
+            "rank": 174,
+            "value": 980.668312111718
+          },
+          {
+            "iso3": "GMB",
+            "name": "Gambia (Republic of The)",
+            "rank": 175,
+            "value": 871.340287547821
+          },
+          {
+            "iso3": "LBR",
+            "name": "Liberia",
+            "rank": 176,
+            "value": 851.497723870206
+          },
+          {
+            "iso3": "SLE",
+            "name": "Sierra Leone",
+            "rank": 177,
+            "value": 806.654650274255
+          },
+          {
+            "iso3": "NER",
+            "name": "Niger",
+            "rank": 178,
+            "value": 729.856664168989
+          },
+          {
+            "iso3": "COD",
+            "name": "Democratic Republic of the Congo",
+            "rank": 179,
+            "value": 692.887665085098
+          },
+          {
+            "iso3": "MOZ",
+            "name": "Mozambique",
+            "rank": 180,
+            "value": 656.976148587772
+          },
+          {
+            "iso3": "SOM",
+            "name": "Somalia",
+            "rank": 181,
+            "value": 629.538899449007
+          },
+          {
+            "iso3": "MDG",
+            "name": "Madagascar",
+            "rank": 182,
+            "value": 550.37875528856
+          },
+          {
+            "iso3": "MWI",
+            "name": "Malawi",
+            "rank": 183,
+            "value": 522.365366146003
+          },
+          {
+            "iso3": "CAF",
+            "name": "Central African Republic",
+            "rank": 184,
+            "value": 516.160999996036
+          },
+          {
+            "iso3": "AFG",
+            "name": "Afghanistan",
+            "rank": 185,
+            "value": 416.871146273728
+          },
+          {
+            "iso3": "BDI",
+            "name": "Burundi",
+            "rank": 186,
+            "value": 216.231928531758
+          }
+        ],
+        "missing": [
+          {
+            "iso3": "CUB",
+            "name": "Cuba"
+          },
+          {
+            "iso3": "PRK",
+            "name": "Democratic People's Republic of Korea"
+          },
+          {
+            "iso3": "ERI",
+            "name": "Eritrea"
+          },
+          {
+            "iso3": "SMR",
+            "name": "San Marino"
+          },
+          {
+            "iso3": "SSD",
+            "name": "South Sudan"
+          },
+          {
+            "iso3": "SYR",
+            "name": "Syrian Arab Republic"
+          },
+          {
+            "iso3": "YEM",
+            "name": "Yemen"
+          }
+        ]
+      },
+      "pageUrl": "https://www.imf.org/en/publications/weo",
+      "read": {
+        "readers": 2,
+        "agreed": true,
+        "unstoredMismatches": []
       }
     },
     {
@@ -17077,6 +19447,7 @@
         "approved": false
       },
       "goodIs": "up",
+      "basis": "edition",
       "latest": null,
       "previous": null,
       "userInput": {
@@ -17111,6 +19482,7 @@
         "approved": false
       },
       "goodIs": "up",
+      "basis": "edition",
       "latest": {
         "edition": "Corruption Perceptions Index 2025",
         "editionNote": "Corruption Perceptions Index 2025",
@@ -17182,6 +19554,7 @@
         "approved": false
       },
       "goodIs": "up",
+      "basis": "edition",
       "latest": {
         "edition": "World Press Freedom Index 2026",
         "editionNote": "2026 World Press Freedom Index",
@@ -17251,6 +19624,7 @@
         "approved": false
       },
       "goodIs": "up",
+      "basis": "edition",
       "latest": null,
       "previous": null,
       "userInput": {
@@ -17283,6 +19657,7 @@
         "approved": false
       },
       "goodIs": "down",
+      "basis": "edition",
       "latest": null,
       "previous": null,
       "userInput": {
@@ -17315,6 +19690,7 @@
         "approved": false
       },
       "goodIs": "up",
+      "basis": "edition",
       "latest": null,
       "previous": null,
       "userInput": {
@@ -17345,6 +19721,7 @@
         "approved": false
       },
       "goodIs": "up",
+      "basis": "edition",
       "latest": {
         "edition": "UN E-Government Survey 2024",
         "editionNote": "United Nations E-Government Survey 2024",
@@ -17416,6 +19793,7 @@
         "approved": false
       },
       "goodIs": "up",
+      "basis": "edition",
       "latest": null,
       "previous": null,
       "userInput": {
@@ -17443,10 +19821,11 @@
       "publisherFull": "Germanwatch e.V.",
       "officialUrl": "https://www.germanwatch.org/en/cri",
       "rankMeans": {
-        "bn": "১ = চরম আবহাওয়ায় সবচেয়ে বেশি ক্ষতিগ্রস্ত",
+        "bn": "১ = চরম আবহাওয়ায় সবচেয়ে বেশি ক্ষতিগ্রস্ত (১৯৯৫–২০২৪, দীর্ঘমেয়াদি)",
         "approved": false
       },
       "goodIs": "down",
+      "basis": "edition",
       "latest": {
         "edition": "Climate Risk Index 2026 (1995–2024)",
         "editionNote": "Climate Risk Index 2026 - long-term ranking 1995-2024",
@@ -17516,6 +19895,7 @@
         "approved": false
       },
       "goodIs": "up",
+      "basis": "edition",
       "latest": null,
       "previous": null,
       "userInput": {
@@ -17547,10 +19927,13 @@
         "approved": false
       },
       "goodIs": "up",
+      "basis": "edition",
       "latest": {
         "edition": "WJP Rule of Law Index 2025",
         "editionNote": "WJP Rule of Law Index 2025",
         "releaseDate": null,
+        "releaseYear": 2025,
+        "releaseSure": false,
         "releaseUrl": null,
         "dataUrl": "https://worldjusticeproject.org/rule-of-law-index/data/2025.csv",
         "dataFile": "wjp-2025.csv",
@@ -17574,6 +19957,8 @@
         "edition": "WJP Rule of Law Index 2024",
         "editionNote": "WJP Rule of Law Index 2024",
         "releaseDate": null,
+        "releaseYear": 2024,
+        "releaseSure": false,
         "releaseUrl": null,
         "dataUrl": "https://worldjusticeproject.org/rule-of-law-index/data/2024.csv",
         "dataFile": "wjp-2024.csv",
@@ -17615,10 +20000,14 @@
         "bn": "১ = সবচেয়ে বেশি শান্তিরক্ষী পাঠিয়েছে",
         "approved": false
       },
+      "goodIs": "up",
+      "basis": "edition",
       "latest": {
         "edition": "Contributions as of 31 July 2026",
         "editionNote": "DPO-UCLATEST, July 2026 (last_reporting_date 2026-07-31)",
         "releaseDate": null,
+        "releaseYear": 2026,
+        "releaseSure": false,
         "releaseUrl": null,
         "dataUrl": "https://api.psdata.un.org/public/data/DPO-UCLATEST/json",
         "dataFile": "pk-latest.json",
@@ -17643,6 +20032,8 @@
         "edition": "Contributions as of 30 June 2026",
         "editionNote": "DPO-UCHISTORICAL, June 2026 (last_reporting_date 2026-06-30)",
         "releaseDate": null,
+        "releaseYear": 2026,
+        "releaseSure": false,
         "releaseUrl": null,
         "dataUrl": "https://api.psdata.un.org/public/data/DPO-UCHISTORICAL/json?filter=last_reporting_date:2026-06-30",
         "dataFile": "pk-2026-06.json",
@@ -17685,6 +20076,7 @@
         "bn": "১ = সবচেয়ে বড় রপ্তানিকারক",
         "approved": false
       },
+      "basis": "edition",
       "latest": null,
       "previous": null,
       "userInput": {
@@ -17716,6 +20108,7 @@
         "approved": false
       },
       "goodIs": "up",
+      "basis": "edition",
       "latest": null,
       "previous": null,
       "userInput": {
@@ -17752,6 +20145,7 @@
         "approved": false
       },
       "goodIs": "up",
+      "basis": "edition",
       "latest": null,
       "previous": null,
       "userInput": {

@@ -2,7 +2,7 @@
 
 Read it with `CLAUDE.md`, whose rules and verification budget apply. A map under International.
 
-**Status: work in progress (IDX-2, 2026-10-08), on the local preview only.**
+**Status: work in progress (IDX-2 and IDX-3, 2026-10-08), on the local preview only.**
 - In `tools/wip.json` under International; not in `docs/registry.json`.
 - Built into `docs/maps/global-indices/` by `tools/build-global-indices.mjs` from
   `data-sources/global-indices/global-indices.seed.json` and the pinned Natural Earth countries file (Bangladesh's
@@ -70,3 +70,26 @@ Read it with `CLAUDE.md`, whose rules and verification budget apply. A map under
 - 107 Bengali strings in the seed, all `approved: false`, numbered in `tools/.cache/indices/strings-review.md`
   (labels, then the rankings' names, then country names). Country names on the cards are the basemap's pinned
   `NAME_BN`; the two new ones (Israel, Taiwan) await approval.
+
+## IDX-3 (the user's decisions on IDX-2, 2026-10-08)
+
+- **Chips:** better or worse by each ranking's direction — «▲ উন্নতি x ধাপ» (green), «▼ অবনতি x ধাপ» (vermillion),
+  «— অপরিবর্তিত» (grey); CRI's move toward rank 1 (most affected) is «অবনতি». Under each, «আগের সংস্করণের তুলনায়», or
+  «আগের বছরের তুলনায়» for population, density, remittances, FDI and GDP. Population and density have no better or
+  worse: a move says «x ধাপ ওপরে/নিচে», in grey. Remittances, FDI, GDP and peacekeeping count up as better.
+- **GDP per capita** from the World Bank (WDI, NY.GDP.PCAP.CD, current US$; CC BY 4.0 per the WDI dataset page's
+  licence field and datacatalog.worldbank.org/public-licenses, both pinned): the latest year with broad coverage,
+  2025 (180 of the 193 UN members have a value; 2024 had 186), ranked by value among those members; the 13 without a
+  value are listed on the card («তথ্য নেই»), unshaded; compared with 2024. Read twice; the readings agree. The IMF
+  user-input entry is gone.
+- **One shared countries file** (`docs/shared/world-countries.json`, `notes/shell.md`): this map's countries are keyed
+  by ISO3 and joined on `iso3`; its own `countries.geojson` (462,149 bytes) is gone.
+- **Release dates:** where unsure, the year only — GII (a "save the date" notice), WJP and the peacekeeping data.
+  CRI's rank line states its period (১৯৯৫–২০২৪, দীর্ঘমেয়াদি).
+- **User input:** the user fills `tools/.cache/indices/user-input.md` (one section per ranking: edition year,
+  release month, Bangladesh's — Dhaka's — rank/N, top, bottom, the previous edition's rank) and runs
+  `node tools/ingest-user-input.mjs`: it refuses a section filled in part or with an impossible value (a rank above N,
+  a non-number, a month that is no month, a country it cannot name, the same top and bottom) and writes nothing then;
+  it stores each ranking as facts only, its source the official page, «read by the user» and the date,
+  `approved: false`. A ranking not filled in stays hidden from the map and the list, with no placeholder. GHI stays
+  user-input; the picker row stays hidden in the «বাংলাদেশ» tab.
