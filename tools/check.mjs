@@ -961,14 +961,14 @@ async function indicesSteps(page, shoot, summary, fail) {
       const shaded = ['s1','s2','s3','s4','s5','s6','s7'].reduce((n, k) => n + (r[k] ?? []).length, 0);
       return { title: document.getElementById('infoTitle').textContent, stats: document.querySelectorAll('.ix-stats .ix-stat').length, kind: r.kind, shaded, hi: (r.hiTop ?? []).length + (r.hiBottom ?? []).length,
         pins: pins.length, wantPins: want.length, texts: pins.map((p) => p.querySelector('.ix-pin-text').textContent).join(' | '), want: want.map((p) => p.text).join(' | '), bdPins: pins.filter((p) => p.classList.contains('ix-pin-bd')).length, ends: pins.filter((p) => !p.classList.contains('ix-pin-bd')).length,
-        outside, overlaps, strip: !document.querySelector('.ix-strip').hidden, note: Boolean(document.querySelector('.ix-note')), foot: Boolean(document.querySelector('.ix-foot a')) };
+        outside, overlaps, strip: !document.querySelector('.ix-strip').hidden, note: Boolean(document.querySelector('.ix-note')), ownNote: Boolean(r.note), foot: Boolean(document.querySelector('.ix-foot a')) };
     })()`);
     const problems = [];
     if (s.title !== label) problems.push(`card «${s.title}»`);
     if (s.stats !== 3) problems.push(`${s.stats} stat blocks`);
     if (s.pins !== s.wantPins || s.texts !== s.want || s.bdPins !== 1 || s.ends < 2) problems.push(`pins «${s.texts}», not «${s.want}»`);
     if (s.outside || s.overlaps) problems.push(`${s.outside} pin label(s) outside the map, ${s.overlaps} overlapping`);
-    if (s.kind === 'open' && (!s.shaded || s.hi || !s.strip || s.note)) problems.push(`open: shaded ${s.shaded}, highlights ${s.hi}, strip ${s.strip}, note ${s.note}`);
+    if (s.kind === 'open' && (!s.shaded || s.hi || !s.strip || s.note !== s.ownNote)) problems.push(`open: shaded ${s.shaded}, highlights ${s.hi}, strip ${s.strip}, note ${s.note}`);
     if (s.kind === 'facts' && (s.shaded || !s.hi || s.strip || !s.note)) problems.push(`facts: shaded ${s.shaded}, highlights ${s.hi}, strip ${s.strip}, note ${s.note}`);
     if (!s.foot) problems.push('no «সূত্র» link');
     if (problems.length) fail(`indices: ${label} — ${problems.join('; ')}`);
@@ -998,7 +998,8 @@ async function indicesSteps(page, shoot, summary, fail) {
   note(await page.evaluate(LAYOUT));
   await shoot('steps', 'বাংলাদেশ tab');
   if (!bd.list || !bd.mapHidden || !bd.pickerHidden) fail(`indices: the «বাংলাদেশ» tab — list ${bd.list}, map hidden ${bd.mapHidden}, picker hidden ${bd.pickerHidden}`);
-  if (bd.rows.length !== options.length) fail(`indices: the «বাংলাদেশ» tab lists ${bd.rows.length} rows for ${options.length} rankings`);
+  const cityRows = Object.values(JSON.parse(fs.readFileSync(path.join(ROOT, 'docs/maps/global-indices/indices.json'), 'utf8'))).filter((r) => r.bdOnly).length;
+  if (bd.rows.length !== options.length + cityRows) fail(`indices: the «বাংলাদেশ» tab lists ${bd.rows.length} rows for ${options.length} rankings and ${cityRows} city row(s)`);
   const chips = bd.rows.filter((r) => r[3]).length;
   let opened = 0;
   for (const [key] of bd.rows.filter((r) => r[1] === 'BUTTON')) {
