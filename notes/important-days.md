@@ -100,19 +100,34 @@ only.**
 - 187 Bengali strings in the seed, numbered in `tools/.cache/days/strings-review.md` (WHEEL-3's numbering): the 49
   purposes and the UI labels first, then the rule and calendar date lines, the names, and last the held-out days'
   strings (not shown).
-- **Approved by the user (WHEEL-4, 2026-10-08):** 178 of them; the seed's `approval` records it. 9 stay
-  `approved: false`: the date strings (line and tile) of the three Bangla-calendar days, below.
-  `tools/verify-descriptor.mjs` fails any other pending string.
-- **The Bangla-calendar days' placement (WHEEL-4):** each sits in the month of its official 2026 date — বাংলা নববর্ষ
-  «১ বৈশাখ» 14 April (the 2026 public-holiday gazette, dpp.gov.bd: ১৪ এপ্রিল ২০২৬ = ০১ বৈশাখ ১৪৩৩), রবীন্দ্র জয়ন্তী
-  «২৫ বৈশাখ» 8 May and নজরুল জয়ন্তী «১১ জ্যৈষ্ঠ» 25 May (PID's handouts of 8 and 25 May 2026, datelined «২৫ বৈশাখ
-  (৮ মে)» and «১১ জ্যৈষ্ঠ (২৫ মে)»). No official source was found that FIXES them every year — no published rule or
-  table of the revised Bangla calendar on Bangla Academy's, MoCA's, MoPA's, the Cabinet Division's or PID's sites.
-  Official sources do show the same dates in 2019 and 2022–2025 (PID datelines; MoCA notices of 2022 and 2023:
-  «২৫ বৈশাখ ১৪৩০/ ০৮ মে ২০২৩», «১১ জ্যৈষ্ঠ ১৪৩০/ ২৫ মে ২০২৩»), with one clerical slip (PID 25 May 2023, three
-  datelines «১২ জ্যৈষ্ঠ (২৫ মে)» beside six «১১ জ্যৈষ্ঠ»). That is a pattern, not a rule, so the three days' date
-  strings stay pending and the days are left as they are; the evidence is in `tools/.cache/days/bangla/`
-  (`manifest.json`).
+- **Approved by the user:** 178 on WHEEL-4 and the last 9 on WHEEL-5 (both 2026-10-08), so all 187; the seed's
+  `approval` records it. `tools/verify-descriptor.mjs` fails any pending string.
+- **The Bangla-calendar days' placement — approved by the user (WHEEL-5, 2026-10-08).** Each sits in a fixed Gregorian
+  month: বাংলা নববর্ষ «১ বৈশাখ» on 14 April, রবীন্দ্র জয়ন্তী «২৫ বৈশাখ» on 8 May, নজরুল জয়ন্তী «১১ জ্যৈষ্ঠ» on 25 May.
+  The user's grounds: official sources give the same Gregorian dates in 2019 and 2022–2026, and no date sits near a
+  month boundary. No official rule was found: no published rule or table of the revised Bangla calendar on Bangla
+  Academy's, MoCA's, MoPA's, the Cabinet Division's or PID's sites (only newspapers report one). The evidence (cached,
+  with sizes and SHA-256, in `tools/.cache/days/bangla/manifest.json` and `verify/national/raw/manifest.json`):
+  - 2026: the public-holiday gazette, ১৪ এপ্রিল ২০২৬ = ০১ বৈশাখ ১৪৩৩ —
+    http://www.dpp.gov.bd/upload_file/gazettes/59216_19984.pdf; PID's handouts datelined «২৫ বৈশাখ (৮ মে)» and
+    «১১ জ্যৈষ্ঠ (২৫ মে)» —
+    https://pressinform.gov.bd/pages/all-notes/handout-8-may-2026-8fzo01-69fd65c09d0e57ba598bf59e,
+    https://pressinform.gov.bd/pages/all-notes/handout-25-may-2026-gb8ns9-6a1452d5977edbd1f133ec4c.
+  - 2019, 2023, 2024, 2025: PID's handouts datelined «১ বৈশাখ (১৪ এপ্রিল)», «২৫ বৈশাখ (৮ মে)» and «১১ জ্যৈষ্ঠ (২৫ মে)»,
+    e.g. https://pressinform.gov.bd/pages/all-notes/তথ্যবিবরণী-১৪-এপ্রিল-২০২৪-d12399-6922de5e933eb65569e1a2c8,
+    https://pressinform.gov.bd/pages/all-notes/তথ্যবিবরণী-৮-মে-২০২৪-7c3140-6922decc933eb65569e1d70f,
+    https://pressinform.gov.bd/pages/all-notes/তথ্যবিবরণী-২৫-মে-২০২৫-1adb4c-6922dea4933eb65569e1c3ff (the other years'
+    handouts are in the manifest).
+  - 2022 and 2023: the Ministry of Cultural Affairs' notices «২৫ বৈশাখ ১৪২৯ বঙ্গাব্দ/০৮ মে ২০২২», «১১ জ্যৈষ্ঠ ১৪২৯/২৫ মে
+    ২০২২» and «২৫ বৈশাখ ১৪৩০/ ০৮ মে ২০২৩», «১১ জ্যৈষ্ঠ ১৪৩০/ ২৫ মে ২০২৩» —
+    https://moca.gov.bd/pages/notices/আগামী-২৫-বৈশাখ-১৪২৯-বঙ্গাব্দ-০৮-মে-২০২২-খ্রি-বিশ্বকবি-রবীন্দ্রনাথ-220db7-694036df35ce18e1c05866de,
+    https://moca.gov.bd/pages/notices/694034f735ce18e1c0576664.
+  - One slip: PID's handout of 25 May 2023 has three datelines «১২ জ্যৈষ্ঠ (২৫ মে)» beside six «১১ জ্যৈষ্ঠ (২৫ মে)»;
+    MoCA's notice of that year gives ১১ জ্যৈষ্ঠ = ২৫ মে.
+- **YEARLY CHECK (the user's rule, WHEEL-5, 2026-10-08):** when each new public-holiday gazette is published, compare
+  these three Gregorian dates (14 April, 8 May, 25 May) with that year's official dates — the gazette for ১ বৈশাখ, and
+  that year's official sources (PID's handouts, MoCA's notices) for ২৫ বৈশাখ and ১১ জ্যৈষ্ঠ. If any differs, the
+  three days' date strings go back to `approved: false` and the user is told.
 - **Historical years stay (the user's decision, WHEEL-4, 2026-10-08):** «সাল বাদ» means no calendar year is
   displayed — the picker, the dates, «আজ» and «x দিন পর» — and only that. The «প্রথম পালন» years (14 cards) and the
   past years inside purposes (e.g. ১৯৭১, ১৮৮৬, ২০২৪) are kept.

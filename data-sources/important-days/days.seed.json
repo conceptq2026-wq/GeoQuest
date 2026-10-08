@@ -721,16 +721,16 @@
         },
         "text": {
           "bn": "১ বৈশাখ",
-          "approved": false
+          "approved": true
         },
         "tile": [
           {
             "bn": "১",
-            "approved": false
+            "approved": true
           },
           {
             "bn": "বৈশাখ",
-            "approved": false
+            "approved": true
           }
         ],
         "source": "gazette (খ) row ৪ «নববর্ষ»: মঙ্গলবার, ১৪ এপ্রিল ২০২৬ = ০১ বৈশাখ ১৪৩৩"
@@ -796,16 +796,16 @@
         },
         "text": {
           "bn": "২৫ বৈশাখ",
-          "approved": false
+          "approved": true
         },
         "tile": [
           {
             "bn": "২৫",
-            "approved": false
+            "approved": true
           },
           {
             "bn": "বৈশাখ",
-            "approved": false
+            "approved": true
           }
         ],
         "source": "PID handout 8 May 2026: dateline «ঢাকা, ২৫ বৈশাখ (৮ মে)» with the Tagore 165th birth-anniversary event held that day"
@@ -867,16 +867,16 @@
         },
         "text": {
           "bn": "১১ জ্যৈষ্ঠ",
-          "approved": false
+          "approved": true
         },
         "tile": [
           {
             "bn": "১১",
-            "approved": false
+            "approved": true
           },
           {
             "bn": "জ্যৈষ্ঠ",
-            "approved": false
+            "approved": true
           }
         ],
         "source": "PID handout 25 May 2026: dateline «ঢাকা, ১১ জ্যৈষ্ঠ (২৫ মে)»; PID 24 May 2026: messages for the anniversary «আগামীকাল»"
@@ -5025,6 +5025,6 @@
     "by": "the user",
     "date": "2026-10-08",
     "step": "WHEEL-4",
-    "note": "every string approved, except the Bangla-calendar date strings of a day whose fixed Gregorian placement no official source verifies"
+    "note": "every string approved; the three Bangla-calendar days' date strings on WHEEL-5 (2026-10-08): official sources give the same Gregorian dates in 2019 and 2022–2026"
   }
 }

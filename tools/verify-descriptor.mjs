@@ -121,7 +121,7 @@ const MARITIME_ZONES_SEED_SHA256 = '6b0f67dbac0b0fa97037d86c7f94d3f07a73bd57a42d
 // The bangladesh-maritime-boundary map: the editor's seed, pinned (live 2026-10-08; its 35 step-2 strings approved, BD-6; #30 reworded by the user the same day).
 const BANGLADESH_MARITIME_SEED_SHA256 = 'dcc627421f99b20faeffe17006d9348f181b9663c058af66f37ae6c572e8ebbd';
 // The important-days diagram «বছরের চাকা» (work in progress, WHEEL-2 and WHEEL-3, 2026-10-08): its seed, pinned.
-const IMPORTANT_DAYS_SEED_SHA256 = 'c535212c8d3a30c68029ede34efa07985334e8e0fa888529e3352c121110b2ad';
+const IMPORTANT_DAYS_SEED_SHA256 = '24fe65ed95d70d794a54c0a29341b85da87a13fcffa371a1d9967a862d737070';
 // The bangladesh-ethnic-groups map: its seed, pinned (live 2026-10-08).
 const BANGLADESH_ETHNIC_SEED_SHA256 = 'c2b2333d34be11f0c02aec09fade7c8d1c007fa445c573fdc65824770f96cd75';
 // The org-members map: the editor's seed, pinned (live 2026-10-07).
@@ -2821,7 +2821,7 @@ console.log('\n\n============ bangladesh-ethnic-groups ============');
 | twelve months, their counts the seed's built days; no held-out day built;
 | two kinds only; no religious day, theme or declarer anywhere in the built
 | files; no year in any word, name or date shown; every card fact cites a URL;
-| every string approved (the user, WHEEL-4) but a Bangla-calendar day's date.
+| every string approved (the user, WHEEL-4 and WHEEL-5).
 | Its unapproved strings only warn while it is work in progress (verify.mjs).
 |--------------------------------------------------------------------------
 */
@@ -2861,8 +2861,8 @@ console.log('\n\n============ important-days (diagram, work in progress) =======
   const yearsShown = shown.filter((x) => YEAR.test(x));
   const historical = data.days.filter((d) => YEAR.test(d.purposeBn ?? '')).length;
   check(yearsShown.length === 0 && data.days.every((d) => !('date' in d)), `no year in any word, name, date tile or date line shown (${shown.length} strings; a day's \`when\` only times «আজ»; ${data.days.filter((d) => d.card.firstObserved).length} cards give a first year and ${historical} purposes a past year, as their sources do)${yearsShown.length ? ` — ${yearsShown.slice(0, 3).join(', ')}` : ''}`);
-  // The user approved every string (WHEEL-4, 2026-10-08) but a Bangla-calendar day's date strings, which wait for an
-  // official source fixing its Gregorian placement.
+  // The user approved every string (WHEEL-4 and WHEEL-5, 2026-10-08); the Bangla-calendar days' date strings are
+  // re-checked yearly against each new public-holiday gazette (notes/important-days.md).
   const flags = { approved: 0, pending: [] };
   const flagWalk = (v, where) => {
     if (Array.isArray(v)) return v.forEach((x, i) => flagWalk(x, `${where}[${i}]`));
@@ -2872,8 +2872,7 @@ console.log('\n\n============ important-days (diagram, work in progress) =======
   };
   flagWalk(seed.entries, 'entries');
   flagWalk(seed.words, 'words');
-  const badPending = flags.pending.filter((w) => { const m = /^entries\[(\d+)\]\.date\.(text|tile\[\d\])$/.exec(w); return !m || seed.entries[m[1]].date.type !== 'dated'; });
-  check(badPending.length === 0, `every string approved but a Bangla-calendar day's unverified date strings: ${flags.approved} approved, ${flags.pending.length} pending${badPending.length ? ` — also pending: ${badPending.slice(0, 3).join(', ')}` : ''}`);
+  check(flags.pending.length === 0, `every string approved: ${flags.approved} approved, ${flags.pending.length} pending${flags.pending.length ? ` — ${flags.pending.slice(0, 3).join(', ')}` : ''}`);
   const tappableWrong = data.days.filter((d) => d.tappable !== Boolean(d.card.englishName || d.card.firstObserved || d.card.purposeBn));
   check(tappableWrong.length === 0, `a row opens a card only where it has a name, a first year or a purpose: ${data.days.filter((d) => d.tappable).length} of ${data.days.length}`);
   const credits = data.credits.map((c) => c.url);
