@@ -236,6 +236,17 @@ drawn now (`drawn`), and read a file of the map's own folder (`file`).
     as it stands, frames the selection in the room above.
   - Set when a card opens and on every resize. Without it a card is as before.
   - The rivers map's 0.4.
+- **`sources.<id>.sharedGeometry`** (opt-in, 2026-10-08; bangladesh-ethnic-groups) names a file under
+  `docs/shared/` whose geometry the source joins to its records, in place of a `geometry` file in the map's
+  own folder, so a shared file is reused, never copied.
+  - It is fetched once through the resolver (kind `sharedData`), however many sources name it.
+  - The shell decodes it: one decoder per file, in `app.js` (`SHARED_GEOMETRY`). Today there is one,
+    `bangladesh-districts.json`: the 64 districts' arcs as features keyed by `pcode`. Each ring is a polygon
+    of its own (the file has no holes), every ring wound counter-clockwise.
+  - The source joins on `joinField` as a geometry file's would, and gets a tap target like any polygon
+    source.
+  - `tools/verify-descriptor.mjs` holds the file to the decoders it knows, the join field to the file's key,
+    and the join both ways. No other map declares it.
 - **`minTextSize: 14`** (M3): no text under 14 px on that map — every label's
   size in its style floored (the basemap's, the baseline's, its own), the
   shell's chrome under `[data-min-text]` in style.css. Other maps unchanged.

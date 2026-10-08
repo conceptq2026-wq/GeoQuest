@@ -422,7 +422,9 @@ to a fresh build, in `tools/verify-descriptor.mjs`; each organisation's page and
 `tools/sources.json` (`orgMembers`); every member, status and stated count
 cites an offset into that text with the quote's SHA-256, checked in
 `tools/verify.mjs`. Bengali names cite the user's decision of 2026-10-06;
-no book is a source.
+no book is a source. bangladesh-ethnic-groups (work in progress, 2026-10-08): its seed by SHA-256 and its built
+files held to a fresh build, in `tools/verify-descriptor.mjs`; every card fact's quote anchor re-hashed against
+its cached text (`tools/.cache/ethnic/`) in `tools/verify.mjs`.
 
 When a pin moves, **stop and report the old and new values.** Never re-pin to
 make a build pass. A dropped `featurecla` once shifted a line by three points
@@ -476,10 +478,13 @@ State which kind a task is when reporting it.
   ITLOS and PCA lines, St Martin's, the 2015 baselines and the lines'
   junction, card text from official sources only (the user's rule,
   2026-10-07).
-- Work in progress (`tools/wip.json`): none.
-- Seed draft, not built and not in `tools/wip.json` by the user's instruction (ETH-2, 2026-10-08):
-  `bangladesh-ethnic-groups` «বাংলাদেশের ক্ষুদ্র নৃ-গোষ্ঠী», 19 groups from Census 2022, its seed checked by
-  `tools/verify.mjs` (`notes/bangladesh-ethnic-groups.md`).
+- Work in progress (`tools/wip.json`): `bangladesh-ethnic-groups` «বাংলাদেশের ক্ষুদ্র নৃ-গোষ্ঠী», a map
+  under বাংলাদেশ:
+  - built into `docs/maps/`, on the local preview's home page only;
+  - 19 groups from Census 2022, in three tabs (groups, districts, institutes);
+  - its districts drawn from the shared district file through the shell's opt-in `sharedGeometry`
+    (2026-10-08, `notes/shell.md`);
+  - 84 strings approved, 18 awaiting the user (`notes/bangladesh-ethnic-groups.md`).
 
 ## Index — notes, read only when working on that item
 

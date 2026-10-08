@@ -1,0 +1,599 @@
+{
+  "schema": "geoquest/map-descriptor@1",
+  "id": "bangladesh-ethnic-groups",
+  "section": "bangladesh",
+  "title": {
+    "bn": "বাংলাদেশের ক্ষুদ্র নৃ-গোষ্ঠী",
+    "en": "Ethnic Groups of Bangladesh"
+  },
+  "basemap": "bangladesh-wide",
+  "view": {
+    "fitBounds": [
+      88,
+      20.55,
+      92.7,
+      26.65
+    ]
+  },
+  "constraints": {
+    "maxZoom": 11,
+    "maxBounds": [
+      86,
+      19,
+      95,
+      28
+    ]
+  },
+  "minTextSize": 14,
+  "frameClearsControls": true,
+  "sheetMaxHeight": 0.5,
+  "images": {
+    "institute": {
+      "file": "./institute.svg",
+      "pixelRatio": 1
+    }
+  },
+  "records": {
+    "tabs": {
+      "file": "./tabs.json",
+      "fields": {
+        "titleBn": {
+          "type": "text",
+          "required": true
+        },
+        "placeholderBn": {
+          "type": "text",
+          "required": true
+        }
+      }
+    },
+    "groups": {
+      "file": "./groups.json",
+      "fields": {
+        "nameBn": {
+          "type": "text",
+          "required": true
+        },
+        "populationBn": {
+          "type": "text",
+          "required": true
+        },
+        "districtsBn": {
+          "type": "text",
+          "required": true
+        },
+        "zoneBn": {
+          "type": "text",
+          "required": true
+        },
+        "language": {
+          "type": "text"
+        },
+        "religion": {
+          "type": "text"
+        },
+        "festivals": {
+          "type": "text"
+        },
+        "frame": {
+          "type": "bbox",
+          "required": true
+        },
+        "districts": {
+          "type": "refs",
+          "to": "districts",
+          "display": false
+        }
+      }
+    },
+    "districts": {
+      "file": "./districts.json",
+      "fields": {
+        "nameBn": {
+          "type": "text",
+          "required": true
+        },
+        "frame": {
+          "type": "bbox",
+          "required": true
+        },
+        "emptyBn": {
+          "type": "text"
+        },
+        "legendKind": {
+          "type": "text",
+          "display": false
+        }
+      }
+    },
+    "institutes": {
+      "file": "./institutes.json",
+      "fields": {
+        "nameBn": {
+          "type": "text",
+          "required": true
+        },
+        "districtBn": {
+          "type": "text",
+          "required": true
+        },
+        "namedBn": {
+          "type": "text"
+        },
+        "locationBn": {
+          "type": "text"
+        },
+        "at": {
+          "type": "point",
+          "required": true
+        },
+        "frame": {
+          "type": "bbox",
+          "required": true
+        },
+        "groups": {
+          "type": "refs",
+          "to": "groups",
+          "display": false
+        },
+        "legendKind": {
+          "type": "text",
+          "display": false
+        }
+      }
+    }
+  },
+  "sources": {
+    "districtFill": {
+      "records": "districts",
+      "sharedGeometry": "bangladesh-districts.json",
+      "joinField": "pcode",
+      "state": [
+        {
+          "name": "inGroup",
+          "fromSelection": {
+            "records": "groups",
+            "listField": "districts"
+          }
+        }
+      ],
+      "attribution": "Bangladesh administrative boundaries (COD-AB v03): Bangladesh Bureau of Statistics / OCHA, <a href=\"https://data.humdata.org/dataset/401d3fae-4262-48c9-891f-461fd776d49b\" target=\"_blank\" rel=\"noopener noreferrer\">CC BY-IGO 3.0</a>"
+    },
+    "districtTap": {
+      "records": "districts",
+      "sharedGeometry": "bangladesh-districts.json",
+      "joinField": "pcode",
+      "state": [
+        "selected"
+      ],
+      "attribution": "Bangladesh administrative boundaries (COD-AB v03): Bangladesh Bureau of Statistics / OCHA, <a href=\"https://data.humdata.org/dataset/401d3fae-4262-48c9-891f-461fd776d49b\" target=\"_blank\" rel=\"noopener noreferrer\">CC BY-IGO 3.0</a>"
+    },
+    "institutes": {
+      "records": "institutes",
+      "geometryFrom": "at",
+      "state": [
+        "selected"
+      ],
+      "properties": [
+        "nameBn"
+      ],
+      "selectionMarker": true,
+      "attribution": "© <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener noreferrer\">OpenStreetMap contributors</a>"
+    }
+  },
+  "layers": [
+    {
+      "id": "district-group-fill",
+      "type": "fill",
+      "source": "districtFill",
+      "slot": "belowLabels",
+      "filter": [
+        "get",
+        "inGroup"
+      ],
+      "paint": {
+        "fill-color": "#0072B2",
+        "fill-opacity": 0.45
+      }
+    },
+    {
+      "id": "district-group-line",
+      "type": "line",
+      "source": "districtFill",
+      "slot": "belowLabels",
+      "filter": [
+        "get",
+        "inGroup"
+      ],
+      "layout": {
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "#0b3d91",
+        "line-width": 1.5
+      }
+    },
+    {
+      "id": "district-chosen-halo",
+      "type": "line",
+      "source": "districtTap",
+      "slot": "aboveLabels",
+      "filter": [
+        "get",
+        "selected"
+      ],
+      "layout": {
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "#ffffff",
+        "line-width": 5
+      }
+    },
+    {
+      "id": "district-chosen-line",
+      "type": "line",
+      "source": "districtTap",
+      "slot": "aboveLabels",
+      "filter": [
+        "get",
+        "selected"
+      ],
+      "layout": {
+        "line-join": "round"
+      },
+      "paint": {
+        "line-color": "#111827",
+        "line-width": 2.5
+      }
+    },
+    {
+      "id": "institute-markers",
+      "type": "symbol",
+      "source": "institutes",
+      "slot": "aboveLabels",
+      "layout": {
+        "icon-image": "institute",
+        "icon-allow-overlap": true,
+        "icon-ignore-placement": true
+      }
+    }
+  ],
+  "controls": [
+    {
+      "type": "picker",
+      "from": "groups",
+      "label": {
+        "field": "nameBn"
+      },
+      "placeholder": "গোষ্ঠী বেছে নিন",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "field": "frame",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 900
+        }
+      ],
+      "byTab": {
+        "groups": {
+          "from": "groups",
+          "label": {
+            "field": "nameBn"
+          },
+          "placeholder": "গোষ্ঠী বেছে নিন",
+          "do": [
+            {
+              "action": "select"
+            },
+            {
+              "action": "fitBounds",
+              "field": "frame",
+              "clear": [
+                "sheet"
+              ],
+              "duration": 900
+            }
+          ]
+        },
+        "districts": {
+          "from": "districts",
+          "label": {
+            "field": "nameBn"
+          },
+          "placeholder": "জেলা বেছে নিন",
+          "do": [
+            {
+              "action": "select"
+            },
+            {
+              "action": "fitBounds",
+              "field": "frame",
+              "clear": [
+                "sheet"
+              ],
+              "duration": 900
+            }
+          ]
+        },
+        "institutes": {
+          "from": "institutes",
+          "label": {
+            "field": "nameBn"
+          },
+          "placeholder": "প্রতিষ্ঠান বেছে নিন",
+          "do": [
+            {
+              "action": "select"
+            },
+            {
+              "action": "fitBounds",
+              "field": "frame",
+              "clear": [
+                "sheet"
+              ],
+              "duration": 900
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "interactions": [
+    {
+      "on": "click",
+      "target": "source:districtTap",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "field": "frame",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 900
+        }
+      ]
+    },
+    {
+      "on": "click",
+      "target": "source:institutes",
+      "do": [
+        {
+          "action": "select"
+        },
+        {
+          "action": "fitBounds",
+          "field": "frame",
+          "clear": [
+            "sheet"
+          ],
+          "duration": 900
+        }
+      ]
+    }
+  ],
+  "tabs": {
+    "from": "tabs",
+    "label": {
+      "field": "titleBn"
+    },
+    "placeholder": {
+      "field": "placeholderBn"
+    },
+    "views": {
+      "groups": {
+        "hide": {
+          "sources": [
+            "districtTap",
+            "institutes"
+          ]
+        }
+      },
+      "districts": {
+        "hide": {
+          "sources": [
+            "institutes"
+          ]
+        }
+      },
+      "institutes": {
+        "hide": {
+          "sources": [
+            "districtTap",
+            "districtFill"
+          ]
+        }
+      }
+    }
+  },
+  "legend": {
+    "items": [
+      {
+        "kind": "main",
+        "label": "রং করা জেলা: গোষ্ঠীর প্রধান বসতি",
+        "line": {
+          "color": "#0072B2",
+          "width": 8
+        }
+      },
+      {
+        "kind": "institute",
+        "label": "সাংস্কৃতিক প্রতিষ্ঠান",
+        "image": "institute"
+      }
+    ],
+    "kinds": [
+      {
+        "records": "districts",
+        "field": "legendKind",
+        "tab": "groups"
+      },
+      {
+        "records": "institutes",
+        "field": "legendKind",
+        "tab": "institutes"
+      }
+    ]
+  },
+  "info": {
+    "file": "./info.json",
+    "headings": {
+      "sources": "সূত্র",
+      "notes": "টীকা",
+      "conflicts": ""
+    }
+  },
+  "attribution": {
+    "extra": [
+      "<a href=\"https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bbs/2024/12/ad6c94d02722448f92690a27c4313ec9.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Bangladesh Bureau of Statistics, Population and Housing Census 2022, National Report Volume I (Table P29)</a>",
+      "<a href=\"https://bbs.gov.bd/pages/static-pages/6922e073933eb65569e27220\" target=\"_blank\" rel=\"noopener noreferrer\">Bangladesh Bureau of Statistics, Population and Housing Census 2022, District Reports (Table P17), and the Preliminary Report (Bangla), table স-১.৪</a>",
+      "<a href=\"https://dpp.gov.bd/upload_file/gazettes/31266_79440.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Ministry of Cultural Affairs, S.R.O. No. 78-Law/2019 (Bangladesh Gazette Extraordinary, 23 March 2019): the list of groups</a>",
+      "<a href=\"https://moca.gov.bd/pages/static-pages/694032e335ce18e1c0563ee3\" target=\"_blank\" rel=\"noopener noreferrer\">Ministry of Cultural Affairs: its offices and institutes</a>",
+      "<a href=\"https://barguna.gov.bd/pages/static-pages/6978a7a235ce18e1c0674e6d\" target=\"_blank\" rel=\"noopener noreferrer\">Government portal: barguna.gov.bd</a>",
+      "<a href=\"https://coxculturecenter.portal.gov.bd/pages/static-pages/6922e050933eb65569e2678f\" target=\"_blank\" rel=\"noopener noreferrer\">Government portal: coxculturecenter.portal.gov.bd</a>",
+      "<a href=\"https://coxculturecenter.portal.gov.bd/pages/static-pages/contact-map-g8u1rt-6a87236e9b63d6f0462f4e9a\" target=\"_blank\" rel=\"noopener noreferrer\">Government portal: coxculturecenter.portal.gov.bd</a>",
+      "<a href=\"https://khagrachhari.gov.bd/pages/static-pages/69910abd35ce18e1c0739155\" target=\"_blank\" rel=\"noopener noreferrer\">Government portal: khagrachhari.gov.bd</a>",
+      "<a href=\"https://kncabirisiri.portal.gov.bd/pages/static-pages/6922df83933eb65569e227b0\" target=\"_blank\" rel=\"noopener noreferrer\">Government portal: kncabirisiri.portal.gov.bd</a>",
+      "<a href=\"https://kncaraj.portal.gov.bd/pages/static-pages/6922e02a933eb65569e25caf\" target=\"_blank\" rel=\"noopener noreferrer\">Government portal: kncaraj.portal.gov.bd</a>",
+      "<a href=\"https://knsikhagrachari.portal.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">Government portal: knsikhagrachari.portal.gov.bd</a>",
+      "<a href=\"https://knsikhagrachari.portal.gov.bd/pages/static-pages/6922dfa8933eb65569e234c5\" target=\"_blank\" rel=\"noopener noreferrer\">Government portal: knsikhagrachari.portal.gov.bd</a>",
+      "<a href=\"https://knsirangamati.portal.gov.bd/pages/static-pages/6922db81933eb65569e0a782\" target=\"_blank\" rel=\"noopener noreferrer\">Government portal: knsirangamati.portal.gov.bd</a>",
+      "<a href=\"https://knsirangamati.portal.gov.bd/pages/static-pages/6922de9f933eb65569e1c18d\" target=\"_blank\" rel=\"noopener noreferrer\">Government portal: knsirangamati.portal.gov.bd</a>",
+      "<a href=\"https://ksibandarban.portal.gov.bd/pages/static-pages/6922dc68933eb65569e102e8\" target=\"_blank\" rel=\"noopener noreferrer\">Government portal: ksibandarban.portal.gov.bd</a>",
+      "<a href=\"https://ksibandarban.portal.gov.bd/pages/static-pages/6922e03e933eb65569e262a3\" target=\"_blank\" rel=\"noopener noreferrer\">Government portal: ksibandarban.portal.gov.bd</a>",
+      "<a href=\"https://mla.portal.gov.bd/pages/static-pages/6922e0b9933eb65569e2857b\" target=\"_blank\" rel=\"noopener noreferrer\">Government portal: mla.portal.gov.bd</a>",
+      "<a href=\"https://moca.gov.bd/pages/static-pages/694032e335ce18e1c0563ee3\" target=\"_blank\" rel=\"noopener noreferrer\">Government portal: moca.gov.bd</a>",
+      "<a href=\"https://moulvibazar.gov.bd/pages/static-pages/%E0%A6%AD%E0%A6%BE%E0%A6%B7%E0%A6%BE-%E0%A6%93-%E0%A6%B8%E0%A6%82%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A7%83%E0%A6%A4%E0%A6%BF-6f4d99-696cb3a0c4774958d7ba20b0\" target=\"_blank\" rel=\"noopener noreferrer\">Government portal: moulvibazar.gov.bd</a>",
+      "<a href=\"https://naogaon.gov.bd/pages/static-pages/697f9a0935ce18e1c06c28cc\" target=\"_blank\" rel=\"noopener noreferrer\">Government portal: naogaon.gov.bd</a>",
+      "<a href=\"https://rajshahi.gov.bd/pages/static-pages/697f99c435ce18e1c06c087e\" target=\"_blank\" rel=\"noopener noreferrer\">Government portal: rajshahi.gov.bd</a>",
+      "<a href=\"https://rangamati.gov.bd/pages/static-pages/6991008b35ce18e1c0733358\" target=\"_blank\" rel=\"noopener noreferrer\">Government portal: rangamati.gov.bd</a>",
+      "<a href=\"https://rangamati.gov.bd/pages/static-pages/69910abd35ce18e1c073912a\" target=\"_blank\" rel=\"noopener noreferrer\">Government portal: rangamati.gov.bd</a>",
+      "<a href=\"https://tangail.gov.bd/pages/static-pages/6995975d35ce18e1c0786877\" target=\"_blank\" rel=\"noopener noreferrer\">Government portal: tangail.gov.bd</a>",
+      "<a href=\"https://bn.banglapedia.org/\" target=\"_blank\" rel=\"noopener noreferrer\">Banglapedia, Asiatic Society of Bangladesh</a>"
+    ]
+  },
+  "sheets": {
+    "groups": {
+      "title": {
+        "field": "nameBn"
+      },
+      "rows": [
+        {
+          "label": "জনসংখ্যা (২০২২)",
+          "field": "populationBn"
+        },
+        {
+          "label": "প্রধান জেলা",
+          "field": "districtsBn",
+          "stacked": true
+        },
+        {
+          "label": "অঞ্চল",
+          "field": "zoneBn"
+        },
+        {
+          "label": "ভাষা",
+          "field": "language",
+          "stacked": true
+        },
+        {
+          "label": "ধর্ম",
+          "field": "religion",
+          "stacked": true
+        },
+        {
+          "label": "উৎসব ও সংস্কৃতি",
+          "field": "festivals",
+          "stacked": true
+        },
+        {
+          "label": "সাংস্কৃতিক প্রতিষ্ঠান",
+          "referencedBy": {
+            "records": "institutes",
+            "listField": "groups"
+          },
+          "item": {
+            "field": "nameBn"
+          },
+          "stacked": true,
+          "do": [
+            {
+              "action": "select"
+            },
+            {
+              "action": "fitBounds",
+              "field": "frame",
+              "clear": [
+                "sheet"
+              ],
+              "duration": 900
+            }
+          ]
+        }
+      ]
+    },
+    "districts": {
+      "title": {
+        "field": "nameBn"
+      },
+      "rows": [
+        {
+          "label": "এই জেলায় যেসব গোষ্ঠীর প্রধান বসতি",
+          "referencedBy": {
+            "records": "groups",
+            "listField": "districts"
+          },
+          "item": {
+            "field": "nameBn"
+          },
+          "stacked": true,
+          "do": [
+            {
+              "action": "select"
+            },
+            {
+              "action": "fitBounds",
+              "field": "frame",
+              "clear": [
+                "sheet"
+              ],
+              "duration": 900
+            }
+          ]
+        },
+        {
+          "label": "এই জেলায় যেসব গোষ্ঠীর প্রধান বসতি",
+          "field": "emptyBn",
+          "stacked": true
+        }
+      ]
+    },
+    "institutes": {
+      "title": {
+        "field": "nameBn"
+      },
+      "subtitle": {
+        "field": "locationBn"
+      },
+      "rows": [
+        {
+          "label": "জেলা",
+          "field": "districtBn"
+        },
+        {
+          "label": "প্রতিষ্ঠানের নিজের পাতায় উল্লেখিত গোষ্ঠী",
+          "field": "namedBn",
+          "stacked": true
+        }
+      ]
+    }
+  }
+}

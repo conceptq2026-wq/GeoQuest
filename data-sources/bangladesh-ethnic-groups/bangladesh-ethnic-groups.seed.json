@@ -4,7 +4,7 @@
   "section": "bangladesh",
   "title": {
     "bn": "বাংলাদেশের ক্ষুদ্র নৃ-গোষ্ঠী",
-    "approved": false,
+    "approved": true,
     "cite": [
       {
         "source": "act2010",
@@ -640,112 +640,122 @@
     "tabs": {
       "groups": {
         "bn": "গোষ্ঠী",
-        "approved": false
+        "approved": true
       },
       "districts": {
         "bn": "জেলা",
-        "approved": false
+        "approved": true
       },
       "institutes": {
         "bn": "প্রতিষ্ঠান",
-        "approved": false
+        "approved": true
       }
     },
     "pickers": {
       "groups": {
         "bn": "গোষ্ঠী বেছে নিন",
-        "approved": false
+        "approved": true
       },
       "districts": {
         "bn": "জেলা বেছে নিন",
-        "approved": false
+        "approved": true
       },
       "institutes": {
         "bn": "প্রতিষ্ঠান বেছে নিন",
-        "approved": false
+        "approved": true
       }
     },
     "groupCard": {
       "population": {
         "bn": "জনসংখ্যা (২০২২)",
-        "approved": false
+        "approved": true
       },
       "districts": {
         "bn": "প্রধান জেলা",
-        "approved": false
+        "approved": true
       },
       "zone": {
         "bn": "অঞ্চল",
-        "approved": false
+        "approved": true
       },
       "language": {
         "bn": "ভাষা",
-        "approved": false
+        "approved": true
       },
       "religion": {
         "bn": "ধর্ম",
-        "approved": false
+        "approved": true
       },
       "festivals": {
         "bn": "উৎসব ও সংস্কৃতি",
-        "approved": false
+        "approved": true
       },
       "institutes": {
         "bn": "সাংস্কৃতিক প্রতিষ্ঠান",
-        "approved": false
+        "approved": true
       }
     },
     "zone": {
       "hill": {
         "bn": "পাহাড়ি",
-        "approved": false
+        "approved": true
       },
       "plains": {
         "bn": "সমতল",
-        "approved": false
+        "approved": true
       }
     },
     "templates": {
       "population": {
         "bn": "{n} জন",
-        "approved": false
+        "approved": true
       },
       "zoneShare": {
         "bn": "তিন পার্বত্য জেলায় {share}%",
-        "approved": false
+        "approved": true
       }
     },
     "districtCard": {
       "groups": {
-        "bn": "এই জেলায় রং করা গোষ্ঠী",
-        "approved": false
+        "bn": "এই জেলায় যেসব গোষ্ঠীর প্রধান বসতি",
+        "approved": true
       },
       "empty": {
         "bn": "মানচিত্রের ১৯টি গোষ্ঠীর কোনোটির জন্য এই জেলা রং করা হয়নি।",
-        "approved": false
+        "approved": true
       }
     },
     "instituteCard": {
       "district": {
         "bn": "জেলা",
-        "approved": false
+        "approved": true
       },
       "groupsNamed": {
-        "bn": "প্রতিষ্ঠানের পাতায় নাম থাকা গোষ্ঠী",
-        "approved": false
+        "bn": "প্রতিষ্ঠানের নিজের পাতায় উল্লেখিত গোষ্ঠী",
+        "approved": true
       },
       "locationMissing": {
         "bn": "সঠিক স্থান সূত্রে নেই; চিহ্নটি জেলায় বসানো",
-        "approved": false
+        "approved": true
       }
     },
     "legend": {
       "district": {
         "bn": "রং করা জেলা: গোষ্ঠীর প্রধান বসতি",
-        "approved": false
+        "approved": true
       },
       "institute": {
         "bn": "সাংস্কৃতিক প্রতিষ্ঠান",
+        "approved": true
+      }
+    },
+    "infoHeadings": {
+      "sources": {
+        "bn": "সূত্র",
+        "approved": false
+      },
+      "notes": {
+        "bn": "টীকা",
         "approved": false
       }
     }
@@ -753,7 +763,7 @@
   "info": [
     {
       "bn": "মানচিত্রে ২০২২ সালের জনশুমারিতে ১০,০০০ বা তার বেশি মানুষের ১৮টি ক্ষুদ্র নৃ-গোষ্ঠী এবং হাজং দেখানো হয়েছে।",
-      "approved": false,
+      "approved": true,
       "cite": [
         {
           "source": "user",
@@ -767,7 +777,7 @@
     },
     {
       "bn": "জনসংখ্যা ও জেলার হিসাব বাংলাদেশ পরিসংখ্যান ব্যুরোর জনশুমারি ও গৃহগণনা ২০২২ থেকে।",
-      "approved": false,
+      "approved": true,
       "cite": [
         {
           "source": "bbsNational",
@@ -780,8 +790,8 @@
       ]
     },
     {
-      "bn": "বড় থেকে ছোট ক্রমে যেসব জেলা মিলে একটি গোষ্ঠীর ৮০% মানুষ ধরে, তার মধ্যে অন্তত ১,০০০ জন থাকা জেলাগুলো রং করা।",
-      "approved": false,
+      "bn": "যে জেলাগুলোতে একটি গোষ্ঠীর মোট মানুষের ৮০% থাকে (সবচেয়ে বেশি থেকে শুরু করে), তার মধ্যে যেখানে অন্তত ১,০০০ জন আছে, সেগুলো রং করা।",
+      "approved": true,
       "cite": [
         {
           "source": "user",
@@ -790,8 +800,8 @@
       ]
     },
     {
-      "bn": "যে গোষ্ঠীর অর্ধেক বা তার বেশি মানুষ রাঙ্গামাটি, খাগড়াছড়ি ও বান্দরবানে থাকে, তাকে পাহাড়ি বলা হয়েছে; বাকিগুলো সমতলের।",
-      "approved": false,
+      "bn": "যে গোষ্ঠীর অর্ধেক বা তার বেশি মানুষ রাঙ্গামাটি, খাগড়াছড়ি ও বান্দরবানে থাকে, তাকে এই মানচিত্রে পাহাড়ি ধরা হয়েছে; বাকিগুলো সমতলের।",
+      "approved": true,
       "cite": [
         {
           "source": "user",
@@ -806,7 +816,7 @@
       "censusEn": "Chakma",
       "name": {
         "bn": "চাকমা",
-        "approved": false,
+        "approved": true,
         "verifiedFromText": true,
         "cite": [
           {
@@ -876,7 +886,7 @@
       },
       "language": {
         "bn": "চাকমা ভাষার নিজস্ব বর্ণমালা আছে",
-        "approved": false,
+        "approved": true,
         "sourceType": "official",
         "cite": [
           {
@@ -891,7 +901,7 @@
       },
       "religion": {
         "bn": "মূলত বৌদ্ধ ধর্মের অনুসারী",
-        "approved": false,
+        "approved": true,
         "sourceType": "official",
         "cite": [
           {
@@ -906,7 +916,7 @@
       },
       "festivals": {
         "bn": "প্রধান সামাজিক উৎসব বিজু",
-        "approved": false,
+        "approved": true,
         "sourceType": "official",
         "cite": [
           {
@@ -929,7 +939,7 @@
       "censusEn": "Marma",
       "name": {
         "bn": "মারমা",
-        "approved": false,
+        "approved": true,
         "verifiedFromText": true,
         "cite": [
           {
@@ -1010,7 +1020,7 @@
       },
       "language": {
         "bn": "তিব্বতি-বর্মী ভাষাদলের ভাষা",
-        "approved": false,
+        "approved": true,
         "sourceType": "official",
         "cite": [
           {
@@ -1024,8 +1034,8 @@
         ]
       },
       "religion": {
-        "bn": "বৌদ্ধ; পাশাপাশি দেবতা ও অপদেবতাতেও বিশ্বাস রাখে",
-        "approved": false,
+        "bn": "বৌদ্ধ; পাশাপাশি নানা দেবতাতেও বিশ্বাস রাখে",
+        "approved": true,
         "sourceType": "official",
         "cite": [
           {
@@ -1040,7 +1050,7 @@
       },
       "festivals": {
         "bn": "প্রধান সামাজিক উৎসব সাংগ্রাইং",
-        "approved": false,
+        "approved": true,
         "sourceType": "official",
         "cite": [
           {
@@ -1143,8 +1153,8 @@
         ]
       },
       "language": {
-        "bn": "চীনা-তিব্বতি গোত্রের ভাষা; ভারতে একে ককবরক বলা হয়",
-        "approved": false,
+        "bn": "চীনা-তিব্বতি গোত্রের ভাষা",
+        "approved": true,
         "sourceType": "official",
         "cite": [
           {
@@ -1159,7 +1169,7 @@
       },
       "religion": {
         "bn": "সনাতন ধর্মের অনুসারী",
-        "approved": false,
+        "approved": true,
         "sourceType": "official",
         "cite": [
           {
@@ -1311,7 +1321,7 @@
       },
       "language": {
         "bn": "সাঁওতালি ভাষা, অস্ট্রিক ভাষা-পরিবারের",
-        "approved": false,
+        "approved": true,
         "sourceType": "banglapedia",
         "cite": [
           {
@@ -1326,7 +1336,7 @@
       },
       "religion": {
         "bn": "সর্বপ্রাণবাদী ও প্রকৃতির উপাসক",
-        "approved": false,
+        "approved": true,
         "sourceType": "banglapedia",
         "cite": [
           {
@@ -1341,7 +1351,7 @@
       },
       "festivals": {
         "bn": "ঐতিহ্যবাহী উৎসব দাশাই ও সোহরাই",
-        "approved": false,
+        "approved": true,
         "sourceType": "official",
         "cite": [
           {
@@ -1486,7 +1496,7 @@
       },
       "language": {
         "bn": "কুরুখ ভাষা, দ্রাবিড় ভাষাগোষ্ঠীর",
-        "approved": false,
+        "approved": true,
         "sourceType": "official",
         "cite": [
           {
@@ -1500,8 +1510,8 @@
         ]
       },
       "religion": {
-        "bn": "জড়োপাসক; তাদের ভগবান ধরমেশ বা ধরমী",
-        "approved": false,
+        "bn": "নিজস্ব ঐতিহ্যবাহী ধর্ম; উপাস্য ধরমেশ বা ধরমী",
+        "approved": true,
         "sourceType": "banglapedia",
         "cite": [
           {
@@ -1516,7 +1526,7 @@
       },
       "festivals": {
         "bn": "প্রধান ধর্মীয় উৎসব ডালপূজা (ভাদ্র বা আশ্বিনে)",
-        "approved": false,
+        "approved": true,
         "sourceType": "official",
         "cite": [
           {
@@ -1536,7 +1546,7 @@
       "censusEn": "Garo",
       "name": {
         "bn": "গারো",
-        "approved": false,
+        "approved": true,
         "verifiedFromText": true,
         "cite": [
           {
@@ -1639,7 +1649,7 @@
       },
       "language": {
         "bn": "গারো ভাষা; এর লিখিত কোনো বর্ণমালা নেই",
-        "approved": false,
+        "approved": true,
         "sourceType": "official",
         "cite": [
           {
@@ -1653,8 +1663,8 @@
         ]
       },
       "religion": {
-        "bn": "শতকরা ৯৯ জনই খ্রিস্টধর্মের অনুসারী",
-        "approved": false,
+        "bn": "প্রায় সবাই খ্রিস্টধর্মের অনুসারী",
+        "approved": true,
         "sourceType": "banglapedia",
         "cite": [
           {
@@ -1776,7 +1786,7 @@
       },
       "language": {
         "bn": "নিজেদের মধ্যে মুন্ডারী ভাষা বলে; ভাষাটি মৌখিক",
-        "approved": false,
+        "approved": true,
         "sourceType": "banglapedia",
         "cite": [
           {
@@ -1791,7 +1801,7 @@
       },
       "religion": {
         "bn": "প্রকৃতির পূজারী",
-        "approved": false,
+        "approved": true,
         "sourceType": "banglapedia",
         "cite": [
           {
@@ -1870,7 +1880,7 @@
       },
       "language": {
         "bn": "তিব্বতি-বর্মী ভাষাদলের ভাষা",
-        "approved": false,
+        "approved": true,
         "sourceType": "official",
         "cite": [
           {
@@ -1884,7 +1894,7 @@
         ]
       },
       "religion": {
-        "bn": "ধর্মপ্রাণবাদী; তাদের দেবতা তিনজন",
+        "bn": "তিন দেবতায় বিশ্বাস: তুরাই (সৃষ্টিকর্তা), সাংতুং (পাহাড়ের দেবতা) ও ওরেং (নদীর দেবী)",
         "approved": false,
         "sourceType": "banglapedia",
         "cite": [
@@ -1892,24 +1902,24 @@
             "source": "bp10",
             "at": "paragraph ¶8 (paragraphs = text lines over 100 characters, as culture-work/bp.mjs counts)",
             "file": "raw/culture/bpbn-ম্রো.txt",
-            "offset": 3844,
-            "length": 46,
-            "sha256": "b8336d2641d7a94fb54ffd43260580f601f65640c929b7d01d7fd343eba2a184"
+            "offset": 3892,
+            "length": 82,
+            "sha256": "57953bc1bfa59558474b82ac94b19468cfd368619748779df237c40721691317"
           }
         ]
       },
       "festivals": {
-        "bn": "গো-হত্যা উৎসব",
+        "bn": "কুমুলং উৎসব, যাতে গরু বধ করা হয়",
         "approved": false,
-        "sourceType": "official",
+        "sourceType": "banglapedia",
         "cite": [
           {
-            "source": "page1",
-            "at": "section «সংস্কৃতি:»",
-            "file": "raw/culture/dc-rangamati-c0733358.txt",
-            "offset": 10689,
-            "length": 30,
-            "sha256": "a7e85f3260009a9e459bf6d7f21fdbe71e2190636505835b30e5a8313a65b3a4"
+            "source": "bp10",
+            "at": "the photograph's caption above ¶8",
+            "file": "raw/culture/bpbn-ম্রো.txt",
+            "offset": 3818,
+            "length": 25,
+            "sha256": "b060e4521a01a51fa8dec2fdf307a2a3495d4a5b84c6dfd9b8da8233283c5cf4"
           }
         ]
       },
@@ -1993,7 +2003,7 @@
       },
       "language": {
         "bn": "চাকমা ভাষার সমগোত্রীয়, ইন্দো-আর্য শাখার ভাষা",
-        "approved": false,
+        "approved": true,
         "sourceType": "official",
         "cite": [
           {
@@ -2007,8 +2017,8 @@
         ]
       },
       "religion": {
-        "bn": "প্রধানত বৌদ্ধ; অনেকের মধ্যে গাঙ পূজা ও ভূত পূজার মতো দেবপূজাও প্রচলিত",
-        "approved": false,
+        "bn": "প্রধানত বৌদ্ধ; পাশাপাশি গাঙ পূজার মতো ঐতিহ্যবাহী পূজাও প্রচলিত",
+        "approved": true,
         "sourceType": "banglapedia",
         "cite": [
           {
@@ -2022,7 +2032,7 @@
         ]
       },
       "festivals": {
-        "bn": "প্রধান সামাজিক উৎসব বিজু-সাংগ্রাই-বৈসুক",
+        "bn": "চাকমা, মারমা ও ত্রিপুরাদের সঙ্গে অভিন্ন প্রধান সামাজিক উৎসব বিজু-সাংগ্রাই-বৈসুক",
         "approved": false,
         "sourceType": "official",
         "cite": [
@@ -2261,7 +2271,7 @@
       },
       "religion": {
         "bn": "সনাতন ধর্মের চৈতন্য-ধারার অনুসারী",
-        "approved": false,
+        "approved": true,
         "sourceType": "banglapedia",
         "cite": [
           {
@@ -2276,7 +2286,7 @@
       },
       "festivals": {
         "bn": "রাস উৎসব",
-        "approved": false,
+        "approved": true,
         "sourceType": "official",
         "cite": [
           {
@@ -2409,21 +2419,6 @@
           }
         ]
       },
-      "language": {
-        "bn": "শাদ্রি ভাষায় কথা বলে",
-        "approved": false,
-        "sourceType": "banglapedia",
-        "cite": [
-          {
-            "source": "bp15",
-            "at": "paragraph ¶4 (paragraphs = text lines over 100 characters, as culture-work/bp.mjs counts)",
-            "file": "raw/culture/bpbn-উপজাতীয়_ভাষা.txt",
-            "offset": 1829,
-            "length": 97,
-            "sha256": "aa7e886ef886577ccde40527d7a44c5efe3d0c4f785df25750d9306519fcaf46"
-          }
-        ]
-      },
       "institutes": []
     },
     {
@@ -2431,7 +2426,7 @@
       "censusEn": "Malo/Ghasimalo",
       "name": {
         "bn": "মালো/ঘাসিমালো",
-        "approved": false,
+        "approved": true,
         "verifiedFromText": true,
         "cite": [
           {
@@ -2529,21 +2524,6 @@
           {
             "source": "bbsZilaBANDARBAN",
             "at": "Table P17, printed pp. 202-206 (PDF pp. 250-254)"
-          }
-        ]
-      },
-      "language": {
-        "bn": "শাদ্রি ভাষায় কথা বলে",
-        "approved": false,
-        "sourceType": "banglapedia",
-        "cite": [
-          {
-            "source": "bp15",
-            "at": "paragraph ¶4 (paragraphs = text lines over 100 characters, as culture-work/bp.mjs counts)",
-            "file": "raw/culture/bpbn-উপজাতীয়_ভাষা.txt",
-            "offset": 1829,
-            "length": 97,
-            "sha256": "aa7e886ef886577ccde40527d7a44c5efe3d0c4f785df25750d9306519fcaf46"
           }
         ]
       },
@@ -2657,7 +2637,7 @@
       },
       "language": {
         "bn": "নিজস্ব ভাষা আছে, তবে তার বর্ণমালা নেই",
-        "approved": false,
+        "approved": true,
         "sourceType": "official",
         "cite": [
           {
@@ -2671,8 +2651,8 @@
         ]
       },
       "religion": {
-        "bn": "দুর্গা, কালী প্রভৃতির পূজা করে, সঙ্গে নিজেদের আদি দেবদেবীরও উপাসনা",
-        "approved": false,
+        "bn": "দুর্গা, কালী প্রভৃতির পূজা করে, সঙ্গে নিজেদের আদি দেবদেবীরও উপাসনা করে",
+        "approved": true,
         "sourceType": "banglapedia",
         "cite": [
           {
@@ -2692,7 +2672,7 @@
       "censusEn": "Bom",
       "name": {
         "bn": "বম",
-        "approved": false,
+        "approved": true,
         "verifiedFromText": true,
         "cite": [
           {
@@ -2751,7 +2731,7 @@
       },
       "language": {
         "bn": "কুকী-চীন দলের ভাষা",
-        "approved": false,
+        "approved": true,
         "sourceType": "official",
         "cite": [
           {
@@ -2765,8 +2745,8 @@
         ]
       },
       "religion": {
-        "bn": "২০০১ সালের মধ্যে প্রায় সবাই খ্রিস্টান হয়েছে",
-        "approved": false,
+        "bn": "প্রায় সবাই খ্রিস্টধর্মের অনুসারী (২০০১ সালের তথ্য)",
+        "approved": true,
         "sourceType": "banglapedia",
         "cite": [
           {
@@ -2788,23 +2768,17 @@
       "id": "khasia",
       "censusEn": "Khasia/Khasi",
       "name": {
-        "bn": "খাসিয়া/ খাসি",
-        "approved": false,
+        "bn": "খাসিয়া/খাসি",
+        "approved": true,
         "verifiedFromText": true,
         "cite": [
           {
             "source": "bbsPreliminaryBn",
             "at": "সারণি স-১.৪, PDF p. 52 (printed ৩৩), text layer"
-          }
-        ]
-      },
-      "gazetteName": {
-        "bn": "খাসিয়া/খাসি",
-        "serial": 4,
-        "cite": [
+          },
           {
-            "source": "gazette2019",
-            "at": "entry 4"
+            "source": "user",
+            "at": "decision of 2026-10-08: written «খাসিয়া/খাসি», as the gazette has it; the census prints «খাসিয়া/ খাসি»"
           }
         ]
       },
@@ -2858,7 +2832,7 @@
       },
       "language": {
         "bn": "খাসিয়া ভাষা, অস্ট্রো-এশিয়াটিক ভাষাগোষ্ঠীর",
-        "approved": false,
+        "approved": true,
         "sourceType": "banglapedia",
         "cite": [
           {
@@ -2872,8 +2846,8 @@
         ]
       },
       "religion": {
-        "bn": "বেশির ভাগই খ্রিস্টান (শতকরা ৮০-৯০ জন)",
-        "approved": false,
+        "bn": "বেশির ভাগই খ্রিস্টধর্মের অনুসারী",
+        "approved": true,
         "sourceType": "banglapedia",
         "cite": [
           {
@@ -2893,7 +2867,7 @@
       "censusEn": "Bagdi",
       "name": {
         "bn": "বাগদী",
-        "approved": false,
+        "approved": true,
         "verifiedFromText": true,
         "cite": [
           {
@@ -2973,8 +2947,8 @@
         ]
       },
       "language": {
-        "bn": "নিজেদের ভাষা ব্যবহার করে, তবে তা প্রায় বাংলার কাছাকাছি",
-        "approved": false,
+        "bn": "নিজেদের ভাষা আছে, যা বাংলার খুব কাছাকাছি",
+        "approved": true,
         "sourceType": "banglapedia",
         "cite": [
           {
@@ -2989,7 +2963,7 @@
       },
       "religion": {
         "bn": "হিন্দু ধর্মাচারের সঙ্গে পূর্বপুরুষের প্রকৃতি পূজা মিলিয়ে পালন করে",
-        "approved": false,
+        "approved": true,
         "sourceType": "banglapedia",
         "cite": [
           {
@@ -3009,7 +2983,7 @@
       "censusEn": "Rakhain",
       "name": {
         "bn": "রাখাইন",
-        "approved": false,
+        "approved": true,
         "verifiedFromText": true,
         "cite": [
           {
@@ -3094,7 +3068,7 @@
       },
       "religion": {
         "bn": "বৌদ্ধ ধর্মাবলম্বী",
-        "approved": false,
+        "approved": true,
         "sourceType": "official",
         "cite": [
           {
@@ -3109,7 +3083,7 @@
       },
       "festivals": {
         "bn": "ধর্মীয় উৎসব: মাঘী পূর্ণিমা, বৈশাখী পূর্ণিমা ও রাস উৎসব",
-        "approved": false,
+        "approved": true,
         "sourceType": "official",
         "cite": [
           {
@@ -3129,7 +3103,7 @@
       "censusEn": "Hajong",
       "name": {
         "bn": "হাজং",
-        "approved": false,
+        "approved": true,
         "verifiedFromText": true,
         "cite": [
           {
@@ -3199,7 +3173,7 @@
       },
       "language": {
         "bn": "নিজস্ব ভাষার বর্ণমালা নেই; লেখা হয় অসমীয়া বর্ণমালায়",
-        "approved": false,
+        "approved": true,
         "sourceType": "banglapedia",
         "cite": [
           {
@@ -3214,7 +3188,7 @@
       },
       "religion": {
         "bn": "হিন্দু, তবে নিজস্ব কিছু আদি বিশ্বাসও আছে",
-        "approved": false,
+        "approved": true,
         "sourceType": "banglapedia",
         "cite": [
           {
@@ -3228,8 +3202,8 @@
         ]
       },
       "festivals": {
-        "bn": "বারোয়ারি দুর্গাপুজা; কালী পূজার সময় উৎসব",
-        "approved": false,
+        "bn": "বারোয়ারি দুর্গাপূজা; কালীপূজার সময়েও উৎসব হয়",
+        "approved": true,
         "sourceType": "banglapedia",
         "cite": [
           {
@@ -3250,7 +3224,7 @@
       "id": "knca-birishiri",
       "name": {
         "bn": "ক্ষুদ্র নৃ-গোষ্ঠীর কালচারাল একাডেমি, বিরিশিরি, নেত্রকোণা",
-        "approved": false,
+        "approved": true,
         "cite": [
           {
             "source": "mocaInstitutes",
@@ -3265,26 +3239,31 @@
             "source": "page22",
             "at": "«যোগাযোগ ঠিকানা» page body"
           }
-        ]
+        ],
+        "pcode": "BD4572"
       },
       "site": "https://kncabirisiri.portal.gov.bd/",
       "groupsNamed": null,
       "location": {
-        "missing": true,
-        "fallbackProposal": {
-          "lon": 90.67814,
-          "lat": 25.12383,
-          "kind": "fallback",
-          "basis": "COD-AB v03 bgd_admincapitals (pinned as codAbBangladesh)",
-          "note": "the capital point of Durgapur upazila (Netrakona), which the academy's history names; not the academy itself"
-        }
+        "kind": "district",
+        "note": "no source gives the institute's point: it sits at its district's capital, and its card says so",
+        "cite": [
+          {
+            "source": "codab",
+            "at": "bgd_admincapitals.geojson: the district's capital point (a division capital where the district is one)"
+          },
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: the six without a cited point sit at the district"
+          }
+        ]
       }
     },
     {
       "id": "knsi-rangamati",
       "name": {
         "bn": "ক্ষুদ্র নৃ-গোষ্ঠীর সাংস্কৃতিক ইনস্টিটিউট, রাঙ্গামাটি",
-        "approved": false,
+        "approved": true,
         "cite": [
           {
             "source": "mocaInstitutes",
@@ -3299,7 +3278,8 @@
             "source": "page23",
             "at": "«ঠিকানা» page body"
           }
-        ]
+        ],
+        "pcode": "BD2084"
       },
       "site": "https://knsirangamati.portal.gov.bd/",
       "groupsNamed": {
@@ -3344,7 +3324,7 @@
       "id": "knsi-bandarban",
       "name": {
         "bn": "ক্ষুদ্র নৃ-গোষ্ঠীর সাংস্কৃতিক ইনস্টিটিউট, বান্দরবান",
-        "approved": false,
+        "approved": true,
         "cite": [
           {
             "source": "mocaInstitutes",
@@ -3359,7 +3339,8 @@
             "source": "page25",
             "at": "«যোগাযোগ» page body"
           }
-        ]
+        ],
+        "pcode": "BD2003"
       },
       "site": "https://ksibandarban.portal.gov.bd/",
       "groupsNamed": {
@@ -3384,21 +3365,25 @@
         ]
       },
       "location": {
-        "missing": true,
-        "fallbackProposal": {
-          "lon": 92.22175,
-          "lat": 22.19729,
-          "kind": "fallback",
-          "basis": "COD-AB v03 bgd_admincapitals (pinned as codAbBangladesh)",
-          "note": "the district capital point; the institute's history page places it in Bandarban town"
-        }
+        "kind": "district",
+        "note": "no source gives the institute's point: it sits at its district's capital, and its card says so",
+        "cite": [
+          {
+            "source": "codab",
+            "at": "bgd_admincapitals.geojson: the district's capital point (a division capital where the district is one)"
+          },
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: the six without a cited point sit at the district"
+          }
+        ]
       }
     },
     {
       "id": "cox-cultural-centre",
       "name": {
         "bn": "কক্সবাজার সাংস্কৃতিক কেন্দ্র, কক্সবাজার",
-        "approved": false,
+        "approved": true,
         "cite": [
           {
             "source": "mocaInstitutes",
@@ -3413,7 +3398,8 @@
             "source": "page27",
             "at": "«ইতিহাস ও কার্যাবলি» page, paragraph 2"
           }
-        ]
+        ],
+        "pcode": "BD2022"
       },
       "site": "https://coxculturecenter.portal.gov.bd/",
       "groupsNamed": null,
@@ -3433,7 +3419,7 @@
       "id": "knsi-khagrachari",
       "name": {
         "bn": "ক্ষুদ্র নৃ-গোষ্ঠীর সাংস্কৃতিক ইনস্টিটিউট, খাগড়াছড়ি",
-        "approved": false,
+        "approved": true,
         "cite": [
           {
             "source": "mocaInstitutes",
@@ -3448,7 +3434,8 @@
             "source": "page29",
             "at": "«যোগাযোগ» page body"
           }
-        ]
+        ],
+        "pcode": "BD2046"
       },
       "site": "https://knsikhagrachari.portal.gov.bd",
       "groupsNamed": null,
@@ -3468,7 +3455,7 @@
       "id": "knca-rajshahi",
       "name": {
         "bn": "রাজশাহী বিভাগীয় ক্ষুদ্র নৃ-গোষ্ঠীর কালচারাল একাডেমি, রাজশাহী",
-        "approved": false,
+        "approved": true,
         "cite": [
           {
             "source": "mocaInstitutes",
@@ -3483,7 +3470,8 @@
             "source": "page31",
             "at": "«ইতিহাস» page, paragraph 2"
           }
-        ]
+        ],
+        "pcode": "BD5081"
       },
       "site": "http://kncaraj.portal.gov.bd/",
       "groupsNamed": null,
@@ -3507,7 +3495,7 @@
       "id": "manipuri-lalitkala-academy",
       "name": {
         "bn": "মনিপুরী ললিতকলা একাডেমি, কমলগঞ্জ, মৌলভীবাজার",
-        "approved": false,
+        "approved": true,
         "cite": [
           {
             "source": "mocaInstitutes",
@@ -3522,7 +3510,8 @@
             "source": "page32",
             "at": "«আমাদের সম্পর্কে» page, paragraph 1"
           }
-        ]
+        ],
+        "pcode": "BD6058"
       },
       "site": "http://mla.portal.gov.bd/ (MoCA lists http://www.mla.portal.gov.bd)",
       "groupsNamed": {
@@ -3537,21 +3526,25 @@
         ]
       },
       "location": {
-        "missing": true,
-        "fallbackProposal": {
-          "lon": 91.85557,
-          "lat": 24.35249,
-          "kind": "fallback",
-          "basis": "COD-AB v03 bgd_admincapitals (pinned as codAbBangladesh)",
-          "note": "the capital point of Kamalganj upazila; the academy's own page places it in Madhabpur union, possibly some km away"
-        }
+        "kind": "district",
+        "note": "no source gives the institute's point: it sits at its district's capital, and its card says so",
+        "cite": [
+          {
+            "source": "codab",
+            "at": "bgd_admincapitals.geojson: the district's capital point (a division capital where the district is one)"
+          },
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: the six without a cited point sit at the district"
+          }
+        ]
       }
     },
     {
       "id": "knsp-haluaghat",
       "name": {
         "bn": "ক্ষুদ্র নৃ-গোষ্ঠীর সাংস্কৃতিক প্রতিষ্ঠান, হালুয়াঘাট",
-        "approved": false,
+        "approved": true,
         "cite": [
           {
             "source": "mocaInstitutes",
@@ -3560,32 +3553,41 @@
         ]
       },
       "district": {
-        "missing": true,
-        "note": "no official page states the district",
-        "candidate": {
-          "nameEn": "Mymensingh",
-          "pcode": "BD4561",
-          "inference": "COD-AB has one upazila named Haluaghat (BD45610024), in Mymensingh; its upazila portal is haluaghat.mymensingh.gov.bd — an inference, for the user to accept or reject"
-        }
+        "nameEn": "Mymensingh",
+        "cite": [
+          {
+            "source": "codab",
+            "at": "bgd_admin3.geojson: Haluaghat (BD45610024) lies in Mymensingh (BD4561)"
+          },
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: the district from the COD-AB upazila record"
+          }
+        ],
+        "pcode": "BD4561"
       },
       "site": "https://knsphaluaghat.gov.bd/",
       "groupsNamed": null,
       "location": {
-        "missing": true,
-        "fallbackProposal": {
-          "lon": 90.33956,
-          "lat": 25.12226,
-          "kind": "fallback",
-          "basis": "COD-AB v03 bgd_admincapitals (pinned as codAbBangladesh)",
-          "note": "the capital point of Haluaghat upazila; usable only if the user accepts the district candidate"
-        }
+        "kind": "district",
+        "note": "no source gives the institute's point: it sits at its district's capital, and its card says so",
+        "cite": [
+          {
+            "source": "codab",
+            "at": "bgd_admincapitals.geojson: the district's capital point (a division capital where the district is one)"
+          },
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: the six without a cited point sit at the district"
+          }
+        ]
       }
     },
     {
       "id": "knsp-dinajpur",
       "name": {
         "bn": "ক্ষুদ্র নৃ-গোষ্ঠীর সাংস্কৃতিক প্রতিষ্ঠান, দিনাজপুর",
-        "approved": false,
+        "approved": true,
         "cite": [
           {
             "source": "mocaInstitutes",
@@ -3600,26 +3602,31 @@
             "source": "mocaInstitutes",
             "at": "MoCA «দপ্তর/সংস্থা» table, row ২১"
           }
-        ]
+        ],
+        "pcode": "BD5527"
       },
       "site": "https://knspdinajpur.gov.bd/",
       "groupsNamed": null,
       "location": {
-        "missing": true,
-        "fallbackProposal": {
-          "lon": 88.63462,
-          "lat": 25.62607,
-          "kind": "fallback",
-          "basis": "COD-AB v03 bgd_admincapitals (pinned as codAbBangladesh)",
-          "note": "the district capital point"
-        }
+        "kind": "district",
+        "note": "no source gives the institute's point: it sits at its district's capital, and its card says so",
+        "cite": [
+          {
+            "source": "codab",
+            "at": "bgd_admincapitals.geojson: the district's capital point (a division capital where the district is one)"
+          },
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: the six without a cited point sit at the district"
+          }
+        ]
       }
     },
     {
       "id": "knsp-naogaon",
       "name": {
         "bn": "ক্ষুদ্র নৃ-গোষ্ঠীর সাংস্কৃতিক প্রতিষ্ঠান, নওগাঁ",
-        "approved": false,
+        "approved": true,
         "cite": [
           {
             "source": "mocaInstitutes",
@@ -3634,19 +3641,24 @@
             "source": "mocaInstitutes",
             "at": "MoCA «দপ্তর/সংস্থা» table, row ২২"
           }
-        ]
+        ],
+        "pcode": "BD5064"
       },
       "site": "https://knspnaogaon.gov.bd/",
       "groupsNamed": null,
       "location": {
-        "missing": true,
-        "fallbackProposal": {
-          "lon": 88.94454,
-          "lat": 24.80732,
-          "kind": "fallback",
-          "basis": "COD-AB v03 bgd_admincapitals (pinned as codAbBangladesh)",
-          "note": "the district capital point"
-        }
+        "kind": "district",
+        "note": "no source gives the institute's point: it sits at its district's capital, and its card says so",
+        "cite": [
+          {
+            "source": "codab",
+            "at": "bgd_admincapitals.geojson: the district's capital point (a division capital where the district is one)"
+          },
+          {
+            "source": "user",
+            "at": "decision of 2026-10-08: the six without a cited point sit at the district"
+          }
+        ]
       }
     }
   ],

@@ -15,9 +15,9 @@
 |--------------------------------------------------------------------------
 */
 
-import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=91ad9acb51';
-import { resolver } from '../shared/resolver.js?v=91ad9acb51';
-import { pickerRow } from '../shared/picker.js?v=91ad9acb51';
+import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=525390c4bf';
+import { resolver } from '../shared/resolver.js?v=525390c4bf';
+import { pickerRow } from '../shared/picker.js?v=525390c4bf';
 
 /*
 |--------------------------------------------------------------------------
@@ -496,6 +496,50 @@ for (const [name, spec] of Object.entries(descriptor.sources ?? {})) {
   geometryFiles[name] = await fetchJson(mapFile(spec.geometry.replace(/^\.\//, '')));
 }
 
+/*
+ * SHARED GEOMETRY (opt-in, 2026-10-08; bangladesh-ethnic-groups): a source may
+ * take its geometry from a file every item shares, read once, instead of a
+ * copy in its own folder. `sharedGeometry` names the file; each feature
+ * carries its join key, as a map's own geometry file does. One decoder per
+ * file, here: bangladesh-districts.json, the 64 districts as arcs
+ * (tools/build-bangladesh-districts.mjs) — each feature keyed by `pcode`, each
+ * ring a polygon of its own (the file has no holes), every ring wound the same
+ * way so none is read as a hole. No other map declares it.
+ */
+const SHARED_GEOMETRY = {
+  'bangladesh-districts.json': (file) => {
+    const arcs = file.arcs.map((arc) => {
+      const pts = [];
+      for (let k = 0, x = 0, y = 0; k < arc.length; k += 2) {
+        x += arc[k];
+        y += arc[k + 1];
+        pts.push([+(x * file.quantum).toFixed(4), +(y * file.quantum).toFixed(4)]);
+      }
+      return pts;
+    });
+    const area = (ring) => ring.reduce((s, [x, y], i) => s + (ring[(i + 1) % ring.length][0] - x) * (ring[(i + 1) % ring.length][1] + y), 0);
+    const ringOf = (ids) => {
+      const ring = ids.flatMap((r, j) => (r < 0 ? arcs[~r].slice().reverse() : arcs[r]).slice(j ? 1 : 0));
+      return area(ring) > 0 ? ring.reverse() : ring; // counter-clockwise, as RFC 7946 winds an outer ring
+    };
+    return {
+      type: 'FeatureCollection',
+      features: file.districts.map((d) => {
+        const rings = d.rings.map(ringOf);
+        return { type: 'Feature', properties: { pcode: d.pcode }, geometry: rings.length === 1 ? { type: 'Polygon', coordinates: rings } : { type: 'MultiPolygon', coordinates: rings.map((r) => [r]) } };
+      }),
+    };
+  },
+};
+const sharedGeometry = {};
+for (const [name, spec] of Object.entries(descriptor.sources ?? {})) {
+  if (!spec.sharedGeometry) continue;
+  const decode = SHARED_GEOMETRY[spec.sharedGeometry];
+  if (!decode) throw new Error(`source "${name}": no decoder for shared geometry "${spec.sharedGeometry}"`);
+  sharedGeometry[spec.sharedGeometry] ??= decode(await fetchJson(resolver.url('sharedData', spec.sharedGeometry)));
+  geometryFiles[name] = sharedGeometry[spec.sharedGeometry];
+}
+
 const pageTitle = descriptor.title?.[LANGUAGE] ?? descriptor.title?.bn;
 if (pageTitle) dom.title.textContent = pageTitle;
 document.title = descriptor.title?.en ?? descriptor.title?.bn ?? document.title;
@@ -592,7 +636,7 @@ function deriveAll(name, spec) {
   const fields = stateFields(spec);
 
   // Records joined to a geometry file on a shared key.
-  if (spec.records && spec.geometry) {
+  if (spec.records && (spec.geometry || spec.sharedGeometry)) {
     const table = records[spec.records];
     return {
       type: 'FeatureCollection',
@@ -644,13 +688,13 @@ function pick(row, keys) {
 |--------------------------------------------------------------------------
 */
 const SHELL_MODULES = {
-  tabs: './tabs.js?v=91ad9acb51',
-  chips: './chips.js?v=91ad9acb51',
-  timeline: './timeline.js?v=91ad9acb51',
-  globe: './globe.js?v=91ad9acb51',
-  focus: './focus.js?v=91ad9acb51',
-  legend: './legend.js?v=91ad9acb51',
-  info: './info.js?v=91ad9acb51',
+  tabs: './tabs.js?v=525390c4bf',
+  chips: './chips.js?v=525390c4bf',
+  timeline: './timeline.js?v=525390c4bf',
+  globe: './globe.js?v=525390c4bf',
+  focus: './focus.js?v=525390c4bf',
+  legend: './legend.js?v=525390c4bf',
+  info: './info.js?v=525390c4bf',
 };
 const hiders = []; // (table, key) => true takes a record off the map, the picker and ‹ ›
 // (table, key) => true takes a record off the map only: the picker and ‹ › still list it (the focus module).
@@ -1220,7 +1264,7 @@ function doFitBounds(action, { table, key, feature }) {
 function geometryOf(table, key) {
   const parts = [];
   for (const [name, spec] of Object.entries(sourceSpecs)) {
-    if (spec.records !== table || !spec.geometry) continue;
+    if (spec.records !== table || !(spec.geometry || spec.sharedGeometry)) continue;
     for (const candidate of derive(name, spec).features) {
       if (candidate.properties.key === key) parts.push(candidate.geometry.coordinates);
     }

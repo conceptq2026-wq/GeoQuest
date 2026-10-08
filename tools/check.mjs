@@ -694,8 +694,8 @@ async function waitCard(page) {
 
 /*
  * View tabs (the rivers map, M3): each picker group's first record in every tab past the first — framed there,
- * the selection kept — and a tap on a tab a selection disables: nothing changes, and ⓘ's row says why.
- * Every tab a 44 px tap zone.
+ * the selection kept — and, where a view declares enabledBy, a tap on a tab a selection disables: nothing
+ * changes, and ⓘ's row says why. Every tab a 44 px tap zone.
  */
 async function viewTabs(page, shoot, summary, fail) {
   const tabs = await page.evaluate(`[...document.querySelectorAll('.map-tab')].map((b) => [b.dataset.tab, b.textContent.trim()])`);
@@ -748,7 +748,10 @@ async function viewTabs(page, shoot, summary, fail) {
     tapped = `${label}: tapped, nothing changed, «${after.note}»`;
     break;
   }
-  if (!tapped) fail('view tabs: no selection disables a tab, so none was tapped');
+  // Only a map whose views declare enabledBy (the rivers map) has a tab a selection disables; views that only hide
+  // or bound (bangladesh-ethnic-groups) have none to tap.
+  const canDisable = await page.evaluate(`Object.values(window.__shell.descriptor.tabs.views ?? {}).some((v) => v.enabledBy)`);
+  if (!tapped && canDisable) fail('view tabs: no selection disables a tab, so none was tapped');
   await page.evaluate(`window.__shell.deselect()`);
   summary.push(`view tabs ${heights.join('/')} px: ${framed}/${firsts.length * (tabs.length - 1)} framed (${zooms.join(', ')}); disabled ${tapped ?? 'none'}`);
 }

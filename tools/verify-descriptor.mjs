@@ -37,6 +37,8 @@
 //                org-members.seed.json, pinned; its sources and quotes, by tools/verify.mjs
 //   bangladesh-maritime-boundary  docs/maps/bangladesh-maritime-boundary/ is a fresh build of
 //                                 data-sources/bangladesh-maritime-boundary/, pinned; its sources and quotes, by tools/verify.mjs
+//   bangladesh-ethnic-groups  work in progress: docs/maps/bangladesh-ethnic-groups/ is a fresh build of
+//                             data-sources/bangladesh-ethnic-groups/, pinned; its sources and anchors, by tools/verify.mjs
 //
 // A map under docs/maps/ or a diagram under docs/diagrams/ with no section
 // here fails, by its id: a new one is written into this file with its own
@@ -118,6 +120,8 @@ const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa
 const MARITIME_ZONES_SEED_SHA256 = '6b0f67dbac0b0fa97037d86c7f94d3f07a73bd57a42d7b0986e8b3dc9fdab689';
 // The bangladesh-maritime-boundary map: the editor's seed, pinned (live 2026-10-08; its 35 step-2 strings approved, BD-6; #30 reworded by the user the same day).
 const BANGLADESH_MARITIME_SEED_SHA256 = 'dcc627421f99b20faeffe17006d9348f181b9663c058af66f37ae6c572e8ebbd';
+// The bangladesh-ethnic-groups map (work in progress, ETH-3, 2026-10-08): its seed, pinned.
+const BANGLADESH_ETHNIC_SEED_SHA256 = '7e0b8bf43eec05b76cc41e08f74d90aaea617938ea6e80d60026da61a26babf7';
 // The org-members map: the editor's seed, pinned (live 2026-10-07).
 const ORG_MEMBERS_SEED_SHA256 = '6c09b4d8a43f1115c633ce14e860569cea611536fece7237822da5ae1ae5e262';
 // The bangladesh-rivers diagram: the editor's seed, pinned. Its geometry is pinned in tools/bangladesh-rivers-pins.json.
@@ -226,6 +230,16 @@ function valueOfSpec(spec, row) {
   return null;
 }
 
+// A source's sharedGeometry (opt-in, 2026-10-08; bangladesh-ethnic-groups): a file under docs/shared/ that the map
+// shell decodes into features (app.js, SHARED_GEOMETRY). Here, the keys each feature carries, as the shell gives them.
+const SHARED_GEOMETRY_KEYS = {
+  'bangladesh-districts.json': { joinField: 'pcode', keys: (file) => file.districts.map((d) => d.pcode) },
+};
+function sharedGeometryKeys(file) {
+  const spec = SHARED_GEOMETRY_KEYS[file];
+  return { features: spec ? spec.keys(readJson(path.join(ROOT, 'docs/shared', file))).map((k) => ({ properties: { [spec.joinField]: k } })) : [] };
+}
+
 function checkMap({ id, expectedPending, dir = path.join(MAPS_DIR, id) }) {
   CHECKED.add(id);
   const descriptor = readJson(path.join(dir, 'descriptor.json'));
@@ -300,9 +314,10 @@ function checkMap({ id, expectedPending, dir = path.join(MAPS_DIR, id) }) {
   // which is what lets one record have geometry in one source and none in
   // another without a special case anywhere.
   for (const [name, spec] of Object.entries(descriptor.sources)) {
-    if (!spec.records || !spec.geometry) continue;
+    if (!spec.records || !(spec.geometry || spec.sharedGeometry)) continue;
     const table = tables[spec.records];
-    const fc = readJson(path.join(dir, path.basename(spec.geometry)));
+    if (spec.sharedGeometry) check(!spec.geometry && spec.sharedGeometry in SHARED_GEOMETRY_KEYS && spec.joinField === SHARED_GEOMETRY_KEYS[spec.sharedGeometry].joinField, `source "${name}": sharedGeometry "${spec.sharedGeometry}" is a shared file the shell decodes, joined on ${SHARED_GEOMETRY_KEYS[spec.sharedGeometry]?.joinField}, with no geometry of its own`);
+    const fc = spec.sharedGeometry ? sharedGeometryKeys(spec.sharedGeometry) : readJson(path.join(dir, path.basename(spec.geometry)));
     const present = new Set(fc.features.map((f) => f.properties?.[spec.joinField]));
     const carries = (key) =>
       !spec.expectGeometry || Object.entries(spec.expectGeometry).every(([f, v]) => table[key][f] === v);
@@ -2743,6 +2758,43 @@ console.log('\n\n============ bangladesh-maritime-boundary ============');
   // The sea area's name is the last symbol layer: placed first, it wins every collision (step 1b).
   const symbols = descriptor.layers.filter((l) => l.type === 'symbol');
   check(symbols.at(-1)?.id === 'area-label', `the sea area's name is the map's last symbol layer, so it is placed first (${symbols.map((l) => l.id).join(', ')})`);
+  checkMap({ id, expectedPending: 0 });
+}
+
+/*
+|--------------------------------------------------------------------------
+| BANGLADESH-ETHNIC-GROUPS — work in progress (ETH-3, 2026-10-08), on the
+| preview's home page from tools/wip.json: the seed is the pinned one, docs/
+| holds exactly what a fresh build writes, and the generic map checks read it.
+| The districts are drawn from the shared district file (sharedGeometry), never
+| copied. The seed's sources, anchors and strings are held by tools/verify.mjs;
+| its unapproved strings only warn while the map is work in progress.
+|--------------------------------------------------------------------------
+*/
+console.log('\n\n============ bangladesh-ethnic-groups (work in progress) ============');
+{
+  const id = 'bangladesh-ethnic-groups';
+  const seedFile = path.join(ROOT, 'data-sources', id, `${id}.seed.json`);
+  const seedHash = crypto.createHash('sha256').update(fs.readFileSync(seedFile)).digest('hex');
+  check(seedHash === BANGLADESH_ETHNIC_SEED_SHA256, `the seed is the pinned one: SHA-256 ${seedHash.slice(0, 12)}… (pinned ${BANGLADESH_ETHNIC_SEED_SHA256.slice(0, 12)}…)`);
+  const seed = readJson(seedFile);
+  const dir = path.join(MAPS_DIR, id);
+  const fresh = path.join(os.tmpdir(), 'geoquest-verify', id);
+  fs.rmSync(fresh, { recursive: true, force: true });
+  execFileSync(process.execPath, [path.join(HERE, `build-${id}.mjs`), fresh], { stdio: 'pipe' });
+  const built = fs.readdirSync(fresh).sort();
+  const differ = built.filter((name) => !fs.existsSync(path.join(dir, name)) || !fs.readFileSync(path.join(dir, name)).equals(fs.readFileSync(path.join(fresh, name))));
+  check(differ.length === 0 && fs.readdirSync(dir).sort().join() === built.join(), `docs/maps/${id}/ is a fresh build, byte for byte (${built.join(', ')})${differ.length ? ` — differs: ${differ.join(', ')}` : ''}`);
+  const descriptor = readJson(path.join(dir, 'descriptor.json'));
+  const groups = readJson(path.join(dir, 'groups.json'));
+  const districts = readJson(path.join(dir, 'districts.json'));
+  const institutes = readJson(path.join(dir, 'institutes.json'));
+  check(descriptor.section === 'bangladesh' && descriptor.basemap === 'bangladesh-wide' && descriptor.title?.bn === seed.title.bn && Boolean(descriptor.constraints?.maxBounds), `descriptor: section ${descriptor.section}, basemap ${descriptor.basemap}, Bangladesh's bounds, title «${descriptor.title?.bn}», the seed's`);
+  check(JSON.stringify(Object.keys(groups)) === JSON.stringify(seed.groups.map((g) => g.id)) && seed.groups.every((g, i) => i === 0 || seed.groups[i - 1].population.value >= g.population.value), `the picker's ${Object.keys(groups).length} groups, largest first`);
+  check(Object.keys(districts).length === 64 && Object.values(districts).filter((d) => d.emptyBn).length === Object.values(seed.districtGroups).filter((g) => !g.length).length, `all 64 districts, ${Object.values(districts).filter((d) => d.emptyBn).length} of them with the empty line`);
+  check(Object.keys(institutes).length === 10 && Object.values(institutes).filter((i) => i.locationBn).length === seed.institutes.filter((i) => i.location.kind === 'district').length, `the ministry's 10 institutes, ${Object.values(institutes).filter((i) => i.locationBn).length} at their district with the line that says so`);
+  const viaShared = Object.entries(descriptor.sources).filter(([, s]) => s.sharedGeometry).map(([k]) => k);
+  check(viaShared.length === 2 && !fs.readdirSync(dir).some((f) => /\.geojson$/.test(f)), `the districts are drawn from the shared file (${viaShared.join(', ')}), with no geometry copied into the folder`);
   checkMap({ id, expectedPending: 0 });
 }
 

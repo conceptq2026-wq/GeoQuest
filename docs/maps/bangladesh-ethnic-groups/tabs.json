@@ -1,0 +1,14 @@
+{
+  "groups": {
+    "titleBn": "গোষ্ঠী",
+    "placeholderBn": "গোষ্ঠী বেছে নিন"
+  },
+  "districts": {
+    "titleBn": "জেলা",
+    "placeholderBn": "জেলা বেছে নিন"
+  },
+  "institutes": {
+    "titleBn": "প্রতিষ্ঠান",
+    "placeholderBn": "প্রতিষ্ঠান বেছে নিন"
+  }
+}

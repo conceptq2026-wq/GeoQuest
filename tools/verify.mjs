@@ -1548,8 +1548,9 @@ console.log('\n---- org-members: seed ----');
   check(!wipItems.some((w) => w.id === OM) && registry.maps.some((e) => e.id === OM && e.section === 'international') && fs.existsSync(path.join(ROOT, 'docs/maps', OM, 'descriptor.json')), `${OM}: live — in registry.json under International, its folder under docs/maps/, no longer in tools/wip.json`);
 }
 
-// ---- bangladesh-ethnic-groups (seed draft, ETH-2, 2026-10-08): the seed only ------------------------
-// Nothing is built yet and the map is in neither the registry nor tools/wip.json. The seed holds the 19 groups
+// ---- bangladesh-ethnic-groups (work in progress, ETH-3, 2026-10-08): the seed -----------------------
+// Built into docs/maps/ and on the preview's home page from tools/wip.json, not in the registry; its built files
+// are held to a fresh build by tools/verify-descriptor.mjs. The seed holds the 19 groups
 // the user chose, each district as a COD-AB pcode of docs/shared/bangladesh-districts.json, and a cited source
 // with a URL for every fact; a quote is its place in the cached text (tools/.cache/ethnic/), re-sliced and
 // hashed here when the cache is present. Unapproved strings only warn, as for work in progress.
@@ -1605,8 +1606,8 @@ console.log('\n---- bangladesh-ethnic-groups: seed (draft) ----');
   };
   walk(seed, 'seed', null, null);
   check(unflagged.length === 0, `${EG}: every Bengali string carries its approval flag${unflagged.length ? ` — not: ${unflagged.slice(0, 3).join(', ')}` : ''}`);
-  if (pending) console.log(`warn ${EG} (seed draft): ${pending} string(s) await the user's approval`);
-  check(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(seedText) && !registry.maps.some((e) => e.id === EG) && !wipItems.some((w) => w.id === EG) && !fs.existsSync(path.join(SERVED, 'maps', EG)), `${EG}: no e-mail address in the seed; nothing built, not in the registry or tools/wip.json`);
+  if (pending) console.log(`warn ${EG} (work in progress): ${pending} string(s) await the user's approval`);
+  check(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(seedText) && !registry.maps.some((e) => e.id === EG) && wipItems.some((w) => w.id === EG && w.kind === 'map' && w.section === 'bangladesh') && fs.existsSync(path.join(SERVED, 'maps', EG, 'descriptor.json')), `${EG}: no e-mail address in the seed; work in progress — in tools/wip.json under Bangladesh, built into docs/maps/, not in the registry`);
 }
 
 // ---- no unapproved string ships (the user's rule, 2026-10-08, BD-6) -------------------------------

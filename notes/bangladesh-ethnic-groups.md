@@ -1,17 +1,18 @@
-# bangladesh-ethnic-groups — «বাংলাদেশের ক্ষুদ্র নৃ-গোষ্ঠী» (seed draft)
+# bangladesh-ethnic-groups — «বাংলাদেশের ক্ষুদ্র নৃ-গোষ্ঠী»
 
 Read it with `CLAUDE.md`, whose rules and verification budget apply. A map under বাংলাদেশ.
 
-**Status: a seed draft (ETH-2, 2026-10-08).**
-- Nothing is built.
-- Nothing is under `docs/`, and `docs/registry.json` does not list it.
-- It is not in `tools/wip.json`: the user said so for this step, though CLAUDE.md puts a new map on the
-  preview home page first (an open decision).
-- The seed is `data-sources/bangladesh-ethnic-groups/bangladesh-ethnic-groups.seed.json`. `tools/verify.mjs`
-  checks it (section "bangladesh-ethnic-groups: seed (draft)").
+**Status: work in progress (ETH-3, 2026-10-08), on the local preview only.**
+- In `tools/wip.json` under Bangladesh, so it is on the preview's home page; not in `docs/registry.json`.
+- Built into `docs/maps/bangladesh-ethnic-groups/` by `tools/build-bangladesh-ethnic-groups.mjs` from the
+  seed, `data-sources/bangladesh-ethnic-groups/bangladesh-ethnic-groups.seed.json`. `tools/verify-descriptor.mjs`
+  pins the seed and holds the folder to a fresh build; `tools/verify.mjs` holds the seed's sources and anchors.
+- ETH-2 (2026-10-08) wrote the seed only, and kept it out of `tools/wip.json` by the user's instruction for
+  that step. ETH-3 added it there before the build.
 - The research behind it is out of git, in `tools/.cache/ethnic/`:
   - ETH-1: `investigation.md`;
-  - ETH-2: `eth2/` (the assembly scripts), `names/`, `facts/`, `institutes/` and `strings-review.md`.
+  - ETH-2: `eth2/` (the assembly scripts), `names/`, `facts/`, `institutes/` and `strings-review.md`;
+  - ETH-3: `eth3/` (the review applied, the source checks, the names image, the contact sheet's script).
 
 ## The user's decisions (2026-10-08)
 
@@ -207,13 +208,13 @@ The 10 are on the Ministry of Cultural Affairs' list:
 - All four lie inside their stated upazila in COD-AB.
 
 **Missing, 6:** Birishiri, Bandarban, the Manipuri Lalitkala Academy, Haluaghat, Dinajpur and Naogaon.
-- The proposed fallback is COD-AB's upazila or district capital point, marked as a fallback. It is not used
-  until the user decides.
+- The user decided (ETH-3, 2026-10-08): they sit at their district's capital in COD-AB, and their card says
+  so (#23).
 - Bandarban's own map embed points to a template default in Chattogram, so it was rejected.
 
 **Haluaghat's district:** no official page states it.
-- The candidate is Mymensingh: COD-AB has one Haluaghat, and its upazila portal sits under mymensingh.gov.bd.
-  That is an inference.
+- COD-AB has one Haluaghat, in Mymensingh, and its upazila portal sits under mymensingh.gov.bd.
+- The user takes the district from the COD-AB upazila record (ETH-3, 2026-10-08): Mymensingh.
 
 **Groups an institute's own page names:**
 - Rangamati: 12 groups;
@@ -224,49 +225,99 @@ The 10 are on the Ministry of Cultural Affairs' list:
 So 7 of the 19 groups show an institute on their card: চাকমা, মারমা, ত্রিপুরা, ম্রো, তঞ্চঙ্গা and বম
 (Rangamati, Bandarban), and মণিপুরী (Lalitkala).
 
-## Tabs (proposed), the tab row on top
+## The user's review (2026-10-08, ETH-3), by ETH-2 number
 
-- **«গোষ্ঠী»:** the picker lists the 19 groups.
-  - Choosing one colours its districts and opens its card:
-    - name;
-    - population (2022);
-    - main districts, with counts;
-    - zone, with the share in the three hill districts;
-    - language, religion, festivals and culture;
-    - the institutes that name it.
-  - A tap on a coloured district opens that group's card.
-- **«জেলা»:** the picker lists the 64 districts.
-  - Choosing one, or tapping it, outlines it and opens a card listing the groups coloured there, each a tap
-    to its group card.
-  - An empty district's card is the one line «মানচিত্রের ১৯টি গোষ্ঠীর কোনোটির জন্য এই জেলা রং করা
-    হয়নি।».
-- **«প্রতিষ্ঠান»:** the picker lists the 10 institutes, drawn as points.
-  - Choosing or tapping one opens its card: name, district, and the groups its own page names (or none).
-  - The 6 without a cited point wait for the user's decision on a fallback.
+Numbers are those of `tools/.cache/ethnic/strings-review.md` (ETH-2). Each edited string keeps its source; each
+new wording was checked against the cached passage it cites.
 
-## ⓘ (drafts, in the seed)
+- **Edited and approved** (the user's wording):
+  - #19 (`strings.districtCard.groups`): «এই জেলায় রং করা গোষ্ঠী» → «এই জেলায় যেসব গোষ্ঠীর প্রধান বসতি»
+  - #22 (`strings.instituteCard.groupsNamed`): «প্রতিষ্ঠানের পাতায় নাম থাকা গোষ্ঠী» → «প্রতিষ্ঠানের নিজের পাতায় উল্লেখিত গোষ্ঠী»
+  - #28 (`info[2]`): «বড় থেকে ছোট ক্রমে যেসব জেলা মিলে একটি গোষ্ঠীর ৮০% মানুষ ধরে, তার মধ্যে অন্তত ১,০০০ জন থাকা জেলাগুলো রং করা।» → «যে জেলাগুলোতে একটি গোষ্ঠীর মোট মানুষের ৮০% থাকে (সবচেয়ে বেশি থেকে শুরু করে), তার মধ্যে যেখানে অন্তত ১,০০০ জন আছে, সেগুলো রং করা।»
+  - #29 (`info[3]`): «যে গোষ্ঠীর অর্ধেক বা তার বেশি মানুষ রাঙ্গামাটি, খাগড়াছড়ি ও বান্দরবানে থাকে, তাকে পাহাড়ি বলা হয়েছে; বাকিগুলো সমতলের।» → «যে গোষ্ঠীর অর্ধেক বা তার বেশি মানুষ রাঙ্গামাটি, খাগড়াছড়ি ও বান্দরবানে থাকে, তাকে এই মানচিত্রে পাহাড়ি ধরা হয়েছে; বাকিগুলো সমতলের।»
+  - #45 (`khasia.name`): «খাসিয়া/ খাসি» → «খাসিয়া/খাসি»
+  - #63 (`marma.religion`): «বৌদ্ধ; পাশাপাশি দেবতা ও অপদেবতাতেও বিশ্বাস রাখে» → «বৌদ্ধ; পাশাপাশি নানা দেবতাতেও বিশ্বাস রাখে»
+  - #65 (`tripura.language`): «চীনা-তিব্বতি গোত্রের ভাষা; ভারতে একে ককবরক বলা হয়» → «চীনা-তিব্বতি গোত্রের ভাষা»
+  - #72 (`oraon.religion`): «জড়োপাসক; তাদের ভগবান ধরমেশ বা ধরমী» → «নিজস্ব ঐতিহ্যবাহী ধর্ম; উপাস্য ধরমেশ বা ধরমী»
+  - #75 (`garo.religion`): «শতকরা ৯৯ জনই খ্রিস্টধর্মের অনুসারী» → «প্রায় সবাই খ্রিস্টধর্মের অনুসারী»
+  - #82 (`tonchonga.religion`): «প্রধানত বৌদ্ধ; অনেকের মধ্যে গাঙ পূজা ও ভূত পূজার মতো দেবপূজাও প্রচলিত» → «প্রধানত বৌদ্ধ; পাশাপাশি গাঙ পূজার মতো ঐতিহ্যবাহী পূজাও প্রচলিত»
+  - #90 (`koch.religion`): «দুর্গা, কালী প্রভৃতির পূজা করে, সঙ্গে নিজেদের আদি দেবদেবীরও উপাসনা» → «দুর্গা, কালী প্রভৃতির পূজা করে, সঙ্গে নিজেদের আদি দেবদেবীরও উপাসনা করে»
+  - #92 (`bom.religion`): «২০০১ সালের মধ্যে প্রায় সবাই খ্রিস্টান হয়েছে» → «প্রায় সবাই খ্রিস্টধর্মের অনুসারী (২০০১ সালের তথ্য)»
+  - #94 (`khasia.religion`): «বেশির ভাগই খ্রিস্টান (শতকরা ৮০-৯০ জন)» → «বেশির ভাগই খ্রিস্টধর্মের অনুসারী»
+  - #95 (`bagdi.language`): «নিজেদের ভাষা ব্যবহার করে, তবে তা প্রায় বাংলার কাছাকাছি» → «নিজেদের ভাষা আছে, যা বাংলার খুব কাছাকাছি»
+  - #102 (`hajong.festivals`): «বারোয়ারি দুর্গাপুজা; কালী পূজার সময় উৎসব» → «বারোয়ারি দুর্গাপূজা; কালীপূজার সময়েও উৎসব হয়»
+  - #45's census form, «খাসিয়া/ খাসি», is recorded in its citation; the map follows the gazette's.
+  - #72: the source (Banglapedia, «ওরাওঁ») calls the Oraons «জড়োপাসক» and names their creator ধরমেশ or ধরমী.
+    «নিজস্ব ঐতিহ্যবাহী ধর্ম» restates that without the word.
+- **Removed:** #87 (`mahato.language`, «শাদ্রি ভাষায় কথা বলে»), #88 (`malo.language`, «শাদ্রি ভাষায় কথা বলে»). «শাদ্রি» was a match by name only, so the
+  মাহাতো and মালো cards have no language line.
+- **Source checks, proposed and still awaiting the user** (`approved: false`):
+  - #67 (`tripura.festivals`): «প্রধান উৎসব বৈসাবী» unchanged. The Khagrachhari portal
+    («ত্রিপুরা») names «বৈসাবী» as the Tripuras' own main festival, and spells it so.
+  - #79 (`mro.religion`): «ধর্মপ্রাণবাদী; তাদের দেবতা তিনজন» → «তিন দেবতায় বিশ্বাস: তুরাই (সৃষ্টিকর্তা), সাংতুং (পাহাড়ের দেবতা) ও ওরেং (নদীর দেবী)».
+    - Banglapedia («ম্রো», ¶8) prints «ধর্মপ্রাণবাদী» (no English article exists; checked 2026-10-08).
+    - The new line avoids the word and names the three deities the same sentence gives.
+  - #80 (`mro.festivals`): «গো-হত্যা উৎসব» → «কুমুলং উৎসব, যাতে গরু বধ করা হয়».
+    - The Rangamati portal gives no name. Banglapedia's «ম্রো» names it «কুমুলং», in a photograph's caption.
+    - The line now cites Banglapedia, the one source that gives the name.
+  - #83 (`tonchonga.festivals`): «প্রধান সামাজিক উৎসব বিজু-সাংগ্রাই-বৈসুক» → «চাকমা, মারমা ও ত্রিপুরাদের সঙ্গে অভিন্ন প্রধান সামাজিক উৎসব বিজু-সাংগ্রাই-বৈসুক».
+    The Rangamati portal names বিজু-সাংগ্রাই-বৈসুক as the shared main festival of the চাকমা, মারমা, ত্রিপুরা
+    and তঞ্চঙ্গ্যা.
+  - #84 (`monipuri.language`): «মাতৃভাষা মেইতেই লন (মণিপুরী), তিব্বতি-বর্মি উপ-পরিবারের» unchanged.
+    - No official page cached or found, and no Banglapedia article, says the census «মণিপুরী» covers more
+      than one language community.
+    - Banglapedia's «মণিপুরী» names Meitei as the mother tongue and the Meitei Pangon (Muslim Manipuris)
+      within it.
+    - The Bishnupriya appear only in non-official pages (a teachers' portal, newspapers); Banglapedia has no
+      article on them (404, 2026-10-08).
+  - #97 (`rakhain.language`): «নিজেদের মধ্যে নিজস্ব আরাকাইন ভাষায় কথা বলে» unchanged. The Barguna portal spells
+    «আরাকাইন».
+- **The ten unverified names** (#32–#34, #36–#41, #43) stay `approved: false` until the user confirms them
+  against `tools/.cache/ethnic/names-check.png`. It shows each label cropped from the BBS page (PDF pp. 52–53,
+  printed ৩৩–৩৪) beside the seed's spelling. The crops' places come from the PDF's own glyph runs.
+- **Every other string is approved.** Two new ones await the user: the ⓘ headings «সূত্র» and «টীকা», which
+  the map shows.
 
-The four lines cover:
-- which groups the map shows;
-- the census source;
-- the colouring rule;
-- the hill rule.
+## The map as built (ETH-3, 2026-10-08)
 
-The sources list names BBS, the district portals, the institutes' pages, Banglapedia where used, COD-AB and
-OpenStreetMap.
+- **Basemap and bounds:** `bangladesh-wide`, Bangladesh only, held by `constraints.maxBounds` [86, 19, 95,
+  28]; 14 px text at least; frames clear of the corner controls.
+- **Districts:** drawn from `docs/shared/bangladesh-districts.json` through the shell's new opt-in source term
+  `sharedGeometry` (`notes/shell.md`). Nothing of the file is copied into the map's folder.
+  - Two sources read it: `districtFill`, the chosen group's districts in one colour, and `districtTap`, the
+    «জেলা» tab's outline and tap targets.
+- **Tabs** (view tabs), on top, with the ‹ picker › row under them and ⓘ under that. The picker lists each
+  tab's own table (`byTab`, as org-members does).
+  - **«গোষ্ঠী»:** the 19 groups, largest first. Choosing one colours its districts and frames them.
+    - Its card shows population, main districts with counts, অঞ্চল (পাহাড়ি or সমতল, with the hill share),
+      language, religion, festivals, and the institutes whose own page names it, each a tap to that
+      institute.
+    - A field the seed omits is not shown.
+  - **«জেলা»:** the 64 districts, in Bengali order. Choosing or tapping one outlines it.
+    - Its card lists the groups whose main settlement it is, each a tap to its group.
+    - An empty district's card gives #20.
+  - **«প্রতিষ্ঠান»:** the 10 institutes as points.
+    - The 4 with a cited point sit there.
+    - The 6 others sit at their district's capital: COD-AB's `bgd_admincapitals` (a division capital where
+      the district is one; Mymensingh for Haluaghat, from COD-AB's upazila record).
+    - Their card carries #23 under the title.
+    - Each card shows the name, the district, and the groups the institute's own page names.
+- **Each tab's targets only:**
+  - «গোষ্ঠী» hides the district targets and the institutes;
+  - «জেলা» hides the institutes;
+  - «প্রতিষ্ঠান» hides the districts.
+- **ⓘ:**
+  - Notes: lines #26–#29.
+  - Sources: the census (the National Report and the District Reports), the 2019 gazette, the Ministry of
+    Cultural Affairs, each government portal a shown fact cites, and Banglapedia (as a source only, never in
+    card text).
+  - Credits: COD-AB (CC BY-IGO 3.0) on the district sources, and OpenStreetMap (ODbL) on the institutes.
 
 ## Strings
 
-102, all `approved: false`, numbered in `tools/.cache/ethnic/strings-review.md`:
-- the title;
-- 3 tab names and 3 picker placeholders;
-- 7 group-card labels;
-- 2 zone values;
-- 2 templates;
-- 2 district-card lines;
-- 3 institute-card lines;
-- 2 legend lines;
-- 4 ⓘ lines;
-- 19 group names;
-- 10 institute names;
-- 44 card facts.
+102 in ETH-2's numbering, less the two removed (#87, #88), plus the two ⓘ headings: 102 in the seed.
+- **Approved (2026-10-08, the user's review): 84.**
+- **Awaiting the user: 18.** Six source checks (#67, #79, #80, #83, #84, #97), the ten unverified names, and
+  the two ⓘ headings.
+- They show on the local preview while the map is work in progress. `tools/verify.mjs`'s rule (a) warns
+  only, and fails a live item that serves one.
