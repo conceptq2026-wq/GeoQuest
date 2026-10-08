@@ -1668,7 +1668,7 @@
     "rankMeans": "১ = সবচেয়ে বেশি মাথাপিছু জিডিপি (জাতিসংঘের সদস্য দেশের মধ্যে); মান অনুযায়ী সাজানো",
     "basis": "year",
     "verified": "৮ অক্টোবর ২০২৬",
-    "url": "https://www.imf.org/en/publications/weo",
+    "url": "https://data.worldbank.org/indicator/NY.GDP.PCAP.CD",
     "change": 0,
     "goodIs": "up",
     "s1": [
@@ -2115,7 +2115,7 @@
     "note": "ঋণাত্মক মান মানে জনসংখ্যা কমছে।",
     "basis": "year",
     "verified": "৮ অক্টোবর ২০২৬",
-    "url": "https://www.un.org/development/desa/pd/world-population-prospects-2024",
+    "url": "https://population.un.org/wpp/",
     "change": 0,
     "s1": [
       "AFG",
@@ -2351,7 +2351,7 @@
     "note": "বাংলাদেশ পরিসংখ্যান ব্যুরোর নিজস্ব হিসাব এর থেকে আলাদা হতে পারে।",
     "basis": "year",
     "verified": "৮ অক্টোবর ২০২৬",
-    "url": "https://www.un.org/development/desa/pd/world-population-prospects-2024",
+    "url": "https://population.un.org/wpp/",
     "change": 2,
     "goodIs": "up",
     "s1": [
@@ -2584,7 +2584,7 @@
     "bdLabel": "ওআইসি সদস্যদের মধ্যে",
     "basis": "year",
     "verified": "৮ অক্টোবর ২০২৬",
-    "url": "https://www.un.org/development/desa/pd/world-population-prospects-2024",
+    "url": "https://population.un.org/wpp/",
     "change": 0,
     "s1": [
       "BGD",

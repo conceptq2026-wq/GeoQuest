@@ -16362,7 +16362,7 @@
           }
         ]
       },
-      "pageUrl": "https://www.imf.org/en/publications/weo",
+      "pageUrl": "https://data.worldbank.org/indicator/NY.GDP.PCAP.CD",
       "read": {
         "readers": 2,
         "agreed": true,
@@ -19099,7 +19099,7 @@
           }
         ]
       },
-      "pageUrl": null,
+      "pageUrl": "https://population.un.org/wpp/",
       "read": {
         "readers": 2,
         "agreed": true,
@@ -21124,7 +21124,7 @@
           "female": 76.9434
         }
       },
-      "pageUrl": null,
+      "pageUrl": "https://population.un.org/wpp/",
       "read": {
         "readers": 2,
         "agreed": true,
@@ -21777,7 +21777,7 @@
           }
         ]
       },
-      "pageUrl": null,
+      "pageUrl": "https://population.un.org/wpp/",
       "read": {
         "readers": 2,
         "agreed": true,
