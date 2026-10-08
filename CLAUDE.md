@@ -422,7 +422,7 @@ to a fresh build, in `tools/verify-descriptor.mjs`; each organisation's page and
 `tools/sources.json` (`orgMembers`); every member, status and stated count
 cites an offset into that text with the quote's SHA-256, checked in
 `tools/verify.mjs`. Bengali names cite the user's decision of 2026-10-06;
-no book is a source. bangladesh-ethnic-groups (work in progress, 2026-10-08): its seed by SHA-256 and its built
+no book is a source. bangladesh-ethnic-groups (live 2026-10-08): its seed by SHA-256 and its built
 files held to a fresh build, in `tools/verify-descriptor.mjs`; every card fact's quote anchor re-hashed against
 its cached text (`tools/.cache/ethnic/`) in `tools/verify.mjs`.
 
@@ -446,9 +446,10 @@ State which kind a task is when reporting it.
 
 ## Current state
 
-- Sixteen maps. Bangladesh: `ancient-janapadas`, `liberation-war-1971`,
-  `bangladesh-rivers-map` («নদী ২») and `bangladesh-maritime-boundary`
-  (`notes/bangladesh-maritime-boundary.md`). International: `straits`,
+- Seventeen maps. Bangladesh: `ancient-janapadas`, `liberation-war-1971`,
+  `bangladesh-rivers-map` («নদী ২»), `bangladesh-maritime-boundary`
+  (`notes/bangladesh-maritime-boundary.md`) and `bangladesh-ethnic-groups`
+  (`notes/bangladesh-ethnic-groups.md`). International: `straits`,
   `border-lines`, `org-headquarters`, `environment-treaties`,
   `world-revolutions` (`notes/world-revolutions.md`) and `org-members`
   (`notes/org-members.md`). Geography:
@@ -478,14 +479,14 @@ State which kind a task is when reporting it.
   ITLOS and PCA lines, St Martin's, the 2015 baselines and the lines'
   junction, card text from official sources only (the user's rule,
   2026-10-07).
-- Work in progress (`tools/wip.json`): `bangladesh-ethnic-groups` «বাংলাদেশের ক্ষুদ্র নৃ-গোষ্ঠী», a map
-  under বাংলাদেশ:
-  - built into `docs/maps/`, on the local preview's home page only;
+- `bangladesh-ethnic-groups` «বাংলাদেশের ক্ষুদ্র নৃ-গোষ্ঠী» went live on the home page on 2026-10-08, under
+  বাংলাদেশ, with no caption, after ETH-1–5 and GL-ETH:
   - 19 groups from Census 2022, in three tabs: «পাহাড়ি» (6), «সমতল» (13) and «প্রতিষ্ঠান» (10 numbered
     institutes);
   - its districts drawn from the shared district file through the shell's opt-in `sharedGeometry`
     (2026-10-08, `notes/shell.md`);
-  - all 97 strings approved (2026-10-08, `notes/bangladesh-ethnic-groups.md`).
+  - all 96 strings approved (2026-10-08, `notes/bangladesh-ethnic-groups.md`).
+- Work in progress (`tools/wip.json`): none.
 
 ## Index — notes, read only when working on that item
 

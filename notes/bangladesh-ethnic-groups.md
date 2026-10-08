@@ -2,8 +2,11 @@
 
 Read it with `CLAUDE.md`, whose rules and verification budget apply. A map under বাংলাদেশ.
 
-**Status: work in progress (ETH-3, 2026-10-08), on the local preview only.**
-- In `tools/wip.json` under Bangladesh, so it is on the preview's home page; not in `docs/registry.json`.
+**Status: live since 2026-10-08** (the user's go-ahead, step GL-ETH).
+- In `docs/registry.json` under Bangladesh, with its descriptor's titles and no caption (`tools/home-cards.json`,
+  `kind` only); out of `tools/wip.json`. Until then it was work in progress, on the local preview only.
+- History: 2026-10-08, live after ETH-1–5 and GL-ETH. GL-ETH removed #10 «অঞ্চল», put the chosen disc on top, and
+  wrote down the shell's nearest-centre tap rule.
 - Built into `docs/maps/bangladesh-ethnic-groups/` by `tools/build-bangladesh-ethnic-groups.mjs` from the
   seed, `data-sources/bangladesh-ethnic-groups/bangladesh-ethnic-groups.seed.json`. `tools/verify-descriptor.mjs`
   pins the seed and holds the folder to a fresh build; `tools/verify.mjs` holds the seed's sources and anchors.
@@ -403,10 +406,21 @@ new wording was checked against the cached passage it cites.
 - **Checks:** `tools/check.mjs` now steps the picker in every tab whenever the picker lists a table of its own
   per tab (`byTab`), as it did for tabs that divide one table. No new shell term.
 
+## Go-live fixes (GL-ETH, 2026-10-08), the user's decisions
+
+- **#10 «অঞ্চল» removed** from the seed. It was unused since ETH-5 took the zone row off the card.
+- **Taps on the institutes' discs.** A tap opens the disc whose centre is nearest the tap point, provided that
+  centre is within the 22 px tap radius; a tap outside every target does nothing.
+  - The shell already does this on every map: `nearest()` in `app.js` over the invisible 44 px hit discs
+    (`notes/shell.md`). So no opt-in term was added; a `tapNearest` term would change nothing.
+  - The chosen disc and its number are drawn above the rest by MapLibre's own sort keys, in this map's layers.
+  - `tools/check.mjs` taps the facing edges of discs ৮ and ১, and every other overlapping pair, at 390 and 320,
+    and checks that the nearest centre's card opens.
+
 ## Strings
 
-97: ETH-2's 102, less the two removed (#87, #88) and the six removed in ETH-5 (#2, #3, #6, #19, #20, #25), plus
-the two ⓘ headings and the portal line.
+96: ETH-2's 102, less the two removed (#87, #88), the six removed in ETH-5 (#2, #3, #6, #19, #20, #25) and #10
+(GL-ETH), plus the two ⓘ headings and the portal line.
 - **All approved; none pending** (the user, 2026-10-08).
 - `tools/verify.mjs`'s rule (a) warns on any that is not while the map is work in progress, and fails a live
   item that serves one.

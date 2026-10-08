@@ -626,6 +626,7 @@ async function useItem(browser, size, entry, base, origin, dir) {
         summary.push(`frames at zoom ${Math.min(...zs)}–${Math.max(...zs)} (${t}-frames.txt)`);
       }
       await taps(page, shoot, summary, fail, sources, tabs, camera);
+      await edgeTaps(page, summary, fail, sources, tabs);
       if (await page.evaluate(`Boolean(window.__shell?.descriptor?.tabs?.views)`)) await viewTabs(page, shoot, summary, fail);
       if (await page.evaluate(`Boolean(window.__shell?.descriptor?.minTextSize)`)) await textFloor(page, summary, fail);
     }
@@ -1104,6 +1105,59 @@ async function riverSteps(page, shoot, summary, fail) {
 }
 
 /** Every record drawn by a tapped source: brought into view, tapped where it alone is, a card. */
+/*
+ * Edge taps (2026-10-08): where two points' tap targets overlap at a tab's opening view, a tap opens the record whose
+ * centre is nearest the finger, within the target's radius (the shell's `nearest`, every map). For each such pair, each
+ * point is tapped 12 px from its centre towards the other — on its own disc, inside the overlap — and the card that
+ * opens must be the nearest centre's. Only where the picker lists the source's table, whose value names the record.
+ */
+async function edgeTaps(page, summary, fail, sources, tabs) {
+  const results = [];
+  for (let t = 0; t < Math.max(1, tabs); t++) {
+    // This tab at its opening view: another tab first, then this one, nothing chosen.
+    const open = async () => {
+      await page.evaluate(`(() => { window.__shell.deselect(); const bs = document.querySelectorAll('.map-tab'); if (bs.length > 1) bs[${t === 0 ? 1 : 0}].click(); })()`);
+      await settle(page, 10000);
+      if (tabs) await page.evaluate(`document.querySelectorAll('.map-tab')[${t}].click()`);
+      await settle(page, 10000);
+    };
+    await open();
+    for (const source of sources) {
+      const discs = await page.evaluate(`(() => {
+        const s = window.__shell; const m = s.map; const spec = s.descriptor.sources[${JSON.stringify(source)}];
+        const layer = ${JSON.stringify(source)} + '--hit';
+        if (!m.getLayer(layer) || spec.geometryFrom === undefined) return null;
+        const picker = document.getElementById('recordPicker');
+        if (!picker || picker.hidden || ![...picker.options].some((o) => o.value && s.records[spec.records]?.[o.value])) return null;
+        const r = m.getCanvas().getBoundingClientRect(); const seen = new Map();
+        for (const f of m.queryRenderedFeatures({ layers: [layer] })) if (f.geometry.type === 'Point' && !seen.has(f.properties.key)) { const p = m.project(f.geometry.coordinates); seen.set(f.properties.key, { key: f.properties.key, x: r.left + p.x, y: r.top + p.y }); }
+        return { radius: (spec.tapWidth ?? 44) / 2, discs: [...seen.values()] };
+      })()`);
+      if (!discs) continue;
+      const pairs = [];
+      for (let a = 0; a < discs.discs.length; a++) for (let b = a + 1; b < discs.discs.length; b++) {
+        const A = discs.discs[a], B = discs.discs[b];
+        if (Math.hypot(A.x - B.x, A.y - B.y) < 2 * discs.radius) pairs.push([A, B]);
+      }
+      for (const [A, B] of pairs) for (const [S, T] of [[A, B], [B, A]]) {
+        const d = Math.hypot(T.x - S.x, T.y - S.y);
+        const at = [S.x + ((T.x - S.x) * 12) / d, S.y + ((T.y - S.y) * 12) / d];
+        const within = discs.discs.map((D) => [D.key, Math.hypot(D.x - at[0], D.y - at[1])]).filter(([, r]) => r <= discs.radius).sort((p, q) => p[1] - q[1]);
+        const want = within[0]?.[0] ?? null;
+        await open();
+        await page.click(at[0], at[1]);
+        await settle(page, 10000);
+        const got = await page.evaluate(`document.getElementById('recordPicker').value || null`);
+        const label = await page.evaluate(`(() => { const o = [...document.getElementById('recordPicker').options]; const n = (k) => o.find((x) => x.value === k)?.textContent.split('.')[0] ?? k; return [n(${JSON.stringify(S.key)}), n(${JSON.stringify(T.key)}), n(${JSON.stringify(want)}), n(document.getElementById('recordPicker').value)]; })()`);
+        results.push(`${label[0]}→${label[1]}: ${label[3]}`);
+        if (got !== want) fail(`edge tap on ${S.key} towards ${T.key}: opened ${got ?? 'nothing'}, the nearest centre is ${want}`);
+      }
+    }
+  }
+  await page.evaluate('window.__shell.deselect()');
+  if (results.length) summary.push(`edge taps ${results.length} (nearest centre): ${results.join(', ')}`);
+}
+
 async function taps(page, shoot, summary, fail, sources, tabs, camera) {
   let good = 0;
   let own = 0;

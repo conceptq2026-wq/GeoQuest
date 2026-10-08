@@ -236,6 +236,18 @@ drawn now (`drawn`), and read a file of the map's own folder (`file`).
     as it stands, frames the selection in the room above.
   - Set when a card opens and on every resize. Without it a card is as before.
   - The rivers map's 0.4.
+- **A tap opens the nearest centre** (every map, as built; written down 2026-10-08, GL-ETH).
+  - A point source's tap target is an invisible disc of `tapWidth` px (44 by default, so a 22 px radius).
+  - A tap finds every disc under the finger, and `nearest()` in `app.js` opens the record whose centre is
+    closest to the tap point. A tap outside every disc finds nothing and does nothing.
+  - So where two discs' targets overlap, a tap on one disc's edge facing the other opens whichever centre the
+    finger is nearer.
+  - The user asked for this rule as an opt-in term (`tapNearest`); it needed none, since every map already
+    does it.
+  - A map that wants the chosen point drawn above the rest says so in its own layers: MapLibre's
+    `circle-sort-key` and `symbol-sort-key` on its `selected` property (bangladesh-ethnic-groups).
+  - `tools/check.mjs` taps, on every tab, each point 12 px from its centre towards a neighbour whose target
+    overlaps it, and checks that the nearest centre's card opens.
 - **`sources.<id>.sharedGeometry`** (opt-in, 2026-10-08; bangladesh-ethnic-groups) names a file under
   `docs/shared/` whose geometry the source joins to its records, in place of a `geometry` file in the map's
   own folder, so a shared file is reused, never copied.

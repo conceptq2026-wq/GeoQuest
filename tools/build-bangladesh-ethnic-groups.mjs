@@ -1,10 +1,9 @@
-// Builds the bangladesh-ethnic-groups map (work in progress, ETH-3, 2026-10-08) from its seed:
+// Builds the bangladesh-ethnic-groups map (live since 2026-10-08) from its seed:
 //
 //   node tools/build-bangladesh-ethnic-groups.mjs <out>
 //
-// While the map is in tools/wip.json, tools/preview.mjs runs this into its own copy of docs/; the build also
-// writes docs/maps/bangladesh-ethnic-groups/, which tools/verify-descriptor.mjs holds to a fresh build in a
-// temporary folder, byte for byte. <out> is required.
+// It writes into <out>: docs/maps/bangladesh-ethnic-groups/ for the live map, which tools/verify-descriptor.mjs
+// holds to a fresh build in a temporary folder, byte for byte. <out> is required.
 //
 // It reads data-sources/bangladesh-ethnic-groups/bangladesh-ethnic-groups.seed.json, the shared district file
 // docs/shared/bangladesh-districts.json (for the frames and the districts' Bengali names; the map draws the
@@ -199,9 +198,11 @@ const descriptor = {
     { id: 'district-group-line', type: 'line', source: 'districtFill', slot: 'belowLabels', filter: ['any', ['get', 'inHill'], ['get', 'inPlains']], layout: { 'line-join': 'round' }, paint: { 'line-color': '#0b3d91', 'line-width': 1.5 } },
     // A numbered disc: 28 px across (radius 12 and a 2 px white stroke; the chosen one's stroke dark and 3 px), in
     // one colour, its number in Bengali at 14 px over it. No image file; the tap target is the shell's invisible
-    // 44 px disc (tapWidth). Every disc stays at its sourced point.
-    { id: 'institute-markers', type: 'circle', source: 'institutes', slot: 'aboveLabels', paint: { 'circle-radius': 12, 'circle-color': '#D55E00', 'circle-stroke-width': ['case', ['get', 'selected'], 3, 2], 'circle-stroke-color': ['case', ['get', 'selected'], '#111827', '#ffffff'] } },
-    { id: 'institute-numbers', type: 'symbol', source: 'institutes', slot: 'aboveLabels', layout: { 'text-field': ['get', 'numBn'], 'text-font': ['Noto Sans Bengali'], 'text-size': 14, 'text-allow-overlap': true, 'text-ignore-placement': true }, paint: { 'text-color': '#ffffff' } },
+    // 44 px disc (tapWidth). Every disc stays at its sourced point; the chosen disc and its number are drawn above
+    // the others (circle-sort-key, symbol-sort-key). A tap opens the disc whose centre is nearest, within 22 px (the
+    // shell's `nearest`, every map).
+    { id: 'institute-markers', type: 'circle', source: 'institutes', slot: 'aboveLabels', layout: { 'circle-sort-key': ['case', ['get', 'selected'], 1, 0] }, paint: { 'circle-radius': 12, 'circle-color': '#D55E00', 'circle-stroke-width': ['case', ['get', 'selected'], 3, 2], 'circle-stroke-color': ['case', ['get', 'selected'], '#111827', '#ffffff'] } },
+    { id: 'institute-numbers', type: 'symbol', source: 'institutes', slot: 'aboveLabels', layout: { 'text-field': ['get', 'numBn'], 'text-font': ['Noto Sans Bengali'], 'text-size': 14, 'text-allow-overlap': true, 'text-ignore-placement': true, 'symbol-sort-key': ['case', ['get', 'selected'], 1, 0] }, paint: { 'text-color': '#ffffff' } },
   ],
   controls: [{ type: 'picker', ...pick('hill', S.pickers.groups.bn), byTab: { hill: pick('hill', S.pickers.groups.bn), plains: pick('plains', S.pickers.groups.bn), institutes: pick('institutes', S.pickers.institutes.bn, 'labelBn') } }],
   interactions: [{ on: 'click', target: 'source:institutes', do: go }],

@@ -37,7 +37,7 @@
 //                org-members.seed.json, pinned; its sources and quotes, by tools/verify.mjs
 //   bangladesh-maritime-boundary  docs/maps/bangladesh-maritime-boundary/ is a fresh build of
 //                                 data-sources/bangladesh-maritime-boundary/, pinned; its sources and quotes, by tools/verify.mjs
-//   bangladesh-ethnic-groups  work in progress: docs/maps/bangladesh-ethnic-groups/ is a fresh build of
+//   bangladesh-ethnic-groups  docs/maps/bangladesh-ethnic-groups/ is a fresh build of
 //                             data-sources/bangladesh-ethnic-groups/, pinned; its sources and anchors, by tools/verify.mjs
 //
 // A map under docs/maps/ or a diagram under docs/diagrams/ with no section
@@ -120,8 +120,8 @@ const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa
 const MARITIME_ZONES_SEED_SHA256 = '6b0f67dbac0b0fa97037d86c7f94d3f07a73bd57a42d7b0986e8b3dc9fdab689';
 // The bangladesh-maritime-boundary map: the editor's seed, pinned (live 2026-10-08; its 35 step-2 strings approved, BD-6; #30 reworded by the user the same day).
 const BANGLADESH_MARITIME_SEED_SHA256 = 'dcc627421f99b20faeffe17006d9348f181b9663c058af66f37ae6c572e8ebbd';
-// The bangladesh-ethnic-groups map (work in progress, ETH-3, 2026-10-08): its seed, pinned.
-const BANGLADESH_ETHNIC_SEED_SHA256 = 'fb85458fc9e488d900f7f5928f4331ee5b57050928477c0f9045b8fbb8fded5c';
+// The bangladesh-ethnic-groups map: its seed, pinned (live 2026-10-08).
+const BANGLADESH_ETHNIC_SEED_SHA256 = 'c2b2333d34be11f0c02aec09fade7c8d1c007fa445c573fdc65824770f96cd75';
 // The org-members map: the editor's seed, pinned (live 2026-10-07).
 const ORG_MEMBERS_SEED_SHA256 = '6c09b4d8a43f1115c633ce14e860569cea611536fece7237822da5ae1ae5e262';
 // The bangladesh-rivers diagram: the editor's seed, pinned. Its geometry is pinned in tools/bangladesh-rivers-pins.json.
@@ -2763,15 +2763,15 @@ console.log('\n\n============ bangladesh-maritime-boundary ============');
 
 /*
 |--------------------------------------------------------------------------
-| BANGLADESH-ETHNIC-GROUPS — work in progress (ETH-3–5, 2026-10-08), on the
-| preview's home page from tools/wip.json: the seed is the pinned one, docs/
-| holds exactly what a fresh build writes, and the generic map checks read it.
-| The districts are drawn from the shared district file (sharedGeometry), never
-| copied. The seed's sources, anchors and strings are held by tools/verify.mjs;
-| its unapproved strings only warn while the map is work in progress.
+| BANGLADESH-ETHNIC-GROUPS — a map (live 2026-10-08, after ETH-3–5 and
+| GL-ETH): the seed is the pinned one, docs/ holds exactly what a fresh build
+| writes, and the generic map checks read it. The districts are drawn from the
+| shared district file (sharedGeometry), never copied. The seed's sources,
+| anchors and strings are held by tools/verify.mjs; a live map serves no
+| unapproved string (rule (a)).
 |--------------------------------------------------------------------------
 */
-console.log('\n\n============ bangladesh-ethnic-groups (work in progress) ============');
+console.log('\n\n============ bangladesh-ethnic-groups ============');
 {
   const id = 'bangladesh-ethnic-groups';
   const seedFile = path.join(ROOT, 'data-sources', id, `${id}.seed.json`);

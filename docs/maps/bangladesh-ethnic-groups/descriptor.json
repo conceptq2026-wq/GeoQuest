@@ -261,6 +261,17 @@
       "type": "circle",
       "source": "institutes",
       "slot": "aboveLabels",
+      "layout": {
+        "circle-sort-key": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          1,
+          0
+        ]
+      },
       "paint": {
         "circle-radius": 12,
         "circle-color": "#D55E00",
@@ -299,7 +310,16 @@
         ],
         "text-size": 14,
         "text-allow-overlap": true,
-        "text-ignore-placement": true
+        "text-ignore-placement": true,
+        "symbol-sort-key": [
+          "case",
+          [
+            "get",
+            "selected"
+          ],
+          1,
+          0
+        ]
       },
       "paint": {
         "text-color": "#ffffff"
