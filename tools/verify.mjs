@@ -1682,6 +1682,8 @@ console.log('\n---- global-indices: seed ----');
   const walk = (v, where, key, owner) => {
     if (typeof v === 'string') {
       if (!/[ঀ-৿]/.test(v)) return;
+      // A secondary source's record of how the outlet named the publisher (IDX-ALL Part D): provenance, never shown.
+      if (/\.source\.secondary\[\d+\]\.publisher$/.test(where)) return;
       if (key === 'bn' && typeof owner?.approved === 'boolean') { if (!owner.approved) pending++; return; }
       unflagged.push(where);
     } else if (Array.isArray(v)) v.forEach((x, i) => walk(x, `${where}[${i}]`, i, v));
