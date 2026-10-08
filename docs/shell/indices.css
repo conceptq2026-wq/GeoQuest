@@ -199,16 +199,34 @@
   white-space: nowrap;
 }
 
-/* ---- the pills on the map ----------------------------------------------- */
+/* ---- the pins on the map: a dot on the country's own point, a thin leader, the label ------------ */
 
-.ix-pill {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.ix-pin {
+  position: relative;
+  width: 0;
+  height: 0;
   pointer-events: none;
 }
-.ix-pill-text {
-  padding: 3px 12px;
+.ix-pin-dot {
+  position: absolute;
+  left: -5px;
+  top: -5px;
+  width: 10px;
+  height: 10px;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+.ix-pin-line {
+  position: absolute;
+  left: 0;
+  top: -1px;
+  height: 2px;
+  transform-origin: 0 50%;
+}
+.ix-pin-text {
+  position: absolute;
+  padding: 4px 10px;
   border-radius: 999px;
   font-size: 14px;
   font-weight: 700;
@@ -217,29 +235,29 @@
   white-space: nowrap;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
-.ix-pill-stem {
-  width: 2px;
-  height: 14px;
+/* Bangladesh's label is a button: its tap target 44 px tall at least. */
+.ix-pin-bd .ix-pin-text {
+  pointer-events: auto;
+  cursor: pointer;
 }
-.ix-pill-dot {
-  width: 8px;
-  height: 8px;
-  border: 2px solid #ffffff;
-  border-radius: 50%;
+.ix-pin-bd .ix-pin-text::after {
+  content: '';
+  position: absolute;
+  inset: -8px -4px;
 }
-.ix-pill-top .ix-pill-text,
-.ix-pill-top .ix-pill-stem,
-.ix-pill-top .ix-pill-dot {
+.ix-pin-top .ix-pin-text,
+.ix-pin-top .ix-pin-line,
+.ix-pin-top .ix-pin-dot {
   background: #0b2a6b;
 }
-.ix-pill-bottom .ix-pill-text,
-.ix-pill-bottom .ix-pill-stem,
-.ix-pill-bottom .ix-pill-dot {
-  background: #6b7280;
+.ix-pin-bottom .ix-pin-text,
+.ix-pin-bottom .ix-pin-line,
+.ix-pin-bottom .ix-pin-dot {
+  background: #5b6472;
 }
-.ix-pill-bd .ix-pill-text,
-.ix-pill-bd .ix-pill-stem,
-.ix-pill-bd .ix-pill-dot {
+.ix-pin-bd .ix-pin-text,
+.ix-pin-bd .ix-pin-line,
+.ix-pin-bd .ix-pin-dot {
   background: var(--ix-bd);
 }
 

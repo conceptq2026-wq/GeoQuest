@@ -43,7 +43,7 @@ export async function mount(api) {
   for (const g of Object.keys(counts)) if (!(g in groups)) throw new Error(`chips: ${spec.records}.${spec.field} takes "${g}", which "${spec.from}" has no row for`);
   for (const g of Object.keys(groups)) if ((counts[g] ?? 0) < 2) throw new Error(`chips: group "${g}" has fewer than two members`);
 
-  await stylesheet(api, './chips.css?v=7786978f35');
+  await stylesheet(api, './chips.css?v=d75c4ba2ef');
   row = api.own.node(document.createElement('div'), 'chips');
   row.className = 'map-chips';
   row.setAttribute('role', 'toolbar');

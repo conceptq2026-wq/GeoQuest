@@ -42,6 +42,11 @@ for (const f of [...ne.features].sort((a, b) => keyOf(a.properties).localeCompar
   const p = f.properties;
   countries[keyOf(p)] = { nameBn: p.NAME_BN, nameEn: p.NAME_EN, labelAt: [+p.LABEL_X.toFixed(3), +p.LABEL_Y.toFixed(3)] };
 }
+// A pin's point: the country's own label point — from the Bangladesh-view file, or, for a country with no shape there
+// (Israel, Taiwan), from the pinned Natural Earth file of the default view; never another country's.
+const neAll = readSource('ne_10m_admin_0_countries.geojson');
+const ownPoint = new Map(neAll.features.filter((f) => f.properties.ISO_A3 && f.properties.ISO_A3 !== '-99').map((f) => [f.properties.ISO_A3, [+f.properties.LABEL_X.toFixed(3), +f.properties.LABEL_Y.toFixed(3)]]));
+const pointOf = (iso) => { const key = toAdm.get(iso); return (key && countries[key]?.labelAt) ?? ownPoint.get(iso) ?? null; };
 const nameOf = (iso, fallback) => {
   const key = toAdm.get(iso);
   return (key && countries[key]?.nameBn) || t(seed.countryNames?.[iso]) || fallback;
@@ -68,7 +73,6 @@ const LISTS = ['s1', 's2', 's3', 's4', 's5', 's6', 's7', 'hiTop', 'hiBottom', 'b
 for (const x of built) {
   const L = x.latest;
   const lists = Object.fromEntries(LISTS.map((k) => [k, []]));
-  const unshaded = [];
   let southAsia;
   if (kindOf(x) === 'open') {
     // Shade classes: by rank, or by value (lowest first) for a ranking given as values only.
@@ -77,10 +81,7 @@ for (const x of built) {
     order.forEach((r, i) => {
       const adm = toAdm.get(r.iso3);
       const pos = x.valueOnly ? i : r.rank - 1;
-      if (!adm || !drawn.has(adm)) {
-        unshaded.push(`${nameOf(r.iso3, r.iso3)}${x.valueOnly ? '' : ` (${bn(r.rank)})`}`);
-        return;
-      }
+      if (!adm || !drawn.has(adm)) return; // no shape: unshaded, and named nowhere but its own pin
       lists[`s${Math.min(7, Math.floor((pos * 7) / n) + 1)}`].push(adm);
     });
     if (!x.valueOnly) {
@@ -89,10 +90,11 @@ for (const x of built) {
       if (at >= 0) southAsia = t(W.southAsiaOf).replace('{n}', bn(sa.length)).replace('{nth}', t(W.ordinals[at]));
     }
   } else {
-    for (const [k, who] of [['hiTop', L.top], ['hiBottom', L.bottom]]) {
-      const adm = toAdm.get(who.iso3);
-      if (adm && drawn.has(adm)) lists[k].push(adm);
-      else unshaded.push(nameOf(who.iso3, who.name));
+    for (const [k, who] of [['hiTop', [L.top]], ['hiBottom', L.bottom.tied ?? [L.bottom]]]) {
+      for (const w of who) {
+        const adm = toAdm.get(w.iso3);
+        if (adm && drawn.has(adm)) lists[k].push(adm);
+      }
     }
   }
   if (L.bd && (L.bd.rank || L.bd.value !== undefined)) lists.bd.push('BGD');
@@ -100,6 +102,30 @@ for (const x of built) {
   const change = !x.valueOnly && x.previous?.bd?.rank && L.bd?.rank ? x.previous.bd.rank - L.bd.rank : undefined;
   const rankMeans = [t(x.rankMeans), x.sortedByValue ? t(W.sortedNote) : null, x.projection ? t(W.projection) : null].filter(Boolean).join('; ');
   const adm = (who) => toAdm.get(who.iso3) ?? null;
+  // The ends, ties included: an open ranking's from its rows (by value for a ranking of values only), a facts-only
+  // one's as read (its tied bottom, where two readings agree on one).
+  const ends = (() => {
+    if (kindOf(x) !== 'open') return { top: [L.top], bottom: L.bottom.tied ?? [L.bottom], topRank: L.top.rank, bottomRank: L.bottom.rank };
+    if (x.valueOnly) {
+      const lo = Math.min(...L.rows.map((r) => r.value)), hi = Math.max(...L.rows.map((r) => r.value));
+      return { top: L.rows.filter((r) => r.value === lo), bottom: L.rows.filter((r) => r.value === hi) };
+    }
+    const lo = Math.min(...L.rows.map((r) => r.rank)), hi = Math.max(...L.rows.map((r) => r.rank));
+    return { top: L.rows.filter((r) => r.rank === lo), bottom: L.rows.filter((r) => r.rank === hi), topRank: lo, bottomRank: hi };
+  })();
+  const pinsOf = (end, list, rank) => {
+    const text = (who) => (x.valueOnly ? t(end === 'top' ? W.pinLow : W.pinHigh) : t(W.pinRank).replace('{rank}', bn(rank))).replace('{name}', nameOf(who.iso3, who.name));
+    if (list.length > 2) return [{ kind: end, text: t(W.pinTie).replace('{rank}', bn(rank)).replace('{n}', bn(list.length)), at: pointOf(list[0].iso3) }];
+    return list.map((who) => ({ kind: end, text: text(who), at: pointOf(who.iso3) }));
+  };
+  const pins = [
+    { kind: 'bd', text: t(W.pinBd).replace('{value}', x.valueOnly ? bn(L.bd.value.toFixed(4)) : bn(L.bd.rank)), at: pointOf('BGD') },
+    ...pinsOf('top', ends.top, ends.topRank),
+    ...pinsOf('bottom', ends.bottom, ends.bottomRank),
+  ];
+  const lost = pins.filter((p) => !p.at);
+  if (lost.length) throw new Error(`${x.id}: no point of its own for ${lost.map((p) => p.text).join(', ')}`);
+  const statName = (list) => list.map((w) => nameOf(w.iso3, w.name)).join(', ') + (list.length > 1 ? ` (${t(W.shared)})` : '');
   indices[x.id] = {
     nameBn: t(x.nameBn),
     nameEn: x.nameEn,
@@ -108,17 +134,16 @@ for (const x of built) {
     ...(x.valueOnly ? {} : { bdRank: L.bd.rank, bdOf: L.n }),
     ...(x.valueOnly ? { bdValue: bn(L.bd.value.toFixed(4)) } : {}),
     topCode: adm(L.top),
-    topName: nameOf(L.top.iso3, L.top.name),
+    topName: statName(ends.top),
     bottomCode: adm(L.bottom),
-    bottomName: `${nameOf(L.bottom.iso3, L.bottom.name)}${L.bottom.shared ? ` (${t(W.shared)})` : ''}`,
-    ...(x.valueOnly ? { topLabel: t(W.valueTopStat), bottomLabel: t(W.valueBottomStat), pillTop: t(W.valuePillTop), pillBottom: t(W.valuePillBottom) } : {}),
+    bottomName: statName(ends.bottom),
+    pins: JSON.stringify(pins),
+    ...(x.valueOnly ? { topLabel: t(W.valueTopStat), bottomLabel: t(W.valueBottomStat) } : {}),
     publisher: x.publisher,
     // Where the release date is unsure, its year only (the user, IDX-3).
     edition: `${L.edition}${L.releaseDate || L.releaseYear ? ` · ${t(W.released).replace('{date}', L.releaseDate ? bnDate(L.releaseDate) : bn(L.releaseYear))}` : ''}`,
     ...(southAsia ? { southAsia } : {}),
     rankMeans,
-    ...(unshaded.length ? { unshaded: unshaded.join(', ') } : {}),
-    ...(L.missing?.length ? { noValue: L.missing.map((m) => nameOf(m.iso3, m.iso3)).join(', ') } : {}),
     basis: x.basis ?? 'edition',
     verified: bnDate(seed.verified),
     url: L.source?.url ?? x.pageUrl ?? L.releaseUrl ?? L.dataUrl,
@@ -173,14 +198,11 @@ const descriptor = {
         bottomName: { type: 'text', display: false },
         topLabel: { type: 'text', display: false },
         bottomLabel: { type: 'text', display: false },
-        pillTop: { type: 'text', display: false },
-        pillBottom: { type: 'text', display: false },
+        pins: { type: 'text', display: false },
         publisher: { type: 'text', required: true },
         edition: { type: 'text', required: true },
         southAsia: { type: 'text' },
         rankMeans: { type: 'text', required: true },
-        unshaded: { type: 'text' },
-        noValue: { type: 'text' },
         basis: { type: 'text', display: false },
         verified: { type: 'text', required: true, display: false },
         url: { type: 'text', required: true, display: false },
@@ -225,7 +247,7 @@ const descriptor = {
     records: 'indices',
     countries: 'countries',
     tabs: { map: 'countries', bangladesh: 'bangladesh' },
-    words: Object.fromEntries(['bdStat', 'topStat', 'bottomStat', 'valueStat', 'pillTop', 'pillBottom', 'bd', 'legendTop', 'legendBottom', 'verified', 'source', 'factsNote', 'bdCaption', 'unchanged', 'better', 'worse', 'upNeutral', 'downNeutral', 'basisEdition', 'basisYear'].map((k) => [k, t(W[k])])),
+    words: Object.fromEntries(['bdStat', 'topStat', 'bottomStat', 'valueStat', 'legendTop', 'legendBottom', 'verified', 'source', 'factsNote', 'bdCaption', 'unchanged', 'better', 'worse', 'upNeutral', 'downNeutral', 'basisEdition', 'basisYear'].map((k) => [k, t(W[k])])),
   },
   info: { file: './info.json', headings: { sources: t(W.infoSources), notes: t(W.infoNotes), conflicts: '' } },
   sheets: {
@@ -237,8 +259,6 @@ const descriptor = {
         { label: t(W.rows.edition), field: 'edition' },
         { label: t(W.rows.southAsia), field: 'southAsia' },
         { label: t(W.rows.rank), field: 'rankMeans' },
-        { label: t(W.rows.unshaded), field: 'unshaded', stacked: true },
-        { label: t(W.rows.noValue), field: 'noValue', stacked: true },
       ],
     },
   },

@@ -71,6 +71,25 @@ Read it with `CLAUDE.md`, whose rules and verification budget apply. A map under
   (labels, then the rankings' names, then country names). Country names on the cards are the basemap's pinned
   `NAME_BN`; the two new ones (Israel, Taiwan) await approval.
 
+## IDX-4 revised (the user's review and preview feedback, 2026-10-09)
+
+- **No list of other countries' names on the card:** the «মানচিত্রে আঁকা নেই» row and GDP's «তথ্য নেই» list are gone,
+  with their strings; ⓘ's first note is now «মানচিত্রে দেশের সীমানা বাংলাদেশের দৃষ্টিকোণ অনুযায়ী দেখানো।».
+- **Three pins** replace the «১» / «নিম্ন» pills: «১ · name» on the top country, «rank · name» on the bottom one,
+  «বাংলাদেশ · rank» in vermillion (for MPI «সর্বনিম্ন · name», «সর্বোচ্চ · name», «বাংলাদেশ · value»); facts-only rankings
+  the same. A tie of two pins both; of more, one pin «rank · যৌথভাবে n টি দেশ» on the first, the names in the card's
+  stat block (CPI 2025's bottom: Somalia and South Sudan, both pinned; peacekeeping's: four countries, one pin). The
+  tied countries were read twice from the pinned files; the readings agree. A pin sits on its country's own label
+  point (the Bangladesh-view file, or for a country with no shape there the pinned default-view file — never another
+  country's). Its label is placed inside the map, clear of the other labels and dots, with a thin leader to the point,
+  which never moves; Bangladesh's opens the card, the others are labels.
+- **South Asia row:** «দক্ষিণ এশিয়ায় বাংলাদেশ» — «৮টি দেশের মধ্যে ৪র্থ»; facts-only rankings have none.
+- **New strings, awaiting the user's review (6):** the pin patterns «{rank} · {name}», «বাংলাদেশ · {value}»,
+  «{rank} · যৌথভাবে {n}টি দেশ», «সর্বনিম্ন · {name}», «সর্বোচ্চ · {name}», and the row label «দক্ষিণ এশিয়ায় বাংলাদেশ».
+  Every other string is approved.
+- **Not done:** hiding the basemap's place and country labels on this map. CLAUDE.md's map baseline puts sea and country
+  names on every map, enforced by the shell; that needs the user's explicit exception, recorded in CLAUDE.md, first.
+
 ## IDX-4 (the user's review, 2026-10-09)
 
 - **Every string approved** (113): ⓘ's first note is now «মানচিত্রে দেশের সীমানা বাংলাদেশের দৃষ্টিকোণ অনুযায়ী দেখানো। যে

@@ -11,9 +11,10 @@
 |   - the map in a card of its own, the ranking's card docked under it (beside
 |     it from 900 px), and a শীর্ষ → নিম্ন gradient strip under the map while a
 |     fully shaded ranking is chosen;
-|   - three pills on the map: «১» on the top country, «নিম্ন» on the bottom one
-|     and a vermillion «বাংলাদেশ · rank» on Bangladesh, each at its country's
-|     label point;
+|   - three pins on the map, each a dot on the country's own point, a thin leader and a label placed clear of the
+|     others and inside the map: «১ · name» on the top country, «rank · name» on the bottom one (both pinned where
+|     two share it; one «rank · যৌথভাবে n টি দেশ» where more do), «বাংলাদেশ · rank» in vermillion — for a ranking of
+|     values only «সর্বনিম্ন/সর্বোচ্চ · name» and Bangladesh's value. Bangladesh's label opens the card;
 |   - three stat blocks under the card's title (Bangladesh's rank of N, the
 |     top, the bottom — or, for a ranking given as values only, Bangladesh's
 |     value), and a foot with «সর্বশেষ যাচাই» and «সূত্র ↗»; a ranking whose
@@ -36,7 +37,7 @@ let list;
 let stats;
 let foot;
 let note;
-const pills = new Map(); // kind -> { marker, el }
+let pins = []; // the chosen ranking's pins: { marker, el, kind }
 const DIGITS = '০১২৩৪৫৬৭৮৯';
 const bn = (v) => String(v).replace(/[0-9]/g, (d) => DIGITS[d]);
 const fill = (template, values) => template.replace(/\{(\w+)\}/g, (_, k) => values[k] ?? '');
@@ -47,8 +48,8 @@ export async function mount(api) {
   W = spec.words ?? {};
   for (const t of [spec.records, spec.countries]) if (!api.records[t]) throw new Error(`indices: "${t}" is not a records table`);
   if (!spec.tabs?.map || !spec.tabs?.bangladesh) throw new Error('indices: tabs.map and tabs.bangladesh name the two view tabs');
-  for (const k of ['bdStat', 'topStat', 'bottomStat', 'valueStat', 'pillTop', 'pillBottom', 'bd', 'legendTop', 'legendBottom', 'verified', 'source', 'factsNote', 'bdCaption', 'unchanged', 'better', 'worse', 'upNeutral', 'downNeutral', 'basisEdition', 'basisYear']) if (typeof W[k] !== 'string') throw new Error(`indices: words.${k} is missing`);
-  await stylesheet(api, './indices.css?v=7786978f35');
+  for (const k of ['bdStat', 'topStat', 'bottomStat', 'valueStat', 'legendTop', 'legendBottom', 'verified', 'source', 'factsNote', 'bdCaption', 'unchanged', 'better', 'worse', 'upNeutral', 'downNeutral', 'basisEdition', 'basisYear']) if (typeof W[k] !== 'string') throw new Error(`indices: words.${k} is missing`);
+  await stylesheet(api, './indices.css?v=d75c4ba2ef');
   page = api.dom.mapShell.parentElement;
   page.classList.add('has-indices');
   api.own.undo('the indices page', () => page.classList.remove('has-indices', 'indices-bd'));
@@ -71,20 +72,12 @@ export async function mount(api) {
 }
 
 export function install(api) {
-  for (const kind of ['top', 'bottom', 'bd']) {
-    const el = document.createElement('div');
-    el.className = `ix-pill ix-pill-${kind}`;
-    el.lang = api.language ?? 'bn';
-    el.innerHTML = '<span class="ix-pill-text"></span><span class="ix-pill-stem"></span><span class="ix-pill-dot"></span>';
-    el.setAttribute('aria-hidden', 'true');
-    const marker = api.own.marker(new api.maplibregl.Marker({ element: el, anchor: 'bottom' }), `indices pill ${kind}`);
-    pills.set(kind, { marker, el, on: false });
-  }
   // The tab bar is the tabs module's; the open tab is read after its own handler has run.
   const bar = document.querySelector('.map-tabs');
   if (bar) api.own.domHandler(bar, 'click', () => queueMicrotask(syncTab));
   api.onChange(render);
-  api.own.mapHandler(api.map, 'move', keepInside);
+  api.own.mapHandler(api.map, 'move', place);
+  api.own.undo('the indices pins', () => { for (const p of pins) p.marker.remove(); pins = []; });
   render();
   syncTab();
 }
@@ -93,41 +86,81 @@ const row = () => {
   const key = shell.selection.get(spec.records);
   return key === undefined ? null : { key, ...shell.records[spec.records][key] };
 };
-const country = (code) => shell.records[spec.countries][code] ?? null;
 const rankText = (r) => (r.bdRank ? `${bn(r.bdRank)}/${bn(r.bdOf)}` : '');
 
-/** The chosen ranking: its pills, its strip, and the card's stat blocks and foot. */
+/** The chosen ranking: its pins, its strip, and the card's stat blocks and foot. */
 function render() {
   const r = row();
   strip.hidden = !r || r.kind !== 'open';
-  for (const [kind, p] of pills) {
-    const code = r ? { top: r.topCode, bottom: r.bottomCode, bd: 'BGD' }[kind] : null;
-    const at = code ? country(code)?.labelAt : null;
-    const show = Boolean(r && at && !(kind === 'bd' && !r.bdRank && !r.bdValue));
-    if (!show) {
-      if (p.on) p.marker.remove();
-      p.on = false;
-      continue;
-    }
-    p.el.querySelector('.ix-pill-text').textContent = kind === 'bd' ? `${W.bd} · ${r.bdRank ? bn(r.bdRank) : r.bdValue}` : kind === 'top' ? (r.pillTop ?? W.pillTop) : (r.pillBottom ?? W.pillBottom);
-    p.marker.setLngLat(at);
-    if (!p.on) p.marker.addTo(shell.map);
-    p.on = true;
+  for (const p of pins) p.marker.remove();
+  pins = [];
+  for (const pin of r?.pins ? JSON.parse(r.pins) : []) {
+    // A zero-size anchor on the country's own point: its dot, a thin leader, and the label, which `place` moves.
+    const el = document.createElement('div');
+    el.className = `ix-pin ix-pin-${pin.kind}`;
+    el.lang = shell.language ?? 'bn';
+    el.innerHTML = '<span class="ix-pin-line"></span><span class="ix-pin-dot"></span><span class="ix-pin-text"></span>';
+    const text = el.querySelector('.ix-pin-text');
+    text.textContent = pin.text;
+    if (pin.kind === 'bd') {
+      // Bangladesh's pin opens the card (brings it into view); the top's and the bottom's are labels.
+      text.setAttribute('role', 'button');
+      text.tabIndex = 0;
+      const open = () => {
+        if (shell.dom.sheet.hidden) return;
+        shell.dom.sheet.scrollIntoView({ block: 'nearest' });
+      };
+      text.addEventListener('click', open);
+      text.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+    } else el.setAttribute('aria-hidden', 'true');
+    const marker = new shell.maplibregl.Marker({ element: el, anchor: 'center' }).setLngLat(pin.at).addTo(shell.map);
+    pins.push({ marker, el, kind: pin.kind });
   }
-  requestAnimationFrame(keepInside);
+  requestAnimationFrame(place);
   card(r);
 }
 
-/** A pill's words stay inside the map: the bubble slides sideways, its stem and dot stay on the country. */
-function keepInside() {
-  const box = shell.map.getContainer().getBoundingClientRect();
-  for (const p of pills.values()) {
-    const text = p.el.querySelector('.ix-pill-text');
-    text.style.transform = '';
-    if (!p.on) continue;
-    const r = text.getBoundingClientRect();
-    const dx = r.left < box.left + 6 ? box.left + 6 - r.left : r.right > box.right - 6 ? box.right - 6 - r.right : 0;
-    if (dx) text.style.transform = `translateX(${Math.round(dx)}px)`;
+/*
+ * Each label is placed where it lies wholly inside the map and clear of every label placed before it and of every
+ * pin's dot — above its point, else lower or higher, else beside — and a thin leader joins it to the point. The point
+ * itself never moves. Bangladesh's goes first, then the top's, then the bottom's.
+ */
+function place() {
+  if (!pins.length) return;
+  const map = shell.map.getContainer().getBoundingClientRect();
+  const M = 4, GAP = 4, DOT = 12;
+  const placed = [];
+  const dots = pins.map((p) => { const c = shell.map.project(p.marker.getLngLat()); return { x: c.x, y: c.y }; });
+  const order = [...pins.keys()].sort((a, b) => ['bd', 'top', 'bottom'].indexOf(pins[a].kind) - ['bd', 'top', 'bottom'].indexOf(pins[b].kind));
+  const hits = (r, q) => r.x < q.x + q.w + GAP && q.x < r.x + r.w + GAP && r.y < q.y + q.h + GAP && q.y < r.y + r.h + GAP;
+  for (const i of order) {
+    const p = pins[i];
+    const text = p.el.querySelector('.ix-pin-text');
+    const w = text.offsetWidth, h = text.offsetHeight;
+    const at = dots[i];
+    const tries = [];
+    for (const dy of [-(h + 14), -(h + 40), 14, 40, -(h + 66), 66, -(h + 92), 92]) for (const dx of [-w / 2, -w / 2 - 50, -w / 2 + 50, -w / 2 - 100, -w / 2 + 100]) tries.push([dx, dy]);
+    let best = null;
+    for (const [dx, dy] of tries) {
+      let r = { x: at.x + dx, y: at.y + dy, w, h };
+      // Slid back inside the map where it would cross an edge.
+      r.x = Math.min(Math.max(r.x, M), map.width - M - w);
+      if (r.y < M || r.y + h > map.height - M) continue;
+      if (placed.some((q) => hits(r, q))) continue;
+      if (dots.some((d, j) => j !== i && hits(r, { x: d.x - DOT / 2, y: d.y - DOT / 2, w: DOT, h: DOT }))) continue;
+      best = r;
+      break;
+    }
+    best ??= { x: Math.min(Math.max(at.x - w / 2, M), map.width - M - w), y: Math.min(Math.max(at.y - h - 14, M), map.height - M - h), w, h };
+    placed.push(best);
+    p.el.dataset.placed = JSON.stringify([Math.round(best.x), Math.round(best.y), w, h]);
+    text.style.left = `${Math.round(best.x - at.x)}px`;
+    text.style.top = `${Math.round(best.y - at.y)}px`;
+    // The leader: from the point to the nearest point of the label's edge.
+    const tx = Math.min(Math.max(at.x, best.x), best.x + w) - at.x, ty = Math.min(Math.max(at.y, best.y), best.y + h) - at.y;
+    const line = p.el.querySelector('.ix-pin-line');
+    line.style.width = `${Math.hypot(tx, ty)}px`;
+    line.style.transform = `rotate(${Math.atan2(ty, tx)}rad)`;
   }
 }
 

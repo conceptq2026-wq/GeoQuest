@@ -93,11 +93,7 @@
           "type": "text",
           "display": false
         },
-        "pillTop": {
-          "type": "text",
-          "display": false
-        },
-        "pillBottom": {
+        "pins": {
           "type": "text",
           "display": false
         },
@@ -115,12 +111,6 @@
         "rankMeans": {
           "type": "text",
           "required": true
-        },
-        "unshaded": {
-          "type": "text"
-        },
-        "noValue": {
-          "type": "text"
         },
         "basis": {
           "type": "text",
@@ -500,9 +490,6 @@
       "topStat": "শীর্ষ",
       "bottomStat": "সর্বনিম্ন",
       "valueStat": "বাংলাদেশের মান",
-      "pillTop": "১",
-      "pillBottom": "নিম্ন",
-      "bd": "বাংলাদেশ",
       "legendTop": "শীর্ষ",
       "legendBottom": "নিম্ন",
       "verified": "সর্বশেষ যাচাই",
@@ -544,22 +531,12 @@
           "field": "edition"
         },
         {
-          "label": "দক্ষিণ এশিয়ায়",
+          "label": "দক্ষিণ এশিয়ায় বাংলাদেশ",
           "field": "southAsia"
         },
         {
           "label": "র‍্যাংক",
           "field": "rankMeans"
-        },
-        {
-          "label": "মানচিত্রে আঁকা নেই",
-          "field": "unshaded",
-          "stacked": true
-        },
-        {
-          "label": "তথ্য নেই",
-          "field": "noValue",
-          "stacked": true
         }
       ]
     }

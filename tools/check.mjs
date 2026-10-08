@@ -931,7 +931,7 @@ async function indicesSteps(page, shoot, summary, fail) {
   const LAYOUT = `(() => {
     const vis = (e) => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden' && !e.closest('[hidden]');
     const small = [...document.querySelectorAll('body *')].filter((e) => vis(e) && !e.closest('.maplibregl-ctrl-attrib, select, .step-btn, .maplibregl-canvas-container') && [...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim()) && parseFloat(getComputedStyle(e).fontSize) < 14).map((e) => '«' + e.textContent.trim().slice(0, 16) + '» ' + getComputedStyle(e).fontSize);
-    const taps = [...document.querySelectorAll('#prevRecord, #nextRecord, #recordPicker, .map-tab, .ix-row[type=button], .ix-foot a, .maplibregl-ctrl-attrib-button')].filter(vis).map((e) => [e.id || e.className, Math.min(e.getBoundingClientRect().width, e.getBoundingClientRect().height)]).filter(([, d]) => d < 44).map(([k, d]) => k + ' ' + Math.round(d));
+    const taps = [...document.querySelectorAll('#prevRecord, #nextRecord, #recordPicker, .map-tab, .ix-row[type=button], .ix-foot a, .ix-pin-bd .ix-pin-text, .maplibregl-ctrl-attrib-button')].filter(vis).map((e) => [e.id || e.className, Math.min(e.getBoundingClientRect().width, e.getBoundingClientRect().height + (e.matches('.ix-pin-text') ? 16 : 0))]).filter(([, d]) => d < 44).map(([k, d]) => k + ' ' + Math.round(d));
     const doc = document.scrollingElement;
     // Whether the page, or a box in it, actually scrolls sideways: try it, read where it went, put it back.
     const tryScroll = (e) => { const was = e.scrollLeft; e.scrollLeft = 60; const moved = e.scrollLeft; e.scrollLeft = was; return moved; };
@@ -945,24 +945,29 @@ async function indicesSteps(page, shoot, summary, fail) {
   const bad = { small: new Set(), taps: new Set(), sideways: 0 };
   const note = (l) => { l.small.forEach((x) => bad.small.add(x)); l.taps.forEach((x) => bad.taps.add(x)); bad.sideways = Math.max(bad.sideways, l.sideways); };
   const options = await page.evaluate(`[...document.getElementById('recordPicker').options].filter((o) => o.value).map((o) => [o.value, o.textContent])`);
-  let good = 0, cols = 0;
+  let good = 0, cols = 0, pinsSeen = 0, clearRankings = 0;
   for (const [key, label] of options) {
     await page.evaluate(`(() => { const s = document.getElementById('recordPicker'); s.value = ${JSON.stringify(key)}; s.dispatchEvent(new Event('change', { bubbles: true })); })()`);
     await settle(page, 10000);
     const s = await page.evaluate(`(() => {
       const r = window.__shell.records.indices[${JSON.stringify(key)}];
-      const pill = (k) => { const el = document.querySelector('.ix-pill-' + k); return el && el.isConnected && el.closest('.maplibregl-marker') ? el.querySelector('.ix-pill-text').textContent : null; };
+      const pins = [...document.querySelectorAll('.ix-pin')].filter((p) => p.closest('.maplibregl-marker'));
+      const want = JSON.parse(r.pins ?? '[]');
+      const map = document.getElementById('map').getBoundingClientRect();
+      const boxes = pins.map((p) => p.querySelector('.ix-pin-text').getBoundingClientRect());
+      const outside = boxes.filter((b) => b.left < map.left || b.right > map.right || b.top < map.top || b.bottom > map.bottom).length;
+      let overlaps = 0;
+      for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++) { const a = boxes[i], b = boxes[j]; if (a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom) overlaps++; }
       const shaded = ['s1','s2','s3','s4','s5','s6','s7'].reduce((n, k) => n + (r[k] ?? []).length, 0);
-      const has = (code) => code && window.__shell.records.countries[code];
       return { title: document.getElementById('infoTitle').textContent, stats: document.querySelectorAll('.ix-stats .ix-stat').length, kind: r.kind, shaded, hi: (r.hiTop ?? []).length + (r.hiBottom ?? []).length,
-        bd: pill('bd'), top: pill('top'), bottom: pill('bottom'), wantTop: Boolean(has(r.topCode)), wantBottom: Boolean(has(r.bottomCode)),
-        strip: !document.querySelector('.ix-strip').hidden, note: Boolean(document.querySelector('.ix-note')), foot: Boolean(document.querySelector('.ix-foot a')) };
+        pins: pins.length, wantPins: want.length, texts: pins.map((p) => p.querySelector('.ix-pin-text').textContent).join(' | '), want: want.map((p) => p.text).join(' | '), bdPins: pins.filter((p) => p.classList.contains('ix-pin-bd')).length, ends: pins.filter((p) => !p.classList.contains('ix-pin-bd')).length,
+        outside, overlaps, strip: !document.querySelector('.ix-strip').hidden, note: Boolean(document.querySelector('.ix-note')), foot: Boolean(document.querySelector('.ix-foot a')) };
     })()`);
     const problems = [];
     if (s.title !== label) problems.push(`card «${s.title}»`);
     if (s.stats !== 3) problems.push(`${s.stats} stat blocks`);
-    if (!s.bd) problems.push('no Bangladesh pill');
-    if (s.wantTop !== Boolean(s.top) || s.wantBottom !== Boolean(s.bottom)) problems.push(`pills top ${s.top}/${s.wantTop} bottom ${s.bottom}/${s.wantBottom}`);
+    if (s.pins !== s.wantPins || s.texts !== s.want || s.bdPins !== 1 || s.ends < 2) problems.push(`pins «${s.texts}», not «${s.want}»`);
+    if (s.outside || s.overlaps) problems.push(`${s.outside} pin label(s) outside the map, ${s.overlaps} overlapping`);
     if (s.kind === 'open' && (!s.shaded || s.hi || !s.strip || s.note)) problems.push(`open: shaded ${s.shaded}, highlights ${s.hi}, strip ${s.strip}, note ${s.note}`);
     if (s.kind === 'facts' && (s.shaded || !s.hi || s.strip || !s.note)) problems.push(`facts: shaded ${s.shaded}, highlights ${s.hi}, strip ${s.strip}, note ${s.note}`);
     if (!s.foot) problems.push('no «সূত্র» link');
@@ -971,8 +976,19 @@ async function indicesSteps(page, shoot, summary, fail) {
     const l = await page.evaluate(LAYOUT);
     note(l);
     cols = Math.max(cols, l.cols);
+    pinsSeen += s.pins;
+    if (s.overlaps === 0 && s.outside === 0) clearRankings++;
   }
   await shoot('steps', `${options.at(-1)[1]}`);
+  // Bangladesh's pin opens the card: tapped, the card is shown and in view.
+  const bdAt = await page.evaluate(`(() => { const t = document.querySelector('.ix-pin-bd .ix-pin-text'); if (!t) return null; const q = t.getBoundingClientRect(); return [q.left + q.width / 2, q.top + q.height / 2]; })()`);
+  let bdOpens = false;
+  if (bdAt) {
+    await page.click(...bdAt);
+    await settle(page, 10000);
+    bdOpens = await page.evaluate(`(() => { const c = document.getElementById('infoSheet'); const q = c.getBoundingClientRect(); return !c.hidden && q.top < innerHeight && q.bottom > 0; })()`);
+  }
+  if (!bdOpens) fail("indices: Bangladesh's pin does not open the card");
   // The «বাংলাদেশ» tab.
   const tabAt = await page.evaluate(box('.map-tab[data-tab="bangladesh"]'));
   if (!tabAt) { fail('indices: no «বাংলাদেশ» tab'); return; }
@@ -1001,7 +1017,7 @@ async function indicesSteps(page, shoot, summary, fail) {
   if (bad.small.size) fail(`indices: text under 14 px — ${[...bad.small].slice(0, 4).join(', ')}`);
   if (bad.taps.size) fail(`indices: tap targets under 44 px — ${[...bad.taps].slice(0, 4).join(', ')}`);
   if (bad.sideways > 0) fail(`indices: sideways scroll ${bad.sideways} px`);
-  summary.push(`indices: ${good}/${options.length} rankings (card, stats, pills, shading); ${cols} column(s); «বাংলাদেশ» ${bd.rows.length} rows, ${chips} chips, ${opened} open their ranking; text ≥ 14 px, taps ≥ 44 px, sideways ${bad.sideways} px`);
+  summary.push(`indices: ${good}/${options.length} rankings (card, stats, pins, shading); ${pinsSeen} pins, ${clearRankings}/${options.length} rankings with no pin overlapping or outside the map; Bangladesh's pin opens the card: ${bdOpens}; ${cols} column(s); «বাংলাদেশ» ${bd.rows.length} rows, ${chips} chips, ${opened} open their ranking; text ≥ 14 px, taps ≥ 44 px, sideways ${bad.sideways} px`);
 }
 
 async function pickerSteps(page, shoot, summary, fail, tabs = 0) {

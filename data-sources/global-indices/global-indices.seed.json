@@ -54,19 +54,11 @@
         "approved": true
       },
       "southAsia": {
-        "bn": "দক্ষিণ এশিয়ায়",
-        "approved": true
+        "bn": "দক্ষিণ এশিয়ায় বাংলাদেশ",
+        "approved": false
       },
       "rank": {
         "bn": "র‍্যাংক",
-        "approved": true
-      },
-      "unshaded": {
-        "bn": "মানচিত্রে আঁকা নেই",
-        "approved": true
-      },
-      "noValue": {
-        "bn": "তথ্য নেই",
         "approved": true
       }
     },
@@ -94,25 +86,25 @@
       "bn": "সর্বোচ্চ মান",
       "approved": true
     },
-    "pillTop": {
-      "bn": "১",
-      "approved": true
+    "pinRank": {
+      "bn": "{rank} · {name}",
+      "approved": false
     },
-    "pillBottom": {
-      "bn": "নিম্ন",
-      "approved": true
+    "pinBd": {
+      "bn": "বাংলাদেশ · {value}",
+      "approved": false
     },
-    "valuePillTop": {
-      "bn": "সর্বনিম্ন",
-      "approved": true
+    "pinTie": {
+      "bn": "{rank} · যৌথভাবে {n}টি দেশ",
+      "approved": false
     },
-    "valuePillBottom": {
-      "bn": "সর্বোচ্চ",
-      "approved": true
+    "pinLow": {
+      "bn": "সর্বনিম্ন · {name}",
+      "approved": false
     },
-    "bd": {
-      "bn": "বাংলাদেশ",
-      "approved": true
+    "pinHigh": {
+      "bn": "সর্বোচ্চ · {name}",
+      "approved": false
     },
     "legendTop": {
       "bn": "শীর্ষ",
@@ -281,7 +273,7 @@
   },
   "infoNotes": [
     {
-      "bn": "মানচিত্রে দেশের সীমানা বাংলাদেশের দৃষ্টিকোণ অনুযায়ী দেখানো। যে দেশ মানচিত্রে আলাদা করে আঁকা নেই, তার নাম ও অবস্থান কার্ডে দেওয়া আছে।",
+      "bn": "মানচিত্রে দেশের সীমানা বাংলাদেশের দৃষ্টিকোণ অনুযায়ী দেখানো।",
       "approved": true
     },
     {
@@ -16430,7 +16422,16 @@
           "iso3": "SOM",
           "name": "Somalia",
           "rank": 181,
-          "shared": true
+          "tied": [
+            {
+              "iso3": "SOM",
+              "name": "Somalia"
+            },
+            {
+              "iso3": "SSD",
+              "name": "South Sudan"
+            }
+          ]
         }
       },
       "previous": {
@@ -16453,8 +16454,7 @@
         "bottom": {
           "iso3": "SSD",
           "name": "South Sudan",
-          "rank": 180,
-          "shared": true
+          "rank": 180
         }
       },
       "pageUrl": "https://www.transparency.org/en/cpi/2025",
@@ -16950,7 +16950,24 @@
           "iso3": "BEL",
           "name": "Belgium",
           "rank": 111,
-          "shared": true
+          "tied": [
+            {
+              "iso3": "BEL",
+              "name": "Belgium"
+            },
+            {
+              "iso3": "BWA",
+              "name": "Botswana"
+            },
+            {
+              "iso3": "GRC",
+              "name": "Greece"
+            },
+            {
+              "iso3": "QAT",
+              "name": "Qatar"
+            }
+          ]
         }
       },
       "previous": {
@@ -16975,8 +16992,7 @@
         "bottom": {
           "iso3": "BEL",
           "name": "Belgium",
-          "rank": 114,
-          "shared": true
+          "rank": 114
         }
       },
       "pageUrl": "https://peacekeeping.un.org/en/troop-and-police-contributors",

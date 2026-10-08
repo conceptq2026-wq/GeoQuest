@@ -125,7 +125,7 @@ const MARITIME_ZONES_SEED_SHA256 = '6b0f67dbac0b0fa97037d86c7f94d3f07a73bd57a42d
 // The bangladesh-maritime-boundary map: the editor's seed, pinned (live 2026-10-08; its 35 step-2 strings approved, BD-6; #30 reworded by the user the same day).
 const BANGLADESH_MARITIME_SEED_SHA256 = 'dcc627421f99b20faeffe17006d9348f181b9663c058af66f37ae6c572e8ebbd';
 // The global-indices map «বৈশ্বিক সূচক» (work in progress, IDX-2, 2026-10-08): its seed, pinned.
-const GLOBAL_INDICES_SEED_SHA256 = '86b4e6682d4c5ae1d133bd74331006219ccbb1a503faffea61b3fec8be2d023a';
+const GLOBAL_INDICES_SEED_SHA256 = '3786ee90aed5bec74bb53086ad649d2e1fddf92c6342d48fc55ddabdbbaa2ae2';
 // The important-days diagram «বছরের চাকা»: its seed, pinned (live 2026-10-08, after WHEEL-2–5 and GL-WHEEL).
 const IMPORTANT_DAYS_SEED_SHA256 = '24fe65ed95d70d794a54c0a29341b85da87a13fcffa371a1d9967a862d737070';
 // The bangladesh-ethnic-groups map: its seed, pinned (live 2026-10-08).
@@ -2860,7 +2860,7 @@ console.log('\n\n============ global-indices (work in progress) ============');
   check(shading.length === 0, `an open ranking shades the countries it ranks in seven classes; a facts-only one lights only its top and bottom${shading.length ? ` — not: ${shading.map((x) => x.id).join(', ')}` : ''}`);
   // A user-input ranking, once the user's facts are in (tools/ingest-user-input.mjs), is facts-only too, with its source.
   const FACT_KEYS = ['edition', 'editionNote', 'releaseDate', 'releaseYear', 'releaseSure', 'releaseUrl', 'dataUrl', 'dataFile', 'n', 'rule', 'bd', 'top', 'bottom', 'source', 'approved'];
-  const leaky = seed.indices.filter((x) => ['facts', 'user-input', 'city'].includes(x.kind)).flatMap((x) => [x.latest, x.previous].filter(Boolean).map((e) => [x.id, e])).filter(([, e]) => Object.keys(e).some((k) => !FACT_KEYS.includes(k)) || Object.keys(e.bd).join() !== 'rank' || ['top', 'bottom'].some((w) => Object.keys(e[w]).some((k) => !['iso3', 'name', 'rank', 'shared'].includes(k))));
+  const leaky = seed.indices.filter((x) => ['facts', 'user-input', 'city'].includes(x.kind)).flatMap((x) => [x.latest, x.previous].filter(Boolean).map((e) => [x.id, e])).filter(([, e]) => Object.keys(e).some((k) => !FACT_KEYS.includes(k)) || Object.keys(e.bd).join() !== 'rank' || ['top', 'bottom'].some((w) => Object.keys(e[w]).some((k) => !['iso3', 'name', 'rank', 'shared', 'tied'].includes(k)) || (e[w].tied ?? []).some((c) => Object.keys(c).some((k) => !['iso3', 'name'].includes(k)))));
   check(leaky.length === 0, `a facts-only ranking keeps three facts per edition — Bangladesh's rank of N, the top, the bottom — and no other country's rank or any value${leaky.length ? ` — not: ${leaky.map(([k]) => k).join(', ')}` : ''}`);
   const waiting = seed.indices.filter((x) => (x.kind === 'user-input' || x.kind === 'city') && !x.latest);
   check(waiting.every((x) => !indices[x.id] && x.userInput?.pages?.length && x.userInput?.factsNeeded?.length), `${waiting.length} user-input rankings are not built, each with the official pages to read and the facts needed`);
@@ -2869,10 +2869,19 @@ console.log('\n\n============ global-indices (work in progress) ============');
   check(unsourced.length === 0, `every built value cites a pinned official file, and every release date a pinned official page${unsourced.length ? ` — not: ${unsourced.slice(0, 4).join(', ')}` : ''}`);
   // Rule (a) for what is built (the user, IDX-4, 2026-10-09): every string approved, and every fact the user read by
   // hand approved before it is shown (tools/ingest-user-input.mjs writes it unapproved).
-  let pendingStrings = 0;
-  JSON.stringify(seed, (k, v) => { if (v && typeof v === 'object' && typeof v.bn === 'string' && v.approved === false) pendingStrings++; return v; });
+  // IDX-4 (revised): the pins' patterns and the South Asia label are new and await the user's review; nothing else.
+  const NEW = ['words.pinRank', 'words.pinBd', 'words.pinTie', 'words.pinLow', 'words.pinHigh', 'words.rows.southAsia'];
+  const pendingPaths = [];
+  const flagWalk2 = (v, where) => {
+    if (Array.isArray(v)) return v.forEach((x, i) => flagWalk2(x, `${where}[${i}]`));
+    if (!v || typeof v !== 'object') return;
+    if (typeof v.bn === 'string' && v.approved === false) pendingPaths.push(where);
+    for (const [k, x] of Object.entries(v)) flagWalk2(x, `${where}.${k}`);
+  };
+  for (const [k, v] of Object.entries(seed)) flagWalk2(v, k);
+  const strayPending = pendingPaths.filter((w) => !NEW.includes(w));
   const unapprovedFacts = builtSeed.filter((x) => x.kind === 'user-input' && x.latest?.approved !== true).map((x) => x.id);
-  check(pendingStrings === 0 && unapprovedFacts.length === 0, `no pending string and no unapproved hand-read fact among what is built (${pendingStrings} pending; ${unapprovedFacts.length ? `facts awaiting review: ${unapprovedFacts.join(', ')}` : 'no hand-read facts built yet'})`);
+  check(strayPending.length === 0 && unapprovedFacts.length === 0, `no pending string among what is built but this step's ${pendingPaths.length} new ones (${pendingPaths.join(', ') || 'none'}), and no unapproved hand-read fact (${unapprovedFacts.length ? unapprovedFacts.join(', ') : 'none built yet'})${strayPending.length ? ` — also pending: ${strayPending.slice(0, 4).join(', ')}` : ''}`);
   const unread = builtSeed.filter((x) => x.kind !== 'user-input').filter((x) => x.read?.readers !== 2 || (!x.read.agreed && !(x.read.unstoredMismatches ?? []).length));
   check(unread.length === 0, `every built ranking was read twice and the readings agree (a mismatch only in a field not stored: ${builtSeed.filter((x) => x.read?.unstoredMismatches?.length).map((x) => x.id).join(', ') || 'none'})`);
   checkMap({ id, expectedPending: 0 });

@@ -277,7 +277,9 @@ drawn now (`drawn`), and read a file of the map's own folder (`file`).
   «সর্বশেষ যাচাই» · «সূত্র ↗» foot in the card, and the «বাংলাদেশ» view tab's list (one row per ranking: rank of N, a
   position bar, a ▲/▼ chip; a row opens its ranking). While that tab is open the map, its card and the picker row are
   hidden; ⓘ stays under the tabs. A record with `bdOnly` is in that list alone. For it the shell's module surface also
-  hands out `maplibregl` (to place HTML markers); no other map uses either. `tools/check.mjs` runs `indicesSteps`.
+  hands out `maplibregl` (to place HTML markers); no other map uses either. Since IDX-4 (revised) the pills are three
+  pins built per ranking (`pins`, JSON on the record): a dot on the country's own point, a thin leader, and a label
+  placed inside the map clear of the other labels and dots; Bangladesh's label opens the card. `tools/check.mjs` runs `indicesSteps`.
   IDX-3: the «বাংলাদেশ» tab's chip says better or worse by the ranking's own direction (`goodIs`): «▲ উন্নতি x ধাপ»
   in green, «▼ অবনতি x ধাপ» in vermillion — a move toward rank 1 is «অবনতি» where rank 1 is the most affected (CRI) —
   «— অপরিবর্তিত» in grey, and «▲/▼ x ধাপ ওপরে/নিচে» in grey for a ranking that is neither better nor worse
