@@ -120,7 +120,7 @@ shell/index.html?map=straits
 Not one folder per map. Each map's data lives in its own file so its source can
 later change from a local file to a fetch from the app's Gateway without
 touching anything else. A diagram is opened the same way by a second page,
-`visual/index.html?v=<id>` — built, with five diagrams live (see
+`visual/index.html?v=<id>` — built, with six diagrams live (see
 **Interactive diagrams**).
 
 `docs/` is the served tree. **Invariant: the committed contents of `docs/` are
@@ -455,10 +455,11 @@ State which kind a task is when reporting it.
   (`notes/org-members.md`). Geography:
   `deserts`, `lakes`, `forests`, `mountains`, `waterfalls` and
   `latitude-longitude`, all under `docs/maps/`.
-- Five diagrams, in `docs/diagrams/`: `bangladesh-rivers` («নদী ১») under
+- Six diagrams, in `docs/diagrams/`: `bangladesh-rivers` («নদী ১») under
   বাংলাদেশ, drawn in code from the rivers seed (`notes/bangladesh-rivers.md`),
   maintenance-only beside the map of the same seed
-  (`notes/bangladesh-rivers-map.md`); `maritime-zones` under International;
+  (`notes/bangladesh-rivers-map.md`); `important-days` («বছরের চাকা») under
+  বাংলাদেশ (`notes/important-days.md`); `maritime-zones` under International;
   `atmosphere-layers`, `earth-interior` and `seasons` under বিবিধ. Both
   rivers products went live together (2026-09-30), with the home page's first
   captions.
@@ -486,11 +487,12 @@ State which kind a task is when reporting it.
   - its districts drawn from the shared district file through the shell's opt-in `sharedGeometry`
     (2026-10-08, `notes/shell.md`);
   - all 96 strings approved (2026-10-08, `notes/bangladesh-ethnic-groups.md`).
-- Work in progress (`tools/wip.json`): `important-days` «বছরের চাকা», a diagram under বাংলাদেশ (WHEEL-2, revised
-  by WHEEL-3 to WHEEL-5 after the user's review, 2026-10-08): the Cabinet Division's circular of 11 March 2026 and its
+- `important-days` «বছরের চাকা» went live on the home page on 2026-10-08, under বাংলাদেশ, with no caption, after
+  WHEEL-2 to WHEEL-5 (the user's review) and GL-WHEEL: the Cabinet Division's circular of 11 March 2026 and its
   amendments, religious days removed by the user, 80 of the 85 kept entries built (4 date conflicts and one undated
   day held out), two kinds, twelve months and no year shown, drawn by the diagram shell's `days` view, with Noto
   Sans Bengali Bold; all 187 strings approved by the user (WHEEL-4 and WHEEL-5) (`notes/important-days.md`).
+  Nothing is in progress (`tools/wip.json` is empty).
   - **Yearly check** (the user's rule, 2026-10-08): when each new public-holiday gazette is published, compare
     important-days' three Bangla-calendar dates (১ বৈশাখ 14 April, ২৫ বৈশাখ 8 May, ১১ জ্যৈষ্ঠ 25 May); if any differs,
     their strings go back to `approved: false` and the user is told.

@@ -17,6 +17,9 @@
     "bangladesh-ethnic-groups": {
       "kind": "map"
     },
+    "important-days": {
+      "kind": "diagram"
+    },
     "world-revolutions": {
       "kind": "map",
       "captionBn": "তিন ট্যাব: বিপ্লব, অভ্যুত্থান ও অ-রাজনৈতিক বিপ্লব"

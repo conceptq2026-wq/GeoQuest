@@ -39,6 +39,8 @@
 //                                 data-sources/bangladesh-maritime-boundary/, pinned; its sources and quotes, by tools/verify.mjs
 //   bangladesh-ethnic-groups  docs/maps/bangladesh-ethnic-groups/ is a fresh build of
 //                             data-sources/bangladesh-ethnic-groups/, pinned; its sources and anchors, by tools/verify.mjs
+//   important-days (a diagram)  docs/diagrams/important-days/ is a fresh build of
+//                               data-sources/important-days/days.seed.json, pinned; its strings, by tools/verify.mjs
 //
 // A map under docs/maps/ or a diagram under docs/diagrams/ with no section
 // here fails, by its id: a new one is written into this file with its own
@@ -120,7 +122,7 @@ const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa
 const MARITIME_ZONES_SEED_SHA256 = '6b0f67dbac0b0fa97037d86c7f94d3f07a73bd57a42d7b0986e8b3dc9fdab689';
 // The bangladesh-maritime-boundary map: the editor's seed, pinned (live 2026-10-08; its 35 step-2 strings approved, BD-6; #30 reworded by the user the same day).
 const BANGLADESH_MARITIME_SEED_SHA256 = 'dcc627421f99b20faeffe17006d9348f181b9663c058af66f37ae6c572e8ebbd';
-// The important-days diagram «বছরের চাকা» (work in progress, WHEEL-2 and WHEEL-3, 2026-10-08): its seed, pinned.
+// The important-days diagram «বছরের চাকা»: its seed, pinned (live 2026-10-08, after WHEEL-2–5 and GL-WHEEL).
 const IMPORTANT_DAYS_SEED_SHA256 = '24fe65ed95d70d794a54c0a29341b85da87a13fcffa371a1d9967a862d737070';
 // The bangladesh-ethnic-groups map: its seed, pinned (live 2026-10-08).
 const BANGLADESH_ETHNIC_SEED_SHA256 = 'c2b2333d34be11f0c02aec09fade7c8d1c007fa445c573fdc65824770f96cd75';
@@ -2812,8 +2814,8 @@ console.log('\n\n============ bangladesh-ethnic-groups ============');
 
 /*
 |--------------------------------------------------------------------------
-| IMPORTANT-DAYS — a diagram, «বছরের চাকা» (work in progress; WHEEL-2,
-| revised by WHEEL-3, 2026-10-08), built by
+| IMPORTANT-DAYS — a diagram, «বছরের চাকা» (live 2026-10-08, after WHEEL-2–5
+| and GL-WHEEL), built by
 | tools/build-diagram-important-days.mjs from its seed: the days the Cabinet
 | Division's circular of 11 March 2026 lists, each date verified, religious
 | days removed (the user's review). The seed is the pinned one; docs/ holds
@@ -2822,10 +2824,10 @@ console.log('\n\n============ bangladesh-ethnic-groups ============');
 | two kinds only; no religious day, theme or declarer anywhere in the built
 | files; no year in any word, name or date shown; every card fact cites a URL;
 | every string approved (the user, WHEEL-4 and WHEEL-5).
-| Its unapproved strings only warn while it is work in progress (verify.mjs).
+| A live diagram serves no unapproved string (verify.mjs, rule (a)).
 |--------------------------------------------------------------------------
 */
-console.log('\n\n============ important-days (diagram, work in progress) ============');
+console.log('\n\n============ important-days (diagram) ============');
 {
   const id = 'important-days';
   CHECKED_DIAGRAMS.add(id);

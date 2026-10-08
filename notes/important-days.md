@@ -1,10 +1,14 @@
-# important-days — «বছরের চাকা» (work in progress)
+# important-days — «বছরের চাকা»
 
 Read it with `CLAUDE.md`, whose rules and verification budget apply. A diagram under বাংলাদেশ.
 
-**Status: work in progress (WHEEL-2, revised by WHEEL-3 after the user's review, 2026-10-08), on the local preview
-only.**
-- In `tools/wip.json` under Bangladesh; not in `docs/registry.json`.
+**Status: live on the home page since 2026-10-08 (GL-WHEEL), under বাংলাদেশ, with no caption.**
+- History: WHEEL-M1 and WHEEL-2, the data and the diagram on the local preview; WHEEL-3 to WHEEL-5, the user's
+  review (religious days out, two kinds, twelve months, no year shown; two string edits; all 187 strings approved);
+  GL-WHEEL, out of `tools/wip.json` and into `docs/registry.json` through `tools/home-cards.json` (`kind` only: the
+  descriptor's title, no caption), pushed with the four commits before it (2026-10-08).
+- Every string is approved; `tools/verify.mjs` holds it, live, to rule (a). The yearly check of the three
+  Bangla-calendar dates (below, under Strings) stands.
 - Built into `docs/diagrams/important-days/` by `tools/build-diagram-important-days.mjs` from
   `data-sources/important-days/days.seed.json`. `tools/verify-descriptor.mjs` pins the seed and holds the folder to a
   fresh build: twelve months whose counts are the seed's, two kinds, no religious day, theme or declarer, no year

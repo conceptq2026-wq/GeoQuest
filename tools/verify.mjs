@@ -1619,11 +1619,11 @@ console.log('\n---- bangladesh-ethnic-groups: seed (draft) ----');
   check(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(seedText) && registry.maps.some((e) => e.id === EG && e.section === 'bangladesh') && !wipItems.some((w) => w.id === EG) && fs.existsSync(path.join(SERVED, 'maps', EG, 'descriptor.json')), `${EG}: no e-mail address in the seed; live — in registry.json under Bangladesh, its folder under docs/maps/, no longer in tools/wip.json`);
 }
 
-// ---- important-days «বছরের চাকা» (work in progress, WHEEL-2 and WHEEL-3, 2026-10-08): the seed -------------------
+// ---- important-days «বছরের চাকা» (live 2026-10-08): the seed ---------------------------------------------------
 // Every Bengali string is { bn, approved }; a source's own title, a citation, a day's printed name in the circular's
 // record (the removed religious days' too) and a named day's name inside an entry are records of a source. Its built files are held to a fresh build
-// by tools/verify-descriptor.mjs; unapproved strings only warn while it is work in progress.
-console.log('\n---- important-days: seed (work in progress) ----');
+// by tools/verify-descriptor.mjs; live, it serves no unapproved string.
+console.log('\n---- important-days: seed ----');
 {
   const ID = 'important-days';
   const seedText = fs.readFileSync(path.join(DATA_SOURCES, ID, 'days.seed.json'), 'utf8');
@@ -1641,8 +1641,8 @@ console.log('\n---- important-days: seed (work in progress) ----');
   };
   walk(seed, 'seed', null, null);
   check(unflagged.length === 0, `${ID}: every Bengali string carries its approval flag${unflagged.length ? ` — not: ${unflagged.slice(0, 3).join(', ')}` : ''}`);
-  if (pending) console.log(`warn ${ID} (work in progress): ${pending} string(s) await the user's approval`);
-  check(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(seedText) && !registry.maps.some((e) => e.id === ID) && wipItems.some((w) => w.id === ID && w.kind === 'diagram' && w.section === 'bangladesh') && fs.existsSync(path.join(SERVED, 'diagrams', ID, 'descriptor.json')), `${ID}: no e-mail address in the seed; work in progress — in tools/wip.json under Bangladesh, built into docs/diagrams/, not in the registry`);
+  check(pending === 0, `${ID}: every string approved — the diagram is live${pending ? ` — ${pending} pending` : ''}`);
+  check(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(seedText) && registry.maps.some((e) => e.id === ID && e.kind === 'diagram' && e.section === 'bangladesh') && !wipItems.some((w) => w.id === ID) && fs.existsSync(path.join(SERVED, 'diagrams', ID, 'descriptor.json')), `${ID}: no e-mail address in the seed; live — in registry.json under Bangladesh, its folder under docs/diagrams/, no longer in tools/wip.json`);
 }
 
 // ---- no unapproved string ships (the user's rule, 2026-10-08, BD-6) -------------------------------

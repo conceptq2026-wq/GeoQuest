@@ -55,6 +55,15 @@
       }
     },
     {
+      "id": "important-days",
+      "kind": "diagram",
+      "section": "bangladesh",
+      "title": {
+        "en": "Year Wheel of Days",
+        "bn": "বছরের চাকা"
+      }
+    },
+    {
       "id": "liberation-war-1971",
       "section": "bangladesh",
       "title": {
