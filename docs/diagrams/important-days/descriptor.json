@@ -32,10 +32,13 @@
     ],
     "kinds": {
       "national": "জাতীয় দিবস",
-      "international": "আন্তর্জাতিক দিবস",
-      "other": "অন্যান্য দিবস",
-      "today": "আজ"
+      "international": "আন্তর্জাতিক দিবস"
     },
+    "legend": {
+      "national": "জাতীয়",
+      "international": "আন্তর্জাতিক"
+    },
+    "today": "আজ",
     "listTitle": "{month} মাসের দিবসসমূহ",
     "count": "{n}টি দিবস",
     "inDays": "{n} দিন পর",
@@ -47,10 +50,6 @@
         "label": "ইংরেজি নাম"
       },
       {
-        "key": "declaredBy",
-        "label": "ঘোষণাকারী"
-      },
-      {
         "key": "firstObserved",
         "label": "প্রথম পালন"
       },
@@ -59,8 +58,8 @@
         "label": "উদ্দেশ্য"
       },
       {
-        "key": "theme",
-        "label": "প্রতিপাদ্য ({year})"
+        "key": "source",
+        "label": "সূত্র"
       }
     ]
   }

@@ -43,7 +43,7 @@
 | Every word shown is the descriptor's or the data's.
 */
 
-import { dockedCard, el, pickerBar, stylesheet } from './parts.js?v=3195e519c0';
+import { dockedCard, el, pickerBar, stylesheet } from './parts.js?v=dde7f58d0e';
 
 // A pointer that moves less than this (CSS px) between down and up is a tap.
 const TAP_SLOP = 8;
@@ -63,7 +63,7 @@ async function loadThree() {
     const gl = probe.getContext('webgl') ?? probe.getContext('experimental-webgl');
     if (!gl) return null;
     gl.getExtension('WEBGL_lose_context')?.loseContext();
-    await import('./vendor/three-0.128.0/three.min.js?v=3195e519c0');
+    await import('./vendor/three-0.128.0/three.min.js?v=dde7f58d0e');
     return globalThis.THREE ?? null;
   } catch {
     return null;
@@ -79,12 +79,12 @@ export async function mount(panel, context) {
     renderer = null;
   }
   // No WebGL: the 2D zones view, from the same file.
-  if (!renderer) return (await import('./zones.js?v=3195e519c0')).mount(panel, context);
+  if (!renderer) return (await import('./zones.js?v=dde7f58d0e')).mount(panel, context);
 
   const { descriptor, data, art } = context;
   const words = descriptor.words ?? {};
   const M = await art;
-  await Promise.all([stylesheet('../shared/picker.css?v=3195e519c0'), stylesheet('./zones3d.css?v=3195e519c0')]);
+  await Promise.all([stylesheet('../shared/picker.css?v=dde7f58d0e'), stylesheet('./zones3d.css?v=dde7f58d0e')]);
 
   const zones = data.zones;
   const byId = new Map(zones.map((z) => [z.id, z]));

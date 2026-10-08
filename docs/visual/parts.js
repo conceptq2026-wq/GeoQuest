@@ -6,7 +6,7 @@
 |--------------------------------------------------------------------------
 */
 
-import { pickerRow } from '../shared/picker.js?v=3195e519c0';
+import { pickerRow } from '../shared/picker.js?v=dde7f58d0e';
 
 export const SVG = 'http://www.w3.org/2000/svg';
 
@@ -42,7 +42,7 @@ export function stylesheet(href) {
  * (../shared/picker.js) on its three elements. Returns the bar to place and
  * the row's { render, sync }, with its select.
  */
-export function pickerBar({ placeholder, items, groups, current, choose }) {
+export function pickerBar({ placeholder, items, groups, current, choose, wrap }) {
   const bar = el('nav', 'picker-row diagram-picker');
   const prev = el('button', 'step-btn');
   prev.type = 'button';
@@ -60,7 +60,7 @@ export function pickerBar({ placeholder, items, groups, current, choose }) {
   next.textContent = '›';
   next.hidden = true;
   bar.append(prev, select, next);
-  const row = pickerRow({ select, prev, next, placeholder, items, groups, current, choose });
+  const row = pickerRow({ select, prev, next, placeholder, items, groups, current, choose, wrap });
   return { bar, select, row };
 }
 

@@ -1,5 +1,5 @@
 {
-  "_about": "The year-wheel diagram (important-days, WHEEL-2, 2026-10-08): the days Bangladesh observes, as the Cabinet Division's circular of 11 March 2026 and its four amendments list them, each date checked against a second official source where one exists. Built by tools/build-diagram-important-days.mjs; tools/.cache/days/investigation.md (out of git) has the research. Every Bengali string awaits the user's approval. An entry is built when every named day in it is VERIFIED or SINGLE-SOURCE and it has a date; a CONFLICT holds it out.",
+  "_about": "The year-wheel diagram (important-days; WHEEL-2 and WHEEL-3, 2026-10-08): the days Bangladesh observes, as the Cabinet Division's circular of 11 March 2026 and its four amendments list them, each date checked against a second official source where one exists; religious days removed by the user; two kinds; no year shown. Built by tools/build-diagram-important-days.mjs; tools/.cache/days/investigation.md (out of git) has the research. Every Bengali string awaits the user's approval.",
   "id": "important-days",
   "section": "bangladesh",
   "circular": {
@@ -58,7 +58,57 @@
       "changes": "splits খ row ২০: আন্তর্জাতিক যুব দিবস stays on ১২ আগস্ট; জাতীয় যুব দিবস is observed separately on ১ নভেম্বর, in category খ"
     }
   ],
-  "kindRule": "by who declares the day: the UN, its agencies or another international body → international; the Government of Bangladesh → national; religious festivals and the Bangla calendar's cultural days → other (a proposal, for the user)",
+  "credits": [
+    {
+      "what": "UN observances: the list of international days and weeks",
+      "url": "https://www.un.org/en/observances/list-days-weeks"
+    }
+  ],
+  "kindRule": "by who declares the day: the UN, its agencies or another international body → international; the Government of Bangladesh (Bangla-calendar cultural days included) → national (the user, 2026-10-08)",
+  "removedReligious": [
+    {
+      "index": 5,
+      "category": "ক",
+      "serial": 6,
+      "nameBn": "বৌদ্ধ পূর্ণিমা",
+      "dateAsPrinted": "মে মাসে"
+    },
+    {
+      "index": 9,
+      "category": "ক",
+      "serial": 10,
+      "nameBn": "বড়দিন",
+      "dateAsPrinted": "২৫ ডিসেম্বর"
+    },
+    {
+      "index": 13,
+      "category": "ক",
+      "serial": 14,
+      "nameBn": "ঈদ-উল-ফিতর",
+      "dateAsPrinted": "১ শাওয়াল"
+    },
+    {
+      "index": 14,
+      "category": "ক",
+      "serial": 15,
+      "nameBn": "ঈদ-উল-আযহা",
+      "dateAsPrinted": "১০ জিলহজ"
+    },
+    {
+      "index": 15,
+      "category": "ক",
+      "serial": 16,
+      "nameBn": "ঈদ-ই-মিলাদুন্নবী (সাঃ)",
+      "dateAsPrinted": "১২ রবিউল আওয়াল"
+    },
+    {
+      "index": 16,
+      "category": "ক",
+      "serial": 17,
+      "nameBn": "দুর্গাপূজা",
+      "dateAsPrinted": "পঞ্জিকা অনুযায়ী"
+    }
+  ],
   "words": {
     "title": {
       "bn": "বছরের চাকা",
@@ -122,15 +172,21 @@
       "international": {
         "bn": "আন্তর্জাতিক দিবস",
         "approved": false
-      },
-      "other": {
-        "bn": "অন্যান্য দিবস",
+      }
+    },
+    "legend": {
+      "national": {
+        "bn": "জাতীয়",
         "approved": false
       },
-      "today": {
-        "bn": "আজ",
+      "international": {
+        "bn": "আন্তর্জাতিক",
         "approved": false
       }
+    },
+    "today": {
+      "bn": "আজ",
+      "approved": false
     },
     "listTitle": {
       "bn": "{month} মাসের দিবসসমূহ",
@@ -167,11 +223,6 @@
         "approved": false
       },
       {
-        "key": "declaredBy",
-        "bn": "ঘোষণাকারী",
-        "approved": false
-      },
-      {
         "key": "firstObserved",
         "bn": "প্রথম পালন",
         "approved": false
@@ -182,21 +233,11 @@
         "approved": false
       },
       {
-        "key": "theme",
-        "bn": "প্রতিপাদ্য ({year})",
+        "key": "source",
+        "bn": "সূত্র",
         "approved": false
       }
-    ],
-    "creditGroups": {
-      "bd": {
-        "bn": "বাংলাদেশ সরকার",
-        "approved": false
-      },
-      "intl": {
-        "bn": "জাতিসংঘ ও আন্তর্জাতিক সংস্থা",
-        "approved": false
-      }
-    }
+    ]
   },
   "entries": [
     {
@@ -218,6 +259,7 @@
         "d": 21
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "শহীদ দিবস",
@@ -251,18 +293,11 @@
       "card": {
         "englishName": {
           "value": "International Mother Language Day",
-          "url": "https://www.un.org/en/observances/mother-language-day",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "UNESCO General Conference, November 1999 (proclamation); welcomed by UN General Assembly resolution A/RES/56/262 (2002). The UNESCO resolution number is not given on the official pages read.",
-          "url": "https://www.un.org/en/observances/mother-language-day",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/mother-language-day"
         },
         "firstObserved": {
           "value": "2000",
-          "url": "https://www.unesco.org/en/days/mother-language",
-          "sourceType": "official"
+          "url": "https://www.unesco.org/en/days/mother-language"
         },
         "purposeBn": {
           "bn": "পৃথিবীর ভাষা ও সংস্কৃতির বৈচিত্র্য রক্ষা এবং একাধিক ভাষা চর্চায় উৎসাহ দেওয়া।",
@@ -270,14 +305,8 @@
           "url": "https://www.un.org/en/observances/mother-language-day",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "Youth voices on multilingual education",
-            "lang": "en",
-            "url": "https://www.un.org/en/observances/mother-language-day",
-            "published": "undated page (fetched 2026-10-08); UNESCO 2026 celebrations section says the same",
-            "words": 5
-          }
+        "source": {
+          "url": "https://www.un.org/en/observances/mother-language-day"
         }
       },
       "circularSource": {
@@ -304,6 +333,7 @@
         "d": 1
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "জাতীয় বীমা দিবস",
@@ -323,14 +353,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 1,
@@ -355,6 +378,7 @@
         "d": 25
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "গণহত্যা দিবস",
@@ -379,17 +403,14 @@
         }
       ],
       "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        },
         "purposeBn": {
           "bn": "১৯৭১ সালের ২৫ মার্চ রাতে পাকিস্তানি বাহিনীর চালানো গণহত্যার শিকারদের স্মরণের দিন",
           "approved": false,
           "url": "https://pressinform.gov.bd/pages/all-notes/handout-24-march-2026-a2lezh-69c214d82d18f2fe024e0e8c",
           "sourceType": "official"
+        },
+        "source": {
+          "url": "https://pressinform.gov.bd/pages/all-notes/handout-24-march-2026-a2lezh-69c214d82d18f2fe024e0e8c"
         }
       },
       "circularSource": {
@@ -416,6 +437,7 @@
         "d": 26
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "স্বাধীনতা ও জাতীয় দিবস",
@@ -436,17 +458,14 @@
         }
       ],
       "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        },
         "purposeBn": {
           "bn": "স্বাধীন দেশ হিসেবে বাংলাদেশের অস্তিত্ব ঘোষণার দিনটি জাতীয়ভাবে উদ্‌যাপন",
           "approved": false,
           "url": "https://pressinform.gov.bd/pages/all-notes/handout-26-march-2026-zv5eyu-69c4cab04e6074befaa5f497",
           "sourceType": "official"
+        },
+        "source": {
+          "url": "https://pressinform.gov.bd/pages/all-notes/handout-26-march-2026-zv5eyu-69c4cab04e6074befaa5f497"
         }
       },
       "circularSource": {
@@ -473,6 +492,7 @@
         "d": 1
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "মে দিবস",
@@ -497,89 +517,14 @@
         }
       ],
       "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        },
         "purposeBn": {
           "bn": "১৮৮৬ সালে শিকাগোয় আট ঘণ্টা কাজের দাবিতে শ্রমিকদের আত্মত্যাগ স্মরণ ও শ্রমিক অধিকারের দিন",
           "approved": false,
           "url": "https://pressinform.gov.bd/pages/all-notes/handout-30-april-2026-29ow46-69f2fa30b9bd2524a11dc1ba",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "bn": "সুস্থ শ্রমিক, কর্মঠ হাত, আসবে এবার নব প্রভাত",
-            "approved": false,
-            "url": "https://pressinform.gov.bd/pages/all-notes/handout-30-april-2026-29ow46-69f2fa30b9bd2524a11dc1ba",
-            "published": "2026-04-30",
-            "words": 8
-          }
-        }
-      },
-      "circularSource": {
-        "file": "raw/c-2026-03-11-consolidated.pdf",
-        "page": 1,
-        "method": "page image (scan, no text layer): transcribed by reading the rendered page"
-      }
-    },
-    {
-      "index": 5,
-      "serial": 6,
-      "category": "ক",
-      "nameBn": {
-        "bn": "বৌদ্ধ পূর্ণিমা",
-        "approved": false
-      },
-      "kinds": [
-        "other"
-      ],
-      "dateAsPrinted": "মে মাসে",
-      "date": {
-        "type": "dated",
-        "dates": {
-          "2026": "2026-05-01"
-        },
-        "source": "gazette (ক) row ৭: শুক্রবার, ০১ মে ২০২৬ (১৮ বৈশাখ ১৪৩৩); marked * = moon/tithi-dependent (চাঁদ দেখার উপর নির্ভরশীল)"
-      },
-      "status": "built",
-      "named": [
-        {
-          "nameBn": "বৌদ্ধ পূর্ণিমা",
-          "kind": "other",
-          "status": "VERIFIED",
-          "dateType": "other-calendar",
-          "date2026": "2026-05-01",
-          "sources": [
-            {
-              "what": "Cabinet Division consolidated circular, 11 Mar 2026 (scan; read from page images by the earlier circular pass)",
-              "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf"
-            },
-            {
-              "what": "Bangladesh Gazette (extraordinary) of 12 Nov 2025, pp. 11835–11838: Ministry of Public Administration প্রজ্ঞাপন no. ০৫.০০.০০০০.০০০.১৭৫.০৮.০০০৮.২৫-১৭ of 9 Nov 2025, the 2026 public-holiday list (read from its Bijoy text layer, converted, and checked against page images 1–2)",
-              "url": "http://www.dpp.gov.bd/upload_file/gazettes/59216_19984.pdf"
-            },
-            {
-              "what": "PID (তথ্য অধিদফতর) daily handout 2026-04-30: PM’s message «আগামীকাল শুভ বুদ্ধ পূর্ণিমা» (lines 192–197)",
-              "url": "https://pressinform.gov.bd/pages/all-notes/handout-30-april-2026-29ow46-69f2fa30b9bd2524a11dc1ba"
-            }
-          ]
-        }
-      ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        },
-        "purposeBn": {
-          "bn": "গৌতম বুদ্ধের জন্ম, বোধিলাভ ও মহাপরিনির্বাণ স্মরণে বৌদ্ধ ধর্মাবলম্বীদের প্রধান উৎসব",
-          "approved": false,
-          "url": "https://pressinform.gov.bd/pages/all-notes/handout-30-april-2026-29ow46-69f2fa30b9bd2524a11dc1ba",
-          "sourceType": "official"
+        "source": {
+          "url": "https://pressinform.gov.bd/pages/all-notes/handout-30-april-2026-29ow46-69f2fa30b9bd2524a11dc1ba"
         }
       },
       "circularSource": {
@@ -606,6 +551,7 @@
         "d": 5
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "জুলাই গণঅভ্যুত্থান দিবস",
@@ -630,17 +576,14 @@
         }
       ],
       "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division পরিপত্র no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০১.২০.৪০৬ (and প্রজ্ঞাপন …২০.৪০৭) of 2 Jul 2025: 5 Aug declared «জুলাই গণঅভ্যুত্থান দিবস», category ক, with a general holiday",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2024/12/93ac593e05c14a1aaab759a1ffb146b1.pdf",
-          "sourceType": "official"
-        },
         "purposeBn": {
           "bn": "২০২৪ সালের এই দিনে ছাত্র-জনতার প্রতিরোধে দীর্ঘ বৈষম্যমূলক শাসনের অবসান স্মরণ",
           "approved": false,
           "url": "https://pressinform.gov.bd/pages/all-notes/handout-4-august-2026-bhds9j-6a718dab555ee404c4983246",
           "sourceType": "official"
+        },
+        "source": {
+          "url": "https://pressinform.gov.bd/pages/all-notes/handout-4-august-2026-bhds9j-6a718dab555ee404c4983246"
         }
       },
       "circularSource": {
@@ -658,7 +601,7 @@
         "approved": false
       },
       "kinds": [
-        "other"
+        "national"
       ],
       "dateAsPrinted": "১৭ অক্টোবর",
       "date": {
@@ -667,10 +610,11 @@
         "d": 17
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "লালন সাঁই-তিরোধান দিবস",
-          "kind": "other",
+          "kind": "national",
           "status": "VERIFIED",
           "dateType": "fixed",
           "date2026": "2026-10-17",
@@ -687,17 +631,14 @@
         }
       ],
       "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division পরিপত্র no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.৫৫৪ of 2 Sep 2025: «প্রতি বছর ১৭ অক্টোবর ‘লালন-সাঁই-এর তিরোধান দিবস’ উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2024/12/e128e8178e1147ebbc413675efb0a26c.pdf",
-          "sourceType": "official"
-        },
         "purposeBn": {
           "bn": "লালন সাঁইয়ের তিরোধান দিবসে তাঁকে জাতীয়ভাবে স্মরণ ও উদ্‌যাপন",
           "approved": false,
           "url": "https://moca.gov.bd/pages/notices/১৭-অক্টোবর-২০২৬-তারিখ-লালন-সাঁই-এর-তিরোধান-দিবস-পালন-সংক্রান্ত-প্রস্তুতিমূলক-সভার-কার্যবিবরণী--zp72of-6ab20d306a8b6205fba2fc5e",
           "sourceType": "official"
+        },
+        "source": {
+          "url": "https://moca.gov.bd/pages/notices/১৭-অক্টোবর-২০২৬-তারিখ-লালন-সাঁই-এর-তিরোধান-দিবস-পালন-সংক্রান্ত-প্রস্তুতিমূলক-সভার-কার্যবিবরণী--zp72of-6ab20d306a8b6205fba2fc5e"
         }
       },
       "circularSource": {
@@ -724,6 +665,7 @@
         "d": 16
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিজয় দিবস",
@@ -744,74 +686,14 @@
         }
       ],
       "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        },
         "purposeBn": {
           "bn": "১৯৭১ সালে নয় মাসের মুক্তিযুদ্ধ শেষে বাংলাদেশের বিজয় অর্জনের দিন",
           "approved": false,
           "url": "https://pressinform.gov.bd/pages/all-notes/তথ্যবিবরণী-১৫-ডিসেম্বর-২০২৫-491b76-695b999da31054345f104af7",
           "sourceType": "official"
-        }
-      },
-      "circularSource": {
-        "file": "raw/c-2026-03-11-consolidated.pdf",
-        "page": 1,
-        "method": "page image (scan, no text layer): transcribed by reading the rendered page"
-      }
-    },
-    {
-      "index": 9,
-      "serial": 10,
-      "category": "ক",
-      "nameBn": {
-        "bn": "বড়দিন",
-        "approved": false
-      },
-      "kinds": [
-        "other"
-      ],
-      "dateAsPrinted": "২৫ ডিসেম্বর",
-      "date": {
-        "type": "fixed",
-        "m": 12,
-        "d": 25
-      },
-      "status": "built",
-      "named": [
-        {
-          "nameBn": "বড়দিন",
-          "kind": "other",
-          "status": "VERIFIED",
-          "dateType": "fixed",
-          "date2026": "2026-12-25",
-          "sources": [
-            {
-              "what": "Cabinet Division consolidated circular, 11 Mar 2026 (scan; read from page images by the earlier circular pass)",
-              "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf"
-            },
-            {
-              "what": "Bangladesh Gazette (extraordinary) of 12 Nov 2025, pp. 11835–11838: Ministry of Public Administration প্রজ্ঞাপন no. ০৫.০০.০০০০.০০০.১৭৫.০৮.০০০৮.২৫-১৭ of 9 Nov 2025, the 2026 public-holiday list (read from its Bijoy text layer, converted, and checked against page images 1–2)",
-              "url": "http://www.dpp.gov.bd/upload_file/gazettes/59216_19984.pdf"
-            }
-          ]
-        }
-      ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
         },
-        "purposeBn": {
-          "bn": "যিশু খ্রিষ্টের জন্মদিন উদ্‌যাপনের দিন",
-          "approved": false,
-          "url": "http://www.dpp.gov.bd/upload_file/gazettes/59216_19984.pdf",
-          "sourceType": "official"
+        "source": {
+          "url": "https://pressinform.gov.bd/pages/all-notes/তথ্যবিবরণী-১৫-ডিসেম্বর-২০২৫-491b76-695b999da31054345f104af7"
         }
       },
       "circularSource": {
@@ -829,7 +711,7 @@
         "approved": false
       },
       "kinds": [
-        "other"
+        "national"
       ],
       "dateAsPrinted": "১ বৈশাখ",
       "date": {
@@ -837,13 +719,28 @@
         "dates": {
           "2026": "2026-04-14"
         },
+        "text": {
+          "bn": "১ বৈশাখ",
+          "approved": false
+        },
+        "tile": [
+          {
+            "bn": "১",
+            "approved": false
+          },
+          {
+            "bn": "বৈশাখ",
+            "approved": false
+          }
+        ],
         "source": "gazette (খ) row ৪ «নববর্ষ»: মঙ্গলবার, ১৪ এপ্রিল ২০২৬ = ০১ বৈশাখ ১৪৩৩"
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বাংলা নববর্ষ",
-          "kind": "other",
+          "kind": "national",
           "status": "VERIFIED",
           "dateType": "other-calendar",
           "date2026": "2026-04-14",
@@ -864,17 +761,14 @@
         }
       ],
       "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        },
         "purposeBn": {
           "bn": "বাংলা সনের প্রথম দিন পহেলা বৈশাখে নতুন বছরকে বরণ করা",
           "approved": false,
           "url": "https://pressinform.gov.bd/pages/all-notes/handout-13-april-2026-3zcl16-69dc73ba9c26e45d746f205c",
           "sourceType": "official"
+        },
+        "source": {
+          "url": "https://pressinform.gov.bd/pages/all-notes/handout-13-april-2026-3zcl16-69dc73ba9c26e45d746f205c"
         }
       },
       "circularSource": {
@@ -892,7 +786,7 @@
         "approved": false
       },
       "kinds": [
-        "other"
+        "national"
       ],
       "dateAsPrinted": "২৫ বৈশাখ",
       "date": {
@@ -900,13 +794,28 @@
         "dates": {
           "2026": "2026-05-08"
         },
+        "text": {
+          "bn": "২৫ বৈশাখ",
+          "approved": false
+        },
+        "tile": [
+          {
+            "bn": "২৫",
+            "approved": false
+          },
+          {
+            "bn": "বৈশাখ",
+            "approved": false
+          }
+        ],
         "source": "PID handout 8 May 2026: dateline «ঢাকা, ২৫ বৈশাখ (৮ মে)» with the Tagore 165th birth-anniversary event held that day"
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "রবীন্দ্র জয়ন্তী",
-          "kind": "other",
+          "kind": "national",
           "status": "VERIFIED",
           "dateType": "other-calendar",
           "date2026": "2026-05-08",
@@ -923,17 +832,14 @@
         }
       ],
       "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        },
         "purposeBn": {
           "bn": "বিশ্বকবি রবীন্দ্রনাথ ঠাকুরের জন্মবার্ষিকী পালন",
           "approved": false,
           "url": "https://pressinform.gov.bd/pages/all-notes/handout-8-may-2026-8fzo01-69fd65c09d0e57ba598bf59e",
           "sourceType": "official"
+        },
+        "source": {
+          "url": "https://pressinform.gov.bd/pages/all-notes/handout-8-may-2026-8fzo01-69fd65c09d0e57ba598bf59e"
         }
       },
       "circularSource": {
@@ -951,7 +857,7 @@
         "approved": false
       },
       "kinds": [
-        "other"
+        "national"
       ],
       "dateAsPrinted": "১১ জ্যৈষ্ঠ",
       "date": {
@@ -959,13 +865,28 @@
         "dates": {
           "2026": "2026-05-25"
         },
+        "text": {
+          "bn": "১১ জ্যৈষ্ঠ",
+          "approved": false
+        },
+        "tile": [
+          {
+            "bn": "১১",
+            "approved": false
+          },
+          {
+            "bn": "জ্যৈষ্ঠ",
+            "approved": false
+          }
+        ],
         "source": "PID handout 25 May 2026: dateline «ঢাকা, ১১ জ্যৈষ্ঠ (২৫ মে)»; PID 24 May 2026: messages for the anniversary «আগামীকাল»"
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "নজরুল জয়ন্তী",
-          "kind": "other",
+          "kind": "national",
           "status": "VERIFIED",
           "dateType": "other-calendar",
           "date2026": "2026-05-25",
@@ -990,269 +911,14 @@
         }
       ],
       "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        },
         "purposeBn": {
           "bn": "জাতীয় কবি কাজী নজরুল ইসলামের জন্মবার্ষিকী পালন",
           "approved": false,
           "url": "https://pressinform.gov.bd/pages/all-notes/handout-24-may-2026-jfpvyv-6a12aca5b92ba5a71ede824b",
           "sourceType": "official"
-        }
-      },
-      "circularSource": {
-        "file": "raw/c-2026-03-11-consolidated.pdf",
-        "page": 1,
-        "method": "page image (scan, no text layer): transcribed by reading the rendered page"
-      }
-    },
-    {
-      "index": 13,
-      "serial": 14,
-      "category": "ক",
-      "nameBn": {
-        "bn": "ঈদ-উল-ফিতর",
-        "approved": false
-      },
-      "kinds": [
-        "other"
-      ],
-      "dateAsPrinted": "১ শাওয়াল",
-      "date": {
-        "type": "dated",
-        "dates": {
-          "2026": "2026-03-21"
         },
-        "source": "gazette (ক) row ৩: শনিবার, ২১ মার্চ ২০২৬, marked * (moon-dependent, tentative at issue); PID 21 Mar 2026 reports the Eid prayers held that day"
-      },
-      "status": "built",
-      "named": [
-        {
-          "nameBn": "ঈদ-উল-ফিতর",
-          "kind": "other",
-          "status": "VERIFIED",
-          "dateType": "other-calendar",
-          "date2026": "2026-03-21",
-          "sources": [
-            {
-              "what": "Cabinet Division consolidated circular, 11 Mar 2026 (scan; read from page images by the earlier circular pass)",
-              "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf"
-            },
-            {
-              "what": "Bangladesh Gazette (extraordinary) of 12 Nov 2025, pp. 11835–11838: Ministry of Public Administration প্রজ্ঞাপন no. ০৫.০০.০০০০.০০০.১৭৫.০৮.০০০৮.২৫-১৭ of 9 Nov 2025, the 2026 public-holiday list (read from its Bijoy text layer, converted, and checked against page images 1–2)",
-              "url": "http://www.dpp.gov.bd/upload_file/gazettes/59216_19984.pdf"
-            },
-            {
-              "what": "PID (তথ্য অধিদফতর) daily handout 2026-03-21: Eid-ul-Fitr prayers held «আজ», dateline «সিলেট, ৭ চৈত্র (২১ মার্চ)» (lines 114–116)",
-              "url": "https://pressinform.gov.bd/pages/all-notes/handout-21-march-2026-d4w5s8-69be839334fc363bf31f3bb2"
-            }
-          ]
-        }
-      ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        },
-        "purposeBn": {
-          "bn": "মাসব্যাপী রোজা শেষে মুসলমানদের আনন্দ ও ভ্রাতৃত্বের ধর্মীয় উৎসব",
-          "approved": false,
-          "url": "https://pressinform.gov.bd/pages/all-notes/handout-20-march-2026-79elew-69bd33a78a7a37bfd7f562a6",
-          "sourceType": "official"
-        }
-      },
-      "circularSource": {
-        "file": "raw/c-2026-03-11-consolidated.pdf",
-        "page": 1,
-        "method": "page image (scan, no text layer): transcribed by reading the rendered page"
-      }
-    },
-    {
-      "index": 14,
-      "serial": 15,
-      "category": "ক",
-      "nameBn": {
-        "bn": "ঈদ-উল-আযহা",
-        "approved": false
-      },
-      "kinds": [
-        "other"
-      ],
-      "dateAsPrinted": "১০ জিলহজ",
-      "date": {
-        "type": "dated",
-        "dates": {
-          "2026": "2026-05-28"
-        },
-        "source": "gazette (ক) row ৮: বৃহস্পতিবার, ২৮ মে ২০২৬, marked * (moon-dependent, tentative at issue); PID 28 May 2026 reports the Eid prayers held that day"
-      },
-      "status": "built",
-      "named": [
-        {
-          "nameBn": "ঈদ-উল-আযহা",
-          "kind": "other",
-          "status": "VERIFIED",
-          "dateType": "other-calendar",
-          "date2026": "2026-05-28",
-          "sources": [
-            {
-              "what": "Cabinet Division consolidated circular, 11 Mar 2026 (scan; read from page images by the earlier circular pass)",
-              "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf"
-            },
-            {
-              "what": "Bangladesh Gazette (extraordinary) of 12 Nov 2025, pp. 11835–11838: Ministry of Public Administration প্রজ্ঞাপন no. ০৫.০০.০০০০.০০০.১৭৫.০৮.০০০৮.২৫-১৭ of 9 Nov 2025, the 2026 public-holiday list (read from its Bijoy text layer, converted, and checked against page images 1–2)",
-              "url": "http://www.dpp.gov.bd/upload_file/gazettes/59216_19984.pdf"
-            },
-            {
-              "what": "PID (তথ্য অধিদফতর) daily handout 2026-05-28: Eid-ul-Azha prayers held «আজ», dateline «চট্টগ্রাম, ১৪ জ্যৈষ্ঠ (২৮ মে)» (lines 125–127)",
-              "url": "https://pressinform.gov.bd/pages/all-notes/handout-28-may-2026-4brzey-6a186270d2a86bdf8e5008fb"
-            }
-          ]
-        }
-      ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        },
-        "purposeBn": {
-          "bn": "ত্যাগ, তাকওয়া ও আত্মশুদ্ধির বার্তা বহনকারী মুসলমানদের ধর্মীয় উৎসব",
-          "approved": false,
-          "url": "https://pressinform.gov.bd/pages/all-notes/তথ্যবিবরণী-২৭-মে-২০২৬-1euiz4-6a16f6ac53b3a668fb75b955",
-          "sourceType": "official"
-        }
-      },
-      "circularSource": {
-        "file": "raw/c-2026-03-11-consolidated.pdf",
-        "page": 1,
-        "method": "page image (scan, no text layer): transcribed by reading the rendered page"
-      }
-    },
-    {
-      "index": 15,
-      "serial": 16,
-      "category": "ক",
-      "nameBn": {
-        "bn": "ঈদ-ই-মিলাদুন্নবী (সাঃ)",
-        "approved": false
-      },
-      "kinds": [
-        "other"
-      ],
-      "dateAsPrinted": "১২ রবিউল আওয়াল",
-      "date": {
-        "type": "dated",
-        "dates": {
-          "2026": "2026-08-26"
-        },
-        "source": "gazette (ক) row ১০: বুধবার, ২৬ আগস্ট ২০২৬, marked * (moon-dependent); confirmed by PID 19 Aug 2026 (national programme for 26 Aug)"
-      },
-      "status": "built",
-      "named": [
-        {
-          "nameBn": "ঈদ-ই-মিলাদুন্নবী (সাঃ)",
-          "kind": "other",
-          "status": "VERIFIED",
-          "dateType": "other-calendar",
-          "date2026": "2026-08-26",
-          "sources": [
-            {
-              "what": "Cabinet Division consolidated circular, 11 Mar 2026 (scan; read from page images by the earlier circular pass)",
-              "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf"
-            },
-            {
-              "what": "Bangladesh Gazette (extraordinary) of 12 Nov 2025, pp. 11835–11838: Ministry of Public Administration প্রজ্ঞাপন no. ০৫.০০.০০০০.০০০.১৭৫.০৮.০০০৮.২৫-১৭ of 9 Nov 2025, the 2026 public-holiday list (read from its Bijoy text layer, converted, and checked against page images 1–2)",
-              "url": "http://www.dpp.gov.bd/upload_file/gazettes/59216_19984.pdf"
-            },
-            {
-              "what": "PID (তথ্য অধিদফতর) daily handout 2026-08-19: «২৬ আগস্ট বাংলাদেশে পবিত্র ঈদে মিলাদুন্নবী (সা.) উদ্‌যাপন করা হবে» (lines 143–145)",
-              "url": "https://pressinform.gov.bd/pages/all-notes/handout-19-august-2026-cxfg6b-6a855beb9ab15f9160802062"
-            }
-          ]
-        }
-      ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        },
-        "purposeBn": {
-          "bn": "মহানবি হজরত মুহাম্মদ (সা.)-এর আগমন স্মরণে ১২ রবিউল আউয়ালের ধর্মীয় দিবস",
-          "approved": false,
-          "url": "https://pressinform.gov.bd/pages/all-notes/handout-25-august-2026-x2f7or-6a8d518b2e7d7203e1c922b1",
-          "sourceType": "official"
-        }
-      },
-      "circularSource": {
-        "file": "raw/c-2026-03-11-consolidated.pdf",
-        "page": 1,
-        "method": "page image (scan, no text layer): transcribed by reading the rendered page"
-      }
-    },
-    {
-      "index": 16,
-      "serial": 17,
-      "category": "ক",
-      "nameBn": {
-        "bn": "দুর্গাপূজা",
-        "approved": false
-      },
-      "kinds": [
-        "other"
-      ],
-      "dateAsPrinted": "পঞ্জিকা অনুযায়ী",
-      "date": {
-        "type": "dated",
-        "dates": {
-          "2026": "2026-10-21"
-        },
-        "source": "gazette (ক) row ১২ «দুর্গাপূজা (বিজয়া দশমী)»: বুধবার, ২১ অক্টোবর ২০২৬ (০৫ কার্তিক ১৪৩৩); নবমী (খ) row ৭: মঙ্গলবার, ২০ অক্টোবর ২০২৬. PID 5 Oct 2026: holidays now 20–22 Oct 2026 (Dashami’s date not restated)"
-      },
-      "status": "built",
-      "named": [
-        {
-          "nameBn": "দুর্গাপূজা",
-          "kind": "other",
-          "status": "VERIFIED",
-          "dateType": "other-calendar",
-          "date2026": "2026-10-21",
-          "sources": [
-            {
-              "what": "Cabinet Division consolidated circular, 11 Mar 2026 (scan; read from page images by the earlier circular pass)",
-              "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf"
-            },
-            {
-              "what": "Bangladesh Gazette (extraordinary) of 12 Nov 2025, pp. 11835–11838: Ministry of Public Administration প্রজ্ঞাপন no. ০৫.০০.০০০০.০০০.১৭৫.০৮.০০০৮.২৫-১৭ of 9 Nov 2025, the 2026 public-holiday list (read from its Bijoy text layer, converted, and checked against page images 1–2)",
-              "url": "http://www.dpp.gov.bd/upload_file/gazettes/59216_19984.pdf"
-            },
-            {
-              "what": "PID (তথ্য অধিদফতর) daily handout 2026-10-05: Cabinet meeting of 5 Oct 2026 reschedules the Durga Puja general and executive holidays to 20–22 Oct 2026, offices open 17 Oct (তথ্যবিবরণী ১৫১০)",
-              "url": "https://pressinform.gov.bd/pages/all-notes/তথ্যবিবরণী-৫-অক্টোবর-২০২৬-1s8xpa-6ac36e3a9594596dad436f56"
-            }
-          ]
-        }
-      ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        },
-        "purposeBn": {
-          "bn": "সনাতন ধর্মাবলম্বীদের শারদীয় দুর্গাপূজা উৎসব",
-          "approved": false,
-          "url": "https://pressinform.gov.bd/pages/all-notes/handout-30-septermber-2026-9hxyvy-6abcd1ff84370efb87a9801b",
-          "sourceType": "official"
+        "source": {
+          "url": "https://pressinform.gov.bd/pages/all-notes/handout-24-may-2026-jfpvyv-6a12aca5b92ba5a71ede824b"
         }
       },
       "circularSource": {
@@ -1279,6 +945,7 @@
         "d": 7
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "জাতীয় বিপ্লব ও সংহতি দিবস",
@@ -1306,14 +973,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division পরিপত্র no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০১.২৬.২৫৬ of 21 Apr 2026 (৮ বৈশাখ ১৪৩৩): every 7 Nov, category ক, inserted in the 11 Mar 2026 list",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/3/169e9379-16cb-4ba8-b99e-5971a669d3e0.pdf",
-          "sourceType": "official"
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/a-2026-04-21-biplob.pdf",
         "page": 1,
@@ -1338,6 +998,7 @@
         "d": 2
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "জাতীয় সমাজসেবা দিবস",
@@ -1361,23 +1022,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        },
-        "themes": {
-          "2026": {
-            "bn": "প্রযুক্তি ও মমতায়, কল্যাণ ও সমতায়; আস্থা আজ সমাজসেবায়",
-            "approved": false,
-            "url": "https://pressinform.gov.bd/pages/all-notes/তথ্যবিবরণী-৩-জানুয়ারি-২০২৬-bccba3-695b994ca31054345f104ab1",
-            "published": "2026-01-03",
-            "words": 9
-          }
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 1,
@@ -1399,6 +1044,7 @@
       "date": null,
       "status": "held",
       "heldReason": "no date",
+      "tappable": false,
       "named": [
         {
           "nameBn": "জাতীয় টিকা দিবস",
@@ -1413,14 +1059,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 1,
@@ -1445,6 +1084,7 @@
         "d": 5
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "জাতীয় গ্রন্থাগার দিবস",
@@ -1464,14 +1104,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 1,
@@ -1496,6 +1129,7 @@
         "d": 25
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "জাতীয় স্থানীয় সরকার দিবস",
@@ -1515,14 +1149,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division পরিপত্র no. ০৪.০০.০০০০.৪১৬.২৩.০০১.২০.৪৬৬ of 13 Jul 2023 (২৯ আষাঢ় ১৪৩০): 25 Feb every year «জাতীয় স্থানীয় সরকার দিবস», category খ",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2024/12/5c8376bd88f54fc2ba9a718f20a656ac.pdf",
-          "sourceType": "official"
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 1,
@@ -1547,6 +1174,7 @@
         "d": 2
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "জাতীয় ভোটার দিবস",
@@ -1566,23 +1194,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        },
-        "themes": {
-          "2026": {
-            "bn": "ভোটারদের শক্তি, গণতন্ত্রের মুক্তি",
-            "approved": false,
-            "url": "https://pressinform.gov.bd/pages/all-notes/তথ্যবিবরণী-০১-মার্চ-২০২৬-zwvrwq-69a3c198984807d0b82a2fa0",
-            "published": "2026-03-01",
-            "words": 4
-          }
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 1,
@@ -1607,6 +1219,7 @@
         "d": 6
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "জাতীয় পাট দিবস",
@@ -1631,26 +1244,14 @@
         }
       ],
       "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        },
         "purposeBn": {
           "bn": "পাটশিল্পের প্রসার ঘটিয়ে কর্মসংস্থান বাড়ানোর লক্ষ্যে পালিত দিবস",
           "approved": false,
           "url": "https://pressinform.gov.bd/pages/all-notes/তথ্যবিবরণী-০৬মার্চ-২০২৬-my8x54-69aa79e1a901085f01fe5441",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "bn": "পাটশিল্প গড়ে তুলুন, কর্মসংস্থান সৃষ্টি করুন",
-            "approved": false,
-            "url": "https://pressinform.gov.bd/pages/all-notes/তথ্যবিবরণী-০৬মার্চ-২০২৬-my8x54-69aa79e1a901085f01fe5441",
-            "published": "2026-03-06",
-            "words": 6
-          }
+        "source": {
+          "url": "https://pressinform.gov.bd/pages/all-notes/তথ্যবিবরণী-০৬মার্চ-২০২৬-my8x54-69aa79e1a901085f01fe5441"
         }
       },
       "circularSource": {
@@ -1677,6 +1278,7 @@
         "d": 23
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিশ্ব আবহাওয়া দিবস",
@@ -1702,13 +1304,7 @@
       "card": {
         "englishName": {
           "value": "World Meteorological Day",
-          "url": "https://wmo.int/events-and-meetings/world-met-day",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "WMO Executive Committee, resolution WMO/EC-XII/Res.6 (as the UN list cites it)",
-          "url": "https://www.un.org/en/observances/list-days-weeks",
-          "sourceType": "official"
+          "url": "https://wmo.int/events-and-meetings/world-met-day"
         },
         "purposeBn": {
           "bn": "১৯৫০ সালের ২৩ মার্চ বিশ্ব আবহাওয়া সংস্থার কনভেনশন কার্যকর হওয়ার দিনটি স্মরণ করা।",
@@ -1716,14 +1312,8 @@
           "url": "https://wmo.int/events-and-meetings/world-met-day",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "Observing Today, Protecting Tomorrow",
-            "lang": "en",
-            "url": "https://wmo.int/events-and-meetings/world-met-day",
-            "published": "WMO page last updated 16 July 2026 (listed under previous Days)",
-            "words": 4
-          }
+        "source": {
+          "url": "https://wmo.int/events-and-meetings/world-met-day"
         }
       },
       "circularSource": {
@@ -1750,6 +1340,7 @@
         "d": 3
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "জাতীয় চলচ্চিত্র দিবস",
@@ -1765,14 +1356,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 2,
@@ -1798,6 +1382,7 @@
         "d": 6
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "আন্তর্জাতিক ক্রীড়া দিবস",
@@ -1831,13 +1416,7 @@
       "card": {
         "englishName": {
           "value": "International Day of Sport for Development and Peace",
-          "url": "https://www.un.org/en/observances/sport-day",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "UN General Assembly, resolution A/RES/67/296",
-          "url": "https://www.un.org/en/observances/sport-day",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/sport-day"
         },
         "purposeBn": {
           "bn": "উন্নয়ন ও শান্তির কাজে খেলাধুলার সম্ভাবনা সম্পর্কে সচেতনতা বাড়ানো।",
@@ -1845,14 +1424,8 @@
           "url": "https://www.un.org/en/observances/sport-day",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "Sport: Building Bridges, Breaking Barriers",
-            "lang": "en",
-            "url": "https://www.un.org/en/observances/sport-day",
-            "published": "undated UN page (fetched 2026-10-08)",
-            "words": 5
-          }
+        "source": {
+          "url": "https://www.un.org/en/observances/sport-day"
         }
       },
       "circularSource": {
@@ -1879,6 +1452,7 @@
         "d": 7
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিশ্ব স্বাস্থ্য দিবস",
@@ -1900,13 +1474,7 @@
       "card": {
         "englishName": {
           "value": "World Health Day",
-          "url": "https://www.who.int/campaigns/world-health-day",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "World Health Assembly, resolution WHA/A.2/Res.35 (as the UN list cites it)",
-          "url": "https://www.un.org/en/observances/list-days-weeks",
-          "sourceType": "official"
+          "url": "https://www.who.int/campaigns/world-health-day"
         },
         "purposeBn": {
           "bn": "প্রতি বছর একটি জরুরি স্বাস্থ্য-বিষয়ের দিকে বিশ্বের মানুষের মনোযোগ টানা।",
@@ -1914,14 +1482,8 @@
           "url": "https://www.who.int/campaigns/world-health-day",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "Together for health. Stand with science",
-            "lang": "en",
-            "url": "https://www.who.int/campaigns/world-health-day",
-            "published": "WHO event dated 7 April 2026",
-            "words": 6
-          }
+        "source": {
+          "url": "https://www.who.int/campaigns/world-health-day"
         }
       },
       "circularSource": {
@@ -1948,6 +1510,7 @@
         "d": 17
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "মুজিবনগর দিবস",
@@ -1968,17 +1531,14 @@
         }
       ],
       "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        },
         "purposeBn": {
           "bn": "১৯৭১ সালের ১৭ এপ্রিল মুক্তিযুদ্ধকালীন প্রথম সরকারের শপথ গ্রহণের দিনটি স্মরণ",
           "approved": false,
           "url": "https://bn.banglapedia.org/index.php/মুজিবনগর_সরকার",
           "sourceType": "banglapedia"
+        },
+        "source": {
+          "url": "https://bn.banglapedia.org/index.php/মুজিবনগর_সরকার"
         }
       },
       "circularSource": {
@@ -2005,6 +1565,7 @@
         "d": 28
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "নিরাপদ মাতৃত্ব দিবস",
@@ -2020,14 +1581,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 2,
@@ -2052,6 +1606,7 @@
         "d": 21
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "জাতীয় চা দিবস",
@@ -2079,23 +1634,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division পরিপত্র no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০১.২৬.২৭৭ of 28 Apr 2026, amending the 11 Mar 2026 circular: 21 May instead of 4 June",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/3/09ff0633-804e-458c-be38-24aa89a61ea6.pdf",
-          "sourceType": "official"
-        },
-        "themes": {
-          "2026": {
-            "bn": "চা শিল্পের উন্নতি, সবুজ হোক অর্থনীতি",
-            "approved": false,
-            "url": "https://teaboard.gov.bd/pages/news/শ্রীমঙ্গলে-৬ষ্ঠ-জাতীয়-চা-দিবস-উদযাপন-এবং-জাতীয়-চা-পুরস্কার-২০২৬-প্রদান-mcz1wk-6a3a0aa15d1c1bb52cd4759d",
-            "published": "2026-06-20",
-            "words": 6
-          }
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 2,
@@ -2120,6 +1659,7 @@
         "d": 5
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিশ্ব পরিবেশ দিবস",
@@ -2141,18 +1681,11 @@
       "card": {
         "englishName": {
           "value": "World Environment Day",
-          "url": "https://www.un.org/en/observances/environment-day",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "UN General Assembly, 1972, resolution A/RES/2994 (XXVII)",
-          "url": "https://www.worldenvironmentday.global/about/history",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/environment-day"
         },
         "firstObserved": {
           "value": "1973",
-          "url": "https://www.worldenvironmentday.global/about/history",
-          "sourceType": "official"
+          "url": "https://www.worldenvironmentday.global/about/history"
         },
         "purposeBn": {
           "bn": "পরিবেশ রক্ষায় বিশ্বজুড়ে মানুষকে সচেতন করা ও কাজে নামতে উদ্বুদ্ধ করা।",
@@ -2160,14 +1693,8 @@
           "url": "https://www.worldenvironmentday.global/about/history",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "Climate action",
-            "lang": "en",
-            "url": "https://www.worldenvironmentday.global/2026/about/theme-and-host",
-            "published": "UNEP 2026 theme page (undated; fetched 2026-10-08)",
-            "words": 2
-          }
+        "source": {
+          "url": "https://www.worldenvironmentday.global/about/history"
         }
       },
       "circularSource": {
@@ -2194,6 +1721,7 @@
         "d": 26
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "মাদকদ্রব্যের অপব্যবহার ও অবৈধ পাচার বিরোধী আন্তর্জাতিক দিবস",
@@ -2215,13 +1743,7 @@
       "card": {
         "englishName": {
           "value": "International Day against Drug Abuse and Illicit Trafficking",
-          "url": "https://www.un.org/en/observances/end-drug-abuse-day",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "UN General Assembly, resolution 42/112 of 7 December 1987 (A/RES/42/112)",
-          "url": "https://www.un.org/en/observances/end-drug-abuse-day",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/end-drug-abuse-day"
         },
         "purposeBn": {
           "bn": "মাদকের অপব্যবহারমুক্ত আন্তর্জাতিক সমাজ গড়তে সহযোগিতা ও পদক্ষেপ জোরদার করা।",
@@ -2229,14 +1751,8 @@
           "url": "https://www.un.org/en/observances/end-drug-abuse-day",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "World drug problem: persisting issues, new challenges, innovative responses",
-            "lang": "en",
-            "url": "https://www.unodc.org/unodc/en/drugs/index-new.html",
-            "published": "UNODC page undated (2025 listed under \"Previous campaigns\"); CND's 26 June 2026 special event bears the same title",
-            "words": 9
-          }
+        "source": {
+          "url": "https://www.un.org/en/observances/end-drug-abuse-day"
         }
       },
       "circularSource": {
@@ -2263,6 +1779,7 @@
         "d": 11
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিশ্ব জনসংখ্যা দিবস",
@@ -2284,18 +1801,11 @@
       "card": {
         "englishName": {
           "value": "World Population Day",
-          "url": "https://www.un.org/en/observances/world-population-day/background",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "Established by the then Governing Council of UNDP in 1989; UN General Assembly resolution 45/216 (December 1990) decided to continue observing it",
-          "url": "https://www.un.org/en/observances/world-population-day/background",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/world-population-day/background"
         },
         "firstObserved": {
           "value": "1990",
-          "url": "https://www.un.org/en/observances/world-population-day/background",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/world-population-day/background"
         },
         "purposeBn": {
           "bn": "জনসংখ্যা-সংক্রান্ত বিষয়গুলো কতটা জরুরি ও গুরুত্বপূর্ণ, সেদিকে মনোযোগ টানা।",
@@ -2303,14 +1813,8 @@
           "url": "https://www.un.org/en/observances/world-population-day/background",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "Realizing the hopes and aspirations of young people – today and for the future",
-            "lang": "en",
-            "url": "https://www.unfpa.org/events/world-population-day",
-            "published": "UNFPA event page dated 11 July 2026; the UN observance page gives the same",
-            "words": 13
-          }
+        "source": {
+          "url": "https://www.un.org/en/observances/world-population-day/background"
         }
       },
       "circularSource": {
@@ -2337,6 +1841,7 @@
         "d": 16
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "জুলাই শহীদ দিবস",
@@ -2361,17 +1866,14 @@
         }
       ],
       "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division পরিপত্র no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০১.২০.৪০৮ of 2 Jul 2025: 16 Jul observed as «জুলাই শহীদ দিবস», category খ",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2024/12/893a006ce8294045adb6d293e592be54.pdf",
-          "sourceType": "official"
-        },
         "purposeBn": {
           "bn": "২০২৪ সালের জুলাই গণঅভ্যুত্থানে আত্মোৎসর্গকারী শহিদদের শ্রদ্ধার সঙ্গে স্মরণ",
           "approved": false,
           "url": "https://pressinform.gov.bd/pages/all-notes/handout-15-july-2026-iwxaxe-6a5713c0896678c73f5f9b0c",
           "sourceType": "official"
+        },
+        "source": {
+          "url": "https://pressinform.gov.bd/pages/all-notes/handout-15-july-2026-iwxaxe-6a5713c0896678c73f5f9b0c"
         }
       },
       "circularSource": {
@@ -2398,6 +1900,7 @@
         "d": 23
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "জাতীয় পাবলিক সার্ভিস দিবস",
@@ -2421,14 +1924,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division পরিপত্র no. ০৪.০০.০০০০.৪১৬.২৩.০০১.১৭.১৫৭ of 2 May 2017 (১৯ বৈশাখ ১৪২৪): 23 July «জাতীয় পাবলিক সার্ভিস দিবস», category খ",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2024/12/3a6cf933f2fa4405b89a5a5e5883775c.pdf",
-          "sourceType": "official"
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 2,
@@ -2453,6 +1949,7 @@
         "d": 9
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "জাতীয় জ্বালানি নিরাপত্তা দিবস",
@@ -2472,14 +1969,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 2,
@@ -2504,6 +1994,7 @@
         "d": 12
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "আন্তর্জাতিক যুব দিবস",
@@ -2525,18 +2016,11 @@
       "card": {
         "englishName": {
           "value": "International Youth Day",
-          "url": "https://www.un.org/en/observances/youth-day",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "Proclaimed by the first World Conference of Ministers Responsible for Youth (Lisbon, August 1998); endorsed by UN General Assembly resolution A/RES/54/120",
-          "url": "https://www.un.org/en/observances/youth-day/background",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/youth-day"
         },
         "firstObserved": {
           "value": "2000",
-          "url": "https://www.un.org/en/observances/youth-day/background",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/youth-day/background"
         },
         "purposeBn": {
           "bn": "তরুণদের ঘিরে থাকা সাংস্কৃতিক ও আইনি নানা প্রশ্নের দিকে দৃষ্টি আকর্ষণ করা।",
@@ -2544,14 +2028,8 @@
           "url": "https://www.un.org/en/observances/youth-day/background",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "Different Contexts, Common Aspirations",
-            "lang": "en",
-            "url": "https://www.un.org/en/observances/youth-day",
-            "published": "undated UN page (fetched 2026-10-08)",
-            "words": 4
-          }
+        "source": {
+          "url": "https://www.un.org/en/observances/youth-day/background"
         }
       },
       "circularSource": {
@@ -2578,6 +2056,7 @@
         "d": 8
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "আন্তর্জাতিক সাক্ষরতা দিবস",
@@ -2599,18 +2078,11 @@
       "card": {
         "englishName": {
           "value": "International Literacy Day",
-          "url": "https://www.unesco.org/en/days/literacy",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "UNESCO General Conference, 14th session, 1966 (14 C/Resolution 1.441, as the UN list cites it)",
-          "url": "https://www.unesco.org/en/days/literacy",
-          "sourceType": "official"
+          "url": "https://www.unesco.org/en/days/literacy"
         },
         "firstObserved": {
           "value": "1967",
-          "url": "https://www.unesco.org/en/days/literacy",
-          "sourceType": "official"
+          "url": "https://www.unesco.org/en/days/literacy"
         },
         "purposeBn": {
           "bn": "ন্যায্য, শান্তিপূর্ণ ও টেকসই সমাজ গড়তে সাক্ষরতা কতটা জরুরি, তা মনে করিয়ে দেওয়া।",
@@ -2618,14 +2090,8 @@
           "url": "https://www.unesco.org/en/days/literacy",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "Literacy for people, the planet and prosperity",
-            "lang": "en",
-            "url": "https://www.unesco.org/en/days/literacy",
-            "published": "UNESCO 2026 celebrations section (undated; fetched 2026-10-08)",
-            "words": 7
-          }
+        "source": {
+          "url": "https://www.unesco.org/en/days/literacy"
         }
       },
       "circularSource": {
@@ -2652,6 +2118,7 @@
         "d": 27
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিশ্ব পর্যটন দিবস",
@@ -2673,18 +2140,11 @@
       "card": {
         "englishName": {
           "value": "World Tourism Day",
-          "url": "https://www.untourism.int/world-tourism-day",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "UN Tourism (World Tourism Organization) General Assembly, third session, Torremolinos, Spain, September 1979 (no resolution number on the page)",
-          "url": "https://www.untourism.int/world-tourism-day",
-          "sourceType": "official"
+          "url": "https://www.untourism.int/world-tourism-day"
         },
         "firstObserved": {
           "value": "1980",
-          "url": "https://www.untourism.int/world-tourism-day",
-          "sourceType": "official"
+          "url": "https://www.untourism.int/world-tourism-day"
         },
         "purposeBn": {
           "bn": "পর্যটন কীভাবে নানা সংস্কৃতিকে কাছে আনে ও জীবন সমৃদ্ধ করে, তা উদ্‌যাপন করা।",
@@ -2692,14 +2152,8 @@
           "url": "https://www.untourism.int/world-tourism-day-2026",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "Digital Agenda and Artificial Intelligence to Redesign Tourism",
-            "lang": "en",
-            "url": "https://www.untourism.int/world-tourism-day-2026",
-            "published": "UN Tourism \"World Tourism Day 2026\" page (undated; fetched 2026-10-08)",
-            "words": 8
-          }
+        "source": {
+          "url": "https://www.untourism.int/world-tourism-day-2026"
         }
       },
       "circularSource": {
@@ -2725,9 +2179,24 @@
         "m": 9,
         "weekday": 4,
         "nth": -1,
+        "text": {
+          "bn": "সেপ্টেম্বরের শেষ বৃহস্পতিবার",
+          "approved": false
+        },
+        "tile": [
+          {
+            "bn": "শেষ",
+            "approved": false
+          },
+          {
+            "bn": "বৃহস্পতি",
+            "approved": false
+          }
+        ],
         "note": "IMO: the last Thursday of September (the circular: «সেপ্টেম্বর মাসের শেষ সপ্তাহ»)"
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিশ্ব নৌ দিবস",
@@ -2758,8 +2227,7 @@
       "card": {
         "englishName": {
           "value": "World Maritime Day",
-          "url": "https://www.imo.org/en/about/events/pages/wmd-archives.aspx",
-          "sourceType": "official"
+          "url": "https://www.imo.org/en/about/events/pages/wmd-archives.aspx"
         },
         "purposeBn": {
           "bn": "নিরাপদ ও সুরক্ষিত জাহাজ চলাচল এবং জাহাজ থেকে সমুদ্র ও বায়ুদূষণ রোধের গুরুত্ব তুলে ধরা।",
@@ -2767,14 +2235,8 @@
           "url": "https://www.imo.org/en/about/events/pages/wmd-archives.aspx",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "From Policy to Practice: Powering Maritime Excellence",
-            "lang": "en",
-            "url": "https://www.imo.org/en/mediacentre/pressbriefings/pages/2026-2027-world-maritime-day-theme.aspx",
-            "published": "11 July 2025 (IMO press briefing; the theme runs for 2026 and 2027)",
-            "words": 7
-          }
+        "source": {
+          "url": "https://www.imo.org/en/about/events/pages/wmd-archives.aspx"
         }
       },
       "circularSource": {
@@ -2801,6 +2263,7 @@
         "d": 2
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "জাতীয় উৎপাদনশীলতা দিবস",
@@ -2824,23 +2287,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        },
-        "themes": {
-          "2026": {
-            "bn": "উৎপাদনশীলতা বৃদ্ধিতে উদ্ভাবন, প্রযুক্তি ও দক্ষতার সমন্বয়",
-            "approved": false,
-            "url": "https://npo.gov.bd/pages/news/উৎপাদনশীলতা-দিবস-২০২৬-og1knw-6a66e3783ab0d52ad1483350",
-            "published": "2026-07-27",
-            "words": 7
-          }
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 2,
@@ -2865,6 +2312,7 @@
         "d": 5
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিশ্ব শিক্ষক দিবস",
@@ -2886,13 +2334,7 @@
       "card": {
         "englishName": {
           "value": "World Teachers’ Day",
-          "url": "https://www.unesco.org/en/days/teachers",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "UNESCO (the UN list cites document 27 C/INF.7, of UNESCO's General Conference, 27th session); no official page read states the body's decision in words",
-          "url": "https://www.un.org/en/observances/list-days-weeks",
-          "sourceType": "official"
+          "url": "https://www.unesco.org/en/days/teachers"
         },
         "purposeBn": {
           "bn": "সব শিক্ষককে সম্মান জানানো এবং শিক্ষকের মর্যাদা-বিষয়ক ১৯৬৬ সালের সুপারিশ স্মরণ করা।",
@@ -2900,14 +2342,8 @@
           "url": "https://www.unesco.org/en/days/teachers",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "Standing with teachers: 60 years of protecting the profession, advancing its status and shaping our futures",
-            "lang": "en",
-            "url": "https://www.unesco.org/en/days/teachers",
-            "published": "UNESCO 2026 celebrations section (undated; joint message dated 5 October 2026)",
-            "words": 16
-          }
+        "source": {
+          "url": "https://www.unesco.org/en/days/teachers"
         }
       },
       "circularSource": {
@@ -2931,6 +2367,7 @@
       "date": null,
       "status": "held",
       "heldReason": "CONFLICT",
+      "tappable": false,
       "named": [
         {
           "nameBn": "শিশু অধিকার দিবস",
@@ -2955,14 +2392,7 @@
           }
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 2,
@@ -2987,6 +2417,7 @@
         "d": 13
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "আন্তর্জাতিক দুর্যোগ প্রশমন দিবস",
@@ -3008,18 +2439,11 @@
       "card": {
         "englishName": {
           "value": "International Day for Disaster Risk Reduction",
-          "url": "https://www.un.org/en/observances/disaster-reduction-day",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "UN General Assembly, resolution A/RES/64/200 (as the UN list cites it); the Day began in 1989 after a GA call (the page links A/RES/44/236)",
-          "url": "https://www.un.org/en/observances/list-days-weeks",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/disaster-reduction-day"
         },
         "firstObserved": {
           "value": "1989",
-          "url": "https://www.un.org/en/observances/disaster-reduction-day",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/disaster-reduction-day"
         },
         "purposeBn": {
           "bn": "দুর্যোগের ঝুঁকি নিয়ে সচেতনতা আর ঝুঁকি কমানোর সংস্কৃতি বিশ্বজুড়ে ছড়িয়ে দেওয়া।",
@@ -3027,14 +2451,8 @@
           "url": "https://www.un.org/en/observances/disaster-reduction-day",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "Resilience Starts at Home",
-            "lang": "en",
-            "url": "https://www.un.org/en/observances/disaster-reduction-day",
-            "published": "UN page undated (\"this year\"; its figures run to 2025; fetched 2026-10-08). UNDRR's own 2026 pages refused the request (403).",
-            "words": 4
-          }
+        "source": {
+          "url": "https://www.un.org/en/observances/disaster-reduction-day"
         }
       },
       "circularSource": {
@@ -3061,6 +2479,7 @@
         "d": 16
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিশ্ব খাদ্য দিবস",
@@ -3082,13 +2501,7 @@
       "card": {
         "englishName": {
           "value": "World Food Day",
-          "url": "https://www.fao.org/world-food-day/about/en",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "UN General Assembly, resolution A/RES/35/70 (as the UN list cites it)",
-          "url": "https://www.un.org/en/observances/list-days-weeks",
-          "sourceType": "official"
+          "url": "https://www.fao.org/world-food-day/about/en"
         },
         "purposeBn": {
           "bn": "ক্ষুধা নিয়ে বিশ্বজুড়ে সচেতনতা বাড়ানো এবং খাদ্যের ভবিষ্যৎ গড়তে পদক্ষেপে উৎসাহ দেওয়া।",
@@ -3096,14 +2509,8 @@
           "url": "https://www.fao.org/world-food-day/about/en",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "Innovate today. Nourish tomorrow.",
-            "lang": "en",
-            "url": "https://www.fao.org/world-food-day/about/en",
-            "published": "FAO World Food Day 2026 page (undated; \"Themes\" list ends at 2025); the page heads 2026 with it, not labelled \"theme\" in words",
-            "words": 4
-          }
+        "source": {
+          "url": "https://www.fao.org/world-food-day/about/en"
         }
       },
       "circularSource": {
@@ -3130,6 +2537,7 @@
         "d": 20
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "জাতীয় পরিসংখ্যান দিবস",
@@ -3153,14 +2561,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 2,
@@ -3185,6 +2586,7 @@
         "d": 22
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "জাতীয় নিরাপদ সড়ক দিবস",
@@ -3205,17 +2607,14 @@
         }
       ],
       "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        },
         "purposeBn": {
           "bn": "সড়ক নিরাপত্তা নিয়ে জনসচেতনতা বাড়ানোর লক্ষ্যে পালিত দিবস",
           "approved": false,
           "url": "https://pressinform.gov.bd/pages/all-notes/তথ্যবিবরণী-২২-অক্টোবর-২০২৫-485e41-6922dec2933eb65569e1d26e",
           "sourceType": "official"
+        },
+        "source": {
+          "url": "https://pressinform.gov.bd/pages/all-notes/তথ্যবিবরণী-২২-অক্টোবর-২০২৫-485e41-6922dec2933eb65569e1d26e"
         }
       },
       "circularSource": {
@@ -3241,9 +2640,24 @@
         "m": 11,
         "weekday": 6,
         "nth": 1,
+        "text": {
+          "bn": "নভেম্বরের প্রথম শনিবার",
+          "approved": false
+        },
+        "tile": [
+          {
+            "bn": "১ম",
+            "approved": false
+          },
+          {
+            "bn": "শনি",
+            "approved": false
+          }
+        ],
         "note": "the circular: the first Saturday of November"
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "জাতীয় সমবায় দিবস",
@@ -3263,14 +2677,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 2,
@@ -3295,6 +2702,7 @@
         "d": 1
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিশ্ব এইডস দিবস",
@@ -3320,14 +2728,16 @@
       "card": {
         "englishName": {
           "value": "World AIDS Day",
-          "url": "https://www.who.int/campaigns/world-aids-day",
-          "sourceType": "official"
+          "url": "https://www.who.int/campaigns/world-aids-day"
         },
         "purposeBn": {
           "bn": "এইচআইভি/এইডস নিয়ে সচেতনতা বাড়ানো এবং এই মহামারির বিরুদ্ধে আন্তর্জাতিক সংহতি দেখানো।",
           "approved": false,
           "url": "https://www.who.int/campaigns/world-aids-day",
           "sourceType": "official"
+        },
+        "source": {
+          "url": "https://www.who.int/campaigns/world-aids-day"
         }
       },
       "circularSource": {
@@ -3355,6 +2765,7 @@
         "d": 3
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "আন্তর্জাতিক প্রতিবন্ধী দিবস",
@@ -3388,19 +2799,16 @@
       "card": {
         "englishName": {
           "value": "International Day of Persons with Disabilities",
-          "url": "https://www.un.org/en/observances/day-of-persons-with-disabilities",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "UN General Assembly, resolution 47/3 (1992)",
-          "url": "https://www.un.org/en/observances/day-of-persons-with-disabilities/background",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/day-of-persons-with-disabilities"
         },
         "purposeBn": {
           "bn": "প্রতিবন্ধী ব্যক্তিদের অধিকার ও কল্যাণ এগিয়ে নেওয়া এবং তাঁদের অবস্থা নিয়ে সচেতন করা।",
           "approved": false,
           "url": "https://www.un.org/en/observances/day-of-persons-with-disabilities/background",
           "sourceType": "official"
+        },
+        "source": {
+          "url": "https://www.un.org/en/observances/day-of-persons-with-disabilities/background"
         }
       },
       "circularSource": {
@@ -3427,6 +2835,7 @@
         "d": 4
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "জাতীয় বস্ত্র দিবস",
@@ -3446,14 +2855,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 2,
@@ -3478,6 +2880,7 @@
         "d": 9
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "আন্তর্জাতিক দুর্নীতিবিরোধী দিবস",
@@ -3499,19 +2902,16 @@
       "card": {
         "englishName": {
           "value": "International Anti-Corruption Day",
-          "url": "https://www.un.org/en/observances/anti-corruption-day",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "UN General Assembly, resolution 58/4 (31 October 2003), with the UN Convention against Corruption",
-          "url": "https://www.un.org/en/observances/anti-corruption-day",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/anti-corruption-day"
         },
         "purposeBn": {
           "bn": "দুর্নীতি এবং তা ঠেকাতে জাতিসংঘ কনভেনশনের ভূমিকা নিয়ে সচেতনতা তৈরি করা।",
           "approved": false,
           "url": "https://www.un.org/en/observances/anti-corruption-day",
           "sourceType": "official"
+        },
+        "source": {
+          "url": "https://www.un.org/en/observances/anti-corruption-day"
         }
       },
       "circularSource": {
@@ -3538,6 +2938,7 @@
         "d": 9
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "বেগম রোকেয়া দিবস",
@@ -3553,14 +2954,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 2,
@@ -3586,6 +2980,7 @@
         "d": 18
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "আন্তর্জাতিক অভিবাসী দিবস",
@@ -3619,19 +3014,16 @@
       "card": {
         "englishName": {
           "value": "International Migrants Day",
-          "url": "https://www.un.org/en/observances/migrants-day/background",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "UN General Assembly, resolution A/RES/55/93 (4 December 2000)",
-          "url": "https://www.un.org/en/observances/migrants-day/background",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/migrants-day/background"
         },
         "purposeBn": {
           "bn": "বিশ্বের কোটি কোটি অভিবাসীর মূল্যবান অবদান সবার সামনে তুলে ধরা।",
           "approved": false,
           "url": "https://www.un.org/en/observances/migrants-day",
           "sourceType": "official"
+        },
+        "source": {
+          "url": "https://www.un.org/en/observances/migrants-day"
         }
       },
       "circularSource": {
@@ -3658,6 +3050,7 @@
         "d": 6
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "জাতীয় পল্লী উন্নয়ন দিবস",
@@ -3682,16 +3075,9 @@
         }
       ],
       "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division পরিপত্র no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০১.২৬.২৫৫ of 21 Apr 2026: every 6 July «জাতীয় পল্লী উন্নয়ন দিবস», category খ",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/3/22d56cc1-aa1d-497d-b8a2-08405b4d4744.pdf",
-          "sourceType": "official"
-        },
         "firstObserved": {
           "value": "2026",
-          "url": "https://pressinform.gov.bd/pages/all-notes/handout-5-july-2026-aa72h5-6a49ee8aeb5e93721ad76e2e",
-          "sourceType": "official"
+          "url": "https://pressinform.gov.bd/pages/all-notes/handout-5-july-2026-aa72h5-6a49ee8aeb5e93721ad76e2e"
         },
         "purposeBn": {
           "bn": "গ্রাম ও পল্লীকে জাতীয় উন্নয়নের ভিত্তি ধরে পল্লী উন্নয়নে গতি আনা",
@@ -3699,14 +3085,8 @@
           "url": "https://pressinform.gov.bd/pages/all-notes/handout-5-july-2026-aa72h5-6a49ee8aeb5e93721ad76e2e",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "bn": "উন্নত পল্লী, সমৃদ্ধ দেশ-সবার আগে বাংলাদেশ",
-            "approved": false,
-            "url": "https://pressinform.gov.bd/pages/all-notes/handout-5-july-2026-aa72h5-6a49ee8aeb5e93721ad76e2e",
-            "published": "2026-07-05",
-            "words": 6
-          }
+        "source": {
+          "url": "https://pressinform.gov.bd/pages/all-notes/handout-5-july-2026-aa72h5-6a49ee8aeb5e93721ad76e2e"
         }
       },
       "circularSource": {
@@ -3733,6 +3113,7 @@
         "d": 1
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "জাতীয় যুব দিবস",
@@ -3756,14 +3137,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division পরিপত্র no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০১.২৬.৪৮৬ of 2 Aug 2026: «জাতীয় যুব দিবস» on 1 Nov, separate from 12 Aug",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/7/ee126720-ae88-455a-8bf1-ea9652f5249c.pdf",
-          "sourceType": "official"
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/a-2026-08-02-jubo.pdf",
         "page": 1,
@@ -3788,6 +3162,7 @@
         "d": 23
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "বার্ষিক প্রশিক্ষণ দিবস",
@@ -3803,14 +3178,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 3,
@@ -3835,6 +3203,7 @@
         "d": 2
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "জাতীয় নিরাপদ খাদ্য দিবস",
@@ -3854,14 +3223,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 3,
@@ -3886,6 +3248,7 @@
         "d": 4
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "জাতীয় ক্যান্সার দিবস",
@@ -3901,14 +3264,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 3,
@@ -3933,6 +3289,7 @@
         "d": 25
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "জাতীয় শহীদ সেনা দিবস",
@@ -3953,17 +3310,14 @@
         }
       ],
       "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        },
         "purposeBn": {
           "bn": "২০০৯ সালের ২৫ ফেব্রুয়ারি পিলখানায় সেনা হত্যাযজ্ঞে নিহতদের স্মরণ",
           "approved": false,
           "url": "https://pressinform.gov.bd/pages/all-notes/তথ্যবিবরণী-২৪-ফেব্রুয়ারি-২০২৬-4x4fiz-699d25ac0fdb0958b2cff739",
           "sourceType": "official"
+        },
+        "source": {
+          "url": "https://pressinform.gov.bd/pages/all-notes/তথ্যবিবরণী-২৪-ফেব্রুয়ারি-২০২৬-4x4fiz-699d25ac0fdb0958b2cff739"
         }
       },
       "circularSource": {
@@ -3990,6 +3344,7 @@
         "d": 8
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "আন্তর্জাতিক নারী অধিকার ও আন্তর্জাতিক শান্তি দিবস",
@@ -4015,13 +3370,7 @@
       "card": {
         "englishName": {
           "value": "International Women's Day",
-          "url": "https://www.un.org/en/observances/womens-day",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "UN General Assembly, resolution 32/142 (16 December 1977), inviting States to proclaim any day of the year as \"United Nations Day for Women's Rights and International Peace\"",
-          "url": "https://documents.un.org/doc/resolution/gen/nr0/313/77/pdf/nr031377.pdf",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/womens-day"
         },
         "purposeBn": {
           "bn": "জাতি, ভাষা বা দেশের ভেদ ছাড়াই নারীদের অর্জনের স্বীকৃতি দেওয়া।",
@@ -4029,14 +3378,8 @@
           "url": "https://www.un.org/en/observances/womens-day/background",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "Rights. Justice. Action. For ALL Women and Girls",
-            "lang": "en",
-            "url": "https://www.un.org/en/observances/womens-day",
-            "published": "UN page; event of 9 March 2026",
-            "words": 8
-          }
+        "source": {
+          "url": "https://www.un.org/en/observances/womens-day/background"
         }
       },
       "circularSource": {
@@ -4063,6 +3406,7 @@
         "d": 10
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "জাতীয় দুর্যোগ প্রস্তুতি দিবস",
@@ -4082,23 +3426,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        },
-        "themes": {
-          "2026": {
-            "bn": "দুর্যোগ প্রস্তুতিতে লড়বো তারুণ্যের বাংলাদেশ গড়বো",
-            "approved": false,
-            "url": "https://pressinform.gov.bd/pages/all-notes/handout-10-march-2026-fojzhp-69afa453caac5181cddccef4",
-            "published": "2026-03-10",
-            "words": 6
-          }
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 3,
@@ -4123,6 +3451,7 @@
         "d": 22
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিশ্ব পানি দিবস",
@@ -4144,18 +3473,11 @@
       "card": {
         "englishName": {
           "value": "World Water Day",
-          "url": "https://www.un.org/en/observances/water-day/background",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "UN General Assembly, resolution A/RES/47/193 (as the UN list cites it)",
-          "url": "https://www.un.org/en/observances/list-days-weeks",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/water-day/background"
         },
         "firstObserved": {
           "value": "1993",
-          "url": "https://www.un.org/en/observances/water-day/background",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/water-day/background"
         },
         "purposeBn": {
           "bn": "পানির গুরুত্ব তুলে ধরা এবং বিশ্বের পানি-সংকট মোকাবিলায় মানুষকে কাজে উদ্বুদ্ধ করা।",
@@ -4163,14 +3485,8 @@
           "url": "https://www.un.org/en/observances/water-day/background",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "Water and Gender Equality",
-            "lang": "en",
-            "url": "https://www.un.org/en/node/240665",
-            "published": "UN event page, event of 19 March 2026",
-            "words": 4
-          }
+        "source": {
+          "url": "https://www.un.org/en/observances/water-day/background"
         }
       },
       "circularSource": {
@@ -4197,6 +3513,7 @@
         "d": 23
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "BNCC DAY",
@@ -4215,14 +3532,10 @@
       "card": {
         "englishName": {
           "value": "BNCC DAY",
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
+          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf"
         },
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
+        "source": {
+          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf"
         }
       },
       "circularSource": {
@@ -4249,6 +3562,7 @@
         "d": 24
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিশ্ব যক্ষ্মা দিবস",
@@ -4270,8 +3584,7 @@
       "card": {
         "englishName": {
           "value": "World Tuberculosis Day (WHO: \"World TB Day\")",
-          "url": "https://www.un.org/en/observances/list-days-weeks",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/list-days-weeks"
         },
         "purposeBn": {
           "bn": "যক্ষ্মার স্বাস্থ্য, সামাজিক ও আর্থিক ক্ষতি নিয়ে সচেতন করা এবং এর অবসানে জোর দেওয়া।",
@@ -4279,14 +3592,8 @@
           "url": "https://www.who.int/campaigns/world-tb-day",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "Yes! We can end TB: Led by countries, powered by people",
-            "lang": "en",
-            "url": "https://www.who.int/campaigns/world-tb-day",
-            "published": "WHO event dated 24 March 2026",
-            "words": 11
-          }
+        "source": {
+          "url": "https://www.who.int/campaigns/world-tb-day"
         }
       },
       "circularSource": {
@@ -4313,6 +3620,7 @@
         "d": 2
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিশ্ব অটিজম সচেতনতা দিবস",
@@ -4334,18 +3642,11 @@
       "card": {
         "englishName": {
           "value": "World Autism Awareness Day",
-          "url": "https://www.un.org/en/observances/autism-day",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "UN General Assembly, resolution A/RES/62/139, adopted 18 December 2007",
-          "url": "https://documents.un.org/api/symbol/access?s=A/RES/62/139&l=en&t=pdf",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/autism-day"
         },
         "firstObserved": {
           "value": "2008",
-          "url": "https://documents.un.org/api/symbol/access?s=A/RES/62/139&l=en&t=pdf",
-          "sourceType": "official"
+          "url": "https://documents.un.org/api/symbol/access?s=A/RES/62/139&l=en&t=pdf"
         },
         "purposeBn": {
           "bn": "অটিজম নিয়ে জনসচেতনতা বাড়ানো এবং অটিস্টিক মানুষের অধিকার ও অন্তর্ভুক্তির কথা তুলে ধরা।",
@@ -4353,14 +3654,8 @@
           "url": "https://documents.un.org/api/symbol/access?s=A/RES/62/139&l=en&t=pdf",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "Autism and Humanity – Every Life Has Value",
-            "lang": "en",
-            "url": "https://www.un.org/en/observances/autism-day",
-            "published": "not stated on the page; read 2026-10-08 (event 2 April 2026)",
-            "words": 7
-          }
+        "source": {
+          "url": "https://documents.un.org/api/symbol/access?s=A/RES/62/139&l=en&t=pdf"
         }
       },
       "circularSource": {
@@ -4387,6 +3682,7 @@
         "d": 26
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিশ্ব মেধা সম্পদ দিবস",
@@ -4408,13 +3704,7 @@
       "card": {
         "englishName": {
           "value": "World Intellectual Property Day",
-          "url": "https://www.wipo.int/ip-outreach/en/ipday/",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "WIPO's member states, in 2000 (the page gives no document number)",
-          "url": "https://www.wipo.int/ip-outreach/en/ipday/",
-          "sourceType": "official"
+          "url": "https://www.wipo.int/ip-outreach/en/ipday/"
         },
         "purposeBn": {
           "bn": "মেধাস্বত্ব সম্পর্কে মানুষের সাধারণ ধারণা ও বোঝাপড়া বাড়ানো।",
@@ -4422,14 +3712,8 @@
           "url": "https://www.wipo.int/ip-outreach/en/ipday/",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "IP and Sports: Ready, Set, Innovate",
-            "lang": "en",
-            "url": "https://www.wipo.int/ip-outreach/en/ipday/",
-            "published": "not stated on the page; read 2026-10-08",
-            "words": 6
-          }
+        "source": {
+          "url": "https://www.wipo.int/ip-outreach/en/ipday/"
         }
       },
       "circularSource": {
@@ -4456,6 +3740,7 @@
         "d": 28
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "জাতীয় আইনগত সহায়তা দিবস",
@@ -4475,23 +3760,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        },
-        "themes": {
-          "2026": {
-            "bn": "সরকারি খরচে বিরোধ শেষ, সবার আগে বাংলাদেশ",
-            "approved": false,
-            "url": "https://pressinform.gov.bd/pages/all-notes/handout-27-april-2026-waqf5y-69eefd5a86fb2e827aa29d8f",
-            "published": "2026-04-27",
-            "words": 7
-          }
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 3,
@@ -4516,6 +3785,7 @@
         "d": 28
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "জাতীয় পেশাগত স্বাস্থ্য ও সেইফটি দিবস",
@@ -4546,23 +3816,10 @@
       "card": {
         "englishName": {
           "value": "OSH Day",
-          "url": "https://dife.gov.bd/pages/notices/জাতীয়-পেশাগত-স্বাস্থ্য-ও-সেইফটি-দিবস-osh-day-উদযাপন-উপলক্ষে-301fdd-6922e9cbdbfbab28ce0b0f60",
-          "sourceType": "official"
+          "url": "https://dife.gov.bd/pages/notices/জাতীয়-পেশাগত-স্বাস্থ্য-ও-সেইফটি-দিবস-osh-day-উদযাপন-উপলক্ষে-301fdd-6922e9cbdbfbab28ce0b0f60"
         },
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        },
-        "themes": {
-          "2026": {
-            "bn": "সুস্থ শ্রমিক, কর্মঠ হাত, আসবে এবার নব প্রভাত",
-            "approved": false,
-            "url": "https://pressinform.gov.bd/pages/all-notes/handout-30-april-2026-29ow46-69f2fa30b9bd2524a11dc1ba",
-            "published": "2026-04-30",
-            "words": 8
-          }
+        "source": {
+          "url": "https://dife.gov.bd/pages/notices/জাতীয়-পেশাগত-স্বাস্থ্য-ও-সেইফটি-দিবস-osh-day-উদযাপন-উপলক্ষে-301fdd-6922e9cbdbfbab28ce0b0f60"
         }
       },
       "circularSource": {
@@ -4589,6 +3846,7 @@
         "d": 3
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিশ্ব প্রেস ফ্রিডম দিবস",
@@ -4610,13 +3868,7 @@
       "card": {
         "englishName": {
           "value": "World Press Freedom Day",
-          "url": "https://www.un.org/en/observances/press-freedom-day",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "UN General Assembly, December 1993, on the recommendation of UNESCO's General Conference (UNESCO 26 C/Resolution 4.3); the GA document number is not given",
-          "url": "https://www.un.org/en/observances/press-freedom-day",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/press-freedom-day"
         },
         "purposeBn": {
           "bn": "সংবাদমাধ্যমের স্বাধীনতার মূলনীতি তুলে ধরা ও দায়িত্ব পালনে নিহত সাংবাদিকদের শ্রদ্ধা জানানো।",
@@ -4624,14 +3876,8 @@
           "url": "https://www.un.org/en/observances/press-freedom-day",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "Shaping a Future at Peace:Promoting Press Freedom for Human Rights, Development, and Security.",
-            "lang": "en",
-            "url": "https://www.unesco.org/en/days/press-freedom",
-            "published": "2026-05-26 (page metadata datePublished)",
-            "words": 14
-          }
+        "source": {
+          "url": "https://www.un.org/en/observances/press-freedom-day"
         }
       },
       "circularSource": {
@@ -4658,6 +3904,7 @@
         "d": 8
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "আন্তর্জাতিক রেড ক্রস ও রেড ক্রিসেন্ট দিবস",
@@ -4675,14 +3922,16 @@
       "card": {
         "englishName": {
           "value": "World Red Cross and Red Crescent Day",
-          "url": "https://www.icrc.org/en/document/our-principles-action-8-may-world-red-cross-red-crescent-day",
-          "sourceType": "official"
+          "url": "https://www.icrc.org/en/document/our-principles-action-8-may-world-red-cross-red-crescent-day"
         },
         "purposeBn": {
           "bn": "রেড ক্রস ও রেড ক্রিসেন্ট আন্দোলনের মানবিক কাজ প্রতিটি দেশে মানুষের সামনে তুলে ধরা।",
           "approved": false,
           "url": "https://www.icrc.org/en/document/our-principles-action-8-may-world-red-cross-red-crescent-day",
           "sourceType": "official"
+        },
+        "source": {
+          "url": "https://www.icrc.org/en/document/our-principles-action-8-may-world-red-cross-red-crescent-day"
         }
       },
       "circularSource": {
@@ -4710,6 +3959,7 @@
       },
       "status": "held",
       "heldReason": "CONFLICT",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিশ্ব টেলিযোগাযোগ দিবস",
@@ -4740,18 +3990,11 @@
       "card": {
         "englishName": {
           "value": "World Telecommunication and Information Society Day",
-          "url": "https://www.un.org/en/observances/telecommunication-day",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "ITU Plenipotentiary Conference, Antalya 2006, Resolution 68 (joined World Telecommunication Day, ITU Res. 46 of 1973, with World Information Society Day, UNGA A/RES/60/252)",
-          "url": "https://www.un.org/en/observances/telecommunication-day",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/telecommunication-day"
         },
         "firstObserved": {
           "value": "1969",
-          "url": "https://www.un.org/en/observances/telecommunication-day",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/telecommunication-day"
         },
         "purposeBn": {
           "bn": "ইন্টারনেট ও তথ্যপ্রযুক্তির সম্ভাবনা এবং ডিজিটাল বৈষম্য কমানোর উপায় নিয়ে সচেতনতা বাড়ানো।",
@@ -4759,14 +4002,8 @@
           "url": "https://www.un.org/en/observances/telecommunication-day",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "Digital lifelines",
-            "lang": "en",
-            "url": "https://www.itu.int/en/wtisd/Pages/default.aspx",
-            "published": "2025-10-09 (page metadata; modified 2026-05-12)",
-            "words": 2
-          }
+        "source": {
+          "url": "https://www.un.org/en/observances/telecommunication-day"
         }
       },
       "circularSource": {
@@ -4793,6 +4030,7 @@
         "d": 31
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিশ্ব তামাকমুক্ত দিবস",
@@ -4814,13 +4052,7 @@
       "card": {
         "englishName": {
           "value": "World No-Tobacco Day",
-          "url": "https://www.un.org/en/observances/list-days-weeks",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "World Health Assembly, resolution WHA42.19 (WHO page dates it 1988)",
-          "url": "https://www.who.int/campaigns/world-no-tobacco-day",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/list-days-weeks"
         },
         "purposeBn": {
           "bn": "তামাকের ক্ষতি ও তামাক কোম্পানির কৌশল সম্পর্কে মানুষকে সচেতন করা।",
@@ -4828,14 +4060,8 @@
           "url": "https://www.who.int/campaigns/world-no-tobacco-day",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "Unmask the appeal – countering tobacco and nicotine addiction",
-            "lang": "en",
-            "url": "https://www.who.int/campaigns/world-no-tobacco-day/2026",
-            "published": "not stated on the page; read 2026-10-08 (campaign date 31 May 2026)",
-            "words": 8
-          }
+        "source": {
+          "url": "https://www.who.int/campaigns/world-no-tobacco-day"
         }
       },
       "circularSource": {
@@ -4862,6 +4088,7 @@
         "d": 9
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিশ্ব এ্যাক্রেডিটেশন দিবস",
@@ -4879,19 +4106,16 @@
       "card": {
         "englishName": {
           "value": "World Accreditation Day",
-          "url": "https://global-aci.org/en/wad2026/",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "IAF and ILAC, joint decision in 2007",
-          "url": "https://global-aci.org/en/wad2026/",
-          "sourceType": "official"
+          "url": "https://global-aci.org/en/wad2026/"
         },
         "purposeBn": {
           "bn": "পণ্য, সেবা ও ব্যবস্থার প্রতি আস্থা গড়ায় এ্যাক্রেডিটেশনের ভূমিকা তুলে ধরা।",
           "approved": false,
           "url": "https://global-aci.org/en/wad2026/",
           "sourceType": "official"
+        },
+        "source": {
+          "url": "https://global-aci.org/en/wad2026/"
         }
       },
       "circularSource": {
@@ -4918,6 +4142,7 @@
         "d": 17
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিশ্ব খরা ও মরুকরণ প্রতিরোধ দিবস",
@@ -4939,18 +4164,11 @@
       "card": {
         "englishName": {
           "value": "World Day to Combat Desertification and Drought",
-          "url": "https://www.un.org/en/observances/desertification-day",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "UN General Assembly, resolution A/RES/49/115, 19 December 1994",
-          "url": "https://documents.un.org/api/symbol/access?s=A/RES/49/115&l=en&t=pdf",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/desertification-day"
         },
         "firstObserved": {
           "value": "1995",
-          "url": "https://documents.un.org/api/symbol/access?s=A/RES/49/115&l=en&t=pdf",
-          "sourceType": "official"
+          "url": "https://documents.un.org/api/symbol/access?s=A/RES/49/115&l=en&t=pdf"
         },
         "purposeBn": {
           "bn": "মরুকরণ ও খরা মোকাবিলায় আন্তর্জাতিক সহযোগিতা নিয়ে জনসচেতনতা বাড়ানো।",
@@ -4958,14 +4176,8 @@
           "url": "https://documents.un.org/api/symbol/access?s=A/RES/49/115&l=en&t=pdf",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "Rangelands: Recognize. Respect. Restore.",
-            "lang": "en",
-            "url": "https://www.un.org/en/observances/desertification-day",
-            "published": "not stated on the page; read 2026-10-08 (event 17 June 2026)",
-            "words": 4
-          }
+        "source": {
+          "url": "https://documents.un.org/api/symbol/access?s=A/RES/49/115&l=en&t=pdf"
         }
       },
       "circularSource": {
@@ -4991,9 +4203,24 @@
         "m": 7,
         "weekday": 6,
         "nth": 1,
+        "text": {
+          "bn": "জুলাইয়ের প্রথম শনিবার",
+          "approved": false
+        },
+        "tile": [
+          {
+            "bn": "১ম",
+            "approved": false
+          },
+          {
+            "bn": "শনি",
+            "approved": false
+          }
+        ],
         "note": "the circular and the UN: the first Saturday of July"
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "আন্তর্জাতিক সমবায় দিবস",
@@ -5016,22 +4243,10 @@
       "card": {
         "englishName": {
           "value": "International Day of Cooperatives",
-          "url": "https://www.un.org/en/observances/cooperatives-day",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/cooperatives-day"
         },
-        "declaredBy": {
-          "value": "UN General Assembly, resolution A/RES/47/90 (annual observance reaffirmed in A/RES/51/58)",
-          "url": "https://documents.un.org/api/symbol/access?s=A/RES/51/58&l=en&t=pdf",
-          "sourceType": "official"
-        },
-        "themes": {
-          "2026": {
-            "text": "Cooperatives for a Peaceful World",
-            "lang": "en",
-            "url": "https://www.un.org/en/observances/cooperatives-day",
-            "published": "not stated on the page; read 2026-10-08",
-            "words": 5
-          }
+        "source": {
+          "url": "https://www.un.org/en/observances/cooperatives-day"
         }
       },
       "circularSource": {
@@ -5058,6 +4273,7 @@
         "d": 16
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "আন্তর্জাতিক ওজোন সংরক্ষণ দিবস",
@@ -5079,18 +4295,11 @@
       "card": {
         "englishName": {
           "value": "International Day for the Preservation of the Ozone Layer",
-          "url": "https://www.un.org/en/observances/ozone-day",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "UN General Assembly, resolution A/RES/49/114, 19 December 1994",
-          "url": "https://documents.un.org/api/symbol/access?s=A/RES/49/114&l=en&t=pdf",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/ozone-day"
         },
         "firstObserved": {
           "value": "1995",
-          "url": "https://documents.un.org/api/symbol/access?s=A/RES/49/114&l=en&t=pdf",
-          "sourceType": "official"
+          "url": "https://documents.un.org/api/symbol/access?s=A/RES/49/114&l=en&t=pdf"
         },
         "purposeBn": {
           "bn": "ওজোন স্তর রক্ষার আন্তর্জাতিক চুক্তি স্বাক্ষরের দিনটি স্মরণ ও ওজোন রক্ষায় সচেতনতা বাড়ানো।",
@@ -5098,14 +4307,8 @@
           "url": "https://documents.un.org/api/symbol/access?s=A/RES/49/114&l=en&t=pdf",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "Global action for a cooler planet",
-            "lang": "en",
-            "url": "https://www.un.org/en/observances/ozone-day",
-            "published": "not stated on the page; read 2026-10-08",
-            "words": 6
-          }
+        "source": {
+          "url": "https://documents.un.org/api/symbol/access?s=A/RES/49/114&l=en&t=pdf"
         }
       },
       "circularSource": {
@@ -5129,6 +4332,7 @@
       "date": null,
       "status": "held",
       "heldReason": "CONFLICT",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিশ্ব হার্ট দিবস",
@@ -5152,19 +4356,16 @@
       "card": {
         "englishName": {
           "value": "World Heart Day",
-          "url": "https://world-heart-federation.org/world-heart-day/",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "World Heart Federation, established in 2000 in partnership with WHO",
-          "url": "https://world-heart-federation.org/world-heart-day/",
-          "sourceType": "official"
+          "url": "https://world-heart-federation.org/world-heart-day/"
         },
         "purposeBn": {
           "bn": "হৃদ্‌রোগ ও রক্তনালির রোগ সম্পর্কে বিশ্বজুড়ে সচেতনতা বাড়ানো।",
           "approved": false,
           "url": "https://world-heart-federation.org/world-heart-day/",
           "sourceType": "official"
+        },
+        "source": {
+          "url": "https://world-heart-federation.org/world-heart-day/"
         }
       },
       "circularSource": {
@@ -5191,6 +4392,7 @@
         "d": 1
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "আন্তর্জাতিক প্রবীণ দিবস",
@@ -5212,22 +4414,10 @@
       "card": {
         "englishName": {
           "value": "International Day of Older Persons",
-          "url": "https://www.un.org/en/observances/older-persons-day",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/older-persons-day"
         },
-        "declaredBy": {
-          "value": "UN General Assembly, resolution 45/106, 14 December 1990",
-          "url": "https://www.un.org/en/observances/older-persons-day",
-          "sourceType": "official"
-        },
-        "themes": {
-          "2026": {
-            "text": "The Age of Longevity: Rethinking Systems for Longer Lives",
-            "lang": "en",
-            "url": "https://www.un.org/en/observances/older-persons-day",
-            "published": "not stated on the page; read 2026-10-08",
-            "words": 9
-          }
+        "source": {
+          "url": "https://www.un.org/en/observances/older-persons-day"
         }
       },
       "circularSource": {
@@ -5253,9 +4443,24 @@
         "m": 10,
         "weekday": 1,
         "nth": 1,
+        "text": {
+          "bn": "অক্টোবরের প্রথম সোমবার",
+          "approved": false
+        },
+        "tile": [
+          {
+            "bn": "১ম",
+            "approved": false
+          },
+          {
+            "bn": "সোম",
+            "approved": false
+          }
+        ],
         "note": "the circular and the UN: the first Monday of October"
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিশ্ব বসতি দিবস",
@@ -5278,13 +4483,7 @@
       "card": {
         "englishName": {
           "value": "World Habitat Day",
-          "url": "https://www.un.org/en/observances/habitat-day",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "UN General Assembly, resolution A/RES/40/202 A (1985), op. 6",
-          "url": "https://documents.un.org/api/symbol/access?s=A/RES/40/202&l=en&t=pdf",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/habitat-day"
         },
         "purposeBn": {
           "bn": "শহর ও জনপদের অবস্থা এবং সবার উপযুক্ত আশ্রয়ের মৌলিক অধিকার নিয়ে ভাবা।",
@@ -5292,14 +4491,8 @@
           "url": "https://www.un.org/en/observances/habitat-day",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "Adequate Housing for All",
-            "lang": "en",
-            "url": "https://www.un.org/en/observances/habitat-day",
-            "published": "not stated on the page; read 2026-10-08",
-            "words": 4
-          }
+        "source": {
+          "url": "https://www.un.org/en/observances/habitat-day"
         }
       },
       "circularSource": {
@@ -5326,6 +4519,7 @@
         "d": 6
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "জাতীয় জন্ম ও মৃত্যু নিবন্ধন দিবস",
@@ -5345,14 +4539,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 3,
@@ -5377,6 +4564,7 @@
         "d": 9
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিশ্ব ডাক দিবস",
@@ -5394,13 +4582,7 @@
       "card": {
         "englishName": {
           "value": "World Post Day",
-          "url": "https://www.un.org/en/observances/world-post-day",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "UPU Congress, Tokyo, 1969 (the page gives no document number)",
-          "url": "https://www.un.org/en/observances/world-post-day",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/world-post-day"
         },
         "purposeBn": {
           "bn": "মানুষ ও ব্যবসার দৈনন্দিন জীবনে এবং দেশের উন্নয়নে ডাক খাতের ভূমিকা তুলে ধরা।",
@@ -5408,14 +4590,8 @@
           "url": "https://www.un.org/en/observances/world-post-day",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "World Post Day: One postal network, infinite possibilities",
-            "lang": "en",
-            "url": "https://www.un.org/en/observances/world-post-day",
-            "published": "not stated on the page; read 2026-10-08",
-            "words": 8
-          }
+        "source": {
+          "url": "https://www.un.org/en/observances/world-post-day"
         }
       },
       "circularSource": {
@@ -5442,6 +4618,7 @@
         "d": 10
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিশ্ব মানসিক স্বাস্থ্য দিবস",
@@ -5463,8 +4640,7 @@
       "card": {
         "englishName": {
           "value": "World Mental Health Day",
-          "url": "https://www.who.int/campaigns/world-mental-health-day",
-          "sourceType": "official"
+          "url": "https://www.who.int/campaigns/world-mental-health-day"
         },
         "purposeBn": {
           "bn": "বিশ্বজুড়ে মানসিক স্বাস্থ্য নিয়ে সচেতনতা বাড়ানো ও এর পক্ষে উদ্যোগ জোরদার করা।",
@@ -5472,14 +4648,8 @@
           "url": "https://www.who.int/campaigns/world-mental-health-day",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "Lived experiences heard: real voices, real change",
-            "lang": "en",
-            "url": "https://www.who.int/campaigns/world-mental-health-day/2026",
-            "published": "not stated on the page; read 2026-10-08 (campaign date 10 October 2026)",
-            "words": 7
-          }
+        "source": {
+          "url": "https://www.who.int/campaigns/world-mental-health-day"
         }
       },
       "circularSource": {
@@ -5506,6 +4676,7 @@
         "d": 15
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "বিশ্ব সাদা ছড়ি দিবস",
@@ -5546,6 +4717,7 @@
       },
       "status": "held",
       "heldReason": "CONFLICT",
+      "tappable": true,
       "named": [
         {
           "nameBn": "জাতিসংঘ দিবস",
@@ -5572,19 +4744,16 @@
       "card": {
         "englishName": {
           "value": "United Nations Day",
-          "url": "https://www.un.org/en/observances/un-day",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "UN General Assembly, resolution 168 (II), 96th plenary meeting, 20 October 1947",
-          "url": "https://documents.un.org/api/symbol/access?s=A/RES/168(II)&l=en&t=pdf",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/un-day"
         },
         "purposeBn": {
           "bn": "জাতিসংঘের লক্ষ্য ও অর্জন বিশ্ববাসীকে জানানো এবং এর কাজে মানুষের সমর্থন আদায় করা।",
           "approved": false,
           "url": "https://documents.un.org/api/symbol/access?s=A/RES/168(II)&l=en&t=pdf",
           "sourceType": "official"
+        },
+        "source": {
+          "url": "https://documents.un.org/api/symbol/access?s=A/RES/168(II)&l=en&t=pdf"
         }
       },
       "circularSource": {
@@ -5611,6 +4780,7 @@
         "d": 2
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "জাতীয় স্বেচ্ছায় রক্তদান ও মরণোত্তর চক্ষুদান দিবস",
@@ -5626,14 +4796,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 3,
@@ -5658,6 +4821,7 @@
         "d": 14
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিশ্ব ডায়েবেটিক দিবস",
@@ -5679,18 +4843,11 @@
       "card": {
         "englishName": {
           "value": "World Diabetes Day",
-          "url": "https://www.un.org/en/observances/diabetes-day",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "UN General Assembly, resolution A/RES/61/225, adopted 20 December 2006",
-          "url": "https://documents.un.org/api/symbol/access?s=A/RES/61/225&l=en&t=pdf",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/diabetes-day"
         },
         "firstObserved": {
           "value": "1991",
-          "url": "https://documents.un.org/api/symbol/access?s=A/RES/61/225&l=en&t=pdf",
-          "sourceType": "official"
+          "url": "https://documents.un.org/api/symbol/access?s=A/RES/61/225&l=en&t=pdf"
         },
         "purposeBn": {
           "bn": "ডায়াবেটিস, এর জটিলতা, প্রতিরোধ ও চিকিৎসা নিয়ে জনসচেতনতা বাড়ানো।",
@@ -5698,14 +4855,8 @@
           "url": "https://documents.un.org/api/symbol/access?s=A/RES/61/225&l=en&t=pdf",
           "sourceType": "official"
         },
-        "themes": {
-          "2026": {
-            "text": "Early action on diabetes",
-            "lang": "en",
-            "url": "https://www.who.int/campaigns/world-diabetes-day/2026",
-            "published": "not stated on the page; read 2026-10-08",
-            "words": 4
-          }
+        "source": {
+          "url": "https://documents.un.org/api/symbol/access?s=A/RES/61/225&l=en&t=pdf"
         }
       },
       "circularSource": {
@@ -5732,6 +4883,7 @@
         "d": 29
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "প্যালেস্টাইনি জনগণের প্রতি আন্তর্জাতিক সহমর্মিতা দিবস",
@@ -5753,18 +4905,14 @@
       "card": {
         "englishName": {
           "value": "International Day of Solidarity with the Palestinian People",
-          "url": "https://www.un.org/en/observances/international-day-of-solidarity-with-the-palestinian-people",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "UN General Assembly, resolution 32/40 B (1977)",
-          "url": "https://www.un.org/en/observances/international-day-of-solidarity-with-the-palestinian-people",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/international-day-of-solidarity-with-the-palestinian-people"
         },
         "firstObserved": {
           "value": "1978",
-          "url": "https://documents.un.org/api/symbol/access?s=A/RES/32/40&l=en&t=pdf",
-          "sourceType": "official"
+          "url": "https://documents.un.org/api/symbol/access?s=A/RES/32/40&l=en&t=pdf"
+        },
+        "source": {
+          "url": "https://www.un.org/en/observances/international-day-of-solidarity-with-the-palestinian-people"
         }
       },
       "circularSource": {
@@ -5791,6 +4939,7 @@
         "d": 10
       },
       "status": "built",
+      "tappable": true,
       "named": [
         {
           "nameBn": "বিশ্ব মানবাধিকার দিবস",
@@ -5812,19 +4961,16 @@
       "card": {
         "englishName": {
           "value": "Human Rights Day",
-          "url": "https://www.un.org/en/observances/human-rights-day",
-          "sourceType": "official"
-        },
-        "declaredBy": {
-          "value": "UN General Assembly, resolution 423 (V), 4 December 1950",
-          "url": "https://documents.un.org/api/symbol/access?s=A/RES/423(V)&l=en&t=pdf",
-          "sourceType": "official"
+          "url": "https://www.un.org/en/observances/human-rights-day"
         },
         "purposeBn": {
           "bn": "১৯৪৮ সালের ১০ ডিসেম্বর মানবাধিকারের সর্বজনীন ঘোষণা গৃহীত হওয়ার দিনটি স্মরণ করা।",
           "approved": false,
           "url": "https://www.un.org/en/observances/human-rights-day",
           "sourceType": "official"
+        },
+        "source": {
+          "url": "https://www.un.org/en/observances/human-rights-day"
         }
       },
       "circularSource": {
@@ -5851,6 +4997,7 @@
         "d": 29
       },
       "status": "built",
+      "tappable": false,
       "named": [
         {
           "nameBn": "জাতীয় জীববৈচিত্র দিবস",
@@ -5866,14 +5013,7 @@
           ]
         }
       ],
-      "card": {
-        "declaredBy": {
-          "bn": "Government of Bangladesh, Cabinet Division circular (পরিপত্র) no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ of 11 March 2026 (২৬ ফাল্গুন ১৪৩২), «জাতীয় ও আন্তর্জাতিক দিবস উদ্‌যাপন/পালন»",
-          "approved": false,
-          "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf",
-          "sourceType": "official"
-        }
-      },
+      "card": {},
       "circularSource": {
         "file": "raw/c-2026-03-11-consolidated.pdf",
         "page": 3,

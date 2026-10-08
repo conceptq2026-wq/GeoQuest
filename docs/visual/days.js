@@ -3,29 +3,33 @@
 | THE YEAR WHEEL — «বছরের চাকা», the days Bangladesh observes, month by month.
 |--------------------------------------------------------------------------
 |
-| Loaded only for a view of type `days` (important-days, 2026-10-08). Everything is drawn here, in SVG and HTML: no
-| picture. Top to bottom, after the shared picker row (the shell puts ⓘ under it):
-|   - the wheel card: twelve 30° wedges, জানুয়ারি at the top and clockwise, each with its month's name and one
-|     marker per kind of day it holds; the chosen month popped out, solid blue, its name white and its markers
-|     white outlines; a vermillion ring «আজ» on the outer edge of today's month, at today's place in it; the centre
-|     a white disc with the chosen month and its count. Static: a choice never turns it.
-|   - the legend: the kinds by colour and shape, one row where it fits at 14 px, else 2 × 2.
-|   - the list card «<মাস> মাসের দিবসসমূহ»: a row per day — a date tile, the name, a one-line purpose and the
-|     kind's marker; the next day after today lit, with «x দিন পর»; today's day with «আজ».
-| A row opens a bottom sheet with the day's card; ✕ (44 px) or Escape closes it.
+| Loaded only for a view of type `days` (important-days; WHEEL-2, revised by the user's review of 2026-10-08).
+| Everything is drawn here, in SVG and HTML: no picture. Two parts, one column under 900 px (centred, at most
+| 560 px, from 600 px) and two from 900 px (at most about 1,100 px), the first sticky on the left:
+|   - the wheel card: the shared picker row of the twelve months, which goes round (‹ on জানুয়ারি is ডিসেম্বর);
+|     ⓘ under it (the shell places it after `data-info-after`); twelve 30° wedges, জানুয়ারি at the top and
+|     clockwise, each with its month's name and one marker per kind of day it holds; the chosen month popped out a
+|     little, in the one accent; a small «আজ» pill on the outer edge of today's month, at today's place in it; the
+|     centre a white disc with the chosen month and its count. Static: a choice never turns it. Under it the
+|     legend, one quiet line: ● জাতীয় ○ আন্তর্জাতিক.
+|   - the list card «<মাস> মাসের দিবসসমূহ»: a row per day, hairlines between — the date (the day's number, or a
+|     rule's short form, over its month or weekday), the name, the full rule or the circular's wording where the
+|     date is not a plain one, a one-line purpose and the kind's marker; the next day after today lit, with
+|     «x দিন পর»; today's day with «আজ». A row with a card (a name, a first year or a purpose) opens it as a
+|     sheet and carries a chevron; a row with none is not a button. ✕ (44 px) or Escape closes the sheet.
 |
-| «আজ» is the device's local date, read when the view opens: nothing is rebuilt for it. The picker lists this year's
-| and next year's months, from January to December, opening on today's month (so December rolls over into January);
-| a wedge chooses its month in the year shown. A day on
-| 29 February appears only in a leap year; a day on another calendar appears only in a year the data dates it.
-| Every word shown is the descriptor's or the data's; numbers are written in Bengali digits.
+| No year is ever shown. «আজ» is the device's local date, read when the view opens; a rule-based day's date this
+| year or next, and a day on another calendar's date where the data gives one, are worked out silently, so the next
+| day after 30 December is found in January. Every word shown is the descriptor's or the data's; numbers are
+| written in Bengali digits. Markers: জাতীয় a filled dot, আন্তর্জাতিক a hollow ring, the same size everywhere.
 */
 
-import { el, pickerBar, stylesheet, svgEl } from './parts.js?v=3195e519c0';
+import { el, pickerBar, stylesheet, svgEl } from './parts.js?v=dde7f58d0e';
 
-// CSS px: the wheel's share of the card's width, the chosen wedge's pop, the gap between wedges.
-const WHEEL = { share: 0.86, pop: 6, gap: 3, ringShare: 0.48 };
-const KIND_ORDER = ['national', 'international', 'other'];
+// CSS px: the wheel's bounds, the chosen wedge's pop, the gap between wedges, the room kept outside the ring for the
+// pop and the «আজ» pill, the inner radius's share of the outer, the markers' size.
+const WHEEL = { min: 300, max: 460, pop: 4, gap: 2, margin: 8, inner: 0.47, mark: 9 };
+const KIND_ORDER = ['national', 'international'];
 const DIGITS = '০১২৩৪৫৬৭৮৯';
 const bn = (n) => String(n).replace(/\d/g, (d) => DIGITS[d]);
 const leap = (y) => (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0;
@@ -33,9 +37,9 @@ const daysIn = (y, m) => [31, leap(y) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31,
 const dayNo = (y, m, d) => Math.round(Date.UTC(y, m, d) / 86400000);
 const fill = (template, values) => template.replace(/\{(\w+)\}/g, (_, k) => values[k] ?? '');
 
-/** A day's date in a year, or null where it has none that year: { m (0–11), d }. */
+/** A day's date in a year, or null where it has none that year: { m (0–11), d }. Never shown with its year. */
 function occurrence(day, y) {
-  const t = day.date;
+  const t = day.when;
   if (t.type === 'fixed') return t.d <= daysIn(y, t.m - 1) ? { m: t.m - 1, d: t.d } : null;
   if (t.type === 'rule') {
     // The nth (1–5) or the last (-1) given weekday (0 = Sunday) of the month.
@@ -53,17 +57,13 @@ function occurrence(day, y) {
   throw new Error(`day ${day.id}: date type "${t.type}"`);
 }
 
-/** One kind's marker in SVG, centred on 0,0: a circle, a square, a triangle or the «আজ» ring. */
-function marker(kind, size, { hollow = false, colour } = {}) {
+/** A kind's marker in SVG, centred on 0,0: জাতীয় a filled dot, আন্তর্জাতিক a ring with a 2 px stroke. */
+function marker(kind, size, colour) {
   const c = colour ?? `var(--days-${kind})`;
-  const h = size / 2, sw = hollow ? 1.8 : 0;
-  const style = hollow ? { fill: 'none', stroke: c, 'stroke-width': sw } : { fill: c };
-  if (kind === 'national') return svgEl('circle', { r: h - sw / 2, ...style });
-  if (kind === 'international') return svgEl('rect', { x: -h + sw / 2, y: -h + sw / 2, width: size - sw, height: size - sw, rx: 1.5, ...style });
-  if (kind === 'other') return svgEl('path', { d: `M0 ${-h} L${h} ${h * 0.85} L${-h} ${h * 0.85} Z`, 'stroke-linejoin': 'round', ...style });
-  return svgEl('circle', { r: h - 1.8, fill: '#fff', stroke: 'var(--days-today)', 'stroke-width': 3 });
+  if (kind === 'national') return svgEl('circle', { r: size / 2, fill: c });
+  return svgEl('circle', { r: size / 2 - 1, fill: 'none', stroke: c, 'stroke-width': 2 });
 }
-const icon = (kinds, size) => {
+const icon = (kinds, size = WHEEL.mark) => {
   const svg = svgEl('svg', { class: 'days-icon', width: size * kinds.length + 4 * (kinds.length - 1), height: size, 'aria-hidden': 'true' });
   kinds.forEach((k, i) => { const g = svgEl('g', { transform: `translate(${size / 2 + i * (size + 4)} ${size / 2})` }); g.append(marker(k, size)); svg.append(g); });
   return svg;
@@ -71,51 +71,64 @@ const icon = (kinds, size) => {
 
 export async function mount(panel, { descriptor, data }) {
   const W = descriptor.words;
-  await Promise.all([stylesheet('../shared/picker.css?v=3195e519c0'), stylesheet('./days.css?v=3195e519c0')]);
+  await Promise.all([stylesheet('../shared/picker.css?v=dde7f58d0e'), stylesheet('./days.css?v=dde7f58d0e')]);
   panel.classList.add('days');
   const MONTHS = W.months;
 
-  // ---- today and the window of twelve months -------------------------------------------------------------------
+  // ---- today, and the next day after it ----------------------------------------------------------------------
   const now = new Date();
   const today = { y: now.getFullYear(), m: now.getMonth(), d: now.getDate() };
   const todayNo = dayNo(today.y, today.m, today.d);
-  const months24 = [...Array(24)].map((_, k) => ({ y: today.y + Math.floor(k / 12), m: k % 12 }));
-  const keyOf = (w) => `${w.y}-${w.m + 1}`;
-  let chosen = months24[today.m];
+  let chosen = today.m;
 
-  const daysOf = (y, m) => data.days.map((day) => ({ day, at: occurrence(day, y) })).filter((x) => x.at && x.at.m === m).sort((a, b) => a.at.d - b.at.d);
-  // The next day strictly after today, over this year and the next; and the days that fall today.
+  // A month's days, in the order of their dates (this year's, or the month's own order where a day has none).
+  const at = (day) => occurrence(day, today.y) ?? occurrence(day, today.y + 1);
+  const daysOf = (m) => data.days.filter((day) => day.month === m + 1).map((day) => ({ day, at: at(day) })).sort((a, b) => (a.at?.d ?? 99) - (b.at?.d ?? 99));
+  const isToday = (day) => { const o = occurrence(day, today.y); return Boolean(o && o.m === today.m && o.d === today.d); };
+  // The next day strictly after today, over this year and the next: its days (more than one may share the date).
   const upcoming = (() => {
     for (const y of [today.y, today.y + 1]) {
-      const list = data.days.map((day) => ({ day, at: occurrence(day, y) })).filter((x) => x.at).map((x) => ({ ...x, y, no: dayNo(y, x.at.m, x.at.d) })).filter((x) => x.no > todayNo).sort((a, b) => a.no - b.no);
-      if (list.length) return { y, m: list[0].at.m, d: list[0].at.d, inDays: list[0].no - todayNo };
+      const list = data.days.map((day) => ({ day, o: occurrence(day, y) })).filter((x) => x.o).map((x) => ({ ...x, no: dayNo(y, x.o.m, x.o.d) })).filter((x) => x.no > todayNo);
+      if (!list.length) continue;
+      const no = Math.min(...list.map((x) => x.no));
+      return { ids: new Set(list.filter((x) => x.no === no).map((x) => x.day.id)), inDays: no - todayNo };
     }
     return null;
   })();
-  const kindsInMonth = (y, m) => KIND_ORDER.filter((k) => daysOf(y, m).some((x) => x.day.kinds.includes(k)));
+  const kindsInMonth = (m) => KIND_ORDER.filter((k) => daysOf(m).some((x) => x.day.kinds.includes(k)));
 
   // ---- the page ------------------------------------------------------------------------------------------------
   const { bar, row } = pickerBar({
     placeholder: null,
-    items: months24.map((w) => ({ key: keyOf(w), label: `${MONTHS[w.m]} ${bn(w.y)}` })),
-    current: () => keyOf(chosen),
-    choose: (key) => { chosen = months24.find((w) => keyOf(w) === key); render(); },
+    wrap: true,
+    items: MONTHS.map((label, m) => ({ key: String(m + 1), label })),
+    current: () => String(chosen + 1),
+    choose: (key) => { chosen = Number(key) - 1; render(); },
   });
+  bar.querySelector('select').setAttribute('aria-label', W.picker);
+  bar.dataset.infoAfter = '';
+  const layout = el('div', 'days-layout');
+  const side = el('div', 'days-side');
   const wheelCard = el('section', 'days-card days-wheel-card');
+  const wheelBox = el('div', 'days-wheel-box');
   const wheel = svgEl('svg', { class: 'days-wheel', role: 'group', 'aria-label': W.wheelLabel });
-  const legend = el('div', 'days-legend');
-  wheelCard.append(wheel, legend);
+  wheelBox.append(wheel);
+  const legend = el('p', 'days-legend', 'bn');
+  for (const k of KIND_ORDER) {
+    const item = el('span', 'days-legend-item');
+    item.append(icon([k]), document.createTextNode(W.legend[k]));
+    legend.append(item);
+  }
+  wheelCard.append(bar, wheelBox, legend);
+  side.append(wheelCard);
+  const main = el('div', 'days-main');
   const listCard = el('section', 'days-card days-list-card');
   const listTitle = el('h2', 'days-list-title', 'bn');
   const list = el('div', 'days-list');
   listCard.append(listTitle, list);
-  panel.append(bar, wheelCard, listCard);
-
-  for (const k of [...KIND_ORDER, 'today']) {
-    const pill = el('span', 'days-pill', 'bn');
-    pill.append(icon([k], 14), document.createTextNode(W.kinds[k]));
-    legend.append(pill);
-  }
+  main.append(listCard);
+  layout.append(side, main);
+  panel.append(layout);
 
   // ---- the sheet -------------------------------------------------------------------------------------------------
   const backdrop = el('div', 'days-backdrop');
@@ -135,19 +148,21 @@ export async function mount(panel, { descriptor, data }) {
   };
   backdrop.addEventListener('click', closeSheet);
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !sheet.hidden) { e.stopPropagation(); closeSheet(); } }, true);
-  function openSheet(x, y, from) {
+  function openSheet(x, from) {
     opener = from;
     sheet.replaceChildren();
     const head = el('div', 'days-sheet-head');
-    head.append(tile(x.at.d, x.at.m));
+    head.append(tile(x.day));
     const titles = el('div', 'days-sheet-titles');
     const name = el('h2', 'days-sheet-title', 'bn');
     name.id = 'days-sheet-title';
     name.textContent = x.day.nameBn;
     sheet.setAttribute('aria-labelledby', name.id);
+    titles.append(name);
+    if (x.day.dateText) { const when = el('p', 'days-sheet-when', 'bn'); when.textContent = x.day.dateText; titles.append(when); }
     const kind = el('p', 'days-sheet-kind', 'bn');
-    kind.append(icon(x.day.kinds, 14), document.createTextNode(x.day.kinds.map((k) => W.kinds[k]).join(' / ')));
-    titles.append(name, kind);
+    kind.append(icon(x.day.kinds), document.createTextNode(x.day.kinds.map((k) => W.kinds[k]).join(' / ')));
+    titles.append(kind);
     const close = el('button', 'days-close');
     close.type = 'button';
     close.setAttribute('aria-label', W.close);
@@ -157,13 +172,20 @@ export async function mount(panel, { descriptor, data }) {
     const facts = el('dl', 'days-facts');
     const card = x.day.card ?? {};
     for (const r of W.cardRows) {
-      const value = r.key === 'theme' ? card.themes?.[String(y)] : card[r.key];
+      const value = card[r.key];
       if (value === undefined || value === null) continue;
-      const item = el('div');
+      const item = el('div', r.key === 'source' ? 'days-source' : null);
       const dt = el('dt', null, 'bn');
-      dt.textContent = fill(r.label, { year: bn(y) });
-      const dd = el('dd', null, r.key === 'englishName' ? 'en' : 'bn');
-      dd.textContent = value;
+      dt.textContent = r.label;
+      const dd = el('dd', null, r.key === 'englishName' || r.key === 'source' ? 'en' : 'bn');
+      if (r.key === 'source') {
+        const a = el('a');
+        a.href = value.url;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.textContent = value.host;
+        dd.append(a);
+      } else dd.textContent = r.key === 'firstObserved' ? bn(value) : value;
       item.append(dt, dd);
       facts.append(item);
     }
@@ -173,22 +195,23 @@ export async function mount(panel, { descriptor, data }) {
     document.body.classList.add('days-sheet-open');
     close.focus();
   }
-  function tile(d, m) {
+  // The date: the day's number over its month; a rule's short form («১ম» over «সোম»); the circular's («১» over «বৈশাখ»).
+  function tile(day) {
     const t = el('div', 'days-tile');
-    const num = el('b', null, 'bn');
-    num.textContent = bn(d);
-    const mon = el('span', null, 'bn');
-    mon.textContent = MONTHS[m];
-    t.append(num, mon);
+    const top = el('b', null, 'bn');
+    const bottom = el('span', null, 'bn');
+    if (day.tile) [top.textContent, bottom.textContent] = day.tile;
+    else { top.textContent = bn(day.when.d); bottom.textContent = MONTHS[day.when.m - 1]; }
+    t.append(top, bottom);
     return t;
   }
+  const todayPill = () => { const p = el('span', 'days-today', 'bn'); p.textContent = W.today; return p; };
 
   // ---- the wheel -------------------------------------------------------------------------------------------------
   function drawWheel() {
-    const width = wheelCard.clientWidth;
-    const size = Math.round(width * WHEEL.share);
-    // The ring fills the box; the chosen wedge's pop and the «আজ» ring reach into the card's padding.
-    const R = Math.floor(size / 2 - 2), r = Math.round(R * (1 - WHEEL.ringShare)), c = size / 2;
+    // As wide as the card, inside its padding where that leaves less than the minimum.
+    const size = Math.round(Math.min(WHEEL.max, Math.max(Math.min(WHEEL.min, wheelCard.clientWidth), wheelBox.clientWidth)));
+    const R = Math.floor(size / 2 - WHEEL.margin), r = Math.round(R * WHEEL.inner), c = size / 2;
     wheel.setAttribute('width', size);
     wheel.setAttribute('height', size);
     wheel.setAttribute('viewBox', `0 0 ${size} ${size}`);
@@ -196,60 +219,85 @@ export async function mount(panel, { descriptor, data }) {
     wheel.dataset.r = r;
     wheel.dataset.ring = R;
     const defs = svgEl('defs');
-    defs.innerHTML = '<filter id="days-shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f2a4a" flood-opacity=".18"/></filter>';
+    defs.innerHTML = '<filter id="days-shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="1" stdDeviation="2.5" flood-color="#111827" flood-opacity=".12"/></filter>';
     wheel.append(defs);
     const P = (rad, deg) => [c + rad * Math.cos((deg * Math.PI) / 180), c + rad * Math.sin((deg * Math.PI) / 180)];
+    // «আজ»: where its pill sits — today's place in its month, on the outer edge — and how far in from the edge it reaches.
+    const todayAng = -105 + 30 * today.m + (30 * (today.d - 0.5)) / daysIn(today.y, today.m);
+    const pill = { w: 34, h: 22 };
+    const reach = (deg, w, h) => Math.abs(Math.cos((deg * Math.PI) / 180)) * (w / 2) + Math.abs(Math.sin((deg * Math.PI) / 180)) * (h / 2);
     const wedges = [];
     for (let m = 0; m < 12; m++) {
-      const mid = -90 + 30 * m, on = m === chosen.m, Ro = R;
-      const [x0, y0] = P(r, mid - 15), [x1, y1] = P(Ro, mid - 15), [x2, y2] = P(Ro, mid + 15), [x3, y3] = P(r, mid + 15);
-      const g = svgEl('g', { class: `days-seg${on ? ' chosen' : ''}`, 'data-month': m + 1, tabindex: 0, role: 'button', 'aria-pressed': on, 'aria-label': `${MONTHS[m]}, ${fill(W.count, { n: bn(daysOf(chosen.y, m).length) })}` });
+      const mid = -90 + 30 * m, on = m === chosen;
+      const [x0, y0] = P(r, mid - 15), [x1, y1] = P(R, mid - 15), [x2, y2] = P(R, mid + 15), [x3, y3] = P(r, mid + 15);
+      const g = svgEl('g', { class: `days-seg${on ? ' chosen' : ''}`, 'data-month': m + 1, tabindex: 0, role: 'button', 'aria-pressed': on, 'aria-label': `${MONTHS[m]}, ${fill(W.count, { n: bn(daysOf(m).length) })}` });
       if (on) { const [dx, dy] = P(WHEEL.pop, mid).map((v) => v - c); g.setAttribute('transform', `translate(${dx} ${dy})`); g.setAttribute('filter', 'url(#days-shadow)'); }
-      g.append(svgEl('path', { d: `M${x0} ${y0} L${x1} ${y1} A${Ro} ${Ro} 0 0 1 ${x2} ${y2} L${x3} ${y3} A${r} ${r} 0 0 0 ${x0} ${y0} Z` }));
+      g.append(svgEl('path', { d: `M${x0} ${y0} L${x1} ${y1} A${R} ${R} 0 0 1 ${x2} ${y2} L${x3} ${y3} A${r} ${r} 0 0 0 ${x0} ${y0} Z` }));
       const label = svgEl('text', { class: 'days-seg-label', lang: 'bn' });
       label.textContent = MONTHS[m];
       g.append(label);
       const marks = svgEl('g', { class: 'days-seg-marks' });
-      const kinds = kindsInMonth(chosen.y, m);
-      kinds.forEach((k, i) => { const one = svgEl('g', { transform: `translate(${(i - (kinds.length - 1) / 2) * 18} 0)` }); one.append(marker(k, 11, on ? { hollow: true, colour: '#fff' } : {})); marks.append(one); });
+      const kinds = kindsInMonth(m);
+      kinds.forEach((k, i) => { const one = svgEl('g', { transform: `translate(${(i - (kinds.length - 1) / 2) * (WHEEL.mark + 6)} 0)` }); one.append(marker(k, WHEEL.mark, on ? '#fff' : undefined)); marks.append(one); });
       g.append(marks);
       wedges.push({ g, m, mid, label, marks });
     }
-    // Each name centred in its wedge, as far out as it needs for its width to fit between the wedge's sides.
     for (const w of wedges) wheel.append(w.g);
+    // Each name and its markers, the markers under the name or, where only that fits, over it, at the radius nearest
+    // mid-ring, and the least step sideways off the wedge's middle, where both boxes lie wholly inside the wedge (clear
+    // of its sides and arcs) and, in today's month, clear of the «আজ» pill. `data-fit` says whether one did.
+    const [px, py] = P(R - reach(todayAng, pill.w, pill.h) + 4 + (today.m === chosen ? WHEEL.pop : 0), todayAng);
+    const pillBox = [px - pill.w / 2 - 2, py - pill.h / 2 - 2, px + pill.w / 2 + 2, py + pill.h / 2 + 2];
+    const inside = (x, y, mid) => {
+      const rho = Math.hypot(x - c, y - c);
+      const off = Math.abs(((((Math.atan2(y - c, x - c) * 180) / Math.PI - mid) % 360) + 540) % 360 - 180);
+      return rho >= r + 2 && rho <= R - 2 && off < 15 && rho * Math.sin(((15 - off) * Math.PI) / 180) >= WHEEL.gap / 2;
+    };
+    // [the name's centre, the markers' centre], from the point placed: under, then over.
+    const ORDERS = [[-6, 11], [6, -11]];
     for (const w of wedges) {
-      const width = w.label.getBBox().width;
-      let rad = (r + R) / 2;
-      while (rad < R - 14 && 2 * rad * Math.sin(Math.PI / 12) - WHEEL.gap - 4 < width) rad += 1;
-      const [lx, ly] = P(rad, w.mid);
+      const lw = w.label.getBBox().width, mw = w.marks.getBBox().width;
+      const sx = -Math.sin((w.mid * Math.PI) / 180), sy = Math.cos((w.mid * Math.PI) / 180);
+      const at = (rad, side) => { const [x, y] = P(rad, w.mid); return [x + side * sx, y + side * sy]; };
+      const fits = (rad, [ly, my], side) => {
+        const [x, y] = at(rad, side);
+        const boxes = [[x - lw / 2, y + ly - 10, x + lw / 2, y + ly + 10], [x - mw / 2, y + my - 4.5, x + mw / 2, y + my + 4.5]];
+        if (!boxes.every(([a, b, d, e]) => inside(a, b, w.mid) && inside(d, b, w.mid) && inside(a, e, w.mid) && inside(d, e, w.mid))) return false;
+        return w.m !== today.m || boxes.every(([a, b, d, e]) => a > pillBox[2] || d < pillBox[0] || b > pillBox[3] || e < pillBox[1]);
+      };
+      const midR = (r + R) / 2;
+      let place = [midR, ORDERS[0], 0], fit = false;
+      for (let side = 0; side <= 12 && !fit; side += 2) for (let k = 0; k <= R - r && !fit; k++) for (const o of ORDERS) for (const t of [midR + k, midR - k]) for (const sd of side ? [side, -side] : [0]) if (!fit && fits(t, o, sd)) { place = [t, o, sd]; fit = true; }
+      const [lx, ly] = at(place[0], place[2]);
       w.label.setAttribute('x', lx);
-      w.label.setAttribute('y', ly - 7);
-      w.marks.setAttribute('transform', `translate(${lx} ${ly + 11})`);
-      w.label.dataset.room = (2 * rad * Math.sin(Math.PI / 12) - WHEEL.gap).toFixed(1);
+      w.label.setAttribute('y', ly + place[1][0]);
+      w.marks.setAttribute('transform', `translate(${lx} ${ly + place[1][1]})`);
+      w.label.dataset.fit = fit ? '1' : '0';
     }
     // The chosen wedge drawn last again, so its pop and shadow lie over its neighbours; the copy takes no tap.
-    const on = wedges.find((w) => w.m === chosen.m).g.cloneNode(true);
-    for (const a of ['tabindex', 'role', 'aria-pressed', 'aria-label', 'data-month']) on.removeAttribute(a);
-    on.setAttribute('aria-hidden', 'true');
-    on.classList.add('days-seg-top');
-    wheel.append(on);
+    const top = wedges[chosen].g.cloneNode(true);
+    for (const a of ['tabindex', 'role', 'aria-pressed', 'aria-label', 'data-month']) top.removeAttribute(a);
+    top.setAttribute('aria-hidden', 'true');
+    top.classList.add('days-seg-top');
+    wheel.append(top);
     const disc = svgEl('circle', { class: 'days-centre', cx: c, cy: c, r: r - 6, filter: 'url(#days-shadow)' });
-    const month = svgEl('text', { class: 'days-centre-month', x: c, y: c - 4, lang: 'bn' });
-    month.textContent = MONTHS[chosen.m];
+    const month = svgEl('text', { class: 'days-centre-month', x: c, y: c - 2, lang: 'bn' });
+    month.textContent = MONTHS[chosen];
     const count = svgEl('text', { class: 'days-centre-count', x: c, y: c + 24, lang: 'bn' });
-    count.textContent = fill(W.count, { n: bn(daysOf(chosen.y, chosen.m).length) });
+    count.textContent = fill(W.count, { n: bn(daysOf(chosen).length) });
     wheel.append(disc, month, count);
-    // The month's name 32 px, down to 28 where the disc is narrow.
-    for (let fs = 32; fs >= 28; fs--) { month.style.fontSize = `${fs}px`; if (month.getBBox().width <= 2 * (r - 6) - 8) break; }
-    month.dataset.room = 2 * (r - 6) - 8;
-    // «আজ»: the ring on today's month's outer edge, at today's place in the month.
-    const ang = -105 + 30 * today.m + (30 * (today.d - 0.5)) / daysIn(today.y, today.m);
-    const [tx, ty] = P(R + (today.m === chosen.m ? WHEEL.pop : 0), ang);
-    const ring = svgEl('g', { class: 'days-today-ring', transform: `translate(${tx} ${ty})`, 'aria-hidden': 'true' });
-    ring.append(marker('today', 16));
-    wheel.append(ring);
+    // The month's name 30 px, down to 24 where the disc is narrow.
+    for (let fs = 30; fs >= 24; fs--) { month.style.fontSize = `${fs}px`; if (month.getBBox().width <= 2 * (r - 6) - 12) break; }
+    month.dataset.room = 2 * (r - 6) - 12;
+    // «আজ»: a small pill on today's month's outer edge, at today's place in it; not a marker.
+    const tg = svgEl('g', { class: 'days-today-pill', transform: `translate(${px} ${py})`, 'aria-hidden': 'true' });
+    tg.append(svgEl('rect', { x: -pill.w / 2, y: -pill.h / 2, width: pill.w, height: pill.h, rx: pill.h / 2 }));
+    const tt = svgEl('text', { lang: 'bn', y: 1 });
+    tt.textContent = W.today;
+    tg.append(tt);
+    wheel.append(tg);
     for (const w of wedges) {
-      const pick = () => { chosen = { y: chosen.y, m: w.m }; render(); wheel.querySelector(`.days-seg[data-month="${w.m + 1}"]`)?.focus(); };
+      const pick = () => { chosen = w.m; render(); wheel.querySelector(`.days-seg[data-month="${w.m + 1}"]`)?.focus(); };
       w.g.addEventListener('click', pick);
       w.g.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
     }
@@ -257,44 +305,38 @@ export async function mount(panel, { descriptor, data }) {
 
   // ---- the list --------------------------------------------------------------------------------------------------
   function drawList() {
-    const { y, m } = chosen;
-    listTitle.replaceChildren();
-    listTitle.append(svgCalendar(), document.createTextNode(fill(W.listTitle, { month: MONTHS[m] })));
+    listTitle.textContent = fill(W.listTitle, { month: MONTHS[chosen] });
     list.replaceChildren();
-    const rows = daysOf(y, m);
+    const rows = daysOf(chosen);
     for (const x of rows) {
-      const isToday = y === today.y && m === today.m && x.at.d === today.d;
-      const isNext = upcoming && upcoming.y === y && upcoming.m === m && upcoming.d === x.at.d;
-      const rowEl = el('div', `days-row${isNext ? ' next' : ''}`);
-      rowEl.tabIndex = 0;
-      rowEl.setAttribute('role', 'button');
+      const next = upcoming?.ids.has(x.day.id);
+      const rowEl = el('div', `days-row${next ? ' next' : ''}${x.day.tappable ? ' tappable' : ''}`);
       rowEl.dataset.day = x.day.id;
-      rowEl.setAttribute('aria-label', `${bn(x.at.d)} ${MONTHS[m]}, ${x.day.nameBn}`);
       const text = el('div', 'days-row-text');
       const name = el('div', 'days-row-name', 'bn');
       name.textContent = x.day.nameBn;
       text.append(name);
+      if (x.day.dateText) { const p = el('div', 'days-row-when', 'bn'); p.textContent = x.day.dateText; text.append(p); }
       if (x.day.purposeBn) { const p = el('div', 'days-row-purpose', 'bn'); p.textContent = x.day.purposeBn; text.append(p); }
-      if (isToday) { const chip = el('span', 'days-chip today', 'bn'); chip.append(icon(['today'], 14), document.createTextNode(W.kinds.today)); text.append(chip); }
-      if (isNext) { const chip = el('span', 'days-chip', 'bn'); chip.append(svgClock(), document.createTextNode(fill(W.inDays, { n: bn(upcoming.inDays) }))); text.append(chip); }
-      rowEl.append(tile(x.at.d, m), text, icon(x.day.kinds, 16));
-      const openIt = () => openSheet(x, y, rowEl);
-      rowEl.addEventListener('click', openIt);
-      rowEl.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openIt(); } });
+      const chips = el('div', 'days-chips');
+      if (isToday(x.day)) chips.append(todayPill());
+      if (next) { const chip = el('span', 'days-chip', 'bn'); chip.textContent = fill(W.inDays, { n: bn(upcoming.inDays) }); chips.append(chip); }
+      if (chips.children.length) text.append(chips);
+      rowEl.append(tile(x.day), text, icon(x.day.kinds));
+      if (x.day.tappable) {
+        rowEl.tabIndex = 0;
+        rowEl.setAttribute('role', 'button');
+        rowEl.setAttribute('aria-label', `${x.day.dateText ?? `${bn(x.day.when.d)} ${MONTHS[chosen]}`}, ${x.day.nameBn}`);
+        rowEl.append(chevron());
+        const openIt = () => openSheet(x, rowEl);
+        rowEl.addEventListener('click', openIt);
+        rowEl.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openIt(); } });
+      }
       list.append(rowEl);
     }
     if (!rows.length) { const empty = el('p', 'days-empty', 'bn'); empty.textContent = W.empty; list.append(empty); }
   }
-  const svgCalendar = () => { const s = svgEl('svg', { class: 'days-title-icon', width: 24, height: 24, viewBox: '0 0 24 24', 'aria-hidden': 'true' }); s.innerHTML = '<rect x="3" y="5" width="18" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10 H21 M8 3 V7 M16 3 V7 M7.5 14 H16.5 M7.5 17.5 H12.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'; return s; };
-  const svgClock = () => { const s = svgEl('svg', { width: 16, height: 16, viewBox: '0 0 16 16', 'aria-hidden': 'true' }); s.innerHTML = '<circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8 4.5 V8 L10.5 9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>'; return s; };
-
-  // The legend: one row where all four pills fit at their size, else 2 × 2.
-  function layoutLegend() {
-    legend.classList.remove('two');
-    const pills = [...legend.children];
-    const oneRow = legend.scrollWidth <= legend.clientWidth + 0.5 && pills.every((p) => p.offsetTop === pills[0].offsetTop);
-    legend.classList.toggle('two', !oneRow);
-  }
+  const chevron = () => { const s = svgEl('svg', { class: 'days-chevron', width: 16, height: 16, viewBox: '0 0 16 16', 'aria-hidden': 'true' }); s.innerHTML = '<path d="M6 3.5 L10.5 8 L6 12.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'; return s; };
 
   function render() {
     drawWheel();
@@ -303,7 +345,9 @@ export async function mount(panel, { descriptor, data }) {
     row.sync();
   }
   render();
-  layoutLegend();
-  new ResizeObserver(() => { drawWheel(); layoutLegend(); }).observe(wheelCard);
-  return { ready: document.fonts.ready };
+  // The names are measured to place them: drawn again once both weights of the font are in.
+  const fonts = Promise.all(['400', '700'].map((w) => document.fonts.load(`${w} 14px "Noto Sans Bengali"`, W.months.join('')))).then(() => drawWheel());
+  let width = wheelCard.clientWidth;
+  new ResizeObserver(() => { if (wheelCard.clientWidth !== width) { width = wheelCard.clientWidth; drawWheel(); } }).observe(wheelCard);
+  return { ready: fonts.then(() => document.fonts.ready) };
 }

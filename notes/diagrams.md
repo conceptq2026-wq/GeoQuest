@@ -127,4 +127,8 @@ not built.
   - **«আজ»** is the device's local date.
   - **Bold:** the module's stylesheet declares Noto Sans Bengali Bold, so only this view requests it.
   - **`mount`** returns `{ ready }`, as the shell awaits.
-  - **`tools/check.mjs`** has a `daysSteps` branch for it.
+  - **`tools/check.mjs`** has a `daysSteps` branch for it; `--sizes=320,390,768,1280` runs an item at other widths.
+  - **Two opt-in shell pieces (WHEEL-3, 2026-10-08), unused by every other item:** the shared picker row's `wrap`
+    (`docs/shared/picker.js`, through `pickerBar` in `parts.js`), where ‹ on the first item goes to the last and ›
+    on the last to the first, for a cycle such as the twelve months; and `data-info-after`, which tells the shell to
+    put ⓘ's row after that element when a view's picker row sits inside its own layout (`app.js`, `placeInfo`).

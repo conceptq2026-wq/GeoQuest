@@ -120,8 +120,8 @@ const SEASONS_SEED_SHA256 = '59f4b3fee5aa65ea8b616d3c0a9ba9f4bb2b0ada089e764b5fa
 const MARITIME_ZONES_SEED_SHA256 = '6b0f67dbac0b0fa97037d86c7f94d3f07a73bd57a42d7b0986e8b3dc9fdab689';
 // The bangladesh-maritime-boundary map: the editor's seed, pinned (live 2026-10-08; its 35 step-2 strings approved, BD-6; #30 reworded by the user the same day).
 const BANGLADESH_MARITIME_SEED_SHA256 = 'dcc627421f99b20faeffe17006d9348f181b9663c058af66f37ae6c572e8ebbd';
-// The important-days diagram «বছরের চাকা» (work in progress, WHEEL-2, 2026-10-08): its seed, pinned.
-const IMPORTANT_DAYS_SEED_SHA256 = '9e862c5930a385d8f4af244a05723e76c4ad01af4d0d9a5693c9a2fd2faabbf4';
+// The important-days diagram «বছরের চাকা» (work in progress, WHEEL-2 and WHEEL-3, 2026-10-08): its seed, pinned.
+const IMPORTANT_DAYS_SEED_SHA256 = '6543d0c6e42a47c7f483375d3fed58263d2dc42a7d22c10a71089082d16db2e6';
 // The bangladesh-ethnic-groups map: its seed, pinned (live 2026-10-08).
 const BANGLADESH_ETHNIC_SEED_SHA256 = 'c2b2333d34be11f0c02aec09fade7c8d1c007fa445c573fdc65824770f96cd75';
 // The org-members map: the editor's seed, pinned (live 2026-10-07).
@@ -2812,12 +2812,15 @@ console.log('\n\n============ bangladesh-ethnic-groups ============');
 
 /*
 |--------------------------------------------------------------------------
-| IMPORTANT-DAYS — a diagram, «বছরের চাকা» (work in progress, WHEEL-2,
-| 2026-10-08), built by tools/build-diagram-important-days.mjs from its seed:
-| the days the Cabinet Division's circular of 11 March 2026 lists, each date
-| verified. The seed is the pinned one; docs/ holds exactly what a fresh build
-| writes; the view is the shell's `days` module; twelve months, their counts
-| the seed's built days; no held-out day built; every card fact cites a URL.
+| IMPORTANT-DAYS — a diagram, «বছরের চাকা» (work in progress; WHEEL-2,
+| revised by WHEEL-3, 2026-10-08), built by
+| tools/build-diagram-important-days.mjs from its seed: the days the Cabinet
+| Division's circular of 11 March 2026 lists, each date verified, religious
+| days removed (the user's review). The seed is the pinned one; docs/ holds
+| exactly what a fresh build writes; the view is the shell's `days` module;
+| twelve months, their counts the seed's built days; no held-out day built;
+| two kinds only; no religious day, theme or declarer anywhere in the built
+| files; no year in any word, name or date shown; every card fact cites a URL.
 | Its unapproved strings only warn while it is work in progress (verify.mjs).
 |--------------------------------------------------------------------------
 */
@@ -2841,6 +2844,26 @@ console.log('\n\n============ important-days (diagram, work in progress) =======
   const modules = [...(fs.readFileSync(path.join(VISUAL_DIR, 'app.js'), 'utf8').match(/const VIEW_MODULES = \{([^}]*)\}/)?.[1] ?? '').matchAll(/^\s*'?([\w-]+)'?\s*:/gm)].map((m) => m[1]);
   check(descriptor.id === id && descriptor.language === 'bn' && descriptor.section === seed.section && descriptor.views.length === 1 && descriptor.views[0].type === 'days' && modules.includes('days'), `descriptor: ${id}, section ${descriptor.section}, one view of type days, which docs/visual/app.js loads`);
   check(descriptor.words.months.length === 12 && descriptor.words.months.every((m, i) => m === seed.words.months[i].bn), 'twelve months, the seed\'s names');
+  check(JSON.stringify(Object.keys(descriptor.words.kinds)) === '["national","international"]' && data.days.every((d) => d.kinds.length && d.kinds.every((k) => ['national', 'international'].includes(k))), `two kinds only, জাতীয় and আন্তর্জাতিক (${data.days.filter((d) => d.kinds.length === 2).length} days both)`);
+  const RELIGIOUS = /ঈদ|পূজা|পূর্ণিমা|মিলাদ|বড়দিন/;
+  const builtText = fs.readdirSync(dir).map((f) => fs.readFileSync(path.join(dir, f), 'utf8')).join('\n');
+  const removed = seed.removedReligious ?? [];
+  check(removed.length > 0 && removed.every((r) => !builtText.includes(r.nameBn)) && !RELIGIOUS.test(builtText) && !seed.entries.some((e) => RELIGIOUS.test(e.nameBn.bn)), `no religious day in the seed's entries or the built files (${removed.length} removed by the user: ${removed.map((r) => `${r.category} ${r.serial ?? '—'}`).join(', ')})`);
+  const keys = new Set();
+  JSON.parse(JSON.stringify([descriptor, data]), (k, v) => (keys.add(k), v));
+  const seedKeys = new Set();
+  JSON.parse(fs.readFileSync(seedFile, 'utf8'), (k, v) => (seedKeys.add(k), v));
+  const banned = ['theme', 'themes', 'declaredBy', 'declarer'];
+  check(banned.every((k) => !keys.has(k) && !seedKeys.has(k)) && !/প্রতিপাদ্য|ঘোষণাকারী/.test(builtText) && JSON.stringify(descriptor.words.cardRows.map((r) => r.key)) === '["englishName","firstObserved","purposeBn","source"]', 'no theme or declarer field in the seed or the built files; the card\'s rows: ইংরেজি নাম, প্রথম পালন, উদ্দেশ্য, সূত্র');
+  const YEAR = /(^|[^0-9০-৯])([0-9]{4}|[০-৯]{4})(?![0-9০-৯])/;
+  const shown = [...JSON.stringify(descriptor.words).match(/"[^"]*"/g), ...data.days.flatMap((d) => [d.nameBn, d.dateText, ...(d.tile ?? []), d.card.englishName])].filter((x) => typeof x === 'string');
+  const yearsShown = shown.filter((x) => YEAR.test(x));
+  const historical = data.days.filter((d) => YEAR.test(d.purposeBn ?? '')).length;
+  check(yearsShown.length === 0 && data.days.every((d) => !('date' in d)), `no year in any word, name, date tile or date line shown (${shown.length} strings; a day's \`when\` only times «আজ»; ${data.days.filter((d) => d.card.firstObserved).length} cards give a first year and ${historical} purposes a past year, as their sources do)${yearsShown.length ? ` — ${yearsShown.slice(0, 3).join(', ')}` : ''}`);
+  const tappableWrong = data.days.filter((d) => d.tappable !== Boolean(d.card.englishName || d.card.firstObserved || d.card.purposeBn));
+  check(tappableWrong.length === 0, `a row opens a card only where it has a name, a first year or a purpose: ${data.days.filter((d) => d.tappable).length} of ${data.days.length}`);
+  const credits = data.credits.map((c) => c.url);
+  check(credits.length === 2 + seed.amendments.length && credits[0] === seed.circular.url && credits.includes('https://www.un.org/en/observances/list-days-weeks') && !data.creditGroups, `ⓘ is short: the circular, its ${seed.amendments.length} amendments and the UN's list (the shell adds the font's licence)`);
   const builtSeed = seed.entries.filter((e) => e.status === 'built');
   const monthOf = (e) => (e.date.type === 'dated' ? Number(e.date.dates[2026].slice(5, 7)) : e.date.m);
   const want = [...Array(12)].map((_, i) => builtSeed.filter((e) => monthOf(e) === i + 1).length);
@@ -2848,8 +2871,9 @@ console.log('\n\n============ important-days (diagram, work in progress) =======
   const heldIn = seed.entries.filter((e) => e.status === 'held' && data.days.some((d) => d.id === `e${e.index}`));
   const badBuilt = builtSeed.filter((e) => !e.date || e.named.some((d) => d.status === 'CONFLICT' || !['VERIFIED', 'SINGLE-SOURCE'].includes(d.status)));
   check(heldIn.length === 0 && badBuilt.length === 0, 'only VERIFIED or SINGLE-SOURCE days with a date are built; no held-out day reaches the data');
-  const noUrl = builtSeed.flatMap((e) => [...['englishName', 'declaredBy', 'firstObserved', 'purposeBn'].filter((k) => e.card[k] && !/^https?:\/\//.test(e.card[k].url ?? '')).map((k) => `${e.index}.${k}`), ...Object.entries(e.card.themes ?? {}).filter(([, t]) => !/^https?:\/\//.test(t.url ?? '')).map(([y]) => `${e.index}.theme${y}`), ...e.named.filter((d) => !(d.sources ?? []).some((s) => /^https?:\/\//.test(s.url ?? ''))).map(() => `${e.index}.date`)]);
-  check(noUrl.length === 0, `every built day's date and every card fact cites a URL${noUrl.length ? ` — not: ${noUrl.slice(0, 5).join(', ')}` : ''}`);
+  const noUrl = builtSeed.flatMap((e) => [...['englishName', 'firstObserved', 'purposeBn', 'source'].filter((k) => e.card[k] && !/^https?:\/\//.test(e.card[k].url ?? '')).map((k) => `${e.index}.${k}`), ...e.named.filter((d) => !(d.sources ?? []).some((s) => /^https?:\/\//.test(s.url ?? ''))).map(() => `${e.index}.date`)]);
+  const noSource = data.days.filter((d) => d.tappable && !d.card.source);
+  check(noUrl.length === 0 && noSource.length === 0, `every built day's date and every card fact cites a URL; every card links its day's own source («সূত্র»)${noUrl.length || noSource.length ? ` — not: ${[...noUrl, ...noSource.map((d) => d.id)].slice(0, 5).join(', ')}` : ''}`);
 }
 
 /*

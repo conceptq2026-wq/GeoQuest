@@ -1619,9 +1619,9 @@ console.log('\n---- bangladesh-ethnic-groups: seed (draft) ----');
   check(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(seedText) && registry.maps.some((e) => e.id === EG && e.section === 'bangladesh') && !wipItems.some((w) => w.id === EG) && fs.existsSync(path.join(SERVED, 'maps', EG, 'descriptor.json')), `${EG}: no e-mail address in the seed; live — in registry.json under Bangladesh, its folder under docs/maps/, no longer in tools/wip.json`);
 }
 
-// ---- important-days «বছরের চাকা» (work in progress, WHEEL-2, 2026-10-08): the seed -------------------
+// ---- important-days «বছরের চাকা» (work in progress, WHEEL-2 and WHEEL-3, 2026-10-08): the seed -------------------
 // Every Bengali string is { bn, approved }; a source's own title, a citation, a day's printed name in the circular's
-// record and a named day's name inside an entry are records of a source. Its built files are held to a fresh build
+// record (the removed religious days' too) and a named day's name inside an entry are records of a source. Its built files are held to a fresh build
 // by tools/verify-descriptor.mjs; unapproved strings only warn while it is work in progress.
 console.log('\n---- important-days: seed (work in progress) ----');
 {
@@ -1634,7 +1634,7 @@ console.log('\n---- important-days: seed (work in progress) ----');
     if (typeof v === 'string') {
       if (!/[ঀ-৿]/.test(v)) return;
       if (key === 'bn' && typeof owner?.approved === 'boolean') { if (!owner.approved) pending++; return; }
-      if (/^seed\.(circular|amendments)/.test(where) || /\.named\[\d+\]\./.test(where) || /\.sources\[\d+\]\.|\.conflict\.|\.circularSource\.|\.date\.source$|\.dateAsPrinted$/.test(where) || ['what', 'url', 'note', 'place', 'category'].includes(key)) return;
+      if (/^seed\.(circular|amendments|removedReligious)/.test(where) || /\.named\[\d+\]\./.test(where) || /\.sources\[\d+\]\.|\.conflict\.|\.circularSource\.|\.date\.source$|\.dateAsPrinted$/.test(where) || ['what', 'url', 'note', 'place', 'category'].includes(key)) return;
       unflagged.push(where);
     } else if (Array.isArray(v)) v.forEach((x, i) => walk(x, `${where}[${i}]`, i, v));
     else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) walk(x, `${where}.${k}`, k, v);

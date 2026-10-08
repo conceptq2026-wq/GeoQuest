@@ -21,7 +21,7 @@
 | keys.
 */
 
-import { resolver } from '../shared/resolver.js?v=3195e519c0';
+import { resolver } from '../shared/resolver.js?v=dde7f58d0e';
 
 const dom = {
   header: document.querySelector('.visual-header'),
@@ -42,14 +42,14 @@ const dom = {
 | with no module here is an error.
 */
 const VIEW_MODULES = {
-  exploded: () => import('./exploded.js?v=3195e519c0'),
-  cutaway: () => import('./cutaway.js?v=3195e519c0'),
-  orbit: () => import('./orbit.js?v=3195e519c0'),
-  rivers: () => import('./rivers.js?v=3195e519c0'),
-  zones: () => import('./zones.js?v=3195e519c0'),
-  zones3d: () => import('./zones3d.js?v=3195e519c0'),
+  exploded: () => import('./exploded.js?v=dde7f58d0e'),
+  cutaway: () => import('./cutaway.js?v=dde7f58d0e'),
+  orbit: () => import('./orbit.js?v=dde7f58d0e'),
+  rivers: () => import('./rivers.js?v=dde7f58d0e'),
+  zones: () => import('./zones.js?v=dde7f58d0e'),
+  zones3d: () => import('./zones3d.js?v=dde7f58d0e'),
   // The year wheel (important-days, 2026-10-08): loaded only for a view of type `days`.
-  days: () => import('./days.js?v=3195e519c0'),
+  days: () => import('./days.js?v=dde7f58d0e'),
 };
 
 const diagramId = new URLSearchParams(location.search).get('v');
@@ -175,12 +175,14 @@ async function start() {
   dom.attrib.hidden = false;
 
   // ⓘ sits in a row of its own directly below the picker row, right-aligned —
-  // or at the top of a view that has none (the user's decision, 2026-09-28).
+  // or at the top of a view that has none (the user's decision, 2026-09-28). A
+  // view whose picker row sits inside its own layout marks the element ⓘ goes
+  // after with `data-info-after` (opt-in; the year wheel's card, 2026-10-08).
   const infoRow = document.createElement('div');
   infoRow.className = 'info-row';
   infoRow.append(dom.attrib);
   const placeInfo = (panel) => {
-    const bar = panel.querySelector(':scope > .picker-row');
+    const bar = panel.querySelector('[data-info-after]') ?? panel.querySelector(':scope > .picker-row');
     if (bar) bar.after(infoRow);
     else panel.prepend(infoRow);
   };

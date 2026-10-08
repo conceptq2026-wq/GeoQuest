@@ -2,6 +2,7 @@
 // closes on exit.
 //
 //   node tools/check.mjs <id>              the item, used as a student would
+//   node tools/check.mjs <id> --sizes=320,390,768,1280   … at these widths instead of 390 and 320
 //   node tools/check.mjs --fixture=<dir>   a test map outside docs/, served as a map of its own
 //   node tools/check.mjs --baseline        every registry entry, stored
 //   node tools/check.mjs --all             every registry entry, against the stored baseline
@@ -9,7 +10,7 @@
 //   node tools/check.mjs <id> --live --since=<rev>   … from <rev> rather than the last push
 //
 // <id> serves the local preview's copy of docs/ (tools/preview.mjs, so work
-// in progress is on its home page) and, at 390×844 and 320×640 in headless
+// in progress is on its home page) and, at 390×844 and 320×640 (or --sizes) in headless
 // Edge with reduced motion: opens the home page and checks the item's card
 // is in its section; opens the item from that card; steps through every
 // picker item (‹ › and the dropdown's options) — on a map whose tabs divide
@@ -71,6 +72,8 @@ const SIZES = [
   [390, 844],
   [320, 640],
 ];
+// --sizes=<w,…> (an <id> only): the widths to use, each at the height a screen of that width has.
+const HEIGHT = { 320: 640, 360: 780, 390: 844, 412: 915, 768: 1024, 1024: 768, 1280: 800, 1920: 1080 };
 // The site is served under a subpath, as the live site is, so a path that
 // assumes the host's root fails here too.
 const PREFIX = '/geoquest/';
@@ -97,14 +100,17 @@ const args = process.argv.slice(2);
 const since = args.find((a) => a.startsWith('--since='))?.slice('--since='.length);
 // --fixture=<dir>: a test map kept outside docs/ (tools/fixtures/), mounted into the served copy only.
 const fixture = args.find((a) => a.startsWith('--fixture='))?.slice('--fixture='.length);
-const flags = new Set(args.filter((a) => a.startsWith('--') && !a.startsWith('--since=') && !a.startsWith('--fixture=')));
+const sizesArg = args.find((a) => a.startsWith('--sizes='))?.slice('--sizes='.length);
+if (sizesArg) SIZES.splice(0, SIZES.length, ...sizesArg.split(',').map((w) => [Number(w), HEIGHT[w] ?? Math.round(Number(w) * 2.16)]));
+const flags = new Set(args.filter((a) => a.startsWith('--') && !a.startsWith('--since=') && !a.startsWith('--fixture=') && !a.startsWith('--sizes=')));
 const ids = fixture ? [path.basename(fixture)] : args.filter((a) => !a.startsWith('--'));
 const usage = () => {
-  console.error('usage: node tools/check.mjs <id> | --fixture=<dir> | <id> --live [--since=<rev>] | --baseline | --all');
+  console.error('usage: node tools/check.mjs <id> [--sizes=<w,…>] | --fixture=<dir> | <id> --live [--since=<rev>] | --baseline | --all');
   process.exit(2);
 };
 for (const f of flags) if (!['--baseline', '--all', '--live'].includes(f)) usage();
 if (since && !flags.has('--live')) usage();
+if (sizesArg && (flags.size || !SIZES.every(([w]) => w >= 320 && w <= 1920))) usage();
 if (flags.has('--baseline') || flags.has('--all')) {
   if (ids.length || flags.size > 1) usage();
 } else if (ids.length !== 1 || !ID.test(ids[0])) usage();
@@ -197,7 +203,7 @@ async function launch() {
     await call('Network.enable');
     await call('Network.setCacheDisabled', { cacheDisabled: true });
     await call('Page.enable');
-    await call('Emulation.setDeviceMetricsOverride', { width, height, deviceScaleFactor: 1, mobile: true });
+    await call('Emulation.setDeviceMetricsOverride', { width, height, deviceScaleFactor: 1, mobile: width < 600 });
     await call('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
     await call('Emulation.setFocusEmulationEnabled', { enabled: true });
     Object.assign(page, {
@@ -785,42 +791,89 @@ async function textFloor(page, summary, fail) {
 
 /** ‹ › and the dropdown: › from the placeholder through every option, then the ends. */
 /*
- * The year wheel (important-days, docs/visual/days.js, 2026-10-08): every month of the picker by ›, its centre and
- * its list agreeing; each of the twelve wedges tapped at mid-ring, where a finger lands, choosing its month, the tap
- * zone measured there (the arc and the ring's width, each at least 44 px); every row of this year's months opened,
- * its card titled as the row, closed by ✕; Escape closing one card.
+ * The year wheel (important-days, docs/visual/days.js; WHEEL-3, 2026-10-08): the twelve months of the picker by ›,
+ * its centre and its list agreeing, then › past ডিসেম্বর to জানুয়ারি and ‹ from জানুয়ারি to ডিসেম্বর (the picker goes
+ * round); in each month the page held at this width — no sideways scroll, no text under 14 px, every tap target
+ * 44 px or more, every wedge's name inside its wedge; each of the twelve wedges tapped at mid-ring, where a finger
+ * lands, choosing its month, the tap zone measured there (the arc and the ring's width, each at least 44 px); every
+ * row with a card opened, its card titled as the row, closed by ✕ (Escape the first); every row without one tapped
+ * and opening nothing, with no chevron and no button role.
  */
 async function daysSteps(page, shoot, summary, fail) {
   const bnNum = (s) => Number(String(s).replace(/[০-৯]/g, (d) => '০১২৩৪৫৬৭৮৯'.indexOf(d)).replace(/\D/g, ''));
   const options = await page.evaluate(`[...document.getElementById('recordPicker').options].filter((o) => o.value).map((o) => [o.value, o.textContent])`);
-  // Every month by ›, from the first.
-  await page.evaluate(`(() => { const s = document.getElementById('recordPicker'); s.value = ${JSON.stringify(options[0][0])}; s.dispatchEvent(new Event('change', { bubbles: true })); })()`);
-  await settle(page, 10000);
+  if (options.length !== 12) fail(`wheel: the picker lists ${options.length} months, not 12`);
+  const choose = async (value) => {
+    await page.evaluate(`(() => { const s = document.getElementById('recordPicker'); s.value = ${JSON.stringify(value)}; s.dispatchEvent(new Event('change', { bubbles: true })); })()`);
+    await settle(page, 10000);
+  };
+  const state = () => page.evaluate(`({ value: document.getElementById('recordPicker').value, centre: document.querySelector('.days-centre-month')?.textContent, count: document.querySelector('.days-centre-count')?.textContent, rows: document.querySelectorAll('.days-row').length })`);
+  const LAYOUT = `(() => {
+    const vis = (e) => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden';
+    const small = [...document.querySelectorAll('.days *')].filter((e) => vis(e) && !e.closest('.attrib, select, .step-btn') && [...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim()) && parseFloat(getComputedStyle(e).fontSize) < 14).map((e) => '«' + e.textContent.trim().slice(0, 16) + '» ' + getComputedStyle(e).fontSize);
+    const taps = [...document.querySelectorAll('#prevRecord, #nextRecord, #recordPicker, .info-row .attrib-button, .days-row.tappable')].filter(vis).map((e) => [e.id || e.className, Math.min(e.getBoundingClientRect().width, e.getBoundingClientRect().height)]).filter(([, d]) => d < 44).map(([k, d]) => k + ' ' + Math.round(d));
+    const d = document.querySelector('.days'), doc = document.scrollingElement;
+    const sideways = Math.max(doc.scrollWidth - doc.clientWidth, d.scrollWidth - d.clientWidth);
+    const unfit = [...document.querySelectorAll('.days-seg:not(.days-seg-top) .days-seg-label')].filter((t) => t.dataset.fit !== '1').map((t) => t.textContent);
+    const a = document.querySelector('.days-side').getBoundingClientRect(), b = document.querySelector('.days-main').getBoundingClientRect();
+    return { small, taps, sideways, unfit, cols: Math.abs(a.top - b.top) < 2 && b.left >= a.right ? 2 : 1 };
+  })()`;
+  const bad = { small: new Set(), taps: new Set(), sideways: 0, unfit: new Set() };
+  let cols = 0;
+  // Every month by ›, from the first; then round past the last, and back by ‹.
+  await choose(options[0][0]);
   let months = 0;
   for (let i = 0; i < options.length; i++) {
     if (i > 0) {
       const next = await page.evaluate(box('#nextRecord'));
-      if (!next) { fail(`wheel: › missing or disabled before ${options[i][1]}`); break; }
+      if (!next) {
+        fail(`wheel: › missing or disabled before ${options[i][1]}`);
+        break;
+      }
       await page.click(...next);
       await settle(page, 10000);
     }
-    const s = await page.evaluate(`({ value: document.getElementById('recordPicker').value, centre: document.querySelector('.days-centre-month')?.textContent, count: document.querySelector('.days-centre-count')?.textContent, rows: document.querySelectorAll('.days-row').length })`);
-    const name = options[i][1].split(' ')[0];
-    if (s.value === options[i][0] && s.centre === name && bnNum(s.count) === s.rows) months++;
+    const s = await state();
+    if (s.value === options[i][0] && s.centre === options[i][1] && bnNum(s.count) === s.rows) months++;
     else fail(`wheel: › to ${options[i][1]} — picker ${s.value}, centre «${s.centre}», «${s.count}» for ${s.rows} rows`);
+    const l = await page.evaluate(LAYOUT);
+    l.small.forEach((x) => bad.small.add(x));
+    l.taps.forEach((x) => bad.taps.add(x));
+    l.unfit.forEach((x) => bad.unfit.add(x));
+    bad.sideways = Math.max(bad.sideways, l.sideways);
+    cols = l.cols;
   }
-  if (!(await page.evaluate(`document.getElementById('nextRecord').disabled`))) fail('wheel: › not disabled at the last month');
   await shoot('steps', `› ${options.at(-1)[1]}`);
+  const wrap = [];
+  for (const [id, from, to] of [['#nextRecord', options.at(-1), options[0]], ['#prevRecord', options[0], options.at(-1)]]) {
+    const arrow = id === '#nextRecord' ? '›' : '‹';
+    await choose(from[0]);
+    const at = await page.evaluate(box(id));
+    if (!at) {
+      fail(`wheel: ${arrow} disabled on ${from[1]}`);
+      continue;
+    }
+    await page.click(...at);
+    await settle(page, 10000);
+    const s = await state();
+    if (s.value === to[0] && s.centre === to[1]) wrap.push(`${from[1]} ${arrow} ${to[1]}`);
+    else fail(`wheel: ${arrow} on ${from[1]} went to ${s.value}, not ${to[1]}`);
+  }
+  if (bad.small.size) fail(`wheel: text under 14 px — ${[...bad.small].slice(0, 4).join(', ')}`);
+  if (bad.taps.size) fail(`wheel: tap targets under 44 px — ${[...bad.taps].slice(0, 4).join(', ')}`);
+  if (bad.sideways > 0) fail(`wheel: the page scrolls sideways by ${bad.sideways} px`);
+  if (bad.unfit.size) fail(`wheel: names outside their wedge — ${[...bad.unfit].join(', ')}`);
   // The twelve wedges, each tapped at mid-ring; the zone measured there.
-  const geo = await page.evaluate(`(() => { const w = document.querySelector('.days-wheel'); const r = +w.dataset.r, R = +w.dataset.ring; const b = w.getBoundingClientRect(); return { r, R, cx: b.left + b.width / 2, cy: b.top + b.height / 2 }; })()`);
-  const midArc = ((geo.R + geo.r) / 2) * Math.PI / 6;
+  const top = `(() => { document.querySelector('.days')?.scrollTo(0, 0); window.scrollTo(0, 0); })()`;
+  await page.evaluate(top);
+  const geo = await page.evaluate(`(() => { const w = document.querySelector('.days-wheel'); return { r: +w.dataset.r, R: +w.dataset.ring }; })()`);
+  const midArc = (((geo.R + geo.r) / 2) * Math.PI) / 6;
   if (midArc < 44 || geo.R - geo.r < 44) fail(`wheel: a wedge's tap zone at mid-ring is ${midArc.toFixed(1)} × ${geo.R - geo.r} px, under 44`);
   let wedges = 0;
   for (let m = 1; m <= 12; m++) {
-    const g = await page.evaluate(`(() => { const w = document.querySelector('.days-wheel'); const r = +w.dataset.r, R = +w.dataset.ring; const b = w.getBoundingClientRect(); return { r, R, cx: b.left + b.width / 2, cy: b.top + b.height / 2 }; })()`);
-    const a = ((-90 + 30 * (m - 1)) * Math.PI) / 180, rad = (g.R + g.r) / 2;
-    await page.evaluate(`window.scrollTo(0, 0)`);
-    const at = await page.evaluate(`(() => { const w = document.querySelector('.days-wheel'); const b = w.getBoundingClientRect(); return [b.left + b.width / 2 + ${rad} * Math.cos(${a}), b.top + b.height / 2 + ${rad} * Math.sin(${a})]; })()`);
+    await page.evaluate(top);
+    const a = ((-90 + 30 * (m - 1)) * Math.PI) / 180;
+    const at = await page.evaluate(`(() => { const w = document.querySelector('.days-wheel'); const rad = (+w.dataset.r + +w.dataset.ring) / 2; const b = w.getBoundingClientRect(); return [b.left + b.width / 2 + rad * Math.cos(${a}), b.top + b.height / 2 + rad * Math.sin(${a})]; })()`);
     await page.click(...at);
     await settle(page, 10000);
     const centre = await page.evaluate(`document.querySelector('.days-centre-month')?.textContent`);
@@ -829,32 +882,39 @@ async function daysSteps(page, shoot, summary, fail) {
     else fail(`wheel: a tap at mid-ring of wedge ${m} chose «${centre}», not «${want}»`);
   }
   await shoot('steps', 'wedges tapped');
-  // Every row of this year's months, its card opened and closed.
-  let cards = 0, rows = 0;
-  const year = options[0][0].split('-')[0];
-  for (let m = 1; m <= 12; m++) {
-    await page.evaluate(`(() => { const s = document.getElementById('recordPicker'); s.value = '${year}-${m}'; s.dispatchEvent(new Event('change', { bubbles: true })); })()`);
-    await settle(page, 10000);
+  // Every row: a card opened and closed where it has one; nothing where it has none.
+  let cards = 0, tappable = 0, plain = 0, plainOk = 0;
+  for (const [value] of options) {
+    await choose(value);
     const n = await page.evaluate(`document.querySelectorAll('.days-row').length`);
     for (let i = 0; i < n; i++) {
-      rows++;
-      const target = await page.evaluate(`(() => { const r = document.querySelectorAll('.days-row')[${i}]; r.scrollIntoView({ block: 'center' }); const q = r.getBoundingClientRect(); return { at: [q.left + q.width / 2, q.top + q.height / 2], name: r.querySelector('.days-row-name').textContent, h: Math.round(q.height) }; })()`);
+      const target = await page.evaluate(`(() => { const r = document.querySelectorAll('.days-row')[${i}]; r.scrollIntoView({ block: 'center' }); const q = r.getBoundingClientRect(); return { at: [q.left + q.width / 2, q.top + q.height / 2], name: r.querySelector('.days-row-name').textContent, h: Math.round(q.height), card: r.classList.contains('tappable'), chevron: !!r.querySelector('.days-chevron'), role: r.getAttribute('role'), tab: r.tabIndex }; })()`);
       if (target.h < 44) fail(`wheel: the row «${target.name}» is ${target.h} px tall`);
       await page.click(...target.at);
       await settle(page, 10000);
       const open = await page.evaluate(`(() => { const s = document.querySelector('.days-sheet'); return s && !s.hidden ? document.getElementById('days-sheet-title')?.textContent : null; })()`);
-      if (open === target.name) cards++;
-      else fail(`wheel: the row «${target.name}» opened ${open === null ? 'no card' : `«${open}»`}`);
-      if (m === 1 && i === 0) await shoot('taps', `card «${target.name}»`);
+      if (!target.card) {
+        plain++;
+        if (open === null && !target.chevron && !target.role && target.tab < 0) plainOk++;
+        else fail(`wheel: the row «${target.name}», with no card, ${open !== null ? 'opened one' : 'looks like a button'}`);
+        continue;
+      }
+      tappable++;
+      if (open === target.name && target.chevron) cards++;
+      else fail(`wheel: the row «${target.name}» opened ${open === null ? 'no card' : `«${open}»`}${target.chevron ? '' : ', with no chevron'}`);
+      if (tappable === 1) await shoot('taps', `card «${target.name}»`);
       // ✕, except the very first card, which Escape closes.
-      if (rows === 1) await page.key?.('Escape') ?? (await page.evaluate(`document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))`));
-      else { const x = await page.evaluate(box('.days-close')); if (x) await page.click(...x); }
+      if (tappable === 1) await page.evaluate(`document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))`);
+      else {
+        const x = await page.evaluate(box('.days-close'));
+        if (x) await page.click(...x);
+      }
       await settle(page, 10000);
-      if (await page.evaluate(`!document.querySelector('.days-sheet').hidden`)) fail(`wheel: the card «${target.name}» did not close by ${rows === 1 ? 'Escape' : '✕'}`);
+      if (await page.evaluate(`!document.querySelector('.days-sheet').hidden`)) fail(`wheel: the card «${target.name}» did not close by ${tappable === 1 ? 'Escape' : '✕'}`);
     }
   }
-  await page.evaluate(`window.scrollTo(0, 0)`);
-  summary.push(`wheel: months ${months}/${options.length} by ›, wedges ${wedges}/12 at mid-ring (${midArc.toFixed(1)} × ${geo.R - geo.r} px), cards ${cards}/${rows} (✕, Escape)`);
+  await page.evaluate(top);
+  summary.push(`wheel: ${cols} column(s); months ${months}/${options.length} by ›, round: ${wrap.join(', ')}; wedges ${wedges}/12 at mid-ring (${midArc.toFixed(1)} × ${geo.R - geo.r} px); cards ${cards}/${tappable} (✕, Escape), ${plainOk}/${plain} rows without a card inert; text ≥ 14 px, taps ≥ 44 px, sideways ${bad.sideways} px, names fit ${12 - bad.unfit.size}/12`);
 }
 
 async function pickerSteps(page, shoot, summary, fail, tabs = 0) {
@@ -1502,6 +1562,7 @@ async function everyEntry(store) {
   }
   const before = readJson(BASELINE);
   const diffs = [];
+  let stampOnly = 0;
   const allKeys = [...new Set([...keys, ...Object.keys(before.entries)])].sort();
   for (const k of allKeys) {
     const a = before.entries[k];
@@ -1519,9 +1580,12 @@ async function everyEntry(store) {
     if (cPlus.length || cMinus.length) parts.push(`console +${cPlus.length} −${cMinus.length}${cPlus.length ? ` (${cPlus[0]})` : ''}`);
     if (JSON.stringify(a.camera) !== JSON.stringify(b.camera)) parts.push(`camera ${JSON.stringify(a.camera)} → ${JSON.stringify(b.camera)}`);
     if (parts.length) diffs.push(`${k}: ${parts.join('; ')}`);
+    // A difference that is the shells' version stamp alone (?v=, after a change under docs/shell, visual or shared).
+    const unstamp = (list) => list.map((r) => r.replace(/\?v=[0-9a-f]+/, '?v=*')).sort().join('\n');
+    if (parts.length === 1 && (plus.length || minus.length) && unstamp(plus) === unstamp(minus)) stampOnly++;
   }
   fs.writeFileSync(path.join(OUT, 'all.txt'), diffs.join('\n') + '\n');
-  console.log(`${diffs.length ? 'FAIL' : 'PASS'} --all: ${registry.maps.length} entries × ${SIZES.length} sizes against the baseline of ${before.head} (${before.made.slice(0, 16)}): ${diffs.length} differences in ${seconds(t0)}`);
+  console.log(`${diffs.length ? 'FAIL' : 'PASS'} --all: ${registry.maps.length} entries × ${SIZES.length} sizes against the baseline of ${before.head} (${before.made.slice(0, 16)}): ${diffs.length} differences in ${seconds(t0)}${diffs.length ? `, ${stampOnly} of them the ?v= stamp alone` : ''}`);
   for (const d of diffs.slice(0, 8)) console.log(`  ${d.length > 220 ? d.slice(0, 217) + '…' : d}`);
   if (diffs.length > 8) console.log(`  … ${diffs.length - 8} more in tools/.check/all.txt`);
   process.exitCode = diffs.length ? 1 : 0;

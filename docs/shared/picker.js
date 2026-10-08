@@ -8,7 +8,10 @@
 | row asks it what is chosen (`current`) and tells it what the student chose
 | (`choose`), from the dropdown or from ‹ ›, which step through what is shown
 | (`shown`), in order, and stop at the ends. A disabled arrow is the only
-| position feedback there is, so wrapping silently would just look like a jump.
+| position feedback there is, so wrapping silently would just look like a jump —
+| except on a cycle, where the list itself says where it is: `wrap` (opt-in,
+| the year wheel's twelve months, 2026-10-08) takes ‹ on the first to the last
+| and › on the last to the first, and never disables an arrow.
 |
 | The row is one line at every width: the select takes what the arrows
 | leave, and a long name ends in … while the list shows it whole
@@ -22,10 +25,11 @@
  *   current () => the key chosen now, or undefined
  *   choose  (key) => the student chose it
  *   listen  (element, type, handler) => registers a handler, so a shell can undo it
+ *   wrap    true: ‹ › go round, from the last to the first and back (default false)
  * Returns { render, sync }: `render` after what is shown changes, `sync`
  * after the choice changes.
  */
-export function pickerRow({ select, prev, next, placeholder, label, groups = [], items, shown = () => items.map((i) => i.key), current, choose, listen = (element, type, handler) => element.addEventListener(type, handler) }) {
+export function pickerRow({ select, prev, next, placeholder, label, groups = [], items, shown = () => items.map((i) => i.key), current, choose, listen = (element, type, handler) => element.addEventListener(type, handler), wrap = false }) {
   let groupOf = new Map(items.map((i) => [i.key, i.group]));
   const optgroups = new Map(); // group value -> optgroup, built once
   const options = new Map(); // key -> option, built once
@@ -81,8 +85,8 @@ export function pickerRow({ select, prev, next, placeholder, label, groups = [],
   function sync() {
     const key = current();
     const index = key === undefined ? -1 : order.indexOf(key);
-    prev.disabled = index <= 0;
-    next.disabled = index >= order.length - 1;
+    prev.disabled = wrap ? order.length < 2 : index <= 0;
+    next.disabled = wrap ? order.length < 2 : index >= order.length - 1;
   }
 
   render();
@@ -97,7 +101,7 @@ export function pickerRow({ select, prev, next, placeholder, label, groups = [],
   const step = (delta) => {
     const key = current();
     const index = key === undefined ? -1 : order.indexOf(key);
-    const to = index + delta;
+    const to = wrap && index >= 0 ? (index + delta + order.length) % order.length : index + delta;
     if (to < 0 || to >= order.length) return;
     choose(order[to]);
   };

@@ -1,11 +1,15 @@
-// Builds the important-days diagram («বছরের চাকা», work in progress, WHEEL-2, 2026-10-08) from its seed:
+// Builds the important-days diagram («বছরের চাকা», work in progress; WHEEL-2, revised by WHEEL-3, 2026-10-08):
 //
 //   node tools/build-diagram-important-days.mjs [<out>]     (default: docs/diagrams/important-days/)
 //
 // Reads data-sources/important-days/days.seed.json only: no network, no picture. Writes descriptor.json (the view
 // `days`, docs/visual/days.js, and its words) and data.json (the built entries — those whose every named day is
-// VERIFIED or SINGLE-SOURCE and that have a date — and the sources they cite, for ⓘ). A held-out entry (a CONFLICT,
-// or no date) never reaches data.json. A second build writes the same bytes.
+// VERIFIED or SINGLE-SOURCE and that have a date — and ⓘ's short list: the circular, its amendments and the UN's list
+// of observances). A held-out entry (a CONFLICT, or no date) never reaches data.json; nor does a religious day, a
+// declarer or a theme (the user's review, 2026-10-08). No year is shown: a day carries its month and what its date
+// tile and row show — the date, its rule («অক্টোবরের প্রথম সোমবার») or the circular's wording («১ বৈশাখ») — and,
+// apart, `when`, from which the view works out «আজ» and «x দিন পর» without showing a year. A second build writes the
+// same bytes.
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -20,44 +24,32 @@ const built = seed.entries.filter((e) => e.status === 'built');
 for (const e of built) {
   if (!e.date) throw new Error(`entry ${e.index}: built with no date`);
   if (e.named.some((d) => d.status === 'CONFLICT')) throw new Error(`entry ${e.index}: built with a CONFLICT`);
+  if (e.kinds.some((k) => !['national', 'international'].includes(k))) throw new Error(`entry ${e.index}: kind ${e.kinds}`);
 }
+// A dated day (another calendar) sits in the month of the one Gregorian date the data gives it.
+const monthOf = (e) => (e.date.type === 'dated' ? Number(Object.values(e.date.dates)[0].slice(5, 7)) : e.date.m);
 const MONTHS_COUNT = Array(12).fill(0);
-for (const e of built) MONTHS_COUNT[(e.date.type === 'dated' ? Number(e.date.dates[2026].slice(5, 7)) : e.date.m) - 1]++;
+for (const e of built) MONTHS_COUNT[monthOf(e) - 1]++;
 
-// The days, as the view reads them: the card's facts, a theme by year.
 const days = built.map((e) => {
   const c = e.card;
   const card = {};
   if (c.englishName) card.englishName = c.englishName.value ?? c.englishName.bn;
-  if (c.declaredBy) card.declaredBy = c.declaredBy.value ?? c.declaredBy.bn;
   if (c.firstObserved) card.firstObserved = c.firstObserved.value;
   if (c.purposeBn) card.purposeBn = c.purposeBn.bn;
-  if (c.themes) card.themes = Object.fromEntries(Object.entries(c.themes).map(([y, t]) => [y, t.bn ?? t.text]));
-  const date = e.date.type === 'fixed' ? { type: 'fixed', m: e.date.m, d: e.date.d } : e.date.type === 'rule' ? { type: 'rule', m: e.date.m, weekday: e.date.weekday, nth: e.date.nth } : { type: 'dated', dates: e.date.dates };
-  return { id: `e${e.index}`, nameBn: e.nameBn.bn, kinds: e.kinds, date, ...(c.purposeBn ? { purposeBn: c.purposeBn.bn } : {}), card };
+  if (c.source) card.source = { url: c.source.url, host: new URL(c.source.url).host.replace(/^www\./, '') };
+  const t = e.date;
+  const when = t.type === 'fixed' ? { type: 'fixed', m: t.m, d: t.d } : t.type === 'rule' ? { type: 'rule', m: t.m, weekday: t.weekday, nth: t.nth } : { type: 'dated', dates: t.dates };
+  const shows = t.type === 'fixed' ? {} : { tile: t.tile.map((x) => x.bn), dateText: t.text.bn };
+  return { id: `e${e.index}`, nameBn: e.nameBn.bn, kinds: e.kinds, month: monthOf(e), when, ...shows, ...(c.purposeBn ? { purposeBn: c.purposeBn.bn } : {}), tappable: Boolean(card.englishName || card.firstObserved || card.purposeBn), card };
 });
 
-// ⓘ: the circular and its amendments first; then every page a built day cites, once, by who publishes it.
-const host = (u) => new URL(u).host;
-const isBd = (u) => /\.gov\.bd$/.test(host(u)) || /office-cabinet|office-|\.gov\.bd/.test(u);
-const cited = new Map();
-const cite = (url, title) => { if (url && /^https?:/.test(url) && !cited.has(url)) cited.set(url, title); };
-for (const e of built) {
-  for (const d of e.named) for (const s of d.sources ?? []) cite(s.url, s.what);
-  for (const k of ['englishName', 'declaredBy', 'firstObserved', 'purposeBn']) if (e.card[k]) cite(e.card[k].url, null);
-  for (const t of Object.values(e.card.themes ?? {})) cite(t.url, null);
-}
-const circularUrls = new Set([seed.circular.url, ...seed.amendments.map((a) => a.url)]);
-const titleOf = (url, given) => {
-  const t = (given ?? '').replace(/\s+/g, ' ').trim();
-  if (t && t.length <= 140 && !/[ঀ-৿]/.test(t)) return t;
-  const u = new URL(url);
-  return `${u.host}${decodeURIComponent(u.pathname).replace(/\/$/, '').slice(0, 80)}`;
-};
+// ⓘ: short — the circular, its amendments, the UN's list (the shell adds the font's licence). Each day's own source is
+// its card's «সূত্র».
 const credits = [
   { title: `Cabinet Division, circular no. ${seed.circular.number} (${seed.circular.date})`, url: seed.circular.url },
   ...seed.amendments.map((a) => ({ title: `Cabinet Division, amendment no. ${a.number} (${a.date})`, url: a.url })),
-  ...[...cited].filter(([u]) => !circularUrls.has(u)).map(([url, t]) => ({ title: titleOf(url, t), url, group: isBd(url) ? 'bd' : 'intl' })).sort((a, b) => a.group.localeCompare(b.group) || a.title.localeCompare(b.title) || a.url.localeCompare(b.url)),
+  ...seed.credits.map((c) => ({ title: c.what, url: c.url })),
 ];
 
 const descriptor = {
@@ -72,6 +64,8 @@ const descriptor = {
     close: W.close.bn,
     months: W.months.map((m) => m.bn),
     kinds: Object.fromEntries(Object.entries(W.kinds).map(([k, v]) => [k, v.bn])),
+    legend: Object.fromEntries(Object.entries(W.legend).map(([k, v]) => [k, v.bn])),
+    today: W.today.bn,
     listTitle: W.listTitle.bn,
     count: W.count.bn,
     inDays: W.inDays.bn,
@@ -81,11 +75,10 @@ const descriptor = {
   },
 };
 const data = {
-  _about: 'Built by tools/build-diagram-important-days.mjs from data-sources/important-days/days.seed.json; do not edit. The days Bangladesh observes (the Cabinet Division\'s circular of 11 March 2026 and its amendments), each date verified; held-out days (a CONFLICT, or no date) are not here.',
+  _about: 'Built by tools/build-diagram-important-days.mjs from data-sources/important-days/days.seed.json; do not edit. The days Bangladesh observes (the Cabinet Division\'s circular of 11 March 2026 and its amendments), each date verified; religious days removed (the user, 2026-10-08); held-out days (a CONFLICT, or no date) are not here. `when` only times «আজ»; no year is shown.',
   monthCounts: MONTHS_COUNT,
   days,
   credits,
-  creditGroups: { bd: W.creditGroups.bd.bn, intl: W.creditGroups.intl.bn },
 };
 fs.mkdirSync(out, { recursive: true });
 for (const f of fs.readdirSync(out)) fs.rmSync(path.join(out, f), { recursive: true });
@@ -93,4 +86,4 @@ fs.writeFileSync(path.join(out, 'descriptor.json'), JSON.stringify(descriptor, n
 fs.writeFileSync(path.join(out, 'data.json'), JSON.stringify(data, null, 2) + '\n');
 const pending = [];
 JSON.stringify(seed, (k, v) => { if (v && typeof v === 'object' && typeof v.bn === 'string' && v.approved === false) pending.push(v.bn); return v; });
-console.log(`${days.length} days built (${seed.entries.length - days.length} held out), months ${MONTHS_COUNT.join(' ')}, ${credits.length} credits; ${pending.length} Bengali strings await approval`);
+console.log(`${days.length} days built (${seed.entries.length - days.length} held out), ${days.filter((d) => d.tappable).length} tappable, months ${MONTHS_COUNT.join(' ')}, ${credits.length} credits; ${pending.length} Bengali strings await approval`);
