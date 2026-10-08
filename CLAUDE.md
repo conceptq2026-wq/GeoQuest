@@ -487,10 +487,11 @@ State which kind a task is when reporting it.
     (2026-10-08, `notes/shell.md`);
   - all 96 strings approved (2026-10-08, `notes/bangladesh-ethnic-groups.md`).
 - Work in progress (`tools/wip.json`): `important-days` «বছরের চাকা», a diagram under বাংলাদেশ (WHEEL-2, revised
-  by WHEEL-3 after the user's review, 2026-10-08): the Cabinet Division's circular of 11 March 2026 and its
+  by WHEEL-3 and WHEEL-4 after the user's review, 2026-10-08): the Cabinet Division's circular of 11 March 2026 and its
   amendments, religious days removed by the user, 80 of the 85 kept entries built (4 date conflicts and one undated
   day held out), two kinds, twelve months and no year shown, drawn by the diagram shell's `days` view, with Noto
-  Sans Bengali Bold; all strings awaiting the user (`notes/important-days.md`).
+  Sans Bengali Bold; all strings approved by the user (WHEEL-4) but the three Bangla-calendar days' date strings,
+  whose fixed placement no official source states (`notes/important-days.md`).
 
 ## Index — notes, read only when working on that item
 

@@ -26,15 +26,17 @@ only.**
   ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২, 11 March 2026 (cabinet.gov.bd), and its four amendments of 21 and 28 April and
   2 August 2026. None cancels a day.
   - The PDFs are scans, so the names were read from the page images, twice, the second time blind to the first
-    (WHEEL-3). The one difference — row খ ২৯, whose bracketed note the first reading left out of the name — is
-    listed in `reread/diff.md`; neither reading was chosen.
+    (WHEEL-3). The one difference, row খ ২৯, is settled by the user (WHEEL-4, 2026-10-08): both readings agree on
+    the name, «জাতীয় পরিসংখ্যান দিবস»; the bracketed text after it is a NOTE of the circular, not part of the name:
+    «প্রতি পাঁচ বছর অন্তর বিশ্ব পরিসংখ্যান দিবস এবং জাতীয় পরিসংখ্যান দিবস একসঙ্গে উদ্‌যাপিত হবে». The print shows a
+    glyph resembling «একসঙ্গো», a typesetting artefact. Nothing on the diagram changes.
   - Each name is shown as printed.
 - **Count:** 91 entries (ক 18, খ 39, গ 34); four name two days.
 - **Religious days removed (the user's decision, 2026-10-08):** six entries, the circular's ক ৬ বৌদ্ধ পূর্ণিমা, ক ১০
   বড়দিন, ক ১৪ ঈদ-উল-ফিতর, ক ১৫ ঈদ-উল-আযহা, ক ১৬ ঈদ-ই-মিলাদুন্নবী (সাঃ) and ক ১৭ দুর্গাপূজা. They stay in the seed
   only as `removedReligious`, a record of the circular. The Bangla calendar's cultural days (বাংলা নববর্ষ, রবীন্দ্র
-  জয়ন্তী, নজরুল জয়ন্তী) are not religious: kept, as জাতীয়. ক ৮ লালন সাঁই-তিরোধান দিবস is borderline: kept, for the
-  user to decide.
+  জয়ন্তী, নজরুল জয়ন্তী) are not religious: kept, as জাতীয়. ক ৮ লালন সাঁই-তিরোধান দিবস stays, as a cultural day
+  (জাতীয়): the user's decision (WHEEL-4, 2026-10-08).
 - **Kept:** 85 entries. **Held out (not built):**
   - the 4 CONFLICT entries: বিশ্ব টেলিযোগাযোগ দিবস, বিশ্ব হার্ট দিবস, জাতিসংঘ দিবস, শিশু অধিকার দিবস;
   - জাতীয় টিকা দিবস, which has no date: it is set each year.
@@ -95,8 +97,26 @@ only.**
 
 ## Strings
 
-- 187 Bengali strings in the seed, all `approved: false`, every one numbered in
-  `tools/.cache/days/strings-review.md`: the 49 purposes and the UI labels first, then the rule and calendar date
-  lines, the names, and last the held-out days' strings (not shown).
-- **For the user:** «প্রথম পালন» is a year by nature (14 cards), and 10 purposes name a past year (e.g. ১৯৭১, ১৮৮৬,
-  ২০২৪); no calendar year is shown anywhere.
+- 187 Bengali strings in the seed, numbered in `tools/.cache/days/strings-review.md` (WHEEL-3's numbering): the 49
+  purposes and the UI labels first, then the rule and calendar date lines, the names, and last the held-out days'
+  strings (not shown).
+- **Approved by the user (WHEEL-4, 2026-10-08):** 178 of them; the seed's `approval` records it. 9 stay
+  `approved: false`: the date strings (line and tile) of the three Bangla-calendar days, below.
+  `tools/verify-descriptor.mjs` fails any other pending string.
+- **The Bangla-calendar days' placement (WHEEL-4):** each sits in the month of its official 2026 date — বাংলা নববর্ষ
+  «১ বৈশাখ» 14 April (the 2026 public-holiday gazette, dpp.gov.bd: ১৪ এপ্রিল ২০২৬ = ০১ বৈশাখ ১৪৩৩), রবীন্দ্র জয়ন্তী
+  «২৫ বৈশাখ» 8 May and নজরুল জয়ন্তী «১১ জ্যৈষ্ঠ» 25 May (PID's handouts of 8 and 25 May 2026, datelined «২৫ বৈশাখ
+  (৮ মে)» and «১১ জ্যৈষ্ঠ (২৫ মে)»). No official source was found that FIXES them every year — no published rule or
+  table of the revised Bangla calendar on Bangla Academy's, MoCA's, MoPA's, the Cabinet Division's or PID's sites.
+  Official sources do show the same dates in 2019 and 2022–2025 (PID datelines; MoCA notices of 2022 and 2023:
+  «২৫ বৈশাখ ১৪৩০/ ০৮ মে ২০২৩», «১১ জ্যৈষ্ঠ ১৪৩০/ ২৫ মে ২০২৩»), with one clerical slip (PID 25 May 2023, three
+  datelines «১২ জ্যৈষ্ঠ (২৫ মে)» beside six «১১ জ্যৈষ্ঠ»). That is a pattern, not a rule, so the three days' date
+  strings stay pending and the days are left as they are; the evidence is in `tools/.cache/days/bangla/`
+  (`manifest.json`).
+- **Historical years stay (the user's decision, WHEEL-4, 2026-10-08):** «সাল বাদ» means no calendar year is
+  displayed — the picker, the dates, «আজ» and «x দিন পর» — and only that. The «প্রথম পালন» years (14 cards) and the
+  past years inside purposes (e.g. ১৯৭১, ১৮৮৬, ২০২৪) are kept.
+- **Two edits (the user's, WHEEL-4):** #5, জুলাই গণঅভ্যুত্থান দিবস's purpose, is now «২০২৪ সালের ছাত্র-জনতার
+  গণঅভ্যুত্থান স্মরণ» (its source, PID's handout of 4 August 2026, says the student-public uprising of 5 August 2024
+  is marked as the day); #19, জুলাই শহীদ দিবস's, spells «শহীদদের» as the day's name does. Both keep their sources.
+  `tools/.cache/days/wheel4.mjs` applies them to the seed after `merge3.mjs`.

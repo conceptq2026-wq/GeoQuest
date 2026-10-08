@@ -112,130 +112,130 @@
   "words": {
     "title": {
       "bn": "বছরের চাকা",
-      "approved": false
+      "approved": true
     },
     "months": [
       {
         "bn": "জানুয়ারি",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "ফেব্রুয়ারি",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "মার্চ",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "এপ্রিল",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "মে",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "জুন",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "জুলাই",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "আগস্ট",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "সেপ্টেম্বর",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "অক্টোবর",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "নভেম্বর",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "ডিসেম্বর",
-        "approved": false
+        "approved": true
       }
     ],
     "kinds": {
       "national": {
         "bn": "জাতীয় দিবস",
-        "approved": false
+        "approved": true
       },
       "international": {
         "bn": "আন্তর্জাতিক দিবস",
-        "approved": false
+        "approved": true
       }
     },
     "legend": {
       "national": {
         "bn": "জাতীয়",
-        "approved": false
+        "approved": true
       },
       "international": {
         "bn": "আন্তর্জাতিক",
-        "approved": false
+        "approved": true
       }
     },
     "today": {
       "bn": "আজ",
-      "approved": false
+      "approved": true
     },
     "listTitle": {
       "bn": "{month} মাসের দিবসসমূহ",
-      "approved": false
+      "approved": true
     },
     "count": {
       "bn": "{n}টি দিবস",
-      "approved": false
+      "approved": true
     },
     "inDays": {
       "bn": "{n} দিন পর",
-      "approved": false
+      "approved": true
     },
     "empty": {
       "bn": "এই মাসে কোনো দিবস নেই",
-      "approved": false
+      "approved": true
     },
     "close": {
       "bn": "বন্ধ করুন",
-      "approved": false
+      "approved": true
     },
     "wheelLabel": {
       "bn": "বারো মাসের চাকা",
-      "approved": false
+      "approved": true
     },
     "picker": {
       "bn": "একটি মাস বেছে নিন",
-      "approved": false
+      "approved": true
     },
     "cardRows": [
       {
         "key": "englishName",
         "bn": "ইংরেজি নাম",
-        "approved": false
+        "approved": true
       },
       {
         "key": "firstObserved",
         "bn": "প্রথম পালন",
-        "approved": false
+        "approved": true
       },
       {
         "key": "purposeBn",
         "bn": "উদ্দেশ্য",
-        "approved": false
+        "approved": true
       },
       {
         "key": "source",
         "bn": "সূত্র",
-        "approved": false
+        "approved": true
       }
     ]
   },
@@ -246,7 +246,7 @@
       "category": "ক",
       "nameBn": {
         "bn": "শহীদ দিবস/আন্তর্জাতিক মাতৃভাষা দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national",
@@ -301,7 +301,7 @@
         },
         "purposeBn": {
           "bn": "পৃথিবীর ভাষা ও সংস্কৃতির বৈচিত্র্য রক্ষা এবং একাধিক ভাষা চর্চায় উৎসাহ দেওয়া।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.un.org/en/observances/mother-language-day",
           "sourceType": "official"
         },
@@ -321,7 +321,7 @@
       "category": "ক",
       "nameBn": {
         "bn": "জাতীয় বীমা দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -366,7 +366,7 @@
       "category": "ক",
       "nameBn": {
         "bn": "গণহত্যা দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -405,7 +405,7 @@
       "card": {
         "purposeBn": {
           "bn": "১৯৭১ সালের ২৫ মার্চ রাতে পাকিস্তানি বাহিনীর চালানো গণহত্যার শিকারদের স্মরণের দিন",
-          "approved": false,
+          "approved": true,
           "url": "https://pressinform.gov.bd/pages/all-notes/handout-24-march-2026-a2lezh-69c214d82d18f2fe024e0e8c",
           "sourceType": "official"
         },
@@ -425,7 +425,7 @@
       "category": "ক",
       "nameBn": {
         "bn": "স্বাধীনতা ও জাতীয় দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -460,7 +460,7 @@
       "card": {
         "purposeBn": {
           "bn": "স্বাধীন দেশ হিসেবে বাংলাদেশের অস্তিত্ব ঘোষণার দিনটি জাতীয়ভাবে উদ্‌যাপন",
-          "approved": false,
+          "approved": true,
           "url": "https://pressinform.gov.bd/pages/all-notes/handout-26-march-2026-zv5eyu-69c4cab04e6074befaa5f497",
           "sourceType": "official"
         },
@@ -480,7 +480,7 @@
       "category": "ক",
       "nameBn": {
         "bn": "মে দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -519,7 +519,7 @@
       "card": {
         "purposeBn": {
           "bn": "১৮৮৬ সালে শিকাগোয় আট ঘণ্টা কাজের দাবিতে শ্রমিকদের আত্মত্যাগ স্মরণ ও শ্রমিক অধিকারের দিন",
-          "approved": false,
+          "approved": true,
           "url": "https://pressinform.gov.bd/pages/all-notes/handout-30-april-2026-29ow46-69f2fa30b9bd2524a11dc1ba",
           "sourceType": "official"
         },
@@ -539,7 +539,7 @@
       "category": "ক",
       "nameBn": {
         "bn": "জুলাই গণঅভ্যুত্থান দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -577,8 +577,8 @@
       ],
       "card": {
         "purposeBn": {
-          "bn": "২০২৪ সালের এই দিনে ছাত্র-জনতার প্রতিরোধে দীর্ঘ বৈষম্যমূলক শাসনের অবসান স্মরণ",
-          "approved": false,
+          "bn": "২০২৪ সালের ছাত্র-জনতার গণঅভ্যুত্থান স্মরণ",
+          "approved": true,
           "url": "https://pressinform.gov.bd/pages/all-notes/handout-4-august-2026-bhds9j-6a718dab555ee404c4983246",
           "sourceType": "official"
         },
@@ -598,7 +598,7 @@
       "category": "ক",
       "nameBn": {
         "bn": "লালন সাঁই-তিরোধান দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -633,7 +633,7 @@
       "card": {
         "purposeBn": {
           "bn": "লালন সাঁইয়ের তিরোধান দিবসে তাঁকে জাতীয়ভাবে স্মরণ ও উদ্‌যাপন",
-          "approved": false,
+          "approved": true,
           "url": "https://moca.gov.bd/pages/notices/১৭-অক্টোবর-২০২৬-তারিখ-লালন-সাঁই-এর-তিরোধান-দিবস-পালন-সংক্রান্ত-প্রস্তুতিমূলক-সভার-কার্যবিবরণী--zp72of-6ab20d306a8b6205fba2fc5e",
           "sourceType": "official"
         },
@@ -653,7 +653,7 @@
       "category": "ক",
       "nameBn": {
         "bn": "বিজয় দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -688,7 +688,7 @@
       "card": {
         "purposeBn": {
           "bn": "১৯৭১ সালে নয় মাসের মুক্তিযুদ্ধ শেষে বাংলাদেশের বিজয় অর্জনের দিন",
-          "approved": false,
+          "approved": true,
           "url": "https://pressinform.gov.bd/pages/all-notes/তথ্যবিবরণী-১৫-ডিসেম্বর-২০২৫-491b76-695b999da31054345f104af7",
           "sourceType": "official"
         },
@@ -708,7 +708,7 @@
       "category": "ক",
       "nameBn": {
         "bn": "বাংলা নববর্ষ",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -763,7 +763,7 @@
       "card": {
         "purposeBn": {
           "bn": "বাংলা সনের প্রথম দিন পহেলা বৈশাখে নতুন বছরকে বরণ করা",
-          "approved": false,
+          "approved": true,
           "url": "https://pressinform.gov.bd/pages/all-notes/handout-13-april-2026-3zcl16-69dc73ba9c26e45d746f205c",
           "sourceType": "official"
         },
@@ -783,7 +783,7 @@
       "category": "ক",
       "nameBn": {
         "bn": "রবীন্দ্র জয়ন্তী",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -834,7 +834,7 @@
       "card": {
         "purposeBn": {
           "bn": "বিশ্বকবি রবীন্দ্রনাথ ঠাকুরের জন্মবার্ষিকী পালন",
-          "approved": false,
+          "approved": true,
           "url": "https://pressinform.gov.bd/pages/all-notes/handout-8-may-2026-8fzo01-69fd65c09d0e57ba598bf59e",
           "sourceType": "official"
         },
@@ -854,7 +854,7 @@
       "category": "ক",
       "nameBn": {
         "bn": "নজরুল জয়ন্তী",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -913,7 +913,7 @@
       "card": {
         "purposeBn": {
           "bn": "জাতীয় কবি কাজী নজরুল ইসলামের জন্মবার্ষিকী পালন",
-          "approved": false,
+          "approved": true,
           "url": "https://pressinform.gov.bd/pages/all-notes/handout-24-may-2026-jfpvyv-6a12aca5b92ba5a71ede824b",
           "sourceType": "official"
         },
@@ -933,7 +933,7 @@
       "category": "ক",
       "nameBn": {
         "bn": "জাতীয় বিপ্লব ও সংহতি দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -986,7 +986,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "জাতীয় সমাজসেবা দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -1035,7 +1035,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "জাতীয় টিকা দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -1072,7 +1072,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "জাতীয় গ্রন্থাগার দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -1117,7 +1117,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "জাতীয় স্থানীয় সরকার দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -1162,7 +1162,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "জাতীয় ভোটার দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -1207,7 +1207,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "জাতীয় পাট দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -1246,7 +1246,7 @@
       "card": {
         "purposeBn": {
           "bn": "পাটশিল্পের প্রসার ঘটিয়ে কর্মসংস্থান বাড়ানোর লক্ষ্যে পালিত দিবস",
-          "approved": false,
+          "approved": true,
           "url": "https://pressinform.gov.bd/pages/all-notes/তথ্যবিবরণী-০৬মার্চ-২০২৬-my8x54-69aa79e1a901085f01fe5441",
           "sourceType": "official"
         },
@@ -1266,7 +1266,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "বিশ্ব আবহাওয়া দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -1308,7 +1308,7 @@
         },
         "purposeBn": {
           "bn": "১৯৫০ সালের ২৩ মার্চ বিশ্ব আবহাওয়া সংস্থার কনভেনশন কার্যকর হওয়ার দিনটি স্মরণ করা।",
-          "approved": false,
+          "approved": true,
           "url": "https://wmo.int/events-and-meetings/world-met-day",
           "sourceType": "official"
         },
@@ -1328,7 +1328,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "জাতীয় চলচ্চিত্র দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -1369,7 +1369,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "আন্তর্জাতিক ক্রীড়া দিবস ও জাতীয় ক্রীড়া দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national",
@@ -1420,7 +1420,7 @@
         },
         "purposeBn": {
           "bn": "উন্নয়ন ও শান্তির কাজে খেলাধুলার সম্ভাবনা সম্পর্কে সচেতনতা বাড়ানো।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.un.org/en/observances/sport-day",
           "sourceType": "official"
         },
@@ -1440,7 +1440,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "বিশ্ব স্বাস্থ্য দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -1478,7 +1478,7 @@
         },
         "purposeBn": {
           "bn": "প্রতি বছর একটি জরুরি স্বাস্থ্য-বিষয়ের দিকে বিশ্বের মানুষের মনোযোগ টানা।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.who.int/campaigns/world-health-day",
           "sourceType": "official"
         },
@@ -1498,7 +1498,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "মুজিবনগর দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -1533,7 +1533,7 @@
       "card": {
         "purposeBn": {
           "bn": "১৯৭১ সালের ১৭ এপ্রিল মুক্তিযুদ্ধকালীন প্রথম সরকারের শপথ গ্রহণের দিনটি স্মরণ",
-          "approved": false,
+          "approved": true,
           "url": "https://bn.banglapedia.org/index.php/মুজিবনগর_সরকার",
           "sourceType": "banglapedia"
         },
@@ -1553,7 +1553,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "নিরাপদ মাতৃত্ব দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -1594,7 +1594,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "জাতীয় চা দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -1647,7 +1647,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "বিশ্ব পরিবেশ দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -1689,7 +1689,7 @@
         },
         "purposeBn": {
           "bn": "পরিবেশ রক্ষায় বিশ্বজুড়ে মানুষকে সচেতন করা ও কাজে নামতে উদ্বুদ্ধ করা।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.worldenvironmentday.global/about/history",
           "sourceType": "official"
         },
@@ -1709,7 +1709,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "মাদকদ্রব্যের অপব্যবহার ও অবৈধ পাচার বিরোধী আন্তর্জাতিক দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -1747,7 +1747,7 @@
         },
         "purposeBn": {
           "bn": "মাদকের অপব্যবহারমুক্ত আন্তর্জাতিক সমাজ গড়তে সহযোগিতা ও পদক্ষেপ জোরদার করা।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.un.org/en/observances/end-drug-abuse-day",
           "sourceType": "official"
         },
@@ -1767,7 +1767,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "বিশ্ব জনসংখ্যা দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -1809,7 +1809,7 @@
         },
         "purposeBn": {
           "bn": "জনসংখ্যা-সংক্রান্ত বিষয়গুলো কতটা জরুরি ও গুরুত্বপূর্ণ, সেদিকে মনোযোগ টানা।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.un.org/en/observances/world-population-day/background",
           "sourceType": "official"
         },
@@ -1829,7 +1829,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "জুলাই শহীদ দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -1867,8 +1867,8 @@
       ],
       "card": {
         "purposeBn": {
-          "bn": "২০২৪ সালের জুলাই গণঅভ্যুত্থানে আত্মোৎসর্গকারী শহিদদের শ্রদ্ধার সঙ্গে স্মরণ",
-          "approved": false,
+          "bn": "২০২৪ সালের জুলাই গণঅভ্যুত্থানে আত্মোৎসর্গকারী শহীদদের শ্রদ্ধার সঙ্গে স্মরণ",
+          "approved": true,
           "url": "https://pressinform.gov.bd/pages/all-notes/handout-15-july-2026-iwxaxe-6a5713c0896678c73f5f9b0c",
           "sourceType": "official"
         },
@@ -1888,7 +1888,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "জাতীয় পাবলিক সার্ভিস দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -1937,7 +1937,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "জাতীয় জ্বালানি নিরাপত্তা দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -1982,7 +1982,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "আন্তর্জাতিক যুব দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -2024,7 +2024,7 @@
         },
         "purposeBn": {
           "bn": "তরুণদের ঘিরে থাকা সাংস্কৃতিক ও আইনি নানা প্রশ্নের দিকে দৃষ্টি আকর্ষণ করা।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.un.org/en/observances/youth-day/background",
           "sourceType": "official"
         },
@@ -2044,7 +2044,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "আন্তর্জাতিক সাক্ষরতা দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -2086,7 +2086,7 @@
         },
         "purposeBn": {
           "bn": "ন্যায্য, শান্তিপূর্ণ ও টেকসই সমাজ গড়তে সাক্ষরতা কতটা জরুরি, তা মনে করিয়ে দেওয়া।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.unesco.org/en/days/literacy",
           "sourceType": "official"
         },
@@ -2106,7 +2106,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "বিশ্ব পর্যটন দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -2148,7 +2148,7 @@
         },
         "purposeBn": {
           "bn": "পর্যটন কীভাবে নানা সংস্কৃতিকে কাছে আনে ও জীবন সমৃদ্ধ করে, তা উদ্‌যাপন করা।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.untourism.int/world-tourism-day-2026",
           "sourceType": "official"
         },
@@ -2168,7 +2168,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "বিশ্ব নৌ দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -2181,16 +2181,16 @@
         "nth": -1,
         "text": {
           "bn": "সেপ্টেম্বরের শেষ বৃহস্পতিবার",
-          "approved": false
+          "approved": true
         },
         "tile": [
           {
             "bn": "শেষ",
-            "approved": false
+            "approved": true
           },
           {
             "bn": "বৃহস্পতি",
-            "approved": false
+            "approved": true
           }
         ],
         "note": "IMO: the last Thursday of September (the circular: «সেপ্টেম্বর মাসের শেষ সপ্তাহ»)"
@@ -2231,7 +2231,7 @@
         },
         "purposeBn": {
           "bn": "নিরাপদ ও সুরক্ষিত জাহাজ চলাচল এবং জাহাজ থেকে সমুদ্র ও বায়ুদূষণ রোধের গুরুত্ব তুলে ধরা।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.imo.org/en/about/events/pages/wmd-archives.aspx",
           "sourceType": "official"
         },
@@ -2251,7 +2251,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "জাতীয় উৎপাদনশীলতা দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -2300,7 +2300,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "বিশ্ব শিক্ষক দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -2338,7 +2338,7 @@
         },
         "purposeBn": {
           "bn": "সব শিক্ষককে সম্মান জানানো এবং শিক্ষকের মর্যাদা-বিষয়ক ১৯৬৬ সালের সুপারিশ স্মরণ করা।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.unesco.org/en/days/teachers",
           "sourceType": "official"
         },
@@ -2358,7 +2358,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "শিশু অধিকার দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -2405,7 +2405,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "আন্তর্জাতিক দুর্যোগ প্রশমন দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -2447,7 +2447,7 @@
         },
         "purposeBn": {
           "bn": "দুর্যোগের ঝুঁকি নিয়ে সচেতনতা আর ঝুঁকি কমানোর সংস্কৃতি বিশ্বজুড়ে ছড়িয়ে দেওয়া।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.un.org/en/observances/disaster-reduction-day",
           "sourceType": "official"
         },
@@ -2467,7 +2467,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "বিশ্ব খাদ্য দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -2505,7 +2505,7 @@
         },
         "purposeBn": {
           "bn": "ক্ষুধা নিয়ে বিশ্বজুড়ে সচেতনতা বাড়ানো এবং খাদ্যের ভবিষ্যৎ গড়তে পদক্ষেপে উৎসাহ দেওয়া।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.fao.org/world-food-day/about/en",
           "sourceType": "official"
         },
@@ -2525,7 +2525,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "জাতীয় পরিসংখ্যান দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -2574,7 +2574,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "জাতীয় নিরাপদ সড়ক দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -2609,7 +2609,7 @@
       "card": {
         "purposeBn": {
           "bn": "সড়ক নিরাপত্তা নিয়ে জনসচেতনতা বাড়ানোর লক্ষ্যে পালিত দিবস",
-          "approved": false,
+          "approved": true,
           "url": "https://pressinform.gov.bd/pages/all-notes/তথ্যবিবরণী-২২-অক্টোবর-২০২৫-485e41-6922dec2933eb65569e1d26e",
           "sourceType": "official"
         },
@@ -2629,7 +2629,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "জাতীয় সমবায় দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -2642,16 +2642,16 @@
         "nth": 1,
         "text": {
           "bn": "নভেম্বরের প্রথম শনিবার",
-          "approved": false
+          "approved": true
         },
         "tile": [
           {
             "bn": "১ম",
-            "approved": false
+            "approved": true
           },
           {
             "bn": "শনি",
-            "approved": false
+            "approved": true
           }
         ],
         "note": "the circular: the first Saturday of November"
@@ -2690,7 +2690,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "বিশ্ব এইডস দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -2732,7 +2732,7 @@
         },
         "purposeBn": {
           "bn": "এইচআইভি/এইডস নিয়ে সচেতনতা বাড়ানো এবং এই মহামারির বিরুদ্ধে আন্তর্জাতিক সংহতি দেখানো।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.who.int/campaigns/world-aids-day",
           "sourceType": "official"
         },
@@ -2752,7 +2752,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "আন্তর্জাতিক প্রতিবন্ধী দিবস ও জাতীয় প্রতিবন্ধী দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national",
@@ -2803,7 +2803,7 @@
         },
         "purposeBn": {
           "bn": "প্রতিবন্ধী ব্যক্তিদের অধিকার ও কল্যাণ এগিয়ে নেওয়া এবং তাঁদের অবস্থা নিয়ে সচেতন করা।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.un.org/en/observances/day-of-persons-with-disabilities/background",
           "sourceType": "official"
         },
@@ -2823,7 +2823,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "জাতীয় বস্ত্র দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -2868,7 +2868,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "আন্তর্জাতিক দুর্নীতিবিরোধী দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -2906,7 +2906,7 @@
         },
         "purposeBn": {
           "bn": "দুর্নীতি এবং তা ঠেকাতে জাতিসংঘ কনভেনশনের ভূমিকা নিয়ে সচেতনতা তৈরি করা।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.un.org/en/observances/anti-corruption-day",
           "sourceType": "official"
         },
@@ -2926,7 +2926,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "বেগম রোকেয়া দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -2967,7 +2967,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "আন্তর্জাতিক অভিবাসী দিবস এবং জাতীয় প্রবাসী দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national",
@@ -3018,7 +3018,7 @@
         },
         "purposeBn": {
           "bn": "বিশ্বের কোটি কোটি অভিবাসীর মূল্যবান অবদান সবার সামনে তুলে ধরা।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.un.org/en/observances/migrants-day",
           "sourceType": "official"
         },
@@ -3038,7 +3038,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "জাতীয় পল্লী উন্নয়ন দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -3081,7 +3081,7 @@
         },
         "purposeBn": {
           "bn": "গ্রাম ও পল্লীকে জাতীয় উন্নয়নের ভিত্তি ধরে পল্লী উন্নয়নে গতি আনা",
-          "approved": false,
+          "approved": true,
           "url": "https://pressinform.gov.bd/pages/all-notes/handout-5-july-2026-aa72h5-6a49ee8aeb5e93721ad76e2e",
           "sourceType": "official"
         },
@@ -3101,7 +3101,7 @@
       "category": "খ",
       "nameBn": {
         "bn": "জাতীয় যুব দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -3150,7 +3150,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "বার্ষিক প্রশিক্ষণ দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -3191,7 +3191,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "জাতীয় নিরাপদ খাদ্য দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -3236,7 +3236,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "জাতীয় ক্যান্সার দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -3277,7 +3277,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "জাতীয় শহীদ সেনা দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -3312,7 +3312,7 @@
       "card": {
         "purposeBn": {
           "bn": "২০০৯ সালের ২৫ ফেব্রুয়ারি পিলখানায় সেনা হত্যাযজ্ঞে নিহতদের স্মরণ",
-          "approved": false,
+          "approved": true,
           "url": "https://pressinform.gov.bd/pages/all-notes/তথ্যবিবরণী-২৪-ফেব্রুয়ারি-২০২৬-4x4fiz-699d25ac0fdb0958b2cff739",
           "sourceType": "official"
         },
@@ -3332,7 +3332,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "আন্তর্জাতিক নারী অধিকার ও আন্তর্জাতিক শান্তি দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -3374,7 +3374,7 @@
         },
         "purposeBn": {
           "bn": "জাতি, ভাষা বা দেশের ভেদ ছাড়াই নারীদের অর্জনের স্বীকৃতি দেওয়া।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.un.org/en/observances/womens-day/background",
           "sourceType": "official"
         },
@@ -3394,7 +3394,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "জাতীয় দুর্যোগ প্রস্তুতি দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -3439,7 +3439,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "বিশ্ব পানি দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -3481,7 +3481,7 @@
         },
         "purposeBn": {
           "bn": "পানির গুরুত্ব তুলে ধরা এবং বিশ্বের পানি-সংকট মোকাবিলায় মানুষকে কাজে উদ্বুদ্ধ করা।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.un.org/en/observances/water-day/background",
           "sourceType": "official"
         },
@@ -3501,7 +3501,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "BNCC DAY",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -3550,7 +3550,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "বিশ্ব যক্ষ্মা দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -3588,7 +3588,7 @@
         },
         "purposeBn": {
           "bn": "যক্ষ্মার স্বাস্থ্য, সামাজিক ও আর্থিক ক্ষতি নিয়ে সচেতন করা এবং এর অবসানে জোর দেওয়া।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.who.int/campaigns/world-tb-day",
           "sourceType": "official"
         },
@@ -3608,7 +3608,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "বিশ্ব অটিজম সচেতনতা দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -3650,7 +3650,7 @@
         },
         "purposeBn": {
           "bn": "অটিজম নিয়ে জনসচেতনতা বাড়ানো এবং অটিস্টিক মানুষের অধিকার ও অন্তর্ভুক্তির কথা তুলে ধরা।",
-          "approved": false,
+          "approved": true,
           "url": "https://documents.un.org/api/symbol/access?s=A/RES/62/139&l=en&t=pdf",
           "sourceType": "official"
         },
@@ -3670,7 +3670,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "বিশ্ব মেধা সম্পদ দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -3708,7 +3708,7 @@
         },
         "purposeBn": {
           "bn": "মেধাস্বত্ব সম্পর্কে মানুষের সাধারণ ধারণা ও বোঝাপড়া বাড়ানো।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.wipo.int/ip-outreach/en/ipday/",
           "sourceType": "official"
         },
@@ -3728,7 +3728,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "জাতীয় আইনগত সহায়তা দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -3773,7 +3773,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "জাতীয় পেশাগত স্বাস্থ্য ও সেইফটি দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -3834,7 +3834,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "বিশ্ব প্রেস ফ্রিডম দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -3872,7 +3872,7 @@
         },
         "purposeBn": {
           "bn": "সংবাদমাধ্যমের স্বাধীনতার মূলনীতি তুলে ধরা ও দায়িত্ব পালনে নিহত সাংবাদিকদের শ্রদ্ধা জানানো।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.un.org/en/observances/press-freedom-day",
           "sourceType": "official"
         },
@@ -3892,7 +3892,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "আন্তর্জাতিক রেড ক্রস ও রেড ক্রিসেন্ট দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -3926,7 +3926,7 @@
         },
         "purposeBn": {
           "bn": "রেড ক্রস ও রেড ক্রিসেন্ট আন্দোলনের মানবিক কাজ প্রতিটি দেশে মানুষের সামনে তুলে ধরা।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.icrc.org/en/document/our-principles-action-8-may-world-red-cross-red-crescent-day",
           "sourceType": "official"
         },
@@ -3946,7 +3946,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "বিশ্ব টেলিযোগাযোগ দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -3998,7 +3998,7 @@
         },
         "purposeBn": {
           "bn": "ইন্টারনেট ও তথ্যপ্রযুক্তির সম্ভাবনা এবং ডিজিটাল বৈষম্য কমানোর উপায় নিয়ে সচেতনতা বাড়ানো।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.un.org/en/observances/telecommunication-day",
           "sourceType": "official"
         },
@@ -4018,7 +4018,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "বিশ্ব তামাকমুক্ত দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -4056,7 +4056,7 @@
         },
         "purposeBn": {
           "bn": "তামাকের ক্ষতি ও তামাক কোম্পানির কৌশল সম্পর্কে মানুষকে সচেতন করা।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.who.int/campaigns/world-no-tobacco-day",
           "sourceType": "official"
         },
@@ -4076,7 +4076,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "বিশ্ব এ্যাক্রেডিটেশন দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -4110,7 +4110,7 @@
         },
         "purposeBn": {
           "bn": "পণ্য, সেবা ও ব্যবস্থার প্রতি আস্থা গড়ায় এ্যাক্রেডিটেশনের ভূমিকা তুলে ধরা।",
-          "approved": false,
+          "approved": true,
           "url": "https://global-aci.org/en/wad2026/",
           "sourceType": "official"
         },
@@ -4130,7 +4130,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "বিশ্ব খরা ও মরুকরণ প্রতিরোধ দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -4172,7 +4172,7 @@
         },
         "purposeBn": {
           "bn": "মরুকরণ ও খরা মোকাবিলায় আন্তর্জাতিক সহযোগিতা নিয়ে জনসচেতনতা বাড়ানো।",
-          "approved": false,
+          "approved": true,
           "url": "https://documents.un.org/api/symbol/access?s=A/RES/49/115&l=en&t=pdf",
           "sourceType": "official"
         },
@@ -4192,7 +4192,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "আন্তর্জাতিক সমবায় দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -4205,16 +4205,16 @@
         "nth": 1,
         "text": {
           "bn": "জুলাইয়ের প্রথম শনিবার",
-          "approved": false
+          "approved": true
         },
         "tile": [
           {
             "bn": "১ম",
-            "approved": false
+            "approved": true
           },
           {
             "bn": "শনি",
-            "approved": false
+            "approved": true
           }
         ],
         "note": "the circular and the UN: the first Saturday of July"
@@ -4261,7 +4261,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "আন্তর্জাতিক ওজোন সংরক্ষণ দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -4303,7 +4303,7 @@
         },
         "purposeBn": {
           "bn": "ওজোন স্তর রক্ষার আন্তর্জাতিক চুক্তি স্বাক্ষরের দিনটি স্মরণ ও ওজোন রক্ষায় সচেতনতা বাড়ানো।",
-          "approved": false,
+          "approved": true,
           "url": "https://documents.un.org/api/symbol/access?s=A/RES/49/114&l=en&t=pdf",
           "sourceType": "official"
         },
@@ -4323,7 +4323,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "বিশ্ব হার্ট দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -4360,7 +4360,7 @@
         },
         "purposeBn": {
           "bn": "হৃদ্‌রোগ ও রক্তনালির রোগ সম্পর্কে বিশ্বজুড়ে সচেতনতা বাড়ানো।",
-          "approved": false,
+          "approved": true,
           "url": "https://world-heart-federation.org/world-heart-day/",
           "sourceType": "official"
         },
@@ -4380,7 +4380,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "আন্তর্জাতিক প্রবীণ দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -4432,7 +4432,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "বিশ্ব বসতি দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -4445,16 +4445,16 @@
         "nth": 1,
         "text": {
           "bn": "অক্টোবরের প্রথম সোমবার",
-          "approved": false
+          "approved": true
         },
         "tile": [
           {
             "bn": "১ম",
-            "approved": false
+            "approved": true
           },
           {
             "bn": "সোম",
-            "approved": false
+            "approved": true
           }
         ],
         "note": "the circular and the UN: the first Monday of October"
@@ -4487,7 +4487,7 @@
         },
         "purposeBn": {
           "bn": "শহর ও জনপদের অবস্থা এবং সবার উপযুক্ত আশ্রয়ের মৌলিক অধিকার নিয়ে ভাবা।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.un.org/en/observances/habitat-day",
           "sourceType": "official"
         },
@@ -4507,7 +4507,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "জাতীয় জন্ম ও মৃত্যু নিবন্ধন দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -4552,7 +4552,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "বিশ্ব ডাক দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -4586,7 +4586,7 @@
         },
         "purposeBn": {
           "bn": "মানুষ ও ব্যবসার দৈনন্দিন জীবনে এবং দেশের উন্নয়নে ডাক খাতের ভূমিকা তুলে ধরা।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.un.org/en/observances/world-post-day",
           "sourceType": "official"
         },
@@ -4606,7 +4606,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "বিশ্ব মানসিক স্বাস্থ্য দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -4644,7 +4644,7 @@
         },
         "purposeBn": {
           "bn": "বিশ্বজুড়ে মানসিক স্বাস্থ্য নিয়ে সচেতনতা বাড়ানো ও এর পক্ষে উদ্যোগ জোরদার করা।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.who.int/campaigns/world-mental-health-day",
           "sourceType": "official"
         },
@@ -4664,7 +4664,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "বিশ্ব সাদা ছড়ি দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -4704,7 +4704,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "জাতিসংঘ দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -4748,7 +4748,7 @@
         },
         "purposeBn": {
           "bn": "জাতিসংঘের লক্ষ্য ও অর্জন বিশ্ববাসীকে জানানো এবং এর কাজে মানুষের সমর্থন আদায় করা।",
-          "approved": false,
+          "approved": true,
           "url": "https://documents.un.org/api/symbol/access?s=A/RES/168(II)&l=en&t=pdf",
           "sourceType": "official"
         },
@@ -4768,7 +4768,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "জাতীয় স্বেচ্ছায় রক্তদান ও মরণোত্তর চক্ষুদান দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -4809,7 +4809,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "বিশ্ব ডায়েবেটিক দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -4851,7 +4851,7 @@
         },
         "purposeBn": {
           "bn": "ডায়াবেটিস, এর জটিলতা, প্রতিরোধ ও চিকিৎসা নিয়ে জনসচেতনতা বাড়ানো।",
-          "approved": false,
+          "approved": true,
           "url": "https://documents.un.org/api/symbol/access?s=A/RES/61/225&l=en&t=pdf",
           "sourceType": "official"
         },
@@ -4871,7 +4871,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "প্যালেস্টাইনি জনগণের প্রতি আন্তর্জাতিক সহমর্মিতা দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -4927,7 +4927,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "বিশ্ব মানবাধিকার দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "international"
@@ -4965,7 +4965,7 @@
         },
         "purposeBn": {
           "bn": "১৯৪৮ সালের ১০ ডিসেম্বর মানবাধিকারের সর্বজনীন ঘোষণা গৃহীত হওয়ার দিনটি স্মরণ করা।",
-          "approved": false,
+          "approved": true,
           "url": "https://www.un.org/en/observances/human-rights-day",
           "sourceType": "official"
         },
@@ -4985,7 +4985,7 @@
       "category": "গ",
       "nameBn": {
         "bn": "জাতীয় জীববৈচিত্র দিবস",
-        "approved": false
+        "approved": true
       },
       "kinds": [
         "national"
@@ -5020,5 +5020,11 @@
         "method": "page image (scan, no text layer): transcribed by reading the rendered page"
       }
     }
-  ]
+  ],
+  "approval": {
+    "by": "the user",
+    "date": "2026-10-08",
+    "step": "WHEEL-4",
+    "note": "every string approved, except the Bangla-calendar date strings of a day whose fixed Gregorian placement no official source verifies"
+  }
 }
