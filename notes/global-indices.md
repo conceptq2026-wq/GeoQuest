@@ -71,12 +71,24 @@ Read it with `CLAUDE.md`, whose rules and verification budget apply. A map under
   (labels, then the rankings' names, then country names). Country names on the cards are the basemap's pinned
   `NAME_BN`; the two new ones (Israel, Taiwan) await approval.
 
+## IDX-4 (the user's review, 2026-10-09)
+
+- **Every string approved** (113): ⓘ's first note is now «মানচিত্রে দেশের সীমানা বাংলাদেশের দৃষ্টিকোণ অনুযায়ী দেখানো। যে
+  দেশ মানচিত্রে আলাদা করে আঁকা নেই, তার নাম ও অবস্থান কার্ডে দেওয়া আছে।», and Henley's name «হেনলি পাসপোর্ট সূচক». Facts
+  `tools/ingest-user-input.mjs` writes later still enter `approved: false` and wait for the user's review;
+  `tools/verify-descriptor.mjs` fails a built one that is not approved.
+- **UN peacekeeping's chip is neutral**, as population's and density's: «▲/▼ x ধাপ ওপরে/নিচে», grey.
+- **GDP per capita stays on 2025** (180 of 193 UN members with a value), the user's decision.
+- **Accepted:** the «re-check due» warning for org-members' 7 cached pages lost in IDX-3 (a re-verification step is
+  open: CLAUDE.md); push-guard's skip of 8-token runs made only of numbers.
+
 ## IDX-3 (the user's decisions on IDX-2, 2026-10-08)
 
 - **Chips:** better or worse by each ranking's direction — «▲ উন্নতি x ধাপ» (green), «▼ অবনতি x ধাপ» (vermillion),
   «— অপরিবর্তিত» (grey); CRI's move toward rank 1 (most affected) is «অবনতি». Under each, «আগের সংস্করণের তুলনায়», or
   «আগের বছরের তুলনায়» for population, density, remittances, FDI and GDP. Population and density have no better or
-  worse: a move says «x ধাপ ওপরে/নিচে», in grey. Remittances, FDI, GDP and peacekeeping count up as better.
+  worse: a move says «x ধাপ ওপরে/নিচে», in grey (peacekeeping too, since IDX-4). Remittances, FDI and GDP count up as
+  better.
 - **GDP per capita** from the World Bank (WDI, NY.GDP.PCAP.CD, current US$; CC BY 4.0 per the WDI dataset page's
   licence field and datacatalog.worldbank.org/public-licenses, both pinned): the latest year with broad coverage,
   2025 (180 of the 193 UN members have a value; 2024 had 186), ranked by value among those members; the 13 without a

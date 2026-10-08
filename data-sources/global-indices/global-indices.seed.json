@@ -20,273 +20,273 @@
   "countryNames": {
     "ISR": {
       "bn": "ইসরায়েল",
-      "approved": false
+      "approved": true
     },
     "TWN": {
       "bn": "তাইওয়ান",
-      "approved": false
+      "approved": true
     }
   },
   "words": {
     "title": {
       "bn": "বৈশ্বিক সূচক",
-      "approved": false
+      "approved": true
     },
     "tabCountries": {
       "bn": "দেশ",
-      "approved": false
+      "approved": true
     },
     "tabBangladesh": {
       "bn": "বাংলাদেশ",
-      "approved": false
+      "approved": true
     },
     "pickerPrompt": {
       "bn": "একটি সূচক বেছে নিন…",
-      "approved": false
+      "approved": true
     },
     "rows": {
       "publisher": {
         "bn": "প্রকাশক",
-        "approved": false
+        "approved": true
       },
       "edition": {
         "bn": "সংস্করণ",
-        "approved": false
+        "approved": true
       },
       "southAsia": {
         "bn": "দক্ষিণ এশিয়ায়",
-        "approved": false
+        "approved": true
       },
       "rank": {
         "bn": "র‍্যাংক",
-        "approved": false
+        "approved": true
       },
       "unshaded": {
         "bn": "মানচিত্রে আঁকা নেই",
-        "approved": false
+        "approved": true
       },
       "noValue": {
         "bn": "তথ্য নেই",
-        "approved": false
+        "approved": true
       }
     },
     "bdStat": {
       "bn": "বাংলাদেশের অবস্থান",
-      "approved": false
+      "approved": true
     },
     "topStat": {
       "bn": "শীর্ষ",
-      "approved": false
+      "approved": true
     },
     "bottomStat": {
       "bn": "সর্বনিম্ন",
-      "approved": false
+      "approved": true
     },
     "valueStat": {
       "bn": "বাংলাদেশের মান",
-      "approved": false
+      "approved": true
     },
     "valueTopStat": {
       "bn": "সর্বনিম্ন মান",
-      "approved": false
+      "approved": true
     },
     "valueBottomStat": {
       "bn": "সর্বোচ্চ মান",
-      "approved": false
+      "approved": true
     },
     "pillTop": {
       "bn": "১",
-      "approved": false
+      "approved": true
     },
     "pillBottom": {
       "bn": "নিম্ন",
-      "approved": false
+      "approved": true
     },
     "valuePillTop": {
       "bn": "সর্বনিম্ন",
-      "approved": false
+      "approved": true
     },
     "valuePillBottom": {
       "bn": "সর্বোচ্চ",
-      "approved": false
+      "approved": true
     },
     "bd": {
       "bn": "বাংলাদেশ",
-      "approved": false
+      "approved": true
     },
     "legendTop": {
       "bn": "শীর্ষ",
-      "approved": false
+      "approved": true
     },
     "legendBottom": {
       "bn": "নিম্ন",
-      "approved": false
+      "approved": true
     },
     "verified": {
       "bn": "সর্বশেষ যাচাই",
-      "approved": false
+      "approved": true
     },
     "source": {
       "bn": "সূত্র",
-      "approved": false
+      "approved": true
     },
     "factsNote": {
       "bn": "এই সূচকের পূর্ণ র‍্যাংকিং দেখানো হয় না।",
-      "approved": false
+      "approved": true
     },
     "bdCaption": {
       "bn": "সব সূচকে বাংলাদেশের অবস্থান",
-      "approved": false
+      "approved": true
     },
     "unchanged": {
       "bn": "অপরিবর্তিত",
-      "approved": false
+      "approved": true
     },
     "better": {
       "bn": "উন্নতি {n} ধাপ",
-      "approved": false
+      "approved": true
     },
     "worse": {
       "bn": "অবনতি {n} ধাপ",
-      "approved": false
+      "approved": true
     },
     "upNeutral": {
       "bn": "{n} ধাপ ওপরে",
-      "approved": false
+      "approved": true
     },
     "downNeutral": {
       "bn": "{n} ধাপ নিচে",
-      "approved": false
+      "approved": true
     },
     "basisEdition": {
       "bn": "আগের সংস্করণের তুলনায়",
-      "approved": false
+      "approved": true
     },
     "basisYear": {
       "bn": "আগের বছরের তুলনায়",
-      "approved": false
+      "approved": true
     },
     "released": {
       "bn": "প্রকাশ: {date}",
-      "approved": false
+      "approved": true
     },
     "southAsiaOf": {
       "bn": "{n}টি দেশের মধ্যে {nth}",
-      "approved": false
+      "approved": true
     },
     "sortedNote": {
       "bn": "মান অনুযায়ী সাজানো",
-      "approved": false
+      "approved": true
     },
     "projection": {
       "bn": "প্রক্ষেপণ",
-      "approved": false
+      "approved": true
     },
     "shared": {
       "bn": "যৌথ",
-      "approved": false
+      "approved": true
     },
     "ordinals": [
       {
         "bn": "১ম",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "২য়",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "৩য়",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "৪র্থ",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "৫ম",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "৬ষ্ঠ",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "৭ম",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "৮ম",
-        "approved": false
+        "approved": true
       }
     ],
     "months": [
       {
         "bn": "জানুয়ারি",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "ফেব্রুয়ারি",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "মার্চ",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "এপ্রিল",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "মে",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "জুন",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "জুলাই",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "আগস্ট",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "সেপ্টেম্বর",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "অক্টোবর",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "নভেম্বর",
-        "approved": false
+        "approved": true
       },
       {
         "bn": "ডিসেম্বর",
-        "approved": false
+        "approved": true
       }
     ],
     "infoSources": {
       "bn": "সূত্র",
-      "approved": false
+      "approved": true
     },
     "infoNotes": {
       "bn": "টীকা",
-      "approved": false
+      "approved": true
     }
   },
   "infoNotes": [
     {
-      "bn": "দেশের সীমানা বাংলাদেশের অবস্থান অনুযায়ী আঁকা। যে দেশ মানচিত্রে আলাদা করে আঁকা নেই, তার নাম ও অবস্থান কার্ডে দেওয়া আছে।",
-      "approved": false
+      "bn": "মানচিত্রে দেশের সীমানা বাংলাদেশের দৃষ্টিকোণ অনুযায়ী দেখানো। যে দেশ মানচিত্রে আলাদা করে আঁকা নেই, তার নাম ও অবস্থান কার্ডে দেওয়া আছে।",
+      "approved": true
     },
     {
       "bn": "দক্ষিণ এশিয়া মানে সার্কের আটটি দেশ।",
-      "approved": false
+      "approved": true
     }
   ],
   "indices": [
@@ -295,7 +295,7 @@
       "kind": "open",
       "nameBn": {
         "bn": "মানব উন্নয়ন সূচক",
-        "approved": false
+        "approved": true
       },
       "nameEn": "Human Development Index",
       "publisher": "UNDP",
@@ -303,7 +303,7 @@
       "officialUrl": "https://hdr.undp.org/data-center/human-development-index",
       "rankMeans": {
         "bn": "১ = সবচেয়ে উন্নত মানব উন্নয়ন",
-        "approved": false
+        "approved": true
       },
       "goodIs": "up",
       "basis": "edition",
@@ -2305,7 +2305,7 @@
       "kind": "open",
       "nameBn": {
         "bn": "বহুমাত্রিক দারিদ্র্য সূচক",
-        "approved": false
+        "approved": true
       },
       "nameEn": "Global Multidimensional Poverty Index",
       "publisher": "UNDP · OPHI",
@@ -2313,7 +2313,7 @@
       "officialUrl": "https://hdr.undp.org/content/2025-global-multidimensional-poverty-index-mpi",
       "rankMeans": {
         "bn": "কম মান = কম দারিদ্র্য; প্রকাশক কোনো র‍্যাংক দেয় না",
-        "approved": false
+        "approved": true
       },
       "basis": "edition",
       "valueOnly": true,
@@ -3490,7 +3490,7 @@
       "kind": "open",
       "nameBn": {
         "bn": "বৈশ্বিক উদ্ভাবন সূচক",
-        "approved": false
+        "approved": true
       },
       "nameEn": "Global Innovation Index",
       "publisher": "WIPO",
@@ -3498,7 +3498,7 @@
       "officialUrl": "https://www.wipo.int/en/web/global-innovation-index",
       "rankMeans": {
         "bn": "১ = সবচেয়ে উদ্ভাবনী অর্থনীতি",
-        "approved": false
+        "approved": true
       },
       "goodIs": "up",
       "basis": "edition",
@@ -4964,7 +4964,7 @@
       "kind": "open",
       "nameBn": {
         "bn": "বিশ্ব সুখ প্রতিবেদন",
-        "approved": false
+        "approved": true
       },
       "nameEn": "World Happiness Report",
       "publisher": "Wellbeing Research Centre, University of Oxford",
@@ -4972,7 +4972,7 @@
       "officialUrl": "https://www.worldhappiness.report/",
       "rankMeans": {
         "bn": "১ = সবচেয়ে সুখী দেশ",
-        "approved": false
+        "approved": true
       },
       "goodIs": "up",
       "basis": "edition",
@@ -6514,7 +6514,7 @@
       "kind": "open",
       "nameBn": {
         "bn": "জনসংখ্যা",
-        "approved": false
+        "approved": true
       },
       "nameEn": "World Population Prospects 2024: total population",
       "publisher": "UN DESA Population Division",
@@ -6522,7 +6522,7 @@
       "officialUrl": "https://population.un.org/wpp/",
       "rankMeans": {
         "bn": "১ = সবচেয়ে বেশি জনসংখ্যা (জাতিসংঘের ১৯৩টি সদস্য দেশের মধ্যে)",
-        "approved": false
+        "approved": true
       },
       "basis": "year",
       "sortedByValue": true,
@@ -8525,7 +8525,7 @@
       "kind": "open",
       "nameBn": {
         "bn": "জনসংখ্যার ঘনত্ব",
-        "approved": false
+        "approved": true
       },
       "nameEn": "World Population Prospects 2024: population density",
       "publisher": "UN DESA Population Division",
@@ -8533,7 +8533,7 @@
       "officialUrl": "https://population.un.org/wpp/",
       "rankMeans": {
         "bn": "১ = সবচেয়ে ঘন বসতি (জাতিসংঘের ১৯৩টি সদস্য দেশের মধ্যে)",
-        "approved": false
+        "approved": true
       },
       "basis": "year",
       "sortedByValue": true,
@@ -10536,7 +10536,7 @@
       "kind": "open",
       "nameBn": {
         "bn": "রেমিট্যান্স (প্রবাসী আয়)",
-        "approved": false
+        "approved": true
       },
       "nameEn": "Personal remittances, received (current US$)",
       "publisher": "World Bank",
@@ -10544,7 +10544,7 @@
       "officialUrl": "https://data.worldbank.org/indicator/BX.TRF.PWKR.CD.DT",
       "rankMeans": {
         "bn": "১ = সবচেয়ে বেশি রেমিট্যান্স প্রাপ্তি",
-        "approved": false
+        "approved": true
       },
       "goodIs": "up",
       "basis": "year",
@@ -12282,7 +12282,7 @@
       "kind": "open",
       "nameBn": {
         "bn": "প্রত্যক্ষ বিদেশি বিনিয়োগ",
-        "approved": false
+        "approved": true
       },
       "nameEn": "Foreign direct investment: inward flows",
       "publisher": "UNCTAD",
@@ -12290,7 +12290,7 @@
       "officialUrl": "https://unctadstat.unctad.org/datacentre/dataviewer/US.FdiFlowsStock",
       "rankMeans": {
         "bn": "১ = সবচেয়ে বেশি বিদেশি বিনিয়োগ এসেছে",
-        "approved": false
+        "approved": true
       },
       "goodIs": "up",
       "basis": "year",
@@ -14383,7 +14383,7 @@
       "kind": "open",
       "nameBn": {
         "bn": "মাথাপিছু জিডিপি",
-        "approved": false
+        "approved": true
       },
       "nameEn": "GDP per capita (current US$)",
       "publisher": "World Bank",
@@ -14391,7 +14391,7 @@
       "officialUrl": "https://data.worldbank.org/indicator/NY.GDP.PCAP.CD",
       "rankMeans": {
         "bn": "১ = সবচেয়ে বেশি মাথাপিছু জিডিপি (জাতিসংঘের সদস্য দেশের মধ্যে)",
-        "approved": false
+        "approved": true
       },
       "goodIs": "up",
       "basis": "year",
@@ -16362,7 +16362,7 @@
       "kind": "user-input",
       "nameBn": {
         "bn": "বৈশ্বিক লিঙ্গ বৈষম্য সূচক",
-        "approved": false
+        "approved": true
       },
       "nameEn": "Global Gender Gap Index",
       "publisher": "World Economic Forum",
@@ -16370,7 +16370,7 @@
       "officialUrl": "https://www.weforum.org/publications/series/global-gender-gap-report/",
       "rankMeans": {
         "bn": "১ = লিঙ্গ সমতায় সবচেয়ে এগিয়ে",
-        "approved": false
+        "approved": true
       },
       "goodIs": "up",
       "basis": "edition",
@@ -16397,7 +16397,7 @@
       "kind": "facts",
       "nameBn": {
         "bn": "দুর্নীতি ধারণা সূচক",
-        "approved": false
+        "approved": true
       },
       "nameEn": "Corruption Perceptions Index",
       "publisher": "Transparency International",
@@ -16405,7 +16405,7 @@
       "officialUrl": "https://www.transparency.org/en/cpi/2025",
       "rankMeans": {
         "bn": "১ = সবচেয়ে কম দুর্নীতি",
-        "approved": false
+        "approved": true
       },
       "goodIs": "up",
       "basis": "edition",
@@ -16469,7 +16469,7 @@
       "kind": "facts",
       "nameBn": {
         "bn": "বিশ্ব মুক্ত গণমাধ্যম সূচক",
-        "approved": false
+        "approved": true
       },
       "nameEn": "World Press Freedom Index",
       "publisher": "Reporters Without Borders (RSF)",
@@ -16477,7 +16477,7 @@
       "officialUrl": "https://rsf.org/en/index",
       "rankMeans": {
         "bn": "১ = গণমাধ্যমের সবচেয়ে বেশি স্বাধীনতা",
-        "approved": false
+        "approved": true
       },
       "goodIs": "up",
       "basis": "edition",
@@ -16539,7 +16539,7 @@
       "kind": "user-input",
       "nameBn": {
         "bn": "বৈশ্বিক শান্তি সূচক",
-        "approved": false
+        "approved": true
       },
       "nameEn": "Global Peace Index",
       "publisher": "Institute for Economics & Peace",
@@ -16547,7 +16547,7 @@
       "officialUrl": "https://www.visionofhumanity.org/maps/",
       "rankMeans": {
         "bn": "১ = সবচেয়ে শান্তিপূর্ণ দেশ",
-        "approved": false
+        "approved": true
       },
       "goodIs": "up",
       "basis": "edition",
@@ -16572,7 +16572,7 @@
       "kind": "user-input",
       "nameBn": {
         "bn": "বৈশ্বিক সন্ত্রাসবাদ সূচক",
-        "approved": false
+        "approved": true
       },
       "nameEn": "Global Terrorism Index",
       "publisher": "Institute for Economics & Peace",
@@ -16580,7 +16580,7 @@
       "officialUrl": "https://www.visionofhumanity.org/maps/global-terrorism-index/",
       "rankMeans": {
         "bn": "১ = সন্ত্রাসবাদে সবচেয়ে বেশি প্রভাবিত",
-        "approved": false
+        "approved": true
       },
       "goodIs": "down",
       "basis": "edition",
@@ -16605,7 +16605,7 @@
       "kind": "user-input",
       "nameBn": {
         "bn": "বৈশ্বিক ক্ষুধা সূচক",
-        "approved": false
+        "approved": true
       },
       "nameEn": "Global Hunger Index",
       "publisher": "Welthungerhilfe · Concern Worldwide",
@@ -16613,7 +16613,7 @@
       "officialUrl": "https://www.globalhungerindex.org/ranking.html",
       "rankMeans": {
         "bn": "১ = সবচেয়ে কম ক্ষুধা",
-        "approved": false
+        "approved": true
       },
       "goodIs": "up",
       "basis": "edition",
@@ -16636,7 +16636,7 @@
       "kind": "facts",
       "nameBn": {
         "bn": "ই-গভর্নমেন্ট উন্নয়ন সূচক",
-        "approved": false
+        "approved": true
       },
       "nameEn": "E-Government Development Index",
       "publisher": "UN DESA",
@@ -16644,7 +16644,7 @@
       "officialUrl": "https://publicadministration.un.org/egovkb/en-us/Data-Center",
       "rankMeans": {
         "bn": "১ = সবচেয়ে উন্নত ই-গভর্নমেন্ট",
-        "approved": false
+        "approved": true
       },
       "goodIs": "up",
       "basis": "edition",
@@ -16708,7 +16708,7 @@
       "kind": "user-input",
       "nameBn": {
         "bn": "গণতন্ত্র সূচক",
-        "approved": false
+        "approved": true
       },
       "nameEn": "Democracy Index",
       "publisher": "Economist Intelligence Unit",
@@ -16716,7 +16716,7 @@
       "officialUrl": "https://www.eiu.com/n/campaigns/democracy-index-2025/",
       "rankMeans": {
         "bn": "১ = সবচেয়ে গণতান্ত্রিক",
-        "approved": false
+        "approved": true
       },
       "goodIs": "up",
       "basis": "edition",
@@ -16740,7 +16740,7 @@
       "kind": "facts",
       "nameBn": {
         "bn": "জলবায়ু ঝুঁকি সূচক",
-        "approved": false
+        "approved": true
       },
       "nameEn": "Climate Risk Index (long-term)",
       "publisher": "Germanwatch",
@@ -16748,7 +16748,7 @@
       "officialUrl": "https://www.germanwatch.org/en/cri",
       "rankMeans": {
         "bn": "১ = চরম আবহাওয়ায় সবচেয়ে বেশি ক্ষতিগ্রস্ত (১৯৯৫–২০২৪, দীর্ঘমেয়াদি)",
-        "approved": false
+        "approved": true
       },
       "goodIs": "down",
       "basis": "edition",
@@ -16809,8 +16809,8 @@
       "id": "henley-passport",
       "kind": "user-input",
       "nameBn": {
-        "bn": "পাসপোর্ট সূচক",
-        "approved": false
+        "bn": "হেনলি পাসপোর্ট সূচক",
+        "approved": true
       },
       "nameEn": "Henley Passport Index",
       "publisher": "Henley & Partners",
@@ -16818,7 +16818,7 @@
       "officialUrl": "https://www.henleyglobal.com/passport-index",
       "rankMeans": {
         "bn": "১ = সবচেয়ে শক্তিশালী পাসপোর্ট",
-        "approved": false
+        "approved": true
       },
       "goodIs": "up",
       "basis": "edition",
@@ -16842,7 +16842,7 @@
       "kind": "facts",
       "nameBn": {
         "bn": "আইনের শাসন সূচক",
-        "approved": false
+        "approved": true
       },
       "nameEn": "WJP Rule of Law Index",
       "publisher": "World Justice Project",
@@ -16850,7 +16850,7 @@
       "officialUrl": "https://worldjusticeproject.org/rule-of-law-index/",
       "rankMeans": {
         "bn": "১ = আইনের শাসন সবচেয়ে শক্তিশালী",
-        "approved": false
+        "approved": true
       },
       "goodIs": "up",
       "basis": "edition",
@@ -16916,7 +16916,7 @@
       "kind": "facts",
       "nameBn": {
         "bn": "জাতিসংঘ শান্তিরক্ষী প্রেরণ",
-        "approved": false
+        "approved": true
       },
       "nameEn": "Contributions of uniformed personnel to UN peacekeeping",
       "publisher": "UN Department of Peace Operations",
@@ -16924,9 +16924,8 @@
       "officialUrl": "https://peacekeeping.un.org/en/troop-and-police-contributors",
       "rankMeans": {
         "bn": "১ = সবচেয়ে বেশি শান্তিরক্ষী পাঠিয়েছে",
-        "approved": false
+        "approved": true
       },
-      "goodIs": "up",
       "basis": "edition",
       "latest": {
         "edition": "Contributions as of 31 July 2026",
@@ -16992,7 +16991,7 @@
       "kind": "user-input",
       "nameBn": {
         "bn": "তৈরি পোশাক রপ্তানি",
-        "approved": false
+        "approved": true
       },
       "nameEn": "Top 10 exporters of clothing",
       "publisher": "WTO",
@@ -17000,7 +16999,7 @@
       "officialUrl": "https://www.wto.org/english/res_e/statis_e/world_trade_statistics_e.htm",
       "rankMeans": {
         "bn": "১ = সবচেয়ে বড় রপ্তানিকারক",
-        "approved": false
+        "approved": true
       },
       "basis": "edition",
       "latest": null,
@@ -17023,7 +17022,7 @@
       "kind": "user-input",
       "nameBn": {
         "bn": "অর্থনৈতিক স্বাধীনতা সূচক",
-        "approved": false
+        "approved": true
       },
       "nameEn": "Index of Economic Freedom",
       "publisher": "The Heritage Foundation",
@@ -17031,7 +17030,7 @@
       "officialUrl": "https://www.heritage.org/index/",
       "rankMeans": {
         "bn": "১ = অর্থনীতিতে সবচেয়ে বেশি স্বাধীনতা",
-        "approved": false
+        "approved": true
       },
       "goodIs": "up",
       "basis": "edition",
@@ -17060,7 +17059,7 @@
       "kind": "city",
       "nameBn": {
         "bn": "বাসযোগ্য শহর সূচক (ঢাকা)",
-        "approved": false
+        "approved": true
       },
       "nameEn": "Global Liveability Index",
       "publisher": "Economist Intelligence Unit",
@@ -17068,7 +17067,7 @@
       "officialUrl": "https://www.eiu.com/n/eiu-global-liveability-index-2026/",
       "rankMeans": {
         "bn": "১ = সবচেয়ে বাসযোগ্য শহর",
-        "approved": false
+        "approved": true
       },
       "goodIs": "up",
       "basis": "edition",

@@ -125,7 +125,7 @@ const MARITIME_ZONES_SEED_SHA256 = '6b0f67dbac0b0fa97037d86c7f94d3f07a73bd57a42d
 // The bangladesh-maritime-boundary map: the editor's seed, pinned (live 2026-10-08; its 35 step-2 strings approved, BD-6; #30 reworded by the user the same day).
 const BANGLADESH_MARITIME_SEED_SHA256 = 'dcc627421f99b20faeffe17006d9348f181b9663c058af66f37ae6c572e8ebbd';
 // The global-indices map «বৈশ্বিক সূচক» (work in progress, IDX-2, 2026-10-08): its seed, pinned.
-const GLOBAL_INDICES_SEED_SHA256 = 'a030685c547de40128fef195fa054a54df644b3b9123d5b016c734089e65e9f6';
+const GLOBAL_INDICES_SEED_SHA256 = '86b4e6682d4c5ae1d133bd74331006219ccbb1a503faffea61b3fec8be2d023a';
 // The important-days diagram «বছরের চাকা»: its seed, pinned (live 2026-10-08, after WHEEL-2–5 and GL-WHEEL).
 const IMPORTANT_DAYS_SEED_SHA256 = '24fe65ed95d70d794a54c0a29341b85da87a13fcffa371a1d9967a862d737070';
 // The bangladesh-ethnic-groups map: its seed, pinned (live 2026-10-08).
@@ -2867,6 +2867,12 @@ console.log('\n\n============ global-indices (work in progress) ============');
   // A value read by the user cites the official page and «read by the user» with the date; every other, a pinned file.
   const unsourced = builtSeed.flatMap((x) => [x.latest, x.previous].filter((e) => e?.edition).flatMap((e) => (e.source ? [!(/^https:\/\//.test(e.source.url ?? '') && e.source.by === 'read by the user' && /^\d{4}-\d\d-\d\d$/.test(e.source.date ?? '')) && `${x.id}: the user's source`] : [!pinnedUrls.has(e.dataUrl) && `${x.id} ${e.edition}: data`, e.releaseDate && !pinnedUrls.has(e.releaseUrl) && `${x.id} ${e.edition}: release`, !/^https:\/\//.test(x.pageUrl ?? '') && `${x.id}: page`]))).filter(Boolean);
   check(unsourced.length === 0, `every built value cites a pinned official file, and every release date a pinned official page${unsourced.length ? ` — not: ${unsourced.slice(0, 4).join(', ')}` : ''}`);
+  // Rule (a) for what is built (the user, IDX-4, 2026-10-09): every string approved, and every fact the user read by
+  // hand approved before it is shown (tools/ingest-user-input.mjs writes it unapproved).
+  let pendingStrings = 0;
+  JSON.stringify(seed, (k, v) => { if (v && typeof v === 'object' && typeof v.bn === 'string' && v.approved === false) pendingStrings++; return v; });
+  const unapprovedFacts = builtSeed.filter((x) => x.kind === 'user-input' && x.latest?.approved !== true).map((x) => x.id);
+  check(pendingStrings === 0 && unapprovedFacts.length === 0, `no pending string and no unapproved hand-read fact among what is built (${pendingStrings} pending; ${unapprovedFacts.length ? `facts awaiting review: ${unapprovedFacts.join(', ')}` : 'no hand-read facts built yet'})`);
   const unread = builtSeed.filter((x) => x.kind !== 'user-input').filter((x) => x.read?.readers !== 2 || (!x.read.agreed && !(x.read.unstoredMismatches ?? []).length));
   check(unread.length === 0, `every built ranking was read twice and the readings agree (a mismatch only in a field not stored: ${builtSeed.filter((x) => x.read?.unstoredMismatches?.length).map((x) => x.id).join(', ') || 'none'})`);
   checkMap({ id, expectedPending: 0 });

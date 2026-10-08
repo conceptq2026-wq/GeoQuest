@@ -69,7 +69,8 @@ BCS / government exam prep.
 - **Before a push, `node tools/push-guard.mjs`** checks the commits since origin/main:
   - fast-forward only, and the no-reply identity on every commit;
   - no e-mail pattern in the diff or the commit messages;
-  - the 8-word quote scan against the cached source texts;
+  - the 8-word quote scan against the cached source texts (a run of numbers only is data, not a quote, and is
+    skipped: approved by the user, 2026-10-09);
   - no PDF, scan or image added.
 
   The scan skips credit fields only, since a source is credited by its own title (rule (b), 2026-10-08):
@@ -501,12 +502,15 @@ State which kind a task is when reporting it.
   - **Yearly check** (the user's rule, 2026-10-08): when each new public-holiday gazette is published, compare
     important-days' three Bangla-calendar dates (১ বৈশাখ 14 April, ২৫ বৈশাখ 8 May, ১১ জ্যৈষ্ঠ 25 May); if any differs,
     their strings go back to `approved: false` and the user is told.
+- **Open item** (the user, 2026-10-09): org-members re-verification — re-pin its 7 source pages lost from the cache
+  in IDX-3 (`notes/org-members.md`) and re-check its memberships against the official sources; until then
+  `tools/verify.mjs` warns «re-check due».
 - Work in progress (`tools/wip.json`): `global-indices` «বৈশ্বিক সূচক», a map under International (IDX-1
   investigation, IDX-2 data and build, IDX-3 the user's decisions, 2026-10-08): 15 rankings built — 9 shading every
   country (GDP per capita from the World Bank), 6 facts-only (Bangladesh, top, bottom) — and 9 awaiting the user's
   hand-read facts (`tools/ingest-user-input.mjs`), each value read twice from the publishers' own pinned files, drawn
-  with the map shell's opt-in `indices` module on the shared countries file; all strings awaiting the user
-  (`notes/global-indices.md`).
+  with the map shell's opt-in `indices` module on the shared countries file; all 113 strings approved by the user
+  (IDX-4) (`notes/global-indices.md`).
 
 ## Index — notes, read only when working on that item
 

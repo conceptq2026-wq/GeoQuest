@@ -258,5 +258,9 @@ stays within 12 km; a few islets (Chile's is the farthest) collapse.
   `sharedGeometry` (joined on `adm0`, this map's own ADM0_A3 keys, unchanged) and `sharedPart: 'main'` for the tap
   shapes («lands»). The file is simplified at the same 12 km as these shapes were, with the same checks; the map's own
   `countries.geojson` (313,271 bytes) and `lands.geojson` (205,658 bytes) are gone, for the shared 198,343-byte file.
+- **Open (the user, 2026-10-09):** 7 cached source pages (asean-members, bimstec-members, eco-members, eco-observers,
+  nato-terms, oic-members, oic-observers) were lost from `tools/.cache/org-members/sources/` in IDX-3 and have changed
+  online since they were pinned. Their pinned texts stand; `tools/verify.mjs` warns «re-check due», accepted for now.
+  A separate re-verification step will re-pin the pages and re-check the memberships against the official sources.
 - Frames and dot points are recomputed from the shared shapes (a few hundredths of a degree moved); the opening view,
   the 171 of 173 dots, the cards and the taps are as before (`tools/check.mjs org-members`, before and after).
