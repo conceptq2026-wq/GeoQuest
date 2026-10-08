@@ -121,7 +121,7 @@ const MARITIME_ZONES_SEED_SHA256 = '6b0f67dbac0b0fa97037d86c7f94d3f07a73bd57a42d
 // The bangladesh-maritime-boundary map: the editor's seed, pinned (live 2026-10-08; its 35 step-2 strings approved, BD-6; #30 reworded by the user the same day).
 const BANGLADESH_MARITIME_SEED_SHA256 = 'dcc627421f99b20faeffe17006d9348f181b9663c058af66f37ae6c572e8ebbd';
 // The bangladesh-ethnic-groups map (work in progress, ETH-3, 2026-10-08): its seed, pinned.
-const BANGLADESH_ETHNIC_SEED_SHA256 = '6608c411f0a529bac3cc53b957abf632528e3933af03ebe95fbbc093f374c1ce';
+const BANGLADESH_ETHNIC_SEED_SHA256 = 'fb85458fc9e488d900f7f5928f4331ee5b57050928477c0f9045b8fbb8fded5c';
 // The org-members map: the editor's seed, pinned (live 2026-10-07).
 const ORG_MEMBERS_SEED_SHA256 = '6c09b4d8a43f1115c633ce14e860569cea611536fece7237822da5ae1ae5e262';
 // The bangladesh-rivers diagram: the editor's seed, pinned. Its geometry is pinned in tools/bangladesh-rivers-pins.json.
@@ -2763,7 +2763,7 @@ console.log('\n\n============ bangladesh-maritime-boundary ============');
 
 /*
 |--------------------------------------------------------------------------
-| BANGLADESH-ETHNIC-GROUPS — work in progress (ETH-3, 2026-10-08), on the
+| BANGLADESH-ETHNIC-GROUPS — work in progress (ETH-3–5, 2026-10-08), on the
 | preview's home page from tools/wip.json: the seed is the pinned one, docs/
 | holds exactly what a fresh build writes, and the generic map checks read it.
 | The districts are drawn from the shared district file (sharedGeometry), never
@@ -2786,15 +2786,25 @@ console.log('\n\n============ bangladesh-ethnic-groups (work in progress) ======
   const differ = built.filter((name) => !fs.existsSync(path.join(dir, name)) || !fs.readFileSync(path.join(dir, name)).equals(fs.readFileSync(path.join(fresh, name))));
   check(differ.length === 0 && fs.readdirSync(dir).sort().join() === built.join(), `docs/maps/${id}/ is a fresh build, byte for byte (${built.join(', ')})${differ.length ? ` — differs: ${differ.join(', ')}` : ''}`);
   const descriptor = readJson(path.join(dir, 'descriptor.json'));
-  const groups = readJson(path.join(dir, 'groups.json'));
-  const districts = readJson(path.join(dir, 'districts.json'));
+  // ETH-5 (the user's decision, 2026-10-08): the tabs «পাহাড়ি», «সমতল», «প্রতিষ্ঠান»; the groups split by the
+  // hill rule, 6 and 13, each tab's picker its own table, largest first; no «জেলা» tab; institutes ১–১০.
+  const hill = readJson(path.join(dir, 'hill.json'));
+  const plains = readJson(path.join(dir, 'plains.json'));
+  const tabsFile = readJson(path.join(dir, 'tabs.json'));
   const institutes = readJson(path.join(dir, 'institutes.json'));
   check(descriptor.section === 'bangladesh' && descriptor.basemap === 'bangladesh-wide' && descriptor.title?.bn === seed.title.bn && Boolean(descriptor.constraints?.maxBounds), `descriptor: section ${descriptor.section}, basemap ${descriptor.basemap}, Bangladesh's bounds, title «${descriptor.title?.bn}», the seed's`);
-  check(JSON.stringify(Object.keys(groups)) === JSON.stringify(seed.groups.map((g) => g.id)) && seed.groups.every((g, i) => i === 0 || seed.groups[i - 1].population.value >= g.population.value), `the picker's ${Object.keys(groups).length} groups, largest first`);
-  check(Object.keys(districts).length === 64 && Object.values(districts).filter((d) => d.emptyBn).length === Object.values(seed.districtGroups).filter((g) => !g.length).length, `all 64 districts, ${Object.values(districts).filter((d) => d.emptyBn).length} of them with the empty line`);
-  check(Object.keys(institutes).length === 10 && Object.values(institutes).filter((i) => i.locationBn).length === seed.institutes.filter((i) => i.location.kind === 'district').length, `the ministry's 10 institutes, ${Object.values(institutes).filter((i) => i.locationBn).length} at their district with the line that says so`);
+  const want = (zone) => seed.groups.filter((g) => g.zone.value === zone).map((g) => g.id);
+  const largestFirst = (ids) => ids.every((k, i) => i === 0 || seed.groups.find((g) => g.id === ids[i - 1]).population.value >= seed.groups.find((g) => g.id === k).population.value);
+  check(JSON.stringify(Object.keys(hill)) === JSON.stringify(want('hill')) && JSON.stringify(Object.keys(plains)) === JSON.stringify(want('plains')) && Object.keys(hill).length === 6 && Object.keys(plains).length === 13 && largestFirst(Object.keys(hill)) && largestFirst(Object.keys(plains)), `the 19 groups split by the hill rule, ${Object.keys(hill).length} «${seed.strings.zone.hill.bn}» and ${Object.keys(plains).length} «${seed.strings.zone.plains.bn}», each largest first`);
+  const picker = descriptor.controls.find((c) => c.type === 'picker');
+  check(JSON.stringify(Object.keys(tabsFile)) === JSON.stringify(['hill', 'plains', 'institutes']) && tabsFile.hill.titleBn === seed.strings.zone.hill.bn && tabsFile.plains.titleBn === seed.strings.zone.plains.bn && picker?.byTab?.hill?.from === 'hill' && picker?.byTab?.plains?.from === 'plains' && picker?.byTab?.institutes?.from === 'institutes', `the tabs «${Object.values(tabsFile).map((r) => r.titleBn).join('», «')}», each picker its own table`);
+  check(!('districtTap' in descriptor.sources) && !descriptor.sheets.districts && !Object.keys(tabsFile).includes('districts') && !(descriptor.interactions ?? []).some((i) => i.target === 'source:districtFill'), 'no «জেলা» tab: no district picker, card or tap target; the district fills stay for a chosen group');
+  const nums = Object.values(institutes).map((i) => i.numBn);
+  const digits = (n) => String(n).replace(/\d/g, (d) => '০১২৩৪৫৬৭৮৯'[d]);
+  check(JSON.stringify(Object.keys(institutes)) === JSON.stringify(seed.institutes.map((i) => i.id)) && JSON.stringify(nums) === JSON.stringify([...Array(10)].map((_, k) => digits(k + 1))) && Object.values(institutes).every((i, k) => i.labelBn === `${nums[k]}. ${seed.institutes[k].name.bn}`) && seed.institutesOrder?.cite?.[0]?.source === 'mocaInstitutes', `the ministry's 10 institutes numbered ${nums[0]}–${nums[9]} in its order, «১. …» in the picker and on the card`);
+  check(Object.values(institutes).filter((i) => i.locationBn).length === seed.institutes.filter((i) => i.location.kind === 'district').length, `${Object.values(institutes).filter((i) => i.locationBn).length} institutes at their district, each card with the line that says so`);
   const viaShared = Object.entries(descriptor.sources).filter(([, s]) => s.sharedGeometry).map(([k]) => k);
-  check(viaShared.length === 2 && !fs.readdirSync(dir).some((f) => /\.geojson$/.test(f)), `the districts are drawn from the shared file (${viaShared.join(', ')}), with no geometry copied into the folder`);
+  check(viaShared.length === 1 && !fs.readdirSync(dir).some((f) => /\.(geojson|svg|png|jpe?g|webp)$/.test(f)), `the districts are drawn from the shared file (${viaShared.join(', ')}), with no geometry or image in the folder`);
   checkMap({ id, expectedPending: 0 });
 }
 

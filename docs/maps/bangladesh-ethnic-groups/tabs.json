@@ -1,14 +1,32 @@
 {
-  "groups": {
-    "titleBn": "গোষ্ঠী",
-    "placeholderBn": "গোষ্ঠী বেছে নিন"
+  "hill": {
+    "titleBn": "পাহাড়ি",
+    "placeholderBn": "গোষ্ঠী বেছে নিন",
+    "frame": [
+      91.7104,
+      21.1835,
+      92.6796,
+      23.7391
+    ]
   },
-  "districts": {
-    "titleBn": "জেলা",
-    "placeholderBn": "জেলা বেছে নিন"
+  "plains": {
+    "titleBn": "সমতল",
+    "placeholderBn": "গোষ্ঠী বেছে নিন",
+    "frame": [
+      88,
+      20.55,
+      92.7,
+      26.65
+    ]
   },
   "institutes": {
     "titleBn": "প্রতিষ্ঠান",
-    "placeholderBn": "প্রতিষ্ঠান বেছে নিন"
+    "placeholderBn": "প্রতিষ্ঠান বেছে নিন",
+    "frame": [
+      88,
+      20.55,
+      92.7,
+      26.65
+    ]
   }
 }

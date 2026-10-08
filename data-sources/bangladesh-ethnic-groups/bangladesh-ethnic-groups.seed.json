@@ -638,14 +638,6 @@
   },
   "strings": {
     "tabs": {
-      "groups": {
-        "bn": "গোষ্ঠী",
-        "approved": true
-      },
-      "districts": {
-        "bn": "জেলা",
-        "approved": true
-      },
       "institutes": {
         "bn": "প্রতিষ্ঠান",
         "approved": true
@@ -654,10 +646,6 @@
     "pickers": {
       "groups": {
         "bn": "গোষ্ঠী বেছে নিন",
-        "approved": true
-      },
-      "districts": {
-        "bn": "জেলা বেছে নিন",
         "approved": true
       },
       "institutes": {
@@ -715,16 +703,6 @@
         "approved": true
       }
     },
-    "districtCard": {
-      "groups": {
-        "bn": "এই জেলায় যেসব গোষ্ঠীর প্রধান বসতি",
-        "approved": true
-      },
-      "empty": {
-        "bn": "মানচিত্রের ১৯টি গোষ্ঠীর কোনোটির জন্য এই জেলা রং করা হয়নি।",
-        "approved": true
-      }
-    },
     "instituteCard": {
       "district": {
         "bn": "জেলা",
@@ -742,10 +720,6 @@
     "legend": {
       "district": {
         "bn": "রং করা জেলা: গোষ্ঠীর প্রধান বসতি",
-        "approved": true
-      },
-      "institute": {
-        "bn": "সাংস্কৃতিক প্রতিষ্ঠান",
         "approved": true
       }
     },
@@ -3290,7 +3264,8 @@
             "at": "decision of 2026-10-08: the six without a cited point sit at the district"
           }
         ]
-      }
+      },
+      "number": 1
     },
     {
       "id": "knsi-rangamati",
@@ -3351,7 +3326,8 @@
             "at": "node 4707811087"
           }
         ]
-      }
+      },
+      "number": 2
     },
     {
       "id": "knsi-bandarban",
@@ -3410,7 +3386,8 @@
             "at": "decision of 2026-10-08: the six without a cited point sit at the district"
           }
         ]
-      }
+      },
+      "number": 3
     },
     {
       "id": "cox-cultural-centre",
@@ -3446,7 +3423,8 @@
             "at": "«যোগাযোগ ম্যাপ» page: embedded Google map iframe, pb=…!2d91.9759181!3d21.428469…!2sCox's Bazar Cultural Centre"
           }
         ]
-      }
+      },
+      "number": 4
     },
     {
       "id": "knsi-khagrachari",
@@ -3482,7 +3460,8 @@
             "at": "home page: embedded Google map iframe, pb=…!2d91.97164141428433!3d23.1186918185317…!2sKhudra Nrigostir Sangskritic Institute, Khagrachari"
           }
         ]
-      }
+      },
+      "number": 5
     },
     {
       "id": "knca-rajshahi",
@@ -3522,7 +3501,8 @@
             "at": "way 1058731398"
           }
         ]
-      }
+      },
+      "number": 6
     },
     {
       "id": "manipuri-lalitkala-academy",
@@ -3571,7 +3551,8 @@
             "at": "decision of 2026-10-08: the six without a cited point sit at the district"
           }
         ]
-      }
+      },
+      "number": 7
     },
     {
       "id": "knsp-haluaghat",
@@ -3614,7 +3595,8 @@
             "at": "decision of 2026-10-08: the six without a cited point sit at the district"
           }
         ]
-      }
+      },
+      "number": 8
     },
     {
       "id": "knsp-dinajpur",
@@ -3653,7 +3635,8 @@
             "at": "decision of 2026-10-08: the six without a cited point sit at the district"
           }
         ]
-      }
+      },
+      "number": 9
     },
     {
       "id": "knsp-naogaon",
@@ -3692,170 +3675,30 @@
             "at": "decision of 2026-10-08: the six without a cited point sit at the district"
           }
         ]
-      }
+      },
+      "number": 10
     }
   ],
-  "districtGroups": {
-    "BD1004": [
-      "rakhain"
+  "institutesOrder": {
+    "cite": [
+      {
+        "source": "mocaInstitutes",
+        "at": "the list of offices and institutes, rows 13 to 22, in that order: 1 = row 13, 10 = row 22"
+      }
     ],
-    "BD1006": [],
-    "BD1009": [],
-    "BD1042": [],
-    "BD1078": [],
-    "BD1079": [],
-    "BD2003": [
-      "marma",
-      "tripura",
-      "mro",
-      "tonchonga",
-      "bom"
+    "note": "the map numbers the institutes 1 to 10, in Bengali numerals, in this order (the user's decision, 2026-10-08); the numbering is formatting, not text"
+  },
+  "tabs": {
+    "order": [
+      "hill",
+      "plains",
+      "institutes"
     ],
-    "BD2012": [],
-    "BD2013": [],
-    "BD2015": [
-      "tripura"
-    ],
-    "BD2019": [],
-    "BD2022": [
-      "rakhain"
-    ],
-    "BD2030": [],
-    "BD2046": [
-      "chakma",
-      "marma",
-      "tripura"
-    ],
-    "BD2051": [],
-    "BD2075": [],
-    "BD2084": [
-      "chakma",
-      "marma",
-      "tonchonga"
-    ],
-    "BD3026": [
-      "garo"
-    ],
-    "BD3029": [
-      "malo"
-    ],
-    "BD3033": [
-      "barman",
-      "koch"
-    ],
-    "BD3035": [],
-    "BD3048": [],
-    "BD3054": [],
-    "BD3056": [],
-    "BD3059": [],
-    "BD3067": [],
-    "BD3068": [],
-    "BD3082": [
-      "bagdi"
-    ],
-    "BD3086": [],
-    "BD3093": [
-      "garo",
-      "barman",
-      "koch"
-    ],
-    "BD4001": [],
-    "BD4018": [],
-    "BD4041": [
-      "malo"
-    ],
-    "BD4044": [
-      "koch",
-      "bagdi"
-    ],
-    "BD4047": [],
-    "BD4050": [],
-    "BD4055": [
-      "malo",
-      "bagdi"
-    ],
-    "BD4057": [],
-    "BD4065": [
-      "malo"
-    ],
-    "BD4087": [],
-    "BD4539": [],
-    "BD4561": [
-      "garo",
-      "barman"
-    ],
-    "BD4572": [
-      "garo",
-      "hajong"
-    ],
-    "BD4589": [
-      "garo",
-      "koch"
-    ],
-    "BD5010": [
-      "mahato"
-    ],
-    "BD5038": [
-      "oraon",
-      "munda",
-      "barman",
-      "mahato",
-      "malo"
-    ],
-    "BD5064": [
-      "saontal",
-      "oraon",
-      "munda",
-      "barman",
-      "mahato"
-    ],
-    "BD5069": [],
-    "BD5070": [
-      "saontal",
-      "oraon",
-      "barman"
-    ],
-    "BD5076": [],
-    "BD5081": [
-      "saontal",
-      "oraon"
-    ],
-    "BD5088": [
-      "oraon",
-      "mahato"
-    ],
-    "BD5527": [
-      "saontal"
-    ],
-    "BD5532": [],
-    "BD5549": [],
-    "BD5552": [],
-    "BD5573": [],
-    "BD5577": [],
-    "BD5585": [
-      "oraon"
-    ],
-    "BD5594": [
-      "barman",
-      "koch"
-    ],
-    "BD6036": [
-      "saontal",
-      "munda"
-    ],
-    "BD6058": [
-      "saontal",
-      "oraon",
-      "munda",
-      "monipuri",
-      "mahato",
-      "khasia"
-    ],
-    "BD6090": [
-      "hajong"
-    ],
-    "BD6091": [
-      "monipuri"
-    ]
+    "labels": {
+      "hill": "strings.zone.hill",
+      "plains": "strings.zone.plains",
+      "institutes": "strings.tabs.institutes"
+    },
+    "note": "the user's decision (2026-10-08): the hill tab, the plains tab and the institutes tab, labelled by the approved strings named here; the hill and plains tabs list the groups by the hill rule, unchanged"
   }
 }

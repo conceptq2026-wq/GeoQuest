@@ -481,10 +481,11 @@ State which kind a task is when reporting it.
 - Work in progress (`tools/wip.json`): `bangladesh-ethnic-groups` «বাংলাদেশের ক্ষুদ্র নৃ-গোষ্ঠী», a map
   under বাংলাদেশ:
   - built into `docs/maps/`, on the local preview's home page only;
-  - 19 groups from Census 2022, in three tabs (groups, districts, institutes);
+  - 19 groups from Census 2022, in three tabs: «পাহাড়ি» (6), «সমতল» (13) and «প্রতিষ্ঠান» (10 numbered
+    institutes);
   - its districts drawn from the shared district file through the shell's opt-in `sharedGeometry`
     (2026-10-08, `notes/shell.md`);
-  - all 103 strings approved (2026-10-08, `notes/bangladesh-ethnic-groups.md`).
+  - all 97 strings approved (2026-10-08, `notes/bangladesh-ethnic-groups.md`).
 
 ## Index — notes, read only when working on that item
 

@@ -346,9 +346,67 @@ new wording was checked against the cached passage it cites.
   - The Ministry of Cultural Affairs' page, listed twice before, is listed once.
   - Credit lines: 25 → now 17.
 
+## The tabs restructured (ETH-5, 2026-10-08), the user's feedback
+
+- **Tabs:** «গোষ্ঠী» «জেলা» «প্রতিষ্ঠান» → now «পাহাড়ি» «সমতল» «প্রতিষ্ঠান».
+  - The first two are the approved #15 and #16; «প্রতিষ্ঠান» is #4.
+  - The tab row stays on top, the ‹ picker › row under it, ⓘ under that.
+  - At 320 the three tabs sit in one row, 98, 96 and 104 px wide, each 44 px tall, at 14 px text.
+- **«পাহাড়ি»** lists the 6 hill groups and **«সমতল»** the 13 plains groups, each largest first.
+  - The split is the hill rule's, unchanged: ≥ 50 % in the three hill districts.
+  - Each is a records table of its own (`hill`, `plains`), listed by the existing `byTab` picker term.
+  - «পাহাড়ি» opens on the three hill districts, «সমতল» and «প্রতিষ্ঠান» on Bangladesh, through each tab's
+    `frame`.
+  - Choosing a group colours its districts, frames them and opens its card, as before.
+- **The «জেলা» tab is gone:** its picker, its district cards, its tap source (`districtTap`) and the seed's
+  `districtGroups`. The district fills stay, for a chosen group's districts.
+- **The group card:**
+  - The «অঞ্চল» row is gone.
+  - The share line «তিন পার্বত্য জেলায় …%» sits unlabelled under the population, shown only from 1 %. That
+    covers seven cards: চাকমা ৯৪.১%, মারমা ৯৩.৫%, ত্রিপুরা ৮৫.২%, ম্রো ৯৮.৬%, তঞ্চঙ্গা ৯৩.৪%, বম ৯৩.৩%,
+    রাখাইন ১২.৫%.
+  - «অঞ্চল» (#10) stays in the seed, approved and not drawn: it is not on the user's removal list.
+- **Strings removed** (the user's decision):
+  - #2 «গোষ্ঠী»
+  - #3 «জেলা»
+  - #6 «জেলা বেছে নিন»
+  - #19 «এই জেলায় যেসব গোষ্ঠীর প্রধান বসতি»
+  - #20 «মানচিত্রের ১৯টি গোষ্ঠীর কোনোটির জন্য এই জেলা রং করা হয়নি।»
+  - #25 «সাংস্কৃতিক প্রতিষ্ঠান»
+  - The institute card's «জেলা» row label (#21) stays.
+- **Institutes numbered ১–১০** in the order of the Ministry of Cultural Affairs' list, its rows ১৩–২২
+  (https://moca.gov.bd/pages/static-pages/694032e335ce18e1c0563ee3; the seed's `institutesOrder` and each
+  institute's `number`). The order:
+  - ১ বিরিশিরি, ২ রাঙ্গামাটি, ৩ বান্দরবান, ৪ কক্সবাজার, ৫ খাগড়াছড়ি;
+  - ৬ রাজশাহী, ৭ মনিপুরী ললিতকলা একাডেমি, ৮ হালুয়াঘাট, ৯ দিনাজপুর, ১০ নওগাঁ.
+- **Their drawing and text:**
+  - Each is a numbered disc, 28 px: radius 12 and a 2 px white stroke, dark 3 px when chosen. Its Bengali
+    numeral is white, 14 px.
+  - The tap target is the shell's invisible 44 px disc. No disc is moved off its point.
+  - The picker and the card title read «১. <name>»: formatting, not new text, so no new string.
+  - The fallback institutes keep #23 on their card.
+- **Overlap at the «প্রতিষ্ঠান» opening view** (`tools/.cache/ethnic/eth5/measure.json`). Each tap was made on
+  a fresh load.
+  - **390** (z5.78): no visible discs overlap. 3 pairs of 44 px
+    targets overlap. Closest pairs: ৮–১ 28.8 px, ৩–২ 39.6 px, ৫–২ 41.5 px, ১০–৬ 46.6 px.
+    - Every tap opens its own card: at each disc's centre, and 12 px from it towards an overlapping neighbour.
+  - **320** (z5.48): 1 pair of discs overlaps, ৮ (হালুয়াঘাট)
+    and ১ (বিরিশিরি), by 4.7 px. 4 pairs
+    of targets overlap. Closest pairs: ৮–১ 23.3 px, ৩–২ 32.1 px, ৫–২ 33.6 px, ১০–৬ 37.7 px.
+    - A tap at every centre opens its own card.
+    - On ৮'s and ১'s facing edges a tap opens the other's card: the shell picks the disc nearest the finger.
+  - **Fix options, proposed and not built** (the user chooses):
+    - a tighter opening frame for «প্রতিষ্ঠান», the box of the ten points rather than Bangladesh;
+    - smaller discs at the opening zoom, growing as the map zooms in;
+    - collision-aware numbering: each number beside its disc, the pair's labels kept apart;
+    - a leader line from a number placed clear to its disc.
+- **Checks:** `tools/check.mjs` now steps the picker in every tab whenever the picker lists a table of its own
+  per tab (`byTab`), as it did for tabs that divide one table. No new shell term.
+
 ## Strings
 
-103: ETH-2's 102, less the two removed (#87, #88), plus the two ⓘ headings and the portal line.
+97: ETH-2's 102, less the two removed (#87, #88) and the six removed in ETH-5 (#2, #3, #6, #19, #20, #25), plus
+the two ⓘ headings and the portal line.
 - **All approved; none pending** (the user, 2026-10-08).
 - `tools/verify.mjs`'s rule (a) warns on any that is not while the map is work in progress, and fails a live
   item that serves one.

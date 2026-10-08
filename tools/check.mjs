@@ -782,8 +782,9 @@ async function textFloor(page, summary, fail) {
 
 /** ‹ › and the dropdown: › from the placeholder through every option, then the ends. */
 async function pickerSteps(page, shoot, summary, fail, tabs = 0) {
-  // Tabs that divide the records each list their own: every tab's picker, tab by tab. View tabs list them all.
-  const divided = tabs > 0 && (await page.evaluate('Boolean(window.__shell?.descriptor?.tabs?.records)'));
+  // Tabs that divide the records each list their own: every tab's picker, tab by tab. View tabs list them all — unless
+  // the picker lists a table of its own per tab (`byTab`), when every tab's picker is stepped too.
+  const divided = tabs > 0 && (await page.evaluate('(() => { const d = window.__shell?.descriptor; return Boolean(d?.tabs?.records || (d?.controls ?? []).find((c) => c.type === "picker")?.byTab); })()'));
   let good = 0;
   let total = 0;
   for (let t = 0; t < (divided ? tabs : 1); t++) {

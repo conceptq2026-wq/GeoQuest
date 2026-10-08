@@ -12,10 +12,11 @@
 // district capitals of the pinned COD-AB zip (tools/sources.json, codAbBangladesh) for the institutes no source
 // places. No network. A second build writes the same bytes.
 //
-// Three view tabs over three tables: «গোষ্ঠী» picks a group and colours the districts that are its main
-// settlement (the seed's rule, 80 % + 1,000); «জেলা» picks a district and lists the groups whose main settlement
-// it is; «প্রতিষ্ঠান» shows the ten institutes of the Ministry of Cultural Affairs, as plain dots. Every Bengali word is the
-// seed's; the numbers are written in Bengali digits, grouped as Bengali text groups them (৪,৮৩,৩৬৫).
+// Three view tabs (the user's decision, 2026-10-08): «পাহাড়ি» and «সমতল» each pick one of their groups — the hill
+// rule's split, 6 and 13 — and colour the districts that are its main settlement (the seed's rule, 80 % + 1,000);
+// «প্রতিষ্ঠান» shows the ten institutes of the Ministry of Cultural Affairs as discs numbered ১–১০ in the ministry's
+// order. Every Bengali word is the seed's; the numbers are written in Bengali digits, grouped as Bengali text groups
+// them (৪,৮৩,৩৬৫).
 import fs from 'node:fs';
 import path from 'node:path';
 import { CACHE, zipEntry } from './lib/geo.mjs';
@@ -51,33 +52,34 @@ const union = (boxes) => [Math.min(...boxes.map((b) => b[0])), Math.min(...boxes
 const district = new Map(shared.districts.map((d) => [d.pcode, { ...d, frame: boxOf(d.rings.flat().flatMap((r) => arcs[r < 0 ? ~r : r])) }]));
 if (district.size !== 64) throw new Error(`${district.size} districts in the shared file, not 64`);
 
-// ---- the groups, in the seed's order: the census's, largest first.
-const groups = {};
-for (const g of seed.groups) {
+// ---- the groups, in the seed's order (the census's, largest first), split by the hill rule into the «পাহাড়ি» and
+// «সমতল» tabs' tables (the user's decision, 2026-10-08): no group changes side.
+const SHARE_SHOWN = 1; // the share line shows from 1 % in the three hill districts
+const groupRow = (g) => {
   const ds = g.districts.map((d) => { if (!district.has(d.pcode)) throw new Error(`${g.id}: no district ${d.pcode}`); return d; });
-  const zone = `${S.zone[g.zone.value].bn} (${S.templates.zoneShare.bn.replace('{share}', bnShare(g.zone.chtShare))})`;
-  groups[g.id] = {
+  return {
     nameBn: g.name.bn,
     populationBn: S.templates.population.bn.replace('{n}', bnCount(g.population.value)),
+    ...(g.zone.chtShare >= SHARE_SHOWN ? { shareBn: S.templates.zoneShare.bn.replace('{share}', bnShare(g.zone.chtShare)) } : {}),
     districtsBn: ds.map((d) => `${district.get(d.pcode).bn} (${bnCount(d.count)})`).join(', '),
-    zoneBn: zone,
     ...(g.language ? { language: g.language.bn } : {}),
     ...(g.religion ? { religion: g.religion.bn } : {}),
     ...(g.festivals ? { festivals: g.festivals.bn } : {}),
     frame: union(ds.map((d) => district.get(d.pcode).frame)),
     districts: ds.map((d) => d.pcode),
   };
-}
+};
+const hill = Object.fromEntries(seed.groups.filter((g) => g.zone.value === 'hill').map((g) => [g.id, groupRow(g)]));
+const plains = Object.fromEntries(seed.groups.filter((g) => g.zone.value === 'plains').map((g) => [g.id, groupRow(g)]));
+if (Object.keys(hill).length !== 6 || Object.keys(plains).length !== 13) throw new Error(`hill ${Object.keys(hill).length}, plains ${Object.keys(plains).length}: not 6 and 13`);
 
-// ---- the districts, in Bengali alphabetical order; a district no group's main settlement says so in one line.
-const mainOf = new Map([...district.keys()].map((p) => [p, seed.groups.filter((g) => g.districts.some((d) => d.pcode === p)).map((g) => g.id)]));
-if (JSON.stringify(Object.fromEntries(mainOf)) !== JSON.stringify(seed.districtGroups)) throw new Error('the seed\'s district tab disagrees with its groups');
-const districts = {};
-for (const d of [...district.values()].sort((a, b) => a.bn.localeCompare(b.bn, 'bn'))) {
-  districts[d.pcode] = { nameBn: d.bn, frame: d.frame, ...(mainOf.get(d.pcode).length ? { legendKind: 'main' } : { emptyBn: S.districtCard.empty.bn }) };
-}
+// ---- the districts: only what the fills need (each joined by pcode; a district that is some group's main
+// settlement carries the legend's kind). The «জেলা» tab is gone (2026-10-08).
+const main = new Set(seed.groups.flatMap((g) => g.districts.map((d) => d.pcode)));
+const districts = Object.fromEntries([...district.keys()].sort().map((p) => [p, main.has(p) ? { legendKind: 'main' } : {}]));
 
-// ---- the institutes, in the ministry's order. A cited point, or the district's capital (COD-AB).
+// ---- the institutes, numbered ১–১০ in the ministry's order (seed.institutesOrder). A cited point, or the
+// district's capital (COD-AB).
 const capitals = zipEntry(fs.readFileSync(path.join(CACHE, 'bgd_admin_boundaries.geojson.zip')), 'bgd_admincapitals.geojson').features;
 const capitalOf = (pcode) => {
   const d = district.get(pcode);
@@ -88,21 +90,28 @@ const capitalOf = (pcode) => {
 const institutes = {};
 for (const i of seed.institutes) {
   const at = i.location.kind === 'district' ? capitalOf(i.district.pcode) : [i.location.lon, i.location.lat];
+  const num = bnDigits(i.number);
   institutes[i.id] = {
-    nameBn: i.name.bn,
+    numBn: num,
+    labelBn: `${num}. ${i.name.bn}`,
     districtBn: district.get(i.district.pcode).bn,
     ...(i.groupsNamed ? { namedBn: i.groupsNamed.names.join(', ') } : {}),
     ...(i.location.kind === 'district' ? { locationBn: S.instituteCard.locationMissing.bn } : {}),
     at,
     frame: [at[0] - 0.12, at[1] - 0.1, at[0] + 0.12, at[1] + 0.1].map(round),
-    groups: seed.groups.filter((g) => g.institutes.includes(i.id)).map((g) => g.id),
+    hill: seed.groups.filter((g) => g.institutes.includes(i.id) && g.zone.value === 'hill').map((g) => g.id),
+    plains: seed.groups.filter((g) => g.institutes.includes(i.id) && g.zone.value === 'plains').map((g) => g.id),
   };
 }
+if (JSON.stringify(Object.values(institutes).map((i) => i.numBn)) !== JSON.stringify([...Array(10)].map((_, k) => bnDigits(k + 1)))) throw new Error('the institutes are not numbered ১–১০ in order');
 
+// ---- the tabs: «পাহাড়ি» opens on the three hill districts, «সমতল» and «প্রতিষ্ঠান» on Bangladesh.
+const BANGLADESH = [88.0, 20.55, 92.7, 26.65];
+const HILL_DISTRICTS = union(['BD2084', 'BD2046', 'BD2003'].map((p) => district.get(p).frame));
 const tabs = {
-  groups: { titleBn: S.tabs.groups.bn, placeholderBn: S.pickers.groups.bn },
-  districts: { titleBn: S.tabs.districts.bn, placeholderBn: S.pickers.districts.bn },
-  institutes: { titleBn: S.tabs.institutes.bn, placeholderBn: S.pickers.institutes.bn },
+  hill: { titleBn: S.zone.hill.bn, placeholderBn: S.pickers.groups.bn, frame: HILL_DISTRICTS },
+  plains: { titleBn: S.zone.plains.bn, placeholderBn: S.pickers.groups.bn, frame: BANGLADESH },
+  institutes: { titleBn: S.tabs.institutes.bn, placeholderBn: S.pickers.institutes.bn, frame: BANGLADESH },
 };
 
 // ---- credits: every source a shown fact cites, as an https link; Banglapedia once, as a source only.
@@ -134,94 +143,88 @@ const CODAB = `Bangladesh administrative boundaries (COD-AB v03): Bangladesh Bur
 const OSM = '© <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>';
 
 const go = [{ action: 'select' }, { action: 'fitBounds', field: 'frame', clear: ['sheet'], duration: 900 }];
-const pick = (from, placeholder) => ({ from, label: { field: 'nameBn' }, placeholder, do: go });
+const pick = (from, placeholder, label = 'nameBn') => ({ from, label: { field: label }, placeholder, do: go });
+const groupFields = {
+  nameBn: { type: 'text', required: true }, populationBn: { type: 'text', required: true }, shareBn: { type: 'text' }, districtsBn: { type: 'text', required: true },
+  language: { type: 'text' }, religion: { type: 'text' }, festivals: { type: 'text' },
+  frame: { type: 'bbox', required: true }, districts: { type: 'refs', to: 'districts', display: false },
+};
+// One card for both group tables; the share line sits right under the population, unlabelled, where it shows.
+const groupSheet = (listField) => ({
+  title: { field: 'nameBn' },
+  rows: [
+    { label: S.groupCard.population.bn, field: 'populationBn' },
+    { field: 'shareBn' },
+    { label: S.groupCard.districts.bn, field: 'districtsBn', stacked: true },
+    { label: S.groupCard.language.bn, field: 'language', stacked: true },
+    { label: S.groupCard.religion.bn, field: 'religion', stacked: true },
+    { label: S.groupCard.festivals.bn, field: 'festivals', stacked: true },
+    { label: S.groupCard.institutes.bn, referencedBy: { records: 'institutes', listField }, item: { field: 'labelBn' }, stacked: true, do: go },
+  ],
+});
 const descriptor = {
   schema: 'geoquest/map-descriptor@1',
   id: ID,
   section: 'bangladesh',
   title: { bn: seed.title.bn, en: 'Ethnic Groups of Bangladesh' },
   basemap: 'bangladesh-wide',
-  view: { fitBounds: [88.0, 20.55, 92.7, 26.65] },
+  view: { fitBounds: HILL_DISTRICTS },
   constraints: { maxZoom: 11, maxBounds: [86, 19, 95, 28] },
   minTextSize: 14,
   frameClearsControls: true,
   sheetMaxHeight: 0.5,
   records: {
-    tabs: { file: './tabs.json', fields: { titleBn: { type: 'text', required: true }, placeholderBn: { type: 'text', required: true } } },
-    groups: {
-      file: './groups.json',
-      fields: {
-        nameBn: { type: 'text', required: true }, populationBn: { type: 'text', required: true }, districtsBn: { type: 'text', required: true },
-        zoneBn: { type: 'text', required: true }, language: { type: 'text' }, religion: { type: 'text' }, festivals: { type: 'text' },
-        frame: { type: 'bbox', required: true }, districts: { type: 'refs', to: 'districts', display: false },
-      },
-    },
-    districts: { file: './districts.json', fields: { nameBn: { type: 'text', required: true }, frame: { type: 'bbox', required: true }, emptyBn: { type: 'text' }, legendKind: { type: 'text', display: false } } },
+    tabs: { file: './tabs.json', fields: { titleBn: { type: 'text', required: true }, placeholderBn: { type: 'text', required: true }, frame: { type: 'bbox', required: true } } },
+    hill: { file: './hill.json', fields: groupFields },
+    plains: { file: './plains.json', fields: groupFields },
+    districts: { file: './districts.json', fields: { legendKind: { type: 'text', display: false } } },
     institutes: {
       file: './institutes.json',
       fields: {
-        nameBn: { type: 'text', required: true }, districtBn: { type: 'text', required: true }, namedBn: { type: 'text' }, locationBn: { type: 'text' },
-        at: { type: 'point', required: true }, frame: { type: 'bbox', required: true }, groups: { type: 'refs', to: 'groups', display: false },
+        numBn: { type: 'text', required: true, display: false }, labelBn: { type: 'text', required: true }, districtBn: { type: 'text', required: true }, namedBn: { type: 'text' }, locationBn: { type: 'text' },
+        at: { type: 'point', required: true }, frame: { type: 'bbox', required: true }, hill: { type: 'refs', to: 'hill', display: false }, plains: { type: 'refs', to: 'plains', display: false },
       },
     },
   },
   sources: {
-    districtFill: { records: 'districts', sharedGeometry: 'bangladesh-districts.json', joinField: 'pcode', state: [{ name: 'inGroup', fromSelection: { records: 'groups', listField: 'districts' } }], attribution: CODAB },
-    districtTap: { records: 'districts', sharedGeometry: 'bangladesh-districts.json', joinField: 'pcode', state: ['selected'], attribution: CODAB },
-    institutes: { records: 'institutes', geometryFrom: 'at', state: ['selected'], properties: ['nameBn'], selectionMarker: true, tapWidth: 44, attribution: OSM },
+    districtFill: {
+      records: 'districts', sharedGeometry: 'bangladesh-districts.json', joinField: 'pcode',
+      state: [{ name: 'inHill', fromSelection: { records: 'hill', listField: 'districts' } }, { name: 'inPlains', fromSelection: { records: 'plains', listField: 'districts' } }],
+      attribution: CODAB,
+    },
+    institutes: { records: 'institutes', geometryFrom: 'at', state: ['selected'], properties: ['numBn'], selectionMarker: true, tapWidth: 44, attribution: OSM },
   },
   layers: [
-    { id: 'district-group-fill', type: 'fill', source: 'districtFill', slot: 'belowLabels', filter: ['get', 'inGroup'], paint: { 'fill-color': '#0072B2', 'fill-opacity': 0.45 } },
-    { id: 'district-group-line', type: 'line', source: 'districtFill', slot: 'belowLabels', filter: ['get', 'inGroup'], layout: { 'line-join': 'round' }, paint: { 'line-color': '#0b3d91', 'line-width': 1.5 } },
-    { id: 'district-chosen-halo', type: 'line', source: 'districtTap', slot: 'aboveLabels', filter: ['get', 'selected'], layout: { 'line-join': 'round' }, paint: { 'line-color': '#ffffff', 'line-width': 5 } },
-    { id: 'district-chosen-line', type: 'line', source: 'districtTap', slot: 'aboveLabels', filter: ['get', 'selected'], layout: { 'line-join': 'round' }, paint: { 'line-color': '#111827', 'line-width': 2.5 } },
-    // A plain circle, as org-members' country dots are drawn (radius, stroke and the chosen one's), in one colour: no
-    // image file. Its tap target is the shell's invisible 44 px disc (tapWidth).
-    { id: 'institute-markers', type: 'circle', source: 'institutes', slot: 'aboveLabels', paint: { 'circle-radius': ['case', ['get', 'selected'], 7, 6], 'circle-color': '#D55E00', 'circle-stroke-width': ['case', ['get', 'selected'], 3, 2], 'circle-stroke-color': ['case', ['get', 'selected'], '#111827', '#ffffff'] } },
+    { id: 'district-group-fill', type: 'fill', source: 'districtFill', slot: 'belowLabels', filter: ['any', ['get', 'inHill'], ['get', 'inPlains']], paint: { 'fill-color': '#0072B2', 'fill-opacity': 0.45 } },
+    { id: 'district-group-line', type: 'line', source: 'districtFill', slot: 'belowLabels', filter: ['any', ['get', 'inHill'], ['get', 'inPlains']], layout: { 'line-join': 'round' }, paint: { 'line-color': '#0b3d91', 'line-width': 1.5 } },
+    // A numbered disc: 28 px across (radius 12 and a 2 px white stroke; the chosen one's stroke dark and 3 px), in
+    // one colour, its number in Bengali at 14 px over it. No image file; the tap target is the shell's invisible
+    // 44 px disc (tapWidth). Every disc stays at its sourced point.
+    { id: 'institute-markers', type: 'circle', source: 'institutes', slot: 'aboveLabels', paint: { 'circle-radius': 12, 'circle-color': '#D55E00', 'circle-stroke-width': ['case', ['get', 'selected'], 3, 2], 'circle-stroke-color': ['case', ['get', 'selected'], '#111827', '#ffffff'] } },
+    { id: 'institute-numbers', type: 'symbol', source: 'institutes', slot: 'aboveLabels', layout: { 'text-field': ['get', 'numBn'], 'text-font': ['Noto Sans Bengali'], 'text-size': 14, 'text-allow-overlap': true, 'text-ignore-placement': true }, paint: { 'text-color': '#ffffff' } },
   ],
-  controls: [{ type: 'picker', ...pick('groups', S.pickers.groups.bn), byTab: { groups: pick('groups', S.pickers.groups.bn), districts: pick('districts', S.pickers.districts.bn), institutes: pick('institutes', S.pickers.institutes.bn) } }],
-  interactions: [
-    { on: 'click', target: 'source:districtTap', do: go },
-    { on: 'click', target: 'source:institutes', do: go },
-  ],
+  controls: [{ type: 'picker', ...pick('hill', S.pickers.groups.bn), byTab: { hill: pick('hill', S.pickers.groups.bn), plains: pick('plains', S.pickers.groups.bn), institutes: pick('institutes', S.pickers.institutes.bn, 'labelBn') } }],
+  interactions: [{ on: 'click', target: 'source:institutes', do: go }],
   tabs: {
-    from: 'tabs', label: { field: 'titleBn' }, placeholder: { field: 'placeholderBn' },
+    from: 'tabs', label: { field: 'titleBn' }, placeholder: { field: 'placeholderBn' }, frame: { field: 'frame' },
     views: {
-      groups: { hide: { sources: ['districtTap', 'institutes'] } },
-      districts: { hide: { sources: ['institutes'] } },
-      institutes: { hide: { sources: ['districtTap', 'districtFill'] } },
+      hill: { hide: { sources: ['institutes'] } },
+      plains: { hide: { sources: ['institutes'] } },
+      institutes: { hide: { sources: ['districtFill'] } },
     },
   },
   legend: {
-    // The legend draws a line or an image only: the institutes' dots have no row (their tab names them), so
-    // S.legend.institute is not drawn.
+    // The legend draws a line or an image only: the institutes' discs have no row (their tab names them).
     items: [{ kind: 'main', label: S.legend.district.bn, line: { color: '#0072B2', width: 8 } }],
-    kinds: [{ records: 'districts', field: 'legendKind', tab: 'groups' }],
+    kinds: [{ records: 'districts', field: 'legendKind', tab: 'hill' }, { records: 'districts', field: 'legendKind', tab: 'plains' }],
   },
   info: { file: './info.json', headings: { sources: S.infoHeadings.sources.bn, notes: S.infoHeadings.notes.bn, conflicts: '' } },
   attribution: { extra },
   sheets: {
-    groups: {
-      title: { field: 'nameBn' },
-      rows: [
-        { label: S.groupCard.population.bn, field: 'populationBn' },
-        { label: S.groupCard.districts.bn, field: 'districtsBn', stacked: true },
-        { label: S.groupCard.zone.bn, field: 'zoneBn' },
-        { label: S.groupCard.language.bn, field: 'language', stacked: true },
-        { label: S.groupCard.religion.bn, field: 'religion', stacked: true },
-        { label: S.groupCard.festivals.bn, field: 'festivals', stacked: true },
-        { label: S.groupCard.institutes.bn, referencedBy: { records: 'institutes', listField: 'groups' }, item: { field: 'nameBn' }, stacked: true, do: go },
-      ],
-    },
-    districts: {
-      title: { field: 'nameBn' },
-      rows: [
-        { label: S.districtCard.groups.bn, referencedBy: { records: 'groups', listField: 'districts' }, item: { field: 'nameBn' }, stacked: true, do: go },
-        { label: S.districtCard.groups.bn, field: 'emptyBn', stacked: true },
-      ],
-    },
+    hill: groupSheet('hill'),
+    plains: groupSheet('plains'),
     institutes: {
-      title: { field: 'nameBn' },
+      title: { field: 'labelBn' },
       subtitle: { field: 'locationBn' },
       rows: [
         { label: S.instituteCard.district.bn, field: 'districtBn' },
@@ -234,7 +237,8 @@ const descriptor = {
 const files = {
   'descriptor.json': descriptor,
   'tabs.json': tabs,
-  'groups.json': groups,
+  'hill.json': hill,
+  'plains.json': plains,
   'districts.json': districts,
   'institutes.json': institutes,
   'info.json': { lines: seed.info.map((l) => ({ text: l.bn, group: 'notes' })) },
@@ -251,5 +255,5 @@ const walk = (v, where) => {
   for (const [k, x] of Object.entries(v)) walk(x, `${where}.${k}`);
 };
 walk(seed, 'seed');
-console.log(`${Object.keys(groups).length} groups, ${Object.keys(districts).length} districts (${Object.values(districts).filter((d) => d.emptyBn).length} empty), ${Object.keys(institutes).length} institutes (${Object.values(institutes).filter((i) => i.locationBn).length} at their district), ${extra.length} credits`);
+console.log(`${Object.keys(hill).length} hill and ${Object.keys(plains).length} plains groups, ${Object.keys(districts).length} districts (${Object.values(districts).filter((d) => d.legendKind).length} some group's main settlement), ${Object.keys(institutes).length} institutes numbered ১–১০ (${Object.values(institutes).filter((i) => i.locationBn).length} at their district), ${extra.length} credits`);
 console.log(`${pending.length} Bengali strings await approval (approved: false):\n  ${pending.join('\n  ')}`);

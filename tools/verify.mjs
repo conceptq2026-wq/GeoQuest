@@ -1563,8 +1563,9 @@ console.log('\n---- bangladesh-ethnic-groups: seed (draft) ----');
   check(JSON.stringify(seed.groups.map((g) => g.id)) === JSON.stringify(GROUPS), `${EG}: the ${GROUPS.length} groups the user chose (2026-10-08), in census order`);
   const shared = new Map(JSON.parse(fs.readFileSync(path.join(SERVED, 'shared/bangladesh-districts.json'), 'utf8')).districts.map((d) => [d.pcode, d]));
   const badDistricts = seed.groups.flatMap((g) => g.districts.filter((d) => !shared.has(d.pcode) || d.bbsCode !== d.pcode.slice(-2) || !(d.count >= 1000)).map((d) => `${g.id}/${d.pcode}`));
-  const tab = Object.fromEntries([...shared.keys()].map((p) => [p, seed.groups.filter((g) => g.districts.some((d) => d.pcode === p)).map((g) => g.id)]));
-  check(badDistricts.length === 0 && seed.groups.every((g) => g.districts.length > 0) && JSON.stringify(seed.districtGroups) === JSON.stringify(tab), `${EG}: every district is a pcode of docs/shared/bangladesh-districts.json with ≥ 1,000 of the group (${seed.groups.reduce((s, g) => s + g.districts.length, 0)}), and the district tab lists all 64 districts as the records say (${Object.values(tab).filter((g) => !g.length).length} empty)${badDistricts.length ? ` — not: ${badDistricts.join(', ')}` : ''}`);
+  check(badDistricts.length === 0 && seed.groups.every((g) => g.districts.length > 0) && !('districtGroups' in seed), `${EG}: every district is a pcode of docs/shared/bangladesh-districts.json with ≥ 1,000 of the group (${seed.groups.reduce((s, g) => s + g.districts.length, 0)}); no «জেলা» tab data (removed 2026-10-08)${badDistricts.length ? ` — not: ${badDistricts.join(', ')}` : ''}`);
+  // The institutes, numbered ১–১০ in the order of the ministry's list (its rows ১৩–২২), which each name's citation gives.
+  check(seed.institutes.every((i, k) => i.number === k + 1 && i.name.cite[0].at === `row ${k + 13}`) && seed.institutesOrder?.cite?.[0]?.source === 'mocaInstitutes', `${EG}: the ${seed.institutes.length} institutes numbered 1–${seed.institutes.length} in the ministry's order (rows 13–22), the order cited`);
   // Every fact cites a source with a URL, or the user; card facts say whether their source is official or Banglapedia.
   const cites = [];
   const facts = [];

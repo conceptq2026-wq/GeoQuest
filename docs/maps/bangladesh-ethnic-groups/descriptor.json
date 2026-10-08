@@ -9,10 +9,10 @@
   "basemap": "bangladesh-wide",
   "view": {
     "fitBounds": [
-      88,
-      20.55,
-      92.7,
-      26.65
+      91.7104,
+      21.1835,
+      92.6796,
+      23.7391
     ]
   },
   "constraints": {
@@ -38,11 +38,15 @@
         "placeholderBn": {
           "type": "text",
           "required": true
+        },
+        "frame": {
+          "type": "bbox",
+          "required": true
         }
       }
     },
-    "groups": {
-      "file": "./groups.json",
+    "hill": {
+      "file": "./hill.json",
       "fields": {
         "nameBn": {
           "type": "text",
@@ -52,11 +56,48 @@
           "type": "text",
           "required": true
         },
+        "shareBn": {
+          "type": "text"
+        },
         "districtsBn": {
           "type": "text",
           "required": true
         },
-        "zoneBn": {
+        "language": {
+          "type": "text"
+        },
+        "religion": {
+          "type": "text"
+        },
+        "festivals": {
+          "type": "text"
+        },
+        "frame": {
+          "type": "bbox",
+          "required": true
+        },
+        "districts": {
+          "type": "refs",
+          "to": "districts",
+          "display": false
+        }
+      }
+    },
+    "plains": {
+      "file": "./plains.json",
+      "fields": {
+        "nameBn": {
+          "type": "text",
+          "required": true
+        },
+        "populationBn": {
+          "type": "text",
+          "required": true
+        },
+        "shareBn": {
+          "type": "text"
+        },
+        "districtsBn": {
           "type": "text",
           "required": true
         },
@@ -83,17 +124,6 @@
     "districts": {
       "file": "./districts.json",
       "fields": {
-        "nameBn": {
-          "type": "text",
-          "required": true
-        },
-        "frame": {
-          "type": "bbox",
-          "required": true
-        },
-        "emptyBn": {
-          "type": "text"
-        },
         "legendKind": {
           "type": "text",
           "display": false
@@ -103,7 +133,12 @@
     "institutes": {
       "file": "./institutes.json",
       "fields": {
-        "nameBn": {
+        "numBn": {
+          "type": "text",
+          "required": true,
+          "display": false
+        },
+        "labelBn": {
           "type": "text",
           "required": true
         },
@@ -125,9 +160,14 @@
           "type": "bbox",
           "required": true
         },
-        "groups": {
+        "hill": {
           "type": "refs",
-          "to": "groups",
+          "to": "hill",
+          "display": false
+        },
+        "plains": {
+          "type": "refs",
+          "to": "plains",
           "display": false
         }
       }
@@ -140,21 +180,19 @@
       "joinField": "pcode",
       "state": [
         {
-          "name": "inGroup",
+          "name": "inHill",
           "fromSelection": {
-            "records": "groups",
+            "records": "hill",
+            "listField": "districts"
+          }
+        },
+        {
+          "name": "inPlains",
+          "fromSelection": {
+            "records": "plains",
             "listField": "districts"
           }
         }
-      ],
-      "attribution": "Bangladesh administrative boundaries (COD-AB v03): Bangladesh Bureau of Statistics / OCHA, <a href=\"https://data.humdata.org/dataset/401d3fae-4262-48c9-891f-461fd776d49b\" target=\"_blank\" rel=\"noopener noreferrer\">CC BY-IGO 3.0</a>"
-    },
-    "districtTap": {
-      "records": "districts",
-      "sharedGeometry": "bangladesh-districts.json",
-      "joinField": "pcode",
-      "state": [
-        "selected"
       ],
       "attribution": "Bangladesh administrative boundaries (COD-AB v03): Bangladesh Bureau of Statistics / OCHA, <a href=\"https://data.humdata.org/dataset/401d3fae-4262-48c9-891f-461fd776d49b\" target=\"_blank\" rel=\"noopener noreferrer\">CC BY-IGO 3.0</a>"
     },
@@ -165,7 +203,7 @@
         "selected"
       ],
       "properties": [
-        "nameBn"
+        "numBn"
       ],
       "selectionMarker": true,
       "tapWidth": 44,
@@ -179,8 +217,15 @@
       "source": "districtFill",
       "slot": "belowLabels",
       "filter": [
-        "get",
-        "inGroup"
+        "any",
+        [
+          "get",
+          "inHill"
+        ],
+        [
+          "get",
+          "inPlains"
+        ]
       ],
       "paint": {
         "fill-color": "#0072B2",
@@ -193,8 +238,15 @@
       "source": "districtFill",
       "slot": "belowLabels",
       "filter": [
-        "get",
-        "inGroup"
+        "any",
+        [
+          "get",
+          "inHill"
+        ],
+        [
+          "get",
+          "inPlains"
+        ]
       ],
       "layout": {
         "line-join": "round"
@@ -205,54 +257,12 @@
       }
     },
     {
-      "id": "district-chosen-halo",
-      "type": "line",
-      "source": "districtTap",
-      "slot": "aboveLabels",
-      "filter": [
-        "get",
-        "selected"
-      ],
-      "layout": {
-        "line-join": "round"
-      },
-      "paint": {
-        "line-color": "#ffffff",
-        "line-width": 5
-      }
-    },
-    {
-      "id": "district-chosen-line",
-      "type": "line",
-      "source": "districtTap",
-      "slot": "aboveLabels",
-      "filter": [
-        "get",
-        "selected"
-      ],
-      "layout": {
-        "line-join": "round"
-      },
-      "paint": {
-        "line-color": "#111827",
-        "line-width": 2.5
-      }
-    },
-    {
       "id": "institute-markers",
       "type": "circle",
       "source": "institutes",
       "slot": "aboveLabels",
       "paint": {
-        "circle-radius": [
-          "case",
-          [
-            "get",
-            "selected"
-          ],
-          7,
-          6
-        ],
+        "circle-radius": 12,
         "circle-color": "#D55E00",
         "circle-stroke-width": [
           "case",
@@ -273,12 +283,33 @@
           "#ffffff"
         ]
       }
+    },
+    {
+      "id": "institute-numbers",
+      "type": "symbol",
+      "source": "institutes",
+      "slot": "aboveLabels",
+      "layout": {
+        "text-field": [
+          "get",
+          "numBn"
+        ],
+        "text-font": [
+          "Noto Sans Bengali"
+        ],
+        "text-size": 14,
+        "text-allow-overlap": true,
+        "text-ignore-placement": true
+      },
+      "paint": {
+        "text-color": "#ffffff"
+      }
     }
   ],
   "controls": [
     {
       "type": "picker",
-      "from": "groups",
+      "from": "hill",
       "label": {
         "field": "nameBn"
       },
@@ -297,8 +328,8 @@
         }
       ],
       "byTab": {
-        "groups": {
-          "from": "groups",
+        "hill": {
+          "from": "hill",
           "label": {
             "field": "nameBn"
           },
@@ -317,12 +348,12 @@
             }
           ]
         },
-        "districts": {
-          "from": "districts",
+        "plains": {
+          "from": "plains",
           "label": {
             "field": "nameBn"
           },
-          "placeholder": "জেলা বেছে নিন",
+          "placeholder": "গোষ্ঠী বেছে নিন",
           "do": [
             {
               "action": "select"
@@ -340,7 +371,7 @@
         "institutes": {
           "from": "institutes",
           "label": {
-            "field": "nameBn"
+            "field": "labelBn"
           },
           "placeholder": "প্রতিষ্ঠান বেছে নিন",
           "do": [
@@ -361,23 +392,6 @@
     }
   ],
   "interactions": [
-    {
-      "on": "click",
-      "target": "source:districtTap",
-      "do": [
-        {
-          "action": "select"
-        },
-        {
-          "action": "fitBounds",
-          "field": "frame",
-          "clear": [
-            "sheet"
-          ],
-          "duration": 900
-        }
-      ]
-    },
     {
       "on": "click",
       "target": "source:institutes",
@@ -404,16 +418,18 @@
     "placeholder": {
       "field": "placeholderBn"
     },
+    "frame": {
+      "field": "frame"
+    },
     "views": {
-      "groups": {
+      "hill": {
         "hide": {
           "sources": [
-            "districtTap",
             "institutes"
           ]
         }
       },
-      "districts": {
+      "plains": {
         "hide": {
           "sources": [
             "institutes"
@@ -423,7 +439,6 @@
       "institutes": {
         "hide": {
           "sources": [
-            "districtTap",
             "districtFill"
           ]
         }
@@ -445,7 +460,12 @@
       {
         "records": "districts",
         "field": "legendKind",
-        "tab": "groups"
+        "tab": "hill"
+      },
+      {
+        "records": "districts",
+        "field": "legendKind",
+        "tab": "plains"
       }
     ]
   },
@@ -479,7 +499,7 @@
     ]
   },
   "sheets": {
-    "groups": {
+    "hill": {
       "title": {
         "field": "nameBn"
       },
@@ -489,13 +509,12 @@
           "field": "populationBn"
         },
         {
+          "field": "shareBn"
+        },
+        {
           "label": "প্রধান জেলা",
           "field": "districtsBn",
           "stacked": true
-        },
-        {
-          "label": "অঞ্চল",
-          "field": "zoneBn"
         },
         {
           "label": "ভাষা",
@@ -516,10 +535,10 @@
           "label": "সাংস্কৃতিক প্রতিষ্ঠান",
           "referencedBy": {
             "records": "institutes",
-            "listField": "groups"
+            "listField": "hill"
           },
           "item": {
-            "field": "nameBn"
+            "field": "labelBn"
           },
           "stacked": true,
           "do": [
@@ -538,19 +557,46 @@
         }
       ]
     },
-    "districts": {
+    "plains": {
       "title": {
         "field": "nameBn"
       },
       "rows": [
         {
-          "label": "এই জেলায় যেসব গোষ্ঠীর প্রধান বসতি",
+          "label": "জনসংখ্যা (২০২২)",
+          "field": "populationBn"
+        },
+        {
+          "field": "shareBn"
+        },
+        {
+          "label": "প্রধান জেলা",
+          "field": "districtsBn",
+          "stacked": true
+        },
+        {
+          "label": "ভাষা",
+          "field": "language",
+          "stacked": true
+        },
+        {
+          "label": "ধর্ম",
+          "field": "religion",
+          "stacked": true
+        },
+        {
+          "label": "উৎসব ও সংস্কৃতি",
+          "field": "festivals",
+          "stacked": true
+        },
+        {
+          "label": "সাংস্কৃতিক প্রতিষ্ঠান",
           "referencedBy": {
-            "records": "groups",
-            "listField": "districts"
+            "records": "institutes",
+            "listField": "plains"
           },
           "item": {
-            "field": "nameBn"
+            "field": "labelBn"
           },
           "stacked": true,
           "do": [
@@ -566,17 +612,12 @@
               "duration": 900
             }
           ]
-        },
-        {
-          "label": "এই জেলায় যেসব গোষ্ঠীর প্রধান বসতি",
-          "field": "emptyBn",
-          "stacked": true
         }
       ]
     },
     "institutes": {
       "title": {
-        "field": "nameBn"
+        "field": "labelBn"
       },
       "subtitle": {
         "field": "locationBn"
