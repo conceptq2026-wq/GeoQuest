@@ -49,7 +49,7 @@ export async function mount(api) {
   for (const t of [spec.records, spec.countries]) if (!api.records[t]) throw new Error(`indices: "${t}" is not a records table`);
   if (!spec.tabs?.map || !spec.tabs?.bangladesh) throw new Error('indices: tabs.map and tabs.bangladesh name the two view tabs');
   for (const k of ['bdStat', 'topStat', 'bottomStat', 'valueStat', 'legendTop', 'legendBottom', 'verified', 'source', 'factsNote', 'bdCaption', 'unchanged', 'better', 'worse', 'upNeutral', 'downNeutral', 'basisEdition', 'basisYear']) if (typeof W[k] !== 'string') throw new Error(`indices: words.${k} is missing`);
-  await stylesheet(api, './indices.css?v=fa4482392b');
+  await stylesheet(api, './indices.css?v=0304857c68');
   page = api.dom.mapShell.parentElement;
   page.classList.add('has-indices');
   api.own.undo('the indices page', () => page.classList.remove('has-indices', 'indices-bd'));
@@ -183,17 +183,23 @@ function card(r) {
     return b;
   };
   stats.append(
-    r.bdRank ? block(rankText(r), W.bdStat, 'ix-stat-bd') : block(r.bdValue, W.valueStat, 'ix-stat-bd'),
+    r.bdRank ? block(rankText(r), r.bdLabel ?? W.bdStat, 'ix-stat-bd') : block(r.bdValue, W.valueStat, 'ix-stat-bd'),
     block(r.topName, r.topLabel ?? W.topStat, 'ix-stat-top'),
     block(r.bottomName, r.bottomLabel ?? W.bottomStat, 'ix-stat-bottom'),
   );
   const sub = shell.dom.sheetSubtitle;
   sub.after(stats);
-  if (r.kind === 'facts') {
-    note = document.createElement('p');
-    note.className = 'ix-note';
+  // A ranking's own note (IDX-ALL), and a facts-only ranking's: its full list is not shown.
+  const lines = [r.note, r.kind === 'facts' ? W.factsNote : null].filter(Boolean);
+  if (lines.length) {
+    note = document.createElement('div');
     note.lang = shell.language ?? 'bn';
-    note.textContent = W.factsNote;
+    for (const line of lines) {
+      const p = document.createElement('p');
+      p.className = 'ix-note';
+      p.textContent = line;
+      note.append(p);
+    }
     stats.after(note);
   }
   foot = document.createElement('div');
@@ -207,7 +213,8 @@ function card(r) {
     a.href = r.url;
     a.target = '_blank';
     a.rel = 'noopener noreferrer';
-    a.textContent = `${W.source} ↗`;
+    // Read from secondary sources (IDX-ALL): «সূত্র: outlet (মূল: publisher)».
+    a.textContent = `${r.sourceLabel ?? W.source} ↗`;
     foot.append(a);
   }
   shell.dom.rows.after(foot);

@@ -21,7 +21,7 @@
 | keys.
 */
 
-import { resolver } from '../shared/resolver.js?v=fa4482392b';
+import { resolver } from '../shared/resolver.js?v=0304857c68';
 
 const dom = {
   header: document.querySelector('.visual-header'),
@@ -42,14 +42,14 @@ const dom = {
 | with no module here is an error.
 */
 const VIEW_MODULES = {
-  exploded: () => import('./exploded.js?v=fa4482392b'),
-  cutaway: () => import('./cutaway.js?v=fa4482392b'),
-  orbit: () => import('./orbit.js?v=fa4482392b'),
-  rivers: () => import('./rivers.js?v=fa4482392b'),
-  zones: () => import('./zones.js?v=fa4482392b'),
-  zones3d: () => import('./zones3d.js?v=fa4482392b'),
+  exploded: () => import('./exploded.js?v=0304857c68'),
+  cutaway: () => import('./cutaway.js?v=0304857c68'),
+  orbit: () => import('./orbit.js?v=0304857c68'),
+  rivers: () => import('./rivers.js?v=0304857c68'),
+  zones: () => import('./zones.js?v=0304857c68'),
+  zones3d: () => import('./zones3d.js?v=0304857c68'),
   // The year wheel (important-days, 2026-10-08): loaded only for a view of type `days`.
-  days: () => import('./days.js?v=fa4482392b'),
+  days: () => import('./days.js?v=0304857c68'),
 };
 
 const diagramId = new URLSearchParams(location.search).get('v');

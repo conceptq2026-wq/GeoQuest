@@ -84,7 +84,7 @@ for (const x of built) {
       if (!adm || !drawn.has(adm)) return; // no shape: unshaded, and named nowhere but its own pin
       lists[`s${Math.min(7, Math.floor((pos * 7) / n) + 1)}`].push(adm);
     });
-    if (!x.valueOnly) {
+    if (!x.valueOnly && !x.noSouthAsia) {
       const sa = L.rows.filter((r) => SAARC.includes(r.iso3)).sort((a, b) => a.rank - b.rank);
       const at = sa.findIndex((r) => r.iso3 === 'BGD');
       if (at >= 0) southAsia = t(W.southAsiaOf).replace('{n}', bn(sa.length)).replace('{nth}', t(W.ordinals[at]));
@@ -125,6 +125,10 @@ for (const x of built) {
   ];
   const lost = pins.filter((p) => !p.at);
   if (lost.length) throw new Error(`${x.id}: no point of its own for ${lost.map((p) => p.text).join(', ')}`);
+  // A value with its unit (IDX-ALL: growth in %, life expectancy in years), one decimal place more than none.
+  const withUnit = (v) => (x.unit === '%' ? `${bn(v.toFixed(2))}%` : x.unit === 'years' ? `${bn(v.toFixed(1))} ${t(W.years)}` : null);
+  // A fact read from secondary sources (IDX-ALL Part D): the card names the outlet and the original publisher.
+  const via = L.source?.secondary?.[0];
   const statName = (list) => list.map((w) => nameOf(w.iso3, w.name)).join(', ') + (list.length > 1 ? ` (${t(W.shared)})` : '');
   indices[x.id] = {
     nameBn: t(x.nameBn),
@@ -144,9 +148,14 @@ for (const x of built) {
     edition: `${L.edition}${L.releaseDate || L.releaseYear ? ` · ${t(W.released).replace('{date}', L.releaseDate ? bnDate(L.releaseDate) : bn(L.releaseYear))}` : ''}`,
     ...(southAsia ? { southAsia } : {}),
     rankMeans,
+    ...(x.unit && L.bd?.value !== undefined ? { bdValueText: withUnit(L.bd.value) } : {}),
+    ...(L.bdSexes ? { maleText: withUnit(L.bdSexes.male), femaleText: withUnit(L.bdSexes.female) } : {}),
+    ...(x.note ? { note: t(x.note) } : {}),
+    ...(x.bdStat ? { bdLabel: t(W[x.bdStat]) } : {}),
+    ...(via ? { sourceLabel: t(W.sourceVia).replace('{outlet}', via.outlet).replace('{publisher}', via.publisher) } : {}),
     basis: x.basis ?? 'edition',
     verified: bnDate(seed.verified),
-    url: L.source?.url ?? x.pageUrl ?? L.releaseUrl ?? L.dataUrl,
+    url: via?.url ?? L.source?.url ?? x.pageUrl ?? L.releaseUrl ?? L.dataUrl,
     ...(change !== undefined ? { change } : {}),
     ...(x.goodIs ? { goodIs: x.goodIs } : {}),
     ...lists,
@@ -156,7 +165,8 @@ for (const x of built) {
 for (const x of seed.indices.filter((y) => y.kind === 'city' && y.latest && !y.heldOut)) {
   const L = x.latest;
   const change = x.previous?.bd?.rank && L.bd?.rank ? x.previous.bd.rank - L.bd.rank : undefined;
-  indices[x.id] = { nameBn: t(x.nameBn), nameEn: x.nameEn, kind: 'facts', valueOnly: false, bdRank: L.bd.rank, bdOf: L.n, publisher: x.publisher, edition: L.edition, verified: bnDate(seed.verified), url: L.source?.url ?? x.officialUrl, bdOnly: true, basis: 'edition', ...(change !== undefined ? { change } : {}), ...(x.goodIs ? { goodIs: x.goodIs } : {}), ...Object.fromEntries(LISTS.map((k) => [k, []])) };
+  const cvia = L.source?.secondary?.[0];
+  indices[x.id] = { nameBn: t(x.nameBn), nameEn: x.nameEn, kind: 'facts', valueOnly: false, bdRank: L.bd.rank, bdOf: L.n, publisher: x.publisher, edition: L.edition, verified: bnDate(seed.verified), url: cvia?.url ?? L.source?.url ?? x.officialUrl, ...(cvia ? { sourceLabel: t(W.sourceVia).replace('{outlet}', cvia.outlet).replace('{publisher}', cvia.publisher) } : {}), bdOnly: true, basis: 'edition', ...(change !== undefined ? { change } : {}), ...(x.goodIs ? { goodIs: x.goodIs } : {}), ...Object.fromEntries(LISTS.map((k) => [k, []])) };
 }
 
 const tabs = { countries: { titleBn: t(W.tabCountries) }, bangladesh: { titleBn: t(W.tabBangladesh) } };
@@ -202,6 +212,12 @@ const descriptor = {
         topLabel: { type: 'text', display: false },
         bottomLabel: { type: 'text', display: false },
         pins: { type: 'text', display: false },
+        bdValueText: { type: 'text' },
+        maleText: { type: 'text' },
+        femaleText: { type: 'text' },
+        note: { type: 'text', display: false },
+        bdLabel: { type: 'text', display: false },
+        sourceLabel: { type: 'text', display: false },
         publisher: { type: 'text', required: true },
         edition: { type: 'text', required: true },
         southAsia: { type: 'text' },
@@ -262,6 +278,9 @@ const descriptor = {
         { label: t(W.rows.edition), field: 'edition' },
         { label: t(W.rows.southAsia), field: 'southAsia' },
         { label: t(W.rows.rank), field: 'rankMeans' },
+        { label: t(W.valueStat), field: 'bdValueText' },
+        { label: t(W.male), field: 'maleText' },
+        { label: t(W.female), field: 'femaleText' },
       ],
     },
   },

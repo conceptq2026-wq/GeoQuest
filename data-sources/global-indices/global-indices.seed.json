@@ -174,6 +174,26 @@
       "bn": "প্রক্ষেপণ",
       "approved": true
     },
+    "male": {
+      "bn": "পুরুষ",
+      "approved": true
+    },
+    "female": {
+      "bn": "নারী",
+      "approved": true
+    },
+    "years": {
+      "bn": "বছর",
+      "approved": true
+    },
+    "oicStat": {
+      "bn": "ওআইসি সদস্যদের মধ্যে",
+      "approved": true
+    },
+    "sourceVia": {
+      "bn": "সূত্র: {outlet} (মূল: {publisher})",
+      "approved": true
+    },
     "shared": {
       "bn": "যৌথ",
       "approved": true
@@ -17067,6 +17087,4802 @@
           "Rank-1 country and last-ranked country (note any countries listed but not ranked)",
           "Previous edition: the same facts and its page URL",
           "Whether the terms allow showing these facts in a commercial app"
+        ]
+      }
+    },
+    {
+      "id": "population-growth",
+      "kind": "open",
+      "nameBn": {
+        "bn": "জনসংখ্যা বৃদ্ধির হার",
+        "approved": true
+      },
+      "nameEn": "Population growth rate (WPP 2024)",
+      "publisher": "UN DESA Population Division",
+      "publisherFull": null,
+      "officialUrl": "https://population.un.org/wpp/",
+      "rankMeans": {
+        "bn": "১ = সবচেয়ে বেশি বৃদ্ধির হার (জাতিসংঘের ১৯৩টি সদস্য দেশের মধ্যে)",
+        "approved": true
+      },
+      "basis": "year",
+      "sortedByValue": true,
+      "projection": true,
+      "unit": "%",
+      "note": {
+        "bn": "ঋণাত্মক মান মানে জনসংখ্যা কমছে।",
+        "approved": true
+      },
+      "latest": {
+        "edition": "World Population Prospects 2024 (2026)",
+        "editionNote": "World Population Prospects 2024, medium variant, 2026 (projection): population growth rate (%); Togo from the interim update of 2026-01-19",
+        "releaseDate": "2024-07-11",
+        "releaseUrl": "https://www.un.org/development/desa/pd/world-population-prospects-2024",
+        "dataUrl": "https://population.un.org/wpp/assets/Excel%20Files/1_Indicator%20(Standard)/CSV_FILES/WPP2024_Demographic_Indicators_Medium.csv.gz",
+        "dataFile": "wpp2024-medium.csv.gz",
+        "n": 193,
+        "rule": "WPP 2024 Demographic Indicators, Medium variant, LocTypeName 'Country/Area', Time 2026, column PopGrowthRate; Togo's rows from WPP2024_Demographic_Indicators_Medium_Update.csv in the update zip. Restricted to the 193 UN member states listed on un-member-states.html (names mapped in nameMaps). Ranked descending (1 = highest) on the file's values as published (no rounding); competition ranks on exact ties (1,2,2,4); tied rows listed in the file's SortOrder.",
+        "bd": {
+          "rank": 75,
+          "value": 1.194
+        },
+        "top": {
+          "iso3": "CAF",
+          "name": "Central African Republic",
+          "rank": 1,
+          "value": 3.283
+        },
+        "bottom": {
+          "iso3": "MHL",
+          "name": "Marshall Islands",
+          "rank": 193,
+          "value": -3.279
+        },
+        "rows": [
+          {
+            "iso3": "CAF",
+            "rank": 1,
+            "value": 3.283
+          },
+          {
+            "iso3": "SOM",
+            "rank": 2,
+            "value": 3.24
+          },
+          {
+            "iso3": "NER",
+            "rank": 3,
+            "value": 3.135
+          },
+          {
+            "iso3": "COD",
+            "rank": 4,
+            "value": 3.132
+          },
+          {
+            "iso3": "SYR",
+            "rank": 5,
+            "value": 3.041
+          },
+          {
+            "iso3": "SDN",
+            "rank": 6,
+            "value": 3.032
+          },
+          {
+            "iso3": "AGO",
+            "rank": 7,
+            "value": 2.954
+          },
+          {
+            "iso3": "MLI",
+            "rank": 8,
+            "value": 2.85
+          },
+          {
+            "iso3": "OMN",
+            "rank": 9,
+            "value": 2.822
+          },
+          {
+            "iso3": "TZA",
+            "rank": 10,
+            "value": 2.795
+          },
+          {
+            "iso3": "MOZ",
+            "rank": 11,
+            "value": 2.786
+          },
+          {
+            "iso3": "YEM",
+            "rank": 12,
+            "value": 2.761
+          },
+          {
+            "iso3": "ZMB",
+            "rank": 13,
+            "value": 2.722
+          },
+          {
+            "iso3": "AFG",
+            "rank": 14,
+            "value": 2.705
+          },
+          {
+            "iso3": "MRT",
+            "rank": 15,
+            "value": 2.69
+          },
+          {
+            "iso3": "UGA",
+            "rank": 16,
+            "value": 2.615
+          },
+          {
+            "iso3": "TCD",
+            "rank": 17,
+            "value": 2.605
+          },
+          {
+            "iso3": "MWI",
+            "rank": 18,
+            "value": 2.526
+          },
+          {
+            "iso3": "CMR",
+            "rank": 19,
+            "value": 2.494
+          },
+          {
+            "iso3": "ETH",
+            "rank": 20,
+            "value": 2.48
+          },
+          {
+            "iso3": "BEN",
+            "rank": 21,
+            "value": 2.361
+          },
+          {
+            "iso3": "MDG",
+            "rank": 22,
+            "value": 2.34
+          },
+          {
+            "iso3": "CIV",
+            "rank": 22,
+            "value": 2.34
+          },
+          {
+            "iso3": "COG",
+            "rank": 24,
+            "value": 2.326
+          },
+          {
+            "iso3": "GNQ",
+            "rank": 25,
+            "value": 2.32
+          },
+          {
+            "iso3": "BDI",
+            "rank": 26,
+            "value": 2.306
+          },
+          {
+            "iso3": "SLB",
+            "rank": 27,
+            "value": 2.296
+          },
+          {
+            "iso3": "SEN",
+            "rank": 28,
+            "value": 2.257
+          },
+          {
+            "iso3": "GIN",
+            "rank": 29,
+            "value": 2.209
+          },
+          {
+            "iso3": "LBR",
+            "rank": 30,
+            "value": 2.179
+          },
+          {
+            "iso3": "TGO",
+            "rank": 31,
+            "value": 2.173
+          },
+          {
+            "iso3": "VUT",
+            "rank": 32,
+            "value": 2.158
+          },
+          {
+            "iso3": "BFA",
+            "rank": 33,
+            "value": 2.148
+          },
+          {
+            "iso3": "GMB",
+            "rank": 34,
+            "value": 2.147
+          },
+          {
+            "iso3": "JOR",
+            "rank": 35,
+            "value": 2.122
+          },
+          {
+            "iso3": "RWA",
+            "rank": 36,
+            "value": 2.12
+          },
+          {
+            "iso3": "GNB",
+            "rank": 37,
+            "value": 2.097
+          },
+          {
+            "iso3": "ERI",
+            "rank": 38,
+            "value": 2.069
+          },
+          {
+            "iso3": "GAB",
+            "rank": 39,
+            "value": 2.054
+          },
+          {
+            "iso3": "IRQ",
+            "rank": 40,
+            "value": 2.05
+          },
+          {
+            "iso3": "NGA",
+            "rank": 41,
+            "value": 2.033
+          },
+          {
+            "iso3": "SSD",
+            "rank": 42,
+            "value": 2.017
+          },
+          {
+            "iso3": "SLE",
+            "rank": 43,
+            "value": 1.963
+          },
+          {
+            "iso3": "STP",
+            "rank": 44,
+            "value": 1.938
+          },
+          {
+            "iso3": "KEN",
+            "rank": 45,
+            "value": 1.886
+          },
+          {
+            "iso3": "NAM",
+            "rank": 46,
+            "value": 1.885
+          },
+          {
+            "iso3": "ZWE",
+            "rank": 47,
+            "value": 1.88
+          },
+          {
+            "iso3": "BHR",
+            "rank": 48,
+            "value": 1.815
+          },
+          {
+            "iso3": "COM",
+            "rank": 49,
+            "value": 1.794
+          },
+          {
+            "iso3": "GHA",
+            "rank": 50,
+            "value": 1.767
+          },
+          {
+            "iso3": "UZB",
+            "rank": 51,
+            "value": 1.753
+          },
+          {
+            "iso3": "TJK",
+            "rank": 52,
+            "value": 1.736
+          },
+          {
+            "iso3": "SAU",
+            "rank": 53,
+            "value": 1.691
+          },
+          {
+            "iso3": "ARE",
+            "rank": 54,
+            "value": 1.69
+          },
+          {
+            "iso3": "PNG",
+            "rank": 55,
+            "value": 1.684
+          },
+          {
+            "iso3": "QAT",
+            "rank": 56,
+            "value": 1.65
+          },
+          {
+            "iso3": "BWA",
+            "rank": 57,
+            "value": 1.603
+          },
+          {
+            "iso3": "HND",
+            "rank": 58,
+            "value": 1.593
+          },
+          {
+            "iso3": "PAK",
+            "rank": 59,
+            "value": 1.592
+          },
+          {
+            "iso3": "SYC",
+            "rank": 60,
+            "value": 1.529
+          },
+          {
+            "iso3": "TKM",
+            "rank": 61,
+            "value": 1.479
+          },
+          {
+            "iso3": "GTM",
+            "rank": 62,
+            "value": 1.473
+          },
+          {
+            "iso3": "EGY",
+            "rank": 63,
+            "value": 1.444
+          },
+          {
+            "iso3": "KIR",
+            "rank": 64,
+            "value": 1.411
+          },
+          {
+            "iso3": "KGZ",
+            "rank": 65,
+            "value": 1.4
+          },
+          {
+            "iso3": "KWT",
+            "rank": 66,
+            "value": 1.391
+          },
+          {
+            "iso3": "ISR",
+            "rank": 67,
+            "value": 1.359
+          },
+          {
+            "iso3": "BLZ",
+            "rank": 68,
+            "value": 1.326
+          },
+          {
+            "iso3": "DJI",
+            "rank": 69,
+            "value": 1.314
+          },
+          {
+            "iso3": "TLS",
+            "rank": 69,
+            "value": 1.314
+          },
+          {
+            "iso3": "BOL",
+            "rank": 71,
+            "value": 1.309
+          },
+          {
+            "iso3": "NIC",
+            "rank": 72,
+            "value": 1.255
+          },
+          {
+            "iso3": "LAO",
+            "rank": 73,
+            "value": 1.251
+          },
+          {
+            "iso3": "DZA",
+            "rank": 74,
+            "value": 1.204
+          },
+          {
+            "iso3": "BGD",
+            "rank": 75,
+            "value": 1.194
+          },
+          {
+            "iso3": "PAN",
+            "rank": 76,
+            "value": 1.168
+          },
+          {
+            "iso3": "PRY",
+            "rank": 77,
+            "value": 1.146
+          },
+          {
+            "iso3": "LBY",
+            "rank": 78,
+            "value": 1.121
+          },
+          {
+            "iso3": "KAZ",
+            "rank": 79,
+            "value": 1.11
+          },
+          {
+            "iso3": "KHM",
+            "rank": 80,
+            "value": 1.105
+          },
+          {
+            "iso3": "MYS",
+            "rank": 81,
+            "value": 1.102
+          },
+          {
+            "iso3": "LSO",
+            "rank": 82,
+            "value": 1.095
+          },
+          {
+            "iso3": "MNG",
+            "rank": 83,
+            "value": 1.091
+          },
+          {
+            "iso3": "HTI",
+            "rank": 84,
+            "value": 1.084
+          },
+          {
+            "iso3": "SWZ",
+            "rank": 85,
+            "value": 1.078
+          },
+          {
+            "iso3": "ZAF",
+            "rank": 86,
+            "value": 1.054
+          },
+          {
+            "iso3": "LUX",
+            "rank": 87,
+            "value": 0.992
+          },
+          {
+            "iso3": "PER",
+            "rank": 88,
+            "value": 0.971
+          },
+          {
+            "iso3": "AND",
+            "rank": 89,
+            "value": 0.958
+          },
+          {
+            "iso3": "COL",
+            "rank": 90,
+            "value": 0.92
+          },
+          {
+            "iso3": "ISL",
+            "rank": 91,
+            "value": 0.919
+          },
+          {
+            "iso3": "AUS",
+            "rank": 92,
+            "value": 0.911
+          },
+          {
+            "iso3": "IRL",
+            "rank": 93,
+            "value": 0.877
+          },
+          {
+            "iso3": "IND",
+            "rank": 94,
+            "value": 0.857
+          },
+          {
+            "iso3": "LBN",
+            "rank": 95,
+            "value": 0.84
+          },
+          {
+            "iso3": "ECU",
+            "rank": 95,
+            "value": 0.84
+          },
+          {
+            "iso3": "MAR",
+            "rank": 97,
+            "value": 0.836
+          },
+          {
+            "iso3": "SUR",
+            "rank": 98,
+            "value": 0.829
+          },
+          {
+            "iso3": "CYP",
+            "rank": 99,
+            "value": 0.804
+          },
+          {
+            "iso3": "CAN",
+            "rank": 100,
+            "value": 0.794
+          },
+          {
+            "iso3": "PHL",
+            "rank": 101,
+            "value": 0.793
+          },
+          {
+            "iso3": "MEX",
+            "rank": 102,
+            "value": 0.778
+          },
+          {
+            "iso3": "IRN",
+            "rank": 103,
+            "value": 0.76
+          },
+          {
+            "iso3": "DOM",
+            "rank": 104,
+            "value": 0.752
+          },
+          {
+            "iso3": "IDN",
+            "rank": 105,
+            "value": 0.741
+          },
+          {
+            "iso3": "BRN",
+            "rank": 106,
+            "value": 0.719
+          },
+          {
+            "iso3": "BTN",
+            "rank": 107,
+            "value": 0.697
+          },
+          {
+            "iso3": "NZL",
+            "rank": 108,
+            "value": 0.653
+          },
+          {
+            "iso3": "NRU",
+            "rank": 109,
+            "value": 0.636
+          },
+          {
+            "iso3": "MMR",
+            "rank": 110,
+            "value": 0.592
+          },
+          {
+            "iso3": "GUY",
+            "rank": 111,
+            "value": 0.585
+          },
+          {
+            "iso3": "LIE",
+            "rank": 112,
+            "value": 0.575
+          },
+          {
+            "iso3": "SGP",
+            "rank": 113,
+            "value": 0.561
+          },
+          {
+            "iso3": "WSM",
+            "rank": 114,
+            "value": 0.555
+          },
+          {
+            "iso3": "VNM",
+            "rank": 115,
+            "value": 0.549
+          },
+          {
+            "iso3": "AZE",
+            "rank": 116,
+            "value": 0.532
+          },
+          {
+            "iso3": "GBR",
+            "rank": 117,
+            "value": 0.521
+          },
+          {
+            "iso3": "TUN",
+            "rank": 118,
+            "value": 0.515
+          },
+          {
+            "iso3": "NLD",
+            "rank": 119,
+            "value": 0.51
+          },
+          {
+            "iso3": "LKA",
+            "rank": 120,
+            "value": 0.497
+          },
+          {
+            "iso3": "USA",
+            "rank": 121,
+            "value": 0.491
+          },
+          {
+            "iso3": "ATG",
+            "rank": 122,
+            "value": 0.428
+          },
+          {
+            "iso3": "FSM",
+            "rank": 122,
+            "value": 0.428
+          },
+          {
+            "iso3": "FJI",
+            "rank": 124,
+            "value": 0.426
+          },
+          {
+            "iso3": "CPV",
+            "rank": 125,
+            "value": 0.422
+          },
+          {
+            "iso3": "VEN",
+            "rank": 126,
+            "value": 0.42
+          },
+          {
+            "iso3": "CHE",
+            "rank": 127,
+            "value": 0.419
+          },
+          {
+            "iso3": "CHL",
+            "rank": 128,
+            "value": 0.412
+          },
+          {
+            "iso3": "CRI",
+            "rank": 129,
+            "value": 0.411
+          },
+          {
+            "iso3": "SLV",
+            "rank": 130,
+            "value": 0.396
+          },
+          {
+            "iso3": "SWE",
+            "rank": 131,
+            "value": 0.387
+          },
+          {
+            "iso3": "BHS",
+            "rank": 132,
+            "value": 0.377
+          },
+          {
+            "iso3": "MLT",
+            "rank": 133,
+            "value": 0.372
+          },
+          {
+            "iso3": "NOR",
+            "rank": 134,
+            "value": 0.368
+          },
+          {
+            "iso3": "MDV",
+            "rank": 135,
+            "value": 0.346
+          },
+          {
+            "iso3": "BRA",
+            "rank": 136,
+            "value": 0.338
+          },
+          {
+            "iso3": "ARG",
+            "rank": 137,
+            "value": 0.328
+          },
+          {
+            "iso3": "DNK",
+            "rank": 138,
+            "value": 0.313
+          },
+          {
+            "iso3": "TUR",
+            "rank": 139,
+            "value": 0.298
+          },
+          {
+            "iso3": "PRK",
+            "rank": 140,
+            "value": 0.217
+          },
+          {
+            "iso3": "LCA",
+            "rank": 141,
+            "value": 0.17
+          },
+          {
+            "iso3": "NPL",
+            "rank": 142,
+            "value": 0.144
+          },
+          {
+            "iso3": "FRA",
+            "rank": 143,
+            "value": 0.137
+          },
+          {
+            "iso3": "KNA",
+            "rank": 144,
+            "value": 0.134
+          },
+          {
+            "iso3": "BEL",
+            "rank": 145,
+            "value": 0.124
+          },
+          {
+            "iso3": "TTO",
+            "rank": 146,
+            "value": 0.101
+          },
+          {
+            "iso3": "SMR",
+            "rank": 147,
+            "value": 0.089
+          },
+          {
+            "iso3": "BRB",
+            "rank": 148,
+            "value": 0.026
+          },
+          {
+            "iso3": "GRD",
+            "rank": 148,
+            "value": 0.026
+          },
+          {
+            "iso3": "GEO",
+            "rank": 150,
+            "value": -0.063
+          },
+          {
+            "iso3": "AUT",
+            "rank": 151,
+            "value": -0.066
+          },
+          {
+            "iso3": "URY",
+            "rank": 152,
+            "value": -0.068
+          },
+          {
+            "iso3": "FIN",
+            "rank": 153,
+            "value": -0.083
+          },
+          {
+            "iso3": "THA",
+            "rank": 154,
+            "value": -0.093
+          },
+          {
+            "iso3": "ESP",
+            "rank": 155,
+            "value": -0.1
+          },
+          {
+            "iso3": "SVN",
+            "rank": 156,
+            "value": -0.133
+          },
+          {
+            "iso3": "KOR",
+            "rank": 157,
+            "value": -0.142
+          },
+          {
+            "iso3": "JAM",
+            "rank": 158,
+            "value": -0.157
+          },
+          {
+            "iso3": "PRT",
+            "rank": 159,
+            "value": -0.161
+          },
+          {
+            "iso3": "SVK",
+            "rank": 160,
+            "value": -0.164
+          },
+          {
+            "iso3": "CZE",
+            "rank": 161,
+            "value": -0.2
+          },
+          {
+            "iso3": "CHN",
+            "rank": 162,
+            "value": -0.219
+          },
+          {
+            "iso3": "RUS",
+            "rank": 163,
+            "value": -0.23
+          },
+          {
+            "iso3": "DEU",
+            "rank": 164,
+            "value": -0.232
+          },
+          {
+            "iso3": "MUS",
+            "rank": 165,
+            "value": -0.266
+          },
+          {
+            "iso3": "PLW",
+            "rank": 166,
+            "value": -0.301
+          },
+          {
+            "iso3": "HUN",
+            "rank": 167,
+            "value": -0.338
+          },
+          {
+            "iso3": "POL",
+            "rank": 168,
+            "value": -0.38
+          },
+          {
+            "iso3": "ITA",
+            "rank": 169,
+            "value": -0.393
+          },
+          {
+            "iso3": "CUB",
+            "rank": 170,
+            "value": -0.418
+          },
+          {
+            "iso3": "TON",
+            "rank": 171,
+            "value": -0.428
+          },
+          {
+            "iso3": "GRC",
+            "rank": 172,
+            "value": -0.434
+          },
+          {
+            "iso3": "EST",
+            "rank": 173,
+            "value": -0.531
+          },
+          {
+            "iso3": "DMA",
+            "rank": 174,
+            "value": -0.534
+          },
+          {
+            "iso3": "MNE",
+            "rank": 175,
+            "value": -0.544
+          },
+          {
+            "iso3": "MKD",
+            "rank": 176,
+            "value": -0.556
+          },
+          {
+            "iso3": "JPN",
+            "rank": 177,
+            "value": -0.562
+          },
+          {
+            "iso3": "ROU",
+            "rank": 178,
+            "value": -0.578
+          },
+          {
+            "iso3": "MCO",
+            "rank": 178,
+            "value": -0.578
+          },
+          {
+            "iso3": "HRV",
+            "rank": 180,
+            "value": -0.662
+          },
+          {
+            "iso3": "SRB",
+            "rank": 181,
+            "value": -0.663
+          },
+          {
+            "iso3": "VCT",
+            "rank": 182,
+            "value": -0.682
+          },
+          {
+            "iso3": "BLR",
+            "rank": 183,
+            "value": -0.687
+          },
+          {
+            "iso3": "ARM",
+            "rank": 184,
+            "value": -0.721
+          },
+          {
+            "iso3": "BGR",
+            "rank": 185,
+            "value": -0.729
+          },
+          {
+            "iso3": "ALB",
+            "rank": 186,
+            "value": -0.736
+          },
+          {
+            "iso3": "UKR",
+            "rank": 187,
+            "value": -0.737
+          },
+          {
+            "iso3": "LVA",
+            "rank": 188,
+            "value": -0.777
+          },
+          {
+            "iso3": "LTU",
+            "rank": 189,
+            "value": -0.825
+          },
+          {
+            "iso3": "BIH",
+            "rank": 190,
+            "value": -0.843
+          },
+          {
+            "iso3": "MDA",
+            "rank": 191,
+            "value": -0.976
+          },
+          {
+            "iso3": "TUV",
+            "rank": 192,
+            "value": -1.239
+          },
+          {
+            "iso3": "MHL",
+            "rank": 193,
+            "value": -3.279
+          }
+        ]
+      },
+      "previous": {
+        "edition": "World Population Prospects 2024 (2025)",
+        "editionNote": "World Population Prospects 2024, medium variant, 2025 (same release): population growth rate (%); Togo from the interim update of 2026-01-19",
+        "releaseDate": "2024-07-11",
+        "releaseUrl": "https://www.un.org/development/desa/pd/world-population-prospects-2024",
+        "dataUrl": "https://population.un.org/wpp/assets/Excel%20Files/1_Indicator%20(Standard)/CSV_FILES/WPP2024_Demographic_Indicators_Medium.csv.gz",
+        "dataFile": "wpp2024-medium.csv.gz",
+        "n": 193,
+        "rule": "WPP 2024 Demographic Indicators, Medium variant, LocTypeName 'Country/Area', Time 2025, column PopGrowthRate; Togo's rows from WPP2024_Demographic_Indicators_Medium_Update.csv in the update zip. Restricted to the 193 UN member states listed on un-member-states.html (names mapped in nameMaps). Ranked descending (1 = highest) on the file's values as published (no rounding); competition ranks on exact ties (1,2,2,4); tied rows listed in the file's SortOrder.",
+        "bd": {
+          "rank": 75,
+          "value": 1.218
+        },
+        "top": {
+          "iso3": "UKR",
+          "name": "Ukraine",
+          "rank": 1,
+          "value": 3.598
+        },
+        "bottom": {
+          "iso3": "MHL",
+          "name": "Marshall Islands",
+          "rank": 193,
+          "value": -3.484
+        },
+        "rows": [
+          {
+            "iso3": "UKR",
+            "rank": 1,
+            "value": 3.598
+          },
+          {
+            "iso3": "OMN",
+            "rank": 2,
+            "value": 3.522
+          },
+          {
+            "iso3": "SYR",
+            "rank": 3,
+            "value": 3.51
+          },
+          {
+            "iso3": "CAF",
+            "rank": 4,
+            "value": 3.343
+          },
+          {
+            "iso3": "SOM",
+            "rank": 5,
+            "value": 3.28
+          },
+          {
+            "iso3": "NER",
+            "rank": 6,
+            "value": 3.191
+          },
+          {
+            "iso3": "COD",
+            "rank": 7,
+            "value": 3.184
+          },
+          {
+            "iso3": "SDN",
+            "rank": 8,
+            "value": 3.147
+          },
+          {
+            "iso3": "AGO",
+            "rank": 9,
+            "value": 2.978
+          },
+          {
+            "iso3": "MLI",
+            "rank": 10,
+            "value": 2.889
+          },
+          {
+            "iso3": "YEM",
+            "rank": 11,
+            "value": 2.848
+          },
+          {
+            "iso3": "TZA",
+            "rank": 12,
+            "value": 2.846
+          },
+          {
+            "iso3": "MOZ",
+            "rank": 13,
+            "value": 2.794
+          },
+          {
+            "iso3": "ZMB",
+            "rank": 14,
+            "value": 2.752
+          },
+          {
+            "iso3": "MRT",
+            "rank": 15,
+            "value": 2.739
+          },
+          {
+            "iso3": "AFG",
+            "rank": 16,
+            "value": 2.709
+          },
+          {
+            "iso3": "UGA",
+            "rank": 17,
+            "value": 2.673
+          },
+          {
+            "iso3": "TCD",
+            "rank": 18,
+            "value": 2.627
+          },
+          {
+            "iso3": "CMR",
+            "rank": 19,
+            "value": 2.54
+          },
+          {
+            "iso3": "MWI",
+            "rank": 20,
+            "value": 2.536
+          },
+          {
+            "iso3": "ETH",
+            "rank": 21,
+            "value": 2.521
+          },
+          {
+            "iso3": "CIV",
+            "rank": 22,
+            "value": 2.39
+          },
+          {
+            "iso3": "BEN",
+            "rank": 23,
+            "value": 2.389
+          },
+          {
+            "iso3": "MDG",
+            "rank": 24,
+            "value": 2.377
+          },
+          {
+            "iso3": "GNQ",
+            "rank": 25,
+            "value": 2.375
+          },
+          {
+            "iso3": "BDI",
+            "rank": 26,
+            "value": 2.354
+          },
+          {
+            "iso3": "COG",
+            "rank": 27,
+            "value": 2.349
+          },
+          {
+            "iso3": "SLB",
+            "rank": 28,
+            "value": 2.334
+          },
+          {
+            "iso3": "ARE",
+            "rank": 29,
+            "value": 2.307
+          },
+          {
+            "iso3": "SEN",
+            "rank": 30,
+            "value": 2.283
+          },
+          {
+            "iso3": "GIN",
+            "rank": 31,
+            "value": 2.274
+          },
+          {
+            "iso3": "RWA",
+            "rank": 32,
+            "value": 2.232
+          },
+          {
+            "iso3": "VUT",
+            "rank": 33,
+            "value": 2.207
+          },
+          {
+            "iso3": "GMB",
+            "rank": 34,
+            "value": 2.199
+          },
+          {
+            "iso3": "BFA",
+            "rank": 35,
+            "value": 2.184
+          },
+          {
+            "iso3": "TGO",
+            "rank": 36,
+            "value": 2.165
+          },
+          {
+            "iso3": "GNB",
+            "rank": 37,
+            "value": 2.152
+          },
+          {
+            "iso3": "IRQ",
+            "rank": 38,
+            "value": 2.104
+          },
+          {
+            "iso3": "GAB",
+            "rank": 39,
+            "value": 2.089
+          },
+          {
+            "iso3": "ERI",
+            "rank": 40,
+            "value": 2.084
+          },
+          {
+            "iso3": "BHR",
+            "rank": 41,
+            "value": 2.074
+          },
+          {
+            "iso3": "LBR",
+            "rank": 42,
+            "value": 2.058
+          },
+          {
+            "iso3": "NGA",
+            "rank": 43,
+            "value": 2.055
+          },
+          {
+            "iso3": "QAT",
+            "rank": 44,
+            "value": 2.022
+          },
+          {
+            "iso3": "SLE",
+            "rank": 45,
+            "value": 2.01
+          },
+          {
+            "iso3": "SSD",
+            "rank": 46,
+            "value": 1.999
+          },
+          {
+            "iso3": "NAM",
+            "rank": 47,
+            "value": 1.986
+          },
+          {
+            "iso3": "STP",
+            "rank": 48,
+            "value": 1.97
+          },
+          {
+            "iso3": "KEN",
+            "rank": 49,
+            "value": 1.916
+          },
+          {
+            "iso3": "ZWE",
+            "rank": 50,
+            "value": 1.893
+          },
+          {
+            "iso3": "UZB",
+            "rank": 51,
+            "value": 1.836
+          },
+          {
+            "iso3": "COM",
+            "rank": 52,
+            "value": 1.835
+          },
+          {
+            "iso3": "GHA",
+            "rank": 53,
+            "value": 1.813
+          },
+          {
+            "iso3": "TJK",
+            "rank": 54,
+            "value": 1.791
+          },
+          {
+            "iso3": "SAU",
+            "rank": 55,
+            "value": 1.748
+          },
+          {
+            "iso3": "SYC",
+            "rank": 56,
+            "value": 1.73
+          },
+          {
+            "iso3": "PNG",
+            "rank": 57,
+            "value": 1.726
+          },
+          {
+            "iso3": "KWT",
+            "rank": 58,
+            "value": 1.64
+          },
+          {
+            "iso3": "HND",
+            "rank": 59,
+            "value": 1.633
+          },
+          {
+            "iso3": "BWA",
+            "rank": 60,
+            "value": 1.592
+          },
+          {
+            "iso3": "TKM",
+            "rank": 61,
+            "value": 1.59
+          },
+          {
+            "iso3": "PAK",
+            "rank": 62,
+            "value": 1.58
+          },
+          {
+            "iso3": "GTM",
+            "rank": 63,
+            "value": 1.502
+          },
+          {
+            "iso3": "KGZ",
+            "rank": 64,
+            "value": 1.47
+          },
+          {
+            "iso3": "EGY",
+            "rank": 65,
+            "value": 1.466
+          },
+          {
+            "iso3": "KIR",
+            "rank": 66,
+            "value": 1.435
+          },
+          {
+            "iso3": "ISR",
+            "rank": 67,
+            "value": 1.365
+          },
+          {
+            "iso3": "BLZ",
+            "rank": 68,
+            "value": 1.361
+          },
+          {
+            "iso3": "BOL",
+            "rank": 69,
+            "value": 1.336
+          },
+          {
+            "iso3": "LAO",
+            "rank": 70,
+            "value": 1.298
+          },
+          {
+            "iso3": "NIC",
+            "rank": 71,
+            "value": 1.293
+          },
+          {
+            "iso3": "DZA",
+            "rank": 72,
+            "value": 1.281
+          },
+          {
+            "iso3": "DJI",
+            "rank": 73,
+            "value": 1.268
+          },
+          {
+            "iso3": "TLS",
+            "rank": 74,
+            "value": 1.264
+          },
+          {
+            "iso3": "BGD",
+            "rank": 75,
+            "value": 1.218
+          },
+          {
+            "iso3": "PAN",
+            "rank": 76,
+            "value": 1.204
+          },
+          {
+            "iso3": "PRY",
+            "rank": 77,
+            "value": 1.185
+          },
+          {
+            "iso3": "KAZ",
+            "rank": 78,
+            "value": 1.179
+          },
+          {
+            "iso3": "KHM",
+            "rank": 79,
+            "value": 1.159
+          },
+          {
+            "iso3": "MNG",
+            "rank": 80,
+            "value": 1.154
+          },
+          {
+            "iso3": "MYS",
+            "rank": 81,
+            "value": 1.149
+          },
+          {
+            "iso3": "ZAF",
+            "rank": 82,
+            "value": 1.115
+          },
+          {
+            "iso3": "ISL",
+            "rank": 83,
+            "value": 1.112
+          },
+          {
+            "iso3": "HTI",
+            "rank": 83,
+            "value": 1.112
+          },
+          {
+            "iso3": "LSO",
+            "rank": 85,
+            "value": 1.094
+          },
+          {
+            "iso3": "SWZ",
+            "rank": 86,
+            "value": 1.089
+          },
+          {
+            "iso3": "AND",
+            "rank": 87,
+            "value": 1.08
+          },
+          {
+            "iso3": "LUX",
+            "rank": 88,
+            "value": 1.054
+          },
+          {
+            "iso3": "LBY",
+            "rank": 89,
+            "value": 1.047
+          },
+          {
+            "iso3": "PER",
+            "rank": 90,
+            "value": 1.017
+          },
+          {
+            "iso3": "COL",
+            "rank": 91,
+            "value": 0.983
+          },
+          {
+            "iso3": "IRL",
+            "rank": 92,
+            "value": 0.958
+          },
+          {
+            "iso3": "AUS",
+            "rank": 93,
+            "value": 0.957
+          },
+          {
+            "iso3": "MLT",
+            "rank": 94,
+            "value": 0.948
+          },
+          {
+            "iso3": "CAN",
+            "rank": 95,
+            "value": 0.899
+          },
+          {
+            "iso3": "MAR",
+            "rank": 96,
+            "value": 0.883
+          },
+          {
+            "iso3": "IND",
+            "rank": 97,
+            "value": 0.879
+          },
+          {
+            "iso3": "CYP",
+            "rank": 97,
+            "value": 0.879
+          },
+          {
+            "iso3": "IRN",
+            "rank": 99,
+            "value": 0.859
+          },
+          {
+            "iso3": "SUR",
+            "rank": 100,
+            "value": 0.854
+          },
+          {
+            "iso3": "ECU",
+            "rank": 101,
+            "value": 0.843
+          },
+          {
+            "iso3": "MEX",
+            "rank": 102,
+            "value": 0.808
+          },
+          {
+            "iso3": "PHL",
+            "rank": 103,
+            "value": 0.806
+          },
+          {
+            "iso3": "LBN",
+            "rank": 104,
+            "value": 0.796
+          },
+          {
+            "iso3": "DOM",
+            "rank": 105,
+            "value": 0.787
+          },
+          {
+            "iso3": "IDN",
+            "rank": 106,
+            "value": 0.769
+          },
+          {
+            "iso3": "BRN",
+            "rank": 107,
+            "value": 0.753
+          },
+          {
+            "iso3": "NZL",
+            "rank": 108,
+            "value": 0.698
+          },
+          {
+            "iso3": "NOR",
+            "rank": 109,
+            "value": 0.695
+          },
+          {
+            "iso3": "BTN",
+            "rank": 110,
+            "value": 0.687
+          },
+          {
+            "iso3": "SGP",
+            "rank": 111,
+            "value": 0.628
+          },
+          {
+            "iso3": "NRU",
+            "rank": 112,
+            "value": 0.624
+          },
+          {
+            "iso3": "MMR",
+            "rank": 113,
+            "value": 0.623
+          },
+          {
+            "iso3": "LIE",
+            "rank": 114,
+            "value": 0.618
+          },
+          {
+            "iso3": "NLD",
+            "rank": 115,
+            "value": 0.598
+          },
+          {
+            "iso3": "VNM",
+            "rank": 116,
+            "value": 0.588
+          },
+          {
+            "iso3": "GUY",
+            "rank": 117,
+            "value": 0.585
+          },
+          {
+            "iso3": "GBR",
+            "rank": 118,
+            "value": 0.569
+          },
+          {
+            "iso3": "AZE",
+            "rank": 119,
+            "value": 0.564
+          },
+          {
+            "iso3": "TUN",
+            "rank": 120,
+            "value": 0.561
+          },
+          {
+            "iso3": "WSM",
+            "rank": 121,
+            "value": 0.556
+          },
+          {
+            "iso3": "LKA",
+            "rank": 122,
+            "value": 0.523
+          },
+          {
+            "iso3": "USA",
+            "rank": 123,
+            "value": 0.52
+          },
+          {
+            "iso3": "CHE",
+            "rank": 124,
+            "value": 0.48
+          },
+          {
+            "iso3": "FJI",
+            "rank": 125,
+            "value": 0.457
+          },
+          {
+            "iso3": "ATG",
+            "rank": 126,
+            "value": 0.455
+          },
+          {
+            "iso3": "CHL",
+            "rank": 127,
+            "value": 0.451
+          },
+          {
+            "iso3": "CPV",
+            "rank": 128,
+            "value": 0.45
+          },
+          {
+            "iso3": "FSM",
+            "rank": 129,
+            "value": 0.449
+          },
+          {
+            "iso3": "SWE",
+            "rank": 130,
+            "value": 0.445
+          },
+          {
+            "iso3": "CRI",
+            "rank": 131,
+            "value": 0.435
+          },
+          {
+            "iso3": "BHS",
+            "rank": 132,
+            "value": 0.413
+          },
+          {
+            "iso3": "SLV",
+            "rank": 133,
+            "value": 0.412
+          },
+          {
+            "iso3": "VEN",
+            "rank": 134,
+            "value": 0.398
+          },
+          {
+            "iso3": "DNK",
+            "rank": 135,
+            "value": 0.386
+          },
+          {
+            "iso3": "BRA",
+            "rank": 136,
+            "value": 0.366
+          },
+          {
+            "iso3": "MDV",
+            "rank": 137,
+            "value": 0.348
+          },
+          {
+            "iso3": "ARG",
+            "rank": 138,
+            "value": 0.335
+          },
+          {
+            "iso3": "PRK",
+            "rank": 139,
+            "value": 0.254
+          },
+          {
+            "iso3": "TUR",
+            "rank": 140,
+            "value": 0.25
+          },
+          {
+            "iso3": "LCA",
+            "rank": 141,
+            "value": 0.205
+          },
+          {
+            "iso3": "TTO",
+            "rank": 142,
+            "value": 0.178
+          },
+          {
+            "iso3": "KNA",
+            "rank": 143,
+            "value": 0.164
+          },
+          {
+            "iso3": "FRA",
+            "rank": 144,
+            "value": 0.15
+          },
+          {
+            "iso3": "BEL",
+            "rank": 145,
+            "value": 0.149
+          },
+          {
+            "iso3": "SMR",
+            "rank": 146,
+            "value": 0.104
+          },
+          {
+            "iso3": "GRD",
+            "rank": 147,
+            "value": 0.074
+          },
+          {
+            "iso3": "BRB",
+            "rank": 148,
+            "value": 0.046
+          },
+          {
+            "iso3": "FIN",
+            "rank": 149,
+            "value": 0.027
+          },
+          {
+            "iso3": "GEO",
+            "rank": 150,
+            "value": -0.044
+          },
+          {
+            "iso3": "URY",
+            "rank": 151,
+            "value": -0.06
+          },
+          {
+            "iso3": "ESP",
+            "rank": 152,
+            "value": -0.064
+          },
+          {
+            "iso3": "NPL",
+            "rank": 153,
+            "value": -0.068
+          },
+          {
+            "iso3": "AUT",
+            "rank": 154,
+            "value": -0.072
+          },
+          {
+            "iso3": "THA",
+            "rank": 155,
+            "value": -0.075
+          },
+          {
+            "iso3": "JAM",
+            "rank": 156,
+            "value": -0.102
+          },
+          {
+            "iso3": "SVN",
+            "rank": 157,
+            "value": -0.104
+          },
+          {
+            "iso3": "KOR",
+            "rank": 158,
+            "value": -0.116
+          },
+          {
+            "iso3": "PRT",
+            "rank": 159,
+            "value": -0.156
+          },
+          {
+            "iso3": "CHN",
+            "rank": 160,
+            "value": -0.231
+          },
+          {
+            "iso3": "MUS",
+            "rank": 161,
+            "value": -0.243
+          },
+          {
+            "iso3": "PLW",
+            "rank": 161,
+            "value": -0.243
+          },
+          {
+            "iso3": "ITA",
+            "rank": 163,
+            "value": -0.353
+          },
+          {
+            "iso3": "CUB",
+            "rank": 164,
+            "value": -0.398
+          },
+          {
+            "iso3": "GRC",
+            "rank": 165,
+            "value": -0.408
+          },
+          {
+            "iso3": "TON",
+            "rank": 166,
+            "value": -0.443
+          },
+          {
+            "iso3": "MKD",
+            "rank": 167,
+            "value": -0.52
+          },
+          {
+            "iso3": "JPN",
+            "rank": 168,
+            "value": -0.538
+          },
+          {
+            "iso3": "DMA",
+            "rank": 169,
+            "value": -0.563
+          },
+          {
+            "iso3": "ROU",
+            "rank": 170,
+            "value": -0.568
+          },
+          {
+            "iso3": "RUS",
+            "rank": 171,
+            "value": -0.608
+          },
+          {
+            "iso3": "HUN",
+            "rank": 172,
+            "value": -0.628
+          },
+          {
+            "iso3": "BLR",
+            "rank": 173,
+            "value": -0.664
+          },
+          {
+            "iso3": "BGR",
+            "rank": 174,
+            "value": -0.673
+          },
+          {
+            "iso3": "HRV",
+            "rank": 175,
+            "value": -0.684
+          },
+          {
+            "iso3": "VCT",
+            "rank": 175,
+            "value": -0.684
+          },
+          {
+            "iso3": "SVK",
+            "rank": 177,
+            "value": -0.696
+          },
+          {
+            "iso3": "ARM",
+            "rank": 178,
+            "value": -0.737
+          },
+          {
+            "iso3": "ALB",
+            "rank": 179,
+            "value": -0.748
+          },
+          {
+            "iso3": "SRB",
+            "rank": 180,
+            "value": -0.749
+          },
+          {
+            "iso3": "MCO",
+            "rank": 181,
+            "value": -0.751
+          },
+          {
+            "iso3": "DEU",
+            "rank": 182,
+            "value": -0.794
+          },
+          {
+            "iso3": "BIH",
+            "rank": 183,
+            "value": -0.811
+          },
+          {
+            "iso3": "JOR",
+            "rank": 184,
+            "value": -0.94
+          },
+          {
+            "iso3": "LVA",
+            "rank": 185,
+            "value": -1.132
+          },
+          {
+            "iso3": "POL",
+            "rank": 186,
+            "value": -1.184
+          },
+          {
+            "iso3": "CZE",
+            "rank": 187,
+            "value": -1.337
+          },
+          {
+            "iso3": "MDA",
+            "rank": 188,
+            "value": -1.362
+          },
+          {
+            "iso3": "EST",
+            "rank": 189,
+            "value": -1.433
+          },
+          {
+            "iso3": "LTU",
+            "rank": 190,
+            "value": -1.503
+          },
+          {
+            "iso3": "MNE",
+            "rank": 191,
+            "value": -1.515
+          },
+          {
+            "iso3": "TUV",
+            "rank": 192,
+            "value": -1.517
+          },
+          {
+            "iso3": "MHL",
+            "rank": 193,
+            "value": -3.484
+          }
+        ]
+      },
+      "pageUrl": null,
+      "read": {
+        "readers": 2,
+        "agreed": true,
+        "unstoredMismatches": []
+      }
+    },
+    {
+      "id": "life-expectancy",
+      "kind": "open",
+      "nameBn": {
+        "bn": "গড় আয়ু",
+        "approved": true
+      },
+      "nameEn": "Life expectancy at birth, both sexes (WPP 2024)",
+      "publisher": "UN DESA Population Division",
+      "publisherFull": null,
+      "officialUrl": "https://population.un.org/wpp/",
+      "rankMeans": {
+        "bn": "১ = সবচেয়ে দীর্ঘ গড় আয়ু (জাতিসংঘের ১৯৩টি সদস্য দেশের মধ্যে)",
+        "approved": true
+      },
+      "goodIs": "up",
+      "basis": "year",
+      "sortedByValue": true,
+      "projection": true,
+      "unit": "years",
+      "note": {
+        "bn": "বাংলাদেশ পরিসংখ্যান ব্যুরোর নিজস্ব হিসাব এর থেকে আলাদা হতে পারে।",
+        "approved": true
+      },
+      "latest": {
+        "edition": "World Population Prospects 2024 (2026)",
+        "editionNote": "World Population Prospects 2024, medium variant, 2026 (projection): life expectancy at birth, both sexes (years); Togo from the interim update of 2026-01-19",
+        "releaseDate": "2024-07-11",
+        "releaseUrl": "https://www.un.org/development/desa/pd/world-population-prospects-2024",
+        "dataUrl": "https://population.un.org/wpp/assets/Excel%20Files/1_Indicator%20(Standard)/CSV_FILES/WPP2024_Demographic_Indicators_Medium.csv.gz",
+        "dataFile": "wpp2024-medium.csv.gz",
+        "n": 193,
+        "rule": "WPP 2024 Demographic Indicators, Medium variant, LocTypeName 'Country/Area', Time 2026, column LEx; Togo's rows from WPP2024_Demographic_Indicators_Medium_Update.csv in the update zip. Restricted to the 193 UN member states listed on un-member-states.html (names mapped in nameMaps). Ranked descending (1 = highest) on the file's values as published (no rounding); competition ranks on exact ties (1,2,2,4); tied rows listed in the file's SortOrder.",
+        "bd": {
+          "rank": 84,
+          "value": 75.4677
+        },
+        "top": {
+          "iso3": "MCO",
+          "name": "Monaco",
+          "rank": 1,
+          "value": 86.7344
+        },
+        "bottom": {
+          "iso3": "NGA",
+          "name": "Nigeria",
+          "rank": 193,
+          "value": 54.9528
+        },
+        "rows": [
+          {
+            "iso3": "MCO",
+            "rank": 1,
+            "value": 86.7344
+          },
+          {
+            "iso3": "SMR",
+            "rank": 2,
+            "value": 86.0317
+          },
+          {
+            "iso3": "JPN",
+            "rank": 3,
+            "value": 85.1467
+          },
+          {
+            "iso3": "KOR",
+            "rank": 4,
+            "value": 84.6368
+          },
+          {
+            "iso3": "AND",
+            "rank": 5,
+            "value": 84.4608
+          },
+          {
+            "iso3": "CHE",
+            "rank": 6,
+            "value": 84.3664
+          },
+          {
+            "iso3": "AUS",
+            "rank": 7,
+            "value": 84.3414
+          },
+          {
+            "iso3": "ITA",
+            "rank": 8,
+            "value": 84.1761
+          },
+          {
+            "iso3": "SGP",
+            "rank": 9,
+            "value": 84.1281
+          },
+          {
+            "iso3": "ESP",
+            "rank": 10,
+            "value": 84.0829
+          },
+          {
+            "iso3": "LIE",
+            "rank": 11,
+            "value": 84.0578
+          },
+          {
+            "iso3": "MLT",
+            "rank": 12,
+            "value": 83.7817
+          },
+          {
+            "iso3": "NOR",
+            "rank": 13,
+            "value": 83.7612
+          },
+          {
+            "iso3": "SWE",
+            "rank": 14,
+            "value": 83.7285
+          },
+          {
+            "iso3": "FRA",
+            "rank": 15,
+            "value": 83.7029
+          },
+          {
+            "iso3": "ARE",
+            "rank": 16,
+            "value": 83.3899
+          },
+          {
+            "iso3": "ISL",
+            "rank": 17,
+            "value": 83.3002
+          },
+          {
+            "iso3": "CAN",
+            "rank": 18,
+            "value": 83.0533
+          },
+          {
+            "iso3": "IRL",
+            "rank": 19,
+            "value": 82.9243
+          },
+          {
+            "iso3": "ISR",
+            "rank": 20,
+            "value": 82.8975
+          },
+          {
+            "iso3": "PRT",
+            "rank": 21,
+            "value": 82.8932
+          },
+          {
+            "iso3": "QAT",
+            "rank": 22,
+            "value": 82.8268
+          },
+          {
+            "iso3": "LUX",
+            "rank": 23,
+            "value": 82.6357
+          },
+          {
+            "iso3": "NLD",
+            "rank": 24,
+            "value": 82.6079
+          },
+          {
+            "iso3": "BEL",
+            "rank": 25,
+            "value": 82.5902
+          },
+          {
+            "iso3": "NZL",
+            "rank": 26,
+            "value": 82.5234
+          },
+          {
+            "iso3": "AUT",
+            "rank": 27,
+            "value": 82.4538
+          },
+          {
+            "iso3": "FIN",
+            "rank": 28,
+            "value": 82.4007
+          },
+          {
+            "iso3": "GRC",
+            "rank": 29,
+            "value": 82.3953
+          },
+          {
+            "iso3": "DNK",
+            "rank": 30,
+            "value": 82.3853
+          },
+          {
+            "iso3": "CYP",
+            "rank": 31,
+            "value": 82.1527
+          },
+          {
+            "iso3": "SVN",
+            "rank": 32,
+            "value": 82.0954
+          },
+          {
+            "iso3": "DEU",
+            "rank": 33,
+            "value": 81.8629
+          },
+          {
+            "iso3": "GBR",
+            "rank": 34,
+            "value": 81.7497
+          },
+          {
+            "iso3": "BHR",
+            "rank": 35,
+            "value": 81.7428
+          },
+          {
+            "iso3": "MDV",
+            "rank": 36,
+            "value": 81.7297
+          },
+          {
+            "iso3": "CHL",
+            "rank": 37,
+            "value": 81.7146
+          },
+          {
+            "iso3": "CRI",
+            "rank": 38,
+            "value": 81.3829
+          },
+          {
+            "iso3": "KWT",
+            "rank": 39,
+            "value": 80.965
+          },
+          {
+            "iso3": "OMN",
+            "rank": 40,
+            "value": 80.6524
+          },
+          {
+            "iso3": "CZE",
+            "rank": 41,
+            "value": 80.2507
+          },
+          {
+            "iso3": "PAN",
+            "rank": 42,
+            "value": 80.1485
+          },
+          {
+            "iso3": "ALB",
+            "rank": 43,
+            "value": 80.1324
+          },
+          {
+            "iso3": "USA",
+            "rank": 44,
+            "value": 79.7579
+          },
+          {
+            "iso3": "EST",
+            "rank": 45,
+            "value": 79.6369
+          },
+          {
+            "iso3": "SAU",
+            "rank": 46,
+            "value": 79.3996
+          },
+          {
+            "iso3": "POL",
+            "rank": 47,
+            "value": 79.152
+          },
+          {
+            "iso3": "HRV",
+            "rank": 48,
+            "value": 79.0926
+          },
+          {
+            "iso3": "CHN",
+            "rank": 49,
+            "value": 79.022
+          },
+          {
+            "iso3": "SVK",
+            "rank": 50,
+            "value": 78.8144
+          },
+          {
+            "iso3": "CUB",
+            "rank": 51,
+            "value": 78.6244
+          },
+          {
+            "iso3": "URY",
+            "rank": 52,
+            "value": 78.6158
+          },
+          {
+            "iso3": "BIH",
+            "rank": 53,
+            "value": 78.4205
+          },
+          {
+            "iso3": "TUR",
+            "rank": 54,
+            "value": 78.3774
+          },
+          {
+            "iso3": "JOR",
+            "rank": 55,
+            "value": 78.299
+          },
+          {
+            "iso3": "PER",
+            "rank": 56,
+            "value": 78.2969
+          },
+          {
+            "iso3": "COL",
+            "rank": 57,
+            "value": 78.2719
+          },
+          {
+            "iso3": "IRN",
+            "rank": 58,
+            "value": 78.2485
+          },
+          {
+            "iso3": "LBN",
+            "rank": 59,
+            "value": 78.2177
+          },
+          {
+            "iso3": "ATG",
+            "rank": 60,
+            "value": 78.1124
+          },
+          {
+            "iso3": "LKA",
+            "rank": 61,
+            "value": 78.0319
+          },
+          {
+            "iso3": "ECU",
+            "rank": 62,
+            "value": 77.9379
+          },
+          {
+            "iso3": "ARG",
+            "rank": 63,
+            "value": 77.8291
+          },
+          {
+            "iso3": "MKD",
+            "rank": 64,
+            "value": 77.8144
+          },
+          {
+            "iso3": "MNE",
+            "rank": 65,
+            "value": 77.6025
+          },
+          {
+            "iso3": "HUN",
+            "rank": 66,
+            "value": 77.4991
+          },
+          {
+            "iso3": "SRB",
+            "rank": 67,
+            "value": 77.3277
+          },
+          {
+            "iso3": "MYS",
+            "rank": 68,
+            "value": 77.1581
+          },
+          {
+            "iso3": "TUN",
+            "rank": 69,
+            "value": 77.1017
+          },
+          {
+            "iso3": "THA",
+            "rank": 70,
+            "value": 77.0606
+          },
+          {
+            "iso3": "DZA",
+            "rank": 71,
+            "value": 76.8904
+          },
+          {
+            "iso3": "BRB",
+            "rank": 72,
+            "value": 76.645
+          },
+          {
+            "iso3": "LVA",
+            "rank": 73,
+            "value": 76.6287
+          },
+          {
+            "iso3": "CPV",
+            "rank": 74,
+            "value": 76.5624
+          },
+          {
+            "iso3": "LTU",
+            "rank": 75,
+            "value": 76.4804
+          },
+          {
+            "iso3": "ROU",
+            "rank": 76,
+            "value": 76.3965
+          },
+          {
+            "iso3": "BRA",
+            "rank": 77,
+            "value": 76.3738
+          },
+          {
+            "iso3": "ARM",
+            "rank": 78,
+            "value": 76.1808
+          },
+          {
+            "iso3": "BGR",
+            "rank": 79,
+            "value": 76.1263
+          },
+          {
+            "iso3": "MAR",
+            "rank": 80,
+            "value": 75.8591
+          },
+          {
+            "iso3": "BRN",
+            "rank": 81,
+            "value": 75.8334
+          },
+          {
+            "iso3": "GRD",
+            "rank": 82,
+            "value": 75.6674
+          },
+          {
+            "iso3": "MEX",
+            "rank": 83,
+            "value": 75.6291
+          },
+          {
+            "iso3": "BGD",
+            "rank": 84,
+            "value": 75.4677
+          },
+          {
+            "iso3": "MUS",
+            "rank": 85,
+            "value": 75.4418
+          },
+          {
+            "iso3": "NIC",
+            "rank": 86,
+            "value": 75.4288
+          },
+          {
+            "iso3": "LBY",
+            "rank": 87,
+            "value": 75.1815
+          },
+          {
+            "iso3": "VNM",
+            "rank": 88,
+            "value": 75.0486
+          },
+          {
+            "iso3": "UKR",
+            "rank": 89,
+            "value": 75.0197
+          },
+          {
+            "iso3": "BHS",
+            "rank": 90,
+            "value": 75.0108
+          },
+          {
+            "iso3": "GEO",
+            "rank": 91,
+            "value": 74.9777
+          },
+          {
+            "iso3": "BLR",
+            "rank": 92,
+            "value": 74.967
+          },
+          {
+            "iso3": "AZE",
+            "rank": 93,
+            "value": 74.8882
+          },
+          {
+            "iso3": "KAZ",
+            "rank": 94,
+            "value": 74.8069
+          },
+          {
+            "iso3": "PRY",
+            "rank": 95,
+            "value": 74.2377
+          },
+          {
+            "iso3": "DOM",
+            "rank": 96,
+            "value": 74.1203
+          },
+          {
+            "iso3": "BLZ",
+            "rank": 97,
+            "value": 74.0816
+          },
+          {
+            "iso3": "SUR",
+            "rank": 98,
+            "value": 74.0404
+          },
+          {
+            "iso3": "PRK",
+            "rank": 99,
+            "value": 73.9786
+          },
+          {
+            "iso3": "TTO",
+            "rank": 100,
+            "value": 73.8867
+          },
+          {
+            "iso3": "BTN",
+            "rank": 101,
+            "value": 73.7997
+          },
+          {
+            "iso3": "RUS",
+            "rank": 102,
+            "value": 73.7023
+          },
+          {
+            "iso3": "SYR",
+            "rank": 103,
+            "value": 73.4268
+          },
+          {
+            "iso3": "TON",
+            "rank": 104,
+            "value": 73.3937
+          },
+          {
+            "iso3": "HND",
+            "rank": 105,
+            "value": 73.385
+          },
+          {
+            "iso3": "SYC",
+            "rank": 106,
+            "value": 73.2799
+          },
+          {
+            "iso3": "LCA",
+            "rank": 107,
+            "value": 73.1506
+          },
+          {
+            "iso3": "GTM",
+            "rank": 108,
+            "value": 73.0429
+          },
+          {
+            "iso3": "VEN",
+            "rank": 109,
+            "value": 73.0085
+          },
+          {
+            "iso3": "UZB",
+            "rank": 110,
+            "value": 72.7818
+          },
+          {
+            "iso3": "SLV",
+            "rank": 111,
+            "value": 72.7428
+          },
+          {
+            "iso3": "IND",
+            "rank": 112,
+            "value": 72.7164
+          },
+          {
+            "iso3": "IRQ",
+            "rank": 113,
+            "value": 72.632
+          },
+          {
+            "iso3": "KNA",
+            "rank": 114,
+            "value": 72.5839
+          },
+          {
+            "iso3": "MNG",
+            "rank": 115,
+            "value": 72.487
+          },
+          {
+            "iso3": "TJK",
+            "rank": 116,
+            "value": 72.1879
+          },
+          {
+            "iso3": "EGY",
+            "rank": 117,
+            "value": 72.1627
+          },
+          {
+            "iso3": "KGZ",
+            "rank": 118,
+            "value": 72.1068
+          },
+          {
+            "iso3": "WSM",
+            "rank": 119,
+            "value": 72.08
+          },
+          {
+            "iso3": "VUT",
+            "rank": 120,
+            "value": 72.0206
+          },
+          {
+            "iso3": "JAM",
+            "rank": 121,
+            "value": 71.856
+          },
+          {
+            "iso3": "VCT",
+            "rank": 122,
+            "value": 71.6516
+          },
+          {
+            "iso3": "DMA",
+            "rank": 123,
+            "value": 71.6177
+          },
+          {
+            "iso3": "MDA",
+            "rank": 124,
+            "value": 71.5964
+          },
+          {
+            "iso3": "IDN",
+            "rank": 125,
+            "value": 71.5812
+          },
+          {
+            "iso3": "NPL",
+            "rank": 126,
+            "value": 71.1643
+          },
+          {
+            "iso3": "KHM",
+            "rank": 127,
+            "value": 71.1377
+          },
+          {
+            "iso3": "SLB",
+            "rank": 128,
+            "value": 70.9775
+          },
+          {
+            "iso3": "GUY",
+            "rank": 129,
+            "value": 70.5709
+          },
+          {
+            "iso3": "TKM",
+            "rank": 130,
+            "value": 70.4545
+          },
+          {
+            "iso3": "STP",
+            "rank": 131,
+            "value": 70.2623
+          },
+          {
+            "iso3": "PHL",
+            "rank": 132,
+            "value": 70.1744
+          },
+          {
+            "iso3": "YEM",
+            "rank": 133,
+            "value": 69.7303
+          },
+          {
+            "iso3": "LAO",
+            "rank": 134,
+            "value": 69.7052
+          },
+          {
+            "iso3": "PLW",
+            "rank": 135,
+            "value": 69.6049
+          },
+          {
+            "iso3": "BWA",
+            "rank": 136,
+            "value": 69.5736
+          },
+          {
+            "iso3": "ERI",
+            "rank": 137,
+            "value": 69.3976
+          },
+          {
+            "iso3": "SEN",
+            "rank": 138,
+            "value": 69.3873
+          },
+          {
+            "iso3": "MRT",
+            "rank": 139,
+            "value": 69.1548
+          },
+          {
+            "iso3": "BOL",
+            "rank": 140,
+            "value": 69.0652
+          },
+          {
+            "iso3": "UGA",
+            "rank": 141,
+            "value": 68.9207
+          },
+          {
+            "iso3": "GAB",
+            "rank": 142,
+            "value": 68.8769
+          },
+          {
+            "iso3": "RWA",
+            "rank": 143,
+            "value": 68.4653
+          },
+          {
+            "iso3": "TLS",
+            "rank": 144,
+            "value": 68.3343
+          },
+          {
+            "iso3": "ETH",
+            "rank": 145,
+            "value": 68.1487
+          },
+          {
+            "iso3": "PAK",
+            "rank": 146,
+            "value": 68.0653
+          },
+          {
+            "iso3": "MWI",
+            "rank": 147,
+            "value": 67.92
+          },
+          {
+            "iso3": "NAM",
+            "rank": 148,
+            "value": 67.8046
+          },
+          {
+            "iso3": "FJI",
+            "rank": 149,
+            "value": 67.7711
+          },
+          {
+            "iso3": "FSM",
+            "rank": 150,
+            "value": 67.6501
+          },
+          {
+            "iso3": "TZA",
+            "rank": 151,
+            "value": 67.6344
+          },
+          {
+            "iso3": "TUV",
+            "rank": 152,
+            "value": 67.5641
+          },
+          {
+            "iso3": "MMR",
+            "rank": 153,
+            "value": 67.4994
+          },
+          {
+            "iso3": "COM",
+            "rank": 154,
+            "value": 67.4779
+          },
+          {
+            "iso3": "MHL",
+            "rank": 155,
+            "value": 67.3197
+          },
+          {
+            "iso3": "SDN",
+            "rank": 156,
+            "value": 66.8896
+          },
+          {
+            "iso3": "ZMB",
+            "rank": 157,
+            "value": 66.8782
+          },
+          {
+            "iso3": "KIR",
+            "rank": 158,
+            "value": 66.858
+          },
+          {
+            "iso3": "AFG",
+            "rank": 159,
+            "value": 66.7709
+          },
+          {
+            "iso3": "ZAF",
+            "rank": 160,
+            "value": 66.6561
+          },
+          {
+            "iso3": "DJI",
+            "rank": 161,
+            "value": 66.6137
+          },
+          {
+            "iso3": "PNG",
+            "rank": 162,
+            "value": 66.5055
+          },
+          {
+            "iso3": "GMB",
+            "rank": 163,
+            "value": 66.4506
+          },
+          {
+            "iso3": "COG",
+            "rank": 164,
+            "value": 66.4152
+          },
+          {
+            "iso3": "GHA",
+            "rank": 165,
+            "value": 66.0769
+          },
+          {
+            "iso3": "HTI",
+            "rank": 166,
+            "value": 65.452
+          },
+          {
+            "iso3": "AGO",
+            "rank": 167,
+            "value": 65.1692
+          },
+          {
+            "iso3": "GNB",
+            "rank": 168,
+            "value": 64.5861
+          },
+          {
+            "iso3": "SWZ",
+            "rank": 169,
+            "value": 64.544
+          },
+          {
+            "iso3": "CMR",
+            "rank": 170,
+            "value": 64.51
+          },
+          {
+            "iso3": "GNQ",
+            "rank": 171,
+            "value": 64.2988
+          },
+          {
+            "iso3": "MDG",
+            "rank": 172,
+            "value": 64.2532
+          },
+          {
+            "iso3": "KEN",
+            "rank": 173,
+            "value": 64.1886
+          },
+          {
+            "iso3": "MOZ",
+            "rank": 174,
+            "value": 64.1386
+          },
+          {
+            "iso3": "BDI",
+            "rank": 175,
+            "value": 64.1381
+          },
+          {
+            "iso3": "ZWE",
+            "rank": 176,
+            "value": 63.6289
+          },
+          {
+            "iso3": "TGO",
+            "rank": 177,
+            "value": 63.335
+          },
+          {
+            "iso3": "LBR",
+            "rank": 178,
+            "value": 62.6183
+          },
+          {
+            "iso3": "NRU",
+            "rank": 179,
+            "value": 62.6105
+          },
+          {
+            "iso3": "CIV",
+            "rank": 180,
+            "value": 62.4404
+          },
+          {
+            "iso3": "COD",
+            "rank": 181,
+            "value": 62.3878
+          },
+          {
+            "iso3": "SLE",
+            "rank": 182,
+            "value": 62.329
+          },
+          {
+            "iso3": "NER",
+            "rank": 183,
+            "value": 61.8817
+          },
+          {
+            "iso3": "BFA",
+            "rank": 184,
+            "value": 61.647
+          },
+          {
+            "iso3": "BEN",
+            "rank": 185,
+            "value": 61.3206
+          },
+          {
+            "iso3": "GIN",
+            "rank": 186,
+            "value": 61.2269
+          },
+          {
+            "iso3": "MLI",
+            "rank": 187,
+            "value": 61.1096
+          },
+          {
+            "iso3": "SOM",
+            "rank": 188,
+            "value": 59.2632
+          },
+          {
+            "iso3": "LSO",
+            "rank": 189,
+            "value": 58.6331
+          },
+          {
+            "iso3": "CAF",
+            "rank": 190,
+            "value": 58.1536
+          },
+          {
+            "iso3": "SSD",
+            "rank": 191,
+            "value": 57.9694
+          },
+          {
+            "iso3": "TCD",
+            "rank": 192,
+            "value": 55.5809
+          },
+          {
+            "iso3": "NGA",
+            "rank": 193,
+            "value": 54.9528
+          }
+        ],
+        "bdSexes": {
+          "male": 73.8156,
+          "female": 77.2192
+        }
+      },
+      "previous": {
+        "edition": "World Population Prospects 2024 (2025)",
+        "editionNote": "World Population Prospects 2024, medium variant, 2025 (same release): life expectancy at birth, both sexes (years); Togo from the interim update of 2026-01-19",
+        "releaseDate": "2024-07-11",
+        "releaseUrl": "https://www.un.org/development/desa/pd/world-population-prospects-2024",
+        "dataUrl": "https://population.un.org/wpp/assets/Excel%20Files/1_Indicator%20(Standard)/CSV_FILES/WPP2024_Demographic_Indicators_Medium.csv.gz",
+        "dataFile": "wpp2024-medium.csv.gz",
+        "n": 193,
+        "rule": "WPP 2024 Demographic Indicators, Medium variant, LocTypeName 'Country/Area', Time 2025, column LEx; Togo's rows from WPP2024_Demographic_Indicators_Medium_Update.csv in the update zip. Restricted to the 193 UN member states listed on un-member-states.html (names mapped in nameMaps). Ranked descending (1 = highest) on the file's values as published (no rounding); competition ranks on exact ties (1,2,2,4); tied rows listed in the file's SortOrder.",
+        "bd": {
+          "rank": 86,
+          "value": 75.195
+        },
+        "top": {
+          "iso3": "MCO",
+          "name": "Monaco",
+          "rank": 1,
+          "value": 86.6107
+        },
+        "bottom": {
+          "iso3": "NGA",
+          "name": "Nigeria",
+          "rank": 193,
+          "value": 54.784
+        },
+        "rows": [
+          {
+            "iso3": "MCO",
+            "rank": 1,
+            "value": 86.6107
+          },
+          {
+            "iso3": "SMR",
+            "rank": 2,
+            "value": 85.9248
+          },
+          {
+            "iso3": "JPN",
+            "rank": 3,
+            "value": 85.0012
+          },
+          {
+            "iso3": "KOR",
+            "rank": 4,
+            "value": 84.5348
+          },
+          {
+            "iso3": "AND",
+            "rank": 5,
+            "value": 84.3305
+          },
+          {
+            "iso3": "CHE",
+            "rank": 6,
+            "value": 84.2293
+          },
+          {
+            "iso3": "AUS",
+            "rank": 7,
+            "value": 84.2135
+          },
+          {
+            "iso3": "ITA",
+            "rank": 8,
+            "value": 84.0285
+          },
+          {
+            "iso3": "SGP",
+            "rank": 9,
+            "value": 83.9981
+          },
+          {
+            "iso3": "ESP",
+            "rank": 10,
+            "value": 83.9598
+          },
+          {
+            "iso3": "LIE",
+            "rank": 11,
+            "value": 83.928
+          },
+          {
+            "iso3": "MLT",
+            "rank": 12,
+            "value": 83.6277
+          },
+          {
+            "iso3": "NOR",
+            "rank": 13,
+            "value": 83.6072
+          },
+          {
+            "iso3": "FRA",
+            "rank": 14,
+            "value": 83.5804
+          },
+          {
+            "iso3": "SWE",
+            "rank": 15,
+            "value": 83.5764
+          },
+          {
+            "iso3": "ARE",
+            "rank": 16,
+            "value": 83.235
+          },
+          {
+            "iso3": "ISL",
+            "rank": 17,
+            "value": 83.1526
+          },
+          {
+            "iso3": "CAN",
+            "rank": 18,
+            "value": 82.8834
+          },
+          {
+            "iso3": "ISR",
+            "rank": 19,
+            "value": 82.7736
+          },
+          {
+            "iso3": "IRL",
+            "rank": 20,
+            "value": 82.7453
+          },
+          {
+            "iso3": "PRT",
+            "rank": 21,
+            "value": 82.7165
+          },
+          {
+            "iso3": "QAT",
+            "rank": 22,
+            "value": 82.6797
+          },
+          {
+            "iso3": "LUX",
+            "rank": 23,
+            "value": 82.4941
+          },
+          {
+            "iso3": "NLD",
+            "rank": 24,
+            "value": 82.4485
+          },
+          {
+            "iso3": "BEL",
+            "rank": 25,
+            "value": 82.4323
+          },
+          {
+            "iso3": "NZL",
+            "rank": 26,
+            "value": 82.3882
+          },
+          {
+            "iso3": "AUT",
+            "rank": 27,
+            "value": 82.2911
+          },
+          {
+            "iso3": "DNK",
+            "rank": 28,
+            "value": 82.2452
+          },
+          {
+            "iso3": "FIN",
+            "rank": 29,
+            "value": 82.2437
+          },
+          {
+            "iso3": "GRC",
+            "rank": 30,
+            "value": 82.2247
+          },
+          {
+            "iso3": "CYP",
+            "rank": 31,
+            "value": 81.9911
+          },
+          {
+            "iso3": "SVN",
+            "rank": 32,
+            "value": 81.9359
+          },
+          {
+            "iso3": "DEU",
+            "rank": 33,
+            "value": 81.707
+          },
+          {
+            "iso3": "GBR",
+            "rank": 34,
+            "value": 81.5995
+          },
+          {
+            "iso3": "BHR",
+            "rank": 35,
+            "value": 81.5792
+          },
+          {
+            "iso3": "CHL",
+            "rank": 36,
+            "value": 81.5386
+          },
+          {
+            "iso3": "MDV",
+            "rank": 37,
+            "value": 81.5081
+          },
+          {
+            "iso3": "CRI",
+            "rank": 38,
+            "value": 81.1907
+          },
+          {
+            "iso3": "KWT",
+            "rank": 39,
+            "value": 80.7791
+          },
+          {
+            "iso3": "OMN",
+            "rank": 40,
+            "value": 80.4512
+          },
+          {
+            "iso3": "CZE",
+            "rank": 41,
+            "value": 80.1069
+          },
+          {
+            "iso3": "PAN",
+            "rank": 42,
+            "value": 79.9571
+          },
+          {
+            "iso3": "ALB",
+            "rank": 43,
+            "value": 79.9533
+          },
+          {
+            "iso3": "USA",
+            "rank": 44,
+            "value": 79.6135
+          },
+          {
+            "iso3": "EST",
+            "rank": 45,
+            "value": 79.4762
+          },
+          {
+            "iso3": "SAU",
+            "rank": 46,
+            "value": 79.1953
+          },
+          {
+            "iso3": "POL",
+            "rank": 47,
+            "value": 78.9807
+          },
+          {
+            "iso3": "HRV",
+            "rank": 48,
+            "value": 78.9154
+          },
+          {
+            "iso3": "SVK",
+            "rank": 49,
+            "value": 78.654
+          },
+          {
+            "iso3": "URY",
+            "rank": 50,
+            "value": 78.4541
+          },
+          {
+            "iso3": "CUB",
+            "rank": 51,
+            "value": 78.4474
+          },
+          {
+            "iso3": "CHN",
+            "rank": 52,
+            "value": 78.3723
+          },
+          {
+            "iso3": "BIH",
+            "rank": 53,
+            "value": 78.2371
+          },
+          {
+            "iso3": "JOR",
+            "rank": 54,
+            "value": 78.1311
+          },
+          {
+            "iso3": "PER",
+            "rank": 55,
+            "value": 78.1172
+          },
+          {
+            "iso3": "COL",
+            "rank": 56,
+            "value": 78.0938
+          },
+          {
+            "iso3": "LBN",
+            "rank": 57,
+            "value": 78.0838
+          },
+          {
+            "iso3": "IRN",
+            "rank": 58,
+            "value": 78.0506
+          },
+          {
+            "iso3": "ATG",
+            "rank": 59,
+            "value": 77.9414
+          },
+          {
+            "iso3": "LKA",
+            "rank": 60,
+            "value": 77.8539
+          },
+          {
+            "iso3": "TUR",
+            "rank": 61,
+            "value": 77.8239
+          },
+          {
+            "iso3": "ECU",
+            "rank": 62,
+            "value": 77.7572
+          },
+          {
+            "iso3": "ARG",
+            "rank": 63,
+            "value": 77.6894
+          },
+          {
+            "iso3": "MKD",
+            "rank": 64,
+            "value": 77.6759
+          },
+          {
+            "iso3": "MNE",
+            "rank": 65,
+            "value": 77.4339
+          },
+          {
+            "iso3": "HUN",
+            "rank": 66,
+            "value": 77.3326
+          },
+          {
+            "iso3": "SRB",
+            "rank": 67,
+            "value": 77.1387
+          },
+          {
+            "iso3": "MYS",
+            "rank": 68,
+            "value": 76.987
+          },
+          {
+            "iso3": "TUN",
+            "rank": 69,
+            "value": 76.9033
+          },
+          {
+            "iso3": "THA",
+            "rank": 70,
+            "value": 76.8247
+          },
+          {
+            "iso3": "DZA",
+            "rank": 71,
+            "value": 76.6866
+          },
+          {
+            "iso3": "BRB",
+            "rank": 72,
+            "value": 76.4917
+          },
+          {
+            "iso3": "LVA",
+            "rank": 73,
+            "value": 76.4768
+          },
+          {
+            "iso3": "CPV",
+            "rank": 74,
+            "value": 76.3971
+          },
+          {
+            "iso3": "LTU",
+            "rank": 75,
+            "value": 76.3216
+          },
+          {
+            "iso3": "ROU",
+            "rank": 76,
+            "value": 76.2453
+          },
+          {
+            "iso3": "BRA",
+            "rank": 77,
+            "value": 76.1999
+          },
+          {
+            "iso3": "ARM",
+            "rank": 78,
+            "value": 76.0123
+          },
+          {
+            "iso3": "BGR",
+            "rank": 79,
+            "value": 75.9612
+          },
+          {
+            "iso3": "MAR",
+            "rank": 80,
+            "value": 75.6825
+          },
+          {
+            "iso3": "BRN",
+            "rank": 81,
+            "value": 75.6685
+          },
+          {
+            "iso3": "GRD",
+            "rank": 82,
+            "value": 75.5184
+          },
+          {
+            "iso3": "MEX",
+            "rank": 83,
+            "value": 75.4456
+          },
+          {
+            "iso3": "MUS",
+            "rank": 84,
+            "value": 75.2708
+          },
+          {
+            "iso3": "NIC",
+            "rank": 85,
+            "value": 75.2674
+          },
+          {
+            "iso3": "BGD",
+            "rank": 86,
+            "value": 75.195
+          },
+          {
+            "iso3": "VNM",
+            "rank": 87,
+            "value": 74.8813
+          },
+          {
+            "iso3": "UKR",
+            "rank": 88,
+            "value": 74.8652
+          },
+          {
+            "iso3": "BHS",
+            "rank": 89,
+            "value": 74.863
+          },
+          {
+            "iso3": "GEO",
+            "rank": 90,
+            "value": 74.8164
+          },
+          {
+            "iso3": "BLR",
+            "rank": 91,
+            "value": 74.7927
+          },
+          {
+            "iso3": "AZE",
+            "rank": 92,
+            "value": 74.7322
+          },
+          {
+            "iso3": "KAZ",
+            "rank": 93,
+            "value": 74.6708
+          },
+          {
+            "iso3": "PRY",
+            "rank": 94,
+            "value": 74.1107
+          },
+          {
+            "iso3": "DOM",
+            "rank": 95,
+            "value": 73.9898
+          },
+          {
+            "iso3": "BLZ",
+            "rank": 96,
+            "value": 73.9035
+          },
+          {
+            "iso3": "SUR",
+            "rank": 97,
+            "value": 73.8986
+          },
+          {
+            "iso3": "PRK",
+            "rank": 98,
+            "value": 73.8594
+          },
+          {
+            "iso3": "TTO",
+            "rank": 99,
+            "value": 73.7474
+          },
+          {
+            "iso3": "BTN",
+            "rank": 100,
+            "value": 73.5278
+          },
+          {
+            "iso3": "RUS",
+            "rank": 101,
+            "value": 73.5216
+          },
+          {
+            "iso3": "TON",
+            "rank": 102,
+            "value": 73.2256
+          },
+          {
+            "iso3": "HND",
+            "rank": 103,
+            "value": 73.2184
+          },
+          {
+            "iso3": "LBY",
+            "rank": 104,
+            "value": 73.1912
+          },
+          {
+            "iso3": "SYC",
+            "rank": 105,
+            "value": 73.1404
+          },
+          {
+            "iso3": "LCA",
+            "rank": 106,
+            "value": 72.9989
+          },
+          {
+            "iso3": "SYR",
+            "rank": 107,
+            "value": 72.9899
+          },
+          {
+            "iso3": "GTM",
+            "rank": 108,
+            "value": 72.8947
+          },
+          {
+            "iso3": "VEN",
+            "rank": 109,
+            "value": 72.8418
+          },
+          {
+            "iso3": "UZB",
+            "rank": 110,
+            "value": 72.6562
+          },
+          {
+            "iso3": "IRQ",
+            "rank": 111,
+            "value": 72.5339
+          },
+          {
+            "iso3": "SLV",
+            "rank": 112,
+            "value": 72.5196
+          },
+          {
+            "iso3": "IND",
+            "rank": 113,
+            "value": 72.4848
+          },
+          {
+            "iso3": "KNA",
+            "rank": 114,
+            "value": 72.4247
+          },
+          {
+            "iso3": "MNG",
+            "rank": 115,
+            "value": 72.2377
+          },
+          {
+            "iso3": "TJK",
+            "rank": 116,
+            "value": 72.0521
+          },
+          {
+            "iso3": "EGY",
+            "rank": 117,
+            "value": 71.9868
+          },
+          {
+            "iso3": "KGZ",
+            "rank": 118,
+            "value": 71.9687
+          },
+          {
+            "iso3": "WSM",
+            "rank": 119,
+            "value": 71.9484
+          },
+          {
+            "iso3": "VUT",
+            "rank": 120,
+            "value": 71.8434
+          },
+          {
+            "iso3": "JAM",
+            "rank": 121,
+            "value": 71.7296
+          },
+          {
+            "iso3": "VCT",
+            "rank": 122,
+            "value": 71.5134
+          },
+          {
+            "iso3": "MDA",
+            "rank": 123,
+            "value": 71.4672
+          },
+          {
+            "iso3": "DMA",
+            "rank": 124,
+            "value": 71.4512
+          },
+          {
+            "iso3": "IDN",
+            "rank": 125,
+            "value": 71.4377
+          },
+          {
+            "iso3": "KHM",
+            "rank": 126,
+            "value": 70.9695
+          },
+          {
+            "iso3": "NPL",
+            "rank": 127,
+            "value": 70.8968
+          },
+          {
+            "iso3": "SLB",
+            "rank": 128,
+            "value": 70.8342
+          },
+          {
+            "iso3": "GUY",
+            "rank": 129,
+            "value": 70.4468
+          },
+          {
+            "iso3": "TKM",
+            "rank": 130,
+            "value": 70.3341
+          },
+          {
+            "iso3": "STP",
+            "rank": 131,
+            "value": 70.0814
+          },
+          {
+            "iso3": "PHL",
+            "rank": 132,
+            "value": 70.0671
+          },
+          {
+            "iso3": "YEM",
+            "rank": 133,
+            "value": 69.5796
+          },
+          {
+            "iso3": "PLW",
+            "rank": 134,
+            "value": 69.4935
+          },
+          {
+            "iso3": "LAO",
+            "rank": 135,
+            "value": 69.4728
+          },
+          {
+            "iso3": "BWA",
+            "rank": 136,
+            "value": 69.4289
+          },
+          {
+            "iso3": "SEN",
+            "rank": 137,
+            "value": 69.1569
+          },
+          {
+            "iso3": "ERI",
+            "rank": 138,
+            "value": 69.1512
+          },
+          {
+            "iso3": "MRT",
+            "rank": 139,
+            "value": 68.937
+          },
+          {
+            "iso3": "BOL",
+            "rank": 140,
+            "value": 68.9049
+          },
+          {
+            "iso3": "UGA",
+            "rank": 141,
+            "value": 68.7077
+          },
+          {
+            "iso3": "GAB",
+            "rank": 142,
+            "value": 68.6963
+          },
+          {
+            "iso3": "RWA",
+            "rank": 143,
+            "value": 68.2415
+          },
+          {
+            "iso3": "TLS",
+            "rank": 144,
+            "value": 68.1299
+          },
+          {
+            "iso3": "PAK",
+            "rank": 145,
+            "value": 67.9371
+          },
+          {
+            "iso3": "ETH",
+            "rank": 146,
+            "value": 67.8758
+          },
+          {
+            "iso3": "MWI",
+            "rank": 147,
+            "value": 67.7438
+          },
+          {
+            "iso3": "NAM",
+            "rank": 148,
+            "value": 67.6626
+          },
+          {
+            "iso3": "FJI",
+            "rank": 149,
+            "value": 67.619
+          },
+          {
+            "iso3": "FSM",
+            "rank": 150,
+            "value": 67.5027
+          },
+          {
+            "iso3": "TZA",
+            "rank": 151,
+            "value": 67.4188
+          },
+          {
+            "iso3": "TUV",
+            "rank": 152,
+            "value": 67.4105
+          },
+          {
+            "iso3": "MMR",
+            "rank": 153,
+            "value": 67.302
+          },
+          {
+            "iso3": "COM",
+            "rank": 154,
+            "value": 67.2487
+          },
+          {
+            "iso3": "MHL",
+            "rank": 155,
+            "value": 67.2001
+          },
+          {
+            "iso3": "KIR",
+            "rank": 156,
+            "value": 66.7238
+          },
+          {
+            "iso3": "SDN",
+            "rank": 157,
+            "value": 66.7045
+          },
+          {
+            "iso3": "ZMB",
+            "rank": 158,
+            "value": 66.7003
+          },
+          {
+            "iso3": "AFG",
+            "rank": 159,
+            "value": 66.538
+          },
+          {
+            "iso3": "ZAF",
+            "rank": 160,
+            "value": 66.4874
+          },
+          {
+            "iso3": "DJI",
+            "rank": 161,
+            "value": 66.4098
+          },
+          {
+            "iso3": "PNG",
+            "rank": 162,
+            "value": 66.3853
+          },
+          {
+            "iso3": "GMB",
+            "rank": 163,
+            "value": 66.2532
+          },
+          {
+            "iso3": "COG",
+            "rank": 164,
+            "value": 66.2041
+          },
+          {
+            "iso3": "GHA",
+            "rank": 165,
+            "value": 65.8857
+          },
+          {
+            "iso3": "HTI",
+            "rank": 166,
+            "value": 65.2979
+          },
+          {
+            "iso3": "AGO",
+            "rank": 167,
+            "value": 64.9848
+          },
+          {
+            "iso3": "GNB",
+            "rank": 168,
+            "value": 64.4108
+          },
+          {
+            "iso3": "SWZ",
+            "rank": 169,
+            "value": 64.4026
+          },
+          {
+            "iso3": "CMR",
+            "rank": 170,
+            "value": 64.2493
+          },
+          {
+            "iso3": "GNQ",
+            "rank": 171,
+            "value": 64.1003
+          },
+          {
+            "iso3": "MDG",
+            "rank": 172,
+            "value": 64.0374
+          },
+          {
+            "iso3": "KEN",
+            "rank": 173,
+            "value": 64.0138
+          },
+          {
+            "iso3": "BDI",
+            "rank": 174,
+            "value": 63.9726
+          },
+          {
+            "iso3": "MOZ",
+            "rank": 175,
+            "value": 63.9686
+          },
+          {
+            "iso3": "ZWE",
+            "rank": 176,
+            "value": 63.3459
+          },
+          {
+            "iso3": "TGO",
+            "rank": 177,
+            "value": 63.143
+          },
+          {
+            "iso3": "LBR",
+            "rank": 178,
+            "value": 62.4713
+          },
+          {
+            "iso3": "NRU",
+            "rank": 179,
+            "value": 62.4424
+          },
+          {
+            "iso3": "CIV",
+            "rank": 180,
+            "value": 62.2782
+          },
+          {
+            "iso3": "COD",
+            "rank": 181,
+            "value": 62.228
+          },
+          {
+            "iso3": "SLE",
+            "rank": 182,
+            "value": 62.1503
+          },
+          {
+            "iso3": "NER",
+            "rank": 183,
+            "value": 61.6597
+          },
+          {
+            "iso3": "BFA",
+            "rank": 184,
+            "value": 61.4729
+          },
+          {
+            "iso3": "BEN",
+            "rank": 185,
+            "value": 61.1407
+          },
+          {
+            "iso3": "GIN",
+            "rank": 186,
+            "value": 61.0639
+          },
+          {
+            "iso3": "MLI",
+            "rank": 187,
+            "value": 60.8937
+          },
+          {
+            "iso3": "SOM",
+            "rank": 188,
+            "value": 59.1083
+          },
+          {
+            "iso3": "LSO",
+            "rank": 189,
+            "value": 58.2169
+          },
+          {
+            "iso3": "CAF",
+            "rank": 190,
+            "value": 57.9031
+          },
+          {
+            "iso3": "SSD",
+            "rank": 191,
+            "value": 57.8513
+          },
+          {
+            "iso3": "TCD",
+            "rank": 192,
+            "value": 55.4286
+          },
+          {
+            "iso3": "NGA",
+            "rank": 193,
+            "value": 54.784
+          }
+        ],
+        "bdSexes": {
+          "male": 73.5525,
+          "female": 76.9434
+        }
+      },
+      "pageUrl": null,
+      "read": {
+        "readers": 2,
+        "agreed": true,
+        "unstoredMismatches": []
+      }
+    },
+    {
+      "id": "oic-population",
+      "kind": "open",
+      "nameBn": {
+        "bn": "মুসলিম বিশ্বে জনসংখ্যা (ওআইসি)",
+        "approved": true
+      },
+      "nameEn": "Population of the OIC member states (WPP 2024)",
+      "publisher": "UN DESA Population Division (members: OIC)",
+      "publisherFull": null,
+      "officialUrl": "https://population.un.org/wpp/",
+      "rankMeans": {
+        "bn": "১ = সবচেয়ে বেশি জনসংখ্যা (ওআইসির সদস্য দেশগুলোর মধ্যে)",
+        "approved": true
+      },
+      "basis": "year",
+      "sortedByValue": true,
+      "projection": true,
+      "noSouthAsia": true,
+      "bdStat": "oicStat",
+      "latest": {
+        "edition": "World Population Prospects 2024 (1 July 2026)",
+        "editionNote": "World Population Prospects 2024, medium variant, 2026 (projection): total population, 1 July (thousands); Togo from the interim update of 2026-01-19",
+        "releaseDate": "2024-07-11",
+        "releaseUrl": "https://www.un.org/development/desa/pd/world-population-prospects-2024",
+        "dataUrl": "https://population.un.org/wpp/assets/Excel%20Files/1_Indicator%20(Standard)/CSV_FILES/WPP2024_Demographic_Indicators_Medium.csv.gz",
+        "dataFile": "wpp2024-medium.csv.gz",
+        "n": 57,
+        "rule": "WPP 2024 Demographic Indicators, Medium variant, LocTypeName 'Country/Area', Time 2026, column TPopulation1July; Togo's rows from WPP2024_Demographic_Indicators_Medium_Update.csv in the update zip. Restricted to the OIC's members as listed on oic-members.html (names mapped in nameMaps), State of Palestine (PSE) included. Ranked descending (1 = highest) on the file's values as published (no rounding); competition ranks on exact ties (1,2,2,4); tied rows listed in the file's SortOrder.",
+        "bd": {
+          "rank": 4,
+          "value": 177818.044
+        },
+        "top": {
+          "iso3": "IDN",
+          "name": "Indonesia",
+          "rank": 1,
+          "value": 287886.782
+        },
+        "bottom": {
+          "iso3": "BRN",
+          "name": "Brunei Darussalam",
+          "rank": 57,
+          "value": 469.775
+        },
+        "rows": [
+          {
+            "iso3": "IDN",
+            "rank": 1,
+            "value": 287886.782
+          },
+          {
+            "iso3": "PAK",
+            "rank": 2,
+            "value": 259299.792
+          },
+          {
+            "iso3": "NGA",
+            "rank": 3,
+            "value": 242431.832
+          },
+          {
+            "iso3": "BGD",
+            "rank": 4,
+            "value": 177818.044
+          },
+          {
+            "iso3": "EGY",
+            "rank": 5,
+            "value": 120101.175
+          },
+          {
+            "iso3": "IRN",
+            "rank": 6,
+            "value": 93168.497
+          },
+          {
+            "iso3": "TUR",
+            "rank": 7,
+            "value": 87926.082
+          },
+          {
+            "iso3": "SDN",
+            "rank": 8,
+            "value": 53282.719
+          },
+          {
+            "iso3": "UGA",
+            "rank": 9,
+            "value": 52761.47
+          },
+          {
+            "iso3": "DZA",
+            "rank": 10,
+            "value": 48028.334
+          },
+          {
+            "iso3": "IRQ",
+            "rank": 11,
+            "value": 48007.437
+          },
+          {
+            "iso3": "AFG",
+            "rank": 12,
+            "value": 45047.068
+          },
+          {
+            "iso3": "YEM",
+            "rank": 13,
+            "value": 42961.653
+          },
+          {
+            "iso3": "MAR",
+            "rank": 14,
+            "value": 38762.441
+          },
+          {
+            "iso3": "UZB",
+            "rank": 15,
+            "value": 37724.223
+          },
+          {
+            "iso3": "MOZ",
+            "rank": 16,
+            "value": 36639.85
+          },
+          {
+            "iso3": "MYS",
+            "rank": 17,
+            "value": 36385.115
+          },
+          {
+            "iso3": "SAU",
+            "rank": 18,
+            "value": 35165.787
+          },
+          {
+            "iso3": "CIV",
+            "rank": 19,
+            "value": 33494.346
+          },
+          {
+            "iso3": "CMR",
+            "rank": 20,
+            "value": 30640.817
+          },
+          {
+            "iso3": "NER",
+            "rank": 21,
+            "value": 28814.878
+          },
+          {
+            "iso3": "SYR",
+            "rank": 22,
+            "value": 26472.497
+          },
+          {
+            "iso3": "MLI",
+            "rank": 23,
+            "value": 25932.275
+          },
+          {
+            "iso3": "BFA",
+            "rank": 24,
+            "value": 24601.7
+          },
+          {
+            "iso3": "TCD",
+            "rank": 25,
+            "value": 21560.38
+          },
+          {
+            "iso3": "KAZ",
+            "rank": 26,
+            "value": 21083.626
+          },
+          {
+            "iso3": "SOM",
+            "rank": 27,
+            "value": 20305.907
+          },
+          {
+            "iso3": "SEN",
+            "rank": 28,
+            "value": 19366.548
+          },
+          {
+            "iso3": "GIN",
+            "rank": 29,
+            "value": 15441.992
+          },
+          {
+            "iso3": "BEN",
+            "rank": 30,
+            "value": 15170.42
+          },
+          {
+            "iso3": "TUN",
+            "rank": 31,
+            "value": 12415.138
+          },
+          {
+            "iso3": "JOR",
+            "rank": 32,
+            "value": 11589.532
+          },
+          {
+            "iso3": "ARE",
+            "rank": 33,
+            "value": 11574.682
+          },
+          {
+            "iso3": "TJK",
+            "rank": 34,
+            "value": 10978.598
+          },
+          {
+            "iso3": "AZE",
+            "rank": 35,
+            "value": 10454.855
+          },
+          {
+            "iso3": "SLE",
+            "rank": 36,
+            "value": 8996.744
+          },
+          {
+            "iso3": "TGO",
+            "rank": 37,
+            "value": 8780.006
+          },
+          {
+            "iso3": "TKM",
+            "rank": 38,
+            "value": 7736.632
+          },
+          {
+            "iso3": "LBY",
+            "rank": 39,
+            "value": 7539.852
+          },
+          {
+            "iso3": "KGZ",
+            "rank": 40,
+            "value": 7400.464
+          },
+          {
+            "iso3": "LBN",
+            "rank": 41,
+            "value": 5897.467
+          },
+          {
+            "iso3": "PSE",
+            "rank": 42,
+            "value": 5692.79
+          },
+          {
+            "iso3": "OMN",
+            "rank": 43,
+            "value": 5671.458
+          },
+          {
+            "iso3": "MRT",
+            "rank": 44,
+            "value": 5461.319
+          },
+          {
+            "iso3": "KWT",
+            "rank": 45,
+            "value": 5102.773
+          },
+          {
+            "iso3": "QAT",
+            "rank": 46,
+            "value": 3173.559
+          },
+          {
+            "iso3": "GMB",
+            "rank": 47,
+            "value": 2884.079
+          },
+          {
+            "iso3": "ALB",
+            "rank": 48,
+            "value": 2751.025
+          },
+          {
+            "iso3": "GAB",
+            "rank": 49,
+            "value": 2647.4
+          },
+          {
+            "iso3": "GNB",
+            "rank": 50,
+            "value": 2297.808
+          },
+          {
+            "iso3": "BHR",
+            "rank": 51,
+            "value": 1675.572
+          },
+          {
+            "iso3": "DJI",
+            "rank": 52,
+            "value": 1199.459
+          },
+          {
+            "iso3": "COM",
+            "rank": 53,
+            "value": 899.01
+          },
+          {
+            "iso3": "GUY",
+            "rank": 54,
+            "value": 840.89
+          },
+          {
+            "iso3": "SUR",
+            "rank": 55,
+            "value": 645.256
+          },
+          {
+            "iso3": "MDV",
+            "rank": 56,
+            "value": 531.517
+          },
+          {
+            "iso3": "BRN",
+            "rank": 57,
+            "value": 469.775
+          }
+        ]
+      },
+      "previous": {
+        "edition": "World Population Prospects 2024 (1 July 2025)",
+        "editionNote": "World Population Prospects 2024, medium variant, 2025 (same release): total population, 1 July (thousands); Togo from the interim update of 2026-01-19",
+        "releaseDate": "2024-07-11",
+        "releaseUrl": "https://www.un.org/development/desa/pd/world-population-prospects-2024",
+        "dataUrl": "https://population.un.org/wpp/assets/Excel%20Files/1_Indicator%20(Standard)/CSV_FILES/WPP2024_Demographic_Indicators_Medium.csv.gz",
+        "dataFile": "wpp2024-medium.csv.gz",
+        "n": 57,
+        "rule": "WPP 2024 Demographic Indicators, Medium variant, LocTypeName 'Country/Area', Time 2025, column TPopulation1July; Togo's rows from WPP2024_Demographic_Indicators_Medium_Update.csv in the update zip. Restricted to the OIC's members as listed on oic-members.html (names mapped in nameMaps), State of Palestine (PSE) included. Ranked descending (1 = highest) on the file's values as published (no rounding); competition ranks on exact ties (1,2,2,4); tied rows listed in the file's SortOrder.",
+        "bd": {
+          "rank": 4,
+          "value": 175686.9
+        },
+        "top": {
+          "iso3": "IDN",
+          "name": "Indonesia",
+          "rank": 1,
+          "value": 285721.236
+        },
+        "bottom": {
+          "iso3": "BRN",
+          "name": "Brunei Darussalam",
+          "rank": 57,
+          "value": 466.33
+        },
+        "rows": [
+          {
+            "iso3": "IDN",
+            "rank": 1,
+            "value": 285721.236
+          },
+          {
+            "iso3": "PAK",
+            "rank": 2,
+            "value": 255219.554
+          },
+          {
+            "iso3": "NGA",
+            "rank": 3,
+            "value": 237527.782
+          },
+          {
+            "iso3": "BGD",
+            "rank": 4,
+            "value": 175686.9
+          },
+          {
+            "iso3": "EGY",
+            "rank": 5,
+            "value": 118365.994
+          },
+          {
+            "iso3": "IRN",
+            "rank": 6,
+            "value": 92417.681
+          },
+          {
+            "iso3": "TUR",
+            "rank": 7,
+            "value": 87685.426
+          },
+          {
+            "iso3": "SDN",
+            "rank": 8,
+            "value": 51662.148
+          },
+          {
+            "iso3": "UGA",
+            "rank": 9,
+            "value": 51384.894
+          },
+          {
+            "iso3": "DZA",
+            "rank": 10,
+            "value": 47435.312
+          },
+          {
+            "iso3": "IRQ",
+            "rank": 11,
+            "value": 47020.774
+          },
+          {
+            "iso3": "AFG",
+            "rank": 12,
+            "value": 43844.112
+          },
+          {
+            "iso3": "YEM",
+            "rank": 13,
+            "value": 41773.878
+          },
+          {
+            "iso3": "MAR",
+            "rank": 14,
+            "value": 38430.77
+          },
+          {
+            "iso3": "UZB",
+            "rank": 15,
+            "value": 37053.428
+          },
+          {
+            "iso3": "MYS",
+            "rank": 16,
+            "value": 35977.838
+          },
+          {
+            "iso3": "MOZ",
+            "rank": 17,
+            "value": 35631.653
+          },
+          {
+            "iso3": "SAU",
+            "rank": 18,
+            "value": 34566.328
+          },
+          {
+            "iso3": "CIV",
+            "rank": 19,
+            "value": 32711.547
+          },
+          {
+            "iso3": "CMR",
+            "rank": 20,
+            "value": 29879.337
+          },
+          {
+            "iso3": "NER",
+            "rank": 21,
+            "value": 27917.831
+          },
+          {
+            "iso3": "SYR",
+            "rank": 22,
+            "value": 25620.427
+          },
+          {
+            "iso3": "MLI",
+            "rank": 23,
+            "value": 25198.821
+          },
+          {
+            "iso3": "BFA",
+            "rank": 24,
+            "value": 24074.58
+          },
+          {
+            "iso3": "TCD",
+            "rank": 25,
+            "value": 21003.705
+          },
+          {
+            "iso3": "KAZ",
+            "rank": 26,
+            "value": 20843.754
+          },
+          {
+            "iso3": "SOM",
+            "rank": 27,
+            "value": 19654.739
+          },
+          {
+            "iso3": "SEN",
+            "rank": 28,
+            "value": 18931.966
+          },
+          {
+            "iso3": "GIN",
+            "rank": 29,
+            "value": 15099.727
+          },
+          {
+            "iso3": "BEN",
+            "rank": 30,
+            "value": 14814.46
+          },
+          {
+            "iso3": "TUN",
+            "rank": 31,
+            "value": 12348.573
+          },
+          {
+            "iso3": "JOR",
+            "rank": 32,
+            "value": 11520.684
+          },
+          {
+            "iso3": "ARE",
+            "rank": 33,
+            "value": 11346
+          },
+          {
+            "iso3": "TJK",
+            "rank": 34,
+            "value": 10786.734
+          },
+          {
+            "iso3": "AZE",
+            "rank": 35,
+            "value": 10397.713
+          },
+          {
+            "iso3": "SLE",
+            "rank": 36,
+            "value": 8819.794
+          },
+          {
+            "iso3": "TGO",
+            "rank": 37,
+            "value": 8591.626
+          },
+          {
+            "iso3": "TKM",
+            "rank": 38,
+            "value": 7618.848
+          },
+          {
+            "iso3": "LBY",
+            "rank": 39,
+            "value": 7458.554
+          },
+          {
+            "iso3": "KGZ",
+            "rank": 40,
+            "value": 7295.034
+          },
+          {
+            "iso3": "LBN",
+            "rank": 41,
+            "value": 5849.42
+          },
+          {
+            "iso3": "PSE",
+            "rank": 42,
+            "value": 5589.623
+          },
+          {
+            "iso3": "OMN",
+            "rank": 43,
+            "value": 5494.691
+          },
+          {
+            "iso3": "MRT",
+            "rank": 44,
+            "value": 5315.065
+          },
+          {
+            "iso3": "KWT",
+            "rank": 45,
+            "value": 5026.078
+          },
+          {
+            "iso3": "QAT",
+            "rank": 46,
+            "value": 3115.888
+          },
+          {
+            "iso3": "GMB",
+            "rank": 47,
+            "value": 2822.093
+          },
+          {
+            "iso3": "ALB",
+            "rank": 48,
+            "value": 2771.508
+          },
+          {
+            "iso3": "GAB",
+            "rank": 49,
+            "value": 2593.13
+          },
+          {
+            "iso3": "GNB",
+            "rank": 50,
+            "value": 2249.515
+          },
+          {
+            "iso3": "BHR",
+            "rank": 51,
+            "value": 1643.332
+          },
+          {
+            "iso3": "DJI",
+            "rank": 52,
+            "value": 1184.076
+          },
+          {
+            "iso3": "COM",
+            "rank": 53,
+            "value": 882.848
+          },
+          {
+            "iso3": "GUY",
+            "rank": 54,
+            "value": 835.986
+          },
+          {
+            "iso3": "SUR",
+            "rank": 55,
+            "value": 639.85
+          },
+          {
+            "iso3": "MDV",
+            "rank": 56,
+            "value": 529.676
+          },
+          {
+            "iso3": "BRN",
+            "rank": 57,
+            "value": 466.33
+          }
+        ]
+      },
+      "pageUrl": null,
+      "read": {
+        "readers": 2,
+        "agreed": true,
+        "unstoredMismatches": []
+      }
+    },
+    {
+      "id": "gfsi",
+      "kind": "user-input",
+      "nameBn": {
+        "bn": "বৈশ্বিক খাদ্য নিরাপত্তা সূচক",
+        "approved": true
+      },
+      "nameEn": "Global Food Security Index",
+      "publisher": "Economist Impact",
+      "publisherFull": "Economist Impact (The Economist Group); supported by Corteva Agriscience",
+      "officialUrl": "https://impact.economist.com/sustainability/project/food-security-index/",
+      "rankMeans": {
+        "bn": "১ = খাদ্য নিরাপত্তায় সবচেয়ে এগিয়ে",
+        "approved": true
+      },
+      "goodIs": "up",
+      "basis": "edition",
+      "note": {
+        "bn": "সর্বশেষ সংস্করণ: ২০২২",
+        "approved": true
+      },
+      "latest": null,
+      "previous": null,
+      "userInput": {
+        "why": "restricted licence or terms (IDX-1); facts from secondary sources (IDX-ALL Part D)",
+        "pages": [
+          "https://impact.economist.com/sustainability/project/food-security-index/"
+        ],
+        "factsNeeded": [
+          "edition year and month",
+          "Bangladesh (Dhaka) rank/N",
+          "top",
+          "bottom",
+          "previous-edition rank (optional)"
+        ]
+      }
+    },
+    {
+      "id": "mercer-cost-of-living",
+      "kind": "city",
+      "nameBn": {
+        "bn": "জীবনযাত্রার ব্যয় সূচক (ঢাকা)",
+        "approved": true
+      },
+      "nameEn": "Cost of Living City Ranking",
+      "publisher": "Mercer",
+      "publisherFull": "Mercer",
+      "officialUrl": "https://www.mercer.com/insights/total-rewards/talent-mobility-insights/cost-of-living/",
+      "rankMeans": {
+        "bn": "১ = সবচেয়ে ব্যয়বহুল শহর",
+        "approved": true
+      },
+      "basis": "edition",
+      "latest": null,
+      "previous": null,
+      "userInput": {
+        "why": "restricted licence or terms (IDX-1); facts from secondary sources (IDX-ALL Part D)",
+        "pages": [
+          "https://www.mercer.com/insights/total-rewards/talent-mobility-insights/cost-of-living/"
+        ],
+        "factsNeeded": [
+          "edition year and month",
+          "Bangladesh (Dhaka) rank/N",
+          "top",
+          "bottom",
+          "previous-edition rank (optional)"
+        ]
+      }
+    },
+    {
+      "id": "mercer-quality-of-living",
+      "kind": "city",
+      "nameBn": {
+        "bn": "জীবনযাত্রার মান সূচক (ঢাকা)",
+        "approved": true
+      },
+      "nameEn": "Quality of Living City Ranking",
+      "publisher": "Mercer",
+      "publisherFull": "Mercer",
+      "officialUrl": "https://www.mercer.com/insights/total-rewards/talent-mobility-insights/quality-of-living-city-ranking/",
+      "rankMeans": {
+        "bn": "১ = জীবনযাত্রার মান সবচেয়ে ভালো",
+        "approved": true
+      },
+      "goodIs": "up",
+      "basis": "edition",
+      "latest": null,
+      "previous": null,
+      "userInput": {
+        "why": "restricted licence or terms (IDX-1); facts from secondary sources (IDX-ALL Part D)",
+        "pages": [
+          "https://www.mercer.com/insights/total-rewards/talent-mobility-insights/quality-of-living-city-ranking/"
+        ],
+        "factsNeeded": [
+          "edition year and month",
+          "Bangladesh (Dhaka) rank/N",
+          "top",
+          "bottom",
+          "previous-edition rank (optional)"
         ]
       }
     },

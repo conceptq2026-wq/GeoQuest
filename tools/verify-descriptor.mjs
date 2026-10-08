@@ -125,7 +125,7 @@ const MARITIME_ZONES_SEED_SHA256 = '6b0f67dbac0b0fa97037d86c7f94d3f07a73bd57a42d
 // The bangladesh-maritime-boundary map: the editor's seed, pinned (live 2026-10-08; its 35 step-2 strings approved, BD-6; #30 reworded by the user the same day).
 const BANGLADESH_MARITIME_SEED_SHA256 = 'dcc627421f99b20faeffe17006d9348f181b9663c058af66f37ae6c572e8ebbd';
 // The global-indices map «বৈশ্বিক সূচক» (work in progress, IDX-2, 2026-10-08): its seed, pinned.
-const GLOBAL_INDICES_SEED_SHA256 = 'da3bbe9fe72c3cc1f373f673f2b78be24b722e4251a6262e5f21352c8847cbe4';
+const GLOBAL_INDICES_SEED_SHA256 = '48c720b58e6e6c294b75ae02dd2fde42b84a6aeb18fe596c681abf93a9d41654';
 // The important-days diagram «বছরের চাকা»: its seed, pinned (live 2026-10-08, after WHEEL-2–5 and GL-WHEEL).
 const IMPORTANT_DAYS_SEED_SHA256 = '24fe65ed95d70d794a54c0a29341b85da87a13fcffa371a1d9967a862d737070';
 // The bangladesh-ethnic-groups map: its seed, pinned (live 2026-10-08).
@@ -2867,7 +2867,7 @@ console.log('\n\n============ global-indices (work in progress) ============');
   const waiting = seed.indices.filter((x) => (x.kind === 'user-input' || x.kind === 'city') && !x.latest);
   check(waiting.every((x) => !indices[x.id] && x.userInput?.pages?.length && x.userInput?.factsNeeded?.length), `${waiting.length} user-input rankings are not built, each with the official pages to read and the facts needed`);
   // A value read by the user cites the official page and «read by the user» with the date; every other, a pinned file.
-  const unsourced = builtSeed.flatMap((x) => [x.latest, x.previous].filter((e) => e?.edition).flatMap((e) => (e.source ? [!(/^https:\/\//.test(e.source.url ?? '') && e.source.by === 'read by the user' && /^\d{4}-\d\d-\d\d$/.test(e.source.date ?? '')) && `${x.id}: the user's source`] : [!pinnedUrls.has(e.dataUrl) && `${x.id} ${e.edition}: data`, e.releaseDate && !pinnedUrls.has(e.releaseUrl) && `${x.id} ${e.edition}: release`, !/^https:\/\//.test(x.pageUrl ?? '') && `${x.id}: page`]))).filter(Boolean);
+  const unsourced = builtSeed.flatMap((x) => [x.latest, x.previous].filter((e) => e?.edition).flatMap((e) => (e.source ? [!(e.source.by === 'secondary' ? new Set((e.source.secondary ?? []).filter((c) => /^https?:\/\//.test(c.url ?? '') && c.publisher && /^\d{4}-\d\d-\d\d$/.test(c.date ?? '')).map((c) => c.outlet)).size >= 2 : /^https:\/\//.test(e.source.url ?? '') && e.source.by === 'read by the user' && /^\d{4}-\d\d-\d\d$/.test(e.source.date ?? '')) && `${x.id}: ${e.source.by === 'secondary' ? 'two secondary outlets' : "the user's source"}`] : [!pinnedUrls.has(e.dataUrl) && `${x.id} ${e.edition}: data`, e.releaseDate && !pinnedUrls.has(e.releaseUrl) && `${x.id} ${e.edition}: release`, !/^https:\/\//.test(x.pageUrl ?? '') && `${x.id}: page`]))).filter(Boolean);
   check(unsourced.length === 0, `every built value cites a pinned official file, and every release date a pinned official page${unsourced.length ? ` — not: ${unsourced.slice(0, 4).join(', ')}` : ''}`);
   // Rule (a) for what is built (the user, IDX-4, 2026-10-09): every string approved, and every fact the user read by
   // hand approved before it is shown (tools/ingest-user-input.mjs writes it unapproved).

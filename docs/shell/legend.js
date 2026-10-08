@@ -34,7 +34,7 @@ export async function mount(api) {
     if (!api.records[follow.records] || !follow.lists || !Object.keys(follow.lists).length) throw new Error('legend: followsSelection needs a records table and a list per kind');
   } else if (!Array.isArray(spec.kinds) || !spec.kinds.length) throw new Error('legend: kinds must name at least one records field');
   for (const k of spec.kinds ?? []) if (!api.records[k.records]) throw new Error(`legend: "${k.records}" is not a records table`);
-  await stylesheet(api, './legend.css?v=fa4482392b');
+  await stylesheet(api, './legend.css?v=0304857c68');
   box = api.own.node(document.createElement('ul'), 'legend');
   box.className = 'map-legend';
   box.lang = api.language ?? 'bn';

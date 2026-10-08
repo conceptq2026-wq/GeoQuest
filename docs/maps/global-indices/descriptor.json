@@ -98,6 +98,27 @@
           "type": "text",
           "display": false
         },
+        "bdValueText": {
+          "type": "text"
+        },
+        "maleText": {
+          "type": "text"
+        },
+        "femaleText": {
+          "type": "text"
+        },
+        "note": {
+          "type": "text",
+          "display": false
+        },
+        "bdLabel": {
+          "type": "text",
+          "display": false
+        },
+        "sourceLabel": {
+          "type": "text",
+          "display": false
+        },
         "publisher": {
           "type": "text",
           "required": true
@@ -538,6 +559,18 @@
         {
           "label": "র‍্যাংক",
           "field": "rankMeans"
+        },
+        {
+          "label": "বাংলাদেশের মান",
+          "field": "bdValueText"
+        },
+        {
+          "label": "পুরুষ",
+          "field": "maleText"
+        },
+        {
+          "label": "নারী",
+          "field": "femaleText"
         }
       ]
     }
