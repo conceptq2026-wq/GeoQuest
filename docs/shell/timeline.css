@@ -492,6 +492,21 @@
     padding: 0 10px;
   }
 
+  /* ⓘ's 44 px zone ends at the page's edge, not past it (RES-4); its icon and open panel stay where they were. */
+  .has-timeline .info-credits .maplibregl-ctrl-attrib.maplibregl-compact,
+  .has-timeline .info-credits .maplibregl-ctrl-attrib.maplibregl-compact-show {
+    right: 0;
+  }
+
+  .has-timeline .info-credits .maplibregl-ctrl-attrib-button {
+    background-position: calc(50% + 13px) 2px;
+  }
+
+  .has-timeline .info-credits .maplibregl-ctrl-attrib.maplibregl-compact-show .maplibregl-ctrl-attrib-inner,
+  .has-timeline .info-credits.has-info-blocks .maplibregl-ctrl-attrib.maplibregl-compact-show .info-panel {
+    right: -5px;
+  }
+
   .has-timeline .map-tabs {
     margin: 0 10px 8px;
   }

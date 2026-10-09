@@ -15,7 +15,7 @@
 .info-credits.has-info-blocks .maplibregl-ctrl-attrib.maplibregl-compact-show .info-panel {
   position: absolute;
   top: 38px;
-  right: 8px;
+  right: 5px;
   z-index: 30;
   display: block;
   box-sizing: border-box;

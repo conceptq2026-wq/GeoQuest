@@ -710,6 +710,10 @@ html[data-map='org-members'] .map-legend {
  * invisible 44 px square hanging from the row's top down over the map's
  * corner, never up over ›; the map's corner controls start below it. Open,
  * the credits drop below it over the map's corner.
+ * The zone ends 10 px past the row's edge — inside the page's 10 px gutter,
+ * so no page scrolls sideways (RES-4, 2026-10-10) — and the icon is drawn
+ * 3 px right of the zone's centre, so it stays flush with the row's edge,
+ * where it was.
  */
 .info-credits {
   position: relative;
@@ -726,7 +730,7 @@ html[data-map='org-members'] .map-legend {
 .info-credits .maplibregl-ctrl-attrib.maplibregl-compact-show {
   position: absolute;
   top: -2px;
-  right: -13px;
+  right: -10px;
   width: 44px;
   height: 44px;
   min-height: 0;
@@ -746,7 +750,7 @@ html[data-map='org-members'] .map-legend {
   height: 44px;
   border-radius: 0;
   background-color: transparent;
-  background-position: center 2px;
+  background-position: calc(50% + 3px) 2px;
   background-repeat: no-repeat;
   background-size: 18px 18px;
   opacity: 0.35;
@@ -773,7 +777,7 @@ html[data-map='org-members'] .map-legend {
 .info-credits .maplibregl-ctrl-attrib.maplibregl-compact-show .maplibregl-ctrl-attrib-inner {
   position: absolute;
   top: 38px;
-  right: 8px;
+  right: 5px;
   z-index: 30;
   width: max-content;
   max-width: min(320px, calc(100vw - 32px));

@@ -155,10 +155,12 @@ body {
   padding: 0 10px;
 }
 
+/* The zone ends at the page's edge, not 3 px past it (RES-4); the icon, drawn 3 px right of the zone's centre, and
+   the open credits stay where they were. */
 .attrib {
   position: absolute;
   top: -2px;
-  right: -3px;
+  right: 0;
   width: 44px;
   height: 44px;
   color: #000000;
@@ -174,7 +176,7 @@ body {
   align-items: flex-start;
   width: 44px;
   height: 44px;
-  padding: 2px 0 0;
+  padding: 2px 0 0 6px;
   border: 0;
   border-radius: 0;
   background: none;
@@ -205,7 +207,7 @@ body {
 .attrib-inner {
   position: absolute;
   top: 38px;
-  right: 8px;
+  right: 5px;
   width: max-content;
   max-width: min(320px, calc(100vw - 32px));
   max-height: 60vh;
