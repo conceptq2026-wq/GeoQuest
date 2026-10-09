@@ -178,3 +178,11 @@ research: `tools/.cache/days/wheel6.md` and `wheel6/`.
 - **Found by the check (not WHEEL-7's):** at 320 px October's name does not fit beside the «আজ» pill around
   9 October — the committed (live) build fails the same way today; a fix belongs to `docs/visual/days.js`.
 - **Local only:** the user said this build must not reach the live site until the purposes are approved.
+
+## WHEEL-8 (the user, 2026-10-09)
+
+- The new days' purposes approved, #14 («পরাগায়নকারীর»), #44 («আইকাও-এর») and #49 («১৯৭১ সালের মুক্তিযুদ্ধে …») after the
+  user's edits: 49 purposes now built (106 rows open a card).
+- শহিদ বুদ্ধিজীবী দিবস: no official GoB page read states what the day commemorates (PID gives the programme, MoLWA's site
+  the gazette of names), so its purpose is from Bengali Wikipedia (revision 8646102), in our own words — awaiting the
+  user, not built until approved.

@@ -1749,9 +1749,11 @@
         "m": 1,
         "d": 24
       },
+      "purposeBn": "শান্তি ও উন্নয়নে শিক্ষার ভূমিকা তুলে ধরা।",
       "tappable": true,
       "card": {
         "englishName": "International Day of Education",
+        "purposeBn": "শান্তি ও উন্নয়নে শিক্ষার ভূমিকা তুলে ধরা।",
         "source": {
           "url": "https://www.un.org/en/observances/education-day",
           "host": "un.org"
@@ -1770,9 +1772,11 @@
         "m": 2,
         "d": 2
       },
+      "purposeBn": "জলাভূমি হারিয়ে যাওয়া ঠেকানো এবং তা রক্ষা ও পুনরুদ্ধারে উদ্যোগী করা।",
       "tappable": true,
       "card": {
         "englishName": "World Wetlands Day",
+        "purposeBn": "জলাভূমি হারিয়ে যাওয়া ঠেকানো এবং তা রক্ষা ও পুনরুদ্ধারে উদ্যোগী করা।",
         "source": {
           "url": "https://www.un.org/en/observances/world-wetlands-day",
           "host": "un.org"
@@ -1791,9 +1795,11 @@
         "m": 2,
         "d": 13
       },
+      "purposeBn": "বহু মানুষের কণ্ঠ ও মত পৌঁছে দেওয়ার মাধ্যম হিসেবে বেতারের গুরুত্ব তুলে ধরা।",
       "tappable": true,
       "card": {
         "englishName": "World Radio Day",
+        "purposeBn": "বহু মানুষের কণ্ঠ ও মত পৌঁছে দেওয়ার মাধ্যম হিসেবে বেতারের গুরুত্ব তুলে ধরা।",
         "source": {
           "url": "https://www.un.org/en/observances/radio-day",
           "host": "un.org"
@@ -1812,9 +1818,11 @@
         "m": 2,
         "d": 20
       },
+      "purposeBn": "দেশে দেশে শান্তি ও নিরাপত্তার জন্য সামাজিক ন্যায়বিচারের গুরুত্ব তুলে ধরা।",
       "tappable": true,
       "card": {
         "englishName": "World Day of Social Justice",
+        "purposeBn": "দেশে দেশে শান্তি ও নিরাপত্তার জন্য সামাজিক ন্যায়বিচারের গুরুত্ব তুলে ধরা।",
         "source": {
           "url": "https://www.un.org/en/observances/social-justice-day",
           "host": "un.org"
@@ -1833,9 +1841,11 @@
         "m": 3,
         "d": 3
       },
+      "purposeBn": "বন্য প্রাণী ও উদ্ভিদের গুরুত্ব তুলে ধরা এবং বন্যপ্রাণী-সংক্রান্ত অপরাধের বিরুদ্ধে সোচ্চার করা।",
       "tappable": true,
       "card": {
         "englishName": "World Wildlife Day",
+        "purposeBn": "বন্য প্রাণী ও উদ্ভিদের গুরুত্ব তুলে ধরা এবং বন্যপ্রাণী-সংক্রান্ত অপরাধের বিরুদ্ধে সোচ্চার করা।",
         "source": {
           "url": "https://www.un.org/en/observances/world-wildlife-day",
           "host": "un.org"
@@ -1854,9 +1864,11 @@
         "m": 3,
         "d": 20
       },
+      "purposeBn": "সুখ ও কল্যাণকে সবার অভিন্ন লক্ষ্য হিসেবে নীতিনির্ধারণে গুরুত্ব দিতে উৎসাহিত করা।",
       "tappable": true,
       "card": {
         "englishName": "International Day of Happiness",
+        "purposeBn": "সুখ ও কল্যাণকে সবার অভিন্ন লক্ষ্য হিসেবে নীতিনির্ধারণে গুরুত্ব দিতে উৎসাহিত করা।",
         "source": {
           "url": "https://www.un.org/en/observances/happiness-day",
           "host": "un.org"
@@ -1875,9 +1887,11 @@
         "m": 3,
         "d": 21
       },
+      "purposeBn": "সব ধরনের বনের মূল্য সম্পর্কে সচেতনতা বাড়ানো ও বৃক্ষরোপণের মতো কাজে উৎসাহ দেওয়া।",
       "tappable": true,
       "card": {
         "englishName": "International Day of Forests",
+        "purposeBn": "সব ধরনের বনের মূল্য সম্পর্কে সচেতনতা বাড়ানো ও বৃক্ষরোপণের মতো কাজে উৎসাহ দেওয়া।",
         "source": {
           "url": "https://www.fao.org/international-day-of-forests/en",
           "host": "fao.org"
@@ -1896,9 +1910,11 @@
         "m": 3,
         "d": 21
       },
+      "purposeBn": "কবিতার মাধ্যমে ভাষার বৈচিত্র্য ও বিপন্ন ভাষাকে তুলে ধরা এবং কবিদের সম্মান জানানো।",
       "tappable": true,
       "card": {
         "englishName": "World Poetry Day",
+        "purposeBn": "কবিতার মাধ্যমে ভাষার বৈচিত্র্য ও বিপন্ন ভাষাকে তুলে ধরা এবং কবিদের সম্মান জানানো।",
         "source": {
           "url": "https://www.unesco.org/en/days/poetry",
           "host": "unesco.org"
@@ -1917,9 +1933,11 @@
         "m": 3,
         "d": 21
       },
+      "purposeBn": "১৯৬০ সালের শার্পভিল হত্যাকাণ্ড স্মরণ করে বর্ণবাদের বিরুদ্ধে সচেতনতা ও বিশ্বব্যাপী উদ্যোগ জোরদার করা।",
       "tappable": true,
       "card": {
         "englishName": "International Day for the Elimination of Racial Discrimination",
+        "purposeBn": "১৯৬০ সালের শার্পভিল হত্যাকাণ্ড স্মরণ করে বর্ণবাদের বিরুদ্ধে সচেতনতা ও বিশ্বব্যাপী উদ্যোগ জোরদার করা।",
         "source": {
           "url": "https://www.un.org/en/observances/end-racism-day",
           "host": "un.org"
@@ -1938,9 +1956,11 @@
         "m": 4,
         "d": 22
       },
+      "purposeBn": "প্রকৃতির সঙ্গে সামঞ্জস্য রেখে পৃথিবীর বাস্তুতন্ত্র পুনরুদ্ধার ও টেকসই অর্থনীতির আহ্বান জানানো।",
       "tappable": true,
       "card": {
         "englishName": "International Mother Earth Day",
+        "purposeBn": "প্রকৃতির সঙ্গে সামঞ্জস্য রেখে পৃথিবীর বাস্তুতন্ত্র পুনরুদ্ধার ও টেকসই অর্থনীতির আহ্বান জানানো।",
         "source": {
           "url": "https://www.un.org/en/observances/earth-day",
           "host": "un.org"
@@ -1959,9 +1979,11 @@
         "m": 4,
         "d": 23
       },
+      "purposeBn": "প্রজন্ম ও সংস্কৃতির মধ্যে সেতুবন্ধ হিসেবে বইয়ের গুরুত্ব তুলে ধরা ও পড়ায় উৎসাহ দেওয়া।",
       "tappable": true,
       "card": {
         "englishName": "World Book and Copyright Day",
+        "purposeBn": "প্রজন্ম ও সংস্কৃতির মধ্যে সেতুবন্ধ হিসেবে বইয়ের গুরুত্ব তুলে ধরা ও পড়ায় উৎসাহ দেওয়া।",
         "source": {
           "url": "https://www.unesco.org/en/days/world-book-and-copyright",
           "host": "unesco.org"
@@ -1980,9 +2002,11 @@
         "m": 4,
         "d": 25
       },
+      "purposeBn": "ম্যালেরিয়া প্রতিরোধ ও নিয়ন্ত্রণে ধারাবাহিক অর্থায়ন ও রাজনৈতিক অঙ্গীকারের প্রয়োজন তুলে ধরা।",
       "tappable": true,
       "card": {
         "englishName": "World Malaria Day",
+        "purposeBn": "ম্যালেরিয়া প্রতিরোধ ও নিয়ন্ত্রণে ধারাবাহিক অর্থায়ন ও রাজনৈতিক অঙ্গীকারের প্রয়োজন তুলে ধরা।",
         "source": {
           "url": "https://www.who.int/campaigns/world-malaria-day/world-malaria-day-2021",
           "host": "who.int"
@@ -2001,9 +2025,11 @@
         "m": 5,
         "d": 15
       },
+      "purposeBn": "পরিবার-সংক্রান্ত বিষয় এবং পরিবারকে প্রভাবিত করা সামাজিক, অর্থনৈতিক ও জনসংখ্যাগত প্রবণতার দিকে দৃষ্টি আকর্ষণ করা।",
       "tappable": true,
       "card": {
         "englishName": "International Day of Families",
+        "purposeBn": "পরিবার-সংক্রান্ত বিষয় এবং পরিবারকে প্রভাবিত করা সামাজিক, অর্থনৈতিক ও জনসংখ্যাগত প্রবণতার দিকে দৃষ্টি আকর্ষণ করা।",
         "source": {
           "url": "https://www.un.org/en/observances/international-day-of-families",
           "host": "un.org"
@@ -2022,9 +2048,11 @@
         "m": 5,
         "d": 20
       },
+      "purposeBn": "মৌমাছি ও অন্যান্য পরাগায়নকারীর গুরুত্ব, তাদের ঝুঁকি ও সুরক্ষার উপায় সম্পর্কে সচেতন করা।",
       "tappable": true,
       "card": {
         "englishName": "World Bee Day",
+        "purposeBn": "মৌমাছি ও অন্যান্য পরাগায়নকারীর গুরুত্ব, তাদের ঝুঁকি ও সুরক্ষার উপায় সম্পর্কে সচেতন করা।",
         "source": {
           "url": "https://www.fao.org/world-bee-day/en",
           "host": "fao.org"
@@ -2043,9 +2071,11 @@
         "m": 5,
         "d": 22
       },
+      "purposeBn": "মানুষের কর্মকাণ্ডে প্রজাতি কমে যাওয়ার প্রেক্ষাপটে জীববৈচিত্র্য সম্পর্কে জনসচেতনতা বাড়ানো।",
       "tappable": true,
       "card": {
         "englishName": "International Day for Biological Diversity",
+        "purposeBn": "মানুষের কর্মকাণ্ডে প্রজাতি কমে যাওয়ার প্রেক্ষাপটে জীববৈচিত্র্য সম্পর্কে জনসচেতনতা বাড়ানো।",
         "source": {
           "url": "https://www.un.org/en/observances/biological-diversity-day",
           "host": "un.org"
@@ -2064,9 +2094,11 @@
         "m": 5,
         "d": 29
       },
+      "purposeBn": "শান্তির জন্য প্রাণ দেওয়া শান্তিরক্ষীসহ জাতিসংঘের সব শান্তিরক্ষীকে সম্মান জানানো।",
       "tappable": true,
       "card": {
         "englishName": "International Day of UN Peacekeepers",
+        "purposeBn": "শান্তির জন্য প্রাণ দেওয়া শান্তিরক্ষীসহ জাতিসংঘের সব শান্তিরক্ষীকে সম্মান জানানো।",
         "source": {
           "url": "https://www.un.org/en/observances/peacekeepers-day",
           "host": "un.org"
@@ -2085,9 +2117,11 @@
         "m": 6,
         "d": 3
       },
+      "purposeBn": "সহজ, সাশ্রয়ী ও পরিচ্ছন্ন টেকসই বাহন হিসেবে সাইকেলের দিকে দৃষ্টি আকর্ষণ করা।",
       "tappable": true,
       "card": {
         "englishName": "World Bicycle Day",
+        "purposeBn": "সহজ, সাশ্রয়ী ও পরিচ্ছন্ন টেকসই বাহন হিসেবে সাইকেলের দিকে দৃষ্টি আকর্ষণ করা।",
         "source": {
           "url": "https://www.un.org/en/observances/bicycle-day",
           "host": "un.org"
@@ -2106,9 +2140,11 @@
         "m": 6,
         "d": 8
       },
+      "purposeBn": "সমুদ্রের ওপর মানুষের কর্মকাণ্ডের প্রভাব জানানো ও টেকসইভাবে সমুদ্র ব্যবস্থাপনায় সবাইকে উদ্বুদ্ধ করা।",
       "tappable": true,
       "card": {
         "englishName": "World Oceans Day",
+        "purposeBn": "সমুদ্রের ওপর মানুষের কর্মকাণ্ডের প্রভাব জানানো ও টেকসইভাবে সমুদ্র ব্যবস্থাপনায় সবাইকে উদ্বুদ্ধ করা।",
         "source": {
           "url": "https://www.un.org/en/observances/oceans-day",
           "host": "un.org"
@@ -2127,9 +2163,11 @@
         "m": 6,
         "d": 12
       },
+      "purposeBn": "বিশ্বে শিশুশ্রমের ব্যাপকতা এবং তা নির্মূলে করণীয় তুলে ধরা।",
       "tappable": true,
       "card": {
         "englishName": "World Day Against Child Labour",
+        "purposeBn": "বিশ্বে শিশুশ্রমের ব্যাপকতা এবং তা নির্মূলে করণীয় তুলে ধরা।",
         "source": {
           "url": "https://www.un.org/en/observances/world-day-against-child-labour",
           "host": "un.org"
@@ -2148,9 +2186,11 @@
         "m": 6,
         "d": 14
       },
+      "purposeBn": "নিরাপদ রক্তের প্রয়োজন তুলে ধরা ও বিনা পারিশ্রমিকে রক্তদাতাদের ধন্যবাদ জানানো।",
       "tappable": true,
       "card": {
         "englishName": "World Blood Donor Day",
+        "purposeBn": "নিরাপদ রক্তের প্রয়োজন তুলে ধরা ও বিনা পারিশ্রমিকে রক্তদাতাদের ধন্যবাদ জানানো।",
         "source": {
           "url": "https://www.who.int/campaigns/world-blood-donor-day",
           "host": "who.int"
@@ -2169,9 +2209,11 @@
         "m": 6,
         "d": 20
       },
+      "purposeBn": "ঘরবাড়ি ছাড়তে বাধ্য হওয়া মানুষের সাহসকে সম্মান জানানো ও শরণার্থীদের প্রতি সহমর্মিতা গড়ে তোলা।",
       "tappable": true,
       "card": {
         "englishName": "World Refugee Day",
+        "purposeBn": "ঘরবাড়ি ছাড়তে বাধ্য হওয়া মানুষের সাহসকে সম্মান জানানো ও শরণার্থীদের প্রতি সহমর্মিতা গড়ে তোলা।",
         "source": {
           "url": "https://www.un.org/en/observances/refugee-day",
           "host": "un.org"
@@ -2190,9 +2232,11 @@
         "m": 6,
         "d": 21
       },
+      "purposeBn": "যোগব্যায়ামের উপকারিতা সম্পর্কে বিশ্বজুড়ে মানুষকে সচেতন করা।",
       "tappable": true,
       "card": {
         "englishName": "International Day of Yoga",
+        "purposeBn": "যোগব্যায়ামের উপকারিতা সম্পর্কে বিশ্বজুড়ে মানুষকে সচেতন করা।",
         "source": {
           "url": "https://www.un.org/en/observances/yoga-day",
           "host": "un.org"
@@ -2211,9 +2255,11 @@
         "m": 6,
         "d": 23
       },
+      "purposeBn": "জনসেবকদের অবদানকে সম্মান জানানো ও নিরাপদ, স্থিতিশীল সমাজ গঠনে সরকারি খাতের ভূমিকা তুলে ধরা।",
       "tappable": true,
       "card": {
         "englishName": "United Nations Public Service Day",
+        "purposeBn": "জনসেবকদের অবদানকে সম্মান জানানো ও নিরাপদ, স্থিতিশীল সমাজ গঠনে সরকারি খাতের ভূমিকা তুলে ধরা।",
         "source": {
           "url": "https://www.un.org/en/observances/public-service-day",
           "host": "un.org"
@@ -2232,9 +2278,11 @@
         "m": 7,
         "d": 18
       },
+      "purposeBn": "নেলসন ম্যান্ডেলার জন্মদিনে মানবতার প্রতি তাঁর আজীবন সেবা স্মরণ করা ও বন্দিদের প্রতি মানবিক আচরণে উৎসাহ দেওয়া।",
       "tappable": true,
       "card": {
         "englishName": "Nelson Mandela International Day",
+        "purposeBn": "নেলসন ম্যান্ডেলার জন্মদিনে মানবতার প্রতি তাঁর আজীবন সেবা স্মরণ করা ও বন্দিদের প্রতি মানবিক আচরণে উৎসাহ দেওয়া।",
         "source": {
           "url": "http://www.un.org/en/events/mandeladay/",
           "host": "un.org"
@@ -2253,9 +2301,11 @@
         "m": 7,
         "d": 30
       },
+      "purposeBn": "মানবপাচারের শিকার মানুষের দুর্দশা তুলে ধরা এবং তাদের অধিকার ও সুরক্ষার পক্ষে দাঁড়ানো।",
       "tappable": true,
       "card": {
         "englishName": "World Day against Trafficking in Persons",
+        "purposeBn": "মানবপাচারের শিকার মানুষের দুর্দশা তুলে ধরা এবং তাদের অধিকার ও সুরক্ষার পক্ষে দাঁড়ানো।",
         "source": {
           "url": "https://www.un.org/en/observances/end-human-trafficking-day",
           "host": "un.org"
@@ -2274,9 +2324,11 @@
         "m": 8,
         "d": 9
       },
+      "purposeBn": "আদিবাসী জনগোষ্ঠীর চাহিদা সম্পর্কে বিশ্বজুড়ে সচেতনতা বাড়ানো।",
       "tappable": true,
       "card": {
         "englishName": "International Day of the World's Indigenous Peoples",
+        "purposeBn": "আদিবাসী জনগোষ্ঠীর চাহিদা সম্পর্কে বিশ্বজুড়ে সচেতনতা বাড়ানো।",
         "source": {
           "url": "https://www.un.org/en/observances/indigenous-day",
           "host": "un.org"
@@ -2295,9 +2347,11 @@
         "m": 8,
         "d": 19
       },
+      "purposeBn": "নিহত কর্মীসহ সব মানবিক কর্মীকে সম্মান জানানো ও সংকটে থাকা মানুষের পাশে দাঁড়ানো।",
       "tappable": true,
       "card": {
         "englishName": "World Humanitarian Day",
+        "purposeBn": "নিহত কর্মীসহ সব মানবিক কর্মীকে সম্মান জানানো ও সংকটে থাকা মানুষের পাশে দাঁড়ানো।",
         "source": {
           "url": "https://www.un.org/en/observances/humanitarian-day",
           "host": "un.org"
@@ -2316,9 +2370,11 @@
         "m": 8,
         "d": 29
       },
+      "purposeBn": "পারমাণবিক পরীক্ষা-বিস্ফোরণের ক্ষতি ও তা বন্ধের প্রয়োজন সম্পর্কে মানুষকে সচেতন করা।",
       "tappable": true,
       "card": {
         "englishName": "International Day against Nuclear Tests",
+        "purposeBn": "পারমাণবিক পরীক্ষা-বিস্ফোরণের ক্ষতি ও তা বন্ধের প্রয়োজন সম্পর্কে মানুষকে সচেতন করা।",
         "source": {
           "url": "https://www.un.org/en/observances/end-nuclear-tests-day",
           "host": "un.org"
@@ -2337,9 +2393,11 @@
         "m": 9,
         "d": 15
       },
+      "purposeBn": "বিশ্বে গণতন্ত্রের অবস্থা প্রতিবছর পর্যালোচনার সুযোগ করে দেওয়া।",
       "tappable": true,
       "card": {
         "englishName": "International Day of Democracy",
+        "purposeBn": "বিশ্বে গণতন্ত্রের অবস্থা প্রতিবছর পর্যালোচনার সুযোগ করে দেওয়া।",
         "source": {
           "url": "https://www.un.org/en/observances/democracy-day",
           "host": "un.org"
@@ -2358,9 +2416,11 @@
         "m": 9,
         "d": 21
       },
+      "purposeBn": "সবাইকে শান্তির জন্য কাজ করার আহ্বান জানানো; দিনটি অহিংসা ও যুদ্ধবিরতিরও দিন।",
       "tappable": true,
       "card": {
         "englishName": "International Day of Peace",
+        "purposeBn": "সবাইকে শান্তির জন্য কাজ করার আহ্বান জানানো; দিনটি অহিংসা ও যুদ্ধবিরতিরও দিন।",
         "source": {
           "url": "https://www.un.org/en/observances/international-day-peace",
           "host": "un.org"
@@ -2379,9 +2439,11 @@
         "m": 9,
         "d": 28
       },
+      "purposeBn": "তথ্য চাওয়া, পাওয়া ও প্রকাশ করার সর্বজনীন অধিকারের গুরুত্ব তুলে ধরা।",
       "tappable": true,
       "card": {
         "englishName": "International Day for Universal Access to Information",
+        "purposeBn": "তথ্য চাওয়া, পাওয়া ও প্রকাশ করার সর্বজনীন অধিকারের গুরুত্ব তুলে ধরা।",
         "source": {
           "url": "https://www.un.org/en/observances/information-access-day",
           "host": "un.org"
@@ -2400,9 +2462,11 @@
         "m": 10,
         "d": 2
       },
+      "purposeBn": "শিক্ষা ও জনসচেতনতার মাধ্যমে অহিংসার বার্তা ছড়িয়ে শান্তি ও সহনশীলতার সংস্কৃতি গড়ে তোলা।",
       "tappable": true,
       "card": {
         "englishName": "International Day of Non-Violence",
+        "purposeBn": "শিক্ষা ও জনসচেতনতার মাধ্যমে অহিংসার বার্তা ছড়িয়ে শান্তি ও সহনশীলতার সংস্কৃতি গড়ে তোলা।",
         "source": {
           "url": "https://www.un.org/en/observances/non-violence-day",
           "host": "un.org"
@@ -2421,9 +2485,11 @@
         "m": 10,
         "d": 11
       },
+      "purposeBn": "কন্যাশিশুদের সামনের বাধাগুলো তুলে ধরা এবং তাদের ক্ষমতায়ন ও পূর্ণ মানবাধিকারের পক্ষে কাজ করা।",
       "tappable": true,
       "card": {
         "englishName": "International Day of the Girl Child",
+        "purposeBn": "কন্যাশিশুদের সামনের বাধাগুলো তুলে ধরা এবং তাদের ক্ষমতায়ন ও পূর্ণ মানবাধিকারের পক্ষে কাজ করা।",
         "source": {
           "url": "https://www.un.org/en/observances/girl-child-day",
           "host": "un.org"
@@ -2442,9 +2508,11 @@
         "m": 10,
         "d": 15
       },
+      "purposeBn": "কৃষি, গ্রামীণ উন্নয়ন, খাদ্য নিরাপত্তা ও দারিদ্র্য দূরীকরণে গ্রামীণ নারীর ভূমিকার স্বীকৃতি দেওয়া।",
       "tappable": true,
       "card": {
         "englishName": "International Day of Rural Women",
+        "purposeBn": "কৃষি, গ্রামীণ উন্নয়ন, খাদ্য নিরাপত্তা ও দারিদ্র্য দূরীকরণে গ্রামীণ নারীর ভূমিকার স্বীকৃতি দেওয়া।",
         "source": {
           "url": "https://www.un.org/en/observances/rural-women-day",
           "host": "un.org"
@@ -2463,9 +2531,11 @@
         "m": 10,
         "d": 17
       },
+      "purposeBn": "দারিদ্র্য দূর করতে বাস্তব পদক্ষেপে উৎসাহ দেওয়া ও দরিদ্র মানুষের কথা শোনার সুযোগ করে দেওয়া।",
       "tappable": true,
       "card": {
         "englishName": "International Day for the Eradication of Poverty",
+        "purposeBn": "দারিদ্র্য দূর করতে বাস্তব পদক্ষেপে উৎসাহ দেওয়া ও দরিদ্র মানুষের কথা শোনার সুযোগ করে দেওয়া।",
         "source": {
           "url": "https://www.un.org/en/observances/day-for-eradicating-poverty",
           "host": "un.org"
@@ -2484,9 +2554,11 @@
         "m": 10,
         "d": 31
       },
+      "purposeBn": "নগরায়ণ নিয়ে বিশ্বজুড়ে আগ্রহ ও দেশে দেশে সহযোগিতা বাড়িয়ে টেকসই শহর গড়ে তোলা।",
       "tappable": true,
       "card": {
         "englishName": "World Cities Day",
+        "purposeBn": "নগরায়ণ নিয়ে বিশ্বজুড়ে আগ্রহ ও দেশে দেশে সহযোগিতা বাড়িয়ে টেকসই শহর গড়ে তোলা।",
         "source": {
           "url": "https://www.un.org/en/observances/cities-day",
           "host": "un.org"
@@ -2505,9 +2577,11 @@
         "m": 11,
         "d": 5
       },
+      "purposeBn": "সুনামি সম্পর্কে জনসচেতনতা বাড়ানো ও সুনামির ঝুঁকি কমানোর নতুন উপায় ছড়িয়ে দেওয়া।",
       "tappable": true,
       "card": {
         "englishName": "World Tsunami Awareness Day",
+        "purposeBn": "সুনামি সম্পর্কে জনসচেতনতা বাড়ানো ও সুনামির ঝুঁকি কমানোর নতুন উপায় ছড়িয়ে দেওয়া।",
         "source": {
           "url": "https://www.un.org/en/observances/tsunami-awareness-day",
           "host": "un.org"
@@ -2526,9 +2600,11 @@
         "m": 11,
         "d": 16
       },
+      "purposeBn": "বিশ্বের সাংস্কৃতিক বৈচিত্র্যের প্রতি শ্রদ্ধা ও তার মূল্যায়ন হিসেবে সহনশীলতার ধারণা তুলে ধরা।",
       "tappable": true,
       "card": {
         "englishName": "International Day for Tolerance",
+        "purposeBn": "বিশ্বের সাংস্কৃতিক বৈচিত্র্যের প্রতি শ্রদ্ধা ও তার মূল্যায়ন হিসেবে সহনশীলতার ধারণা তুলে ধরা।",
         "source": {
           "url": "https://www.unesco.org/en/days/tolerance",
           "host": "unesco.org"
@@ -2547,9 +2623,11 @@
         "m": 11,
         "d": 20
       },
+      "purposeBn": "শিশুদের কণ্ঠ ও অধিকার জোরালো করা; দিনটি শিশু অধিকার সনদ গ্রহণেরও দিন।",
       "tappable": true,
       "card": {
         "englishName": "World Children's Day",
+        "purposeBn": "শিশুদের কণ্ঠ ও অধিকার জোরালো করা; দিনটি শিশু অধিকার সনদ গ্রহণেরও দিন।",
         "source": {
           "url": "https://www.un.org/en/observances/world-childrens-day",
           "host": "un.org"
@@ -2568,9 +2646,11 @@
         "m": 11,
         "d": 21
       },
+      "purposeBn": "সিদ্ধান্ত গ্রহণে টেলিভিশনের প্রভাব এবং বড় বিষয়ে বিশ্বের দৃষ্টি আকর্ষণে এর ক্ষমতার স্বীকৃতি দেওয়া।",
       "tappable": true,
       "card": {
         "englishName": "World Television Day",
+        "purposeBn": "সিদ্ধান্ত গ্রহণে টেলিভিশনের প্রভাব এবং বড় বিষয়ে বিশ্বের দৃষ্টি আকর্ষণে এর ক্ষমতার স্বীকৃতি দেওয়া।",
         "source": {
           "url": "https://www.un.org/en/observances/world-television-day",
           "host": "un.org"
@@ -2589,9 +2669,11 @@
         "m": 11,
         "d": 25
       },
+      "purposeBn": "নারী ও কন্যাশিশুর প্রতি সহিংসতা সম্পর্কে জনসচেতনতা বাড়ানো।",
       "tappable": true,
       "card": {
         "englishName": "International Day for the Elimination of Violence against Women",
+        "purposeBn": "নারী ও কন্যাশিশুর প্রতি সহিংসতা সম্পর্কে জনসচেতনতা বাড়ানো।",
         "source": {
           "url": "https://www.un.org/en/observances/ending-violence-against-women-day",
           "host": "un.org"
@@ -2610,9 +2692,11 @@
         "m": 12,
         "d": 5
       },
+      "purposeBn": "কৃষি, সুস্থ বাস্তুতন্ত্র ও মানুষের খাদ্য জোগানে মাটির গুরুত্ব মনে করিয়ে দেওয়া।",
       "tappable": true,
       "card": {
         "englishName": "World Soil Day",
+        "purposeBn": "কৃষি, সুস্থ বাস্তুতন্ত্র ও মানুষের খাদ্য জোগানে মাটির গুরুত্ব মনে করিয়ে দেওয়া।",
         "source": {
           "url": "https://www.un.org/en/observances/world-soil-day",
           "host": "un.org"
@@ -2631,9 +2715,11 @@
         "m": 12,
         "d": 5
       },
+      "purposeBn": "স্বেচ্ছাসেবীদের ধন্যবাদ জানানো ও স্থানীয় থেকে আন্তর্জাতিক সব পর্যায়ে স্বেচ্ছাসেবায় উৎসাহ দেওয়া।",
       "tappable": true,
       "card": {
         "englishName": "International Volunteer Day for Economic and Social Development",
+        "purposeBn": "স্বেচ্ছাসেবীদের ধন্যবাদ জানানো ও স্থানীয় থেকে আন্তর্জাতিক সব পর্যায়ে স্বেচ্ছাসেবায় উৎসাহ দেওয়া।",
         "source": {
           "url": "https://www.un.org/en/observances/volunteer-day",
           "host": "un.org"
@@ -2652,9 +2738,11 @@
         "m": 12,
         "d": 7
       },
+      "purposeBn": "দেশের উন্নয়নে আন্তর্জাতিক বিমান পরিবহনের ভূমিকা ও এ ক্ষেত্রে আইকাও-এর সহযোগিতা তুলে ধরা।",
       "tappable": true,
       "card": {
         "englishName": "International Civil Aviation Day",
+        "purposeBn": "দেশের উন্নয়নে আন্তর্জাতিক বিমান পরিবহনের ভূমিকা ও এ ক্ষেত্রে আইকাও-এর সহযোগিতা তুলে ধরা।",
         "source": {
           "url": "https://www.un.org/en/observances/civil-aviation-day",
           "host": "un.org"
@@ -2673,9 +2761,11 @@
         "m": 12,
         "d": 11
       },
+      "purposeBn": "জীবনের জন্য পর্বতের গুরুত্ব তুলে ধরা এবং পার্বত্য জনগোষ্ঠী ও পরিবেশের উন্নয়নে অংশীদারত্ব গড়া।",
       "tappable": true,
       "card": {
         "englishName": "International Mountain Day",
+        "purposeBn": "জীবনের জন্য পর্বতের গুরুত্ব তুলে ধরা এবং পার্বত্য জনগোষ্ঠী ও পরিবেশের উন্নয়নে অংশীদারত্ব গড়া।",
         "source": {
           "url": "https://www.un.org/en/observances/mountain-day",
           "host": "un.org"
@@ -2694,9 +2784,11 @@
         "m": 12,
         "d": 18
       },
+      "purposeBn": "জাতিসংঘের বহুভাষিকতার অংশ হিসেবে আরবি ভাষার গুরুত্ব তুলে ধরা; ১৯৭৩ সালের এই দিনে আরবি জাতিসংঘের দাপ্তরিক ভাষা হয়।",
       "tappable": true,
       "card": {
         "englishName": "Arabic Language Day",
+        "purposeBn": "জাতিসংঘের বহুভাষিকতার অংশ হিসেবে আরবি ভাষার গুরুত্ব তুলে ধরা; ১৯৭৩ সালের এই দিনে আরবি জাতিসংঘের দাপ্তরিক ভাষা হয়।",
         "source": {
           "url": "https://www.un.org/en/observances/arabiclanguageday",
           "host": "un.org"
@@ -2715,9 +2807,11 @@
         "m": 12,
         "d": 20
       },
+      "purposeBn": "সংহতির গুরুত্ব তুলে ধরা ও উন্নয়ন লক্ষ্য অর্জনে সংহতিকে কাজে লাগানো নিয়ে আলোচনায় উৎসাহ দেওয়া।",
       "tappable": true,
       "card": {
         "englishName": "International Human Solidarity Day",
+        "purposeBn": "সংহতির গুরুত্ব তুলে ধরা ও উন্নয়ন লক্ষ্য অর্জনে সংহতিকে কাজে লাগানো নিয়ে আলোচনায় উৎসাহ দেওয়া।",
         "source": {
           "url": "https://www.un.org/en/observances/human-solidarity-day",
           "host": "un.org"
@@ -2736,8 +2830,10 @@
         "m": 1,
         "d": 24
       },
-      "tappable": false,
+      "purposeBn": "১৯৬৯ সালের ২৪ জানুয়ারির স্বৈরশাসনবিরোধী গণ-অভ্যুত্থান ও তাতে নিহতদের স্মরণ করা।",
+      "tappable": true,
       "card": {
+        "purposeBn": "১৯৬৯ সালের ২৪ জানুয়ারির স্বৈরশাসনবিরোধী গণ-অভ্যুত্থান ও তাতে নিহতদের স্মরণ করা।",
         "source": {
           "url": "https://pressinform.gov.bd/pages/all-notes/%E0%A7%A8%E0%A7%A9-%E0%A6%9C%E0%A6%BE%E0%A6%A8%E0%A7%81%E0%A7%9F%E0%A6%BE%E0%A6%B0%E0%A6%BF-%E0%A7%A8%E0%A7%A6%E0%A7%A8%E0%A7%AC-vemeya-697317bc8ace23983f63259d",
           "host": "pressinform.gov.bd"
@@ -2756,8 +2852,10 @@
         "m": 11,
         "d": 21
       },
-      "tappable": false,
+      "purposeBn": "১৯৭১ সালের মুক্তিযুদ্ধে ২১ নভেম্বর সশস্ত্র বাহিনীর সম্মিলিত পাল্টা আক্রমণ স্মরণ করা, যা বিজয়ের প্রতীক।",
+      "tappable": true,
       "card": {
+        "purposeBn": "১৯৭১ সালের মুক্তিযুদ্ধে ২১ নভেম্বর সশস্ত্র বাহিনীর সম্মিলিত পাল্টা আক্রমণ স্মরণ করা, যা বিজয়ের প্রতীক।",
         "source": {
           "url": "https://pressinform.gov.bd/pages/all-notes/%E0%A6%A4%E0%A6%A5%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BF%E0%A6%AC%E0%A6%B0%E0%A6%A3%E0%A7%80-%E0%A7%A8%E0%A7%A6-%E0%A6%A8%E0%A6%AD%E0%A7%87%E0%A6%AE%E0%A7%8D%E0%A6%AC%E0%A6%B0-%E0%A7%A8%E0%A7%A6%E0%A7%A8%E0%A7%AB-fcb7cc-6922ded1933eb65569e1d999",
           "host": "pressinform.gov.bd"

@@ -525,8 +525,8 @@ State which kind a task is when reporting it.
     UN or its agency, or an official Government of Bangladesh source — cross-checked with Wikipedia; the Cabinet
     Division's circular is a list of candidates, and the source only for seven national days no other official page
     states. 132 of 135 entries built (50 added by the user, the three former conflicts resolved; বিশ্ব সাদা ছড়ি দিবস,
-    শিশু অধিকার দিবস and জাতীয় টিকা দিবস held). Every string approved but the 49 new purposes, which await the user
-    and are not built until approved: the live wheel stays as it was until the user approves them and says to push.
+    শিশু অধিকার দিবস and জাতীয় টিকা দিবস held). Every string approved (the new purposes on WHEEL-8) but শহিদ বুদ্ধিজীবী
+    দিবস's purpose, which awaits the user and is not built until approved.
   - **Yearly check** (the user's rule, 2026-10-08): when each new public-holiday gazette is published, compare
     important-days' three Bangla-calendar dates (১ বৈশাখ 14 April, ২৫ বৈশাখ 8 May, ১১ জ্যৈষ্ঠ 25 May); if any differs,
     their strings go back to `approved: false` and the user is told.

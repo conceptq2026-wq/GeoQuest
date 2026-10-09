@@ -127,7 +127,7 @@ const BANGLADESH_MARITIME_SEED_SHA256 = 'dcc627421f99b20faeffe17006d9348f181b966
 // The global-indices map «বৈশ্বিক সূচক»: its seed, pinned (live 2026-10-09).
 const GLOBAL_INDICES_SEED_SHA256 = '9b72d6e35308d4633dfe6f22021964a03e1459ca0b49603fb1dfae57efff517f';
 // The important-days diagram «বছরের চাকা»: its seed, pinned (live 2026-10-08, after WHEEL-2–5 and GL-WHEEL).
-const IMPORTANT_DAYS_SEED_SHA256 = 'a2c6568c1e4c8f653258ea9b21c5a21d0224f0de27ba8be7dd04c3680ba5df46';
+const IMPORTANT_DAYS_SEED_SHA256 = 'af66e8680c66fd390b717d3e222ddb5b1dead8ade93bec2bbb81b616d5b4d862';
 // The bangladesh-ethnic-groups map: its seed, pinned (live 2026-10-08).
 const BANGLADESH_ETHNIC_SEED_SHA256 = 'c2b2333d34be11f0c02aec09fade7c8d1c007fa445c573fdc65824770f96cd75';
 // The org-members map: the editor's seed, pinned (live 2026-10-07).
