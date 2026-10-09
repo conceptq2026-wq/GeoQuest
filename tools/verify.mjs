@@ -1695,6 +1695,80 @@ console.log('\n---- global-indices: seed ----');
   check(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(seedText) && registry.maps.some((e) => e.id === ID && e.section === 'international') && !wipItems.some((w) => w.id === ID) && fs.existsSync(path.join(SERVED, 'maps', ID, 'descriptor.json')), `${ID}: no e-mail address in the seed; live — in registry.json under International, its folder under docs/maps/, no longer in tools/wip.json`);
 }
 
+// ---- org-newest-members «সংস্থার সর্বশেষ সদস্য» (work in progress, ORGN-2, 2026-10-09): the seed ---------------------
+// Each organisation's newest member, its date, count, order and Bangladesh's status, every fact with its tier:
+// "official" (the organisation's own page) or "secondary" (the user's scoped exception for this map, CLAUDE.md:
+// two agreeing sources from different outlets, at least one not Wikipedia; Wikipedia by revision id). A citation is a
+// page in data-sources/org-newest-members/sources.json with the offset, length and SHA-256 of the words in its text;
+// no words are kept. When the cache is present (tools/.cache/org-newest/pages/), each citation is re-sliced and
+// hashed, and each page's text checked against its pin. Unapproved strings only warn while it is work in progress.
+console.log('\n---- org-newest-members: seed (work in progress) ----');
+{
+  const ID = 'org-newest-members';
+  const hash = (b) => crypto.createHash('sha256').update(b).digest('hex');
+  const dir = path.join(DATA_SOURCES, ID);
+  const seedText = fs.readFileSync(path.join(dir, `${ID}.seed.json`), 'utf8');
+  const sourcesText = fs.readFileSync(path.join(dir, 'sources.json'), 'utf8');
+  const seed = JSON.parse(seedText);
+  const pins = JSON.parse(sourcesText).sources;
+  const unflagged = [];
+  let pending = 0;
+  const walk = (v, where, key, owner) => {
+    if (typeof v === 'string') {
+      if (!/[ঀ-৿]/.test(v)) return;
+      if (key === 'bn' && typeof owner?.approved === 'boolean') { if (!owner.approved) pending++; return; }
+      unflagged.push(where);
+    } else if (Array.isArray(v)) v.forEach((x, i) => walk(x, `${where}[${i}]`, i, v));
+    else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) walk(x, `${where}.${k}`, k, v);
+  };
+  walk(seed, 'seed', null, null);
+  check(unflagged.length === 0, `${ID}: every Bengali string carries its approval flag${unflagged.length ? ` — not: ${unflagged.slice(0, 3).join(', ')}` : ''}`);
+  if (pending) console.log(`warn ${ID} (work in progress): ${pending} string(s) await the user's approval`);
+  const EMAIL_RE = /[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.(?!(?:png|jpe?g|gif|svg|webp|css|js|pdf)\b)[A-Za-z]{2,}/;
+  check(!EMAIL_RE.test(seedText) && !EMAIL_RE.test(sourcesText) && !/"(quote|phrase)"\s*:/.test(seedText) && !registry.maps.some((e) => e.id === ID) && wipItems.some((w) => w.id === ID && w.kind === 'map' && w.section === 'international'), `${ID}: no e-mail address and no quoted words in the seed or its pins; work in progress — in tools/wip.json under International, not in the registry`);
+  // Every built fact: its tier, and citations that fit it.
+  const orgs = Object.entries(seed.organisations);
+  const facts = [];
+  for (const [id, o] of orgs) {
+    if (o.status !== 'built') continue;
+    const n = o.newest;
+    facts.push([`${id}.newest`, n.tier, n.cite ?? n.sources]);
+    if (n.dateSources) facts.push([`${id}.date`, n.dateTier, n.dateSources]);
+    if (n.accession) facts.push([`${id}.accession`, n.accession.tier, n.accession.cite ?? n.accession.sources]);
+    if (n.firstTime) facts.push([`${id}.firstTime`, n.firstTime.tier, n.firstTime.cite ?? n.firstTime.sources]);
+    for (const f of ['count', 'order', 'bangladesh']) if (o[f]?.tier) facts.push([`${id}.${f}`, o[f].tier, o[f].cite ?? o[f].sources ?? []]);
+  }
+  const cites = [];
+  const bad = facts.filter(([where, tier, list]) => {
+    if (!['official', 'secondary'].includes(tier) || !Array.isArray(list)) return true;
+    const cs = list.map((x) => x.cite ?? x);
+    cs.forEach((c) => cites.push([where, c]));
+    if (cs.some((c) => !pins[c?.source] || !Number.isInteger(c.offset) || !Number.isInteger(c.length) || !/^[0-9a-f]{64}$/.test(c.sha256 ?? ''))) return true;
+    if (tier === 'secondary') {
+      const outlets = new Set(list.map((x) => (x.kind === 'wikipedia' ? 'wikipedia' : String(x.outlet).toLowerCase())));
+      if (outlets.size < 2 || list.every((x) => x.kind === 'wikipedia') || list.some((x) => x.kind === 'wikipedia' && !/^\d+$/.test(String(x.revid ?? '')))) return true;
+    }
+    return false;
+  });
+  const listed = facts.filter(([, , list]) => !list?.length);
+  check(bad.length === 0 && orgs.every(([, o]) => o.status === 'built' || (o.status === 'held' && o.held)), `${ID}: ${orgs.length} organisations, ${orgs.filter(([, o]) => o.status === 'built').length} built and the rest held with a reason; every built fact (${facts.length}) has its tier and citations that fit it — official: its own page; secondary: two outlets, one not Wikipedia, Wikipedia by revision${bad.length ? ` — not: ${bad.slice(0, 4).map(([w]) => w).join(', ')}` : ''}`);
+  // With the cache: each page's text is the pinned one, and each citation is its words.
+  const cache = path.join(HERE, '.cache/org-newest/pages');
+  if (fs.existsSync(cache)) {
+    const textOf = (id) => (id.startsWith('orgm:') ? path.join(HERE, '.cache/org-members/sources', `${id.slice(5)}.txt`) : path.join(cache, `${id}.txt`));
+    const texts = {};
+    const missing = [], drift = [];
+    for (const [id, pin] of Object.entries(pins)) {
+      if (!fs.existsSync(textOf(id))) { missing.push(id); continue; }
+      const t = fs.readFileSync(textOf(id));
+      if (hash(t) !== pin.text.sha256) drift.push(id); else texts[id] = t.toString('utf8');
+    }
+    const wrong = cites.filter(([, c]) => texts[c.source] !== undefined && hash(texts[c.source].slice(c.offset, c.offset + c.length)) !== c.sha256);
+    check(drift.length === 0 && wrong.length === 0, `${ID}: each cached page's text is its pin (${Object.keys(texts).length} of ${Object.keys(pins).length}), and each citation (${cites.length}) is the words at its offset${drift.length || wrong.length ? ` — not: ${[...drift, ...wrong.slice(0, 3).map(([w]) => w)].join(', ')}` : ''}`);
+    if (missing.length) console.log(`warn ${ID}: ${missing.length} cited page(s) not cached: ${missing.slice(0, 5).join(', ')}`);
+  }
+}
+
 // ---- no unapproved string ships (the user's rule, 2026-10-08, BD-6) -------------------------------
 // A live item whose seed carries approval flags ({ bn, approved }) may not serve a string the user has not
 // approved: every { bn, approved: false } in its tracked seed files whose text appears in its files under

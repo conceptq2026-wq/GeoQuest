@@ -1,0 +1,3468 @@
+{
+ "_about": "org-newest-members, Newest Members of Organisations (work in progress, ORGN-2, 2026-10-09). Each organisation's newest member, its date (when membership took effect), the member count and order, and Bangladesh's status — from the organisation's own pages (tier official) or, under the user's scoped exception, from two agreeing secondary sources read twice (tier secondary): notes/org-newest-members.md. A citation is a cached page's id (data-sources/org-newest-members/sources.json) with the offset, length and SHA-256 of the words in its text: no words are kept here. Country names come from Natural Earth's NAME_BN at build time, by iso3. Written by tools/.cache/org-newest/orgn2/seed.mjs.",
+ "id": "org-newest-members",
+ "section": "international",
+ "retrieved": "2026-10-09",
+ "decisions": "notes/org-newest-members.md (the user, 2026-10-09)",
+ "strings": {
+  "title": {
+   "bn": "সংস্থার সর্বশেষ সদস্য",
+   "approved": false
+  },
+  "tabs": {
+   "map": {
+    "bn": "ম্যাপ",
+    "approved": false
+   },
+   "list": {
+    "bn": "তালিকা",
+    "approved": false
+   }
+  },
+  "chips": {
+   "all": {
+    "bn": "সব",
+    "approved": false
+   },
+   "un": {
+    "bn": "জাতিসংঘ",
+    "approved": false
+   },
+   "regional": {
+    "bn": "আঞ্চলিক",
+    "approved": false
+   },
+   "economic": {
+    "bn": "অর্থনৈতিক",
+    "approved": false
+   },
+   "other": {
+    "bn": "অন্যান্য",
+    "approved": false
+   }
+  },
+  "stats": {
+   "count": {
+    "bn": "মোট সদস্য",
+    "approved": false
+   },
+   "newest": {
+    "bn": "সর্বশেষ সদস্য",
+    "approved": false
+   },
+   "order": {
+    "bn": "যোগদানের ক্রম",
+    "approved": false
+   }
+  },
+  "rows": {
+   "date": {
+    "bn": "যোগদানের তারিখ",
+    "approved": false
+   },
+   "accession": {
+    "bn": "দলিল জমা: {date}",
+    "approved": false
+   },
+   "firstTime": {
+    "bn": "প্রথমবার যোগ দেওয়া সর্বশেষ সদস্য",
+    "approved": false
+   },
+   "hq": {
+    "bn": "সদর দপ্তর",
+    "approved": false
+   },
+   "bangladesh": {
+    "bn": "বাংলাদেশ সদস্য?",
+    "approved": false
+   }
+  },
+  "values": {
+   "yes": {
+    "bn": "হ্যাঁ",
+    "approved": false
+   },
+   "no": {
+    "bn": "না",
+    "approved": false
+   }
+  },
+  "marks": {
+   "rejoin": {
+    "bn": "পুনরায় যোগদান",
+    "approved": false
+   },
+   "suspended": {
+    "bn": "সদস্যপদ স্থগিত",
+    "approved": false
+   },
+   "tie": {
+    "bn": "যৌথভাবে",
+    "approved": false
+   }
+  },
+  "legend": {
+   "newest": {
+    "bn": "সর্বশেষ সদস্য",
+    "approved": false
+   },
+   "bangladesh": {
+    "bn": "বাংলাদেশ",
+    "approved": false
+   }
+  },
+  "list": {
+   "search": {
+    "bn": "সংস্থা খুঁজুন",
+    "approved": false
+   },
+   "total": {
+    "bn": "মোট {n}টি সংস্থা",
+    "approved": false
+   }
+  },
+  "ordinals": {
+   "1": {
+    "bn": "{n}ম",
+    "approved": false
+   },
+   "2": {
+    "bn": "{n}য়",
+    "approved": false
+   },
+   "3": {
+    "bn": "{n}য়",
+    "approved": false
+   },
+   "4": {
+    "bn": "{n}র্থ",
+    "approved": false
+   },
+   "5": {
+    "bn": "{n}ম",
+    "approved": false
+   },
+   "6": {
+    "bn": "{n}ষ্ঠ",
+    "approved": false
+   },
+   "7": {
+    "bn": "{n}ম",
+    "approved": false
+   },
+   "8": {
+    "bn": "{n}ম",
+    "approved": false
+   },
+   "9": {
+    "bn": "{n}ম",
+    "approved": false
+   },
+   "10": {
+    "bn": "{n}ম",
+    "approved": false
+   },
+   "rest": {
+    "bn": "{n}তম",
+    "approved": false
+   }
+  },
+  "sourceVia": {
+   "bn": "সূত্র: {outlet}",
+   "approved": false
+  }
+ },
+ "organisations": {
+  "un": {
+   "group": "un",
+   "nameEn": "United Nations",
+   "nameBn": {
+    "bn": "জাতিসংঘ",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "নিউইয়র্ক",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "SSD",
+      "nameEn": "South Sudan"
+     }
+    ],
+    "date": "2011-07-14",
+    "precision": "day",
+    "cite": [
+     {
+      "source": "una-un-members",
+      "offset": 7784,
+      "length": 41,
+      "sha256": "df485d21301a4aaeb855241f35b3190506a1ef928103cb6ef4c321394b998e14"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 193,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "una-un-growth",
+      "offset": 5641,
+      "length": 37,
+      "sha256": "6d31fdeabcea95e21b8b65c5d93565d9095888df1097f33c4d155b49d72652ea"
+     }
+    ]
+   },
+   "order": {
+    "tier": "official",
+    "n": 193,
+    "how": "stated"
+   },
+   "bangladesh": {
+    "tier": "official",
+    "status": "member",
+    "cite": [
+     {
+      "source": "una-un-members",
+      "offset": 1484,
+      "length": 40,
+      "sha256": "a57f4455f4b414aebb9e04356cc861eec537ee2ccb87020943b9c62b787f2384"
+     }
+    ]
+   }
+  },
+  "fao": {
+   "group": "un",
+   "nameEn": "Food and Agriculture Organization of the United Nations",
+   "nameBn": {
+    "bn": "খাদ্য ও কৃষি সংস্থা (এফএও)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "রোম",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "BRN",
+      "nameEn": "Brunei Darussalam"
+     },
+     {
+      "iso3": "SGP",
+      "nameEn": "Singapore",
+      "cite": [
+       {
+        "source": "una-fao-membership",
+        "offset": 4930,
+        "length": 22,
+        "sha256": "f7e2ab439bf3b183407f2bf8b82eaf0efa05c989ab68827eadfcd3cda8572b04"
+       }
+      ]
+     },
+     {
+      "iso3": "SSD",
+      "nameEn": "South Sudan",
+      "cite": [
+       {
+        "source": "una-fao-membership",
+        "offset": 5090,
+        "length": 24,
+        "sha256": "5d7281d2cbd6f27718a5e519ef422aaed7abf2d52e6bd7bfa30528a91ecbe71a"
+       }
+      ]
+     }
+    ],
+    "date": "2013-06-15",
+    "precision": "day",
+    "cite": [
+     {
+      "source": "una-fao-membership",
+      "offset": 1433,
+      "length": 30,
+      "sha256": "2c14b268d6fb2b604a447fe3edae02045a00c343bdc2a9a1627afa7dca0edd9d"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 194,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "una-fao-membership",
+      "offset": 216,
+      "length": 64,
+      "sha256": "cb731aae00a0913567ef893046028c4d3157157f6aeac613a639e2e464305b60"
+     }
+    ],
+    "note": "eu"
+   },
+   "order": null,
+   "bangladesh": {
+    "tier": "official",
+    "status": "member",
+    "cite": [
+     {
+      "source": "una-fao-membership",
+      "offset": 1128,
+      "length": 27,
+      "sha256": "3948a07a8851216a5e9199016f4a89defbd6abe983bbcf7ff981ebf2c7d42f0f"
+     }
+    ]
+   }
+  },
+  "iaea": {
+   "group": "un",
+   "nameEn": "International Atomic Energy Agency",
+   "nameBn": {
+    "bn": "আন্তর্জাতিক পরমাণু শক্তি সংস্থা (আইএইএ)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "ভিয়েনা",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: effectiveDate: sources disagree. Wikipedia 2026-09-21 (\"Date of ratification\") vs Timor-Leste government 2026-09-14 (admitted at the opening of the 70th General Conference). The newest name, Timor-Leste, agrees in both. | B: effectiveDate: the two sources differ: Wikipedia's list gives 21 September 2026; Timor-Leste's government says admitted on 14 September 2026 (General Conference approval at its opening). Name (Timor-Leste) and count (182) agree. iaea.org is blocked; Bangladesh rests on Wikipedia only."
+  },
+  "icao": {
+   "group": "un",
+   "nameEn": "International Civil Aviation Organization",
+   "nameBn": {
+    "bn": "আন্তর্জাতিক বেসামরিক বিমান চলাচল সংস্থা (ইকাও)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "মন্ট্রিল",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "only the deposit of adherence (14 March 2019) is stated; the date membership took effect is not (decision 5)"
+  },
+  "ifad": {
+   "group": "un",
+   "nameEn": "International Fund for Agricultural Development",
+   "nameBn": {
+    "bn": "আন্তর্জাতিক কৃষি উন্নয়ন তহবিল (ইফাদ)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "রোম",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: Single source: only the UN Treaty Collection names Lithuania (accession deposited 2024-11-27) as the latest; no second outlet found. No fetched source states the effective date. | B: newest: one source only (the UN depositary record: Lithuania, accession 27 Nov 2024). No second outlet: ifad.org, urm.lt, zum.lrv.lt and e-tar.lt are blocked; English and Lithuanian Wikipedia give no date. The date membership took effect is not stated in the record read."
+  },
+  "ilo": {
+   "group": "un",
+   "nameEn": "International Labour Organization",
+   "nameBn": {
+    "bn": "আন্তর্জাতিক শ্রম সংস্থা (আইএলও)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "জেনেভা",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: newest: only Wikipedia's dated table shows Tonga as the newest (the ILO page confirms \"member in 2016\" but not that no state joined later). Full date 2016-02-24 has one source; the year 2016 has two. | B: no newest"
+  },
+  "imo": {
+   "group": "un",
+   "nameEn": "International Maritime Organization",
+   "nameBn": {
+    "bn": "আন্তর্জাতিক সমুদ্র সংস্থা (আইএমও)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "লন্ডন",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "KGZ",
+      "nameEn": "Kyrgyzstan"
+     }
+    ],
+    "date": "2024",
+    "precision": "year",
+    "cite": [
+     {
+      "source": "una-imo-members",
+      "offset": 4261,
+      "length": 15,
+      "sha256": "e06cb2b67917abe01f24790639d9a15e2176970cadd1898821969a266fd448a6"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 176,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "una-imo-members",
+      "offset": 1474,
+      "length": 63,
+      "sha256": "e704d4c5f48c46be329d11fb0426637b0a106ce520d90c05dffd9b1d999d08de"
+     }
+    ]
+   },
+   "order": {
+    "tier": "official",
+    "n": 176,
+    "how": "derived"
+   },
+   "bangladesh": {
+    "tier": "official",
+    "status": "member",
+    "cite": [
+     {
+      "source": "una-imo-members",
+      "offset": 1903,
+      "length": 15,
+      "sha256": "aa4723a2178b049fa8b5dbbeda5652c5a66ae26087c07dc740a497dc08a2327a"
+     }
+    ]
+   }
+  },
+  "iom": {
+   "group": "un",
+   "nameEn": "International Organization for Migration",
+   "nameBn": {
+    "bn": "আন্তর্জাতিক অভিবাসন সংস্থা (আইওএম)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "জেনেভা",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: no newest | B: newest and date: one outlet only (IOM's own Council resolution; Wikipedia lists Barbados without a date). Barbados's government site and Nation News are blocked; Barbados Today timed out."
+  },
+  "itu": {
+   "group": "un",
+   "nameEn": "International Telecommunication Union",
+   "nameBn": {
+    "bn": "আন্তর্জাতিক টেলিযোগাযোগ ইউনিয়ন (আইটিইউ)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "জেনেভা",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "PLW",
+      "nameEn": "Palau"
+     }
+    ],
+    "date": "2024-09-19",
+    "precision": "day",
+    "cite": [
+     {
+      "source": "una-itu-members",
+      "offset": 5891,
+      "length": 25,
+      "sha256": "d5443db29e520187b8a2c4891aea0fcf72b5ec9711654cc93731e25eaf16a5c2"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 194,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "una-itu-members",
+      "offset": 567,
+      "length": 35,
+      "sha256": "31721ce5843d9175ac31add879d7223b67113eda3235f57b3f0fdc4344712ba4"
+     }
+    ]
+   },
+   "order": {
+    "tier": "official",
+    "n": 194,
+    "how": "derived"
+   },
+   "bangladesh": {
+    "tier": "official",
+    "status": "member",
+    "cite": [
+     {
+      "source": "una-itu-members",
+      "offset": 1962,
+      "length": 30,
+      "sha256": "788295ea28732e43fe8bbb07ac4cad450eaf3217467ccb5e6b7320e6f54fc814"
+     }
+    ]
+   }
+  },
+  "unesco": {
+   "group": "un",
+   "nameEn": "United Nations Educational, Scientific and Cultural Organization",
+   "nameBn": {
+    "bn": "ইউনেস্কো",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "প্যারিস",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "the latest admission is the United States («UNESCO member since 2023»); no UNESCO page states whether it is a rejoin, so it can be neither marked as a rejoin nor ruled first-time (decision 2)"
+  },
+  "unido": {
+   "group": "un",
+   "nameEn": "United Nations Industrial Development Organization",
+   "nameBn": {
+    "bn": "জাতিসংঘ শিল্প উন্নয়ন সংস্থা (ইউনিডো)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "ভিয়েনা",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: Single naming source: only the UN Treaty Collection names Solomon Islands (accession 2024-10-04); Wikipedia's \"As of 4 October 2024, 173\" agrees on the date but names no state. No source states the effective date explicitly. | B: newest name: only the depositary names Solomon Islands; Wikipedia corroborates the date only indirectly (\"As of 4 October 2024, 173 States are Members\") and lists Solomon Islands among members without a date. Hold unless that dated count is accepted as the second source."
+  },
+  "upu": {
+   "group": "un",
+   "nameEn": "Universal Postal Union",
+   "nameBn": {
+    "bn": "বিশ্ব ডাক ইউনিয়ন (ইউপিইউ)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "বার্ন",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: No date at all from any allowed source; upu.int returns 500. The count, 192, has one source (Wikipedia). | B: Wikipedia only (South Sudan, 4 October 2011; 192 members in two Wikipedia articles). upu.int answered HTTP 500 again (2 tries); no non-Wikipedia source. Wikipedia marks the list incomplete. Palestine applied in 2018 but was not approved."
+  },
+  "who": {
+   "group": "un",
+   "nameEn": "World Health Organization",
+   "nameBn": {
+    "bn": "বিশ্ব স্বাস্থ্য সংস্থা",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "জেনেভা",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: no newest | B: Read further on WHO's own site first (item 7): who.int/countries today lists 194 Member States incl. Argentina and Tuvalu, the US asterisked (withdrawal \"with a stated effective date of 22 January 2026\", pending before WHO's governing bodies); the Basic Documents page still offers only the 49th ed. (list at 31 May 2019). WHO's annex and the UN depositary agree: South Sudan, 27 September 2011; both date Tuvalu 7 May 1993. Conflict: English Wikipedia says 192 members (excluding Argentina and the US) and \"No new members have joined since Tuvalu in 2023\", contradicted by both official records. Hold only if a disagreeing Wikipedia statement holds a fact; otherwise newest stands on two non-Wikipedia sources. Count: WHO and UNTC 194 (US pending) vs Wikipedia 192."
+  },
+  "wipo": {
+   "group": "un",
+   "nameEn": "World Intellectual Property Organization",
+   "nameBn": {
+    "bn": "বিশ্ব মেধাসম্পদ সংস্থা (ওয়াইপো)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "জেনেভা",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "FSM",
+      "nameEn": "Micronesia (Federated States of)"
+     }
+    ],
+    "date": "2025-09-19",
+    "precision": "day",
+    "cite": [
+     {
+      "source": "wipo-convention-parties",
+      "offset": 10518,
+      "length": 76,
+      "sha256": "6c3325fd626faf17715926d33ccc2543244af9e7c231162397982d340114a7dc"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 194,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "wipo-members",
+      "offset": 6573,
+      "length": 36,
+      "sha256": "7472e8783c57d6708c0a219c602c975d8adc8ef55ed62213b0e5325fedf46d72"
+     }
+    ]
+   },
+   "order": null,
+   "bangladesh": {
+    "tier": "official",
+    "status": "member",
+    "cite": [
+     {
+      "source": "wipo-convention-parties",
+      "offset": 4286,
+      "length": 52,
+      "sha256": "c0d98102e900af234f7057889203dfeeadb137999db6f2c486f44778d45bf513"
+     }
+    ]
+   }
+  },
+  "wmo": {
+   "group": "un",
+   "nameEn": "World Meteorological Organization",
+   "nameBn": {
+    "bn": "বিশ্ব আবহাওয়া সংস্থা",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "জেনেভা",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "NRU",
+      "nameEn": "Nauru"
+     }
+    ],
+    "date": "2019-05-16",
+    "precision": "day",
+    "cite": [
+     {
+      "source": "wmo-members-data",
+      "offset": 509,
+      "length": 94,
+      "sha256": "3e40b1f7f0f7c698d8bc112be03b0a7b234ad650650fbe043f7158b244268f85"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 193,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "wmo-members",
+      "offset": 1314,
+      "length": 66,
+      "sha256": "890856e43325255dd0e2efaafa72534b5bff6c8a271cd787dca231925d0355e7"
+     }
+    ]
+   },
+   "order": null,
+   "bangladesh": {
+    "tier": "official",
+    "status": "member",
+    "cite": [
+     {
+      "source": "wmo-members-data",
+      "offset": 45011,
+      "length": 98,
+      "sha256": "895d716c4793c4efacee94c4d541143ec5eb67c79af19dcb5c29e80d37a7aed4"
+     }
+    ]
+   }
+  },
+  "untourism": {
+   "group": "un",
+   "nameEn": "UN Tourism (formerly UNWTO)",
+   "nameBn": {
+    "bn": "জাতিসংঘ পর্যটন সংস্থা",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "মাদ্রিদ",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "KNA",
+      "nameEn": "Saint Kitts and Nevis"
+     }
+    ],
+    "date": "2026",
+    "precision": "year",
+    "cite": [
+     {
+      "source": "untourism-members",
+      "offset": 22616,
+      "length": 54,
+      "sha256": "7e1ff62a88d4ee9922c4f751941efc22bffd0b136c2ad1dc9cd9bfd03dedab8f"
+     }
+    ]
+   },
+   "count": {
+    "n": null,
+    "held": "its page heads the list «160 Member States» and lists 161"
+   },
+   "order": null,
+   "bangladesh": {
+    "tier": "official",
+    "status": "member",
+    "cite": [
+     {
+      "source": "untourism-members",
+      "offset": 4740,
+      "length": 67,
+      "sha256": "a9aed1e8735651a14bc0df2eb881f7baecea038fac9bbd2172d7c78bd6a83738"
+     }
+    ]
+   }
+  },
+  "opcw": {
+   "group": "un",
+   "nameEn": "Organisation for the Prohibition of Chemical Weapons",
+   "nameBn": {
+    "bn": "রাসায়নিক অস্ত্র নিষিদ্ধকরণ সংস্থা (ওপিসিডব্লিউ)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "দ্য হেগ",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "PSE",
+      "nameEn": "State of Palestine"
+     }
+    ],
+    "date": "2018-06-16",
+    "precision": "day",
+    "cite": [
+     {
+      "source": "opcw-palestine",
+      "offset": 6709,
+      "length": 29,
+      "sha256": "3bdfb6be94cf8cdf809025c87c846b96c1e1ae20a86cdd1dc467efb78af7b2cf"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 193,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "opcw-universality",
+      "offset": 6707,
+      "length": 67,
+      "sha256": "e8605401aafa9122fc23bbbd14e3a2309842f5f46ac153344003ae74f9203aa1"
+     }
+    ]
+   },
+   "order": {
+    "tier": "official",
+    "n": 193,
+    "how": "stated"
+   },
+   "bangladesh": {
+    "tier": "official",
+    "status": "member",
+    "cite": [
+     {
+      "source": "opcw-bangladesh",
+      "offset": 6754,
+      "length": 30,
+      "sha256": "cac179a1c5de2d9ca20c829108a5f8dfe873d9c4fc03d0105280bb8d92a811ed"
+     }
+    ]
+   }
+  },
+  "ctbto": {
+   "group": "un",
+   "nameEn": "Preparatory Commission for the Comprehensive Nuclear-Test-Ban Treaty Organization",
+   "nameBn": {
+    "bn": "সমন্বিত পারমাণবিক পরীক্ষা নিষিদ্ধকরণ চুক্তি সংস্থা (সিটিবিটিও)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "ভিয়েনা",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "secondary",
+    "members": [
+     {
+      "iso3": "TON",
+      "nameEn": "Tonga"
+     }
+    ],
+    "sources": [
+     {
+      "kind": "depositary",
+      "outlet": "UN Treaty Collection (status as at 2026-10-09)",
+      "url": "https://treaties.un.org/Pages/ViewDetails.aspx?src=TREATY&mtdsg_no=XXVI-4&chapter=26&clang=_en",
+      "published": null,
+      "cite": {
+       "source": "A1-ctbto-untc",
+       "offset": 10173,
+       "length": 27,
+       "sha256": "c15cac215fe2a08807ed1c120e58febb95d2f470c97a7833989e3fa92cf1b31e"
+      }
+     },
+     {
+      "kind": "wikipedia",
+      "outlet": "English Wikipedia: CTBTO Preparatory Commission",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1363091022",
+      "published": null,
+      "revid": "1363091022",
+      "citedRef": "\"Status of Signature and Ratification\" (CTBTO Preparatory Commission); composition: \"Composition and Structure\" and \"Establishment, Purpose and Activities\" (CTBTO Preparatory Commission)",
+      "cite": {
+       "source": "A1-ctbto-wp2",
+       "offset": 10031,
+       "length": 37,
+       "sha256": "4e63679f1b9208fa0ae83cd302e4792e0a29c47964b6f74ec921972f5d7af73b"
+      }
+     }
+    ],
+    "date": "2026-07-07",
+    "precision": "day",
+    "dateTier": "secondary",
+    "dateSources": [
+     {
+      "kind": "wikipedia",
+      "outlet": "English Wikipedia: CTBTO Preparatory Commission",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1363091022",
+      "published": null,
+      "revid": "1363091022",
+      "citedRef": "\"Status of Signature and Ratification\" (CTBTO Preparatory Commission); composition: \"Composition and Structure\" and \"Establishment, Purpose and Activities\" (CTBTO Preparatory Commission)",
+      "cite": {
+       "source": "A1-ctbto-wp2",
+       "offset": 10063,
+       "length": 47,
+       "sha256": "ec4c1e64ddd3f3727d5e9769bc00253b0c984212970f38ae282aea20ea7c7613"
+      }
+     },
+     {
+      "kind": "depositary",
+      "outlet": "UN Treaty Collection (Secretary-General as depositary)",
+      "url": "https://treaties.un.org/Pages/ViewDetails.aspx?src=TREATY&mtdsg_no=XXVI-4&chapter=26&clang=_en",
+      "published": null,
+      "cite": {
+       "source": "B1-ctbto-untc",
+       "offset": 10179,
+       "length": 10,
+       "sha256": "4d9a866a19843ebfe83edf69b196d6938e52407e68765aca2636dd69af585306"
+      }
+     }
+    ]
+   },
+   "count": {
+    "tier": "secondary",
+    "n": 188,
+    "sources": [
+     {
+      "kind": "depositary",
+      "outlet": "UN Treaty Collection (status as at 2026-10-09)",
+      "url": "https://treaties.un.org/Pages/ViewDetails.aspx?src=TREATY&mtdsg_no=XXVI-4&chapter=26&clang=_en",
+      "published": null,
+      "cite": {
+       "source": "A1-ctbto-untc",
+       "offset": 3657,
+       "length": 32,
+       "sha256": "e09b2a344e82e054967802943ddaca7e4752af5784e4acaacb621b4b8eec3469"
+      }
+     },
+     {
+      "kind": "wikipedia",
+      "outlet": "English Wikipedia: CTBTO Preparatory Commission",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1363091022",
+      "published": null,
+      "revid": "1363091022",
+      "citedRef": "\"Status of Signature and Ratification\" (CTBTO Preparatory Commission); composition: \"Composition and Structure\" and \"Establishment, Purpose and Activities\" (CTBTO Preparatory Commission)",
+      "cite": {
+       "source": "A1-ctbto-wp2",
+       "offset": 9950,
+       "length": 79,
+       "sha256": "585fa73146c77a8fea7d088d4f94b6c7a17de34c99eb196b164bcf2b83b9706a"
+      }
+     }
+    ]
+   },
+   "order": null,
+   "bangladesh": null,
+   "heldFacts": {
+    "bangladesh": "readings differ: A \"member\" / B \"member (signatory 1996-10-24; ratified 2000-03-08)\""
+   }
+  },
+  "unctad": {
+   "group": "un",
+   "nameEn": "United Nations Conference on Trade and Development",
+   "nameBn": {
+    "bn": "জাতিসংঘ বাণিজ্য ও উন্নয়ন সম্মেলন (আঙ্কটাড)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "জেনেভা",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: No date at all from any allowed source; the count, 195, has one source (Wikipedia). | B: no date at all: unctad.org is blocked; Wikipedia gives membership by rule (all UN members plus the Holy See and Palestine; the US \"in the process of leaving\") and no admission dates; the 195 count is Wikipedia only. Not derived from UN admissions (that would be inference)."
+  },
+  "saarc": {
+   "group": "regional",
+   "nameEn": "South Asian Association for Regional Cooperation",
+   "nameBn": {
+    "bn": "সার্ক",
+    "approved": true,
+    "from": "org-members seed (org-headquarters seed)"
+   },
+   "hqCityBn": {
+    "bn": "কাঠমান্ডু",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "AFG",
+      "nameEn": "Afghanistan"
+     }
+    ],
+    "sources": [
+     {
+      "kind": "official",
+      "outlet": "SAARC Secretariat (Declaration of the Fourteenth SAARC Summit, PDF)",
+      "url": "https://www.saarc-sec.org/medias/FourteenthSaarcSummitNewDe_2026_05_11_04_59_29.pdf",
+      "published": "2007-04-04",
+      "cite": {
+       "source": "A2-saarc-14decl",
+       "offset": 951,
+       "length": 69,
+       "sha256": "422701be2586faf5a9735b1c50ddb5fd184d0f6bfd3d9d769fdeb1ec4a938466"
+      }
+     },
+     {
+      "kind": "official",
+      "outlet": "SAARC Secretariat (Declaration of the Fourteenth SAARC Summit, PDF)",
+      "url": "https://www.saarc-sec.org/medias/FourteenthSaarcSummitNewDe_2026_05_11_04_59_29.pdf",
+      "published": null,
+      "cite": {
+       "source": "B2-saarc-decl14",
+       "offset": 951,
+       "length": 69,
+       "sha256": "422701be2586faf5a9735b1c50ddb5fd184d0f6bfd3d9d769fdeb1ec4a938466"
+      }
+     }
+    ],
+    "date": "2007-04",
+    "precision": "month",
+    "dateTier": "official",
+    "dateSources": [
+     {
+      "kind": "official",
+      "outlet": "SAARC Secretariat (Declaration of the Fourteenth SAARC Summit, PDF)",
+      "url": "https://www.saarc-sec.org/medias/FourteenthSaarcSummitNewDe_2026_05_11_04_59_29.pdf",
+      "published": "2007-04-04",
+      "cite": {
+       "source": "A2-saarc-14decl",
+       "offset": 868,
+       "length": 44,
+       "sha256": "2d0bfaaac1d57ea69b8d7756657537f8d975734eca8a048d7339d21b2a411aa2"
+      }
+     },
+     {
+      "kind": "official",
+      "outlet": "SAARC Secretariat (Declaration of the Fourteenth SAARC Summit, PDF)",
+      "url": "https://www.saarc-sec.org/medias/FourteenthSaarcSummitNewDe_2026_05_11_04_59_29.pdf",
+      "published": null,
+      "cite": {
+       "source": "B2-saarc-decl14",
+       "offset": 881,
+       "length": 31,
+       "sha256": "f92d0f69d011da92bea35d7bf071e2b9bfe35e3da22c254c2d885d6fe978bcd6"
+      }
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 8,
+    "sources": [
+     {
+      "kind": "official",
+      "outlet": "SAARC Secretariat (saarc-sec.org API, about-saarc)",
+      "url": "https://www.saarc-sec.org/api/pages/about-saarc",
+      "published": null,
+      "cite": {
+       "source": "A2-saarc-about",
+       "offset": 300,
+       "length": 38,
+       "sha256": "7c5d0c171829cf53edcf40eab05d35d423b9aa0482fe5053e51bbebb58607d8b"
+      }
+     },
+     {
+      "kind": "official",
+      "outlet": "SAARC Secretariat",
+      "url": "https://www.saarc-sec.org/api/pages/about-saarc",
+      "published": null,
+      "cite": {
+       "source": "B2-saarc-about",
+       "offset": 300,
+       "length": 38,
+       "sha256": "7c5d0c171829cf53edcf40eab05d35d423b9aa0482fe5053e51bbebb58607d8b"
+      }
+     }
+    ]
+   },
+   "order": null,
+   "bangladesh": {
+    "tier": "official",
+    "status": "member",
+    "sources": [
+     {
+      "kind": "official",
+      "outlet": "SAARC Secretariat (saarc-sec.org API, about-saarc)",
+      "url": "https://www.saarc-sec.org/api/pages/about-saarc",
+      "published": null,
+      "cite": {
+       "source": "A2-saarc-about",
+       "offset": 340,
+       "length": 79,
+       "sha256": "b247321e97cd4b05b42c508bfa0987c7a472289554ed5db9eadad5418d407bb2"
+      }
+     },
+     {
+      "kind": "official",
+      "outlet": "SAARC Secretariat",
+      "url": "https://www.saarc-sec.org/api/pages/about-saarc",
+      "published": null,
+      "cite": {
+       "source": "B2-saarc-about",
+       "offset": 340,
+       "length": 79,
+       "sha256": "b247321e97cd4b05b42c508bfa0987c7a472289554ed5db9eadad5418d407bb2"
+      }
+     }
+    ]
+   },
+   "heldFacts": {
+    "order": "value 8: 0 outlet(s); dropped: A2-saarc-wp: its words do not state the ordinal 8; A2-saarc-about: its words do not state the ordinal 8; B2-saarc-wp: its words do not state the ordinal 8"
+   }
+  },
+  "bimstec": {
+   "group": "regional",
+   "nameEn": "Bay of Bengal Initiative for Multi-Sectoral Technical and Economic Cooperation",
+   "nameBn": {
+    "bn": "বিমসটেক",
+    "approved": true,
+    "from": "org-members seed (org-headquarters seed)"
+   },
+   "hqCityBn": {
+    "bn": "ঢাকা",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: no newest | B: Month conflict on the official History page itself: \"February 2004\" vs \"6th Ministerial Meeting in Thailand in July 2004\"; Wikipedia: February 2004. Names and year (2004) agree. Nepal and Bhutan MFA pages gave nothing (404 / unrelated page)."
+  },
+  "asean": {
+   "group": "regional",
+   "nameEn": "Association of Southeast Asian Nations",
+   "nameBn": {
+    "bn": "আসিয়ান",
+    "approved": true,
+    "from": "org-members seed (org-headquarters seed)"
+   },
+   "hqCityBn": {
+    "bn": "জাকার্তা",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "TLS",
+      "nameEn": "Timor-Leste"
+     }
+    ],
+    "date": "2025-10-26",
+    "precision": "day",
+    "cite": [
+     {
+      "source": "om-asean-members",
+      "offset": 730,
+      "length": 79,
+      "sha256": "d51b1a15d0508a512c4ec1cdc133586c9e85aba76100b046fdc93f35f6c770ee"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 11,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "om-asean-members",
+      "offset": 771,
+      "length": 47,
+      "sha256": "d353900173d8ee6736f3f4c7165aecfd9c2b19488816f18b6c64d7d27cc91f31"
+     }
+    ]
+   },
+   "order": {
+    "tier": "official",
+    "n": 11,
+    "how": "derived"
+   },
+   "bangladesh": {
+    "tier": "official",
+    "status": "none",
+    "by": "absent from the members list",
+    "list": "om-asean-members"
+   }
+  },
+  "oic": {
+   "group": "regional",
+   "nameEn": "Organisation of Islamic Cooperation",
+   "nameBn": {
+    "bn": "ইসলামি সহযোগিতা সংস্থা (ওআইসি)",
+    "approved": true,
+    "from": "org-members seed (org-headquarters seed)"
+   },
+   "hqCityBn": {
+    "bn": "জেদ্দা",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "CIV",
+      "nameEn": "Côte d'Ivoire"
+     }
+    ],
+    "date": "2001",
+    "precision": "year",
+    "cite": [
+     {
+      "source": "om-oic-members",
+      "offset": 2969,
+      "length": 43,
+      "sha256": "76db5e934e6695c2b2c6d74cdbe227e05a70e40b1028af625d8bcb03da9ea2ff"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 57,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "om-oic-members",
+      "offset": 559,
+      "length": 30,
+      "sha256": "397dc0e1e54b9b44694a1c4cc8f1cbc2e4d24eedc5e25669ff581d0b90b2a8aa"
+     }
+    ]
+   },
+   "order": {
+    "tier": "official",
+    "n": 57,
+    "how": "derived"
+   },
+   "bangladesh": {
+    "tier": "official",
+    "status": "member",
+    "cite": [
+     {
+      "source": "om-oic-members",
+      "offset": 1749,
+      "length": 49,
+      "sha256": "d4dc9b8f4d170ee2dc730b5749b757a569624caa14aea9a02caea6e15f8b22f5"
+     }
+    ]
+   }
+  },
+  "commonwealth": {
+   "group": "regional",
+   "nameEn": "Commonwealth of Nations",
+   "nameBn": {
+    "bn": "কমনওয়েলথ",
+    "approved": true,
+    "from": "org-members seed (org-headquarters seed)"
+   },
+   "hqCityBn": {
+    "bn": "লন্ডন",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "GAB",
+      "nameEn": "Gabon"
+     },
+     {
+      "iso3": "TGO",
+      "nameEn": "Togo",
+      "cite": [
+       {
+        "source": "ra-commonwealth-togo",
+        "offset": 531,
+        "length": 46,
+        "sha256": "932ffd4faa4861b3156ca43b3bdc095de7694c897f8eb04a56e6ae168bf7df3d"
+       }
+      ]
+     }
+    ],
+    "date": "2022-06",
+    "precision": "month",
+    "cite": [
+     {
+      "source": "ra-commonwealth-gabon",
+      "offset": 537,
+      "length": 42,
+      "sha256": "a7b97ea5086e3a5c6c19355927d029a7911b24f0a978149549c34d336759be26"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 56,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "ra-commonwealth-members",
+      "offset": 548,
+      "length": 49,
+      "sha256": "90ad89c7c600111e01ecc6ba6c7d86f5cf3abb3d12f4b14713a49bdbc25552b1"
+     }
+    ]
+   },
+   "order": null,
+   "bangladesh": {
+    "tier": "official",
+    "status": "member",
+    "cite": [
+     {
+      "source": "ra-commonwealth-bangladesh",
+      "offset": 3900,
+      "length": 62,
+      "sha256": "53f07e41978a7e01aa77ed1a2accb0fae038bd6c438ec40d25bc998c563b48e6"
+     }
+    ]
+   }
+  },
+  "sco": {
+   "group": "regional",
+   "nameEn": "Shanghai Cooperation Organisation",
+   "nameBn": {
+    "bn": "সাংহাই সহযোগিতা সংস্থা",
+    "approved": true,
+    "from": "org-members seed (org-headquarters seed)"
+   },
+   "hqCityBn": {
+    "bn": "বেইজিং",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "BLR",
+      "nameEn": "Belarus"
+     }
+    ],
+    "date": "2024",
+    "precision": "year",
+    "cite": [
+     {
+      "source": "ra-sco-general",
+      "offset": 9086,
+      "length": 66,
+      "sha256": "f4ddb494ee634d2595a67c5740729170c5af73f9bcb00dc82be5f0688fe43ac1"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 10,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "ra-sco-general",
+      "offset": 9181,
+      "length": 16,
+      "sha256": "e9af466c6a7f813308129794b9b57bebff034bca1a4259b1200b00f147b17507"
+     }
+    ]
+   },
+   "order": null,
+   "bangladesh": {
+    "tier": "official",
+    "status": "none",
+    "by": "absent from the members list",
+    "list": "ra-sco-general"
+   }
+  },
+  "cica": {
+   "group": "regional",
+   "nameEn": "Conference on Interaction and Confidence Building Measures in Asia",
+   "nameBn": {
+    "bn": "সিকা",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "আস্তানা",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "KWT",
+      "nameEn": "Kuwait"
+     }
+    ],
+    "sources": [
+     {
+      "kind": "official",
+      "outlet": "CICA Secretariat (Summit Documents)",
+      "url": "https://www.s-cica.org/index.php?view=page&t=summit-documents",
+      "published": null,
+      "cite": {
+       "source": "B2-cica-summitdocs",
+       "offset": 1923,
+       "length": 71,
+       "sha256": "25041e291ec9d8b150ca4bfdfc667f5dd32c2fda8733da21af67bfcc91a1b27d"
+      }
+     }
+    ],
+    "date": "2022",
+    "precision": "year",
+    "dateTier": "official",
+    "dateSources": [
+     {
+      "kind": "official",
+      "outlet": "CICA Secretariat (Summit Documents)",
+      "url": "https://www.s-cica.org/index.php?view=page&t=summit-documents",
+      "published": null,
+      "cite": {
+       "source": "B2-cica-summitdocs",
+       "offset": 1995,
+       "length": 31,
+       "sha256": "134a66da593725f04d360146c8c49f9beba11b1f0f7c4de1609e76f1d5f1264d"
+      }
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 28,
+    "sources": [
+     {
+      "kind": "official",
+      "outlet": "CICA Secretariat (s-cica.org, about)",
+      "url": "https://www.s-cica.org/index.php?view=page&t=about",
+      "published": null,
+      "cite": {
+       "source": "A2-cica-about",
+       "offset": 3857,
+       "length": 45,
+       "sha256": "a149eeab5e0c4fe9d500351465e88138407aab1e86befc97f08c78b25925f96d"
+      }
+     },
+     {
+      "kind": "official",
+      "outlet": "CICA Secretariat (Member States; 28 names counted)",
+      "url": "https://www.s-cica.org/index.php?view=page&t=member_states",
+      "published": null,
+      "cite": {
+       "source": "B2-cica-members",
+       "offset": 1450,
+       "length": 64,
+       "sha256": "54d2589fc9e00a93d1e0197c910cc439b69f1bc283c2a0a1861dfa9884d167c9"
+      }
+     }
+    ]
+   },
+   "order": null,
+   "bangladesh": {
+    "tier": "official",
+    "status": "member",
+    "sources": [
+     {
+      "kind": "official",
+      "outlet": "CICA Secretariat (s-cica.org, member states)",
+      "url": "https://www.s-cica.org/index.php?view=page&t=member_states",
+      "published": null,
+      "cite": {
+       "source": "A2-cica-members",
+       "offset": 1495,
+       "length": 10,
+       "sha256": "2f1d47eb679bb05e6d8fe039af1563549588cd44b40be6b1013ea8ca2268845f"
+      }
+     },
+     {
+      "kind": "official",
+      "outlet": "CICA Secretariat (Member States)",
+      "url": "https://www.s-cica.org/index.php?view=page&t=member_states",
+      "published": null,
+      "cite": {
+       "source": "B2-cica-members",
+       "offset": 1487,
+       "length": 33,
+       "sha256": "ce2b94d98c667df75d32e9739459617d21eb329b322cc42716f248f979581624"
+      }
+     }
+    ]
+   },
+   "heldFacts": {
+    "order": "readings differ: A 28 / B null"
+   }
+  },
+  "colombo-plan": {
+   "group": "regional",
+   "nameEn": "Colombo Plan",
+   "nameBn": {
+    "bn": "কলম্বো প্ল্যান",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "কলম্বো",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "CHL",
+      "nameEn": "Chile"
+     }
+    ],
+    "date": "2021",
+    "precision": "year",
+    "cite": [
+     {
+      "source": "ra-colombo-members",
+      "offset": 3473,
+      "length": 10,
+      "sha256": "5b3ee8ff9febb1405c45d4a7ae80d30258073c4c23f81009c061fd7bbbafff3b"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 26,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "ra-colombo-members",
+      "offset": 2435,
+      "length": 60,
+      "sha256": "2c0db498aa8cdaccfebd3d6e1d398faa0bf53f7f4e567dad54eb8732966e5954"
+     }
+    ],
+    "note": "table"
+   },
+   "order": null,
+   "bangladesh": {
+    "tier": "official",
+    "status": "member",
+    "cite": [
+     {
+      "source": "ra-colombo-members",
+      "offset": 2757,
+      "length": 21,
+      "sha256": "ef047a8770b4d91dce0683f9b0bdcb30f5d774106996d0e939b5aafffb54fbac"
+     }
+    ]
+   }
+  },
+  "cirdap": {
+   "group": "regional",
+   "nameEn": "Centre on Integrated Rural Development for Asia and the Pacific",
+   "nameBn": {
+    "bn": "সিরডাপ",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "ঢাকা",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: one source only: Fiji, June 2010, from Wikipedia (no reference cited); cirdap.org (about, Fiji page, site search) gives no joining date; no government or press source found | B: Fiji as newest and June 2010 rest on Wikipedia alone (uncited); no official, Fiji-government or press source with a date was reachable (fiji.gov.fj: fetch failed)."
+  },
+  "icimod": {
+   "group": "regional",
+   "nameEn": "International Centre for Integrated Mountain Development",
+   "nameBn": {
+    "bn": "ইসিমোড",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "কাঠমান্ডু",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "no member admitted since its founding (the eight regional member countries of its 1982 statute)"
+  },
+  "iora": {
+   "group": "regional",
+   "nameEn": "Indian Ocean Rim Association",
+   "nameBn": {
+    "bn": "ভারত মহাসাগরীয় রিম অ্যাসোসিয়েশন (আইওরা)",
+    "approved": true,
+    "from": "org-members seed (org-headquarters seed)"
+   },
+   "hqCityBn": {
+    "bn": "এবেনে",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "FRA",
+      "nameEn": "France"
+     }
+    ],
+    "date": "2020",
+    "precision": "year",
+    "cite": [
+     {
+      "source": "ra-iora-milestones",
+      "offset": 11143,
+      "length": 38,
+      "sha256": "1fdba383a3b9fdba9746e72a2553ee06f272960eec7c17f37792a994f115cb6f"
+     }
+    ],
+    "territory": "Réunion"
+   },
+   "count": {
+    "tier": "official",
+    "n": 23,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "ra-iora-milestones",
+      "offset": 1693,
+      "length": 57,
+      "sha256": "0f5dc25523ff8bd82d7896f1b8bc22cc07c1e8b283db57f31ed6fe222b7571ce"
+     }
+    ]
+   },
+   "order": null,
+   "bangladesh": {
+    "tier": "official",
+    "status": "member",
+    "cite": [
+     {
+      "source": "ra-iora-members",
+      "offset": 1600,
+      "length": 38,
+      "sha256": "3673067facaf8938e6ff1e973469eb5c9aaa98ec63046db663b735230c5b0124"
+     }
+    ]
+   }
+  },
+  "gcc": {
+   "group": "regional",
+   "nameEn": "Gulf Cooperation Council",
+   "nameBn": {
+    "bn": "উপসাগরীয় সহযোগিতা পরিষদ (জিসিসি)",
+    "approved": true,
+    "from": "org-members seed (org-headquarters seed)"
+   },
+   "hqCityBn": {
+    "bn": "রিয়াদ",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "no member admitted since its founding by the six on 25 May 1981"
+  },
+  "arab-league": {
+   "group": "regional",
+   "nameEn": "League of Arab States",
+   "nameBn": {
+    "bn": "আরব লীগ",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "কায়রো",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: one source only: Comoros, 20 November 1993, from Wikipedia (table, no reference cited); the League's sites are blocked (lasportal.org) or unreachable; no government or press source found. Count 22 from Wikipedia only. Syria's 2023 return ended a suspension, not an admission. | B: Wikipedia only (Comoros, 20 November 1993; 22 members). las.int unreachable and lasportal.org blocked (ORGN-1); no wire or daily reachable. Syria's 2023 reinstatement ends a suspension, not an admission."
+  },
+  "eco": {
+   "group": "economic",
+   "nameEn": "Economic Cooperation Organization",
+   "nameBn": {
+    "bn": "অর্থনৈতিক সহযোগিতা সংস্থা (ইকো)",
+    "approved": true,
+    "from": "org-members seed (org-headquarters seed)"
+   },
+   "hqCityBn": {
+    "bn": "তেহরান",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "the newest seven are dated only «in the early 1990s»: no date (decision 3)"
+  },
+  "d8": {
+   "group": "economic",
+   "nameEn": "D-8 Organization for Economic Cooperation",
+   "nameBn": {
+    "bn": "ডি-৮",
+    "approved": true,
+    "from": "org-members seed (org-headquarters seed)"
+   },
+   "hqCityBn": {
+    "bn": "ইস্তাম্বুল",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "AZE",
+      "nameEn": "Azerbaijan"
+     }
+    ],
+    "date": "2025",
+    "precision": "year",
+    "cite": [
+     {
+      "source": "ra-d8-history",
+      "offset": 4200,
+      "length": 72,
+      "sha256": "3f077ceb91e5a5aa8ce158f3a53760b8d43f16b9c4bab2791d28ff1dc4a060db"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 9,
+    "how": "counted",
+    "cite": [
+     {
+      "source": "ra-d8-history",
+      "offset": 4086,
+      "length": 113,
+      "sha256": "f39d008473c48290d5f155e29839b2e20e10f326d370163fe7081cd167289dd7"
+     }
+    ]
+   },
+   "order": {
+    "tier": "official",
+    "n": 9,
+    "how": "derived"
+   },
+   "bangladesh": {
+    "tier": "official",
+    "status": "member",
+    "cite": [
+     {
+      "source": "ra-d8-history",
+      "offset": 4086,
+      "length": 47,
+      "sha256": "1e7d0ff9c748d67ec87577a77951bad6de818d1e4c8fa130fa89e7f6f9a5dfe7"
+     }
+    ]
+   }
+  },
+  "au": {
+   "group": "regional",
+   "nameEn": "African Union",
+   "nameBn": {
+    "bn": "আফ্রিকান ইউনিয়ন",
+    "approved": true,
+    "from": "org-members seed (org-headquarters seed)"
+   },
+   "hqCityBn": {
+    "bn": "আদ্দিস আবাবা",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "MAR",
+      "nameEn": "Morocco"
+     }
+    ],
+    "date": "2017-01-31",
+    "precision": "day",
+    "cite": [
+     {
+      "source": "au-members",
+      "offset": 8903,
+      "length": 36,
+      "sha256": "c6c25804913faecb597f0ea27f234c80a02fdec40e66c18e4cfea78bfea74dce"
+     }
+    ],
+    "rejoin": true,
+    "firstTime": {
+     "tier": "official",
+     "members": [
+      {
+       "iso3": "SSD",
+       "nameEn": "South Sudan"
+      }
+     ],
+     "date": "2011-07-27",
+     "precision": "day",
+     "cite": [
+      {
+       "source": "au-members",
+       "offset": 8477,
+       "length": 36,
+       "sha256": "644f9b0259c7e139c457424bba73195b1f85ddc693a0a68d4159e79503c30578"
+      }
+     ]
+    }
+   },
+   "count": {
+    "tier": "official",
+    "n": 55,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "au-members",
+      "offset": 7063,
+      "length": 37,
+      "sha256": "f333d2b1dc336185ac436bc0a88f0b3549a8041742b097ff7266f99c53084f65"
+     }
+    ]
+   },
+   "order": null,
+   "bangladesh": {
+    "tier": "official",
+    "status": "none",
+    "by": "absent from the members list",
+    "list": "au-members"
+   }
+  },
+  "eu": {
+   "group": "regional",
+   "nameEn": "European Union",
+   "nameBn": {
+    "bn": "ইউরোপীয় ইউনিয়ন",
+    "approved": true,
+    "from": "org-members seed (approved)"
+   },
+   "hqCityBn": {
+    "bn": "ব্রাসেলস",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "HRV",
+      "nameEn": "Croatia"
+     }
+    ],
+    "date": "2013-07-01",
+    "precision": "day",
+    "cite": [
+     {
+      "source": "eu-croatia",
+      "offset": 1551,
+      "length": 34,
+      "sha256": "b762ee64bb6d61796943515a071dd599e44bd32d3fc2e492bf6d57e9895aa83d"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 27,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "orgm:eu-enlargement",
+      "offset": 5908,
+      "length": 39,
+      "sha256": "bf0365cbd8b9a3edb12a104b1fbc0ae7c6977a6b89f2d5a54803f885133138c0"
+     }
+    ]
+   },
+   "order": null,
+   "bangladesh": {
+    "tier": "official",
+    "status": "none",
+    "by": "absent from the members list",
+    "list": "eu-countries"
+   }
+  },
+  "nato": {
+   "group": "regional",
+   "nameEn": "North Atlantic Treaty Organization",
+   "nameBn": {
+    "bn": "ন্যাটো",
+    "approved": true,
+    "from": "org-members seed (org-headquarters seed)"
+   },
+   "hqCityBn": {
+    "bn": "ব্রাসেলস",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "SWE",
+      "nameEn": "Sweden"
+     }
+    ],
+    "date": "2024-03-07",
+    "precision": "day",
+    "cite": [
+     {
+      "source": "nato-members",
+      "offset": 37854,
+      "length": 126,
+      "sha256": "56906647ef498b5b89208355ab2eea2ccf87c974bf59f92cb8dc44514e1d1e50"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 32,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "nato-members",
+      "offset": 14527,
+      "length": 41,
+      "sha256": "68983b8ec6b789a75d60219ec6b12503f440ad77236c49f54896772257e44cb6"
+     }
+    ]
+   },
+   "order": {
+    "tier": "official",
+    "n": 32,
+    "how": "stated"
+   },
+   "bangladesh": {
+    "tier": "official",
+    "status": "none",
+    "by": "absent from the members list",
+    "list": "nato-members"
+   }
+  },
+  "coe": {
+   "group": "regional",
+   "nameEn": "Council of Europe",
+   "nameBn": {
+    "bn": "কাউন্সিল অব ইউরোপ",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "স্ট্রাসবুর্গ",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: one source only: Montenegro, 11 May 2007, from Wikipedia; coe.int refuses our User-Agent (403, never fetched); the reference Foreign relations of Montenegro cites is on wcd.coe.int (blocked); gov.me search gave nothing. Count 46 from Wikipedia only. Montenegro was in the Council as part of Serbia and Montenegro from 2003 (Wikipedia). | B: Wikipedia only (two articles, one outlet): Montenegro, 11 May 2007; 46 members. coe.int blocked; gov.me search returned nothing; the archived Montenegrin MFA page cited by Wikipedia now shows only its home page."
+  },
+  "osce": {
+   "group": "regional",
+   "nameEn": "Organization for Security and Co-operation in Europe",
+   "nameBn": {
+    "bn": "ইউরোপীয় নিরাপত্তা ও সহযোগিতা সংস্থা (ওএসসিই)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "ভিয়েনা",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "MNG",
+      "nameEn": "Mongolia"
+     }
+    ],
+    "sources": [
+     {
+      "kind": "official",
+      "outlet": "OSCE (osce.org, Mongolia)",
+      "url": "https://www.osce.org/country/mongolia",
+      "published": null,
+      "cite": {
+       "source": "A2-osce-mongolia",
+       "offset": 4158,
+       "length": 57,
+       "sha256": "1c03acabd6aa2cb2b57149fdf36e113f4a47211f8adf375c542ed070c8477976"
+      }
+     },
+     {
+      "kind": "official",
+      "outlet": "OSCE (Mongolia)",
+      "url": "https://www.osce.org/country/mongolia",
+      "published": null,
+      "cite": {
+       "source": "B2-osce-mongolia",
+       "offset": 4158,
+       "length": 57,
+       "sha256": "1c03acabd6aa2cb2b57149fdf36e113f4a47211f8adf375c542ed070c8477976"
+      }
+     },
+     {
+      "kind": "official",
+      "outlet": "OSCE (Montenegro)",
+      "url": "https://www.osce.org/country/montenegro",
+      "published": null,
+      "cite": {
+       "source": "B2-osce-montenegro",
+       "offset": 4548,
+       "length": 24,
+       "sha256": "bef35631022b629c3c1906d8c90d4abd5fed2eb16c6af7eadfb9c8edd2dc7978"
+      }
+     }
+    ],
+    "date": "2012",
+    "precision": "year",
+    "dateTier": "official",
+    "dateSources": [
+     {
+      "kind": "official",
+      "outlet": "OSCE (osce.org, Mongolia)",
+      "url": "https://www.osce.org/country/mongolia",
+      "published": null,
+      "cite": {
+       "source": "A2-osce-mongolia",
+       "offset": 4158,
+       "length": 57,
+       "sha256": "1c03acabd6aa2cb2b57149fdf36e113f4a47211f8adf375c542ed070c8477976"
+      }
+     },
+     {
+      "kind": "official",
+      "outlet": "OSCE (Mongolia)",
+      "url": "https://www.osce.org/country/mongolia",
+      "published": null,
+      "cite": {
+       "source": "B2-osce-mongolia",
+       "offset": 4318,
+       "length": 24,
+       "sha256": "41fa8587d0e36ec364b5a903d918bd5e14b4c3c4adabc52a3a816152a2a5e9f0"
+      }
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 57,
+    "sources": [
+     {
+      "kind": "official",
+      "outlet": "OSCE (osce.org, participating States)",
+      "url": "https://www.osce.org/node/108218",
+      "published": null,
+      "cite": {
+       "source": "A2-osce-ps",
+       "offset": 4266,
+       "length": 51,
+       "sha256": "3b72a66e5f587392454fee16a4975c5b2532311332dafc677b5f618086e8e509"
+      }
+     },
+     {
+      "kind": "official",
+      "outlet": "OSCE (Participating States)",
+      "url": "https://www.osce.org/participating-states",
+      "published": null,
+      "cite": {
+       "source": "B2-osce-states",
+       "offset": 4543,
+       "length": 28,
+       "sha256": "1927974ef7cb6ea6b272b0542472affb3df5d4787c0a45c677cfdb912fc2bce5"
+      }
+     }
+    ]
+   },
+   "order": null,
+   "bangladesh": {
+    "tier": "official",
+    "status": "none",
+    "sources": [
+     {
+      "kind": "official",
+      "outlet": "OSCE (osce.org, participating States)",
+      "url": "https://www.osce.org/node/108218",
+      "published": null,
+      "cite": {
+       "source": "A2-osce-ps",
+       "offset": 4586,
+       "length": 28,
+       "sha256": "0dcbdc4d552d38fa6b85579b2b1b53afb76b20505e4d690b3265b0d10b1c8b28"
+      }
+     },
+     {
+      "kind": "official",
+      "outlet": "OSCE (Participating States; Bangladesh absent)",
+      "url": "https://www.osce.org/participating-states",
+      "published": null,
+      "cite": {
+       "source": "B2-osce-states",
+       "offset": 4543,
+       "length": 28,
+       "sha256": "1927974ef7cb6ea6b272b0542472affb3df5d4787c0a45c677cfdb912fc2bce5"
+      }
+     }
+    ]
+   }
+  },
+  "cis": {
+   "group": "regional",
+   "nameEn": "Commonwealth of Independent States",
+   "nameBn": {
+    "bn": "স্বাধীন রাষ্ট্রসমূহের কমনওয়েলথ (সিআইএস)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "মিনস্ক",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: no newest member: every current member signed at the founding (8 and 21 December 1991); by Charter ratification the last is Moldova, 27 June 1994 (Wikipedia only), which is withdrawing (effective 8 April 2027, Wikipedia). Georgia, the only later joiner (December 1993), left in August 2009. Count 9 from Wikipedia only. | B: No newest member exists: every current member is a December 1991 founding state; the only later joiner, Georgia (December 1993), notified withdrawal 18 August 2008. Count: Wikipedia 9 (Moldova withdrawing, effective 8 April 2027); the official page states no count."
+  },
+  "csto": {
+   "group": "regional",
+   "nameEn": "Collective Security Treaty Organization",
+   "nameBn": {
+    "bn": "যৌথ নিরাপত্তা চুক্তি সংস্থা (সিএসটিও)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "মস্কো",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "the Collective Security Treaty Organization was set up in 2002 by all six current members together; the page dates only accessions to the 1992 Treaty (Belarus 1993), so no newest member of the Organization is stated"
+  },
+  "eaeu": {
+   "group": "economic",
+   "nameEn": "Eurasian Economic Union",
+   "nameBn": {
+    "bn": "ইউরেশীয় অর্থনৈতিক ইউনিয়ন",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "মস্কো",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "its year (2015) is a timeline tab heading, not stated beside the two accessions (Armenia, Kyrgyz Republic): no date stated for either (decision 3)"
+  },
+  "oas": {
+   "group": "regional",
+   "nameEn": "Organization of American States",
+   "nameBn": {
+    "bn": "আমেরিকান রাষ্ট্রসমূহের সংস্থা (ওএএস)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "ওয়াশিংটন ডি.সি.",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "secondary",
+    "members": [
+     {
+      "iso3": "BLZ",
+      "nameEn": "Belize"
+     },
+     {
+      "iso3": "GUY",
+      "nameEn": "Guyana"
+     }
+    ],
+    "sources": [
+     {
+      "kind": "depositary",
+      "outlet": "OAS General Secretariat, Department of International Law (Charter A-41 signatories and ratifications)",
+      "url": "https://www.oas.org/en/sla/dil/inter_american_treaties_A-41_charter_OAS_signatories.asp",
+      "published": null,
+      "cite": {
+       "source": "A2-oas-a41b",
+       "offset": 6218,
+       "length": 36,
+       "sha256": "6e578a820d43a010203fcc2f1f0d697b56a512da20c0736b2d6043ffee85f4ea"
+      }
+     },
+     {
+      "kind": "wikipedia",
+      "outlet": "en Wikipedia",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1360492655",
+      "published": null,
+      "revid": "1360492655",
+      "citedRef": "no reference cited for this statement",
+      "cite": {
+       "source": "A2-oas-wp",
+       "offset": 2989,
+       "length": 22,
+       "sha256": "c39f86d826d6f3a4a29a2095b6e0e2cc9e73f6a460e78d11c59e05fda04720cc"
+      }
+     }
+    ],
+    "date": "1991",
+    "precision": "year",
+    "dateTier": "secondary",
+    "dateSources": [
+     {
+      "kind": "depositary",
+      "outlet": "OAS General Secretariat, Department of International Law (Charter A-41 signatories and ratifications)",
+      "url": "https://www.oas.org/en/sla/dil/inter_american_treaties_A-41_charter_OAS_signatories.asp",
+      "published": null,
+      "cite": {
+       "source": "A2-oas-a41b",
+       "offset": 5642,
+       "length": 36,
+       "sha256": "02cb5bf73ae58ad0978f22b71b9f0e3af13fbc6cd11dd37aecc8572a33fc5e37"
+      }
+     },
+     {
+      "kind": "wikipedia",
+      "outlet": "en Wikipedia",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1360492655",
+      "published": null,
+      "revid": "1360492655",
+      "citedRef": "no reference cited for this statement",
+      "cite": {
+       "source": "A2-oas-wp",
+       "offset": 2096,
+       "length": 20,
+       "sha256": "238de218237b543f42abb37d78aaeffefcc9d8026de6d2ba6ac18a1037842c26"
+      }
+     }
+    ]
+   },
+   "count": null,
+   "order": null,
+   "bangladesh": null,
+   "heldFacts": {
+    "accessionDate": "readings differ: A null / B \"1991-01-08\""
+   }
+  },
+  "caricom": {
+   "group": "regional",
+   "nameEn": "Caribbean Community",
+   "nameBn": {
+    "bn": "ক্যারিকম",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "জর্জটাউন",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: date conflict within the official site: caricom.org/haiti/ \"newest member on 2 July 2002\" (= Wikipedia 2 July 2002) vs the membership key facts \"Date of Membership in CARICOM: 1 Jul 2002\". Haiti as newest is not in doubt (stated by caricom.org; all 15 dates read). Provisional membership 4 July 1998 (Wikipedia). | B: Day disagrees: CARICOM 1 Jul 2002 vs Wikipedia 2 July 2002 (month agreed). Item 7: all 15 member pages read - 12 dated (latest Haiti 2002, next Suriname 4 Jul 1995); Barbados, Jamaica, Trinidad and Tobago pages give no date (Wikipedia: founders, 1 August 1973). Haiti was suspended in practice 29 Feb 2004 to June 2006 (Wikipedia), not now."
+  },
+  "ecowas": {
+   "group": "regional",
+   "nameEn": "Economic Community of West African States",
+   "nameBn": {
+    "bn": "ইকোয়াস",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "আবুজা",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "CPV",
+      "nameEn": "Cabo Verde"
+     }
+    ],
+    "date": "1977",
+    "precision": "year",
+    "cite": [
+     {
+      "source": "ecowas-history",
+      "offset": 2149,
+      "length": 36,
+      "sha256": "7bf74f4e3b2190dfc229cb289a494c6bce8f5e8d18ff663e96b014e2952053fa"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 12,
+    "how": "counted",
+    "cite": [
+     {
+      "source": "ecowas-history",
+      "offset": 10137,
+      "length": 15,
+      "sha256": "686048ed9db4a4675810e3ad4df35c37e55098f6c1533386a50162fc87c844d9"
+     }
+    ]
+   },
+   "order": null,
+   "bangladesh": {
+    "tier": "official",
+    "status": "none",
+    "by": "absent from the members list",
+    "list": "ecowas-history"
+   }
+  },
+  "sadc": {
+   "group": "regional",
+   "nameEn": "Southern African Development Community",
+   "nameBn": {
+    "bn": "সাদেক",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "গ্যাবোরোন",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: no newest | B: Wikipedia only (Comoros, 37th Summit, Pretoria, 2017; 16 members). sadc.int: connection failed again today (3 requests); no Comorian government or allowed daily reachable (alwatwan.net has no search)."
+  },
+  "mercosur": {
+   "group": "economic",
+   "nameEn": "Mercosur",
+   "nameBn": {
+    "bn": "মার্কোসুর",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "মন্টেভিডিও",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: Wikipedia only, and the two disagree on the date: English \"July 2024\" (full membership), Spanish \"7 August 2024\" (protocol in force); deposit 8 July 2024 only from a reference title. Non-Wikipedia sources unreachable: mercosur.int, mre.gov.py (depositary) and la-razon.com answer 403; Bolivia's foreign ministry has no matching page; Agência Brasil page disabled (election law). | B: Wikipedia only (Bolivia, July 2024; deposit 8 July 2024 per its cited mercosur.int item). mercosur.int, mre.gov.py (the depositary) and la-razon.com are blocked hosts; cancilleria.gob.bo answered 502, abi.bo failed, Agencia Brasil disabled (election law). Count: 5 active + Venezuela suspended (Wikipedia only)."
+  },
+  "oif": {
+   "group": "other",
+   "nameEn": "Organisation internationale de la Francophonie",
+   "nameBn": {
+    "bn": "ফ্রাঙ্কোফোনি",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "প্যারিস",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: Cyprus's 2024 full membership only from Wikipedia (Cyprus MFA blocked), so the tie is not established by two sources; Ghana 2024 = Ghana MFA + Wikipedia, year only (no day: the XIXe Sommet date was not read in any source). Count disagrees: OIF 53 vs French Wikipedia 56 (2024). Both were associate members since 2006 and promoted to full members. | B: Ghana 2024 has two sources (Ghana MFA, Wikipedia); Cyprus 2024 has Wikipedia only (OIF Cyprus page: \"Etat membre\", adhesion 2006; Cyprus MFA 403, Cypriot daily search disallowed by robots). No source gives month or day. Count disagrees: OIF 53 members vs Wikipedia 56 (before the 2025 withdrawals of Niger, Mali, Burkina Faso). Guinea's 2024 reinstatement ends a suspension, not an admission."
+  },
+  "imf": {
+   "group": "economic",
+   "nameEn": "International Monetary Fund",
+   "nameBn": {
+    "bn": "আন্তর্জাতিক মুদ্রা তহবিল (আইএমএফ)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "ওয়াশিংটন ডি.সি.",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "LIE",
+      "nameEn": "Liechtenstein"
+     }
+    ],
+    "date": "2024-10-21",
+    "precision": "day",
+    "cite": [
+     {
+      "source": "imf-memdate",
+      "offset": 6394,
+      "length": 47,
+      "sha256": "828954e0c887feab09049f8600f17ebbd07c8f2b2fc6bc21b0459b60f4136925"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 191,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "imf-memdate",
+      "offset": 551,
+      "length": 22,
+      "sha256": "461f0f023ce4616083d6ee4a2f29c9462e2f58f636d0f7fce19aef72510498f7"
+     }
+    ]
+   },
+   "order": null,
+   "bangladesh": {
+    "tier": "official",
+    "status": "member",
+    "cite": [
+     {
+      "source": "imf-memdate",
+      "offset": 4236,
+      "length": 26,
+      "sha256": "aae3ec85d4edc4b25e090aeb2575ea1f74831a921654c7fc1b05533a9e8bf4b9"
+     }
+    ]
+   }
+  },
+  "world-bank-ibrd": {
+   "group": "economic",
+   "nameEn": "World Bank (International Bank for Reconstruction and Development)",
+   "nameBn": {
+    "bn": "বিশ্বব্যাংক",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "ওয়াশিংটন ডি.সি.",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "NRU",
+      "nameEn": "Nauru"
+     }
+    ],
+    "date": "2016-04-12",
+    "precision": "day",
+    "cite": [
+     {
+      "source": "wb-members",
+      "offset": 2318,
+      "length": 20,
+      "sha256": "9e89d828c11332ab29e85e91467b94b7b1ab56adc1287060c99419b1b2eeaafd"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 189,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "wb-members",
+      "offset": 1118,
+      "length": 67,
+      "sha256": "c44ba5b76614e67e7c7440bd684e22428986bc70332cbee0201a8d92203415b1"
+     }
+    ]
+   },
+   "order": null,
+   "bangladesh": {
+    "tier": "official",
+    "status": "member",
+    "cite": [
+     {
+      "source": "wb-members",
+      "offset": 1810,
+      "length": 24,
+      "sha256": "8b8ad3e45f64255d96845b36e30c60945533238fd5f1336ae767326a2d6f47b3"
+     }
+    ]
+   }
+  },
+  "wto": {
+   "group": "economic",
+   "nameEn": "World Trade Organization",
+   "nameBn": {
+    "bn": "বিশ্ব বাণিজ্য সংস্থা",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "জেনেভা",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "secondary",
+    "members": [
+     {
+      "iso3": "TLS",
+      "nameEn": "Timor-Leste"
+     }
+    ],
+    "sources": [
+     {
+      "kind": "government",
+      "outlet": "Government of Timor-Leste (timor-leste.gov.tl)",
+      "url": "https://timor-leste.gov.tl/?p=41857&lang=en",
+      "published": "2025-02-11",
+      "cite": {
+       "source": "A3-wto-tlgov-postacc",
+       "offset": 4511,
+       "length": 47,
+       "sha256": "4a693cfb8ac246b361fc424764d47d2c8263c6f7e1b488a8805ccdf795f0867c"
+      }
+     },
+     {
+      "kind": "wikipedia",
+      "outlet": "English Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Member_states_of_the_World_Trade_Organization",
+      "published": null,
+      "revid": "1378809915",
+      "citedRef": "none given for this sentence",
+      "cite": {
+       "source": "A3-wto-wpmem",
+       "offset": 8430,
+       "length": 67,
+       "sha256": "d352f7796b892a505c5a82357987cd08880d5a11446dc8c2cfb5f932e2af5361"
+      }
+     }
+    ],
+    "date": "2024-08-30",
+    "precision": "day",
+    "dateTier": "secondary",
+    "dateSources": [
+     {
+      "kind": "government",
+      "outlet": "Government of Timor-Leste (timor-leste.gov.tl)",
+      "url": "https://timor-leste.gov.tl/?p=38610&lang=en",
+      "published": "2024-07-22",
+      "cite": {
+       "source": "A3-wto-tlgov-protocol",
+       "offset": 1636,
+       "length": 50,
+       "sha256": "7ad9fab62fb4c374feca3c82aa5f81996ac584e6418e3df00f8f4562f7b3251d"
+      }
+     },
+     {
+      "kind": "wikipedia",
+      "outlet": "English Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Member_states_of_the_World_Trade_Organization",
+      "published": null,
+      "revid": "1378809915",
+      "citedRef": "Members and Observers at WTO official website (table)",
+      "cite": {
+       "source": "A3-wto-wpmem",
+       "offset": 18781,
+       "length": 26,
+       "sha256": "b563b45a676e0f3569a03313337305a9d971f60fb2409cd8d090052eae14c9ff"
+      }
+     }
+    ]
+   },
+   "count": null,
+   "order": null,
+   "bangladesh": null,
+   "heldFacts": {
+    "accessionDate": "value \"2024-07-22\": 1 outlet(s); dropped: A3-wto-tlgov-protocol: its words do not state 2024-07-22",
+    "count": "readings differ: A null / B 166",
+    "bangladesh": "readings differ: A null / B \"member (since 1995-01-01)\""
+   }
+  },
+  "adb": {
+   "group": "economic",
+   "nameEn": "Asian Development Bank",
+   "nameBn": {
+    "bn": "এশীয় উন্নয়ন ব্যাংক (এডিবি)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "ম্যানিলা",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "ISR",
+      "nameEn": "Israel"
+     }
+    ],
+    "date": "2024-09-27",
+    "precision": "day",
+    "cite": [
+     {
+      "source": "adb-israel",
+      "offset": 4696,
+      "length": 69,
+      "sha256": "7266383d4c7b5cc5b2e36fc53131bce8530eb760eeaf2a1bb4f1802784f6af7a"
+     }
+    ],
+    "noPin": true
+   },
+   "count": {
+    "tier": "official",
+    "n": 69,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "adb-about",
+      "offset": 738,
+      "length": 63,
+      "sha256": "07e47acb9440900ff70a8e25afbbfa0d201e5e69b25429dac843b4c0ccd71079"
+     }
+    ]
+   },
+   "order": {
+    "tier": "official",
+    "n": 69,
+    "how": "stated"
+   },
+   "bangladesh": {
+    "tier": "official",
+    "status": "member",
+    "cite": [
+     {
+      "source": "adb-about",
+      "offset": 5813,
+      "length": 15,
+      "sha256": "9ed49aa0302466062ca97889cb838da67e810b994506df915c8a0ee05bee4659"
+     }
+    ]
+   }
+  },
+  "afdb": {
+   "group": "economic",
+   "nameEn": "African Development Bank",
+   "nameBn": {
+    "bn": "আফ্রিকান উন্নয়ন ব্যাংক",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "আবিদজান",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: no source read names the newest member or a date: Wikipedia (en, fr) gives no dates; gov.ie and irishaid.ie answered 403 (now blocked) | B: newest member has one source only: UNTC gives Ireland's accession to the amended Agreement as 4 Mar 2020 (latest date in the table; next South Sudan 30 Apr 2015); no second source reached (gov.ie, dfa.ie, merrionstreet.ie blocked; afdb.org blocked; Wikipedia gives no date). The date membership took effect is not stated anywhere read."
+  },
+  "aiib": {
+   "group": "economic",
+   "nameEn": "Asian Infrastructure Investment Bank",
+   "nameBn": {
+    "bn": "এশীয় অবকাঠামো বিনিয়োগ ব্যাংক (এআইআইবি)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "বেইজিং",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "SEN",
+      "nameEn": "Senegal"
+     }
+    ],
+    "date": "2025-12-22",
+    "precision": "day",
+    "cite": [
+     {
+      "source": "aiib-votingjs",
+      "offset": 5528,
+      "length": 25,
+      "sha256": "d8d839524db97b85ff7587e8c6a46ca855abb1e4482f07d0835d38bbeb5e723a"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 106,
+    "how": "counted",
+    "cite": []
+   },
+   "order": {
+    "tier": "official",
+    "n": 106,
+    "how": "derived"
+   },
+   "bangladesh": {
+    "tier": "official",
+    "status": "member",
+    "cite": [
+     {
+      "source": "aiib-votingjs",
+      "offset": 320,
+      "length": 24,
+      "sha256": "092cd7fa79952552233189dc3acbeeeaadf5b5dac3613fb0b3a1897bf5ebe6f3"
+     }
+    ]
+   }
+  },
+  "idb": {
+   "group": "economic",
+   "nameEn": "Inter-American Development Bank",
+   "nameBn": {
+    "bn": "আন্তঃআমেরিকান উন্নয়ন ব্যাংক",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "ওয়াশিংটন ডি.সি.",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: only Wikipedia (China–Latin America relations) says China joined «in 2008», and it does not say China is the newest; no member-by-date list found (en/es/zh Wikipedia give none) | B: newest member and date: one Wikipedia sentence only (\"In 2008 China joined\"), not shown to be the latest admission by any source; no dated member list reached (iadb.org blocked; en, es and zh Wikipedia give no admission dates)."
+  },
+  "isdb": {
+   "group": "economic",
+   "nameEn": "Islamic Development Bank",
+   "nameBn": {
+    "bn": "ইসলামি উন্নয়ন ব্যাংক (আইডিবি)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "জেদ্দা",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: no source read gives any member's joining date (Wikipedia none; isdb.org search is script-built) | B: newest (Guyana) from one outlet only, and that page disagrees with itself on the date: \"Join Date 19 May 2016\" vs \"joined IsDB in July 2016\". No second source reached (Guyana DPI and Ministry of Finance searches found nothing from 2016; stabroeknews.com blocked; Guyana Chronicle redirected; Wikipedia en/ar give no date)."
+  },
+  "ndb": {
+   "group": "economic",
+   "nameEn": "New Development Bank",
+   "nameBn": {
+    "bn": "নিউ ডেভেলপমেন্ট ব্যাংক (ব্রিকস ব্যাংক)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "সাংহাই",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "UZB",
+      "nameEn": "Uzbekistan"
+     }
+    ],
+    "date": "2026-06-05",
+    "precision": "day",
+    "cite": [
+     {
+      "source": "ndb-members",
+      "offset": 2283,
+      "length": 23,
+      "sha256": "40eaa9f995b801245f4042adf346a818be11caf9ce67736fc0b16ee306700b14"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 10,
+    "how": "counted",
+    "cite": []
+   },
+   "order": {
+    "tier": "official",
+    "n": 10,
+    "how": "derived"
+   },
+   "bangladesh": {
+    "tier": "official",
+    "status": "member",
+    "cite": [
+     {
+      "source": "ndb-members",
+      "offset": 2182,
+      "length": 25,
+      "sha256": "3b0016d175f3c19d00399b2a99da543291dd0fb3eee87c633553f61eb5ec2663"
+     }
+    ]
+   }
+  },
+  "ebrd": {
+   "group": "economic",
+   "nameEn": "European Bank for Reconstruction and Development",
+   "nameBn": {
+    "bn": "ইউরোপীয় পুনর্গঠন ও উন্নয়ন ব্যাংক",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "লন্ডন",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "KEN",
+      "nameEn": "Kenya"
+     },
+     {
+      "iso3": "SEN",
+      "nameEn": "Senegal",
+      "cite": [
+       {
+        "source": "ebrd-shareholders",
+        "offset": 15569,
+        "length": 42,
+        "sha256": "b3794efad44e0547408434d893b048ddb7c0754add988b1091da2e1ee20fe8b5"
+       }
+      ]
+     }
+    ],
+    "date": "2025-07-15",
+    "precision": "day",
+    "cite": [
+     {
+      "source": "ebrd-shareholders",
+      "offset": 10796,
+      "length": 40,
+      "sha256": "087512ae93522fe18bfa95db15154d7bd93e9078d233ad44270fd240fdf6a401"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 77,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "ebrd-shareholders",
+      "offset": 3249,
+      "length": 55,
+      "sha256": "8a5a69d1d5f9c5daceb732b5b545adcf3c529344aa06dd8c55b590e8667b2af6"
+     }
+    ]
+   },
+   "order": null,
+   "bangladesh": {
+    "tier": "official",
+    "status": "none",
+    "by": "absent from the members list",
+    "list": "ebrd-shareholders"
+   }
+  },
+  "bis": {
+   "group": "economic",
+   "nameEn": "Bank for International Settlements",
+   "nameBn": {
+    "bn": "ব্যাংক ফর ইন্টারন্যাশনাল সেটেলমেন্টস (বিআইএস)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "বাসেল",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: no date on which the three memberships took effect: the BIS says only that they were invited in 2020 (release 2020-01-14); one source for the names | B: no date of membership: the BIS release (2020-01-14) gives only the Board decision to invite the three; when each became a member is not stated in anything read (Wikipedia lists them with no date; the Reuters article is robots-disallowed; the 2020 Annual Report PDF timed out). The names agree (BIS + Wikipedia); the date is missing."
+  },
+  "acu": {
+   "group": "economic",
+   "nameEn": "Asian Clearing Union",
+   "nameBn": {
+    "bn": "এশিয়ান ক্লিয়ারিং ইউনিয়ন (আকু)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "তেহরান",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: Mauritius is listed last by the ACU but no source read dates its or Belarus's admission (Wikipedia: Belarus «2024», no Mauritius); bom.mu search is robots-disallowed | B: no date for any recent member, and the sources disagree on who is newest: the ACU itself lists 11 members incl. Mauritius and names \"the Maldives, Belarus, and Mauritius\" as the later additions (no dates); Wikipedia (rev 1337144096, Feb 2026) lists 10 with Belarus (2024) last and no Mauritius. Count 11 (ACU) vs 10 (Wikipedia). bom.mu search disallowed by robots.txt; nbrb.by timed out; Mauritian dailies' searches returned nothing."
+  },
+  "oecd": {
+   "group": "economic",
+   "nameEn": "Organisation for Economic Co-operation and Development",
+   "nameBn": {
+    "bn": "অর্থনৈতিক সহযোগিতা ও উন্নয়ন সংস্থা (ওইসিডি)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "প্যারিস",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "core fact held — effectiveDate: value \"2021-05-25\": 1 outlet(s), Wikipedia only; dropped: A3-oecd-comex: its words do not state 2021-05-25; B3-oecd-comex: its words do not state 2021-05-25"
+  },
+  "opec": {
+   "group": "economic",
+   "nameEn": "Organization of the Petroleum Exporting Countries",
+   "nameBn": {
+    "bn": "ওপেক",
+    "approved": true,
+    "from": "org-members seed (org-headquarters seed)"
+   },
+   "hqCityBn": {
+    "bn": "ভিয়েনা",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "core fact held — newest: value [\"COG\"]: 1 outlet(s), Wikipedia only; dropped: opec-members: read in a browser after a 403 (decision 4); opec-members: read in a browser after a 403 (decision 4); effectiveDate: value \"2018\": 1 outlet(s), Wikipedia only; dropped: opec-members: read in a browser after a 403 (decision 4); opec-members: read in a browser after a 403 (decision 4)"
+  },
+  "oapec": {
+   "group": "economic",
+   "nameEn": "Organization of Arab Petroleum Exporting Countries",
+   "nameBn": {
+    "bn": "ওয়াপেক",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "কুয়েত সিটি",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "TUN",
+      "nameEn": "Tunisia"
+     }
+    ],
+    "date": "1982",
+    "precision": "year",
+    "cite": [
+     {
+      "source": "oapec-history",
+      "offset": 2398,
+      "length": 61,
+      "sha256": "d6f403f26a31d04af7659c96df4311c974a9a9f57306bfde7c83dd97c66c57bd"
+     }
+    ],
+    "suspended": true
+   },
+   "count": {
+    "tier": "official",
+    "n": 11,
+    "how": "counted",
+    "cite": []
+   },
+   "order": null,
+   "bangladesh": {
+    "tier": "official",
+    "status": "none",
+    "by": "absent from the members list",
+    "list": "oapec-members"
+   }
+  },
+  "apec": {
+   "group": "economic",
+   "nameEn": "Asia-Pacific Economic Cooperation",
+   "nameBn": {
+    "bn": "অ্যাপেক",
+    "approved": true,
+    "from": "org-members seed (org-headquarters seed)"
+   },
+   "hqCityBn": {
+    "bn": "সিঙ্গাপুর",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "PER",
+      "nameEn": "Peru"
+     },
+     {
+      "iso3": "RUS",
+      "nameEn": "Russia",
+      "cite": [
+       {
+        "source": "apec-members",
+        "offset": 11413,
+        "length": 21,
+        "sha256": "7d922c38ca6fc5d754efb0aed8c54221a15017d238dce98c93096bd508bb6430"
+       }
+      ]
+     },
+     {
+      "iso3": "VNM",
+      "nameEn": "Viet Nam",
+      "cite": [
+       {
+        "source": "apec-members",
+        "offset": 11541,
+        "length": 23,
+        "sha256": "278add7f299860353c76e5081b14d7cd6fec59413caa41e5a67c54ab57031f6a"
+       }
+      ]
+     }
+    ],
+    "date": "1998-11",
+    "precision": "month",
+    "cite": [
+     {
+      "source": "apec-members",
+      "offset": 11364,
+      "length": 19,
+      "sha256": "ced5b564837ee460673009d5257f64cd4e1d57535a1773aa79498094af159d0c"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 21,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "apec-members",
+      "offset": 10751,
+      "length": 29,
+      "sha256": "d50b9118934e0177df73e5d2ee2f2141b8cbb0d809aa66f0826c4403b38b88ea"
+     }
+    ]
+   },
+   "order": {
+    "tier": "official",
+    "n": 21,
+    "how": "derived"
+   },
+   "bangladesh": {
+    "tier": "official",
+    "status": "none",
+    "by": "absent from the members list",
+    "list": "apec-members"
+   }
+  },
+  "g7": {
+   "group": "economic",
+   "nameEn": "Group of Seven",
+   "nameBn": {
+    "bn": "জি-৭",
+    "approved": true,
+    "from": "org-members seed (approved)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "secondary",
+    "members": [
+     {
+      "iso3": "CAN",
+      "nameEn": "Canada"
+     }
+    ],
+    "sources": [
+     {
+      "kind": "government",
+      "outlet": "Global Affairs Canada (international.gc.ca)",
+      "url": "https://www.international.gc.ca/world-monde/international_relations-relations_internationales/g7/index.aspx?lang=eng",
+      "published": null,
+      "cite": {
+       "source": "A3-g7-gcca",
+       "offset": 1481,
+       "length": 29,
+       "sha256": "1b0c35b9c42627c8c9517ab54472e7b809a20992b7280c1b13bed2ab83ce2af6"
+      }
+     },
+     {
+      "kind": "wikipedia",
+      "outlet": "English Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Group_of_Seven",
+      "published": null,
+      "revid": "1378706740",
+      "citedRef": "summit row cites [89]",
+      "cite": {
+       "source": "A3-g7-wp",
+       "offset": 28307,
+       "length": 40,
+       "sha256": "00fc6a80abbaeac681531170fc341f5c26e92e10a9046b5eb79f472ce6e74fe3"
+      }
+     }
+    ],
+    "date": "1976",
+    "precision": "year",
+    "dateTier": "secondary",
+    "dateSources": [
+     {
+      "kind": "government",
+      "outlet": "Global Affairs Canada (international.gc.ca)",
+      "url": "https://www.international.gc.ca/world-monde/international_relations-relations_internationales/g7/index.aspx?lang=eng",
+      "published": null,
+      "cite": {
+       "source": "A3-g7-gcca",
+       "offset": 1481,
+       "length": 29,
+       "sha256": "1b0c35b9c42627c8c9517ab54472e7b809a20992b7280c1b13bed2ab83ce2af6"
+      }
+     },
+     {
+      "kind": "wikipedia",
+      "outlet": "en.wikipedia.org",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1378706740",
+      "published": null,
+      "revid": "1378706740",
+      "citedRef": "summit table, ref [89]",
+      "cite": {
+       "source": "B3-g7-wp",
+       "offset": 28153,
+       "length": 15,
+       "sha256": "01dd67545aa0438f438eb4b802f75aae6012f6889a1037deb116669623940ae9"
+      }
+     }
+    ]
+   },
+   "count": {
+    "tier": "secondary",
+    "n": 7,
+    "sources": [
+     {
+      "kind": "government",
+      "outlet": "Global Affairs Canada (international.gc.ca)",
+      "url": "https://www.international.gc.ca/world-monde/international_relations-relations_internationales/g7/index.aspx?lang=eng",
+      "published": null,
+      "cite": {
+       "source": "A3-g7-gcca",
+       "offset": 686,
+       "length": 79,
+       "sha256": "16f3a386b3b5d039b3d8562e52e1ce6a79b5e099eae09755a12553b434ca0e40"
+      }
+     },
+     {
+      "kind": "wikipedia",
+      "outlet": "English Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Group_of_Seven",
+      "published": null,
+      "revid": "1378706740",
+      "citedRef": "[1][2][3]",
+      "cite": {
+       "source": "A3-g7-wp",
+       "offset": 6947,
+       "length": 79,
+       "sha256": "16f3a386b3b5d039b3d8562e52e1ce6a79b5e099eae09755a12553b434ca0e40"
+      }
+     }
+    ]
+   },
+   "order": null,
+   "bangladesh": {
+    "tier": "secondary",
+    "status": "none",
+    "sources": [
+     {
+      "kind": "government",
+      "outlet": "Global Affairs Canada (members listed; Bangladesh absent)",
+      "url": "https://www.international.gc.ca/world-monde/international_relations-relations_internationales/g7/index.aspx?lang=eng",
+      "published": null,
+      "cite": {
+       "source": "A3-g7-gcca",
+       "offset": 670,
+       "length": 53,
+       "sha256": "a6dd02ef9c57c9fea56289f431745fdd261163fe7c0d9087191148bef23a592d"
+      }
+     },
+     {
+      "kind": "wikipedia",
+      "outlet": "English Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Group_of_Seven",
+      "published": null,
+      "revid": "1378706740",
+      "citedRef": "none (Bangladesh appears only as an invited guest)",
+      "cite": {
+       "source": "A3-g7-wp",
+       "offset": 31462,
+       "length": 79,
+       "sha256": "9fe6746500b814e130008e881e1e94824bddc0d40b7276c9a3e9f0d5e3917b93"
+      }
+     }
+    ]
+   }
+  },
+  "g20": {
+   "group": "economic",
+   "nameEn": "Group of Twenty",
+   "nameBn": {
+    "bn": "জি-২০",
+    "approved": true,
+    "from": "org-members seed (approved)"
+   },
+   "status": "held",
+   "held": "A: no STATE admitted since founding (1999-09-26, all 19 together); the only later admission is the African Union, 2023-09-09 (Wikipedia; AP), a non-state member the user's rule excludes | B: no state has been admitted since the founding (1999): all 19 country members are founders; the only later admission is the African Union (September 2023, a non-state member, so never \"newest member\"). One source only (Wikipedia); g20.org and au.int blocked. Count 21 includes the EU and AU (19 states)."
+  },
+  "brics": {
+   "group": "economic",
+   "nameEn": "BRICS",
+   "nameBn": {
+    "bn": "ব্রিকস",
+    "approved": false
+   },
+   "status": "held",
+   "held": "core fact held — effectiveDate: value \"2025-01-06\": 1 outlet(s), Wikipedia only; dropped: A3-brics-chinadaily: its words do not state 2025-01-06; B3-brics-cd: its words do not state 2025-01-06"
+  },
+  "iea": {
+   "group": "economic",
+   "nameEn": "International Energy Agency",
+   "nameBn": {
+    "bn": "আন্তর্জাতিক জ্বালানি সংস্থা (আইইএ)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "প্যারিস",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "LVA",
+      "nameEn": "Latvia"
+     }
+    ],
+    "date": "2024",
+    "precision": "year",
+    "cite": [
+     {
+      "source": "iea-history",
+      "offset": 4352,
+      "length": 35,
+      "sha256": "9791d99c521d82fd36801740c5154c6ce4e49d48eca9ab28573924a20e895fc6"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 32,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "iea-members",
+      "offset": 2545,
+      "length": 42,
+      "sha256": "3d1ed142d42e3302175fe7eff93872b73150ba3bd0da08847a590e5e711ff697"
+     }
+    ]
+   },
+   "order": {
+    "tier": "official",
+    "n": 32,
+    "how": "derived"
+   },
+   "bangladesh": {
+    "tier": "official",
+    "status": "none",
+    "by": "absent from the members list",
+    "list": "iea-members"
+   }
+  },
+  "icc": {
+   "group": "other",
+   "nameEn": "International Criminal Court (States Parties to the Rome Statute)",
+   "nameBn": {
+    "bn": "আন্তর্জাতিক অপরাধ আদালত",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "দ্য হেগ",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "only Ukraine's deposit of ratification (25 October 2024) is stated; its entry into force is not (decision 5)"
+  },
+  "pca": {
+   "group": "other",
+   "nameEn": "Permanent Court of Arbitration (Contracting Parties)",
+   "nameBn": {
+    "bn": "স্থায়ী সালিশি আদালত",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "দ্য হেগ",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "core fact held — newest: value [\"SOM\"]: 1 outlet(s); dropped: pca-parties-b: read in a browser after a 403 (decision 4); pca-parties-b: read in a browser after a 403 (decision 4); effectiveDate: value \"2026-07-20\": 1 outlet(s); dropped: pca-parties-b: read in a browser after a 403 (decision 4); pca-parties-b: read in a browser after a 403 (decision 4)"
+  },
+  "interpol": {
+   "group": "other",
+   "nameEn": "INTERPOL",
+   "nameBn": {
+    "bn": "ইন্টারপোল",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "লিওঁ",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: effectiveDate: Wikipedia table 2017-09-18 vs Haaretz, which reports the General Assembly vote on 2017-09-27. Possible tie: Wikipedia prose adds Solomon Islands to the same September 2017 vote, while its table says 1986. The count, 196, has one source (Wikipedia). | B: no usable date: interpol.int is blocked; Wikipedia's \"Date of entry\" table contradicts its own text (Solomon Islands 6 October 1986 vs accepted September 2017) and its latest date (Palestine, 2017) cannot account for a count of 196. No wire report reachable without a search. Count 196 is Wikipedia only here."
+  },
+  "ipu": {
+   "group": "other",
+   "nameEn": "Inter-Parliamentary Union",
+   "nameBn": {
+    "bn": "আন্তঃসংসদীয় ইউনিয়ন (আইপিইউ)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "জেনেভা",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: newest uncertain: Brunei was admitted 2025-10-20 as the 183rd member (Brunei Legislative Council; IPU release of that date), but the IPU now states 184 members — a later admission or readmission may exist and could not be checked (ipu.org blocked) | B: newest (Brunei) from the IPU only; no second source reached (borneobulletin.com.bn blocked; Pelita Brunei search returns nothing; Brunei Legislative Council home page has no item; Wikipedia does not mention it). No admission date read. Count disagrees: 184 (IPU) vs 183 (Wikipedia rev 1369902651)."
+  },
+  "isa": {
+   "group": "other",
+   "nameEn": "International Solar Alliance",
+   "nameBn": {
+    "bn": "আন্তর্জাতিক সৌর জোট",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "গুরুগ্রাম",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: No date at all from any allowed source; no stated count. | B: no date: isa.int is blocked; Wikipedia lists ratifying countries without dates and gives only \"over 120 member and signatory countries\"; the United States announced its withdrawal on 7 January 2026. Members (ratified) vs signatories not separable from what was read. Bangladesh rests on Wikipedia only."
+  },
+  "irena": {
+   "group": "other",
+   "nameEn": "International Renewable Energy Agency",
+   "nameBn": {
+    "bn": "আন্তর্জাতিক নবায়নযোগ্য জ্বালানি সংস্থা (আইরিনা)",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "আবুধাবি",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "held",
+   "held": "A: No date at all from any allowed source; the count, \"169 states and the European Union (2025)\", has one source (Wikipedia). | B: no date: irena.org is blocked; English and German Wikipedia give no admission dates (newest dated statement: Canada, 160th member, 9 January 2019) and disagree on the count (168 + EU in 2022; 169 + EU Sept 2025; 171 + EU 2026). The depositary is Germany (not reached). Bangladesh not established from what was read."
+  },
+  "esa": {
+   "group": "other",
+   "nameEn": "European Space Agency",
+   "nameBn": {
+    "bn": "ইউরোপীয় মহাকাশ সংস্থা",
+    "approved": true,
+    "from": "org-headquarters seed (approved list, 2026-09-26)"
+   },
+   "hqCityBn": {
+    "bn": "প্যারিস",
+    "approved": true,
+    "from": "org-headquarters seed (editor-verified 2026-09-26)"
+   },
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "SVN",
+      "nameEn": "Slovenia"
+     }
+    ],
+    "date": "2025-01-01",
+    "precision": "day",
+    "cite": [
+     {
+      "source": "esa-keydates",
+      "offset": 24741,
+      "length": 50,
+      "sha256": "273b19ec151265df01b0fa32f9356f5a06ae7586ceb2c6f3ea78bda65dae2d16"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 23,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "esa-history",
+      "offset": 302,
+      "length": 67,
+      "sha256": "2d504133fe9563f3b9df448422f504498f0e67664d6a1f2ec9ae1a554b66a163"
+     }
+    ]
+   },
+   "order": {
+    "tier": "official",
+    "n": 23,
+    "how": "stated"
+   },
+   "bangladesh": {
+    "tier": "official",
+    "status": "none",
+    "by": "absent from the members list",
+    "list": "esa-facts"
+   }
+  },
+  "nam": {
+   "group": "other",
+   "nameEn": "Non-Aligned Movement",
+   "nameBn": {
+    "bn": "জোটনিরপেক্ষ আন্দোলন (ন্যাম)",
+    "approved": false
+   },
+   "status": "held",
+   "held": "A: Fiji only from Wikipedia (\"both having joined the movement in 2011\", no reference): whether Fiji ties with Azerbaijan (26 May 2011, Azerbaijan MFA; May 2011, president.az) is not established; Fiji's foreign ministry site has no NAM page (search: 0 results). Azerbaijan alone is proven: 2011-05-26. | B: Azerbaijan 2011 has two sources (Azerbaijan presidency, Wikipedia); Fiji 2011 only Wikipedia (uncited; Fiji MFA search: no results; Fiji Sun search: nothing). No month or day from any source."
+  },
+  "g77": {
+   "group": "other",
+   "nameEn": "Group of 77",
+   "nameBn": {
+    "bn": "গ্রুপ অব ৭৭ (জি-৭৭)",
+    "approved": false
+   },
+   "status": "held",
+   "held": "A: no source read gives a joining date for any current member after the founding (Wikipedia gives dates only for former members: Palau 2002-2004, Malta, Romania) | B: no admission dates on g77.org; the only dated recent admission is Wikipedia's Mexico rejoin (approved 2023, citing DW), but the G77's own member list does not include Mexico, so the two disagree. No first-time admission dated by any source read."
+  }
+ }
+}

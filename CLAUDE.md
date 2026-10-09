@@ -346,6 +346,15 @@ by map. **Nothing is guessed to fill a gap.**
   holds the item out. Stored tagged «secondary» — URL, outlet, date, publisher, no article text — through
   `tools/ingest-user-input.mjs --secondary`; the card's link reads «সূত্র: {outlet} (মূল: {publisher})».
   Nothing else on any map uses it: `notes/global-indices.md`.
+- **A second scoped exception, org-newest-members' secondary tier** (the user's decision, 2026-10-09, ORGN-2): for
+  the organisations whose own sites do not state their newest member (or refuse us), and for OSCE, CARICOM, WHO and
+  BIMSTEC, a fact may come from the joining state's government site, the UN Treaty Collection or another official
+  depositary or gazette, Reuters/AP/AFP/BSS or a leading national daily dated at the event, or Wikipedia (read at
+  `/wiki/` with the repo's User-Agent, cited by revision id and the reference it gives). Each fact needs two agreeing
+  sources from different outlets, at least one not Wikipedia, and two independent readings that agree; otherwise it is
+  held out with both values. Every fact carries `tier: "official"` or `"secondary"`. A site that answered 403 or whose
+  robots.txt refuses us is never fetched again, not even in a browser. Nothing else on any map uses it:
+  `notes/org-newest-members.md`.
 
 ## Build pins
 
@@ -528,7 +537,9 @@ State which kind a task is when reporting it.
   - drawn with the map shell's opt-in `indices` module on the shared countries file, pins for names
     (`hideCountryLabels`);
   - all 131 strings approved (`notes/global-indices.md`).
-- Work in progress (`tools/wip.json`): none.
+- Work in progress (`tools/wip.json`): `org-newest-members` «সংস্থার সর্বশেষ সদস্য», a map under International
+  (ORGN-1 investigation, ORGN-2 decisions and seed, 2026-10-09): nothing built yet; the seed's facts are official or
+  secondary-tier, every new string awaits the user (`notes/org-newest-members.md`).
 
 ## Index — notes, read only when working on that item
 
