@@ -482,13 +482,14 @@ State which kind a task is when reporting it.
 
 ## Current state
 
-- Eighteen maps. Bangladesh: `ancient-janapadas`, `liberation-war-1971`,
+- Nineteen maps. Bangladesh: `ancient-janapadas`, `liberation-war-1971`,
   `bangladesh-rivers-map` («নদী ২»), `bangladesh-maritime-boundary`
   (`notes/bangladesh-maritime-boundary.md`) and `bangladesh-ethnic-groups`
   (`notes/bangladesh-ethnic-groups.md`). International: `straits`,
   `border-lines`, `org-headquarters`, `environment-treaties`,
   `world-revolutions` (`notes/world-revolutions.md`), `org-members`
-  (`notes/org-members.md`) and `global-indices` (`notes/global-indices.md`). Geography:
+  (`notes/org-members.md`), `global-indices` (`notes/global-indices.md`) and `org-newest-members`
+  (`notes/org-newest-members.md`). Geography:
   `deserts`, `lakes`, `forests`, `mountains`, `waterfalls` and
   `latitude-longitude`, all under `docs/maps/`.
 - Six diagrams, in `docs/diagrams/`: `bangladesh-rivers` («নদী ১») under
@@ -544,11 +545,12 @@ State which kind a task is when reporting it.
   - drawn with the map shell's opt-in `indices` module on the shared countries file, pins for names
     (`hideCountryLabels`);
   - all 131 strings approved (`notes/global-indices.md`).
-- Work in progress (`tools/wip.json`): `org-newest-members` «সংস্থার সর্বশেষ সদস্য», a map under International
-  (ORGN-1 investigation, ORGN-2 and ORGN-2b decisions and seed, ORGN-3 drawn on the local preview only, by the
-  shell's opt-in `newest` module, 2026-10-09): nothing under docs/maps/ or in the registry; 40 of 77
-  organisations with a newest member (36 official, 4 secondary-tier), 37 held; all 41 strings approved (the last, the pending-withdrawal line, on WHEEL-8)
-  (`notes/org-newest-members.md`).
+- `org-newest-members` «সংস্থার সর্বশেষ সদস্য» went live on the home page on 2026-10-09 (GL-ORGN), under International,
+  after org-members, with no caption, after ORGN-1 to ORGN-3b: 40 of 77 organisations with a newest member (36
+  official, 4 secondary-tier), 37 held; two view tabs (map, list), drawn by the shell's opt-in `newest` module, with
+  global-indices' pins; no country's name but the pins (`hideCountryLabels`) and no tilt (`flat`); all 41 strings
+  approved (`notes/org-newest-members.md`).
+- Work in progress (`tools/wip.json`): none.
 
 ## Index — notes, read only when working on that item
 

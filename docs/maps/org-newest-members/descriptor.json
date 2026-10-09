@@ -1,0 +1,311 @@
+{
+ "schema": "geoquest/map-descriptor@1",
+ "id": "org-newest-members",
+ "section": "international",
+ "title": {
+  "bn": "সংস্থার সর্বশেষ সদস্য",
+  "en": "Newest Members of Organisations"
+ },
+ "basemap": "world",
+ "view": {
+  "fitBounds": [
+   -170,
+   -58,
+   180,
+   80
+  ]
+ },
+ "constraints": {
+  "minZoom": -1,
+  "maxZoom": 6,
+  "wholeWorld": true
+ },
+ "minTextSize": 14,
+ "hideCountryLabels": true,
+ "flat": true,
+ "openOn": {
+  "tab": "map",
+  "records": "orgs",
+  "key": "un"
+ },
+ "records": {
+  "tabs": {
+   "file": "./tabs.json",
+   "fields": {
+    "titleBn": {
+     "type": "text",
+     "required": true
+    }
+   }
+  },
+  "orgs": {
+   "file": "./orgs.json",
+   "fields": {
+    "nameBn": {
+     "type": "text",
+     "required": true
+    },
+    "nameEn": {
+     "type": "text",
+     "required": true,
+     "display": false
+    },
+    "group": {
+     "type": "text",
+     "required": true,
+     "display": false
+    },
+    "groupBn": {
+     "type": "text",
+     "required": true,
+     "display": false
+    },
+    "newest": {
+     "type": "refs",
+     "to": "countries",
+     "display": false
+    },
+    "bd": {
+     "type": "refs",
+     "to": "countries",
+     "display": false
+    },
+    "pins": {
+     "type": "text",
+     "display": false
+    },
+    "frame": {
+     "type": "bbox",
+     "required": true
+    },
+    "countText": {
+     "type": "text",
+     "display": false,
+     "verifiable": true
+    },
+    "newestText": {
+     "type": "text",
+     "required": true,
+     "display": false
+    },
+    "orderText": {
+     "type": "text",
+     "display": false
+    },
+    "dateText": {
+     "type": "text",
+     "required": true
+    },
+    "firstTimeText": {
+     "type": "text"
+    },
+    "hqText": {
+     "type": "text"
+    },
+    "bdText": {
+     "type": "text"
+    },
+    "marks": {
+     "type": "text",
+     "display": false
+    },
+    "verified": {
+     "type": "text",
+     "required": true,
+     "display": false
+    },
+    "url": {
+     "type": "text",
+     "required": true,
+     "display": false
+    },
+    "sourceLabel": {
+     "type": "text",
+     "display": false
+    }
+   }
+  },
+  "countries": {
+   "file": "./countries.json",
+   "fields": {
+    "nameBn": {
+     "type": "text",
+     "required": true
+    }
+   }
+  }
+ },
+ "sources": {
+  "countries": {
+   "records": "countries",
+   "sharedGeometry": "world-countries.json",
+   "joinField": "iso3",
+   "state": [
+    {
+     "name": "newest",
+     "fromSelection": {
+      "records": "orgs",
+      "listField": "newest"
+     }
+    },
+    {
+     "name": "bd",
+     "fromSelection": {
+      "records": "orgs",
+      "listField": "bd"
+     }
+    }
+   ],
+   "properties": [
+    "nameBn"
+   ]
+  }
+ },
+ "layers": [
+  {
+   "id": "on-base",
+   "type": "fill",
+   "source": "countries",
+   "slot": "belowLabels",
+   "paint": {
+    "fill-color": "#dfe4ea",
+    "fill-opacity": 0.9
+   }
+  },
+  {
+   "id": "on-newest",
+   "type": "fill",
+   "source": "countries",
+   "slot": "belowLabels",
+   "filter": [
+    "get",
+    "newest"
+   ],
+   "paint": {
+    "fill-color": "#2563EB",
+    "fill-opacity": 1
+   }
+  },
+  {
+   "id": "on-bd",
+   "type": "fill",
+   "source": "countries",
+   "slot": "belowLabels",
+   "filter": [
+    "get",
+    "bd"
+   ],
+   "paint": {
+    "fill-color": "#D55E00",
+    "fill-opacity": 1
+   }
+  },
+  {
+   "id": "on-lines",
+   "type": "line",
+   "source": "countries",
+   "slot": "belowLabels",
+   "layout": {
+    "line-join": "round"
+   },
+   "paint": {
+    "line-color": "#ffffff",
+    "line-width": 0.6
+   }
+  }
+ ],
+ "interactions": [],
+ "controls": [
+  {
+   "type": "picker",
+   "from": "orgs",
+   "label": {
+    "field": "nameBn"
+   },
+   "placeholder": "একটি সংস্থা বেছে নিন…",
+   "do": [
+    {
+     "action": "select"
+    },
+    {
+     "action": "fitBounds",
+     "field": "frame",
+     "duration": 900
+    }
+   ]
+  }
+ ],
+ "tabs": {
+  "from": "tabs",
+  "label": {
+   "field": "titleBn"
+  }
+ },
+ "newest": {
+  "records": "orgs",
+  "tabs": {
+   "map": "map",
+   "list": "list"
+  },
+  "groups": [
+   "un",
+   "regional",
+   "economic",
+   "other"
+  ],
+  "words": {
+   "count": "মোট সদস্য",
+   "newest": "সর্বশেষ সদস্য",
+   "order": "যোগদানের ক্রম",
+   "legendNewest": "সর্বশেষ সদস্য",
+   "legendBangladesh": "বাংলাদেশ",
+   "search": "সংস্থা খুঁজুন",
+   "total": "মোট {n}টি সংস্থা",
+   "chips": {
+    "all": "সব",
+    "un": "জাতিসংঘ",
+    "regional": "আঞ্চলিক",
+    "economic": "অর্থনৈতিক",
+    "other": "অন্যান্য"
+   },
+   "verified": "সর্বশেষ যাচাই",
+   "source": "সূত্র"
+  }
+ },
+ "info": {
+  "file": "./info.json",
+  "headings": {
+   "sources": "সূত্র",
+   "notes": "টীকা",
+   "conflicts": ""
+  }
+ },
+ "sheets": {
+  "orgs": {
+   "title": {
+    "field": "nameBn"
+   },
+   "subtitle": {
+    "field": "nameEn"
+   },
+   "rows": [
+    {
+     "label": "যোগদানের তারিখ",
+     "field": "dateText"
+    },
+    {
+     "label": "প্রথমবার যোগ দেওয়া সর্বশেষ সদস্য",
+     "field": "firstTimeText"
+    },
+    {
+     "label": "সদর দপ্তর",
+     "field": "hqText"
+    },
+    {
+     "label": "বাংলাদেশ সদস্য?",
+     "field": "bdText"
+    }
+   ]
+  }
+ }
+}

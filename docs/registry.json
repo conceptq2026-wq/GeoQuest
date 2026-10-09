@@ -124,6 +124,14 @@
       }
     },
     {
+      "id": "org-newest-members",
+      "section": "international",
+      "title": {
+        "en": "Newest Members of Organisations",
+        "bn": "সংস্থার সর্বশেষ সদস্য"
+      }
+    },
+    {
       "id": "straits",
       "section": "international",
       "title": {

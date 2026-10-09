@@ -1,7 +1,7 @@
-# org-newest-members — «সংস্থার সর্বশেষ সদস্য» (work in progress)
+# org-newest-members — «সংস্থার সর্বশেষ সদস্য»
 
-Read it with `CLAUDE.md`, whose rules and verification budget apply. A map under International, in
-`tools/wip.json` only (home first): nothing built under `docs/` yet. The research is out of git in
+Read it with `CLAUDE.md`, whose rules and verification budget apply. A map under International,
+**live on the home page since 2026-10-09 (GL-ORGN)**, built into `docs/maps/org-newest-members/`. The research is out of git in
 `tools/.cache/org-newest/` — ORGN-1's `investigation.md` (77 organisations, their own sites only) and ORGN-2's
 secondary readings (`sec2/`, `orgn2/`).
 
@@ -148,3 +148,12 @@ For the 32 organisations ORGN-1 could not verify, PCA, IPU, OECD, OPEC and AfDB,
 - Pins stay clear of the map's own controls as well as its edge (the shared placement in `docs/shell/indices.js`:
   global-indices' pins move where they met a control). A label is placed again once the fonts are in.
 - No tilt button: `flat: true`, a flat 2D map (CLAUDE.md, the baseline).
+
+## GL-ORGN (2026-10-09): live
+
+- Built into `docs/maps/org-newest-members/` (two builds, the same bytes); out of `tools/wip.json`; its home card
+  under International, after org-members, `kind` only (the descriptor's title, no caption) in `tools/home-cards.json`;
+  `docs/registry.json` rebuilt.
+- `tools/verify-descriptor.mjs` pins the seed and holds the folder to a fresh build (the picker's order, Bangladesh's
+  pin and shading, at most three newest pins, `flat` on this map alone, `hideCountryLabels` on this map and
+  global-indices only); `tools/verify.mjs` holds the seed live: no unapproved string reaches docs/ (rule (a)).

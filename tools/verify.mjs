@@ -1700,14 +1700,14 @@ console.log('\n---- global-indices: seed ----');
   check(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(seedText) && registry.maps.some((e) => e.id === ID && e.section === 'international') && !wipItems.some((w) => w.id === ID) && fs.existsSync(path.join(SERVED, 'maps', ID, 'descriptor.json')), `${ID}: no e-mail address in the seed; live — in registry.json under International, its folder under docs/maps/, no longer in tools/wip.json`);
 }
 
-// ---- org-newest-members «সংস্থার সর্বশেষ সদস্য» (work in progress, ORGN-2, 2026-10-09): the seed ---------------------
+// ---- org-newest-members «সংস্থার সর্বশেষ সদস্য» (live 2026-10-09, GL-ORGN): the seed --------------------------------
 // Each organisation's newest member, its date, count, order and Bangladesh's status, every fact with its tier:
 // "official" (the organisation's own page) or "secondary" (the user's scoped exception for this map, CLAUDE.md:
 // two agreeing sources from different outlets, at least one not Wikipedia; Wikipedia by revision id). A citation is a
 // page in data-sources/org-newest-members/sources.json with the offset, length and SHA-256 of the words in its text;
 // no words are kept. When the cache is present (tools/.cache/org-newest/pages/), each citation is re-sliced and
-// hashed, and each page's text checked against its pin. Unapproved strings only warn while it is work in progress.
-console.log('\n---- org-newest-members: seed (work in progress) ----');
+// hashed, and each page's text checked against its pin. Live, no unapproved string may reach docs/ (rule (a), below).
+console.log('\n---- org-newest-members: seed ----');
 {
   const ID = 'org-newest-members';
   const hash = (b) => crypto.createHash('sha256').update(b).digest('hex');
@@ -1728,9 +1728,9 @@ console.log('\n---- org-newest-members: seed (work in progress) ----');
   };
   walk(seed, 'seed', null, null);
   check(unflagged.length === 0, `${ID}: every Bengali string carries its approval flag${unflagged.length ? ` — not: ${unflagged.slice(0, 3).join(', ')}` : ''}`);
-  if (pending) console.log(`warn ${ID} (work in progress): ${pending} string(s) await the user's approval`);
+  if (pending) console.log(`warn ${ID}: ${pending} string(s) in the seed await the user's approval (none may reach docs/)`);
   const EMAIL_RE = /[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.(?!(?:png|jpe?g|gif|svg|webp|css|js|pdf)\b)[A-Za-z]{2,}/;
-  check(!EMAIL_RE.test(seedText) && !EMAIL_RE.test(sourcesText) && !/"(quote|phrase)"\s*:/.test(seedText) && !registry.maps.some((e) => e.id === ID) && wipItems.some((w) => w.id === ID && w.kind === 'map' && w.section === 'international'), `${ID}: no e-mail address and no quoted words in the seed or its pins; work in progress — in tools/wip.json under International, not in the registry`);
+  check(!EMAIL_RE.test(seedText) && !EMAIL_RE.test(sourcesText) && !/"(quote|phrase)"\s*:/.test(seedText) && registry.maps.some((e) => e.id === ID && e.section === 'international') && !wipItems.some((w) => w.id === ID) && fs.existsSync(path.join(SERVED, 'maps', ID, 'descriptor.json')), `${ID}: no e-mail address and no quoted words in the seed or its pins; live — in registry.json under International, its folder under docs/maps/, no longer in tools/wip.json`);
   // Every built fact: its tier, and citations that fit it.
   const orgs = Object.entries(seed.organisations);
   const facts = [];

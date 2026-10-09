@@ -1,0 +1,168 @@
+{
+ "lines": [
+  {
+   "text": "জাতিসংঘ: https://www.un.org/en/about-us/member-states",
+   "group": "sources"
+  },
+  {
+   "text": "খাদ্য ও কৃষি সংস্থা (এফএও): https://www.fao.org/legal/home/Membership-of-FAO/en",
+   "group": "sources"
+  },
+  {
+   "text": "আন্তর্জাতিক শ্রম সংস্থা (আইএলও): https://www.ilo.org/resource/news/kingdom-tonga-becomes-187th-ilo-member-state",
+   "group": "sources"
+  },
+  {
+   "text": "আন্তর্জাতিক সমুদ্র সংস্থা (আইএমও): https://www.imo.org/en/OurWork/ERO/Pages/MemberStates.aspx",
+   "group": "sources"
+  },
+  {
+   "text": "আন্তর্জাতিক অভিবাসন সংস্থা (আইওএম): https://governingbodies.iom.int/system/files/en/council/113/C-113-RES-1399%20-%20Barbados.pdf",
+   "group": "sources"
+  },
+  {
+   "text": "আন্তর্জাতিক টেলিযোগাযোগ ইউনিয়ন (আইটিইউ): https://www.itu.int/online/mm/scripts/gensel8",
+   "group": "sources"
+  },
+  {
+   "text": "ইউনেস্কো: https://www.unesco.org/en/countries/us",
+   "group": "sources"
+  },
+  {
+   "text": "বিশ্ব স্বাস্থ্য সংস্থা: https://apps.who.int/gb/bd/pdf_files/BD_49th-en.pdf",
+   "group": "sources"
+  },
+  {
+   "text": "বিশ্ব মেধাসম্পদ সংস্থা (ওয়াইপো): https://www.wipo.int/wipolex/en/treaties/ShowResults?search_what=C&treaty_id=1",
+   "group": "sources"
+  },
+  {
+   "text": "বিশ্ব আবহাওয়া সংস্থা: https://contacts.wmo.int/_api/eve_memberses?$select=eve_name,eve_iso3code,eve_dateofwmomembership,eve_wmo_membership,eve_wmoconventionarticleno&$filter=(statecode%20eq%200%20and%20(eve_wmo_membership%20eq%201%20or%20eve_wmo_membership%20eq%202))&$count=true",
+   "group": "sources"
+  },
+  {
+   "text": "জাতিসংঘ পর্যটন সংস্থা: https://www.untourism.int/member-states",
+   "group": "sources"
+  },
+  {
+   "text": "রাসায়নিক অস্ত্র নিষিদ্ধকরণ সংস্থা (ওপিসিডব্লিউ): https://www.opcw.org/about-us/member-states/state-palestine",
+   "group": "sources"
+  },
+  {
+   "text": "সমন্বিত পারমাণবিক পরীক্ষা নিষিদ্ধকরণ চুক্তি সংস্থা (সিটিবিটিও): https://treaties.un.org/Pages/ViewDetails.aspx?src=TREATY&mtdsg_no=XXVI-4&chapter=26&clang=_en",
+   "group": "sources"
+  },
+  {
+   "text": "সার্ক: https://www.saarc-sec.org/medias/FourteenthSaarcSummitNewDe_2026_05_11_04_59_29.pdf",
+   "group": "sources"
+  },
+  {
+   "text": "আসিয়ান: https://asean.org/member-states/",
+   "group": "sources"
+  },
+  {
+   "text": "ইসলামি সহযোগিতা সংস্থা (ওআইসি): https://www.oic-oci.org/en/members",
+   "group": "sources"
+  },
+  {
+   "text": "কমনওয়েলথ: https://thecommonwealth.org/our-member-countries/gabon",
+   "group": "sources"
+  },
+  {
+   "text": "সাংহাই সহযোগিতা সংস্থা: https://eng.sectsco.org/20170110/192193.html",
+   "group": "sources"
+  },
+  {
+   "text": "সিকা: https://www.s-cica.org/index.php?view=page&t=summit-documents",
+   "group": "sources"
+  },
+  {
+   "text": "কলম্বো প্ল্যান: https://colombo-plan.org/member-countries/",
+   "group": "sources"
+  },
+  {
+   "text": "ভারত মহাসাগরীয় রিম অ্যাসোসিয়েশন (আইওরা): https://www.iora.int/iora-milestones-and-achievements",
+   "group": "sources"
+  },
+  {
+   "text": "আফ্রিকান ইউনিয়ন: https://au.int/en/member_states/countryprofiles2",
+   "group": "sources"
+  },
+  {
+   "text": "ইউরোপীয় ইউনিয়ন: https://european-union.europa.eu/principles-countries-history/eu-countries/croatia_en",
+   "group": "sources"
+  },
+  {
+   "text": "ন্যাটো: https://www.nato.int/en/about-us/organization/nato-member-countries",
+   "group": "sources"
+  },
+  {
+   "text": "ইউরোপীয় নিরাপত্তা ও সহযোগিতা সংস্থা (ওএসসিই): https://www.osce.org/country/mongolia",
+   "group": "sources"
+  },
+  {
+   "text": "আমেরিকান রাষ্ট্রসমূহের সংস্থা (ওএএস): https://www.oas.org/en/sla/dil/inter_american_treaties_A-41_charter_OAS_signatories.asp",
+   "group": "sources"
+  },
+  {
+   "text": "ইকোয়াস: https://www.ecowas.int/creation-history/?lang=en",
+   "group": "sources"
+  },
+  {
+   "text": "ডি-৮: https://developing8.org/about-d-8/brief-history-of-d-8/",
+   "group": "sources"
+  },
+  {
+   "text": "আন্তর্জাতিক মুদ্রা তহবিল (আইএমএফ): https://www.imf.org/external/np/sec/memdir/memdate.htm",
+   "group": "sources"
+  },
+  {
+   "text": "বিশ্বব্যাংক: https://www.worldbank.org/en/about/leadership/members",
+   "group": "sources"
+  },
+  {
+   "text": "বিশ্ব বাণিজ্য সংস্থা: https://timor-leste.gov.tl/?p=41857&lang=en",
+   "group": "sources"
+  },
+  {
+   "text": "এশীয় উন্নয়ন ব্যাংক (এডিবি): https://www.adb.org/news/israel-joins-adb-69th-member",
+   "group": "sources"
+  },
+  {
+   "text": "এশীয় অবকাঠামো বিনিয়োগ ব্যাংক (এআইআইবি): https://www.aiib.org/en/about-aiib/governance/members-of-bank/.content/voting-power.js",
+   "group": "sources"
+  },
+  {
+   "text": "নিউ ডেভেলপমেন্ট ব্যাংক (ব্রিকস ব্যাংক): https://www.ndb.int/about-ndb/members/",
+   "group": "sources"
+  },
+  {
+   "text": "ইউরোপীয় পুনর্গঠন ও উন্নয়ন ব্যাংক: https://www.ebrd.com/home/who-we-are/our-organisation/shareholders.html",
+   "group": "sources"
+  },
+  {
+   "text": "ওয়াপেক: https://oapecorg.org/Home/About-Us/History",
+   "group": "sources"
+  },
+  {
+   "text": "অ্যাপেক: https://www.apec.org/who-we-are/our-members",
+   "group": "sources"
+  },
+  {
+   "text": "জি-৭: https://www.international.gc.ca/world-monde/international_relations-relations_internationales/g7/index.aspx?lang=eng",
+   "group": "sources"
+  },
+  {
+   "text": "আন্তর্জাতিক জ্বালানি সংস্থা (আইইএ): https://www.iea.org/about/history",
+   "group": "sources"
+  },
+  {
+   "text": "ইউরোপীয় মহাকাশ সংস্থা: https://www.esa.int/About_Us/50_years_of_ESA/Key_dates_1960-2026",
+   "group": "sources"
+  },
+  {
+   "text": "দেশের সীমানা বাংলাদেশের অবস্থান অনুযায়ী আঁকা: তাইওয়ান চীনের অংশ, আর ইসরায়েলের এলাকা «ফিলিস্তিন অঞ্চল»-এর মধ্যে। তাই কোনো সংস্থায় চীন বা ফিলিস্তিনের রং ওই এলাকাতেও পড়ে।",
+   "group": "notes"
+  }
+ ]
+}

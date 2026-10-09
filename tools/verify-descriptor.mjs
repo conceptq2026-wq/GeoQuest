@@ -41,6 +41,8 @@
 //                             data-sources/bangladesh-ethnic-groups/, pinned; its sources and anchors, by tools/verify.mjs
 //   global-indices  docs/maps/global-indices/ is a fresh build of data-sources/global-indices/,
 //                   pinned; no pending string or unapproved fact built; its strings, by tools/verify.mjs
+//   org-newest-members  docs/maps/org-newest-members/ is a fresh build of data-sources/org-newest-members/, pinned;
+//                       its strings, its sources and tiers, by tools/verify.mjs
 //   important-days (a diagram)  docs/diagrams/important-days/ is a fresh build of
 //                               data-sources/important-days/days.seed.json, pinned; its strings, by tools/verify.mjs
 //
@@ -125,6 +127,8 @@ const MARITIME_ZONES_SEED_SHA256 = '6b0f67dbac0b0fa97037d86c7f94d3f07a73bd57a42d
 // The bangladesh-maritime-boundary map: the editor's seed, pinned (live 2026-10-08; its 35 step-2 strings approved, BD-6; #30 reworded by the user the same day).
 const BANGLADESH_MARITIME_SEED_SHA256 = 'dcc627421f99b20faeffe17006d9348f181b9663c058af66f37ae6c572e8ebbd';
 // The global-indices map «বৈশ্বিক সূচক»: its seed, pinned (live 2026-10-09).
+// The org-newest-members map «সংস্থার সর্বশেষ সদস্য»: its seed, pinned (live 2026-10-09, GL-ORGN).
+const ORG_NEWEST_SEED_SHA256 = '0f484c5dad08f7416317841ddd6e3d63ca5fb61a97000cf0e4a763ff0241097c';
 const GLOBAL_INDICES_SEED_SHA256 = '9b72d6e35308d4633dfe6f22021964a03e1459ca0b49603fb1dfae57efff517f';
 // The important-days diagram «বছরের চাকা»: its seed, pinned (live 2026-10-08, after WHEEL-2–5 and GL-WHEEL).
 const IMPORTANT_DAYS_SEED_SHA256 = '4913e38e433c44c4b0b3c55337e29e0d463f4293a2547eb22bfe0e032853f673';
@@ -2852,7 +2856,8 @@ console.log('\n\n============ global-indices ============');
   const indices = readJson(path.join(dir, 'indices.json'));
   const tabsFile = readJson(path.join(dir, 'tabs.json'));
   const hiders = fs.readdirSync(MAPS_DIR).filter((m) => readJson(path.join(MAPS_DIR, m, 'descriptor.json')).hideCountryLabels !== undefined);
-  check(descriptor.hideCountryLabels === true && JSON.stringify(hiders) === JSON.stringify([id]), `no country name on the map but its pins (hideCountryLabels, the user's baseline exception of 2026-10-09), and no other map sets it (${hiders.join(', ')})`);
+  // The user's baseline exception (2026-10-09): global-indices, and org-newest-members (GL-ORGN), as global-indices.
+  check(descriptor.hideCountryLabels === true && JSON.stringify(hiders) === JSON.stringify([id, 'org-newest-members']), `no country name on the map but its pins (hideCountryLabels, the user's baseline exception of 2026-10-09); only this map and org-newest-members set it (${hiders.join(', ')})`);
   check(descriptor.section === 'international' && descriptor.basemap === 'world' && descriptor.minTextSize === 14 && JSON.stringify(Object.keys(tabsFile)) === '["countries","bangladesh"]' && descriptor.indices?.tabs?.bangladesh === 'bangladesh', 'descriptor: International, the world basemap, no text under 14 px, the tabs «দেশ» and «বাংলাদেশ» (no «শহর»), the indices module');
   const sources = readJson(path.join(ROOT, 'tools', 'sources.json')).globalIndices.files;
   const pinnedUrls = new Set(Object.values(sources).map((f) => f.url));
@@ -2892,6 +2897,46 @@ console.log('\n\n============ global-indices ============');
   const unread = builtSeed.filter((x) => x.kind !== 'user-input').filter((x) => x.read?.readers !== 2 || (!x.read.agreed && !(x.read.unstoredMismatches ?? []).length));
   check(unread.length === 0, `every built ranking was read twice and the readings agree (a mismatch only in a field not stored: ${builtSeed.filter((x) => x.read?.unstoredMismatches?.length).map((x) => x.id).join(', ') || 'none'})`);
   checkMap({ id, expectedPending: 0 });
+}
+
+/*
+|--------------------------------------------------------------------------
+| ORG-NEWEST-MEMBERS — a map, «সংস্থার সর্বশেষ সদস্য» (live 2026-10-09,
+| GL-ORGN; ORGN-1 to ORGN-3b), built by tools/build-org-newest-members.mjs
+| from its seed: the seed is the pinned one; docs/ holds exactly what a
+| fresh build writes; only the seed's built organisations, each with its
+| newest member(s) and Bangladesh; no country's name but the pins
+| (hideCountryLabels) and no tilt (flat), both this map's baseline
+| exceptions; the shell's `newest` module. Every string approved: no
+| unapproved string reaches docs/ (verify.mjs, rule (a)).
+|--------------------------------------------------------------------------
+*/
+console.log('\n\n============ org-newest-members ============');
+{
+  const id = 'org-newest-members';
+  const seedFile = path.join(ROOT, 'data-sources', id, `${id}.seed.json`);
+  const seedHash = crypto.createHash('sha256').update(fs.readFileSync(seedFile)).digest('hex');
+  check(seedHash === ORG_NEWEST_SEED_SHA256, `the seed is the pinned one: SHA-256 ${seedHash.slice(0, 12)}… (pinned ${ORG_NEWEST_SEED_SHA256.slice(0, 12)}…)`);
+  const seed = readJson(seedFile);
+  const dir = path.join(MAPS_DIR, id);
+  const fresh = path.join(os.tmpdir(), 'geoquest-verify', id);
+  fs.rmSync(fresh, { recursive: true, force: true });
+  execFileSync(process.execPath, [path.join(HERE, `build-${id}.mjs`), fresh], { stdio: 'pipe' });
+  const built = fs.readdirSync(fresh).sort();
+  const differ = built.filter((name) => !fs.existsSync(path.join(dir, name)) || !fs.readFileSync(path.join(dir, name)).equals(fs.readFileSync(path.join(fresh, name))));
+  check(differ.length === 0 && fs.readdirSync(dir).sort().join() === built.join(), `docs/maps/${id}/ is a fresh build, byte for byte (${built.join(', ')})${differ.length ? ` — differs: ${differ.join(', ')}` : ''}`);
+  const descriptor = readJson(path.join(dir, 'descriptor.json'));
+  const flats = fs.readdirSync(MAPS_DIR).filter((m) => readJson(path.join(MAPS_DIR, m, 'descriptor.json')).flat !== undefined);
+  check(descriptor.section === 'international' && descriptor.basemap === 'world' && descriptor.minTextSize === 14 && descriptor.hideCountryLabels === true && descriptor.flat === true && JSON.stringify(flats) === JSON.stringify([id]) && descriptor.newest?.records === 'orgs' && JSON.stringify(Object.keys(readJson(path.join(dir, 'tabs.json')))) === '["map","list"]', `descriptor: International, the world basemap, no text under 14 px, no country's name but the pins, flat (no tilt; no other map sets it: ${flats.join(', ')}), the tabs «ম্যাপ» and «তালিকা», the newest module`);
+  const orgs = readJson(path.join(dir, 'orgs.json'));
+  const builtSeed = Object.entries(seed.organisations).filter(([, o]) => o.status === 'built').map(([k]) => k);
+  const GROUPS = ['un', 'regional', 'economic', 'other'];
+  const order = GROUPS.flatMap((g) => builtSeed.filter((k) => seed.organisations[k].group === g));
+  check(JSON.stringify(Object.keys(orgs)) === JSON.stringify(order) && descriptor.openOn?.key === 'un', `the picker's organisations are the seed's built ones (${order.length} of ${Object.keys(seed.organisations).length}), by group, then in the seed's order; it opens on জাতিসংঘ`);
+  const badPins = Object.entries(orgs).filter(([, r]) => { const p = JSON.parse(r.pins); return p.filter((x) => x.kind === 'bd').length !== 1 || p.filter((x) => x.kind === 'newest').length > 3 || !r.bd.includes('BGD'); }).map(([k]) => k);
+  check(badPins.length === 0, `every organisation pins Bangladesh once and at most three newest members, and shades Bangladesh${badPins.length ? ` — not: ${badPins.join(', ')}` : ''}`);
+  // One unverified value: UN Tourism's member count (its page heads «160» and lists 161).
+  checkMap({ id, expectedPending: 1 });
 }
 
 /*

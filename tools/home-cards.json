@@ -31,6 +31,9 @@
     "org-members": {
       "kind": "map"
     },
+    "org-newest-members": {
+      "kind": "map"
+    },
     "global-indices": {
       "kind": "map"
     }

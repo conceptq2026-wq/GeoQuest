@@ -1,0 +1,1101 @@
+{
+ "un": {
+  "nameBn": "জাতিসংঘ",
+  "nameEn": "United Nations",
+  "group": "un",
+  "groupBn": "জাতিসংঘ",
+  "newest": [
+   "SSD"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"দক্ষিণ সুদান\",\"at\":[30.39,7.23]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   24.153,
+   3.49,
+   92.643,
+   26.624
+  ],
+  "countText": "১৯৩",
+  "newestText": "দক্ষিণ সুদান",
+  "orderText": "১৯৩তম",
+  "dateText": "১৪ জুলাই ২০১১",
+  "hqText": "নিউইয়র্ক",
+  "bdText": "হ্যাঁ",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.un.org/en/about-us/member-states"
+ },
+ "fao": {
+  "nameBn": "খাদ্য ও কৃষি সংস্থা (এফএও)",
+  "nameEn": "Food and Agriculture Organization of the United Nations",
+  "group": "un",
+  "groupBn": "জাতিসংঘ",
+  "newest": [
+   "BRN",
+   "SGP",
+   "SSD"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"ব্রুনাই\",\"at\":[114.552,4.448]},{\"kind\":\"newest\",\"text\":\"সিঙ্গাপুর\",\"at\":[103.817,1.367],\"halo\":true},{\"kind\":\"newest\",\"text\":\"দক্ষিণ সুদান\",\"at\":[30.39,7.23]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   24.153,
+   1.266,
+   115.102,
+   26.624
+  ],
+  "countText": "১৯৪",
+  "newestText": "ব্রুনাই, সিঙ্গাপুর, দক্ষিণ সুদান",
+  "dateText": "১৫ জুন ২০১৩",
+  "hqText": "রোম",
+  "bdText": "হ্যাঁ",
+  "marks": "[\"যৌথভাবে\"]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.fao.org/legal/home/Membership-of-FAO/en"
+ },
+ "ilo": {
+  "nameBn": "আন্তর্জাতিক শ্রম সংস্থা (আইএলও)",
+  "nameEn": "International Labour Organization",
+  "group": "un",
+  "groupBn": "জাতিসংঘ",
+  "newest": [
+   "TON"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"টোঙ্গা\",\"at\":[-175.163,-21.21],\"halo\":true},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   -175.365,
+   -21.268,
+   92.643,
+   26.624
+  ],
+  "countText": "১৮৭",
+  "newestText": "টোঙ্গা",
+  "orderText": "১৮৭তম",
+  "dateText": "২৪ ফেব্রুয়ারি ২০১৬",
+  "hqText": "জেনেভা",
+  "bdText": "হ্যাঁ",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.ilo.org/resource/news/kingdom-tonga-becomes-187th-ilo-member-state"
+ },
+ "imo": {
+  "nameBn": "আন্তর্জাতিক সমুদ্র সংস্থা (আইএমও)",
+  "nameEn": "International Maritime Organization",
+  "group": "un",
+  "groupBn": "জাতিসংঘ",
+  "newest": [
+   "KGZ"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"কিরগিজস্তান\",\"at\":[74.533,41.669]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   69.241,
+   20.739,
+   92.643,
+   43.262
+  ],
+  "countText": "১৭৬",
+  "newestText": "কিরগিজস্তান",
+  "orderText": "১৭৬তম",
+  "dateText": "২০২৪",
+  "hqText": "লন্ডন",
+  "bdText": "হ্যাঁ",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.imo.org/en/OurWork/ERO/Pages/MemberStates.aspx"
+ },
+ "iom": {
+  "nameBn": "আন্তর্জাতিক অভিবাসন সংস্থা (আইওএম)",
+  "nameEn": "International Organization for Migration",
+  "group": "un",
+  "groupBn": "জাতিসংঘ",
+  "newest": [
+   "BRB"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"বার্বাডোস\",\"at\":[-59.569,13.164],\"halo\":true},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   -59.645,
+   13.094,
+   92.643,
+   26.624
+  ],
+  "countText": "১৭৪",
+  "newestText": "বার্বাডোস",
+  "dateText": "২৯ নভেম্বর ২০২২",
+  "hqText": "জেনেভা",
+  "bdText": "হ্যাঁ",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://governingbodies.iom.int/system/files/en/council/113/C-113-RES-1399%20-%20Barbados.pdf"
+ },
+ "itu": {
+  "nameBn": "আন্তর্জাতিক টেলিযোগাযোগ ইউনিয়ন (আইটিইউ)",
+  "nameEn": "International Telecommunication Union",
+  "group": "un",
+  "groupBn": "জাতিসংঘ",
+  "newest": [
+   "PLW"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"পালাউ\",\"at\":[134.58,7.518],\"halo\":true},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   88.022,
+   7.358,
+   134.648,
+   26.624
+  ],
+  "countText": "১৯৪",
+  "newestText": "পালাউ",
+  "orderText": "১৯৪তম",
+  "dateText": "১৯ সেপ্টেম্বর ২০২৪",
+  "hqText": "জেনেভা",
+  "bdText": "হ্যাঁ",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.itu.int/online/mm/scripts/gensel8"
+ },
+ "unesco": {
+  "nameBn": "ইউনেস্কো",
+  "nameEn": "United Nations Educational, Scientific and Cultural Organization",
+  "group": "un",
+  "groupBn": "জাতিসংঘ",
+  "newest": [
+   "USA"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"মার্কিন যুক্তরাষ্ট্র\",\"at\":[-97.483,39.538]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   -124.728,
+   20.739,
+   92.643,
+   49.369
+  ],
+  "countText": "১৯৪",
+  "newestText": "মার্কিন যুক্তরাষ্ট্র",
+  "dateText": "১০ জুলাই ২০২৩",
+  "firstTimeText": "ফিলিস্তিন — ২৩ নভেম্বর ২০১১",
+  "hqText": "প্যারিস",
+  "bdText": "হ্যাঁ",
+  "marks": "[\"পুনরায় যোগদান\",\"সদস্যপদ ত্যাগের ঘোষণা: মার্কিন যুক্তরাষ্ট্র, কার্যকর ডিসেম্বর ২০২৬\"]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.unesco.org/en/countries/us"
+ },
+ "who": {
+  "nameBn": "বিশ্ব স্বাস্থ্য সংস্থা",
+  "nameEn": "World Health Organization",
+  "group": "un",
+  "groupBn": "জাতিসংঘ",
+  "newest": [
+   "SSD"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"দক্ষিণ সুদান\",\"at\":[30.39,7.23]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   24.153,
+   3.49,
+   92.643,
+   26.624
+  ],
+  "countText": "১৯৪",
+  "newestText": "দক্ষিণ সুদান",
+  "dateText": "২৭ সেপ্টেম্বর ২০১১",
+  "hqText": "জেনেভা",
+  "bdText": "হ্যাঁ",
+  "marks": "[\"সদস্যপদ ত্যাগের ঘোষণা: মার্কিন যুক্তরাষ্ট্র, কার্যকর ২২ জানুয়ারি ২০২৬\"]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://apps.who.int/gb/bd/pdf_files/BD_49th-en.pdf"
+ },
+ "wipo": {
+  "nameBn": "বিশ্ব মেধাসম্পদ সংস্থা (ওয়াইপো)",
+  "nameEn": "World Intellectual Property Organization",
+  "group": "un",
+  "groupBn": "জাতিসংঘ",
+  "newest": [
+   "FSM"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"মাইক্রোনেশিয়া\",\"at\":[158.234,6.888],\"halo\":true},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   88.022,
+   6.802,
+   158.291,
+   26.624
+  ],
+  "countText": "১৯৪",
+  "newestText": "মাইক্রোনেশিয়া",
+  "dateText": "১৯ সেপ্টেম্বর ২০২৫",
+  "hqText": "জেনেভা",
+  "bdText": "হ্যাঁ",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.wipo.int/wipolex/en/treaties/ShowResults?search_what=C&treaty_id=1"
+ },
+ "wmo": {
+  "nameBn": "বিশ্ব আবহাওয়া সংস্থা",
+  "nameEn": "World Meteorological Organization",
+  "group": "un",
+  "groupBn": "জাতিসংঘ",
+  "newest": [
+   "NRU"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"নাউরু\",\"at\":[166.933,-0.52],\"halo\":true},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   88.022,
+   -0.552,
+   166.939,
+   26.624
+  ],
+  "countText": "১৯৩",
+  "newestText": "নাউরু",
+  "dateText": "১৬ মে ২০১৯",
+  "hqText": "জেনেভা",
+  "bdText": "হ্যাঁ",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://contacts.wmo.int/_api/eve_memberses?$select=eve_name,eve_iso3code,eve_dateofwmomembership,eve_wmo_membership,eve_wmoconventionarticleno&$filter=(statecode%20eq%200%20and%20(eve_wmo_membership%20eq%201%20or%20eve_wmo_membership%20eq%202))&$count=true"
+ },
+ "untourism": {
+  "nameBn": "জাতিসংঘ পর্যটন সংস্থা",
+  "nameEn": "UN Tourism (formerly UNWTO)",
+  "group": "un",
+  "groupBn": "জাতিসংঘ",
+  "newest": [
+   "KNA"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"সেন্ট কিট্স ও নেভিস\",\"at\":[-62.758,17.337],\"halo\":true},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   -62.853,
+   17.217,
+   92.643,
+   26.624
+  ],
+  "countText": null,
+  "newestText": "সেন্ট কিট্স ও নেভিস",
+  "dateText": "২০২৬",
+  "hqText": "মাদ্রিদ",
+  "bdText": "হ্যাঁ",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.untourism.int/member-states"
+ },
+ "opcw": {
+  "nameBn": "রাসায়নিক অস্ত্র নিষিদ্ধকরণ সংস্থা (ওপিসিডব্লিউ)",
+  "nameEn": "Organisation for the Prohibition of Chemical Weapons",
+  "group": "un",
+  "groupBn": "জাতিসংঘ",
+  "newest": [
+   "PSE"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"ফিলিস্তিন\",\"at\":[35.291,32.047]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   34.2,
+   20.739,
+   92.643,
+   33.24
+  ],
+  "countText": "১৯৩",
+  "newestText": "ফিলিস্তিন",
+  "orderText": "১৯৩তম",
+  "dateText": "১৬ জুন ২০১৮",
+  "hqText": "দ্য হেগ",
+  "bdText": "হ্যাঁ",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.opcw.org/about-us/member-states/state-palestine"
+ },
+ "ctbto": {
+  "nameBn": "সমন্বিত পারমাণবিক পরীক্ষা নিষিদ্ধকরণ চুক্তি সংস্থা (সিটিবিটিও)",
+  "nameEn": "Preparatory Commission for the Comprehensive Nuclear-Test-Ban Treaty Organization",
+  "group": "un",
+  "groupBn": "জাতিসংঘ",
+  "newest": [
+   "TON"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"টোঙ্গা\",\"at\":[-175.163,-21.21],\"halo\":true},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   -175.365,
+   -21.268,
+   92.643,
+   26.624
+  ],
+  "countText": "১৮৮",
+  "newestText": "টোঙ্গা",
+  "dateText": "৭ জুলাই ২০২৬",
+  "hqText": "ভিয়েনা",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://treaties.un.org/Pages/ViewDetails.aspx?src=TREATY&mtdsg_no=XXVI-4&chapter=26&clang=_en",
+  "sourceLabel": "সূত্র: UN Treaty Collection"
+ },
+ "saarc": {
+  "nameBn": "সার্ক",
+  "nameEn": "South Asian Association for Regional Cooperation",
+  "group": "regional",
+  "groupBn": "আঞ্চলিক",
+  "newest": [
+   "AFG"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"আফগানিস্তান\",\"at\":[66.497,34.164]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   60.493,
+   20.739,
+   92.643,
+   38.474
+  ],
+  "countText": "৮",
+  "newestText": "আফগানিস্তান",
+  "dateText": "এপ্রিল ২০০৭",
+  "hqText": "কাঠমান্ডু",
+  "bdText": "হ্যাঁ",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.saarc-sec.org/medias/FourteenthSaarcSummitNewDe_2026_05_11_04_59_29.pdf"
+ },
+ "asean": {
+  "nameBn": "আসিয়ান",
+  "nameEn": "Association of Southeast Asian Nations",
+  "group": "regional",
+  "groupBn": "আঞ্চলিক",
+  "newest": [
+   "TLS"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"পূর্ব তিমুর\",\"at\":[125.855,-8.804]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   88.022,
+   -9.486,
+   127.313,
+   26.624
+  ],
+  "countText": "১১",
+  "newestText": "পূর্ব তিমুর",
+  "orderText": "১১তম",
+  "dateText": "২৬ অক্টোবর ২০২৫",
+  "hqText": "জাকার্তা",
+  "bdText": "না",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://asean.org/member-states/"
+ },
+ "oic": {
+  "nameBn": "ইসলামি সহযোগিতা সংস্থা (ওআইসি)",
+  "nameEn": "Organisation of Islamic Cooperation",
+  "group": "regional",
+  "groupBn": "আঞ্চলিক",
+  "newest": [
+   "CIV"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"কোত দিভোয়ার\",\"at\":[-5.569,7.491]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   -8.619,
+   4.353,
+   92.643,
+   26.624
+  ],
+  "countText": "৫৭",
+  "newestText": "কোত দিভোয়ার",
+  "orderText": "৫৭তম",
+  "dateText": "২০০১",
+  "hqText": "জেদ্দা",
+  "bdText": "হ্যাঁ",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.oic-oci.org/en/members"
+ },
+ "commonwealth": {
+  "nameBn": "কমনওয়েলথ",
+  "nameEn": "Commonwealth of Nations",
+  "group": "regional",
+  "groupBn": "আঞ্চলিক",
+  "newest": [
+   "GAB",
+   "TGO"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"গ্যাবন\",\"at\":[11.836,-0.438]},{\"kind\":\"newest\",\"text\":\"টোগো\",\"at\":[1.058,8.807]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   -0.166,
+   -3.937,
+   92.643,
+   26.624
+  ],
+  "countText": "৫৬",
+  "newestText": "গ্যাবন, টোগো",
+  "dateText": "জুন ২০২২",
+  "hqText": "লন্ডন",
+  "bdText": "হ্যাঁ",
+  "marks": "[\"যৌথভাবে\"]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://thecommonwealth.org/our-member-countries/gabon"
+ },
+ "sco": {
+  "nameBn": "সাংহাই সহযোগিতা সংস্থা",
+  "nameEn": "Shanghai Cooperation Organisation",
+  "group": "regional",
+  "groupBn": "আঞ্চলিক",
+  "newest": [
+   "BLR"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"বেলারুশ\",\"at\":[28.418,53.822]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   23.166,
+   20.739,
+   92.643,
+   56.142
+  ],
+  "countText": "১০",
+  "newestText": "বেলারুশ",
+  "dateText": "২০২৪",
+  "hqText": "বেইজিং",
+  "bdText": "না",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://eng.sectsco.org/20170110/192193.html"
+ },
+ "cica": {
+  "nameBn": "সিকা",
+  "nameEn": "Conference on Interaction and Confidence Building Measures in Asia",
+  "group": "regional",
+  "groupBn": "আঞ্চলিক",
+  "newest": [
+   "KWT"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"কুয়েত\",\"at\":[47.314,29.414]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   46.532,
+   20.739,
+   92.643,
+   30.003
+  ],
+  "countText": "২৮",
+  "newestText": "কুয়েত",
+  "dateText": "২০২২",
+  "hqText": "আস্তানা",
+  "bdText": "হ্যাঁ",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.s-cica.org/index.php?view=page&t=summit-documents"
+ },
+ "colombo-plan": {
+  "nameBn": "কলম্বো প্ল্যান",
+  "nameEn": "Colombo Plan",
+  "group": "regional",
+  "groupBn": "আঞ্চলিক",
+  "newest": [
+   "CHL"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"চিলি\",\"at\":[-72.319,-38.152]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   -75.708,
+   -53.886,
+   92.643,
+   26.624
+  ],
+  "countText": "২৬",
+  "newestText": "চিলি",
+  "dateText": "২০২১",
+  "hqText": "কলম্বো",
+  "bdText": "হ্যাঁ",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://colombo-plan.org/member-countries/"
+ },
+ "iora": {
+  "nameBn": "ভারত মহাসাগরীয় রিম অ্যাসোসিয়েশন (আইওরা)",
+  "nameEn": "Indian Ocean Rim Association",
+  "group": "regional",
+  "groupBn": "আঞ্চলিক",
+  "newest": [
+   "FRA"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"ফ্রান্স\",\"at\":[2.552,46.696]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   -4.768,
+   20.739,
+   92.643,
+   51.088
+  ],
+  "countText": "২৩",
+  "newestText": "ফ্রান্স",
+  "dateText": "২০২০",
+  "hqText": "এবেনে",
+  "bdText": "হ্যাঁ",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.iora.int/iora-milestones-and-achievements"
+ },
+ "au": {
+  "nameBn": "আফ্রিকান ইউনিয়ন",
+  "nameEn": "African Union",
+  "group": "regional",
+  "groupBn": "আঞ্চলিক",
+  "newest": [
+   "MAR"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"মরক্কো\",\"at\":[-7.187,31.651]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   -13.178,
+   20.739,
+   92.643,
+   35.925
+  ],
+  "countText": "৫৫",
+  "newestText": "মরক্কো",
+  "dateText": "৩১ জানুয়ারি ২০১৭",
+  "firstTimeText": "দক্ষিণ সুদান — ২৭ জুলাই ২০১১",
+  "hqText": "আদ্দিস আবাবা",
+  "bdText": "না",
+  "marks": "[\"পুনরায় যোগদান\"]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://au.int/en/member_states/countryprofiles2"
+ },
+ "eu": {
+  "nameBn": "ইউরোপীয় ইউনিয়ন",
+  "nameEn": "European Union",
+  "group": "regional",
+  "groupBn": "আঞ্চলিক",
+  "newest": [
+   "HRV"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"ক্রোয়েশিয়া\",\"at\":[16.372,45.806]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   13.507,
+   20.739,
+   92.643,
+   46.502
+  ],
+  "countText": "২৭",
+  "newestText": "ক্রোয়েশিয়া",
+  "dateText": "১ জুলাই ২০১৩",
+  "hqText": "ব্রাসেলস",
+  "bdText": "না",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://european-union.europa.eu/principles-countries-history/eu-countries/croatia_en"
+ },
+ "nato": {
+  "nameBn": "ন্যাটো",
+  "nameEn": "North Atlantic Treaty Organization",
+  "group": "regional",
+  "groupBn": "আঞ্চলিক",
+  "newest": [
+   "SWE"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"সুইডেন\",\"at\":[19.017,65.859]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   11.115,
+   20.739,
+   92.643,
+   69.036
+  ],
+  "countText": "৩২",
+  "newestText": "সুইডেন",
+  "orderText": "৩২তম",
+  "dateText": "৭ মার্চ ২০২৪",
+  "hqText": "ব্রাসেলস",
+  "bdText": "না",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.nato.int/en/about-us/organization/nato-member-countries"
+ },
+ "osce": {
+  "nameBn": "ইউরোপীয় নিরাপত্তা ও সহযোগিতা সংস্থা (ওএসসিই)",
+  "nameEn": "Organization for Security and Co-operation in Europe",
+  "group": "regional",
+  "groupBn": "আঞ্চলিক",
+  "newest": [
+   "MNG"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"মঙ্গোলিয়া\",\"at\":[104.15,45.997]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   87.816,
+   20.739,
+   119.854,
+   52.129
+  ],
+  "countText": "৫৭",
+  "newestText": "মঙ্গোলিয়া",
+  "dateText": "২০১২",
+  "hqText": "ভিয়েনা",
+  "bdText": "না",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.osce.org/country/mongolia"
+ },
+ "oas": {
+  "nameBn": "আমেরিকান রাষ্ট্রসমূহের সংস্থা (ওএএস)",
+  "nameEn": "Organization of American States",
+  "group": "regional",
+  "groupBn": "আঞ্চলিক",
+  "newest": [
+   "BLZ",
+   "GUY"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"বেলিজ\",\"at\":[-88.713,17.202]},{\"kind\":\"newest\",\"text\":\"গায়ানা\",\"at\":[-58.943,5.124]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   -89.237,
+   1.187,
+   92.643,
+   26.624
+  ],
+  "newestText": "বেলিজ, গায়ানা",
+  "dateText": "১৯৯১",
+  "hqText": "ওয়াশিংটন ডি.সি.",
+  "marks": "[\"যৌথভাবে\"]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.oas.org/en/sla/dil/inter_american_treaties_A-41_charter_OAS_signatories.asp",
+  "sourceLabel": "সূত্র: OAS General Secretariat, Department of International Law"
+ },
+ "ecowas": {
+  "nameBn": "ইকোয়াস",
+  "nameEn": "Economic Community of West African States",
+  "group": "regional",
+  "groupBn": "আঞ্চলিক",
+  "newest": [
+   "CPV"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"কাবু ভের্দি\",\"at\":[-23.639,15.075],\"halo\":true},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   -23.78,
+   14.968,
+   92.643,
+   26.624
+  ],
+  "countText": "১২",
+  "newestText": "কাবু ভের্দি",
+  "dateText": "১৯৭৭",
+  "hqText": "আবুজা",
+  "bdText": "না",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.ecowas.int/creation-history/?lang=en"
+ },
+ "d8": {
+  "nameBn": "ডি-৮",
+  "nameEn": "D-8 Organization for Economic Cooperation",
+  "group": "economic",
+  "groupBn": "অর্থনৈতিক",
+  "newest": [
+   "AZE"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"আজারবাইজান\",\"at\":[47.211,40.402]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   45.002,
+   20.739,
+   92.643,
+   41.89
+  ],
+  "countText": "৯",
+  "newestText": "আজারবাইজান",
+  "orderText": "৯ম",
+  "dateText": "২০২৫",
+  "hqText": "ইস্তাম্বুল",
+  "bdText": "হ্যাঁ",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://developing8.org/about-d-8/brief-history-of-d-8/"
+ },
+ "imf": {
+  "nameBn": "আন্তর্জাতিক মুদ্রা তহবিল (আইএমএফ)",
+  "nameEn": "International Monetary Fund",
+  "group": "economic",
+  "groupBn": "অর্থনৈতিক",
+  "newest": [
+   "LIE"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"লিশটেনস্টাইন\",\"at\":[9.559,47.111],\"halo\":true},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   9.477,
+   20.739,
+   92.643,
+   47.263
+  ],
+  "countText": "১৯১",
+  "newestText": "লিশটেনস্টাইন",
+  "dateText": "২১ অক্টোবর ২০২৪",
+  "hqText": "ওয়াশিংটন ডি.সি.",
+  "bdText": "হ্যাঁ",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.imf.org/external/np/sec/memdir/memdate.htm"
+ },
+ "world-bank-ibrd": {
+  "nameBn": "বিশ্বব্যাংক",
+  "nameEn": "World Bank (International Bank for Reconstruction and Development)",
+  "group": "economic",
+  "groupBn": "অর্থনৈতিক",
+  "newest": [
+   "NRU"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"নাউরু\",\"at\":[166.933,-0.52],\"halo\":true},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   88.022,
+   -0.552,
+   166.939,
+   26.624
+  ],
+  "countText": "১৮৯",
+  "newestText": "নাউরু",
+  "dateText": "১২ এপ্রিল ২০১৬",
+  "hqText": "ওয়াশিংটন ডি.সি.",
+  "bdText": "হ্যাঁ",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.worldbank.org/en/about/leadership/members"
+ },
+ "wto": {
+  "nameBn": "বিশ্ব বাণিজ্য সংস্থা",
+  "nameEn": "World Trade Organization",
+  "group": "economic",
+  "groupBn": "অর্থনৈতিক",
+  "newest": [
+   "TLS"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"পূর্ব তিমুর\",\"at\":[125.855,-8.804]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   88.022,
+   -9.486,
+   127.313,
+   26.624
+  ],
+  "newestText": "পূর্ব তিমুর",
+  "dateText": "৩০ আগস্ট ২০২৪",
+  "hqText": "জেনেভা",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://timor-leste.gov.tl/?p=41857&lang=en",
+  "sourceLabel": "সূত্র: Government of Timor-Leste"
+ },
+ "adb": {
+  "nameBn": "এশীয় উন্নয়ন ব্যাংক (এডিবি)",
+  "nameEn": "Asian Development Bank",
+  "group": "economic",
+  "groupBn": "অর্থনৈতিক",
+  "newest": [],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   -170,
+   -58,
+   180,
+   80
+  ],
+  "countText": "৬৯",
+  "newestText": "ইসরায়েল",
+  "orderText": "৬৯তম",
+  "dateText": "২৭ সেপ্টেম্বর ২০২৪",
+  "hqText": "ম্যানিলা",
+  "bdText": "হ্যাঁ",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.adb.org/news/israel-joins-adb-69th-member"
+ },
+ "aiib": {
+  "nameBn": "এশীয় অবকাঠামো বিনিয়োগ ব্যাংক (এআইআইবি)",
+  "nameEn": "Asian Infrastructure Investment Bank",
+  "group": "economic",
+  "groupBn": "অর্থনৈতিক",
+  "newest": [
+   "SEN"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"সেনেগাল\",\"at\":[-14.779,15.138]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   -17.536,
+   12.306,
+   92.643,
+   26.624
+  ],
+  "countText": "১০৬",
+  "newestText": "সেনেগাল",
+  "orderText": "১০৬তম",
+  "dateText": "২২ ডিসেম্বর ২০২৫",
+  "hqText": "বেইজিং",
+  "bdText": "হ্যাঁ",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.aiib.org/en/about-aiib/governance/members-of-bank/.content/voting-power.js"
+ },
+ "ndb": {
+  "nameBn": "নিউ ডেভেলপমেন্ট ব্যাংক (ব্রিকস ব্যাংক)",
+  "nameEn": "New Development Bank",
+  "group": "economic",
+  "groupBn": "অর্থনৈতিক",
+  "newest": [
+   "UZB"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"উজবেকিস্তান\",\"at\":[64.005,41.694]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   55.976,
+   20.739,
+   92.643,
+   45.559
+  ],
+  "countText": "১০",
+  "newestText": "উজবেকিস্তান",
+  "orderText": "১০ম",
+  "dateText": "৫ জুন ২০২৬",
+  "hqText": "সাংহাই",
+  "bdText": "হ্যাঁ",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.ndb.int/about-ndb/members/"
+ },
+ "ebrd": {
+  "nameBn": "ইউরোপীয় পুনর্গঠন ও উন্নয়ন ব্যাংক",
+  "nameEn": "European Bank for Reconstruction and Development",
+  "group": "economic",
+  "groupBn": "অর্থনৈতিক",
+  "newest": [
+   "KEN",
+   "SEN"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"কেনিয়া\",\"at\":[37.908,0.549]},{\"kind\":\"newest\",\"text\":\"সেনেগাল\",\"at\":[-14.779,15.138]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   -17.536,
+   -4.678,
+   92.643,
+   26.624
+  ],
+  "countText": "৭৭",
+  "newestText": "কেনিয়া, সেনেগাল",
+  "dateText": "১৫ জুলাই ২০২৫",
+  "hqText": "লন্ডন",
+  "bdText": "না",
+  "marks": "[\"যৌথভাবে\"]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.ebrd.com/home/who-we-are/our-organisation/shareholders.html"
+ },
+ "oapec": {
+  "nameBn": "ওয়াপেক",
+  "nameEn": "Organization of Arab Petroleum Exporting Countries",
+  "group": "economic",
+  "groupBn": "অর্থনৈতিক",
+  "newest": [
+   "TUN"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"তিউনিসিয়া\",\"at\":[9.008,33.687]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   7.485,
+   20.739,
+   92.643,
+   37.345
+  ],
+  "countText": "১১",
+  "newestText": "তিউনিসিয়া",
+  "dateText": "১৯৮২",
+  "hqText": "কুয়েত সিটি",
+  "bdText": "না",
+  "marks": "[\"সদস্যপদ স্থগিত\"]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://oapecorg.org/Home/About-Us/History"
+ },
+ "apec": {
+  "nameBn": "অ্যাপেক",
+  "nameEn": "Asia-Pacific Economic Cooperation",
+  "group": "economic",
+  "groupBn": "অর্থনৈতিক",
+  "newest": [
+   "PER",
+   "RUS",
+   "VNM"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"পেরু\",\"at\":[-72.9,-12.977]},{\"kind\":\"newest\",\"text\":\"রাশিয়া\",\"at\":[44.686,58.249]},{\"kind\":\"newest\",\"text\":\"ভিয়েতনাম\",\"at\":[105.387,21.715]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   -81.338,
+   -18.338,
+   180,
+   77.736
+  ],
+  "countText": "২১",
+  "newestText": "পেরু, রাশিয়া, ভিয়েতনাম",
+  "dateText": "নভেম্বর ১৯৯৮",
+  "hqText": "সিঙ্গাপুর",
+  "bdText": "না",
+  "marks": "[\"যৌথভাবে\"]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.apec.org/who-we-are/our-members"
+ },
+ "g7": {
+  "nameBn": "জি-৭",
+  "nameEn": "Group of Seven",
+  "group": "economic",
+  "groupBn": "অর্থনৈতিক",
+  "newest": [
+   "CAN"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"কানাডা\",\"at\":[-101.911,60.324]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   -141.006,
+   20.739,
+   92.643,
+   71.99
+  ],
+  "countText": "৭",
+  "newestText": "কানাডা",
+  "dateText": "১৯৭৬",
+  "bdText": "না",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.international.gc.ca/world-monde/international_relations-relations_internationales/g7/index.aspx?lang=eng",
+  "sourceLabel": "সূত্র: Global Affairs Canada"
+ },
+ "iea": {
+  "nameBn": "আন্তর্জাতিক জ্বালানি সংস্থা (আইইএ)",
+  "nameEn": "International Energy Agency",
+  "group": "economic",
+  "groupBn": "অর্থনৈতিক",
+  "newest": [
+   "LVA"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"লাতভিয়া\",\"at\":[25.459,57.067]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   21.053,
+   20.739,
+   92.643,
+   58.073
+  ],
+  "countText": "৩২",
+  "newestText": "লাতভিয়া",
+  "orderText": "৩২তম",
+  "dateText": "২০২৪",
+  "hqText": "প্যারিস",
+  "bdText": "না",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.iea.org/about/history"
+ },
+ "esa": {
+  "nameBn": "ইউরোপীয় মহাকাশ সংস্থা",
+  "nameEn": "European Space Agency",
+  "group": "other",
+  "groupBn": "অন্যান্য",
+  "newest": [
+   "SVN"
+  ],
+  "bd": [
+   "BGD"
+  ],
+  "pins": "[{\"kind\":\"newest\",\"text\":\"স্লোভেনিয়া\",\"at\":[14.915,46.061]},{\"kind\":\"bd\",\"text\":\"বাংলাদেশ\",\"at\":[89.685,24.215]}]",
+  "frame": [
+   13.365,
+   20.739,
+   92.643,
+   46.863
+  ],
+  "countText": "২৩",
+  "newestText": "স্লোভেনিয়া",
+  "orderText": "২৩তম",
+  "dateText": "১ জানুয়ারি ২০২৫",
+  "hqText": "প্যারিস",
+  "bdText": "না",
+  "marks": "[]",
+  "verified": "৯ অক্টোবর ২০২৬",
+  "url": "https://www.esa.int/About_Us/50_years_of_ESA/Key_dates_1960-2026"
+ }
+}

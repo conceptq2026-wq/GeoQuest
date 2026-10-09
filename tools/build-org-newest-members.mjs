@@ -99,9 +99,11 @@ for (const [id, o] of built) {
     bd: ['BGD'],
     pins: JSON.stringify(pins),
     frame,
-    countText: o.count?.n ? bn(o.count.n) : null,
+    // The count: as stated; null where the organisation's own figures disagree (UN Tourism: unverified, pending);
+    // the order: only where the seed states one (absent: not stated, a tie, a rejoin).
+    ...(o.count?.n ? { countText: bn(o.count.n) } : o.count?.held ? { countText: null } : {}),
     newestText: members.map((m) => m.nameBn).join(', '),
-    orderText: o.order?.n && !n.rejoin && members.length === 1 ? ordinal(o.order.n) : null,
+    ...(o.order?.n && !n.rejoin && members.length === 1 ? { orderText: ordinal(o.order.n) } : {}),
     dateText: [dateBn(n.date), accession].filter(Boolean).join('\n'),
     ...(ft ? { firstTimeText: `${ft.members.map((m) => nameOf(m.iso3)).join(', ')} — ${dateBn(ft.date)}` } : {}),
     ...(o.hqCityBn ? { hqText: t(o.hqCityBn) } : {}),
@@ -152,7 +154,7 @@ const descriptor = {
         bd: { type: 'refs', to: 'countries', display: false },
         pins: { type: 'text', display: false },
         frame: { type: 'bbox', required: true },
-        countText: { type: 'text', display: false },
+        countText: { type: 'text', display: false, verifiable: true },
         newestText: { type: 'text', required: true, display: false },
         orderText: { type: 'text', display: false },
         dateText: { type: 'text', required: true },
