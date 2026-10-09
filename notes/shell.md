@@ -327,3 +327,11 @@ are deliberately left out of the per-map registry for exactly this reason.
 
 One live WebGL context, ever. An inline lesson embed is a static thumbnail with
 tap-to-open, never a live map.
+
+- **`newest: { records, tabs: { map, list }, groups, words }`** (opt-in, ORGN-3, 2026-10-09; org-newest-members):
+  `docs/shell/newest.js`, `newest.css`. Over global-indices' page (it loads `indices.css` and sets `has-indices`): a
+  legend inside the map's card, the pins (global-indices' `makePins` and `placePins`, now exported from
+  `indices.js`; a pin may carry `halo: true`), three stat tiles (a long name: two lines, then smaller, never under
+  14 px), the marks, the foot, and a list tab with a search field, group chips and one row per record. Nothing
+  existing did these: the indices module's tiles, list and words are a ranking's. global-indices is unchanged
+  (`tools/check.mjs global-indices` at four widths; `--all` stamp-only).

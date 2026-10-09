@@ -112,3 +112,29 @@ For the 32 organisations ORGN-1 could not verify, PCA, IPU, OECD, OPEC and AfDB,
   US's intention to withdraw «with a stated effective date of 22 January 2026», which «is pending consideration by
   WHO's governing bodies». The stated date has passed; WHO still calls it pending and still lists the US, so the US is
   not shown as no longer a member.
+
+## ORGN-3 (2026-10-09): drawn, on the local preview only
+
+- `tools/build-org-newest-members.mjs <out>` builds the map into the preview's copy (`tools/preview.mjs`,
+  `tools/check.mjs`); nothing goes to `docs/maps/` or the registry while the map is in `tools/wip.json`. It reads the
+  seed, its pins' URLs, the shared countries file, Natural Earth's pinned admin-0 file (Bengali names, label points)
+  and approved strings of global-indices (months, «সর্বশেষ যাচাই», «সূত্র», «টীকা») and org-members (the picker's
+  prompt, the borders note in ⓘ). Every string shown is an approved one; no new string.
+- 40 organisations (held ones not shown), in the picker by group (জাতিসংঘ, আঞ্চলিক, অর্থনৈতিক, অন্যান্য), then the seed's
+  order; it opens on the map tab with জাতিসংঘ. Two view tabs, «ম্যাপ» and «তালিকা»; ⓘ under the picker row.
+- The map: the shared countries file; the newest member(s) #2563EB, Bangladesh #D55E00, the rest light grey; no
+  country's name (`hideCountryLabels`, as global-indices), seas keep theirs; the picker frames the newest member(s)
+  and Bangladesh (`fitBounds` on each record's `frame`; the whole world where no newest member is drawn, as ADB's).
+- Pins: global-indices' (exported from `docs/shell/indices.js`), one per newest member up to three, a halo round a
+  shape under 2,000 km² as drawn (11 organisations), Bangladesh's vermillion «বাংলাদেশ», which opens the card; a
+  newest member with no shape (ADB's Israel) is in the card and the list only.
+- The card: the tiles «মোট সদস্য», «সর্বশেষ সদস্য», «যোগদানের ক্রম» (the order only where the seed states one; none for a
+  tie or a rejoin); a long name wraps to two lines, then shrinks to 14 px — at 320 px FAO's and APEC's three-way
+  ties take a third line at 14 px. The marks (যৌথভাবে, পুনরায় যোগদান, সদস্যপদ স্থগিত, the pending withdrawals) under the
+  tiles; the rows «যোগদানের তারিখ» (with «দলিল জমা: …» where it differs), «প্রথমবার যোগ দেওয়া সর্বশেষ সদস্য», «সদর দপ্তর»,
+  «বাংলাদেশ সদস্য?»; the foot «সর্বশেষ যাচাই» and «সূত্র ↗» («সূত্র: {outlet}» for a secondary-tier fact).
+- The list tab: «সংস্থা খুঁজুন», the chips সব/জাতিসংঘ/আঞ্চলিক/অর্থনৈতিক/অন্যান্য (scrolling sideways at 320 px), a row
+  per organisation (its name, the newest member with a blue dot, the order, the group), «মোট {n}টি সংস্থা»; a row opens
+  its organisation on the map tab.
+- Two names are Natural Earth's NAME_BN as the basemap has them: the State of Palestine «ফিলিস্তিন অঞ্চল» (Bangladesh's
+  view), the Federated States of Micronesia «মাইক্রোনেশিয়া যুক্তরাজ্য» (for the user's review).

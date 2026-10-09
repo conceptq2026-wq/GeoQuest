@@ -638,6 +638,7 @@ async function useItem(browser, size, entry, base, origin, dir) {
       if (await page.evaluate(`Boolean(window.__shell?.descriptor?.tabs?.views)`)) await viewTabs(page, shoot, summary, fail);
       if (await page.evaluate(`Boolean(window.__shell?.descriptor?.minTextSize)`)) await textFloor(page, summary, fail);
       if (await page.evaluate(`Boolean(window.__shell?.descriptor?.indices)`)) await indicesSteps(page, shoot, summary, fail);
+      if (await page.evaluate(`Boolean(window.__shell?.descriptor?.newest)`)) await newestSteps(page, shoot, summary, fail);
     }
   }
 
@@ -1029,6 +1030,122 @@ async function indicesSteps(page, shoot, summary, fail) {
   if (bad.taps.size) fail(`indices: tap targets under 44 px — ${[...bad.taps].slice(0, 4).join(', ')}`);
   if (bad.sideways > 0) fail(`indices: sideways scroll ${bad.sideways} px`);
   summary.push(`indices: ${good}/${options.length} rankings (card, stats, pins, shading); ${pinsSeen} pins, ${clearRankings}/${options.length} rankings with no pin overlapping or outside the map; Bangladesh's pin opens the card: ${bdOpens}; ${cols} column(s); «বাংলাদেশ» ${bd.rows.length} rows, ${chips} chips, ${opened} open their ranking; text ≥ 14 px, taps ≥ 44 px, sideways ${bad.sideways} px`);
+}
+
+async function newestSteps(page, shoot, summary, fail) {
+  // The org-newest-members page (ORGN-3): every organisation's card and pins on the map tab; the list tab's rows,
+  // search and chips; text 14 px, taps 44 px, no sideways scroll but the chips' own row.
+  const LAYOUT = `(() => {
+    const vis = (e) => e.getClientRects().length && getComputedStyle(e).visibility !== 'hidden' && !e.closest('[hidden]');
+    const small = [...document.querySelectorAll('body *')].filter((e) => vis(e) && !e.closest('.maplibregl-ctrl-attrib, select, .step-btn, .maplibregl-canvas-container') && [...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim()) && parseFloat(getComputedStyle(e).fontSize) < 14).map((e) => '«' + e.textContent.trim().slice(0, 16) + '» ' + getComputedStyle(e).fontSize);
+    const taps = [...document.querySelectorAll('#prevRecord, #nextRecord, #recordPicker, .map-tab, .on-row, .on-chip, .on-search, .ix-foot a, .ix-pin-bd .ix-pin-text, .maplibregl-ctrl-attrib-button')].filter(vis).map((e) => [e.id || e.className, Math.min(e.getBoundingClientRect().width, e.getBoundingClientRect().height + (e.matches('.ix-pin-text') ? 16 : 0))]).filter(([, d]) => d < 44).map(([k, d]) => k + ' ' + Math.round(d));
+    const doc = document.scrollingElement;
+    const tryScroll = (e) => { const was = e.scrollLeft; e.scrollLeft = 60; const moved = e.scrollLeft; e.scrollLeft = was; return moved; };
+    const sideways = Math.max(tryScroll(doc), ...[...document.querySelectorAll('.map-page, .map-shell, .on-list, .info-sheet-body')].map(tryScroll));
+    const m = document.getElementById('map').getBoundingClientRect(), c = document.getElementById('infoSheet').getBoundingClientRect();
+    return { small, taps, sideways, cols: !document.getElementById('infoSheet').hidden && m.width > 0 && c.left >= m.right - 1 && Math.abs(c.top - m.top) < 40 ? 2 : 1 };
+  })()`;
+  const SHEET = ['un', 'asean', 'fao', 'unesco', 'adb', 'itu'];
+  const tab = async (name) => { const at = await page.evaluate(box(`.map-tab[data-tab="${name}"]`)); if (at) { await page.click(...at); await settle(page, 10000); } return Boolean(at); };
+  await tab('map');
+  const bad = { small: new Set(), taps: new Set(), sideways: 0 };
+  const note = (l) => { l.small.forEach((x) => bad.small.add(x)); l.taps.forEach((x) => bad.taps.add(x)); bad.sideways = Math.max(bad.sideways, l.sideways); };
+  const options = await page.evaluate(`[...document.getElementById('recordPicker').options].filter((o) => o.value).map((o) => [o.value, o.textContent])`);
+  let good = 0, cols = 0, pinsSeen = 0, halos = 0, clear = 0;
+  const floorTiles = [];
+  for (const [key, label] of options) {
+    await page.evaluate(`(() => { const s = document.getElementById('recordPicker'); s.value = ${JSON.stringify(key)}; s.dispatchEvent(new Event('change', { bubbles: true })); })()`);
+    await settle(page, 10000);
+    const s = await page.evaluate(`(() => {
+      const r = window.__shell.records.orgs[${JSON.stringify(key)}];
+      const pins = [...document.querySelectorAll('.ix-pin')].filter((p) => p.closest('.maplibregl-marker'));
+      const want = JSON.parse(r.pins ?? '[]');
+      const map = document.getElementById('map').getBoundingClientRect();
+      const boxes = pins.map((p) => p.querySelector('.ix-pin-text').getBoundingClientRect());
+      const outside = boxes.filter((b) => b.left < map.left || b.right > map.right || b.top < map.top || b.bottom > map.bottom).length;
+      let overlaps = 0;
+      for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++) { const a = boxes[i], b = boxes[j]; if (a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom) overlaps++; }
+      const tile = document.querySelector('.on-stat-newest strong');
+      return { title: document.getElementById('infoTitle').textContent, stats: document.querySelectorAll('.on-stats .ix-stat').length,
+        pins: pins.length, want: want.map((p) => p.text).join(' | '), texts: pins.map((p) => p.querySelector('.ix-pin-text').textContent).join(' | '),
+        halos: pins.filter((p) => p.classList.contains('ix-pin-halo')).length, wantHalos: want.filter((p) => p.halo).length, bd: pins.filter((p) => p.classList.contains('ix-pin-bd')).length,
+        outside, overlaps, legend: Boolean(document.querySelector('.on-legend')?.getClientRects().length), foot: Boolean(document.querySelector('.ix-foot a')),
+        marks: document.querySelectorAll('.on-mark').length, wantMarks: JSON.parse(r.marks ?? '[]').length,
+        // The long-name rule: two lines, then smaller, never under 14 px; at 14 px a third line is allowed (a three-way tie at 320 px).
+        nameLines: tile ? Math.round(tile.scrollHeight / (parseFloat(getComputedStyle(tile).lineHeight) || 26)) : 0, nameSize: tile ? parseFloat(getComputedStyle(tile).fontSize) : 0,
+        nameFits: tile ? parseFloat(getComputedStyle(tile).fontSize) >= 14 && (tile.scrollHeight <= (parseFloat(getComputedStyle(tile).lineHeight) || 26) * 2 + 1 || parseFloat(getComputedStyle(tile).fontSize) === 14) : false };
+    })()`);
+    const problems = [];
+    if (s.title !== label) problems.push(`card «${s.title}»`);
+    if (s.stats !== 3) problems.push(`${s.stats} tiles`);
+    if (s.texts !== s.want || s.bd !== 1 || s.halos !== s.wantHalos) problems.push(`pins «${s.texts}», not «${s.want}» (halos ${s.halos}/${s.wantHalos})`);
+    if (s.outside || s.overlaps) problems.push(`${s.outside} pin label(s) outside the map, ${s.overlaps} overlapping`);
+    if (!s.legend || !s.foot || s.marks !== s.wantMarks || !s.nameFits) problems.push(`legend ${s.legend}, «সূত্র» ${s.foot}, marks ${s.marks}/${s.wantMarks}, the newest member's tile fits ${s.nameFits}`);
+    if (problems.length) fail(`newest: ${label} — ${problems.join('; ')}`);
+    else good++;
+    note(await page.evaluate(LAYOUT));
+    cols = Math.max(cols, (await page.evaluate(LAYOUT)).cols);
+    pinsSeen += s.pins;
+    halos += s.halos;
+    if (!s.outside && !s.overlaps) clear++;
+    if (s.nameLines > 2) floorTiles.push(`${key} (${s.nameLines} lines at ${s.nameSize} px)`);
+    if (SHEET.includes(key)) await shoot('sheet', label);
+  }
+  // Bangladesh's pin opens the card.
+  const bdAt = await page.evaluate(`(() => { const t = document.querySelector('.ix-pin-bd .ix-pin-text'); if (!t) return null; const q = t.getBoundingClientRect(); return [q.left + q.width / 2, q.top + q.height / 2]; })()`);
+  let bdOpens = false;
+  if (bdAt) {
+    await page.click(...bdAt);
+    await settle(page, 10000);
+    bdOpens = await page.evaluate(`(() => { const c = document.getElementById('infoSheet'); const q = c.getBoundingClientRect(); return !c.hidden && q.top < innerHeight && q.bottom > 0; })()`);
+  }
+  if (!bdOpens) fail("newest: Bangladesh's pin does not open the card");
+  // The list tab: every row opens its organisation on the map tab.
+  if (!(await tab('list'))) { fail('newest: no list tab'); return; }
+  const L = await page.evaluate(`({ rows: [...document.querySelectorAll('.on-row')].map((r) => r.dataset.key), total: document.querySelector('.on-total')?.textContent, mapHidden: !document.getElementById('map').getClientRects().length })`);
+  note(await page.evaluate(LAYOUT));
+  await shoot('sheet', 'তালিকা');
+  if (L.rows.length !== options.length || !L.mapHidden) fail(`newest: the list has ${L.rows.length} rows for ${options.length} organisations (map hidden ${L.mapHidden})`);
+  let opened = 0;
+  for (const key of L.rows) {
+    const at = await page.evaluate(`(() => { const r = document.querySelector('.on-row[data-key="${key}"]'); if (!r) return null; r.scrollIntoView({ block: 'center' }); const q = r.getBoundingClientRect(); return [q.left + q.width / 2, q.top + q.height / 2]; })()`);
+    if (!at) { fail(`newest: row ${key} gone`); continue; }
+    await page.click(...at);
+    await settle(page, 10000);
+    const now = await page.evaluate(`[document.getElementById('recordPicker').value, Boolean(document.getElementById('map').getClientRects().length), document.getElementById('infoTitle').textContent]`);
+    const want = options.find(([k]) => k === key)?.[1];
+    if (now[0] === key && now[1] && now[2] === want) opened++;
+    else fail(`newest: the row ${key} opened ${now[0]} «${now[2]}» (map shown ${now[1]})`);
+    await tab('list');
+  }
+  // Search and chips.
+  const probe = await page.evaluate(`(async () => {
+    const out = {};
+    const input = document.querySelector('.on-search');
+    const visible = () => [...document.querySelectorAll('.on-row')].filter((r) => !r.hidden);
+    const word = window.__shell.records.orgs.asean.nameBn;
+    input.value = word; input.dispatchEvent(new Event('input', { bubbles: true }));
+    out.search = [visible().length, visible().every((r) => r.dataset.find.includes(word.toLowerCase())), document.querySelector('.on-total').textContent];
+    input.value = ''; input.dispatchEvent(new Event('input', { bubbles: true }));
+    out.chips = [];
+    for (const chip of document.querySelectorAll('.on-chip')) {
+      chip.click();
+      const g = chip.dataset.group, want = Object.values(window.__shell.records.orgs).filter((r) => g === 'all' || r.group === g).length;
+      out.chips.push([g, visible().length, want, visible().every((r) => g === 'all' || r.dataset.group === g)]);
+    }
+    document.querySelector('.on-chip[data-group="all"]').click();
+    const chips = document.querySelector('.on-chips');
+    out.chipsScroll = chips.scrollWidth > chips.clientWidth;
+    return out;
+  })()`);
+  if (!(probe.search[0] >= 1 && probe.search[1])) fail(`newest: search for ASEAN's name shows ${probe.search[0]} rows`);
+  const badChips = probe.chips.filter(([, n, want, ok]) => n !== want || !ok);
+  if (badChips.length) fail(`newest: chips — ${badChips.map(([g, n, want]) => `${g} ${n}/${want}`).join(', ')}`);
+  await tab('map');
+  if (bad.small.size) fail(`newest: text under 14 px — ${[...bad.small].slice(0, 4).join(', ')}`);
+  if (bad.taps.size) fail(`newest: tap targets under 44 px — ${[...bad.taps].slice(0, 4).join(', ')}`);
+  if (bad.sideways > 0) fail(`newest: sideways scroll ${bad.sideways} px`);
+  summary.push(`newest: ${good}/${options.length} organisations (card, tiles, pins, marks); ${pinsSeen} pins (${halos} with a halo), ${clear}/${options.length} with no pin overlapping or outside the map; Bangladesh's pin opens the card: ${bdOpens}; list ${opened}/${L.rows.length} rows open their organisation; search ${probe.search[0]} row(s) for «${'ASEAN'}»; chips ${probe.chips.map(([g, n]) => `${g} ${n}`).join(', ')}${probe.chipsScroll ? ' (chips scroll sideways)' : ''}; ${cols} column(s)${floorTiles.length ? `; at 14 px on three lines: ${floorTiles.join(', ')}` : ''}`);
 }
 
 async function pickerSteps(page, shoot, summary, fail, tabs = 0) {

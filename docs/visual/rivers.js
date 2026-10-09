@@ -47,7 +47,7 @@
 | Every word shown is the descriptor's or the data's.
 */
 
-import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=3ba9413e94';
+import { dockedCard, el, pickerBar, stylesheet, svgEl } from './parts.js?v=80f0f2e223';
 
 const ZOOM_MAX = 6;
 // CSS px: a press that moves less than this is a tap; two taps within DOUBLE_MS and DOUBLE_PX are a double tap.
@@ -108,7 +108,7 @@ export async function mount(panel, { view, descriptor, data, art, shared }) {
   const systemsHere = new Set([...frame.lines.map((l) => l.system), ...frame.markers.map((m) => m.system)]);
   let current = (data.systems ?? []).map((s) => s.id).find((s) => systemsHere.has(s)) ?? null;
   const markerSystem = new Map(frame.markers.map((m) => [m.id, m.system]));
-  await Promise.all([stylesheet('../shared/picker.css?v=3ba9413e94'), stylesheet('./rivers.css?v=3ba9413e94')]);
+  await Promise.all([stylesheet('../shared/picker.css?v=80f0f2e223'), stylesheet('./rivers.css?v=80f0f2e223')]);
 
   const fw = frame.projection.width;
   const fh = frame.projection.height;

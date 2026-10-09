@@ -50,7 +50,7 @@ export async function mount(api) {
   for (const t of [spec.records, spec.countries]) if (!api.records[t]) throw new Error(`indices: "${t}" is not a records table`);
   if (!spec.tabs?.map || !spec.tabs?.bangladesh) throw new Error('indices: tabs.map and tabs.bangladesh name the two view tabs');
   for (const k of ['bdStat', 'topStat', 'bottomStat', 'valueStat', 'legendTop', 'legendBottom', 'verified', 'source', 'factsNote', 'bdCaption', 'unchanged', 'better', 'worse', 'upNeutral', 'downNeutral', 'basisEdition', 'basisYear']) if (typeof W[k] !== 'string') throw new Error(`indices: words.${k} is missing`);
-  await stylesheet(api, './indices.css?v=3ba9413e94');
+  await stylesheet(api, './indices.css?v=80f0f2e223');
   page = api.dom.mapShell.parentElement;
   page.classList.add('has-indices');
   api.own.undo('the indices page', () => page.classList.remove('has-indices', 'indices-bd'));
@@ -94,11 +94,21 @@ function render() {
   const r = row();
   strip.hidden = !r || r.kind !== 'open';
   for (const p of pins) p.marker.remove();
-  pins = [];
-  for (const pin of r?.pins ? JSON.parse(r.pins) : []) {
+  pins = makePins(shell, r?.pins ? JSON.parse(r.pins) : []);
+  requestAnimationFrame(place);
+  card(r);
+}
+
+/**
+ * A pin per entry ({ kind, text, at, halo? }): a zero-size anchor on the point, its dot, a thin leader and the label,
+ * which `placePins` moves. Bangladesh's label ('bd') opens the card. Shared with the org-newest-members module.
+ */
+export function makePins(shell, list) {
+  const pins = [];
+  for (const pin of list) {
     // A zero-size anchor on the country's own point: its dot, a thin leader, and the label, which `place` moves.
     const el = document.createElement('div');
-    el.className = `ix-pin ix-pin-${pin.kind}`;
+    el.className = `ix-pin ix-pin-${pin.kind}${pin.halo ? ' ix-pin-halo' : ''}`;
     el.lang = shell.language ?? 'bn';
     el.innerHTML = '<span class="ix-pin-line"></span><span class="ix-pin-dot"></span><span class="ix-pin-text"></span>';
     const text = el.querySelector('.ix-pin-text');
@@ -117,8 +127,7 @@ function render() {
     const marker = new shell.maplibregl.Marker({ element: el, anchor: 'center' }).setLngLat(pin.at).addTo(shell.map);
     pins.push({ marker, el, kind: pin.kind });
   }
-  requestAnimationFrame(place);
-  card(r);
+  return pins;
 }
 
 /*
@@ -127,12 +136,17 @@ function render() {
  * itself never moves. Bangladesh's goes first, then the top's, then the bottom's.
  */
 function place() {
+  placePins(shell, pins, ['bd', 'top', 'bottom']);
+}
+
+/** Places the labels of `pins` (from `makePins`), in the order of their kinds. Shared with org-newest-members. */
+export function placePins(shell, pins, kinds) {
   if (!pins.length) return;
   const map = shell.map.getContainer().getBoundingClientRect();
   const M = 4, GAP = 4, DOT = 12;
   const placed = [];
   const dots = pins.map((p) => { const c = shell.map.project(p.marker.getLngLat()); return { x: c.x, y: c.y }; });
-  const order = [...pins.keys()].sort((a, b) => ['bd', 'top', 'bottom'].indexOf(pins[a].kind) - ['bd', 'top', 'bottom'].indexOf(pins[b].kind));
+  const order = [...pins.keys()].sort((a, b) => kinds.indexOf(pins[a].kind) - kinds.indexOf(pins[b].kind));
   const hits = (r, q) => r.x < q.x + q.w + GAP && q.x < r.x + r.w + GAP && r.y < q.y + q.h + GAP && q.y < r.y + r.h + GAP;
   for (const i of order) {
     const p = pins[i];
