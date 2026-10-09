@@ -264,3 +264,17 @@ stays within 12 km; a few islets (Chile's is the farthest) collapse.
   A separate re-verification step will re-pin the pages and re-check the memberships against the official sources.
 - Frames and dot points are recomputed from the shared shapes (a few hundredths of a degree moved); the opening view,
   the 171 of 173 dots, the cards and the taps are as before (`tools/check.mjs org-members`, before and after).
+
+## ORGM-R (the user, 2026-10-09): the 7 lost pages re-pinned
+
+- bimstec-members, oic-members, oic-observers, nato-terms, eco-members, eco-observers and asean-members, from the
+  downloads ORGN-1 made on 2026-10-09 (`tools/.cache/org-newest/pages/om-*`, with their e-mail scrub records; ASEAN
+  read in headless Edge as before), copied into `tools/.cache/org-members/sources/` by
+  `tools/.cache/org-members/repin.mjs`, which remade each text as `tools/verify.mjs` does and checked every citation
+  (101) before moving a pin.
+- The pages' bytes changed (page furniture); five texts are identical to the pinned ones; BIMSTEC's differs by its
+  visitor counter (same length), NATO's terms page by one menu line (no citation is there). Memberships unchanged.
+- Pins moved in the seed's `sources` (retrieved 2026-10-09) and in `tools/sources.json` (`orgMembers`); the seed's
+  pin in `tools/verify-descriptor.mjs` follows. The built files are unchanged; `tools/verify.mjs` no longer warns
+  «re-check due». `tools/check.mjs org-members` at 320 and 390 px is the before-record (the known 320 px Bhutan edge
+  tap included).

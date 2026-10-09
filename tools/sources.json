@@ -626,11 +626,11 @@
         "source": "bimstec-members",
         "url": "https://bimstec.org/member-states",
         "size": 43956,
-        "sha256": "881a1aa1ce18c137974c2731b64b686bf9ae73f7f24182fe0a60319bb7c405d3",
+        "sha256": "9ea91f357bb23caeb9c2146f69759a2be073e668ac5c9db716bb74c6411dfb27",
         "text": {
           "file": "bimstec-members.txt",
           "size": 2021,
-          "sha256": "2e2d41fa5a8c9c6ecb0e610a80ae8213fd746eb8bfb49993015c8a1f41dedd63"
+          "sha256": "101544ffe49d57b2fe1658b41ca5c6a21ba5c7ac4529d9a14c7caefc3df47d97"
         }
       },
       "au-members.html": {
@@ -703,7 +703,7 @@
         "source": "oic-members",
         "url": "https://www.oic-oci.org/en/members",
         "size": 311166,
-        "sha256": "ac972d5fe61fc1ce9ea8f35ceccb82f93805535fc700542e81961d532c4b5024",
+        "sha256": "a1d59076794a537cb05c81b9840920a3bceed6e6f66058e973365b7f9aec0f6b",
         "text": {
           "file": "oic-members.txt",
           "size": 3867,
@@ -714,7 +714,7 @@
         "source": "oic-observers",
         "url": "https://www.oic-oci.org/en/page/27",
         "size": 167399,
-        "sha256": "cdf39866e92138a768e07f1f930e94b256ab594264311b199160f76327da2f94",
+        "sha256": "000427a1e7fa4b0e193feef11e2d61b5559a40f4e5dbeb46b6445f9c3e37edd5",
         "text": {
           "file": "oic-observers.txt",
           "size": 2157,
@@ -768,12 +768,12 @@
       "nato-terms.html": {
         "source": "nato-terms",
         "url": "https://www.nato.int/en/about-us/official-texts-and-resources/use-of-nato-content-and-brand",
-        "size": 296972,
-        "sha256": "d230be38be4ac345b331af96eb9c0cf0a736e84489318c93ed855d0aee3f0427",
+        "size": 297507,
+        "sha256": "59b82a49db219e3d3584f81b2f263b883ec78d35b2c9dd52a003a761f22537a5",
         "text": {
           "file": "nato-terms.txt",
-          "size": 26383,
-          "sha256": "6d4d730d13d660034386dca877191be1c82552d78af89952febf1431dddebc90"
+          "size": 26423,
+          "sha256": "8cff5afe32e24e699f772919098df50d0cd46355dc01d5528af49da1d5e168dc"
         }
       },
       "sco-general.html": {
@@ -835,7 +835,7 @@
         "source": "eco-members",
         "url": "https://eco.int/member-states/",
         "size": 78647,
-        "sha256": "d0de977c07aefd8cdbeccb36dca00cb43e1162b5df1372a0ab8a46f601b81888",
+        "sha256": "a411c0bf57d2b603d0ae3bb82ca2b8d2d35f295d7aa6ea64adda922234be9775",
         "text": {
           "file": "eco-members.txt",
           "size": 2879,
@@ -846,7 +846,7 @@
         "source": "eco-observers",
         "url": "https://eco.int/observers/",
         "size": 76622,
-        "sha256": "9302c07e7b85b4b36806c29e48e02d436202cd564041e824c7dff6d5b91b6cd5",
+        "sha256": "f481362c61f8cfac5bc9a3b90430500231326d5ac5aeb91a3052d61b987aed6c",
         "text": {
           "file": "eco-observers.txt",
           "size": 2428,
@@ -890,8 +890,8 @@
         "source": "asean-members",
         "url": "https://asean.org/member-states/",
         "via": "browser",
-        "size": 512234,
-        "sha256": "6960669d602ffaae914e24e87910cee50cef4224027308201ca6f26c40d50914",
+        "size": 512218,
+        "sha256": "7302115843bb5bf7f6c7852053b1311065ff3d7b212c12bff2ea883e72a35ca8",
         "text": {
           "file": "asean-members.txt",
           "size": 7954,

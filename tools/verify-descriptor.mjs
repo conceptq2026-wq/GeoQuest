@@ -131,7 +131,7 @@ const IMPORTANT_DAYS_SEED_SHA256 = '4913e38e433c44c4b0b3c55337e29e0d463f4293a254
 // The bangladesh-ethnic-groups map: its seed, pinned (live 2026-10-08).
 const BANGLADESH_ETHNIC_SEED_SHA256 = 'c2b2333d34be11f0c02aec09fade7c8d1c007fa445c573fdc65824770f96cd75';
 // The org-members map: the editor's seed, pinned (live 2026-10-07).
-const ORG_MEMBERS_SEED_SHA256 = '6c09b4d8a43f1115c633ce14e860569cea611536fece7237822da5ae1ae5e262';
+const ORG_MEMBERS_SEED_SHA256 = '96314e8ad385aeaa7c0d5f41cc2d3cbab3674db3a3c1a82c77ecd44af1c91112';
 // The bangladesh-rivers diagram: the editor's seed, pinned. Its geometry is pinned in tools/bangladesh-rivers-pins.json.
 const BANGLADESH_RIVERS_SEEDS = path.join(ROOT, 'data-sources/bangladesh-rivers');
 // One pin per seed file: the common file and each system's (tools/lib/rivers-seed.mjs).

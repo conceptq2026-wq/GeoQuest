@@ -529,9 +529,8 @@ State which kind a task is when reporting it.
   - **Yearly check** (the user's rule, 2026-10-08): when each new public-holiday gazette is published, compare
     important-days' three Bangla-calendar dates (১ বৈশাখ 14 April, ২৫ বৈশাখ 8 May, ১১ জ্যৈষ্ঠ 25 May); if any differs,
     their strings go back to `approved: false` and the user is told.
-- **Open item** (the user, 2026-10-09): org-members re-verification — re-pin its 7 source pages lost from the cache
-  in IDX-3 (`notes/org-members.md`) and re-check its memberships against the official sources; until then
-  `tools/verify.mjs` warns «re-check due».
+- org-members' 7 source pages lost from the cache in IDX-3 were re-pinned on 2026-10-09 (ORGM-R) from ORGN-1's downloads
+  of that day: memberships unchanged, every citation still its words (`notes/org-members.md`).
 - `global-indices` «বৈশ্বিক সূচক» went live on the home page on 2026-10-09, under International, with no caption,
   after IDX-1–4 and IDX-ALL:
   - 18 rankings in the «দেশ» tab — 12 shading every country they rank, from the publishers' own pinned files read
