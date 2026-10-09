@@ -1774,11 +1774,12 @@ console.log('\n---- org-newest-members: seed ----');
   }
 }
 
-// ---- bangladesh-research-institutes «বাংলাদেশের গবেষণা প্রতিষ্ঠান» (work in progress, RES-2): the seed ----------------
+// ---- bangladesh-research-institutes «বাংলাদেশের গবেষণা প্রতিষ্ঠান» (work in progress, RES-2/RES-3): the seed ----------
 // The institutes whose main work, by their own page, is research (the user's decisions of 2026-10-09,
 // notes/bangladesh-research-institutes.md), each with its founding year (a held year is null with its reason), its
-// address (the area in the page's words or null, the district from the shared file), its parent and our one-line
-// focus. A citation is a page in data-sources/bangladesh-research-institutes/sources.json with the offset, length and
+// address (the area in the page's words or null, the district from the shared file), its parent (null while no
+// official page names it), our one-line focus, the day it was last checked and its «সূত্র ↗» page; a lineage that
+// begins outside present Bangladesh names the place (RES-3). A citation is a page in data-sources/bangladesh-research-institutes/sources.json with the offset, length and
 // SHA-256 of words in its NFC-normalised text; no words are kept. Each point (pins.json) lies in its own district:
 // a site pin cites a pinned page, an OSM point the Geofabrik pin in tools/sources.json, an approximate point COD-AB.
 // With the cache (tools/.cache/research-institutes/pages/), each page's text is its pin and each citation its words.
@@ -1822,14 +1823,17 @@ console.log('\n---- bangladesh-research-institutes: seed ----');
       x.name?.approved === true && take(`${key}.name`, x.name.cite),
       Number.isInteger(f?.year) && take(`${key}.founded`, f.cite),
       cf === undefined || (Number.isInteger(cf.year) && cf.year > f.year && take(`${key}.currentForm`, cf.cite)) || (cf.year === null && cf.held),
-      a?.district?.approved === true && take(`${key}.address`, a.cite) && (a.area === null || (a.area.approved === false && take(`${key}.area`, a.area.cite))),
-      x.parent ? seed.strings.parents[x.parent] : x.parentAbsent,
+      a?.district?.approved === true && take(`${key}.address`, a.cite) && (a.area === null || (typeof a.area.approved === 'boolean' && take(`${key}.area`, a.area.cite))),
+      x.parent ? seed.strings.parents[x.parent] : x.parentAbsent || (x.parent === null && x.parentPending),
+      !f.predecessor || seed.strings.places?.[f.predecessor.place],
+      /^\d{4}-\d\d-\d\d$/.test(x.verified ?? '') && pages[x.sourcePage] && /^https:/.test(pages[x.sourcePage].url),
       typeof x.focus?.bn === 'string' && x.focus.page?.source && cites.push([`${key}.focus`, x.focus.page]),
       (x.events ?? []).every((e, i) => take(`${key}.events[${i}]`, e.cite)),
     ];
     return !ok.every(Boolean);
   });
   for (const [p, v] of Object.entries(seed.strings.parents)) take(`parents.${p}`, v.cite);
+  for (const [p, v] of Object.entries(seed.strings.places ?? {})) take(`places.${p}`, v.cite);
   const unpinned = cites.filter(([, c]) => !pages[c.source] || !Number.isInteger(c.offset) || !Number.isInteger(c.length) || !/^[0-9a-f]{64}$/.test(c.sha256 ?? ''));
   const dropped = Object.entries(seed.dropped);
   check(bad.length === 0 && unpinned.length === 0 && tabbed.length === inst.length && dropped.every(([, d]) => d.reason) && !dropped.some(([k]) => seed.institutes[k]), `${ID}: ${inst.length} institutes in ${Object.keys(seed.tabs).length} tabs (${Object.entries(seed.tabs).map(([t, l]) => `${t} ${l.length}`).join(', ')}) and ${dropped.length} left out with a reason; every fact (${cites.length} citations) cites a pinned page by offset; a year is a year, or held with its reason${bad.length || unpinned.length ? ` — not: ${[...bad.map(([k]) => k), ...unpinned.slice(0, 3).map(([w]) => w)].join(', ')}` : ''}`);

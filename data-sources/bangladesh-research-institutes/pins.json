@@ -295,6 +295,55 @@
    "cite": {
     "source": "SE-biiss-contact"
    }
+  },
+  "srdi": {
+   "district": "BD3026",
+   "lon": 90.384324,
+   "lat": 23.759288,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "AG-srdi-home"
+   }
+  },
+  "bmrc": {
+   "district": "BD3026",
+   "lon": 90.403915,
+   "lat": 23.776875,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "HE-bmrc-contact"
+   }
+  },
+  "iph": {
+   "district": "BD3026",
+   "lon": 90.408611,
+   "lat": 23.723056,
+   "kind": "approximate",
+   "how": "Dhaka district capital (COD-AB admin capitals, null)",
+   "why": "OSM names no element for IPH itself: only IPHN's office and other public-health bodies in Dhaka (RES-3 search)",
+   "source": "codAbBangladesh"
+  },
+  "bard": {
+   "district": "BD2019",
+   "lon": 91.130498,
+   "lat": 23.436034,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "SE-bard-home2"
+   }
+  },
+  "rda": {
+   "district": "BD5010",
+   "lon": 89.393201,
+   "lat": 24.704909,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "SE-rda-contact"
+   }
   }
  }
 }

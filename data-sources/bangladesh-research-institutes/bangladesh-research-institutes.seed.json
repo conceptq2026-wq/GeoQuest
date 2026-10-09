@@ -20,61 +20,72 @@
  "strings": {
   "title": {
    "bn": "বাংলাদেশের গবেষণা প্রতিষ্ঠান",
-   "approved": false,
-   "source": "the user (RES-1, RES-2 step 12)"
+   "approved": true,
+   "source": "the user (RES-1, RES-2 step 12)",
+   "approvedBy": "the user, 2026-10-10 (RES-3)"
   },
   "tabs": {
    "agri": {
     "bn": "কৃষি",
-    "approved": false,
-    "source": "the user (RES-1)"
+    "approved": true,
+    "source": "the user (RES-1)",
+    "approvedBy": "the user, 2026-10-10 (RES-3)"
    },
    "sci": {
     "bn": "বিজ্ঞান ও প্রযুক্তি",
-    "approved": false,
-    "source": "the user (RES-1)"
+    "approved": true,
+    "source": "the user (RES-1)",
+    "approvedBy": "the user, 2026-10-10 (RES-3)"
    },
    "health": {
     "bn": "স্বাস্থ্য",
-    "approved": false,
-    "source": "the user (RES-1)"
+    "approved": true,
+    "source": "the user (RES-1)",
+    "approvedBy": "the user, 2026-10-10 (RES-3)"
    },
    "socio": {
     "bn": "সমাজ, অর্থনীতি ও কৌশল",
-    "approved": false,
-    "source": "the user (RES-1)"
+    "approved": true,
+    "source": "the user (RES-1)",
+    "approvedBy": "the user, 2026-10-10 (RES-3)"
    }
   },
   "labels": {
    "founded": {
     "bn": "প্রতিষ্ঠার সাল",
-    "approved": false,
-    "source": "the user (RES-1, the card)"
+    "approved": true,
+    "source": "the user (RES-1, the card)",
+    "approvedBy": "the user, 2026-10-10 (RES-3)"
    },
    "currentForm": {
     "bn": "বর্তমান রূপে: {year}",
-    "approved": false,
-    "source": "the user (RES-2, decision 3)"
+    "approved": true,
+    "source": "the user (RES-2, decision 3)",
+    "approvedBy": "the user, 2026-10-10 (RES-3)"
    },
    "location": {
     "bn": "অবস্থান ও সদর দপ্তর",
-    "approved": false,
-    "source": "the user (RES-1, the card)"
+    "approved": true,
+    "source": "the user (RES-1, the card)",
+    "approvedBy": "the user, 2026-10-10 (RES-3)"
    },
    "parent": {
     "bn": "অধীন",
-    "approved": false,
-    "source": "the user (RES-2, decision 9)"
+    "approved": true,
+    "source": "the user (RES-2, decision 9)",
+    "approvedBy": "the user, 2026-10-10 (RES-3)"
    },
    "focus": {
     "bn": "কী নিয়ে গবেষণা",
-    "approved": false,
-    "source": "the user (RES-1, the card)"
+    "approved": true,
+    "source": "the user (RES-1, the card)",
+    "approvedBy": "the user, 2026-10-10 (RES-3)"
    },
    "approximate": {
     "bn": "আনুমানিক অবস্থান: জেলা সদর",
-    "approved": false,
-    "source": "ours (decision 5: an approximate point is marked)"
+    "approved": true,
+    "source": "ours (decision 5: an approximate point is marked)",
+    "approvedBy": "the user, 2026-10-10 (RES-3)"
    },
    "picker": {
     "bn": "প্রতিষ্ঠান বেছে নিন",
@@ -87,10 +98,48 @@
     "from": "bangladesh-ethnic-groups seed (approved 2026-10-08)"
    }
   },
+  "templates": {
+   "predecessor": {
+    "bn": "{year} (পূর্বসূরি প্রতিষ্ঠান, {place})",
+    "approved": false,
+    "source": "the user (RES-3, decision 2)"
+   }
+  },
+  "places": {
+   "karachi": {
+    "bn": "করাচি",
+    "approved": false,
+    "tier": "secondary",
+    "editor": "the user's own example (RES-3, 2026-10-10); BIDS's own page says only that it began in Pakistan and moved to Dhaka in 1971; PIDE's site refused us (403)",
+    "for": "bids",
+    "cite": [
+     {
+      "source": "R3-wiki-bn-bids",
+      "offset": 1747,
+      "length": 45,
+      "sha256": "cd817200eb1bc4c6ea1ddf34b01a37d8ce97b3cb2367f834ae863fd45049d391"
+     }
+    ]
+   },
+   "newDelhi": {
+    "bn": "নয়াদিল্লি",
+    "approved": false,
+    "tier": "official",
+    "for": "iedcr",
+    "cite": [
+     {
+      "source": "HE-iedcr-history",
+      "offset": 5716,
+      "length": 67,
+      "sha256": "ac162d1454f9e31aed946fb4ebbd76d8318c78d2ae369c2a8b2cd1f1396f459e"
+     }
+    ]
+   }
+  },
   "parents": {
    "moa": {
     "bn": "কৃষি মন্ত্রণালয়",
-    "approved": false,
+    "approved": true,
     "cite": [
      {
       "source": "AG-barc-home",
@@ -102,7 +151,7 @@
    },
    "mofl": {
     "bn": "মৎস্য ও প্রাণিসম্পদ মন্ত্রণালয়",
-    "approved": false,
+    "approved": true,
     "cite": [
      {
       "source": "AG-law-barc2012d",
@@ -114,7 +163,7 @@
    },
    "moefcc": {
     "bn": "পরিবেশ, বন ও জলবায়ু পরিবর্তন মন্ত্রণালয়",
-    "approved": false,
+    "approved": true,
     "cite": [
      {
       "source": "AG-bfri-intro",
@@ -126,7 +175,7 @@
    },
    "teaBoard": {
     "bn": "বাংলাদেশ চা বোর্ড",
-    "approved": false,
+    "approved": true,
     "cite": [
      {
       "source": "AG-btri-intro",
@@ -138,7 +187,7 @@
    },
    "silkBoard": {
     "bn": "বাংলাদেশ রেশম উন্নয়ন বোর্ড",
-    "approved": false,
+    "approved": true,
     "cite": [
      {
       "source": "AG-bsrti-hist",
@@ -150,7 +199,7 @@
    },
    "most": {
     "bn": "বিজ্ঞান ও প্রযুক্তি মন্ত্রণালয়",
-    "approved": false,
+    "approved": true,
     "cite": [
      {
       "source": "ST-bcsir-home",
@@ -162,7 +211,7 @@
    },
    "mod": {
     "bn": "প্রতিরক্ষা মন্ত্রণালয়",
-    "approved": false,
+    "approved": true,
     "cite": [
      {
       "source": "ST-sparrso-intro",
@@ -174,7 +223,7 @@
    },
    "mowr": {
     "bn": "পানি সম্পদ মন্ত্রণালয়",
-    "approved": false,
+    "approved": true,
     "cite": [
      {
       "source": "ST-rri-home",
@@ -186,7 +235,7 @@
    },
    "mohpw": {
     "bn": "গৃহায়ন ও গণপূর্ত মন্ত্রণালয়",
-    "approved": false,
+    "approved": true,
     "cite": [
      {
       "source": "ST-hbri-intro",
@@ -198,7 +247,7 @@
    },
    "hsd": {
     "bn": "স্বাস্থ্য সেবা বিভাগ",
-    "approved": false,
+    "approved": true,
     "cite": [
      {
       "source": "HE-iedcr-home",
@@ -210,7 +259,7 @@
    },
    "mefwd": {
     "bn": "স্বাস্থ্য শিক্ষা ও পরিবার কল্যাণ বিভাগ",
-    "approved": false,
+    "approved": true,
     "cite": [
      {
       "source": "HE-niport-home",
@@ -222,7 +271,7 @@
    },
    "planning": {
     "bn": "পরিকল্পনা বিভাগ",
-    "approved": false,
+    "approved": true,
     "cite": [
      {
       "source": "SE-lawd-1208",
@@ -234,13 +283,25 @@
    },
    "mofa": {
     "bn": "পররাষ্ট্র মন্ত্রণালয়",
-    "approved": false,
+    "approved": true,
     "cite": [
      {
       "source": "SE-lawd-1144",
       "offset": 4489,
       "length": 21,
       "sha256": "ce183e3f2f86c7dd9300905b3c15c9ba5801054baeba3e01a28f3500f8bfc845"
+     }
+    ]
+   },
+   "rdcd": {
+    "bn": "পল্লী উন্নয়ন ও সমবায় বিভাগ",
+    "approved": false,
+    "cite": [
+     {
+      "source": "SE-bard-about",
+      "offset": 4797,
+      "length": 28,
+      "sha256": "d1fea77c6203787e67dd85377b1e99317c0a9af1e6d4d8975d2d3c788ba1f2d5"
      }
     ]
    }
@@ -253,6 +314,7 @@
    "bfri",
    "btri",
    "bina",
+   "srdi",
    "bsrti",
    "birtan",
    "brri",
@@ -275,11 +337,15 @@
   ],
   "health": [
    "iedcr",
+   "iph",
    "icddrb",
+   "bmrc",
    "niport"
   ],
   "socio": [
    "bids",
+   "bard",
+   "rda",
    "biiss"
   ]
  },
@@ -325,7 +391,7 @@
    "address": {
     "area": {
      "bn": "ফার্মগেট",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "AG-barc-contact",
@@ -353,7 +419,7 @@
    "parent": "moa",
    "focus": {
     "bn": "দেশের কৃষি গবেষণা ব্যবস্থার শীর্ষ সংস্থা; প্রতিষ্ঠানগুলোর গবেষণার পরিকল্পনা, সমন্বয় ও অর্থায়ন করে।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "AG-barc-intro",
      "offset": 2119,
@@ -423,7 +489,9 @@
     }
    ],
    "kept": "the apex of the national agricultural research system (kept by decision 1)",
-   "from": "RES-1 reader AG1"
+   "from": "RES-1 reader AG1",
+   "verified": "2026-10-09",
+   "sourcePage": "AG-barc-contact"
   },
   "bari": {
    "tab": "agri",
@@ -468,7 +536,7 @@
    "address": {
     "area": {
      "bn": "জয়দেবপুর",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "AG-moa-agencies",
@@ -496,7 +564,7 @@
    "parent": "moa",
    "focus": {
     "bn": "দানাশস্য, ডাল, তেলবীজ, কন্দাল, সবজি, ফল, মসলা ও ফুলের উন্নত জাত ও চাষপ্রযুক্তি।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "AG-barc-nars",
      "offset": 4458,
@@ -589,7 +657,9 @@
      ]
     }
    ],
-   "from": "RES-1 reader AG2"
+   "from": "RES-1 reader AG2",
+   "verified": "2026-10-09",
+   "sourcePage": "AG-bari-home"
   },
   "brri": {
    "tab": "agri",
@@ -641,7 +711,7 @@
    "address": {
     "area": {
      "bn": "জয়দেবপুর",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "AG-brri-contact",
@@ -669,7 +739,7 @@
    "parent": "moa",
    "focus": {
     "bn": "ধানের বেশি ফলনের ও প্রতিকূলতা সইতে পারা জাত এবং ধান চাষের প্রযুক্তি।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "AG-brri-about",
      "offset": 6215,
@@ -726,7 +796,9 @@
      ]
     }
    ],
-   "from": "RES-1 reader AG3"
+   "from": "RES-1 reader AG3",
+   "verified": "2026-10-09",
+   "sourcePage": "AG-brri-about"
   },
   "bjri": {
    "tab": "agri",
@@ -779,7 +851,7 @@
    "address": {
     "area": {
      "bn": "মানিক মিয়া এভিনিউ",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "AG-bjri-addr",
@@ -807,7 +879,7 @@
    "parent": "moa",
    "focus": {
     "bn": "পাট ও সমজাতীয় আঁশ ফসলের জাত, চাষ ও বীজ, এবং পাটের বহুমুখী পণ্য ও বস্ত্র।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "AG-bjri-bg",
      "offset": 3401,
@@ -888,7 +960,9 @@
      ]
     }
    ],
-   "from": "RES-1 reader AG4"
+   "from": "RES-1 reader AG4",
+   "verified": "2026-10-09",
+   "sourcePage": "AG-bjri-bg"
   },
   "bina": {
    "tab": "agri",
@@ -941,7 +1015,7 @@
    "address": {
     "area": {
      "bn": "বাকৃবি চত্ত্বর",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "AG-bina-loc",
@@ -969,7 +1043,7 @@
    "parent": "moa",
    "focus": {
     "bn": "পরমাণু কৌশল, বিশেষত মিউটেশন, প্রয়োগ করে ফসলের উন্নত জাত; জীবাণুসারও।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "AG-bina-intro",
      "offset": 7317,
@@ -1086,7 +1160,9 @@
      ]
     }
    ],
-   "from": "RES-1 reader AG5"
+   "from": "RES-1 reader AG5",
+   "verified": "2026-10-09",
+   "sourcePage": "AG-bina-home"
   },
   "bsri": {
    "tab": "agri",
@@ -1139,7 +1215,7 @@
    "address": {
     "area": {
      "bn": "ঈশ্বরদী",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "AG-bsri-map",
@@ -1167,7 +1243,7 @@
    "parent": "moa",
    "focus": {
     "bn": "আখ এবং তাল, খেজুর, গোলপাতা ও সুগারবিটের মতো মিষ্টিজাতীয় ফসল।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "AG-bsri-about",
      "offset": 2209,
@@ -1344,7 +1420,9 @@
      ]
     }
    ],
-   "from": "RES-1 reader AG6"
+   "from": "RES-1 reader AG6",
+   "verified": "2026-10-09",
+   "sourcePage": "AG-bsri-home"
   },
   "bwmri": {
    "tab": "agri",
@@ -1387,7 +1465,7 @@
    "address": {
     "area": {
      "bn": "নশিপুর",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "AG-bwmri-about",
@@ -1415,7 +1493,7 @@
    "parent": "moa",
    "focus": {
     "bn": "গম ও ভুট্টার তাপ, লবণাক্ততা, জলাবদ্ধতা ও খরা সইতে পারা জাত এবং বীজ উৎপাদন।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "AG-bwmri-about",
      "offset": 2145,
@@ -1460,7 +1538,9 @@
      ]
     }
    ],
-   "from": "RES-1 reader AG7"
+   "from": "RES-1 reader AG7",
+   "verified": "2026-10-09",
+   "sourcePage": "AG-bwmri-home-en"
   },
   "fri": {
    "tab": "agri",
@@ -1503,7 +1583,7 @@
    "address": {
     "area": {
      "bn": "বাংলাদেশ কৃষি বিশ্ববিদ্যালয় ক্যাম্পাস",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "AG-fri-home",
@@ -1531,7 +1611,7 @@
    "parent": "mofl",
    "focus": {
     "bn": "মাছের প্রজনন, চাষপদ্ধতি, রোগ ব্যবস্থাপনা ও জলজ পরিবেশ।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "AG-fri-hist",
      "offset": 5544,
@@ -1588,7 +1668,9 @@
      ]
     }
    ],
-   "from": "RES-1 reader AG9"
+   "from": "RES-1 reader AG9",
+   "verified": "2026-10-09",
+   "sourcePage": "AG-fri-hist"
   },
   "blri": {
    "tab": "agri",
@@ -1633,7 +1715,7 @@
    "address": {
     "area": {
      "bn": "সাভার",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "AG-blri-contact-pdf",
@@ -1661,7 +1743,7 @@
    "parent": "mofl",
    "focus": {
     "bn": "গবাদিপশু ও হাঁস-মুরগির জাত উন্নয়ন, স্বাস্থ্য, খাদ্য ও খামার প্রযুক্তি।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "AG-barc-nars",
      "offset": 15329,
@@ -1742,7 +1824,9 @@
      ]
     }
    ],
-   "from": "RES-1 reader AG10"
+   "from": "RES-1 reader AG10",
+   "verified": "2026-10-09",
+   "sourcePage": "AG-blri-home"
   },
   "bfri": {
    "tab": "agri",
@@ -1794,7 +1878,7 @@
    "address": {
     "area": {
      "bn": "ষোলশহর",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "AG-bfri-addr",
@@ -1822,7 +1906,7 @@
    "parent": "moefcc",
    "focus": {
     "bn": "বন ব্যবস্থাপনা এবং বনজ সম্পদ যথাযথভাবে ব্যবহারের প্রযুক্তি।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "AG-bfri-intro",
      "offset": 3367,
@@ -1880,7 +1964,9 @@
      ]
     }
    ],
-   "from": "RES-1 reader AG11"
+   "from": "RES-1 reader AG11",
+   "verified": "2026-10-09",
+   "sourcePage": "AG-bfri-intro"
   },
   "btri": {
    "tab": "agri",
@@ -1939,7 +2025,7 @@
    "address": {
     "area": {
      "bn": "শ্রীমঙ্গল",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "AG-btri-contact",
@@ -1967,7 +2053,7 @@
    "parent": "teaBoard",
    "focus": {
     "bn": "চায়ের ফলন ও মান বাড়ানো, এবং চা শিল্পকে বৈজ্ঞানিক পরামর্শ ও প্রযুক্তি দেওয়া।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "AG-btri-intro",
      "offset": 3102,
@@ -2025,7 +2111,9 @@
      ]
     }
    ],
-   "from": "RES-1 reader AG12"
+   "from": "RES-1 reader AG12",
+   "verified": "2026-10-09",
+   "sourcePage": "AG-btri-intro"
   },
   "bsrti": {
    "tab": "agri",
@@ -2082,7 +2170,7 @@
    "parent": "silkBoard",
    "focus": {
     "bn": "তুঁত ও রেশমপোকার জাত, পালন, রোগবালাই দমন ও সুতা কাটা; রেশমচাষিদের প্রশিক্ষণও।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "AG-bsrti-func",
      "offset": 2063,
@@ -2164,7 +2252,9 @@
      ]
     }
    ],
-   "from": "RES-1 reader AG13"
+   "from": "RES-1 reader AG13",
+   "verified": "2026-10-09",
+   "sourcePage": "AG-bsrti-home"
   },
   "birtan": {
    "tab": "agri",
@@ -2216,7 +2306,7 @@
    "address": {
     "area": {
      "bn": "বিশনন্দী, আড়াইহাজার",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "R2-birtan-hq",
@@ -2243,8 +2333,8 @@
    },
    "parent": "moa",
    "focus": {
-    "bn": "খাদ্যভিত্তিক পুষ্টি, মানুষের পুষ্টিমান বাড়াতে; এ বিষয়ে প্রশিক্ষণও।",
-    "approved": false,
+    "bn": "মানুষের পুষ্টিমান বাড়াতে খাদ্যভিত্তিক পুষ্টি; এ বিষয়ে প্রশিক্ষণও।",
+    "approved": true,
     "page": {
      "source": "AG-law-birtan2012",
      "offset": 456,
@@ -2361,7 +2451,9 @@
      ]
     }
    ],
-   "from": "RES-1 reader AG15"
+   "from": "RES-1 reader AG15",
+   "verified": "2026-10-09",
+   "sourcePage": "AG-birtan-home"
   },
   "baec": {
    "tab": "sci",
@@ -2400,7 +2492,7 @@
    "address": {
     "area": {
      "bn": "আগারগাঁও, শেরেবাংলা নগর",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "ST-baec-contact",
@@ -2428,7 +2520,7 @@
    "parent": "most",
    "focus": {
     "bn": "পরমাণু বিজ্ঞানের শান্তিপূর্ণ ব্যবহার: পরমাণু চিকিৎসা, খাদ্য বিকিরণ, বিকিরণ নিরাপত্তা ও পারমাণবিক বিদ্যুৎ।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "ST-baec-intro",
      "offset": 4826,
@@ -2497,7 +2589,9 @@
      ]
     }
    ],
-   "from": "RES-1 reader ST1"
+   "from": "RES-1 reader ST1",
+   "verified": "2026-10-09",
+   "sourcePage": "ST-baec-contact"
   },
   "bcsir": {
    "tab": "sci",
@@ -2550,7 +2644,7 @@
    "address": {
     "area": {
      "bn": "ধানমন্ডি",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "ST-bcsir-contact",
@@ -2578,7 +2672,7 @@
    "parent": "most",
    "focus": {
     "bn": "শিল্পের জন্য প্রায়োগিক গবেষণা, এবং শিল্পকে বিশ্লেষণ ও পরীক্ষার সেবা।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "ST-bcsir-intro",
      "offset": 3923,
@@ -2647,7 +2741,9 @@
      ]
     }
    ],
-   "from": "RES-1 reader ST2"
+   "from": "RES-1 reader ST2",
+   "verified": "2026-10-09",
+   "sourcePage": "ST-bcsir-home"
   },
   "nib": {
    "tab": "sci",
@@ -2699,7 +2795,7 @@
    "address": {
     "area": {
      "bn": "গণকবাড়ী, আশুলিয়া, সাভার",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "ST-nib-contact",
@@ -2727,7 +2823,7 @@
    "parent": "most",
    "focus": {
     "bn": "কৃষি, চিকিৎসা, পরিবেশ ও শিল্পে জীবপ্রযুক্তি; জিএমও পরীক্ষা ও সনদ।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "ST-nib-mission",
      "offset": 2291,
@@ -2796,7 +2892,9 @@
      ]
     }
    ],
-   "from": "RES-1 reader ST3"
+   "from": "RES-1 reader ST3",
+   "verified": "2026-10-09",
+   "sourcePage": "ST-nib-contact"
   },
   "bori": {
    "tab": "sci",
@@ -2834,7 +2932,7 @@
    "address": {
     "area": {
      "bn": "রামু",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "ST-bori-intro",
@@ -2862,7 +2960,7 @@
    "parent": "most",
    "focus": {
     "bn": "সমুদ্রের ভৌত, ভূতাত্ত্বিক, রাসায়নিক ও জৈব বিজ্ঞান, এবং সমুদ্র ও জলবায়ু।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "ST-bori-func",
      "offset": 2274,
@@ -2931,7 +3029,9 @@
      ]
     }
    ],
-   "from": "RES-1 reader ST4"
+   "from": "RES-1 reader ST4",
+   "verified": "2026-10-09",
+   "sourcePage": "ST-bori-contact"
   },
   "bricm": {
    "tab": "sci",
@@ -2991,7 +3091,7 @@
    "address": {
     "area": {
      "bn": "ধানমন্ডি",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "ST-bricm-contact",
@@ -3019,7 +3119,7 @@
    "parent": "most",
    "focus": {
     "bn": "রাসায়নিক পরিমাপের জাতীয় মান: রেফারেন্স পরিমাপ, রেফারেন্স উপাদান ও ক্যালিব্রেশন।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "ST-bricm-func",
      "offset": 4174,
@@ -3088,7 +3188,9 @@
      ]
     }
    ],
-   "from": "RES-1 reader ST5"
+   "from": "RES-1 reader ST5",
+   "verified": "2026-10-09",
+   "sourcePage": "ST-bricm-home"
   },
   "sparrso": {
    "tab": "sci",
@@ -3141,7 +3243,7 @@
    "address": {
     "area": {
      "bn": "আগারগাঁও, শের-ই-বাংলা নগর",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "ST-sparrso-contact",
@@ -3169,7 +3271,7 @@
    "parent": "mod",
    "focus": {
     "bn": "মহাকাশ ও দূর অনুধাবন প্রযুক্তি দিয়ে কৃষি, পানি, আবহাওয়া, পরিবেশ ও দুর্যোগ পর্যবেক্ষণ।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "ST-sparrso-func",
      "offset": 2832,
@@ -3262,7 +3364,9 @@
      ]
     }
    ],
-   "from": "RES-1 reader ST6"
+   "from": "RES-1 reader ST6",
+   "verified": "2026-10-09",
+   "sourcePage": "ST-sparrso-home"
   },
   "rri": {
    "tab": "sci",
@@ -3331,7 +3435,7 @@
    "parent": "mowr",
    "focus": {
     "bn": "নদী, মোহনা ও পানি-কাঠামোর ভৌত ও গাণিতিক মডেল; মাটি, পানি ও পলির পরীক্ষা।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "ST-rri-mandate",
      "offset": 2212,
@@ -3388,7 +3492,9 @@
      ]
     }
    ],
-   "from": "RES-1 reader ST7"
+   "from": "RES-1 reader ST7",
+   "verified": "2026-10-09",
+   "sourcePage": "ST-rri-home"
   },
   "hbri": {
    "tab": "sci",
@@ -3440,7 +3546,7 @@
    "address": {
     "area": {
      "bn": "দারুস-সালাম, মিরপুর",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "ST-hbri-contact",
@@ -3468,7 +3574,7 @@
    "parent": "mohpw",
    "focus": {
     "bn": "কম খরচের ও পরিবেশবান্ধব নির্মাণসামগ্রী এবং আবাসন প্রযুক্তি।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "ST-hbri-intro",
      "offset": 4213,
@@ -3525,7 +3631,9 @@
      ]
     }
    ],
-   "from": "RES-1 reader ST8"
+   "from": "RES-1 reader ST8",
+   "verified": "2026-10-09",
+   "sourcePage": "ST-hbri-contact"
   },
   "bnh": {
    "tab": "sci",
@@ -3578,7 +3686,7 @@
    "address": {
     "area": {
      "bn": "চিড়িয়াখানা রোড, মিরপুর-১",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "AG-bnh-office",
@@ -3606,7 +3714,7 @@
    "parent": "moefcc",
    "focus": {
     "bn": "দেশের উদ্ভিদ সংগ্রহ, শনাক্ত ও সংরক্ষণ করে উদ্ভিদের শ্রেণিবিন্যাস।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "ST-bnh-intro",
      "offset": 8197,
@@ -3676,7 +3784,9 @@
      ]
     }
    ],
-   "from": "RES-1 reader ST12"
+   "from": "RES-1 reader ST12",
+   "verified": "2026-10-09",
+   "sourcePage": "ST-bnh-home"
   },
   "iedcr": {
    "tab": "health",
@@ -3709,7 +3819,10 @@
      }
     ],
     "rule": "the first year the institute itself began, through renamings (decision 3)",
-    "judgement": "its own history runs from the Central Malaria Institute of East Pakistan (1947), working in Dhaka as the Malaria Institute of Pakistan from 1954, to IEDCR (1976)"
+    "judgement": "its own history runs from the Central Malaria Institute of East Pakistan (1947), working in Dhaka as the Malaria Institute of Pakistan from 1954, to IEDCR (1976)",
+    "predecessor": {
+     "place": "newDelhi"
+    }
    },
    "currentForm": {
     "year": 1976,
@@ -3757,7 +3870,7 @@
    "parent": "hsd",
    "focus": {
     "bn": "রোগতত্ত্ব ও সংক্রামক রোগ; জাতীয় রোগ নজরদারি ও প্রাদুর্ভাবের অনুসন্ধান।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "HE-iedcr-history",
      "offset": 3832,
@@ -3863,7 +3976,9 @@
      ]
     }
    ],
-   "from": "RES-1 reader HE1"
+   "from": "RES-1 reader HE1",
+   "verified": "2026-10-09",
+   "sourcePage": "HE-iedcr-home"
   },
   "niport": {
    "tab": "health",
@@ -3899,7 +4014,7 @@
    "address": {
     "area": {
      "bn": "আজিমপুর",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "HE-niport-hq",
@@ -3927,7 +4042,7 @@
    "parent": "mefwd",
    "focus": {
     "bn": "প্রজনন স্বাস্থ্য, পুষ্টি ও পরিবার পরিকল্পনা নিয়ে কার্যক্রমভিত্তিক গবেষণা ও জরিপ; কর্মীদের প্রশিক্ষণও।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "HE-niport-history",
      "offset": 2001,
@@ -3949,7 +4064,9 @@
      ]
     }
    ],
-   "from": "RES-1 reader HE6"
+   "from": "RES-1 reader HE6",
+   "verified": "2026-10-09",
+   "sourcePage": "HE-niport-home"
   },
   "icddrb": {
    "tab": "health",
@@ -4036,7 +4153,7 @@
    "parentAbsent": "an autonomous international body governed by its own Board under its Act: no ministry (RES-1, HE7)",
    "focus": {
     "bn": "ডায়রিয়াজনিত রোগ, পুষ্টি ও অন্যান্য জনস্বাস্থ্য সমস্যা।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "HE-act-1417-s5",
      "offset": 630,
@@ -4130,7 +4247,9 @@
     }
    ],
    "kept": "an international research centre under its own Act (kept by decision 1)",
-   "from": "RES-1 reader HE7"
+   "from": "RES-1 reader HE7",
+   "verified": "2026-10-09",
+   "sourcePage": "HE-icddrb-contactart"
   },
   "bids": {
    "tab": "socio",
@@ -4163,7 +4282,10 @@
      }
     ],
     "rule": "the first year the institute itself began, through renamings (decision 3)",
-    "judgement": "its own page traces it to PIDE, established in Pakistan in 1957 and moved to Dhaka in 1971; the 1974 Act (s. 19) also dates BIDE to a 1964 notification"
+    "judgement": "its own page traces it to PIDE, established in Pakistan in 1957 and moved to Dhaka in 1971; the 1974 Act (s. 19) also dates BIDE to a 1964 notification",
+    "predecessor": {
+     "place": "karachi"
+    }
    },
    "currentForm": {
     "year": 1974,
@@ -4218,7 +4340,7 @@
    "parent": "planning",
    "focus": {
     "bn": "বাংলাদেশের উন্নয়ন নিয়ে নীতি-গবেষণা: অর্থনীতি, দারিদ্র্য, কৃষি, জনসংখ্যা, শ্রম ও সামাজিক খাত।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "SE-bids-about",
      "offset": 1121,
@@ -4347,7 +4469,9 @@
      ]
     }
    ],
-   "from": "RES-1 reader SE1"
+   "from": "RES-1 reader SE1",
+   "verified": "2026-10-09",
+   "sourcePage": "SE-bids-contact"
   },
   "biiss": {
    "tab": "socio",
@@ -4435,7 +4559,7 @@
    "parent": "mofa",
    "focus": {
     "bn": "আন্তর্জাতিক সম্পর্ক, নিরাপত্তা, প্রতিরক্ষা ও কৌশলগত বিষয়ে গবেষণা ও নীতি-পরামর্শ।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "SE-biiss-about",
      "offset": 2368,
@@ -4504,16 +4628,630 @@
      ]
     }
    ],
-   "from": "RES-1 reader SE2"
+   "from": "RES-1 reader SE2",
+   "verified": "2026-10-09",
+   "sourcePage": "SE-biiss-contact"
+  },
+  "srdi": {
+   "tab": "agri",
+   "abbr": "SRDI",
+   "name": {
+    "bn": "মৃত্তিকা সম্পদ উন্নয়ন ইনস্টিটিউট",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "AG-srdi-home",
+      "offset": 544,
+      "length": 33,
+      "sha256": "75a4ce178269e940040c0bc47ea8eaf62e27c9eca6134d4146b7730dc0e8d302"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1961,
+    "events": [
+     0
+    ],
+    "cite": [
+     {
+      "source": "AG-barc-nars",
+      "offset": 12007,
+      "length": 47,
+      "sha256": "f2b7bab3c362b4c6b1612ef74788263cc6c6e528f441e91308206a1d3ab08a93"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)",
+    "judgement": "BARC dates its beginning to 1961, renamed several times since, as SRDI in 1983"
+   },
+   "currentForm": {
+    "year": 1983,
+    "events": [
+     1
+    ],
+    "cite": [
+     {
+      "source": "AG-barc-nars",
+      "offset": 12055,
+      "length": 57,
+      "sha256": "0821ef300b20952a89009429956fe379df60fbb1977875da7433835223b56d66"
+     }
+    ],
+    "rule": "re-formed under a new name or Act (decision 3); later Acts that only continue the body are not"
+   },
+   "address": {
+    "area": {
+     "bn": "কৃষি খামার সড়ক",
+     "approved": false,
+     "cite": [
+      {
+       "source": "AG-srdi-addrs",
+       "offset": 2141,
+       "length": 59,
+       "sha256": "f0a3fe7f2f7c65c0c4f35c5efa2fff635991cb5221935a55af7f4a1f97f12c4e"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD3026",
+     "bn": "ঢাকা",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "AG-srdi-addrs",
+      "offset": 2141,
+      "length": 59,
+      "sha256": "f0a3fe7f2f7c65c0c4f35c5efa2fff635991cb5221935a55af7f4a1f97f12c4e"
+     }
+    ]
+   },
+   "parent": "moa",
+   "focus": {
+    "bn": "মাটি ও ভূমি সম্পদের জরিপ, মাটি পরীক্ষা এবং সার প্রয়োগের সুপারিশ, জমির লাভজনক ব্যবহারের জন্য।",
+    "approved": false,
+    "page": {
+     "source": "AG-srdi-about",
+     "offset": 2948,
+     "length": 63,
+     "sha256": "fd392a543de63c973eba9401d2ec91f16a2190fa9cfdb8db561121676e51f5c4"
+    }
+   },
+   "events": [
+    {
+     "date": "1961",
+     "event": "began; renamed several times since (names not given)",
+     "cite": [
+      {
+       "source": "AG-barc-nars",
+       "offset": 12007,
+       "length": 47,
+       "sha256": "f2b7bab3c362b4c6b1612ef74788263cc6c6e528f441e91308206a1d3ab08a93"
+      }
+     ]
+    },
+    {
+     "date": "1983",
+     "event": "named Soil Resource Development Institute",
+     "cite": [
+      {
+       "source": "AG-barc-nars",
+       "offset": 12055,
+       "length": 57,
+       "sha256": "0821ef300b20952a89009429956fe379df60fbb1977875da7433835223b56d66"
+      }
+     ]
+    }
+   ],
+   "restored": "the user, 2026-10-10 (RES-3)",
+   "from": "RES-1 reader AG8",
+   "verified": "2026-10-09",
+   "sourcePage": "AG-srdi-home"
+  },
+  "bmrc": {
+   "tab": "health",
+   "abbr": "BMRC",
+   "nameEn": "Bangladesh Medical Research Council",
+   "name": {
+    "bn": "বাংলাদেশ মেডিকেল রিসার্চ কাউন্সিল",
+    "approved": true,
+    "basis": "the Medical Education and Family Welfare Division's list: its own site is in English only (decision 7)",
+    "cite": [
+     {
+      "source": "HE-mefwd-home",
+      "offset": 1466,
+      "length": 33,
+      "sha256": "ecf892eca78c039ff5135b48a35cb325e5d218c2f81684767aa7393fa0deddd8"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1972,
+    "events": [
+     0
+    ],
+    "cite": [
+     {
+      "source": "HE-bmrc-mission",
+      "offset": 375,
+      "length": 49,
+      "sha256": "29d990eb0a1b253b4b07f8c95943b8a212a7161aae28416dbb8d973d23bf4ef3"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)"
+   },
+   "address": {
+    "area": null,
+    "district": {
+     "pcode": "BD3026",
+     "bn": "ঢাকা",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "HE-bmrc-contact",
+      "offset": 443,
+      "length": 46,
+      "sha256": "6dd27a5ff789df48f56e58dbf05aa2c00b1f0da1152e7e75620454e720a0b480"
+     }
+    ],
+    "en": {
+     "text": "BMRC Bhaban, Mohakhali, Dhaka-1212, Bangladesh",
+     "cite": [
+      {
+       "source": "HE-bmrc-contact",
+       "offset": 443,
+       "length": 46,
+       "sha256": "6dd27a5ff789df48f56e58dbf05aa2c00b1f0da1152e7e75620454e720a0b480"
+      }
+     ]
+    }
+   },
+   "parent": "mefwd",
+   "focus": {
+    "bn": "স্বাস্থ্য গবেষণার জাতীয় পরিষদ: অগ্রাধিকার ঠিক করা, অর্থায়ন ও সমন্বয়, গবেষক প্রশিক্ষণ এবং নৈতিকতার অনুমোদন।",
+    "approved": false,
+    "page": {
+     "source": "HE-bmrc-mission",
+     "offset": 649,
+     "length": 43,
+     "sha256": "6b106a13911110c03981e356e3eee8f88816a95651f1f5b134934c7e46a36043"
+    }
+   },
+   "events": [
+    {
+     "date": "1972",
+     "event": "Established by order of the President as an autonomous body under MOH&FW",
+     "cite": [
+      {
+       "source": "HE-bmrc-mission",
+       "offset": 375,
+       "length": 49,
+       "sha256": "29d990eb0a1b253b4b07f8c95943b8a212a7161aae28416dbb8d973d23bf4ef3"
+      }
+     ]
+    },
+    {
+     "date": "1974",
+     "event": "Objectives, rules and regulations formulated by ministry resolution",
+     "cite": [
+      {
+       "source": "HE-bmrc-mission",
+       "offset": 557,
+       "length": 53,
+       "sha256": "47cdcc45c7e920b71197dea0e1543071d0737ff9dc6c3f936421238d106fb993"
+      }
+     ]
+    },
+    {
+     "date": "1976",
+     "event": "Second ministry resolution (the 'BMRC Resolution, 1976'), making BMRC the focal point for health research",
+     "cite": [
+      {
+       "source": "HE-bmrc-home",
+       "offset": 651,
+       "length": 59,
+       "sha256": "d9b9af89629130d4eb969da6e534bd6fe0da24b430049d90a3993395675a4fae"
+      }
+     ]
+    }
+   ],
+   "kept": "the apex body of health research, kept like BARC (the user, 2026-10-10)",
+   "restored": "the user, 2026-10-10 (RES-3)",
+   "from": "RES-1 reader HE5",
+   "verified": "2026-10-09",
+   "sourcePage": "HE-bmrc-contact"
+  },
+  "iph": {
+   "tab": "health",
+   "abbr": "IPH",
+   "nameEn": "Institute of Public Health",
+   "name": {
+    "bn": "জনস্বাস্থ্য ইনস্টিটিউট",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "HE-iph-portal",
+      "offset": 544,
+      "length": 22,
+      "sha256": "49f55b50c8576de67ff6de757c067a0dbb82f667b70eb63058f4fc4baf8c16aa"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1952,
+    "events": [
+     0
+    ],
+    "cite": [
+     {
+      "source": "HE-iph-history",
+      "offset": 1941,
+      "length": 105,
+      "sha256": "6bf323adff6c9527dc1290fcb58d11dff9f2f13f9f2347bac15135b0ea2201f0"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)"
+   },
+   "currentForm": {
+    "year": 1953,
+    "events": [
+     1
+    ],
+    "cite": [
+     {
+      "source": "HE-iph-history",
+      "offset": 2318,
+      "length": 67,
+      "sha256": "9e35d2e29ce076d11cec2fa9c3521900a6fa5327db47c11fbfa8818296fe872c"
+     }
+    ],
+    "rule": "re-formed under a new name or Act (decision 3); later Acts that only continue the body are not"
+   },
+   "address": {
+    "area": {
+     "bn": "মহাখালী",
+     "approved": false,
+     "cite": [
+      {
+       "source": "HE-iph-contact",
+       "offset": 1586,
+       "length": 19,
+       "sha256": "2b6bb457aec49b840d74d7aad3d87fea4510295a23b08849c78424e92c213b04"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD3026",
+     "bn": "ঢাকা",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "HE-iph-contact",
+      "offset": 1586,
+      "length": 19,
+      "sha256": "2b6bb457aec49b840d74d7aad3d87fea4510295a23b08849c78424e92c213b04"
+     }
+    ]
+   },
+   "parent": null,
+   "parentPending": "none of its own pages names the body it is under (RES-1); Wikipedia's DGHS is not used",
+   "focus": {
+    "bn": "গবেষণাগারে রোগনির্ণয়, রোগ নজরদারি ও প্রাদুর্ভাব মোকাবিলা; খাবার স্যালাইন ও রোগনির্ণয়ের উপকরণ তৈরিও।",
+    "approved": false,
+    "page": {
+     "source": "HE-iph-history",
+     "offset": 1758,
+     "length": 67,
+     "sha256": "01781f0dfff70dd2a59cdcd0bc92c7c5893c168d3124fce4028c0dc5ce2d3484"
+    }
+   },
+   "events": [
+    {
+     "date": "1952",
+     "event": "Founded as the Combined Public Health Laboratories",
+     "cite": [
+      {
+       "source": "HE-iph-history",
+       "offset": 1941,
+       "length": 105,
+       "sha256": "6bf323adff6c9527dc1290fcb58d11dff9f2f13f9f2347bac15135b0ea2201f0"
+      }
+     ]
+    },
+    {
+     "date": "1953",
+     "event": "Renamed Institute of Public Health (জনস্বাস্থ্য ইনস্টিটিউট)",
+     "cite": [
+      {
+       "source": "HE-iph-history",
+       "offset": 2318,
+       "length": 67,
+       "sha256": "9e35d2e29ce076d11cec2fa9c3521900a6fa5327db47c11fbfa8818296fe872c"
+      }
+     ]
+    }
+   ],
+   "restored": "the user, 2026-10-10 (RES-3)",
+   "from": "RES-1 reader HE2",
+   "verified": "2026-10-09",
+   "sourcePage": "HE-iph-history"
+  },
+  "bard": {
+   "tab": "socio",
+   "abbr": "BARD",
+   "nameEn": "Bangladesh Academy for Rural Development",
+   "name": {
+    "bn": "বাংলাদেশ পল্লী উন্নয়ন একাডেমি, কুমিল্লা",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "SE-bard-home2",
+      "offset": 544,
+      "length": 48,
+      "sha256": "4583bd8c9a42f49e5cbf71b2f4e955427d614dec0886d634339e4871882d78d6"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1959,
+    "events": [
+     0
+    ],
+    "cite": [
+     {
+      "source": "SE-bard-about",
+      "offset": 3685,
+      "length": 41,
+      "sha256": "9f1c7b96b9a0d4a8ace35cdafddfe05378f41734a8f42b9afab8e8e5d2e262fd"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)"
+   },
+   "currentForm": {
+    "year": 1986,
+    "events": [
+     1
+    ],
+    "cite": [
+     {
+      "source": "SE-lawd-704",
+      "offset": 331,
+      "length": 18,
+      "sha256": "c7904dff8a0848edbf3558d21414f7aacee7246abb823a8b8796f70ff575b7d6"
+     }
+    ],
+    "rule": "re-formed under a new name or Act (decision 3); later Acts that only continue the body are not"
+   },
+   "address": {
+    "area": {
+     "bn": "কোটবাড়ি",
+     "approved": false,
+     "cite": [
+      {
+       "source": "SE-bard-home2",
+       "offset": 7825,
+       "length": 19,
+       "sha256": "a812a4e17746afde7f915590e8875ad5a940581167a994a12617b4fb3cfe2799"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD2019",
+     "bn": "কুমিল্লা",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "SE-bard-home2",
+      "offset": 7825,
+      "length": 19,
+      "sha256": "a812a4e17746afde7f915590e8875ad5a940581167a994a12617b4fb3cfe2799"
+     }
+    ]
+   },
+   "parent": "rdcd",
+   "focus": {
+    "bn": "পল্লী উন্নয়নে প্রশিক্ষণ, গবেষণা ও প্রায়োগিক গবেষণা; কুমিল্লা মডেলের জন্য পরিচিত।",
+    "approved": false,
+    "page": {
+     "source": "SE-bard-about",
+     "offset": 3732,
+     "length": 61,
+     "sha256": "2f2d27d7aab12ee6f2ab75e97aeba4efa86c8e5e8113acd2df700330850b8517"
+    }
+   },
+   "act": {
+    "title": "বাংলাদেশ পল্লী উন্নয়ন একাডেমি আইন, ২০১৭ (২০১৭ সনের ৪ নং আইন)",
+    "cite": [
+     {
+      "source": "SE-lawd-1205",
+      "offset": 240,
+      "length": 40,
+      "sha256": "8adaf3d12d464d0d7fe27f41b65418cc8cf8b97852777fab3b2aeb7501225933"
+     }
+    ]
+   },
+   "events": [
+    {
+     "date": "1959-05-27",
+     "event": "Began work as a rural-development training, research and action-research institution",
+     "cite": [
+      {
+       "source": "SE-bard-about",
+       "offset": 3685,
+       "length": 41,
+       "sha256": "9f1c7b96b9a0d4a8ace35cdafddfe05378f41734a8f42b9afab8e8e5d2e262fd"
+      }
+     ]
+    },
+    {
+     "date": "1986-07-09",
+     "event": "The Bangladesh Academy for Rural Development Ordinance, 1986 (No. LXIV of 1986)",
+     "cite": [
+      {
+       "source": "SE-lawd-704",
+       "offset": 331,
+       "length": 18,
+       "sha256": "c7904dff8a0848edbf3558d21414f7aacee7246abb823a8b8796f70ff575b7d6"
+      }
+     ]
+    },
+    {
+     "date": "2017-02-19",
+     "event": "Re-enacted by বাংলাদেশ পল্লী উন্নয়ন একাডেমি আইন, ২০১৭ (No. 4 of 2017), repealing the 1986 Ordinance",
+     "cite": [
+      {
+       "source": "SE-lawd-1205",
+       "offset": 304,
+       "length": 26,
+       "sha256": "3c13c178820f834f889d1ec0fd2f1782e3fdd0760e1f2ddc069ed73e5125502f"
+      }
+     ]
+    }
+   ],
+   "restored": "the user, 2026-10-10 (RES-3)",
+   "from": "RES-1 reader SE3",
+   "verified": "2026-10-09",
+   "sourcePage": "SE-bard-about"
+  },
+  "rda": {
+   "tab": "socio",
+   "abbr": "RDA",
+   "nameEn": "Rural Development Academy, Bogura",
+   "name": {
+    "bn": "পল্লী উন্নয়ন একাডেমী, বগুড়া",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "SE-rda-about",
+      "offset": 3885,
+      "length": 37,
+      "sha256": "e00f7834c8eddca1399ec142c56336853e28d092f2ad88124b1bf5eea080957f"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1974,
+    "events": [
+     0
+    ],
+    "cite": [
+     {
+      "source": "SE-rda-about",
+      "offset": 4216,
+      "length": 56,
+      "sha256": "4ac22e34299198d40211a51379bc5e5731495a12421dfd05eed43e8cfa7e1049"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)"
+   },
+   "currentForm": {
+    "year": 1990,
+    "events": [
+     1
+    ],
+    "cite": [
+     {
+      "source": "SE-lawd-735",
+      "offset": 303,
+      "length": 22,
+      "sha256": "05f95ad616fb2c9f6fe2b03d6dc965dd504ac9c3d124707fc570306f648cd6ad"
+     }
+    ],
+    "rule": "re-formed under a new name or Act (decision 3); later Acts that only continue the body are not"
+   },
+   "address": {
+    "area": {
+     "bn": "গাড়ীদহ",
+     "approved": false,
+     "cite": [
+      {
+       "source": "SE-lawd-735",
+       "offset": 1523,
+       "length": 82,
+       "sha256": "8ee703c6069d8e52b7a185714da7ef5d336553006a92f9166b95d36cbbef9a01"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD5010",
+     "bn": "বগুড়া",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "SE-lawd-735",
+      "offset": 1523,
+      "length": 82,
+      "sha256": "8ee703c6069d8e52b7a185714da7ef5d336553006a92f9166b95d36cbbef9a01"
+     }
+    ]
+   },
+   "parent": "rdcd",
+   "focus": {
+    "bn": "উত্তরাঞ্চলের জন্য পল্লী উন্নয়নে প্রশিক্ষণ, গবেষণা, প্রায়োগিক গবেষণা ও পরামর্শ।",
+    "approved": false,
+    "page": {
+     "source": "SE-rda-about",
+     "offset": 4464,
+     "length": 58,
+     "sha256": "ef667cb451a41888d89cf005d55217108bce7c89b8ec44e2c88e1ec821869802"
+    }
+   },
+   "act": {
+    "title": "বগুড়া পল্লী উন্নয়ন একাডেমী আইন, ১৯৯০ (১৯৯০ সনের ১০ নং আইন)",
+    "cite": [
+     {
+      "source": "SE-lawd-735",
+      "offset": 240,
+      "length": 38,
+      "sha256": "44e044dab3d92b23c30f42ec99f21addabd8a51c0c96f7fc1b3a16dab1463810"
+     }
+    ]
+   },
+   "events": [
+    {
+     "date": "1974",
+     "event": "Founded with an allocation under the First Five Year Plan",
+     "cite": [
+      {
+       "source": "SE-rda-about",
+       "offset": 4216,
+       "length": 56,
+       "sha256": "4ac22e34299198d40211a51379bc5e5731495a12421dfd05eed43e8cfa7e1049"
+      }
+     ]
+    },
+    {
+     "date": "1990-01-20",
+     "event": "বগুড়া পল্লী উন্নয়ন একাডেমী আইন, ১৯৯০ (No. 10 of 1990): recognised as a national institution",
+     "cite": [
+      {
+       "source": "SE-lawd-735",
+       "offset": 303,
+       "length": 22,
+       "sha256": "05f95ad616fb2c9f6fe2b03d6dc965dd504ac9c3d124707fc570306f648cd6ad"
+      }
+     ]
+    }
+   ],
+   "restored": "the user, 2026-10-10 (RES-3)",
+   "from": "RES-1 reader SE4",
+   "verified": "2026-10-09",
+   "sourcePage": "SE-rda-contact"
   }
  },
  "dropped": {
-  "AG8": {
-   "nameBn": "মৃত্তিকা সম্পদ উন্নয়ন ইনস্টিটিউট",
-   "nameEn": null,
-   "abbr": "এসআরডিআই (SRDI)",
-   "reason": "its own page puts soil and land survey, soil testing and fertiliser advice first: research is not its main work"
-  },
   "AG14": {
    "nameBn": "তুলা উন্নয়ন বোর্ড",
    "nameEn": null,
@@ -4556,12 +5294,6 @@
    "abbr": "CEGIS (the MoWR page prints its Bengali abbreviation garbled: «ঈঊএওঝ»)",
    "reason": "left out by the user (decision 1); not verifiable in RES-1 either"
   },
-  "HE2": {
-   "nameBn": "জনস্বাস্থ্য ইনস্টিটিউট",
-   "nameEn": "Institute of Public Health",
-   "abbr": "IPH",
-   "reason": "a public-health laboratory and production institute: diagnosis, surveillance and ORS production come before research"
-  },
   "HE3": {
    "nameBn": "জনস্বাস্থ্য পুষ্টি প্রতিষ্ঠান",
    "nameEn": null,
@@ -4574,12 +5306,6 @@
    "abbr": "NIPSOM",
    "reason": "a postgraduate teaching and training institute"
   },
-  "HE5": {
-   "nameBn": "বাংলাদেশ মেডিকেল রিসার্চ কাউন্সিল",
-   "nameEn": "Bangladesh Medical Research Council",
-   "abbr": "BMRC",
-   "reason": "a council that funds and coordinates health research rather than doing it; only BARC is kept as such a body (decision 1)"
-  },
   "HE8": {
    "nameBn": "বাংলাদেশ শিশু ও মাতৃস্বাস্থ্য ইনস্টিটিউট",
    "nameEn": "Institute of Child and Mother Health",
@@ -4591,18 +5317,6 @@
    "nameEn": "National Institute of Cancer Research & Hospital",
    "abbr": "NICRH",
    "reason": "a hospital (decision 1)"
-  },
-  "SE3": {
-   "nameBn": "বাংলাদেশ পল্লী উন্নয়ন একাডেমি (বার্ড), কুমিল্লা",
-   "nameEn": "Bangladesh Academy for Rural Development",
-   "abbr": "BARD",
-   "reason": "a rural-development academy: training first (decision 1: training academies)"
-  },
-  "SE4": {
-   "nameBn": "পল্লী উন্নয়ন একাডেমী (আরডিএ), বগুড়া",
-   "nameEn": "Rural Development Academy, Bogura",
-   "abbr": "RDA",
-   "reason": "a rural-development academy (decision 1)"
   },
   "SE5": {
    "nameBn": "পল্লী উন্নয়ন একাডেমি (আরডিএ), গোপালগঞ্জ",
@@ -4702,6 +5416,8 @@
   "iedcr.address.area: null — its address is in English only; no Bengali locality on an official page",
   "icddrb.address.area: null — its address is in English only; no Bengali locality on an official page",
   "bids.address.area: null — its address is in English only; no Bengali locality on an official page",
-  "biiss.address.area: null — its address is in English only; no Bengali locality on an official page"
+  "biiss.address.area: null — its address is in English only; no Bengali locality on an official page",
+  "bmrc.address.area: null — its address is in English only; no Bengali locality on an official page",
+  "iph.parent: null — none of its own pages names the body it is under (RES-1); Wikipedia's DGHS is not used"
  ]
 }

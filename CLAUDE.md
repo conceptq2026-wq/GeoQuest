@@ -562,10 +562,10 @@ State which kind a task is when reporting it.
   global-indices' pins; no country's name but the pins (`hideCountryLabels`) and no tilt (`flat`); all 41 strings
   approved (`notes/org-newest-members.md`).
 - Work in progress (`tools/wip.json`): `bangladesh-research-institutes` «বাংলাদেশের গবেষণা প্রতিষ্ঠান», a map under
-  বাংলাদেশ (RES-1 investigation, RES-2 the user's decisions and the seed, 2026-10-09): 27 institutes whose main work
-  is research, in four tabs (কৃষি 13, বিজ্ঞান ও প্রযুক্তি 9, স্বাস্থ্য 3, সমাজ, অর্থনীতি ও কৌশল 2), 31 candidates
-  left out with reasons; points 21 site pins, 3 OpenStreetMap, 3 approximate; 72 strings awaiting the user; nothing
-  built (`notes/bangladesh-research-institutes.md`).
+  বাংলাদেশ (RES-1 investigation, RES-2 the seed, RES-3 the user's decisions of 2026-10-10 and the preview): 32
+  institutes whose main work is research (five restored by the user), in four tabs (কৃষি 14, বিজ্ঞান ও প্রযুক্তি 9,
+  স্বাস্থ্য 5, সমাজ, অর্থনীতি ও কৌশল 4), 26 left out with reasons; points 25 site pins, 3 OpenStreetMap, 4 approximate;
+  13 strings awaiting the user (`notes/bangladesh-research-institutes.md`).
 
 ## Index — notes, read only when working on that item
 

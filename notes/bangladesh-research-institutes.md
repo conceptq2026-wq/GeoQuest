@@ -3,7 +3,8 @@
 A map under বাংলাদেশ: one numbered point per national research institute at its head office, in four tabs, with a
 picker. Seed: `data-sources/bangladesh-research-institutes/` — the seed, `sources.json` (124 pages, pinned) and
 `pins.json` (the points). RES-1 (investigation, 2026-10-09: `tools/.cache/research-institutes/investigation.md`),
-RES-2 (decisions and seed, 2026-10-09). Nothing built yet; RES-3 draws it.
+RES-2 (decisions and seed, 2026-10-09), RES-3 (five restored, the predecessor note, approvals, 2026-10-10; drawn on
+the local preview).
 
 ## The user's decisions (2026-10-09, RES-2)
 
@@ -52,6 +53,32 @@ RES-2 (decisions and seed, 2026-10-09). Nothing built yet; RES-3 draws it.
     - Our «কী নিয়ে গবেষণা» lines and every other new string are `approved: false`: 72, listed with sources in
       `tools/.cache/research-institutes/strings-review.md`.
 
+## The user's decisions (2026-10-10, RES-3)
+
+1. **Five restored**, on RES-1's sources and points, with the same card and rules: SRDI → কৃষি; BMRC → স্বাস্থ্য (kept
+   like BARC, as the apex body); IPH → স্বাস্থ্য; BARD, Cumilla and RDA, Bogura → সমাজ, অর্থনীতি ও কৌশল. Now 32
+   institutes (কৃষি 14, বিজ্ঞান ও প্রযুক্তি 9, স্বাস্থ্য 5, সমাজ, অর্থনীতি ও কৌশল 4), 26 left out.
+   - BMRC's Bengali name is the Medical Education and Family Welfare Division's (its own site is English only).
+   - A name keeps the place after its bracketed abbreviation: «বাংলাদেশ পল্লী উন্নয়ন একাডেমি, কুমিল্লা»,
+     «পল্লী উন্নয়ন একাডেমী, বগুড়া».
+   - IPH: none of its own pages names its parent, so «অধীন» is null (pending); OpenStreetMap names no element for it
+     (a fresh search of the pinned extract, in memory), so its point is approximate — the same district capital as
+     icddr,b's: the two share one spot.
+2. **A predecessor outside present Bangladesh keeps both years**; the first carries where it was:
+   «{year} (পূর্বসূরি প্রতিষ্ঠান, {place})», with «বর্তমান রূপে: <year>» under it. Two institutes:
+   - BIDS: 1957, Karachi — Bengali Wikipedia (rev 8363218) and the user's own example; BIDS's own page says only that it
+     began in Pakistan and moved to Dhaka in 1971, and PIDE's own site refused us (403, now never asked again).
+   - IEDCR: 1947, New Delhi — its own history page.
+   The others' first years are in present Bangladesh (Dhaka, Sreemangal, Chattogram, Ishwardi, Comilla…), by their
+   own pages.
+3. **BIRTAN's line** is the user's: «মানুষের পুষ্টিমান বাড়াতে খাদ্যভিত্তিক পুষ্টি; এ বিষয়ে প্রশিক্ষণও।» (approved).
+4. **Approved** (the user, 2026-10-10): every string of RES-2's review — names, areas, parents, the title, the tabs, the
+   labels (with «আনুমানিক অবস্থান: জেলা সদর») and the 26 other lines. New and awaiting the user: 13 — the five
+   restored institutes' lines, four areas, one parent (পল্লী উন্নয়ন ও সমবায় বিভাগ), the predecessor template and its two
+   places (`tools/.cache/research-institutes/strings-review.md`).
+5. **The card's foot:** «সর্বশেষ যাচাই» — the latest day a page it cites was read — and «সূত্র ↗», the institute's own
+   page it cites first (`verified`, `sourcePage` in the seed).
+
 ## Card
 
 - প্রতিষ্ঠার সাল, with «বর্তমান রূপে: <year>» under it where one exists.
@@ -89,7 +116,7 @@ of a baec.gov.bd script, nothing saved. CLAUDE.md records the rule.
 
 ## Institutes
 
-**কৃষি** (13)
+**কৃষি** (14)
 
 | Institute | Year | বর্তমান রূপে | Point | Why kept / note |
 |---|---|---|---|---|
@@ -98,6 +125,7 @@ of a baec.gov.bd script, nothing saved. CLAUDE.md records the rule.
 | BFRI — বাংলাদেশ বন গবেষণা ইনস্টিটিউট | 1955 | 1968 | approximate | its own page: research is its main work |
 | BTRI — বাংলাদেশ চা গবেষণা ইনস্টিটিউট | 1957 | 1973 | osm | its own page: research is its main work; year: 1952 is the Tea Board's decision and preliminary work; the station was established in 1957 |
 | BINA — বাংলাদেশ পরমাণু কৃষি গবেষণা ইনস্টিটিউট | 1961 | 1984 | site | its own page: research is its main work; year: its own page says its first journey began in 1961 with the RAGENE laboratory, from which INA (1972) grew |
+| SRDI — মৃত্তিকা সম্পদ উন্নয়ন ইনস্টিটিউট | 1961 | 1983 | site | restored by the user (RES-3); its own page: research is its main work; year: BARC dates its beginning to 1961, renamed several times since, as SRDI in 1983 |
 | BSRTI — বাংলাদেশ রেশম গবেষণা ও প্রশিক্ষণ ইনস্টিটিউট | 1962 | held | site | its own page: research is its main work |
 | BIRTAN — বাংলাদেশ ফলিত পুষ্টি গবেষণা ও প্রশিক্ষণ ইনস্টিটিউট | 1968 | 2012 | site | its own page: research is its main work; year: it began as the Applied Nutrition Project at Jurain in 1968 and was renamed BIRTAN in 1979 |
 | BRRI — বাংলাদেশ ধান গবেষণা ইনস্টিটিউট | 1970 | 1973 | osm | its own page: research is its main work |
@@ -121,26 +149,29 @@ of a baec.gov.bd script, nothing saved. CLAUDE.md records the rule.
 | BRiCM — বাংলাদেশ রেফারেন্স ইনস্টিটিউট ফর কেমিক্যাল মেজারমেন্টস্‌ | 2012 | 2020 | site | its own page: research is its main work; year: 2008 is a grant for a laboratory inside BCSIR; DRiCM, the institute under its earlier name, was inaugurated in 2012 |
 | BORI — বাংলাদেশ ওশানোগ্রাফিক রিসার্চ ইনস্টিটিউট | 2015 | — | site | its own page: research is its main work; year: 1973 and 2000 are an initiative and an establishment project; the institute was established under its Act in 2015 |
 
-**স্বাস্থ্য** (3)
+**স্বাস্থ্য** (5)
 
 | Institute | Year | বর্তমান রূপে | Point | Why kept / note |
 |---|---|---|---|---|
-| IEDCR — রোগতত্ত্ব, রোগ নিয়ন্ত্রণ ও গবেষণা ইনস্টিটিউট | 1947 | 1976 | site | its own page: research is its main work; year: its own history runs from the Central Malaria Institute of East Pakistan (1947), working in Dhaka as the Malaria Institute of Pakistan from 1954, to IEDCR (1976) |
+| IEDCR — রোগতত্ত্ব, রোগ নিয়ন্ত্রণ ও গবেষণা ইনস্টিটিউট | 1947 (predecessor in নয়াদিল্লি) | 1976 | site | its own page: research is its main work; year: its own history runs from the Central Malaria Institute of East Pakistan (1947), working in Dhaka as the Malaria Institute of Pakistan from 1954, to IEDCR (1976) |
+| IPH — জনস্বাস্থ্য ইনস্টিটিউট | 1952 | 1953 | approximate | restored by the user (RES-3); its own page: research is its main work |
 | icddr,b — আন্তর্জাতিক উদরাময় গবেষণা কেন্দ্র, বাংলাদেশ | 1960 | 1978 | approximate | an international research centre under its own Act (kept by decision 1) |
+| BMRC — বাংলাদেশ মেডিকেল রিসার্চ কাউন্সিল | 1972 | — | site | restored by the user (RES-3); the apex body of health research, kept like BARC (the user, 2026-10-10) |
 | NIPORT — জাতীয় জনসংখ্যা গবেষণা ও প্রশিক্ষণ ইনস্টিটিউট | 1977 | — | site | its own page: research is its main work |
 
-**সমাজ, অর্থনীতি ও কৌশল** (2)
+**সমাজ, অর্থনীতি ও কৌশল** (4)
 
 | Institute | Year | বর্তমান রূপে | Point | Why kept / note |
 |---|---|---|---|---|
-| BIDS — বাংলাদেশ উন্নয়ন গবেষণা প্রতিষ্ঠান | 1957 | 1974 | site | its own page: research is its main work; year: its own page traces it to PIDE, established in Pakistan in 1957 and moved to Dhaka in 1971; the 1974 Act (s. 19) also dates BIDE to a 1964 notification |
+| BIDS — বাংলাদেশ উন্নয়ন গবেষণা প্রতিষ্ঠান | 1957 (predecessor in করাচি) | 1974 | site | its own page: research is its main work; year: its own page traces it to PIDE, established in Pakistan in 1957 and moved to Dhaka in 1971; the 1974 Act (s. 19) also dates BIDE to a 1964 notification |
+| BARD — বাংলাদেশ পল্লী উন্নয়ন একাডেমি, কুমিল্লা | 1959 | 1986 | site | restored by the user (RES-3); its own page: research is its main work |
+| RDA — পল্লী উন্নয়ন একাডেমী, বগুড়া | 1974 | 1990 | site | restored by the user (RES-3); its own page: research is its main work |
 | BIISS — বাংলাদেশ ইনস্টিটিউট অব ইন্টারন্যাশনাল এন্ড স্ট্র্যাটেজিক স্টাডিজ | 1978 | 1984 | site | its own page: research is its main work; conflict: its own page dates the 1984 Ordinance 28 March, bdlaws 17 April: the same year, so a year-only card settles it (decision 4) |
 
-**Left out** (31)
+**Left out** (26)
 
 | Candidate | Reason |
 |---|---|
-| এসআরডিআই — মৃত্তিকা সম্পদ উন্নয়ন ইনস্টিটিউট (AG8) | its own page puts soil and land survey, soil testing and fertiliser advice first: research is not its main work |
 | সিডিবি — তুলা উন্নয়ন বোর্ড (AG14) | a development board: research runs together with cotton extension and seed production under one management |
 | GSB — বাংলাদেশ ভূতাত্ত্বিক জরিপ অধিদপ্তর (ST9) | a survey department: its page lists mapping and exploration before research (its founding year was also unverified) |
 | BEPRC — বাংলাদেশ জ্বালানি ও বিদ্যুৎ গবেষণা কাউন্সিল (বিইপিআরসি) (ST10) | a council that funds and coordinates energy research rather than doing it; only BARC is kept as such a body (decision 1) |
@@ -148,14 +179,10 @@ of a baec.gov.bd script, nothing saved. CLAUDE.md records the rule.
 | BPI — বাংলাদেশ পেট্রোলিয়াম ইন্সটিটিউট (ST13) | a training institute: training first, research one of its functions (decision 1: training academies) |
 | NACTAR — জাতীয় কম্পিউটার প্রশিক্ষণ ও গবেষণা একাডেমী (নেকটার) (ST14) | a training academy (decision 1) |
 | CEGIS — সেন্টার ফর এনভায়রনমেন্টাল এন্ড জিওগ্রাফিক ইনফরমেশন সার্ভিসেস (ST15) | left out by the user (decision 1); not verifiable in RES-1 either |
-| IPH — জনস্বাস্থ্য ইনস্টিটিউট (HE2) | a public-health laboratory and production institute: diagnosis, surveillance and ORS production come before research |
 | আইপিএইচএন — জনস্বাস্থ্য পুষ্টি প্রতিষ্ঠান (HE3) | runs national nutrition programmes, surveys and training; research is one task among them |
 | NIPSOM — জাতীয় প্রতিষেধক ও সামাজিক চিকিৎসা প্রতিষ্ঠান (নিপসম) (HE4) | a postgraduate teaching and training institute |
-| BMRC — বাংলাদেশ মেডিকেল রিসার্চ কাউন্সিল (HE5) | a council that funds and coordinates health research rather than doing it; only BARC is kept as such a body (decision 1) |
 | ICMH — বাংলাদেশ শিশু ও মাতৃস্বাস্থ্য ইনস্টিটিউট (HE8) | a hospital-institute (decision 1: hospitals) |
 | NICRH — জাতীয় ক্যান্সার গবেষণা ইনস্টিটিউট ও হাসপাতাল (HE9) | a hospital (decision 1) |
-| BARD — বাংলাদেশ পল্লী উন্নয়ন একাডেমি (বার্ড), কুমিল্লা (SE3) | a rural-development academy: training first (decision 1: training academies) |
-| RDA — পল্লী উন্নয়ন একাডেমী (আরডিএ), বগুড়া (SE4) | a rural-development academy (decision 1) |
 | RDA Gopalganj — পল্লী উন্নয়ন একাডেমি (আরডিএ), গোপালগঞ্জ (SE5) | a rural-development academy (decision 1) |
 | RDA Rangpur — পল্লী উন্নয়ন একাডেমি (আরডিএ), রংপুর (SE6) | a rural-development academy (decision 1) |
 | RDA Jamalpur — পল্লী উন্নয়ন একাডেমী, জামালপুর (SE7) | a rural-development academy (decision 1) |
