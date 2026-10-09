@@ -138,3 +138,13 @@ For the 32 organisations ORGN-1 could not verify, PCA, IPU, OECD, OPEC and AfDB,
   its organisation on the map tab.
 - Two names are Natural Earth's NAME_BN as the basemap has them: the State of Palestine «ফিলিস্তিন অঞ্চল» (Bangladesh's
   view), the Federated States of Micronesia «মাইক্রোনেশিয়া যুক্তরাজ্য» (for the user's review).
+
+## ORGN-3b (the user, 2026-10-09)
+
+- Country names in text (card, pins, list): this map's seed overrides Natural Earth's NAME_BN for the Federated States
+  of Micronesia («মাইক্রোনেশিয়া»; NAME_BN reads "Micronesia United Kingdom") and the State of Palestine («ফিলিস্তিন»);
+  the shapes and the shared countries file are unchanged. The other 40 names shown come straight from NAME_BN (and
+  Israel's «ইসরায়েল» from global-indices); none is plainly wrong.
+- Pins stay clear of the map's own controls as well as its edge (the shared placement in `docs/shell/indices.js`:
+  global-indices' pins move where they met a control). A label is placed again once the fonts are in.
+- No tilt button: `flat: true`, a flat 2D map (CLAUDE.md, the baseline).

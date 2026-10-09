@@ -26,7 +26,7 @@
 | Loaded only for a map whose descriptor declares `newest`.
 |--------------------------------------------------------------------------
 */
-import { makePins, placePins } from './indices.js?v=80f0f2e223';
+import { makePins, placePins } from './indices.js?v=81f68cbb6a';
 
 let shell;
 let spec;
@@ -53,7 +53,7 @@ export async function mount(api) {
   if (!Array.isArray(spec.groups) || !spec.groups.length) throw new Error('newest: groups lists the groups, in order');
   for (const k of ['count', 'newest', 'order', 'legendNewest', 'legendBangladesh', 'search', 'total', 'verified', 'source']) if (typeof W[k] !== 'string') throw new Error(`newest: words.${k} is missing`);
   for (const g of ['all', ...spec.groups]) if (typeof W.chips?.[g] !== 'string') throw new Error(`newest: words.chips.${g} is missing`);
-  await Promise.all([stylesheet(api, './indices.css?v=80f0f2e223'), stylesheet(api, './newest.css?v=80f0f2e223')]);
+  await Promise.all([stylesheet(api, './indices.css?v=81f68cbb6a'), stylesheet(api, './newest.css?v=81f68cbb6a')]);
   page = api.dom.mapShell.parentElement;
   page.classList.add('has-indices', 'has-newest');
   api.own.undo('the newest page', () => page.classList.remove('has-indices', 'has-newest', 'indices-bd'));
@@ -88,6 +88,8 @@ export function install(api) {
   if (bar) api.own.domHandler(bar, 'click', () => queueMicrotask(syncTab));
   api.onChange(render);
   api.own.mapHandler(api.map, 'move', place);
+  // Labels are measured when placed: once the fonts are in, they are placed again (ORGN-3b).
+  if (document.fonts) { api.own.domHandler(document.fonts, 'loadingdone', place); document.fonts.ready.then(() => place()); }
   api.own.undo('the newest pins', () => { for (const p of pins) p.marker.remove(); pins = []; });
   render();
   syncTab();

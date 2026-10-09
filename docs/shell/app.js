@@ -15,9 +15,9 @@
 |--------------------------------------------------------------------------
 */
 
-import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=80f0f2e223';
-import { resolver } from '../shared/resolver.js?v=80f0f2e223';
-import { pickerRow } from '../shared/picker.js?v=80f0f2e223';
+import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=81f68cbb6a';
+import { resolver } from '../shared/resolver.js?v=81f68cbb6a';
+import { pickerRow } from '../shared/picker.js?v=81f68cbb6a';
 
 /*
 |--------------------------------------------------------------------------
@@ -722,15 +722,15 @@ function pick(row, keys) {
 |--------------------------------------------------------------------------
 */
 const SHELL_MODULES = {
-  tabs: './tabs.js?v=80f0f2e223',
-  chips: './chips.js?v=80f0f2e223',
-  timeline: './timeline.js?v=80f0f2e223',
-  globe: './globe.js?v=80f0f2e223',
-  focus: './focus.js?v=80f0f2e223',
-  legend: './legend.js?v=80f0f2e223',
-  info: './info.js?v=80f0f2e223',
-  indices: './indices.js?v=80f0f2e223',
-  newest: './newest.js?v=80f0f2e223',
+  tabs: './tabs.js?v=81f68cbb6a',
+  chips: './chips.js?v=81f68cbb6a',
+  timeline: './timeline.js?v=81f68cbb6a',
+  globe: './globe.js?v=81f68cbb6a',
+  focus: './focus.js?v=81f68cbb6a',
+  legend: './legend.js?v=81f68cbb6a',
+  info: './info.js?v=81f68cbb6a',
+  indices: './indices.js?v=81f68cbb6a',
+  newest: './newest.js?v=81f68cbb6a',
 };
 const hiders = []; // (table, key) => true takes a record off the map, the picker and ‹ ›
 // (table, key) => true takes a record off the map only: the picker and ‹ › still list it (the focus module).
@@ -807,6 +807,10 @@ const view = descriptor.view ?? {};
 // A map's own frame wins; otherwise a regional basemap opens on its frame.
 const frame = view.fitBounds ?? region?.frame;
 const maxBounds = descriptor.constraints?.maxBounds ?? region?.maxBounds;
+// `flat: true` (opt-in, ORGN-3b; org-newest-members): a flat 2D map — no tilt, so no tilt button; a baseline
+// exception, that map's alone (CLAUDE.md).
+const FLAT = descriptor.flat === true;
+if (descriptor.flat !== undefined && typeof descriptor.flat !== 'boolean') throw new Error('flat is true or false');
 const map = new maplibregl.Map({
   container: 'map',
   transformRequest: (url, resourceType) => resolver.transformRequest(url, resourceType),
@@ -824,7 +828,7 @@ const map = new maplibregl.Map({
   maxZoom: descriptor.constraints?.maxZoom ?? 22,
   // The tilt button stops at 55; this stops a drag going further. Baseline,
   // not a descriptor field: every map gets the same ceiling.
-  maxPitch: 60,
+  maxPitch: FLAT ? 0 : 60,
   ...(maxBounds ? { maxBounds } : {}),
   attributionControl: false,
   ...shell.build.options,

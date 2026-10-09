@@ -43,8 +43,8 @@ for (const f of ne.features) {
   if (!country.has(key)) country.set(key, { nameBn: p.NAME_BN, nameEn: p.NAME_EN, at: [+p.LABEL_X.toFixed(3), +p.LABEL_Y.toFixed(3)] });
 }
 // Israel has no shape in Bangladesh's view; its Bengali name is global-indices' approved one.
-const nameOf = (iso3) => country.get(iso3)?.nameBn ?? (gi.countryNames?.[iso3] ? t(gi.countryNames[iso3]) : null);
-
+// This map's own overrides first (the user, ORGN-3b: Micronesia, the State of Palestine), in text only.
+const nameOf = (iso3) => (seed.countryNames?.[iso3] ? t(seed.countryNames[iso3]) : null) ?? country.get(iso3)?.nameBn ?? (gi.countryNames?.[iso3] ? t(gi.countryNames[iso3]) : null);
 // The shared file's shapes: each country's main polygon, for a frame and a size (km² on the sphere, as drawn).
 const q = world.quantum;
 const arcs = world.arcs.map((a) => { const pts = []; let x = 0, y = 0; for (let i = 0; i < a.length; i += 2) { x += a[i]; y += a[i + 1]; pts.push([x * q, y * q]); } return pts; });
@@ -136,6 +136,8 @@ const descriptor = {
   minTextSize: 14,
   // As global-indices: no country's name from the basemap; the pins are the map's only names; seas keep theirs.
   hideCountryLabels: true,
+  // A flat 2D map: no tilt button (the user, ORGN-3b; a baseline exception, this map's alone).
+  flat: true,
   openOn: { tab: 'map', records: 'orgs', key: 'un' },
   records: {
     tabs: { file: './tabs.json', fields: { titleBn: { type: 'text', required: true } } },

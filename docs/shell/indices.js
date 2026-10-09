@@ -50,7 +50,7 @@ export async function mount(api) {
   for (const t of [spec.records, spec.countries]) if (!api.records[t]) throw new Error(`indices: "${t}" is not a records table`);
   if (!spec.tabs?.map || !spec.tabs?.bangladesh) throw new Error('indices: tabs.map and tabs.bangladesh name the two view tabs');
   for (const k of ['bdStat', 'topStat', 'bottomStat', 'valueStat', 'legendTop', 'legendBottom', 'verified', 'source', 'factsNote', 'bdCaption', 'unchanged', 'better', 'worse', 'upNeutral', 'downNeutral', 'basisEdition', 'basisYear']) if (typeof W[k] !== 'string') throw new Error(`indices: words.${k} is missing`);
-  await stylesheet(api, './indices.css?v=80f0f2e223');
+  await stylesheet(api, './indices.css?v=81f68cbb6a');
   page = api.dom.mapShell.parentElement;
   page.classList.add('has-indices');
   api.own.undo('the indices page', () => page.classList.remove('has-indices', 'indices-bd'));
@@ -78,6 +78,8 @@ export function install(api) {
   if (bar) api.own.domHandler(bar, 'click', () => queueMicrotask(syncTab));
   api.onChange(render);
   api.own.mapHandler(api.map, 'move', place);
+  // Labels are measured when placed: once the fonts are in, they are placed again (ORGN-3b).
+  if (document.fonts) { api.own.domHandler(document.fonts, 'loadingdone', place); document.fonts.ready.then(() => place()); }
   api.own.undo('the indices pins', () => { for (const p of pins) p.marker.remove(); pins = []; });
   render();
   syncTab();
@@ -131,8 +133,8 @@ export function makePins(shell, list) {
 }
 
 /*
- * Each label is placed where it lies wholly inside the map and clear of every label placed before it and of every
- * pin's dot — above its point, else lower or higher, else beside — and a thin leader joins it to the point. The point
+ * Each label is placed where it lies wholly inside the map and clear of every label placed before it, of every
+ * pin's dot and of the map's own controls (ORGN-3b) — above its point, else lower or higher, else beside — and a thin leader joins it to the point. The point
  * itself never moves. Bangladesh's goes first, then the top's, then the bottom's.
  */
 function place() {
@@ -146,6 +148,8 @@ export function placePins(shell, pins, kinds) {
   const M = 4, GAP = 4, DOT = 12;
   const placed = [];
   const dots = pins.map((p) => { const c = shell.map.project(p.marker.getLngLat()); return { x: c.x, y: c.y }; });
+  // The map's own controls (the zoom and compass column, the tilt button): no label under them (ORGN-3b).
+  const controls = [...shell.map.getContainer().querySelectorAll('.maplibregl-ctrl')].map((e) => e.getBoundingClientRect()).filter((q) => q.width && q.height).map((q) => ({ x: q.left - map.left, y: q.top - map.top, w: q.width, h: q.height }));
   const order = [...pins.keys()].sort((a, b) => kinds.indexOf(pins[a].kind) - kinds.indexOf(pins[b].kind));
   const hits = (r, q) => r.x < q.x + q.w + GAP && q.x < r.x + r.w + GAP && r.y < q.y + q.h + GAP && q.y < r.y + r.h + GAP;
   for (const i of order) {
@@ -155,16 +159,32 @@ export function placePins(shell, pins, kinds) {
     const at = dots[i];
     const tries = [];
     for (const dy of [-(h + 14), -(h + 40), 14, 40, -(h + 66), 66, -(h + 92), 92]) for (const dx of [-w / 2, -w / 2 - 50, -w / 2 + 50, -w / 2 - 100, -w / 2 + 100]) tries.push([dx, dy]);
+    // Further out, where the near places are all taken (a small map, ORGN-3b).
+    for (const dy of [-(h + 118), 118, -(h + 144), 144]) for (const dx of [-w / 2, -w / 2 - 50, -w / 2 + 50, -w / 2 - 100, -w / 2 + 100, -w / 2 - 150, -w / 2 + 150]) tries.push([dx, dy]);
     let best = null;
-    for (const [dx, dy] of tries) {
-      let r = { x: at.x + dx, y: at.y + dy, w, h };
-      // Slid back inside the map where it would cross an edge.
-      r.x = Math.min(Math.max(r.x, M), map.width - M - w);
-      if (r.y < M || r.y + h > map.height - M) continue;
-      if (placed.some((q) => hits(r, q))) continue;
-      if (dots.some((d, j) => j !== i && hits(r, { x: d.x - DOT / 2, y: d.y - DOT / 2, w: DOT, h: DOT }))) continue;
-      best = r;
-      break;
+    // First clear of every label, control and dot; then, if none is, clear of labels and controls but over a dot.
+    for (const strict of [true, false]) {
+      for (const [dx, dy] of tries) {
+        let r = { x: at.x + dx, y: at.y + dy, w, h };
+        // Slid back inside the map where it would cross an edge.
+        r.x = Math.min(Math.max(r.x, M), map.width - M - w);
+        if (r.y < M || r.y + h > map.height - M) continue;
+        if (placed.some((q) => hits(r, q)) || controls.some((q) => hits(r, q))) continue;
+        if (strict && dots.some((d, j) => j !== i && hits(r, { x: d.x - DOT / 2, y: d.y - DOT / 2, w: DOT, h: DOT }))) continue;
+        best = r;
+        break;
+      }
+      if (best) break;
+    }
+    // Still none (a point off a small map): the clear place anywhere in the map nearest the point (ORGN-3b).
+    if (!best) {
+      let near = Infinity;
+      for (let y = M; y <= map.height - M - h; y += 6) for (let x = M; x <= map.width - M - w; x += 6) {
+        const r = { x, y, w, h };
+        if (placed.some((q) => hits(r, q)) || controls.some((q) => hits(r, q))) continue;
+        const d = Math.hypot(x + w / 2 - at.x, y + h / 2 - at.y);
+        if (d < near) { near = d; best = r; }
+      }
     }
     best ??= { x: Math.min(Math.max(at.x - w / 2, M), map.width - M - w), y: Math.min(Math.max(at.y - h - 14, M), map.height - M - h), w, h };
     placed.push(best);

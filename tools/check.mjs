@@ -967,18 +967,21 @@ async function indicesSteps(page, shoot, summary, fail) {
       const map = document.getElementById('map').getBoundingClientRect();
       const boxes = pins.map((p) => p.querySelector('.ix-pin-text').getBoundingClientRect());
       const outside = boxes.filter((b) => b.left < map.left || b.right > map.right || b.top < map.top || b.bottom > map.bottom).length;
+      // No label under the map's own controls (ORGN-3b).
+      const ctrls = [...document.querySelectorAll('#map .maplibregl-ctrl')].map((e) => e.getBoundingClientRect()).filter((q) => q.width && q.height);
+      const underCtrl = boxes.filter((b) => ctrls.some((q) => b.left < q.right && q.left < b.right && b.top < q.bottom && q.top < b.bottom)).length;
       let overlaps = 0;
       for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++) { const a = boxes[i], b = boxes[j]; if (a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom) overlaps++; }
       const shaded = ['s1','s2','s3','s4','s5','s6','s7'].reduce((n, k) => n + (r[k] ?? []).length, 0);
       return { title: document.getElementById('infoTitle').textContent, stats: document.querySelectorAll('.ix-stats .ix-stat').length, kind: r.kind, shaded, hi: (r.hiTop ?? []).length + (r.hiBottom ?? []).length,
         pins: pins.length, wantPins: want.length, texts: pins.map((p) => p.querySelector('.ix-pin-text').textContent).join(' | '), want: want.map((p) => p.text).join(' | '), bdPins: pins.filter((p) => p.classList.contains('ix-pin-bd')).length, ends: pins.filter((p) => !p.classList.contains('ix-pin-bd')).length,
-        outside, overlaps, strip: !document.querySelector('.ix-strip').hidden, note: Boolean(document.querySelector('.ix-note')), ownNote: Boolean(r.note), foot: Boolean(document.querySelector('.ix-foot a')) };
+        outside, overlaps, underCtrl, strip: !document.querySelector('.ix-strip').hidden, note: Boolean(document.querySelector('.ix-note')), ownNote: Boolean(r.note), foot: Boolean(document.querySelector('.ix-foot a')) };
     })()`);
     const problems = [];
     if (s.title !== label) problems.push(`card «${s.title}»`);
     if (s.stats !== 3) problems.push(`${s.stats} stat blocks`);
     if (s.pins !== s.wantPins || s.texts !== s.want || s.bdPins !== 1 || s.ends < 2) problems.push(`pins «${s.texts}», not «${s.want}»`);
-    if (s.outside || s.overlaps) problems.push(`${s.outside} pin label(s) outside the map, ${s.overlaps} overlapping`);
+    if (s.outside || s.overlaps || s.underCtrl) problems.push(`${s.outside} pin label(s) outside the map, ${s.overlaps} overlapping, ${s.underCtrl} under a map control`);
     if (s.kind === 'open' && (!s.shaded || s.hi || !s.strip || s.note !== s.ownNote)) problems.push(`open: shaded ${s.shaded}, highlights ${s.hi}, strip ${s.strip}, note ${s.note}`);
     if (s.kind === 'facts' && (s.shaded || !s.hi || s.strip || !s.note)) problems.push(`facts: shaded ${s.shaded}, highlights ${s.hi}, strip ${s.strip}, note ${s.note}`);
     if (!s.foot) problems.push('no «সূত্র» link');
@@ -988,7 +991,7 @@ async function indicesSteps(page, shoot, summary, fail) {
     note(l);
     cols = Math.max(cols, l.cols);
     pinsSeen += s.pins;
-    if (s.overlaps === 0 && s.outside === 0) clearRankings++;
+    if (s.overlaps === 0 && s.outside === 0 && !s.underCtrl) clearRankings++;
   }
   await shoot('steps', `${options.at(-1)[1]}`);
   // Bangladesh's pin opens the card: tapped, the card is shown and in view.
@@ -1063,13 +1066,16 @@ async function newestSteps(page, shoot, summary, fail) {
       const map = document.getElementById('map').getBoundingClientRect();
       const boxes = pins.map((p) => p.querySelector('.ix-pin-text').getBoundingClientRect());
       const outside = boxes.filter((b) => b.left < map.left || b.right > map.right || b.top < map.top || b.bottom > map.bottom).length;
+      // No label under the map's own controls (ORGN-3b).
+      const ctrls = [...document.querySelectorAll('#map .maplibregl-ctrl')].map((e) => e.getBoundingClientRect()).filter((q) => q.width && q.height);
+      const underCtrl = boxes.filter((b) => ctrls.some((q) => b.left < q.right && q.left < b.right && b.top < q.bottom && q.top < b.bottom)).length;
       let overlaps = 0;
       for (let i = 0; i < boxes.length; i++) for (let j = i + 1; j < boxes.length; j++) { const a = boxes[i], b = boxes[j]; if (a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom) overlaps++; }
       const tile = document.querySelector('.on-stat-newest strong');
       return { title: document.getElementById('infoTitle').textContent, stats: document.querySelectorAll('.on-stats .ix-stat').length,
         pins: pins.length, want: want.map((p) => p.text).join(' | '), texts: pins.map((p) => p.querySelector('.ix-pin-text').textContent).join(' | '),
         halos: pins.filter((p) => p.classList.contains('ix-pin-halo')).length, wantHalos: want.filter((p) => p.halo).length, bd: pins.filter((p) => p.classList.contains('ix-pin-bd')).length,
-        outside, overlaps, legend: Boolean(document.querySelector('.on-legend')?.getClientRects().length), foot: Boolean(document.querySelector('.ix-foot a')),
+        outside, overlaps, underCtrl, legend: Boolean(document.querySelector('.on-legend')?.getClientRects().length), foot: Boolean(document.querySelector('.ix-foot a')),
         marks: document.querySelectorAll('.on-mark').length, wantMarks: JSON.parse(r.marks ?? '[]').length,
         // The long-name rule: two lines, then smaller, never under 14 px; at 14 px a third line is allowed (a three-way tie at 320 px).
         nameLines: tile ? Math.round(tile.scrollHeight / (parseFloat(getComputedStyle(tile).lineHeight) || 26)) : 0, nameSize: tile ? parseFloat(getComputedStyle(tile).fontSize) : 0,
@@ -1079,7 +1085,7 @@ async function newestSteps(page, shoot, summary, fail) {
     if (s.title !== label) problems.push(`card «${s.title}»`);
     if (s.stats !== 3) problems.push(`${s.stats} tiles`);
     if (s.texts !== s.want || s.bd !== 1 || s.halos !== s.wantHalos) problems.push(`pins «${s.texts}», not «${s.want}» (halos ${s.halos}/${s.wantHalos})`);
-    if (s.outside || s.overlaps) problems.push(`${s.outside} pin label(s) outside the map, ${s.overlaps} overlapping`);
+    if (s.outside || s.overlaps || s.underCtrl) problems.push(`${s.outside} pin label(s) outside the map, ${s.overlaps} overlapping, ${s.underCtrl} under a map control`);
     if (!s.legend || !s.foot || s.marks !== s.wantMarks || !s.nameFits) problems.push(`legend ${s.legend}, «সূত্র» ${s.foot}, marks ${s.marks}/${s.wantMarks}, the newest member's tile fits ${s.nameFits}`);
     if (problems.length) fail(`newest: ${label} — ${problems.join('; ')}`);
     else good++;
@@ -1087,10 +1093,13 @@ async function newestSteps(page, shoot, summary, fail) {
     cols = Math.max(cols, (await page.evaluate(LAYOUT)).cols);
     pinsSeen += s.pins;
     halos += s.halos;
-    if (!s.outside && !s.overlaps) clear++;
+    if (!s.outside && !s.overlaps && !s.underCtrl) clear++;
     if (s.nameLines > 2) floorTiles.push(`${key} (${s.nameLines} lines at ${s.nameSize} px)`);
     if (SHEET.includes(key)) await shoot('sheet', label);
   }
+  // A flat map (`flat: true`, ORGN-3b) has no tilt button.
+  const tilt = await page.evaluate(`Boolean(document.querySelector('.ctrl-tilt'))`);
+  if (tilt && (await page.evaluate(`window.__shell.descriptor.flat === true`))) fail('newest: a flat map shows the tilt button');
   // Bangladesh's pin opens the card.
   const bdAt = await page.evaluate(`(() => { const t = document.querySelector('.ix-pin-bd .ix-pin-text'); if (!t) return null; const q = t.getBoundingClientRect(); return [q.left + q.width / 2, q.top + q.height / 2]; })()`);
   let bdOpens = false;
@@ -1145,7 +1154,7 @@ async function newestSteps(page, shoot, summary, fail) {
   if (bad.small.size) fail(`newest: text under 14 px — ${[...bad.small].slice(0, 4).join(', ')}`);
   if (bad.taps.size) fail(`newest: tap targets under 44 px — ${[...bad.taps].slice(0, 4).join(', ')}`);
   if (bad.sideways > 0) fail(`newest: sideways scroll ${bad.sideways} px`);
-  summary.push(`newest: ${good}/${options.length} organisations (card, tiles, pins, marks); ${pinsSeen} pins (${halos} with a halo), ${clear}/${options.length} with no pin overlapping or outside the map; Bangladesh's pin opens the card: ${bdOpens}; list ${opened}/${L.rows.length} rows open their organisation; search ${probe.search[0]} row(s) for «${'ASEAN'}»; chips ${probe.chips.map(([g, n]) => `${g} ${n}`).join(', ')}${probe.chipsScroll ? ' (chips scroll sideways)' : ''}; ${cols} column(s)${floorTiles.length ? `; at 14 px on three lines: ${floorTiles.join(', ')}` : ''}`);
+  summary.push(`newest: tilt button ${tilt ? 'shown' : 'none'}; ${good}/${options.length} organisations (card, tiles, pins, marks); ${pinsSeen} pins (${halos} with a halo), ${clear}/${options.length} with no pin overlapping or outside the map; Bangladesh's pin opens the card: ${bdOpens}; list ${opened}/${L.rows.length} rows open their organisation; search ${probe.search[0]} row(s) for «${'ASEAN'}»; chips ${probe.chips.map(([g, n]) => `${g} ${n}`).join(', ')}${probe.chipsScroll ? ' (chips scroll sideways)' : ''}; ${cols} column(s)${floorTiles.length ? `; at 14 px on three lines: ${floorTiles.join(', ')}` : ''}`);
 }
 
 async function pickerSteps(page, shoot, summary, fail, tabs = 0) {

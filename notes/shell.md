@@ -335,3 +335,10 @@ tap-to-open, never a live map.
   14 px), the marks, the foot, and a list tab with a search field, group chips and one row per record. Nothing
   existing did these: the indices module's tiles, list and words are a ranking's. global-indices is unchanged
   (`tools/check.mjs global-indices` at four widths; `--all` stamp-only).
+
+- **`flat: true`** (opt-in, ORGN-3b, 2026-10-09; org-newest-members, the user's baseline exception in CLAUDE.md): the
+  map's pitch ceiling is 0, so it never tilts and the tilt button is not added. Every other map keeps the button
+  (latitude-longitude, a globe, has none, by its globe module).
+- **Pin placement** (`placePins`, shared by indices and newest; ORGN-3b): a label also stays clear of the map's own
+  controls (`.maplibregl-ctrl`); where no place near its point is clear, a second pass may cover another pin's dot, and
+  a last one scans the whole map for the clear place nearest the point. Labels are placed again once the fonts load.

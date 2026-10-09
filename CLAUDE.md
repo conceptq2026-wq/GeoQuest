@@ -217,6 +217,8 @@ A globe map has no tilt button and keeps the picker row: `notes/globe.md`.
 **One exception, the user's decision (2026-10-09): global-indices shows no country name** — neither the
 basemap's nor its own (`hideCountryLabels: true`, opt-in, that map alone): its three pins per ranking are its only
 names. Sea and ocean names stay. The world basemap draws no city or place names on any map.
+**One more, the user's decision (2026-10-09): org-newest-members has no tilt button** — a flat 2D map (`flat: true`,
+opt-in, that map alone: no pitch). Every other map keeps it; latitude-longitude, a globe, has none as before.
 One map, environment-treaties, is in English: `notes/environment-treaties.md`.
 
 **Which labels are emphasised is derived, never declared** — taken from the

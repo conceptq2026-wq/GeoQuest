@@ -176,6 +176,18 @@
    "approved": true
   }
  },
+ "countryNames": {
+  "FSM": {
+   "bn": "মাইক্রোনেশিয়া",
+   "approved": true,
+   "by": "the user, ORGN-3b (2026-10-09): Natural Earth NAME_BN for it is wrong (it reads \"Micronesia United Kingdom\")"
+  },
+  "PSE": {
+   "bn": "ফিলিস্তিন",
+   "approved": true,
+   "by": "the user, ORGN-3b (2026-10-09): the State of Palestine, in text; its shape stays the shared file's"
+  }
+ },
  "organisations": {
   "un": {
    "group": "un",
