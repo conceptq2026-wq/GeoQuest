@@ -1,7 +1,9 @@
 // Serves a local preview of the site, on this machine only, with the work in
 // progress on its home page.
 //
-//   node tools/preview.mjs [--build <diagram-id>]... [port]
+//   node tools/preview.mjs [--build <diagram-id>]... [--lan] [port]
+//   --lan (opt-in, PREVIEW-LAN, 2026-10-09): also serve on this PC's private LAN addresses (10.x, 172.16–31.x, 192.168.x)
+//   so a phone on the same Wi-Fi can open it — never a public address, no tunnel, no port forwarding, no relay.
 //   (tools/check.mjs --fixture=<dir> mounts a test map from outside docs/ into the copy: makeSite's `fixtures`)
 //
 // Copies docs/ into a temporary folder outside the repo and serves the copy at
@@ -156,7 +158,7 @@ const TYPES = {
  * under, "/" or a subpath like the live site's; `extra` maps a further path
  * prefix to a folder served beside it.
  */
-export function serveSite({ site, placeholders = new Map(), port = 0, prefix = '/', extra = {} }) {
+export function serveSite({ site, placeholders = new Map(), port = 0, prefix = '/', extra = {}, host = '127.0.0.1' }) {
   const server = http.createServer((req, res) => {
     const url = new URL(req.url, 'http://x');
     let pathname = decodeURIComponent(url.pathname);
@@ -197,7 +199,7 @@ export function serveSite({ site, placeholders = new Map(), port = 0, prefix = '
     res.writeHead(200, { ...head, 'content-length': stat.size });
     fs.createReadStream(file).pipe(res);
   });
-  return new Promise((resolve) => server.listen(port, '127.0.0.1', () => resolve(server)));
+  return new Promise((resolve, reject) => { server.once('error', reject); server.listen(port, host, () => resolve(server)); });
 }
 
 // ---- run as a command ------------------------------------------------------------------
@@ -206,11 +208,13 @@ if (path.resolve(process.argv[1] ?? '') === fileURLToPath(import.meta.url)) {
   const args = process.argv.slice(2);
   const rebuild = [];
   let port = 8765;
+  let lan = false;
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--build' && ID.test(args[i + 1] ?? '')) rebuild.push(args[++i]);
+    else if (args[i] === '--lan') lan = true;
     else if (/^\d+$/.test(args[i])) port = Number(args[i]);
     else {
-      console.error('usage: node tools/preview.mjs [--build <diagram-id>]... [port]');
+      console.error('usage: node tools/preview.mjs [--build <diagram-id>]... [--lan] [port]');
       process.exit(2);
     }
   }
@@ -224,4 +228,21 @@ if (path.resolve(process.argv[1] ?? '') === fileURLToPath(import.meta.url)) {
   await serveSite({ ...made, port });
   console.log(`serving a copy of docs/ from ${made.site}`);
   console.log(`open http://127.0.0.1:${port}/index.html`);
+  if (lan) {
+    // Only private IPv4 addresses (RFC 1918): a home or office network, never a public interface.
+    const PRIVATE = /^(10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)/;
+    const named = Object.entries(os.networkInterfaces()).flatMap(([name, list]) => (list ?? []).filter((a) => a.family === 'IPv4' && !a.internal && PRIVATE.test(a.address)).map((a) => [a.address, name]));
+    const addresses = named.map(([a]) => a);
+    const nameOf = Object.fromEntries(named);
+    if (!addresses.length) console.log('--lan: this PC has no private LAN address (10.x, 172.16–31.x, 192.168.x); serving on this PC only');
+    for (const host of [...new Set(addresses)]) {
+      try {
+        await serveSite({ ...made, port, host });
+        console.log(`on your phone (same Wi-Fi): http://${host}:${port}/index.html  (${nameOf[host]})`);
+      } catch (error) {
+        console.log(`--lan: could not serve on ${host}:${port} (${error.code ?? error.message})`);
+      }
+    }
+    if (addresses.length) console.log('warning: while this runs, anyone on the same Wi-Fi can open the preview; stop it (Ctrl+C) when done');
+  }
 }

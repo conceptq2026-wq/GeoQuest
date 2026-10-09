@@ -44,3 +44,13 @@ exactly as before (the 15 cards then live, rendered in headless Edge before
 and after, hashed alike). No card has a thumbnail. The first two: the rivers
 diagram «নদী ১» («বাংলাদেশের নদ-নদীর সম্পর্ক এক নজরে (ছবি)») and the rivers
 map «নদী ২» («ম্যাপে নদী বেছে শাখা-উপনদী ও গতিপথ দেখুন»).
+
+## The preview on a phone (PREVIEW-LAN, 2026-10-09)
+
+- `node tools/preview.mjs --lan [port]` also serves the preview on this PC's private LAN addresses (10.x,
+  172.16–31.x, 192.168.x), each printed with its interface: `http://<this PC's LAN IPv4>:<port>/index.html`, e.g.
+  `http://192.168.0.126:8765/index.html` on Ethernet; a "vEthernet" address is a virtual switch, not the Wi-Fi.
+  Never a public interface, no tunnel, no port forwarding, no relay. Without `--lan` nothing changes (127.0.0.1).
+- While it runs, anyone on the same Wi-Fi can open it; stop it with Ctrl+C.
+- The first time, Windows Defender Firewall may ask about Node.js: allow it on **private networks only** (leave
+  public unticked).

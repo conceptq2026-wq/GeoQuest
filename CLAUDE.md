@@ -83,6 +83,9 @@ BCS / government exam prep.
 - **Every new map or diagram goes on the home page first** — the local
   preview's, from `tools/wip.json`, before any work; the live one only when
   finished (the user's standing rule): `notes/home-and-registry.md`.
+- **The local preview**: `node tools/preview.mjs [port]` (this PC only); on a phone over home Wi-Fi,
+  `node tools/preview.mjs --lan [port]` (PREVIEW-LAN, 2026-10-09: this PC's private LAN addresses only, never a public
+  one, no tunnel; anyone on the same Wi-Fi can open it while it runs).
 - **No e-mail address, ever** (the user's rule, 2026-09-29): the user's
   address never appears in an HTTP request (User-Agent, any header, URL,
   payload), a script, a note, a commit or a sub-agent prompt. Where a
