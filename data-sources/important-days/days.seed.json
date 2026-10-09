@@ -9332,9 +9332,10 @@
     },
     "purposeBn": {
      "bn": "১৯৭১ সালে মুক্তিযুদ্ধে বিজয়ের প্রাক্কালে পাকিস্তানি বাহিনী ও তাদের দোসরদের হাতে নিহত দেশের বুদ্ধিজীবীদের স্মরণ করা।",
-     "approved": false,
+     "approved": true,
      "url": "https://bn.wikipedia.org/w/index.php?oldid=8646102",
-     "sourceType": "wikipedia"
+     "sourceType": "wikipedia",
+     "by": "the user, PUSH-WHEEL (2026-10-09)"
     }
    }
   }

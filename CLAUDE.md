@@ -521,12 +521,11 @@ State which kind a task is when reporting it.
 - `important-days` «বছরের চাকা» went live on the home page on 2026-10-08, under বাংলাদেশ, with no caption, after
   WHEEL-2 to WHEEL-5 (the user's review) and GL-WHEEL: religious days removed by the user, two kinds, twelve months
   and no year shown, drawn by the diagram shell's `days` view, with Noto Sans Bengali Bold (`notes/important-days.md`).
-  - **WHEEL-7 (the user's source rule, 2026-10-09; local, not pushed):** each date from the body that owns the day — the
+  - **WHEEL-7 (the user's source rule, 2026-10-09; live with PUSH-WHEEL):** each date from the body that owns the day — the
     UN or its agency, or an official Government of Bangladesh source — cross-checked with Wikipedia; the Cabinet
     Division's circular is a list of candidates, and the source only for seven national days no other official page
     states. 132 of 135 entries built (50 added by the user, the three former conflicts resolved; বিশ্ব সাদা ছড়ি দিবস,
-    শিশু অধিকার দিবস and জাতীয় টিকা দিবস held). Every string approved (the new purposes on WHEEL-8) but শহিদ বুদ্ধিজীবী
-    দিবস's purpose, which awaits the user and is not built until approved.
+    শিশু অধিকার দিবস and জাতীয় টিকা দিবস held). Every string approved (the new purposes on WHEEL-8, the last on PUSH-WHEEL).
   - **Yearly check** (the user's rule, 2026-10-08): when each new public-holiday gazette is published, compare
     important-days' three Bangla-calendar dates (১ বৈশাখ 14 April, ২৫ বৈশাখ 8 May, ১১ জ্যৈষ্ঠ 25 May); if any differs,
     their strings go back to `approved: false` and the user is told.

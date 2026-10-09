@@ -192,3 +192,8 @@ research: `tools/.cache/days/wheel6.md` and `wheel6/`.
 - শহিদ বুদ্ধিজীবী দিবস: no official GoB page read states what the day commemorates (PID gives the programme, MoLWA's site
   the gazette of names), so its purpose is from Bengali Wikipedia (revision 8646102), in our own words — awaiting the
   user, not built until approved.
+
+## PUSH-WHEEL (the user, 2026-10-09)
+
+- শহিদ বুদ্ধিজীবী দিবস's purpose approved as written: every string of the seed approved; 107 rows open a card. Pushed with
+  WHEEL-7 and WHEEL-8.

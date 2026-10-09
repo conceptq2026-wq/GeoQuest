@@ -2874,8 +2874,10 @@
         "m": 12,
         "d": 14
       },
-      "tappable": false,
+      "purposeBn": "১৯৭১ সালে মুক্তিযুদ্ধে বিজয়ের প্রাক্কালে পাকিস্তানি বাহিনী ও তাদের দোসরদের হাতে নিহত দেশের বুদ্ধিজীবীদের স্মরণ করা।",
+      "tappable": true,
       "card": {
+        "purposeBn": "১৯৭১ সালে মুক্তিযুদ্ধে বিজয়ের প্রাক্কালে পাকিস্তানি বাহিনী ও তাদের দোসরদের হাতে নিহত দেশের বুদ্ধিজীবীদের স্মরণ করা।",
         "source": {
           "url": "https://pressinform.gov.bd/pages/all-notes/%E0%A6%A4%E0%A6%A5%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BF%E0%A6%AC%E0%A6%B0%E0%A6%A3%E0%A7%80-%E0%A7%AF-%E0%A6%A1%E0%A6%BF%E0%A6%B8%E0%A7%87%E0%A6%AE%E0%A7%8D%E0%A6%AC%E0%A6%B0-%E0%A7%A8%E0%A7%A6%E0%A7%A8%E0%A7%AB-ef6edd-695b9941a31054345f104aab",
           "host": "pressinform.gov.bd"
