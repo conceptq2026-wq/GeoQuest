@@ -25,7 +25,7 @@
 | written in Bengali digits. Markers: জাতীয় a filled dot, আন্তর্জাতিক a hollow ring, the same size everywhere.
 */
 
-import { el, pickerBar, stylesheet, svgEl } from './parts.js?v=81f68cbb6a';
+import { el, pickerBar, stylesheet, svgEl } from './parts.js?v=79742f19c4';
 
 // CSS px: the wheel's bounds, the chosen wedge's pop, the gap between wedges, the room kept outside the ring for the
 // pop and the «আজ» pill, the inner radius's share of the outer, the markers' size.
@@ -72,7 +72,7 @@ const icon = (kinds, size = WHEEL.mark) => {
 
 export async function mount(panel, { descriptor, data }) {
   const W = descriptor.words;
-  await Promise.all([stylesheet('../shared/picker.css?v=81f68cbb6a'), stylesheet('./days.css?v=81f68cbb6a')]);
+  await Promise.all([stylesheet('../shared/picker.css?v=79742f19c4'), stylesheet('./days.css?v=79742f19c4')]);
   panel.classList.add('days');
   const MONTHS = W.months;
 

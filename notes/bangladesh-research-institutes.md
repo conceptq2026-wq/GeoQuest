@@ -79,6 +79,17 @@ the local preview).
 5. **The card's foot:** «সর্বশেষ যাচাই» — the latest day a page it cites was read — and «সূত্র ↗», the institute's own
    page it cites first (`verified`, `sourcePage` in the seed).
 
+## The preview (RES-3, 2026-10-10)
+
+Built into the local preview only by `tools/build-bangladesh-research-institutes.mjs <out>` (still in
+`tools/wip.json`; nothing under `docs/maps/`, nothing in the registry). Four tabs, each its own table and clustered
+source; the ethnic map's numbered discs (an approximate point hollow, its card subtitled «আনুমানিক অবস্থান: জেলা সদর»);
+the shared district outlines; navy count bubbles (radius 22, to z15) that split when tapped; IPH and icddr,b, at one
+point, open a list (`cluster.list`). A disc's frame is drawn small enough to set it apart from its nearest neighbour
+(zoom 9–15). ⓘ: the sources grouped (the institutes' own sites, the ministries' and divisions', bdlaws, the one
+Wikipedia revision), COD-AB's credit for the outlines and capitals, and OpenStreetMap's (ODbL) for BRRI, BJRI and
+BTRI. Two new opt-in shell terms: a row's `link` (the card's foot) and `cluster.list` (`notes/descriptor.md`).
+
 ## Card
 
 - প্রতিষ্ঠার সাল, with «বর্তমান রূপে: <year>» under it where one exists.

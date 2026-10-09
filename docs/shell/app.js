@@ -15,9 +15,9 @@
 |--------------------------------------------------------------------------
 */
 
-import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=81f68cbb6a';
-import { resolver } from '../shared/resolver.js?v=81f68cbb6a';
-import { pickerRow } from '../shared/picker.js?v=81f68cbb6a';
+import * as maplibregl from '../shared/vendor/maplibre-gl-6.9.0/maplibre-gl.mjs?v=79742f19c4';
+import { resolver } from '../shared/resolver.js?v=79742f19c4';
+import { pickerRow } from '../shared/picker.js?v=79742f19c4';
 
 /*
 |--------------------------------------------------------------------------
@@ -722,15 +722,15 @@ function pick(row, keys) {
 |--------------------------------------------------------------------------
 */
 const SHELL_MODULES = {
-  tabs: './tabs.js?v=81f68cbb6a',
-  chips: './chips.js?v=81f68cbb6a',
-  timeline: './timeline.js?v=81f68cbb6a',
-  globe: './globe.js?v=81f68cbb6a',
-  focus: './focus.js?v=81f68cbb6a',
-  legend: './legend.js?v=81f68cbb6a',
-  info: './info.js?v=81f68cbb6a',
-  indices: './indices.js?v=81f68cbb6a',
-  newest: './newest.js?v=81f68cbb6a',
+  tabs: './tabs.js?v=79742f19c4',
+  chips: './chips.js?v=79742f19c4',
+  timeline: './timeline.js?v=79742f19c4',
+  globe: './globe.js?v=79742f19c4',
+  focus: './focus.js?v=79742f19c4',
+  legend: './legend.js?v=79742f19c4',
+  info: './info.js?v=79742f19c4',
+  indices: './indices.js?v=79742f19c4',
+  newest: './newest.js?v=79742f19c4',
 };
 const hiders = []; // (table, key) => true takes a record off the map, the picker and ‹ ›
 // (table, key) => true takes a record off the map only: the picker and ‹ › still list it (the focus module).
@@ -1433,16 +1433,74 @@ const tapTargets = interactions
  */
 async function runTap(interaction, source, feature) {
   const spec = sourceSpecs[source];
+  closeClusterList();
   // Cluster tap is the shell's, not the descriptor's: expanding a cluster is
   // what clustering means. The descriptor's interaction applies only to
   // unclustered features.
   if (spec.cluster && feature.properties.cluster) {
-    const zoom = await map.getSource(source).getClusterExpansionZoom(feature.properties.cluster_id);
+    const data = map.getSource(source);
+    // `cluster.list` (opt-in, bangladesh-research-institutes, RES-3): a bubble whose members all sit at one point
+    // can never split, so it lists them instead, each opening as a tap on it would.
+    if (spec.cluster.list) {
+      const leaves = await data.getClusterLeaves(feature.properties.cluster_id, Infinity, 0);
+      const [x0, y0] = leaves[0].geometry.coordinates;
+      if (leaves.every((l) => l.geometry.coordinates[0] === x0 && l.geometry.coordinates[1] === y0)) {
+        openClusterList(interaction, source, feature, leaves);
+        return;
+      }
+    }
+    const zoom = await data.getClusterExpansionZoom(feature.properties.cluster_id);
     map.easeTo({ center: feature.geometry.coordinates, zoom, duration: motion(700) });
     return;
   }
   runActions(interaction.do, { table: spec.records, key: feature.properties.key, feature });
 }
+
+/*
+ * The list a `cluster.list` bubble opens: one 44 px row per member, its label
+ * the record's `cluster.list.label` field, in the records' order, beside the
+ * bubble and inside the map. A row runs the source's interaction for its
+ * record; the list closes on any tap or any move of the map.
+ */
+let clusterList = null;
+function closeClusterList() {
+  clusterList?.remove();
+  clusterList = null;
+}
+function openClusterList(interaction, source, feature, leaves) {
+  const spec = sourceSpecs[source];
+  const table = spec.records;
+  const order = Object.keys(records[table]);
+  const keys = leaves.map((l) => l.properties.key).sort((a, b) => order.indexOf(a) - order.indexOf(b));
+  const box = own.node(document.createElement('div'), 'cluster list');
+  box.className = 'cluster-list';
+  box.lang = LANGUAGE;
+  box.setAttribute('role', 'menu');
+  for (const key of keys) {
+    const item = document.createElement('button');
+    item.type = 'button';
+    item.className = 'cluster-list-item';
+    item.setAttribute('role', 'menuitem');
+    item.dataset.key = key;
+    item.textContent = records[table][key]?.[spec.cluster.list.label] ?? key;
+    own.domHandler(item, 'click', (event) => {
+      event.stopPropagation();
+      closeClusterList();
+      runActions(interaction.do, { table, key });
+    });
+    box.append(item);
+  }
+  const host = map.getContainer();
+  host.append(box);
+  const at = map.project(feature.geometry.coordinates);
+  const w = box.offsetWidth, h = box.offsetHeight;
+  const left = Math.max(8, Math.min(host.clientWidth - w - 8, at.x - w / 2));
+  const below = at.y + 24 + h <= host.clientHeight - 8;
+  box.style.left = `${left}px`;
+  box.style.top = `${below ? at.y + 24 : Math.max(8, at.y - 24 - h)}px`;
+  clusterList = box;
+}
+own.mapHandler(map, 'movestart', closeClusterList);
 
 const taps = [];
 for (const interaction of interactions) {
@@ -1466,6 +1524,7 @@ for (const interaction of interactions) {
 
 if (taps.length && !shell.tapsOwned)
   own.mapHandler(map, 'click', (event) => {
+    closeClusterList();
     const hits = [];
     for (const { interaction, source } of taps) {
       if (!map.getLayer(hitLayerId(source))) continue;
@@ -2038,6 +2097,7 @@ function valueRow(spec, row) {
   const value = valueOf(spec, row);
   // A null value hides the row, uniformly, whichever mechanism produced it.
   if (value === null || value === undefined || value === '') return null;
+  if (spec.link) return linkRow(spec, row, value);
   const line = document.createElement('div');
   // `stacked`: the value under its label, for a line of text rather than a fact.
   line.className = spec.stacked ? 'info-row info-row-stacked' : 'info-row';
@@ -2050,6 +2110,32 @@ function valueRow(spec, row) {
   text.lang = LANGUAGE;
   text.textContent = value;
   line.append(label, text);
+  return line;
+}
+
+/*
+ * A row's `link: { field, text }` (opt-in, bangladesh-research-institutes, RES-3): the card's foot — «label: value»
+ * on the left (the day it was last checked) and, on the right, «text ↗», a link to the record's `field`, an https
+ * page that opens outside the WebView. Without a page the foot keeps its words and shows no link.
+ */
+function linkRow(spec, row, value) {
+  const line = document.createElement('div');
+  line.className = 'info-row info-row-foot';
+  line.lang = LANGUAGE;
+  const when = document.createElement('span');
+  when.className = 'info-foot-when';
+  when.textContent = spec.label ? `${spec.label}: ${value}` : value;
+  line.append(when);
+  const url = row[spec.link.field];
+  if (typeof url === 'string' && /^https:\/\//.test(url)) {
+    const a = document.createElement('a');
+    a.className = 'info-foot-source';
+    a.href = url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.textContent = `${spec.link.text} ↗`;
+    line.append(a);
+  }
   return line;
 }
 

@@ -38,6 +38,14 @@ rules and verification budget apply.
   must be a `refs` field pointing at the sheet's table; the validator asserts
   it. No match hides the row, like a null. org-headquarters uses it for the
   organisations a city hosts.
+- **A row's `link: { field, text }`** (opt-in, RES-3, 2026-10-10): the card's foot — «label: value» on the left (the
+  day it was last checked) and «text ↗» on the right, a 44 px link to the record's `field`, an https page that opens
+  outside the WebView (no https page: the words, no link). bangladesh-research-institutes: «সর্বশেষ যাচাই … সূত্র ↗».
+- **`cluster.list: { label }`** (opt-in, RES-3, 2026-10-10): a clustered source's bubble whose members all sit at one
+  point can never split, so a tap lists them — one 44 px row each, the record's `label` field, in the records' order —
+  and a row runs the source's interaction for its record; any tap or move closes the list. A bubble that can split
+  still zooms in, as every cluster does. bangladesh-research-institutes: IPH and icddr,b, both approximate at Dhaka's
+  district capital. `tools/check.mjs` taps every bubble of such a map, in every tab (`clusterSteps`).
 - A picker's `groupBy` may omit `lookup`: the field's value is then the group
   label as it stands, and `order` must name every value that occurs.
 - A tap on overlapping points goes to the one **nearest the finger**, not the

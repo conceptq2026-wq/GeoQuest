@@ -26,7 +26,7 @@
 | Loaded only for a map whose descriptor declares `newest`.
 |--------------------------------------------------------------------------
 */
-import { makePins, placePins } from './indices.js?v=81f68cbb6a';
+import { makePins, placePins } from './indices.js?v=79742f19c4';
 
 let shell;
 let spec;
@@ -53,7 +53,7 @@ export async function mount(api) {
   if (!Array.isArray(spec.groups) || !spec.groups.length) throw new Error('newest: groups lists the groups, in order');
   for (const k of ['count', 'newest', 'order', 'legendNewest', 'legendBangladesh', 'search', 'total', 'verified', 'source']) if (typeof W[k] !== 'string') throw new Error(`newest: words.${k} is missing`);
   for (const g of ['all', ...spec.groups]) if (typeof W.chips?.[g] !== 'string') throw new Error(`newest: words.chips.${g} is missing`);
-  await Promise.all([stylesheet(api, './indices.css?v=81f68cbb6a'), stylesheet(api, './newest.css?v=81f68cbb6a')]);
+  await Promise.all([stylesheet(api, './indices.css?v=79742f19c4'), stylesheet(api, './newest.css?v=79742f19c4')]);
   page = api.dom.mapShell.parentElement;
   page.classList.add('has-indices', 'has-newest');
   api.own.undo('the newest page', () => page.classList.remove('has-indices', 'has-newest', 'indices-bd'));

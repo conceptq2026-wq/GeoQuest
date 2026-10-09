@@ -639,6 +639,7 @@ async function useItem(browser, size, entry, base, origin, dir) {
       if (await page.evaluate(`Boolean(window.__shell?.descriptor?.minTextSize)`)) await textFloor(page, summary, fail);
       if (await page.evaluate(`Boolean(window.__shell?.descriptor?.indices)`)) await indicesSteps(page, shoot, summary, fail);
       if (await page.evaluate(`Boolean(window.__shell?.descriptor?.newest)`)) await newestSteps(page, shoot, summary, fail);
+      if (await page.evaluate(`Object.values(window.__shell?.descriptor?.sources ?? {}).some((s) => s.cluster?.list)`)) await clusterSteps(page, shoot, summary, fail, tabs);
     }
   }
 
@@ -708,6 +709,78 @@ async function waitCard(page) {
  * the selection kept — and, where a view declares enabledBy, a tap on a tab a selection disables: nothing
  * changes, and ⓘ's row says why. Every tab a 44 px tap zone.
  */
+/*
+ * A map whose clustered sources declare `cluster.list` (bangladesh-research-institutes, RES-3): in every tab, from
+ * the tab's own opening frame, every count bubble is tapped — it must split (the camera moves in and the bubble's
+ * members are no longer one bubble there) or, where its members share one point, open its list, each of whose rows
+ * must open its own record's card. Bubbles a split reveals are tapped in turn. No page scrolls sideways.
+ */
+async function clusterSteps(page, shoot, summary, fail, tabs) {
+  let bubbles = 0, splits = 0, lists = 0, listed = 0, sideways = 0;
+  const bubblesAt = (tab) => page.evaluate(`(() => {
+    const s = window.__shell; const m = s.map; const r = m.getContainer().getBoundingClientRect();
+    const srcs = Object.entries(s.descriptor.sources).filter(([, v]) => v.cluster?.list).map(([k]) => k);
+    const hide = s.descriptor.tabs?.views?.[${JSON.stringify(tab)}]?.hide?.sources ?? [];
+    const out = [];
+    for (const src of srcs.filter((x) => !hide.includes(x))) for (const f of m.queryRenderedFeatures({ layers: s.descriptor.layers.filter((l) => l.source === src && JSON.stringify(l.filter ?? '').includes('point_count') && !JSON.stringify(l.filter).includes('!')).map((l) => l.id) })) {
+      if (!f.properties.cluster || out.some((o) => o.id === f.properties.cluster_id && o.src === src)) continue;
+      const p = m.project(f.geometry.coordinates);
+      if (p.x < 22 || p.y < 22 || p.x > r.width - 22 || p.y > r.height - 22) continue;
+      out.push({ src, id: f.properties.cluster_id, n: f.properties.point_count, at: f.geometry.coordinates, x: r.left + p.x, y: r.top + p.y });
+    }
+    return out;
+  })()`);
+  for (let t = 0; t < Math.max(1, tabs); t++) {
+    const tab = tabs ? await page.evaluate(`(() => { window.__shell.deselect(); const b = document.querySelectorAll('.map-tab')[${t}]; b.click(); return b.dataset.tab; })()`) : null;
+    await settle(page, 10000);
+    const open = await page.evaluate(CAMERA);
+    const wide = await page.evaluate(`Math.max(document.documentElement.scrollWidth - document.documentElement.clientWidth, document.body.scrollWidth - document.body.clientWidth)`);
+    if (wide > 0) { sideways++; fail(`tab ${tab}: the page scrolls sideways by ${wide} px`); }
+    const queue = (await bubblesAt(tab)).map((b) => ({ ...b, camera: open, depth: 0 }));
+    while (queue.length) {
+      const b = queue.shift();
+      bubbles++;
+      await page.evaluate(`window.__check.reset(${JSON.stringify(b.camera)})`);
+      await settle(page, 10000);
+      const before = await page.evaluate(CAMERA);
+      await page.click(b.x, b.y);
+      await settle(page, 10000);
+      const items = await page.evaluate(`[...document.querySelectorAll('.cluster-list .cluster-list-item')].map((e) => { const r = e.getBoundingClientRect(); return { key: e.dataset.key, x: r.left + r.width / 2, y: r.top + r.height / 2, h: r.height }; })`);
+      if (items.length) {
+        lists++;
+        await shoot('clusters', `${tab}: a list of ${items.length}`, [b.x, b.y]);
+        if (items.length !== b.n) fail(`tab ${tab}: a bubble of ${b.n} lists ${items.length}`);
+        for (const [i, it] of items.entries()) {
+          if (i) {
+            await page.evaluate(`window.__check.reset(${JSON.stringify(b.camera)})`);
+            await settle(page, 10000);
+            await page.click(b.x, b.y);
+            await settle(page, 10000);
+          }
+          if (it.h < 44) fail(`tab ${tab}: list row ${it.key} is ${it.h} px tall`);
+          const at = await page.evaluate(`(() => { const e = document.querySelector('.cluster-list-item[data-key=${JSON.stringify(it.key)}]'); if (!e) return null; const r = e.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; })()`);
+          if (!at) { fail(`tab ${tab}: list row ${it.key} gone`); continue; }
+          await page.click(...at);
+          const card = await waitCard(page);
+          const chosen = await page.evaluate('window.__check.selected()');
+          if (card.open && chosen.includes(`${b.src}:${it.key}`)) listed++;
+          else fail(`tab ${tab}: list row ${it.key} opened ${card.open ? `«${card.title}»` : 'no card'}`);
+          await page.evaluate('window.__shell.deselect()');
+        }
+        continue;
+      }
+      const after = await page.evaluate(CAMERA);
+      const still = await page.evaluate(`(() => { const m = window.__shell.map; return m.queryRenderedFeatures({ layers: window.__shell.descriptor.layers.filter((l) => l.source === ${JSON.stringify(b.src)}).map((l) => l.id) }).some((f) => f.properties.cluster && f.properties.point_count === ${b.n} && Math.hypot(f.geometry.coordinates[0] - ${b.at[0]}, f.geometry.coordinates[1] - ${b.at[1]}) < 1e-6); })()`);
+      if (after.zoom > before.zoom && !still) {
+        splits++;
+        if (b.depth < 6) for (const c of await bubblesAt(tab)) queue.push({ ...c, camera: after, depth: b.depth + 1 });
+      } else fail(`tab ${tab}: a bubble of ${b.n} at ${b.at.map((v) => v.toFixed(4)).join(',')} did not split (zoom ${before.zoom.toFixed(2)} → ${after.zoom.toFixed(2)})`);
+    }
+    await page.evaluate(`window.__check.reset(${JSON.stringify(open)})`);
+  }
+  summary.push(`clusters: ${bubbles} bubbles tapped, ${splits} split, ${lists} listed (${listed} rows opened their card); sideways ${sideways ? 'FAIL' : 'none'}`);
+}
+
 async function viewTabs(page, shoot, summary, fail) {
   const tabs = await page.evaluate(`[...document.querySelectorAll('.map-tab')].map((b) => [b.dataset.tab, b.textContent.trim()])`);
   const firsts = await page.evaluate(`[...document.getElementById('recordPicker').querySelectorAll('optgroup')].map((g) => [g.querySelector('option').value, g.querySelector('option').textContent])`);

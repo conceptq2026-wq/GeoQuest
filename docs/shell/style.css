@@ -830,3 +830,60 @@ html[data-map='org-members'] .map-legend {
   height: auto;
   min-height: 18px;
 }
+
+/*
+ * A card's foot (a row's `link`, RES-3): the day it was last checked on the left, «সূত্র ↗» on the right, a 44 px
+ * tap target. And the list a `cluster.list` bubble opens: one 44 px row per member, beside the bubble.
+ */
+.info-row.info-row-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  color: #5b6878;
+}
+
+.info-foot-source {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 4px;
+  color: #0b3d91;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.cluster-list {
+  position: absolute;
+  z-index: 5;
+  max-width: min(300px, calc(100% - 16px));
+  padding: 4px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.25);
+}
+
+.cluster-list-item {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: #0b3d91;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: left;
+  cursor: pointer;
+}
+
+.cluster-list-item:hover,
+.cluster-list-item:focus-visible {
+  background: #e8f1fb;
+}

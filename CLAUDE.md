@@ -565,7 +565,8 @@ State which kind a task is when reporting it.
   বাংলাদেশ (RES-1 investigation, RES-2 the seed, RES-3 the user's decisions of 2026-10-10 and the preview): 32
   institutes whose main work is research (five restored by the user), in four tabs (কৃষি 14, বিজ্ঞান ও প্রযুক্তি 9,
   স্বাস্থ্য 5, সমাজ, অর্থনীতি ও কৌশল 4), 26 left out with reasons; points 25 site pins, 3 OpenStreetMap, 4 approximate;
-  13 strings awaiting the user (`notes/bangladesh-research-institutes.md`).
+  13 strings awaiting the user; drawn on the local preview only, with two opt-in shell terms, a row's `link` and
+  `cluster.list` (`notes/bangladesh-research-institutes.md`).
 
 ## Index — notes, read only when working on that item
 
