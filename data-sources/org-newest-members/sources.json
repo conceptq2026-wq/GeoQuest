@@ -27,6 +27,30 @@
    "revid": "1363091022",
    "permalink": "https://en.wikipedia.org/w/index.php?oldid=1363091022"
   },
+  "A1-who-bd49": {
+   "url": "https://apps.who.int/gb/bd/pdf_files/BD_49th-en.pdf",
+   "final": "https://apps.who.int/gb/bd/pdf_files/BD_49th-en.pdf",
+   "via": "fetch",
+   "retrieved": "2026-10-09T06:13:00.109Z",
+   "size": 1950092,
+   "sha256": "0b2f5ef5107f86d3d31ef70ee3c67cde61478b3ecdfc09e9adbe48ae142dc377",
+   "text": {
+    "size": 489244,
+    "sha256": "bb5fd448830c0247f0d6f094cd5f5660696e58a3f39d0a015418968a7cf58f0a"
+   }
+  },
+  "A1-who-countries": {
+   "url": "https://www.who.int/countries",
+   "final": "https://www.who.int/countries",
+   "via": "fetch",
+   "retrieved": "2026-10-09T06:12:51.184Z",
+   "size": 106830,
+   "sha256": "9e5d7baa23bf741b447223fe8194e243ba4ad9bae2a80b52ad05c3089d97eb79",
+   "text": {
+    "size": 6007,
+    "sha256": "77e8c9801733e3f18bc24c7a077cfaec321f8b60aad0bde145130e3eb2f11907"
+   }
+  },
   "A2-cica-about": {
    "url": "https://www.s-cica.org/index.php?view=page&t=about",
    "final": "https://www.s-cica.org/index.php?view=page&t=about",
@@ -189,6 +213,44 @@
    "revid": "1378809915",
    "permalink": "https://en.wikipedia.org/w/index.php?oldid=1378809915"
   },
+  "A4-unesco-ukdep": {
+   "url": "https://www.gov.uk/government/uploads/system/uploads/attachment_data/file/599861/20._UNESCO_status_list.pdf",
+   "final": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1168932/20_UNESCO_status_list.odt",
+   "via": "fetch",
+   "retrieved": "2026-10-09T07:09:06.961Z",
+   "size": 27959,
+   "sha256": "dc47b7a501b229a4ab44aab7c54c1b6ae15d4a4cfddea01ef3835bc7ccdbd3ee",
+   "text": {
+    "size": 8893,
+    "sha256": "a13936ddf29a05162ec4a53e12477438e4599449c91d76ca00f64a518d6667a1"
+   }
+  },
+  "A4-unesco-us": {
+   "url": "https://www.unesco.org/en/countries/us",
+   "final": "https://www.unesco.org/en/countries/us",
+   "via": "fetch",
+   "retrieved": "2026-10-09T07:07:33.742Z",
+   "size": 241285,
+   "sha256": "ba2f20b7fe299f9d4ee172cf211f1660b22aabea3616c3a9f1e51bdf64526b2e",
+   "text": {
+    "size": 3560,
+    "sha256": "e775e49722a825d1cffd5023edf3b7d9fc9654a5db1dcda19c9bd6c2ec89041f"
+   }
+  },
+  "A4-unesco-wp": {
+   "url": "https://en.wikipedia.org/wiki/Member_states_of_UNESCO",
+   "final": "https://en.wikipedia.org/wiki/Member_states_of_UNESCO",
+   "via": "fetch",
+   "retrieved": "2026-10-09T07:07:19.585Z",
+   "size": 387862,
+   "sha256": "fc11bcf0136c2f5df1a7c30dc6e857c87ec73434a4edded763e14ebeb4bb5be9",
+   "text": {
+    "size": 31770,
+    "sha256": "d9a2e51dd7c988c73f9bffb35b7b2eb4a08b0e7cc41b31ae51b7fbbb2d1a5cc0"
+   },
+   "revid": "1367180069",
+   "permalink": "https://en.wikipedia.org/w/index.php?oldid=1367180069"
+  },
   "B1-ctbto-untc": {
    "url": "https://treaties.un.org/Pages/ViewDetails.aspx?src=TREATY&mtdsg_no=XXVI-4&chapter=26&clang=_en",
    "final": "https://treaties.un.org/Pages/ViewDetails.aspx?src=TREATY&mtdsg_no=XXVI-4&chapter=26&clang=_en",
@@ -199,6 +261,54 @@
    "text": {
     "size": 20069,
     "sha256": "84f5f111e8e783fbfa5f0f935f1256887d472b68a4c7aba06b0f0e04440732d3"
+   }
+  },
+  "B1-ilo-members": {
+   "url": "https://www.ilo.org/about-ilo/ilo-member-states",
+   "final": "https://www.ilo.org/about-ilo/ilo-member-states",
+   "via": "fetch",
+   "retrieved": "2026-10-09T06:14:37.200Z",
+   "size": 45184,
+   "sha256": "31edb37c25c44003a547477cd6124425bd922f25d2dcc6376c985441866b904e",
+   "text": {
+    "size": 3267,
+    "sha256": "32ace809adba1808893b652160e4de02b0ced647d94e608ef5869f273894636b"
+   }
+  },
+  "B1-ilo-news2": {
+   "url": "https://www.ilo.org/resource/news/kingdom-tonga-becomes-187th-ilo-member-state",
+   "final": "https://www.ilo.org/resource/news/kingdom-tonga-becomes-187th-ilo-member-state",
+   "via": "fetch",
+   "retrieved": "2026-10-09T06:07:52.653Z",
+   "size": 43108,
+   "sha256": "a8d88405a665d17180c7c129a29897b4467e5f8b322dcc7bef2ff8ffc10ab767",
+   "text": {
+    "size": 1874,
+    "sha256": "a1a251adbdaf8150d19646ef9d64b7fbc58a78e1a7117de405c114c166bac408"
+   }
+  },
+  "B1-iom-members": {
+   "url": "https://www.iom.int/member-states",
+   "final": "https://www.iom.int/member-states",
+   "via": "fetch",
+   "retrieved": "2026-10-09T06:09:36.678Z",
+   "size": 297378,
+   "sha256": "d8454a40e53323890e5389dd0413d753ca675183e141008884f85a40f5ccec2f",
+   "text": {
+    "size": 14865,
+    "sha256": "abf78a3f692fd7bdd4f6c046558d3afa2485aa0b0dcecfc3acfce9f74170efc4"
+   }
+  },
+  "B1-iom-res1399": {
+   "url": "https://governingbodies.iom.int/system/files/en/council/113/C-113-RES-1399%20-%20Barbados.pdf",
+   "final": "https://governingbodies.iom.int/system/files/en/council/113/C-113-RES-1399%20-%20Barbados.pdf",
+   "via": "fetch",
+   "retrieved": "2026-10-09T06:09:44.069Z",
+   "size": 129286,
+   "sha256": "200e14090ded13f1ec709af66e583de1cbf0ccef2100daded616558d987d600d",
+   "text": {
+    "size": 1190,
+    "sha256": "28978f14edb5d7b661e88ab26e90117505c0db7ef99cc9c63267dd2319dc0be4"
    }
   },
   "B2-cica-members": {
@@ -298,6 +408,42 @@
    },
    "revid": "1378706740",
    "permalink": "https://en.wikipedia.org/w/index.php?oldid=1378706740"
+  },
+  "B4-unesco-dg-us": {
+   "url": "https://www.unesco.org/en/articles/withdrawal-united-states-america-unesco-statement-audrey-azoulay-director-general",
+   "final": "https://www.unesco.org/en/articles/withdrawal-united-states-america-unesco-statement-audrey-azoulay-director-general",
+   "via": "fetch",
+   "retrieved": "2026-10-09T07:13:03.620Z",
+   "size": 83567,
+   "sha256": "9eff9562a727b4cc0b3406cfc43f1c4cadba03d53dce8ec3a0127396ab160d58",
+   "text": {
+    "size": 8083,
+    "sha256": "177603ea7e56bfb65a8e45947ba2029daf9dd68ef36c3871c6d8ef829ac5180f"
+   }
+  },
+  "B4-unesco-us": {
+   "url": "https://www.unesco.org/en/countries/us",
+   "final": "https://www.unesco.org/en/countries/us",
+   "via": "fetch",
+   "retrieved": "2026-10-09T07:13:05.613Z",
+   "size": 241285,
+   "sha256": "ba2f20b7fe299f9d4ee172cf211f1660b22aabea3616c3a9f1e51bdf64526b2e",
+   "text": {
+    "size": 3560,
+    "sha256": "e775e49722a825d1cffd5023edf3b7d9fc9654a5db1dcda19c9bd6c2ec89041f"
+   }
+  },
+  "B4-unesco-us2023": {
+   "url": "https://www.unesco.org/en/articles/united-states-becomes-194th-member-state-unesco",
+   "final": "https://www.unesco.org/en/articles/united-states-becomes-194th-member-state-unesco",
+   "via": "fetch",
+   "retrieved": "2026-10-09T07:13:19.346Z",
+   "size": 79688,
+   "sha256": "5bcfd715e8dab19e1b58542d732d49347c2aa2628b12447150edc7e48e68bed1",
+   "text": {
+    "size": 6341,
+    "sha256": "52bd25d02f9ff9e0a854a52481b71adaf6b0095d2328a531823301501bc6f01f"
+   }
   },
   "adb-about": {
    "url": "https://www.adb.org/who-we-are/about",
@@ -764,6 +910,30 @@
    "text": {
     "size": 12215,
     "sha256": "ca8102f512d77d478a74eaa9955715aa0a7dd21fc6cfa917fdeed6d06e44aea3"
+   }
+  },
+  "unesco-bd": {
+   "url": "https://www.unesco.org/en/countries/bd",
+   "final": "https://www.unesco.org/en/countries/bd",
+   "via": "fetch",
+   "retrieved": "2026-10-09T05:14:37.338Z",
+   "size": 92486,
+   "sha256": "ae6690780a1fd5b95f93f33eb91125ef425845a08d1f8c2ac6c465e7b82c9c8e",
+   "text": {
+    "size": 3797,
+    "sha256": "3771ac2b56e138f4b3c1723476a32abc04b9f8ed56761ab8096fb691e7296025"
+   }
+  },
+  "unesco-members": {
+   "url": "https://www.unesco.org/en/countries",
+   "final": "https://www.unesco.org/en/countries",
+   "via": "fetch",
+   "retrieved": "2026-10-09T05:12:31.822Z",
+   "size": 479061,
+   "sha256": "fa8dc63c29ac40ddde10eacb0539b45f61c155c54f72785a439af561f729a0f5",
+   "text": {
+    "size": 14570,
+    "sha256": "ebd9dd5b6547f1e22cf23de2640cea4a676ac82ea1527bb238ab4074e7a54e92"
    }
   },
   "untourism-members": {

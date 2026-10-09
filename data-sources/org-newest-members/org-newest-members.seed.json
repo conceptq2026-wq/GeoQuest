@@ -7,169 +7,173 @@
  "strings": {
   "title": {
    "bn": "সংস্থার সর্বশেষ সদস্য",
-   "approved": false
+   "approved": true
   },
   "tabs": {
    "map": {
     "bn": "ম্যাপ",
-    "approved": false
+    "approved": true
    },
    "list": {
     "bn": "তালিকা",
-    "approved": false
+    "approved": true
    }
   },
   "chips": {
    "all": {
     "bn": "সব",
-    "approved": false
+    "approved": true
    },
    "un": {
     "bn": "জাতিসংঘ",
-    "approved": false
+    "approved": true
    },
    "regional": {
     "bn": "আঞ্চলিক",
-    "approved": false
+    "approved": true
    },
    "economic": {
     "bn": "অর্থনৈতিক",
-    "approved": false
+    "approved": true
    },
    "other": {
     "bn": "অন্যান্য",
-    "approved": false
+    "approved": true
    }
   },
   "stats": {
    "count": {
     "bn": "মোট সদস্য",
-    "approved": false
+    "approved": true
    },
    "newest": {
     "bn": "সর্বশেষ সদস্য",
-    "approved": false
+    "approved": true
    },
    "order": {
     "bn": "যোগদানের ক্রম",
-    "approved": false
+    "approved": true
    }
   },
   "rows": {
    "date": {
     "bn": "যোগদানের তারিখ",
-    "approved": false
+    "approved": true
    },
    "accession": {
     "bn": "দলিল জমা: {date}",
-    "approved": false
+    "approved": true
    },
    "firstTime": {
     "bn": "প্রথমবার যোগ দেওয়া সর্বশেষ সদস্য",
-    "approved": false
+    "approved": true
    },
    "hq": {
     "bn": "সদর দপ্তর",
-    "approved": false
+    "approved": true
    },
    "bangladesh": {
     "bn": "বাংলাদেশ সদস্য?",
-    "approved": false
+    "approved": true
    }
   },
   "values": {
    "yes": {
     "bn": "হ্যাঁ",
-    "approved": false
+    "approved": true
    },
    "no": {
     "bn": "না",
-    "approved": false
+    "approved": true
    }
   },
   "marks": {
+   "withdrawalPending": {
+    "bn": "সদস্যপদ ত্যাগের ঘোষণা: {name}, কার্যকর {date}",
+    "approved": false
+   },
    "rejoin": {
     "bn": "পুনরায় যোগদান",
-    "approved": false
+    "approved": true
    },
    "suspended": {
     "bn": "সদস্যপদ স্থগিত",
-    "approved": false
+    "approved": true
    },
    "tie": {
     "bn": "যৌথভাবে",
-    "approved": false
+    "approved": true
    }
   },
   "legend": {
    "newest": {
     "bn": "সর্বশেষ সদস্য",
-    "approved": false
+    "approved": true
    },
    "bangladesh": {
     "bn": "বাংলাদেশ",
-    "approved": false
+    "approved": true
    }
   },
   "list": {
    "search": {
     "bn": "সংস্থা খুঁজুন",
-    "approved": false
+    "approved": true
    },
    "total": {
     "bn": "মোট {n}টি সংস্থা",
-    "approved": false
+    "approved": true
    }
   },
   "ordinals": {
    "1": {
     "bn": "{n}ম",
-    "approved": false
+    "approved": true
    },
    "2": {
     "bn": "{n}য়",
-    "approved": false
+    "approved": true
    },
    "3": {
     "bn": "{n}য়",
-    "approved": false
+    "approved": true
    },
    "4": {
     "bn": "{n}র্থ",
-    "approved": false
+    "approved": true
    },
    "5": {
     "bn": "{n}ম",
-    "approved": false
+    "approved": true
    },
    "6": {
     "bn": "{n}ষ্ঠ",
-    "approved": false
+    "approved": true
    },
    "7": {
     "bn": "{n}ম",
-    "approved": false
+    "approved": true
    },
    "8": {
     "bn": "{n}ম",
-    "approved": false
+    "approved": true
    },
    "9": {
     "bn": "{n}ম",
-    "approved": false
+    "approved": true
    },
    "10": {
     "bn": "{n}ম",
-    "approved": false
+    "approved": true
    },
    "rest": {
     "bn": "{n}তম",
-    "approved": false
+    "approved": true
    }
   },
   "sourceVia": {
    "bn": "সূত্র: {outlet}",
-   "approved": false
+   "approved": true
   }
  },
  "organisations": {
@@ -352,7 +356,7 @@
     "from": "org-headquarters seed (editor-verified 2026-09-26)"
    },
    "status": "held",
-   "held": "only the deposit of adherence (14 March 2019) is stated; the date membership took effect is not (decision 5)"
+   "held": "only the deposit of adherence (14 March 2019) is stated; the date membership took effect is not (decision 5), and ORGN-2b's two secondary readings found no source stating it (ICAO's «193rd Member State» page answers 404; 13 April 2019 would be computed)"
   },
   "ifad": {
    "group": "un",
@@ -383,8 +387,71 @@
     "approved": true,
     "from": "org-headquarters seed (editor-verified 2026-09-26)"
    },
-   "status": "held",
-   "held": "A: newest: only Wikipedia's dated table shows Tonga as the newest (the ILO page confirms \"member in 2016\" but not that no state joined later). Full date 2016-02-24 has one source; the year 2016 has two. | B: no newest"
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "TON",
+      "nameEn": "Tonga"
+     }
+    ],
+    "date": "2016-02-24",
+    "precision": "day",
+    "cite": [
+     {
+      "source": "B1-ilo-news2",
+      "offset": 598,
+      "length": 47,
+      "sha256": "1e21e5cdc8615068249711025a101a86ebc9798c9fd94182bdf7d58d9d0a37bc"
+     },
+     {
+      "source": "B1-ilo-news2",
+      "offset": 1222,
+      "length": 71,
+      "sha256": "661dd7c79f044ffe340589f7378b015a4a930214ec0fd5cceae8e7b8ac82505d"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 187,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "B1-ilo-members",
+      "offset": 635,
+      "length": 30,
+      "sha256": "ba7a78d403a02a8124130cb32885552cba9ccdf0cd6052548967ad44dd08f45e"
+     }
+    ]
+   },
+   "order": {
+    "tier": "official",
+    "n": 187,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "B1-ilo-news2",
+      "offset": 598,
+      "length": 47,
+      "sha256": "1e21e5cdc8615068249711025a101a86ebc9798c9fd94182bdf7d58d9d0a37bc"
+     }
+    ]
+   },
+   "basis": "the ILO's own news page names Tonga its 187th member State and the date its membership took effect; its members page states 187 today",
+   "bangladesh": {
+    "tier": "official",
+    "status": "member",
+    "cite": [
+     {
+      "source": "B1-ilo-members",
+      "offset": 784,
+      "length": 10,
+      "sha256": "2f1d47eb679bb05e6d8fe039af1563549588cd44b40be6b1013ea8ca2268845f"
+     }
+    ]
+   }
   },
   "imo": {
    "group": "un",
@@ -463,8 +530,65 @@
     "approved": true,
     "from": "org-headquarters seed (editor-verified 2026-09-26)"
    },
-   "status": "held",
-   "held": "A: no newest | B: newest and date: one outlet only (IOM's own Council resolution; Wikipedia lists Barbados without a date). Barbados's government site and Nation News are blocked; Barbados Today timed out."
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "BRB",
+      "nameEn": "Barbados"
+     }
+    ],
+    "date": "2022-11-29",
+    "precision": "day",
+    "cite": [
+     {
+      "source": "B1-iom-res1399",
+      "offset": 821,
+      "length": 86,
+      "sha256": "e471bb96284cca3c88f240600169a2b34ebecc5aad1bd970610ac51993b7de9f"
+     },
+     {
+      "source": "B1-iom-res1399",
+      "offset": 981,
+      "length": 55,
+      "sha256": "6fa19c685f59b376db52a4c0cf72aa7e3eb2e6c3d4c1f8303637b949bf974af2"
+     },
+     {
+      "source": "B1-iom-res1399",
+      "offset": 16,
+      "length": 27,
+      "sha256": "a765ab522f1b0205416b310f243599daaf5c18df0d6fb198d0932cffbe2ce080"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 174,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "B1-iom-members",
+      "offset": 7581,
+      "length": 17,
+      "sha256": "334b80d8b98b06c28701aa0ba669fcf21b0100c11cbdfb11bc13cd9477e657c3"
+     }
+    ]
+   },
+   "order": null,
+   "basis": "the IOM Council's own resolution admits Barbados «as from the date of adoption», adopted 29 November 2022; the Council's later sessions (2023–2025) admit no one",
+   "bangladesh": {
+    "tier": "official",
+    "status": "member",
+    "cite": [
+     {
+      "source": "B1-iom-members",
+      "offset": 7709,
+      "length": 10,
+      "sha256": "2f1d47eb679bb05e6d8fe039af1563549588cd44b40be6b1013ea8ca2268845f"
+     }
+    ]
+   }
   },
   "itu": {
    "group": "un",
@@ -543,8 +667,172 @@
     "approved": true,
     "from": "org-headquarters seed (editor-verified 2026-09-26)"
    },
-   "status": "held",
-   "held": "the latest admission is the United States («UNESCO member since 2023»); no UNESCO page states whether it is a rejoin, so it can be neither marked as a rejoin nor ruled first-time (decision 2)"
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "USA",
+      "nameEn": "United States of America"
+     }
+    ],
+    "sources": [
+     {
+      "kind": "official",
+      "outlet": "UNESCO country page: United States of America",
+      "url": "https://www.unesco.org/en/countries/us",
+      "published": null,
+      "cite": {
+       "source": "A4-unesco-us",
+       "offset": 942,
+       "length": 24,
+       "sha256": "30ce15afcc5aba6672ff1b6e1bbcd1aa47a288a569cfec5af0417013f0e53814"
+      }
+     },
+     {
+      "kind": "official",
+      "outlet": "UNESCO press release",
+      "url": "https://www.unesco.org/en/articles/united-states-becomes-194th-member-state-unesco",
+      "published": "2023-07-11",
+      "cite": {
+       "source": "B4-unesco-us2023",
+       "offset": 1038,
+       "length": 29,
+       "sha256": "c5bb201672243e0d8ebda614fbd951322cfe8571f75a55eb0e79707b534c79ca"
+      }
+     },
+     {
+      "kind": "official",
+      "outlet": "UNESCO country page",
+      "url": "https://www.unesco.org/en/countries/us",
+      "published": null,
+      "cite": {
+       "source": "B4-unesco-us",
+       "offset": 942,
+       "length": 24,
+       "sha256": "30ce15afcc5aba6672ff1b6e1bbcd1aa47a288a569cfec5af0417013f0e53814"
+      }
+     }
+    ],
+    "date": "2023-07-10",
+    "precision": "day",
+    "dateTier": "secondary",
+    "dateSources": [
+     {
+      "kind": "depositary",
+      "outlet": "UK FCDO, depositary status list: Constitution of UNESCO (last updated 10 July 2023)",
+      "url": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1168932/20_UNESCO_status_list.odt",
+      "published": null,
+      "cite": {
+       "source": "A4-unesco-ukdep",
+       "offset": 7308,
+       "length": 43,
+       "sha256": "8e69515aed2afbc79c2aa0c18bf78aa246473074cdadba55882ab5905ccb96c8"
+      }
+     },
+     {
+      "kind": "wikipedia",
+      "outlet": "English Wikipedia: Member states of UNESCO",
+      "url": "https://en.wikipedia.org/w/index.php?oldid=1367180069",
+      "published": null,
+      "revid": "1367180069",
+      "citedRef": "Lee, Matthew (11 July 2023). \"U.S. formally rejoins UNESCO 5 years after withdraw\". PBS / Associated Press",
+      "cite": {
+       "source": "A4-unesco-wp",
+       "offset": 22690,
+       "length": 31,
+       "sha256": "afba06996609efec3b6a74041b2d6d61a6ad67fca2031af91c1e00469cd07c9c"
+      }
+     }
+    ],
+    "rejoin": true,
+    "firstTime": {
+     "tier": "secondary",
+     "members": [
+      {
+       "iso3": "PSE"
+      }
+     ],
+     "date": "2011-11-23",
+     "sources": [
+      {
+       "kind": "depositary",
+       "outlet": "UK FCDO, depositary status list: Constitution of UNESCO (last updated 10 July 2023)",
+       "url": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/1168932/20_UNESCO_status_list.odt",
+       "published": null,
+       "cite": {
+        "source": "A4-unesco-ukdep",
+        "offset": 3683,
+        "length": 26,
+        "sha256": "ee63bd251775033296786cd2ebfbc14c3f97a7cc1110d3614cb171b64418ab6a"
+       }
+      },
+      {
+       "kind": "wikipedia",
+       "outlet": "English Wikipedia: Member states of UNESCO",
+       "url": "https://en.wikipedia.org/w/index.php?oldid=1367180069",
+       "published": null,
+       "revid": "1367180069",
+       "citedRef": "\"General Conference admits Palestine as UNESCO Member\". UNESCO. 31 October 2011",
+       "cite": {
+        "source": "A4-unesco-wp",
+        "offset": 4445,
+        "length": 44,
+        "sha256": "1d9151e21d403d31656e67e5c60ba6cec9f009f24a0ee69bd99ef3f9ccef36a2"
+       }
+      }
+     ]
+    }
+   },
+   "count": {
+    "tier": "official",
+    "n": 194,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "unesco-members",
+      "offset": 1140,
+      "length": 58,
+      "sha256": "d2b2f489112f72d8bbc322b2eb7c26b33ec463aeb067f6f43d19fac7b9eacfa9"
+     }
+    ]
+   },
+   "order": null,
+   "bangladesh": {
+    "tier": "official",
+    "status": "member",
+    "cite": [
+     {
+      "source": "unesco-bd",
+      "offset": 928,
+      "length": 24,
+      "sha256": "c7d9c854f9d0095ff7d5e700b061efb8278bc0f7ffd76325d2a000dc5c264e50"
+     }
+    ]
+   },
+   "withdrawals": [
+    {
+     "tier": "official",
+     "iso3": "USA",
+     "status": "pending",
+     "announced": "2025-07-22",
+     "effective": "2026-12",
+     "cite": [
+      {
+       "source": "B4-unesco-dg-us",
+       "offset": 1114,
+       "length": 20,
+       "sha256": "bc078804142764307e6565f1108960473fac154b4ad6732a20e8a13c7eb4c9d6"
+      },
+      {
+       "source": "B4-unesco-dg-us",
+       "offset": 1251,
+       "length": 60,
+       "sha256": "e31ad28cd118681219af36a9f80537ee700828ba2bec9adffde0b28b4b067eb6"
+      }
+     ]
+    }
+   ]
   },
   "unido": {
    "group": "un",
@@ -591,8 +879,82 @@
     "approved": true,
     "from": "org-headquarters seed (editor-verified 2026-09-26)"
    },
-   "status": "held",
-   "held": "A: no newest | B: Read further on WHO's own site first (item 7): who.int/countries today lists 194 Member States incl. Argentina and Tuvalu, the US asterisked (withdrawal \"with a stated effective date of 22 January 2026\", pending before WHO's governing bodies); the Basic Documents page still offers only the 49th ed. (list at 31 May 2019). WHO's annex and the UN depositary agree: South Sudan, 27 September 2011; both date Tuvalu 7 May 1993. Conflict: English Wikipedia says 192 members (excluding Argentina and the US) and \"No new members have joined since Tuvalu in 2023\", contradicted by both official records. Hold only if a disagreeing Wikipedia statement holds a fact; otherwise newest stands on two non-Wikipedia sources. Count: WHO and UNTC 194 (US pending) vs Wikipedia 192."
+   "status": "built",
+   "newest": {
+    "tier": "official",
+    "members": [
+     {
+      "iso3": "SSD",
+      "nameEn": "South Sudan"
+     }
+    ],
+    "date": "2011-09-27",
+    "precision": "day",
+    "cite": [
+     {
+      "source": "A1-who-bd49",
+      "offset": 456311,
+      "length": 63,
+      "sha256": "3c468eff0cb7940d9f2ebceabe39714869ab2454792acd3bdd7d200941f6452e"
+     },
+     {
+      "source": "A1-who-bd49",
+      "offset": 472438,
+      "length": 96,
+      "sha256": "4169e1b5b6bb0081b01ee89d48654860590cf881a7ebcac5bf6e1ae961a6f7d5"
+     }
+    ]
+   },
+   "count": {
+    "tier": "official",
+    "n": 194,
+    "how": "stated",
+    "cite": [
+     {
+      "source": "A1-who-countries",
+      "offset": 2759,
+      "length": 63,
+      "sha256": "b36e0dce3f36b7e9060ee32b8a59f050e6b4b345ac0e7517032ef5095e8af81d"
+     }
+    ]
+   },
+   "order": null,
+   "withdrawals": [
+    {
+     "tier": "official",
+     "iso3": "USA",
+     "status": "pending",
+     "effective": "2026-01-22",
+     "cite": [
+      {
+       "source": "A1-who-countries",
+       "offset": 5200,
+       "length": 109,
+       "sha256": "45716720ad80c62c1c51ae1e836d9eedd39781e4a88dc656f12ac27079b89ce3"
+      },
+      {
+       "source": "A1-who-countries",
+       "offset": 5311,
+       "length": 69,
+       "sha256": "89c571e5aef7b579e3cfd5a06d94c7dd17b458cf325d24125eae296fe8cd9e46"
+      }
+     ]
+    }
+   ],
+   "basis": "WHO's Basic Documents (49th edition, its current one) list each Member with the date it became a party; South Sudan's is the latest, and who.int lists the same 194 today",
+   "note": "Wikipedia (rev 1379220174) says no member has joined since «Tuvalu in 2023»; WHO's own list dates Tuvalu 1993 — the official page stands (the base rule).",
+   "bangladesh": {
+    "tier": "official",
+    "status": "member",
+    "cite": [
+     {
+      "source": "A1-who-bd49",
+      "offset": 457676,
+      "length": 91,
+      "sha256": "1b7b82f25cc68af9b9ee38455c9afea7b187431e345df9c3198d4eec95fae4e4"
+     }
+    ]
+   }
   },
   "wipo": {
    "group": "un",
@@ -947,7 +1309,8 @@
    "bangladesh": null,
    "heldFacts": {
     "bangladesh": "readings differ: A \"member\" / B \"member (signatory 1996-10-24; ratified 2000-03-08)\""
-   }
+   },
+   "note": "Tonga signed and ratified the Treaty on 7 July 2026 (both on one day). A member of the Preparatory Commission is a signatory State; the Commission's founding Resolution was not reachable on an allowed host, so that rests on UNODA's and Wikipedia's wording."
   },
   "unctad": {
    "group": "un",
@@ -3227,7 +3590,7 @@
    "nameEn": "BRICS",
    "nameBn": {
     "bn": "ব্রিকস",
-    "approved": false
+    "approved": true
    },
    "status": "held",
    "held": "core fact held — effectiveDate: value \"2025-01-06\": 1 outlet(s), Wikipedia only; dropped: A3-brics-chinadaily: its words do not state 2025-01-06; B3-brics-cd: its words do not state 2025-01-06"
@@ -3304,7 +3667,7 @@
     "from": "org-headquarters seed (editor-verified 2026-09-26)"
    },
    "status": "held",
-   "held": "only Ukraine's deposit of ratification (25 October 2024) is stated; its entry into force is not (decision 5)"
+   "held": "only Ukraine's deposit of ratification (25 October 2024) is stated; its entry into force, 1 January 2025, is stated by Wikipedia alone in one reading (ORGN-2b) — the other's second source, Ukrinform, is not an allowed outlet and the readings differ (decision 5). Ukraine is still the newest State Party (UN Treaty Collection)"
   },
   "pca": {
    "group": "other",
@@ -3449,7 +3812,7 @@
    "nameEn": "Non-Aligned Movement",
    "nameBn": {
     "bn": "জোটনিরপেক্ষ আন্দোলন (ন্যাম)",
-    "approved": false
+    "approved": true
    },
    "status": "held",
    "held": "A: Fiji only from Wikipedia (\"both having joined the movement in 2011\", no reference): whether Fiji ties with Azerbaijan (26 May 2011, Azerbaijan MFA; May 2011, president.az) is not established; Fiji's foreign ministry site has no NAM page (search: 0 results). Azerbaijan alone is proven: 2011-05-26. | B: Azerbaijan 2011 has two sources (Azerbaijan presidency, Wikipedia); Fiji 2011 only Wikipedia (uncited; Fiji MFA search: no results; Fiji Sun search: nothing). No month or day from any source."
@@ -3459,7 +3822,7 @@
    "nameEn": "Group of 77",
    "nameBn": {
     "bn": "গ্রুপ অব ৭৭ (জি-৭৭)",
-    "approved": false
+    "approved": true
    },
    "status": "held",
    "held": "A: no source read gives a joining date for any current member after the founding (Wikipedia gives dates only for former members: Palau 2002-2004, Malta, Romania) | B: no admission dates on g77.org; the only dated recent admission is Wikipedia's Mexico rejoin (approved 2023, citing DW), but the G77's own member list does not include Mexico, so the two disagree. No first-time admission dated by any source read."

@@ -81,3 +81,26 @@ For the 32 organisations ORGN-1 could not verify, PCA, IPU, OECD, OPEC and AfDB,
   altered by the e-mail scrub (saved as .html) — its pin is the download as received; WHO is held in any case.
 - Hosts that answered 403 or a block page during ORGN-2 are in `tools/.cache/org-newest/blocked-hosts.json` and are
   never asked again.
+
+## ORGN-2b (the user, 2026-10-09)
+
+- **Strings:** the 40 of ORGN-2 approved by the user. One new string awaits the user: the pending-withdrawal line
+  «সদস্যপদ ত্যাগের ঘোষণা: {name}, কার্যকর {date}».
+- **The secondary tier extended** to ICAO's and the ICC's entry-into-force dates and UNESCO's rejoin (two readings,
+  `sec2/A4-fix.json`, `B4-fix.json`):
+  - UNESCO built (official): the United States, a rejoin effective 10 July 2023; the newest first-time member the State
+    of Palestine, 23 November 2011 (secondary: the UK's depositary list and Wikipedia); the US's withdrawal pending,
+    announced 22 July 2025, effective «at the end of December 2026» (UNESCO's Director-General) — on the card.
+  - ICAO held: no source states when Dominica's membership took effect. ICC held: 1 January 2025 has Wikipedia alone
+    in one reading; Ukraine is still the newest State Party.
+  - CTBTO: Tonga signed and ratified on 7 July 2026, one day; a Preparatory Commission member is a signatory State,
+    though the Commission's founding Resolution was on no host we may read (noted in the seed).
+- **Single-source holds whose one source is the organisation's own page** move to the official tier (the base rule:
+  one authoritative source per claim): ILO (Tonga, effective 24 February 2016, «187th ILO member State»), IOM
+  (Barbados, 29 November 2022, the Council's resolution), WHO (South Sudan, 27 September 2011, the Basic Documents;
+  Wikipedia's «Tuvalu in 2023» contradicts WHO's own list and is noted). WHO's card also carries the US's pending
+  withdrawal (stated effective date 22 January 2026, pending before WHO's governing bodies). The rest stay held: their
+  one source is a depositary (IFAD, UNIDO), a joining state (NAM, OIF), Wikipedia, a page ORGN-1 read in a browser
+  after a 403 (OPEC, PCA, IPU), or an organisation page that contradicts itself (IsDB: 19 May vs July 2016).
+- **Founders' ties** (ICIMOD, GCC, CIS) stay held: no newest member.
+- **Outcome:** 40 built (official 36, secondary 4), 37 held.
