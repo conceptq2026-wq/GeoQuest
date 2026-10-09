@@ -963,20 +963,6 @@
     "sha256": "29d804c4f740cc6f6502b9b5bb516e06aaf17d75c03a06a76266fe79d7e40f28"
    }
   },
-  "R3-wiki-bn-bids": {
-   "url": "https://bn.wikipedia.org/wiki/%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B6_%E0%A6%89%E0%A6%A8%E0%A7%8D%E0%A6%A8%E0%A6%AF%E0%A6%BC%E0%A6%A8_%E0%A6%97%E0%A6%AC%E0%A7%87%E0%A6%B7%E0%A6%A3%E0%A6%BE_%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A6%A4%E0%A6%BF%E0%A6%B7%E0%A7%8D%E0%A6%A0%E0%A6%BE%E0%A6%A8",
-   "final": "https://bn.wikipedia.org/wiki/%E0%A6%AC%E0%A6%BE%E0%A6%82%E0%A6%B2%E0%A6%BE%E0%A6%A6%E0%A7%87%E0%A6%B6_%E0%A6%89%E0%A6%A8%E0%A7%8D%E0%A6%A8%E0%A6%AF%E0%A6%BC%E0%A6%A8_%E0%A6%97%E0%A6%AC%E0%A7%87%E0%A6%B7%E0%A6%A3%E0%A6%BE_%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A6%A4%E0%A6%BF%E0%A6%B7%E0%A7%8D%E0%A6%A0%E0%A6%BE%E0%A6%A8",
-   "via": "fetch",
-   "retrieved": "2026-10-09T19:05:43.087Z",
-   "size": 140073,
-   "sha256": "0c9b73379850a55822b465c55647e1bae0539738e2db2c9c70f4bcceab4d39cf",
-   "text": {
-    "size": 22538,
-    "sha256": "6f1894a88b46f78145e854daef2da4b6ade2dc4443139c45488a08ff2a42313c"
-   },
-   "revid": "8363218",
-   "permalink": "https://bn.wikipedia.org/w/index.php?oldid=8363218"
-  },
   "SE-bard-about": {
    "url": "https://bard.gov.bd/pages/static-pages/6922dc91933eb65569e11008",
    "final": "https://bard.gov.bd/pages/static-pages/6922dc91933eb65569e11008",

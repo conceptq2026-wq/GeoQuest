@@ -101,29 +101,31 @@
   "templates": {
    "predecessor": {
     "bn": "{year} (পূর্বসূরি প্রতিষ্ঠান, {place})",
-    "approved": false,
-    "source": "the user (RES-3, decision 2)"
+    "approved": true,
+    "source": "the user (RES-3, decision 2)",
+    "approvedBy": "the user, 2026-10-10 (RES-4)"
    }
   },
   "places": {
-   "karachi": {
-    "bn": "করাচি",
-    "approved": false,
-    "tier": "secondary",
-    "editor": "the user's own example (RES-3, 2026-10-10); BIDS's own page says only that it began in Pakistan and moved to Dhaka in 1971; PIDE's site refused us (403)",
+   "pakistan": {
+    "bn": "পাকিস্তান",
+    "approved": true,
+    "approvedBy": "the user, 2026-10-10 (RES-4)",
+    "tier": "official",
     "for": "bids",
     "cite": [
      {
-      "source": "R3-wiki-bn-bids",
-      "offset": 1747,
-      "length": 45,
-      "sha256": "cd817200eb1bc4c6ea1ddf34b01a37d8ce97b3cb2367f834ae863fd45049d391"
+      "source": "SE-bids-about",
+      "offset": 3939,
+      "length": 26,
+      "sha256": "cc78ff0974cab03da469b44929e2f0dddc7ff3a2b7ef8cdb8b6bc54dee0201fc"
      }
     ]
    },
    "newDelhi": {
     "bn": "নয়াদিল্লি",
-    "approved": false,
+    "approved": true,
+    "approvedBy": "the user, 2026-10-10 (RES-4)",
     "tier": "official",
     "for": "iedcr",
     "cite": [
@@ -295,7 +297,7 @@
    },
    "rdcd": {
     "bn": "পল্লী উন্নয়ন ও সমবায় বিভাগ",
-    "approved": false,
+    "approved": true,
     "cite": [
      {
       "source": "SE-bard-about",
@@ -4284,7 +4286,7 @@
     "rule": "the first year the institute itself began, through renamings (decision 3)",
     "judgement": "its own page traces it to PIDE, established in Pakistan in 1957 and moved to Dhaka in 1971; the 1974 Act (s. 19) also dates BIDE to a 1964 notification",
     "predecessor": {
-     "place": "karachi"
+     "place": "pakistan"
     }
    },
    "currentForm": {
@@ -4682,7 +4684,7 @@
    "address": {
     "area": {
      "bn": "কৃষি খামার সড়ক",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "AG-srdi-addrs",
@@ -4710,7 +4712,7 @@
    "parent": "moa",
    "focus": {
     "bn": "মাটি ও ভূমি সম্পদের জরিপ, মাটি পরীক্ষা এবং সার প্রয়োগের সুপারিশ, জমির লাভজনক ব্যবহারের জন্য।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "AG-srdi-about",
      "offset": 2948,
@@ -4812,7 +4814,7 @@
    "parent": "mefwd",
    "focus": {
     "bn": "স্বাস্থ্য গবেষণার জাতীয় পরিষদ: অগ্রাধিকার ঠিক করা, অর্থায়ন ও সমন্বয়, গবেষক প্রশিক্ষণ এবং নৈতিকতার অনুমোদন।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "HE-bmrc-mission",
      "offset": 649,
@@ -4914,7 +4916,7 @@
    "address": {
     "area": {
      "bn": "মহাখালী",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "HE-iph-contact",
@@ -4943,7 +4945,7 @@
    "parentPending": "none of its own pages names the body it is under (RES-1); Wikipedia's DGHS is not used",
    "focus": {
     "bn": "গবেষণাগারে রোগনির্ণয়, রোগ নজরদারি ও প্রাদুর্ভাব মোকাবিলা; খাবার স্যালাইন ও রোগনির্ণয়ের উপকরণ তৈরিও।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "HE-iph-history",
      "offset": 1758,
@@ -5032,7 +5034,7 @@
    "address": {
     "area": {
      "bn": "কোটবাড়ি",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "SE-bard-home2",
@@ -5060,7 +5062,7 @@
    "parent": "rdcd",
    "focus": {
     "bn": "পল্লী উন্নয়নে প্রশিক্ষণ, গবেষণা ও প্রায়োগিক গবেষণা; কুমিল্লা মডেলের জন্য পরিচিত।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "SE-bard-about",
      "offset": 3732,
@@ -5172,7 +5174,7 @@
    "address": {
     "area": {
      "bn": "গাড়ীদহ",
-     "approved": false,
+     "approved": true,
      "cite": [
       {
        "source": "SE-lawd-735",
@@ -5200,7 +5202,7 @@
    "parent": "rdcd",
    "focus": {
     "bn": "উত্তরাঞ্চলের জন্য পল্লী উন্নয়নে প্রশিক্ষণ, গবেষণা, প্রায়োগিক গবেষণা ও পরামর্শ।",
-    "approved": false,
+    "approved": true,
     "page": {
      "source": "SE-rda-about",
      "offset": 4464,

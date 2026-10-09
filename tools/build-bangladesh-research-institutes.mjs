@@ -124,7 +124,7 @@ const extra = [
   `The institutes' own websites: ${order.map((k) => link(ownSite(k), seed.institutes[k].abbr)).join(', ')}`,
   `Ministries, divisions and directorates: ${govHosts.map((h) => link(`https://${h}/`, h)).join(', ')}`,
   'Acts and ordinances: Laws of Bangladesh, bdlaws.minlaw.gov.bd (Legislative and Parliamentary Affairs Division)',
-  ...wiki.map((w) => link(w.permalink, `Bengali Wikipedia, revision ${w.revid}: BIDS's predecessor in Karachi`)),
+  ...wiki.map((w) => link(w.permalink, `Bengali Wikipedia, revision ${w.revid}`)),
   CODAB,
   OSM,
 ];

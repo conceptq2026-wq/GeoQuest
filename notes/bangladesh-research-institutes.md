@@ -66,8 +66,9 @@ the local preview).
      icddr,b's: the two share one spot.
 2. **A predecessor outside present Bangladesh keeps both years**; the first carries where it was:
    «{year} (পূর্বসূরি প্রতিষ্ঠান, {place})», with «বর্তমান রূপে: <year>» under it. Two institutes:
-   - BIDS: 1957, Karachi — Bengali Wikipedia (rev 8363218) and the user's own example; BIDS's own page says only that it
-     began in Pakistan and moved to Dhaka in 1971, and PIDE's own site refused us (403, now never asked again).
+   - BIDS: 1957, «পাকিস্তান» — its own page: "had its origin in Pakistan … established in June 1957 … moved to Dhaka in
+     January 1971" (RES-4, the user, 2026-10-10). «করাচি» was dropped: it rested on Bengali Wikipedia alone, which fails
+     the two-source rule; PIDE's own site refused us (403, never asked again).
    - IEDCR: 1947, New Delhi — its own history page.
    The others' first years are in present Bangladesh (Dhaka, Sreemangal, Chattogram, Ishwardi, Comilla…), by their
    own pages.
@@ -78,6 +79,11 @@ the local preview).
    places (`tools/.cache/research-institutes/strings-review.md`).
 5. **The card's foot:** «সর্বশেষ যাচাই» — the latest day a page it cites was read — and «সূত্র ↗», the institute's own
    page it cites first (`verified`, `sourcePage` in the seed).
+6. **RES-4 (the user, 2026-10-10):** the other 12 approved — the predecessor template, «নয়াদিল্লি», «পল্লী উন্নয়ন ও সমবায়
+   বিভাগ», the four areas and the five lines — and «পাকিস্তান»: every string in the seed is approved. IPH's «অধীন» was
+   sought again through the helper (IPH's organogram and officers; the health directorate's scope, history and
+   organogram; the Health Services Division's list of its offices, which names the directorate but not IPH): no
+   official page names it, so it stays null and the row hidden.
 
 ## The preview (RES-3, 2026-10-10)
 
@@ -174,7 +180,7 @@ of a baec.gov.bd script, nothing saved. CLAUDE.md records the rule.
 
 | Institute | Year | বর্তমান রূপে | Point | Why kept / note |
 |---|---|---|---|---|
-| BIDS — বাংলাদেশ উন্নয়ন গবেষণা প্রতিষ্ঠান | 1957 (predecessor in করাচি) | 1974 | site | its own page: research is its main work; year: its own page traces it to PIDE, established in Pakistan in 1957 and moved to Dhaka in 1971; the 1974 Act (s. 19) also dates BIDE to a 1964 notification |
+| BIDS — বাংলাদেশ উন্নয়ন গবেষণা প্রতিষ্ঠান | 1957 (predecessor in পাকিস্তান) | 1974 | site | its own page: research is its main work; year: its own page traces it to PIDE, established in Pakistan in 1957 and moved to Dhaka in 1971; the 1974 Act (s. 19) also dates BIDE to a 1964 notification |
 | BARD — বাংলাদেশ পল্লী উন্নয়ন একাডেমি, কুমিল্লা | 1959 | 1986 | site | restored by the user (RES-3); its own page: research is its main work |
 | RDA — পল্লী উন্নয়ন একাডেমী, বগুড়া | 1974 | 1990 | site | restored by the user (RES-3); its own page: research is its main work |
 | BIISS — বাংলাদেশ ইনস্টিটিউট অব ইন্টারন্যাশনাল এন্ড স্ট্র্যাটেজিক স্টাডিজ | 1978 | 1984 | site | its own page: research is its main work; conflict: its own page dates the 1984 Ordinance 28 March, bdlaws 17 April: the same year, so a year-only card settles it (decision 4) |
