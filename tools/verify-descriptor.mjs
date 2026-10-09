@@ -125,7 +125,7 @@ const MARITIME_ZONES_SEED_SHA256 = '6b0f67dbac0b0fa97037d86c7f94d3f07a73bd57a42d
 // The bangladesh-maritime-boundary map: the editor's seed, pinned (live 2026-10-08; its 35 step-2 strings approved, BD-6; #30 reworded by the user the same day).
 const BANGLADESH_MARITIME_SEED_SHA256 = 'dcc627421f99b20faeffe17006d9348f181b9663c058af66f37ae6c572e8ebbd';
 // The global-indices map «বৈশ্বিক সূচক»: its seed, pinned (live 2026-10-09).
-const GLOBAL_INDICES_SEED_SHA256 = '53d1473d55e846b819eedb07adf79eb0cf27077ade32f623bc1f0cdb1da3a88d';
+const GLOBAL_INDICES_SEED_SHA256 = '9b72d6e35308d4633dfe6f22021964a03e1459ca0b49603fb1dfae57efff517f';
 // The important-days diagram «বছরের চাকা»: its seed, pinned (live 2026-10-08, after WHEEL-2–5 and GL-WHEEL).
 const IMPORTANT_DAYS_SEED_SHA256 = '24fe65ed95d70d794a54c0a29341b85da87a13fcffa371a1d9967a862d737070';
 // The bangladesh-ethnic-groups map: its seed, pinned (live 2026-10-08).

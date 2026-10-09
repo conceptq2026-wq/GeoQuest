@@ -72,6 +72,14 @@ Read it with `CLAUDE.md`, whose rules and verification budget apply. A map under
   (labels, then the rankings' names, then country names). Country names on the cards are the basemap's pinned
   `NAME_BN`; the two new ones (Israel, Taiwan) await approval.
 
+## IDX-FIX (2026-10-09)
+
+- **Previous ranks:** a secondary previous rank's sources must be dated on or after the previous edition's release
+  date; unknown, it is held out (details under IDX-ALL Part D). Both Dhaka rows lost theirs, and their chips.
+- **One order for every pin** (the user approved the change): `words.pinBd` is «{value} · বাংলাদেশ», number
+  first like «{rank} · {name}» — «১৩০ · বাংলাদেশ», «০.০৬৬৫ · বাংলাদেশ» — replacing «বাংলাদেশ · {value}». Colour,
+  tap and label widths unchanged.
+
 ## IDX-ALL (2026-10-09)
 
 - **Baseline exception (the user: «অন্য দেশের নাম থাকবে না»):** `hideCountryLabels: true` (opt-in, this map only) — no

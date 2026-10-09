@@ -13,8 +13,9 @@
 |     fully shaded ranking is chosen;
 |   - three pins on the map, each a dot on the country's own point, a thin leader and a label placed clear of the
 |     others and inside the map: «১ · name» on the top country, «rank · name» on the bottom one (both pinned where
-|     two share it; one «rank · যৌথভাবে n টি দেশ» where more do), «বাংলাদেশ · rank» in vermillion — for a ranking of
-|     values only «সর্বনিম্ন/সর্বোচ্চ · name» and Bangladesh's value. Bangladesh's label opens the card;
+|     two share it; one «rank · যৌথভাবে n টি দেশ» where more do), «rank · বাংলাদেশ» in vermillion — for a ranking of
+|     values only «সর্বনিম্ন/সর্বোচ্চ · name» and «value · বাংলাদেশ»: number first on every pin (IDX-FIX).
+|     Bangladesh's label opens the card;
 |   - three stat blocks under the card's title (Bangladesh's rank of N, the
 |     top, the bottom — or, for a ranking given as values only, Bangladesh's
 |     value), and a foot with «সর্বশেষ যাচাই» and «সূত্র ↗»; a ranking whose
@@ -49,7 +50,7 @@ export async function mount(api) {
   for (const t of [spec.records, spec.countries]) if (!api.records[t]) throw new Error(`indices: "${t}" is not a records table`);
   if (!spec.tabs?.map || !spec.tabs?.bangladesh) throw new Error('indices: tabs.map and tabs.bangladesh name the two view tabs');
   for (const k of ['bdStat', 'topStat', 'bottomStat', 'valueStat', 'legendTop', 'legendBottom', 'verified', 'source', 'factsNote', 'bdCaption', 'unchanged', 'better', 'worse', 'upNeutral', 'downNeutral', 'basisEdition', 'basisYear']) if (typeof W[k] !== 'string') throw new Error(`indices: words.${k} is missing`);
-  await stylesheet(api, './indices.css?v=0304857c68');
+  await stylesheet(api, './indices.css?v=4d425c1dee');
   page = api.dom.mapShell.parentElement;
   page.classList.add('has-indices');
   api.own.undo('the indices page', () => page.classList.remove('has-indices', 'indices-bd'));
