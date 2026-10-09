@@ -74,7 +74,13 @@ Read it with `CLAUDE.md`, whose rules and verification budget apply. A diagram u
   - The chosen month pops 4 px, in the one accent #2563EB, with a soft shadow.
   - Each wedge's name and markers are placed where they lie wholly inside it (`data-fit`), measured once the fonts
     are in.
-  - «আজ» is a small dark pill on today's month's outer edge, at today's place in it — not a marker.
+  - «আজ» is a small dark pill on today's month's outer edge, at today's place in it — not a marker. Every month's name
+    keeps clear of it (near a month's edge it reaches into the neighbour). Where some name finds no place with the
+    pill at today's spot, the pill moves the least way along today's month's edge until every name fits; failing that,
+    it stacks with today's name and markers. On the smallest wheel (under 340 px) it is 30 × 18 px, out in the wheel's
+    margin; its text stays 14 px (WHEEL-8: tested with the date forced — every day of 2026 at 320 px, and each
+    month's first, middle and last day and 9 October at 320, 390, 768 and 1,280 px — every name inside its wedge,
+    none under the pill; before, 183 of the 365 days failed at 320 px).
   - At 320 a wedge's tap zone at mid-ring is 52.7 px of arc × 75 px of ring.
 - **Markers:** জাতীয় a filled dot #009E73, আন্তর্জাতিক a hollow ring #0072B2 with a 2 px stroke, 9 px, the same in the
   wheel, the list and the legend. The legend is one quiet line under the wheel.

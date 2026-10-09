@@ -9,7 +9,8 @@
 |   - the wheel card: the shared picker row of the twelve months, which goes round (‹ on জানুয়ারি is ডিসেম্বর);
 |     ⓘ under it (the shell places it after `data-info-after`); twelve 30° wedges, জানুয়ারি at the top and
 |     clockwise, each with its month's name and one marker per kind of day it holds; the chosen month popped out a
-|     little, in the one accent; a small «আজ» pill on the outer edge of today's month, at today's place in it; the
+|     little, in the one accent; a small «আজ» pill on the outer edge of today's month, at today's place in it (or,
+|     where the month's name cannot clear it, stacked with the name and markers — WHEEL-8); the
 |     centre a white disc with the chosen month and its count. Static: a choice never turns it. Under it the
 |     legend, one quiet line: ● জাতীয় ○ আন্তর্জাতিক.
 |   - the list card «<মাস> মাসের দিবসসমূহ»: a row per day, hairlines between — the date (the day's number, or a
@@ -24,7 +25,7 @@
 | written in Bengali digits. Markers: জাতীয় a filled dot, আন্তর্জাতিক a hollow ring, the same size everywhere.
 */
 
-import { el, pickerBar, stylesheet, svgEl } from './parts.js?v=4d425c1dee';
+import { el, pickerBar, stylesheet, svgEl } from './parts.js?v=3ba9413e94';
 
 // CSS px: the wheel's bounds, the chosen wedge's pop, the gap between wedges, the room kept outside the ring for the
 // pop and the «আজ» pill, the inner radius's share of the outer, the markers' size.
@@ -71,7 +72,7 @@ const icon = (kinds, size = WHEEL.mark) => {
 
 export async function mount(panel, { descriptor, data }) {
   const W = descriptor.words;
-  await Promise.all([stylesheet('../shared/picker.css?v=4d425c1dee'), stylesheet('./days.css?v=4d425c1dee')]);
+  await Promise.all([stylesheet('../shared/picker.css?v=3ba9413e94'), stylesheet('./days.css?v=3ba9413e94')]);
   panel.classList.add('days');
   const MONTHS = W.months;
 
@@ -224,7 +225,10 @@ export async function mount(panel, { descriptor, data }) {
     const P = (rad, deg) => [c + rad * Math.cos((deg * Math.PI) / 180), c + rad * Math.sin((deg * Math.PI) / 180)];
     // «আজ»: where its pill sits — today's place in its month, on the outer edge — and how far in from the edge it reaches.
     const todayAng = -105 + 30 * today.m + (30 * (today.d - 0.5)) / daysIn(today.y, today.m);
-    const pill = { w: 34, h: 22 };
+    // On the smallest wheel (under 340 px, a 320 px screen) the pill is smaller, its text still 14 px, and sits out in
+    // the wheel's margin, so a long month's name still finds room beside it (WHEEL-8).
+    const small = size < 340;
+    const pill = small ? { w: 30, h: 18 } : { w: 34, h: 22 };
     const reach = (deg, w, h) => Math.abs(Math.cos((deg * Math.PI) / 180)) * (w / 2) + Math.abs(Math.sin((deg * Math.PI) / 180)) * (h / 2);
     const wedges = [];
     for (let m = 0; m < 12; m++) {
@@ -245,34 +249,67 @@ export async function mount(panel, { descriptor, data }) {
     for (const w of wedges) wheel.append(w.g);
     // Each name and its markers, the markers under the name or, where only that fits, over it, at the radius nearest
     // mid-ring, and the least step sideways off the wedge's middle, where both boxes lie wholly inside the wedge (clear
-    // of its sides and arcs) and, in today's month, clear of the «আজ» pill. `data-fit` says whether one did.
-    const [px, py] = P(R - reach(todayAng, pill.w, pill.h) + 4 + (today.m === chosen ? WHEEL.pop : 0), todayAng);
-    const pillBox = [px - pill.w / 2 - 2, py - pill.h / 2 - 2, px + pill.w / 2 + 2, py + pill.h / 2 + 2];
+    // of its sides and arcs) and clear of the «আজ» pill — every month's, since near a month's edge the pill reaches into
+    // its neighbour. `data-fit` says whether one did. Where some name finds no place with the pill at today's spot (a
+    // long name in a narrow wedge, 320 px), the pill moves the least way along today's month's outer edge until every
+    // name fits; failing that, it joins today's name and markers, under them or over the name (WHEEL-8).
+    const pillAt = (deg) => P(small ? R + WHEEL.margin - reach(deg, pill.w, pill.h) - 1 : R - reach(deg, pill.w, pill.h) + 4 + (today.m === chosen ? WHEEL.pop : 0), deg);
     const inside = (x, y, mid) => {
       const rho = Math.hypot(x - c, y - c);
       const off = Math.abs(((((Math.atan2(y - c, x - c) * 180) / Math.PI - mid) % 360) + 540) % 360 - 180);
       return rho >= r + 2 && rho <= R - 2 && off < 15 && rho * Math.sin(((15 - off) * Math.PI) / 180) >= WHEEL.gap / 2;
     };
-    // [the name's centre, the markers' centre], from the point placed: under, then over.
+    const within = (boxes, mid) => boxes.every(([a, b, d, e]) => inside(a, b, mid) && inside(d, b, mid) && inside(a, e, mid) && inside(d, e, mid));
+    // [the name's centre, the markers' centre], from the point placed: under, then over; with the pill, [name, markers,
+    // pill]: the pill under the markers, or over the name.
     const ORDERS = [[-6, 11], [6, -11]];
-    for (const w of wedges) {
-      const lw = w.label.getBBox().width, mw = w.marks.getBBox().width;
-      const sx = -Math.sin((w.mid * Math.PI) / 180), sy = Math.cos((w.mid * Math.PI) / 180);
-      const at = (rad, side) => { const [x, y] = P(rad, w.mid); return [x + side * sx, y + side * sy]; };
-      const fits = (rad, [ly, my], side) => {
-        const [x, y] = at(rad, side);
-        const boxes = [[x - lw / 2, y + ly - 10, x + lw / 2, y + ly + 10], [x - mw / 2, y + my - 4.5, x + mw / 2, y + my + 4.5]];
-        if (!boxes.every(([a, b, d, e]) => inside(a, b, w.mid) && inside(d, b, w.mid) && inside(a, e, w.mid) && inside(d, e, w.mid))) return false;
-        return w.m !== today.m || boxes.every(([a, b, d, e]) => a > pillBox[2] || d < pillBox[0] || b > pillBox[3] || e < pillBox[1]);
-      };
-      const midR = (r + R) / 2;
-      let place = [midR, ORDERS[0], 0], fit = false;
-      for (let side = 0; side <= 12 && !fit; side += 2) for (let k = 0; k <= R - r && !fit; k++) for (const o of ORDERS) for (const t of [midR + k, midR - k]) for (const sd of side ? [side, -side] : [0]) if (!fit && fits(t, o, sd)) { place = [t, o, sd]; fit = true; }
-      const [lx, ly] = at(place[0], place[2]);
-      w.label.setAttribute('x', lx);
-      w.label.setAttribute('y', ly + place[1][0]);
-      w.marks.setAttribute('transform', `translate(${lx} ${ly + place[1][1]})`);
-      w.label.dataset.fit = fit ? '1' : '0';
+    const STACKS = [[-22.5, -6, 11.5], [6.5, 23, -16.5]];
+    const sizes = wedges.map((w) => [w.label.getBBox().width, w.marks.getBBox().width]);
+    const midR = (r + R) / 2;
+    // Every name's place for one place of the pill ([x, y]), or with the pill stacked in today's month (stack).
+    const placeAll = ([qx, qy], stack) => {
+      const pillBox = [qx - pill.w / 2 - 2, qy - pill.h / 2 - 2, qx + pill.w / 2 + 2, qy + pill.h / 2 + 2];
+      return wedges.map((w, i) => {
+        const [lw, mw] = sizes[i];
+        const sx = -Math.sin((w.mid * Math.PI) / 180), sy = Math.cos((w.mid * Math.PI) / 180);
+        const at = (rad, side) => { const [x, y] = P(rad, w.mid); return [x + side * sx, y + side * sy]; };
+        const [ox, oy] = w.m === chosen ? P(WHEEL.pop, w.mid).map((v) => v - c) : [0, 0];
+        const three = stack && w.m === today.m;
+        const fits = (rad, o, side) => {
+          const [x, y] = at(rad, side);
+          const boxes = [[x - lw / 2, y + o[0] - 10, x + lw / 2, y + o[0] + 10], [x - mw / 2, y + o[1] - 4.5, x + mw / 2, y + o[1] + 4.5]];
+          if (three) boxes.push([x - pill.w / 2, y + o[2] - pill.h / 2, x + pill.w / 2, y + o[2] + pill.h / 2]);
+          if (!within(boxes, w.mid)) return false;
+          // A popped wedge's boxes are compared where they are drawn.
+          return stack || boxes.every(([a, b, d, e]) => a + ox > pillBox[2] || d + ox < pillBox[0] || b + oy > pillBox[3] || e + oy < pillBox[1]);
+        };
+        let place = [midR, ORDERS[0], 0], fit = false;
+        for (let side = 0; side <= 12 && !fit; side += 2) for (let k = 0; k <= R - r && !fit; k++) for (const o of three ? STACKS : ORDERS) for (const t of [midR + k, midR - k]) for (const sd of side ? [side, -side] : [0]) if (!fit && fits(t, o, sd)) { place = [t, o, sd]; fit = true; }
+        const [lx, ly] = at(place[0], place[2]);
+        return { lx, ly, o: place[1], fit, ...(three && fit ? { pill: [lx + ox, ly + place[1][2] + oy] } : {}) };
+      });
+    };
+    let pillXY = pillAt(todayAng), placed = placeAll(pillXY, false), pillStacked = false;
+    if (!placed.every((q) => q.fit)) {
+      const lo = -105 + 30 * today.m, hi = lo + 30;
+      const edge = (Math.asin(Math.min(1, (pill.w / 2 + 2) / R)) * 180) / Math.PI;
+      let found = null;
+      for (let step = 1; step <= 30 && !found; step++) for (const s of [1, -1]) {
+        const a = todayAng + s * step;
+        if (found || a < lo + edge || a > hi - edge) continue;
+        const xy = pillAt(a), p = placeAll(xy, false);
+        if (p.every((q) => q.fit)) found = [xy, p];
+      }
+      if (found) [pillXY, placed] = found;
+      else { const p = placeAll(pillXY, true); if (p.every((q) => q.fit)) { placed = p; pillXY = p[today.m].pill; pillStacked = true; } }
+    }
+    const [px, py] = pillXY;
+    for (const [i, w] of wedges.entries()) {
+      const q = placed[i];
+      w.label.setAttribute('x', q.lx);
+      w.label.setAttribute('y', q.ly + q.o[0]);
+      w.marks.setAttribute('transform', `translate(${q.lx} ${q.ly + q.o[1]})`);
+      w.label.dataset.fit = q.fit ? '1' : '0';
     }
     // The chosen wedge drawn last again, so its pop and shadow lie over its neighbours; the copy takes no tap.
     const top = wedges[chosen].g.cloneNode(true);
@@ -289,8 +326,9 @@ export async function mount(panel, { descriptor, data }) {
     // The month's name 30 px, down to 24 where the disc is narrow.
     for (let fs = 30; fs >= 24; fs--) { month.style.fontSize = `${fs}px`; if (month.getBBox().width <= 2 * (r - 6) - 12) break; }
     month.dataset.room = 2 * (r - 6) - 12;
-    // «আজ»: a small pill on today's month's outer edge, at today's place in it; not a marker.
-    const tg = svgEl('g', { class: 'days-today-pill', transform: `translate(${px} ${py})`, 'aria-hidden': 'true' });
+    // «আজ»: a small pill on today's month's outer edge, at today's place in it — or, where the month's name cannot clear
+    // it there, with the name and the markers (`data-stacked`); not a marker.
+    const tg = svgEl('g', { class: 'days-today-pill', transform: `translate(${px} ${py})`, 'aria-hidden': 'true', 'data-stacked': pillStacked ? '1' : '0' });
     tg.append(svgEl('rect', { x: -pill.w / 2, y: -pill.h / 2, width: pill.w, height: pill.h, rx: pill.h / 2 }));
     const tt = svgEl('text', { lang: 'bn', y: 1 });
     tt.textContent = W.today;
