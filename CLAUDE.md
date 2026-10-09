@@ -341,7 +341,8 @@ by map. **Nothing is guessed to fill a gap.**
   these. The publishers' own sites are never fetched; the order is the Government of Bangladesh, BSS, Reuters/
   AP/AFP, then leading national dailies (one owner counts once; portals, TV sites and Wikipedia never); each fact
   needs two such outlets that agree, each naming the publisher and the edition, dated after the release (the
-  previous rank: after the previous edition's). Two independent readers; any mismatch, or a fact short of two,
+  previous rank: on or after the previous edition's release date, stored with it — unknown, the previous rank is
+  held out; IDX-FIX, 2026-10-09). Two independent readers; any mismatch, or a fact short of two,
   holds the item out. Stored tagged «secondary» — URL, outlet, date, publisher, no article text — through
   `tools/ingest-user-input.mjs --secondary`; the card's link reads «সূত্র: {outlet} (মূল: {publisher})».
   Nothing else on any map uses it: `notes/global-indices.md`.

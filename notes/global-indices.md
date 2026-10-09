@@ -90,13 +90,16 @@ Read it with `CLAUDE.md`, whose rules and verification budget apply. A map under
   `agreed.json`): values must agree; a fact counts only GoB, BSS, Reuters/AP/AFP and leading national dailies, one
   owner once (Prothom Alo and its English edition; Dhaka Tribune, its Bangla site and Bangla Tribune), so portals,
   TV sites, aggregators and republications count for nothing. Built: EIU liveability 2026, Dhaka 171/173,
-  Copenhagen/Damascus, previous 171 (TBS, New Age, Financial Express; previous: Dhaka Tribune, TBS); Mercer cost
-  of living 2024, Dhaka 140/226, Hong Kong/Abuja, previous 154 (Prothom Alo, Ittefaq; Vanguard, Punch, The Sun).
+  Copenhagen/Damascus (TBS, New Age, Financial Express); Mercer cost of living 2024, Dhaka 140/226, Hong
+  Kong/Abuja (Prothom Alo, Ittefaq; Vanguard, Punch, The Sun). Their previous ranks (171, 154) are held out since
+  IDX-FIX: neither reading gives the previous edition's release date; so no chip on either row.
   Held out: GPI, Henley, GGGI (one qualifying outlet for a fact; Henley's previous rank also differed, 100/95),
   GFSI (the readers differed), GTI and GHI (tied ends, one source), Democracy Index, Economic Freedom and
-  Mercer quality of living (no report found), clothing exports (no source names the 10th or N). The previous
-  rank's sources date from the previous edition's year (the ingest's rule). A secondary previous edition stores
-  Bangladesh's rank only; the card's «সর্বশেষ যাচাই» is the reading's date.
+  Mercer quality of living (no report found), clothing exports (no source names the 10th or N). **IDX-FIX
+  (2026-10-09):** a previous rank's sources must be dated on or after the previous edition's release date (a full
+  date, the same in both readings, stored as the previous edition's `releaseDate`); unknown, the merge and the ingest
+  hold the previous rank out, never a guess. A secondary previous edition stores that date and Bangladesh's rank
+  only; facts unchanged on a re-intake keep the date they were read; the card's «সর্বশেষ যাচাই» is the reading's date.
 
 ## IDX-4 revised (the user's review and preview feedback, 2026-10-09)
 

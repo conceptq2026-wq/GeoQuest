@@ -80,11 +80,14 @@ for (const [id, body] of sections) {
   if (got.top && got.bottom && got.top.trim().toLowerCase() === got.bottom.trim().toLowerCase()) bad.push('the top and the bottom are the same');
   // The secondary sources: two outlets a fact, each naming the publisher and the edition, dated after the release.
   const sources = [];
+  const prevRelease = SECONDARY && /^\d{4}-\d\d-\d\d$/.test(secondary[id].previousReleaseDate ?? '') ? secondary[id].previousReleaseDate : null;
   if (SECONDARY) {
     const after = got.month ? `${got.month}-01` : `${year}-01-01`;
     for (const field of ['edition', 'bd', 'of', 'top', 'bottom', ...(got.previous ? ['previousBdRank'] : [])]) {
-      // The previous edition's rank is reported after that edition's release, so its sources date from its year on.
-      const from = field === 'previousBdRank' ? `${year - 1}-01-01` : after;
+      // The previous edition's rank: its sources dated on or after that edition's release date (IDX-FIX), which
+      // must be known as a full date — otherwise the previous rank is refused, never dated by a guess.
+      const from = field === 'previousBdRank' ? prevRelease : after;
+      if (field === 'previousBdRank' && !prevRelease) { bad.push(`previousBdRank: the previous edition's release date (YYYY-MM-DD) is unknown — hold the previous rank out`); continue; }
       const list = (secondary[id].facts?.[field] ?? []).filter((c) => /^https?:\/\//.test(c.url ?? '') && c.outlet && c.publisherNamed && c.editionNamed && /^\d{4}-\d\d-\d\d$/.test(c.date ?? '') && c.date >= from);
       if (new Set(list.map((c) => c.outlet)).size < 2) bad.push(`${field}: fewer than two outlets that name the publisher and the edition, dated after ${from}`);
       for (const c of list) if (!sources.some((x) => x.url === c.url)) sources.push({ url: c.url, outlet: c.outlet, date: c.date, publisher: c.publisherNamed });
@@ -93,6 +96,7 @@ for (const [id, body] of sections) {
   if (bad.length) { problems.push(`${id}: ${bad.join('; ')}`); continue; }
   const page = entry.userInput?.pages?.[0] ?? entry.officialUrl;
   const top = who(got.top), bottom = who(got.bottom);
+  const was = entry.latest;
   entry.latest = {
     edition: `${entry.nameEn} ${year}`,
     releaseDate: got.month,
@@ -105,7 +109,10 @@ for (const [id, body] of sections) {
     // user's delegation (IDX-ALL).
     approved: SECONDARY,
   };
-  entry.previous = prev ? { bd: { rank: prev } } : null;
+  // Facts unchanged from an earlier secondary intake keep the date they were read.
+  const same = (e) => e && JSON.stringify([e.edition, e.releaseDate, e.n, e.bd, e.top, e.bottom]);
+  if (SECONDARY && was?.source?.by === 'secondary' && same(was) === same(entry.latest)) entry.latest.source.date = was.source.date;
+  entry.previous = prev ? { ...(SECONDARY ? { releaseDate: prevRelease } : {}), bd: { rank: prev } } : null;
   taken.push(`${id} ${rank}/${n}`);
 }
 if (problems.length) {

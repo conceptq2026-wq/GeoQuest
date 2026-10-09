@@ -21890,11 +21890,7 @@
         },
         "approved": true
       },
-      "previous": {
-        "bd": {
-          "rank": 154
-        }
-      },
+      "previous": null,
       "userInput": {
         "why": "restricted licence or terms (IDX-1); facts from secondary sources (IDX-ALL Part D)",
         "pages": [
@@ -21995,22 +21991,12 @@
               "outlet": "The Financial Express",
               "date": "2026-07-07",
               "publisher": "EIU"
-            },
-            {
-              "url": "https://www.dhakatribune.com/bangladesh/dhaka/384785/global-liveability-index-2025-dhaka-ranks-171st",
-              "outlet": "Dhaka Tribune",
-              "date": "2025-06-25",
-              "publisher": "Economist Intelligence Unit (EIU)"
             }
           ]
         },
         "approved": true
       },
-      "previous": {
-        "bd": {
-          "rank": 171
-        }
-      },
+      "previous": null,
       "userInput": {
         "why": "the terms forbid automated access (https://www.eiu.com/n/terms/ 2.2 Prohibited Uses, item (D))",
         "pages": [
