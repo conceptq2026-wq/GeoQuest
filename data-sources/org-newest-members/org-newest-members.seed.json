@@ -90,7 +90,7 @@
   "marks": {
    "withdrawalPending": {
     "bn": "সদস্যপদ ত্যাগের ঘোষণা: {name}, কার্যকর {date}",
-    "approved": false
+    "approved": true
    },
    "rejoin": {
     "bn": "পুনরায় যোগদান",

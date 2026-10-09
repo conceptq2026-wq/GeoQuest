@@ -104,3 +104,11 @@ For the 32 organisations ORGN-1 could not verify, PCA, IPU, OECD, OPEC and AfDB,
   after a 403 (OPEC, PCA, IPU), or an organisation page that contradicts itself (IsDB: 19 May vs July 2016).
 - **Founders' ties** (ICIMOD, GCC, CIS) stay held: no newest member.
 - **Outcome:** 40 built (official 36, secondary 4), 37 held.
+
+## WHEEL-8 (the user, 2026-10-09)
+
+- The pending-withdrawal line «সদস্যপদ ত্যাগের ঘোষণা: {name}, কার্যকর {date}» approved: all 41 strings approved.
+- WHO's card shows the US withdrawal exactly as WHO's page states it today (fetched 2026-10-09): a notification of the
+  US's intention to withdraw «with a stated effective date of 22 January 2026», which «is pending consideration by
+  WHO's governing bodies». The stated date has passed; WHO still calls it pending and still lists the US, so the US is
+  not shown as no longer a member.

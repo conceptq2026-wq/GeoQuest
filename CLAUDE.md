@@ -543,7 +543,7 @@ State which kind a task is when reporting it.
   - all 131 strings approved (`notes/global-indices.md`).
 - Work in progress (`tools/wip.json`): `org-newest-members` «সংস্থার সর্বশেষ সদস্য», a map under International
   (ORGN-1 investigation, ORGN-2 and ORGN-2b decisions and seed, 2026-10-09): nothing built yet; 40 of 77
-  organisations with a newest member (36 official, 4 secondary-tier), 37 held; 40 strings approved, 1 awaiting the user
+  organisations with a newest member (36 official, 4 secondary-tier), 37 held; all 41 strings approved (the last, the pending-withdrawal line, on WHEEL-8)
   (`notes/org-newest-members.md`).
 
 ## Index — notes, read only when working on that item
