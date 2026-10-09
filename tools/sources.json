@@ -1298,5 +1298,17 @@
         "fetched": "2026-10-08"
       }
     }
+  },
+  "osmGeofabrikBangladesh": {
+    "_comment": "Geofabrik's OpenStreetMap extract for Bangladesh, the dated snapshot of 1 October 2026 (data up to that day; Geofabrik keeps month-start files in its raw directory), read for bangladesh-research-institutes (RES-2, 2026-10-09) by tools/.cache/research-institutes/osm-search.mjs with tools/lib/osm-pbf.mjs: the elements that name BRRI, BJRI and BTRI, pinned per point in data-sources/bangladesh-research-institutes/pins.json (type, id, version, the outline's SHA-256). Downloaded through the RES fetch helper (the repo User-Agent; robots.txt allows /asia/), checked against the size and MD5 Geofabrik publishes beside it, and held in memory only: 17 runs in its zlib data match the e-mail pattern, so by tools/lib/scrub-email.mjs's rule for a binary it is never written to disk or committed.",
+    "url": "https://download.geofabrik.de/asia/bangladesh-261001.osm.pbf",
+    "md5Url": "https://download.geofabrik.de/asia/bangladesh-261001.osm.pbf.md5",
+    "snapshot": "2026-10-01",
+    "fetched": "2026-10-09",
+    "size": 355715583,
+    "md5": "c54eca31e4921e0f707a919fa5778978",
+    "sha256": "970e6ee1543dc3b3989fad06b985c7193acdbe115bdd37b2a6f8ba7438bd59a5",
+    "kept": false,
+    "licence": "ODbL 1.0 — © OpenStreetMap contributors (https://www.openstreetmap.org/copyright)"
   }
 }

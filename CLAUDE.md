@@ -86,6 +86,12 @@ BCS / government exam prep.
 - **The local preview**: `node tools/preview.mjs [port]` (this PC only); on a phone over home Wi-Fi,
   `node tools/preview.mjs --lan [port]` (PREVIEW-LAN, 2026-10-09: this PC's private LAN addresses only, never a public
   one, no tunnel; anyone on the same Wi-Fi can open it while it runs).
+- **Research fetches go through the item's fetch helper** (the user's rule, RES-2, 2026-10-09): every page,
+  file or extract read for an item's facts is requested only through its investigation's helper
+  (`tools/.cache/<item>/lib.mjs`, copied from the last one: the UA below, robots.txt read first, e-mail addresses
+  scrubbed at write time, a host that refused us — 403, a block page, robots.txt — never asked again, not even in a
+  browser). No direct fetch by anyone, sub-agents included (one breach in RES-1). Build sources stay with
+  `tools/fetch-sources.mjs`.
 - **No e-mail address, ever** (the user's rule, 2026-09-29): the user's
   address never appears in an HTTP request (User-Agent, any header, URL,
   payload), a script, a note, a commit or a sub-agent prompt. Where a
@@ -461,6 +467,11 @@ cites an offset into that text with the quote's SHA-256, checked in
 no book is a source. bangladesh-ethnic-groups (live 2026-10-08): its seed by SHA-256 and its built
 files held to a fresh build, in `tools/verify-descriptor.mjs`; every card fact's quote anchor re-hashed against
 its cached text (`tools/.cache/ethnic/`) in `tools/verify.mjs`.
+bangladesh-research-institutes (work in progress): every cited page by size and SHA-256 and its text by SHA-256 in
+its own `sources.json`, each citation by offset and SHA-256 into the NFC text (`tools/verify.mjs`, with the cache);
+Geofabrik's Bangladesh extract of 2026-10-01 by size, published MD5 and SHA-256 (`osmGeofabrikBangladesh` in
+`tools/sources.json`; held in memory, never kept); each OpenStreetMap point by type, id, version and its outline's
+SHA-256, in its `pins.json`.
 
 When a pin moves, **stop and report the old and new values.** Never re-pin to
 make a build pass. A dropped `featurecla` once shifted a line by three points
@@ -550,7 +561,11 @@ State which kind a task is when reporting it.
   official, 4 secondary-tier), 37 held; two view tabs (map, list), drawn by the shell's opt-in `newest` module, with
   global-indices' pins; no country's name but the pins (`hideCountryLabels`) and no tilt (`flat`); all 41 strings
   approved (`notes/org-newest-members.md`).
-- Work in progress (`tools/wip.json`): none.
+- Work in progress (`tools/wip.json`): `bangladesh-research-institutes` «বাংলাদেশের গবেষণা প্রতিষ্ঠান», a map under
+  বাংলাদেশ (RES-1 investigation, RES-2 the user's decisions and the seed, 2026-10-09): 27 institutes whose main work
+  is research, in four tabs (কৃষি 13, বিজ্ঞান ও প্রযুক্তি 9, স্বাস্থ্য 3, সমাজ, অর্থনীতি ও কৌশল 2), 31 candidates
+  left out with reasons; points 21 site pins, 3 OpenStreetMap, 3 approximate; 72 strings awaiting the user; nothing
+  built (`notes/bangladesh-research-institutes.md`).
 
 ## Index — notes, read only when working on that item
 

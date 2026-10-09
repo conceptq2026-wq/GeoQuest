@@ -1,0 +1,300 @@
+{
+ "_about": "Each institute's head-office point (decision 5): \"site\" — the map pin on the institute's own site, inside the district its address names; \"osm\" — the OpenStreetMap element that names the institute itself, from Geofabrik's extract of 2026-10-01 (tools/sources.json, osmGeofabrikBangladesh; ODbL), its point inside the outline, the outline pinned by SHA-256 of its rounded coordinates; \"approximate\" — the COD-AB capital of its district (tools/sources.json, codAbBangladesh), marked. Every point lies in its district (the shared district file).",
+ "points": {
+  "barc": {
+   "district": "BD3026",
+   "lon": 90.389926,
+   "lat": 23.758603,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "AG-barc-contact"
+   }
+  },
+  "bari": {
+   "district": "BD3033",
+   "lon": 90.411465,
+   "lat": 23.991666,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "AG-bari-home"
+   }
+  },
+  "brri": {
+   "district": "BD3033",
+   "lon": 90.404222,
+   "lat": 23.990821,
+   "kind": "osm",
+   "how": "the outline's area centroid",
+   "osm": {
+    "type": "way",
+    "id": 760123923,
+    "version": 5,
+    "names": {
+     "name": "Bangladesh Rice Research Institute (BRRI)"
+    },
+    "vertices": 65,
+    "outlineSha256": "c89e4e491e4eeacee9ea22f496236bf601c0d5fdd9cca6f4420aaad036144c0e"
+   },
+   "why": "the campus outline OSM names «Bangladesh Rice Research Institute (BRRI)», at Joydebpur, Gazipur",
+   "source": "osmGeofabrikBangladesh"
+  },
+  "bjri": {
+   "district": "BD3026",
+   "lon": 90.379009,
+   "lat": 23.756658,
+   "kind": "osm",
+   "how": "the middle of the outline's widest span on its middle parallel (its centroid falls outside)",
+   "osm": {
+    "type": "way",
+    "id": 295516680,
+    "version": 5,
+    "names": {
+     "name": "Bangladesh Jute Research Institute"
+    },
+    "vertices": 45,
+    "outlineSha256": "b5045e7fec0456f3bb6e0c628002d51c80880d9ce9ff4b03f36cb65e72bad97a"
+   },
+   "why": "the building OSM names «Bangladesh Jute Research Institute», on Manik Mia Avenue, Dhaka",
+   "source": "osmGeofabrikBangladesh"
+  },
+  "bina": {
+   "district": "BD4561",
+   "lon": 90.429441,
+   "lat": 24.723193,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "AG-bina-home"
+   }
+  },
+  "bsri": {
+   "district": "BD5076",
+   "lon": 89.082814,
+   "lat": 24.114674,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "AG-bsri-home"
+   }
+  },
+  "bwmri": {
+   "district": "BD5527",
+   "lon": 88.669825,
+   "lat": 25.746702,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "AG-bwmri-home-en"
+   }
+  },
+  "fri": {
+   "district": "BD4561",
+   "lon": 90.402566,
+   "lat": 24.739522,
+   "kind": "approximate",
+   "how": "Mymensingh district capital (COD-AB admin capitals, null)",
+   "why": "OSM names only a regional station (Sunamganj): no element for the head office on the BAU campus, Mymensingh",
+   "source": "codAbBangladesh"
+  },
+  "blri": {
+   "district": "BD3026",
+   "lon": 90.275661,
+   "lat": 23.878605,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "AG-blri-home"
+   }
+  },
+  "bfri": {
+   "district": "BD2015",
+   "lon": 91.83391,
+   "lat": 22.329147,
+   "kind": "approximate",
+   "how": "Chattogram district capital (COD-AB admin capitals, null)",
+   "why": "OSM names only a mosque and a school «Forest Research» at Sholashahar: not the institute itself",
+   "source": "codAbBangladesh"
+  },
+  "btri": {
+   "district": "BD6058",
+   "lon": 91.748319,
+   "lat": 24.294131,
+   "kind": "osm",
+   "how": "the outline's area centroid",
+   "osm": {
+    "type": "way",
+    "id": 28954612,
+    "version": 5,
+    "names": {
+     "name": "Bangladesh Tea Research Institute - BTRI",
+     "name:bn": "বাংলাদেশ চা গবেষণা ইনস্টিটিউট - বিটিআরআই"
+    },
+    "vertices": 14,
+    "outlineSha256": "5253120587fcc233be2447f1a8c17af0b597b46950888218184d077755fa98c8"
+   },
+   "why": "the building OSM names «Bangladesh Tea Research Institute - BTRI» (office=research), at Sreemangal",
+   "source": "osmGeofabrikBangladesh"
+  },
+  "bsrti": {
+   "district": "BD5081",
+   "lon": 88.619893,
+   "lat": 24.370638,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "AG-bsrti-home"
+   }
+  },
+  "birtan": {
+   "district": "BD3067",
+   "lon": 90.724066,
+   "lat": 23.766184,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "AG-birtan-home"
+   }
+  },
+  "baec": {
+   "district": "BD3026",
+   "lon": 90.370979,
+   "lat": 23.776834,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "ST-baec-contact"
+   }
+  },
+  "bcsir": {
+   "district": "BD3026",
+   "lon": 90.385804,
+   "lat": 23.74028,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "ST-bcsir-home"
+   }
+  },
+  "nib": {
+   "district": "BD3026",
+   "lon": 90.278281,
+   "lat": 23.960757,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "ST-nib-contact"
+   }
+  },
+  "bori": {
+   "district": "BD2022",
+   "lon": 92.051823,
+   "lat": 21.29954,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "ST-bori-contact"
+   }
+  },
+  "bricm": {
+   "district": "BD3026",
+   "lon": 90.383968,
+   "lat": 23.740232,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "ST-bricm-home"
+   }
+  },
+  "sparrso": {
+   "district": "BD3026",
+   "lon": 90.378134,
+   "lat": 23.780738,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "ST-sparrso-home"
+   }
+  },
+  "rri": {
+   "district": "BD3029",
+   "lon": 89.840459,
+   "lat": 23.582743,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "ST-rri-home"
+   }
+  },
+  "hbri": {
+   "district": "BD3026",
+   "lon": 90.351382,
+   "lat": 23.781375,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "ST-hbri-contact"
+   }
+  },
+  "bnh": {
+   "district": "BD3026",
+   "lon": 90.352273,
+   "lat": 23.80988,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "ST-bnh-home"
+   }
+  },
+  "iedcr": {
+   "district": "BD3026",
+   "lon": 90.399206,
+   "lat": 23.779432,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "HE-iedcr-home"
+   }
+  },
+  "niport": {
+   "district": "BD3026",
+   "lon": 90.384364,
+   "lat": 23.723388,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "HE-niport-home"
+   }
+  },
+  "icddrb": {
+   "district": "BD3026",
+   "lon": 90.408611,
+   "lat": 23.723056,
+   "kind": "approximate",
+   "how": "Dhaka district capital (COD-AB admin capitals, null)",
+   "why": "OSM names only icddr,b field offices, clinics and an OPD department: not its Mohakhali campus",
+   "source": "codAbBangladesh"
+  },
+  "bids": {
+   "district": "BD3026",
+   "lon": 90.370424,
+   "lat": 23.778949,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "SE-bids-contact"
+   }
+  },
+  "biiss": {
+   "district": "BD3026",
+   "lon": 90.400499,
+   "lat": 23.744879,
+   "kind": "site",
+   "how": "the map pin on the institute's own site (decision 5)",
+   "cite": {
+    "source": "SE-biiss-contact"
+   }
+  }
+ }
+}

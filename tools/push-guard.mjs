@@ -42,6 +42,8 @@ const SOURCE_TEXTS = [
   ['tools/.cache/earth-interior', /^book\.txt$/],
   // bangladesh-ethnic-groups: the portal and Banglapedia pages its card facts come from (ETH-2).
   ['tools/.cache/ethnic/raw/culture', /\.txt$/],
+  // bangladesh-research-institutes: the pages its seed cites (RES-1, RES-2).
+  ['tools/.cache/research-institutes/pages', /\.txt$/],
 ];
 
 // 1. Fast-forward only.

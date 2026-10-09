@@ -1,0 +1,4707 @@
+{
+ "_about": "bangladesh-research-institutes «বাংলাদেশের গবেষণা প্রতিষ্ঠান» (work in progress, RES-2, 2026-10-09). The national research institutes whose main work, by their own page, is research, one point each at its head office, in four tabs. Every fact cites a page pinned in sources.json by { source, offset, length, sha256 } into its text after Unicode NFC normalisation (no words are kept); points are in pins.json. null = unverified (pending); absent = not applicable. Decisions: notes/bangladesh-research-institutes.md.",
+ "id": "bangladesh-research-institutes",
+ "section": "bangladesh",
+ "retrieved": "2026-10-09",
+ "decisions": "notes/bangladesh-research-institutes.md (the user, 2026-10-09)",
+ "credits": {
+  "osm": {
+   "text": "© OpenStreetMap contributors",
+   "licence": "ODbL 1.0",
+   "url": "https://www.openstreetmap.org/copyright",
+   "for": "the points of BRRI, BJRI and BTRI, from Geofabrik's extract of 1 October 2026"
+  },
+  "codab": {
+   "text": "OCHA COD-AB Bangladesh (Bangladesh Bureau of Statistics)",
+   "licence": "CC BY-IGO",
+   "for": "the approximate points (district capitals) and, through the shared district file, the districts"
+  }
+ },
+ "strings": {
+  "title": {
+   "bn": "বাংলাদেশের গবেষণা প্রতিষ্ঠান",
+   "approved": false,
+   "source": "the user (RES-1, RES-2 step 12)"
+  },
+  "tabs": {
+   "agri": {
+    "bn": "কৃষি",
+    "approved": false,
+    "source": "the user (RES-1)"
+   },
+   "sci": {
+    "bn": "বিজ্ঞান ও প্রযুক্তি",
+    "approved": false,
+    "source": "the user (RES-1)"
+   },
+   "health": {
+    "bn": "স্বাস্থ্য",
+    "approved": false,
+    "source": "the user (RES-1)"
+   },
+   "socio": {
+    "bn": "সমাজ, অর্থনীতি ও কৌশল",
+    "approved": false,
+    "source": "the user (RES-1)"
+   }
+  },
+  "labels": {
+   "founded": {
+    "bn": "প্রতিষ্ঠার সাল",
+    "approved": false,
+    "source": "the user (RES-1, the card)"
+   },
+   "currentForm": {
+    "bn": "বর্তমান রূপে: {year}",
+    "approved": false,
+    "source": "the user (RES-2, decision 3)"
+   },
+   "location": {
+    "bn": "অবস্থান ও সদর দপ্তর",
+    "approved": false,
+    "source": "the user (RES-1, the card)"
+   },
+   "parent": {
+    "bn": "অধীন",
+    "approved": false,
+    "source": "the user (RES-2, decision 9)"
+   },
+   "focus": {
+    "bn": "কী নিয়ে গবেষণা",
+    "approved": false,
+    "source": "the user (RES-1, the card)"
+   },
+   "approximate": {
+    "bn": "আনুমানিক অবস্থান: জেলা সদর",
+    "approved": false,
+    "source": "ours (decision 5: an approximate point is marked)"
+   },
+   "picker": {
+    "bn": "প্রতিষ্ঠান বেছে নিন",
+    "approved": true,
+    "from": "bangladesh-ethnic-groups seed (approved 2026-10-08)"
+   },
+   "source": {
+    "bn": "সূত্র",
+    "approved": true,
+    "from": "bangladesh-ethnic-groups seed (approved 2026-10-08)"
+   }
+  },
+  "parents": {
+   "moa": {
+    "bn": "কৃষি মন্ত্রণালয়",
+    "approved": false,
+    "cite": [
+     {
+      "source": "AG-barc-home",
+      "offset": 5307,
+      "length": 16,
+      "sha256": "b6f7c0ac8fd6d1865ab4adca5d0169927bd80e420eeb2aede6bdc716665f9f4b"
+     }
+    ]
+   },
+   "mofl": {
+    "bn": "মৎস্য ও প্রাণিসম্পদ মন্ত্রণালয়",
+    "approved": false,
+    "cite": [
+     {
+      "source": "AG-law-barc2012d",
+      "offset": 4064,
+      "length": 31,
+      "sha256": "9686da6cbbdd558ab65359bd1c4979db12e30c29cc7a346b6f37f87443b65d0f"
+     }
+    ]
+   },
+   "moefcc": {
+    "bn": "পরিবেশ, বন ও জলবায়ু পরিবর্তন মন্ত্রণালয়",
+    "approved": false,
+    "cite": [
+     {
+      "source": "AG-bfri-intro",
+      "offset": 3730,
+      "length": 41,
+      "sha256": "aeeb958b485e5f9263b039138f093a1bfc1f3e75d21eb77bf4fc80e65ff3d14f"
+     }
+    ]
+   },
+   "teaBoard": {
+    "bn": "বাংলাদেশ চা বোর্ড",
+    "approved": false,
+    "cite": [
+     {
+      "source": "AG-btri-intro",
+      "offset": 2813,
+      "length": 17,
+      "sha256": "94853f77c26d6b7c38aca9e4fa815a21f5ad8c425c508edc66f382a789a85444"
+     }
+    ]
+   },
+   "silkBoard": {
+    "bn": "বাংলাদেশ রেশম উন্নয়ন বোর্ড",
+    "approved": false,
+    "cite": [
+     {
+      "source": "AG-bsrti-hist",
+      "offset": 2619,
+      "length": 27,
+      "sha256": "5161998757b3005e7cb174d26061aaeb888a4100bab26c12eef5b76cefa7030f"
+     }
+    ]
+   },
+   "most": {
+    "bn": "বিজ্ঞান ও প্রযুক্তি মন্ত্রণালয়",
+    "approved": false,
+    "cite": [
+     {
+      "source": "ST-bcsir-home",
+      "offset": 4802,
+      "length": 31,
+      "sha256": "44e01fc359f19c608e58b0ee4c86b724c1b38a5e33e4884123c6dd6af8ee1d2b"
+     }
+    ]
+   },
+   "mod": {
+    "bn": "প্রতিরক্ষা মন্ত্রণালয়",
+    "approved": false,
+    "cite": [
+     {
+      "source": "ST-sparrso-intro",
+      "offset": 3502,
+      "length": 22,
+      "sha256": "f8144a8edbd32d127428129a5df12508e4e9db4a1caf20005494a3550eea3ff2"
+     }
+    ]
+   },
+   "mowr": {
+    "bn": "পানি সম্পদ মন্ত্রণালয়",
+    "approved": false,
+    "cite": [
+     {
+      "source": "ST-rri-home",
+      "offset": 2137,
+      "length": 22,
+      "sha256": "a436bbf3885142e298355451d19e9f05712b1e82a353182a832f09e7e834e7d4"
+     }
+    ]
+   },
+   "mohpw": {
+    "bn": "গৃহায়ন ও গণপূর্ত মন্ত্রণালয়",
+    "approved": false,
+    "cite": [
+     {
+      "source": "ST-hbri-intro",
+      "offset": 583,
+      "length": 29,
+      "sha256": "2eab6ca33d0751f2213910666be886deb38aea3d7167695be0aeed8a1a61f42a"
+     }
+    ]
+   },
+   "hsd": {
+    "bn": "স্বাস্থ্য সেবা বিভাগ",
+    "approved": false,
+    "cite": [
+     {
+      "source": "HE-iedcr-home",
+      "offset": 5100,
+      "length": 20,
+      "sha256": "127151a238b1d02f3ee9f448fa3e2533ddd55377f62a6a0a05af4da9dc487ac3"
+     }
+    ]
+   },
+   "mefwd": {
+    "bn": "স্বাস্থ্য শিক্ষা ও পরিবার কল্যাণ বিভাগ",
+    "approved": false,
+    "cite": [
+     {
+      "source": "HE-niport-home",
+      "offset": 3362,
+      "length": 38,
+      "sha256": "ff738bb828e260deb1104219640034b3dbf855c87f7240bf482c3d03364e26f1"
+     }
+    ]
+   },
+   "planning": {
+    "bn": "পরিকল্পনা বিভাগ",
+    "approved": false,
+    "cite": [
+     {
+      "source": "SE-lawd-1208",
+      "offset": 5094,
+      "length": 15,
+      "sha256": "f610fedf0cf0d78f89a92425d5589ccc01f84d5cabb9d0b353f31b2c5c6eb432"
+     }
+    ]
+   },
+   "mofa": {
+    "bn": "পররাষ্ট্র মন্ত্রণালয়",
+    "approved": false,
+    "cite": [
+     {
+      "source": "SE-lawd-1144",
+      "offset": 4489,
+      "length": 21,
+      "sha256": "ce183e3f2f86c7dd9300905b3c15c9ba5801054baeba3e01a28f3500f8bfc845"
+     }
+    ]
+   }
+  }
+ },
+ "tabs": {
+  "agri": [
+   "bsri",
+   "bjri",
+   "bfri",
+   "btri",
+   "bina",
+   "bsrti",
+   "birtan",
+   "brri",
+   "barc",
+   "bari",
+   "blri",
+   "fri",
+   "bwmri"
+  ],
+  "sci": [
+   "rri",
+   "bcsir",
+   "bnh",
+   "baec",
+   "hbri",
+   "sparrso",
+   "nib",
+   "bricm",
+   "bori"
+  ],
+  "health": [
+   "iedcr",
+   "icddrb",
+   "niport"
+  ],
+  "socio": [
+   "bids",
+   "biiss"
+  ]
+ },
+ "institutes": {
+  "barc": {
+   "tab": "agri",
+   "abbr": "BARC",
+   "name": {
+    "bn": "বাংলাদেশ কৃষি গবেষণা কাউন্সিল",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "AG-barc-home",
+      "offset": 544,
+      "length": 29,
+      "sha256": "601845eab068e7e5f5013fc85fcfbeebb7940c62ef7c26c9bd6facc526fc8f20"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1973,
+    "events": [
+     0,
+     1
+    ],
+    "cite": [
+     {
+      "source": "AG-barc-bg",
+      "offset": 2738,
+      "length": 46,
+      "sha256": "a4947dcd9eb076f275afdc8a15483a92899c6c73b88b84349b14346c19281088"
+     },
+     {
+      "source": "AG-bari-bg",
+      "offset": 3300,
+      "length": 46,
+      "sha256": "b3ea494c5ae7bd3fdb3b428d8a9bfac6c78df3cd73a3a4e6f210b6bca91b903c"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)"
+   },
+   "address": {
+    "area": {
+     "bn": "ফার্মগেট",
+     "approved": false,
+     "cite": [
+      {
+       "source": "AG-barc-contact",
+       "offset": 2126,
+       "length": 21,
+       "sha256": "f3732df1401c6a1cb881a80cd0bdacd93e4f76a8819c686a462b836bf9fb9f88"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD3026",
+     "bn": "ঢাকা",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "AG-barc-contact",
+      "offset": 2126,
+      "length": 21,
+      "sha256": "f3732df1401c6a1cb881a80cd0bdacd93e4f76a8819c686a462b836bf9fb9f88"
+     }
+    ]
+   },
+   "parent": "moa",
+   "focus": {
+    "bn": "দেশের কৃষি গবেষণা ব্যবস্থার শীর্ষ সংস্থা; প্রতিষ্ঠানগুলোর গবেষণার পরিকল্পনা, সমন্বয় ও অর্থায়ন করে।",
+    "approved": false,
+    "page": {
+     "source": "AG-barc-intro",
+     "offset": 2119,
+     "length": 56,
+     "sha256": "5c19934df9f46e27a863777f50d3fc34075722acca18152f4f1ff485351d62be"
+    }
+   },
+   "act": {
+    "title": "বাংলাদেশ কৃষি গবেষণা কাউন্সিল আইন, ২০১২ (২০১২ সনের ১৩ নং আইন)",
+    "cite": [
+     {
+      "source": "AG-law-barc2012d",
+      "offset": 240,
+      "length": 39,
+      "sha256": "e0b82a755fa0d4b972f349b90b9a3d2f439b754258b8cc3322e0a9f6b724291e"
+     }
+    ]
+   },
+   "events": [
+    {
+     "date": "1973",
+     "event": "BARC established as a statutory body by a presidential ordinance (BARI's history page names it ordinance no. 32 of 1973)",
+     "cite": [
+      {
+       "source": "AG-barc-bg",
+       "offset": 2738,
+       "length": 46,
+       "sha256": "a4947dcd9eb076f275afdc8a15483a92899c6c73b88b84349b14346c19281088"
+      }
+     ]
+    },
+    {
+     "date": "1973",
+     "event": "the same ordinance, as BARI's history page numbers it",
+     "cite": [
+      {
+       "source": "AG-bari-bg",
+       "offset": 3300,
+       "length": 46,
+       "sha256": "b3ea494c5ae7bd3fdb3b428d8a9bfac6c78df3cd73a3a4e6f210b6bca91b903c"
+      }
+     ]
+    },
+    {
+     "date": "1996",
+     "event": "re-enacted as the Bangladesh Agricultural Research Council Act 1996 (Act 7 of 1996), made coordinator of NARS",
+     "cite": [
+      {
+       "source": "AG-barc-bg",
+       "offset": 3074,
+       "length": 56,
+       "sha256": "5f61502225f92687869eb4f855d5e17c403ddd904d87e0bf06a557e295900ec6"
+      }
+     ]
+    },
+    {
+     "date": "2012-03-08",
+     "event": "Bangladesh Agricultural Research Council Act 2012 (Act 13 of 2012) passed; the 1996 Act repealed",
+     "cite": [
+      {
+       "source": "AG-barc-bg",
+       "offset": 3811,
+       "length": 30,
+       "sha256": "02fd6010449a8fc229204c24f577104c7ebf7d3b803dc13402309a5ddd58d78b"
+      }
+     ]
+    }
+   ],
+   "kept": "the apex of the national agricultural research system (kept by decision 1)",
+   "from": "RES-1 reader AG1"
+  },
+  "bari": {
+   "tab": "agri",
+   "abbr": "BARI",
+   "nameEn": "Bangladesh Agricultural Research Institute",
+   "name": {
+    "bn": "বাংলাদেশ কৃষি গবেষণা ইনস্টিটিউট",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "AG-bari-home",
+      "offset": 544,
+      "length": 31,
+      "sha256": "ae306bb3704afb599d34977baea07d611aa7b82c76a0a965961c03e5e313ef3b"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1976,
+    "events": [
+     2,
+     3
+    ],
+    "cite": [
+     {
+      "source": "AG-law-bari2017",
+      "offset": 1444,
+      "length": 87,
+      "sha256": "042f5aebbb54eba5670ffa308d1f018529d7ad1cc44c3a2f2e6bd18cb9169cef"
+     },
+     {
+      "source": "AG-barc-nars",
+      "offset": 4191,
+      "length": 53,
+      "sha256": "6b227597aed46555bb26e5edcb7c71ce4a39dd3740327988794bb1568fa23c20"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)",
+    "judgement": "1908 is the Dhaka Farm, a farm its page calls the forerunner of its research, not the institute"
+   },
+   "address": {
+    "area": {
+     "bn": "জয়দেবপুর",
+     "approved": false,
+     "cite": [
+      {
+       "source": "AG-moa-agencies",
+       "offset": 3346,
+       "length": 18,
+       "sha256": "8300deaee87f35a64c5ee3f2600ac19bce8b25e3d5f33b9eb285c20ca58d86c8"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD3033",
+     "bn": "গাজীপুর",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "AG-moa-agencies",
+      "offset": 3346,
+      "length": 18,
+      "sha256": "8300deaee87f35a64c5ee3f2600ac19bce8b25e3d5f33b9eb285c20ca58d86c8"
+     }
+    ]
+   },
+   "parent": "moa",
+   "focus": {
+    "bn": "দানাশস্য, ডাল, তেলবীজ, কন্দাল, সবজি, ফল, মসলা ও ফুলের উন্নত জাত ও চাষপ্রযুক্তি।",
+    "approved": false,
+    "page": {
+     "source": "AG-barc-nars",
+     "offset": 4458,
+     "length": 50,
+     "sha256": "90a33b026f8c403cf4aaddef855e9f463e5c4d3a1e778df743d9433eed06db11"
+    }
+   },
+   "act": {
+    "title": "বাংলাদেশ কৃষি গবেষণা ইনস্টিটিউট (বারি) আইন, ২০১৭ (২০১৭ সনের ১২ নং আইন)",
+    "cite": [
+     {
+      "source": "AG-law-bari2017",
+      "offset": 240,
+      "length": 31,
+      "sha256": "ae306bb3704afb599d34977baea07d611aa7b82c76a0a965961c03e5e313ef3b"
+     }
+    ]
+   },
+   "events": [
+    {
+     "date": "1908",
+     "event": "Dhaka Farm, the forerunner of BARI's research, established",
+     "cite": [
+      {
+       "source": "AG-bari-bg",
+       "offset": 2844,
+       "length": 58,
+       "sha256": "5014c80113b4e9d631d016d00627a0a91fe760d58afb0f25ca3c004ef4fd59dc"
+      }
+     ]
+    },
+    {
+     "date": "1966",
+     "event": "Dhaka Farm moved to Joydebpur (Gazipur)",
+     "cite": [
+      {
+       "source": "AG-bari-bg",
+       "offset": 3134,
+       "length": 50,
+       "sha256": "fd6061e03f2f900f4283ec6d13a494225a91e482637ffa26e7435f028cc1a301"
+      }
+     ]
+    },
+    {
+     "date": "1976",
+     "event": "BARI established as an autonomous institute by Ordinance No. LXII of 1976 (BARI's page: ordinance no. 62, no year)",
+     "cite": [
+      {
+       "source": "AG-law-bari2017",
+       "offset": 1444,
+       "length": 87,
+       "sha256": "042f5aebbb54eba5670ffa308d1f018529d7ad1cc44c3a2f2e6bd18cb9169cef"
+      }
+     ]
+    },
+    {
+     "date": "1976",
+     "event": "founding year as BARC states it",
+     "cite": [
+      {
+       "source": "AG-barc-nars",
+       "offset": 4191,
+       "length": 53,
+       "sha256": "6b227597aed46555bb26e5edcb7c71ce4a39dd3740327988794bb1568fa23c20"
+      }
+     ]
+    },
+    {
+     "date": "1996",
+     "event": "a BARI Act of 1996 is listed on BARI's laws page (its content not fetched)",
+     "cite": [
+      {
+       "source": "AG-bari-act",
+       "offset": 2129,
+       "length": 13,
+       "sha256": "a53e2b360d267d07492d1fade53e39b1171c8c3a5a4dc8b47e3374ba9b8d3e70"
+      }
+     ]
+    },
+    {
+     "date": "2017-05-18",
+     "event": "BARI Act 2017 (Act 12 of 2017) repeals the 1976 Ordinance and continues the institute",
+     "cite": [
+      {
+       "source": "AG-law-bari2017",
+       "offset": 240,
+       "length": 48,
+       "sha256": "22f1b4e66696b9009d352464a6c16398417610ffdfc2097b6d9c65cf07fdb70b"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader AG2"
+  },
+  "brri": {
+   "tab": "agri",
+   "abbr": "BRRI",
+   "nameEn": "Bangladesh Rice Research Institute",
+   "name": {
+    "bn": "বাংলাদেশ ধান গবেষণা ইনস্টিটিউট",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "AG-brri-home",
+      "offset": 544,
+      "length": 30,
+      "sha256": "03eee070bf23e5c664262d95a7f30400410dc96a7e60a0fcb048fb3d534efc27"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1970,
+    "events": [
+     0
+    ],
+    "cite": [
+     {
+      "source": "AG-brri-about",
+      "offset": 3793,
+      "length": 51,
+      "sha256": "9bdabc78d4086c1d716fb0af50f645a06a30dfaa115e3d68635f95be9e899d10"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)"
+   },
+   "currentForm": {
+    "year": 1973,
+    "events": [
+     1
+    ],
+    "cite": [
+     {
+      "source": "AG-brri-about",
+      "offset": 3885,
+      "length": 55,
+      "sha256": "9c2a14450c321e2c7c911fd5e5ac6e586b528e6aae6bde25c4c28bca9d5b17b5"
+     }
+    ],
+    "rule": "re-formed under a new name or Act (decision 3); later Acts that only continue the body are not"
+   },
+   "address": {
+    "area": {
+     "bn": "জয়দেবপুর",
+     "approved": false,
+     "cite": [
+      {
+       "source": "AG-brri-contact",
+       "offset": 3699,
+       "length": 24,
+       "sha256": "a4839b080050c068f0534205541ce61b145b7c289e690ff70bcc3e3bff045a82"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD3033",
+     "bn": "গাজীপুর",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "AG-brri-contact",
+      "offset": 3699,
+      "length": 24,
+      "sha256": "a4839b080050c068f0534205541ce61b145b7c289e690ff70bcc3e3bff045a82"
+     }
+    ]
+   },
+   "parent": "moa",
+   "focus": {
+    "bn": "ধানের বেশি ফলনের ও প্রতিকূলতা সইতে পারা জাত এবং ধান চাষের প্রযুক্তি।",
+    "approved": false,
+    "page": {
+     "source": "AG-brri-about",
+     "offset": 6215,
+     "length": 40,
+     "sha256": "0a329fe6636747319a030c494afe868ef2f04a356adc5701bc59648990098f1c"
+    }
+   },
+   "act": {
+    "title": "বাংলাদেশ ধান গবেষণা ইনস্টিটিউট আইন, ২০১৭ (২০১৭ সনের ১৯ নং আইন)",
+    "cite": [
+     {
+      "source": "AG-law-brri2017",
+      "offset": 240,
+      "length": 40,
+      "sha256": "43c3940467a055e3f1f33cfa3587ee1369977f623326eff9afa72ef4ad901a11"
+     }
+    ]
+   },
+   "events": [
+    {
+     "date": "1970-10-01",
+     "event": "the institute began work",
+     "cite": [
+      {
+       "source": "AG-brri-about",
+       "offset": 3793,
+       "length": 51,
+       "sha256": "9bdabc78d4086c1d716fb0af50f645a06a30dfaa115e3d68635f95be9e899d10"
+      }
+     ]
+    },
+    {
+     "date": "1973",
+     "event": "named Bangladesh Rice Research Institute under Act X of 1973",
+     "cite": [
+      {
+       "source": "AG-brri-about",
+       "offset": 3885,
+       "length": 55,
+       "sha256": "9c2a14450c321e2c7c911fd5e5ac6e586b528e6aae6bde25c4c28bca9d5b17b5"
+      }
+     ]
+    },
+    {
+     "date": "2017-07-19",
+     "event": "BRRI Act 2017 (Act 19 of 2017) repeals Act X of 1973 and continues the institute",
+     "cite": [
+      {
+       "source": "AG-law-brri2017",
+       "offset": 715,
+       "length": 64,
+       "sha256": "7dcdde21ac595410e71681c5f34a1ce542b6a18d91f121414cb47874cb0e2675"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader AG3"
+  },
+  "bjri": {
+   "tab": "agri",
+   "abbr": "BJRI",
+   "nameEn": "Bangladesh Jute Research Institute",
+   "name": {
+    "bn": "বাংলাদেশ পাট গবেষণা ইনস্টিটিউট",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "AG-bjri-home",
+      "offset": 544,
+      "length": 41,
+      "sha256": "0af590c81227890828c0f809ccc94081eed3f3969a13df96f41e73dbdb50896c"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1951,
+    "events": [
+     2
+    ],
+    "cite": [
+     {
+      "source": "AG-bjri-bg",
+      "offset": 3156,
+      "length": 48,
+      "sha256": "628982e50bd8f3127514cdbee5836c399c01e23c3c3006f4224e31c8c46ce7f9"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)",
+    "judgement": "1904 is jute research beginning in Dhaka and 1936 a laboratory of the Indian Central Jute Committee; the institute itself is the one set up at its present site in 1951"
+   },
+   "currentForm": {
+    "year": 1974,
+    "events": [
+     3
+    ],
+    "cite": [
+     {
+      "source": "AG-bjri-bg",
+      "offset": 3233,
+      "length": 84,
+      "sha256": "6e3f1aae6109d9fe4a96800de39ff1bc17a681182a3c3368466cb50a6e4e02b7"
+     }
+    ],
+    "rule": "re-formed under a new name or Act (decision 3); later Acts that only continue the body are not"
+   },
+   "address": {
+    "area": {
+     "bn": "মানিক মিয়া এভিনিউ",
+     "approved": false,
+     "cite": [
+      {
+       "source": "AG-bjri-addr",
+       "offset": 2784,
+       "length": 30,
+       "sha256": "f4f14b13eced2e7b89ae2d2a73e390ade679339f950eae968446b2d96e41095d"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD3026",
+     "bn": "ঢাকা",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "AG-bjri-addr",
+      "offset": 2784,
+      "length": 30,
+      "sha256": "f4f14b13eced2e7b89ae2d2a73e390ade679339f950eae968446b2d96e41095d"
+     }
+    ]
+   },
+   "parent": "moa",
+   "focus": {
+    "bn": "পাট ও সমজাতীয় আঁশ ফসলের জাত, চাষ ও বীজ, এবং পাটের বহুমুখী পণ্য ও বস্ত্র।",
+    "approved": false,
+    "page": {
+     "source": "AG-bjri-bg",
+     "offset": 3401,
+     "length": 49,
+     "sha256": "430dc36c99a5e7bfed02e05b43cee318c4f4f82152917356d01722fb0979c90e"
+    }
+   },
+   "act": {
+    "title": "বাংলাদেশ পাট গবেষণা ইনস্টিটিউট আইন, ২০১৭ (২০১৭ সনের ১৬ নং আইন)",
+    "cite": [
+     {
+      "source": "AG-law-bjri2017",
+      "offset": 240,
+      "length": 40,
+      "sha256": "63aa96ab9c7011f3369372507bec2eba796aa772d1559fa1c35c0df45ea58b71"
+     }
+    ]
+   },
+   "events": [
+    {
+     "date": "1904",
+     "event": "jute research first began in Dhaka",
+     "cite": [
+      {
+       "source": "AG-bjri-bg",
+       "offset": 2805,
+       "length": 74,
+       "sha256": "1e2e1b62b834119fa12dbe2a2e60eee6f96ffcdb432200556ff42ac67a3d0141"
+      }
+     ]
+    },
+    {
+     "date": "1936",
+     "event": "Jute Agricultural Research Laboratory set up in Dhaka under the Indian Central Jute Committee",
+     "cite": [
+      {
+       "source": "AG-bjri-bg",
+       "offset": 2887,
+       "length": 54,
+       "sha256": "ca81310549bec1a395ccc8937dc9b4d7a8ee786d75300291d8bb192aef83d227"
+      }
+     ]
+    },
+    {
+     "date": "1951",
+     "event": "Pakistan Central Jute Committee formed; the Jute Research Institute set up at its present site",
+     "cite": [
+      {
+       "source": "AG-bjri-bg",
+       "offset": 3156,
+       "length": 48,
+       "sha256": "628982e50bd8f3127514cdbee5836c399c01e23c3c3006f4224e31c8c46ce7f9"
+      }
+     ]
+    },
+    {
+     "date": "1974",
+     "event": "Bangladesh Jute Research Institute established by Act (Act XIII of 1974)",
+     "cite": [
+      {
+       "source": "AG-bjri-bg",
+       "offset": 3233,
+       "length": 84,
+       "sha256": "6e3f1aae6109d9fe4a96800de39ff1bc17a681182a3c3368466cb50a6e4e02b7"
+      }
+     ]
+    },
+    {
+     "date": "2017-07-19",
+     "event": "BJRI Act 2017 (Act 16 of 2017) repeals Act XIII of 1974 and continues the institute",
+     "cite": [
+      {
+       "source": "AG-law-bjri2017",
+       "offset": 679,
+       "length": 66,
+       "sha256": "9747c1c2fe5a24cb768eec7569c6aaf36c1729da91a06b89f7b021857e63d511"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader AG4"
+  },
+  "bina": {
+   "tab": "agri",
+   "abbr": "BINA",
+   "nameEn": "Bangladesh Institute of Nuclear Agriculture",
+   "name": {
+    "bn": "বাংলাদেশ পরমাণু কৃষি গবেষণা ইনস্টিটিউট",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "AG-bina-home",
+      "offset": 544,
+      "length": 38,
+      "sha256": "c76fe1083803a5a0ce7516b63daa5c5defaf14c409b7ea4e3f55a99064e92163"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1961,
+    "events": [
+     0
+    ],
+    "cite": [
+     {
+      "source": "AG-bina-intro",
+      "offset": 3990,
+      "length": 70,
+      "sha256": "66e12bcbea93c4e585f62033cf31b2f69aaa0ccc87ee8f316ef30b6c7c0d13af"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)",
+    "judgement": "its own page says its first journey began in 1961 with the RAGENE laboratory, from which INA (1972) grew"
+   },
+   "currentForm": {
+    "year": 1984,
+    "events": [
+     4
+    ],
+    "cite": [
+     {
+      "source": "AG-bina-intro",
+      "offset": 4435,
+      "length": 33,
+      "sha256": "acbf90d669e9ddce1e87467728d3c485ece727784b64434ce44d807545ae36a4"
+     }
+    ],
+    "rule": "re-formed under a new name or Act (decision 3); later Acts that only continue the body are not"
+   },
+   "address": {
+    "area": {
+     "bn": "বাকৃবি চত্ত্বর",
+     "approved": false,
+     "cite": [
+      {
+       "source": "AG-bina-loc",
+       "offset": 3813,
+       "length": 30,
+       "sha256": "e83c3382ed0756e16cf40f6532d601a93a932d3cec773484c0034d77350b4875"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD4561",
+     "bn": "ময়মনসিংহ",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "AG-bina-loc",
+      "offset": 3813,
+      "length": 30,
+      "sha256": "e83c3382ed0756e16cf40f6532d601a93a932d3cec773484c0034d77350b4875"
+     }
+    ]
+   },
+   "parent": "moa",
+   "focus": {
+    "bn": "পরমাণু কৌশল, বিশেষত মিউটেশন, প্রয়োগ করে ফসলের উন্নত জাত; জীবাণুসারও।",
+    "approved": false,
+    "page": {
+     "source": "AG-bina-intro",
+     "offset": 7317,
+     "length": 39,
+     "sha256": "eb96118ecf9b77aba70728f1efb735314c516d95234a1f749a4d729ecf9d0aa6"
+    }
+   },
+   "act": {
+    "title": "বাংলাদেশ পরমাণু কৃষি গবেষণা ইনস্টিটিউট (বিনা) আইন, ২০১৭ (২০১৭ সনের ১১ নং আইন)",
+    "cite": [
+     {
+      "source": "AG-law-bina2017",
+      "offset": 240,
+      "length": 38,
+      "sha256": "c76fe1083803a5a0ce7516b63daa5c5defaf14c409b7ea4e3f55a99064e92163"
+     }
+    ]
+   },
+   "events": [
+    {
+     "date": "1961",
+     "event": "began as a small radio-tracer laboratory (RAGENE) of the Atomic Energy Commission in Dhaka",
+     "cite": [
+      {
+       "source": "AG-bina-intro",
+       "offset": 3990,
+       "length": 70,
+       "sha256": "66e12bcbea93c4e585f62033cf31b2f69aaa0ccc87ee8f316ef30b6c7c0d13af"
+      }
+     ]
+    },
+    {
+     "date": "1972-07",
+     "event": "Institute of Nuclear Agriculture (INA) formed within the Bangladesh Atomic Energy Commission, Dhaka",
+     "cite": [
+      {
+       "source": "AG-bina-intro",
+       "offset": 4079,
+       "length": 49,
+       "sha256": "2d72d95c648e6d1bafdcc0106711ead51347650cbf007c6f9479ccd489156954"
+      }
+     ]
+    },
+    {
+     "date": "1975",
+     "event": "moved to the Bangladesh Agricultural University campus, Mymensingh",
+     "cite": [
+      {
+       "source": "AG-bina-intro",
+       "offset": 4218,
+       "length": 78,
+       "sha256": "f546c41276bf6aaa00f07516b47cc697829011454275222449f5e4b3c3bef8c6"
+      }
+     ]
+    },
+    {
+     "date": "1982",
+     "event": "became an independent agricultural research institute under the Ministry of Agriculture",
+     "cite": [
+      {
+       "source": "AG-bina-intro",
+       "offset": 4298,
+       "length": 71,
+       "sha256": "9db9c6c0e52d413175c782315e057792decdfb6a6aa45b33a2eacadb04ca359c"
+      }
+     ]
+    },
+    {
+     "date": "1984",
+     "event": "Ordinance No. 2 of 1984 declared it a national institute and renamed it BINA",
+     "cite": [
+      {
+       "source": "AG-bina-intro",
+       "offset": 4435,
+       "length": 33,
+       "sha256": "acbf90d669e9ddce1e87467728d3c485ece727784b64434ce44d807545ae36a4"
+      }
+     ]
+    },
+    {
+     "date": "1996",
+     "event": "the BINA Ordinance amended into law by Act No. 4 of 1996",
+     "cite": [
+      {
+       "source": "AG-bina-intro",
+       "offset": 4597,
+       "length": 41,
+       "sha256": "119455861f4876af43d3b4c4f968b3e8bb992405a5e43b59366417dad771a5d5"
+      }
+     ]
+    },
+    {
+     "date": "2017-05-18",
+     "event": "BINA Act 2017 (Act 11 of 2017) repeals Ordinance II of 1984 and continues the institute",
+     "cite": [
+      {
+       "source": "AG-law-bina2017",
+       "offset": 1426,
+       "length": 86,
+       "sha256": "b47822d7804a16e252fb099c05e7219773d96c39331ed554743c7e9c9b931816"
+      }
+     ]
+    },
+    {
+     "date": "1972",
+     "event": "founding in Dhaka as BARC states it",
+     "cite": [
+      {
+       "source": "AG-barc-nars",
+       "offset": 9592,
+       "length": 70,
+       "sha256": "3bdaab4b519680e079893d0f01eee64feb73eb1cc5224a0d242c24152b031787"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader AG5"
+  },
+  "bsri": {
+   "tab": "agri",
+   "abbr": "BSRI",
+   "nameEn": "Bangladesh Sugarcrop Research Institute",
+   "name": {
+    "bn": "বাংলাদেশ সুগারক্রপ গবেষণা ইনস্টিটিউট",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "AG-bsri-home",
+      "offset": 544,
+      "length": 36,
+      "sha256": "ccda2d6f8b88d798c76c0caf182dee2d01c8e2f962a0c726bb2e36bdfa1f991d"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1933,
+    "events": [
+     0
+    ],
+    "cite": [
+     {
+      "source": "AG-bsri-hist",
+      "offset": 2503,
+      "length": 94,
+      "sha256": "89fdf29d1ea61de1b049073b94821bfb29f97eeddab9ccf1e7d0c48e86c6ce12"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)",
+    "judgement": "its own page tells its evolution from the 1933 seedling-testing laboratory; BARC dates the station at Ishwardi to 1951"
+   },
+   "currentForm": {
+    "year": 2019,
+    "events": [
+     12
+    ],
+    "cite": [
+     {
+      "source": "AG-law-bsri2019",
+      "offset": 1745,
+      "length": 74,
+      "sha256": "55af88e4d5b55f6ca8e3bb4bd793561852eeb0dcf46f488f96f692b814441aa9"
+     }
+    ],
+    "rule": "re-formed under a new name or Act (decision 3); later Acts that only continue the body are not"
+   },
+   "address": {
+    "area": {
+     "bn": "ঈশ্বরদী",
+     "approved": false,
+     "cite": [
+      {
+       "source": "AG-bsri-map",
+       "offset": 2262,
+       "length": 62,
+       "sha256": "0bd34fb96af5cc377ada536b1e88ecac890754d292b8dc6805be75968749cf6b"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD5076",
+     "bn": "পাবনা",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "AG-bsri-map",
+      "offset": 2262,
+      "length": 62,
+      "sha256": "0bd34fb96af5cc377ada536b1e88ecac890754d292b8dc6805be75968749cf6b"
+     }
+    ]
+   },
+   "parent": "moa",
+   "focus": {
+    "bn": "আখ এবং তাল, খেজুর, গোলপাতা ও সুগারবিটের মতো মিষ্টিজাতীয় ফসল।",
+    "approved": false,
+    "page": {
+     "source": "AG-bsri-about",
+     "offset": 2209,
+     "length": 55,
+     "sha256": "9a10f29d9e7ea4d495409e77d69a47365b4c47cc2d4dd0150abeea81c9a7e667"
+    }
+   },
+   "act": {
+    "title": "বাংলাদেশ সুগারক্রপ গবেষণা ইনস্টিটিউট আইন, ২০১৯ (২০১৯ সনের ১৭ নং আইন)",
+    "cite": [
+     {
+      "source": "AG-law-bsri2019",
+      "offset": 240,
+      "length": 46,
+      "sha256": "6fa7f54449a7ea46ef16a26c83e9f910e854d01a3505128c1868e75de942977f"
+     }
+    ]
+   },
+   "events": [
+    {
+     "date": "1933",
+     "event": "Seedling Testing Laboratory (ইক্ষুচারা পরীক্ষাগার) set up at Manipuri Farm, Dhaka",
+     "cite": [
+      {
+       "source": "AG-bsri-hist",
+       "offset": 2503,
+       "length": 94,
+       "sha256": "89fdf29d1ea61de1b049073b94821bfb29f97eeddab9ccf1e7d0c48e86c6ce12"
+      }
+     ]
+    },
+    {
+     "date": "1951",
+     "event": "Sugarcane Research Station (ইক্ষু গবেষণা কেন্দ্র) set up at Ishwardi, Pabna",
+     "cite": [
+      {
+       "source": "AG-bsri-hist",
+       "offset": 2957,
+       "length": 79,
+       "sha256": "976aa920357d7f30faa01118cc591656ae376008baa6863aa9c8b9a0e55a578d"
+      }
+     ]
+    },
+    {
+     "date": "1951",
+     "event": "founding as BARC states it («ইক্ষু গবেষণা ইনষ্টিটিউট», Ishwardi)",
+     "cite": [
+      {
+       "source": "AG-barc-nars",
+       "offset": 10752,
+       "length": 70,
+       "sha256": "1b25e481f93ef83df92bdbc341aa60f8a1382a7428a4f9536191a1515a0cdb8b"
+      }
+     ]
+    },
+    {
+     "date": "1965",
+     "event": "station returned from central to provincial control",
+     "cite": [
+      {
+       "source": "AG-bsri-hist",
+       "offset": 3439,
+       "length": 75,
+       "sha256": "befa29fd804fd94a33d54192888b4ff4b51d489bcda87d7fe525e104a17c8bcd"
+      }
+     ]
+    },
+    {
+     "date": "1973",
+     "event": "station handed to the Bangladesh Sugar Mills Corporation (Ministry of Industries)",
+     "cite": [
+      {
+       "source": "AG-bsri-hist",
+       "offset": 3713,
+       "length": 59,
+       "sha256": "c630cad19ac5a566e3f488190a69e859fc7a25e418367867ed6e38b1bee2ae6f"
+      }
+     ]
+    },
+    {
+     "date": "1974",
+     "event": "«ইক্ষু গবেষণা ইনস্টিটিউট» project framed and approved",
+     "cite": [
+      {
+       "source": "AG-bsri-hist",
+       "offset": 3898,
+       "length": 65,
+       "sha256": "78ae7e0b9b531844cf85fba065a939cf77b0d664f3adaa4058db2072988f98bd"
+      }
+     ]
+    },
+    {
+     "date": "1980",
+     "event": "renamed «ইক্ষু গবেষণা ও প্রশিক্ষণ ইনস্টিটিউট» (period given as 1980–1988; no exact year for the renaming)",
+     "cite": [
+      {
+       "source": "AG-bsri-hist",
+       "offset": 4033,
+       "length": 48,
+       "sha256": "98527269fb20c4e3c6951383a6caf67e4281d36e4a45267031746a7668cb41aa"
+      }
+     ]
+    },
+    {
+     "date": "1989",
+     "event": "moved to the Ministry of Agriculture by cabinet decision",
+     "cite": [
+      {
+       "source": "AG-bsri-hist",
+       "offset": 4523,
+       "length": 50,
+       "sha256": "136714b6d031fcd85b321311eba6815c347f5963f73d841f622915479ae22c7d"
+      }
+     ]
+    },
+    {
+     "date": "1996-06-18",
+     "event": "Bangladesh Sugarcane Research Institute established by ordinance no. 23",
+     "cite": [
+      {
+       "source": "AG-bsri-hist",
+       "offset": 5015,
+       "length": 29,
+       "sha256": "6fdde96ec9201be62a19b207dfb7fd5b168edff5034545597d9b0bdb0aeedde5"
+      }
+     ]
+    },
+    {
+     "date": "1996-08-17",
+     "event": "Bangladesh Sugarcane Research Institute Act (Act 11 of 1996) enacted",
+     "cite": [
+      {
+       "source": "AG-bsri-hist",
+       "offset": 5351,
+       "length": 37,
+       "sha256": "97e4f54dd79ce663f3f09a341481c6597219076f75958468996cb93d2d912da1"
+      }
+     ]
+    },
+    {
+     "date": "2002-09-21",
+     "event": "the 1996 Act amended",
+     "cite": [
+      {
+       "source": "AG-bsri-hist",
+       "offset": 5511,
+       "length": 59,
+       "sha256": "ead5f71cbfed92d8a8d985b99df5e41bea212db7bc4dd68d4cc42c25bddfe625"
+      }
+     ]
+    },
+    {
+     "date": "2015-11-09",
+     "event": "renamed Bangladesh Sugarcrop Research Institute by executive order",
+     "cite": [
+      {
+       "source": "AG-bsri-hist",
+       "offset": 5688,
+       "length": 21,
+       "sha256": "41ee8da6722947459340cee03c8702c52f87f926893596428e1a6e256e27b489"
+      }
+     ]
+    },
+    {
+     "date": "2019-11-18",
+     "event": "BSRI Act 2019 (Act 17 of 2019) repeals the 1996 Act; the sugarcane institute dissolved and BSRI established",
+     "cite": [
+      {
+       "source": "AG-law-bsri2019",
+       "offset": 1745,
+       "length": 74,
+       "sha256": "55af88e4d5b55f6ca8e3bb4bd793561852eeb0dcf46f488f96f692b814441aa9"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader AG6"
+  },
+  "bwmri": {
+   "tab": "agri",
+   "abbr": "BWMRI",
+   "name": {
+    "bn": "বাংলাদেশ গম ও ভুট্টা গবেষণা ইনস্টিটিউট",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "AG-bwmri-home",
+      "offset": 544,
+      "length": 38,
+      "sha256": "29222372bd964152c0429de0de27f22f92aa142c6a417ed1900267f467f88a1b"
+     }
+    ]
+   },
+   "founded": {
+    "year": 2017,
+    "events": [
+     0,
+     1
+    ],
+    "cite": [
+     {
+      "source": "AG-bwmri-about",
+      "offset": 2217,
+      "length": 64,
+      "sha256": "4504331a67862d70678acd15a9dbb98bb048db7e8aa5fd1765144205f8180808"
+     },
+     {
+      "source": "AG-law-bwmri2017",
+      "offset": 1562,
+      "length": 76,
+      "sha256": "1688d9daff9498a2a8024ca2b866620992e9b5bcc435a1405c23be502cb22835"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)"
+   },
+   "address": {
+    "area": {
+     "bn": "নশিপুর",
+     "approved": false,
+     "cite": [
+      {
+       "source": "AG-bwmri-about",
+       "offset": 5272,
+       "length": 43,
+       "sha256": "9b04be6e0f46c4d33b5bc1dbe6a4c7af571069dd613319365cbab536d377d7a3"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD5527",
+     "bn": "দিনাজপুর",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "AG-bwmri-about",
+      "offset": 5272,
+      "length": 43,
+      "sha256": "9b04be6e0f46c4d33b5bc1dbe6a4c7af571069dd613319365cbab536d377d7a3"
+     }
+    ]
+   },
+   "parent": "moa",
+   "focus": {
+    "bn": "গম ও ভুট্টার তাপ, লবণাক্ততা, জলাবদ্ধতা ও খরা সইতে পারা জাত এবং বীজ উৎপাদন।",
+    "approved": false,
+    "page": {
+     "source": "AG-bwmri-about",
+     "offset": 2145,
+     "length": 58,
+     "sha256": "ec069696ec9c5a048be97df79c44af5699f6897257bc3f542c8ad35f127a8645"
+    }
+   },
+   "act": {
+    "title": "বাংলাদেশ গম ও ভুট্টা গবেষণা ইনস্টিটিউট আইন, ২০১৭ (২০১৭ সনের ২২ নং আইন)",
+    "cite": [
+     {
+      "source": "AG-law-bwmri2017",
+      "offset": 240,
+      "length": 48,
+      "sha256": "f8aa8a80a0f8ca4a056d40b4af9e300eefbce8d502bbc5597f2b6ae82d300197"
+     }
+    ]
+   },
+   "events": [
+    {
+     "date": "2017",
+     "event": "established, separated from BARI",
+     "cite": [
+      {
+       "source": "AG-bwmri-about",
+       "offset": 2217,
+       "length": 64,
+       "sha256": "4504331a67862d70678acd15a9dbb98bb048db7e8aa5fd1765144205f8180808"
+      }
+     ]
+    },
+    {
+     "date": "2017-11-22",
+     "event": "BWMRI Act 2017 (Act 22 of 2017): the government to establish the institute by gazette notification",
+     "cite": [
+      {
+       "source": "AG-law-bwmri2017",
+       "offset": 1562,
+       "length": 76,
+       "sha256": "1688d9daff9498a2a8024ca2b866620992e9b5bcc435a1405c23be502cb22835"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader AG7"
+  },
+  "fri": {
+   "tab": "agri",
+   "abbr": "BFRI",
+   "name": {
+    "bn": "বাংলাদেশ মৎস্য গবেষণা ইনস্টিটিউট",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "AG-fri-home",
+      "offset": 544,
+      "length": 32,
+      "sha256": "94490b9360827a307142a6e7f9a98bd0dd840da2054d68edf4a54910d4b76a52"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1984,
+    "events": [
+     0,
+     1
+    ],
+    "cite": [
+     {
+      "source": "AG-fri-hist",
+      "offset": 5079,
+      "length": 64,
+      "sha256": "be6ec12061a8899f60f51ec076048595d6e1c133a27245da852f0b65a2793dc5"
+     },
+     {
+      "source": "AG-law-fri2018",
+      "offset": 1471,
+      "length": 72,
+      "sha256": "1c041b55694e7119377fe3a016dcfa81ac320bd6e63c571fc48c8affb4f347b0"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)"
+   },
+   "address": {
+    "area": {
+     "bn": "বাংলাদেশ কৃষি বিশ্ববিদ্যালয় ক্যাম্পাস",
+     "approved": false,
+     "cite": [
+      {
+       "source": "AG-fri-home",
+       "offset": 11720,
+       "length": 65,
+       "sha256": "0d8bcf149a6f9e225790ba8242ba6b6df1144bf39605eda872577108f59c6bcc"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD4561",
+     "bn": "ময়মনসিংহ",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "AG-fri-home",
+      "offset": 11720,
+      "length": 65,
+      "sha256": "0d8bcf149a6f9e225790ba8242ba6b6df1144bf39605eda872577108f59c6bcc"
+     }
+    ]
+   },
+   "parent": "mofl",
+   "focus": {
+    "bn": "মাছের প্রজনন, চাষপদ্ধতি, রোগ ব্যবস্থাপনা ও জলজ পরিবেশ।",
+    "approved": false,
+    "page": {
+     "source": "AG-fri-hist",
+     "offset": 5544,
+     "length": 65,
+     "sha256": "9d944d6dfb2c168dfedccaae80dc324b74f59d7f6947b4a7e4ed986ab3ab379e"
+    }
+   },
+   "act": {
+    "title": "বাংলাদেশ মৎস্য গবেষণা ইনস্টিটিউট আইন, ২০১৮ (২০১৮ সনের ৬৯ নং আইন)",
+    "cite": [
+     {
+      "source": "AG-law-fri2018",
+      "offset": 240,
+      "length": 42,
+      "sha256": "ae2c093f3031fc09f66bb12590624cbbec26a3075acbc7fcd87a100ec1011157"
+     }
+    ]
+   },
+   "events": [
+    {
+     "date": "1984",
+     "event": "established under the Ministry of Fisheries and Livestock",
+     "cite": [
+      {
+       "source": "AG-fri-hist",
+       "offset": 5079,
+       "length": 64,
+       "sha256": "be6ec12061a8899f60f51ec076048595d6e1c133a27245da852f0b65a2793dc5"
+      }
+     ]
+    },
+    {
+     "date": "1984",
+     "event": "established under the Fisheries Research Institute Ordinance (Ordinance No. XLV of 1984)",
+     "cite": [
+      {
+       "source": "AG-law-fri2018",
+       "offset": 1471,
+       "length": 72,
+       "sha256": "1c041b55694e7119377fe3a016dcfa81ac320bd6e63c571fc48c8affb4f347b0"
+      }
+     ]
+    },
+    {
+     "date": "2018-11-14",
+     "event": "BFRI Act 2018 (Act 69 of 2018) repeals the 1984 Ordinance and continues the institute",
+     "cite": [
+      {
+       "source": "AG-law-fri2018",
+       "offset": 240,
+       "length": 42,
+       "sha256": "ae2c093f3031fc09f66bb12590624cbbec26a3075acbc7fcd87a100ec1011157"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader AG9"
+  },
+  "blri": {
+   "tab": "agri",
+   "abbr": "BLRI",
+   "nameEn": "Bangladesh Livestock Research Institute",
+   "name": {
+    "bn": "বাংলাদেশ প্রাণিসম্পদ গবেষণা ইনস্টিটিউট",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "AG-blri-home",
+      "offset": 544,
+      "length": 38,
+      "sha256": "f9ce3d62b92e23a62d8d957a1ca7846e81379ff5763c7aad5f61c2b309515f81"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1984,
+    "events": [
+     0,
+     1
+    ],
+    "cite": [
+     {
+      "source": "AG-law-blri2018",
+      "offset": 2637,
+      "length": 75,
+      "sha256": "da417117b4b8d3a2d821940d8390294f40bb71fdf2ce6cfc5001bcafd44ec222"
+     },
+     {
+      "source": "AG-blri-glance-pdf",
+      "offset": 161,
+      "length": 71,
+      "sha256": "7bab7285a017369724cbfff40e1c40577426aa38de7b56caa6ec50395b036936"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)",
+    "conflict": "BARC and its own glance page give 1986, the year work began at Savar; the 1984 Ordinance on bdlaws comes first (decision 4)"
+   },
+   "address": {
+    "area": {
+     "bn": "সাভার",
+     "approved": false,
+     "cite": [
+      {
+       "source": "AG-blri-contact-pdf",
+       "offset": 39,
+       "length": 15,
+       "sha256": "57a9b272b0f61d09d7764007e2cda54752c6910e01629676baf9a40bc3d0e2fb"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD3026",
+     "bn": "ঢাকা",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "AG-blri-contact",
+      "offset": 3664,
+      "length": 17,
+      "sha256": "dafa3f437be36199898b4fc21b62bffa077e8c007dc1975c16740d3457626bbc"
+     }
+    ]
+   },
+   "parent": "mofl",
+   "focus": {
+    "bn": "গবাদিপশু ও হাঁস-মুরগির জাত উন্নয়ন, স্বাস্থ্য, খাদ্য ও খামার প্রযুক্তি।",
+    "approved": false,
+    "page": {
+     "source": "AG-barc-nars",
+     "offset": 15329,
+     "length": 76,
+     "sha256": "27f148eeb0cf18244e198be91aa3721e456009fa618da35eda537f9c85ca4b52"
+    }
+   },
+   "act": {
+    "title": "বাংলাদেশ প্রাণিসম্পদ গবেষণা ইনস্টিটিউট আইন, ২০১৮ (২০১৮ সনের ৫৩ নং আইন)",
+    "cite": [
+     {
+      "source": "AG-law-blri2018",
+      "offset": 240,
+      "length": 48,
+      "sha256": "0396a5ded5b2ae257e1cff0f53a59c21caebfe922f4278e4523b6c4943cf3711"
+     }
+    ]
+   },
+   "events": [
+    {
+     "date": "1984",
+     "event": "established by presidential ordinance (Livestock Research Institute Ordinance, No. XXVIII of 1984)",
+     "cite": [
+      {
+       "source": "AG-law-blri2018",
+       "offset": 2637,
+       "length": 75,
+       "sha256": "da417117b4b8d3a2d821940d8390294f40bb71fdf2ce6cfc5001bcafd44ec222"
+      }
+     ]
+    },
+    {
+     "date": "1984",
+     "event": "the same, on BLRI's own at-a-glance PDF (Bijoy-encoded text: «১৯৮৪ সালে মহামান্য রাষ্ট্রপতির অধ্যাদেশ জারির মাধ্যমে বিএলআরআই প্রতিষ্ঠিত হয়»)",
+     "cite": [
+      {
+       "source": "AG-blri-glance-pdf",
+       "offset": 161,
+       "length": 71,
+       "sha256": "7bab7285a017369724cbfff40e1c40577426aa38de7b56caa6ec50395b036936"
+      }
+     ]
+    },
+    {
+     "date": "1986",
+     "event": "work began on 484.68 acres at Savar (Bijoy-encoded: «১৯৮৬ সালে বিএলআরআই এর কার্যক্রম শুরু হয়»)",
+     "cite": [
+      {
+       "source": "AG-blri-glance-pdf",
+       "offset": 300,
+       "length": 23,
+       "sha256": "20029344b0ba31c1ae02dc199ac6ef774b7d22a43d5f337a117f2b14f2c2babf"
+      }
+     ]
+    },
+    {
+     "date": "1986",
+     "event": "founding year as BARC states it",
+     "cite": [
+      {
+       "source": "AG-barc-nars",
+       "offset": 15275,
+       "length": 34,
+       "sha256": "bc289a1d693bf911cb10f6bed425b778e127508049047618af5d2dff6a663e11"
+      }
+     ]
+    },
+    {
+     "date": "2018-11-14",
+     "event": "BLRI Act 2018 (Act 53 of 2018) repeals the 1984 Ordinance; deemed established under this Act",
+     "cite": [
+      {
+       "source": "AG-law-blri2018",
+       "offset": 240,
+       "length": 48,
+       "sha256": "0396a5ded5b2ae257e1cff0f53a59c21caebfe922f4278e4523b6c4943cf3711"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader AG10"
+  },
+  "bfri": {
+   "tab": "agri",
+   "abbr": "BFRI",
+   "nameEn": "Bangladesh Forest Research Institute",
+   "name": {
+    "bn": "বাংলাদেশ বন গবেষণা ইনস্টিটিউট",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "AG-bfri-home",
+      "offset": 544,
+      "length": 40,
+      "sha256": "ac97da9004c84fff5e407e5d30694f0dcb22554940680638eea570cb2829c172"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1955,
+    "events": [
+     0
+    ],
+    "cite": [
+     {
+      "source": "AG-bfri-intro",
+      "offset": 3432,
+      "length": 75,
+      "sha256": "b04530700ad45a8d6b7786c28467afc4424ba9239573f9930bb9bfa480f78bc2"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)"
+   },
+   "currentForm": {
+    "year": 1968,
+    "events": [
+     1
+    ],
+    "cite": [
+     {
+      "source": "AG-bfri-intro",
+      "offset": 3568,
+      "length": 66,
+      "sha256": "2e9cd793d86d24b714b529ce32045fd706c6c3f52e3250cd68d6a99e6d5454c0"
+     }
+    ],
+    "rule": "re-formed under a new name or Act (decision 3); later Acts that only continue the body are not"
+   },
+   "address": {
+    "area": {
+     "bn": "ষোলশহর",
+     "approved": false,
+     "cite": [
+      {
+       "source": "AG-bfri-addr",
+       "offset": 3297,
+       "length": 52,
+       "sha256": "17dafe2d3cec1f244bf5a9de7ae5ff0a0dafb8a37584cd850e71ff03f3a896b3"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD2015",
+     "bn": "চট্টগ্রাম",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "AG-bfri-addr",
+      "offset": 3297,
+      "length": 52,
+      "sha256": "17dafe2d3cec1f244bf5a9de7ae5ff0a0dafb8a37584cd850e71ff03f3a896b3"
+     }
+    ]
+   },
+   "parent": "moefcc",
+   "focus": {
+    "bn": "বন ব্যবস্থাপনা এবং বনজ সম্পদ যথাযথভাবে ব্যবহারের প্রযুক্তি।",
+    "approved": false,
+    "page": {
+     "source": "AG-bfri-intro",
+     "offset": 3367,
+     "length": 64,
+     "sha256": "f1ab536137d4a1c92b8dc27d58cf530bec1401dc349355d54ef1fefd50befc55"
+    }
+   },
+   "events": [
+    {
+     "date": "1955",
+     "event": "founded in Chattogram as the Forest Research Laboratory",
+     "cite": [
+      {
+       "source": "AG-bfri-intro",
+       "offset": 3432,
+       "length": 75,
+       "sha256": "b04530700ad45a8d6b7786c28467afc4424ba9239573f9930bb9bfa480f78bc2"
+      }
+     ]
+    },
+    {
+     "date": "1968",
+     "event": "converted into a full national forest research institute",
+     "cite": [
+      {
+       "source": "AG-bfri-intro",
+       "offset": 3568,
+       "length": 66,
+       "sha256": "2e9cd793d86d24b714b529ce32045fd706c6c3f52e3250cd68d6a99e6d5454c0"
+      }
+     ]
+    },
+    {
+     "date": "1985",
+     "event": "placed under the direct control of the Ministry of Environment and Forest",
+     "cite": [
+      {
+       "source": "AG-bfri-intro",
+       "offset": 3667,
+       "length": 52,
+       "sha256": "5246c542c14ec0f2008c29dd9d1df8ac9dca9301adce3e4f57a04a76f19416b2"
+      }
+     ]
+    },
+    {
+     "date": "1996",
+     "event": "brought into the National Agricultural Research System",
+     "cite": [
+      {
+       "source": "AG-bfri-intro",
+       "offset": 3811,
+       "length": 80,
+       "sha256": "11768c6e723149c933c40539fb39f495468fb1bb0cd905267929b48052ffe1cd"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader AG11"
+  },
+  "btri": {
+   "tab": "agri",
+   "abbr": "BTRI",
+   "name": {
+    "bn": "বাংলাদেশ চা গবেষণা ইনস্টিটিউট",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "AG-btri-home",
+      "offset": 544,
+      "length": 29,
+      "sha256": "b5df814dcfaa55267269cf614e1e437896807cc50e8a6fce9d870d074faaeb78"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1957,
+    "events": [
+     1,
+     2
+    ],
+    "cite": [
+     {
+      "source": "AG-btri-bg",
+      "offset": 3130,
+      "length": 82,
+      "sha256": "1c7adfefdc528b8cf5fe79697c4cdb94168b117152c3b9a1bb1b5101bf6a2be7"
+     },
+     {
+      "source": "AG-btri-intro",
+      "offset": 2670,
+      "length": 68,
+      "sha256": "91a201d7b251dd34dc21e083f7b3d7aba9c8c39878429fa03f41ae038ba97864"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)",
+    "judgement": "1952 is the Tea Board's decision and preliminary work; the station was established in 1957"
+   },
+   "currentForm": {
+    "year": 1973,
+    "events": [
+     3
+    ],
+    "cite": [
+     {
+      "source": "AG-btri-bg",
+      "offset": 3352,
+      "length": 58,
+      "sha256": "1271ebb241c830313de732640b960ce734d9ceaf671264aa7f3e3fc3a4d94452"
+     }
+    ],
+    "rule": "re-formed under a new name or Act (decision 3); later Acts that only continue the body are not"
+   },
+   "address": {
+    "area": {
+     "bn": "শ্রীমঙ্গল",
+     "approved": false,
+     "cite": [
+      {
+       "source": "AG-btri-contact",
+       "offset": 2070,
+       "length": 27,
+       "sha256": "ed068a03da0113242e63315dc5635665248d8ad8d2dafda97ed03258a64a97d6"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD6058",
+     "bn": "মৌলভীবাজার",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "AG-btri-contact",
+      "offset": 2070,
+      "length": 27,
+      "sha256": "ed068a03da0113242e63315dc5635665248d8ad8d2dafda97ed03258a64a97d6"
+     }
+    ]
+   },
+   "parent": "teaBoard",
+   "focus": {
+    "bn": "চায়ের ফলন ও মান বাড়ানো, এবং চা শিল্পকে বৈজ্ঞানিক পরামর্শ ও প্রযুক্তি দেওয়া।",
+    "approved": false,
+    "page": {
+     "source": "AG-btri-intro",
+     "offset": 3102,
+     "length": 58,
+     "sha256": "fd920a7eb740b16e2ebda1b3da4ad8e910e4139f1f3ba48a0b3230d8f0f1b27d"
+    }
+   },
+   "events": [
+    {
+     "date": "1952",
+     "event": "Pakistan Tea Board decided to set up a tea research station; work began in its Dhaka office",
+     "cite": [
+      {
+       "source": "AG-btri-bg",
+       "offset": 2921,
+       "length": 66,
+       "sha256": "795c17ce7225dc791d6ca5c6a97128c5454ab75d5c0e4bf1cc696b898fb4c437"
+      }
+     ]
+    },
+    {
+     "date": "1957-02-28",
+     "event": "Pakistan Tea Research Station (PTRS) established at Sreemangal",
+     "cite": [
+      {
+       "source": "AG-btri-bg",
+       "offset": 3130,
+       "length": 82,
+       "sha256": "1c7adfefdc528b8cf5fe79697c4cdb94168b117152c3b9a1bb1b5101bf6a2be7"
+      }
+     ]
+    },
+    {
+     "date": "1957",
+     "event": "founding year as the institute's introduction and BARC state it",
+     "cite": [
+      {
+       "source": "AG-btri-intro",
+       "offset": 2670,
+       "length": 68,
+       "sha256": "91a201d7b251dd34dc21e083f7b3d7aba9c8c39878429fa03f41ae038ba97864"
+      }
+     ]
+    },
+    {
+     "date": "1973",
+     "event": "after independence renamed Bangladesh Tea Research Station, then upgraded to Bangladesh Tea Research Institute in 1973",
+     "cite": [
+      {
+       "source": "AG-btri-bg",
+       "offset": 3352,
+       "length": 58,
+       "sha256": "1271ebb241c830313de732640b960ce734d9ceaf671264aa7f3e3fc3a4d94452"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader AG12"
+  },
+  "bsrti": {
+   "tab": "agri",
+   "abbr": "BSRTI",
+   "name": {
+    "bn": "বাংলাদেশ রেশম গবেষণা ও প্রশিক্ষণ ইনস্টিটিউট",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "AG-bsrti-home",
+      "offset": 544,
+      "length": 43,
+      "sha256": "956b6d50c93ff10eb34ed5606c534e26d6244d0f270aa81b85f1fd90e5d5334d"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1962,
+    "events": [
+     0
+    ],
+    "cite": [
+     {
+      "source": "AG-bsrti-hist",
+      "offset": 2106,
+      "length": 74,
+      "sha256": "92c128d6b85c3c1f593bbe824d1125ea27cacf2eb7ac4f6843939af2550c8729"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)"
+   },
+   "currentForm": {
+    "year": null,
+    "held": "its present form is unsettled: renamed BSRTI when the Sericulture Board was formed (its own page 1978, the board's ordinance 1977), made statutory in 2003, and merged into the Sericulture Development Board by Act 13 of 2013, which repealed its Act (RES-1 flag); the Act-first rule gives 1977 for the board's ordinance but not the year the institute took this form"
+   },
+   "address": {
+    "area": null,
+    "district": {
+     "pcode": "BD5081",
+     "bn": "রাজশাহী",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "AG-bsrti-func",
+      "offset": 1972,
+      "length": 53,
+      "sha256": "f46bd39d86e4934e76f5bea66e559b202394642f9fe4437528a0c8fc87eab753"
+     }
+    ]
+   },
+   "parent": "silkBoard",
+   "focus": {
+    "bn": "তুঁত ও রেশমপোকার জাত, পালন, রোগবালাই দমন ও সুতা কাটা; রেশমচাষিদের প্রশিক্ষণও।",
+    "approved": false,
+    "page": {
+     "source": "AG-bsrti-func",
+     "offset": 2063,
+     "length": 27,
+     "sha256": "4e9e5ea772e6d199550776e6f4f1e4f3193ca766763973e33b84eafe8092d223"
+    }
+   },
+   "events": [
+    {
+     "date": "1962",
+     "event": "founded in Rajshahi as the Silk cum Lac Research Institute and Silk Technological Institute",
+     "cite": [
+      {
+       "source": "AG-bsrti-hist",
+       "offset": 2106,
+       "length": 74,
+       "sha256": "92c128d6b85c3c1f593bbe824d1125ea27cacf2eb7ac4f6843939af2550c8729"
+      }
+     ]
+    },
+    {
+     "date": "1978",
+     "event": "came under the new Bangladesh Sericulture Board and renamed BSRTI",
+     "cite": [
+      {
+       "source": "AG-bsrti-hist",
+       "offset": 2215,
+       "length": 44,
+       "sha256": "77e7150a9080a827aa2595d7be713e95024f4892e0bdeb0c5a37c607123aa1fe"
+      }
+     ]
+    },
+    {
+     "date": "2003",
+     "event": "made independent of the Sericulture Board by Act 25 of 2003",
+     "cite": [
+      {
+       "source": "AG-bsrti-hist",
+       "offset": 2385,
+       "length": 21,
+       "sha256": "6fd05bc5da8e2ef561ef25c7137c2ea5b844d46ed14c7179265b22a8c4cdc6d2"
+      }
+     ]
+    },
+    {
+     "date": "2003-07-09",
+     "event": "Act 25 of 2003 on bdlaws: the existing institute established as a statutory body",
+     "cite": [
+      {
+       "source": "AG-law-bsrti2003",
+       "offset": 1502,
+       "length": 81,
+       "sha256": "1f8c9122748163784a3a07b09c0282a5630edcad2e6f6cfa1b52fc1f0046b5d5"
+      }
+     ]
+    },
+    {
+     "date": "2013",
+     "event": "merged with the Sericulture Board and Silk Foundation into the Bangladesh Sericulture Development Board (Act 13 of 2013), which repealed the 2003 Act",
+     "cite": [
+      {
+       "source": "AG-bsrti-hist",
+       "offset": 2492,
+       "length": 41,
+       "sha256": "187c0078864d2a64c44dcc4e9ffa39565655fbd14ea68ab600a5c691a141ff85"
+      }
+     ]
+    },
+    {
+     "date": "2013-03-07",
+     "event": "Bangladesh Sericulture Development Board Act 2013 (Act 13 of 2013, dated 7 March 2013) repeals the 2003 Act",
+     "cite": [
+      {
+       "source": "AG-law-silk2013",
+       "offset": 14320,
+       "length": 74,
+       "sha256": "72a379f74ffb7f33b2430b7e6de02c0fe0a25425f788088615f5d087d1d2673c"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader AG13"
+  },
+  "birtan": {
+   "tab": "agri",
+   "abbr": "BIRTAN",
+   "name": {
+    "bn": "বাংলাদেশ ফলিত পুষ্টি গবেষণা ও প্রশিক্ষণ ইনস্টিটিউট",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "AG-birtan-home",
+      "offset": 544,
+      "length": 59,
+      "sha256": "489da2659facdf399b88fe256f165228052cd13a5cd1d74a5232a3943b66baed"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1968,
+    "events": [
+     0
+    ],
+    "cite": [
+     {
+      "source": "AG-birtan-hist",
+      "offset": 2907,
+      "length": 68,
+      "sha256": "d2a637d53b71777b5a3cde3cef83be220cdf7694521ddec35d3d646729fb457c"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)",
+    "judgement": "it began as the Applied Nutrition Project at Jurain in 1968 and was renamed BIRTAN in 1979"
+   },
+   "currentForm": {
+    "year": 2012,
+    "events": [
+     7
+    ],
+    "cite": [
+     {
+      "source": "AG-birtan-hist",
+      "offset": 3532,
+      "length": 47,
+      "sha256": "4d4906a52d2b633c55bf89ce28fbaf0678d2e28977d0875f47add858c627acdc"
+     }
+    ],
+    "rule": "re-formed under a new name or Act (decision 3); later Acts that only continue the body are not"
+   },
+   "address": {
+    "area": {
+     "bn": "বিশনন্দী, আড়াইহাজার",
+     "approved": false,
+     "cite": [
+      {
+       "source": "R2-birtan-hq",
+       "offset": 2874,
+       "length": 52,
+       "sha256": "088f12295bb9749bd8f16643fc542670181e97e02f9b43dcfefec61c58cb2166"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD3067",
+     "bn": "নারায়ণগঞ্জ",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "R2-birtan-hq",
+      "offset": 2874,
+      "length": 52,
+      "sha256": "088f12295bb9749bd8f16643fc542670181e97e02f9b43dcfefec61c58cb2166"
+     }
+    ]
+   },
+   "parent": "moa",
+   "focus": {
+    "bn": "খাদ্যভিত্তিক পুষ্টি, মানুষের পুষ্টিমান বাড়াতে; এ বিষয়ে প্রশিক্ষণও।",
+    "approved": false,
+    "page": {
+     "source": "AG-law-birtan2012",
+     "offset": 456,
+     "length": 62,
+     "sha256": "a42da2396fd3605a5332beb40086afb43e76ae8428c8a8c7d29fe592ab598a98"
+    }
+   },
+   "act": {
+    "title": "বাংলাদেশ ফলিত পুষ্টি গবেষণা ও প্রশিক্ষণ ইনস্টিটিউট আইন, ২০১২ (২০১২ সনের ১৮ নং আইন)",
+    "cite": [
+     {
+      "source": "AG-law-birtan2012",
+      "offset": 240,
+      "length": 60,
+      "sha256": "2012301eb2fed009af4c0247103523bbf6aefc059c9bbce958d272f398a9788d"
+     }
+    ]
+   },
+   "events": [
+    {
+     "date": "1968",
+     "event": "started as the Applied Nutrition Project at Jurain near Dhaka",
+     "cite": [
+      {
+       "source": "AG-birtan-hist",
+       "offset": 2907,
+       "length": 68,
+       "sha256": "d2a637d53b71777b5a3cde3cef83be220cdf7694521ddec35d3d646729fb457c"
+      }
+     ]
+    },
+    {
+     "date": "1979",
+     "event": "renamed BIRTAN by the Diabetic Association's 154th council meeting",
+     "cite": [
+      {
+       "source": "AG-birtan-hist",
+       "offset": 3048,
+       "length": 58,
+       "sha256": "3e9bd404471409757a3fe72393d6d0ff58afae5e8816ea970771687dc023a972"
+      }
+     ]
+    },
+    {
+     "date": "1980",
+     "event": "Ministry of Agriculture took the project over",
+     "cite": [
+      {
+       "source": "AG-birtan-hist",
+       "offset": 3226,
+       "length": 58,
+       "sha256": "d1b51880c2228af7badc54e9364c39f88ccf267e621f5f11b9c8f916ab77ac82"
+      }
+     ]
+    },
+    {
+     "date": "1993",
+     "event": "BARC put in charge of the project",
+     "cite": [
+      {
+       "source": "AG-birtan-hist",
+       "offset": 3285,
+       "length": 89,
+       "sha256": "3388ac4e2f0a4cb74986e07fe97d3c574e7f733e298b992bf6e44b53794532e7"
+      }
+     ]
+    },
+    {
+     "date": "2000-01-01",
+     "event": "cabinet renamed it the Bangladesh Applied Nutrition and Human Resource Development Board",
+     "cite": [
+      {
+       "source": "AG-birtan-chrono",
+       "offset": 4734,
+       "length": 46,
+       "sha256": "6196703bbfb3e04730852d14c3d55b726115f8ff7da917048f7b75e60c7bdb91"
+      }
+     ]
+    },
+    {
+     "date": "2001-12-30",
+     "event": "board's resolution dated 30 December 2001 (repealed by the 2012 Act)",
+     "cite": [
+      {
+       "source": "AG-law-birtan2012",
+       "offset": 11794,
+       "length": 38,
+       "sha256": "557403c03a729c194115d8d4a6aecf22d6580e10f99af1c047fc9472f05dbe0c"
+      }
+     ]
+    },
+    {
+     "date": "2002-01-10",
+     "event": "the board's constitution published in the Bangladesh Gazette",
+     "cite": [
+      {
+       "source": "AG-birtan-chrono",
+       "offset": 4938,
+       "length": 50,
+       "sha256": "7e330b695515f95bff726257411e6467f02bae5f7d55cdad99b7542ca07ca5f6"
+      }
+     ]
+    },
+    {
+     "date": "2012-06-19",
+     "event": "BIRTAN Act 2012 (Act 18 of 2012) published in the Gazette; the board dissolved into the institute",
+     "cite": [
+      {
+       "source": "AG-birtan-hist",
+       "offset": 3532,
+       "length": 47,
+       "sha256": "4d4906a52d2b633c55bf89ce28fbaf0678d2e28977d0875f47add858c627acdc"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader AG15"
+  },
+  "baec": {
+   "tab": "sci",
+   "abbr": "BAEC",
+   "nameEn": "Bangladesh Atomic Energy Commission",
+   "name": {
+    "bn": "বাংলাদেশ পরমাণু শক্তি কমিশন",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "ST-baec-home",
+      "offset": 544,
+      "length": 27,
+      "sha256": "6709b7e3a2adf9c863f6c9e7bc436da69fa24a4132fe74c905ee242e10e89c33"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1973,
+    "events": [
+     2
+    ],
+    "cite": [
+     {
+      "source": "ST-law-baec1973",
+      "offset": 3085,
+      "length": 58,
+      "sha256": "68e057f3d6ac3ffcbe61ab65807aa6cd0ec0fc8290c56e1f89d22f40c2f9da32"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)",
+    "judgement": "1964 is the Atomic Energy Centre, Dhaka, set up by the then (Pakistan) commission",
+    "conflict": "its own page dates President's Order 15 to February 1972; bdlaws dates the same order 27 February 1973, and the Act comes first (decision 4)"
+   },
+   "address": {
+    "area": {
+     "bn": "আগারগাঁও, শেরেবাংলা নগর",
+     "approved": false,
+     "cite": [
+      {
+       "source": "ST-baec-contact",
+       "offset": 2675,
+       "length": 50,
+       "sha256": "ed921a118c61d4ebddf91400bad5d4d7702a621da1cc7cc84a35f8792aafd017"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD3026",
+     "bn": "ঢাকা",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "ST-baec-contact",
+      "offset": 2675,
+      "length": 50,
+      "sha256": "ed921a118c61d4ebddf91400bad5d4d7702a621da1cc7cc84a35f8792aafd017"
+     }
+    ]
+   },
+   "parent": "most",
+   "focus": {
+    "bn": "পরমাণু বিজ্ঞানের শান্তিপূর্ণ ব্যবহার: পরমাণু চিকিৎসা, খাদ্য বিকিরণ, বিকিরণ নিরাপত্তা ও পারমাণবিক বিদ্যুৎ।",
+    "approved": false,
+    "page": {
+     "source": "ST-baec-intro",
+     "offset": 4826,
+     "length": 42,
+     "sha256": "25cd94a59a9b7b49669634b312a26bd801c058b4e291f0f990107d5ca2b6d1f8"
+    }
+   },
+   "act": {
+    "title": "বাংলাদেশ পরমাণু শক্তি কমিশন আইন, ২০১৭ (২০১৭ সনের ২৩ নং আইন), 22 Nov 2017; replaced the Bangladesh Atomic Energy Commission Order, 1973 (P.O. No. 15 of 1973)",
+    "cite": [
+     {
+      "source": "ST-law-baec2017",
+      "offset": 3006,
+      "length": 37,
+      "sha256": "2c5b37c384151f021637a7bbb76e99f5c0c111859c3e9e9acb281d963670ee7b"
+     }
+    ]
+   },
+   "events": [
+    {
+     "date": "1964",
+     "event": "Atomic Energy Centre, Dhaka set up by the (then) Commission — first institutional nuclear-physics research (precursor)",
+     "cite": [
+      {
+       "source": "ST-baec-intro",
+       "offset": 3131,
+       "length": 61,
+       "sha256": "e8015c823f603ec85caa5ab28e58abf0f0a0880f7c96e30954786fa7736cc3c1"
+      }
+     ]
+    },
+    {
+     "date": "1972-02",
+     "event": "BAEC established by President's Order No. 15 — as the BAEC site states it (month and year 1972)",
+     "cite": [
+      {
+       "source": "ST-baec-intro",
+       "offset": 3510,
+       "length": 64,
+       "sha256": "6f9b00027f24aa38761b3ecdd852737d6d1285ed44b50732156f913953fe50cb"
+      }
+     ]
+    },
+    {
+     "date": "1973-02-27",
+     "event": "Bangladesh Atomic Energy Commission Order, 1973 (P.O. No. 15 of 1973) — the date bdlaws gives for the same order",
+     "cite": [
+      {
+       "source": "ST-law-baec1973",
+       "offset": 3085,
+       "length": 58,
+       "sha256": "68e057f3d6ac3ffcbe61ab65807aa6cd0ec0fc8290c56e1f89d22f40c2f9da32"
+      }
+     ]
+    },
+    {
+     "date": "2017-11-22",
+     "event": "Re-enacted by the Bangladesh Atomic Energy Commission Act, 2017 (Act 23 of 2017), repealing the 1973 Order",
+     "cite": [
+      {
+       "source": "ST-law-baec2017",
+       "offset": 3044,
+       "length": 44,
+       "sha256": "759b785210c124a90bf4cbbf5f9bf539ba4ef315a11171e351a7e330998c5831"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader ST1"
+  },
+  "bcsir": {
+   "tab": "sci",
+   "abbr": "BCSIR",
+   "nameEn": "Bangladesh Council of Scientific and Industrial Research",
+   "name": {
+    "bn": "বাংলাদেশ বিজ্ঞান ও শিল্প গবেষণা পরিষদ",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "ST-bcsir-home",
+      "offset": 544,
+      "length": 50,
+      "sha256": "72bb7faf7658c90d6e5a41cbc63060017b38a6edb699baf80d712ec1fb738551"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1955,
+    "events": [
+     0
+    ],
+    "cite": [
+     {
+      "source": "ST-bcsir-history",
+      "offset": 3569,
+      "length": 60,
+      "sha256": "7bb1f119bb48e2ef471e2a77a4d174798486539c30511d06620d05a9ca736303"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)",
+    "conflict": "its own page says it was established as BCSIR by an ordinance in 1973; the ordinance on bdlaws is No. V of 1978, and the Act comes first (decision 4)"
+   },
+   "currentForm": {
+    "year": 1978,
+    "events": [
+     2
+    ],
+    "cite": [
+     {
+      "source": "ST-law-bcsir1978",
+      "offset": 3090,
+      "length": 51,
+      "sha256": "051b4198e9dbe4a7faf289369089ef9ef2c8000bfc481eb82891e09f4355dbb0"
+     }
+    ],
+    "rule": "re-formed under a new name or Act (decision 3); later Acts that only continue the body are not"
+   },
+   "address": {
+    "area": {
+     "bn": "ধানমন্ডি",
+     "approved": false,
+     "cite": [
+      {
+       "source": "ST-bcsir-contact",
+       "offset": 3530,
+       "length": 59,
+       "sha256": "1267f3f34b2df3cacbe8ff89162a1f85c3ff31de6374543d9e1a6759546d2051"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD3026",
+     "bn": "ঢাকা",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "ST-bcsir-contact",
+      "offset": 3530,
+      "length": 59,
+      "sha256": "1267f3f34b2df3cacbe8ff89162a1f85c3ff31de6374543d9e1a6759546d2051"
+     }
+    ]
+   },
+   "parent": "most",
+   "focus": {
+    "bn": "শিল্পের জন্য প্রায়োগিক গবেষণা, এবং শিল্পকে বিশ্লেষণ ও পরীক্ষার সেবা।",
+    "approved": false,
+    "page": {
+     "source": "ST-bcsir-intro",
+     "offset": 3923,
+     "length": 38,
+     "sha256": "13dcb834662d7519caa76775c19edad09481c77195730e2d3e385124a853cb00"
+    }
+   },
+   "act": {
+    "title": "বাংলাদেশ বিজ্ঞান ও শিল্প গবেষণা পরিষদ আইন, ২০১৩ (২০১৩ সনের ৪৫ নং আইন), 10 Oct 2013; repealed Ordinance No. V of 1978",
+    "cite": [
+     {
+      "source": "ST-law-bcsir2013",
+      "offset": 3006,
+      "length": 47,
+      "sha256": "8e6f6322c2d4d920a9295ce324fb8ad529ac9832ad1c55e8e54c6376b7826698"
+     }
+    ]
+   },
+   "events": [
+    {
+     "date": "1955",
+     "event": "Began as the \"Eastern Regional Laboratories\" (পূর্বাঞ্চলীয় গবেষণাগার) of the then PCSIR",
+     "cite": [
+      {
+       "source": "ST-bcsir-history",
+       "offset": 3569,
+       "length": 60,
+       "sha256": "7bb1f119bb48e2ef471e2a77a4d174798486539c30511d06620d05a9ca736303"
+      }
+     ]
+    },
+    {
+     "date": "1973",
+     "event": "Established as BCSIR by an ordinance — as the BCSIR site states it",
+     "cite": [
+      {
+       "source": "ST-bcsir-history",
+       "offset": 3711,
+       "length": 35,
+       "sha256": "12f80229785ae37c19ea68ebcba39190e831980f1f608559949c47a768470151"
+      }
+     ]
+    },
+    {
+     "date": "1978-02-10",
+     "event": "Bangladesh Council of Scientific and Industrial Research Ordinance, 1978 (Ord. No. V of 1978) — the establishing ordinance on bdlaws",
+     "cite": [
+      {
+       "source": "ST-law-bcsir1978",
+       "offset": 3090,
+       "length": 51,
+       "sha256": "051b4198e9dbe4a7faf289369089ef9ef2c8000bfc481eb82891e09f4355dbb0"
+      }
+     ]
+    },
+    {
+     "date": "2013-10-10",
+     "event": "Re-enacted by the BCSIR Act, 2013 (Act 45 of 2013), repealing the 1978 Ordinance",
+     "cite": [
+      {
+       "source": "ST-law-bcsir2013",
+       "offset": 3054,
+       "length": 44,
+       "sha256": "2bc521a872c14fef322ef29247e76d025570552266a4efbf805c838a69258c71"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader ST2"
+  },
+  "nib": {
+   "tab": "sci",
+   "abbr": "NIB",
+   "nameEn": "National Institute of Biotechnology",
+   "name": {
+    "bn": "ন্যাশনাল ইনস্টিটিউট অব বায়োটেকনোলজি",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "ST-nib-home",
+      "offset": 544,
+      "length": 36,
+      "sha256": "255db04459305559bbe7b50894277274cd6859833c61f44da387d7bd77d341cd"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1999,
+    "events": [
+     1
+    ],
+    "cite": [
+     {
+      "source": "ST-nib-history",
+      "offset": 2417,
+      "length": 48,
+      "sha256": "09ff7469758413d3b34134501dcb6acd3a6aabf7a5b58451b478231cd2a5e4cd"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)"
+   },
+   "currentForm": {
+    "year": 2010,
+    "events": [
+     2
+    ],
+    "cite": [
+     {
+      "source": "ST-nib-history",
+      "offset": 2838,
+      "length": 88,
+      "sha256": "e22673143960d7a1fcdffcc6171e3f95833879ec44b40200d83f262169746503"
+     }
+    ],
+    "rule": "re-formed under a new name or Act (decision 3); later Acts that only continue the body are not"
+   },
+   "address": {
+    "area": {
+     "bn": "গণকবাড়ী, আশুলিয়া, সাভার",
+     "approved": false,
+     "cite": [
+      {
+       "source": "ST-nib-contact",
+       "offset": 2385,
+       "length": 36,
+       "sha256": "07894864cbbf1d7804fa19658eeed727fb461dc590df19e9fab6862703a8ba8d"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD3026",
+     "bn": "ঢাকা",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "ST-nib-contact",
+      "offset": 2385,
+      "length": 36,
+      "sha256": "07894864cbbf1d7804fa19658eeed727fb461dc590df19e9fab6862703a8ba8d"
+     }
+    ]
+   },
+   "parent": "most",
+   "focus": {
+    "bn": "কৃষি, চিকিৎসা, পরিবেশ ও শিল্পে জীবপ্রযুক্তি; জিএমও পরীক্ষা ও সনদ।",
+    "approved": false,
+    "page": {
+     "source": "ST-nib-mission",
+     "offset": 2291,
+     "length": 71,
+     "sha256": "8f123b4b54d57811ea35307e7cf83c3c0a1a954dc8bb3ae4546566bc38c3e013"
+    }
+   },
+   "act": {
+    "title": "ন্যাশনাল ইনস্টিটিউট অব বায়োটেকনোলজি আইন, ২০১০ (২০১০ সনের ১০ নং আইন), 18 Mar 2010",
+    "cite": [
+     {
+      "source": "ST-law-nib2010",
+      "offset": 3004,
+      "length": 46,
+      "sha256": "393b76a8e8f6a2972f110fe8ea681a1c3336655f9fa0a3b05ab11d0fdf253ec6"
+     }
+    ]
+   },
+   "events": [
+    {
+     "date": "1984",
+     "event": "Project proposal for a biotechnology research institute first put to the government (proposal, not founding)",
+     "cite": [
+      {
+       "source": "ST-nib-history",
+       "offset": 2284,
+       "length": 86,
+       "sha256": "6ac7eb8df950b3c5cdbcab4e04d4515fce06a44d56ac8760ee238de76f72bfc4"
+      }
+     ]
+    },
+    {
+     "date": "1999-05-12",
+     "event": "NIB's activities began under a development project",
+     "cite": [
+      {
+       "source": "ST-nib-history",
+       "offset": 2417,
+       "length": 48,
+       "sha256": "09ff7469758413d3b34134501dcb6acd3a6aabf7a5b58451b478231cd2a5e4cd"
+      }
+     ]
+    },
+    {
+     "date": "2010-03-18",
+     "event": "National Institute of Biotechnology Act, 2010 published in the Gazette (Act 10 of 2010)",
+     "cite": [
+      {
+       "source": "ST-nib-history",
+       "offset": 2838,
+       "length": 88,
+       "sha256": "e22673143960d7a1fcdffcc6171e3f95833879ec44b40200d83f262169746503"
+      }
+     ]
+    },
+    {
+     "date": "2010-07-05",
+     "event": "The Act brought into force by Gazette notification",
+     "cite": [
+      {
+       "source": "ST-nib-history",
+       "offset": 2931,
+       "length": 71,
+       "sha256": "d350daa1e587f3e4abaa44f292bde0889f5863b6d9945d1d28a5ec3c9b820e37"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader ST3"
+  },
+  "bori": {
+   "tab": "sci",
+   "abbr": "BORI",
+   "nameEn": "Bangladesh Oceanographic Research Institute",
+   "name": {
+    "bn": "বাংলাদেশ ওশানোগ্রাফিক রিসার্চ ইনস্টিটিউট",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "ST-bori-home",
+      "offset": 544,
+      "length": 40,
+      "sha256": "5fc19b27a301cafdfc5b7a27d13dec8acabef3ac732e6f82dcf229d36f67d891"
+     }
+    ]
+   },
+   "founded": {
+    "year": 2015,
+    "events": [
+     3
+    ],
+    "cite": [
+     {
+      "source": "ST-bori-intro",
+      "offset": 5802,
+      "length": 50,
+      "sha256": "f3b62fdb571584d59794861ef1b977b650f904904fa2c0adee0ab483fd5c2504"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)",
+    "judgement": "1973 and 2000 are an initiative and an establishment project; the institute was established under its Act in 2015"
+   },
+   "address": {
+    "area": {
+     "bn": "রামু",
+     "approved": false,
+     "cite": [
+      {
+       "source": "ST-bori-intro",
+       "offset": 2473,
+       "length": 29,
+       "sha256": "063f0b08c53bb99540589f9e9217a9e35fb85d9c440e1f13d129c1ed57aaff4e"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD2022",
+     "bn": "কক্সবাজার",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "ST-bori-intro",
+      "offset": 2473,
+      "length": 29,
+      "sha256": "063f0b08c53bb99540589f9e9217a9e35fb85d9c440e1f13d129c1ed57aaff4e"
+     }
+    ]
+   },
+   "parent": "most",
+   "focus": {
+    "bn": "সমুদ্রের ভৌত, ভূতাত্ত্বিক, রাসায়নিক ও জৈব বিজ্ঞান, এবং সমুদ্র ও জলবায়ু।",
+    "approved": false,
+    "page": {
+     "source": "ST-bori-func",
+     "offset": 2274,
+     "length": 55,
+     "sha256": "0746aa963163f7bfad48720ccb9062b29e1bc0f3c0b4eb91358beeae1679050d"
+    }
+   },
+   "act": {
+    "title": "বাংলাদেশ ওশানোগ্রাফিক রিসার্চ ইনস্টিটিউট আইন, ২০১৫ (২০১৫ সনের ৭ নং আইন), 5 Mar 2015",
+    "cite": [
+     {
+      "source": "ST-law-bori2015",
+      "offset": 3006,
+      "length": 50,
+      "sha256": "8fa7672828f62f7099ff774fc7ea400ad5edd22269e6753b5cd50fcd1ef0aa5a"
+     }
+    ]
+   },
+   "events": [
+    {
+     "date": "1973",
+     "event": "Initiative taken to set up a marine research institute",
+     "cite": [
+      {
+       "source": "ST-bori-intro",
+       "offset": 4220,
+       "length": 68,
+       "sha256": "18d32cc4b2a8d7cf860fa1508d4f9c4951812d5a59411ed17af0d3fe5d908384"
+      }
+     ]
+    },
+    {
+     "date": "2000",
+     "event": "Decision to set up a national oceanographic research institute; establishment project Jun 2000 – Jul 2005",
+     "cite": [
+      {
+       "source": "ST-bori-intro",
+       "offset": 4289,
+       "length": 81,
+       "sha256": "bd1cccb388f62d6e4c218da763e7fc80bd293c138b9e752ff4e5247b34865b3f"
+      }
+     ]
+    },
+    {
+     "date": "2015-03-05",
+     "event": "BORI Act, 2015 passed by Parliament",
+     "cite": [
+      {
+       "source": "ST-bori-intro",
+       "offset": 5547,
+       "length": 38,
+       "sha256": "188b53a0ccc499ec7ca2b738f6c40b061827722cace0dec744fe97f055abd368"
+      }
+     ]
+    },
+    {
+     "date": "2015-09-08",
+     "event": "Institute established under s. 3(1) of the 2015 Act",
+     "cite": [
+      {
+       "source": "ST-bori-intro",
+       "offset": 5802,
+       "length": 50,
+       "sha256": "f3b62fdb571584d59794861ef1b977b650f904904fa2c0adee0ab483fd5c2504"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader ST4"
+  },
+  "bricm": {
+   "tab": "sci",
+   "abbr": "BRiCM",
+   "nameEn": "Bangladesh Reference Institute for Chemical Measurements",
+   "name": {
+    "bn": "বাংলাদেশ রেফারেন্স ইনস্টিটিউট ফর কেমিক্যাল মেজারমেন্টস্‌",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "ST-bricm-home",
+      "offset": 544,
+      "length": 69,
+      "sha256": "52cec1e0acd7252c8545bd40480bb9c8081e405c7dc3695728121dcb2777c68e"
+     }
+    ]
+   },
+   "founded": {
+    "year": 2012,
+    "events": [
+     1
+    ],
+    "cite": [
+     {
+      "source": "ST-bricm-histpdf1",
+      "offset": 652,
+      "length": 59,
+      "sha256": "21e08cf1703d58a3efb1552a465573b434d91800e51a24f3e4062b79aa7d950b"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)",
+    "judgement": "2008 is a grant for a laboratory inside BCSIR; DRiCM, the institute under its earlier name, was inaugurated in 2012"
+   },
+   "currentForm": {
+    "year": 2020,
+    "events": [
+     2,
+     3
+    ],
+    "cite": [
+     {
+      "source": "ST-bricm-histpdf1",
+      "offset": 1150,
+      "length": 78,
+      "sha256": "c2d73344c87f77ae693673eda1e66061c43a1a06508e83200c08df20c431d663"
+     },
+     {
+      "source": "ST-law-bricm2020",
+      "offset": 3072,
+      "length": 47,
+      "sha256": "a3f4b7a790503e3cc0224fdfc47c3bba6d76ad30c0afcc1d52ff72652a93ded5"
+     }
+    ],
+    "rule": "re-formed under a new name or Act (decision 3); later Acts that only continue the body are not"
+   },
+   "address": {
+    "area": {
+     "bn": "ধানমন্ডি",
+     "approved": false,
+     "cite": [
+      {
+       "source": "ST-bricm-contact",
+       "offset": 2930,
+       "length": 69,
+       "sha256": "f58fec3bc8b8b66f222138e058b2aafaeede6a985a4f30d05ca0fcab83034bfc"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD3026",
+     "bn": "ঢাকা",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "ST-bricm-contact",
+      "offset": 2930,
+      "length": 69,
+      "sha256": "f58fec3bc8b8b66f222138e058b2aafaeede6a985a4f30d05ca0fcab83034bfc"
+     }
+    ]
+   },
+   "parent": "most",
+   "focus": {
+    "bn": "রাসায়নিক পরিমাপের জাতীয় মান: রেফারেন্স পরিমাপ, রেফারেন্স উপাদান ও ক্যালিব্রেশন।",
+    "approved": false,
+    "page": {
+     "source": "ST-bricm-func",
+     "offset": 4174,
+     "length": 47,
+     "sha256": "f1356cb1cada19c3dcec4fec6f34cbe2634e1ee326b355718f73f761045d1d9c"
+    }
+   },
+   "act": {
+    "title": "বাংলাদেশ রেফারেন্স ইনস্টিটিউট ফর কেমিক্যাল মেজারমেন্টস্ আইন, ২০২০ (২০২০ সনের ১৫ নং আইন), 15 Sep 2020",
+    "cite": [
+     {
+      "source": "ST-law-bricm2020",
+      "offset": 3006,
+      "length": 65,
+      "sha256": "6754315f6e3e46cfe0b944862ecb700f54ed57c75f000c2bb6f1a3f6cc3b129f"
+     }
+    ]
+   },
+   "events": [
+    {
+     "date": "2008-07",
+     "event": "Government grant to set up an ISO 17025 instrumentation and calibration service lab for chemical measurement (precursor, within BCSIR)",
+     "cite": [
+      {
+       "source": "ST-bricm-histpdf1",
+       "offset": 0,
+       "length": 67,
+       "sha256": "f82eb291871e33ac42b2ed77c4578ed7f9fa14f81a3aad4fb575aa0ee3e9a262"
+      }
+     ]
+    },
+    {
+     "date": "2012-02",
+     "event": "DRiCM (the designated reference institute) inaugurated by the Prime Minister",
+     "cite": [
+      {
+       "source": "ST-bricm-histpdf1",
+       "offset": 652,
+       "length": 59,
+       "sha256": "21e08cf1703d58a3efb1552a465573b434d91800e51a24f3e4062b79aa7d950b"
+      }
+     ]
+    },
+    {
+     "date": "2020-09",
+     "event": "BRiCM established as an independent institute under MoST",
+     "cite": [
+      {
+       "source": "ST-bricm-histpdf1",
+       "offset": 1150,
+       "length": 78,
+       "sha256": "c2d73344c87f77ae693673eda1e66061c43a1a06508e83200c08df20c431d663"
+      }
+     ]
+    },
+    {
+     "date": "2020-09-15",
+     "event": "BRiCM Act, 2020 (Act 15 of 2020)",
+     "cite": [
+      {
+       "source": "ST-law-bricm2020",
+       "offset": 3072,
+       "length": 47,
+       "sha256": "a3f4b7a790503e3cc0224fdfc47c3bba6d76ad30c0afcc1d52ff72652a93ded5"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader ST5"
+  },
+  "sparrso": {
+   "tab": "sci",
+   "abbr": "SPARRSO",
+   "nameEn": "Bangladesh Space Research and Remote Sensing Organization",
+   "name": {
+    "bn": "বাংলাদেশ মহাকাশ গবেষণা ও দূর অনুধাবন প্রতিষ্ঠান",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "ST-sparrso-home",
+      "offset": 544,
+      "length": 57,
+      "sha256": "ea2e30049ef1cf59868dadc62c803c224cb783d569e53f5728e0b1c3040e3dbf"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1980,
+    "events": [
+     2
+    ],
+    "cite": [
+     {
+      "source": "ST-sparrso-intro",
+      "offset": 3412,
+      "length": 66,
+      "sha256": "51e2b7ace195ba97c75b9d23a1eda477edfb6c46a4df76db17b1b9777b518bfe"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)",
+    "judgement": "1968 and 1975 are a ground station and a programme it grew out of"
+   },
+   "currentForm": {
+    "year": 1991,
+    "events": [
+     4
+    ],
+    "cite": [
+     {
+      "source": "ST-law-sparrso1991",
+      "offset": 3075,
+      "length": 45,
+      "sha256": "7161c8f4080b622057eee09d2cd9a03c420644c8abd2cd1a949a037bdce10b3a"
+     }
+    ],
+    "rule": "re-formed under a new name or Act (decision 3); later Acts that only continue the body are not"
+   },
+   "address": {
+    "area": {
+     "bn": "আগারগাঁও, শের-ই-বাংলা নগর",
+     "approved": false,
+     "cite": [
+      {
+       "source": "ST-sparrso-contact",
+       "offset": 2661,
+       "length": 47,
+       "sha256": "c2be6d85a50dff45274e15183c3094d1fb39dd9bb20e7b7a47d4170f9aae0707"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD3026",
+     "bn": "ঢাকা",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "ST-sparrso-contact",
+      "offset": 2661,
+      "length": 47,
+      "sha256": "c2be6d85a50dff45274e15183c3094d1fb39dd9bb20e7b7a47d4170f9aae0707"
+     }
+    ]
+   },
+   "parent": "mod",
+   "focus": {
+    "bn": "মহাকাশ ও দূর অনুধাবন প্রযুক্তি দিয়ে কৃষি, পানি, আবহাওয়া, পরিবেশ ও দুর্যোগ পর্যবেক্ষণ।",
+    "approved": false,
+    "page": {
+     "source": "ST-sparrso-func",
+     "offset": 2832,
+     "length": 77,
+     "sha256": "d3776ca4d7e0829b973c6ddce5773dffb478329849585b2acace5b7cacd5ec18"
+    }
+   },
+   "act": {
+    "title": "বাংলাদেশ মহাকাশ গবেষণা ও দূর অনুধাবন প্রতিষ্ঠান আইন, ১৯৯১ (১৯৯১ সনের ২৯ নং আইন), 10 Nov 1991",
+    "cite": [
+     {
+      "source": "ST-law-sparrso1991",
+      "offset": 3017,
+      "length": 57,
+      "sha256": "d5ae9608133c5ea6c13ab469b75f3b8076601a769b885d0cee80f52f760ba9b7"
+     }
+    ]
+   },
+   "events": [
+    {
+     "date": "1968",
+     "event": "APT ground station set up at the then Atomic Energy Centre — start of space technology use (precursor)",
+     "cite": [
+      {
+       "source": "ST-sparrso-bg",
+       "offset": 2588,
+       "length": 54,
+       "sha256": "61d05e4fc0f5fba17ae4703bbac9a6d1e030e92bfddf6a0a42dd4535a1bb761a"
+      }
+     ]
+    },
+    {
+     "date": "1975",
+     "event": "Bangladesh Landsat Programme (BLP) included in the Five-Year Plan (precursor)",
+     "cite": [
+      {
+       "source": "ST-sparrso-bg",
+       "offset": 3172,
+       "length": 86,
+       "sha256": "345be7c83c9dc9a65076adbf57e014a7c375c39e925afa3d5331a2d23810f3fb"
+      }
+     ]
+    },
+    {
+     "date": "1980",
+     "event": "SPARRSO formed by merging BAEC's Space and Atmospheric Research Centre (SARC) with BLP, under the Science and Technology Division",
+     "cite": [
+      {
+       "source": "ST-sparrso-intro",
+       "offset": 3412,
+       "length": 66,
+       "sha256": "51e2b7ace195ba97c75b9d23a1eda477edfb6c46a4df76db17b1b9777b518bfe"
+      }
+     ]
+    },
+    {
+     "date": "1985",
+     "event": "Transferred to the Ministry of Defence",
+     "cite": [
+      {
+       "source": "ST-sparrso-intro",
+       "offset": 3479,
+       "length": 72,
+       "sha256": "8d2d369a2d8fb22f8113c3238ec0ad462097a2b9531bc2e7f52e85ac1592c8f8"
+      }
+     ]
+    },
+    {
+     "date": "1991-11-10",
+     "event": "Made a statutory body (reconstituted) by Act 29 of 1991; bdlaws prints the date as \"১৯৯৯১\" (typo for 1991)",
+     "cite": [
+      {
+       "source": "ST-law-sparrso1991",
+       "offset": 3075,
+       "length": 45,
+       "sha256": "7161c8f4080b622057eee09d2cd9a03c420644c8abd2cd1a949a037bdce10b3a"
+      }
+     ]
+    },
+    {
+     "date": "1995",
+     "event": "Named by Gazette notification the national focal point for space activities",
+     "cite": [
+      {
+       "source": "ST-sparrso-intro",
+       "offset": 3656,
+       "length": 34,
+       "sha256": "a14ffaa38a0d914a72f5935ce6c078c70491681064298a51d5f47c45eb4f0a82"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader ST6"
+  },
+  "rri": {
+   "tab": "sci",
+   "abbr": "RRI",
+   "name": {
+    "bn": "নদী গবেষণা ইনস্টিটিউট",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "ST-rri-home",
+      "offset": 544,
+      "length": 21,
+      "sha256": "2414e7dba03ec3b05153f4a48c7fac739893bcacf6909ae7eea38d06b8dcd0cc"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1948,
+    "events": [
+     0
+    ],
+    "cite": [
+     {
+      "source": "ST-rri-history",
+      "offset": 2968,
+      "length": 79,
+      "sha256": "4d49a3fa68e5c578e89c514d1e693f6029999c36b6f6c69bb9a7c3c3151b29a1"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)",
+    "judgement": "the Hydraulic Research Laboratory, approved and set up in Dhaka in mid-1948, merged fully into RRI in 1978"
+   },
+   "currentForm": {
+    "year": 1990,
+    "events": [
+     2
+    ],
+    "cite": [
+     {
+      "source": "ST-law-rri1990",
+      "offset": 3048,
+      "length": 42,
+      "sha256": "efb488a622cd63e6386020f88c40789dd8ff0fdfa0ccf2c064c1988065d65ddb"
+     }
+    ],
+    "rule": "re-formed under a new name or Act (decision 3); later Acts that only continue the body are not"
+   },
+   "address": {
+    "area": null,
+    "district": {
+     "pcode": "BD3029",
+     "bn": "ফরিদপুর",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "ST-law-rri1990-s4",
+      "offset": 361,
+      "length": 44,
+      "sha256": "004469e8f4f8719b784131238f2f7e742c880f652115443481ae35eda5ab1cb3"
+     }
+    ]
+   },
+   "parent": "mowr",
+   "focus": {
+    "bn": "নদী, মোহনা ও পানি-কাঠামোর ভৌত ও গাণিতিক মডেল; মাটি, পানি ও পলির পরীক্ষা।",
+    "approved": false,
+    "page": {
+     "source": "ST-rri-mandate",
+     "offset": 2212,
+     "length": 67,
+     "sha256": "de9dcc09bafc68073a77d1eca8b07a415e4bb3867b8a0fd6ae987926adbe176b"
+    }
+   },
+   "act": {
+    "title": "নদী গবেষণা ইনষ্টিটিউট আইন, ১৯৯০ (১৯৯০ সনের ৫৩ নং আইন), 31 Jul 1990",
+    "cite": [
+     {
+      "source": "ST-law-rri1990",
+      "offset": 3016,
+      "length": 31,
+      "sha256": "7c430d42b1bf31aad3ba08488bad6b93db9769894a117bad62e5f0522a73df33"
+     }
+    ]
+   },
+   "events": [
+    {
+     "date": "1948",
+     "event": "Government approved the plan for a Hydraulic Research Laboratory (HRL) in Dhaka, mid-1948 (predecessor)",
+     "cite": [
+      {
+       "source": "ST-rri-history",
+       "offset": 2968,
+       "length": 79,
+       "sha256": "4d49a3fa68e5c578e89c514d1e693f6029999c36b6f6c69bb9a7c3c3151b29a1"
+      }
+     ]
+    },
+    {
+     "date": "1978-08-29",
+     "event": "HRL merged fully into the River Research Institute (RRI); the HRL name ended",
+     "cite": [
+      {
+       "source": "ST-rri-history",
+       "offset": 15150,
+       "length": 54,
+       "sha256": "547e2c23b4c7deceb77eb526b7c20a28f1d53cff64dcdf509a6ea52cdfe81124"
+      }
+     ]
+    },
+    {
+     "date": "1990-07-31",
+     "event": "River Research Institute Act, 1990 (Act 53 of 1990): the institute to be set up as a statutory body, head office Faridpur",
+     "cite": [
+      {
+       "source": "ST-law-rri1990",
+       "offset": 3048,
+       "length": 42,
+       "sha256": "efb488a622cd63e6386020f88c40789dd8ff0fdfa0ccf2c064c1988065d65ddb"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader ST7"
+  },
+  "hbri": {
+   "tab": "sci",
+   "abbr": "HBRI",
+   "nameEn": "Housing and Building Research Institute",
+   "name": {
+    "bn": "হাউজিং এন্ড বিল্ডিং রিসার্চ ইনস্টিটিউট",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "ST-hbri-home",
+      "offset": 544,
+      "length": 38,
+      "sha256": "3c8b5bfee55d7a058e3fa13867e7d4a1bfa5d9f28877ca2412c54d0e7f352d4d"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1975,
+    "events": [
+     0
+    ],
+    "cite": [
+     {
+      "source": "ST-hbri-intro",
+      "offset": 3155,
+      "length": 75,
+      "sha256": "b8bbede0473e10b429cf2a220c05718689c3723c8d24b4321f1a1a14674fd4af"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)"
+   },
+   "currentForm": {
+    "year": 1977,
+    "events": [
+     1
+    ],
+    "cite": [
+     {
+      "source": "ST-law-hbri1977",
+      "offset": 3081,
+      "length": 53,
+      "sha256": "962a2d070acea584ab94fc1940fc275ddd481267ac7b46cc7a68fa5116c7610f"
+     }
+    ],
+    "rule": "re-formed under a new name or Act (decision 3); later Acts that only continue the body are not"
+   },
+   "address": {
+    "area": {
+     "bn": "দারুস-সালাম, মিরপুর",
+     "approved": false,
+     "cite": [
+      {
+       "source": "ST-hbri-contact",
+       "offset": 3030,
+       "length": 48,
+       "sha256": "cbea6956c4f8fa4bc18f26ec58ab83d1347fe4f3fd500a674b431e9cdb53e0b1"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD3026",
+     "bn": "ঢাকা",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "ST-hbri-contact",
+      "offset": 3030,
+      "length": 48,
+      "sha256": "cbea6956c4f8fa4bc18f26ec58ab83d1347fe4f3fd500a674b431e9cdb53e0b1"
+     }
+    ]
+   },
+   "parent": "mohpw",
+   "focus": {
+    "bn": "কম খরচের ও পরিবেশবান্ধব নির্মাণসামগ্রী এবং আবাসন প্রযুক্তি।",
+    "approved": false,
+    "page": {
+     "source": "ST-hbri-intro",
+     "offset": 4213,
+     "length": 43,
+     "sha256": "1d6a19e90f8f0b5de134d4bb22a53cec6d1c8649139d1cfd289f35027620bbfe"
+    }
+   },
+   "act": {
+    "title": "হাউজিং এন্ড বিল্ডিং রিসার্চ ইনস্টিটিউট আইন, ২০১৮ (২০১৮ সনের ৫৫ নং আইন), 14 Nov 2018; replaced Ordinance No. XLIX of 1977",
+    "cite": [
+     {
+      "source": "ST-law-hbri2018",
+      "offset": 3006,
+      "length": 48,
+      "sha256": "d2bfd1a5d80fcb9f16a3a4a9b77d969e6e9da8fe8bc44f7a140ac64d86971e4d"
+     }
+    ]
+   },
+   "events": [
+    {
+     "date": "1975-01-13",
+     "event": "Housing and Building Research Centre founded; later became the autonomous HBRI",
+     "cite": [
+      {
+       "source": "ST-hbri-intro",
+       "offset": 3155,
+       "length": 75,
+       "sha256": "b8bbede0473e10b429cf2a220c05718689c3723c8d24b4321f1a1a14674fd4af"
+      }
+     ]
+    },
+    {
+     "date": "1977-10-19",
+     "event": "Housing and Building Research Institute Ordinance, 1977 (Ord. No. XLIX of 1977)",
+     "cite": [
+      {
+       "source": "ST-law-hbri1977",
+       "offset": 3081,
+       "length": 53,
+       "sha256": "962a2d070acea584ab94fc1940fc275ddd481267ac7b46cc7a68fa5116c7610f"
+      }
+     ]
+    },
+    {
+     "date": "2018-11-14",
+     "event": "HBRI Act, 2018 (Act 55 of 2018), replacing the 1977 Ordinance",
+     "cite": [
+      {
+       "source": "ST-law-hbri2018",
+       "offset": 3055,
+       "length": 44,
+       "sha256": "5ad97ab7e078e1e6a3706a1628cf33988c80acd41d65e42d3132473a6e0f181e"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader ST8"
+  },
+  "bnh": {
+   "tab": "sci",
+   "abbr": "BNH",
+   "nameEn": "Bangladesh National Herbarium",
+   "name": {
+    "bn": "বাংলাদেশ ন্যাশনাল হারবেরিয়াম",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "ST-bnh-home",
+      "offset": 544,
+      "length": 29,
+      "sha256": "7430ee7e8a26dc858d98cd37c9917f2f72ca3caa9d48ec54c77e0934c64415c4"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1970,
+    "events": [
+     0
+    ],
+    "cite": [
+     {
+      "source": "ST-bnh-intro",
+      "offset": 9004,
+      "length": 53,
+      "sha256": "c651d53569ef3ef59079d923b2302d954b4ba3e5cd73182afcd8a64f211f3689"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)",
+    "judgement": "the 1970 project «Botanical Survey of East Pakistan» became the Bangladesh National Herbarium on 1 July 1975"
+   },
+   "currentForm": {
+    "year": 1975,
+    "events": [
+     1
+    ],
+    "cite": [
+     {
+      "source": "ST-bnh-intro",
+      "offset": 9477,
+      "length": 83,
+      "sha256": "d9b6f0f206bd8887f9f0d7b1538c7a444d719713162c173cfe5d423096a8baa0"
+     }
+    ],
+    "rule": "re-formed under a new name or Act (decision 3); later Acts that only continue the body are not"
+   },
+   "address": {
+    "area": {
+     "bn": "চিড়িয়াখানা রোড, মিরপুর-১",
+     "approved": false,
+     "cite": [
+      {
+       "source": "AG-bnh-office",
+       "offset": 8045,
+       "length": 38,
+       "sha256": "75ac3f56a916a84c21640586041c15b17103fd711305714cf614d0c6f52d132e"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD3026",
+     "bn": "ঢাকা",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "AG-bnh-office",
+      "offset": 8045,
+      "length": 38,
+      "sha256": "75ac3f56a916a84c21640586041c15b17103fd711305714cf614d0c6f52d132e"
+     }
+    ]
+   },
+   "parent": "moefcc",
+   "focus": {
+    "bn": "দেশের উদ্ভিদ সংগ্রহ, শনাক্ত ও সংরক্ষণ করে উদ্ভিদের শ্রেণিবিন্যাস।",
+    "approved": false,
+    "page": {
+     "source": "ST-bnh-intro",
+     "offset": 8197,
+     "length": 50,
+     "sha256": "e21e5d6d03d37e41827cd43829190777782e684475eb1628770de9e3303b3fc7"
+    }
+   },
+   "events": [
+    {
+     "date": "1970",
+     "event": "Development project «Botanical Survey of East Pakistan» begun in Dhaka University's Botany Department (precursor)",
+     "cite": [
+      {
+       "source": "ST-bnh-intro",
+       "offset": 9004,
+       "length": 53,
+       "sha256": "c651d53569ef3ef59079d923b2302d954b4ba3e5cd73182afcd8a64f211f3689"
+      }
+     ]
+    },
+    {
+     "date": "1975-07-01",
+     "event": "Established as «Bangladesh National Herbarium»",
+     "cite": [
+      {
+       "source": "ST-bnh-intro",
+       "offset": 9477,
+       "length": 83,
+       "sha256": "d9b6f0f206bd8887f9f0d7b1538c7a444d719713162c173cfe5d423096a8baa0"
+      }
+     ]
+    },
+    {
+     "date": "1994-07-01",
+     "event": "Moved from the Ministry of Agriculture to the Ministry of Environment and Forest by executive order",
+     "cite": [
+      {
+       "source": "ST-bnh-intro",
+       "offset": 9612,
+       "length": 94,
+       "sha256": "fd38f16d11412dc7f52d81d702b39638648ab0e77b6e44d2af5909b7fc1ab81e"
+      }
+     ]
+    },
+    {
+     "date": "1999-07-01",
+     "event": "Transferred, with its staff, to the revenue budget",
+     "cite": [
+      {
+       "source": "ST-bnh-intro",
+       "offset": 10001,
+       "length": 88,
+       "sha256": "3fb16044b087dac30d94901b6364f63e31528ec3d0bcf6a1ff7f8ccd9ea08c73"
+      }
+     ]
+    },
+    {
+     "date": "2004-10-16",
+     "event": "Declared a directorate attached to the Ministry of Environment and Forest",
+     "cite": [
+      {
+       "source": "ST-bnh-intro",
+       "offset": 10094,
+       "length": 50,
+       "sha256": "c10517e967bc47a4aca08d8fda09d1167de9758f156a28d4c7c094bed5209fa3"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader ST12"
+  },
+  "iedcr": {
+   "tab": "health",
+   "abbr": "IEDCR",
+   "nameEn": "Institute of Epidemiology, Disease Control and Research",
+   "name": {
+    "bn": "রোগতত্ত্ব, রোগ নিয়ন্ত্রণ ও গবেষণা ইনস্টিটিউট",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "HE-iedcr-home",
+      "offset": 544,
+      "length": 45,
+      "sha256": "1499a4a7628e284b893741f5906d5fd47cb1844d1d209c9104d5ef96164eb4e9"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1947,
+    "events": [
+     0
+    ],
+    "cite": [
+     {
+      "source": "HE-iedcr-history",
+      "offset": 5392,
+      "length": 67,
+      "sha256": "059185b9bb29c8442b9d8dcb313e68e18c722845879d5c8da46fe6a373c1224a"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)",
+    "judgement": "its own history runs from the Central Malaria Institute of East Pakistan (1947), working in Dhaka as the Malaria Institute of Pakistan from 1954, to IEDCR (1976)"
+   },
+   "currentForm": {
+    "year": 1976,
+    "events": [
+     4
+    ],
+    "cite": [
+     {
+      "source": "HE-iedcr-history",
+      "offset": 3728,
+      "length": 65,
+      "sha256": "07901822898a4ebcc2d6c1608c1400787b8269247513c04c040f8ee62ced4ffc"
+     }
+    ],
+    "rule": "re-formed under a new name or Act (decision 3); later Acts that only continue the body are not"
+   },
+   "address": {
+    "area": null,
+    "district": {
+     "pcode": "BD3026",
+     "bn": "ঢাকা",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "HE-iedcr-contact",
+      "offset": 3676,
+      "length": 42,
+      "sha256": "0f82cb18883b11f0861776a76961e7c5c14f8430dad0b895263e5f814b0c52ca"
+     }
+    ],
+    "en": {
+     "text": "Old Dg Health Campus, Mohakhai, Dhaka-1212",
+     "cite": [
+      {
+       "source": "HE-iedcr-contact",
+       "offset": 3676,
+       "length": 42,
+       "sha256": "0f82cb18883b11f0861776a76961e7c5c14f8430dad0b895263e5f814b0c52ca"
+      }
+     ]
+    }
+   },
+   "parent": "hsd",
+   "focus": {
+    "bn": "রোগতত্ত্ব ও সংক্রামক রোগ; জাতীয় রোগ নজরদারি ও প্রাদুর্ভাবের অনুসন্ধান।",
+    "approved": false,
+    "page": {
+     "source": "HE-iedcr-history",
+     "offset": 3832,
+     "length": 66,
+     "sha256": "b1c508337e5596e4f2fbd16a317eef113083a0af58b7ee56bb0056b7a24d6843"
+    }
+   },
+   "events": [
+    {
+     "date": "1947",
+     "event": "Its predecessor, the Central Malaria Institute of East Pakistan, split from the Central Malaria Institute of India",
+     "cite": [
+      {
+       "source": "HE-iedcr-history",
+       "offset": 5392,
+       "length": 67,
+       "sha256": "059185b9bb29c8442b9d8dcb313e68e18c722845879d5c8da46fe6a373c1224a"
+      }
+     ]
+    },
+    {
+     "date": "1952",
+     "event": "The predecessor malaria institute moved to Dhaka (New Delhi, then Karachi, then Dhaka)",
+     "cite": [
+      {
+       "source": "HE-iedcr-history",
+       "offset": 5716,
+       "length": 67,
+       "sha256": "ac162d1454f9e31aed946fb4ebbd76d8318c78d2ae369c2a8b2cd1f1396f459e"
+      }
+     ]
+    },
+    {
+     "date": "1954",
+     "event": "Began functioning as the Malaria Institute of Pakistan (MIP) in a government bungalow in Dhaka",
+     "cite": [
+      {
+       "source": "HE-iedcr-history",
+       "offset": 5785,
+       "length": 34,
+       "sha256": "631f8cfc1e36de8ddbb99e0fdfcf096c1e2b646c8d4b294463fe1f36616720f0"
+      }
+     ]
+    },
+    {
+     "date": "1961",
+     "event": "Functioned as the WHO Malaria Eradication Training Centre from this year",
+     "cite": [
+      {
+       "source": "HE-iedcr-history",
+       "offset": 6406,
+       "length": 84,
+       "sha256": "5e54884fa9f959dbf86200b73691d75609b324af1f5d7c06db748cdc6c9297bc"
+      }
+     ]
+    },
+    {
+     "date": "1976",
+     "event": "IEDCR established (the page says through a bill approved in Parliament)",
+     "cite": [
+      {
+       "source": "HE-iedcr-history",
+       "offset": 3728,
+       "length": 65,
+       "sha256": "07901822898a4ebcc2d6c1608c1400787b8269247513c04c040f8ee62ced4ffc"
+      }
+     ]
+    },
+    {
+     "date": "1976-08",
+     "event": "National Economic Council approved the IEDCR scheme (first phase)",
+     "cite": [
+      {
+       "source": "HE-iedcr-history",
+       "offset": 7463,
+       "length": 58,
+       "sha256": "89b3983f455ac02a3e10d15690474597452b7562aaeb301057e8da73199bc134"
+      }
+     ]
+    },
+    {
+     "date": "1981",
+     "event": "Merged with NIPSOM",
+     "cite": [
+      {
+       "source": "HE-iedcr-history",
+       "offset": 7805,
+       "length": 78,
+       "sha256": "9ff92004a19bb2e2d58ac53fdc4d3b4af2b0d81ed4f5a9e4689d277ef6e2ca09"
+      }
+     ]
+    },
+    {
+     "date": "1987-07",
+     "event": "Separated again from NIPSOM by the Government",
+     "cite": [
+      {
+       "source": "HE-iedcr-history",
+       "offset": 8379,
+       "length": 69,
+       "sha256": "da0e022a1ed0c46242bc7526b8a0b95806256de1f308e0e482989751c9c9ed23"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader HE1"
+  },
+  "niport": {
+   "tab": "health",
+   "abbr": "NIPORT",
+   "name": {
+    "bn": "জাতীয় জনসংখ্যা গবেষণা ও প্রশিক্ষণ ইনস্টিটিউট",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "HE-niport-home",
+      "offset": 544,
+      "length": 55,
+      "sha256": "48bff0214a18604ceb0e66dffd2102587c9b3615588376319ea22e153fb51311"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1977,
+    "events": [
+     0
+    ],
+    "cite": [
+     {
+      "source": "HE-niport-history",
+      "offset": 1574,
+      "length": 83,
+      "sha256": "3856e4c21fa4991f2e59b9e5cc93c1247acfda253302d9f90e7a8ceab9a62243"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)"
+   },
+   "address": {
+    "area": {
+     "bn": "আজিমপুর",
+     "approved": false,
+     "cite": [
+      {
+       "source": "HE-niport-hq",
+       "offset": 1520,
+       "length": 49,
+       "sha256": "8df0c07d7c23e966c202cf260212007c7c87ac2d5281d977c374f34524fd22bf"
+      }
+     ]
+    },
+    "district": {
+     "pcode": "BD3026",
+     "bn": "ঢাকা",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "HE-niport-hq",
+      "offset": 1520,
+      "length": 49,
+      "sha256": "8df0c07d7c23e966c202cf260212007c7c87ac2d5281d977c374f34524fd22bf"
+     }
+    ]
+   },
+   "parent": "mefwd",
+   "focus": {
+    "bn": "প্রজনন স্বাস্থ্য, পুষ্টি ও পরিবার পরিকল্পনা নিয়ে কার্যক্রমভিত্তিক গবেষণা ও জরিপ; কর্মীদের প্রশিক্ষণও।",
+    "approved": false,
+    "page": {
+     "source": "HE-niport-history",
+     "offset": 2001,
+     "length": 69,
+     "sha256": "4283de3783745ed40406a63cb65c872eb4af62e2c86c037fc496ff0adc1ab93f"
+    }
+   },
+   "events": [
+    {
+     "date": "1977",
+     "event": "NIPORT came into being",
+     "cite": [
+      {
+       "source": "HE-niport-history",
+       "offset": 1574,
+       "length": 83,
+       "sha256": "3856e4c21fa4991f2e59b9e5cc93c1247acfda253302d9f90e7a8ceab9a62243"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader HE6"
+  },
+  "icddrb": {
+   "tab": "health",
+   "abbr": "icddr,b",
+   "nameEn": "International Centre for Diarrhoeal Disease Research, Bangladesh",
+   "name": {
+    "bn": "আন্তর্জাতিক উদরাময় গবেষণা কেন্দ্র, বাংলাদেশ",
+    "approved": true,
+    "basis": "its Act's Bengali name: its own site gives none (decision 7)",
+    "cite": [
+     {
+      "source": "HE-act-1417-s3",
+      "offset": 594,
+      "length": 123,
+      "sha256": "217aaf1898ef1a786918ba7864e1931d07b00c3c80f892ee66507ceed3df0691"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1960,
+    "events": [
+     0
+    ],
+    "cite": [
+     {
+      "source": "HE-icddrb-timeline",
+      "offset": 8597,
+      "length": 75,
+      "sha256": "9cf76344bf64713b009df6e982de16391d22fc9db5d78acce841da7de2fce0d9"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)"
+   },
+   "currentForm": {
+    "year": 1978,
+    "events": [
+     1,
+     2
+    ],
+    "cite": [
+     {
+      "source": "HE-icddrb-timeline",
+      "offset": 7859,
+      "length": 30,
+      "sha256": "8672e05d1eb53920d3893fb738171880fe1bc8e56aa83e7ae85f2e0e1a19c9ec"
+     },
+     {
+      "source": "HE-act-580",
+      "offset": 3282,
+      "length": 88,
+      "sha256": "5d07cd3fc7e6ae25c99c9da358ef2c1caf5e72f3ea97b94276609212b53c38c0"
+     }
+    ],
+    "rule": "re-formed under a new name or Act (decision 3); later Acts that only continue the body are not"
+   },
+   "address": {
+    "area": null,
+    "district": {
+     "pcode": "BD3026",
+     "bn": "ঢাকা",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "HE-icddrb-contactart",
+      "offset": 922,
+      "length": 33,
+      "sha256": "708489b8f2f09c60b4b003359df424a8ee7c59c17568f3594be4b440eeec6520"
+     }
+    ],
+    "en": {
+     "text": "68, Shaheed Tajuddin Ahmed Sarani, Mohakhali, Dhaka 1212, Bangladesh",
+     "cite": [
+      {
+       "source": "HE-icddrb-contactart",
+       "offset": 922,
+       "length": 33,
+       "sha256": "708489b8f2f09c60b4b003359df424a8ee7c59c17568f3594be4b440eeec6520"
+      }
+     ]
+    }
+   },
+   "parentAbsent": "an autonomous international body governed by its own Board under its Act: no ministry (RES-1, HE7)",
+   "focus": {
+    "bn": "ডায়রিয়াজনিত রোগ, পুষ্টি ও অন্যান্য জনস্বাস্থ্য সমস্যা।",
+    "approved": false,
+    "page": {
+     "source": "HE-act-1417-s5",
+     "offset": 630,
+     "length": 67,
+     "sha256": "f070ea9c25d9e840634c148035955fbfcbe4abf99eaeeb1768cb8c0a4bd2b242"
+    }
+   },
+   "act": {
+    "title": "আন্তর্জাতিক উদরাময় গবেষণা কেন্দ্র, বাংলাদেশ, আইন, ২০২২ (২০২২ সনের ২১ নং আইন)",
+    "cite": [
+     {
+      "source": "HE-act-1417",
+      "offset": 3006,
+      "length": 55,
+      "sha256": "2bc2c204b53b195911a7fabc1711ae66aca733e766cc3207999d149913d94052"
+     }
+    ]
+   },
+   "events": [
+    {
+     "date": "1960",
+     "event": "Cholera Research Laboratory (CRL), its forerunner, launched in Dhaka",
+     "cite": [
+      {
+       "source": "HE-icddrb-timeline",
+       "offset": 8597,
+       "length": 75,
+       "sha256": "9cf76344bf64713b009df6e982de16391d22fc9db5d78acce841da7de2fce0d9"
+      }
+     ]
+    },
+    {
+     "date": "1978",
+     "event": "Became icddr,b through a Government Ordinance",
+     "cite": [
+      {
+       "source": "HE-icddrb-timeline",
+       "offset": 7859,
+       "length": 30,
+       "sha256": "8672e05d1eb53920d3893fb738171880fe1bc8e56aa83e7ae85f2e0e1a19c9ec"
+      }
+     ]
+    },
+    {
+     "date": "1978-12-09",
+     "event": "Ordinance No. LI of 1978 promulgated to establish the Centre (date from the bdlaws page header)",
+     "cite": [
+      {
+       "source": "HE-act-580",
+       "offset": 3282,
+       "length": 88,
+       "sha256": "5d07cd3fc7e6ae25c99c9da358ef2c1caf5e72f3ea97b94276609212b53c38c0"
+      }
+     ]
+    },
+    {
+     "date": "1979",
+     "event": "WHO meeting in Geneva: memorandum of understanding signed by 26 countries and agencies recognising icddr,b",
+     "cite": [
+      {
+       "source": "HE-icddrb-timeline",
+       "offset": 7951,
+       "length": 69,
+       "sha256": "a89f7a4220685066347ee2c112a44c6b471470434f39c4b631d3a148d6b05ba6"
+      }
+     ]
+    },
+    {
+     "date": "2022",
+     "event": "icddr,b Act 2022 passed by Parliament",
+     "cite": [
+      {
+       "source": "HE-icddrb-timeline",
+       "offset": 3538,
+       "length": 57,
+       "sha256": "9bc61e84033e7faa36820baee19f909e93fa5d4b72bc54a6853ce18bdaa65a9f"
+      }
+     ]
+    },
+    {
+     "date": "2022-11-20",
+     "event": "Act No. 21 of 2022 repeals and replaces the 1978 Ordinance; the Centre continues as if established under it (date from the bdlaws page header)",
+     "cite": [
+      {
+       "source": "HE-act-1417",
+       "offset": 3189,
+       "length": 66,
+       "sha256": "f6ad66bf2172eba49eb24f1b70ef6abe083369f7eaaeab0c85c541eb5e8316b4"
+      }
+     ]
+    }
+   ],
+   "kept": "an international research centre under its own Act (kept by decision 1)",
+   "from": "RES-1 reader HE7"
+  },
+  "bids": {
+   "tab": "socio",
+   "abbr": "BIDS",
+   "nameEn": "Bangladesh Institute of Development Studies",
+   "name": {
+    "bn": "বাংলাদেশ উন্নয়ন গবেষণা প্রতিষ্ঠান",
+    "approved": true,
+    "basis": "as the institute writes it (decision 7: approved by rule)",
+    "cite": [
+     {
+      "source": "SE-bids-home",
+      "offset": 2134,
+      "length": 45,
+      "sha256": "11766c3f72383b66a41f70cc33847896376c80ae5afe8ff0d127814b1a93eb67"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1957,
+    "events": [
+     0
+    ],
+    "cite": [
+     {
+      "source": "SE-bids-about",
+      "offset": 3967,
+      "length": 92,
+      "sha256": "674d1e4297782d251f83a467db3d833ea1d38e7299c6779bf0ecf512aab3c34e"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)",
+    "judgement": "its own page traces it to PIDE, established in Pakistan in 1957 and moved to Dhaka in 1971; the 1974 Act (s. 19) also dates BIDE to a 1964 notification"
+   },
+   "currentForm": {
+    "year": 1974,
+    "events": [
+     4,
+     5
+    ],
+    "cite": [
+     {
+      "source": "SE-lawd-468",
+      "offset": 319,
+      "length": 23,
+      "sha256": "1bf077cdca3918589f210dfa3fbd071ca089ffe7ef7495933104239b0ef7b4cf"
+     },
+     {
+      "source": "SE-bids-about",
+      "offset": 4512,
+      "length": 73,
+      "sha256": "4ad1cf389ecd289efe72006906d292f92d91a27ae4a7b28404f047b7ee231551"
+     }
+    ],
+    "rule": "re-formed under a new name or Act (decision 3); later Acts that only continue the body are not"
+   },
+   "address": {
+    "area": null,
+    "district": {
+     "pcode": "BD3026",
+     "bn": "ঢাকা",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "SE-lawd-1208",
+      "offset": 2261,
+      "length": 30,
+      "sha256": "4bcbdd5335ea460ac9e5562486492c58268cdeec72714685b0194857193e8f0c"
+     }
+    ],
+    "en": {
+     "text": "E-17 Agargaon, Sher-e-Bangla Nagar, Dhaka",
+     "cite": [
+      {
+       "source": "SE-bids-contact",
+       "offset": 1838,
+       "length": 59,
+       "sha256": "5878f2893efd2ecd26310d034eb3cdad7c4fdbc7751d65c692fabdbbe7d82e64"
+      }
+     ]
+    }
+   },
+   "parent": "planning",
+   "focus": {
+    "bn": "বাংলাদেশের উন্নয়ন নিয়ে নীতি-গবেষণা: অর্থনীতি, দারিদ্র্য, কৃষি, জনসংখ্যা, শ্রম ও সামাজিক খাত।",
+    "approved": false,
+    "page": {
+     "source": "SE-bids-about",
+     "offset": 1121,
+     "length": 55,
+     "sha256": "9f6dab350a0cf1ccd65ba01865385eed2926bc0ceeba9785c4d26f2e6d23525d"
+    }
+   },
+   "act": {
+    "title": "বাংলাদেশ উন্নয়ন গবেষণা প্রতিষ্ঠান আইন, ২০১৭ (২০১৭ সনের ৮ নং আইন)",
+    "cite": [
+     {
+      "source": "SE-lawd-1208",
+      "offset": 240,
+      "length": 44,
+      "sha256": "9042906d0b55d8eafdb771736a2c936b17860bd1dbc539cf50259a97c978dba4"
+     }
+    ]
+   },
+   "events": [
+    {
+     "date": "1957-06",
+     "event": "Origin: established in Pakistan as the Pakistan Institute of Development Economics (PIDE)",
+     "cite": [
+      {
+       "source": "SE-bids-about",
+       "offset": 3967,
+       "length": 92,
+       "sha256": "674d1e4297782d251f83a467db3d833ea1d38e7299c6779bf0ecf512aab3c34e"
+      }
+     ]
+    },
+    {
+     "date": "1964-05-01",
+     "event": "The 1974 Act (s.19) says the Bangladesh Institute of Development Economics was established by a Government of Pakistan notification of this date",
+     "cite": [
+      {
+       "source": "SE-lawd-468",
+       "offset": 16822,
+       "length": 62,
+       "sha256": "718efbfd0e54056fec0c29e1a4308cbe6ab4a55f591df01a8d5d0e66c64f897a"
+      }
+     ]
+    },
+    {
+     "date": "1971-01",
+     "event": "PIDE moved to Dhaka",
+     "cite": [
+      {
+       "source": "SE-bids-about",
+       "offset": 4319,
+       "length": 44,
+       "sha256": "49798b9efbdd1f2ef8f6ff7557b87c75efa5db8fa79fdd47111a3970be29c4bc"
+      }
+     ]
+    },
+    {
+     "date": "1971",
+     "event": "After independence called the Bangladesh Institute of Development Economics (BIDE); year given only as \"after 1971\"",
+     "cite": [
+      {
+       "source": "SE-bids-about",
+       "offset": 4419,
+       "length": 81,
+       "sha256": "eb812cc11d86f54752595fbc9ff6227af229ab8cdf5ededd5ebfcad9017a134d"
+      }
+     ]
+    },
+    {
+     "date": "1974-02-16",
+     "event": "The Bangladesh Institute of Development Studies Act, 1974 (Act No. XXIX of 1974): parliamentary charter; renamed BIDS",
+     "cite": [
+      {
+       "source": "SE-lawd-468",
+       "offset": 319,
+       "length": 23,
+       "sha256": "1bf077cdca3918589f210dfa3fbd071ca089ffe7ef7495933104239b0ef7b4cf"
+      }
+     ]
+    },
+    {
+     "date": "1974",
+     "event": "Institute’s own account of the same charter and renaming",
+     "cite": [
+      {
+       "source": "SE-bids-about",
+       "offset": 4512,
+       "length": 73,
+       "sha256": "4ad1cf389ecd289efe72006906d292f92d91a27ae4a7b28404f047b7ee231551"
+      }
+     ]
+    },
+    {
+     "date": "1982",
+     "event": "Population Study Centre merged with BIDS (and in 1983 the National Foundation for Research on Human Resources Development)",
+     "cite": [
+      {
+       "source": "SE-bids-about",
+       "offset": 5102,
+       "length": 51,
+       "sha256": "b229a5f7c758153029c5d6b3d9353d5a21a93f8112c07925b75b4fed25239281"
+      }
+     ]
+    },
+    {
+     "date": "1984",
+     "event": "Amendment Ordinance No. XXXI of 1984 renamed the Act’s body “Bangladesh Unnayan Gobeshona Protishthan” (date not given on bdlaws)",
+     "cite": [
+      {
+       "source": "SE-lawd-468",
+       "offset": 7131,
+       "length": 100,
+       "sha256": "4d153557fad8c0ed6284552e8c253df83bfbc842f550c987a14145b1b968f10f"
+      }
+     ]
+    },
+    {
+     "date": "2017-03-11",
+     "event": "Re-enacted by বাংলাদেশ উন্নয়ন গবেষণা প্রতিষ্ঠান আইন, ২০১৭ (Act No. 8 of 2017), repealing the 1974 Act",
+     "cite": [
+      {
+       "source": "SE-lawd-1208",
+       "offset": 308,
+       "length": 18,
+       "sha256": "090f7b914f240aae2544e6e77706d73099d9466fe4f736bef095f822ce48e665"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader SE1"
+  },
+  "biiss": {
+   "tab": "socio",
+   "abbr": "BIISS",
+   "nameEn": "Bangladesh Institute of International and Strategic Studies",
+   "name": {
+    "bn": "বাংলাদেশ ইনস্টিটিউট অব ইন্টারন্যাশনাল এন্ড স্ট্র্যাটেজিক স্টাডিজ",
+    "approved": true,
+    "basis": "its Act's Bengali name: its own site is in English only (decision 7)",
+    "cite": [
+     {
+      "source": "SE-lawd-1144",
+      "offset": 240,
+      "length": 74,
+      "sha256": "06282d7aac1c232e16289d194b3caaaac3b0366fc5ae39f932bb43e9a7e763a6"
+     }
+    ]
+   },
+   "founded": {
+    "year": 1978,
+    "events": [
+     0
+    ],
+    "cite": [
+     {
+      "source": "SE-biiss-about",
+      "offset": 2254,
+      "length": 84,
+      "sha256": "aaef0f2c0ddace85ae0296c24ebd9c03db2ca6b5d23c245b0c1cd1a8015ce21a"
+     }
+    ],
+    "rule": "the first year the institute itself began, through renamings (decision 3)",
+    "conflict": "its own page dates the 1984 Ordinance 28 March, bdlaws 17 April: the same year, so a year-only card settles it (decision 4)"
+   },
+   "currentForm": {
+    "year": 1984,
+    "events": [
+     1,
+     2
+    ],
+    "cite": [
+     {
+      "source": "SE-biiss-history",
+      "offset": 3765,
+      "length": 82,
+      "sha256": "95cdf15517499bc3232dd4bf5817ed532519fa306a6c7234de24b33b88abd020"
+     },
+     {
+      "source": "SE-lawd-668",
+      "offset": 351,
+      "length": 20,
+      "sha256": "28a699122b52b66b5223bda2240ab2e8679ce1ffabd479699a3e9e61876ee1d9"
+     }
+    ],
+    "rule": "re-formed under a new name or Act (decision 3); later Acts that only continue the body are not"
+   },
+   "address": {
+    "area": null,
+    "district": {
+     "pcode": "BD3026",
+     "bn": "ঢাকা",
+     "approved": true,
+     "from": "docs/shared/bangladesh-districts.json"
+    },
+    "cite": [
+     {
+      "source": "SE-lawd-1144",
+      "offset": 2212,
+      "length": 31,
+      "sha256": "fb99be62edc56427c30a8ce86fbef6064d5da541f56cd63371f47556393ecccf"
+     }
+    ],
+    "en": {
+     "text": "1/46, Old Elephant Road, Ramna, Dhaka",
+     "cite": [
+      {
+       "source": "SE-biiss-contact",
+       "offset": 2433,
+       "length": 42,
+       "sha256": "b2af93c6e8514645abb39028f388ac76b1eb59b2fc4a4ca6eee45717d5f26307"
+      }
+     ]
+    }
+   },
+   "parent": "mofa",
+   "focus": {
+    "bn": "আন্তর্জাতিক সম্পর্ক, নিরাপত্তা, প্রতিরক্ষা ও কৌশলগত বিষয়ে গবেষণা ও নীতি-পরামর্শ।",
+    "approved": false,
+    "page": {
+     "source": "SE-biiss-about",
+     "offset": 2368,
+     "length": 96,
+     "sha256": "d781cda39fbe6d05851f7dbdc407fb154b6176314383510682399104da8050d5"
+    }
+   },
+   "act": {
+    "title": "বাংলাদেশ ইনস্টিটিউট অব ইন্টারন্যাশনাল এন্ড স্ট্র্যাটেজিক স্টাডিজ আইন, ২০১৩ (২০১৩ সনের ৬৬ নং আইন)",
+    "cite": [
+     {
+      "source": "SE-lawd-1144",
+      "offset": 240,
+      "length": 74,
+      "sha256": "06282d7aac1c232e16289d194b3caaaac3b0366fc5ae39f932bb43e9a7e763a6"
+     }
+    ]
+   },
+   "events": [
+    {
+     "date": "1978-06-25",
+     "event": "Established as a statutory body of the Government",
+     "cite": [
+      {
+       "source": "SE-biiss-about",
+       "offset": 2254,
+       "length": 84,
+       "sha256": "aaef0f2c0ddace85ae0296c24ebd9c03db2ca6b5d23c245b0c1cd1a8015ce21a"
+      }
+     ]
+    },
+    {
+     "date": "1984-03-28",
+     "event": "BIISS’s own page: the BIISS Ordinance (No. XXVII of 1984) published on this date",
+     "cite": [
+      {
+       "source": "SE-biiss-history",
+       "offset": 3765,
+       "length": 82,
+       "sha256": "95cdf15517499bc3232dd4bf5817ed532519fa306a6c7234de24b33b88abd020"
+      }
+     ]
+    },
+    {
+     "date": "1984-04-17",
+     "event": "bdlaws dates the same Ordinance No. XXVII of 1984 to 17 April 1984",
+     "cite": [
+      {
+       "source": "SE-lawd-668",
+       "offset": 351,
+       "length": 20,
+       "sha256": "28a699122b52b66b5223bda2240ab2e8679ce1ffabd479699a3e9e61876ee1d9"
+      }
+     ]
+    },
+    {
+     "date": "2013-11-27",
+     "event": "Re-enacted by the 2013 Act (No. 66 of 2013), repealing the 1984 Ordinance",
+     "cite": [
+      {
+       "source": "SE-lawd-1144",
+       "offset": 339,
+       "length": 20,
+       "sha256": "a4c031b2977caf401966d879ed3672ec92397f676903bda6845932d3b71d9968"
+      }
+     ]
+    }
+   ],
+   "from": "RES-1 reader SE2"
+  }
+ },
+ "dropped": {
+  "AG8": {
+   "nameBn": "মৃত্তিকা সম্পদ উন্নয়ন ইনস্টিটিউট",
+   "nameEn": null,
+   "abbr": "এসআরডিআই (SRDI)",
+   "reason": "its own page puts soil and land survey, soil testing and fertiliser advice first: research is not its main work"
+  },
+  "AG14": {
+   "nameBn": "তুলা উন্নয়ন বোর্ড",
+   "nameEn": null,
+   "abbr": "সিডিবি (CDB)",
+   "reason": "a development board: research runs together with cotton extension and seed production under one management"
+  },
+  "ST9": {
+   "nameBn": "বাংলাদেশ ভূতাত্ত্বিক জরিপ অধিদপ্তর",
+   "nameEn": null,
+   "abbr": "GSB (জিএসবি)",
+   "reason": "a survey department: its page lists mapping and exploration before research (its founding year was also unverified)"
+  },
+  "ST10": {
+   "nameBn": "বাংলাদেশ জ্বালানি ও বিদ্যুৎ গবেষণা কাউন্সিল (বিইপিআরসি)",
+   "nameEn": null,
+   "abbr": "BEPRC (বিইপিআরসি)",
+   "reason": "a council that funds and coordinates energy research rather than doing it; only BARC is kept as such a body (decision 1)"
+  },
+  "ST11": {
+   "nameBn": "ইনস্টিটিউট অব ওয়াটার মডেলিং (আইডব্লিউএম)",
+   "nameEn": "Institute of Water Modelling",
+   "abbr": "IWM (আইডব্লিউএম)",
+   "reason": "left out by the user (decision 1)"
+  },
+  "ST13": {
+   "nameBn": "বাংলাদেশ পেট্রোলিয়াম ইন্সটিটিউট",
+   "nameEn": "Bangladesh Petroleum Institute",
+   "abbr": "BPI (বিপিআই)",
+   "reason": "a training institute: training first, research one of its functions (decision 1: training academies)"
+  },
+  "ST14": {
+   "nameBn": "জাতীয় কম্পিউটার প্রশিক্ষণ ও গবেষণা একাডেমী (নেকটার)",
+   "nameEn": null,
+   "abbr": "NACTAR (নেকটার)",
+   "reason": "a training academy (decision 1)"
+  },
+  "ST15": {
+   "nameBn": "সেন্টার ফর এনভায়রনমেন্টাল এন্ড জিওগ্রাফিক ইনফরমেশন সার্ভিসেস",
+   "nameEn": null,
+   "abbr": "CEGIS (the MoWR page prints its Bengali abbreviation garbled: «ঈঊএওঝ»)",
+   "reason": "left out by the user (decision 1); not verifiable in RES-1 either"
+  },
+  "HE2": {
+   "nameBn": "জনস্বাস্থ্য ইনস্টিটিউট",
+   "nameEn": "Institute of Public Health",
+   "abbr": "IPH",
+   "reason": "a public-health laboratory and production institute: diagnosis, surveillance and ORS production come before research"
+  },
+  "HE3": {
+   "nameBn": "জনস্বাস্থ্য পুষ্টি প্রতিষ্ঠান",
+   "nameEn": null,
+   "abbr": "আইপিএইচএন",
+   "reason": "runs national nutrition programmes, surveys and training; research is one task among them"
+  },
+  "HE4": {
+   "nameBn": "জাতীয় প্রতিষেধক ও সামাজিক চিকিৎসা প্রতিষ্ঠান (নিপসম)",
+   "nameEn": "National Institute of Preventive and Social Medicine",
+   "abbr": "NIPSOM",
+   "reason": "a postgraduate teaching and training institute"
+  },
+  "HE5": {
+   "nameBn": "বাংলাদেশ মেডিকেল রিসার্চ কাউন্সিল",
+   "nameEn": "Bangladesh Medical Research Council",
+   "abbr": "BMRC",
+   "reason": "a council that funds and coordinates health research rather than doing it; only BARC is kept as such a body (decision 1)"
+  },
+  "HE8": {
+   "nameBn": "বাংলাদেশ শিশু ও মাতৃস্বাস্থ্য ইনস্টিটিউট",
+   "nameEn": "Institute of Child and Mother Health",
+   "abbr": "ICMH",
+   "reason": "a hospital-institute (decision 1: hospitals)"
+  },
+  "HE9": {
+   "nameBn": "জাতীয় ক্যান্সার গবেষণা ইনস্টিটিউট ও হাসপাতাল",
+   "nameEn": "National Institute of Cancer Research & Hospital",
+   "abbr": "NICRH",
+   "reason": "a hospital (decision 1)"
+  },
+  "SE3": {
+   "nameBn": "বাংলাদেশ পল্লী উন্নয়ন একাডেমি (বার্ড), কুমিল্লা",
+   "nameEn": "Bangladesh Academy for Rural Development",
+   "abbr": "BARD",
+   "reason": "a rural-development academy: training first (decision 1: training academies)"
+  },
+  "SE4": {
+   "nameBn": "পল্লী উন্নয়ন একাডেমী (আরডিএ), বগুড়া",
+   "nameEn": "Rural Development Academy, Bogura",
+   "abbr": "RDA",
+   "reason": "a rural-development academy (decision 1)"
+  },
+  "SE5": {
+   "nameBn": "পল্লী উন্নয়ন একাডেমি (আরডিএ), গোপালগঞ্জ",
+   "nameEn": "Rural Development Academy, Gopalganj",
+   "abbr": "RDA Gopalganj",
+   "reason": "a rural-development academy (decision 1)"
+  },
+  "SE6": {
+   "nameBn": "পল্লী উন্নয়ন একাডেমি (আরডিএ), রংপুর",
+   "nameEn": "Rural Development Academy, Rangpur",
+   "abbr": "RDA Rangpur",
+   "reason": "a rural-development academy (decision 1)"
+  },
+  "SE7": {
+   "nameBn": "পল্লী উন্নয়ন একাডেমী, জামালপুর",
+   "nameEn": "Rural Development Academy, Jamalpur",
+   "abbr": "RDA Jamalpur",
+   "reason": "a rural-development academy (decision 1)"
+  },
+  "SE8": {
+   "nameBn": "জাতীয় পরিকল্পনা ও উন্নয়ন একাডেমি",
+   "nameEn": "National Academy for Planning and Development",
+   "abbr": "NAPD",
+   "reason": "a training academy (decision 1)"
+  },
+  "SE9": {
+   "nameBn": "বাংলাদেশ লোক-প্রশাসন প্রশিক্ষণ কেন্দ্র",
+   "nameEn": "Bangladesh Public Administration Training Centre",
+   "abbr": "BPATC",
+   "reason": "a training academy, named in decision 1"
+  },
+  "SE10": {
+   "nameBn": "জাতীয় স্থানীয় সরকার ইনস্টিটিউট",
+   "nameEn": "National Institute of Local Government",
+   "abbr": "NILG",
+   "reason": "a training institute for local government (decision 1)"
+  },
+  "SE11": {
+   "nameBn": "জাতীয় শিক্ষা ব্যবস্থাপনা একাডেমি",
+   "nameEn": "National Academy for Educational Management",
+   "abbr": "NAEM",
+   "reason": "a training academy (decision 1)"
+  },
+  "SE12": {
+   "nameBn": "জাতীয় প্রাথমিক শিক্ষা একাডেমি",
+   "nameEn": "National Academy for Primary Education",
+   "abbr": "NAPE",
+   "reason": "a training academy (decision 1)"
+  },
+  "SE13": {
+   "nameBn": "প্রেস ইনস্টিটিউট বাংলাদেশ",
+   "nameEn": "Press Institute of Bangladesh",
+   "abbr": "PIB",
+   "reason": "a journalism training and publication institute (decision 1: training)"
+  },
+  "SE14": {
+   "nameBn": "বাংলা একাডেমি",
+   "nameEn": "Bangla Academy",
+   "abbr": null,
+   "reason": "a language and culture body, named in decision 1"
+  },
+  "SE15": {
+   "nameBn": "আন্তর্জাতিক মাতৃভাষা ইনস্টিটিউট",
+   "nameEn": "International Mother Language Institute",
+   "abbr": "IMLI",
+   "reason": "a language body (decision 1: language and culture bodies)"
+  },
+  "SE16": {
+   "nameBn": "কবি নজরুল ইনস্টিটিউট",
+   "nameEn": "Nazrul Institute",
+   "abbr": null,
+   "reason": "a culture body, named in decision 1"
+  },
+  "SE17": {
+   "nameBn": "বাংলাদেশ ইনস্টিটিউট অব পার্লামেন্টারী স্ট্যাডিজ",
+   "nameEn": "Bangladesh Institute of Parliamentary Studies",
+   "abbr": "BIPS",
+   "reason": "a parliamentary training and research institute whose own site did not answer: research is not shown to be its main work"
+  },
+  "SE18": {
+   "nameBn": null,
+   "nameEn": "Bangladesh Institute of Bank Management",
+   "abbr": "BIBM",
+   "reason": "left out by the user (decision 1)"
+  },
+  "SE19": {
+   "nameBn": null,
+   "nameEn": "Institute of Public Finance Bangladesh",
+   "abbr": "IPF",
+   "reason": "a training institute: training in public financial management first (decision 1)"
+  }
+ },
+ "pending": [
+  "bsrti.currentForm: held — its present form is unsettled: renamed BSRTI when the Sericulture Board was formed (its own page 1978, the board's ordinance 1977), made statutory in 2003, and merged into the Sericulture Development Board by Act 13 of 2013, which repealed its Act (RES-1 flag); the Act-first rule gives 1977 for the board's ordinance but not the year the institute took this form",
+  "bsrti.address.area: null — an official page states only the district",
+  "rri.address.area: null — an official page states only the district",
+  "iedcr.address.area: null — its address is in English only; no Bengali locality on an official page",
+  "icddrb.address.area: null — its address is in English only; no Bengali locality on an official page",
+  "bids.address.area: null — its address is in English only; no Bengali locality on an official page",
+  "biiss.address.area: null — its address is in English only; no Bengali locality on an official page"
+ ]
+}

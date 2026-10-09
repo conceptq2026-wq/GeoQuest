@@ -1,0 +1,1496 @@
+{
+ "_about": "Every page bangladesh-research-institutes cites, pinned by its download (size, SHA-256) and the text its citations point into (tools/lib/html-text.mjs, or pdftotext for a PDF; e-mail addresses removed). Read through the RES-1/RES-2 fetch helper (the repo User-Agent, robots.txt, blocked hosts); cached in tools/.cache/research-institutes/pages/ (out of git).",
+ "sources": {
+  "AG-barc-bg": {
+   "url": "https://barc.gov.bd/pages/static-pages/6922e0fb933eb65569e296a1",
+   "final": "https://barc.gov.bd/pages/static-pages/6922e0fb933eb65569e296a1",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:02.084Z",
+   "size": 90746,
+   "sha256": "ffac7d21361c8316b9f89379a9e681f5dbb9b41eaab51f3059db1fbbaa6fec04",
+   "text": {
+    "size": 13053,
+    "sha256": "14b7f1e358c24af0640adcfc333951d54c26ecf4db18a7b1eb365afc5dbc9631"
+   }
+  },
+  "AG-barc-contact": {
+   "url": "https://barc.gov.bd/pages/static-pages/6922e0a6933eb65569e28011",
+   "final": "https://barc.gov.bd/pages/static-pages/6922e0a6933eb65569e28011",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:03.162Z",
+   "size": 79087,
+   "sha256": "485aa7bbef572faa0c31a61dbdd15a72a0cb2104aba0d18aa16e0b931dd965e6",
+   "text": {
+    "size": 8139,
+    "sha256": "6d4b4446e077b4a1604bda713c178bbce4562f7f3411a9c7d0241cea6c50080a"
+   }
+  },
+  "AG-barc-home": {
+   "url": "https://barc.gov.bd/",
+   "final": "https://barc.gov.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:21:46.516Z",
+   "size": 199521,
+   "sha256": "ebafe4b483bb27bf47dbbaac98c73632beae2f344b31cddfb78803fba3d378be",
+   "text": {
+    "size": 16539,
+    "sha256": "095b8a41654fca38ad2a7a10603d94f89b038a594adace656237448bed1994f6"
+   }
+  },
+  "AG-barc-intro": {
+   "url": "https://barc.gov.bd/pages/static-pages/6922de7d933eb65569e1afec",
+   "final": "https://barc.gov.bd/pages/static-pages/6922de7d933eb65569e1afec",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:01.044Z",
+   "size": 92434,
+   "sha256": "1b51c5815162ba9d5f7a4b756ea4649f3380f5f52f0eb13136e8f0ac3b047c3f",
+   "text": {
+    "size": 14165,
+    "sha256": "ed00811adada8d49b48a52498af14649394f8ddd0b0402956b7fd0a29161a852"
+   }
+  },
+  "AG-barc-nars": {
+   "url": "https://barc.gov.bd/pages/static-pages/6922de68933eb65569e1a71e",
+   "final": "https://barc.gov.bd/pages/static-pages/6922de68933eb65569e1a71e",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:00.003Z",
+   "size": 249272,
+   "sha256": "275a8c14dee4e1ddf7d5161e41c9e438e0568e137ac790699c7425d76dd817b3",
+   "text": {
+    "size": 66049,
+    "sha256": "e666a496e3aab52a6367fd209db193244a5051a8a22831f211f0ecaabf192ab6"
+   }
+  },
+  "AG-bari-act": {
+   "url": "https://bari.gov.bd/pages/static-pages/6922df50933eb65569e212c2",
+   "final": "https://bari.gov.bd/pages/static-pages/6922df50933eb65569e212c2",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:18.746Z",
+   "size": 81126,
+   "sha256": "f09d14db866b136c9caf290b1acf251fde541a4915e4953a45549f04016726a0",
+   "text": {
+    "size": 7737,
+    "sha256": "f12a4f1a5a8fab5057b640a4f064f6b95e9276cf8828ca3df39a142e9f38ada8"
+   }
+  },
+  "AG-bari-bg": {
+   "url": "https://bari.gov.bd/pages/static-pages/6922dd17933eb65569e1379b",
+   "final": "https://bari.gov.bd/pages/static-pages/6922dd17933eb65569e1379b",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:17.704Z",
+   "size": 89543,
+   "sha256": "8a64ac57e5ebf339f9f2a5b0aa29cfc77c1d1b808713b91487d1485015e3b08d",
+   "text": {
+    "size": 11722,
+    "sha256": "a50310f854c7a9c35113ff7feca0db5d4d562d67ad91b60bb90ec3bac2e03548"
+   }
+  },
+  "AG-bari-home": {
+   "url": "https://bari.gov.bd/",
+   "final": "https://bari.gov.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:40.904Z",
+   "size": 146190,
+   "sha256": "5569970f613a9f3f19a49b394dbc47d0df319e9016599d1677f8d7fc7de27e98",
+   "text": {
+    "size": 18052,
+    "sha256": "87af61ab9188dad543856858e7eab44f0ec0b934b1ef74ffaa9f3d9a165bd07d"
+   }
+  },
+  "AG-bfri-addr": {
+   "url": "https://bfri.gov.bd/pages/static-pages/6922de38933eb65569e191a4",
+   "final": "https://bfri.gov.bd/pages/static-pages/6922de38933eb65569e191a4",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:27:21.567Z",
+   "size": 95064,
+   "sha256": "b1fc94561e2447e6e52feec1422016447c8d225a5fac7c7c85b0ba0bfc9ce226",
+   "text": {
+    "size": 10745,
+    "sha256": "c131552286c276838dad28a53bb002a91b0369bbe478e8458ba16124ae58a1e5"
+   }
+  },
+  "AG-bfri-home": {
+   "url": "https://bfri.gov.bd/",
+   "final": "https://bfri.gov.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:51.630Z",
+   "size": 157758,
+   "sha256": "a532ee2f6dfaa11fe304dbbbef3fbbaab5f2fe325153e18ce9c39e9dde795b1b",
+   "text": {
+    "size": 30349,
+    "sha256": "1645bb76de3e8ef02d54fbb225e0887bd131d906a8d2f50c19c6d3c4b7eb64e5"
+   }
+  },
+  "AG-bfri-intro": {
+   "url": "https://bfri.gov.bd/pages/static-pages/6922dfef933eb65569e24b80",
+   "final": "https://bfri.gov.bd/pages/static-pages/6922dfef933eb65569e24b80",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:27:22.699Z",
+   "size": 98909,
+   "sha256": "067636e584facd434b57d9969e79493f1b02c24a6b84954f5016fb413deed5b6",
+   "text": {
+    "size": 12133,
+    "sha256": "e2313c7fe2df413872d076e9b23f360ba5515c3afecccc753e04d7bcafce63f6"
+   }
+  },
+  "AG-bina-home": {
+   "url": "https://bina.gov.bd/",
+   "final": "https://bina.gov.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:44.643Z",
+   "size": 168089,
+   "sha256": "d8ded048e03fdb960e9c28b8d5eef64f1428cf8c6c2f1d68ec9cbd52649e8365",
+   "text": {
+    "size": 21647,
+    "sha256": "5a04041d1a478f54fcade6c83dc1074e0adc535b90f77c2693e287a713800241"
+   }
+  },
+  "AG-bina-intro": {
+   "url": "https://bina.gov.bd/pages/static-pages/6922e13c933eb65569e2b096",
+   "final": "https://bina.gov.bd/pages/static-pages/6922e13c933eb65569e2b096",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:26.426Z",
+   "size": 133804,
+   "sha256": "7979a97fc1456d3581fc43ee86551165d10ab9f56c3ec7e1c38cfe35390090ec",
+   "text": {
+    "size": 23166,
+    "sha256": "a5eed29ba6f40106123ccbc687feec4b49dc65154ff2f48b1076ea4bf717fd99"
+   }
+  },
+  "AG-bina-loc": {
+   "url": "https://bina.gov.bd/pages/office-contents/6922d89d933eb65569df932d",
+   "final": "https://bina.gov.bd/pages/office-contents/6922d89d933eb65569df932d",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:28:30.071Z",
+   "size": 110190,
+   "sha256": "8bc991d7ebd0efac7623ea4bcf333f50319e458270c75cd04ab0d80ecd971818",
+   "text": {
+    "size": 12707,
+    "sha256": "cfd05da699f64c8f334aa80dedbbc2e5feb846f7defa3a334a1fd9d90364bab9"
+   }
+  },
+  "AG-birtan-chrono": {
+   "url": "https://birtan.gov.bd/pages/static-pages/6922df71933eb65569e22062",
+   "final": "https://birtan.gov.bd/pages/static-pages/6922df71933eb65569e22062",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:27:32.261Z",
+   "size": 128785,
+   "sha256": "7611e51a381f2168a43b6a119b81a78e3543e39dcb67bb9624f8e4477d058786",
+   "text": {
+    "size": 24321,
+    "sha256": "cb34f8f51f2737bfbc68b16a2f4b53e706d5ebcdbc3f2b639cf0c98be7b7dc20"
+   }
+  },
+  "AG-birtan-hist": {
+   "url": "https://birtan.gov.bd/pages/static-pages/6922dcfc933eb65569e130af",
+   "final": "https://birtan.gov.bd/pages/static-pages/6922dcfc933eb65569e130af",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:27:31.216Z",
+   "size": 98715,
+   "sha256": "2746992a8b2507d0aafcbdc6b073562eea45dd21974cb1db82df679fd70911bd",
+   "text": {
+    "size": 12921,
+    "sha256": "6ca46a6d6ba9cb290f68fa9d8a2fc76cbf376d2fefa7febe709a8fe893f22022"
+   }
+  },
+  "AG-birtan-home": {
+   "url": "https://birtan.gov.bd/",
+   "final": "https://birtan.gov.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:56.511Z",
+   "size": 137498,
+   "sha256": "13cae0996dd2b6e3723c1255a44e6b24e610bb442e3b9ccc7f0ddfbf7cce9efe",
+   "text": {
+    "size": 16273,
+    "sha256": "9ddc80a6a59d9dbdd4eb0c1b8c4bc16aba474e9c29d08863674b82aa83e424cf"
+   }
+  },
+  "AG-bjri-addr": {
+   "url": "https://bjri.gov.bd/pages/static-pages/6922deec933eb65569e1e6ad",
+   "final": "https://bjri.gov.bd/pages/static-pages/6922deec933eb65569e1e6ad",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:25.307Z",
+   "size": 87792,
+   "sha256": "3aad58b3c417eda148e5c3de6e6a9cb8c60e05aa7076397b6566bccc1121b467",
+   "text": {
+    "size": 9686,
+    "sha256": "ba7ff9a07f8ec00f69d4eef006fd6186fdaef02f697fe045dcdc91edbbd6feec"
+   }
+  },
+  "AG-bjri-bg": {
+   "url": "https://bjri.gov.bd/pages/static-pages/6922dc17933eb65569e0e5fd",
+   "final": "https://bjri.gov.bd/pages/static-pages/6922dc17933eb65569e0e5fd",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:24.237Z",
+   "size": 98595,
+   "sha256": "aaa6c95e5d5b83da9948c95fac4e46c24fc5ca8ea5fefcea366b7ed14c014f63",
+   "text": {
+    "size": 15020,
+    "sha256": "f238b716106de90940ed288593d2faeb7b5c25b16a1623620e54d4e7d1f4b920"
+   }
+  },
+  "AG-bjri-home": {
+   "url": "https://bjri.gov.bd/",
+   "final": "https://bjri.gov.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:43.520Z",
+   "size": 141898,
+   "sha256": "1ab8006d50d86846072c47987627e670025a5207975a414acf389864d8bdccc2",
+   "text": {
+    "size": 18779,
+    "sha256": "259923913f07db4fd789b54ced0dce17a2f8f72ea2c5a7634b395e58285db21b"
+   }
+  },
+  "AG-blri-contact": {
+   "url": "https://blri.gov.bd/pages/static-pages/6922e0d6933eb65569e28cc9",
+   "final": "https://blri.gov.bd/pages/static-pages/6922e0d6933eb65569e28cc9",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:26:43.830Z",
+   "size": 98889,
+   "sha256": "895512bf5f404c9bce1d5909aad1caf11e7055780c967a460457f4f9cc618ced",
+   "text": {
+    "size": 12135,
+    "sha256": "d93fe58ede6d72bb806fc3822b53aef34ce3d25514dad673df0b1cb6cadb5543"
+   }
+  },
+  "AG-blri-contact-pdf": {
+   "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-blri/2024/12/acfc17c901ad42148983e35abe7f7a51.pdf",
+   "final": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-blri/2024/12/acfc17c901ad42148983e35abe7f7a51.pdf",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:33:42.096Z",
+   "size": 98716,
+   "sha256": "5499ff8370c355740aeca1f287b8ffc3290daa06662fa419bbf1d9d1784cbbdb",
+   "text": {
+    "size": 4113,
+    "sha256": "8344524592b7d7cc17e832a9ee5b6de9844010cf608cd82986c2fce1aac8d7dd",
+    "tool": "pdftotext 4.06 -raw -enc UTF-8"
+   }
+  },
+  "AG-blri-glance-pdf": {
+   "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-blri/2024/12/9400bffa868a4be1a4f9931ae03638f3.pdf",
+   "final": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-blri/2024/12/9400bffa868a4be1a4f9931ae03638f3.pdf",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:33:40.997Z",
+   "size": 437184,
+   "sha256": "3f38e85c991a11f91dc26be85baf009ca71d800dd406ffdfabebf5f812aad095",
+   "text": {
+    "size": 16617,
+    "sha256": "3931dacc47e1346c5406401ca49491a7ec726f7db78fea9b9cf028d1a6efc3ee",
+    "tool": "pdftotext 4.06 -raw -enc UTF-8"
+   }
+  },
+  "AG-blri-home": {
+   "url": "https://blri.gov.bd/",
+   "final": "https://blri.gov.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:50.337Z",
+   "size": 183363,
+   "sha256": "edf64825a3197ce7aea3887b0a77fcaeb7a33cd265929eb346fe8a61ef2dcebf",
+   "text": {
+    "size": 25031,
+    "sha256": "1efadeb668c1968d54ba653e3ca5518c44fd0a6415f6d09f3e388bddc4748937"
+   }
+  },
+  "AG-bnh-office": {
+   "url": "https://bnh.gov.bd/pages/static-pages/6922e054933eb65569e268c7",
+   "final": "https://bnh.gov.bd/pages/static-pages/6922e054933eb65569e268c7",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:32:38.884Z",
+   "size": 120987,
+   "sha256": "2c61a4fb111c37d60a8058b9e24cd2db23d874fce1a5c6c1b1bc9da862d5ce51",
+   "text": {
+    "size": 23541,
+    "sha256": "b5ea9141b72408360008b0391c2f4b0933500346d8c9a9132c34d2408ee06744"
+   }
+  },
+  "AG-brri-about": {
+   "url": "https://brri.gov.bd/pages/static-pages/6922de57933eb65569e19fb3",
+   "final": "https://brri.gov.bd/pages/static-pages/6922de57933eb65569e19fb3",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:21.034Z",
+   "size": 339375,
+   "sha256": "dcdde23575882720fad975e345e19e10c1957732ee5382c1e5f9a4c181065af5",
+   "text": {
+    "size": 48621,
+    "sha256": "c1243fed5cad4d66376ebe95b4fa5c4edb935176181cd76cdb18c646eeec876b"
+   }
+  },
+  "AG-brri-contact": {
+   "url": "https://brri.gov.bd/pages/static-pages/6922de01933eb65569e17918",
+   "final": "https://brri.gov.bd/pages/static-pages/6922de01933eb65569e17918",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:22.082Z",
+   "size": 98197,
+   "sha256": "9efadde1b1c356eb58c3a87b5f1e3a277e52bd68d07366a4558e231976f29522",
+   "text": {
+    "size": 12294,
+    "sha256": "2aa63d1336e2105b9c3a5a57f53906a0731552d254f6f02cb62bb52f8afc9bab"
+   }
+  },
+  "AG-brri-home": {
+   "url": "https://brri.gov.bd/",
+   "final": "https://brri.gov.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:42.069Z",
+   "size": 183999,
+   "sha256": "fa330322d05acd93a7a033e6933c119cc38eb3da0610f9997e87add5ee6318ff",
+   "text": {
+    "size": 25455,
+    "sha256": "f6a01b13f1f416b5c627ba941f4b205ec68182233cb97596a601cb6c4412892a"
+   }
+  },
+  "AG-bsri-about": {
+   "url": "https://bsri.gov.bd/pages/static-pages/6922dfc4933eb65569e23e07",
+   "final": "https://bsri.gov.bd/pages/static-pages/6922dfc4933eb65569e23e07",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:30.661Z",
+   "size": 94458,
+   "sha256": "9a8e22136beb2c6f382ba0701cefa2ca732f4ee54192eb1df770ba9d6110c859",
+   "text": {
+    "size": 13378,
+    "sha256": "2c535f1992e1e9c88cb1e9b58c0077cd9291ba1b97324761c7e73314b7b685cb"
+   }
+  },
+  "AG-bsri-hist": {
+   "url": "https://bsri.gov.bd/pages/static-pages/6922e01b933eb65569e25822",
+   "final": "https://bsri.gov.bd/pages/static-pages/6922e01b933eb65569e25822",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:29.625Z",
+   "size": 106569,
+   "sha256": "9568270d1ec30db3f7bfb06069a04200b1f90b829e805fb59db71c3ef45c1794",
+   "text": {
+    "size": 18161,
+    "sha256": "c4c89b4dc8ce8ce48a493e59bc2f1ecaa8a97f8bfc2fb7f86ac05a3686f16057"
+   }
+  },
+  "AG-bsri-home": {
+   "url": "https://bsri.gov.bd/",
+   "final": "https://bsri.gov.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:45.787Z",
+   "size": 118214,
+   "sha256": "84b28d339c96fac09964666a5f8a94aef34f925c7a3e46d1bc211ae6d13cfb04",
+   "text": {
+    "size": 14037,
+    "sha256": "c6cc36a6f5526a13b47a735dc4559c71ce8bcd2d416d8ee5f3a7bf9a9565859d"
+   }
+  },
+  "AG-bsri-map": {
+   "url": "https://bsri.gov.bd/pages/office-contents/6922d89c933eb65569df9246",
+   "final": "https://bsri.gov.bd/pages/office-contents/6922d89c933eb65569df9246",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:28:16.244Z",
+   "size": 83858,
+   "sha256": "4d47d364e109bf4d442cddd221f161a2141cf5732d076d82842330590102bda8",
+   "text": {
+    "size": 9176,
+    "sha256": "8b7ffd798ac9da154919ff9de6f3642ea233d3866d4e11a95165be90c36eb8b7"
+   }
+  },
+  "AG-bsrti-func": {
+   "url": "https://bsrti.gov.bd/pages/static-pages/main-functions-e3f378-6922e0e1933eb65569e29003",
+   "final": "https://bsrti.gov.bd/pages/static-pages/main-functions-e3f378-6922e0e1933eb65569e29003",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:33:26.266Z",
+   "size": 89863,
+   "sha256": "dba7e10609497f3c27b15ef9d5753bf8407925ebb7c6db18a17d444d12b9ba7c",
+   "text": {
+    "size": 11448,
+    "sha256": "976a31aed6c9d376ac8d2cfea81375da98316ded4e7c7b26e2a55e27f8ee0a49"
+   }
+  },
+  "AG-bsrti-hist": {
+   "url": "https://bsrti.gov.bd/pages/static-pages/6922db86933eb65569e0aa0e",
+   "final": "https://bsrti.gov.bd/pages/static-pages/6922db86933eb65569e0aa0e",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:27:28.007Z",
+   "size": 86703,
+   "sha256": "019975c1a132ec5133dfce1581dd509e641b709c98d9ff954f9418afd62aaae7",
+   "text": {
+    "size": 9520,
+    "sha256": "99567d40bb6fb32d04d05b38d12264e6b019e8c92f1f8c1b2e170a4bc4f42eaa"
+   }
+  },
+  "AG-bsrti-home": {
+   "url": "https://bsrti.gov.bd/",
+   "final": "https://bsrti.gov.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:54.132Z",
+   "size": 114442,
+   "sha256": "355f1201fd1d9163bc3d4c3e4fb95353f6601ad3895d419fafc7a9892c052107",
+   "text": {
+    "size": 12451,
+    "sha256": "571fdb4ff223fc85c374cf2ea1ac41b6231d2cae6a922e2630fbc4636a9a87b1"
+   }
+  },
+  "AG-btri-bg": {
+   "url": "https://btri.gov.bd/pages/static-pages/6922de0d933eb65569e17def",
+   "final": "https://btri.gov.bd/pages/static-pages/6922de0d933eb65569e17def",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:27:24.821Z",
+   "size": 88776,
+   "sha256": "d3b10d5cdca1fe9082296772559772fe1c39ed63f9dd87a79670aa13d406c2b0",
+   "text": {
+    "size": 11126,
+    "sha256": "ecb5cfd31e8dcc37b57e9f7705f138e142c96e2778a496dc0186e8c32218c58a"
+   }
+  },
+  "AG-btri-contact": {
+   "url": "https://btri.gov.bd/pages/static-pages/6922de2b933eb65569e18bc5",
+   "final": "https://btri.gov.bd/pages/static-pages/6922de2b933eb65569e18bc5",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:27:25.863Z",
+   "size": 81400,
+   "sha256": "510dc23415e6523212e0770350b4622bb0fc9530a06ae2c920586f4dccd2d917",
+   "text": {
+    "size": 7845,
+    "sha256": "35a6925e08d7340ca27ec37f70c94908ab03c82c8c69ba7a185a32d6ba8caeb3"
+   }
+  },
+  "AG-btri-home": {
+   "url": "https://btri.gov.bd/",
+   "final": "https://btri.gov.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:52.774Z",
+   "size": 128391,
+   "sha256": "babfc9e452ffe264f59fe122ce4bc9318fdbaff62c1d8838218ebe213c8b7ec8",
+   "text": {
+    "size": 17816,
+    "sha256": "48f9192ba5735ccab9a99944b303b2bb9bcf8de45dd39b372f93be62f63504ea"
+   }
+  },
+  "AG-btri-intro": {
+   "url": "https://btri.gov.bd/pages/static-pages/6922de0d933eb65569e17db3",
+   "final": "https://btri.gov.bd/pages/static-pages/6922de0d933eb65569e17db3",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:27:23.777Z",
+   "size": 90400,
+   "sha256": "882965bb3ef318bcb1c84b5fdcab99d16d78e1bebd35495b13a870260d4553d2",
+   "text": {
+    "size": 11955,
+    "sha256": "b046b35535b45b83d1bfa2e41afbd532c9ba3c25f6f783343b4b5b4aed3fe9ed"
+   }
+  },
+  "AG-bwmri-about": {
+   "url": "https://bwmri.gov.bd/pages/static-pages/6922dce4933eb65569e129d2",
+   "final": "https://bwmri.gov.bd/pages/static-pages/6922dce4933eb65569e129d2",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:33.888Z",
+   "size": 100516,
+   "sha256": "0e18ea5d1c63e00742be33325f6464fe1d3985bcd6b48be94df888eb808b34ff",
+   "text": {
+    "size": 16458,
+    "sha256": "65cafbf29d11c3a92dc479aaf560b4e2a7cc00c1dfd678f17c0a5f5944c16a6c"
+   }
+  },
+  "AG-bwmri-home": {
+   "url": "https://bwmri.gov.bd/",
+   "final": "https://bwmri.gov.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:46.972Z",
+   "size": 154909,
+   "sha256": "329c1055b010b5057973db0b6d7f5370e8d9e3ddf098038184e6b849397b19d7",
+   "text": {
+    "size": 20464,
+    "sha256": "9a2889ce83f68f76149d8cbd466dff31131ddd9c92a493e77bb997142653e1d3"
+   }
+  },
+  "AG-bwmri-home-en": {
+   "url": "https://bwmri.gov.bd/?lang=en",
+   "final": "https://bwmri.gov.bd/?lang=en",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:30:59.821Z",
+   "size": 154925,
+   "sha256": "442889e671491bce183fe206fd2c6f9d0dc67790c5e20d000c84cb43e15e37e4",
+   "text": {
+    "size": 20464,
+    "sha256": "9a2889ce83f68f76149d8cbd466dff31131ddd9c92a493e77bb997142653e1d3"
+   }
+  },
+  "AG-fri-hist": {
+   "url": "https://fri.gov.bd/pages/static-pages/6922dcc9933eb65569e120db",
+   "final": "https://fri.gov.bd/pages/static-pages/6922dcc9933eb65569e120db",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:26:39.456Z",
+   "size": 121234,
+   "sha256": "de576d4f15711a04dc3838303c2da2c02829918703c8614421a748ddaee825ee",
+   "text": {
+    "size": 21968,
+    "sha256": "d3a44669e9f57ce6b2a37bb4477da95e0372134da9496edef27af08942240218"
+   }
+  },
+  "AG-fri-home": {
+   "url": "https://fri.gov.bd/",
+   "final": "https://fri.gov.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:49.141Z",
+   "size": 275794,
+   "sha256": "2d4be53befface13611a4d31ef0e59985550badec7706c0b3ab0fd1cdd65c2b4",
+   "text": {
+    "size": 47932,
+    "sha256": "947b1d8f7b84863b34c7517785458b8634a2b05dc40273dc40b105c3ed7a1b23"
+   }
+  },
+  "AG-law-barc2012d": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-details-1092.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-details-1092.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:24:53.234Z",
+   "size": 183268,
+   "sha256": "d664bf2c3b1d1374e93b4b1c0c7dd79965c3c9cbe7ebaeb8c8820a06ed49dbe2",
+   "text": {
+    "size": 64258,
+    "sha256": "6fccf86c7d3be04b879d45f8a2683e6879ab972a018cc4747f7d064365346823"
+   }
+  },
+  "AG-law-bari2017": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-details-1212.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-details-1212.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:24:55.241Z",
+   "size": 140150,
+   "sha256": "e26715e90ec850db8fc9f6b134e42c268759b7d223f3ec4e0b7059e49b9d05e6",
+   "text": {
+    "size": 39170,
+    "sha256": "c21792b914f4efd77e16b58e2651a4056d58a79251c5d6a9114baf04bb6fe775"
+   }
+  },
+  "AG-law-bina2017": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-details-1211.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-details-1211.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:25:02.344Z",
+   "size": 143912,
+   "sha256": "fccda2c4a144a633daf8eae18cb06c4680d19ad48ca892cd791dcd6f255d7fe9",
+   "text": {
+    "size": 43207,
+    "sha256": "9a563f8916624efc1fecafd3cd14a7f2fc3807757ec93cf632055d34e04e155c"
+   }
+  },
+  "AG-law-birtan2012": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-details-1095.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-details-1095.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:25:19.940Z",
+   "size": 127474,
+   "sha256": "9dbe40d2bad88a016c88039db7771cae071b99d8adc5314c655ac52e28daff6c",
+   "text": {
+    "size": 34699,
+    "sha256": "691bdae5167226b0113c60befd39ab3b225181d9b6b05e8619b013aecb4d0423"
+   }
+  },
+  "AG-law-bjri2017": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-details-1216.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-details-1216.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:25:00.273Z",
+   "size": 144358,
+   "sha256": "f2e0fcfa5f0583184fd8ef18fd61ee29863873c981bb21db43b380d0d7f6c692",
+   "text": {
+    "size": 40280,
+    "sha256": "eb02a1d0c9867c56a1a44ea438c8a54c84301f85b773ea386a1aa4801b1bc96d"
+   }
+  },
+  "AG-law-blri2018": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-details-1268.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-details-1268.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:25:11.433Z",
+   "size": 147050,
+   "sha256": "d58eaf3614ab6e6ebb40924d929235517cd65b2d56e48ad0b2636d76c9f1cc89",
+   "text": {
+    "size": 47596,
+    "sha256": "97bcd7526032bb331d0c97b26645e8fe7f0d396676970485fc5b679b225f16ac"
+   }
+  },
+  "AG-law-brri2017": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-details-1219.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-details-1219.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:24:57.483Z",
+   "size": 144408,
+   "sha256": "847e2d49e1a8c6e84e6193ec983a7b3c5985ecbb50190b39e3fc2fa54abbb49d",
+   "text": {
+    "size": 40350,
+    "sha256": "9946f3d9c7a74e0d24e19caca75b0ecc62fe49086b9248f7e366cdfcc8b37ad0"
+   }
+  },
+  "AG-law-bsri2019": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-details-1294.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-details-1294.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:25:05.016Z",
+   "size": 218810,
+   "sha256": "098502caffc767ed57ee4a9d63b07434e6e436ab06814a154f44ac098f2b596f",
+   "text": {
+    "size": 47695,
+    "sha256": "5379631459dc684ecdbb4cddc3449c5f6938b16a382faff6a9c8a5fe3ffb6ee3"
+   }
+  },
+  "AG-law-bsrti2003": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-details-906.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-details-906.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:25:18.230Z",
+   "size": 141956,
+   "sha256": "023e43d0c8b9ef81fb2520043ad78ae020e256bacaa755822e2b950cc7b09479",
+   "text": {
+    "size": 31476,
+    "sha256": "74aad6aea01e6d85ec37a2985740f4ddc8d041f41e3bf601961a15f2f4685b76"
+   }
+  },
+  "AG-law-bwmri2017": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-details-1221.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-details-1221.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:25:07.304Z",
+   "size": 141978,
+   "sha256": "c58d855638064609ac555e26c16fdd3b95d3f554d52b827762a895c0d6ee4aab",
+   "text": {
+    "size": 38701,
+    "sha256": "dd9c53365f97285c1a008352dada586cde06a6bad55585c9399dc59d59ca9b1f"
+   }
+  },
+  "AG-law-fri2018": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-details-1282.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-details-1282.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:25:09.348Z",
+   "size": 136726,
+   "sha256": "4bd521257053ae73b8ef991cc8aa6099248e1e3ea4c6a5a2dc60794fcbcf537c",
+   "text": {
+    "size": 39399,
+    "sha256": "1c625840374abe0cca139030985ae490bd8fc74543dd2d1e17dd14c7596e3b6e"
+   }
+  },
+  "AG-law-silk2013": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-details-1113.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-details-1113.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:25:16.328Z",
+   "size": 136572,
+   "sha256": "3999715c5d8c04e9f37af018fa69bd315f05c708c69fb4aae1d146f45b9b17d3",
+   "text": {
+    "size": 40911,
+    "sha256": "13282ea97661a961bff21699fe9777a4dcc0c44315c0f6099d033502665121cf"
+   }
+  },
+  "AG-moa-agencies": {
+   "url": "https://moa.gov.bd/pages/static-pages/694032a535ce18e1c055fe07",
+   "final": "https://moa.gov.bd/pages/static-pages/694032a535ce18e1c055fe07",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:32:56.050Z",
+   "size": 122387,
+   "sha256": "20141532371e832b7f9e5d537fb84f70443c7b0a9a0a3d405d3899bd98ec6d41",
+   "text": {
+    "size": 14260,
+    "sha256": "96f3ac01b1aebda17534fbd57f24435c5b0a98020ea333f49ffa585f361f480e"
+   }
+  },
+  "HE-act-1417": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-1417.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-1417.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:27:28.594Z",
+   "size": 106204,
+   "sha256": "33a5350e7a861c7f4cff9a77976413ebcdd1aa4e999ee421210c0241c2fe102e",
+   "text": {
+    "size": 11979,
+    "sha256": "fa32b92fcf5517b351febba8ea6182f7c6b361669a732e7e41b7b03a7bf1556b"
+   }
+  },
+  "HE-act-1417-s3": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-1417/section-51441.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-1417/section-51441.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:27:50.741Z",
+   "size": 51038,
+   "sha256": "ef08f06b6f8464aa5424eea69896cfb414110c0cf0a214dde4e1336f1acab1f9",
+   "text": {
+    "size": 3358,
+    "sha256": "3b664c66e9b2bcbe86a03dc532a352e794d62afbdea21b5fa105dfab04deabdc"
+   }
+  },
+  "HE-act-1417-s5": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-1417/section-51443.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-1417/section-51443.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:27:53.435Z",
+   "size": 50068,
+   "sha256": "b174d6e27b6516d750a8760e873482d7bb8cbb02ba73154271aefa3745f1b029",
+   "text": {
+    "size": 2711,
+    "sha256": "613671ce65634549bdb9d903bd22ee61cae57e92c8de3b1191c1c115b774e88a"
+   }
+  },
+  "HE-act-580": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-580.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-580.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:27:29.880Z",
+   "size": 106508,
+   "sha256": "0f7649560910b4561a17b45461e15b357e9d7449d2aa0c4e3ad46b8bbfae6ef0",
+   "text": {
+    "size": 7906,
+    "sha256": "a229c4ff7bb80f6559fe2695821141b6f112cc25201d0244a732de6413c05849"
+   }
+  },
+  "HE-icddrb-contactart": {
+   "url": "https://www.icddrb.org/api/articles/contact-us",
+   "final": "https://www.icddrb.org/api/articles/contact-us",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:26:25.296Z",
+   "size": 366575,
+   "sha256": "6636ecd589bc35193e8636e3ea34172e8889b96eb5b526330c1abe4b5d191bda",
+   "text": {
+    "size": 327665,
+    "sha256": "af3b49306a4aaf29cd53df28327c4d01decf16ecf726a1f6cbc0e704777cbb49"
+   }
+  },
+  "HE-icddrb-timeline": {
+   "url": "https://www.icddrb.org/api/articles/timeline",
+   "final": "https://www.icddrb.org/api/articles/timeline",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:26:23.719Z",
+   "size": 385863,
+   "sha256": "289c00bb4bc151b9a61bca9ba0b657741e26540972f46b685b41f68fc7ecfdd4",
+   "text": {
+    "size": 343557,
+    "sha256": "bccf5b2f8bb269e5a8cbefa1d976ec7ed1ab785383b43ad3638d556ebfdb45cc"
+   }
+  },
+  "HE-iedcr-contact": {
+   "url": "https://iedcr.gov.bd/pages/office-contents/6922d89b933eb65569df918d",
+   "final": "https://iedcr.gov.bd/pages/office-contents/6922d89b933eb65569df918d",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:57.531Z",
+   "size": 101989,
+   "sha256": "da8a2026337f006c51621cc2921de3432f544db3af4bd543a2061cfce975ada1",
+   "text": {
+    "size": 12040,
+    "sha256": "64c3757e9a55e091a01cdecfa1b18989390e895d990e4684cbea4bb6f8e60178"
+   }
+  },
+  "HE-iedcr-history": {
+   "url": "https://iedcr.gov.bd/pages/static-pages/6922dc71933eb65569e1069d",
+   "final": "https://iedcr.gov.bd/pages/static-pages/6922dc71933eb65569e1069d",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:56.356Z",
+   "size": 123559,
+   "sha256": "9fccdf3fe3a8224e465babe2baf5a0d2b345dc90049a28f0b303a932987f1d64",
+   "text": {
+    "size": 21938,
+    "sha256": "68d60e8dee3bc7b6838cba5b82620d585d2e0850a091c1d36bd7668e0e51d2f2"
+   }
+  },
+  "HE-iedcr-home": {
+   "url": "https://iedcr.gov.bd/",
+   "final": "https://iedcr.gov.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:21:49.446Z",
+   "size": 141542,
+   "sha256": "076621e93301686f0202588d89cf77ff91139ab0f880fe881c91c3a27650a7bd",
+   "text": {
+    "size": 15321,
+    "sha256": "df729c36824caf43b43289a3f6a9ac6176aabb7b1aa4c2098e619a1f206d7f06"
+   }
+  },
+  "HE-niport-history": {
+   "url": "https://niport.gov.bd/pages/static-pages/6922db91933eb65569e0aeda",
+   "final": "https://niport.gov.bd/pages/static-pages/6922db91933eb65569e0aeda",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:24:01.129Z",
+   "size": 86637,
+   "sha256": "88ad2079248e7e57c7d843f8b85bddf3ead4a81a11aaf2a6e4f430cd39f4daea",
+   "text": {
+    "size": 11576,
+    "sha256": "4359e489aa589fab6f91ae157f8207ef8f6d46dc3db9dd7ec58739e0eb32eb21"
+   }
+  },
+  "HE-niport-home": {
+   "url": "https://niport.gov.bd/",
+   "final": "https://niport.gov.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:21:55.654Z",
+   "size": 138476,
+   "sha256": "2aaf21d0d849ea3850844bc45cfb9c6d0c4c443a1eb1ae1e15140d59057b51a0",
+   "text": {
+    "size": 13054,
+    "sha256": "6d03772209ac7b8b83659e16f2716470df0d3ccf72d0e72ce7d3df09508d4b8b"
+   }
+  },
+  "HE-niport-hq": {
+   "url": "https://niport.gov.bd/pages/static-pages/6922de01933eb65569e178f5",
+   "final": "https://niport.gov.bd/pages/static-pages/6922de01933eb65569e178f5",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:24:02.312Z",
+   "size": 75185,
+   "sha256": "4bbf19f40a5d5ac2d87ff92275aeb713559850b269d4cdcd121b275b8da8c984",
+   "text": {
+    "size": 6495,
+    "sha256": "3782a892c07c8c9193a2535f9a36d0c45a8855d87a329940e207340eb36f3faa"
+   }
+  },
+  "R2-birtan-hq": {
+   "url": "https://birtan.gov.bd/pages/static-pages/6922dca5933eb65569e116b7",
+   "final": "https://birtan.gov.bd/pages/static-pages/6922dca5933eb65569e116b7",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:58:28.219Z",
+   "size": 92118,
+   "sha256": "a04e971f44e0c78b00f41a6fa7be7372b75c4e97d589b21694867e08f2fe9b0b",
+   "text": {
+    "size": 9801,
+    "sha256": "29d804c4f740cc6f6502b9b5bb516e06aaf17d75c03a06a76266fe79d7e40f28"
+   }
+  },
+  "SE-bids-about": {
+   "url": "https://bids.org.bd/page/about-us",
+   "final": "https://bids.org.bd/page/about-us",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:37.764Z",
+   "size": 33229,
+   "sha256": "422b29e903a99df44592b8214639c71d9a5bf49953c22430c46400de3e5ec763",
+   "text": {
+    "size": 7257,
+    "sha256": "3be269032ddc925d3c9955078e8623a49f5f1d073168182b3c949d0bdfa59122"
+   }
+  },
+  "SE-bids-contact": {
+   "url": "https://bids.org.bd/page/our-contact-info",
+   "final": "https://bids.org.bd/page/our-contact-info",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:40.445Z",
+   "size": 37394,
+   "sha256": "e1fa383a6141432ce805aad27b32c3dd02c9ea2f52a9d23cc3c541d2eac9aba9",
+   "text": {
+    "size": 2218,
+    "sha256": "7455d36477bb679f8bf726ed91d996fbcee1307db4a334ac01f189fa4e1b88d9"
+   }
+  },
+  "SE-bids-home": {
+   "url": "https://bids.org.bd/",
+   "final": "https://bids.org.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:11.021Z",
+   "size": 59616,
+   "sha256": "fce2f624b16ee023330e306d938b77b0ec9d24a070b62053c730f1e5a3754490",
+   "text": {
+    "size": 5364,
+    "sha256": "f15463f016da4f6a0987f78a3f4095cad42479e7cacff57e37983d7f418e3c1b"
+   }
+  },
+  "SE-biiss-about": {
+   "url": "https://biiss.org/about",
+   "final": "https://biiss.org/about",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:40.638Z",
+   "size": 68005,
+   "sha256": "b1c656cf7821d8a81139e4cc1bbd442daa5281dc86bf72b22e79fc8980ee2c8a",
+   "text": {
+    "size": 8784,
+    "sha256": "08fb3a5c6ca538effb2145d80e826c5e021c61f25804d7460a93d28df80384e9"
+   }
+  },
+  "SE-biiss-contact": {
+   "url": "https://biiss.org/contact",
+   "final": "https://biiss.org/contact",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:42.836Z",
+   "size": 38677,
+   "sha256": "64c4159136613d34b067042e9af296fbb43c4ffc9d80b46b564730735df6f3a8",
+   "text": {
+    "size": 3239,
+    "sha256": "e2c0e83741b7c573206cced7e335370ceea740ee71667392910a6ac92b01c9c7"
+   }
+  },
+  "SE-biiss-history": {
+   "url": "https://biiss.org/about/history",
+   "final": "https://biiss.org/about/history",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:41.720Z",
+   "size": 48399,
+   "sha256": "e69f14cab9f7ff8135f71b986b7085cc02fe5a8c393a19b132faa65988fae816",
+   "text": {
+    "size": 11969,
+    "sha256": "63ca391abad73ff10fc7ea3b0d76ecaaeafacbaab4e0056e2b58da0049ea1895"
+   }
+  },
+  "SE-lawd-1144": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-details-1144.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-details-1144.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:24:52.870Z",
+   "size": 130170,
+   "sha256": "c59b972b144c26b5069bdc82445c9668a9c7fd4bc3087b79831aa214ed5e0a7a",
+   "text": {
+    "size": 32147,
+    "sha256": "2bdcdc954aa2f1f78a6c91d4c263977852ca272d435cd4ad603bd1060ebcd24e"
+   }
+  },
+  "SE-lawd-1208": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-details-1208.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-details-1208.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:24:50.801Z",
+   "size": 156692,
+   "sha256": "668ed8c96c38935fb7bd65d2ebbd1306b68ad3013aec3921bf4d9c1833b8c6c9",
+   "text": {
+    "size": 42534,
+    "sha256": "fae816d04eb001ed52c7f54c2262e86f55a6b0487f601085aa289ea13fb6c3b4"
+   }
+  },
+  "SE-lawd-468": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-details-468.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-details-468.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:24:49.555Z",
+   "size": 192138,
+   "sha256": "c707e4c44ee606c7d799ab5480c15bdca465417e345a2a77bfc1c7df416d56b5",
+   "text": {
+    "size": 24097,
+    "sha256": "0d5cf3255e5af2be411dfb70882f0c999d60e3b12e9ff60a8ee045d390a5dae8"
+   }
+  },
+  "SE-lawd-668": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-details-668.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-details-668.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:24:51.541Z",
+   "size": 112066,
+   "sha256": "ad4caf82614a244ecc9296293b54b7c9a6390bc3a29d012d1299c5b2e528d03d",
+   "text": {
+    "size": 10146,
+    "sha256": "fa0d8b51be3640e852df5799f89bfdc3075c2c43bc926c5b25eb901b38259c6c"
+   }
+  },
+  "ST-baec-contact": {
+   "url": "https://baec.gov.bd/pages/static-pages/6922df90933eb65569e22cc5",
+   "final": "https://baec.gov.bd/pages/static-pages/6922df90933eb65569e22cc5",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:05.601Z",
+   "size": 87783,
+   "sha256": "923bec6a851132975ab4a31eedb58d2c1adc4d0b0997ec927b1168e97520c3b9",
+   "text": {
+    "size": 9384,
+    "sha256": "437aefab66a8a124380e1798bdea5a3011cad7f7e92a8e0363d2acea6c7b0b2e"
+   }
+  },
+  "ST-baec-home": {
+   "url": "https://baec.gov.bd/",
+   "final": "https://baec.gov.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:18.811Z",
+   "size": 135336,
+   "sha256": "14191a6e6327db9dce556f78c19e31786051e2850afba3a5c5d3e7a203b4c08e",
+   "text": {
+    "size": 16710,
+    "sha256": "9e5cb580d66eb3aed07caacd306de9f3205b23b62843018a827c0496f84e0095"
+   }
+  },
+  "ST-baec-intro": {
+   "url": "https://baec.gov.bd/pages/static-pages/6922dfd7933eb65569e24422",
+   "final": "https://baec.gov.bd/pages/static-pages/6922dfd7933eb65569e24422",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:03.263Z",
+   "size": 114131,
+   "sha256": "86d45ebda28ffb5a699863572ed278e4a8320f15f4490cf9354fd1e896e2c49e",
+   "text": {
+    "size": 19471,
+    "sha256": "c44630b64004e0ba355c05ec4303ed72b4a7db2b1ecdc7925b91a8cb71e5cdaf"
+   }
+  },
+  "ST-bcsir-contact": {
+   "url": "https://bcsir.gov.bd/pages/static-pages/6922dccd933eb65569e121ee",
+   "final": "https://bcsir.gov.bd/pages/static-pages/6922dccd933eb65569e121ee",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:09.162Z",
+   "size": 104717,
+   "sha256": "1795267e8673a653779893a7c053bd9529cce59a6746b7e5d165c08b39ff9c52",
+   "text": {
+    "size": 13030,
+    "sha256": "b730d2d92b59542a461cd1d278bbda79f3e59f8bacd194dfea6fc819a64a67a9"
+   }
+  },
+  "ST-bcsir-history": {
+   "url": "https://bcsir.gov.bd/pages/static-pages/6922de2f933eb65569e18d9e",
+   "final": "https://bcsir.gov.bd/pages/static-pages/6922de2f933eb65569e18d9e",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:07.980Z",
+   "size": 107579,
+   "sha256": "23193aec92bd47092a3c937105ad086623c0051de372d1ab166300fd3a3ba2de",
+   "text": {
+    "size": 15295,
+    "sha256": "54f3df6c5d583acb2a4c4dc0a165dc571fe8334e400f0fe3d7e3196115255e5c"
+   }
+  },
+  "ST-bcsir-home": {
+   "url": "https://bcsir.gov.bd/",
+   "final": "https://bcsir.gov.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:20.000Z",
+   "size": 179322,
+   "sha256": "57d68eaaaf112e0e9ec3823a43f700f0daf3bece19a9fd26978648131203a9e6",
+   "text": {
+    "size": 26511,
+    "sha256": "2d758a1f0b42038e36153599132861062abea51dfd96dfebea6d712762d81ab4"
+   }
+  },
+  "ST-bcsir-intro": {
+   "url": "https://bcsir.gov.bd/pages/static-pages/6922ddba933eb65569e16086",
+   "final": "https://bcsir.gov.bd/pages/static-pages/6922ddba933eb65569e16086",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:06.810Z",
+   "size": 111103,
+   "sha256": "fc050c8f81a451f593b873d5f2005280609462282fc88fd0a521bb69d35cd73b",
+   "text": {
+    "size": 17474,
+    "sha256": "bad6d3791fca4df781b7f35eb41b50c90ba7efff784084b82c5fa275091dea84"
+   }
+  },
+  "ST-bnh-home": {
+   "url": "https://bnh.gov.bd/",
+   "final": "https://bnh.gov.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:34.535Z",
+   "size": 172140,
+   "sha256": "bf1db47e9d26c5b8a879e64a4ddf9e4f217e607aeeebe6c4bd9198542c95329a",
+   "text": {
+    "size": 32777,
+    "sha256": "92c55ccd4c1fa0981dd6f069bf13ac5d29d7d818bbfa6e3e9a4e05d980c5156b"
+   }
+  },
+  "ST-bnh-intro": {
+   "url": "https://bnh.gov.bd/pages/static-pages/6922df4a933eb65569e21130",
+   "final": "https://bnh.gov.bd/pages/static-pages/6922df4a933eb65569e21130",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:38.433Z",
+   "size": 133831,
+   "sha256": "b8ad97ad57a7107dfe4be013cd8e5c351c9930f199d3e61b9b30a011329d9fe4",
+   "text": {
+    "size": 29056,
+    "sha256": "8a54616b89e429f39592d340d45ed9d0ca5e7d53d7095ba67ad5fb4cabb102cb"
+   }
+  },
+  "ST-bori-contact": {
+   "url": "https://bori.gov.bd/pages/static-pages/6922dd67933eb65569e14e76",
+   "final": "https://bori.gov.bd/pages/static-pages/6922dd67933eb65569e14e76",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:18.595Z",
+   "size": 85221,
+   "sha256": "bdcc6f058df0f0221da9397a868ab78f97575fbb527b8f3ac8e543788f362320",
+   "text": {
+    "size": 8451,
+    "sha256": "49ab311a12e70da83fe9b81681d6c2218a173ae680342ef2f2a0ec2f880d1d2b"
+   }
+  },
+  "ST-bori-func": {
+   "url": "https://bori.gov.bd/pages/static-pages/6922e00e933eb65569e253da",
+   "final": "https://bori.gov.bd/pages/static-pages/6922e00e933eb65569e253da",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:17.426Z",
+   "size": 94581,
+   "sha256": "83a7f3d67dd8e80e325e97f76f0200daf53c8ed21fc1ac5c83c2c44b4c346b93",
+   "text": {
+    "size": 12660,
+    "sha256": "51bf95cb1fc738cfcd92b91c0cb0b91fdc6c2e3a29f6765c7bf8c32b5c8c395d"
+   }
+  },
+  "ST-bori-home": {
+   "url": "https://bori.gov.bd/",
+   "final": "https://bori.gov.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:22.597Z",
+   "size": 137643,
+   "sha256": "84bc04c3688b5323a0ae9e0289ddc794148dca08886267f278cf22b8655ee8a2",
+   "text": {
+    "size": 17485,
+    "sha256": "206642cc0da2cfc9a73d2c920045f3b47b187ff89566e8b7de0ef47bbd3ec517"
+   }
+  },
+  "ST-bori-intro": {
+   "url": "https://bori.gov.bd/pages/static-pages/6922e06f933eb65569e270f1",
+   "final": "https://bori.gov.bd/pages/static-pages/6922e06f933eb65569e270f1",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:16.250Z",
+   "size": 116431,
+   "sha256": "95fb42bf107b7ddc573c7a10e6206e1b3a4937f099ef854ecc84e871805df46a",
+   "text": {
+    "size": 21709,
+    "sha256": "d876774b2cebad5d8f9a9ad50030c99ccc9895300aff04cf1a8cd1f87bf10066"
+   }
+  },
+  "ST-bricm-contact": {
+   "url": "https://bricm.gov.bd/pages/static-pages/6922dd79933eb65569e152a6",
+   "final": "https://bricm.gov.bd/pages/static-pages/6922dd79933eb65569e152a6",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:23.452Z",
+   "size": 122331,
+   "sha256": "69129aa5808ed6de46c4dd2836684c83787dc02278a44d06cdd34614e476c651",
+   "text": {
+    "size": 12408,
+    "sha256": "f2c9de7dc7a8956d46d3ce219b1816559ad8e90a40dbe8571d6b8f7c2198fb1b"
+   }
+  },
+  "ST-bricm-func": {
+   "url": "https://bricm.gov.bd/pages/static-pages/6922dc25933eb65569e0ea43",
+   "final": "https://bricm.gov.bd/pages/static-pages/6922dc25933eb65569e0ea43",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:22.163Z",
+   "size": 100405,
+   "sha256": "2b5631e32361c2e6b34df60163dd4c376f0e1bd12024a6671ab85b0eab6380be",
+   "text": {
+    "size": 13686,
+    "sha256": "7f94828f153375fcfd9386537f062bf0a7d9ff29e0fd3d06123fad01a73f75a6"
+   }
+  },
+  "ST-bricm-histpdf1": {
+   "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bricm/2024/12/0ffe59e0e33b44ddabbb05ca566cbaf9.pdf",
+   "final": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-bricm/2024/12/0ffe59e0e33b44ddabbb05ca566cbaf9.pdf",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:31:26.248Z",
+   "size": 294286,
+   "sha256": "f0632a9da5a5a99374065fce0f8478e373543f98e3331f7862667bbbc1b069b9",
+   "text": {
+    "size": 2987,
+    "sha256": "836fa1f2096ee09410cd4a956b20dcbb18ee9d93d4e263894aa5b220fb157126",
+    "tool": "pdftotext 4.06 -raw -enc UTF-8"
+   }
+  },
+  "ST-bricm-home": {
+   "url": "https://bricm.gov.bd/",
+   "final": "https://bricm.gov.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:24.026Z",
+   "size": 135307,
+   "sha256": "2c8d7f24c9c109dac60f74e828f745a76fac07ee1565a405d6c08e14436f9451",
+   "text": {
+    "size": 16360,
+    "sha256": "501bec51950c34cfe7e57d21c121063ae749e8265a19db7f155824979199977e"
+   }
+  },
+  "ST-hbri-contact": {
+   "url": "https://hbri.gov.bd/pages/static-pages/6922df7d933eb65569e22531",
+   "final": "https://hbri.gov.bd/pages/static-pages/6922df7d933eb65569e22531",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:37.223Z",
+   "size": 92752,
+   "sha256": "e1ec112f5de45832302ae060de880c91d8158b2465b9ba6d0d81615391686acb",
+   "text": {
+    "size": 10112,
+    "sha256": "bda5ab20c5fdace9f2ca95d07af9dba66d59f56e519f621a92b942d9a69b3e3d"
+   }
+  },
+  "ST-hbri-home": {
+   "url": "https://hbri.gov.bd/",
+   "final": "https://hbri.gov.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:30.093Z",
+   "size": 176129,
+   "sha256": "0656c687e398820e008916ac91280aae81238cc6bcbb44b5ee92a5de71e5c3e9",
+   "text": {
+    "size": 21762,
+    "sha256": "3f7d70108423f0bffb46351566088174972b6c387c09be790471f4157ae3a7a5"
+   }
+  },
+  "ST-hbri-intro": {
+   "url": "https://hbri.gov.bd/pages/static-pages/6922dc44933eb65569e0f601",
+   "final": "https://hbri.gov.bd/pages/static-pages/6922dc44933eb65569e0f601",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:34.869Z",
+   "size": 113614,
+   "sha256": "ab19c4aceaec12ed527725940d6c3037b16dd29053860806acc33eaacdc0bbb9",
+   "text": {
+    "size": 19246,
+    "sha256": "82376a4bfd0d240bee46dec9cccdeb05235c442635385f1e989829a1fbfdb87d"
+   }
+  },
+  "ST-law-baec1973": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-449.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-449.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:26:07.114Z",
+   "size": 94050,
+   "sha256": "feb0518135c89ce5b499a673dcf0f6138f8b8f7fd7d36779d54b3b05fdd0a8bb",
+   "text": {
+    "size": 6814,
+    "sha256": "e5b16be4fab7f54f26aa3a17a222345d24ba30685c8317b73906799cf86a664f"
+   }
+  },
+  "ST-law-baec2017": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-1222.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-1222.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:26:08.417Z",
+   "size": 97302,
+   "sha256": "ee2298caae5b836cdbeefe4316e952f0f04a65f7703ebb017f378b2c07952d98",
+   "text": {
+    "size": 9398,
+    "sha256": "f94248a21ece00b5c14b038b03cf3310dd5ae92e6aeebf30856039f7466d67f8"
+   }
+  },
+  "ST-law-bcsir1978": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-565.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-565.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:26:09.680Z",
+   "size": 102526,
+   "sha256": "175505b25da065e50cf1d136e5dc1cc65054ffc7f2ff3d0c38c9aa5f80d3f3ef",
+   "text": {
+    "size": 7671,
+    "sha256": "aae512ab845a417c531852df5af0dea22cf9ddad571babe74da287575f437936"
+   }
+  },
+  "ST-law-bcsir2013": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-1129.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-1129.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:26:10.950Z",
+   "size": 107992,
+   "sha256": "1e11024ba7b0ceb0d8345cde353f6f3b9625fd9b919df5dff5a2fb5884dcf523",
+   "text": {
+    "size": 9860,
+    "sha256": "04b1c3611c7ba95895b9058aa7713b74eadd36e01624c17da5eae44b55267792"
+   }
+  },
+  "ST-law-bori2015": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-1160.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-1160.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:26:13.476Z",
+   "size": 89138,
+   "sha256": "defe26fcb1eb9736d7f0a6b2324764210dca2d959f33092f6e4c2a0c31c28a5e",
+   "text": {
+    "size": 8458,
+    "sha256": "34ea33f0621816416921f79129a9b75628222a72a62ecb4b17d2d4fa071e0bca"
+   }
+  },
+  "ST-law-bricm2020": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-1331.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-1331.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:26:14.728Z",
+   "size": 99232,
+   "sha256": "a9223301a580edd6cdb460941a8941275e578320c917365c1dbd140d53cb60ad",
+   "text": {
+    "size": 9395,
+    "sha256": "0c10a512e928882f9af4aef8783f39bb17b3bdc88a430dcebfb5f69260ebdff9"
+   }
+  },
+  "ST-law-hbri1977": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-556.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-556.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:26:18.551Z",
+   "size": 92332,
+   "sha256": "58d5a855d4f969243d106cc928c992ec9600104fc50711130f440b88e09ab8a1",
+   "text": {
+    "size": 6904,
+    "sha256": "9aafe276f5a81a6c0a1856e6ce987ab406fe0e5986a41f0537a1dc6992bc4ea0"
+   }
+  },
+  "ST-law-hbri2018": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-1269.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-1269.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:26:19.875Z",
+   "size": 98218,
+   "sha256": "6fbe4ab3ea1f4f0de467a0f3d151dc5de53576c1041461377e39f5bebc6a5624",
+   "text": {
+    "size": 11232,
+    "sha256": "e970edd3db982f5b5a50a8b87df116928c7a346a82dbcbac48a929545f451a8c"
+   }
+  },
+  "ST-law-nib2010": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-1034.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-1034.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:26:12.212Z",
+   "size": 91376,
+   "sha256": "bf0c0e1bd2409bf912c4541a9b0d4e786d77db45b4bfc14f21a46d5b1a604b73",
+   "text": {
+    "size": 8634,
+    "sha256": "b657520d47b6726c4e0feb00b594c6dc74d906277483fde7ff2fb5b07e63a791"
+   }
+  },
+  "ST-law-rri1990": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-745.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-745.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:26:17.282Z",
+   "size": 89266,
+   "sha256": "db95a6d95d17c966a2440dc8c13d1b77ad2be955ecd51ccb8de7ec96229b44de",
+   "text": {
+    "size": 7780,
+    "sha256": "e0706571d85be2424d9e2ac8a9712d1f9391157237aefc1eba6acddb5e4015ff"
+   }
+  },
+  "ST-law-rri1990-s4": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-745/section-30469.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-745/section-30469.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:27:32.750Z",
+   "size": 46838,
+   "sha256": "ff3172822d9d317e80febbdb9ec001c6d10a00e20175c46516f1c3fbeeed1ee3",
+   "text": {
+    "size": 1563,
+    "sha256": "7b06194c9d118e373ff667ff78e9c59a8f2f236557de6a94d2d7139fe78bc01e"
+   }
+  },
+  "ST-law-sparrso1991": {
+   "url": "http://bdlaws.minlaw.gov.bd/act-759.html",
+   "final": "http://bdlaws.minlaw.gov.bd/act-759.html",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:26:16.023Z",
+   "size": 88648,
+   "sha256": "a46915e6010fa885d6d25b150ecc30538581b11e291759ac6c92b1b39a611cba",
+   "text": {
+    "size": 8049,
+    "sha256": "70e8791183d132e194d9fdd76479ff06f9faa2bd4fbeae32d7c6fa96000b2143"
+   }
+  },
+  "ST-nib-contact": {
+   "url": "https://nib.gov.bd/pages/static-pages/6922dc99933eb65569e11313",
+   "final": "https://nib.gov.bd/pages/static-pages/6922dc99933eb65569e11313",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:13.857Z",
+   "size": 91049,
+   "sha256": "fd5d33224383ab7e0cf8fc6fb35ea2f7c54a63704baec2283a7ca86c4c2992ce",
+   "text": {
+    "size": 9557,
+    "sha256": "d36d348066ff34b0c789555817b5e9f6cfde8c58702ee202d7d9466882cf8280"
+   }
+  },
+  "ST-nib-history": {
+   "url": "https://nib.gov.bd/pages/static-pages/6922db7f933eb65569e0a6a1",
+   "final": "https://nib.gov.bd/pages/static-pages/6922db7f933eb65569e0a6a1",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:11.497Z",
+   "size": 91837,
+   "sha256": "6b768829b8d752e552d6d54a1e352b2f27d19f4902556c030c2db0e9741bca9f",
+   "text": {
+    "size": 12627,
+    "sha256": "5fee8d8a18e775828f2b5fa5ab3db3adf22d65d366077561a02943a1f9bd210a"
+   }
+  },
+  "ST-nib-home": {
+   "url": "https://nib.gov.bd/",
+   "final": "https://nib.gov.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:21.299Z",
+   "size": 121737,
+   "sha256": "d90ea8b82ccad46c79ba86f21de16cba228e37caa2ce996afd0dfec58098d93b",
+   "text": {
+    "size": 28696,
+    "sha256": "96dfb822ff85f1eb2a9af6dc48473e743c0eebdb3b28995f531c67bc46218f66"
+   }
+  },
+  "ST-nib-mission": {
+   "url": "https://nib.gov.bd/pages/static-pages/6922dbe4933eb65569e0d444",
+   "final": "https://nib.gov.bd/pages/static-pages/6922dbe4933eb65569e0d444",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:12.659Z",
+   "size": 92019,
+   "sha256": "00367b38132a9e23f9a804c25130aeb11e45a60e26e0b2f107438b5f598930d7",
+   "text": {
+    "size": 12413,
+    "sha256": "6f5353e4ea703e92887d7f8b624b15eaaf3b8c47eb1909aa1e9acc7e9dd4b7d3"
+   }
+  },
+  "ST-rri-history": {
+   "url": "https://rri.gov.bd/pages/static-pages/6922e04a933eb65569e265c1",
+   "final": "https://rri.gov.bd/pages/static-pages/6922e04a933eb65569e265c1",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:29.402Z",
+   "size": 165900,
+   "sha256": "f6eaea8f8892616a359eaec0e4e90a279eee1b59db268b83f5f1f6d2404968aa",
+   "text": {
+    "size": 43017,
+    "sha256": "7cac2c3e26a3c3f26ad10144de7787183bb854490de9e17db3a385ee9f6b0286"
+   }
+  },
+  "ST-rri-home": {
+   "url": "https://rri.gov.bd/",
+   "final": "https://rri.gov.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:28.850Z",
+   "size": 161752,
+   "sha256": "1179f80eefdcd70aea2d6c76f959b85e646a65ac3324e99874443b128e8fb66b",
+   "text": {
+    "size": 29238,
+    "sha256": "9948022bcb1a930c7ed31d61571ee75d09e5688803dee94db790bd863eedef8f"
+   }
+  },
+  "ST-rri-mandate": {
+   "url": "https://rri.gov.bd/pages/static-pages/6922dc83933eb65569e10c2f",
+   "final": "https://rri.gov.bd/pages/static-pages/6922dc83933eb65569e10c2f",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:27:07.403Z",
+   "size": 86743,
+   "sha256": "5140cd357ba6a565eb91e41ac29213d99336842135103c0e15363873079ef8cb",
+   "text": {
+    "size": 10117,
+    "sha256": "e1395ed99469893fc46e034ca4f220244731f74253332f75d67b6c59a810f542"
+   }
+  },
+  "ST-sparrso-bg": {
+   "url": "https://sparrso.gov.bd/pages/static-pages/6922de92933eb65569e1bac9",
+   "final": "https://sparrso.gov.bd/pages/static-pages/6922de92933eb65569e1bac9",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:24.651Z",
+   "size": 88392,
+   "sha256": "5074436bdfc10464816b1dd55caf22451f6b09450acb6873adb320e893b995c3",
+   "text": {
+    "size": 11108,
+    "sha256": "9f87a42fd369db0e760f60bd577c0057bb26abb1034512c5f80756a847b68c35"
+   }
+  },
+  "ST-sparrso-contact": {
+   "url": "https://sparrso.gov.bd/pages/static-pages/6922de60933eb65569e1a381",
+   "final": "https://sparrso.gov.bd/pages/static-pages/6922de60933eb65569e1a381",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:28.187Z",
+   "size": 84602,
+   "sha256": "94da1c4964a073686f2148dc5f1cdc8a83ff4e3f340f14bdb3f6b1c678d2dcee",
+   "text": {
+    "size": 9150,
+    "sha256": "85f6a0896a482a5f9e19ef207f9d2ae486be5de70e389ac9c992da0aa14528d1"
+   }
+  },
+  "ST-sparrso-func": {
+   "url": "https://sparrso.gov.bd/pages/static-pages/6922dccc933eb65569e121e3",
+   "final": "https://sparrso.gov.bd/pages/static-pages/6922dccc933eb65569e121e3",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:27.013Z",
+   "size": 89383,
+   "sha256": "47d4f26616648220a5f846f0bf11e5f406e1e2c30f492cf97574b1354360913d",
+   "text": {
+    "size": 11277,
+    "sha256": "239f4fe85f8f5fc499311ecc70c8761e3f9a3ff0f8617b2eee0ff5492d842372"
+   }
+  },
+  "ST-sparrso-home": {
+   "url": "https://sparrso.gov.bd/",
+   "final": "https://sparrso.gov.bd/",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:22:26.480Z",
+   "size": 107190,
+   "sha256": "8619c282bc948ece7e10502b77e922831a6e76b070837ae314c6ce3da89c6ab1",
+   "text": {
+    "size": 13496,
+    "sha256": "15579ba2be523e742a779566f894894a541cb5f3e796a607fbdfbcca675a5a30"
+   }
+  },
+  "ST-sparrso-intro": {
+   "url": "https://sparrso.gov.bd/pages/static-pages/6922e087933eb65569e276d9",
+   "final": "https://sparrso.gov.bd/pages/static-pages/6922e087933eb65569e276d9",
+   "via": "fetch",
+   "retrieved": "2026-10-09T13:23:25.823Z",
+   "size": 95153,
+   "sha256": "a17a336b9434bb50572ba3556c73c4027e9276ecd49b81e848bd315580cd6878",
+   "text": {
+    "size": 13902,
+    "sha256": "341b469d70a6abad584cafb75061bc0b94036be8feb951d538d34b26cb9c80f9"
+   }
+  }
+ }
+}

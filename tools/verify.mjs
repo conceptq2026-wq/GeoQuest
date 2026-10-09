@@ -1774,6 +1774,101 @@ console.log('\n---- org-newest-members: seed ----');
   }
 }
 
+// ---- bangladesh-research-institutes «বাংলাদেশের গবেষণা প্রতিষ্ঠান» (work in progress, RES-2): the seed ----------------
+// The institutes whose main work, by their own page, is research (the user's decisions of 2026-10-09,
+// notes/bangladesh-research-institutes.md), each with its founding year (a held year is null with its reason), its
+// address (the area in the page's words or null, the district from the shared file), its parent and our one-line
+// focus. A citation is a page in data-sources/bangladesh-research-institutes/sources.json with the offset, length and
+// SHA-256 of words in its NFC-normalised text; no words are kept. Each point (pins.json) lies in its own district:
+// a site pin cites a pinned page, an OSM point the Geofabrik pin in tools/sources.json, an approximate point COD-AB.
+// With the cache (tools/.cache/research-institutes/pages/), each page's text is its pin and each citation its words.
+console.log('\n---- bangladesh-research-institutes: seed ----');
+{
+  const ID = 'bangladesh-research-institutes';
+  const hash = (b) => crypto.createHash('sha256').update(b).digest('hex');
+  const dir = path.join(DATA_SOURCES, ID);
+  const seedText = fs.readFileSync(path.join(dir, `${ID}.seed.json`), 'utf8');
+  const sourcesText = fs.readFileSync(path.join(dir, 'sources.json'), 'utf8');
+  const pinsText = fs.readFileSync(path.join(dir, 'pins.json'), 'utf8');
+  const seed = JSON.parse(seedText);
+  const pages = JSON.parse(sourcesText).sources;
+  const points = JSON.parse(pinsText).points;
+  const unflagged = [];
+  let pending = 0;
+  const walk = (v, where, key, owner) => {
+    if (typeof v === 'string') {
+      if (!/[ঀ-৿]/.test(v)) return;
+      if (key === 'bn' && typeof owner?.approved === 'boolean') { if (!owner.approved) pending++; return; }
+      if (where === 'seed._about' || /^seed\.(dropped|institutes\.\w+\.(events|founded|currentForm|act))/.test(where) || /\.(event|reason|nameBn|held|title)$/.test(where)) return; // records, not shown
+      unflagged.push(where);
+    } else if (Array.isArray(v)) v.forEach((x, i) => walk(x, `${where}[${i}]`, i, v));
+    else if (v && typeof v === 'object') for (const [k, x] of Object.entries(v)) walk(x, `${where}.${k}`, k, v);
+  };
+  walk(seed, 'seed', null, null);
+  check(unflagged.length === 0, `${ID}: every Bengali string shown carries its approval flag${unflagged.length ? ` — not: ${unflagged.slice(0, 3).join(', ')}` : ''}`);
+  if (pending) console.log(`warn ${ID}: ${pending} string(s) in the seed await the user's approval (none may reach docs/)`);
+  const EMAIL_RE = /[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.(?!(?:png|jpe?g|gif|svg|webp|css|js|pdf)\b)[A-Za-z]{2,}/;
+  const wip = wipItems.find((w) => w.id === ID);
+  check(![seedText, sourcesText, pinsText].some((t) => EMAIL_RE.test(t) || /"(quote|phrase|anchor)"\s*:/.test(t)) && wip?.kind === 'map' && wip.section === 'bangladesh' && !registry.maps.some((e) => e.id === ID), `${ID}: no e-mail address and no quoted words in the seed or its pins; work in progress — in tools/wip.json (a map under বাংলাদেশ), not yet in registry.json`);
+  // Every institute: in one tab, its facts cited, its year a year or held; every dropped candidate with a reason.
+  const inst = Object.entries(seed.institutes);
+  const tabbed = Object.values(seed.tabs).flat();
+  const cites = [];
+  const take = (where, list) => (Array.isArray(list) && list.length ? list.forEach((c) => cites.push([where, c])) || true : false);
+  const bad = inst.filter(([key, x]) => {
+    const f = x.founded, cf = x.currentForm, a = x.address;
+    const ok = [
+      tabbed.filter((k) => k === key).length === 1 && seed.tabs[x.tab]?.includes(key),
+      x.name?.approved === true && take(`${key}.name`, x.name.cite),
+      Number.isInteger(f?.year) && take(`${key}.founded`, f.cite),
+      cf === undefined || (Number.isInteger(cf.year) && cf.year > f.year && take(`${key}.currentForm`, cf.cite)) || (cf.year === null && cf.held),
+      a?.district?.approved === true && take(`${key}.address`, a.cite) && (a.area === null || (a.area.approved === false && take(`${key}.area`, a.area.cite))),
+      x.parent ? seed.strings.parents[x.parent] : x.parentAbsent,
+      typeof x.focus?.bn === 'string' && x.focus.page?.source && cites.push([`${key}.focus`, x.focus.page]),
+      (x.events ?? []).every((e, i) => take(`${key}.events[${i}]`, e.cite)),
+    ];
+    return !ok.every(Boolean);
+  });
+  for (const [p, v] of Object.entries(seed.strings.parents)) take(`parents.${p}`, v.cite);
+  const unpinned = cites.filter(([, c]) => !pages[c.source] || !Number.isInteger(c.offset) || !Number.isInteger(c.length) || !/^[0-9a-f]{64}$/.test(c.sha256 ?? ''));
+  const dropped = Object.entries(seed.dropped);
+  check(bad.length === 0 && unpinned.length === 0 && tabbed.length === inst.length && dropped.every(([, d]) => d.reason) && !dropped.some(([k]) => seed.institutes[k]), `${ID}: ${inst.length} institutes in ${Object.keys(seed.tabs).length} tabs (${Object.entries(seed.tabs).map(([t, l]) => `${t} ${l.length}`).join(', ')}) and ${dropped.length} left out with a reason; every fact (${cites.length} citations) cites a pinned page by offset; a year is a year, or held with its reason${bad.length || unpinned.length ? ` — not: ${[...bad.map(([k]) => k), ...unpinned.slice(0, 3).map(([w]) => w)].join(', ')}` : ''}`);
+  // Points: one per institute, inside its own district; each kind with its source.
+  const shared = JSON.parse(fs.readFileSync(path.join(SERVED, 'shared', 'bangladesh-districts.json'), 'utf8'));
+  const arcs = shared.arcs.map((arc) => { const pts = []; for (let k = 0, x = 0, y = 0; k < arc.length; k += 2) { x += arc[k]; y += arc[k + 1]; pts.push([x * shared.quantum, y * shared.quantum]); } return pts; });
+  const ringPts = (ring) => ring.flatMap((r) => (r < 0 ? arcs[~r].slice().reverse() : arcs[r]));
+  const inRing = ([x, y], pts) => { let s = false; for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) { const [xi, yi] = pts[i], [xj, yj] = pts[j]; if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) s = !s; } return s; };
+  const inDistrict = (p, pcode) => { const d = shared.districts.find((x) => x.pcode === pcode); return d && d.rings.filter((r) => inRing(p, ringPts(r))).length % 2 === 1; };
+  const allSources = JSON.parse(fs.readFileSync(path.join(HERE, 'sources.json'), 'utf8'));
+  const geof = allSources.osmGeofabrikBangladesh;
+  const badPts = inst.filter(([key, x]) => {
+    const p = points[key];
+    if (!p || p.district !== x.address.district.pcode || !inDistrict([p.lon, p.lat], p.district)) return true;
+    if (p.kind === 'site') return !pages[p.cite?.source];
+    if (p.kind === 'osm') return p.source !== 'osmGeofabrikBangladesh' || !['node', 'way', 'relation'].includes(p.osm?.type) || !Number.isInteger(p.osm?.id) || !/^[0-9a-f]{64}$/.test(p.osm?.outlineSha256 ?? '');
+    if (p.kind === 'approximate') return p.source !== 'codAbBangladesh' || !p.why;
+    return true;
+  });
+  const kinds = Object.values(points).reduce((m, p) => ((m[p.kind] = (m[p.kind] ?? 0) + 1), m), {});
+  check(badPts.length === 0 && Object.keys(points).length === inst.length && /^[0-9a-f]{64}$/.test(geof?.sha256 ?? '') && geof.kept === false && (!kinds.osm || /ODbL/.test(seed.credits?.osm?.licence ?? '')), `${ID}: ${inst.length} points, each inside its own district — ${kinds.site ?? 0} the institute's own site pin, ${kinds.osm ?? 0} OpenStreetMap (Geofabrik's pinned extract, never kept; ODbL credited), ${kinds.approximate ?? 0} approximate (COD-AB district capital, marked)${badPts.length ? ` — not: ${badPts.map(([k]) => k).join(', ')}` : ''}`);
+  // With the cache: each page's text is its pin, and each citation is the words at its offset.
+  const cache = path.join(HERE, '.cache/research-institutes/pages');
+  if (fs.existsSync(cache)) {
+    const texts = {};
+    const missing = [], drift = [];
+    for (const [id, pin] of Object.entries(pages)) {
+      const f = path.join(cache, `${id}.txt`);
+      if (!fs.existsSync(f)) { missing.push(id); continue; }
+      const t = fs.readFileSync(f);
+      if (hash(t) !== pin.text.sha256) drift.push(id); else texts[id] = t.toString('utf8').normalize('NFC');
+    }
+    const wrong = cites.filter(([, c]) => texts[c.source] !== undefined && hash(texts[c.source].slice(c.offset, c.offset + c.length)) !== c.sha256);
+    check(drift.length === 0 && wrong.length === 0, `${ID}: each cached page's text is its pin (${Object.keys(texts).length} of ${Object.keys(pages).length}), and each citation (${cites.length}) is the words at its offset${drift.length || wrong.length ? ` — not: ${[...drift, ...wrong.slice(0, 3).map(([w]) => w)].join(', ')}` : ''}`);
+    if (missing.length) console.log(`warn ${ID}: ${missing.length} cited page(s) not cached: ${missing.slice(0, 5).join(', ')}`);
+  }
+  if (seed.pending?.length) console.log(`warn ${ID}: ${seed.pending.length} pending fact(s): ${seed.pending.map((p) => p.split(':')[0]).join(', ')}`);
+}
+
 // ---- no unapproved string ships (the user's rule, 2026-10-08, BD-6) -------------------------------
 // A live item whose seed carries approval flags ({ bn, approved }) may not serve a string the user has not
 // approved: every { bn, approved: false } in its tracked seed files whose text appears in its files under
