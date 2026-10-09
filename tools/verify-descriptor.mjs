@@ -127,7 +127,7 @@ const BANGLADESH_MARITIME_SEED_SHA256 = 'dcc627421f99b20faeffe17006d9348f181b966
 // The global-indices map «বৈশ্বিক সূচক»: its seed, pinned (live 2026-10-09).
 const GLOBAL_INDICES_SEED_SHA256 = '9b72d6e35308d4633dfe6f22021964a03e1459ca0b49603fb1dfae57efff517f';
 // The important-days diagram «বছরের চাকা»: its seed, pinned (live 2026-10-08, after WHEEL-2–5 and GL-WHEEL).
-const IMPORTANT_DAYS_SEED_SHA256 = '24fe65ed95d70d794a54c0a29341b85da87a13fcffa371a1d9967a862d737070';
+const IMPORTANT_DAYS_SEED_SHA256 = 'a2c6568c1e4c8f653258ea9b21c5a21d0224f0de27ba8be7dd04c3680ba5df46';
 // The bangladesh-ethnic-groups map: its seed, pinned (live 2026-10-08).
 const BANGLADESH_ETHNIC_SEED_SHA256 = 'c2b2333d34be11f0c02aec09fade7c8d1c007fa445c573fdc65824770f96cd75';
 // The org-members map: the editor's seed, pinned (live 2026-10-07).
@@ -2898,15 +2898,19 @@ console.log('\n\n============ global-indices ============');
 |--------------------------------------------------------------------------
 | IMPORTANT-DAYS — a diagram, «বছরের চাকা» (live 2026-10-08, after WHEEL-2–5
 | and GL-WHEEL), built by
-| tools/build-diagram-important-days.mjs from its seed: the days the Cabinet
-| Division's circular of 11 March 2026 lists, each date verified, religious
-| days removed (the user's review). The seed is the pinned one; docs/ holds
+| tools/build-diagram-important-days.mjs from its seed: Bangladesh's national
+| and international days, each date from the body that owns it and cross-
+| checked with Wikipedia (the user's rule, WHEEL-7: the circular is a list of
+| candidates, the source only for seven national days), religious days
+| removed (the user's review). The seed is the pinned one; docs/ holds
 | exactly what a fresh build writes; the view is the shell's `days` module;
 | twelve months, their counts the seed's built days; no held-out day built;
 | two kinds only; no religious day, theme or declarer anywhere in the built
 | files; no year in any word, name or date shown; every card fact cites a URL;
-| every string approved (the user, WHEEL-4 and WHEEL-5).
-| A live diagram serves no unapproved string (verify.mjs, rule (a)).
+| every string approved (the user, WHEEL-4, WHEEL-5 and WHEEL-7's names) but
+| the new days' purposes, which are not built until approved; every built day
+| names its source tier. A live diagram serves no unapproved string
+| (verify.mjs, rule (a)).
 |--------------------------------------------------------------------------
 */
 console.log('\n\n============ important-days (diagram) ============');
@@ -2956,15 +2960,27 @@ console.log('\n\n============ important-days (diagram) ============');
   };
   flagWalk(seed.entries, 'entries');
   flagWalk(seed.words, 'words');
-  check(flags.pending.length === 0, `every string approved: ${flags.approved} approved, ${flags.pending.length} pending${flags.pending.length ? ` — ${flags.pending.slice(0, 3).join(', ')}` : ''}`);
+  // WHEEL-7: the new days' purposes await the user; they stay in the seed and never reach the built files. Every
+  // other string is approved.
+  const pendingPurposes = flags.pending.filter((w) => /^entries\[\d+\]\.card\.purposeBn$/.test(w));
+  const strayPending = flags.pending.filter((w) => !pendingPurposes.includes(w));
+  const pendingTexts = pendingPurposes.map((w) => seed.entries[Number(/\[(\d+)\]/.exec(w)[1])].card.purposeBn.bn);
+  const shipped = pendingTexts.filter((t) => builtText.includes(t) || builtText.includes(JSON.stringify(t).slice(1, -1)));
+  check(strayPending.length === 0 && shipped.length === 0, `every string approved but the new days' purposes (${flags.approved} approved; ${pendingPurposes.length} purposes awaiting the user, none in the built files)${strayPending.length || shipped.length ? ` — not: ${[...strayPending, ...shipped].slice(0, 3).join(', ')}` : ''}`);
   const tappableWrong = data.days.filter((d) => d.tappable !== Boolean(d.card.englishName || d.card.firstObserved || d.card.purposeBn));
   check(tappableWrong.length === 0, `a row opens a card only where it has a name, a first year or a purpose: ${data.days.filter((d) => d.tappable).length} of ${data.days.length}`);
   const credits = data.credits.map((c) => c.url);
-  check(credits.length === 2 + seed.amendments.length && credits[0] === seed.circular.url && credits.includes('https://www.un.org/en/observances/list-days-weeks') && !data.creditGroups, `ⓘ is short: the circular, its ${seed.amendments.length} amendments and the UN's list (the shell adds the font's licence)`);
+  // WHEEL-7 (the user's source rule): the UN's list first, the owner bodies, the Government of Bangladesh's sources,
+  // the circular (only for the national days no other official page states) and Wikipedia.
+  check(JSON.stringify(credits) === JSON.stringify(seed.credits.map((c) => c.url)) && credits[0] === 'https://www.un.org/en/observances/list-days-weeks' && credits.includes(seed.circular.url) && credits.some((u) => /wikipedia\.org/.test(u)) && credits.some((u) => /\.gov\.bd/.test(u)) && !data.creditGroups, `ⓘ: the UN's list, ${credits.length - 4} owner bodies, the Government of Bangladesh's sources, the circular (for its seven national days) and Wikipedia (the shell adds the font's licence)`);
+  // Every built day names its source tier (WHEEL-7): owner, gob, circular or secondary, with the URL.
+  const tiered = seed.entries.filter((e) => e.status === 'built');
+  const untiered = tiered.flatMap((e) => e.named.filter((d) => !['owner', 'gob', 'circular', 'secondary'].includes(d.source7?.tier) || !/^https?:\/\//.test(d.source7?.url ?? '')).map((d) => `${e.index} ${d.nameBn}`));
+  check(untiered.length === 0, `every built day's date has its source tier and URL (${tiered.reduce((n, e) => n + e.named.length, 0)} named days: ${['owner', 'gob', 'circular', 'secondary'].map((t) => `${tiered.reduce((n, e) => n + e.named.filter((d) => d.source7?.tier === t).length, 0)} ${t}`).join(', ')})${untiered.length ? ` — not: ${untiered.slice(0, 3).join(', ')}` : ''}`);
   const builtSeed = seed.entries.filter((e) => e.status === 'built');
   const monthOf = (e) => (e.date.type === 'dated' ? Number(e.date.dates[2026].slice(5, 7)) : e.date.m);
   const want = [...Array(12)].map((_, i) => builtSeed.filter((e) => monthOf(e) === i + 1).length);
-  check(JSON.stringify(data.monthCounts) === JSON.stringify(want) && data.days.length === builtSeed.length && want.reduce((s, n) => s + n, 0) === builtSeed.length, `the month counts are the seed's built days (${want.join(' ')}; ${builtSeed.length} of the circular's ${seed.entries.length}, ${seed.entries.length - builtSeed.length} held out)`);
+  check(JSON.stringify(data.monthCounts) === JSON.stringify(want) && data.days.length === builtSeed.length && want.reduce((s, n) => s + n, 0) === builtSeed.length, `the month counts are the seed's built days (${want.join(' ')}; ${builtSeed.length} of the seed's ${seed.entries.length} entries, ${seed.entries.length - builtSeed.length} held out)`);
   const heldIn = seed.entries.filter((e) => e.status === 'held' && data.days.some((d) => d.id === `e${e.index}`));
   const badBuilt = builtSeed.filter((e) => !e.date || e.named.some((d) => d.status === 'CONFLICT' || !['VERIFIED', 'SINGLE-SOURCE'].includes(d.status)));
   check(heldIn.length === 0 && badBuilt.length === 0, 'only VERIFIED or SINGLE-SOURCE days with a date are built; no held-out day reaches the data');

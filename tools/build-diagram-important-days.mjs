@@ -4,8 +4,8 @@
 //
 // Reads data-sources/important-days/days.seed.json only: no network, no picture. Writes descriptor.json (the view
 // `days`, docs/visual/days.js, and its words) and data.json (the built entries — those whose every named day is
-// VERIFIED or SINGLE-SOURCE and that have a date — and ⓘ's short list: the circular, its amendments and the UN's list
-// of observances). A held-out entry (a CONFLICT, or no date) never reaches data.json; nor does a religious day, a
+// VERIFIED or SINGLE-SOURCE and that have a date — and ⓘ's list, the seed's credits (WHEEL-7: the UN's list, the
+// owner bodies, GoB sources, the circular for seven national days, Wikipedia). A held-out entry (a CONFLICT, or no date) never reaches data.json; nor does a religious day, a
 // declarer or a theme (the user's review, 2026-10-08). No year is shown: a day carries its month and what its date
 // tile and row show — the date, its rule («অক্টোবরের প্রথম সোমবার») or the circular's wording («১ বৈশাখ») — and,
 // apart, `when`, from which the view works out «আজ» and «x দিন পর» without showing a year. A second build writes the
@@ -36,21 +36,19 @@ const days = built.map((e) => {
   const card = {};
   if (c.englishName) card.englishName = c.englishName.value ?? c.englishName.bn;
   if (c.firstObserved) card.firstObserved = c.firstObserved.value;
-  if (c.purposeBn) card.purposeBn = c.purposeBn.bn;
+  // A purpose the user has not approved stays in the seed (WHEEL-7): a live diagram serves no unapproved string.
+  if (c.purposeBn?.approved) card.purposeBn = c.purposeBn.bn;
   if (c.source) card.source = { url: c.source.url, host: new URL(c.source.url).host.replace(/^www\./, '') };
   const t = e.date;
   const when = t.type === 'fixed' ? { type: 'fixed', m: t.m, d: t.d } : t.type === 'rule' ? { type: 'rule', m: t.m, weekday: t.weekday, nth: t.nth } : { type: 'dated', dates: t.dates };
   const shows = t.type === 'fixed' ? {} : { tile: t.tile.map((x) => x.bn), dateText: t.text.bn };
-  return { id: `e${e.index}`, nameBn: e.nameBn.bn, kinds: e.kinds, month: monthOf(e), when, ...shows, ...(c.purposeBn ? { purposeBn: c.purposeBn.bn } : {}), tappable: Boolean(card.englishName || card.firstObserved || card.purposeBn), card };
+  return { id: `e${e.index}`, nameBn: e.nameBn.bn, kinds: e.kinds, month: monthOf(e), when, ...shows, ...(card.purposeBn ? { purposeBn: card.purposeBn } : {}), tappable: Boolean(card.englishName || card.firstObserved || card.purposeBn), card };
 });
 
-// ⓘ: short — the circular, its amendments, the UN's list (the shell adds the font's licence). Each day's own source is
-// its card's «সূত্র».
-const credits = [
-  { title: `Cabinet Division, circular no. ${seed.circular.number} (${seed.circular.date})`, url: seed.circular.url },
-  ...seed.amendments.map((a) => ({ title: `Cabinet Division, amendment no. ${a.number} (${a.date})`, url: a.url })),
-  ...seed.credits.map((c) => ({ title: c.what, url: c.url })),
-];
+// ⓘ (the user's source rule, WHEEL-7): the UN's list, the owner bodies, the Government of Bangladesh's sources, the
+// circular (only for the national days no other official page states) and Wikipedia, as the seed lists them; the
+// shell adds the font's licence. Each day's own source is its card's «সূত্র».
+const credits = seed.credits.map((c) => ({ title: c.what, url: c.url }));
 
 const descriptor = {
   id: ID,
@@ -75,7 +73,7 @@ const descriptor = {
   },
 };
 const data = {
-  _about: 'Built by tools/build-diagram-important-days.mjs from data-sources/important-days/days.seed.json; do not edit. The days Bangladesh observes (the Cabinet Division\'s circular of 11 March 2026 and its amendments), each date verified; religious days removed (the user, 2026-10-08); held-out days (a CONFLICT, or no date) are not here. `when` only times «আজ»; no year is shown.',
+  _about: 'Built by tools/build-diagram-important-days.mjs from data-sources/important-days/days.seed.json; do not edit. The days Bangladesh observes, each date from the body that owns it (the UN or its agency, or the Government of Bangladesh) and cross-checked with Wikipedia (the user, WHEEL-7); a purpose not yet approved is left out; religious days removed (the user, 2026-10-08); held-out days (a CONFLICT, or no date) are not here. `when` only times «আজ»; no year is shown.',
   monthCounts: MONTHS_COUNT,
   days,
   credits,

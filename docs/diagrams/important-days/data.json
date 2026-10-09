@@ -1,18 +1,18 @@
 {
-  "_about": "Built by tools/build-diagram-important-days.mjs from data-sources/important-days/days.seed.json; do not edit. The days Bangladesh observes (the Cabinet Division's circular of 11 March 2026 and its amendments), each date verified; religious days removed (the user, 2026-10-08); held-out days (a CONFLICT, or no date) are not here. `when` only times «আজ»; no year is shown.",
+  "_about": "Built by tools/build-diagram-important-days.mjs from data-sources/important-days/days.seed.json; do not edit. The days Bangladesh observes, each date from the body that owns it (the UN or its agency, or the Government of Bangladesh) and cross-checked with Wikipedia (the user, WHEEL-7); a purpose not yet approved is left out; religious days removed (the user, 2026-10-08); held-out days (a CONFLICT, or no date) are not here. `when` only times «আজ»; no year is shown.",
   "monthCounts": [
-    2,
-    6,
-    11,
+    4,
     9,
-    8,
-    4,
-    5,
-    3,
-    4,
+    16,
+    12,
     13,
+    11,
+    7,
     6,
-    9
+    8,
+    18,
+    12,
+    16
   ],
   "days": [
     {
@@ -1337,6 +1337,30 @@
       }
     },
     {
+      "id": "e72",
+      "nameBn": "বিশ্ব টেলিযোগাযোগ দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 5,
+      "when": {
+        "type": "fixed",
+        "m": 5,
+        "d": 17
+      },
+      "purposeBn": "ইন্টারনেট ও তথ্যপ্রযুক্তির সম্ভাবনা এবং ডিজিটাল বৈষম্য কমানোর উপায় নিয়ে সচেতনতা বাড়ানো।",
+      "tappable": true,
+      "card": {
+        "englishName": "World Telecommunication and Information Society Day",
+        "firstObserved": "1969",
+        "purposeBn": "ইন্টারনেট ও তথ্যপ্রযুক্তির সম্ভাবনা এবং ডিজিটাল বৈষম্য কমানোর উপায় নিয়ে সচেতনতা বাড়ানো।",
+        "source": {
+          "url": "https://www.un.org/en/observances/telecommunication-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
       "id": "e73",
       "nameBn": "বিশ্ব তামাকমুক্ত দিবস",
       "kinds": [
@@ -1458,6 +1482,29 @@
       }
     },
     {
+      "id": "e78",
+      "nameBn": "বিশ্ব হার্ট দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 9,
+      "when": {
+        "type": "fixed",
+        "m": 9,
+        "d": 29
+      },
+      "purposeBn": "হৃদ্‌রোগ ও রক্তনালির রোগ সম্পর্কে বিশ্বজুড়ে সচেতনতা বাড়ানো।",
+      "tappable": true,
+      "card": {
+        "englishName": "World Heart Day",
+        "purposeBn": "হৃদ্‌রোগ ও রক্তনালির রোগ সম্পর্কে বিশ্বজুড়ে সচেতনতা বাড়ানো।",
+        "source": {
+          "url": "https://world-heart-federation.org/world-heart-day/",
+          "host": "world-heart-federation.org"
+        }
+      }
+    },
+    {
       "id": "e79",
       "nameBn": "আন্তর্জাতিক প্রবীণ দিবস",
       "kinds": [
@@ -1569,8 +1616,8 @@
       }
     },
     {
-      "id": "e84",
-      "nameBn": "বিশ্ব সাদা ছড়ি দিবস",
+      "id": "e85",
+      "nameBn": "জাতিসংঘ দিবস",
       "kinds": [
         "international"
       ],
@@ -1578,10 +1625,18 @@
       "when": {
         "type": "fixed",
         "m": 10,
-        "d": 15
+        "d": 24
       },
-      "tappable": false,
-      "card": {}
+      "purposeBn": "জাতিসংঘের লক্ষ্য ও অর্জন বিশ্ববাসীকে জানানো এবং এর কাজে মানুষের সমর্থন আদায় করা।",
+      "tappable": true,
+      "card": {
+        "englishName": "United Nations Day",
+        "purposeBn": "জাতিসংঘের লক্ষ্য ও অর্জন বিশ্ববাসীকে জানানো এবং এর কাজে মানুষের সমর্থন আদায় করা।",
+        "source": {
+          "url": "https://documents.un.org/api/symbol/access?s=A/RES/168(II)&l=en&t=pdf",
+          "host": "documents.un.org"
+        }
+      }
     },
     {
       "id": "e86",
@@ -1681,32 +1736,1111 @@
       },
       "tappable": false,
       "card": {}
+    },
+    {
+      "id": "e91",
+      "nameBn": "আন্তর্জাতিক শিক্ষা দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 1,
+      "when": {
+        "type": "fixed",
+        "m": 1,
+        "d": 24
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "International Day of Education",
+        "source": {
+          "url": "https://www.un.org/en/observances/education-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e92",
+      "nameBn": "বিশ্ব জলাভূমি দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 2,
+      "when": {
+        "type": "fixed",
+        "m": 2,
+        "d": 2
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "World Wetlands Day",
+        "source": {
+          "url": "https://www.un.org/en/observances/world-wetlands-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e93",
+      "nameBn": "বিশ্ব বেতার দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 2,
+      "when": {
+        "type": "fixed",
+        "m": 2,
+        "d": 13
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "World Radio Day",
+        "source": {
+          "url": "https://www.un.org/en/observances/radio-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e94",
+      "nameBn": "বিশ্ব সামাজিক ন্যায়বিচার দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 2,
+      "when": {
+        "type": "fixed",
+        "m": 2,
+        "d": 20
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "World Day of Social Justice",
+        "source": {
+          "url": "https://www.un.org/en/observances/social-justice-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e95",
+      "nameBn": "বিশ্ব বন্যপ্রাণী দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 3,
+      "when": {
+        "type": "fixed",
+        "m": 3,
+        "d": 3
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "World Wildlife Day",
+        "source": {
+          "url": "https://www.un.org/en/observances/world-wildlife-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e96",
+      "nameBn": "আন্তর্জাতিক সুখ দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 3,
+      "when": {
+        "type": "fixed",
+        "m": 3,
+        "d": 20
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "International Day of Happiness",
+        "source": {
+          "url": "https://www.un.org/en/observances/happiness-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e97",
+      "nameBn": "আন্তর্জাতিক বন দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 3,
+      "when": {
+        "type": "fixed",
+        "m": 3,
+        "d": 21
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "International Day of Forests",
+        "source": {
+          "url": "https://www.fao.org/international-day-of-forests/en",
+          "host": "fao.org"
+        }
+      }
+    },
+    {
+      "id": "e98",
+      "nameBn": "বিশ্ব কবিতা দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 3,
+      "when": {
+        "type": "fixed",
+        "m": 3,
+        "d": 21
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "World Poetry Day",
+        "source": {
+          "url": "https://www.unesco.org/en/days/poetry",
+          "host": "unesco.org"
+        }
+      }
+    },
+    {
+      "id": "e99",
+      "nameBn": "জাতিগত বৈষম্য বিলোপ দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 3,
+      "when": {
+        "type": "fixed",
+        "m": 3,
+        "d": 21
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "International Day for the Elimination of Racial Discrimination",
+        "source": {
+          "url": "https://www.un.org/en/observances/end-racism-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e100",
+      "nameBn": "ধরিত্রী দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 4,
+      "when": {
+        "type": "fixed",
+        "m": 4,
+        "d": 22
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "International Mother Earth Day",
+        "source": {
+          "url": "https://www.un.org/en/observances/earth-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e101",
+      "nameBn": "বিশ্ব বই দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 4,
+      "when": {
+        "type": "fixed",
+        "m": 4,
+        "d": 23
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "World Book and Copyright Day",
+        "source": {
+          "url": "https://www.unesco.org/en/days/world-book-and-copyright",
+          "host": "unesco.org"
+        }
+      }
+    },
+    {
+      "id": "e102",
+      "nameBn": "বিশ্ব ম্যালেরিয়া দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 4,
+      "when": {
+        "type": "fixed",
+        "m": 4,
+        "d": 25
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "World Malaria Day",
+        "source": {
+          "url": "https://www.who.int/campaigns/world-malaria-day/world-malaria-day-2021",
+          "host": "who.int"
+        }
+      }
+    },
+    {
+      "id": "e103",
+      "nameBn": "আন্তর্জাতিক পরিবার দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 5,
+      "when": {
+        "type": "fixed",
+        "m": 5,
+        "d": 15
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "International Day of Families",
+        "source": {
+          "url": "https://www.un.org/en/observances/international-day-of-families",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e104",
+      "nameBn": "বিশ্ব মৌমাছি দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 5,
+      "when": {
+        "type": "fixed",
+        "m": 5,
+        "d": 20
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "World Bee Day",
+        "source": {
+          "url": "https://www.fao.org/world-bee-day/en",
+          "host": "fao.org"
+        }
+      }
+    },
+    {
+      "id": "e105",
+      "nameBn": "আন্তর্জাতিক জীববৈচিত্র্য দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 5,
+      "when": {
+        "type": "fixed",
+        "m": 5,
+        "d": 22
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "International Day for Biological Diversity",
+        "source": {
+          "url": "https://www.un.org/en/observances/biological-diversity-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e106",
+      "nameBn": "জাতিসংঘ শান্তিরক্ষী দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 5,
+      "when": {
+        "type": "fixed",
+        "m": 5,
+        "d": 29
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "International Day of UN Peacekeepers",
+        "source": {
+          "url": "https://www.un.org/en/observances/peacekeepers-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e107",
+      "nameBn": "বিশ্ব সাইকেল দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 6,
+      "when": {
+        "type": "fixed",
+        "m": 6,
+        "d": 3
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "World Bicycle Day",
+        "source": {
+          "url": "https://www.un.org/en/observances/bicycle-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e108",
+      "nameBn": "বিশ্ব মহাসাগর দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 6,
+      "when": {
+        "type": "fixed",
+        "m": 6,
+        "d": 8
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "World Oceans Day",
+        "source": {
+          "url": "https://www.un.org/en/observances/oceans-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e109",
+      "nameBn": "শিশুশ্রমবিরোধী দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 6,
+      "when": {
+        "type": "fixed",
+        "m": 6,
+        "d": 12
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "World Day Against Child Labour",
+        "source": {
+          "url": "https://www.un.org/en/observances/world-day-against-child-labour",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e110",
+      "nameBn": "বিশ্ব রক্তদাতা দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 6,
+      "when": {
+        "type": "fixed",
+        "m": 6,
+        "d": 14
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "World Blood Donor Day",
+        "source": {
+          "url": "https://www.who.int/campaigns/world-blood-donor-day",
+          "host": "who.int"
+        }
+      }
+    },
+    {
+      "id": "e111",
+      "nameBn": "বিশ্ব শরণার্থী দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 6,
+      "when": {
+        "type": "fixed",
+        "m": 6,
+        "d": 20
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "World Refugee Day",
+        "source": {
+          "url": "https://www.un.org/en/observances/refugee-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e112",
+      "nameBn": "আন্তর্জাতিক যোগ দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 6,
+      "when": {
+        "type": "fixed",
+        "m": 6,
+        "d": 21
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "International Day of Yoga",
+        "source": {
+          "url": "https://www.un.org/en/observances/yoga-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e113",
+      "nameBn": "জনসেবা দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 6,
+      "when": {
+        "type": "fixed",
+        "m": 6,
+        "d": 23
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "United Nations Public Service Day",
+        "source": {
+          "url": "https://www.un.org/en/observances/public-service-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e114",
+      "nameBn": "ম্যান্ডেলা দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 7,
+      "when": {
+        "type": "fixed",
+        "m": 7,
+        "d": 18
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "Nelson Mandela International Day",
+        "source": {
+          "url": "http://www.un.org/en/events/mandeladay/",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e115",
+      "nameBn": "মানবপাচারবিরোধী দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 7,
+      "when": {
+        "type": "fixed",
+        "m": 7,
+        "d": 30
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "World Day against Trafficking in Persons",
+        "source": {
+          "url": "https://www.un.org/en/observances/end-human-trafficking-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e116",
+      "nameBn": "আন্তর্জাতিক আদিবাসী দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 8,
+      "when": {
+        "type": "fixed",
+        "m": 8,
+        "d": 9
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "International Day of the World's Indigenous Peoples",
+        "source": {
+          "url": "https://www.un.org/en/observances/indigenous-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e117",
+      "nameBn": "বিশ্ব মানবতা দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 8,
+      "when": {
+        "type": "fixed",
+        "m": 8,
+        "d": 19
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "World Humanitarian Day",
+        "source": {
+          "url": "https://www.un.org/en/observances/humanitarian-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e118",
+      "nameBn": "পারমাণবিক পরীক্ষাবিরোধী দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 8,
+      "when": {
+        "type": "fixed",
+        "m": 8,
+        "d": 29
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "International Day against Nuclear Tests",
+        "source": {
+          "url": "https://www.un.org/en/observances/end-nuclear-tests-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e119",
+      "nameBn": "আন্তর্জাতিক গণতন্ত্র দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 9,
+      "when": {
+        "type": "fixed",
+        "m": 9,
+        "d": 15
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "International Day of Democracy",
+        "source": {
+          "url": "https://www.un.org/en/observances/democracy-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e120",
+      "nameBn": "আন্তর্জাতিক শান্তি দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 9,
+      "when": {
+        "type": "fixed",
+        "m": 9,
+        "d": 21
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "International Day of Peace",
+        "source": {
+          "url": "https://www.un.org/en/observances/international-day-peace",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e121",
+      "nameBn": "তথ্য অধিকার দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 9,
+      "when": {
+        "type": "fixed",
+        "m": 9,
+        "d": 28
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "International Day for Universal Access to Information",
+        "source": {
+          "url": "https://www.un.org/en/observances/information-access-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e122",
+      "nameBn": "আন্তর্জাতিক অহিংসা দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 10,
+      "when": {
+        "type": "fixed",
+        "m": 10,
+        "d": 2
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "International Day of Non-Violence",
+        "source": {
+          "url": "https://www.un.org/en/observances/non-violence-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e123",
+      "nameBn": "কন্যাশিশু দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 10,
+      "when": {
+        "type": "fixed",
+        "m": 10,
+        "d": 11
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "International Day of the Girl Child",
+        "source": {
+          "url": "https://www.un.org/en/observances/girl-child-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e124",
+      "nameBn": "গ্রামীণ নারী দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 10,
+      "when": {
+        "type": "fixed",
+        "m": 10,
+        "d": 15
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "International Day of Rural Women",
+        "source": {
+          "url": "https://www.un.org/en/observances/rural-women-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e125",
+      "nameBn": "দারিদ্র্য বিমোচন দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 10,
+      "when": {
+        "type": "fixed",
+        "m": 10,
+        "d": 17
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "International Day for the Eradication of Poverty",
+        "source": {
+          "url": "https://www.un.org/en/observances/day-for-eradicating-poverty",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e126",
+      "nameBn": "বিশ্ব শহর দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 10,
+      "when": {
+        "type": "fixed",
+        "m": 10,
+        "d": 31
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "World Cities Day",
+        "source": {
+          "url": "https://www.un.org/en/observances/cities-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e127",
+      "nameBn": "সুনামি সচেতনতা দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 11,
+      "when": {
+        "type": "fixed",
+        "m": 11,
+        "d": 5
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "World Tsunami Awareness Day",
+        "source": {
+          "url": "https://www.un.org/en/observances/tsunami-awareness-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e128",
+      "nameBn": "সহনশীলতা দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 11,
+      "when": {
+        "type": "fixed",
+        "m": 11,
+        "d": 16
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "International Day for Tolerance",
+        "source": {
+          "url": "https://www.unesco.org/en/days/tolerance",
+          "host": "unesco.org"
+        }
+      }
+    },
+    {
+      "id": "e129",
+      "nameBn": "বিশ্ব শিশু দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 11,
+      "when": {
+        "type": "fixed",
+        "m": 11,
+        "d": 20
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "World Children's Day",
+        "source": {
+          "url": "https://www.un.org/en/observances/world-childrens-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e130",
+      "nameBn": "বিশ্ব টেলিভিশন দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 11,
+      "when": {
+        "type": "fixed",
+        "m": 11,
+        "d": 21
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "World Television Day",
+        "source": {
+          "url": "https://www.un.org/en/observances/world-television-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e131",
+      "nameBn": "নারী নির্যাতন বিলোপ দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 11,
+      "when": {
+        "type": "fixed",
+        "m": 11,
+        "d": 25
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "International Day for the Elimination of Violence against Women",
+        "source": {
+          "url": "https://www.un.org/en/observances/ending-violence-against-women-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e132",
+      "nameBn": "বিশ্ব মৃত্তিকা দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 12,
+      "when": {
+        "type": "fixed",
+        "m": 12,
+        "d": 5
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "World Soil Day",
+        "source": {
+          "url": "https://www.un.org/en/observances/world-soil-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e133",
+      "nameBn": "স্বেচ্ছাসেবী দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 12,
+      "when": {
+        "type": "fixed",
+        "m": 12,
+        "d": 5
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "International Volunteer Day for Economic and Social Development",
+        "source": {
+          "url": "https://www.un.org/en/observances/volunteer-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e134",
+      "nameBn": "বেসামরিক বিমান চলাচল দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 12,
+      "when": {
+        "type": "fixed",
+        "m": 12,
+        "d": 7
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "International Civil Aviation Day",
+        "source": {
+          "url": "https://www.un.org/en/observances/civil-aviation-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e135",
+      "nameBn": "আন্তর্জাতিক পর্বত দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 12,
+      "when": {
+        "type": "fixed",
+        "m": 12,
+        "d": 11
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "International Mountain Day",
+        "source": {
+          "url": "https://www.un.org/en/observances/mountain-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e136",
+      "nameBn": "আরবি ভাষা দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 12,
+      "when": {
+        "type": "fixed",
+        "m": 12,
+        "d": 18
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "Arabic Language Day",
+        "source": {
+          "url": "https://www.un.org/en/observances/arabiclanguageday",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e137",
+      "nameBn": "মানব সংহতি দিবস",
+      "kinds": [
+        "international"
+      ],
+      "month": 12,
+      "when": {
+        "type": "fixed",
+        "m": 12,
+        "d": 20
+      },
+      "tappable": true,
+      "card": {
+        "englishName": "International Human Solidarity Day",
+        "source": {
+          "url": "https://www.un.org/en/observances/human-solidarity-day",
+          "host": "un.org"
+        }
+      }
+    },
+    {
+      "id": "e138",
+      "nameBn": "উনসত্তরের গণ-অভ্যুত্থান দিবস",
+      "kinds": [
+        "national"
+      ],
+      "month": 1,
+      "when": {
+        "type": "fixed",
+        "m": 1,
+        "d": 24
+      },
+      "tappable": false,
+      "card": {
+        "source": {
+          "url": "https://pressinform.gov.bd/pages/all-notes/%E0%A7%A8%E0%A7%A9-%E0%A6%9C%E0%A6%BE%E0%A6%A8%E0%A7%81%E0%A7%9F%E0%A6%BE%E0%A6%B0%E0%A6%BF-%E0%A7%A8%E0%A7%A6%E0%A7%A8%E0%A7%AC-vemeya-697317bc8ace23983f63259d",
+          "host": "pressinform.gov.bd"
+        }
+      }
+    },
+    {
+      "id": "e139",
+      "nameBn": "সশস্ত্র বাহিনী দিবস",
+      "kinds": [
+        "national"
+      ],
+      "month": 11,
+      "when": {
+        "type": "fixed",
+        "m": 11,
+        "d": 21
+      },
+      "tappable": false,
+      "card": {
+        "source": {
+          "url": "https://pressinform.gov.bd/pages/all-notes/%E0%A6%A4%E0%A6%A5%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BF%E0%A6%AC%E0%A6%B0%E0%A6%A3%E0%A7%80-%E0%A7%A8%E0%A7%A6-%E0%A6%A8%E0%A6%AD%E0%A7%87%E0%A6%AE%E0%A7%8D%E0%A6%AC%E0%A6%B0-%E0%A7%A8%E0%A7%A6%E0%A7%A8%E0%A7%AB-fcb7cc-6922ded1933eb65569e1d999",
+          "host": "pressinform.gov.bd"
+        }
+      }
+    },
+    {
+      "id": "e140",
+      "nameBn": "শহিদ বুদ্ধিজীবী দিবস",
+      "kinds": [
+        "national"
+      ],
+      "month": 12,
+      "when": {
+        "type": "fixed",
+        "m": 12,
+        "d": 14
+      },
+      "tappable": false,
+      "card": {
+        "source": {
+          "url": "https://pressinform.gov.bd/pages/all-notes/%E0%A6%A4%E0%A6%A5%E0%A7%8D%E0%A6%AF%E0%A6%AC%E0%A6%BF%E0%A6%AC%E0%A6%B0%E0%A6%A3%E0%A7%80-%E0%A7%AF-%E0%A6%A1%E0%A6%BF%E0%A6%B8%E0%A7%87%E0%A6%AE%E0%A7%8D%E0%A6%AC%E0%A6%B0-%E0%A7%A8%E0%A7%A6%E0%A7%A8%E0%A7%AB-ef6edd-695b9941a31054345f104aab",
+          "host": "pressinform.gov.bd"
+        }
+      }
     }
   ],
   "credits": [
     {
-      "title": "Cabinet Division, circular no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ (2026-03-11)",
+      "title": "UN observances: the list of international days and weeks",
+      "url": "https://www.un.org/en/observances/list-days-weeks"
+    },
+    {
+      "title": "Global Accreditation Cooperation (Global ACI) — its own page for its day",
+      "url": "https://global-aci.org/"
+    },
+    {
+      "title": "International Co-operative Alliance — its own page for its day",
+      "url": "https://ica.coop/"
+    },
+    {
+      "title": "International Committee of the Red Cross — its own page for its day",
+      "url": "https://www.icrc.org/"
+    },
+    {
+      "title": "International Maritime Organization — its own page for its day",
+      "url": "https://www.imo.org/"
+    },
+    {
+      "title": "UN Tourism — its own page for its day",
+      "url": "https://www.untourism.int/"
+    },
+    {
+      "title": "UNESCO — its own page for its day",
+      "url": "https://www.unesco.org/"
+    },
+    {
+      "title": "WIPO — its own page for its day",
+      "url": "https://www.wipo.int/"
+    },
+    {
+      "title": "World Health Organization — its own page for its day",
+      "url": "https://www.who.int/"
+    },
+    {
+      "title": "World Heart Federation — its own page for its day",
+      "url": "https://world-heart-federation.org/"
+    },
+    {
+      "title": "World Meteorological Organization — its own page for its day",
+      "url": "https://wmo.int/"
+    },
+    {
+      "title": "Government of Bangladesh: the Press Information Department (PID) and the ministries' and divisions' notices",
+      "url": "https://pressinform.gov.bd/"
+    },
+    {
+      "title": "Cabinet Division, circular no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০২.২৫.১৩২ (2026-03-11) — for the seven national days no other official page states",
       "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/2/e821f02b-2286-4531-9ce4-d552f192c289.pdf"
     },
     {
-      "title": "Cabinet Division, amendment no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০১.২৬.২৫৬ (2026-04-21)",
-      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/3/169e9379-16cb-4ba8-b99e-5971a669d3e0.pdf"
-    },
-    {
-      "title": "Cabinet Division, amendment no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০১.২৬.২৫৫ (2026-04-21)",
-      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/3/22d56cc1-aa1d-497d-b8a2-08405b4d4744.pdf"
-    },
-    {
-      "title": "Cabinet Division, amendment no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০১.২৬.২৭৭ (2026-04-28)",
-      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/3/09ff0633-804e-458c-be38-24aa89a61ea6.pdf"
-    },
-    {
-      "title": "Cabinet Division, amendment no. ০৪.০০.০০০০.০০০.৪১৬.২৩.০০০১.২৬.৪৮৬ (2026-08-02)",
-      "url": "https://objectstorage.ap-dcc-gazipur-1.oraclecloud15.com/n/axvjbnqprylg/b/V2Ministry/o/office-cabinet/2026/7/ee126720-ae88-455a-8bf1-ea9652f5249c.pdf"
-    },
-    {
-      "title": "UN observances: the list of international days and weeks",
-      "url": "https://www.un.org/en/observances/list-days-weeks"
+      "title": "Wikipedia — every date cross-checked, by revision",
+      "url": "https://en.wikipedia.org/"
     }
   ]
 }

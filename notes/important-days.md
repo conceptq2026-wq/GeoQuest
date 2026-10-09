@@ -86,7 +86,9 @@ Read it with `CLAUDE.md`, whose rules and verification budget apply. A diagram u
 - **The card** is a sheet: ইংরেজি নাম, প্রথম পালন, উদ্দেশ্য and a small «সূত্র» link to that day's own official source; a
   row without a value is left out. A day with none of the three facts has no card: its row is not a button and has no
   chevron (54 of the 80 rows open a card). ✕ (44 px) or Escape closes it; motion respects prefers-reduced-motion.
-- **ⓘ** is short: the circular, its four amendments, the UN's list of observances and the font's licence.
+- **ⓘ** (WHEEL-7): the UN's list of international days, the owner bodies' own pages, the Government of Bangladesh's
+  sources (PID and the ministries), the Cabinet Division's circular (only for the seven national days no other official
+  page states), Wikipedia (the cross-check) and the font's licence.
 - **`tools/check.mjs important-days --sizes=320,390,768,1280`** runs `daysSteps`: every month by ›, both wraps, the
   page at each width (sideways scroll, text, taps, names inside wedges), the twelve wedges tapped at mid-ring, every
   row with a card opened and closed, every row without one inert.
@@ -139,3 +141,40 @@ Read it with `CLAUDE.md`, whose rules and verification budget apply. A diagram u
   গণঅভ্যুত্থান স্মরণ» (its source, PID's handout of 4 August 2026, says the student-public uprising of 5 August 2024
   is marked as the day); #19, জুলাই শহীদ দিবস's, spells «শহীদদের» as the day's name does. Both keep their sources.
   `tools/.cache/days/wheel4.mjs` applies them to the seed after `merge3.mjs`.
+
+## WHEEL-7 — the user's decisions on WHEEL-6 (2026-10-09)
+
+**The source rule (WHEEL-6):** the Cabinet Division's circular is no longer the authority for dates, only a list of
+candidates. An international day's date comes from the body that declared it (the UN or its agency); a national day's
+from an official Government of Bangladesh source (PID, a ministry or division, the Bangladesh Gazette). Each is
+cross-checked with Wikipedia (read at `/wiki/` with its revision id: its robots.txt disallows the API paths). The
+research: `tools/.cache/days/wheel6.md` and `wheel6/`.
+
+1. An official date with no Wikipedia article to cross-check is verified: স্থানীয় সরকার, চা, পাবলিক সার্ভিস, পল্লী
+   উন্নয়ন, আইনগত সহায়তা, পেশাগত স্বাস্থ্য, প্রবাসী stay built.
+2. a) The seven national days with no other official page (চলচ্চিত্র, নিরাপদ মাতৃত্ব, বার্ষিক প্রশিক্ষণ, ক্যান্সার, BNCC
+   DAY, রক্তদান ও চক্ষুদান, জীববৈচিত্র) keep the circular as their official source (tier `circular`): nothing
+   contradicts it. b) জাতীয় টিকা দিবস stays held. c) বিশ্ব সাদা ছড়ি দিবস: built only with Wikipedia and one agreeing
+   reliable outlet — English Wikipedia gives 15 October as a United States national observance, and no allowed
+   outlet was found (its references are US government pages, a blog and an advocacy site; three dailies' topic
+   pages 404; BSS and The Daily Star refuse GeoQuest) → **held**.
+3. জাতীয় পরিসংখ্যান দিবস, জাতীয় প্রতিবন্ধী দিবস, জাতীয় বস্ত্র দিবস keep their official dates (only a Bengali Wikipedia
+   list disagrees); nothing changes.
+4. শিশু অধিকার দিবস stays held.
+5. Built on their owners' dates: জাতিসংঘ দিবস 24 October, বিশ্ব টেলিযোগাযোগ দিবস 17 May, বিশ্ব হার্ট দিবস 29 September.
+6. Every approved name stays as it is (WHEEL-6's nine official spellings are noted only).
+7. **50 days added with the user's names** (approved): 47 from the UN's list (আন্তর্জাতিক) and উনসত্তরের গণ-অভ্যুত্থান
+   দিবস, সশস্ত্র বাহিনী দিবস, শহিদ বুদ্ধিজীবী দিবস (জাতীয়), each "agree" in wheel6.md at the date given. (The prompt said
+   53; its list has 50 — with the three resolved days, 53 dates change.)
+8. Cancelled days are not shown.
+
+- **Each named day's `source7`:** its tier — `owner` (the declaring body's own page, 87), `gob` (an official GoB
+  source, 41), `circular` (7), `secondary` (1: Wikipedia and a New Age/BSS report) — its URL and Wikipedia's revision.
+- **The new days' purposes** are our own words from the owners' pages (`tools/.cache/days/strings-review-7.md`), 49,
+  `approved: false`; শহিদ বুদ্ধিজীবী দিবস has none (PID's handout gives only the programme). A purpose not approved is
+  not built (`tools/build-diagram-important-days.mjs`); `tools/verify-descriptor.mjs` and `tools/verify.mjs` allow
+  pending strings only there, and never in docs/ (rule (a)).
+- **Now:** 132 of 135 entries built, per month 4 9 16 12 13 11 7 6 8 18 12 16; 104 rows open a card.
+- **Found by the check (not WHEEL-7's):** at 320 px October's name does not fit beside the «আজ» pill around
+  9 October — the committed (live) build fails the same way today; a fix belongs to `docs/visual/days.js`.
+- **Local only:** the user said this build must not reach the live site until the purposes are approved.

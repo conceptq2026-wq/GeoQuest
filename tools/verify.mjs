@@ -1638,10 +1638,11 @@ console.log('\n---- important-days: seed ----');
   const seed = JSON.parse(seedText);
   const unflagged = [];
   let pending = 0;
+  const pendingPurposes = [];
   const walk = (v, where, key, owner) => {
     if (typeof v === 'string') {
       if (!/[ঀ-৿]/.test(v)) return;
-      if (key === 'bn' && typeof owner?.approved === 'boolean') { if (!owner.approved) pending++; return; }
+      if (key === 'bn' && typeof owner?.approved === 'boolean') { if (!owner.approved) (/\.card\.purposeBn\.bn$/.test(where) ? pendingPurposes.push(v) : pending++); return; }
       if (/^seed\.(circular|amendments|removedReligious)/.test(where) || /\.named\[\d+\]\./.test(where) || /\.sources\[\d+\]\.|\.conflict\.|\.circularSource\.|\.date\.source$|\.dateAsPrinted$/.test(where) || ['what', 'url', 'note', 'place', 'category'].includes(key)) return;
       unflagged.push(where);
     } else if (Array.isArray(v)) v.forEach((x, i) => walk(x, `${where}[${i}]`, i, v));
@@ -1649,7 +1650,11 @@ console.log('\n---- important-days: seed ----');
   };
   walk(seed, 'seed', null, null);
   check(unflagged.length === 0, `${ID}: every Bengali string carries its approval flag${unflagged.length ? ` — not: ${unflagged.slice(0, 3).join(', ')}` : ''}`);
-  check(pending === 0, `${ID}: every string approved — the diagram is live${pending ? ` — ${pending} pending` : ''}`);
+  // WHEEL-7: the new days' purposes await the user; they stay in the seed and never reach docs/ (rule (a)). Every other
+  // string is approved.
+  const servedText = fs.readdirSync(path.join(SERVED, 'diagrams', ID)).map((f) => fs.readFileSync(path.join(SERVED, 'diagrams', ID, f), 'utf8')).join('\n');
+  const servedPending = pendingPurposes.filter((t) => servedText.includes(t) || servedText.includes(JSON.stringify(t).slice(1, -1)));
+  check(pending === 0 && servedPending.length === 0, `${ID}: every string approved — the diagram is live — but the new days' ${pendingPurposes.length} purposes, which await the user and are not served${pending || servedPending.length ? ` — ${pending} other pending, ${servedPending.length} served` : ''}`);
   check(!/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/.test(seedText) && registry.maps.some((e) => e.id === ID && e.kind === 'diagram' && e.section === 'bangladesh') && !wipItems.some((w) => w.id === ID) && fs.existsSync(path.join(SERVED, 'diagrams', ID, 'descriptor.json')), `${ID}: no e-mail address in the seed; live — in registry.json under Bangladesh, its folder under docs/diagrams/, no longer in tools/wip.json`);
 }
 

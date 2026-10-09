@@ -843,6 +843,16 @@ async function daysSteps(page, shoot, summary, fail) {
     l.unfit.forEach((x) => bad.unfit.add(x));
     bad.sideways = Math.max(bad.sideways, l.sideways);
     cols = l.cols;
+    // October and December, the fullest months (WHEEL-7's sheet): the wheel, then the end of the month's list.
+    if (i === 9 || i === 11) {
+      await shoot('months', options[i][1]);
+      await page.evaluate(`(() => { const rows = document.querySelectorAll('.days-list .days-row-name'); rows[rows.length - 1]?.scrollIntoView({ block: 'end' }); })()`);
+      await settle(page, 3000);
+      await shoot('months', `${options[i][1]}: the list's end`);
+      // Back where the steps expect the page: the list may scroll in its own container, so bring the picker into view.
+      await page.evaluate(`(() => { window.scrollTo(0, 0); document.getElementById('recordPicker').scrollIntoView({ block: 'start' }); window.scrollTo(0, 0); })()`);
+      await settle(page, 3000);
+    }
   }
   await shoot('steps', `› ${options.at(-1)[1]}`);
   const wrap = [];
