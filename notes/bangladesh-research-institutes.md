@@ -66,9 +66,9 @@ the local preview).
      icddr,b's: the two share one spot.
 2. **A predecessor outside present Bangladesh keeps both years**; the first carries where it was:
    «{year} (পূর্বসূরি প্রতিষ্ঠান, {place})», with «বর্তমান রূপে: <year>» under it. Two institutes:
-   - BIDS: 1957, «পাকিস্তান» — its own page: "had its origin in Pakistan … established in June 1957 … moved to Dhaka in
-     January 1971" (RES-4, the user, 2026-10-10). «করাচি» was dropped: it rested on Bengali Wikipedia alone, which fails
-     the two-source rule; PIDE's own site refused us (403, never asked again).
+   - BIDS: 1957, «পাকিস্তান» — its own about page: its origin was in Pakistan, as PIDE, in June 1957, and it moved to
+     Dhaka in January 1971 (RES-4, the user, 2026-10-10). «করাচি» was dropped: it rested on Bengali Wikipedia alone, which
+     fails the two-source rule; PIDE's own site refused us (403, never asked again).
    - IEDCR: 1947, New Delhi — its own history page.
    The others' first years are in present Bangladesh (Dhaka, Sreemangal, Chattogram, Ishwardi, Comilla…), by their
    own pages.

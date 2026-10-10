@@ -430,7 +430,7 @@
     }
    },
    "act": {
-    "title": "বাংলাদেশ কৃষি গবেষণা কাউন্সিল আইন, ২০১২ (২০১২ সনের ১৩ নং আইন)",
+    "ref": "Act 13 of 2012",
     "cite": [
      {
       "source": "AG-law-barc2012d",
@@ -575,7 +575,7 @@
     }
    },
    "act": {
-    "title": "বাংলাদেশ কৃষি গবেষণা ইনস্টিটিউট (বারি) আইন, ২০১৭ (২০১৭ সনের ১২ নং আইন)",
+    "ref": "Act 12 of 2017",
     "cite": [
      {
       "source": "AG-law-bari2017",
@@ -750,7 +750,7 @@
     }
    },
    "act": {
-    "title": "বাংলাদেশ ধান গবেষণা ইনস্টিটিউট আইন, ২০১৭ (২০১৭ সনের ১৯ নং আইন)",
+    "ref": "Act 19 of 2017",
     "cite": [
      {
       "source": "AG-law-brri2017",
@@ -890,7 +890,7 @@
     }
    },
    "act": {
-    "title": "বাংলাদেশ পাট গবেষণা ইনস্টিটিউট আইন, ২০১৭ (২০১৭ সনের ১৬ নং আইন)",
+    "ref": "Act 16 of 2017",
     "cite": [
      {
       "source": "AG-law-bjri2017",
@@ -1054,7 +1054,7 @@
     }
    },
    "act": {
-    "title": "বাংলাদেশ পরমাণু কৃষি গবেষণা ইনস্টিটিউট (বিনা) আইন, ২০১৭ (২০১৭ সনের ১১ নং আইন)",
+    "ref": "Act 11 of 2017",
     "cite": [
      {
       "source": "AG-law-bina2017",
@@ -1254,7 +1254,7 @@
     }
    },
    "act": {
-    "title": "বাংলাদেশ সুগারক্রপ গবেষণা ইনস্টিটিউট আইন, ২০১৯ (২০১৯ সনের ১৭ নং আইন)",
+    "ref": "Act 17 of 2019",
     "cite": [
      {
       "source": "AG-law-bsri2019",
@@ -1504,7 +1504,7 @@
     }
    },
    "act": {
-    "title": "বাংলাদেশ গম ও ভুট্টা গবেষণা ইনস্টিটিউট আইন, ২০১৭ (২০১৭ সনের ২২ নং আইন)",
+    "ref": "Act 22 of 2017",
     "cite": [
      {
       "source": "AG-law-bwmri2017",
@@ -1622,7 +1622,7 @@
     }
    },
    "act": {
-    "title": "বাংলাদেশ মৎস্য গবেষণা ইনস্টিটিউট আইন, ২০১৮ (২০১৮ সনের ৬৯ নং আইন)",
+    "ref": "Act 69 of 2018",
     "cite": [
      {
       "source": "AG-law-fri2018",
@@ -1754,7 +1754,7 @@
     }
    },
    "act": {
-    "title": "বাংলাদেশ প্রাণিসম্পদ গবেষণা ইনস্টিটিউট আইন, ২০১৮ (২০১৮ সনের ৫৩ নং আইন)",
+    "ref": "Act 53 of 2018",
     "cite": [
      {
       "source": "AG-law-blri2018",
@@ -2183,7 +2183,7 @@
    "events": [
     {
      "date": "1962",
-     "event": "founded in Rajshahi as the Silk cum Lac Research Institute and Silk Technological Institute",
+     "event": "founded in Rajshahi under an earlier name, a silk and lac research and silk technology institute",
      "cite": [
       {
        "source": "AG-bsrti-hist",
@@ -2345,7 +2345,7 @@
     }
    },
    "act": {
-    "title": "বাংলাদেশ ফলিত পুষ্টি গবেষণা ও প্রশিক্ষণ ইনস্টিটিউট আইন, ২০১২ (২০১২ সনের ১৮ নং আইন)",
+    "ref": "Act 18 of 2012",
     "cite": [
      {
       "source": "AG-law-birtan2012",
@@ -2531,7 +2531,7 @@
     }
    },
    "act": {
-    "title": "বাংলাদেশ পরমাণু শক্তি কমিশন আইন, ২০১৭ (২০১৭ সনের ২৩ নং আইন), 22 Nov 2017; replaced the Bangladesh Atomic Energy Commission Order, 1973 (P.O. No. 15 of 1973)",
+    "ref": "Act 23 of 2017",
     "cite": [
      {
       "source": "ST-law-baec2017",
@@ -2568,7 +2568,7 @@
     },
     {
      "date": "1973-02-27",
-     "event": "Bangladesh Atomic Energy Commission Order, 1973 (P.O. No. 15 of 1973) — the date bdlaws gives for the same order",
+     "event": "President's Order No. 15 of 1973 — the date bdlaws gives for the same order",
      "cite": [
       {
        "source": "ST-law-baec1973",
@@ -2683,7 +2683,7 @@
     }
    },
    "act": {
-    "title": "বাংলাদেশ বিজ্ঞান ও শিল্প গবেষণা পরিষদ আইন, ২০১৩ (২০১৩ সনের ৪৫ নং আইন), 10 Oct 2013; repealed Ordinance No. V of 1978",
+    "ref": "Act 45 of 2013",
     "cite": [
      {
       "source": "ST-law-bcsir2013",
@@ -2720,7 +2720,7 @@
     },
     {
      "date": "1978-02-10",
-     "event": "Bangladesh Council of Scientific and Industrial Research Ordinance, 1978 (Ord. No. V of 1978) — the establishing ordinance on bdlaws",
+     "event": "Ordinance No. V of 1978 — the establishing ordinance on bdlaws",
      "cite": [
       {
        "source": "ST-law-bcsir1978",
@@ -2834,7 +2834,7 @@
     }
    },
    "act": {
-    "title": "ন্যাশনাল ইনস্টিটিউট অব বায়োটেকনোলজি আইন, ২০১০ (২০১০ সনের ১০ নং আইন), 18 Mar 2010",
+    "ref": "Act 10 of 2010",
     "cite": [
      {
       "source": "ST-law-nib2010",
@@ -2971,7 +2971,7 @@
     }
    },
    "act": {
-    "title": "বাংলাদেশ ওশানোগ্রাফিক রিসার্চ ইনস্টিটিউট আইন, ২০১৫ (২০১৫ সনের ৭ নং আইন), 5 Mar 2015",
+    "ref": "Act 7 of 2015",
     "cite": [
      {
       "source": "ST-law-bori2015",
@@ -3130,7 +3130,7 @@
     }
    },
    "act": {
-    "title": "বাংলাদেশ রেফারেন্স ইনস্টিটিউট ফর কেমিক্যাল মেজারমেন্টস্ আইন, ২০২০ (২০২০ সনের ১৫ নং আইন), 15 Sep 2020",
+    "ref": "Act 15 of 2020",
     "cite": [
      {
       "source": "ST-law-bricm2020",
@@ -3282,7 +3282,7 @@
     }
    },
    "act": {
-    "title": "বাংলাদেশ মহাকাশ গবেষণা ও দূর অনুধাবন প্রতিষ্ঠান আইন, ১৯৯১ (১৯৯১ সনের ২৯ নং আইন), 10 Nov 1991",
+    "ref": "Act 29 of 1991",
     "cite": [
      {
       "source": "ST-law-sparrso1991",
@@ -3446,7 +3446,7 @@
     }
    },
    "act": {
-    "title": "নদী গবেষণা ইনষ্টিটিউট আইন, ১৯৯০ (১৯৯০ সনের ৫৩ নং আইন), 31 Jul 1990",
+    "ref": "Act 53 of 1990",
     "cite": [
      {
       "source": "ST-law-rri1990",
@@ -3585,7 +3585,7 @@
     }
    },
    "act": {
-    "title": "হাউজিং এন্ড বিল্ডিং রিসার্চ ইনস্টিটিউট আইন, ২০১৮ (২০১৮ সনের ৫৫ নং আইন), 14 Nov 2018; replaced Ordinance No. XLIX of 1977",
+    "ref": "Act 55 of 2018",
     "cite": [
      {
       "source": "ST-law-hbri2018",
@@ -4164,7 +4164,7 @@
     }
    },
    "act": {
-    "title": "আন্তর্জাতিক উদরাময় গবেষণা কেন্দ্র, বাংলাদেশ, আইন, ২০২২ (২০২২ সনের ২১ নং আইন)",
+    "ref": "Act 21 of 2022",
     "cite": [
      {
       "source": "HE-act-1417",
@@ -4328,7 +4328,7 @@
      }
     ],
     "en": {
-     "text": "E-17 Agargaon, Sher-e-Bangla Nagar, Dhaka",
+     "text": "Agargaon, Sher-e-Bangla Nagar, Dhaka",
      "cite": [
       {
        "source": "SE-bids-contact",
@@ -4351,7 +4351,7 @@
     }
    },
    "act": {
-    "title": "বাংলাদেশ উন্নয়ন গবেষণা প্রতিষ্ঠান আইন, ২০১৭ (২০১৭ সনের ৮ নং আইন)",
+    "ref": "Act 8 of 2017",
     "cite": [
      {
       "source": "SE-lawd-1208",
@@ -4364,7 +4364,7 @@
    "events": [
     {
      "date": "1957-06",
-     "event": "Origin: established in Pakistan as the Pakistan Institute of Development Economics (PIDE)",
+     "event": "Origin: established in Pakistan as PIDE",
      "cite": [
       {
        "source": "SE-bids-about",
@@ -4400,7 +4400,7 @@
     },
     {
      "date": "1971",
-     "event": "After independence called the Bangladesh Institute of Development Economics (BIDE); year given only as \"after 1971\"",
+     "event": "After independence renamed BIDE; the page gives the year only as after 1971",
      "cite": [
       {
        "source": "SE-bids-about",
@@ -4436,7 +4436,7 @@
     },
     {
      "date": "1982",
-     "event": "Population Study Centre merged with BIDS (and in 1983 the National Foundation for Research on Human Resources Development)",
+     "event": "The Population Study Centre merged into BIDS (and a human-resources research foundation in 1983)",
      "cite": [
       {
        "source": "SE-bids-about",
@@ -4570,7 +4570,7 @@
     }
    },
    "act": {
-    "title": "বাংলাদেশ ইনস্টিটিউট অব ইন্টারন্যাশনাল এন্ড স্ট্র্যাটেজিক স্টাডিজ আইন, ২০১৩ (২০১৩ সনের ৬৬ নং আইন)",
+    "ref": "Act 66 of 2013",
     "cite": [
      {
       "source": "SE-lawd-1144",
@@ -4583,7 +4583,7 @@
    "events": [
     {
      "date": "1978-06-25",
-     "event": "Established as a statutory body of the Government",
+     "event": "Established as a government statutory body",
      "cite": [
       {
        "source": "SE-biiss-about",
@@ -4825,7 +4825,7 @@
    "events": [
     {
      "date": "1972",
-     "event": "Established by order of the President as an autonomous body under MOH&FW",
+     "event": "Established by presidential order as an autonomous body under the health ministry",
      "cite": [
       {
        "source": "HE-bmrc-mission",
@@ -5071,7 +5071,7 @@
     }
    },
    "act": {
-    "title": "বাংলাদেশ পল্লী উন্নয়ন একাডেমি আইন, ২০১৭ (২০১৭ সনের ৪ নং আইন)",
+    "ref": "Act 4 of 2017",
     "cite": [
      {
       "source": "SE-lawd-1205",
@@ -5096,7 +5096,7 @@
     },
     {
      "date": "1986-07-09",
-     "event": "The Bangladesh Academy for Rural Development Ordinance, 1986 (No. LXIV of 1986)",
+     "event": "Ordinance No. LXIV of 1986, establishing BARD",
      "cite": [
       {
        "source": "SE-lawd-704",
@@ -5211,7 +5211,7 @@
     }
    },
    "act": {
-    "title": "বগুড়া পল্লী উন্নয়ন একাডেমী আইন, ১৯৯০ (১৯৯০ সনের ১০ নং আইন)",
+    "ref": "Act 10 of 1990",
     "cite": [
      {
       "source": "SE-lawd-735",

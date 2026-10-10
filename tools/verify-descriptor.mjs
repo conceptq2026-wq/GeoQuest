@@ -132,7 +132,7 @@ const BANGLADESH_MARITIME_SEED_SHA256 = 'dcc627421f99b20faeffe17006d9348f181b966
 // The org-newest-members map «সংস্থার সর্বশেষ সদস্য»: its seed, pinned (live 2026-10-09, GL-ORGN).
 const ORG_NEWEST_SEED_SHA256 = '0f484c5dad08f7416317841ddd6e3d63ca5fb61a97000cf0e4a763ff0241097c';
 // The bangladesh-research-institutes map «বাংলাদেশের গবেষণা প্রতিষ্ঠান»: its seed, pinned (live 2026-10-10, GL-RES).
-const RESEARCH_INSTITUTES_SEED_SHA256 = '0d0388c37ffd203bba6a2570e423b2faac748f8ac398ce12ac7972c40957718e';
+const RESEARCH_INSTITUTES_SEED_SHA256 = 'f41809a11c559b4bc638ec4093f485ae43f5e6609c2ebdde63ba81a0a3c3b6da';
 const GLOBAL_INDICES_SEED_SHA256 = '9b72d6e35308d4633dfe6f22021964a03e1459ca0b49603fb1dfae57efff517f';
 // The important-days diagram «বছরের চাকা»: its seed, pinned (live 2026-10-08, after WHEEL-2–5 and GL-WHEEL).
 const IMPORTANT_DAYS_SEED_SHA256 = '4913e38e433c44c4b0b3c55337e29e0d463f4293a2547eb22bfe0e032853f673';
