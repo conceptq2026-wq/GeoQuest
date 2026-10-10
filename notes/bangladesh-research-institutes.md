@@ -1,4 +1,4 @@
-# bangladesh-research-institutes «বাংলাদেশের গবেষণা প্রতিষ্ঠান» (work in progress)
+# bangladesh-research-institutes «বাংলাদেশের গবেষণা প্রতিষ্ঠান» (live 2026-10-10, GL-RES)
 
 A map under বাংলাদেশ: one numbered point per national research institute at its head office, in four tabs, with a
 picker. Seed: `data-sources/bangladesh-research-institutes/` — the seed, `sources.json` (124 pages, pinned) and
@@ -84,6 +84,14 @@ the local preview).
    sought again through the helper (IPH's organogram and officers; the health directorate's scope, history and
    organogram; the Health Services Division's list of its offices, which names the directorate but not IPH): no
    official page names it, so it stays null and the row hidden.
+
+## Live (GL-RES, 2026-10-10)
+
+Built into `docs/maps/bangladesh-research-institutes/` (two builds, the same bytes; `tools/verify-descriptor.mjs` holds
+docs/ to a fresh build of the pinned seed); out of `tools/wip.json`; its home card under বাংলাদেশ, after
+bangladesh-ethnic-groups, no caption. The build refuses any string not approved (rule (a)). Two values ship as null,
+on the pending list: IPH's «অধীন» and BSRTI's «বর্তমান রূপে»; their rows stay hidden. ⓘ's credits are one link each
+(the validator's rule): each institute's own site, each parent's, bdlaws, COD-AB and OpenStreetMap.
 
 ## The preview (RES-3, 2026-10-10)
 

@@ -32,6 +32,14 @@
       }
     },
     {
+      "id": "bangladesh-research-institutes",
+      "section": "bangladesh",
+      "title": {
+        "en": "Research Institutes of Bangladesh",
+        "bn": "বাংলাদেশের গবেষণা প্রতিষ্ঠান"
+      }
+    },
+    {
       "id": "bangladesh-rivers",
       "kind": "diagram",
       "section": "bangladesh",

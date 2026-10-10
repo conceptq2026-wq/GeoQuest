@@ -1774,7 +1774,7 @@ console.log('\n---- org-newest-members: seed ----');
   }
 }
 
-// ---- bangladesh-research-institutes «বাংলাদেশের গবেষণা প্রতিষ্ঠান» (work in progress, RES-2/RES-3): the seed ----------
+// ---- bangladesh-research-institutes «বাংলাদেশের গবেষণা প্রতিষ্ঠান» (live 2026-10-10, GL-RES): the seed ------------------
 // The institutes whose main work, by their own page, is research (the user's decisions of 2026-10-09,
 // notes/bangladesh-research-institutes.md), each with its founding year (a held year is null with its reason), its
 // address (the area in the page's words or null, the district from the shared file), its parent (null while no
@@ -1809,8 +1809,7 @@ console.log('\n---- bangladesh-research-institutes: seed ----');
   check(unflagged.length === 0, `${ID}: every Bengali string shown carries its approval flag${unflagged.length ? ` — not: ${unflagged.slice(0, 3).join(', ')}` : ''}`);
   if (pending) console.log(`warn ${ID}: ${pending} string(s) in the seed await the user's approval (none may reach docs/)`);
   const EMAIL_RE = /[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.(?!(?:png|jpe?g|gif|svg|webp|css|js|pdf)\b)[A-Za-z]{2,}/;
-  const wip = wipItems.find((w) => w.id === ID);
-  check(![seedText, sourcesText, pinsText].some((t) => EMAIL_RE.test(t) || /"(quote|phrase|anchor)"\s*:/.test(t)) && wip?.kind === 'map' && wip.section === 'bangladesh' && !registry.maps.some((e) => e.id === ID), `${ID}: no e-mail address and no quoted words in the seed or its pins; work in progress — in tools/wip.json (a map under বাংলাদেশ), not yet in registry.json`);
+  check(![seedText, sourcesText, pinsText].some((t) => EMAIL_RE.test(t) || /"(quote|phrase|anchor)"\s*:/.test(t)) && registry.maps.some((e) => e.id === ID && e.section === 'bangladesh') && !wipItems.some((w) => w.id === ID) && fs.existsSync(path.join(SERVED, 'maps', ID, 'descriptor.json')), `${ID}: no e-mail address and no quoted words in the seed or its pins; live — in registry.json under বাংলাদেশ, its folder under docs/maps/, no longer in tools/wip.json`);
   // Every institute: in one tab, its facts cited, its year a year or held; every dropped candidate with a reason.
   const inst = Object.entries(seed.institutes);
   const tabbed = Object.values(seed.tabs).flat();

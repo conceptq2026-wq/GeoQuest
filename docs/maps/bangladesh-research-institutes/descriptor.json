@@ -1,0 +1,1416 @@
+{
+ "schema": "geoquest/map-descriptor@1",
+ "id": "bangladesh-research-institutes",
+ "section": "bangladesh",
+ "title": {
+  "bn": "বাংলাদেশের গবেষণা প্রতিষ্ঠান",
+  "en": "Research Institutes of Bangladesh"
+ },
+ "basemap": "bangladesh-wide",
+ "view": {
+  "fitBounds": [
+   88.36989,
+   22.07915,
+   92.08391,
+   25.9967
+  ]
+ },
+ "constraints": {
+  "maxZoom": 17,
+  "maxBounds": [
+   86,
+   19,
+   95,
+   28
+  ]
+ },
+ "minTextSize": 14,
+ "frameClearsControls": true,
+ "sheetMaxHeight": 0.5,
+ "styles": {
+  "cluster-circle": {
+   "paint": {
+    "circle-radius": 16,
+    "circle-color": "#0b3d91",
+    "circle-stroke-width": 2.5,
+    "circle-stroke-color": "#ffffff"
+   }
+  },
+  "cluster-count": {
+   "layout": {
+    "text-font": [
+     "Noto Sans Bengali"
+    ],
+    "text-size": 14,
+    "text-allow-overlap": true,
+    "text-ignore-placement": true
+   },
+   "paint": {
+    "text-color": "#ffffff"
+   }
+  }
+ },
+ "records": {
+  "tabs": {
+   "file": "./tabs.json",
+   "fields": {
+    "titleBn": {
+     "type": "text",
+     "required": true
+    },
+    "placeholderBn": {
+     "type": "text",
+     "required": true
+    },
+    "frame": {
+     "type": "bbox",
+     "required": true
+    }
+   }
+  },
+  "districts": {
+   "file": "./districts.json",
+   "fields": {}
+  },
+  "agri": {
+   "file": "./agri.json",
+   "fields": {
+    "numBn": {
+     "type": "text",
+     "required": true,
+     "display": false
+    },
+    "labelBn": {
+     "type": "text",
+     "required": true
+    },
+    "approxBn": {
+     "type": "text"
+    },
+    "foundedBn": {
+     "type": "text",
+     "required": true
+    },
+    "currentBn": {
+     "type": "text",
+     "verifiable": true
+    },
+    "locationBn": {
+     "type": "text",
+     "required": true
+    },
+    "parentBn": {
+     "type": "text",
+     "verifiable": true
+    },
+    "focusBn": {
+     "type": "text",
+     "required": true
+    },
+    "verifiedBn": {
+     "type": "text",
+     "required": true
+    },
+    "sourceUrl": {
+     "type": "text",
+     "required": true,
+     "display": false
+    },
+    "approx": {
+     "type": "boolean",
+     "display": false
+    },
+    "at": {
+     "type": "point",
+     "required": true
+    },
+    "frame": {
+     "type": "bbox",
+     "required": true
+    }
+   }
+  },
+  "sci": {
+   "file": "./sci.json",
+   "fields": {
+    "numBn": {
+     "type": "text",
+     "required": true,
+     "display": false
+    },
+    "labelBn": {
+     "type": "text",
+     "required": true
+    },
+    "approxBn": {
+     "type": "text"
+    },
+    "foundedBn": {
+     "type": "text",
+     "required": true
+    },
+    "currentBn": {
+     "type": "text",
+     "verifiable": true
+    },
+    "locationBn": {
+     "type": "text",
+     "required": true
+    },
+    "parentBn": {
+     "type": "text",
+     "verifiable": true
+    },
+    "focusBn": {
+     "type": "text",
+     "required": true
+    },
+    "verifiedBn": {
+     "type": "text",
+     "required": true
+    },
+    "sourceUrl": {
+     "type": "text",
+     "required": true,
+     "display": false
+    },
+    "approx": {
+     "type": "boolean",
+     "display": false
+    },
+    "at": {
+     "type": "point",
+     "required": true
+    },
+    "frame": {
+     "type": "bbox",
+     "required": true
+    }
+   }
+  },
+  "health": {
+   "file": "./health.json",
+   "fields": {
+    "numBn": {
+     "type": "text",
+     "required": true,
+     "display": false
+    },
+    "labelBn": {
+     "type": "text",
+     "required": true
+    },
+    "approxBn": {
+     "type": "text"
+    },
+    "foundedBn": {
+     "type": "text",
+     "required": true
+    },
+    "currentBn": {
+     "type": "text",
+     "verifiable": true
+    },
+    "locationBn": {
+     "type": "text",
+     "required": true
+    },
+    "parentBn": {
+     "type": "text",
+     "verifiable": true
+    },
+    "focusBn": {
+     "type": "text",
+     "required": true
+    },
+    "verifiedBn": {
+     "type": "text",
+     "required": true
+    },
+    "sourceUrl": {
+     "type": "text",
+     "required": true,
+     "display": false
+    },
+    "approx": {
+     "type": "boolean",
+     "display": false
+    },
+    "at": {
+     "type": "point",
+     "required": true
+    },
+    "frame": {
+     "type": "bbox",
+     "required": true
+    }
+   }
+  },
+  "socio": {
+   "file": "./socio.json",
+   "fields": {
+    "numBn": {
+     "type": "text",
+     "required": true,
+     "display": false
+    },
+    "labelBn": {
+     "type": "text",
+     "required": true
+    },
+    "approxBn": {
+     "type": "text"
+    },
+    "foundedBn": {
+     "type": "text",
+     "required": true
+    },
+    "currentBn": {
+     "type": "text",
+     "verifiable": true
+    },
+    "locationBn": {
+     "type": "text",
+     "required": true
+    },
+    "parentBn": {
+     "type": "text",
+     "verifiable": true
+    },
+    "focusBn": {
+     "type": "text",
+     "required": true
+    },
+    "verifiedBn": {
+     "type": "text",
+     "required": true
+    },
+    "sourceUrl": {
+     "type": "text",
+     "required": true,
+     "display": false
+    },
+    "approx": {
+     "type": "boolean",
+     "display": false
+    },
+    "at": {
+     "type": "point",
+     "required": true
+    },
+    "frame": {
+     "type": "bbox",
+     "required": true
+    }
+   }
+  }
+ },
+ "sources": {
+  "districtLines": {
+   "records": "districts",
+   "sharedGeometry": "bangladesh-districts.json",
+   "joinField": "pcode",
+   "attribution": "Bangladesh administrative boundaries (COD-AB v03): Bangladesh Bureau of Statistics / OCHA, <a href=\"https://data.humdata.org/dataset/401d3fae-4262-48c9-891f-461fd776d49b\" target=\"_blank\" rel=\"noopener noreferrer\">CC BY-IGO 3.0</a> — the district outlines and the approximate points (district capitals)"
+  },
+  "agriPoints": {
+   "records": "agri",
+   "geometryFrom": "at",
+   "state": [
+    "selected"
+   ],
+   "properties": [
+    "numBn",
+    "approx"
+   ],
+   "selectionMarker": true,
+   "tapWidth": 44,
+   "cluster": {
+    "radius": 22,
+    "maxZoom": 15,
+    "list": {
+     "label": "labelBn"
+    }
+   },
+   "attribution": "© <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener noreferrer\">OpenStreetMap contributors</a> (ODbL) — the points of BRRI, BJRI, BTRI, from Geofabrik's extract of 1 October 2026"
+  },
+  "sciPoints": {
+   "records": "sci",
+   "geometryFrom": "at",
+   "state": [
+    "selected"
+   ],
+   "properties": [
+    "numBn",
+    "approx"
+   ],
+   "selectionMarker": true,
+   "tapWidth": 44,
+   "cluster": {
+    "radius": 22,
+    "maxZoom": 15,
+    "list": {
+     "label": "labelBn"
+    }
+   },
+   "attribution": "© <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener noreferrer\">OpenStreetMap contributors</a> (ODbL) — the points of BRRI, BJRI, BTRI, from Geofabrik's extract of 1 October 2026"
+  },
+  "healthPoints": {
+   "records": "health",
+   "geometryFrom": "at",
+   "state": [
+    "selected"
+   ],
+   "properties": [
+    "numBn",
+    "approx"
+   ],
+   "selectionMarker": true,
+   "tapWidth": 44,
+   "cluster": {
+    "radius": 22,
+    "maxZoom": 15,
+    "list": {
+     "label": "labelBn"
+    }
+   },
+   "attribution": "© <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener noreferrer\">OpenStreetMap contributors</a> (ODbL) — the points of BRRI, BJRI, BTRI, from Geofabrik's extract of 1 October 2026"
+  },
+  "socioPoints": {
+   "records": "socio",
+   "geometryFrom": "at",
+   "state": [
+    "selected"
+   ],
+   "properties": [
+    "numBn",
+    "approx"
+   ],
+   "selectionMarker": true,
+   "tapWidth": 44,
+   "cluster": {
+    "radius": 22,
+    "maxZoom": 15,
+    "list": {
+     "label": "labelBn"
+    }
+   },
+   "attribution": "© <a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener noreferrer\">OpenStreetMap contributors</a> (ODbL) — the points of BRRI, BJRI, BTRI, from Geofabrik's extract of 1 October 2026"
+  }
+ },
+ "layers": [
+  {
+   "id": "district-lines",
+   "type": "line",
+   "source": "districtLines",
+   "slot": "belowLabels",
+   "layout": {
+    "line-join": "round"
+   },
+   "paint": {
+    "line-color": "#64748b",
+    "line-width": 0.8,
+    "line-opacity": 0.8
+   }
+  },
+  {
+   "id": "agri-clusters",
+   "type": "circle",
+   "source": "agriPoints",
+   "slot": "aboveLabels",
+   "style": "cluster-circle",
+   "filter": [
+    "has",
+    "point_count"
+   ]
+  },
+  {
+   "id": "agri-cluster-count",
+   "type": "symbol",
+   "source": "agriPoints",
+   "slot": "aboveLabels",
+   "style": "cluster-count",
+   "filter": [
+    "has",
+    "point_count"
+   ],
+   "layout": {
+    "text-field": [
+     "number-format",
+     [
+      "get",
+      "point_count"
+     ],
+     {
+      "locale": "bn"
+     }
+    ]
+   }
+  },
+  {
+   "id": "agri-points",
+   "type": "circle",
+   "source": "agriPoints",
+   "slot": "aboveLabels",
+   "filter": [
+    "!",
+    [
+     "has",
+     "point_count"
+    ]
+   ],
+   "layout": {
+    "circle-sort-key": [
+     "case",
+     [
+      "get",
+      "selected"
+     ],
+     1,
+     0
+    ]
+   },
+   "paint": {
+    "circle-radius": 12,
+    "circle-color": [
+     "case",
+     [
+      "get",
+      "approx"
+     ],
+     "#ffffff",
+     "#D55E00"
+    ],
+    "circle-stroke-width": [
+     "case",
+     [
+      "get",
+      "selected"
+     ],
+     3,
+     [
+      "get",
+      "approx"
+     ],
+     2.5,
+     2
+    ],
+    "circle-stroke-color": [
+     "case",
+     [
+      "get",
+      "selected"
+     ],
+     "#111827",
+     [
+      "get",
+      "approx"
+     ],
+     "#D55E00",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "agri-numbers",
+   "type": "symbol",
+   "source": "agriPoints",
+   "slot": "aboveLabels",
+   "filter": [
+    "!",
+    [
+     "has",
+     "point_count"
+    ]
+   ],
+   "layout": {
+    "text-field": [
+     "get",
+     "numBn"
+    ],
+    "text-font": [
+     "Noto Sans Bengali"
+    ],
+    "text-size": 14,
+    "text-allow-overlap": true,
+    "text-ignore-placement": true,
+    "symbol-sort-key": [
+     "case",
+     [
+      "get",
+      "selected"
+     ],
+     1,
+     0
+    ]
+   },
+   "paint": {
+    "text-color": [
+     "case",
+     [
+      "get",
+      "approx"
+     ],
+     "#D55E00",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "sci-clusters",
+   "type": "circle",
+   "source": "sciPoints",
+   "slot": "aboveLabels",
+   "style": "cluster-circle",
+   "filter": [
+    "has",
+    "point_count"
+   ]
+  },
+  {
+   "id": "sci-cluster-count",
+   "type": "symbol",
+   "source": "sciPoints",
+   "slot": "aboveLabels",
+   "style": "cluster-count",
+   "filter": [
+    "has",
+    "point_count"
+   ],
+   "layout": {
+    "text-field": [
+     "number-format",
+     [
+      "get",
+      "point_count"
+     ],
+     {
+      "locale": "bn"
+     }
+    ]
+   }
+  },
+  {
+   "id": "sci-points",
+   "type": "circle",
+   "source": "sciPoints",
+   "slot": "aboveLabels",
+   "filter": [
+    "!",
+    [
+     "has",
+     "point_count"
+    ]
+   ],
+   "layout": {
+    "circle-sort-key": [
+     "case",
+     [
+      "get",
+      "selected"
+     ],
+     1,
+     0
+    ]
+   },
+   "paint": {
+    "circle-radius": 12,
+    "circle-color": [
+     "case",
+     [
+      "get",
+      "approx"
+     ],
+     "#ffffff",
+     "#D55E00"
+    ],
+    "circle-stroke-width": [
+     "case",
+     [
+      "get",
+      "selected"
+     ],
+     3,
+     [
+      "get",
+      "approx"
+     ],
+     2.5,
+     2
+    ],
+    "circle-stroke-color": [
+     "case",
+     [
+      "get",
+      "selected"
+     ],
+     "#111827",
+     [
+      "get",
+      "approx"
+     ],
+     "#D55E00",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "sci-numbers",
+   "type": "symbol",
+   "source": "sciPoints",
+   "slot": "aboveLabels",
+   "filter": [
+    "!",
+    [
+     "has",
+     "point_count"
+    ]
+   ],
+   "layout": {
+    "text-field": [
+     "get",
+     "numBn"
+    ],
+    "text-font": [
+     "Noto Sans Bengali"
+    ],
+    "text-size": 14,
+    "text-allow-overlap": true,
+    "text-ignore-placement": true,
+    "symbol-sort-key": [
+     "case",
+     [
+      "get",
+      "selected"
+     ],
+     1,
+     0
+    ]
+   },
+   "paint": {
+    "text-color": [
+     "case",
+     [
+      "get",
+      "approx"
+     ],
+     "#D55E00",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "health-clusters",
+   "type": "circle",
+   "source": "healthPoints",
+   "slot": "aboveLabels",
+   "style": "cluster-circle",
+   "filter": [
+    "has",
+    "point_count"
+   ]
+  },
+  {
+   "id": "health-cluster-count",
+   "type": "symbol",
+   "source": "healthPoints",
+   "slot": "aboveLabels",
+   "style": "cluster-count",
+   "filter": [
+    "has",
+    "point_count"
+   ],
+   "layout": {
+    "text-field": [
+     "number-format",
+     [
+      "get",
+      "point_count"
+     ],
+     {
+      "locale": "bn"
+     }
+    ]
+   }
+  },
+  {
+   "id": "health-points",
+   "type": "circle",
+   "source": "healthPoints",
+   "slot": "aboveLabels",
+   "filter": [
+    "!",
+    [
+     "has",
+     "point_count"
+    ]
+   ],
+   "layout": {
+    "circle-sort-key": [
+     "case",
+     [
+      "get",
+      "selected"
+     ],
+     1,
+     0
+    ]
+   },
+   "paint": {
+    "circle-radius": 12,
+    "circle-color": [
+     "case",
+     [
+      "get",
+      "approx"
+     ],
+     "#ffffff",
+     "#D55E00"
+    ],
+    "circle-stroke-width": [
+     "case",
+     [
+      "get",
+      "selected"
+     ],
+     3,
+     [
+      "get",
+      "approx"
+     ],
+     2.5,
+     2
+    ],
+    "circle-stroke-color": [
+     "case",
+     [
+      "get",
+      "selected"
+     ],
+     "#111827",
+     [
+      "get",
+      "approx"
+     ],
+     "#D55E00",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "health-numbers",
+   "type": "symbol",
+   "source": "healthPoints",
+   "slot": "aboveLabels",
+   "filter": [
+    "!",
+    [
+     "has",
+     "point_count"
+    ]
+   ],
+   "layout": {
+    "text-field": [
+     "get",
+     "numBn"
+    ],
+    "text-font": [
+     "Noto Sans Bengali"
+    ],
+    "text-size": 14,
+    "text-allow-overlap": true,
+    "text-ignore-placement": true,
+    "symbol-sort-key": [
+     "case",
+     [
+      "get",
+      "selected"
+     ],
+     1,
+     0
+    ]
+   },
+   "paint": {
+    "text-color": [
+     "case",
+     [
+      "get",
+      "approx"
+     ],
+     "#D55E00",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "socio-clusters",
+   "type": "circle",
+   "source": "socioPoints",
+   "slot": "aboveLabels",
+   "style": "cluster-circle",
+   "filter": [
+    "has",
+    "point_count"
+   ]
+  },
+  {
+   "id": "socio-cluster-count",
+   "type": "symbol",
+   "source": "socioPoints",
+   "slot": "aboveLabels",
+   "style": "cluster-count",
+   "filter": [
+    "has",
+    "point_count"
+   ],
+   "layout": {
+    "text-field": [
+     "number-format",
+     [
+      "get",
+      "point_count"
+     ],
+     {
+      "locale": "bn"
+     }
+    ]
+   }
+  },
+  {
+   "id": "socio-points",
+   "type": "circle",
+   "source": "socioPoints",
+   "slot": "aboveLabels",
+   "filter": [
+    "!",
+    [
+     "has",
+     "point_count"
+    ]
+   ],
+   "layout": {
+    "circle-sort-key": [
+     "case",
+     [
+      "get",
+      "selected"
+     ],
+     1,
+     0
+    ]
+   },
+   "paint": {
+    "circle-radius": 12,
+    "circle-color": [
+     "case",
+     [
+      "get",
+      "approx"
+     ],
+     "#ffffff",
+     "#D55E00"
+    ],
+    "circle-stroke-width": [
+     "case",
+     [
+      "get",
+      "selected"
+     ],
+     3,
+     [
+      "get",
+      "approx"
+     ],
+     2.5,
+     2
+    ],
+    "circle-stroke-color": [
+     "case",
+     [
+      "get",
+      "selected"
+     ],
+     "#111827",
+     [
+      "get",
+      "approx"
+     ],
+     "#D55E00",
+     "#ffffff"
+    ]
+   }
+  },
+  {
+   "id": "socio-numbers",
+   "type": "symbol",
+   "source": "socioPoints",
+   "slot": "aboveLabels",
+   "filter": [
+    "!",
+    [
+     "has",
+     "point_count"
+    ]
+   ],
+   "layout": {
+    "text-field": [
+     "get",
+     "numBn"
+    ],
+    "text-font": [
+     "Noto Sans Bengali"
+    ],
+    "text-size": 14,
+    "text-allow-overlap": true,
+    "text-ignore-placement": true,
+    "symbol-sort-key": [
+     "case",
+     [
+      "get",
+      "selected"
+     ],
+     1,
+     0
+    ]
+   },
+   "paint": {
+    "text-color": [
+     "case",
+     [
+      "get",
+      "approx"
+     ],
+     "#D55E00",
+     "#ffffff"
+    ]
+   }
+  }
+ ],
+ "controls": [
+  {
+   "type": "picker",
+   "from": "agri",
+   "label": {
+    "field": "labelBn"
+   },
+   "placeholder": "প্রতিষ্ঠান বেছে নিন",
+   "do": [
+    {
+     "action": "select"
+    },
+    {
+     "action": "fitBounds",
+     "field": "frame",
+     "clear": [
+      "sheet"
+     ],
+     "duration": 900
+    }
+   ],
+   "byTab": {
+    "agri": {
+     "from": "agri",
+     "label": {
+      "field": "labelBn"
+     },
+     "placeholder": "প্রতিষ্ঠান বেছে নিন",
+     "do": [
+      {
+       "action": "select"
+      },
+      {
+       "action": "fitBounds",
+       "field": "frame",
+       "clear": [
+        "sheet"
+       ],
+       "duration": 900
+      }
+     ]
+    },
+    "sci": {
+     "from": "sci",
+     "label": {
+      "field": "labelBn"
+     },
+     "placeholder": "প্রতিষ্ঠান বেছে নিন",
+     "do": [
+      {
+       "action": "select"
+      },
+      {
+       "action": "fitBounds",
+       "field": "frame",
+       "clear": [
+        "sheet"
+       ],
+       "duration": 900
+      }
+     ]
+    },
+    "health": {
+     "from": "health",
+     "label": {
+      "field": "labelBn"
+     },
+     "placeholder": "প্রতিষ্ঠান বেছে নিন",
+     "do": [
+      {
+       "action": "select"
+      },
+      {
+       "action": "fitBounds",
+       "field": "frame",
+       "clear": [
+        "sheet"
+       ],
+       "duration": 900
+      }
+     ]
+    },
+    "socio": {
+     "from": "socio",
+     "label": {
+      "field": "labelBn"
+     },
+     "placeholder": "প্রতিষ্ঠান বেছে নিন",
+     "do": [
+      {
+       "action": "select"
+      },
+      {
+       "action": "fitBounds",
+       "field": "frame",
+       "clear": [
+        "sheet"
+       ],
+       "duration": 900
+      }
+     ]
+    }
+   }
+  }
+ ],
+ "interactions": [
+  {
+   "on": "click",
+   "target": "source:agriPoints",
+   "do": [
+    {
+     "action": "select"
+    },
+    {
+     "action": "fitBounds",
+     "field": "frame",
+     "clear": [
+      "sheet"
+     ],
+     "duration": 900
+    }
+   ]
+  },
+  {
+   "on": "click",
+   "target": "source:sciPoints",
+   "do": [
+    {
+     "action": "select"
+    },
+    {
+     "action": "fitBounds",
+     "field": "frame",
+     "clear": [
+      "sheet"
+     ],
+     "duration": 900
+    }
+   ]
+  },
+  {
+   "on": "click",
+   "target": "source:healthPoints",
+   "do": [
+    {
+     "action": "select"
+    },
+    {
+     "action": "fitBounds",
+     "field": "frame",
+     "clear": [
+      "sheet"
+     ],
+     "duration": 900
+    }
+   ]
+  },
+  {
+   "on": "click",
+   "target": "source:socioPoints",
+   "do": [
+    {
+     "action": "select"
+    },
+    {
+     "action": "fitBounds",
+     "field": "frame",
+     "clear": [
+      "sheet"
+     ],
+     "duration": 900
+    }
+   ]
+  }
+ ],
+ "tabs": {
+  "from": "tabs",
+  "label": {
+   "field": "titleBn"
+  },
+  "placeholder": {
+   "field": "placeholderBn"
+  },
+  "frame": {
+   "field": "frame"
+  },
+  "views": {
+   "agri": {
+    "hide": {
+     "sources": [
+      "sciPoints",
+      "healthPoints",
+      "socioPoints"
+     ]
+    }
+   },
+   "sci": {
+    "hide": {
+     "sources": [
+      "agriPoints",
+      "healthPoints",
+      "socioPoints"
+     ]
+    }
+   },
+   "health": {
+    "hide": {
+     "sources": [
+      "agriPoints",
+      "sciPoints",
+      "socioPoints"
+     ]
+    }
+   },
+   "socio": {
+    "hide": {
+     "sources": [
+      "agriPoints",
+      "sciPoints",
+      "healthPoints"
+     ]
+    }
+   }
+  }
+ },
+ "info": {
+  "file": "./info.json",
+  "headings": {
+   "sources": "সূত্র",
+   "notes": "টীকা",
+   "conflicts": ""
+  }
+ },
+ "attribution": {
+  "extra": [
+   "<a href=\"https://bsri.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">BSRI: the institute's own website (bsri.gov.bd)</a>",
+   "<a href=\"https://bjri.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">BJRI: the institute's own website (bjri.gov.bd)</a>",
+   "<a href=\"https://bfri.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">BFRI: the institute's own website (bfri.gov.bd)</a>",
+   "<a href=\"https://btri.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">BTRI: the institute's own website (btri.gov.bd)</a>",
+   "<a href=\"https://bina.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">BINA: the institute's own website (bina.gov.bd)</a>",
+   "<a href=\"https://srdi.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">SRDI: the institute's own website (srdi.gov.bd)</a>",
+   "<a href=\"https://bsrti.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">BSRTI: the institute's own website (bsrti.gov.bd)</a>",
+   "<a href=\"https://birtan.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">BIRTAN: the institute's own website (birtan.gov.bd)</a>",
+   "<a href=\"https://brri.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">BRRI: the institute's own website (brri.gov.bd)</a>",
+   "<a href=\"https://barc.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">BARC: the institute's own website (barc.gov.bd)</a>",
+   "<a href=\"https://bari.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">BARI: the institute's own website (bari.gov.bd)</a>",
+   "<a href=\"https://blri.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">BLRI: the institute's own website (blri.gov.bd)</a>",
+   "<a href=\"https://fri.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">BFRI: the institute's own website (fri.gov.bd)</a>",
+   "<a href=\"https://bwmri.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">BWMRI: the institute's own website (bwmri.gov.bd)</a>",
+   "<a href=\"https://rri.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">RRI: the institute's own website (rri.gov.bd)</a>",
+   "<a href=\"https://bcsir.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">BCSIR: the institute's own website (bcsir.gov.bd)</a>",
+   "<a href=\"https://bnh.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">BNH: the institute's own website (bnh.gov.bd)</a>",
+   "<a href=\"https://baec.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">BAEC: the institute's own website (baec.gov.bd)</a>",
+   "<a href=\"https://hbri.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">HBRI: the institute's own website (hbri.gov.bd)</a>",
+   "<a href=\"https://sparrso.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">SPARRSO: the institute's own website (sparrso.gov.bd)</a>",
+   "<a href=\"https://nib.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">NIB: the institute's own website (nib.gov.bd)</a>",
+   "<a href=\"https://bricm.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">BRiCM: the institute's own website (bricm.gov.bd)</a>",
+   "<a href=\"https://bori.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">BORI: the institute's own website (bori.gov.bd)</a>",
+   "<a href=\"https://iedcr.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">IEDCR: the institute's own website (iedcr.gov.bd)</a>",
+   "<a href=\"https://iph.portal.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">IPH: the institute's own website (iph.portal.gov.bd)</a>",
+   "<a href=\"https://www.icddrb.org/\" target=\"_blank\" rel=\"noopener noreferrer\">icddr,b: the institute's own website (icddrb.org)</a>",
+   "<a href=\"https://bmrcbd.org/\" target=\"_blank\" rel=\"noopener noreferrer\">BMRC: the institute's own website (bmrcbd.org)</a>",
+   "<a href=\"https://niport.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">NIPORT: the institute's own website (niport.gov.bd)</a>",
+   "<a href=\"https://bids.org.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">BIDS: the institute's own website (bids.org.bd)</a>",
+   "<a href=\"https://bard.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">BARD: the institute's own website (bard.gov.bd)</a>",
+   "<a href=\"https://rda.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">RDA: the institute's own website (rda.gov.bd)</a>",
+   "<a href=\"https://biiss.org/\" target=\"_blank\" rel=\"noopener noreferrer\">BIISS: the institute's own website (biiss.org)</a>",
+   "<a href=\"https://mefwd.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">mefwd.gov.bd: a parent ministry's, division's or directorate's website</a>",
+   "<a href=\"https://moa.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">moa.gov.bd: a parent ministry's, division's or directorate's website</a>",
+   "<a href=\"https://bdlaws.minlaw.gov.bd/\" target=\"_blank\" rel=\"noopener noreferrer\">Laws of Bangladesh (bdlaws.minlaw.gov.bd): the Acts and Ordinances</a>",
+   "<a href=\"https://data.humdata.org/dataset/401d3fae-4262-48c9-891f-461fd776d49b\" target=\"_blank\" rel=\"noopener noreferrer\">Bangladesh administrative boundaries (COD-AB v03): Bangladesh Bureau of Statistics / OCHA, CC BY-IGO 3.0 — the district outlines and the approximate points (district capitals)</a>",
+   "<a href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\" rel=\"noopener noreferrer\">© OpenStreetMap contributors (ODbL) — the points of BRRI, BJRI, BTRI, from Geofabrik's extract of 1 October 2026</a>"
+  ]
+ },
+ "sheets": {
+  "agri": {
+   "title": {
+    "field": "labelBn"
+   },
+   "subtitle": {
+    "field": "approxBn"
+   },
+   "rows": [
+    {
+     "label": "প্রতিষ্ঠার সাল",
+     "field": "foundedBn"
+    },
+    {
+     "field": "currentBn"
+    },
+    {
+     "label": "অবস্থান ও সদর দপ্তর",
+     "field": "locationBn"
+    },
+    {
+     "label": "অধীন",
+     "field": "parentBn"
+    },
+    {
+     "label": "কী নিয়ে গবেষণা",
+     "field": "focusBn",
+     "stacked": true
+    },
+    {
+     "label": "সর্বশেষ যাচাই",
+     "field": "verifiedBn",
+     "link": {
+      "field": "sourceUrl",
+      "text": "সূত্র"
+     }
+    }
+   ]
+  },
+  "sci": {
+   "title": {
+    "field": "labelBn"
+   },
+   "subtitle": {
+    "field": "approxBn"
+   },
+   "rows": [
+    {
+     "label": "প্রতিষ্ঠার সাল",
+     "field": "foundedBn"
+    },
+    {
+     "field": "currentBn"
+    },
+    {
+     "label": "অবস্থান ও সদর দপ্তর",
+     "field": "locationBn"
+    },
+    {
+     "label": "অধীন",
+     "field": "parentBn"
+    },
+    {
+     "label": "কী নিয়ে গবেষণা",
+     "field": "focusBn",
+     "stacked": true
+    },
+    {
+     "label": "সর্বশেষ যাচাই",
+     "field": "verifiedBn",
+     "link": {
+      "field": "sourceUrl",
+      "text": "সূত্র"
+     }
+    }
+   ]
+  },
+  "health": {
+   "title": {
+    "field": "labelBn"
+   },
+   "subtitle": {
+    "field": "approxBn"
+   },
+   "rows": [
+    {
+     "label": "প্রতিষ্ঠার সাল",
+     "field": "foundedBn"
+    },
+    {
+     "field": "currentBn"
+    },
+    {
+     "label": "অবস্থান ও সদর দপ্তর",
+     "field": "locationBn"
+    },
+    {
+     "label": "অধীন",
+     "field": "parentBn"
+    },
+    {
+     "label": "কী নিয়ে গবেষণা",
+     "field": "focusBn",
+     "stacked": true
+    },
+    {
+     "label": "সর্বশেষ যাচাই",
+     "field": "verifiedBn",
+     "link": {
+      "field": "sourceUrl",
+      "text": "সূত্র"
+     }
+    }
+   ]
+  },
+  "socio": {
+   "title": {
+    "field": "labelBn"
+   },
+   "subtitle": {
+    "field": "approxBn"
+   },
+   "rows": [
+    {
+     "label": "প্রতিষ্ঠার সাল",
+     "field": "foundedBn"
+    },
+    {
+     "field": "currentBn"
+    },
+    {
+     "label": "অবস্থান ও সদর দপ্তর",
+     "field": "locationBn"
+    },
+    {
+     "label": "অধীন",
+     "field": "parentBn"
+    },
+    {
+     "label": "কী নিয়ে গবেষণা",
+     "field": "focusBn",
+     "stacked": true
+    },
+    {
+     "label": "সর্বশেষ যাচাই",
+     "field": "verifiedBn",
+     "link": {
+      "field": "sourceUrl",
+      "text": "সূত্র"
+     }
+    }
+   ]
+  }
+ }
+}

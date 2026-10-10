@@ -1,6 +1,6 @@
-// Builds the bangladesh-research-institutes map («বাংলাদেশের গবেষণা প্রতিষ্ঠান», work in progress; RES-3, 2026-10-10):
+// Builds the bangladesh-research-institutes map («বাংলাদেশের গবেষণা প্রতিষ্ঠান»; RES-3, 2026-10-10; live, GL-RES):
 //
-//   node tools/build-bangladesh-research-institutes.mjs <out>   (the local preview's copy; never docs/ while in tools/wip.json)
+//   node tools/build-bangladesh-research-institutes.mjs <out>   (docs/maps/bangladesh-research-institutes/, live since GL-RES)
 //
 // Reads only: the seed, its pinned pages' URLs (sources.json) and its points (pins.json), all in
 // data-sources/bangladesh-research-institutes/; the shared district file (docs/shared/bangladesh-districts.json, for
@@ -16,8 +16,7 @@
 // is drawn small enough to set it apart from its nearest neighbour. The card ends with «সর্বশেষ যাচাই» and
 // «সূত্র ↗» (a row's `link`, RES-3).
 //
-// A string the user has not approved yet is used here — this is the local preview — and listed at the end; the map
-// cannot leave tools/wip.json while one is (tools/verify.mjs).
+// Every string shown must be approved (rule (a)): a string awaiting the user stops the build.
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -41,7 +40,7 @@ const S = seed.strings;
 const pending = new Set();
 const t = (x) => {
   if (!x || typeof x.bn !== 'string') throw new Error(`not a string: ${JSON.stringify(x)}`);
-  if (x.approved !== true) pending.add(x.bn);
+  if (x.approved !== true) throw new Error(`not an approved string: «${x.bn}»`);
   return x.bn;
 };
 const DIGITS = '০১২৩৪৫৬৭৮৯';
@@ -84,9 +83,11 @@ for (const tab of TABS) {
       labelBn: `${num}. ${t(x.name)} (${x.abbr})`,
       ...(p.kind === 'approximate' ? { approxBn: t(L.approximate) } : {}),
       foundedBn: yearBn,
-      ...(x.currentForm?.year ? { currentBn: fill(t(L.currentForm), { year: bn(x.currentForm.year) }) } : {}),
+      // Held (BSRTI) or not looked up: null — unverified, on the pending list; none: absent.
+      ...(x.currentForm ? { currentBn: x.currentForm.year ? fill(t(L.currentForm), { year: bn(x.currentForm.year) }) : null } : {}),
       locationBn: area ? `${area}, ${t(x.address.district)}` : t(x.address.district),
-      ...(x.parent ? { parentBn: t(S.parents[x.parent]) } : {}),
+      // No official page names it (IPH): null — unverified, pending; an international body (icddr,b): absent.
+      ...(x.parent ? { parentBn: t(S.parents[x.parent]) } : x.parent === null ? { parentBn: null } : {}),
       focusBn: t(x.focus),
       verifiedBn: dateBn(x.verified),
       sourceUrl: encodeURI(decodeURI(url)),
@@ -120,13 +121,16 @@ const govHosts = [...new Set([...cited].map((id) => pages[id].url).filter((u) =>
 const wiki = Object.values(S.places).filter((v) => v.tier === 'secondary').map((v) => pages[v.cite[0].source]);
 const CODAB = `Bangladesh administrative boundaries (COD-AB v03): Bangladesh Bureau of Statistics / OCHA, ${link(CODAB_PAGE, 'CC BY-IGO 3.0')} — the district outlines and the approximate points (district capitals)`;
 const OSM = `© ${link('https://www.openstreetmap.org/copyright', 'OpenStreetMap contributors')} (ODbL) — the points of ${Object.entries(points).filter(([, p]) => p.kind === 'osm').map(([k]) => seed.institutes[k].abbr).join(', ')}, from Geofabrik's extract of 1 October 2026`;
+// Each credit is one link, as every credit in ⓘ is (verify-descriptor): grouped in order — the institutes' own sites
+// (in the tabs' order), the ministries', divisions' and directorates', the laws, then the map data.
+const osmAbbrs = Object.entries(points).filter(([, p]) => p.kind === 'osm').map(([k]) => seed.institutes[k].abbr).join(', ');
 const extra = [
-  `The institutes' own websites: ${order.map((k) => link(ownSite(k), seed.institutes[k].abbr)).join(', ')}`,
-  `Ministries, divisions and directorates: ${govHosts.map((h) => link(`https://${h}/`, h)).join(', ')}`,
-  'Acts and ordinances: Laws of Bangladesh, bdlaws.minlaw.gov.bd (Legislative and Parliamentary Affairs Division)',
+  ...order.map((k) => link(ownSite(k), `${seed.institutes[k].abbr}: the institute's own website (${hostOf(ownSite(k))})`)),
+  ...govHosts.map((h) => link(`https://${h}/`, `${h}: a parent ministry's, division's or directorate's website`)),
+  link('https://bdlaws.minlaw.gov.bd/', 'Laws of Bangladesh (bdlaws.minlaw.gov.bd): the Acts and Ordinances'),
   ...wiki.map((w) => link(w.permalink, `Bengali Wikipedia, revision ${w.revid}`)),
-  CODAB,
-  OSM,
+  link(CODAB_PAGE, 'Bangladesh administrative boundaries (COD-AB v03): Bangladesh Bureau of Statistics / OCHA, CC BY-IGO 3.0 — the district outlines and the approximate points (district capitals)'),
+  link('https://www.openstreetmap.org/copyright', `© OpenStreetMap contributors (ODbL) — the points of ${osmAbbrs}, from Geofabrik's extract of 1 October 2026`),
 ];
 
 // ---- the descriptor ------------------------------------------------------------------------------------------------
@@ -134,7 +138,7 @@ const go = [{ action: 'select' }, { action: 'fitBounds', field: 'frame', clear: 
 const pick = (tab) => ({ from: tab, label: { field: 'labelBn' }, placeholder: t(L.picker), do: go });
 const fields = {
   numBn: { type: 'text', required: true, display: false }, labelBn: { type: 'text', required: true }, approxBn: { type: 'text' },
-  foundedBn: { type: 'text', required: true }, currentBn: { type: 'text' }, locationBn: { type: 'text', required: true }, parentBn: { type: 'text' },
+  foundedBn: { type: 'text', required: true }, currentBn: { type: 'text', verifiable: true }, locationBn: { type: 'text', required: true }, parentBn: { type: 'text', verifiable: true },
   focusBn: { type: 'text', required: true }, verifiedBn: { type: 'text', required: true }, sourceUrl: { type: 'text', required: true, display: false },
   approx: { type: 'boolean', display: false }, at: { type: 'point', required: true }, frame: { type: 'bbox', required: true },
 };

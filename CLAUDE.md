@@ -467,7 +467,8 @@ cites an offset into that text with the quote's SHA-256, checked in
 no book is a source. bangladesh-ethnic-groups (live 2026-10-08): its seed by SHA-256 and its built
 files held to a fresh build, in `tools/verify-descriptor.mjs`; every card fact's quote anchor re-hashed against
 its cached text (`tools/.cache/ethnic/`) in `tools/verify.mjs`.
-bangladesh-research-institutes (work in progress): every cited page by size and SHA-256 and its text by SHA-256 in
+bangladesh-research-institutes (live 2026-10-10): its seed by SHA-256 and its built files held to a fresh build, in
+`tools/verify-descriptor.mjs`; every cited page by size and SHA-256 and its text by SHA-256 in
 its own `sources.json`, each citation by offset and SHA-256 into the NFC text (`tools/verify.mjs`, with the cache);
 Geofabrik's Bangladesh extract of 2026-10-01 by size, published MD5 and SHA-256 (`osmGeofabrikBangladesh` in
 `tools/sources.json`; held in memory, never kept); each OpenStreetMap point by type, id, version and its outline's
@@ -493,10 +494,11 @@ State which kind a task is when reporting it.
 
 ## Current state
 
-- Nineteen maps. Bangladesh: `ancient-janapadas`, `liberation-war-1971`,
+- Twenty maps. Bangladesh: `ancient-janapadas`, `liberation-war-1971`,
   `bangladesh-rivers-map` («নদী ২»), `bangladesh-maritime-boundary`
-  (`notes/bangladesh-maritime-boundary.md`) and `bangladesh-ethnic-groups`
-  (`notes/bangladesh-ethnic-groups.md`). International: `straits`,
+  (`notes/bangladesh-maritime-boundary.md`), `bangladesh-ethnic-groups`
+  (`notes/bangladesh-ethnic-groups.md`) and `bangladesh-research-institutes`
+  (`notes/bangladesh-research-institutes.md`). International: `straits`,
   `border-lines`, `org-headquarters`, `environment-treaties`,
   `world-revolutions` (`notes/world-revolutions.md`), `org-members`
   (`notes/org-members.md`), `global-indices` (`notes/global-indices.md`) and `org-newest-members`
@@ -561,12 +563,13 @@ State which kind a task is when reporting it.
   official, 4 secondary-tier), 37 held; two view tabs (map, list), drawn by the shell's opt-in `newest` module, with
   global-indices' pins; no country's name but the pins (`hideCountryLabels`) and no tilt (`flat`); all 41 strings
   approved (`notes/org-newest-members.md`).
-- Work in progress (`tools/wip.json`): `bangladesh-research-institutes` «বাংলাদেশের গবেষণা প্রতিষ্ঠান», a map under
-  বাংলাদেশ (RES-1 investigation, RES-2 the seed, RES-3 the user's decisions of 2026-10-10 and the preview): 32
-  institutes whose main work is research (five restored by the user), in four tabs (কৃষি 14, বিজ্ঞান ও প্রযুক্তি 9,
-  স্বাস্থ্য 5, সমাজ, অর্থনীতি ও কৌশল 4), 26 left out with reasons; points 25 site pins, 3 OpenStreetMap, 4 approximate;
-  every string approved (RES-4); drawn on the local preview only, with two opt-in shell terms, a row's `link` and
-  `cluster.list` (`notes/bangladesh-research-institutes.md`).
+- `bangladesh-research-institutes` «বাংলাদেশের গবেষণা প্রতিষ্ঠান» went live on the home page on 2026-10-10 (GL-RES), under
+  বাংলাদেশ, after bangladesh-ethnic-groups, with no caption, after RES-1 to RES-4: 32 institutes whose main work is research
+  (five restored by the user), in four tabs (কৃষি 14, বিজ্ঞান ও প্রযুক্তি 9, স্বাস্থ্য 5, সমাজ, অর্থনীতি ও কৌশল 4), 26 left
+  out with reasons; points 25 site pins, 3 OpenStreetMap, 4 approximate (hollow); two opt-in shell terms, a row's
+  `link` and `cluster.list`; every string approved; two values pending (IPH's parent, BSRTI's present form)
+  (`notes/bangladesh-research-institutes.md`).
+- Work in progress (`tools/wip.json`): none.
 
 ## Index — notes, read only when working on that item
 

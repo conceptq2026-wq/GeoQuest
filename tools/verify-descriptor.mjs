@@ -41,6 +41,8 @@
 //                             data-sources/bangladesh-ethnic-groups/, pinned; its sources and anchors, by tools/verify.mjs
 //   global-indices  docs/maps/global-indices/ is a fresh build of data-sources/global-indices/,
 //                   pinned; no pending string or unapproved fact built; its strings, by tools/verify.mjs
+//   bangladesh-research-institutes  docs/maps/bangladesh-research-institutes/ is a fresh build of
+//                                   data-sources/bangladesh-research-institutes/, pinned; its sources, by tools/verify.mjs
 //   org-newest-members  docs/maps/org-newest-members/ is a fresh build of data-sources/org-newest-members/, pinned;
 //                       its strings, its sources and tiers, by tools/verify.mjs
 //   important-days (a diagram)  docs/diagrams/important-days/ is a fresh build of
@@ -129,6 +131,8 @@ const BANGLADESH_MARITIME_SEED_SHA256 = 'dcc627421f99b20faeffe17006d9348f181b966
 // The global-indices map «বৈশ্বিক সূচক»: its seed, pinned (live 2026-10-09).
 // The org-newest-members map «সংস্থার সর্বশেষ সদস্য»: its seed, pinned (live 2026-10-09, GL-ORGN).
 const ORG_NEWEST_SEED_SHA256 = '0f484c5dad08f7416317841ddd6e3d63ca5fb61a97000cf0e4a763ff0241097c';
+// The bangladesh-research-institutes map «বাংলাদেশের গবেষণা প্রতিষ্ঠান»: its seed, pinned (live 2026-10-10, GL-RES).
+const RESEARCH_INSTITUTES_SEED_SHA256 = '0d0388c37ffd203bba6a2570e423b2faac748f8ac398ce12ac7972c40957718e';
 const GLOBAL_INDICES_SEED_SHA256 = '9b72d6e35308d4633dfe6f22021964a03e1459ca0b49603fb1dfae57efff517f';
 // The important-days diagram «বছরের চাকা»: its seed, pinned (live 2026-10-08, after WHEEL-2–5 and GL-WHEEL).
 const IMPORTANT_DAYS_SEED_SHA256 = '4913e38e433c44c4b0b3c55337e29e0d463f4293a2547eb22bfe0e032853f673';
@@ -2937,6 +2941,51 @@ console.log('\n\n============ org-newest-members ============');
   check(badPins.length === 0, `every organisation pins Bangladesh once and at most three newest members, and shades Bangladesh${badPins.length ? ` — not: ${badPins.join(', ')}` : ''}`);
   // One unverified value: UN Tourism's member count (its page heads «160» and lists 161).
   checkMap({ id, expectedPending: 1 });
+}
+
+/*
+|--------------------------------------------------------------------------
+| BANGLADESH-RESEARCH-INSTITUTES — a map, «বাংলাদেশের গবেষণা প্রতিষ্ঠান»
+| (live 2026-10-10, GL-RES; RES-1 to RES-4), built by
+| tools/build-bangladesh-research-institutes.mjs from its seed: the seed is
+| the pinned one; docs/ holds exactly what a fresh build writes; four tabs,
+| each its tab's institutes in the seed's order, numbered ১, ২, …; every
+| disc at its pinned point; the two opt-in terms (a row's `link`,
+| `cluster.list`) on this map alone. Every string approved: the build
+| refuses any other (rule (a), also verify.mjs).
+|--------------------------------------------------------------------------
+*/
+console.log('\n\n============ bangladesh-research-institutes ============');
+{
+  const id = 'bangladesh-research-institutes';
+  const seedFile = path.join(ROOT, 'data-sources', id, `${id}.seed.json`);
+  const seedHash = crypto.createHash('sha256').update(fs.readFileSync(seedFile)).digest('hex');
+  check(seedHash === RESEARCH_INSTITUTES_SEED_SHA256, `the seed is the pinned one: SHA-256 ${seedHash.slice(0, 12)}… (pinned ${RESEARCH_INSTITUTES_SEED_SHA256.slice(0, 12)}…)`);
+  const seed = readJson(seedFile);
+  const points = readJson(path.join(ROOT, 'data-sources', id, 'pins.json')).points;
+  const dir = path.join(MAPS_DIR, id);
+  const fresh = path.join(os.tmpdir(), 'geoquest-verify', id);
+  fs.rmSync(fresh, { recursive: true, force: true });
+  execFileSync(process.execPath, [path.join(HERE, `build-${id}.mjs`), fresh], { stdio: 'pipe' });
+  const built = fs.readdirSync(fresh).sort();
+  const differ = built.filter((name) => !fs.existsSync(path.join(dir, name)) || !fs.readFileSync(path.join(dir, name)).equals(fs.readFileSync(path.join(fresh, name))));
+  check(differ.length === 0 && fs.readdirSync(dir).sort().join() === built.join(), `docs/maps/${id}/ is a fresh build, byte for byte (${built.join(', ')})${differ.length ? ` — differs: ${differ.join(', ')}` : ''}`);
+  const descriptor = readJson(path.join(dir, 'descriptor.json'));
+  const TABS = ['agri', 'sci', 'health', 'socio'];
+  check(descriptor.section === 'bangladesh' && descriptor.basemap === 'bangladesh-wide' && descriptor.minTextSize === 14 && JSON.stringify(Object.keys(readJson(path.join(dir, 'tabs.json')))) === JSON.stringify(TABS), 'descriptor: বাংলাদেশ, the Bangladesh basemap, no text under 14 px, the four tabs কৃষি, বিজ্ঞান ও প্রযুক্তি, স্বাস্থ্য, সমাজ, অর্থনীতি ও কৌশল');
+  const DIGITS = '০১২৩৪৫৬৭৮৯';
+  const bad = TABS.flatMap((tab) => {
+    const rows = readJson(path.join(dir, `${tab}.json`));
+    const keys = Object.keys(rows);
+    if (JSON.stringify(keys) !== JSON.stringify(seed.tabs[tab])) return [`${tab}: order`];
+    return keys.filter((k, i) => rows[k].numBn !== String(i + 1).replace(/[0-9]/g, (d) => DIGITS[d]) || rows[k].at[0] !== points[k].lon || rows[k].at[1] !== points[k].lat || rows[k].approx !== (points[k].kind === 'approximate')).map((k) => `${tab}:${k}`);
+  });
+  check(bad.length === 0, `each tab's institutes are the seed's, in its order, numbered ১, ২, …, each disc at its pinned point, hollow where approximate (${TABS.map((t) => seed.tabs[t].length).join(' + ')} = ${Object.keys(seed.institutes).length})${bad.length ? ` — not: ${bad.join(', ')}` : ''}`);
+  const uses = (m) => { const d = readJson(path.join(MAPS_DIR, m, 'descriptor.json')); return Object.values(d.sources ?? {}).some((x) => x.cluster?.list) || JSON.stringify(d.sheet ?? d.sheets ?? {}).includes('"link":'); };
+  const users = fs.readdirSync(MAPS_DIR).filter(uses);
+  check(JSON.stringify(users) === JSON.stringify([id]), `the opt-in terms a row's link and cluster.list are this map's alone (${users.join(', ')})`);
+  // Two unverified values (null, pending): IPH's parent (no official page names it) and BSRTI's present form (held).
+  checkMap({ id, expectedPending: 2 });
 }
 
 /*

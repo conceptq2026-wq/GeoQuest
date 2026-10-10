@@ -1,14 +1,4 @@
 {
   "_about": "Work in progress: every new map or diagram is added here first, before any work on it (the user's standing rule, 2026-09-27). tools/preview.mjs puts each item on its local copy's home page, in its section, as a card that opens whatever exists so far, or a «কাজ চলছে» page; the live home page, docs/registry.json, gets it only when it is finished, when it leaves this list for its own folder under docs/. tools/verify.mjs fails an id here that the committed registry lists or that is also a finished map or diagram. Fields: id, kind (map | diagram), section (bangladesh | international | geography | misc), title { bn, en } — the preview card's title, which may differ from the item's descriptor while it is in progress.",
-  "items": [
-    {
-      "id": "bangladesh-research-institutes",
-      "kind": "map",
-      "section": "bangladesh",
-      "title": {
-        "bn": "বাংলাদেশের গবেষণা প্রতিষ্ঠান",
-        "en": "Research Institutes of Bangladesh"
-      }
-    }
-  ]
+  "items": []
 }
